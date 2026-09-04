@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_power_set_minus3_0_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the power set of A = {−3, 0, 3}.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count how many subsets there must be",
+      "marks": 1
+    },
+    {
+      "label": "List all eight subsets",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many subsets you expect and how you would list them without missing any.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count",
+        "kind": "equation",
+        "label": "Count how many subsets there must be",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the count before the list. It is the check that the list is complete.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {−3, 0, 3}, so n(A) = 3.",
+          "The power set P(A) is the set of all subsets of A.",
+          "n(P(A)) = 2³ = 8, so eight subsets must be listed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A) is the set of all subsets of A and that there are 2³ = 8 of them.",
+          "accept": [
+            "the power set is the set of all subsets so there are two cubed which is eight",
+            "n of A is three so eight subsets",
+            "two to the power three gives eight subsets",
+            "power set ante anni subsets, moodu elements kabatti enimidi",
+            "count the subsets first, two power n"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "power set",
+            "two cubed",
+            "eight subsets",
+            "all subsets"
+          ]
+        },
+        "why": "Knowing the answer must hold eight members turns the listing into a check. A list of seven or nine is then noticed on the page instead of after the paper is handed in.",
+        "common_mistakes": [
+          "Writing n(P(A)) = 3² = 9 instead of 2³ = 8.",
+          "Saying there are 6 subsets after counting only the non-empty ones with fewer than three members."
+        ],
+        "memory_tip": "Each element is either taken or left out, so three elements give 2 × 2 × 2 = 8 subsets."
+      },
+      {
+        "id": "s2_list",
+        "kind": "boxed_final",
+        "label": "List all eight subsets",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Members of P(A) are sets, so each one is written inside its own braces.",
+        "lines": [
+          "No element: ∅",
+          "One element: {−3}, {0}, {3}",
+          "Two elements: {−3, 0}, {−3, 3}, {0, 3}",
+          "Three elements: {−3, 0, 3}",
+          {
+            "text": "∴ P(A) = {∅, {−3}, {0}, {3}, {−3, 0}, {−3, 3}, {0, 3}, {−3, 0, 3}}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the eight subsets are listed, including the empty set and A itself.",
+          "accept": [
+            "empty set, the three single element sets, the three pairs and A itself",
+            "list them by size none one two and three",
+            "phi then minus three then zero then three then the pairs then the whole set",
+            "empty set nunchi start chesi, singles, pairs, chivarlo whole set",
+            "all eight subsets including the null set and A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "empty set",
+            "phi",
+            "pairs",
+            "whole set",
+            "eight"
+          ]
+        },
+        "why": "Listing by size covers every subset exactly once, and the group sizes 1, 3, 3, 1 add to the 8 counted in the first step.",
+        "common_mistakes": [
+          "Leaving out ∅, which is a subset of every set.",
+          "Leaving out A itself, which is also a subset of A.",
+          "Writing the members −3, 0, 3 instead of the one-element sets {−3}, {0}, {3}."
+        ],
+        "memory_tip": "List by size — none, one, two, three — and the group counts read 1, 3, 3, 1."
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -85,5 +85,6 @@
         "margin_note": "Two lines, one for each sign of ΔH."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks: that temperature alone changes K, and which way it moves. Students who explain Le Chatelier's shift without ever separating the position from the constant have answered a different question."
 }

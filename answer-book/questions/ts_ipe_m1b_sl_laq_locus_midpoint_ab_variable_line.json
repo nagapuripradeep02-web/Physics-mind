@@ -1,0 +1,273 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_locus_midpoint_ab_variable_line",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A variable straight line drawn through the point of intersection of the straight lines x/a + y/b = 1 and x/b + y/a = 1 meets the coordinate axes at A and B. Show that the locus of the midpoint of AB is 2(a + b)xy = ab(x + y).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Take the variable line in intercept form",
+      "marks": 1
+    },
+    {
+      "label": "Write the midpoint and the intercepts",
+      "marks": 1
+    },
+    {
+      "label": "Put the fixed point on the variable line",
+      "marks": 2
+    },
+    {
+      "label": "Clear the fractions and name the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 24, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on the fixed point, which is the only piece of the answer that uses the two given lines, two on substituting it into the variable line, and two on the algebra that turns that into the printed locus. Setting up the variable line and naming the midpoint take one mark each, because each is a single line of writing. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours. AUTHOR NOTE on conditions: the card states a ≠ b in its first step (if a = b the two given lines are the SAME line and there is no single point of intersection) and a + b ≠ 0, and it states that the variable line must actually cut both axes, so neither coordinate of the midpoint is zero. None of these is printed in the stem. The result was checked on four concrete positions of the variable line at a = 2, b = 3."
+  },
+  "recall_prompt": "Say how you would solve this — say what stays fixed, what varies, and which point you substitute into which line.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_point_of_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "margin_note": "The first two marks. The two given lines are the same equation with a and b swapped, so subtracting them forces x = y and the fixed point falls out in one more line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x/a + y/b = 1 ……(1),  x/b + y/a = 1 ……(2)",
+          "Take a ≠ b, so (1) and (2) are different lines.",
+          "(1) − (2):  (x − y)(1/a − 1/b) = 0  ⇒  x = y",
+          "Then x/a + x/b = 1  ⇒  x(a + b) = ab",
+          "∴ P = (ab/(a+b), ab/(a+b)),  a + b ≠ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting the two given lines gives x = y, so the fixed point is (ab/(a+b), ab/(a+b)).",
+          "accept": [
+            "subtract the two lines to get x equals y",
+            "the fixed point is a b over a plus b in both coordinates",
+            "the two lines are symmetric in a and b so x equals y",
+            "rendu lines subtract chesthe x equals y vasthundi",
+            "find where the two given lines meet"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "subtract",
+            "x equals y",
+            "a b over a plus b",
+            "fixed point"
+          ]
+        },
+        "why": "Everything in the question varies except this one point, so finding it first is what turns a moving line into a fixed condition.",
+        "common_mistakes": [
+          "Solving the pair by cross-multiplication and losing the symmetry.",
+          "Forgetting that a = b would make the two lines identical."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The two given lines are the same equation with a and b swapped, so x = y at their crossing."
+      },
+      {
+        "id": "s2_variable_line",
+        "kind": "equation",
+        "label": "Take the variable line in intercept form",
+        "marks": 1,
+        "margin_note": "One mark. The variable line is described by where it CUTS THE AXES, so the intercept form is the natural one. Both intercepts must be non-zero for A and B to exist.",
+        "lines": [
+          "Let the variable line meet the axes at",
+          "A(α, 0) and B(0, β), with α ≠ 0, β ≠ 0",
+          "Its equation is x/α + y/β = 1 ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variable line is taken as x/α + y/β = 1 with A(α, 0) and B(0, β).",
+          "accept": [
+            "let the variable line cut the axes at alpha and beta",
+            "write it in intercept form x by alpha plus y by beta equals one",
+            "A is alpha comma zero and B is zero comma beta",
+            "intercept form lo variable line teesukovali",
+            "both intercepts must be non zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "alpha comma zero",
+            "zero comma beta",
+            "variable line"
+          ]
+        },
+        "why": "The question asks about the midpoint of the two axis points, so the two intercepts are exactly the quantities the answer needs to carry.",
+        "common_mistakes": [
+          "Using y = mx + c, which does not name the two axis points.",
+          "Allowing an intercept to be zero, when the line must cut both axes."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The line is described by where it CUTS THE AXES, so use the intercept form."
+      },
+      {
+        "id": "s3_midpoint",
+        "kind": "equation",
+        "label": "Write the midpoint and the intercepts",
+        "marks": 1,
+        "margin_note": "One mark. Name the midpoint (h, k) and turn it round: the two intercepts are 2h and 2k, so every α and β below can be replaced.",
+        "lines": [
+          "Let M(h, k) be the midpoint of AB",
+          "h = (α + 0)/2,  k = (0 + β)/2",
+          "∴ α = 2h and β = 2k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the midpoint is called (h, k) and the intercepts are written as α = 2h, β = 2k.",
+          "accept": [
+            "call the midpoint h comma k",
+            "alpha is two h and beta is two k",
+            "the midpoint of alpha comma zero and zero comma beta",
+            "midpoint ni h k ani teesukoni intercepts rayali",
+            "turn the midpoint round to get the intercepts"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "midpoint",
+            "two h",
+            "two k",
+            "h comma k"
+          ]
+        },
+        "why": "A locus question asks for a relation between the moving point's own coordinates, so the moving point must be NAMED before anything else can be written in terms of it.",
+        "common_mistakes": [
+          "Writing h = α and k = β without the halving.",
+          "Using (x, y) for the midpoint too early, which confuses it with the line's own x and y."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Name the moving point (h, k) FIRST, then write everything else in terms of h and k."
+      },
+      {
+        "id": "s4_put_p_on_line",
+        "kind": "equation",
+        "label": "Put the fixed point on the variable line",
+        "marks": 2,
+        "margin_note": "The next two marks. Every position of the variable line passes through P, so P satisfies (3). Substituting P and then α = 2h, β = 2k gives one relation in h and k.",
+        "lines": [
+          "(3) passes through P, so",
+          "(ab/(a+b))/α + (ab/(a+b))/β = 1",
+          "⇒ (ab/(a+b))(1/2h + 1/2k) = 1",
+          "⇒ (ab/(a+b)) · (h + k)/(2hk) = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is substituted into the variable line and α, β are replaced by 2h, 2k.",
+          "accept": [
+            "the variable line always passes through the fixed point",
+            "substitute P into x by alpha plus y by beta equals one",
+            "replace alpha by two h and beta by two k",
+            "fixed point ni variable line lo substitute cheyyali",
+            "this gives one relation in h and k"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "passes through",
+            "substitute",
+            "two h",
+            "relation in h and k"
+          ]
+        },
+        "why": "Passing through P is the ONLY thing every position of the variable line has in common, so it is the condition that produces the locus.",
+        "common_mistakes": [
+          "Substituting the midpoint into the line instead of the fixed point.",
+          "Adding the two fractions with denominator hk instead of 2hk."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The one thing every position of the line shares is that it passes through P — that is the condition."
+      },
+      {
+        "id": "s5_clear_and_name",
+        "kind": "boxed_final",
+        "label": "Clear the fractions and name the locus",
+        "marks": 2,
+        "margin_note": "The last two marks. Cross-multiply, then replace (h, k) by (x, y) because the midpoint is the point whose path is asked for. The check below uses real numbers.",
+        "lines": [
+          "⇒ ab(h + k) = 2hk(a + b)",
+          "Replacing (h, k) by (x, y):",
+          "Check a = 2, b = 3, line x/2 + y/3 = 1:",
+          "M(1, 3/2) and 10(1)(3/2) = 15 = 6(1 + 3/2)",
+          {
+            "text": "∴ Locus is 2(a + b)xy = ab(x + y)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross-multiplying and renaming (h, k) as (x, y) gives 2(a + b)xy = ab(x + y).",
+          "accept": [
+            "cross multiply and clear the fractions",
+            "replace h and k by x and y at the end",
+            "the locus is two a plus b x y equals a b x plus y",
+            "h k ni x y ga marchi locus rayali",
+            "this is the required locus"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "replace h and k",
+            "locus",
+            "x y"
+          ]
+        },
+        "why": "The letters h and k were only a name for the moving point, so the last move is to write the relation in the standard locus letters x and y. Two concrete lines through P confirm it: at a = 2, b = 3 the locus is 10xy = 6(x + y), and the midpoints (1, 3/2) and (3/2, 1) both satisfy it.",
+        "common_mistakes": [
+          "Leaving the answer in h and k.",
+          "Cancelling (h + k) against hk, which is not a common factor of the two sides."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "h and k were only a NAME for the moving point — rename them x and y at the very end."
+      }
+    ]
+  }
+}

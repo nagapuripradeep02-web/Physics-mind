@@ -1,0 +1,282 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_laq_det_a_minus_1_cubed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "Show that the determinant with rows (a²+2a, 2a+1, 1), (2a+1, a+2, 1) and (3, 3, 1) is equal to (a − 1)³.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Row operations R₁ → R₁ − R₂ and R₂ → R₂ − R₃",
+      "marks": 3
+    },
+    {
+      "label": "Take (a − 1) common from R₁ and from R₂",
+      "marks": 2
+    },
+    {
+      "label": "Expand along the third column",
+      "marks": 2
+    },
+    {
+      "label": "State the final result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.49, chapter 5 MATRICES, Long Answer question 8, determinant-identity route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 3+2+2+1 split gives three marks to the pair of row subtractions, because they are the whole idea and the longest arithmetic, two to the common factors, two to the expansion and one to the stated result. The opening line carries no mark because it only copies the question down. Working checked: the identity was tested on a = 2, where the determinant of (8, 5, 1), (5, 4, 1), (3, 3, 1) is 1 = (2 − 1)³, and on a = 3, where the determinant of (15, 7, 1), (7, 5, 1), (3, 3, 1) is 8 = (3 − 1)³. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say which rows you subtract, what comes out common, which line you expand along, and how the cube appears.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own. Look at column 3 first: it is 1, 1, 1. Subtracting neighbouring rows turns two of those 1s into 0s, and a column of 0, 0, 1 makes the expansion at the end almost free.",
+        "memory_tip": "Column 3 is 1, 1, 1. Subtracting neighbouring rows turns two of those 1s into zeros.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} a^2+2a & 2a+1 & 1 \\\\ 2a+1 & a+2 & 1 \\\\ 3 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Column 3 is 1, 1, 1, so subtracting one row",
+          "from the next will clear two of those 1s."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the given determinant, with column 3 noted as 1, 1, 1. Naming the move is full credit.",
+          "accept": [
+            "write the given determinant and notice the last column is all ones",
+            "take delta as the determinant in the question",
+            "start with the LHS determinant and look at column three",
+            "modata ichina determinant rasi, last column anni ones ani chudali",
+            "write down the determinant that has to be proved"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "column of ones"
+          ]
+        },
+        "why": "The answer is a cube of (a − 1) while no single entry contains (a − 1). That mismatch always means something has to be subtracted first.",
+        "common_mistakes": [
+          "Expanding directly, which produces a page of terms in a.",
+          "Missing that column 3 is 1, 1, 1, and hunting for a common factor instead."
+        ]
+      },
+      {
+        "id": "s2_row_ops",
+        "kind": "equation",
+        "label": "Subtract neighbouring rows",
+        "marks": 3,
+        "mark_note": "Row operations",
+        "margin_note": "Three marks, and the whole idea. Both subtractions use the row BELOW, and row 3 is left untouched. Subtracting one row from another never changes a determinant, so no factor appears or disappears here.",
+        "memory_tip": "Both subtractions use the row BELOW, and row 3 is left untouched.",
+        "lines": [
+          "R₁ → R₁ − R₂,  R₂ → R₂ − R₃",
+          "New R₁:  a²+2a − (2a+1) = a² − 1,",
+          "2a+1 − (a+2) = a − 1,  1 − 1 = 0",
+          "New R₂:  2a+1 − 3 = 2a − 2,",
+          "a+2 − 3 = a − 1,  1 − 1 = 0",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a^2-1 & a-1 & 0 \\\\ 2a-2 & a-1 & 0 \\\\ 3 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R₁ − R₂ and R₂ − R₃ are applied, clearing the top two entries of column 3 and leaving a² − 1, a − 1 and 2a − 2, a − 1.",
+          "accept": [
+            "subtract row two from row one and row three from row two so the last column becomes zero zero one",
+            "apply R one minus R two and R two minus R three leaving a squared minus one and a minus one",
+            "take the differences of neighbouring rows to clear the third column",
+            "R1 minus R2, R2 minus R3 cheste last column lo rendu zeros vastai",
+            "subtract the row below from each of the first two rows"
+          ],
+          "reject": [
+            "do a row operation",
+            "subtract the rows",
+            "apply R one minus R two"
+          ],
+          "heard_as": [
+            "R1 minus R2",
+            "R2 minus R3",
+            "a squared minus one",
+            "a minus one",
+            "zeros"
+          ]
+        },
+        "why": "Subtracting one row from another leaves a determinant unchanged. It earns its place here because the +2a and the +1s cancel, turning quadratics into products that carry a factor of (a − 1).",
+        "common_mistakes": [
+          "Writing R₁ → R₂ − R₁ instead of R₁ → R₁ − R₂, which flips the sign of the determinant.",
+          "Changing row 3 as well, so there is no row of plain numbers left.",
+          "Working out a²+2a − (2a+1) as a²+1 by dropping the bracket."
+        ]
+      },
+      {
+        "id": "s3_take_common",
+        "kind": "equation",
+        "label": "Take (a − 1) common",
+        "marks": 2,
+        "mark_note": "Common factors",
+        "margin_note": "Two marks. Row 1 gives (a−1) through the difference of two squares; row 2 gives it by taking 2 out as well. Two rows, two factors — that is (a−1)², and the third factor comes later.",
+        "memory_tip": "Row 1 gives (a−1) from a² − 1; row 2 gives it from 2a − 2. Two rows, two factors.",
+        "lines": [
+          "a² − 1 = (a−1)(a+1) and 2a − 2 = 2(a−1),",
+          "so (a−1) comes out of R₁ and out of R₂:",
+          {
+            "text": "\\Delta = (a-1)^2 \\begin{vmatrix} a+1 & 1 & 0 \\\\ 2 & 1 & 0 \\\\ 3 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a−1) is a factor of both a² − 1 and 2a − 2, so it comes out of rows 1 and 2, giving (a−1)² outside.",
+          "accept": [
+            "a squared minus one is a minus one into a plus one and two a minus two is two into a minus one so a minus one comes out of both rows",
+            "take a minus one common from the first two rows giving a minus one squared outside",
+            "both rows carry a factor of a minus one so it comes out twice",
+            "rendu rows lo a minus one common undi, so a minus one square bayata vasthundi",
+            "pull a minus one out of row one and row two"
+          ],
+          "reject": [
+            "take common",
+            "take out the factor",
+            "simplify the rows"
+          ],
+          "heard_as": [
+            "a minus one",
+            "common",
+            "a minus one squared",
+            "difference of squares"
+          ]
+        },
+        "why": "A common factor of a whole row comes outside the determinant. Two of the three factors of the answer are collected here, which is why the remaining 2×2 work only has to produce one more.",
+        "common_mistakes": [
+          "Taking 2(a−1) out of R₂ and still writing that row as 1, 1, 0; taking (a−1) out leaves the row as 2, 1, 0.",
+          "Forgetting that the second entry a − 1 also has to be divided, leaving a − 1 inside.",
+          "Taking the factor out of a column instead of a row."
+        ]
+      },
+      {
+        "id": "s4_expand",
+        "kind": "equation",
+        "label": "Expand along C₃",
+        "marks": 2,
+        "mark_note": "Expansion",
+        "margin_note": "Two marks. Expand along the column with two zeros, never along a full row. The surviving 2×2 is the top-left block, and its sign is plus because the 1 sits in position (3, 3).",
+        "memory_tip": "Expand along the column with two zeros. The surviving 2×2 is the top-left block, sign plus.",
+        "lines": [
+          "Column 3 is 0, 0, 1, so only the bottom entry",
+          "contributes. Its cofactor sign is plus:",
+          "Δ = (a−1)² · 1 · [(a+1)(1) − 1(2)]",
+          "= (a−1)²(a + 1 − 2)",
+          "= (a−1)²(a − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding along column 3 leaves one term, (a+1)(1) − 1(2) = a − 1, multiplied by the (a−1)² outside.",
+          "accept": [
+            "expand along the third column so only one term survives and the two by two gives a plus one minus two",
+            "the last column is zero zero one so one term is left and it comes to a minus one",
+            "expand down column three and the minor is a plus one minus two which is a minus one",
+            "third column lo rendu zeros unnai kabatti oke term migulutundi",
+            "only the bottom entry contributes and its minor gives a minus one"
+          ],
+          "reject": [
+            "expand the determinant",
+            "multiply the diagonal",
+            "solve it"
+          ],
+          "heard_as": [
+            "expand",
+            "third column",
+            "cofactor",
+            "a minus one",
+            "one term"
+          ]
+        },
+        "why": "Expanding along a line of zeros removes two of the three terms before any arithmetic is done. Choosing that line is the difference between three 2×2 determinants and one.",
+        "common_mistakes": [
+          "Expanding along the first row, which needs three 2×2 determinants.",
+          "Giving the surviving term a minus sign; position (3, 3) is plus.",
+          "Forgetting the (a−1)² already standing outside."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "State the result",
+        "marks": 1,
+        "mark_note": "Final answer",
+        "margin_note": "Last mark. Count where each (a−1) came from: one from row 1, one from row 2, one from the 2×2. If you can only account for two, a factor was dropped in the common-factor step.",
+        "memory_tip": "Count where each (a−1) came from: row 1, row 2, and the 2×2. Three in all.",
+        "lines": [
+          "Two factors came out of the rows and one came",
+          "from the 2×2 determinant — three in all:",
+          {
+            "text": "Δ = (a − 1)³ = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three factors of (a−1) multiply to (a−1)³, which is the required right-hand side.",
+          "accept": [
+            "three factors of a minus one give a minus one cubed",
+            "two from the rows and one from the two by two make the cube",
+            "the answer is a minus one whole cubed",
+            "moodu factors kalipithe a minus one cube avthundi",
+            "multiply them to get a minus one cube which is the RHS"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so LHS equals RHS"
+          ],
+          "heard_as": [
+            "a minus one cubed",
+            "cube",
+            "RHS"
+          ]
+        },
+        "why": "Counting the factors is the check. The answer is a cube, so exactly three of them must be accounted for, and no numerical factor such as 2 may be left over.",
+        "common_mistakes": [
+          "Writing (a−1)² by forgetting one of the row factors.",
+          "Leaving a stray 2 in front from the 2a − 2 row."
+        ]
+      }
+    ]
+  }
+}

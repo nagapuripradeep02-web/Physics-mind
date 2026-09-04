@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cyclic_quadrilateral_sin_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A, B, C, D are the angles of a cyclic quadrilateral, prove that (i) sin A − sin C = sin D − sin B and (ii) cos A + cos B + cos C + cos D = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use A + C = π, B + D = π for (i)",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the four cosines for (ii)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 29, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Both parts rest on the single cyclic-quadrilateral fact, so the 1 + 1 gives one mark to that fact together with part (i) and one to part (ii), where the sign change under π − θ has to be handled correctly four times. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove both parts — name the property of a cyclic quadrilateral you use, and what it does to sine and to cosine.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_supplementary_pairs",
+        "kind": "equation",
+        "label": "Use A + C = π, B + D = π for (i)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Opposite angles of a cyclic quadrilateral are supplementary. Pair A with C and B with D, never A with B. Then sin(π − θ) = sin θ finishes part (i).",
+        "memory_tip": "Opposite angles add to π, so pair A with C and B with D. Sine does not change under π − θ, so each difference in part (i) is zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In a cyclic quadrilateral the opposite",
+          "angles are supplementary:",
+          "A + C = π and B + D = π",
+          "(i) C = π − A ⇒ sin C = sin(π − A) = sin A",
+          "and D = π − B ⇒ sin D = sin B",
+          "∴ sin A − sin C = 0 = sin D − sin B"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That opposite angles are supplementary, so sin C = sin A and sin D = sin B, making both sides of part (i) zero.",
+          "accept": [
+            "opposite angles of a cyclic quadrilateral add to pi",
+            "C is pi minus A so sin C equals sin A",
+            "both sides come out zero",
+            "opposite angles supplementary, sin C ante sin A ye",
+            "sin of pi minus A is sin A so the difference is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cos of pi minus A is minus cos A"
+          ],
+          "heard_as": [
+            "supplementary",
+            "pi minus A",
+            "sin C equals sin A",
+            "cyclic quadrilateral"
+          ]
+        },
+        "why": "Every cyclic-quadrilateral proof uses one fact: opposite angles add to π. Once C = π − A is written, sin(π − A) = sin A finishes part (i) in a single move, and both sides turn out to be zero rather than merely equal.",
+        "common_mistakes": [
+          "Pairing A with B instead of A with C.",
+          "Writing sin(π − A) = −sin A."
+        ]
+      },
+      {
+        "id": "s2_cosines_cancel",
+        "kind": "boxed_final",
+        "label": "Reduce the four cosines for (ii)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cosine flips sign under π − θ, so cos C = −cos A and cos D = −cos B, and the four terms cancel in two pairs.",
+        "memory_tip": "Under π − θ sine keeps its sign and cosine changes it. That one difference is why (i) gives zero on each side and (ii) cancels in pairs.",
+        "lines": [
+          "(ii) cos C = cos(π − A) = −cos A",
+          "and cos D = cos(π − B) = −cos B",
+          "cos A + cos B + cos C + cos D",
+          "= cos A + cos B − cos A − cos B",
+          {
+            "text": "= 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C = −cos A and cos D = −cos B, so the four cosines cancel in two pairs and the sum is zero.",
+          "accept": [
+            "cos of pi minus A is minus cos A so the terms cancel",
+            "cos C is minus cos A and cos D is minus cos B",
+            "the four cosines cancel in pairs giving zero",
+            "cos flip avthundi, anduke sum zero",
+            "the sum is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "sin C equals sin A"
+          ],
+          "heard_as": [
+            "minus cos A",
+            "cos pi minus A",
+            "cancel in pairs",
+            "zero"
+          ]
+        },
+        "why": "Cosine changes sign under π − θ while sine does not. That single difference between the two reductions is why the sines in part (i) give zero on each side and the cosines in part (ii) cancel in two pairs.",
+        "common_mistakes": [
+          "Writing cos(π − A) = cos A, which gives 2(cos A + cos B) instead of 0.",
+          "Using A + B = π in place of A + C = π."
+        ]
+      }
+    ]
+  }
+}

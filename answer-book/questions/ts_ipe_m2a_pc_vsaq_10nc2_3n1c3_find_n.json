@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_10nc2_3n1c3_find_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 10 · ⁿC₂ = 3 · ⁽ⁿ⁺¹⁾C₃, find n.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write both combinations as products",
+      "marks": 1
+    },
+    {
+      "label": "Cancel n(n − 1) and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 141.2. Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find n when 10 times n C 2 equals 3 times n plus 1 C 3.",
+  "insider_note": "⁽ⁿ⁺¹⁾C₃ expands to exactly three factors, (n + 1)n(n − 1)/6, and the question is built around writing four. Once n(n − 1) is cancelled the equation is a single line.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Write both combinations as products",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿC₂ = n(n − 1)/2 and ⁽ⁿ⁺¹⁾C₃ = (n + 1)n(n − 1)/6. Both sides contain n(n − 1).",
+        "memory_tip": "⁽ⁿ⁺¹⁾C₃ has THREE factors: (n + 1)n(n − 1)/6. Both sides then share n(n − 1).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "10 · n(n − 1)/2 = 3 · (n + 1)n(n − 1)/6",
+          "5n(n − 1) = (n + 1)n(n − 1)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n C 2 is n times n minus 1 over 2 and n plus 1 C 3 is n plus 1 times n times n minus 1 over 6, so the equation becomes 5 n times n minus 1 equals half of n plus 1 times n times n minus 1.",
+          "accept": [
+            "n C two is n into n minus one by two and n plus one C three is n plus one into n into n minus one by six, so five n n minus one equals n plus one n n minus one by two",
+            "write both combinations as products, both sides have n into n minus one",
+            "ten by two is five on the left and three by six is half on the right",
+            "rendu C lanu products ga rayali, n into n minus one common",
+            "expand n C two and n plus one C three"
+          ],
+          "reject": [
+            "expand",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n C two",
+            "n plus one C three",
+            "n minus one",
+            "by two",
+            "by six"
+          ]
+        },
+        "why": "Both combinations contain the product n(n − 1); writing them out makes that shared factor visible so it can be cancelled in the next step.",
+        "common_mistakes": [
+          "Writing ⁽ⁿ⁺¹⁾C₃ as (n + 1)n(n − 1)(n − 2)/6 — three factors, not four.",
+          "Dropping the 10 or the 3 when simplifying the coefficients."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Cancel n(n − 1) and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. n(n − 1) is not zero (n ≥ 2), so divide it out: 10 = n + 1 and n = 9.",
+        "memory_tip": "n ≥ 2 so n(n − 1) ≠ 0 and may be divided out. Then 10 = n + 1 gives n = 9.",
+        "lines": [
+          "n(n − 1) ≠ 0, so divide it out:",
+          "10 = n + 1",
+          {
+            "text": "∴ n = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n times n minus 1 is not zero and is cancelled, leaving 10 = n plus 1, so n = 9.",
+          "accept": [
+            "cancel n into n minus one from both sides to get ten equals n plus one so n is nine",
+            "n equals nine",
+            "divide out the common factor, ten is n plus one",
+            "n n minus one cancel cheste ten equal n plus one, n nine",
+            "n plus one is ten"
+          ],
+          "reject": [
+            "cancel",
+            "solve"
+          ],
+          "heard_as": [
+            "n is nine",
+            "n plus one",
+            "ten",
+            "cancel"
+          ]
+        },
+        "why": "n(n − 1) can be divided out only because n ≥ 2 for ⁿC₂ to exist, so it is not zero. Saying so is what makes the cancellation legal.",
+        "common_mistakes": [
+          "Cancelling without noting n(n − 1) ≠ 0.",
+          "Answering n = 10 from \"10 = n + 1\" by not subtracting 1."
+        ]
+      }
+    ]
+  }
+}

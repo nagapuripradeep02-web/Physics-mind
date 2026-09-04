@@ -1,0 +1,273 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_touch_internally_6x_9y_plus13",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the circles x² + y² − 6x − 9y + 13 = 0 and x² + y² − 2x − 16y = 0 touch each other. Find the point of contact and the equation of the common tangent at that point.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius of the first circle",
+      "marks": 1
+    },
+    {
+      "label": "Centre and radius of the second circle",
+      "marks": 1
+    },
+    {
+      "label": "Show that the circles touch",
+      "marks": 2
+    },
+    {
+      "label": "Find the point of contact",
+      "marks": 2
+    },
+    {
+      "label": "Find the common tangent",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 1 Circle, answer 5.4. It is the right-hand twin of answer 5.3 on the same ★★★ SSP page (book p.19 carries the SSP banner). Printed appearance tags: AP 18 and TS 18. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: r₁ = √65/2, r₂ = √65, C₁C₂ = √65/2 = r₂ − r₁, and the contact point (5, 1) satisfies 4x − 7y − 13 = 0. This is the INTERNAL-touch twin of answer 5.3, so the two are best read together. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because internal touching is the case students picture wrongly. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the mirror image of the external case: C₁C₂ = r₂ − r₁ means internal touching, and internal touching means the contact point divides C₁C₂ EXTERNALLY — the two words swap over, which is the whole difficulty of the pair.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_circle",
+        "kind": "equation",
+        "label": "Centre and radius of the first circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The y coefficient is odd, so f = −9/2 and the radius carries a fraction. Keep everything over 4.",
+        "memory_tip": "An odd coefficient of y gives a half in f. Put the whole radius over the denominator 4 before taking the root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "First circle S ≡ x² + y² − 6x − 9y + 13 = 0",
+          "Here g = −3, f = −9/2, c = 13",
+          "Centre C₁ = (3, 9/2)",
+          "r₁ = √(9 + 81/4 − 13)",
+          "= √((36 + 81 − 52)/4) = √(65/4) = √65/2"
+        ],
+        "why": "Comparing with the general form gives 2f = −9, so f = −9/2. Writing 9 and 13 over 4 as 36/4 and 52/4 lets the whole expression be squared and rooted in one step.",
+        "common_mistakes": [
+          "Taking f = −9 and getting a radius of √77.",
+          "Writing √(65/4) as 65/2."
+        ]
+      },
+      {
+        "id": "s2_second_circle",
+        "kind": "equation",
+        "label": "Centre and radius of the second circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. There is no constant term, so c = 0 — the circle passes through the origin.",
+        "memory_tip": "No constant term means c = 0, and then the circle goes through the origin.",
+        "lines": [
+          "Second circle S′ ≡ x² + y² − 2x − 16y = 0",
+          "Here g = −1, f = −8, c = 0",
+          "Centre C₂ = (1, 8)",
+          "r₂ = √(1 + 64 − 0) = √65"
+        ],
+        "why": "A missing constant term means c = 0. The radius is then √(g² + f²), and here it comes out as √65 — exactly twice the first radius, which is what makes the touching exact.",
+        "common_mistakes": [
+          "Inventing a constant term because the equation looks incomplete.",
+          "Writing C₂ = (−1, −8)."
+        ]
+      },
+      {
+        "id": "s3_show_touch",
+        "kind": "equation",
+        "label": "Show that the circles touch",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Compare with the DIFFERENCE of the radii here, and take the larger radius first so the difference is positive.",
+        "memory_tip": "Difference of the radii equals the distance between the centres: one circle sits inside the other.",
+        "lines": [
+          "C₁C₂ = √((3−1)² + (9/2 − 8)²)",
+          "= √(4 + 49/4) = √((16 + 49)/4) = √65/2",
+          "Also r₂ − r₁ = √65 − √65/2 = √65/2",
+          "⇒ C₁C₂ = r₂ − r₁",
+          "∴ The circles touch each other internally."
+        ],
+        "why": "When the distance between the centres equals the difference of the radii, the smaller circle lies inside the larger one and they meet at exactly one point. Here 9/2 − 8 = −7/2, and its square is 49/4.",
+        "common_mistakes": [
+          "Comparing with r₁ + r₂ and concluding the circles do not touch.",
+          "Writing r₁ − r₂, which is negative and cannot equal a distance."
+        ]
+      },
+      {
+        "id": "s4_point_of_contact",
+        "kind": "equation",
+        "label": "Find the point of contact",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Internal touching uses the EXTERNAL division formula, with the minus sign in the denominator.",
+        "memory_tip": "The contact point lies beyond one centre, not between them, so the division is external.",
+        "lines": [
+          "r₁ : r₂ = (√65/2) : √65 = 1 : 2",
+          "P divides C₁C₂ externally in the ratio 1 : 2",
+          "P = ((1(1) − 2(3))/(1−2), (1(8) − 2(9/2))/(1−2))",
+          "= ((1 − 6)/(−1), (8 − 9)/(−1))",
+          "∴ P = (5, 1)"
+        ],
+        "why": "For internal touching the smaller circle is inside the larger, so the contact point lies on the line of centres but outside the segment joining them. That is external division in the ratio r₁ : r₂.",
+        "common_mistakes": [
+          "Using internal division and getting (5/3, 17/3).",
+          "Dividing by (1 + 2) instead of (1 − 2)."
+        ]
+      },
+      {
+        "id": "s5_common_tangent",
+        "kind": "boxed_final",
+        "label": "Find the common tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. The second circle has no constant term, so nothing is subtracted from the constant of the first.",
+        "memory_tip": "The common tangent at the point of contact is S − S′ = 0, for internal touching as well.",
+        "lines": [
+          "The common tangent at the point of contact",
+          "is S − S′ = 0",
+          "⇒ (x²+y²−6x−9y+13) − (x²+y²−2x−16y) = 0",
+          "⇒ −4x + 7y + 13 = 0",
+          {
+            "text": "∴ Common tangent is 4x − 7y − 13 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "S − S′ = 0 works for both kinds of touching, because it is the one line that meets both circles at their single shared point. A check: 4(5) − 7(1) − 13 = 0, so P lies on it.",
+        "common_mistakes": [
+          "Subtracting −16y from −9y as −25y instead of +7y.",
+          "Leaving the answer as −4x + 7y + 13 = 0, which is correct but usually written with a positive leading coefficient."
+        ]
+      },
+      {
+        "id": "s6_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. Draw it in rough to see that P lies beyond C₁, the smaller circle's centre, not between the centres.",
+        "memory_tip": "One circle inside the other, touching at one point. Going along the line of centres the order is C₂, then C₁, then P, so the division is external.",
+        "figure": {
+          "id": "cir_touch_int_1",
+          "width": 470,
+          "height": 285,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_c1",
+              "d": "M 110 130 A 90 90 0 1 0 290 130 A 90 90 0 1 0 110 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_c2",
+              "d": "M 200 130 A 45 45 0 1 0 290 130 A 45 45 0 1 0 200 130",
+              "ms": 4040
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_axis",
+              "d": "M 102 130 L 302 130",
+              "ms": 2860,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_tan",
+              "d": "M 290 48 L 290 212",
+              "ms": 2340
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_d1",
+              "d": "M 196.5 130 A 3.5 3.5 0 1 0 203.5 130 A 3.5 3.5 0 1 0 196.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_d2",
+              "d": "M 241.5 130 A 3.5 3.5 0 1 0 248.5 130 A 3.5 3.5 0 1 0 241.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_touch_int_1_dp",
+              "d": "M 286.5 130 A 3.5 3.5 0 1 0 293.5 130 A 3.5 3.5 0 1 0 286.5 130",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_int_1_l1",
+              "x": 234,
+              "y": 160,
+              "text": "C₁",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_int_1_l2",
+              "x": 176,
+              "y": 160,
+              "text": "C₂",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_int_1_lp",
+              "x": 299,
+              "y": 116,
+              "text": "P",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_touch_int_1_lt",
+              "x": 172,
+              "y": 252,
+              "text": "common tangent at P",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The picture shows why the section formula changes. With the small circle inside the large one, the contact point P is not between C₁ and C₂ — it lies beyond C₁, on the far side from C₂ — so the division must be external. The common tangent is again the line through P at right angles to C₁C₂.",
+        "common_mistakes": [
+          "Drawing the circles side by side, which is the external case and gives the wrong point.",
+          "Placing the contact point between the two centres."
+        ]
+      }
+    ]
+  }
+}

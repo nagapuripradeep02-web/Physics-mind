@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x2_minus_sin_x_over_x2_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → ∞) (x² − sin x)/(x² − 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide by x² and bound sin x",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 30. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you divide by, and what you can say about sin x as x increases without bound.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_and_bound",
+        "kind": "equation",
+        "label": "Divide by x² and bound sin x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner is looking for the words \"sin x lies between −1 and 1\". Dividing by x² alone is not the full method.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Divide the numerator and the denominator by x² (x ≠ 0):",
+          "(x² − sin x)/(x² − 2) = (1 − (sin x)/x²)/(1 − 2/x²)",
+          "For every x,  −1 ≤ sin x ≤ 1",
+          "∴ −1/x² ≤ (sin x)/x² ≤ 1/x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both lines are divided by x², and that sin x always lies between −1 and 1.",
+          "accept": [
+            "divide by x squared and use that sine x stays between minus one and one",
+            "sine x is bounded so sine x over x squared goes to zero",
+            "sine never goes outside minus one to one",
+            "sine x eppudu minus one and one madhya untundi",
+            "divide throughout by x squared first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sine x",
+            "minus one to one",
+            "bounded",
+            "x squared"
+          ]
+        },
+        "why": "sin x has no limit as x increases without bound, so it cannot be handled on its own. It can be handled as a bounded quantity: it always lies between −1 and 1, while x² increases without bound.",
+        "common_mistakes": [
+          "Writing lim(x → ∞) sin x = 0; sin x keeps oscillating between −1 and 1 and has no limit.",
+          "Cancelling x² against sin x as though sin x were a factor."
+        ],
+        "memory_tip": "A bounded quantity divided by one that increases without bound approaches 0."
+      },
+      {
+        "id": "s2_take_limit",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 1. Both outer bounds −1/x² and 1/x² approach 0, so the quantity between them does as well.",
+        "lines": [
+          "As x → ∞,  1/x² → 0, so by the Sandwich theorem (sin x)/x² → 0",
+          "Also 2/x² → 0",
+          "∴ limit = (1 − 0)/(1 − 0) = 1",
+          {
+            "text": "∴ lim(x → ∞) (x² − sin x)/(x² − 2) = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (sin x)/x² → 0 and 2/x² → 0, so the value is 1.",
+          "accept": [
+            "both correction terms go to zero so the answer is one",
+            "sine x over x squared goes to zero by the sandwich theorem",
+            "the limit is one",
+            "rendu terms zero ayipothayi, answer one",
+            "one over one is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one",
+            "sandwich theorem",
+            "goes to zero",
+            "one over one"
+          ]
+        },
+        "why": "Both correction terms approach 0, so the quotient approaches 1/1. The sine term changes nothing because it is divided by a quantity that increases without bound.",
+        "common_mistakes": [
+          "Leaving the answer as (1 − sin x)/1 with sin x still present.",
+          "Cancelling the x² terms first and reading (−sin x)/(−2), which gives no limit at all."
+        ],
+        "memory_tip": "Both lines are led by x², so the answer is 1; the sine only adds a correction that approaches 0."
+      }
+    ]
+  },
+  "insider_note": "sin x has no limit at infinity, but it is BOUNDED, so (sin x)/x² is squeezed to 0. Naming the Sandwich theorem is what makes this an argument rather than an assertion."
+}

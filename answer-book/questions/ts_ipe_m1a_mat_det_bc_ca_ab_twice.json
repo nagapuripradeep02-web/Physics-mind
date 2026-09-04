@@ -70,6 +70,7 @@
         "label": "Write the determinant",
         "marks": 0,
         "margin_note": "No mark of its own. Note that the right-hand side is a determinant, not a number — so the job is to TRANSFORM this one into that one, not to evaluate anything.",
+        "memory_tip": "The right-hand side is a DETERMINANT, not a number — the job is to transform, not to evaluate.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 2,
         "mark_note": "Row sum and the common entry",
         "margin_note": "The first two marks, one for the operation and one for doing the sum correctly. Down every column the three entries add to 2a+2b+2c — each of a, b and c appears exactly twice.",
+        "memory_tip": "Down every column the three entries add to 2a+2b+2c, since each letter appears twice.",
         "lines": [
           "R₁ → R₁ + R₂ + R₃",
           "Column 1:  (b+c) + (c+a) + (a+b) = 2(a+b+c)",
@@ -160,6 +162,7 @@
         "marks": 1,
         "mark_note": "Common factor 2",
         "margin_note": "Third mark. Only the 2 comes out here, not the (a+b+c). Taking the whole bracket out as well would be wrong — the rows below still need it.",
+        "memory_tip": "Only the 2 comes out here, NOT the (a+b+c) — the rows below still need it.",
         "lines": [
           "Taking 2 common from R₁:",
           {
@@ -203,6 +206,7 @@
         "marks": 2,
         "mark_note": "Row operations",
         "margin_note": "Two more marks. Subtracting the top row from each lower row leaves single negative letters — because (c+a) − (a+b+c) is just −b. Do all six entries the same way.",
+        "memory_tip": "Subtracting the top row leaves single negative letters: (c+a) − (a+b+c) is just −b.",
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
           "(c+a) − (a+b+c) = −b, and so on for each entry:",
@@ -249,6 +253,7 @@
         "marks": 1,
         "mark_note": "Second row sum",
         "margin_note": "Sixth mark, and the move students do not expect: the same operation is used a second time. Down column 1, (a+b+c) − b − c leaves a. Columns 2 and 3 leave b and c.",
+        "memory_tip": "The same operation a SECOND time — unexpected, but it is what rebuilds the target rows.",
         "lines": [
           "R₁ → R₁ + R₂ + R₃ once more:",
           "(a+b+c) − b − c = a,  and likewise b and c:",
@@ -294,6 +299,7 @@
         "marks": 2,
         "mark_note": "Sign factors",
         "margin_note": "Last two marks. A −1 leaves each of the two lower rows, and (−1)(−1) = 1 — so the signs vanish and only the 2 is left in front, which is exactly what was to be shown.",
+        "memory_tip": "A −1 leaves each lower row, and (−1)(−1) = 1, so only the 2 survives in front.",
         "lines": [
           "Taking −1 common from R₂ and from R₃:",
           "(−1)(−1) = 1, so the signs cancel:",
@@ -334,5 +340,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add the rows into R₁ TWICE — once to bring out the 2, and again after the row subtractions to restore a, b, c. The two −1s taken out at the end cancel each other."
 }

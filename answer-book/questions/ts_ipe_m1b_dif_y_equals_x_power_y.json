@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_y_equals_x_power_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If y = xʸ, show that dy/dx = y²/(x(1 − log y)) = y²/(x(1 − y log x)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take logarithms of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate both sides with respect to x",
+      "marks": 1
+    },
+    {
+      "label": "Collect the dy/dx terms",
+      "marks": 1
+    },
+    {
+      "label": "Show the two printed forms agree",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: y was found numerically from y = xʸ at x = 1.2 (y = 1.25773454) and x = 1.1 (y = 1.11178201), and BOTH printed forms of dy/dx agree with a central difference quotient there (1.71048079 and 1.25687377). The question offers the answer in two forms, so the equivalence is authored as a scoring step rather than a remark."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do first, and how the two printed forms of the answer are connected.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_logs",
+        "kind": "equation",
+        "label": "Take logarithms of both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Keep this line visible on the page — the last step needs it again to change one printed form into the other.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y = xʸ",
+          "Take logarithms on both sides (log means logₑ throughout):",
+          "log y = log(xʸ)",
+          "∴ log y = y log x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logarithms are taken on both sides, giving log y = y log x.",
+          "accept": [
+            "take log on both sides so the index comes down",
+            "log y equals y log x",
+            "logarithm both sides because y is in the power",
+            "rendu vaipula log teeste log y equals y log x",
+            "apply log to bring the exponent in front",
+            "start with logarithmic differentiation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log",
+            "log y",
+            "y log x",
+            "both sides"
+          ]
+        },
+        "why": "y appears both on its own and as the index, so no single rule applies to y = xʸ directly. Taking logarithms brings the index down and turns the right side into a product of two functions of x, which the product rule can differentiate.",
+        "common_mistakes": [
+          "Writing log(xʸ) as (log x)ʸ instead of y log x.",
+          "Treating xʸ as a power of x and writing y·xʸ⁻¹, which is only valid when the index is a constant."
+        ],
+        "memory_tip": "One line, two uses: log y = y log x opens the question and closes it. It also connects the two printed forms of the answer."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate both sides with respect to x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Two dy/dx terms must appear — one from the left side by the chain rule, one from the right side by the product rule. Missing either one loses this mark.",
+        "lines": [
+          "Differentiate with respect to x. The left side needs the chain rule and the right side the product rule, because y is a function of x.",
+          "(1/y)(dy/dx) = (dy/dx)(log x) + y(1/x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating gives (1/y)(dy/dx) = (log x)(dy/dx) + y/x.",
+          "accept": [
+            "differentiate log y as one by y into dy by dx",
+            "product rule on y log x gives dy by dx log x plus y by x",
+            "both sides differentiate with respect to x",
+            "y log x ki product rule apply cheyyali",
+            "one by y dy by dx equals log x dy by dx plus y by x",
+            "y is a function of x so the chain rule is needed on the left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "one by y",
+            "dy by dx",
+            "y by x"
+          ]
+        },
+        "why": "y is a function of x, so log y differentiates to (1/y)(dy/dx) and not to 1/y. On the right, y log x is a product of two functions of x, so both factors must be differentiated in turn.",
+        "common_mistakes": [
+          "Differentiating log y as 1/y and leaving out the factor dy/dx.",
+          "Treating y as a constant in y log x, which gives only (y/x) and loses the second dy/dx term."
+        ],
+        "memory_tip": "Every time y is differentiated, a dy/dx comes with it. Count the dy/dx terms in this line: there must be exactly two."
+      },
+      {
+        "id": "s3_collect",
+        "kind": "equation",
+        "label": "Collect the dy/dx terms",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The bracket (1/y − log x) is combined over the denominator y before dividing. Doing that in one written line is what makes the y² appear in the numerator.",
+        "lines": [
+          "Bring the dy/dx terms to one side:",
+          "(1/y)(dy/dx) − (log x)(dy/dx) = y/x",
+          "⇒ (dy/dx)(1/y − log x) = y/x",
+          "⇒ (dy/dx)·(1 − y log x)/y = y/x",
+          "∴ dy/dx = y²/(x(1 − y log x))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dy/dx terms are collected and rearranged to give dy/dx = y²/(x(1 − y log x)).",
+          "accept": [
+            "take dy by dx common on one side",
+            "one by y minus log x becomes one minus y log x over y",
+            "dy by dx equals y squared by x into one minus y log x",
+            "dy by dx common teesi y ni pyki teesukoni divide cheyyali",
+            "shift the second dy by dx term to the left",
+            "cross multiply to get y squared in the numerator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take common",
+            "y squared",
+            "one minus y log x",
+            "dy by dx"
+          ]
+        },
+        "why": "Both dy/dx terms must sit on the same side before dy/dx can be taken out as a common factor. Writing 1/y − log x as the single fraction (1 − y log x)/y is what turns the y on the right into y² after dividing.",
+        "common_mistakes": [
+          "Leaving the answer as (y/x)/(1/y − log x) without clearing the inner fraction.",
+          "Getting y instead of y² in the numerator by dividing rather than multiplying by y."
+        ],
+        "memory_tip": "The y² is not an extra square — it is the y from y/x multiplied by the y released when 1/y − log x is written as one fraction."
+      },
+      {
+        "id": "s4_two_forms",
+        "kind": "boxed_final",
+        "label": "Show the two printed forms agree",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The question prints the answer twice, so the examiner expects the link between the two brackets to be written down, not assumed. It is a single substitution from step 1.",
+        "lines": [
+          "From step 1, log y = y log x",
+          "So the bracket 1 − y log x can be written as 1 − log y",
+          {
+            "text": "∴ dy/dx = y²/(x(1 − y log x)) = y²/(x(1 − log y))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log y = y log x is substituted into the bracket, so the two printed forms are the same expression.",
+          "accept": [
+            "since log y equals y log x the two brackets are equal",
+            "replace y log x by log y in the denominator",
+            "both forms are the same because of the first line",
+            "log y equals y log x kabatti rendu forms okate",
+            "substitute back from the logarithm step",
+            "one minus y log x is one minus log y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "same thing",
+            "one minus log y",
+            "substitute back",
+            "both forms"
+          ]
+        },
+        "why": "The two printed answers are not two results. They are one result written with the bracket in two ways, and the relation taken in step 1 is exactly what converts one into the other, so the equivalence costs one line.",
+        "common_mistakes": [
+          "Giving only one of the two forms when the question asks for both.",
+          "Trying to prove the equivalence from the original relation y = xʸ again instead of using the logarithm line already written."
+        ],
+        "memory_tip": "Go back to the line log y = y log x to finish this step: wherever y log x appears, log y may be written instead."
+      }
+    ]
+  },
+  "insider_note": "Take logarithms to get log y = y log x, then differentiate — the right side needs the product rule because y depends on x. Both printed forms follow from y = xʸ."
+}

@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "First line",
         "margin_note": "First mark. A line through two points P and Q is r = (1−t)P + tQ. Collect the a, b and c coefficients separately — that is the form the comparison below needs.",
+        "memory_tip": "A line through two points is r = (1 − t)P + tQ. Collect the a, b, c coefficients separately.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Second line",
         "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force the two lines to be travelled in step and would find only some of the intersections.",
+        "memory_tip": "Use a DIFFERENT parameter, s. Reusing t would force the two lines to be walked in step.",
         "lines": [
           "Let T = a − 2b + 3c,  S = a − 6b + 6c",
           "The line through T and S is",
@@ -141,16 +143,19 @@
         "marks": 1,
         "mark_note": "Solve for t and s",
         "margin_note": "Third mark. a, b, c are non-coplanar, so they are independent — which is what allows one vector equation to be split into three separate scalar equations.",
+        "memory_tip": "a, b, c are non-coplanar, so they are independent — one vector equation splits into three scalar ones.",
         "lines": [
           "At the point of intersection (1) = (2). Since a, b, c are",
-          "non-coplanar, compare coefficients:",
+          "non-coplanar, ALL THREE coefficients must match:",
           "2 + t = 1  …(i)      3 + t = −2 − 4s  …(ii)",
+          "−1 − t = 3 + 3s  …(iii)",
           "From (i):  t = −1",
-          "From (ii):  3 − 1 = −2 − 4s ⇒ 4s = −4 ⇒ s = −1"
+          "From (ii):  3 − 1 = −2 − 4s ⇒ 4s = −4 ⇒ s = −1",
+          "Check (iii):  −1 + 1 = 0  and  3 − 3 = 0  ✓"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That because a, b, c are non-coplanar their coefficients can be compared separately, giving t = −1 and s = −1.",
+          "must_convey": "That because a, b, c are non-coplanar their coefficients can be compared separately, giving t = −1 and s = −1, and that the third coefficient equation is then checked and holds.",
           "accept": [
             "since a b c are non coplanar compare the coefficients separately and get t equals minus one and s equals minus one",
             "equate the two expressions and match the a b and c coefficients to solve for t and s",
@@ -170,10 +175,11 @@
             "s equals minus one"
           ]
         },
-        "why": "Independence is the whole reason this works. If a, b, c were coplanar, one could be written in terms of the others and the coefficients could not be matched term by term.",
+        "why": "Independence is the whole reason this works. If a, b, c were coplanar, one could be written in terms of the others and the coefficients could not be matched term by term. The c coefficients have to agree as well: at t = −1 and s = −1 both −1 − t and 3 + 3s are 0, so the two lines really do meet.",
         "common_mistakes": [
+          "Solving two of the three equations and stopping, without checking that the third also holds.",
           "Comparing coefficients without saying why it is allowed.",
-          "Solving only one equation and never checking it against the third."
+          "Losing the minus sign in −2 − 4s and solving 4s = 4, which gives s = +1."
         ]
       },
       {
@@ -183,6 +189,7 @@
         "marks": 1,
         "mark_note": "Point of intersection",
         "margin_note": "Last mark. Put t = −1 into equation (1). The c coefficient becomes −1 + 1 = 0, so c drops out entirely and the point is a + 2b.",
+        "memory_tip": "Put t = −1 into (1). The c coefficient becomes 0, so c drops out and the point is a + 2b.",
         "lines": [
           "Substituting t = −1 in (1):",
           "r = (2−1)a + (3−1)b + (−1+1)c",
@@ -221,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Non-coplanar is what licenses comparing coefficients at all, so say so."
 }

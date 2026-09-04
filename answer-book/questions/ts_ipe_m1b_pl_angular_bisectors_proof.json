@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "If the equation ax²+2hxy+by²=0 represents a pair of lines then prove that the equation of the pair of angular bisectors is h(x²−y²)−(a−b)xy=0.",
   "appearances": [
     {
@@ -29,27 +29,27 @@
     },
     {
       "label": "Write the bisector equation",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Square and collect",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Substitute back from (1)",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2 Pair of Straight Lines, answer 6. Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Substitute back from (1)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.19 — LAQ chapter 2 Pair of Straight Lines, answer 6. Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Substitute back from (1). RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say what property defines an angular bisector, and what you substitute at the end.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
@@ -75,7 +75,7 @@
             "split the pair and equate the coefficients",
             "a is sin alpha sin beta, b is cos alpha cos beta, two h is minus sin of alpha plus beta",
             "pair ni rendu lines product ga rasi coefficients equate cheyyali",
-            "match the coefficients to get the dictionary"
+            "match the coefficients to get a, b and two h"
           ],
           "reject": [
             "that is the answer",
@@ -89,19 +89,20 @@
             "cos beta"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
-          "Using the slope form m₁x − y, which cannot express an angle bisector cleanly.",
+          "Matching only a and b and skipping 2h, so the sin(α + β) needed later is never written down.",
           "Losing the minus sign in 2h = −sin(α + β)."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Write the pair in the ANGLE form x sinα − y cosα, because bisectors are about angles."
       },
       {
         "id": "s2_bisector_equation",
         "kind": "equation",
         "label": "Write the bisector equation",
-        "marks": 2,
-        "margin_note": "Two marks. A point on an angular bisector is EQUALLY far from both lines, so set the two perpendicular distances equal with a ±. The denominators are each √(sin² + cos²) = 1.",
+        "marks": 1,
+        "margin_note": "One mark. A point on an angular bisector is EQUALLY far from both lines, so set the two perpendicular distances equal with a ±. The denominators are each √(sin² + cos²) = 1.",
         "lines": [
           "Equation of angular bisectors is",
           "(x sinα − y cosα)/√(sin²α + cos²α) = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
@@ -134,14 +135,15 @@
           "Dropping the ± and proving only one bisector.",
           "Forgetting that the denominators simplify to 1 and carrying them along."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A point on a bisector is EQUALLY far from both lines, so set the two distances equal with a ±."
       },
       {
         "id": "s3_square_and_collect",
         "kind": "equation",
         "label": "Square and collect",
-        "marks": 2,
-        "margin_note": "Two marks. Squaring removes the ±. Use sin2θ for the cross terms so the whole line collapses into differences of squares.",
+        "marks": 1,
+        "margin_note": "One mark. Squaring removes the ±. Use sin2θ for the cross terms so the whole line collapses into differences of squares.",
         "lines": [
           "⇒ (x sinα − y cosα)² = (x sinβ − y cosβ)²",
           "⇒ x²sin²α + y²cos²α − 2xy sinα cosα = x²sin²β + y²cos²β − 2xy sinβ cosβ",
@@ -178,14 +180,15 @@
           "Squaring only one side.",
           "Forgetting that squaring is what legitimately removes the ±."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Squaring removes the ±. Use sin 2θ on the cross terms so everything becomes differences of squares."
       },
       {
         "id": "s4_substitute_back",
         "kind": "boxed_final",
         "label": "Substitute back from (1)",
-        "marks": 3,
-        "margin_note": "The last three marks. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
+        "marks": 1,
+        "margin_note": "The last mark. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
         "lines": [
           "⇒ [sin(α + β) sin(α − β)](x² − y²) = 2cos(α + β) sin(α − β) xy",
           "  [∵ sin²A − sin²B = sin(A+B)sin(A−B),  sin2A − sin2B = 2cos(A+B)sin(A−B)]",
@@ -219,13 +222,15 @@
             "h into x squared minus y squared"
           ]
         },
-        "why": "cos(α+β) = cosαcosβ − sinαsinβ is exactly b − a from the dictionary in (1), and sin(α+β) is −2h — so the trigonometry converts back into the coefficients the question asked about.",
+        "why": "cos(α+β) = cosαcosβ − sinαsinβ is exactly b − a from the matched coefficients in (1), and sin(α+β) is −2h — so the trigonometry converts back into the coefficients the question asked about.",
         "common_mistakes": [
           "Expanding cos(α+β) as cosαcosβ + sinαsinβ.",
           "Cancelling sin(α−β) without noting it appears on both sides."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Turn both brackets into products so (1) applies; the common sin(α−β) then cancels."
       }
     ]
-  }
+  },
+  "insider_note": "Write each line as x sinα − y cosα, so both denominators are already 1. The slope form reaches the same result, but leaves a √(1 + m²) in each denominator and takes longer. Keep the ±, let SQUARING remove it, then sin²A − sin²B = sin(A+B)sin(A−B) brings back a, b and h."
 }

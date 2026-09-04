@@ -62,6 +62,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "This earns no mark by itself, but it names the two properties the whole proof uses. Write it first so every later step has something to point back to.",
+        "memory_tip": "Name the TWO properties the proof uses — one one and onto — so every later step can point back.",
         "lines": [
           {
             "text": "Given:",
@@ -114,6 +115,7 @@
         "marks": 3,
         "mark_note": "One one",
         "margin_note": "Three of the eight marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
+        "memory_tip": "The outer function is g, so remove g FIRST (using g one one), then f. Quote the reason in brackets at each step.",
         "lines": [
           {
             "text": "(i) To prove gof: A→C is one one",
@@ -155,7 +157,7 @@
         },
         "why": "One one means different inputs never share an output. The clean way to show it is to assume two inputs DO share an output and be forced to conclude they were the same input all along.",
         "common_mistakes": [
-          "Peeling off f before g — the outer function is g, so g comes off first.",
+          "Removing f before g — the outer function is g, so g is removed first.",
           "Writing the chain with no reasons in brackets; the reasons carry the marks.",
           "Claiming gof is one one because f and g are, without the argument."
         ]
@@ -166,7 +168,8 @@
         "label": "Prove gof is onto",
         "marks": 5,
         "mark_note": "Onto",
-        "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and go back one step at a time: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "memory_tip": "Start from any c in C and go BACK one step at a time: g onto gives b, then f onto gives a. Starting at a proves nothing.",
         "lines": [
           {
             "text": "(ii) To prove gof: A→C is onto",
@@ -222,6 +225,7 @@
         "label": "Conclude bijective",
         "marks": 0,
         "margin_note": "No separate mark, but write it. The question asked for bijective, so the last line must say bijective — both halves named together.",
+        "memory_tip": "The question asked for bijective, so the last line must say bijective, naming both halves.",
         "lines": [
           "gof: A→C is one one and onto.",
           "∴ gof: A→C is a bijective function."
@@ -256,5 +260,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two separate halves, one-one and onto, each needing its own argument. In the one-one half g is used first and f second; taking them in the other order does not close the chain."
 }

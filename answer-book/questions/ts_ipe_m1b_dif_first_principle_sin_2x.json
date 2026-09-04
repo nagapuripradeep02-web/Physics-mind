@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_sin_2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of sin 2x from the first principle with respect to x.",
+  "appearances": [
+    {
+      "year": 2002
+    },
+    {
+      "year": 2010
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Use sin C − sin D",
+      "marks": 1
+    },
+    {
+      "label": "Arrange sin h over h",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(i). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. The book prints exam-appearance years against this sub-part — Mar-2018(AP), 2015(TS), 2016, 2010, 2002 — one of only three questions in the whole 98-page volume that carries any. They are recorded in appearances[] exactly as printed: 2018 tagged ap_ipe, 2015 tagged ts_ipe, and 2016, 2010 and 2002 left without a board, because the book names no board for those three. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the definition you start from and the identity you use on the numerator.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The definition itself earns it. Write the limit line before you touch any identity.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = sin 2x",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [sin(2x + 2h) − sin 2x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle f′(x) = lim(h → 0) [f(x + h) − f(x)]/h is written down with f(x) = sin 2x.",
+          "accept": [
+            "start from the definition f of x plus h minus f of x over h",
+            "write the first principle limit as h tends to zero",
+            "take f of x as sin two x and substitute x plus h",
+            "first principle formula rasta, f of x plus h minus f of x by h",
+            "the derivative is the limit of the difference quotient"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first principle",
+            "h tends to zero",
+            "f of x plus h",
+            "sin two x"
+          ]
+        },
+        "why": "The question names the method, so the definition is the thing being marked. Writing it costs one line and earns one mark even if the identity that follows slips.",
+        "common_mistakes": [
+          "Using the chain rule and writing 2 cos 2x straight away, which earns nothing on a first-principle question.",
+          "Writing sin(2x + 2h) as sin 2x + sin 2h."
+        ],
+        "memory_tip": "Every first-principle answer opens the same way: f(x + h) minus f(x), all over h."
+      },
+      {
+        "id": "s2_sum_to_product",
+        "kind": "equation",
+        "label": "Use sin C − sin D",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Choosing the sum-to-product form is the decision the examiner looks for: it turns a difference of two sines into a product that has sin h in it.",
+        "lines": [
+          "sin C − sin D = 2 cos((C+D)/2) sin((C−D)/2)",
+          "Here C = 2x + 2h and D = 2x, so",
+          "(C+D)/2 = 2x + h  and  (C−D)/2 = h",
+          "f′(x) = lim(h → 0) [2 cos(2x + h) sin h]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin C − sin D = 2 cos((C+D)/2) sin((C−D)/2) is applied with C = 2x + 2h and D = 2x, giving 2 cos(2x + h) sin h.",
+          "accept": [
+            "use sin c minus sin d equals two cos half sum sin half difference",
+            "apply the sum to product formula to the two sines",
+            "the numerator becomes two cos of two x plus h times sin h",
+            "sin minus sin formula apply cheste two cos sin vasthundi",
+            "convert the difference of sines into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin c minus sin d",
+            "sum to product",
+            "two cos",
+            "sin h"
+          ]
+        },
+        "why": "The numerator is a difference of two sines. Sum-to-product turns it into a product, and only a product can be separated into a factor with an ordinary limit and a factor of the form sin h over h.",
+        "common_mistakes": [
+          "Using sin C + sin D = 2 sin((C+D)/2) cos((C−D)/2), which is the wrong member of the pair.",
+          "Halving only one of the two angles."
+        ],
+        "memory_tip": "sin minus sin puts the cosine outside and the sine inside: 2 cos(half sum) sin(half difference)."
+      },
+      {
+        "id": "s3_standard_limit",
+        "kind": "equation",
+        "label": "Arrange sin h over h",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The standard limit applies only when the angle inside the sine equals the whole denominator. Here it already does, so no adjusting factor is needed.",
+        "lines": [
+          "= lim(h → 0) 2 cos(2x + h) · (sin h)/h",
+          "The angle in sin h matches the h below it, so",
+          "the standard limit (sin h)/h → 1 applies"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is separated so that (sin h)/h stands alone, and the standard limit (sin h)/h → 1 is named.",
+          "accept": [
+            "separate sin h over h and use the standard limit",
+            "limit of sin h by h as h tends to zero is one",
+            "the angle inside the sine is already h so the limit applies",
+            "sin h by h standard limit one avuthundi",
+            "split the product and quote sin theta over theta equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin h by h",
+            "standard limit",
+            "equals one",
+            "separate"
+          ]
+        },
+        "why": "The product splits into a factor that is continuous at h = 0 and a factor that is the standard limit. Each can then be evaluated on its own.",
+        "common_mistakes": [
+          "Cancelling sin h against h as though they were equal.",
+          "Multiplying by an extra 2 to make the angles match, when they already match."
+        ],
+        "memory_tip": "The standard limit needs the same angle above and below. Check the two agree before using it."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 2 in front is the derivative of the inside angle 2x. It comes out of the sum-to-product step, not from anywhere else.",
+        "lines": [
+          "As h → 0, cos(2x + h) → cos 2x and (sin h)/h → 1",
+          "f′(x) = 2 · cos 2x · 1",
+          {
+            "text": "∴ d/dx (sin 2x) = 2 cos 2x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That letting h → 0 gives 2 cos 2x.",
+          "accept": [
+            "the answer is two cos two x",
+            "cos of two x plus h tends to cos two x so it is two cos two x",
+            "put h equal to zero and get two cos two x",
+            "answer two cos two x vasthundi",
+            "derivative of sin two x is two cos two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos two x",
+            "h tends to zero",
+            "cos two x"
+          ]
+        },
+        "why": "The remaining cosine factor is continuous, so its limit is its value at h = 0. The answer keeps the 2, which is what records that the inside angle was 2x and not x.",
+        "common_mistakes": [
+          "Giving cos 2x and losing the factor 2.",
+          "Letting h → 0 inside sin h but not inside cos(2x + h)."
+        ],
+        "memory_tip": "The number multiplying x inside the sine comes out in front: sin 2x gives 2 cos 2x."
+      }
+    ]
+  },
+  "insider_note": "sin C − sin D turns the difference into 2cos(2x + h)sin h. Dividing by h gives sin h/h → 1, and the 2 in front is what makes the answer 2cos2x."
+}

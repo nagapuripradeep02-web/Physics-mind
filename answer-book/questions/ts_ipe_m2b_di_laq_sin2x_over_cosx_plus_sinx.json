@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_sin2x_over_cosx_plus_sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^(π/2) sin²x/(cosx + sinx) dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 2
+    },
+    {
+      "label": "Add to reach an x-free integral",
+      "marks": 2
+    },
+    {
+      "label": "Write cosx + sinx as √2 sin(x + π/4)",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the log limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.40 (PDF page 39) — LAQ chapter 4 'Definite Integrals', answer 34. No appearance tag is printed beside this item, so appearances is empty here. Chapter star rank ★★★ applies (book p.13, p.38 header). No margin mark tags are printed on this single-column page, so the 2+2+2+1 split is OURS, patterned on the same King's-property-then-trig-reduction shape used for the neighbouring answer 35 (which is worked identically one page later) and on book p.22 answer 9's printed 2+2+2+1 split. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This question's sub-integral ∫dx/(sinx+cosx) is the exact building block the very next question (∫ x/(sinx+cosx) dx) also needs — solve this one carefully and the next becomes half the work.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a = π/2",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. sinx and cosx swap places under x → π/2 − x, so the denominator does not change.",
+        "memory_tip": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx — the two swap, so sinx + cosx stays sinx + cosx.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^(π/2) sin²x/(sinx + cosx) dx …(1)",
+          "By x → π/2 − x: I",
+          "= ∫₀^(π/2) sin²(π/2 − x)/(sin(π/2 − x) +",
+          "cos(π/2 − x)) dx",
+          "⇒ I = ∫₀^(π/2) cos²x/(sinx + cosx) dx …(2)"
+        ],
+        "why": "Under x → π/2 − x, sinx and cosx exchange roles, so sin²x turns into cos²x while the denominator sinx + cosx is unchanged (it is symmetric in the two).",
+        "common_mistakes": [
+          "Writing sin(π/2 − x) as sinx instead of cosx.",
+          "Changing the denominator when it in fact stays the same."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add to reach an x-free integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. sin²x + cos²x = 1 is what makes the numerator collapse.",
+        "memory_tip": "sin²x + cos²x = 1 always — the moment you see both squares added, replace them with 1.",
+        "lines": [
+          "Adding (1) and (2): 2I",
+          "= ∫₀^(π/2) (sin²x + cos²x)/(sinx + cosx) dx",
+          "= ∫₀^(π/2) dx/(sinx + cosx)",
+          "[∵ sin²x + cos²x = 1]",
+          "⇒ I = (1/2)∫₀^(π/2) dx/(sinx + cosx)"
+        ],
+        "why": "Adding the two forms turns the numerator into sin²x + cos²x, which is identically 1, leaving a single integral with no x in the numerator at all.",
+        "common_mistakes": [
+          "Forgetting to replace sin²x + cos²x by 1 and leaving the integral unsimplified.",
+          "Dropping the factor of 1/2 when isolating I."
+        ]
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Write cosx + sinx as √2 sin(x + π/4)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the R sin(x+α) rewrite and the cosecant integral.",
+        "memory_tip": "sinx + cosx = √2 sin(x + π/4) — a standard rewrite, worth memorising outright.",
+        "lines": [
+          "sinx + cosx = √2 (sinx·1/√2 + cosx·1/√2)",
+          "= √2 sin(x + π/4)",
+          "I = (1/(2√2))∫₀^(π/2) cosec(x + π/4) dx",
+          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
+          "= (1/(2√2))[log tan((x + π/4)/2)]₀^(π/2)"
+        ],
+        "why": "Combining sinx and cosx into a single sine wave R sin(x+α) reduces the integral to a standard cosecant form, whose antiderivative is a known log tan formula.",
+        "common_mistakes": [
+          "Forgetting the 1/√2 factors, giving sinx + cosx = sin(x + π/4) with no √2.",
+          "Using the wrong standard antiderivative for cosecθ."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate the log limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Rationalising the fraction inside the log turns it into a perfect square, which is what makes the final simplification clean.",
+        "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1 — a pair worth memorising for this whole chapter.",
+        "lines": [
+          "= (1/(2√2))[log tan(3π/8) − log tan(π/8)]",
+          "= (1/(2√2)) log[(√2 + 1)/(√2 − 1)]",
+          "= (1/(2√2)) log[(√2 + 1)²/((√2 − 1)(√2 + 1))]",
+          "= (1/(2√2)) log[(√2 + 1)²]",
+          {
+            "text": "∴ I = (1/√2) log(√2 + 1)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Rationalising (√2+1)/(√2−1) by multiplying by (√2+1)/(√2+1) turns the denominator into 1, leaving a perfect square inside the log; log(a²) = 2 log(a) turns that square into a factor of 2, which cancels the outer 1/2 exactly.",
+        "common_mistakes": [
+          "Leaving the answer as log[(√2+1)/(√2−1)] without rationalising.",
+          "Forgetting that log(a²) = 2 log(a), which is what removes the /2 from the coefficient."
+        ]
+      }
+    ]
+  }
+}

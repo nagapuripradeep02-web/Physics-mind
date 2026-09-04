@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_three_coefficients_ap_general",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If the coefficients of the r-th, (r + 1)-th and (r + 2)-th terms in the expansion of (1 + x)ⁿ are in A.P., then show that n² − (4r + 1)n + 4r² − 2 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the three coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Write the A.P. condition",
+      "marks": 2
+    },
+    {
+      "label": "Replace the ratios",
+      "marks": 2
+    },
+    {
+      "label": "Clear fractions and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 Binomial Theorem, answer 22. Printed appearances: AP 15 · TS 16, 18. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — book p.28 prints no [N Marks] tags against this answer. It is patterned on the chapter's one-mark-per-idea tagging on p.27 (answer 20): naming the coefficients (1), the A.P. condition in ratio form (2), the two ratio formulas substituted (2), the algebra to the required equation (2). The SAME split and the SAME step ids are used on the Star Questions Plus twin of this question (answer 204, coefficients of x⁹, x¹⁰, x¹¹), deliberately: one method, once general and once numeric. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 2 (book p.114). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove this — what the three coefficients are, what being in A.P. means once you divide by the middle one, the two ratio formulas you substitute, and how the algebra reaches n² − (4r + 1)n + 4r² − 2 = 0.",
+  "insider_note": "The r-th TERM's coefficient is ⁿCᵣ₋₁, not ⁿCᵣ — the index runs one behind the position. Start one index low or every later line proves a different equation from the one printed.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "equation",
+        "label": "Name the three coefficients",
+        "marks": 1,
+        "mark_note": "Setting up",
+        "margin_note": "First mark. The r-th term is Tᵣ = ⁿCᵣ₋₁ xʳ⁻¹, so the three coefficients are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁ — the index runs one behind the position.",
+        "memory_tip": "The r-th TERM has coefficient ⁿCᵣ₋₁ — the index runs one behind the position.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The coefficient of the r-th term",
+          "of (1 + x)ⁿ is ⁿCᵣ₋₁",
+          "So the three coefficients are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁",
+          "and they are in A.P."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients of the r-th, (r + 1)-th, (r + 2)-th terms are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁.",
+          "accept": [
+            "the coefficients are n C r minus one, n C r and n C r plus one",
+            "the r th term has coefficient n C r minus one so the three are r minus one, r, r plus one",
+            "take the three coefficients as n C r minus one n C r n C r plus one in A P",
+            "r th term coefficient n C r minus one kabatti moodu coefficients n C r minus one, n C r, n C r plus one",
+            "consecutive coefficients one index behind the position"
+          ],
+          "reject": [
+            "write the coefficients",
+            "name them"
+          ],
+          "heard_as": [
+            "n C r minus one",
+            "n C r",
+            "n C r plus one"
+          ]
+        },
+        "why": "A coefficient of (1 + x)ⁿ is a binomial coefficient, and the coefficient of the r-th term carries r − 1, not r. Naming the three correctly is the step the rest of the answer depends on.",
+        "common_mistakes": [
+          "Taking the r-th term's coefficient as ⁿCᵣ — it is ⁿCᵣ₋₁.",
+          "Writing the three coefficients as ⁿCᵣ, ⁿCᵣ₊₁, ⁿCᵣ₊₂, which proves a different equation."
+        ]
+      },
+      {
+        "id": "s2_ap_condition",
+        "kind": "equation",
+        "label": "Write the A.P. condition",
+        "marks": 2,
+        "mark_note": "A.P. condition",
+        "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
+        "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the ratios appear.",
+        "lines": [
+          "2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁",
+          "Dividing by ⁿCᵣ:",
+          "2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁, and dividing by ⁿCᵣ gives 2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ.",
+          "accept": [
+            "twice n C r equals n C r minus one plus n C r plus one, divide by n C r to get two equals the sum of the two ratios",
+            "A P means two times the middle equals the sum of the ends, then divide by the middle",
+            "two equals n C r minus one by n C r plus n C r plus one by n C r",
+            "A P condition rasi n C r tho divide cheste two equals two ratios",
+            "middle coefficient is the average of the other two"
+          ],
+          "reject": [
+            "use the A.P. condition",
+            "they are in A.P."
+          ],
+          "heard_as": [
+            "twice the middle",
+            "two equals",
+            "divide by"
+          ]
+        },
+        "why": "Dividing by the middle coefficient turns three binomial coefficients into two RATIOS of consecutive coefficients, and those ratios have a one-line formula.",
+        "common_mistakes": [
+          "Writing the A.P. condition as first + middle = last.",
+          "Not dividing by the middle term and trying to expand the factorials."
+        ]
+      },
+      {
+        "id": "s3_ratios",
+        "kind": "equation",
+        "label": "Replace the ratios",
+        "marks": 2,
+        "mark_note": "Ratio formulas",
+        "margin_note": "Third and fourth marks. ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
+        "memory_tip": "ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
+        "lines": [
+          "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
+          "and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)",
+          "2 = r/(n − r + 1) + (n − r)/(r + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two ratios are r/(n − r + 1) and (n − r)/(r + 1), so 2 = r/(n − r + 1) + (n − r)/(r + 1).",
+          "accept": [
+            "n C r minus one by n C r is r by n minus r plus one and n C r plus one by n C r is n minus r by r plus one",
+            "two equals r over n minus r plus one plus n minus r over r plus one",
+            "substitute the two consecutive coefficient ratio formulas",
+            "ratio formulas pettithe two equals r by n minus r plus one plus n minus r by r plus one",
+            "replace each ratio using n C r by n C r minus one equals n minus r plus one by r"
+          ],
+          "reject": [
+            "substitute the ratios",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n minus r plus one",
+            "n minus r",
+            "r plus one",
+            "r by"
+          ]
+        },
+        "why": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1) come straight from the factorial form; they replace every binomial coefficient by plain algebra in n and r.",
+        "common_mistakes": [
+          "Inverting one of the two ratios.",
+          "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
+        ]
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Clear fractions and simplify",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Fifth to seventh marks. Multiply out both sides fully before collecting — the r² terms cancel on one side and the n² term appears on the other.",
+        "memory_tip": "Expand both sides fully before collecting: the r² terms cancel on one side and n² appears on the other.",
+        "lines": [
+          "2(n − r + 1)(r + 1) = r(r + 1) + (n − r)(n − r + 1)",
+          "2(nr + n − r² + 1) = r² + r + n² − 2nr + r² + n − r",
+          "2nr + 2n − 2r² + 2 = n² − 2nr + 2r² + n",
+          "0 = n² − 4nr − n + 4r² − 2",
+          {
+            "text": "∴ n² − (4r + 1)n + 4r² − 2 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross-multiplying gives 2(n − r + 1)(r + 1) = r(r + 1) + (n − r)(n − r + 1), and collecting terms gives n² − (4r + 1)n + 4r² − 2 = 0.",
+          "accept": [
+            "cross multiply, expand both sides, the two r squared on the left move across and n squared minus four n r minus n plus four r squared minus two equals zero",
+            "two into n minus r plus one into r plus one equals r into r plus one plus n minus r into n minus r plus one, then collect",
+            "expanding and collecting gives n squared minus four r plus one n plus four r squared minus two equals zero",
+            "cross multiply chesi expand cheste n squared minus four r plus one into n plus four r squared minus two equals zero",
+            "the n terms combine to minus four r plus one times n"
+          ],
+          "reject": [
+            "simplify",
+            "expand and collect"
+          ],
+          "heard_as": [
+            "n squared",
+            "four r plus one",
+            "four r squared",
+            "minus two"
+          ]
+        },
+        "why": "Cross-multiplying once and collecting like terms is all that remains; the required equation is exactly what falls out, with nothing to guess.",
+        "common_mistakes": [
+          "Expanding (n − r)(n − r + 1) as n² − r² + n − r.",
+          "Losing the −2 that comes from 2·1 on the left.",
+          "Writing +(4r + 1)n instead of −(4r + 1)n."
+        ]
+      }
+    ]
+  }
+}

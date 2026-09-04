@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_approx_root_82",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the approximate value of √82.",
+  "appearances": [
+    {
+      "year": 2009
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Choose the nearby exact point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the approximation formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(ii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(ii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. APPEARANCE YEAR: this part is one of the very few in the chapter that carries a printed year — the book prints (2009) beside it, and that single year is recorded in appearances[] as the year the SOURCE BOOK prints, not as a year we have checked against a TSBIE paper. It is recorded without a board because the book names none. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split and the year stay unverified until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_choose",
+        "kind": "equation",
+        "label": "Choose the nearby exact point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole choice of method sits here: name x = 81, Δx = 1 and f′(81) = 1/18. An examiner reads this line to see whether the nearest perfect square was found.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = √x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
+          "81 is the nearest perfect square to 82, and √81 = 9 exactly",
+          "∴ take x = 81,  Δx = 82 − 81 = 1",
+          "f′(x) = 1/(2√x)",
+          "f′(81) = 1/(2 × 9) = 1/18"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 81 is chosen because √81 = 9 is exact, Δx = 1, and f′(81) = 1/18.",
+          "accept": [
+            "take x equals eighty one because its square root is nine",
+            "the nearest perfect square is eighty one so delta x is one",
+            "f dash of eighty one is one by eighteen",
+            "daggara unna perfect square eighty one teesukovali, delta x one",
+            "start from nine and correct it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eighty one",
+            "root eighty one is nine",
+            "delta x is one",
+            "one by eighteen"
+          ]
+        },
+        "why": "The method only works from a point where the function is already known exactly. 81 is the nearest perfect square to 82, so the estimate starts at 9 with no calculator, and Δx = 1 is small next to 81.",
+        "common_mistakes": [
+          "Choosing x = 82 itself, which leaves the square root still unknown.",
+          "Writing f′(x) = 1/√x and losing the 2 in the denominator."
+        ],
+        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx carries whatever is left over."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "boxed_final",
+        "label": "Apply the approximation formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1/18 = 0.0555… recurs, so keep four decimal places before rounding. 82 is above 81, so the correction is added.",
+        "lines": [
+          "√82 = f(81 + 1) ≈ f(81) + f′(81)·(1)",
+          "= 9 + (1/18)(1)",
+          "= 9 + 0.055556",
+          "= 9.055556",
+          {
+            "text": "∴ √82 ≈ 9.0556",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √82 ≈ 9 + 1/18 = 9.0556.",
+          "accept": [
+            "nine plus one by eighteen",
+            "nine plus zero point zero five five five",
+            "the answer is nine point zero five five six",
+            "nine ki one by eighteen add cheyyali",
+            "add the correction because eighty two is above eighty one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine plus",
+            "one by eighteen",
+            "nine point zero five five six",
+            "zero point zero five five five"
+          ]
+        },
+        "why": "f′(x)·Δx is the correction the tangent line at x = 81 predicts. The true value is 9.055385, so this estimate is high by about 0.00017 — the straight line sits slightly above the curve, which is why every square-root estimate of this kind comes out a little large.",
+        "common_mistakes": [
+          "Reading 1/18 as 0.18 or as 0.005.",
+          "Rounding 9 + 0.0556 to 9.06 and losing the decimal places the question is asking for."
+        ],
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
+      }
+    ]
+  },
+  "insider_note": "Take x = 81 rather than 80, because 81 is the perfect square. Δx = 1 and f′(81) = 1/18, giving 9 + 1/18."
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_infinite_gp_sum_one_third_first_one_fourth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The sum of an infinite geometric series is 1/3 and its first term is 1/4. Find the G.P.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Put the given values into S∞ = a/(1 − r)",
+      "marks": 1
+    },
+    {
+      "label": "Write out the terms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which formula you rearrange, and what the question asks you to write at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_ratio",
+        "kind": "equation",
+        "label": "Put the given values into S∞ = a/(1 − r)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Substituting both given numbers into a/(1 − r) and reaching r = 1/4 earns it. Cross-multiply rather than guessing the rearrangement.",
+        "memory_tip": "First term divided by the sum gives 1 − r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given S∞ = 1/3 and a = 1/4",
+          "S∞ = a/(1 − r)  ⇒  1/3 = (1/4)/(1 − r)",
+          "1 − r = (1/4) × 3 = 3/4",
+          "r = 1 − 3/4 = 1/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/3 = (1/4)/(1 − r) is solved to give r = 1/4.",
+          "accept": [
+            "put the sum and the first term into a over one minus r",
+            "one minus r is three fourths so r is one fourth",
+            "first term divided by the sum gives one minus r",
+            "a by one minus r lo values pettali, r one fourth vasthundi",
+            "rearrange the infinite sum formula for r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus r",
+            "three fourths",
+            "one fourth",
+            "a over one minus r"
+          ]
+        },
+        "why": "Only one unknown is left once a and S∞ are put in, so the formula is rearranged rather than solved as two equations. Cross-multiplying gives 1 − r in one line.",
+        "common_mistakes": [
+          "Writing 1 − r = (1/3) ÷ (1/4) = 4/3, which inverts the division and gives r = −1/3.",
+          "Using S∞ = a(1 − r) instead of a/(1 − r)."
+        ]
+      },
+      {
+        "id": "s2_write_gp",
+        "kind": "boxed_final",
+        "label": "Write out the terms",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. At least three terms and the dots. A quick check: (1/4)/(1 − 1/4) = (1/4)/(3/4) = 1/3, the sum the question gave.",
+        "memory_tip": "Each term is a quarter of the one before it.",
+        "lines": [
+          "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
+          "The terms are a, ar, ar², ar³, … = 1/4, (1/4)(1/4), (1/4)(1/4)², …",
+          {
+            "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the G.P. is 1/4, 1/16, 1/64, … with each term one quarter of the term before it.",
+          "accept": [
+            "the series is one fourth one sixteenth one sixty fourth and so on",
+            "multiply by one fourth each time to get the terms",
+            "the question asks for the G P not just for r",
+            "prathi term ki one fourth multiply cheyyali",
+            "check that the terms add back to one third"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one sixteenth",
+            "one sixty fourth",
+            "one fourth",
+            "and so on"
+          ]
+        },
+        "why": "The question asks for the series, not for r, so the terms have to be written out. Checking |r| < 1 confirms the ratio found is a legal one for an infinite sum.",
+        "common_mistakes": [
+          "Stopping at r = 1/4 and not writing the G.P.",
+          "Writing 1/4, 2/16, 3/64 by adding a pattern instead of multiplying by r."
+        ]
+      }
+    ]
+  }
+}

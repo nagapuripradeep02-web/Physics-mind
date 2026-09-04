@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_common_chord_length_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation and length of the common chord of the two circles x² + y² + 2x + 2y + 1 = 0, x² + y² + 4x + 3y + 2 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the common chord",
+      "marks": 1
+    },
+    {
+      "label": "Find the centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Find the perpendicular distance",
+      "marks": 1
+    },
+    {
+      "label": "Find the length of the chord",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles, answer 54.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 15, AP 17. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Patterned on the same four-step 1-mark-per-step shape as the radical-centre twins in this unit (justified in full in ts_ipe_m2b_sc_radical_centre_three_circles_one's note, against Circle SAQ answer 48, book p.51): common chord, centre+radius, perpendicular distance, length. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52, and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The common chord IS the radical axis of the two circles — the same S − S′ = 0 line, only now used as an actual chord with a length to compute.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_chord",
+        "kind": "equation",
+        "label": "Find the common chord",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same subtraction as a radical axis — the common chord is that same line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "S ≡ x² + y² + 2x + 2y + 1 = 0",
+          "S′ ≡ x² + y² + 4x + 3y + 2 = 0",
+          "Equation of the common chord is S − S′ = 0",
+          "⇒ −2x − y − 1 = 0",
+          "⇒ 2x + y + 1 = 0"
+        ],
+        "why": "Where two circles genuinely intersect, S − S′ = 0 is the line through both points of intersection — the common chord itself, not merely a radical axis with no real chord.",
+        "common_mistakes": [
+          "Stopping at −2x − y − 1 = 0 without multiplying by −1 to clear the leading minus sign.",
+          "Subtracting S′ − S instead of S − S′ and then using the wrong sign convention downstream."
+        ],
+        "memory_tip": "Common chord = S minus S′ = 0 — literally the same line as a radical axis; only the geometric picture (an actual chord, not just a line) is different."
+      },
+      {
+        "id": "s2_centre_and_radius",
+        "kind": "equation",
+        "label": "Find the centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Either circle works — the perpendicular distance is measured from ONE of them.",
+        "lines": [
+          "For the circle S ≡ x² + y² + 2x + 2y + 1 = 0",
+          "centre C(−1, −1)",
+          "radius r = √(1² + 1² − 1) = √1 = 1"
+        ],
+        "why": "The length of a chord is found from ONE circle's own centre and radius together with the perpendicular distance from that same centre to the chord.",
+        "common_mistakes": [
+          "Reading the centre as (1, 1) instead of (−1, −1) — the centre is (−g, −f), the negative of half the coefficients.",
+          "Using S′'s centre in this step but S's radius later, mixing the two circles."
+        ],
+        "memory_tip": "Centre is the negative of half the x and y coefficients: g = 1, f = 1, so centre is (−1, −1)."
+      },
+      {
+        "id": "s3_perpendicular_distance",
+        "kind": "equation",
+        "label": "Find the perpendicular distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, for the distance from the centre chosen in step 2 to the chord found in step 1.",
+        "lines": [
+          "Length of the perpendicular from C(−1, −1)",
+          "to the line 2x + y + 1 = 0 is",
+          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
+          "= 2/√5"
+        ],
+        "why": "The perpendicular from the centre bisects the chord — its length p, together with the radius r, gives a right triangle whose other leg is half the chord.",
+        "common_mistakes": [
+          "Using the wrong circle's centre in the distance formula after finding both centres in earlier working.",
+          "Dropping the absolute value and carrying a negative distance forward."
+        ],
+        "memory_tip": "p = |Ax₁ + By₁ + C| / √(A² + B²), with (x₁, y₁) the centre found in the previous step."
+      },
+      {
+        "id": "s4_length_of_chord",
+        "kind": "boxed_final",
+        "label": "Find the length of the chord",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Fourth mark, for the final chord length.",
+        "lines": [
+          "Length of the common chord",
+          {
+            "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
+            "style": "boxed"
+          }
+        ],
+        "why": "Half the chord, the perpendicular distance p, and the radius r form a right triangle — Pythagoras gives half the chord as √(r² − p²), and the full chord is twice that.",
+        "common_mistakes": [
+          "Writing r² − p² the wrong way round as p² − r², which gives a negative number under the root.",
+          "Forgetting the factor of 2 and stopping at half the chord length."
+        ],
+        "memory_tip": "Chord length is always 2 × √(radius² − distance²) — the same formula used for any chord, not special to a common chord."
+      }
+    ]
+  }
+}

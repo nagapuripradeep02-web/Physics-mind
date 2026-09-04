@@ -82,5 +82,6 @@
         "margin_note": "State the sign convention in one line; it is what the question is really testing."
       }
     ]
-  }
+  },
+  "insider_note": "The sign convention is the second mark, not extra credit. A complete explanation of the filled shell that never states that energy is absorbed, and therefore the value is positive, is half an answer."
 }

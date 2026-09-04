@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_axes_divide_segment_ab",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the ratios in which (i) the X-axis and (ii) the Y-axis divide the line segment AB joining A(2, −3) and B(3, −6).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ratio in which the X-axis divides AB",
+      "marks": 1
+    },
+    {
+      "label": "Ratio in which the Y-axis divides AB",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 21, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The question has two named parts of equal weight, so the 1+1 split is one mark per part. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answers checked by finding the actual crossing points. Line AB has slope (−6 + 3)/(3 − 2) = −3, so its equation is y = −3x + 3. It meets the X-axis at (1, 0) and the Y-axis at (0, 3). Dividing A(2, −3) and B(3, −6) in the ratio 1 : (−2) gives ((3 − 4)/(−1), (−6 + 6)/(−1)) = (1, 0); dividing them in the ratio (−2) : 3 gives ((−6 + 6)/1, (12 − 9)/1) = (0, 3). Both crossing points lie outside the segment, which is what the negative signs in the two ratios record."
+  },
+  "recall_prompt": "Say how you would solve this — say the ratio formula for each axis, and what a minus sign in the answer means.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_x_axis_ratio",
+        "kind": "equation",
+        "label": "Ratio in which the X-axis divides AB",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The X-axis is the line y = 0, so the standard ratio −L₁₁ : L₂₂ becomes −y₁ : y₂. A minus sign in the final ratio means the division is external.",
+        "memory_tip": "For the X-axis use the y-coordinates: the ratio is −y₁ : y₂.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A(x₁, y₁) = (2, −3),  B(x₂, y₂) = (3, −6)",
+          "(i) The X-axis is y = 0",
+          "Required ratio = −y₁ : y₂",
+          "= −(−3) : (−6) = 3 : (−6) = 1 : (−2)",
+          "The minus sign means external division."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the X-axis divides AB in the ratio −y₁ : y₂ = 3 : (−6) = 1 : (−2), that is externally in the ratio 1 : 2.",
+          "accept": [
+            "the x axis ratio is minus y one is to y two",
+            "minus of minus three is to minus six",
+            "the ratio is one is to minus two",
+            "x axis ki y coordinates vaadali",
+            "it is external division one is to two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the y axis ratio uses the x coordinates"
+          ],
+          "heard_as": [
+            "minus y one is to y two",
+            "one is to minus two",
+            "external",
+            "x axis"
+          ]
+        },
+        "why": "Both A and B have negative y-coordinates, so both lie below the X-axis. The axis therefore cannot cut between them, and the external ratio records exactly that.",
+        "common_mistakes": [
+          "Using the x-coordinates for the X-axis, which is the wrong pair.",
+          "Dropping the leading minus sign and writing 3 : 6."
+        ]
+      },
+      {
+        "id": "s2_y_axis_ratio",
+        "kind": "boxed_final",
+        "label": "Ratio in which the Y-axis divides AB",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The Y-axis is the line x = 0, so the same rule now runs on the x-coordinates. Both ratios come out negative, so both divisions are external.",
+        "memory_tip": "For the Y-axis use the x-coordinates: the ratio is −x₁ : x₂. The other axis, the other coordinate.",
+        "lines": [
+          "(ii) The Y-axis is x = 0",
+          "Required ratio = −x₁ : x₂",
+          "= −2 : 3,  again external",
+          {
+            "text": "∴ X-axis 1 : 2, Y-axis 2 : 3, both external",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Y-axis divides AB in the ratio −x₁ : x₂ = −2 : 3, that is externally in the ratio 2 : 3.",
+          "accept": [
+            "the y axis ratio is minus x one is to x two",
+            "minus two is to three",
+            "it is external division two is to three",
+            "y axis ki x coordinates vaadali",
+            "the ratio is two is to three externally"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the x axis ratio is minus y one is to y two"
+          ],
+          "heard_as": [
+            "minus x one is to x two",
+            "minus two is to three",
+            "external",
+            "y axis"
+          ]
+        },
+        "why": "A and B both have positive x-coordinates, so both lie to the right of the Y-axis, and again the axis meets the line AB only outside the segment.",
+        "common_mistakes": [
+          "Writing the answers as 1 : 2 and 2 : 3 with no mention that both are external.",
+          "Swapping the two rules and using y-coordinates for the Y-axis."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_gof_at_a_plus1_over_4",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f: R→R and g: R→R are defined by f(x) = 4x − 1 and g(x) = x² + 2, find (gof)((a + 1)/4).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Value of f((a + 1)/4)",
+            "marks": 1
+        },
+        {
+            "label": "Value of (gof)((a + 1)/4)",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 12(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the inner value f((a + 1)/4) = a first and the outer value g(a) = a² + 2 second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (gof)((a + 1)/4) — which function acts first, and the value you reach.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_inner",
+                "kind": "equation",
+                "label": "Apply f first",
+                "marks": 1,
+                "mark_note": "Value of f((a + 1)/4)",
+                "margin_note": "First mark. In gof the function written on the right, f, acts first, so (a + 1)/4 goes into f before g is used.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 4x − 1, g(x) = x² + 2",
+                    "(gof)((a+1)/4) = g[f((a+1)/4)]",
+                    "f((a+1)/4) = 4((a+1)/4) − 1",
+                    "= (a + 1) − 1 = a"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That f acts first on (a + 1)/4, the two 4s cancel, and f((a + 1)/4) = a.",
+                    "accept": [
+                        "in g o f the function f acts first so put a plus one by four into f",
+                        "four times a plus one by four is a plus one and minus one gives a",
+                        "the fours cancel so f of that input is a",
+                        "modata f apply cheyyali so answer a vastundi",
+                        "f of a plus one over four equals a"
+                    ],
+                    "reject": [
+                        "I substitute the value",
+                        "first I find the composition",
+                        "apply both functions"
+                    ],
+                    "heard_as": [
+                        "g o f",
+                        "gof",
+                        "a plus one by four",
+                        "inner function",
+                        "the fours cancel"
+                    ]
+                },
+                "why": "In gof the function on the right acts first. Here the 4 in f(x) = 4x − 1 cancels the 4 in the denominator, so the input handed to g is simply a.",
+                "memory_tip": "In gof, f is the inner function. Work f first, and the 4 outside cancels the 4 in the denominator.",
+                "common_mistakes": [
+                    "Applying g first, which computes fog and gives a different expression.",
+                    "Cancelling only the 4 and writing a + 1 instead of a."
+                ]
+            },
+            {
+                "id": "s2_outer",
+                "kind": "boxed_final",
+                "label": "Apply g to that output",
+                "marks": 1,
+                "mark_note": "Value of (gof)((a + 1)/4)",
+                "margin_note": "Second mark. g receives a, not (a + 1)/4. Put a into x² + 2 and write the single expression.",
+                "lines": [
+                    "∴ (gof)((a+1)/4) = g(a)",
+                    "g(a) = a² + 2",
+                    {
+                        "text": "(gof)((a+1)/4) = a² + 2",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That g is applied to a, giving a² + 2.",
+                    "accept": [
+                        "then g of a is a squared plus two",
+                        "put a into x squared plus two and get a squared plus two",
+                        "the answer is a squared plus two",
+                        "g lo a pettite a square plus two vastundi",
+                        "g receives a so the value is a squared plus two"
+                    ],
+                    "reject": [
+                        "then I get the answer",
+                        "substitute and simplify",
+                        "it comes out"
+                    ],
+                    "heard_as": [
+                        "g of a",
+                        "a squared plus two",
+                        "outer function",
+                        "answer"
+                    ]
+                },
+                "why": "The outer function acts on the OUTPUT of f, which is a. Writing g(a) shows that (a + 1)/4 is never put into g.",
+                "memory_tip": "The outer function receives f's output, not the original input. Here that output is a.",
+                "common_mistakes": [
+                    "Writing g((a + 1)/4) instead of g(a) at the last step.",
+                    "Expanding (4x − 1)² + 2 in x and then forgetting to put x = (a + 1)/4."
+                ]
+            }
+        ]
+    }
+}

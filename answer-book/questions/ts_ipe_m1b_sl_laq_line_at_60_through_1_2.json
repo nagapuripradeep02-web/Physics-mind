@@ -1,0 +1,274 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_line_at_60_through_1_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the straight line passing through the point (1, 2) and making an angle of 60° with the line √3x + y + 2 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope of the given line",
+      "marks": 1
+    },
+    {
+      "label": "Write the 60° condition",
+      "marks": 2
+    },
+    {
+      "label": "Open the modulus",
+      "marks": 2
+    },
+    {
+      "label": "Solve both branches",
+      "marks": 2
+    },
+    {
+      "label": "Write both lines",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.156, chapter 3 THE STRAIGHT LINE, Long Answer question 12(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle condition and the two branches it opens: two marks for writing tan 60° = |(m − m₁)/(1 + m m₁)|, two for opening the modulus and two for solving both branches, with one each for the given slope and the final lines. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both answers were substituted back. y − 2 = 0 passes through (1, 2) and its slope 0 gives tan θ = |(−√3 − 0)/(1 + 0)| = √3; √3x − y + 2 − √3 = 0 gives √3 − 2 + 2 − √3 = 0 at (1, 2) and its slope √3 gives tan θ = |(−√3 − √3)/(1 − 3)| = √3. A second check by inclination: the given line has slope −√3, so its inclination is 120°; turning 60° each way gives 60° and 180°, whose tangents are √3 and 0 — the same two slopes. STEM AS PRINTED: the book asks for the equation of the straight line, in the singular. Two lines through (1, 2) make 60° with the given line, one turned each way, and both are genuine answers — a 60° turn from an inclination of 120° reaches 60° and 180°. The card answers the sensible reading and reports both, and says so in the working rather than silently choosing one."
+  },
+  "recall_prompt": "Say how you would solve this — name the angle formula, and say why this question really has two answers.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_slope",
+        "kind": "equation",
+        "label": "Slope of the given line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read the slope as −a/b. Here a = √3 and b = 1, so the slope is negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line:  √3x + y + 2 = 0",
+          "Its slope  m₁ = −a/b = −√3/1 = −√3",
+          "Let the slope of a required line be m.",
+          "Each required line passes through (1, 2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given line has slope −√3 and the unknown slope is called m.",
+          "accept": [
+            "the slope of the given line is minus root three",
+            "read the slope as minus a over b",
+            "b is one so the slope is minus root three",
+            "minus a by b theesthe minus root three vasthundi",
+            "let the required slope be m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope",
+            "minus root three",
+            "minus a over b",
+            "m"
+          ]
+        },
+        "why": "The angle formula needs both slopes, and only one is given, so the other is carried as the unknown from the start.",
+        "common_mistakes": [
+          "Reading the slope of √3x + y + 2 = 0 as √3 instead of −√3.",
+          "Treating √3 as part of the constant term."
+        ],
+        "memory_tip": "Slope is −a/b. With b = 1 the slope is just minus the coefficient of x."
+      },
+      {
+        "id": "s2_angle_condition",
+        "kind": "equation",
+        "label": "Write the 60° condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Write the angle formula in full, then substitute m₁ = −√3 and tan 60° = √3, watching the sign in the denominator.",
+        "lines": [
+          "The angle between the two lines is 60°, so",
+          "tan 60° = |(m − m₁)/(1 + m m₁)|",
+          "⇒ √3 = |(m + √3)/(1 − √3 m)|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan 60° = √3 gives √3 = |(m + √3)/(1 − √3 m)|.",
+          "accept": [
+            "tan sixty is root three",
+            "root three equals mod m plus root three over one minus root three m",
+            "write the angle between two lines formula",
+            "angle formula rasi tan sixty root three pettali",
+            "the denominator becomes one minus root three m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan sixty",
+            "root three",
+            "angle formula",
+            "one minus root three m"
+          ]
+        },
+        "why": "tan 60° = √3 turns the angle statement into an equation with only m in it, and the surd stays exact all the way through.",
+        "common_mistakes": [
+          "Using sin 60° or cos 60° in place of tan 60°.",
+          "Writing 1 + m m₁ as 1 + √3 m, losing the sign of m₁."
+        ],
+        "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)| with m₁ = −√3, so the denominator becomes 1 − √3 m, not 1 + √3 m."
+      },
+      {
+        "id": "s3_open_modulus",
+        "kind": "equation",
+        "label": "Open the modulus",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Clear the fraction, then remove the modulus as ±. Both signs are kept — the question has two answers.",
+        "lines": [
+          "⇒ |m + √3| = √3 |1 − √3 m|",
+          "⇒ m + √3 = ±√3 (1 − √3 m)",
+          "A 60° turn can be made either way from the",
+          "given line, so both signs give a real line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the modulus opens as m + √3 = ±√3(1 − √3 m).",
+          "accept": [
+            "remove the modulus as plus or minus",
+            "m plus root three equals plus or minus root three into one minus root three m",
+            "both signs are kept because there are two such lines",
+            "mod theeste rendu cases vasthaayi",
+            "one line each way from the given line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "two cases",
+            "modulus",
+            "either way"
+          ]
+        },
+        "why": "There are two lines through a point at 60° to a given line, one turned each way, so both branches are kept even though the question says line in the singular.",
+        "common_mistakes": [
+          "Dropping the ± and reporting only one line.",
+          "Multiplying only one side by √3 when the modulus is cleared."
+        ],
+        "memory_tip": "Two lines at 60°: one turned each way. Keep both signs even when the question says the line."
+      },
+      {
+        "id": "s4_solve_branches",
+        "kind": "equation",
+        "label": "Solve both branches",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Multiply out the √3 bracket first — √3 × √3 m is 3m — then collect. m = 0 is a genuine answer, not an error.",
+        "lines": [
+          "Taking +:  m + √3 = √3 − 3m",
+          "⇒ 4m = 0  ⇒  m = 0",
+          "Taking −:  m + √3 = −√3 + 3m",
+          "⇒ −2m = −2√3  ⇒  m = √3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two branches give m = 0 and m = √3.",
+          "accept": [
+            "the slopes are zero and root three",
+            "root three times root three m is three m",
+            "m equals zero gives a horizontal line",
+            "rendu branches solve chesthe zero and root three vasthaayi",
+            "solve each branch to get zero and root three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m equals zero",
+            "root three",
+            "both branches",
+            "horizontal"
+          ]
+        },
+        "why": "Note that √3 × √3 m = 3m, which is what makes both branches collapse to simple linear equations with no surd left in m.",
+        "common_mistakes": [
+          "Writing √3 × √3 m as √3 m and never clearing the surd.",
+          "Rejecting m = 0 as impossible; it is the horizontal line y = 2."
+        ],
+        "memory_tip": "√3 × √3 = 3, so the surd clears itself. m = 0 is a real answer: it is the horizontal line."
+      },
+      {
+        "id": "s5_both_lines",
+        "kind": "boxed_final",
+        "label": "Write both lines",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Put each slope into y − y₁ = m(x − x₁) at (1, 2). Expand √3(x − 1) as √3x − √3.",
+        "lines": [
+          "Through (1, 2) with m = 0:  y − 2 = 0",
+          "Through (1, 2) with m = √3:",
+          "y − 2 = √3(x − 1)",
+          "⇒ √3x − y + 2 − √3 = 0",
+          "∴ The two lines are",
+          {
+            "text": "y − 2 = 0  and  √3x − y + 2 − √3 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines are y − 2 = 0 and √3x − y + 2 − √3 = 0.",
+          "accept": [
+            "the lines are y equals two and root three x minus y plus two minus root three equals zero",
+            "put each slope into the point slope form at one comma two",
+            "both slopes give a line so there are two answers",
+            "rendu slopes ni point slope form lo pedithe rendu lines vasthaayi",
+            "y minus two equals zero is one of them"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y minus two",
+            "root three x minus y",
+            "point slope form",
+            "two lines"
+          ]
+        },
+        "why": "Two slopes give two lines through the same point, so both are written out even though the question is worded in the singular.",
+        "common_mistakes": [
+          "Reporting only the line with slope √3.",
+          "Expanding √3(x − 1) as √3x − 1."
+        ],
+        "memory_tip": "Same point, two slopes, two equations. Expand √3(x − 1) fully so the −√3 reaches the constant."
+      }
+    ]
+  }
+}

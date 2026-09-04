@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan3a_tan2a_tana_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 2A and 3A are not odd multiples of π/2, prove that tan 3A · tan 2A · tan A = tan 3A − tan 2A − tan A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write 3A = 2A + A and expand",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominator and rearrange",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(ii), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to splitting 3A as 2A + A and writing the tan(A + B) formula, and one to clearing the denominator and separating the triple product from the three single tangents. The stem's condition was checked and is sufficient: if A itself were an odd multiple of π/2 then 3A would be one too, so ruling out 3A rules out A as well, and 1 − tan 2A tan A cannot be zero without tan 3A being undefined. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name how you split the angle and what you do with the denominator.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_the_angle",
+        "kind": "equation",
+        "label": "Write 3A = 2A + A and expand",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 2A and 3A are not odd multiples of π/2, so tan 2A and tan 3A exist; and A cannot be one either, since 3A would then be one.",
+        "memory_tip": "3A = 2A + A. The angle on the left is the sum of the two on the right, so the tan(A + B) formula fits straight away.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "2A and 3A are not odd multiples of π/2,",
+          "so tan 2A and tan 3A exist. Nor is A one,",
+          "because 3A would then be one as well.",
+          "Write 3A = 2A + A.",
+          "tan 3A = (tan2A + tanA)/(1 − tan2A tanA)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3A is written as 2A + A and the tan(A + B) formula is applied.",
+          "accept": [
+            "split three A as two A plus A",
+            "apply the tan A plus B formula to two A and A",
+            "tan three A is tan two A plus tan A over one minus tan two A tan A",
+            "three A ni two A plus A ga split cheyyali",
+            "the angle on the left is the sum of the other two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "three A equals two A plus A",
+            "tan A plus B",
+            "one minus tan two A tan A"
+          ]
+        },
+        "why": "The two angles on the right, 2A and A, add to the angle on the left. Splitting 3A that way is the only step that brings all three tangents into a single equation, and everything after it is algebra.",
+        "common_mistakes": [
+          "Using tan(2A − A) in place of tan(2A + A).",
+          "Writing the denominator as 1 + tan 2A tan A."
+        ]
+      },
+      {
+        "id": "s2_clear_and_rearrange",
+        "kind": "boxed_final",
+        "label": "Clear the denominator and rearrange",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cross multiply, open the bracket, then put the triple product on one side and the three single tangents on the other.",
+        "memory_tip": "Cross multiply, open the bracket, then separate: triple product on one side, the three single tangents on the other.",
+        "lines": [
+          "⇒ tan3A(1 − tan2A tanA) = tan2A + tanA",
+          "⇒ tan3A − tan3A tan2A tanA = tan2A + tanA",
+          "Moving the terms across:",
+          "tan3A − tan2A − tanA = tan3A tan2A tanA",
+          {
+            "text": "∴ tan3A·tan2A·tanA = tan3A − tan2A − tanA",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator is cleared, the bracket opened, and the terms separated so the triple product equals the three single tangents.",
+          "accept": [
+            "cross multiply and open the bracket",
+            "tan three A minus the triple product equals tan two A plus tan A",
+            "move the terms so the product is on one side",
+            "bracket open chesi terms ni separate cheyyali",
+            "the triple product equals tan three A minus tan two A minus tan A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "split three A as two A plus A"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "open the bracket",
+            "triple product",
+            "tan three A"
+          ]
+        },
+        "why": "Clearing the denominator is the whole of the second mark. Once the bracket is opened the triple product is already present with a minus sign, so a single rearrangement puts it alone on one side and the three single tangents on the other.",
+        "common_mistakes": [
+          "Opening tan3A(1 − tan2A tanA) as tan3A − tan2A tanA.",
+          "Losing a sign when moving tan 2A and tan A across."
+        ]
+      }
+    ]
+  }
+}

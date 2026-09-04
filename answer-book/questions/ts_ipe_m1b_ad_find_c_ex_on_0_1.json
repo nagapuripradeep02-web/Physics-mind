@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_find_c_ex_on_0_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find c so that f′(c) = (f(b) − f(a))/(b − a) for f(x) = eˣ, a = 0, b = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work out the chord slope",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = the chord slope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 10(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name the theorem this equation belongs to, and say how you get c out of an exponential.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chord_slope",
+        "kind": "equation",
+        "label": "Work out the chord slope",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. e⁰ = 1, not 0. That single value is the whole of the arithmetic here, and it is the one students most often get wrong.",
+        "memory_tip": "Anything to the power 0 is 1, so f(0) = 1 and the chord slope is e − 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = eˣ,   a = 0,   b = 1",
+          "eˣ is continuous and differentiable for every real x, so it is continuous on [0, 1] and differentiable on (0, 1).",
+          "f(0) = e⁰ = 1,   f(1) = e¹ = e",
+          "(f(1) − f(0))/(1 − 0) = (e − 1)/1 = e − 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(0) = 1 and f(1) = e, so the chord slope is e − 1.",
+          "accept": [
+            "e to the power zero is one and e to the power one is e",
+            "the chord slope is e minus one",
+            "f of one minus f of zero over one is e minus one",
+            "the right hand side comes to e minus one",
+            "e power zero one, so slope e minus one vasthundi",
+            "work out the average slope over zero to one first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power zero",
+            "e minus one",
+            "chord slope",
+            "one"
+          ]
+        },
+        "why": "The equation printed in the question IS Lagrange's mean value theorem written out rather than named, so recognise it as that and the method is the usual one: compute the chord slope first, then match the derivative to it.",
+        "common_mistakes": [
+          "Taking e⁰ as 0, which gives the chord slope as e.",
+          "Writing the slope as e/1 by dropping the −f(0) term."
+        ]
+      },
+      {
+        "id": "s2_solve_for_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = the chord slope",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. eᶜ = e − 1 is solved by taking logₑ of both sides. A logarithm of a difference does not split, so logₑ(e − 1) is not logₑ e − logₑ 1; leave it as it stands.",
+        "memory_tip": "To get an unknown out of an exponent, take logₑ of both sides.",
+        "lines": [
+          "f′(x) = eˣ,   so f′(c) = eᶜ",
+          "eᶜ = e − 1",
+          "Taking logₑ of both sides: c = logₑ(e − 1)",
+          "e − 1 ≈ 1.718, so c ≈ logₑ(1.718) ≈ 0.541, and 0 < 0.541 < 1",
+          {
+            "text": "∴ c = logₑ(e − 1) ≈ 0.541 ∈ (0, 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eᶜ = e − 1 gives c = logₑ(e − 1), which is about 0.541 and lies in (0, 1).",
+          "accept": [
+            "e to the power c equals e minus one so take log of both sides",
+            "c is log of e minus one",
+            "c is about zero point five four which is between zero and one",
+            "take natural log both sides to bring c down",
+            "rendu vaipula log teesukunte c log of e minus one vasthundi",
+            "the answer is log e minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power c",
+            "log",
+            "e minus one",
+            "zero point five four"
+          ]
+        },
+        "why": "The theorem states that c lies strictly inside (0, 1), so the answer has to be checked against that. logₑ(e − 1) ≈ 0.541, which is inside — an answer such as e − 1 ≈ 1.718 would be outside and therefore wrong.",
+        "common_mistakes": [
+          "Giving c = e − 1, which is about 1.718 and lies outside (0, 1).",
+          "Splitting logₑ(e − 1) as logₑ e − logₑ 1; a logarithm of a difference does not split."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is the mean value theorem in disguise: set f′(c) equal to the average slope e − 1. Then e^c = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
+}

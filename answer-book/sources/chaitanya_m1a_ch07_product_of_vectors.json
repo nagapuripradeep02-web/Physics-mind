@@ -1,0 +1,334 @@
+{
+  "source_book": "Sri Chaitanya — FAST TRACK IPE for Jr. Students, Mathematics-IA (2026-27 edition)",
+  "scan_file": "DocScanner 29 Aug 2026 10-04 pm.pdf",
+  "scan_sha256": "6c279cf902e12bf4dff6529292ae6b1e3f7797f7c88220e9da6f3722616a5ab6",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring. Stems restated in our own wording; the mathematics is exact. No solution content from the source book appears in this file, by policy. Vectors are written with plain letters (a, b, c, i, j, k) rather than overbars; the book prints them with overbars. Box products are written [a b c]. The chapter prints NO Very Short Answer block — every short question is filed under the book's own 'Short Answer Questions' banner.",
+  "chapter": { "number": 7, "printed_title": "PRODUCT OF VECTORS" },
+  "questions": [
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 67, "scan_page": 8,
+      "stem": "Find the unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, 1).",
+      "appearance_years": [],
+      "notes": "Our bank card for this question holds R(0, 2, −1). The book prints R(0, 2, 1), which is the value that yields the standard answer ±(2i + j + k)/√6. Our card is the likely defect; founder decision needed." },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 3,
+      "printed_page": 67, "scan_page": 8,
+      "stem": "Find the volume of the tetrahedron whose vertices are (1, 2, 1), (3, 2, 5), (2, −1, 0) and (−1, 0, 1).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 67, "scan_page": 8,
+      "stem": "Find the volume of the tetrahedron having the edges i + j + k, i + 2j + k and i − j.",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT. The third edge is printed as \"k. i − j\" — a stray k and a stray full stop; the intended edge is i − j, which is what the book's own working uses." },
+
+    { "ref": "saq4i", "section": "SAQ", "number": 4, "part": "i", "stars": 0,
+      "printed_page": 67, "scan_page": 8,
+      "stem": "Find λ if the volume of the parallelepiped having the edges i + j, 3i − j and 3j + λk is 16 cubic units.",
+      "appearance_years": [],
+      "notes": "Printed as \"4. i)\" but NO part ii) follows — the next printed item is question 5. Recorded with part \"i\" as printed." },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 68, "scan_page": 9,
+      "stem": "Find the vector having magnitude √6 that is perpendicular to both 2i − k and 3j − i − k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 68, "scan_page": 9,
+      "stem": "Show that the angle in a semicircle is a right angle.",
+      "appearance_years": [],
+      "notes": "Star prefix is partly cut by the scanned gutter; one star is legible, a second may be lost. Recorded as 1 rather than guessed upward." },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 68, "scan_page": 9,
+      "stem": "If |a| = 2, |b| = 3, |c| = 4 and each of a, b, c is perpendicular to the sum of the other two vectors, find |a + b + c|.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 68, "scan_page": 9,
+      "stem": "If a + b + c = 0, |a| = 3, |b| = 5 and |c| = 7, find the angle between a and b.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 3,
+      "printed_page": 69, "scan_page": 10,
+      "stem": "If a = 2i + 3j + 4k, b = i + j − k and c = i − j + k, compute a × (b × c) and verify that it is perpendicular to a.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 69, "scan_page": 10,
+      "stem": "If a = i − 2j − 3k, b = 2i + j − k and c = i + 3j − 2k, find a × (b × c).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 69, "scan_page": 10,
+      "stem": "In triangle ABC, if BC = a, CA = b and AB = c, show that a × b = b × c = c × a.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 69, "scan_page": 10,
+      "stem": "If a = 2i + j − k, b = −i + 2j − 4k and c = i + j + k, find (a × b)·(b × c).",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT. b is printed as \"−i + 2i − 4k\" (two i terms); the intended vector is −i + 2j − 4k, which the book's own working uses." },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": null, "stars": 3,
+      "printed_page": 69, "scan_page": 10,
+      "stem": "Show that four points with position vectors a, b, c, d are coplanar if and only if [b c d] + [c a d] + [a b d] = [a b c].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq14", "section": "SAQ", "number": 14, "part": null, "stars": 3,
+      "printed_page": 70, "scan_page": 11,
+      "stem": "Find λ if the points A(3, 2, 1), B(4, λ, 5), C(4, 2, −2) and D(6, 5, −1) are coplanar.",
+      "appearance_years": ["Mar-2016 (TS)"],
+      "notes": "The only printed exam-year tag in this chapter; the book prints \"(Mar-2016(TS))\" inline with the stem." },
+
+    { "ref": "saq15", "section": "SAQ", "number": 15, "part": null, "stars": 3,
+      "printed_page": 70, "scan_page": 11,
+      "stem": "Find the distance of the point (2, 5, −3) from the plane r·(6i − 3j + 2k) = 4.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq16", "section": "SAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 70, "scan_page": 11,
+      "stem": "Show that for any four vectors a, b, c, d the product (a × b)·(c × d) equals the 2 × 2 determinant whose rows are (a·c, a·d) and (b·c, b·d), and deduce in particular that (a × b)² = a²b² − (a·b)².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq17", "section": "SAQ", "number": 17, "part": null, "stars": 1,
+      "printed_page": 70, "scan_page": 11,
+      "stem": "Let a = 2i − j + k and b = 3i + 4j − k. If θ is the angle between a and b, find sin θ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq18i", "section": "SAQ", "number": 18, "part": "i", "stars": 3,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "Find the angle between the vectors i + 2j + 3k and 3i − j + 2k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq18ii", "section": "SAQ", "number": 18, "part": "ii", "stars": 1,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "If a = 6i + 2j + 3k and b = 2i − 9j + 6k, find a·b and the angle between a and b.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq19", "section": "SAQ", "number": 19, "part": null, "stars": 3,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "If |p| = 2, |q| = 3 and the angle between p and q is π/6, find |p × q|².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq20", "section": "SAQ", "number": 20, "part": null, "stars": 3,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "If 4i + (2p/3)j + pk is parallel to the vector i + 2j + 3k, find p.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21i", "section": "SAQ", "number": 21, "part": "i", "stars": 3,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "Find the area of the parallelogram having a = 2j − k and b = −i + k as adjacent sides.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21ii", "section": "SAQ", "number": 21, "part": "ii", "stars": 3,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "Find the area of the parallelogram whose diagonals are 3i + j − 2k and i − 3j + 4k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21iii", "section": "SAQ", "number": 21, "part": "iii", "stars": 1,
+      "printed_page": 71, "scan_page": 12,
+      "stem": "Find the area of the parallelogram whose adjacent sides are 2i − 3j and 3i − k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq22", "section": "SAQ", "number": 22, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "Find the volume of the parallelepiped whose coterminous edges are the vectors 2i − 3j + 2k, i − j + 2k and 2i + j − k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq23i", "section": "SAQ", "number": 23, "part": "i", "stars": 1,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "If a = 2i − 3j + 5k and b = −i + 4j + 2k, find a × b and a unit vector perpendicular to both a and b.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq23ii", "section": "SAQ", "number": 23, "part": "ii", "stars": 1,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "Find the unit vector perpendicular to both i + j + k and 2i + j + 3k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq24", "section": "SAQ", "number": 24, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "If the vectors 2i + λj − k and 4i − 2j + 2k are perpendicular to each other, find λ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq25", "section": "SAQ", "number": 25, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "If the vectors a = 2i − j + k, b = i + 2j − 3k and c = 3i + pj + 5k are coplanar, find p.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26i", "section": "SAQ", "number": 26, "part": "i", "stars": 3,
+      "printed_page": 72, "scan_page": 13,
+      "stem": "If the vectors λi − 3j + 5k and 2λi − λj − k are perpendicular to each other, find λ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26ii", "section": "SAQ", "number": 26, "part": "ii", "stars": 0,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "For what value of λ are the vectors i − λj + 2k and 8i + 6j − k at right angles?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 3,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "If a = i + 2j − 3k and b = 3i − j + 2k, show that a + b and a − b are perpendicular to each other.",
+      "appearance_years": [],
+      "notes": "Star prefix is partly cut by the scanned gutter; recorded as 3, of which at least 2 are clearly legible." },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "Find p if the vectors a + b + c, a + pb + 2c and −a + b + c are coplanar, where a, b, c are non-coplanar.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "Find the Cartesian equation of the plane through the point A(2, −1, −4) and parallel to the plane 4x − 12y − 3z − 7 = 0.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30", "section": "SAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "Find the equation of the plane through the point (3, −2, −1) and perpendicular to the vector (4, 7, −4).",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT. The stem gives the point as (3, −2, −1) but the book's own working carries a +k third component, i.e. (3, −2, 1). The stem as printed is the value to author from." },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "Prove that for any three vectors a, b, c, [b + c  c + a  a + b] = 2[a b c].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "For any three vectors a, b, c prove that [b × c  c × a  a × b] = [a b c]².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 14,
+      "stem": "Simplify (i − 2j + 3k) × (2i + j − k)·(j + k).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 15,
+      "stem": "Compute [i − j   j − k   k − i].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35i", "section": "SAQ", "number": 35, "part": "i", "stars": 3,
+      "printed_page": 74, "scan_page": 15,
+      "stem": "Let a = i + j + k and b = 2i + 3j + k. Find the projection vector of b on a.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35ii", "section": "SAQ", "number": 35, "part": "ii", "stars": 3,
+      "printed_page": 74, "scan_page": 15,
+      "stem": "Let a = i + j + k and b = 2i + 3j + k. Find the vector component of b perpendicular to a, and the component of b on a.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 15,
+      "stem": "If α, β and γ are the angles made by the vector 3i − 6j + 2k with the positive directions of the coordinate axes, find cos α, cos β and cos γ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 15,
+      "stem": "For any vector a, show that |a × i|² + |a × j|² + |a × k|² = 2|a|².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 16,
+      "stem": "If a and b are non-zero, non-collinear vectors and |a + b| = |a − b|, find the angle between a and b.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 16,
+      "stem": "Compute a × (b + c) + b × (c + a) + c × (a + b).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 16,
+      "stem": "If a = 2i + 2j − 3k and b = 3i − 2j + 2k, find the angle between 2a + b and a + 2b.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq41", "section": "SAQ", "number": 41, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 16,
+      "stem": "Find the angle between the planes r·(2i − j + 2k) = 3 and r·(3i + 6j + k) = 4.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 3,
+      "printed_page": 75, "scan_page": 16,
+      "stem": "Find the shortest distance between the skew lines r = (6i + 2j + 2k) + t(i − 2j + 2k) and r = (−4i − k) + s(3i − 2j − 2k).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 3,
+      "printed_page": 76, "scan_page": 17,
+      "stem": "If A = (1, −2, −1), B = (4, 0, −3), C = (1, 2, −1) and D = (2, −4, −5), find the distance between the lines AB and CD.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq3i", "section": "LAQ", "number": 3, "part": "i", "stars": 3,
+      "printed_page": 76, "scan_page": 17,
+      "stem": "If a = i − 2j + 3k, b = 2i + j + k and c = i + j + 2k, find a × (b × c) and |(a × b) × c|.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq3ii", "section": "LAQ", "number": 3, "part": "ii", "stars": 2,
+      "printed_page": 77, "scan_page": 18,
+      "stem": "If a = i − 2j + k, b = 2i + j + k and c = i + 2j − k, find a × (b × c) and |(a × b) × c|.",
+      "appearance_years": [],
+      "notes": "Star prefix is partly cut by the scanned gutter; recorded as 2 rather than guessed upward." },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null, "stars": 3,
+      "printed_page": 77, "scan_page": 18,
+      "stem": "If a = i − 2j − 3k, b = 2i + j − k and c = i + 3j − 2k, verify that a × (b × c) ≠ (a × b) × c.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq5", "section": "LAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 78, "scan_page": 19,
+      "stem": "If a = 2i + j − 3k, b = i − 2j + k, c = −i + j − 4k and d = i + j + k, find |(a × b) × (c × d)|.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq6", "section": "LAQ", "number": 6, "part": null, "stars": 3,
+      "printed_page": 78, "scan_page": 19,
+      "stem": "Show that the points A = (5, −1, 1), B = (7, −4, 7), C = (1, −6, 10) and D = (−1, −3, 4) are the vertices of a rhombus.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq7", "section": "LAQ", "number": 7, "part": null, "stars": 3,
+      "printed_page": 78, "scan_page": 19,
+      "stem": "Prove that the angle θ between any two diagonals of a cube is given by cos θ = 1/3.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq8", "section": "LAQ", "number": 8, "part": null, "stars": 3,
+      "printed_page": 79, "scan_page": 20,
+      "stem": "Find the equation of the plane passing through the points A(2, 3, −1), B(4, 5, 2) and C(3, 6, 5).",
+      "appearance_years": [],
+      "notes": "Star prefix is partly cut by the scanned gutter; recorded as 3, of which at least 2 are clearly legible." },
+
+    { "ref": "laq9", "section": "LAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 79, "scan_page": 20,
+      "stem": "Find the equation of the plane passing through A(3, −2, −1) and parallel to the vectors b = i − 2j + 4k and c = 3i + 2j − 5k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq10", "section": "LAQ", "number": 10, "part": null, "stars": 3,
+      "printed_page": 79, "scan_page": 20,
+      "stem": "Prove that in any triangle the altitudes are concurrent.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq11", "section": "LAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 21,
+      "stem": "Prove that in any triangle the perpendicular bisectors of the sides are concurrent.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq12i", "section": "LAQ", "number": 12, "part": "i", "stars": 3,
+      "printed_page": 80, "scan_page": 21,
+      "stem": "For any three vectors a, b, c, prove that (a × b) × c = (a·c)b − (b·c)a.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq12ii", "section": "LAQ", "number": 12, "part": "ii", "stars": 3,
+      "printed_page": 80, "scan_page": 21,
+      "stem": "For any three vectors a, b, c, prove that a × (b × c) = (a·c)b − (a·b)c.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq13", "section": "LAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 21,
+      "stem": "Show that the volume of a tetrahedron with a, b and c as coterminous edges is (1/6)|[a b c]|.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq14", "section": "LAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 22,
+      "stem": "Find the vector equation of the plane passing through the line of intersection of the planes r·(i + j + k) = 6 and r·(2i + 3j + 4k) = −5 and through the point (1, 1, 1).",
+      "appearance_years": [], "notes": null }
+  ]
+}

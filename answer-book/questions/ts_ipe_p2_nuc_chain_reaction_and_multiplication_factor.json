@@ -123,7 +123,7 @@
             "fission"
           ]
         },
-        "memory_tip": "Fission needs a neutron and makes neutrons — the reaction feeds itself."
+        "memory_tip": "Fission needs a neutron and makes neutrons — the reaction is self-sustained."
       },
       {
         "id": "s3_multiplication_factor",
@@ -164,7 +164,7 @@
             "previous generation"
           ]
         },
-        "memory_tip": "K is this generation divided by the last one."
+        "memory_tip": "K is this generation divided by the previous generation."
       },
       {
         "id": "s4_sustained",

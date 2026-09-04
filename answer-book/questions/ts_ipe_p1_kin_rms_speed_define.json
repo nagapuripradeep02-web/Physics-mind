@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_rms_speed_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define root mean square speed of gas molecules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 9 (printed p.137). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: v_rms = √(v̄²) = √((v₁² + v₂² + … + v_N²)/N) is the correct definition, used because the mean velocity of a gas at rest is zero while the mean square speed is not, matching NCERT Class-11 Chapter 13."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "The root mean square speed is the",
+          "square root of the mean of the",
+          "squares of the speeds of all the",
+          "molecules of a gas."
+        ],
+        "margin_note": "First mark. Say square root of the mean of the squares of the speeds — all three words matter.",
+        "why": "The molecules of a gas move with a whole range of speeds, so a single typical speed has to be built from all of them. Squaring gives extra weight to the faster molecules and ties the result to kinetic energy; the reason a mean is not taken over velocities is that velocity is a vector and averages to zero.",
+        "common_mistakes": [
+          "Calling it the average speed. The average speed and the rms speed are different numbers.",
+          "Leaving out the words square and root — the name describes the exact three-step calculation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the root mean square speed is the square root of the mean of the squares of the speeds of all the molecules.",
+          "accept": [
+            "square root of the mean of the squares of the speeds",
+            "square, mean, root of all the speeds"
+          ],
+          "reject": [
+            "mean velocity of the gas is zero"
+          ],
+          "heard_as": [
+            "root mean square speed",
+            "square root of the mean of the squares"
+          ]
+        },
+        "memory_tip": "Square each speed, take the mean, then take the root — that order is the name itself."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "v_rms = √(Σv²/N)",
+        "lines": [
+          {
+            "text": "v_rms = √(v̄²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √((v₁² + v₂² + … + v_N²)/N)",
+            "style": "boxed"
+          },
+          "It is used because the mean velocity",
+          "of a gas at rest is zero, while the",
+          "mean square speed is not."
+        ],
+        "margin_note": "Second mark. Write the formula and state why v_rms is used instead of the mean velocity.",
+        "why": "Velocity is a vector, so molecules moving in every direction cancel to a mean of zero even though they are all in motion. Squaring the speed before averaging removes the direction, so the mean square speed — and its square root, v_rms — is a genuinely useful non-zero number.",
+        "common_mistakes": [
+          "Writing the average velocity formula instead of the mean of the squares of the speeds.",
+          "Missing the N in the denominator — it is a mean, not a bare sum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v rms equals the square root of the sum of the squares of all the speeds divided by N, and it is used because the mean velocity of a gas at rest is zero while the mean square speed is not.",
+          "accept": [
+            "square root of sum of squares of speeds by N",
+            "mean velocity is zero but mean square speed is not"
+          ],
+          "reject": [
+            "square root of the mean of the squares of the speeds"
+          ],
+          "heard_as": [
+            "v rms",
+            "root mean square speed formula"
+          ]
+        },
+        "memory_tip": "Mean velocity cancels to zero; mean square speed does not — that is why v_rms is used."
+      }
+    ]
+  },
+  "insider_note": "State why v_rms is used, not just the formula — the reasoning about the mean velocity being zero is often what earns the second mark."
+}

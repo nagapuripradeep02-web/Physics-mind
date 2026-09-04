@@ -78,8 +78,8 @@
             "style": "eq"
           },
           "so a larger i gives a larger depression.",
-          "Order of acid strength (the book prints a",
-          "fourth acid, monochloroacetic acid, too):",
+          "Order of acid strength (monochloroacetic",
+          "acid included):",
           "CH₃COOH < CH₂ClCOOH <",
           "CHCl₂COOH < CCl₃COOH",
           {
@@ -99,5 +99,5 @@
       }
     ]
   },
-  "insider_note": "The book prints a four-acid order while the question names only three. Write the full order and then say which of the three asked acids sits where, so the answer covers the question and the printed key at the same time."
+  "insider_note": "The printed key gives a four-acid order while the question names only three. Write the full order and then say which of the three asked acids sits where, so the answer covers the question and the printed key at the same time."
 }

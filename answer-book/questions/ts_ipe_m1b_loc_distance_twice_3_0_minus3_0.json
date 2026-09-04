@@ -54,6 +54,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. 'Twice' is a ratio in words — PA:PB = 2:1 — so this is the ratio family with the numbers hidden in a sentence.",
+        "memory_tip": "'Twice' is a RATIO in words — PA : PB = 2 : 1 — so this is the ratio family in disguise.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, which makes this the shortest answer in the chapter.",
+        "memory_tip": "Square both sides immediately. A ratio needs no isolating and no ±.",
         "lines": [
           "Given condition: PA = 2 PB",
           "⇒ PA² = 4 PB²"
@@ -122,7 +124,7 @@
             "square both sides"
           ]
         },
-        "why": "'Twice the distance' is a ratio, and a ratio squares in one move with no cross term — quite unlike the sum and difference families on the facing pages.",
+        "why": "'Twice the distance' is a ratio, and a ratio squares in one move with no cross term, unlike a condition on the sum or the difference of two distances.",
         "common_mistakes": [
           "Squaring to PA² = 2PB² and forgetting to square the 2.",
           "Reading it backwards as PB = 2PA."
@@ -135,6 +137,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Both distances go in squared, with the 4 multiplying the whole of the B bracket — its y² included, which is the step most often dropped.",
+        "memory_tip": "The 4 multiplies the WHOLE B bracket, its y² included — the step most often dropped.",
         "lines": [
           "⇒ (x−3)² + (y−0)² = 4[(x+3)² + (y−0)²]",
           "⇒ (x² − 6x + 9) + y² = 4[(x² + 6x + 9) + y²]"
@@ -174,6 +177,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition gives.",
+        "memory_tip": "Equal x² and y² coefficients — a circle, as every ratio condition gives.",
         "lines": [
           "⇒ x² − 6x + 9 + y² = 4x² + 24x + 36 + 4y²",
           "⇒ 0 = 3x² + 3y² + 30x + 27",
@@ -209,9 +213,10 @@
         "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic held.",
         "common_mistakes": [
           "Forgetting to divide through by the common factor 3.",
-          "Collecting 9 − 36 as +27 on the wrong side."
+          "Taking the constant as 9 − 36 = −27; moving the 9 across gives 36 − 9 = +27 on the right."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "PA = 2PB squares to PA² = 4PB², not 2PB² — the 2 is squared as well. The whole right bracket takes the 4, both the x and the y part, and the finish divides through by the common 3."
 }

@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Degrees",
         "margin_note": "First mark. π radians is 180°, so π/10 is 18°. The four angles are 18°, 72°, 108° and 162°.",
+        "memory_tip": "π radians is 180°, so the four angles are 18°, 72°, 108° and 162°.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Shift",
         "margin_note": "Second mark. 108° = 90° + 18° and 162° = 90° + 72° — each larger angle is 90° more than one of the smaller two.",
+        "memory_tip": "Each larger angle is 90° MORE than one of the smaller two.",
         "lines": [
           "108° = 90° + 18°,  162° = 90° + 72°",
           "L.H.S = cos²18° + cos²72°",
@@ -130,9 +132,9 @@
             "shift"
           ]
         },
-        "why": "The four angles were chosen so that they pair up under a 90° shift. Spotting that pairing is the whole question.",
+        "why": "The four angles were chosen so that they pair up under a 90° shift. Spotting that pairing is the whole question. Writing 108° as 180° − 72° and 162° as 180° − 18° is also correct and reaches 2; the 90° shift is used here because it turns the two large terms into sines, so both Pythagorean pairs appear without needing cos 72° = sin 18°.",
         "common_mistakes": [
-          "Writing 108° as 180° − 72°, which works but leads to a longer route.",
+          "Writing 108° as 90° − 18°, which is 72°, not 108°.",
           "Pairing 108° with 72° instead of 18°."
         ]
       },
@@ -143,6 +145,7 @@
         "marks": 1,
         "mark_note": "Conversion",
         "margin_note": "Third mark. The shift turns each cosine into a negative sine — and the SQUARE removes the minus sign entirely.",
+        "memory_tip": "cos(90° + θ) = −sin θ, and the SQUARE removes the minus entirely.",
         "lines": [
           "cos(90° + θ) = −sin θ, and squaring removes the sign:",
           "cos²(90° + 18°) = sin²18°",
@@ -184,6 +187,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Regroup so each pair shares an angle: cos²18° + sin²18° = 1 and cos²72° + sin²72° = 1.",
+        "memory_tip": "Regroup so each pair shares an angle: cos² + sin² of the same angle is 1.",
         "lines": [
           "= (cos²18° + sin²18°) + (cos²72° + sin²72°)",
           "= 1 + 1 = 2 = R.H.S",
@@ -214,12 +218,13 @@
             "pair"
           ]
         },
-        "why": "The regrouping is the point — the terms are not in Pythagorean pairs as first written, and rearranging them is what makes the identity apply.",
+        "why": "The regrouping is the point — the terms are not in Pythagorean pairs as first written, and rearranging them is what makes the identity apply. Pairing cos²18° with cos²72° also reaches 2, but only after using cos 72° = sin 18°; pairing by the same angle needs no extra step.",
         "common_mistakes": [
-          "Pairing cos²18° with cos²72°.",
+          "Pairing cos²18° with sin²72° and calling it 1 — the identity needs the SAME angle in both terms.",
           "Trying to find the numerical value of cos 18°."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert to degrees and write 108° and 162° as 90° + 18° and 90° + 72°. cos(90° + θ) = −sinθ, and the squares remove the sign, leaving two Pythagorean pairs."
 }

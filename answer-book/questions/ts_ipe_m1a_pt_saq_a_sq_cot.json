@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "In a △ABC, show that a² cot A + b² cot B + c² cot C = abc/R.",
   "appearances": [
     {
@@ -25,32 +25,33 @@
   "mark_split": [
     {
       "label": "Convert to sines by the sine rule",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Use the identity and convert to abc/R",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 85. Printed appearances: AP 18.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 85. Printed appearances: AP 18.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 10), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Properties of Triangles · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_convert_to_sines_by_the_si",
         "kind": "equation",
         "label": "Convert to sines by the sine rule",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
         "margin_note": "Half the marks. a = 2R sinA turns a² cotA into 4R² sin²A · cosA/sinA — and one sine cancels, leaving 2R²(2 sinA cosA), which is a double angle.",
+        "memory_tip": "a = 2R sinA makes a² cotA into 4R² sin²A · cosA/sinA; one sine cancels, leaving a double angle.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,9 +94,10 @@
         "id": "s2_use_the_identity_and_conve",
         "kind": "boxed_final",
         "label": "Use the identity and convert to abc/R",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The other half. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle; then each sine goes back to a side through the sine rule.",
+        "memory_tip": "Σsin2A = 4 sinA sinB sinC in any triangle; then each sine goes back to a side by the sine rule.",
         "lines": [
           "= 2R²(4 sinA sinB sinC)   [∵ in a △, Σsin2A = 4 sinA sinB sinC]",
           "= (1/R)(2R sinA)(2R sinB)(2R sinC)   [regrouping 8R³ as 8R³/R × 1]",
@@ -133,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert every side to 2R sin by the sine rule so the whole thing becomes trigonometric. The key identity is Σsin2A = 4 sinA sinB sinC, which holds only in a triangle."
 }

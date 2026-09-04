@@ -226,7 +226,7 @@ diagram marks. Elsewhere the diagram step takes `marks: 0` and — because the s
 **Pacing.** Give every stroke a real positive `ms` — the schema is `z.number().int().positive()`,
 so a placeholder `"ms": 0` FAILS validation. Any plausible value will do; the orchestrator then runs
 `npm run pace:figures -- --prefix ts_ipe_c2 --force --write` to retime every stroke to a uniform
-70 u/s from its measured path length. `npm run check:figure-pace` gates 40–160 u/s over `ts_ipe_c2`.
+70 u/s from its measured path length. `npm run check:figure-pace` gates 40–160 u/s over every opted-in prefix (`ts_ipe_c2,ts_ipe_z1,ts_ipe_m2a` as of 2026-08-29 — add yours to the list in package.json). Passing `--strict` with no prefix is now a hard error rather than a silent report-only run.
 
 **The phase constraint.** The zoology branch's phased-figure `pause` element is NOT on master —
 `figureSchema` admits only `stroke` and `label`, so authoring a pause fails the build. The pace
@@ -304,7 +304,9 @@ staged — a tree that fails the build.
   cross-unit or cross-subject duplication; the drift gate only checks that an entry resolves to a
   file. The known collision is **unit 13 Biomolecules vs Junior Botany** — the botany session
   explicitly flagged "recheck when Chemistry-II opens". Units 1–2 may also brush Chemistry-I's
-  `chemistry-4` States of Matter, and unit 3 may brush Physics-I on cells and resistance.
+  States of Matter (retired as `chemistry-99` on 2026-09-02 — the 2026-27 syllabus dropped it, so
+  a Chemistry-II card may now be the only place a gas-law question lives), and unit 3 may brush
+  Physics-I on cells and resistance.
 - **Line wrap.** `npm run measure:wrap -- ts_ipe_c2` renders every authored line in real Kalam
   26px and reports overruns. Budgets: `boxed` 535px, `eq` and `indent` 568px, everything else
   624px. One line must equal one ruled row. Chemistry-I shipped at 4.1%, the worst in the bank;
@@ -378,7 +380,7 @@ Those are the highest-value cells for a verifying teacher to spot-check.
 npm run build:answers                  # marks, completeness, Rule 41, katex, unit keys, drift
 npx tsc --noEmit                       # 0
 npx vitest run
-npm run check:figure-pace              # 40-160 u/s over ts_ipe_c2
+npm run check:figure-pace              # 40-160 u/s over every opted-in prefix
 npm run measure:wrap -- ts_ipe_c2
 npm run figures:gallery -- ts_ipe_c2   # then LOOK at the gallery
 npm run smoke:answers                  # ~30 min at this fleet size

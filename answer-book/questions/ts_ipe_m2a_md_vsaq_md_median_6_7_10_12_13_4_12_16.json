@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_md_median_6_7_10_12_13_4_12_16",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the mean deviation about the median for the data 6, 7, 10, 12, 13, 4, 12, 16.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the median",
+      "marks": 1
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 18 Measures of Dispersion, answer 170.2. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: TS 16 · AP 17,18,19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q9 of the book's Model Paper 4 (book p.117, index P85(170.2)). The same eight numbers are used in answer 169.2 (about the mean) — a twin data set, two different centres; here the median 11 is not the mean 10, and the two mean deviations happen to agree at 3.25. Recomputed: ascending 4, 6, 7, 10, 12, 12, 13, 16, n = 8 even, M = (10 + 12)/2 = 11, |xᵢ − M| = 7, 5, 4, 1, 1, 1, 2, 5, total 26, 26/8 = 3.25 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the median for eight numbers — what you do to the data first, how you pick the median when n is even, and what you average at the end.",
+  "insider_note": "n = 8 is even, so the median is the average of the 4th and 5th sorted values, (10 + 12)/2 = 11; the deviations are taken from 11 — not from the mean 10 that the same data gives.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_median",
+        "kind": "equation",
+        "label": "Median",
+        "marks": 1,
+        "mark_note": "Median",
+        "margin_note": "First mark. Sort first. n = 8 is even, so there are two middle values, the 4th and 5th (10 and 12); the median is their average, 11.",
+        "memory_tip": "Even n: average the 4th and 5th sorted values, (10 + 12)/2 = 11. The median need not be in the data.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Ascending order: 4, 6, 7, 10, 12, 12, 13, 16",
+          "n = 8 is even, so M = (4th value + 5th value)/2.",
+          "∴ Median M = (10 + 12)/2 = 11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the values are sorted, n = 8 is even, and the median is the average of the two middle values, (10 + 12)/2 = 11.",
+          "accept": [
+            "put the numbers in order, eight is even so take the fourth and fifth values ten and twelve, their average eleven is the median",
+            "sort the data, the two middle values are ten and twelve, median eleven",
+            "with an even count the median is the average of the two middle numbers, eleven",
+            "ascending order lo pettite madhyalo ten and twelve unnayi, average eleven, adi median",
+            "the median is eleven"
+          ],
+          "reject": [
+            "find the median",
+            "the middle one",
+            "sort them"
+          ],
+          "heard_as": [
+            "ascending",
+            "sort",
+            "middle",
+            "ten and twelve",
+            "eleven",
+            "median"
+          ]
+        },
+        "why": "With an even number of values there is no single middle item, so the median is defined as the average of the two middle items. That is why 11, a value not in the data, is the median.",
+        "common_mistakes": [
+          "Taking 10 or 12 alone as the median.",
+          "Reading the middle of the unsorted list.",
+          "Using the mean (80/8 = 10) instead of the median."
+        ]
+      },
+      {
+        "id": "s2_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Absolute deviations from 11, in the sorted order: 7, 5, 4, 1, 1, 1, 2, 5. Sum 26, divide by n = 8. 26/8 = 3.25.",
+        "memory_tip": "The mean of this same data is 10 — subtract the median 11 instead. 26/8 = 3.25.",
+        "lines": [
+          "|xᵢ − M| : 7, 5, 4, 1, 1, 1, 2, 5",
+          "M.D. = Σ|xᵢ − M|/n = (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
+          "= 26/8 = 3.25",
+          {
+            "text": "∴ M.D. about the median = 3.25",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute deviations from 11 are 7, 5, 4, 1, 1, 1, 2, 5, their sum 26 divided by 8 gives 3.25.",
+          "accept": [
+            "take each number minus eleven without sign, add to twenty six, divide by eight, three point two five",
+            "the absolute deviations from the median add to twenty six and twenty six by eight is three point two five",
+            "mean deviation is sigma mod x i minus M by n equals twenty six by eight equals three point two five",
+            "eleven nunchi deviations mod teesukoni add cheste twenty six, eight tho divide cheste three point two five",
+            "the answer is three point two five"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "twenty six",
+            "three point two five",
+            "M D"
+          ]
+        },
+        "why": "Mean deviation about the median is the average distance from the median. It is never larger than the mean deviation about the mean: the median minimises the total distance. Here n is even, so every value from 10 to 12 gives the same smallest total 26 — and the mean of this data is exactly 10, one of those two middle values, which is why both measures come to 3.25.",
+        "common_mistakes": [
+          "Subtracting from the mean 10 instead of from the median 11.",
+          "Dropping one of the three 1's when adding.",
+          "Dividing by 7 instead of 8."
+        ]
+      }
+    ]
+  }
+}

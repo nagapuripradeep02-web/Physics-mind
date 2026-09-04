@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_practice_sin7x_0_to_pi2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^(π/2) sin⁷x dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State Walli's formula for odd n",
+      "marks": 1
+    },
+    {
+      "label": "Substitute n=7 and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', a printed PQ (Practice Question) box directly under answer 175, giving only the question and the answer '[Ans: 16/35]' with no worked solution (not marked as a Super Scoring Page). This card is authored as a PRACTICE QUESTION: the question and final answer are printed in the book, every line of working below is ours, re-derived using the same odd-n Walli's-formula method as the neighbouring answer 175 (this question is, in fact, the sin-version of that same reduction formula). No year tag is printed. Chapter star rank ★★★ applies (Star Q+ status is not separately marked for a PQ box; it follows the chapter). The 1+1 split is OURS, patterned on the split used across this VSAQ chapter (no margin tags are printed anywhere in this chapter). Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This practice question is the sin-version of the cos¹¹x answer directly above it — the same odd-n Walli's formula, just with a shorter three-term product because 7 is smaller than 11.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State Walli's formula for odd n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. n=7 is odd, so no π/2 factor appears.",
+        "memory_tip": "The sinⁿx and cosⁿx odd-n formulas have the identical shape — only the value of n changes.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "When n is odd, ∫₀^(π/2) sinⁿx dx",
+          "= [(n−1)(n−3)···2]/[n(n−2)···3] · 1",
+          "[Walli's formula]"
+        ],
+        "why": "For an odd power of sin, Walli's formula uses the same descending-product pattern as the cosine version, ending at 2 on top and 3 on the bottom with no π/2 factor.",
+        "common_mistakes": [
+          "Using the even-n version of the formula for this odd n=7 case.",
+          "Confusing this with the cos¹¹x formula, which has five terms rather than three."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Substitute n=7 and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 48/105 reduces to 16/35 by dividing both by 3.",
+        "memory_tip": "For n=7 there are exactly three descending terms in each product.",
+        "lines": [
+          "∴ ∫₀^(π/2) sin⁷x dx",
+          "= [(6)(4)(2)]/[(7)(5)(3)] · (1) = 48/105",
+          {
+            "text": "∴ I = 16/35",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting n=7 gives the three-term descending product 6·4·2=48 over 7·5·3=105, which simplifies to 16/35 after dividing by the common factor 3.",
+        "common_mistakes": [
+          "Leaving the answer as the unsimplified fraction 48/105 instead of reducing it to 16/35.",
+          "Missing a term in the three-term product."
+        ]
+      }
+    ]
+  }
+}

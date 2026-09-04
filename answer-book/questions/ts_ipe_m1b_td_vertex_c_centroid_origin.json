@@ -61,6 +61,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The centroid is the plain average of the vertices, one coordinate at a time. Write the formula with the unknown vertex in it and set it equal to the given centroid.",
+        "memory_tip": "A triangle's centroid is the plain average of three vertices — divide by 3.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Solve the three equations one at a time. Nothing links them, so this is three short subtractions rather than a system.",
+        "memory_tip": "Three independent equations, each one subtraction. The centroid at the origin makes every right side 0.",
         "lines": [
           "⇒ x₃ − 1 = 0  ⇒  x₃ = 1;",
           "   y₃ + 5 = 0  ⇒  y₃ = −5;",
@@ -147,5 +149,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The centroid is the origin, so each coordinate sum is simply zero — the shortest form these equations ever take. Two of the three answers come out negative, and that is where the sign slips happen."
 }

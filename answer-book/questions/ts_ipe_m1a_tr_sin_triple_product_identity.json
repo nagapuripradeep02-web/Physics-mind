@@ -1,0 +1,175 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_triple_product_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin A sin(π/3 + A) sin(π/3 − A) = (1/4) sin 3A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply sin(X+Y) sin(X−Y)",
+      "marks": 1
+    },
+    {
+      "label": "Recognise sin 3A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(i), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising sin 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_last_two",
+        "kind": "equation",
+        "label": "Group the last two factors",
+        "marks": 0,
+        "margin_note": "Write sin A outside a bracket and keep the matched pair inside it. The pair is the part that simplifies.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = sin A · [sin(π/3 + A) sin(π/3 − A)]",
+          "sin(X + Y) sin(X − Y) = sin²X − sin²Y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the last two factors are grouped as a sum times a difference, ready for sin²X − sin²Y.",
+          "accept": [
+            "keep sin a outside and bracket the other two",
+            "the second and third factors are a sum and a difference of the same angles",
+            "sin x plus y into sin x minus y is sin squared x minus sin squared y",
+            "rendu factors ni bracket lo pettali",
+            "group the matched pair first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin x plus y",
+            "sin x minus y",
+            "difference of squares",
+            "bracket"
+          ]
+        },
+        "why": "The second and third factors are a sum and a difference of the same two angles, so they multiply to a difference of squares. sin A is left outside for now.",
+        "common_mistakes": [
+          "Expanding sin(π/3 + A) and sin(π/3 − A) term by term, which reaches the same bracket but takes longer.",
+          "Grouping sin A with one of the other factors."
+        ],
+        "memory_tip": "A sum times a difference of the same two angles is a difference of squares."
+      },
+      {
+        "id": "s2_difference_of_squares",
+        "kind": "equation",
+        "label": "Apply sin(X+Y) sin(X−Y)",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. X is π/3 and Y is A, so the bracket becomes 3/4 − sin²A. Keep sin A multiplying it.",
+        "lines": [
+          "With X = π/3 and Y = A:",
+          "sin(π/3 + A) sin(π/3 − A)",
+          "  = sin²(π/3) − sin²A = 3/4 − sin²A",
+          "L.H.S = sin A (3/4 − sin²A)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with X = π/3 and Y = A the bracket becomes sin²(π/3) − sin²A = 3/4 − sin²A.",
+          "accept": [
+            "x is pi by three and y is a so it is sin squared pi by three minus sin squared a",
+            "sin pi by three squared is three by four",
+            "the bracket becomes three by four minus sin squared a",
+            "sin pi by three square ante three by four",
+            "apply the difference of squares formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "sin three a is three sin a minus four sin cubed a"
+          ],
+          "heard_as": [
+            "pi by three",
+            "three by four",
+            "sin squared a",
+            "difference of squares"
+          ]
+        },
+        "why": "sin(π/3) = √3/2, so its square is 3/4. That 3/4 is what later supplies the 3 in 3 sin A − 4 sin³A.",
+        "common_mistakes": [
+          "Taking sin²(π/3) as √3/2 instead of 3/4.",
+          "Writing the result as sin²A − 3/4, with the terms the wrong way round."
+        ],
+        "memory_tip": "sin(π/3) = √3/2, and squaring it gives 3/4."
+      },
+      {
+        "id": "s3_recognise_sin_three_a",
+        "kind": "boxed_final",
+        "label": "Recognise sin 3A",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Multiply sin A in, then take 1/4 out of both terms. What is left is the standard expansion of sin 3A.",
+        "lines": [
+          "= (3 sin A − 4 sin³A)/4",
+          "sin 3A = 3 sin A − 4 sin³A",
+          {
+            "text": "∴ L.H.S = (1/4) sin 3A = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A (3/4 − sin²A) = (1/4)(3 sin A − 4 sin³A) = (1/4) sin 3A.",
+          "accept": [
+            "multiply sin a in and take one by four out",
+            "three sin a minus four sin cubed a is sin three a",
+            "so the left side is a quarter of sin three a",
+            "one by four bayaki teeste sin three a vasthundi",
+            "the answer is one by four sin three a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "apply the difference of squares formula"
+          ],
+          "heard_as": [
+            "three sin a",
+            "four sin cubed",
+            "sin three a",
+            "one by four"
+          ]
+        },
+        "why": "Multiplying sin A into the bracket gives (3/4)sin A − sin³A. Taking 1/4 out leaves 3 sin A − 4 sin³A, which is exactly sin 3A.",
+        "common_mistakes": [
+          "Taking 1/4 out of only the first term.",
+          "Writing sin 3A as 4 sin³A − 3 sin A, which is the cosine pattern."
+        ],
+        "memory_tip": "sin 3A = 3 sin A − 4 sin³A: sine starts with 3, cosine starts with 4."
+      }
+    ]
+  }
+}

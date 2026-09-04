@@ -62,7 +62,7 @@
           "decreases the rate is called a negative",
           "catalyst or an inhibitor."
         ],
-        "why": "A catalyst provides a different path for the reaction, one with a lower activation energy, so more molecules can cross it in the same time. Because the catalyst is returned in the last step of that path, its mass and composition are the same at the end as at the start, and that is the part of the definition an examiner looks for.",
+        "why": "A positive catalyst provides a different path for the reaction, one with a lower activation energy, so more molecules can cross it in the same time; a negative catalyst raises the activation energy instead, so fewer molecules can cross it and the reaction slows down. Because the catalyst is returned in the last step of that path, its mass and composition are the same at the end as at the start, and that is the part of the definition an examiner looks for.",
         "common_mistakes": [
           "Writing that a catalyst increases the rate, with no mention of a negative catalyst. A catalyst alters the rate; some decrease it.",
           "Writing that a catalyst does not take part in the reaction. It does take part, and it is returned unchanged at the end."

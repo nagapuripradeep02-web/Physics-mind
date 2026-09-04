@@ -1,0 +1,267 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_n_2n_series",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Use mathematical induction to prove that 2 + 3·2 + 4·2² + … up to n terms = n·2ⁿ, ∀ n ∈ N.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.30, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The nth term is read off the printed pattern as (n+1)·2ⁿ⁻¹, which reproduces 2, 3·2, 4·2² at n = 1, 2, 3 and gives the stated sum n·2ⁿ at n = 1, 2 and 3; that reading is ours, since the book states only the first three terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — how you read the nth term off the pattern, and how the powers of 2 combine in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Find the nth term",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, and the step most students get wrong. Two things change from term to term: the number in front goes 2, 3, 4 and the power of 2 goes 0, 1, 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Terms: 2·2⁰, 3·2¹, 4·2², …",
+          "nth term = (n+1)·2ⁿ⁻¹",
+          "Let S(n): 2 + 3·2 + 4·2² + …",
+          "        + (n+1)·2ⁿ⁻¹ = n·2ⁿ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the nth term is (n+1)·2ⁿ⁻¹ — the coefficient is n + 1 and the power of 2 is n − 1 — and that S(n) is the full statement.",
+          "accept": [
+            "the nth term is n plus one times two to the n minus one",
+            "the number in front goes two three four so it is n plus one and the power goes zero one two so it is n minus one",
+            "general term n plus one into two power n minus one then write out s of n",
+            "nth term n plus one into two power n minus one ani rastam"
+          ],
+          "reject": [
+            "I write the nth term",
+            "state s of n",
+            "first the general term"
+          ],
+          "heard_as": [
+            "n plus one",
+            "two to the n minus one",
+            "nth term",
+            "s of n",
+            "power of two"
+          ]
+        },
+        "why": "The first term is written as 2, which does not show that it is 2·2⁰. Writing all three given terms with their powers of 2 shown is what makes the pattern readable.",
+        "common_mistakes": [
+          "Reading the nth term as n·2ⁿ⁻¹, which gives 1, 2·2, 3·2² and not the printed series.",
+          "Reading the power of 2 as n instead of n − 1, so the first term comes out as 4."
+        ],
+        "memory_tip": "Write the first term as 2·2⁰. Then the front numbers are n + 1 and the powers are n − 1."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = (2)·2⁰ = 2",
+          "R.H.S of S(1) = 1·2¹ = 2",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 2 times 2 to the power 0, which is 2, and the right side is 1 times 2, which is also 2.",
+          "accept": [
+            "left side is two times two to the zero which is two and right side is one times two which is two",
+            "put n equals one in both sides and both come to two",
+            "the first case gives two on each side",
+            "n equals one pettina rendu sides two vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "verify for n equals one"
+          ],
+          "heard_as": [
+            "l h s",
+            "r h s",
+            "two to the zero",
+            "one times two",
+            "s of one"
+          ]
+        },
+        "why": "Using the nth term formula at n = 1 rather than just copying the printed 2 is what checks that (n+1)·2ⁿ⁻¹ was read correctly. At n = 2 both sides give 8, which is a second check worth doing in rough work.",
+        "common_mistakes": [
+          "Asserting S(1) is true without working out both sides.",
+          "Reading 2⁰ as 0 instead of 1."
+        ],
+        "memory_tip": "At n = 1: left side 2·2⁰ = 2, right side 1·2¹ = 2. At n = 2 both sides give 8."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 2 + 3·2 + … + (k+1)·2ᵏ⁻¹",
+          "        = k·2ᵏ   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — the sum of k terms equals k times 2 to the k — and the line is numbered (1).",
+          "accept": [
+            "assume the sum of k terms is k times two to the k",
+            "suppose s of k holds and call that equation one",
+            "take it as true for one value k in the naturals and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "k times two to the k",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Writing the last term as (k+1)·2ᵏ instead of (k+1)·2ᵏ⁻¹."
+        ],
+        "memory_tip": "Replace n by k everywhere, including inside the power. Number the line (1)."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. The next term is (k+2)·2ᵏ. Both terms carry 2ᵏ, so take it out and the rest is easy.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = (k+2)·2ᵏ.",
+          "Add it to both sides of (1):",
+          "L.H.S = k·2ᵏ + (k+2)·2ᵏ",
+          "= 2ᵏ(k + k + 2) = 2ᵏ(2k + 2)",
+          "= 2ᵏ·2(k+1)",
+          "= (k+1)·2ᵏ⁺¹ = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the next term is (k+2)·2ᵏ, both terms share 2ᵏ, and 2k + 2 is 2(k+1), so the 2 joins the power to give (k+1)·2ᵏ⁺¹.",
+          "accept": [
+            "the next term is k plus two into two to the k so take two to the k out and you get two k plus two",
+            "two k plus two is two into k plus one and that two raises the power to k plus one",
+            "add the next term and it becomes k plus one times two to the k plus one",
+            "next term add chesi two power k common teeste k plus one vasthundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "add the next term",
+            "then it follows"
+          ],
+          "heard_as": [
+            "k plus two",
+            "two to the k",
+            "two k plus two",
+            "k plus one",
+            "two to the k plus one"
+          ]
+        },
+        "why": "Both terms already carry 2ᵏ, so the whole step is one factorisation. The spare 2 inside 2(k+1) is what pushes the power from 2ᵏ up to 2ᵏ⁺¹.",
+        "common_mistakes": [
+          "Writing the next term as (k+1)·2ᵏ — put n = k+1 into (n+1)·2ⁿ⁻¹ and the coefficient is k + 2.",
+          "Leaving the answer as 2ᵏ(2k+2) and not turning the spare 2 into the higher power.",
+          "Stopping before writing = R.H.S, so the step does not show what was asked."
+        ],
+        "memory_tip": "Take 2ᵏ out: k + (k+2) = 2k + 2 = 2(k+1), and that spare 2 lifts 2ᵏ to 2ᵏ⁺¹."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the result holds for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k gives s of k plus one by the principle of mathematical induction it holds for all n",
+            "hence by p m i the statement is true for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The earlier steps prove two single statements — one about n = 1 and one about a step. Only the principle turns them into a claim about every n.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+      }
+    ]
+  }
+}

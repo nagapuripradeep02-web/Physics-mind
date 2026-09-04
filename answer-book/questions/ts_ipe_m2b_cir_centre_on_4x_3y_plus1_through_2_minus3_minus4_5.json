@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_on_4x_3y_plus1_through_2_minus3_minus4_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the circle which passes through (2,−3), (−4,5) and having the centre on the line 4x + 3y + 1 = 0.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equation from SA = SB",
+      "marks": 2
+    },
+    {
+      "label": "Use the line the centre lies on",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 1
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the circle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 Circle, answer 5.2. It is the right-hand twin of answer 5.1 on the same ★★★ SSP page (book p.18 carries the SSP banner). Its printed appearance tag begins \"TS 17\" and a second two-digit year follows it, but the right edge of that column is cut off in the scan, so only TS 2017 is recorded here; a reviewer with the physical book should read the rest of that tag. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct. The book solves the pair by cross-multiplication; elimination is written here because it is easier to check. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The centre comes out at (−1, 1), a whole-number point, so if a fraction appears when the two equations are solved the arithmetic has gone wrong and it is worth stopping to check.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation_from_sa_sb",
+        "kind": "equation",
+        "label": "Equation from SA = SB",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Both given points carry a negative coordinate, so watch every bracket sign.",
+        "memory_tip": "A = (2, −3) gives brackets (x₁ − 2) and (y₁ + 3). Flip the sign of each coordinate.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(x₁, y₁) be the centre of the circle.",
+          "A = (2, −3), B = (−4, 5)",
+          "S is the same distance from A and B.",
+          "⇒ SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−2)² + (y₁+3)² = (x₁+4)² + (y₁−5)²",
+          "⇒ −4x₁ + 4 + 6y₁ + 9 = 8x₁ + 16 − 10y₁ + 25",
+          "⇒ −12x₁ + 16y₁ − 28 = 0",
+          "⇒ 3x₁ − 4y₁ + 7 = 0 … (1)"
+        ],
+        "why": "This is the perpendicular bisector of AB. Dividing −12x₁ + 16y₁ − 28 = 0 by −4 gives the smallest whole-number form, which makes the elimination shorter.",
+        "common_mistakes": [
+          "Writing (y₁ + 3)² as y₁² − 6y₁ + 9.",
+          "Dividing by −4 and changing only two of the three signs."
+        ]
+      },
+      {
+        "id": "s2_use_the_given_line",
+        "kind": "equation",
+        "label": "Use the line the centre lies on",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Copy the line exactly as given, with the +1, and replace x and y by x₁ and y₁.",
+        "memory_tip": "The centre lies on the line, so its coordinates satisfy the line’s equation.",
+        "lines": [
+          "The centre (x₁, y₁) lies on 4x + 3y + 1 = 0",
+          "⇒ 4x₁ + 3y₁ + 1 = 0 … (2)"
+        ],
+        "why": "The question supplies only two points, so the line is the second condition. A point lies on a line exactly when its coordinates satisfy the line equation.",
+        "common_mistakes": [
+          "Copying the constant as −1 when the given line is 4x + 3y + 1 = 0.",
+          "Substituting a given point into the line instead of the centre."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. Multiply (1) by 3 and (2) by 4 so the y coefficients become −12 and +12, then add.",
+        "memory_tip": "Make the y coefficients 12 and −12, add, and x comes out on its own.",
+        "lines": [
+          "(1): 3x₁ − 4y₁ = −7",
+          "(2): 4x₁ + 3y₁ = −1",
+          "(1)×3: 9x₁ − 12y₁ = −21",
+          "(2)×4: 16x₁ + 12y₁ = −4",
+          "Adding: 25x₁ = −25 ⇒ x₁ = −1",
+          "From (1): 3(−1) − 4y₁ = −7 ⇒ y₁ = 1",
+          "∴ Centre S(x₁, y₁) = (−1, 1)"
+        ],
+        "why": "The centre lies on both the perpendicular bisector and the given line, so it is the point where they meet. Matching the y coefficients and adding removes y in one step.",
+        "common_mistakes": [
+          "Reading 25x₁ = −25 as x₁ = 25.",
+          "Solving −4y₁ = −4 as y₁ = −1."
+        ]
+      },
+      {
+        "id": "s4_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. r² = 25 is a perfect square, a useful sign that the centre is right.",
+        "memory_tip": "Check with B too: (−1 + 4)² + (1 − 5)² = 9 + 16 = 25.",
+        "lines": [
+          "A = (2, −3) lies on the circle, so r = SA.",
+          "r² = SA² = (−1−2)² + (1+3)² = 9 + 16 = 25"
+        ],
+        "why": "The radius is the distance from the centre to either given point. Getting 25 from both points is a further check on the centre.",
+        "common_mistakes": [
+          "Writing (1 + 3)² as (1 − 3)² and getting 4.",
+          "Reporting r = 25 instead of r² = 25."
+        ]
+      },
+      {
+        "id": "s5_equation_of_circle",
+        "kind": "boxed_final",
+        "label": "Equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Constant term: 1 + 1 − 25 = −23.",
+        "memory_tip": "Centre (−1, 1) gives brackets (x + 1) and (y − 1). The signs flip.",
+        "lines": [
+          "Circle with centre (−1, 1) and r² = 25 is",
+          "(x + 1)² + (y − 1)² = 25",
+          "⇒ (x² + 2x + 1) + (y² − 2y + 1) = 25",
+          {
+            "text": "∴ x² + y² + 2x − 2y − 23 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The general form has g = 1, f = −1 and c = −23. The check g² + f² − c = 1 + 1 + 23 = 25 = r² confirms it.",
+        "common_mistakes": [
+          "Writing the brackets as (x − 1) and (y + 1).",
+          "Getting the constant as +23."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_ap_10th_term_3_5_7_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the 10th term of the A.P. 3, 5, 7, 9, …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the nth term formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute n = 10",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how many common differences you add.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the nth term formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for a = 3, d = 2 and the formula aₙ = a + (n − 1)d written down before any number is put in.",
+        "memory_tip": "Count gaps, not terms: n − 1 common differences take you to the nth term.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The sequence 3, 5, 7, 9, … is an A.P. with first term a = 3",
+          "Common difference d = 5 − 3 = 2",
+          "For an A.P., the nth term is  aₙ = a + (n − 1)d"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 3, d = 2 and the nth term formula aₙ = a + (n − 1)d are stated.",
+          "accept": [
+            "first term is three and common difference is two",
+            "use the nth term formula a plus n minus one d",
+            "write a equals three d equals two then the formula",
+            "a three d two, nth term formula rasta",
+            "state the arithmetic progression nth term formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first term",
+            "common difference",
+            "n minus one",
+            "nth term"
+          ]
+        },
+        "why": "The nth term formula turns the words \"10th term\" into arithmetic. Writing a, d and the formula earns the method mark even if the arithmetic then slips.",
+        "common_mistakes": [
+          "Taking d = 3 − 5 = −2 by subtracting the wrong way round.",
+          "Writing aₙ = a + nd, which gives the 11th term instead of the 10th."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute n = 10",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 9 × 2 = 18, so the answer is 21. A student who writes 23 has added ten common differences instead of nine.",
+        "memory_tip": "3 plus nine twos is 21.",
+        "lines": [
+          "a₁₀ = a + (10 − 1)d",
+          "= 3 + 9(2)",
+          "= 3 + 18",
+          {
+            "text": "∴ a₁₀ = 21",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting n = 10 gives 3 + 9(2) = 21.",
+          "accept": [
+            "substitute n equals ten to get three plus nine twos",
+            "nine times two is eighteen so the answer is twenty one",
+            "the tenth term is twenty one",
+            "n ten substitute cheste twenty one vasthundi",
+            "three plus eighteen equals twenty one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine into two",
+            "eighteen",
+            "twenty one",
+            "tenth term"
+          ]
+        },
+        "why": "Nine common differences are added to the first term, not ten, and that single count decides whether the answer is 21 or 23.",
+        "common_mistakes": [
+          "Getting 23 by using 10 common differences instead of 9.",
+          "Adding 9 + 2 instead of multiplying them."
+        ]
+      }
+    ]
+  }
+}

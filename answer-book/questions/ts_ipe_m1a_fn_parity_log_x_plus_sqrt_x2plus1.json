@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_parity_log_x_plus_sqrt_x2plus1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Determine whether f(x) = log(x + √(x² + 1)) is even or odd.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The domain, and the product that gives 1",
+      "marks": 1
+    },
+    {
+      "label": "Show f(−x) = −f(x) and name the parity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the product (−x + √(x² + 1))(x + √(x² + 1)) = 1, which is the idea the whole question turns on, and one to the logarithm law that finishes it. The domain condition is part of the answer: x + √(x² + 1) is positive for every real x because √(x² + 1) > |x|, so the domain is R and the parity test is meaningful; that is written in the lines, not only here. The result does not depend on the base of the logarithm, since log(1/u) = −log u in any base, and the card says so. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — why the logarithm is defined everywhere, and the product you multiply to simplify f(−x).",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_domain_and_product",
+        "kind": "equation",
+        "label": "Domain, then the product",
+        "marks": 1,
+        "mark_note": "Domain and product",
+        "margin_note": "One mark for the domain line and the product. The product is the whole idea; write it out in full before using it.",
+        "memory_tip": "Multiply x + √(x² + 1) by its conjugate −x + √(x² + 1). The squares cancel and only 1 is left.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "√(x² + 1) > √(x²) = |x| ≥ −x for all x ∈ R,",
+          "so x + √(x² + 1) > 0 and the domain is R.",
+          "f(−x) = log(−x + √(x² + 1))",
+          "(−x + √(x² + 1))(x + √(x² + 1))",
+          "= (√(x² + 1))² − x² = x² + 1 − x² = 1",
+          "⇒ −x + √(x² + 1) = 1/(x + √(x² + 1))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √(x² + 1) is greater than |x| so x + √(x² + 1) > 0 and the domain is R, and that the conjugate product (−x + √(x² + 1))(x + √(x² + 1)) equals 1.",
+          "accept": [
+            "root of x squared plus one is bigger than the size of x so the bracket is always positive",
+            "the log is defined for every real x so the domain is R",
+            "multiply by the conjugate minus x plus root x squared plus one",
+            "the product is x squared plus one minus x squared which is one",
+            "conjugate tho multiply cheste root square minus x square equals one vasthundi"
+          ],
+          "reject": [
+            "log of one over u is minus log u",
+            "so the function is odd",
+            "f of minus x is minus f of x"
+          ],
+          "heard_as": [
+            "root x squared plus one",
+            "conjugate",
+            "domain is R",
+            "product is one",
+            "f of minus x"
+          ]
+        },
+        "why": "Two things have to be settled before any parity claim. First the logarithm needs a positive argument, and √(x² + 1) > |x| makes x + √(x² + 1) positive for every real x, so the domain is R and −x is always in it. Second, the conjugate product is 1, which is what lets f(−x) be written as a reciprocal.",
+        "common_mistakes": [
+          "Skipping the domain line and assuming a logarithm is always defined.",
+          "Writing √(x² + 1) as x + 1, which is not the same.",
+          "Expanding the product as x² + 1 + x² instead of x² + 1 − x²."
+        ]
+      },
+      {
+        "id": "s2_use_the_log_law",
+        "kind": "boxed_final",
+        "label": "Use the logarithm law",
+        "marks": 1,
+        "mark_note": "f(−x) = −f(x)",
+        "margin_note": "The second mark is log(1/u) = −log u and the word. Write f(−x) = −f(x) explicitly, then name the function odd.",
+        "memory_tip": "A reciprocal inside a logarithm comes out as a minus sign: log(1/u) = −log u, in any base.",
+        "lines": [
+          "f(−x) = log[1/(x + √(x² + 1))]",
+          "= −log(x + √(x² + 1))   [∵ log(1/u) = −log u]",
+          "= −f(x) for every x ∈ R",
+          "This holds in any base, since log(1/u) = −log u",
+          "is true for every base of the logarithm.",
+          {
+            "text": "∴ f is an odd function on R.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log of a reciprocal is minus the logarithm, so f(−x) = −log(x + √(x² + 1)) = −f(x), which makes f an odd function.",
+          "accept": [
+            "log of one over u is minus log u",
+            "so f of minus x is minus log of x plus root x squared plus one",
+            "that is exactly minus f of x",
+            "the function is odd",
+            "log reciprocal ante minus log kabatti f of minus x equals minus f of x, odd function"
+          ],
+          "reject": [
+            "the conjugate product is one",
+            "the domain is R",
+            "so f of minus x equals f of x"
+          ],
+          "heard_as": [
+            "odd function",
+            "minus f of x",
+            "log of one over u",
+            "even function"
+          ]
+        },
+        "why": "The reciprocal from the previous step is exactly what the logarithm law needs: log(1/u) = −log u, so the whole value flips sign and nothing else changes. A numerical check agrees — f(0.6) = 0.5688 and f(−0.6) = −0.5688, and f(1.7) = 1.3008 and f(−1.7) = −1.3008.",
+        "common_mistakes": [
+          "Writing log(1/u) as 1/log u instead of −log u.",
+          "Stopping at −log(x + √(x² + 1)) and not saying that this is −f(x).",
+          "Naming the function even because the expression contains x²."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_slope_normal_astroid_at_pi_over_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the slope of the normal to the curve x = a cos³θ, y = a sin³θ at θ = π/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate x and y with respect to θ",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the normal at θ = π/4",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 19. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you get dy/dx from a curve given through θ, what it simplifies to, and what you do to it at θ = π/4.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate x and y with respect to θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both are cubes of a trigonometric function, so the chain rule applies twice over: cube first, then the inner function. The −sin θ inside dx/dθ is what makes the final slope negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given:   x = a cos³θ,   y = a sin³θ",
+          "Differentiate each with respect to θ, using the chain rule:",
+          "dx/dθ = a · 3cos²θ · (−sin θ) = −3a cos²θ sin θ",
+          "dy/dθ = a · 3sin²θ · (cos θ) = 3a sin²θ cos θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dθ = −3a cos²θ sin θ and dy/dθ = 3a sin²θ cos θ.",
+          "accept": [
+            "differentiate the cube first then the inside function",
+            "cos cubed gives three cos squared times minus sin",
+            "sin cubed gives three sin squared times cos",
+            "chain rule rendu sarlu apply cheyyali",
+            "dx by d theta is minus three a cos squared sin",
+            "the minus comes from differentiating cos theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three cos squared",
+            "minus sin theta",
+            "three sin squared",
+            "chain rule"
+          ]
+        },
+        "why": "cos³θ means (cos θ)³, so the power rule gives 3cos²θ and the chain rule then multiplies by the derivative of cos θ, which is −sin θ. The same pattern with sin θ carries no minus sign.",
+        "common_mistakes": [
+          "Differentiating cos³θ to 3cos²θ and leaving out the −sin θ.",
+          "Writing dy/dθ with a minus sign, copying the minus from the x-derivative.",
+          "Reading cos³θ as cos(3θ) and differentiating to −3 sin(3θ)."
+        ],
+        "memory_tip": "Differentiate the cube, then the inside. Only the cosine brings a minus sign out with it."
+      },
+      {
+        "id": "s2_slope_tangent",
+        "kind": "equation",
+        "label": "Slope of the tangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds at every point of the curve, so it is worth writing before substituting.",
+        "lines": [
+          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",
+          "Cancel 3a, one sin θ and one cos θ:",
+          "= −sin θ / cos θ",
+          "∴ dy/dx = −tan θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (dy/dθ)/(dx/dθ) reduces to −tan θ.",
+          "accept": [
+            "divide dy by d theta by dx by d theta",
+            "three a cancels and one sin and one cos cancel",
+            "the slope of the tangent is minus tan theta",
+            "three a cancel ayi minus tan theta vasthundi",
+            "sin by cos is tan so the answer is minus tan theta",
+            "the tangent slope is minus tan theta at every point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus tan theta",
+            "three a cancels",
+            "sin by cos",
+            "dy by d theta"
+          ]
+        },
+        "why": "Dividing the two θ-derivatives cancels dθ and leaves the slope in θ alone. Cancelling one power from each of sin²θ and cos²θ leaves a single sin over a single cos, which is the tangent.",
+        "common_mistakes": [
+          "Losing the minus sign and writing dy/dx = tan θ.",
+          "Cancelling both powers and writing dy/dx = −1.",
+          "Writing dy/dx = −cot θ, cancelling the wrong function from each."
+        ],
+        "memory_tip": "sin²/cos² divided the right way leaves sin/cos, which is tan. The minus comes from dx/dθ and stays."
+      },
+      {
+        "id": "s3_normal_slope",
+        "kind": "boxed_final",
+        "label": "Slope of the normal at θ = π/4",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "The last two marks: one for the tangent slope at θ = π/4, one for turning it into the normal's. The question asks only for a SLOPE, so no line equation is needed.",
+        "lines": [
+          "At θ = π/4:   tan(π/4) = 1, so",
+          "slope of the tangent  m = −tan(π/4) = −1",
+          "The normal is perpendicular to the tangent, so its slope is −1/m.",
+          "Slope of the normal = −1/(−1)",
+          {
+            "text": "∴ slope of the normal = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m = −1 at θ = π/4 and the normal's slope is −1/m = 1.",
+          "accept": [
+            "tan of pi by four is one so the tangent slope is minus one",
+            "the normal slope is minus one over minus one",
+            "the slope of the normal is one",
+            "tan forty five degrees one kabatti tangent slope minus one",
+            "minus one by minus one gives plus one",
+            "only the slope is asked so stop here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by four",
+            "tan is one",
+            "minus one",
+            "slope of the normal is one"
+          ]
+        },
+        "why": "tan(π/4) = 1, so the tangent has slope −1 and falls at 45°. The negative reciprocal of −1 is +1, so the normal rises at 45° — the two lines are perpendicular, and their slopes multiply to −1.",
+        "common_mistakes": [
+          "Giving −1, which is the tangent's slope and not the normal's.",
+          "Working in degrees and using tan(π/4) as tan of about 0.785 degrees.",
+          "Writing a full line equation when only the slope is asked for."
+        ],
+        "memory_tip": "π/4 is 45°, where tan is 1. A slope of −1 and a slope of +1 are always perpendicular."
+      }
+    ]
+  },
+  "insider_note": "dy/dx simplifies to −tan θ, which is −1 at π/4. The NORMAL slope is the negative reciprocal, so the answer is +1, not −1."
+}

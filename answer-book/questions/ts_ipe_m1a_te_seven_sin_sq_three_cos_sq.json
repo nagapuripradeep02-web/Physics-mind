@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_seven_sin_sq_three_cos_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve 7 sin²θ + 3 cos²θ = 4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Convert to one ratio",
+      "marks": 1
+    },
+    {
+      "label": "Solve for sin²θ",
+      "marks": 1
+    },
+    {
+      "label": "Match to sin²α",
+      "marks": 1
+    },
+    {
+      "label": "Write the general solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.106, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 1(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape rewards the four separable moves — reduce to one ratio, isolate sin²θ, recognise the squared standard angle, and quote the correct general solution — with the third mark deliberately placed on the SQUARED form, because that is where the answer is won or lost. The equation contains no denominator and nothing is squared during the working, so no extraneous root can enter: every θ in the answer family satisfies the original equation as written, and the card says so rather than adding a check that has nothing to reject. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_one_ratio",
+        "kind": "equation",
+        "label": "Convert to one ratio",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both terms are squares, so replace cos²θ by 1 − sin²θ. The equation is then in sine alone and the two sine terms collect.",
+        "memory_tip": "Both terms are squares, so replace cos²θ by 1 − sin²θ and work in sine alone.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 7 sin²θ + 3 cos²θ = 4",
+          "⇒ 7 sin²θ + 3(1 − sin²θ) = 4",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "⇒ 7 sin²θ + 3 − 3 sin²θ = 4",
+          "⇒ 4 sin²θ + 3 = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²θ is replaced by 1 − sin²θ so the equation holds only sine.",
+          "accept": [
+            "replace cos squared by one minus sin squared so everything is in sine",
+            "use the Pythagorean identity to get one ratio",
+            "the two sine squared terms collect to four sin squared plus three",
+            "cos square ni one minus sin square ga marchali",
+            "convert the whole equation into sine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus sin squared",
+            "Pythagorean identity",
+            "four sin squared"
+          ]
+        },
+        "why": "Two different ratios cannot be handled together. Replacing cos²θ by 1 − sin²θ leaves sine alone, and the rest of the question is ordinary algebra.",
+        "common_mistakes": [
+          "Replacing sin²θ instead and leaving a cosine behind.",
+          "Writing cos²θ = 1 + sin²θ."
+        ]
+      },
+      {
+        "id": "s2_solve_for_sin_squared",
+        "kind": "equation",
+        "label": "Solve for sin²θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Take the 3 across and divide by 4. Stop at sin²θ = 1/4 — do not take the square root yet.",
+        "memory_tip": "Stop at sin²θ = 1/4. Taking the square root now splits the work into two cases for no gain.",
+        "lines": [
+          "⇒ 4 sin²θ = 4 − 3",
+          "⇒ 4 sin²θ = 1",
+          "⇒ sin²θ = 1/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation reduces to sin²θ = 1/4.",
+          "accept": [
+            "take three across and divide by four to get sin squared theta equals one quarter",
+            "sin squared theta is one by four",
+            "isolate sin squared and it is a quarter",
+            "sin square theta equals one by four vasthundi",
+            "reduce it to sin squared equals a quarter"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one quarter",
+            "one by four",
+            "sin squared theta"
+          ]
+        },
+        "why": "The equation is already a pure square in sine, so no factorising is needed. Isolating sin²θ is the whole of this step.",
+        "common_mistakes": [
+          "Taking the square root here and keeping only sinθ = 1/2.",
+          "Arithmetic slip: writing 4 sin²θ = 7 instead of 1."
+        ]
+      },
+      {
+        "id": "s3_match_to_sin_sq_alpha",
+        "kind": "equation",
+        "label": "Match to sin²α",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, and the one this question is really testing. Write 1/4 as the SQUARE of a standard sine value, so the equation reads sin²θ = sin²α with α = π/6.",
+        "memory_tip": "Write 1/4 as (1/2)², and 1/2 is sin(π/6). Keep the square on both sides.",
+        "lines": [
+          "Now 1/4 = (1/2)²",
+          "and 1/2 = sin(π/6)",
+          "⇒ sin²θ = sin²(π/6)",
+          "Here the principal value is α = π/6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/4 is written as sin²(π/6), giving the form sin²θ = sin²α with α = π/6.",
+          "accept": [
+            "one quarter is a half squared and a half is sin pi by six so it is sin squared theta equals sin squared pi by six",
+            "match it to the squared standard angle pi by six",
+            "the principal value is pi by six and the square stays on both sides",
+            "one by four ante sin pi by six whole square, alpha pi by six",
+            "keep it as sin squared equals sin squared alpha"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin squared pi by six",
+            "principal value",
+            "pi by six",
+            "half squared"
+          ]
+        },
+        "why": "Keeping the squared form holds both signs of the square root together. Splitting into sinθ = 1/2 and sinθ = −1/2 would need two separate general solutions.",
+        "common_mistakes": [
+          "Taking α = π/3 because 1/2 is read as cos(π/3).",
+          "Writing sin²θ = sin(π/6) and dropping the square on the right."
+        ]
+      },
+      {
+        "id": "s4_write_the_general_solution",
+        "kind": "boxed_final",
+        "label": "Write the general solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. A SQUARED trig equation has its own general solution, nπ ± α. Write n ∈ Z — the equation has infinitely many solutions.",
+        "memory_tip": "Squared equation, squared-form answer: sin²θ = sin²α gives θ = nπ ± α, not nπ + (−1)ⁿα.",
+        "lines": [
+          "For sin²θ = sin²α, the general solution is",
+          "θ = nπ ± α,  n ∈ Z",
+          {
+            "text": "∴ θ = nπ ± π/6,  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²θ = sin²α gives θ = nπ ± α, so θ = nπ ± π/6 with n ∈ Z.",
+          "accept": [
+            "for sin squared theta equals sin squared alpha the general solution is n pi plus or minus alpha so theta is n pi plus or minus pi by six",
+            "use the squared general solution n pi plus or minus alpha",
+            "the answer is n pi plus or minus pi by six with n an integer",
+            "sin square ki general solution n pi plus or minus alpha",
+            "write n pi plus or minus pi by six and n belongs to Z"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n pi plus or minus",
+            "pi by six",
+            "belongs to Z",
+            "general solution"
+          ]
+        },
+        "why": "The family nπ ± α already contains both sinθ = 1/2 and sinθ = −1/2, which is why one line of answer covers everything the squared equation allows.",
+        "common_mistakes": [
+          "Using θ = nπ + (−1)ⁿα, which loses half the solutions.",
+          "Using the cosine form 2nπ ± α.",
+          "Omitting n ∈ Z."
+        ]
+      }
+    ]
+  }
+}

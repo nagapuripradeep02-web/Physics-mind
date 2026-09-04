@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x_plus_4_over_x2_minus_4_x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve (x + 4)/((x² − 4)(x + 1)) into partial fractions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 11 Partial Fractions, answer 93. Printed appearances: a plain 'IPE 14' chip with no board letter, so it is recorded here and not as an appearance. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 1 (book p.111) asks exactly this question at Q15, and the Bullet Model Paper re-solves it at Q15 on book p.102; that second solution agrees with the chapter answer line for line. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 0 in the identity gives 4 = A(−2)(1) + B(2)(1) + C(−4) = −1 + 1 + 4 = 4 with A = 1/2, B = 1/2, C = −1."
+  },
+  "recall_prompt": "Say how you would resolve (x + 4)/((x² − 4)(x + 1)) into partial fractions — name each move in order.",
+  "insider_note": "x² − 4 is not irreducible — it splits as (x + 2)(x − 2), so the denominator is three different linear factors with three constants, and each root gives one of them directly.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Set up the form",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "First mark. x² − 4 is a difference of squares, so the denominator has THREE different linear factors: (x + 2), (x − 2), (x + 1). Three factors, three constants.",
+        "memory_tip": "x² − 4 is a difference of squares, so it SPLITS: three different linear factors, three constants.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² − 4 = (x + 2)(x − 2)",
+          "Let (x + 4)/((x + 2)(x − 2)(x + 1))",
+          "= A/(x + 2) + B/(x − 2) + C/(x + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 4 is factorised as (x + 2)(x − 2) and the fraction is written as A/(x + 2) + B/(x − 2) + C/(x + 1).",
+          "accept": [
+            "factorise x squared minus four as x plus two into x minus two and write A over x plus two plus B over x minus two plus C over x plus one",
+            "three linear factors so three constants A B and C one over each factor",
+            "split it into A by x plus 2 plus B by x minus 2 plus C by x plus 1",
+            "x square minus four ni x plus two, x minus two ga factorise chesi A B C ni one over each factor ga rasali",
+            "write one constant over each of the three factors x plus two x minus two and x plus one"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "x squared minus four",
+            "x plus two",
+            "x minus two",
+            "x plus one",
+            "three constants",
+            "A B C"
+          ]
+        },
+        "why": "x² − 4 looks like a quadratic factor but it is not irreducible: it splits into (x + 2)(x − 2). Missing that gives a (Bx + C)/(x² − 4) form that is not wrong but is harder and is not what the examiner expects.",
+        "common_mistakes": [
+          "Treating x² − 4 as an irreducible quadratic and writing (Bx + C)/(x² − 4).",
+          "Writing only two constants for three factors.",
+          "Factorising x² − 4 as (x − 2)² or as (x + 2)²."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by all three factors. Each constant keeps the two factors that are NOT its own. The C term keeps (x + 2)(x − 2), which is x² − 4 again.",
+        "memory_tip": "Each constant keeps the two factors that are not its own. The C term keeps (x + 2)(x − 2).",
+        "lines": [
+          "Multiply by (x + 2)(x − 2)(x + 1):",
+          "x + 4 = A(x − 2)(x + 1) + B(x + 2)(x + 1)",
+          "+ C(x + 2)(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x + 4 = A(x − 2)(x + 1) + B(x + 2)(x + 1) + C(x + 2)(x − 2).",
+          "accept": [
+            "multiply both sides by all three factors so x plus four equals A into x minus two into x plus one plus B into x plus two into x plus one plus C into x plus two into x minus two",
+            "clear the denominators and each constant keeps the two factors that are not its own",
+            "multiply through by the whole denominator to get an identity in x",
+            "moodu factors tho multiply cheste x plus four equals A into the other two factors plus B into the other two plus C into the other two",
+            "remove all the fractions by multiplying with x plus two x minus two x plus one"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "three factors",
+            "x plus four equals",
+            "A into",
+            "B into",
+            "C into",
+            "identity"
+          ]
+        },
+        "why": "With three fractions the identity has three products, and each product is the denominator with one factor removed. Writing it once, correctly, is what makes the three substitutions in the next step work.",
+        "common_mistakes": [
+          "Giving A the factor (x + 2) that it sits over; A keeps (x − 2)(x + 1).",
+          "Writing C(x + 1) instead of C(x + 2)(x − 2).",
+          "Losing the left side x + 4 and writing only the right side."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. Three roots, three substitutions: x = −2 for A, x = 2 for B, x = −1 for C. Each one makes the other two terms zero. Watch the signs in the brackets.",
+        "memory_tip": "Three roots, three substitutions: −2, 2, −1. Watch the signs — (−2 − 2)(−2 + 1) = (−4)(−1) = +4.",
+        "lines": [
+          "Put x = −2: 2 = A(−4)(−1) ⇒ A = 1/2",
+          "Put x = 2: 6 = B(4)(3) ⇒ B = 1/2",
+          "Put x = −1: 3 = C(1)(−3) ⇒ C = −1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −2 gives A = 1/2, x = 2 gives B = 1/2 and x = −1 gives C = −1.",
+          "accept": [
+            "put x equals minus two to get A equals half, x equals two to get B equals half and x equals minus one to get C equals minus one",
+            "substitute the three roots minus two two and minus one to get A half B half and C minus one",
+            "A is half B is half and C is minus one from the three substitutions",
+            "x equals minus two pedithe A half, x equals two pedithe B half, x equals minus one pedithe C minus one",
+            "each root makes two terms zero so A and B are half and C is minus one"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals minus two",
+            "x equals two",
+            "x equals minus one",
+            "A is half",
+            "B is half",
+            "C is minus one"
+          ]
+        },
+        "why": "Each substitution is chosen to be the root of one factor, so two of the three products vanish and one constant is left multiplied by a known number. Three roots give three constants with no simultaneous equations.",
+        "common_mistakes": [
+          "Writing (−2 − 2)(−2 + 1) as (−4)(1) instead of (−4)(−1), which flips the sign of A.",
+          "Getting 12B = 6 and writing B = 2 instead of 1/2.",
+          "Forgetting the third substitution and leaving C unfound."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. A = 1/2 over (x + 2) is written as 1/(2(x + 2)); the 2 goes into the denominator. The minus on C becomes a minus between the fractions.",
+        "memory_tip": "A = 1/2 over (x + 2) is written 1/(2(x + 2)), with the 2 inside the denominator. Check x = 0: 4 = −1 + 1 + 4.",
+        "lines": [
+          "∴ (x + 4)/((x² − 4)(x + 1))",
+          {
+            "text": "= 1/(2(x + 2)) + 1/(2(x − 2)) − 1/(x + 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1/(2(x + 2)) + 1/(2(x − 2)) − 1/(x + 1).",
+          "accept": [
+            "the answer is one over two x plus two plus one over two x minus two minus one over x plus one",
+            "half by x plus two plus half by x minus two minus one by x plus one",
+            "write one by two into x plus two plus one by two into x minus two minus one by x plus one",
+            "final answer one by two x plus two plus one by two x minus two minus one by x plus one ani rasali",
+            "put the constants back to get half over x plus two plus half over x minus two minus one over x plus one"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "one over two",
+            "half by",
+            "x plus two",
+            "x minus two",
+            "minus one over x plus one",
+            "final answer"
+          ]
+        },
+        "why": "The examiner marks the resolved form. Writing 1/2 over a bracket as 1/(2(x + 2)) is the standard way to present a fractional constant and keeps the answer on one line.",
+        "common_mistakes": [
+          "Writing C = −1 as +1/(x + 1) in the final line.",
+          "Writing (1/2)/(x + 2) with a stacked half; put the 2 in the denominator instead.",
+          "Not checking: put x = 0 in the identity, 4 = −1 + 1 + 4. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

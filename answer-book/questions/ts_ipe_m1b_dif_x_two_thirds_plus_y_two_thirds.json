@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_two_thirds_plus_y_two_thirds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If x²⁄³ + y²⁄³ = a²⁄³, show that dy/dx = −∛(y/x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate both sides implicitly",
+      "marks": 1
+    },
+    {
+      "label": "Make dy/dx the subject and reach the cube root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, on the concrete curve a = 8, y = (a²⁄³ − x²⁄³)³⁄²: the central difference quotient reads −1.7320508 at x = 1 against −∛(y/x) = −1.7320508, and −1.0823743 at x = 2.5 against −1.0823743."
+  },
+  "recall_prompt": "Say how you would do this one — say what you do to both sides, what a²⁄³ differentiates to, and how the negative powers turn over.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_implicit",
+        "kind": "equation",
+        "label": "Differentiate both sides implicitly",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a is a constant, so a²⁄³ is a constant and differentiates to 0. The dy/dx appears only because y²⁄³ is differentiated by the chain rule.",
+        "memory_tip": "y is a function of x, so every y term produces a dy/dx. An a term produces nothing, because a is a constant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x²⁄³ + y²⁄³ = a²⁄³, where a is a constant.",
+          "Differentiate both sides with respect to x, treating y as a function of x:",
+          "(2/3)x⁻¹⁄³ + (2/3)y⁻¹⁄³ · dy/dx = 0",
+          "The right side is a constant, so its derivative is 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are differentiated with respect to x, y²⁄³ gives (2/3)y⁻¹⁄³·dy/dx, and a²⁄³ gives 0.",
+          "accept": [
+            "differentiate both sides with respect to x",
+            "y term gives two by three y power minus one third into dy by dx",
+            "a is a constant so the right side becomes zero",
+            "a constant kabatti right side sunna avuthundi",
+            "use implicit differentiation and keep dy by dx with the y term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "implicit",
+            "dy by dx",
+            "zero",
+            "two by three"
+          ]
+        },
+        "why": "y is not written as a formula in x, so it cannot be differentiated directly. Implicit differentiation handles that by attaching dy/dx to every y term, which is the only new idea in this question.",
+        "common_mistakes": [
+          "Differentiating a²⁄³ to (2/3)a⁻¹⁄³, treating the constant a as a variable.",
+          "Writing d/dx(y²⁄³) = (2/3)y⁻¹⁄³ with no dy/dx attached."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Make dy/dx the subject and reach the cube root",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The 2/3 cancels from both terms. A negative power below the line becomes a positive power above it, which is how y⁻¹⁄³ in the denominator turns into y¹⁄³ on top.",
+        "memory_tip": "Converting each negative power to a positive one moves y above the line and x below it, so the answer carries y on top.",
+        "lines": [
+          "(2/3)y⁻¹⁄³ · dy/dx = −(2/3)x⁻¹⁄³",
+          "The factor 2/3 cancels from both sides, so",
+          "dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −y¹⁄³/x¹⁄³ = −(y/x)¹⁄³",
+          {
+            "text": "∴ dy/dx = −∛(y/x)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −(y/x)¹⁄³, which is −∛(y/x).",
+          "accept": [
+            "two by three cancels from both sides",
+            "the negative powers turn over so y comes on top",
+            "the answer is minus cube root of y by x",
+            "negative power kindaki vellithe positive avuthundi, so y paina vasthundi",
+            "power one third means cube root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cube root",
+            "y by x",
+            "minus",
+            "one third power"
+          ]
+        },
+        "why": "The target is given, so the mark is for reaching it by a valid method. Showing the step where the negative powers become positive is what proves the y belongs on top, rather than being copied from the question.",
+        "common_mistakes": [
+          "Leaving the answer as −x⁻¹⁄³/y⁻¹⁄³ without converting the negative powers, so it reads as −∛(x/y).",
+          "Writing ∛(y/x) without the minus sign."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Differentiate implicitly; the right side is a constant, so it goes to 0 and a never appears in the answer. The 2/3 cancels from both sides."
+}

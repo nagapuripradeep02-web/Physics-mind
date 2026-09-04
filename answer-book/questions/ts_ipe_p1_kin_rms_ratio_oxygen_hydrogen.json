@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_rms_ratio_oxygen_hydrogen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "At the same temperature and pressure, compare the rms speed of oxygen molecules with that of hydrogen molecules. (Molar mass of O₂ = 32, H₂ = 2 g/mol)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and proportionality",
+      "marks": 1
+    },
+    {
+      "label": "Molar masses",
+      "marks": 1
+    },
+    {
+      "label": "Setting up the ratio",
+      "marks": 1
+    },
+    {
+      "label": "Final ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 5 (printed p.140). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: v_rms = √(3RT/M) gives v ∝ 1/√M at fixed T; with M(O₂) = 32 and M(H₂) = 2, v(O₂)/v(H₂) = √(2/32) = √(1/16) = 1/4, so the ratio is 1 : 4, matching the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and proportionality",
+        "marks": 1,
+        "mark_note": "v_rms ∝ 1/√M",
+        "lines": [
+          "v_rms = √(3RT/M) for a gas of molar",
+          "mass M at temperature T.",
+          "At the same T, v_rms ∝ 1/√M."
+        ],
+        "margin_note": "First mark. Write the formula, then the proportionality it gives at fixed T.",
+        "why": "The rms speed formula shows M in the denominator inside a square root, so the temperature and gas constant cancel when the two gases are compared at the same T.",
+        "common_mistakes": [
+          "Using the molar masses of atomic O and H, 16 and 1, instead of the molecules O₂ and H₂, 32 and 2.",
+          "Forgetting the square root and taking the ratio of the masses directly."
+        ],
+        "memory_tip": "Heavier gas, slower molecules: v_rms goes as 1 over root M."
+      },
+      {
+        "id": "s2_molar_masses",
+        "kind": "equation",
+        "label": "Molar masses",
+        "marks": 1,
+        "mark_note": "M(O₂)=32, M(H₂)=2",
+        "lines": [
+          "Molar mass of oxygen, M(O₂) = 32 g/mol.",
+          "Molar mass of hydrogen, M(H₂) = 2 g/mol."
+        ],
+        "margin_note": "Second mark. Both molar masses must be named before the ratio is set up.",
+        "why": "The ratio needs both molar masses in the same unit; grams per mole is what the periodic table gives directly.",
+        "common_mistakes": [
+          "Using the atomic mass of one hydrogen atom, 1, instead of the diatomic molecule H₂, 2."
+        ],
+        "memory_tip": "O₂ is sixteen times heavier than H₂: 32 against 2."
+      },
+      {
+        "id": "s3_ratio_setup",
+        "kind": "equation",
+        "label": "Setting up the ratio",
+        "marks": 1,
+        "mark_note": "√(2/32)",
+        "lines": [
+          "v(O₂) / v(H₂) = √(M(H₂) / M(O₂))",
+          "= √(2 / 32)"
+        ],
+        "margin_note": "Third mark. Set up the ratio with the lighter gas's mass on top.",
+        "why": "Because v_rms ∝ 1/√M the mass ratio inverts, so for v(O₂)/v(H₂) the lighter gas's molar mass, M(H₂) = 2, goes in the numerator.",
+        "common_mistakes": [
+          "Inverting the ratio and writing √(M(O₂)/M(H₂)), which gives 4 instead of 1/4.",
+          "Writing 2/32 as 1/16 without showing the substitution step."
+        ],
+        "memory_tip": "The gas named FIRST in the ratio pairs with the OTHER gas's mass on top."
+      },
+      {
+        "id": "s4_final_ratio",
+        "kind": "boxed_final",
+        "label": "Final ratio",
+        "marks": 1,
+        "mark_note": "1 : 4",
+        "lines": [
+          "= √(1/16)",
+          {
+            "text": "v(O₂) : v(H₂) = 1 : 4",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. State the final ratio, in the right order, with both gases named.",
+        "why": "Oxygen molecules are 16 times heavier, so their rms speed is only √16 = 4 times smaller than hydrogen's.",
+        "common_mistakes": [
+          "Writing the answer as 4:1 without checking which gas is faster.",
+          "Leaving the answer as a fraction, 1/4, instead of stating it as a ratio."
+        ],
+        "memory_tip": "Oxygen is heavier, so it is the slower one: oxygen to hydrogen is 1 to 4."
+      }
+    ]
+  },
+  "insider_note": "The ratio must be stated the right way round — oxygen to hydrogen is 1:4, not 4:1. Say which gas each number belongs to."
+}

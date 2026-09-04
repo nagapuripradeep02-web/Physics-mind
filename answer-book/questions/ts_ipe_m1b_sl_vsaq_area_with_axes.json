@@ -50,6 +50,7 @@
         "label": "Read off the coefficients",
         "marks": 1,
         "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = c²/(2|ab|) — so the only setting-up needed is to compare with ax + by + c = 0.",
+        "memory_tip": "Compare with ax + by + c = 0; the axes-triangle area is c²/(2|ab|).",
         "lines": [
           {
             "text": "Sol:",
@@ -84,7 +85,7 @@
         },
         "why": "This formula already accounts for the two intercepts and the right angle at the origin, so no intercepts need finding separately.",
         "common_mistakes": [
-          "Getting the sign of c wrong when the equation is rearranged.",
+          "Reading b as 4 instead of −4. The modulus makes no difference to this answer, but the first mark is for the correct comparison line.",
           "Dropping the modulus and producing a negative area."
         ],
         "mark_note": "Method"
@@ -95,6 +96,7 @@
         "label": "Compute the area",
         "marks": 1,
         "margin_note": "Second mark. Substitute and simplify. Area is always positive, which is what the modulus in the denominator guarantees.",
+        "memory_tip": "Area is always positive — that is what the modulus in the denominator guarantees.",
         "lines": [
           "∴ Δ = c²/(2|ab|) = 12²/(2|(3)(−4)|)",
           "= 144/(2 × 12) = 144/24 = 6",
@@ -133,5 +135,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The shortcut Δ = c²/(2|ab|) does this in one line — the intercepts never need to be found. The modulus matters because b = −4 here, and the 2 in the denominator is the piece usually dropped."
 }

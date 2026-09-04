@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_2x_plus_a_eq_b_row42",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (1, 2) and (3, 4), B is the matrix with rows (3, 8) and (4, 2), and 2X + A = B, then find X.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Make X the subject",
+      "marks": 1
+    },
+    {
+      "label": "Subtract, then halve every entry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 4, book p.31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to rearranging 2X + A = B into 2X = B − A and one to the subtraction and the halving, because the rearrangement is the step a student can do without touching a single number. SECOND ROW OF B: the stem gives B's second row as (4, 2). The work order records that the book's own working subtracts 4 − 3 and 2 − 4, which confirms that row. NEAR-DUPLICATE, recorded rather than merged: ts_ipe_m1a_mat_vsaq_solve_for_x already in this unit is the same question from Baby Bullet-Q with B's second row printed as (7, 2), which gives the whole-number answer X = rows (1, 3) and (2, −1). The two books disagree on one row, so both cards are kept and the ids say which row each carries; this card's answer has the fraction 1/2 in it and that is correct for the row (4, 2). Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would get X out of the equation 2X + A = B.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rearrange",
+        "kind": "equation",
+        "label": "Make X the subject",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Matrices are added and subtracted entry by entry, so 2X + A = B rearranges exactly like an ordinary equation. A and B are both 2×2, so B − A is defined.",
+        "memory_tip": "Treat 2X + A = B like a number equation: move A across, then divide by 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "2X + A = B  ⇒  2X = B − A",
+          {
+            "text": "B - A = \\begin{bmatrix} 3-1 & 8-2 \\\\ 4-3 & 2-4 \\end{bmatrix} = \\begin{bmatrix} 2 & 6 \\\\ 1 & -2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2X + A = B is rearranged to 2X = B − A, and B − A is found entry by entry.",
+          "accept": [
+            "take A to the other side so two X equals B minus A",
+            "subtract A from both sides then work out B minus A",
+            "rearrange to two X equals B minus A and subtract entry by entry",
+            "A ni other side ki teeskoni two X equals B minus A rasukovali",
+            "move A across and find the difference of the two matrices"
+          ],
+          "reject": [
+            "rearrange it",
+            "solve for X"
+          ],
+          "heard_as": [
+            "two X",
+            "B minus A",
+            "both sides",
+            "entry by entry"
+          ]
+        },
+        "why": "Matrix addition and subtraction follow the same cancellation rules as numbers, because they act on each position separately. Nothing here needs matrix multiplication.",
+        "common_mistakes": [
+          "Computing A − B and getting every sign wrong.",
+          "Subtracting the entries from the wrong positions."
+        ]
+      },
+      {
+        "id": "s2_halve",
+        "kind": "boxed_final",
+        "label": "Subtract, then halve every entry",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Dividing a matrix by 2 divides every entry by 2. One entry here is 1, so X carries the fraction 1/2 — that is the correct answer, not a rounding error.",
+        "memory_tip": "A scalar reaches every entry. Half of 1 is 1/2, so leave the fraction as it is.",
+        "lines": [
+          "X = ½(B − A), so halve every entry.",
+          {
+            "text": "X = \\frac{1}{2}\\begin{bmatrix} 2 & 6 \\\\ 1 & -2 \\end{bmatrix} = \\begin{bmatrix} 1 & 3 \\\\ \\frac{1}{2} & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ X has rows (1, 3) and (1/2, −1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That X is half of B − A, giving rows (1, 3) and (1/2, −1).",
+          "accept": [
+            "divide every entry by two so X is one three and half minus one",
+            "half of B minus A gives rows one three and one by two minus one",
+            "halve each entry, one of them stays as a half",
+            "prathi entry ni two tho divide cheste X vasthundi",
+            "X equals one, three, one half and minus one"
+          ],
+          "reject": [
+            "divide by two",
+            "that gives X"
+          ],
+          "heard_as": [
+            "one half",
+            "one by two",
+            "three",
+            "minus one"
+          ]
+        },
+        "why": "Scalar multiplication reaches every entry, so dividing the matrix by 2 is one division per position. Substituting X back gives 2X + A = B, which is the check.",
+        "common_mistakes": [
+          "Halving only the first row.",
+          "Writing the entry 1/2 as 1 because it does not look like a whole number."
+        ]
+      }
+    ]
+  }
+}

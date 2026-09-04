@@ -54,7 +54,8 @@
         "label": "Name the two points",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Both given vectors are POSITIONS this time — there is no direction handed to you, which is what makes the formula different from the previous question.",
+        "margin_note": "First mark. Both given vectors are POSITIONS — there is no direction given, so the two-point form is needed, not the point-and-direction form.",
+        "memory_tip": "Both given vectors are POSITIONS here. No direction is handed over, which changes the formula.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The two-point form is r = (1−t)a + tb: t = 0 puts you at A, t = 1 puts you at B, and the rest of the line follows.",
+        "memory_tip": "r = (1 − t)a + tb: t = 0 sits at A, t = 1 sits at B, and the rest of the line follows.",
         "lines": [
           "Vector equation of the line is",
           "r = (1−t)a + tb,  t ∈ R",
@@ -132,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "TWO points, so the form is r = (1 − t)a + tb, with the two weights adding to 1. Using r = a + tb here would treat the second point as a direction, which it is not."
 }

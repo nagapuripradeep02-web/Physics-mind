@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_sum_8_88_888_n_terms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum to n terms of the sequence 8, 88, 888, …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take out 8/9 to make a G.P.",
+      "marks": 1
+    },
+    {
+      "label": "Sum the G.P. and subtract the n ones",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would start this one — say what you multiply and divide by, and what G.P. appears.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_eight_ninths",
+        "kind": "equation",
+        "label": "Take out 8/9 to make a G.P.",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The 8/9 step is the marked move. Write 9 = 10 − 1, 99 = 10² − 1, 999 = 10³ − 1 so the G.P. is visible.",
+        "memory_tip": "Multiply by 9 and every 1 becomes a 9: 1 → 9, 11 → 99, 111 → 999.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Sₙ = 8 + 88 + 888 + … to n terms",
+          "= 8(1 + 11 + 111 + … to n terms)",
+          "= (8/9)(9 + 99 + 999 + … to n terms)",
+          "= (8/9)[(10 − 1) + (10² − 1) + (10³ − 1) + … + (10ⁿ − 1)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 8/9 is taken out so each term becomes 10ᵏ − 1, which is a G.P. of powers of 10.",
+          "accept": [
+            "multiply and divide by nine to get nine ninety nine nine ninety nine",
+            "each term is a power of ten minus one",
+            "take eight by nine outside the bracket",
+            "eight by nine bayata teesi, ten power minus one ga rayali",
+            "this is not a g p so make one out of it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight by nine",
+            "nine ninety nine",
+            "ten power",
+            "minus one"
+          ]
+        },
+        "why": "8, 88, 888 is neither an A.P. nor a G.P. Multiplying and dividing by 9 turns each term into 10ᵏ − 1, and those powers of 10 do form a G.P.",
+        "common_mistakes": [
+          "Treating 8, 88, 888 as a G.P. with r = 11, which already fails at the third term.",
+          "Writing 999 as 10³ − 10 instead of 10³ − 1."
+        ]
+      },
+      {
+        "id": "s2_sum_gp",
+        "kind": "boxed_final",
+        "label": "Sum the G.P. and subtract the n ones",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Check with n = 1: (8/81)(100 − 9 − 10) = (8/81)(81) = 8, which is the first term.",
+        "memory_tip": "One G.P. of tens, then take away n ones, then multiply by 8/81.",
+        "lines": [
+          "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
+          "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
+          "10 + 10² + … + 10ⁿ = 10(10ⁿ − 1)/9",
+          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
+          {
+            "text": "∴ Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the powers of 10 sum to 10(10ⁿ − 1)/9 and the n ones are subtracted, giving Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10).",
+          "accept": [
+            "the powers of ten are a g p with first term ten and ratio ten",
+            "subtract n because there are n ones",
+            "the answer is eight by eighty one into ten power n plus one minus nine n minus ten",
+            "g p sum plus n ones subtract chesi, eight by eighty one",
+            "use the g p sum formula a into r power n minus one by r minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "g p sum",
+            "ten power n plus one",
+            "eight by eighty one",
+            "minus nine n"
+          ]
+        },
+        "why": "The bracket splits into a G.P. of powers of 10 and n copies of −1. Both are standard sums, so the answer closes in one line.",
+        "common_mistakes": [
+          "Subtracting 1 instead of n, forgetting that there are n terms each carrying a −1.",
+          "Using a = 1 for the G.P. of powers of 10, which actually starts at 10."
+        ]
+      }
+    ]
+  }
+}

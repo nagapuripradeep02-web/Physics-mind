@@ -104,6 +104,11 @@
           "height": 210,
           "elements": [
             {
+              "type": "pause",
+              "id": "ph_simple",
+              "caption": "The lens, the object and the eye"
+            },
+            {
               "type": "stroke",
               "id": "axis",
               "d": "M 20 120 L 340 120",
@@ -144,7 +149,7 @@
             {
               "type": "stroke",
               "id": "ray1b",
-              "d": "M 210 92 L 306 137",
+              "d": "M 210 92 L 306 137 M 270 114 L 270 126",
               "ms": 1510
             },
             {
@@ -178,10 +183,16 @@
               "wipe": "x"
             },
             {
+              "type": "stroke",
+              "id": "eye",
+              "d": "M 240 134 A 10 10 0 1 1 260 134 A 10 10 0 1 1 240 134",
+              "ms": 900
+            },
+            {
               "type": "label",
               "id": "lbl_eye",
-              "x": 310,
-              "y": 170,
+              "x": 266,
+              "y": 148,
               "text": "Eye",
               "ms": 450,
               "sm": true

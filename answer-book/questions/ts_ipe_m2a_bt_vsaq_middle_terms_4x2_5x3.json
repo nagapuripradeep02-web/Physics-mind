@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_middle_terms_4x2_5x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the middle term(s) in the expansion of (4x² + 5x³)¹⁷.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Decide which terms are the middle",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate both",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 159. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the middle terms — why an odd n gives two of them and which two, and what each comes to.",
+  "insider_note": "n = 17 is odd, so there are TWO middle terms, the 9th and the 10th, and each has its own ¹⁷Cᵣ. Answering only T₉ is the standard half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Decide which terms are the middle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. n = 17 is odd, so there are TWO middle terms: the (n + 1)/2 = 9th and the next, the 10th.",
+        "memory_tip": "n = 17 is odd, so there are TWO middle terms, the 9th and the 10th.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 17 is odd, so there are two middle terms:",
+          "the (n + 1)/2 = 9th and the 10th, T₉ and T₁₀"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 17 is odd, so the two middle terms are T₉ and T₁₀.",
+          "accept": [
+            "n is seventeen which is odd so there are two middle terms, the ninth and the tenth",
+            "odd n gives two middle terms n plus one by two and the next",
+            "the middle terms are T nine and T ten",
+            "n seventeen odd kabatti two middle terms, ninth and tenth",
+            "seventeen plus one by two is nine so the ninth and tenth"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "odd",
+            "ninth",
+            "tenth",
+            "two middle terms"
+          ]
+        },
+        "why": "With n odd there are n + 1 = 18 terms, an even count, so two terms share the middle.",
+        "common_mistakes": [
+          "Taking only the 9th term.",
+          "Taking the 8th and 9th."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate both",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. T₉ has r = 8, T₁₀ has r = 9. Powers of x: 2·9 + 3·8 = 42 and 2·8 + 3·9 = 43.",
+        "memory_tip": "T₉ has r = 8 and T₁₀ has r = 9, each with its own ¹⁷Cᵣ. Powers of x: 42 and 43.",
+        "lines": [
+          "T₉ = ¹⁷C₈ (4x²)⁹ (5x³)⁸ = ¹⁷C₈ · 4⁹ · 5⁸ · x⁴²",
+          "T₁₀ = ¹⁷C₉ (4x²)⁸ (5x³)⁹ = ¹⁷C₉ · 4⁸ · 5⁹ · x⁴³",
+          {
+            "text": "∴ T₉ = ¹⁷C₈·4⁹·5⁸·x⁴², T₁₀ = ¹⁷C₉·4⁸·5⁹·x⁴³",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T₉ = ¹⁷C₈·4⁹·5⁸·x⁴² and T₁₀ = ¹⁷C₉·4⁸·5⁹·x⁴³.",
+          "accept": [
+            "T nine is seventeen C eight four to the nine five to the eight x to the forty two and T ten is seventeen C nine four to the eight five to the nine x to the forty three",
+            "r eight gives the ninth term and r nine gives the tenth",
+            "the powers of x are forty two and forty three",
+            "T nine seventeen C eight four power nine five power eight x power forty two, T ten seventeen C nine four power eight five power nine x power forty three",
+            "two terms with x to the forty two and forty three"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "seventeen C eight",
+            "seventeen C nine",
+            "forty two",
+            "forty three"
+          ]
+        },
+        "why": "Each middle term is one r-step from the other; the powers of x rise by one because x³ replaces one x².",
+        "common_mistakes": [
+          "Adding only the bracket powers as 9 + 8 = 17, forgetting the 2 and the 3 from x² and x³ — the power is 2·9 + 3·8 = 42.",
+          "Writing ¹⁷C₈ on both terms."
+        ]
+      }
+    ]
+  }
+}

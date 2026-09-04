@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_x2_minus_1_x_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for the function (x² − 1)(x − 2) on [−1, 2]. Find the point in the interval where the derivative vanishes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions on [−1, 2]",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(x) = 0 and test the roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. MATHEMATICAL NOTE ON THE ANSWER: the stem asks for 'the point' in the singular, but f′(x) = 3x² − 4x − 1 has BOTH its roots, (2 + √7)/3 ≈ 1.549 and (2 − √7)/3 ≈ −0.215, inside (−1, 2) — checked numerically. Neither is rejected and the answer names both, since Rolle's theorem requires only one such point. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which form of the function you use for the end values, and what you check after solving f′(x) = 0.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Check the conditions on [−1, 2]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Use the factored form for the end values and the expanded form for the derivative — each form is easier for one of the two jobs.",
+        "memory_tip": "A product is zero when any one bracket is zero, so the roots −1, 1 and 2 can be read straight off (x² − 1)(x − 2).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = (x² − 1)(x − 2) = x³ − 2x² − x + 2, a polynomial function, so",
+          "(i) f is continuous on the closed interval [−1, 2]",
+          "(ii) f is differentiable on the open interval (−1, 2)",
+          "(iii) f(−1) = ((−1)² − 1)(−1 − 2) = (0)(−3) = 0  and  f(2) = (2² − 1)(2 − 2) = (3)(0) = 0",
+          "∴ f(−1) = f(2) = 0, so Rolle's theorem applies on [−1, 2]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a polynomial, continuous on [−1, 2] and differentiable on (−1, 2), and that f(−1) = f(2) = 0 because each endpoint makes one bracket zero.",
+          "accept": [
+            "minus one makes the first bracket zero and two makes the second bracket zero",
+            "both end values are zero so the third condition holds",
+            "it is a cubic polynomial so it is continuous and differentiable everywhere",
+            "rendu ends lo oka bracket zero avuthundi",
+            "check the three conditions using the factored form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "bracket is zero",
+            "both ends zero",
+            "cubic",
+            "factored form"
+          ]
+        },
+        "why": "Both ends are zeros of the product — x = −1 makes the first bracket zero and x = 2 makes the second. Reading them off the factored form is faster and safer than substituting into the expanded cubic.",
+        "common_mistakes": [
+          "Expanding first and then substituting, where one sign slip in the cubic hides the fact that both end values are 0.",
+          "Writing f(−1) = (1 − 1)(−1 + 2) by getting the sign inside the second bracket wrong."
+        ]
+      },
+      {
+        "id": "s2_solve_and_test",
+        "kind": "boxed_final",
+        "label": "Solve f′(x) = 0 and test the roots",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. √28 = 2√7, so the 2 cancels with the 6 and the roots simplify to (2 ± √7)/3. Both pass the interval test here, so neither is rejected — but the test still has to be written.",
+        "memory_tip": "Simplify the surd before dividing: √28 = 2√7 turns (4 ± 2√7)/6 into (2 ± √7)/3.",
+        "lines": [
+          "f′(x) = 3x² − 4x − 1",
+          "f′(x) = 0  ⇒  3x² − 4x − 1 = 0",
+          "⇒ x = (4 ± √(16 + 12))/6 = (4 ± √28)/6 = (4 ± 2√7)/6 = (2 ± √7)/3",
+          "√7 ≈ 2.646, so the roots are (2 + √7)/3 ≈ 1.549 and (2 − √7)/3 ≈ −0.215",
+          "−1 < −0.215 < 2 and −1 < 1.549 < 2, so both roots lie in the open interval (−1, 2)",
+          {
+            "text": "∴ Rolle's theorem is verified; the derivative vanishes at c = (2 ± √7)/3, both points lying in (−1, 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 3x² − 4x − 1 gives x = (2 ± √7)/3, and that both roots are tested and found to lie in (−1, 2).",
+          "accept": [
+            "differentiate the cubic and solve the quadratic to get two plus or minus root seven over three",
+            "root twenty eight is two root seven so it simplifies to two plus or minus root seven by three",
+            "both roots are inside minus one to two so both are accepted",
+            "quadratic solve cheste two plus or minus root seven by three vasthundi",
+            "check each root lies inside the interval before writing it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three x squared minus four x minus one",
+            "root seven",
+            "by three",
+            "inside the interval"
+          ]
+        },
+        "why": "Every root of f′ has to be tested against the open interval before it can be quoted — a root outside would have to be rejected. Here the test keeps both, and Rolle's theorem is satisfied because it requires only one such point.",
+        "common_mistakes": [
+          "Differentiating the two brackets separately and multiplying the results, instead of expanding first or using the product rule.",
+          "Leaving the answer as (4 ± √28)/6 without simplifying √28 to 2√7.",
+          "Quoting a root without checking that it lies inside (−1, 2)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Expand to a cubic before differentiating. The quadratic 3c² − 4c − 1 = 0 has two roots, and both lie inside (−1, 2), so both are valid values of c."
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_cross_product_magnitude_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If |p| = 2, |q| = 3 and the angle between p and q is π/6, find |p × q|².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the cross-product magnitude formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and square",
+      "marks": 1
+    },
+    {
+      "label": "Find p·q for the check",
+      "marks": 1
+    },
+    {
+      "label": "Confirm with the identity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 19, book p.71. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Direct: |p × q| = |p||q| sin θ = 2 × 3 × sin(π/6) = 6 × (1/2) = 3, so |p × q|² = 9. By the identity |p × q|² = |p|²|q|² − (p·q)²: p·q = 2 × 3 × cos(π/6) = 6 × (√3/2) = 3√3, so (p·q)² = 27 and |p|²|q|² − (p·q)² = 36 − 27 = 9. The two routes agree, and the second route is put on the page as the fourth step because a four-mark question on a one-line substitution needs the identity to be worth its marks. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: stating the magnitude formula, substituting and squaring, computing the dot product, and confirming through the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the square of the cross-product magnitude from the two lengths and the angle — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Write the magnitude formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. The cross product carries SIN of the angle; the dot product carries cos. Writing the wrong one here is the single most common way this question is lost.",
+        "memory_tip": "Cross product goes with sin, dot product goes with cos.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given |p| = 2, |q| = 3, θ = π/6.",
+          "|p × q| = |p||q| sin θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |p × q| = |p||q| sin θ, with sin and not cos.",
+          "accept": [
+            "the magnitude of the cross product is mod p mod q sin theta",
+            "cross product uses sine of the angle",
+            "write the formula with sin theta not cos theta",
+            "cross product ki sin theta, dot product ki cos theta",
+            "mod p into mod q into sin theta"
+          ],
+          "reject": [
+            "write the formula",
+            "that is the answer",
+            "substitute the values"
+          ],
+          "heard_as": [
+            "cross product",
+            "sin theta",
+            "mod p mod q",
+            "magnitude"
+          ]
+        },
+        "why": "The cross product measures the area of the parallelogram on the two vectors, and that area depends on the perpendicular height, which is the sine of the angle.",
+        "common_mistakes": [
+          "Using cos θ, which belongs to the dot product.",
+          "Writing p × q as a number when only its magnitude is a number."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "equation",
+        "label": "Substitute and square",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Second mark. sin(π/6) = 1/2 is a standard value. The question asks for the SQUARE, so squaring is part of this step, not an afterthought.",
+        "memory_tip": "π/6 is 30°, and sin 30° = 1/2.",
+        "lines": [
+          "sin(π/6) = 1/2",
+          "|p × q| = 2 × 3 × (1/2) = 3",
+          "∴ |p × q|² = 3² = 9"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(π/6) = 1/2, so |p × q| = 3 and |p × q|² = 9.",
+          "accept": [
+            "sin pi by six is a half so the magnitude is three",
+            "two times three times a half is three and squaring gives nine",
+            "the square of the cross product magnitude is nine",
+            "sin pi by six half, so magnitude three, square nine",
+            "substitute thirty degrees and square the result"
+          ],
+          "reject": [
+            "substitute it",
+            "that is the answer",
+            "now use the identity"
+          ],
+          "heard_as": [
+            "sin pi by six",
+            "one half",
+            "three",
+            "nine"
+          ]
+        },
+        "why": "The question asks for the square, so the answer is already available here. The remaining marks go to proving it a second, independent way.",
+        "common_mistakes": [
+          "Stopping at |p × q| = 3 and never squaring.",
+          "Using sin(π/6) = √3/2, which is sin 60°, not sin 30°."
+        ]
+      },
+      {
+        "id": "s3_dot",
+        "kind": "equation",
+        "label": "Find p·q for the check",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Third mark. The check needs the dot product, so compute it from the same two lengths and the same angle, this time with cos.",
+        "memory_tip": "Same lengths, same angle, but cos this time: cos(π/6) = √3/2.",
+        "lines": [
+          "cos(π/6) = √3/2",
+          "p·q = |p||q| cos θ",
+          "    = 2 × 3 × (√3/2)",
+          "    = 3√3",
+          "∴ (p·q)² = (3√3)² = 9 × 3 = 27"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p·q = 2 × 3 × cos(π/6) = 3√3, so (p·q)² = 27.",
+          "accept": [
+            "cos pi by six is root three by two so the dot product is three root three",
+            "the dot product squared is twenty seven",
+            "compute p dot q with the cosine of the same angle",
+            "cos pi by six root three by two, p dot q three root three",
+            "three root three squared is twenty seven"
+          ],
+          "reject": [
+            "find the dot product",
+            "that is the answer",
+            "now subtract"
+          ],
+          "heard_as": [
+            "cos pi by six",
+            "root three by two",
+            "three root three",
+            "twenty seven"
+          ]
+        },
+        "why": "The identity that will confirm the answer contains the dot product, so it has to be computed first. It also shows that the same pair of vectors carries both products at once.",
+        "common_mistakes": [
+          "Squaring 3√3 as 3 × 3 = 9 and forgetting the √3.",
+          "Using sin(π/6) here, which belongs to the previous step."
+        ]
+      },
+      {
+        "id": "s4_identity",
+        "kind": "boxed_final",
+        "label": "Confirm with the identity",
+        "marks": 1,
+        "mark_note": "Confirmation",
+        "margin_note": "Last mark. The identity |p × q|² = |p|²|q|² − (p·q)² follows from sin²θ + cos²θ = 1, and it reproduces the same 9 from completely different arithmetic.",
+        "memory_tip": "|p × q|² + (p·q)² = |p|²|q|², because sin²θ + cos²θ = 1.",
+        "lines": [
+          "|p × q|² = |p|²|q|² − (p·q)²",
+          "  = (2²)(3²) − 27",
+          "  = 36 − 27",
+          "  = 9",
+          {
+            "text": "∴ |p × q|² = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |p × q|² = |p|²|q|² − (p·q)² = 36 − 27 = 9, matching the direct answer.",
+          "accept": [
+            "the identity gives thirty six minus twenty seven which is nine",
+            "mod p squared mod q squared minus the dot product squared",
+            "both methods give nine so the answer is confirmed",
+            "thirty six minus twenty seven nine, rendu methods same",
+            "the identity comes from sin squared plus cos squared equals one"
+          ],
+          "reject": [
+            "use the identity",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "thirty six minus twenty seven",
+            "nine",
+            "identity",
+            "dot product squared"
+          ]
+        },
+        "why": "Squaring |p||q| sin θ and |p||q| cos θ and adding gives |p|²|q|², so the two products are tied together. That tie is what lets one answer check the other without repeating the same arithmetic.",
+        "common_mistakes": [
+          "Adding (p·q)² instead of subtracting it.",
+          "Working out |p|²|q|² as 6 instead of 36 — it is 4 × 9, not 2 × 3."
+        ]
+      }
+    ]
+  }
+}

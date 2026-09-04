@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the idea of the question. The angle between two PLANES is the angle between their NORMALS — and in the form r·n = p, the normal is simply n.",
+        "memory_tip": "The angle between PLANES is the angle between their NORMALS, and in r·n = p the normal is n.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The dot product is 6 − 6 + 2 = 2 — the first two terms cancel, which is easy to miss. Neither magnitude is a whole number, so the answer stays as an inverse cosine.",
+        "memory_tip": "The dot is 6 − 6 + 2 = 2 — the first two cancel. Neither magnitude is whole, so leave an inverse cosine.",
         "lines": [
           "n₁·n₂ = 2(3) − 1(6) + 2(1) = 6 − 6 + 2 = 2",
           "|n₁| = √(4+1+4) = 3,  |n₂| = √(9+36+1) = √46",
@@ -152,5 +154,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The angle between two planes is the angle between their NORMALS, which are just the bracket vectors. The constants 3 and 4 play no part in the answer at all."
 }

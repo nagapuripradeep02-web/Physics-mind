@@ -1,0 +1,307 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_laq_md_median_discrete_n30",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the mean deviation about the median for the following data: xᵢ = 6, 9, 3, 12, 15, 13, 21, 22; fᵢ = 4, 5, 3, 2, 5, 4, 4, 3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Form the cumulative frequency table",
+      "marks": 2
+    },
+    {
+      "label": "Find the median",
+      "marks": 2
+    },
+    {
+      "label": "Find |xᵢ − M| and fᵢ|xᵢ − M| and their sum",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 51 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: none — this answer carries no year chip. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers; it is re-solved as the second Q22 of the Bullet Model Paper (book p.108) with the same table, the same 149 and the same 4.97 — a second solution that agrees. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line reads 'Median deviation about median M.D.' — a slip for 'Mean deviation about the median'; the card writes the correct name. Every column and every sum was recomputed for this card: ascending order 3, 6, 9, 12, 13, 15, 21, 22 with c.f. 3, 7, 12, 14, 18, 23, 27, 30; N/2 = 15 is first reached at c.f. 18, so M = 13 (with N = 30 even, the 15th and 16th items are both 13, so the median is 13 either way); Σfᵢ|xᵢ − M| = 149 and 149/30 = 4.9666…, printed 4.97 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the median for a discrete frequency table — what you do to the data first, how you locate the median, and what you divide at the end.",
+  "insider_note": "Sort the data first and keep each frequency with its value; the median is read from the cumulative frequency column — the first c.f. at or above N/2 = 15 gives M = 13 — and the grouped-data formula with l and C is not used on discrete data.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Measures of Dispersion · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cf_table",
+        "kind": "equation",
+        "label": "Ascending order and c.f.",
+        "marks": 2,
+        "mark_note": "Table",
+        "margin_note": "First two marks. The data is NOT in order (6, 9, 3, 12, …), so the first move is to sort the xᵢ and carry each frequency with its value. Columns: xᵢ, fᵢ, cumulative frequency c.f.",
+        "memory_tip": "Sort the xᵢ first and carry each fᵢ with its own value. A c.f. built on unsorted data means nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Ascending order of xᵢ, with the c.f.:",
+          {
+            "text": "xᵢ     fᵢ     c.f.",
+            "style": "indent"
+          },
+          {
+            "text": "3      3      3",
+            "style": "indent"
+          },
+          {
+            "text": "6      4      7",
+            "style": "indent"
+          },
+          {
+            "text": "9      5      12",
+            "style": "indent"
+          },
+          {
+            "text": "12     2      14",
+            "style": "indent"
+          },
+          {
+            "text": "13     4      18",
+            "style": "indent"
+          },
+          {
+            "text": "15     5      23",
+            "style": "indent"
+          },
+          {
+            "text": "21     4      27",
+            "style": "indent"
+          },
+          {
+            "text": "22     3      30",
+            "style": "indent"
+          },
+          {
+            "text": "N = Σfᵢ = 30",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the values are first sorted in ascending order with their frequencies, and a cumulative frequency column 3, 7, 12, 14, 18, 23, 27, 30 is written, N = 30.",
+          "accept": [
+            "sort the x i in ascending order with their frequencies and write the cumulative frequency, three seven twelve fourteen eighteen twenty three twenty seven thirty",
+            "arrange the data in increasing order, keep each frequency with its value, add the frequencies to get c f, N thirty",
+            "first put the values in order then make the running total column ending at thirty",
+            "x i ni ascending order lo pettali, f i tho paatu, cumulative frequency rayali, N thirty",
+            "ascending order table with c f column, total thirty"
+          ],
+          "reject": [
+            "make a table",
+            "write the data",
+            "add them up"
+          ],
+          "heard_as": [
+            "ascending",
+            "sort",
+            "cumulative",
+            "c f",
+            "thirty"
+          ]
+        },
+        "why": "A median is the middle of the ORDERED data. Sorting first, and moving each frequency with its value, is the step that makes the cumulative frequency mean anything.",
+        "common_mistakes": [
+          "Writing the c.f. for the data in the given (unsorted) order.",
+          "Sorting the xᵢ but leaving the fᵢ in their original order.",
+          "Getting N wrong: 4 + 5 + 3 + 2 + 5 + 4 + 4 + 3 = 30."
+        ]
+      },
+      {
+        "id": "s2_median",
+        "kind": "equation",
+        "label": "Median",
+        "marks": 2,
+        "mark_note": "Median",
+        "margin_note": "Next two marks. N/2 = 15. Reading down the c.f. column, 14 is below 15 and 18 is the first at or above it, so the 15th item is a 13. No interpolation for discrete data: the median IS that value.",
+        "memory_tip": "Stop at the first c.f. that reaches N/2 = 15; the median is that xᵢ. No grouped-data formula on discrete data.",
+        "lines": [
+          "N/2 = 30/2 = 15",
+          "The first c.f. ≥ 15 is 18, at xᵢ = 13.",
+          "∴ Median M = 13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That N/2 = 15, the first cumulative frequency at or above 15 is 18, and so the median is the value there, M = 13.",
+          "accept": [
+            "N by two is fifteen, the first c f at or above fifteen is eighteen, so the median is thirteen",
+            "the fifteenth item falls in the c f eighteen row which is x i equals thirteen",
+            "look for where the cumulative frequency first reaches fifteen, that value thirteen is the median",
+            "N by two fifteen, c f lo eighteen daggara vasthundi, median thirteen",
+            "median is thirteen"
+          ],
+          "reject": [
+            "find the median",
+            "fifteen",
+            "use the formula"
+          ],
+          "heard_as": [
+            "N by two",
+            "fifteen",
+            "eighteen",
+            "thirteen",
+            "median"
+          ]
+        },
+        "why": "For a discrete table each value occupies a block of positions; the c.f. column is the end of each block. N = 30 is even, so the median is the average of the 15th and 16th items — here both fall in the block of 13, so the median is 13. Read both positions: when a cumulative frequency lands exactly on N/2 the two middle items are different values and the median is their average.",
+        "common_mistakes": [
+          "Using the grouped-data formula l + (C/f)(N/2 − m) on discrete data.",
+          "Taking the median as the middle of the xᵢ list (12 or 13 by position) and ignoring the frequencies.",
+          "Reading N/2 = 15 as 'the median is 15'."
+        ]
+      },
+      {
+        "id": "s3_abs_table",
+        "kind": "equation",
+        "label": "Deviations from the median",
+        "marks": 2,
+        "mark_note": "Deviations",
+        "margin_note": "Next two marks. Columns: xᵢ, fᵢ, |xᵢ − 13|, and the product with fᵢ. The row xᵢ = 13 contributes 0. The sum is 149.",
+        "memory_tip": "Deviate from M = 13, and multiply by fᵢ, not by the c.f. The row xᵢ = 13 contributes 0.",
+        "lines": [
+          "With M = 13:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
+            "style": "indent"
+          },
+          {
+            "text": "3      3      10           30",
+            "style": "indent"
+          },
+          {
+            "text": "6      4      7            28",
+            "style": "indent"
+          },
+          {
+            "text": "9      5      4            20",
+            "style": "indent"
+          },
+          {
+            "text": "12     2      1            2",
+            "style": "indent"
+          },
+          {
+            "text": "13     4      0            0",
+            "style": "indent"
+          },
+          {
+            "text": "15     5      2            10",
+            "style": "indent"
+          },
+          {
+            "text": "21     4      8            32",
+            "style": "indent"
+          },
+          {
+            "text": "22     3      9            27",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − M| = 149",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each value's absolute deviation from 13 is found, multiplied by its frequency, and the products add to 149.",
+          "accept": [
+            "subtract thirteen from each x i, take the absolute value, multiply by f i and add to get one forty nine",
+            "the deviations are ten seven four one zero two eight nine and the weighted sum is one hundred forty nine",
+            "find the absolute deviations from the median, weight them by frequency, total one forty nine",
+            "prathi x i nunchi thirteen teesi mod teesukoni f i tho multiply cheste sum one forty nine",
+            "sigma f i mod x i minus M is one hundred and forty nine"
+          ],
+          "reject": [
+            "find the deviations",
+            "subtract the median",
+            "fill the table"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "thirteen",
+            "one forty nine",
+            "one hundred and forty nine"
+          ]
+        },
+        "why": "Mean deviation averages DISTANCES from the median, so the sign of each deviation is dropped and the median's own row contributes nothing.",
+        "common_mistakes": [
+          "Keeping the signs.",
+          "Multiplying by the c.f. instead of by fᵢ.",
+          "An addition slip: 30 + 28 + 20 + 2 + 0 + 10 + 32 + 27 = 149."
+        ]
+      },
+      {
+        "id": "s4_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 149/30 = 4.9666…, written 4.97. Divide by N = 30, not by the 8 rows.",
+        "memory_tip": "The divisor is the total frequency N = 30, not the 8 rows of the table. 149/30 = 4.97.",
+        "lines": [
+          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+          "= 149/30 = 4.97",
+          {
+            "text": "∴ M.D. about the median = 4.97",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean deviation about the median is Σfᵢ|xᵢ − M| divided by N: 149/30 = 4.97.",
+          "accept": [
+            "mean deviation is one forty nine by thirty which is four point nine seven",
+            "divide the weighted sum by N thirty to get four point nine seven",
+            "M D about the median equals sigma f i mod x i minus M by N equals four point nine seven",
+            "one forty nine ni thirty tho divide cheste four point nine seven",
+            "the answer is four point nine seven"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the mean deviation"
+          ],
+          "heard_as": [
+            "four point nine seven",
+            "by thirty",
+            "M D",
+            "mean deviation"
+          ]
+        },
+        "why": "The mean deviation is the average distance of an observation from the median. Dividing by N = 30 (all the observations, counted with frequency) is what makes it an average.",
+        "common_mistakes": [
+          "Dividing by 8 (the number of rows) instead of 30.",
+          "Stopping at 149 without dividing.",
+          "Copying the book's slip 'median deviation' — the name is mean deviation about the median."
+        ]
+      }
+    ]
+  }
+}

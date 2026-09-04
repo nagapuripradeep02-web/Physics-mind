@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_bijections_7_onto_itself",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of bijections from a set A containing 7 elements onto itself.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "A bijection is an arrangement of all 7",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate 7!",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 149.2. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would count the bijections from a seven-element set onto itself — what a bijection is as a count, and the number.",
+  "insider_note": "The first mark is the sentence, not the number: a bijection uses each of the 7 images exactly once, so it is an arrangement of all 7 and the count is 7!. Then 7! = 5040 — the 720 answer is 6!, one factor short.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "A bijection is an arrangement of all 7",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A bijection from A onto A pairs each element with a different element and uses all 7 — an arrangement of the 7 elements: ⁷P₇ = 7!.",
+        "memory_tip": "One-one and onto together mean the map just rearranges A, so it is ⁷P₇ = 7!.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A bijection from A onto A gives the 7 elements",
+          "7 different images, all of A used:",
+          "Number of bijections = ⁷P₇ = 7!"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a bijection of a 7-element set onto itself is an arrangement of all 7 elements, counted by 7 factorial.",
+          "accept": [
+            "a bijection onto itself is a rearrangement of the seven elements so it is seven factorial",
+            "one to one and onto, all seven images different, seven P seven which is seven factorial",
+            "the count is seven factorial",
+            "bijection ante seven elements ni arrange cheyadam, seven factorial",
+            "n P n equals n factorial with n seven"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "bijection",
+            "seven factorial",
+            "seven P seven",
+            "arrangement"
+          ]
+        },
+        "why": "One-one and onto together mean every element of A is the image of exactly one element, so the map is a rearrangement of A. Rearrangements of n things are n!.",
+        "common_mistakes": [
+          "Answering 7⁷ — that counts all functions, most of which are not bijections.",
+          "Answering 1, thinking only the identity map works."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Evaluate 7!",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 7! = 5040.",
+        "memory_tip": "7! = 5040. The 720 answer is 6!, one factor short.",
+        "lines": [
+          "7! = 7 · 6 · 5 · 4 · 3 · 2 · 1",
+          {
+            "text": "= 5040",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 7 factorial is 5040.",
+          "accept": [
+            "seven factorial is five thousand forty",
+            "five zero four zero",
+            "seven into six into five into four into three into two into one is five thousand and forty",
+            "seven factorial five thousand forty",
+            "the answer is five thousand forty"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "seven factorial",
+            "five thousand forty",
+            "five zero four zero"
+          ]
+        },
+        "why": "ⁿPₙ = n!/0! = n!; the number is the answer, not the symbol.",
+        "common_mistakes": [
+          "Writing 7! = 720 (that is 6!).",
+          "Leaving the answer as 7!."
+        ]
+      }
+    ]
+  }
+}

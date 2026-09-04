@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_points_at_distance_five_4x_3y_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the points on the line 4x−3y−10=0 which are at a distance of 5 units from the point (1,−2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope to cosθ and sinθ",
+      "marks": 1
+    },
+    {
+      "label": "State both required points",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 35(i), book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for turning the slope into cos θ and sin θ, which is what the parametric form needs, and one for reporting BOTH points; the middle step that writes the parametric point carries 0 marks because it is bookkeeping between the two marked moves. The stem is well posed: (1, −2) satisfies 4(1) − 3(−2) − 10 = 0, so the given point lies ON the line, which is what makes the parametric method available and what forces two answers rather than one. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you convert the slope into, and why there are two answers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_to_cos_and_sin",
+        "kind": "equation",
+        "label": "Slope to cosθ and sinθ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Check the given point is on the line, then convert the slope: the parametric form needs cos θ and sin θ, not the slope itself.",
+        "memory_tip": "The parametric form needs cos θ and sin θ. From tan θ = 4/3 the 3-4-5 triangle gives both with no calculator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 4x − 3y − 10 = 0",
+          "(1, −2) lies on it, because",
+          "4(1) − 3(−2) − 10 = 4 + 6 − 10 = 0",
+          "Its slope  m = −a/b = −4/(−3) = 4/3",
+          "m = tanθ = 4/3  ⇒  cosθ = 3/5,  sinθ = 4/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given point is on the line and the slope 4/3 gives cos θ = 3/5 and sin θ = 4/5.",
+          "accept": [
+            "the point one comma minus two is on the line",
+            "the slope is four by three so cos theta is three fifths and sin theta is four fifths",
+            "tan theta equals four over three gives the three four five triangle",
+            "slope nunchi cos theta sin theta teesukovali",
+            "convert the slope into cos and sin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four by three",
+            "cos theta",
+            "sin theta",
+            "three fifths",
+            "four fifths"
+          ]
+        },
+        "why": "tan θ = 4/3 means the right triangle has sides 3 and 4 and hypotenuse 5, so cos θ and sin θ come out exactly. Checking that (1, −2) is on the line matters first: the parametric method measures distance ALONG the line from a point of the line.",
+        "common_mistakes": [
+          "Taking cosθ = 4/5 and sinθ = 3/5, with the two swapped.",
+          "Reading the slope as −b/a and getting 3/4."
+        ]
+      },
+      {
+        "id": "s2_parametric_point",
+        "kind": "equation",
+        "label": "Write the parametric point",
+        "marks": 0,
+        "margin_note": "The two points sit at distance 5 on EITHER side of (1, −2), so the ± is written into the parametric form from the start.",
+        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start.",
+        "lines": [
+          "Given distance |r| = 5",
+          "Given point (x₁, y₁) = (1, −2)",
+          "Required points (x, y)",
+          "= (x₁ ± r cosθ, y₁ ± r sinθ)",
+          "= (1 ± 5(3/5), −2 ± 5(4/5))",
+          "= (1 ± 3, −2 ± 4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the required points are (x₁ ± r cos θ, y₁ ± r sin θ) = (1 ± 3, −2 ± 4).",
+          "accept": [
+            "the points are one plus or minus three comma minus two plus or minus four",
+            "use the parametric form with plus or minus because there are two points",
+            "distance five each way along the line",
+            "rendu vaipula unnaayi kabatti plus or minus",
+            "write the parametric point with plus or minus r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "r cos theta",
+            "one plus or minus three",
+            "minus two plus or minus four"
+          ]
+        },
+        "why": "A given distance from a point ON a line is reached in BOTH directions along that line, so the ± is not optional — it is what produces the two points the question asks for.",
+        "common_mistakes": [
+          "Using only + and finding one point.",
+          "Multiplying 5 by cosθ and sinθ the wrong way round."
+        ]
+      },
+      {
+        "id": "s3_state_both_points",
+        "kind": "boxed_final",
+        "label": "State both required points",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "The last mark. Take the signs TOGETHER — both plus, then both minus. Mixing them gives points that are not on the line.",
+        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line.",
+        "lines": [
+          "Both upper signs:  (1 + 3, −2 + 4) = (4, 2)",
+          "Both lower signs:  (1 − 3, −2 − 4) = (−2, −6)",
+          {
+            "text": "∴ The points are (4, 2) and (−2, −6)",
+            "style": "boxed"
+          },
+          "Check: 4(4) − 3(2) − 10 = 0 and",
+          "4(−2) − 3(−6) − 10 = 0, so both are on the line.",
+          "Each is √(3² + 4²) = 5 away from (1, −2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two points are (4, 2) and (−2, −6).",
+          "accept": [
+            "the points are four comma two and minus two comma minus six",
+            "take both plus signs together then both minus signs together",
+            "the two required points",
+            "rendu points four two and minus two minus six",
+            "both signs must match"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four comma two",
+            "minus two comma minus six",
+            "both points",
+            "signs together"
+          ]
+        },
+        "why": "The ± must be taken consistently in both coordinates, because they describe one step of length 5 in one direction along the line — mixing the signs steps sideways off the line. There are two answers because the given point is on the line and you can walk 5 units either way from it.",
+        "common_mistakes": [
+          "Mixing the signs and reporting (4, −6) or (−2, 2).",
+          "Reporting only one of the two points."
+        ]
+      }
+    ]
+  }
+}

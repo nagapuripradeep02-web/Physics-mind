@@ -203,15 +203,15 @@
           "body centre.",
           "So the co-ordination number of Q = 8."
         ],
-        "why": "In a body centred arrangement the two sites see each other the same way round. The body centre touches the eight corners of its own cube, and a corner belongs to eight cubes, so it is touched by eight body centres. This is the part the printed answer leaves out.",
+        "why": "In a body centred arrangement the count is the same from either site. The body centre touches the eight corners of its own cube, and a corner belongs to eight cubes, so it is touched by eight body centres.",
         "common_mistakes": [
           "Answering for P only. The question asks for both P and Q.",
           "Writing 6 or 12 from memory. Those are the values for simple cubic and for close packing, not for a body centred arrangement."
         ],
         "memory_tip": "Body centred means eight both ways: 8 corners around the centre, 8 centres around a corner.",
-        "margin_note": "The printed model answer stops at the formula. Both co-ordination numbers are asked for, so write both."
+        "margin_note": "Both co-ordination numbers are asked for, so write both. A formula on its own is not the whole answer."
       }
     ]
   },
-  "insider_note": "The printed model answer for this question stops at the formula PQ and never gives the co-ordination numbers, which the question asks for. Write both of them as 8, with the reason, or a quarter of the answer is missing."
+  "insider_note": "The question asks for two things: the formula and the two co-ordination numbers. Write both co-ordination numbers as 8, with the reason, or a quarter of the answer is missing."
 }

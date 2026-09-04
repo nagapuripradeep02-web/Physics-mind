@@ -75,6 +75,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two different things are given: a point the line passes THROUGH, and a direction it runs ALONG. Name them apart before writing anything.",
+        "memory_tip": "Two different things are given: a point the line passes THROUGH and a direction it runs ALONG.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The form is r = a + tb: start at the point, then travel any distance along the direction. t ranges over all real numbers.",
+        "memory_tip": "r = a + tb — start at the point, then travel any distance along the direction.",
         "lines": [
           "Vector equation of the line is",
           "r = a + tb,  t ∈ R",
@@ -149,9 +151,10 @@
         "why": "Every point of the line is reached by choosing some t: t = 0 gives the given point, and the rest sweep out the line in both directions.",
         "common_mistakes": [
           "Writing r = ta + b, which swaps the roles.",
-          "Omitting \"t ∈ R\", which leaves the equation describing one point."
+          "Omitting \"t ∈ R\" — the range of the parameter has to be stated for the equation to describe the whole line."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "One point and one direction, so the form is r = a + tb: the point is added, the direction is scaled. The two-point form does not apply here, as there is no second position vector."
 }

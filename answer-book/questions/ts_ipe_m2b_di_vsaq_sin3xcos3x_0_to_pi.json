@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sin3xcos3x_0_to_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^π sin³x cos³x dx.",
+  "appearances": [
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the property with a=π",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve for I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 178, on a printed Super Scoring Page (SSP 92). Printed appearance: TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This result also follows from symmetry: sin³x is unchanged and cos³x is odd about x=π/2 on this interval, so the positive and negative halves of the integral cancel exactly.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a=π",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cos(π−x) = −cosx, so cos³(π−x) = −cos³x — an odd power carries the sign through.",
+        "memory_tip": "sin(π−x)=sinx (unchanged); cos(π−x)=−cosx (sign flips) — always know both halves of this pair.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^π sin³x cos³x dx",
+          "By x → π−x: I = ∫₀^π sin³(π−x) cos³(π−x) dx",
+          "sin(π−x) = sinx and cos(π−x) = −cosx",
+          "∴ I = ∫₀^π sin³x (−cosx)³ dx",
+          "= −∫₀^π sin³x cos³x dx = −I"
+        ],
+        "why": "Under x→π−x, sinx stays unchanged but cosx flips sign, so cos³x also flips sign (an odd power keeps the sign flip), giving the negative of the original integral.",
+        "common_mistakes": [
+          "Forgetting that cos(π−x) = −cosx, and treating cos³(π−x) as +cos³x.",
+          "Applying the property x→π−x to the wrong integral."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Add and solve for I",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. I = −I is only possible if I = 0 — a short, direct conclusion.",
+        "memory_tip": "Whenever a property gives I = −I, the answer is always 0, with no further computation needed.",
+        "lines": [
+          "∴ I = −I ⇒ 2I = 0",
+          {
+            "text": "∴ I = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Since the property shows I equals its own negative, adding I to both sides gives 2I=0, so the integral must be exactly zero.",
+        "common_mistakes": [
+          "Concluding I is undefined instead of recognising I=0 is a valid, clean result.",
+          "Dividing both sides of I = −I by I, which is division by zero here, instead of adding I to both sides to get 2I = 0."
+        ]
+      }
+    ]
+  }
+}

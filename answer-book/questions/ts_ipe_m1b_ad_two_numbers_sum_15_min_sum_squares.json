@@ -1,0 +1,188 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_two_numbers_sum_15_min_sum_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find two positive numbers whose sum is 15, so that the sum of their squares is minimum.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the sum of squares in one variable",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate, solve and apply the second derivative test",
+      "marks": 2
+    },
+    {
+      "label": "State the two numbers and the least value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you write the second number, and say what sign the second derivative must have for a minimum.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_of_squares",
+        "kind": "equation",
+        "label": "Write the sum of squares in one variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for the second number written as 15 − x and the sum of squares expanded. Note that the question says numbers, not integers, so a fraction is an allowed answer.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two positive numbers be x and 15 − x, so their sum is 15.",
+          "Both are positive, so the domain is 0 < x < 15.",
+          "Sum of their squares:  S(x) = x² + (15 − x)²",
+          "= x² + 225 − 30x + x²",
+          "= 2x² − 30x + 225"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numbers are x and 15 − x, so S(x) = x² + (15 − x)² = 2x² − 30x + 225.",
+          "accept": [
+            "let the numbers be x and fifteen minus x",
+            "sum of squares is x squared plus fifteen minus x whole squared",
+            "expand to get two x squared minus thirty x plus two twenty five",
+            "rendava number ni fifteen minus x ga rasta",
+            "reduce the sum of squares to one variable",
+            "x lies between zero and fifteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fifteen minus x",
+            "x squared",
+            "two twenty five",
+            "sum of squares"
+          ]
+        },
+        "why": "The sum is the constraint and the sum of squares is the quantity to be made least. Writing the second number as 15 − x removes one unknown, which is what makes a single differentiation possible.",
+        "common_mistakes": [
+          "Expanding (15 − x)² as 225 − x² and losing the middle term.",
+          "Minimising x + (15 − x), which is the constant 15 and has no minimum to find."
+        ],
+        "memory_tip": "One letter, one constraint. The sum tells you the second number outright, so never carry two letters into the differentiation."
+      },
+      {
+        "id": "s2_minimise",
+        "kind": "equation",
+        "label": "Differentiate, solve and apply the second derivative test",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for S′(x) = 0 solved, one for the second derivative test. For a MINIMUM the second derivative must be POSITIVE — that is the sign the examiner checks.",
+        "lines": [
+          "S′(x) = 4x − 30",
+          "S′(x) = 0   ⇒   4x = 30   ⇒   x = 15/2",
+          "S″(x) = 4, which is positive for every x.",
+          "A positive second derivative means the stationary point is a minimum.",
+          "So the sum of squares is least at x = 15/2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S′(x) = 4x − 30 is zero at x = 15/2, and S″ = 4 > 0 confirms a minimum.",
+          "accept": [
+            "differentiate to get four x minus thirty",
+            "x is fifteen by two or seven point five",
+            "the second derivative is four which is positive",
+            "second derivative positive kabatti minimum",
+            "positive second derivative means minimum",
+            "apply the second derivative test to confirm"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four x minus thirty",
+            "fifteen by two",
+            "seven point five",
+            "positive"
+          ]
+        },
+        "why": "S′ = 0 only locates where the sum of squares stops changing. The sign of S″ separates a least value from a greatest one, and for a minimum that sign must be positive.",
+        "common_mistakes": [
+          "Writing S″ < 0 out of habit, which would claim a maximum.",
+          "Solving 4x − 30 = 0 as x = 30/2."
+        ],
+        "memory_tip": "Positive second derivative bends the curve upward, so the stationary point is the bottom of a valley — a minimum. Negative bends it downward and gives a peak."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "State the two numbers and the least value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Give both numbers. Adding the least value 225/2 costs one line and shows the working was carried through.",
+        "lines": [
+          "x = 15/2   ⇒   the other number is 15 − 15/2 = 15/2",
+          "So the two numbers are equal, each 15/2 = 7.5.",
+          "Least sum of squares = (15/2)² + (15/2)² = 225/4 + 225/4 = 225/2 = 112.5",
+          "Check: 7 and 8 give 49 + 64 = 113, which is larger than 112.5.",
+          {
+            "text": "∴ the two numbers are 15/2 and 15/2, and the least sum of squares is 225/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both numbers are 15/2 and the least sum of squares is 225/2.",
+          "accept": [
+            "both numbers are fifteen by two",
+            "each number is seven point five",
+            "the least sum of squares is two twenty five by two",
+            "rendu numbers seven point five ga vasthayi",
+            "substitute back to get the second number",
+            "the answer is one hundred twelve point five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fifteen by two",
+            "seven point five",
+            "two twenty five by two",
+            "hundred twelve point five"
+          ]
+        },
+        "why": "The question asks for the two numbers, so the working is not finished at x = 15/2. It says numbers rather than integers, so 15/2 is a legitimate answer and need not be rounded to 7 and 8.",
+        "common_mistakes": [
+          "Rounding to 7 and 8 because the answer is not a whole number.",
+          "Giving only x and not the second number."
+        ],
+        "memory_tip": "When a sum is fixed, the sum of squares is least when the two numbers are equal. Equal split for the smallest sum of squares is worth remembering as a check."
+      }
+    ]
+  },
+  "insider_note": "Write the second number as 15 − x and minimise 2x² − 30x + 225. The answer 7.5 each is not an integer, and the question does not ask for one."
+}

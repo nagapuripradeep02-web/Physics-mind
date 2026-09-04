@@ -1,0 +1,23 @@
+# OUR BANK — mathematics unit 10: Inverse Trigonometric Functions (Maths-1A)  (10 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch10_inverse_trigonometric_functions.json
+
+[SAQ] ts_ipe_m1a_it_sin_sin_sin
+    Prove that Sin⁻¹(4/5) + Sin⁻¹(7/25) = Sin⁻¹(117/125).
+[SAQ] ts_ipe_m1a_it_sin_cos_cos
+    Prove that Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65).
+[SAQ] ts_ipe_m1a_it_cos_sin_tan
+    Prove that Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11).
+[SAQ] ts_ipe_m1a_it_tan_half_fifth_eighth
+    Prove that Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4.
+[SAQ] ts_ipe_m1a_it_tan_three_quarters
+    Prove that Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4.
+[SAQ] ts_ipe_m1a_it_sin_plus_two_tan
+    Prove that Sin⁻¹(4/5) + 2Tan⁻¹(1/3) = π/2.
+[SAQ] ts_ipe_m1a_it_cos_two_tan_seventh
+    Prove that cos(2 Tan⁻¹(1/7)) = sin(2 Tan⁻¹(3/4)).
+[SAQ] ts_ipe_m1a_it_cos_two_tan_four_tan
+    Prove that cos(2 Tan⁻¹(1/7)) = sin(4 Tan⁻¹(1/3)).
+[SAQ] ts_ipe_m1a_it_xy_yz_zx_one
+    If Tan⁻¹x + Tan⁻¹y + Tan⁻¹z = π/2, then prove that xy + yz + zx = 1.
+[SAQ] ts_ipe_m1a_it_sqp_tan_inverse_zero
+    Prove that Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0.

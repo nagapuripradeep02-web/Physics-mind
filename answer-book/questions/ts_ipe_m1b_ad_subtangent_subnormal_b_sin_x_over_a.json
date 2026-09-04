@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subtangent_subnormal_b_sin_x_over_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the lengths of the subtangent and the subnormal to the curve y = b sin(x/a) at any point.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and state the definitions",
+      "marks": 1
+    },
+    {
+      "label": "Length of the subtangent",
+      "marks": 1
+    },
+    {
+      "label": "Length of the subnormal",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 16. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what dy/dx is, which of the two lengths divides and which multiplies, and the double-angle identity you use at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and state the definitions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The chain rule gives the factor 1/a from the angle x/a. Write both definitions here so that neither part starts from a guess.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y = b sin(x/a)",
+          "Differentiate with respect to x. The angle x/a differentiates to 1/a:",
+          "dy/dx = b cos(x/a) · (1/a)",
+          "∴ m = dy/dx = (b/a) cos(x/a)",
+          "At a point (x, y) with m = dy/dx:",
+          "subtangent = y/m   and   subnormal = y · m"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (b/a)cos(x/a), and that subtangent = y/m, subnormal = ym.",
+          "accept": [
+            "differentiate sin of x by a to cos of x by a times one by a",
+            "dy by dx is b by a into cos x by a",
+            "the subtangent is y by m and the subnormal is y into m",
+            "chain rule tho one by a bayataki vasthundi",
+            "sine differentiates to cosine and the angle gives one by a",
+            "state both definitions before substituting"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b by a",
+            "cos x by a",
+            "one by a",
+            "y by m",
+            "y into m"
+          ]
+        },
+        "why": "The angle is x/a, not x, so the chain rule contributes 1/a. Both lengths are built from the same y and the same m, so they are set up together.",
+        "common_mistakes": [
+          "Writing dy/dx = b cos(x/a) and omitting the 1/a.",
+          "Writing dy/dx = ab cos(x/a), multiplying by a instead of dividing.",
+          "Differentiating sin(x/a) to −cos(x/a), using the cosine rule by mistake."
+        ],
+        "memory_tip": "Differentiate the sine first, then multiply by the derivative of the angle. Here the angle x/a gives 1/a."
+      },
+      {
+        "id": "s2_subtangent",
+        "kind": "equation",
+        "label": "Length of the subtangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. b cancels between numerator and denominator, and sin ÷ cos leaves a tangent. The a in the denominator of m moves up and multiplies.",
+        "lines": [
+          "Length of the subtangent = y/m",
+          "= b sin(x/a) ÷ [(b/a) cos(x/a)]",
+          "= b sin(x/a) · a / [b cos(x/a)]",
+          "= a · sin(x/a) / cos(x/a)",
+          "∴ length of the subtangent = a tan(x/a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y/m simplifies to a tan(x/a).",
+          "accept": [
+            "divide y by m and b cancels",
+            "sin by cos gives tan",
+            "the subtangent is a tan of x by a",
+            "b cancel avuthundi, a tan x by a vasthundi",
+            "the a from the denominator comes up",
+            "length of the subtangent is a times tan x by a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a tan x by a",
+            "b cancels",
+            "sin by cos",
+            "subtangent"
+          ]
+        },
+        "why": "Dividing by b/a multiplies by a/b, so the b's cancel and one a is left in front. What remains is sin over cos, which is the tangent of the same angle.",
+        "common_mistakes": [
+          "Writing the subtangent as (1/a)tan(x/a), keeping a in the denominator.",
+          "Leaving the answer as b sin(x/a) ÷ (b/a)cos(x/a) without simplifying.",
+          "Writing tan(x)/a, changing the angle from x/a to x."
+        ],
+        "memory_tip": "Dividing by b/a is multiplying by a/b. The b's cancel and the a lands in front of the tangent."
+      },
+      {
+        "id": "s3_subnormal",
+        "kind": "boxed_final",
+        "label": "Length of the subnormal",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "The last two marks: one for the product (b²/a)sin(x/a)cos(x/a), one for writing it as a single sine with the double-angle identity. Both forms are correct, but the simplified one is what the question asks for.",
+        "lines": [
+          "Length of the subnormal = y · m",
+          "= b sin(x/a) · (b/a) cos(x/a)",
+          "= (b²/a) sin(x/a) cos(x/a)",
+          "Use  2 sin A cos A = sin 2A  with  A = x/a,  so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
+          "= (b²/a) · (1/2) sin(2x/a)",
+          {
+            "text": "∴ Subtangent = a tan(x/a)     Subnormal = (b²/2a) sin(2x/a)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ym = (b²/a)sin(x/a)cos(x/a), which the double-angle identity turns into (b²/2a)sin(2x/a).",
+          "accept": [
+            "multiply y by m to get b squared by a sin cos",
+            "two sin a cos a is sin two a",
+            "the subnormal is b squared by two a into sin of two x by a",
+            "double angle formula use chesi sin two x by a ga rasta",
+            "sin cos becomes half of sin double the angle",
+            "the final answer has b squared over two a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b squared by two a",
+            "sin two x by a",
+            "double angle",
+            "sin cos"
+          ]
+        },
+        "why": "Multiplying y by m keeps both the sine and the cosine, and the standard identity 2 sin A cos A = sin 2A folds them into a single term. The angle doubles from x/a to 2x/a, and the extra 2 goes into the denominator.",
+        "common_mistakes": [
+          "Writing sin(x/a)cos(x/a) = sin(2x/a) without the factor of one half.",
+          "Doubling the whole expression instead of the angle, giving sin(2x)/a.",
+          "Leaving the coefficient as b²/a instead of b²/2a after using the identity."
+        ],
+        "memory_tip": "sin A cos A is half of sin 2A. Whenever a sine and a cosine of the SAME angle multiply, that identity shortens the answer."
+      }
+    ]
+  },
+  "insider_note": "Both lengths come from y and m = (b/a)cos(x/a), so find the derivative once. Subtangent is y/m and subnormal is y·m — dividing and multiplying, not the other way round."
+}

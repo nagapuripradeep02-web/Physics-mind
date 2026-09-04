@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_b_minus_c_sq_cos_half",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In △ABC, show that (b − c)² cos²(A/2) + (b + c)² sin²(A/2) = a².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expand and group the squares",
+      "marks": 1
+    },
+    {
+      "label": "Use cos A and the cosine rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the expansion and grouping and one to the double-angle step that produces the cosine rule. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_and_group",
+        "kind": "equation",
+        "label": "Expand and group the squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Group on b² + c² and on 2bc: the first bracket is 1, the second is the double-angle form.",
+        "memory_tip": "Group on b² + c² and on 2bc — the first bracket is cos² + sin² = 1, the second is the double-angle form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(b−c)² = b² + c² − 2bc",
+          "(b+c)² = b² + c² + 2bc",
+          "L.H.S = (b²+c²)[cos²(A/2) + sin²(A/2)]",
+          {
+            "text": "+ 2bc[sin²(A/2) − cos²(A/2)]",
+            "style": "indent"
+          },
+          "= (b² + c²) − 2bc[cos²(A/2) − sin²(A/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding both squares and grouping gives (b²+c²)(cos² + sin²) + 2bc(sin² − cos²).",
+          "accept": [
+            "expand both squares and collect the b squared plus c squared and the two b c separately",
+            "the first bracket is cos squared plus sin squared which is one",
+            "the two b c bracket has sin squared minus cos squared",
+            "rendu squares expand chesi b square plus c square ni separate ga theeyali",
+            "group the common part and the two b c part"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b squared plus c squared",
+            "two b c",
+            "cos squared plus sin squared",
+            "expand"
+          ]
+        },
+        "why": "Both squares share b² + c² and differ only in the sign of 2bc. Grouping on that split makes one bracket the Pythagorean identity and the other the double-angle form.",
+        "common_mistakes": [
+          "Writing (b−c)² as b² − c².",
+          "Grouping so that the 2bc bracket keeps the cosine first and the sign is reversed."
+        ]
+      },
+      {
+        "id": "s2_use_cos_a",
+        "kind": "boxed_final",
+        "label": "Use cos A and the cosine rule",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. cos²(A/2) − sin²(A/2) is cos A, and b² + c² − 2bc cos A is the cosine rule for a².",
+        "memory_tip": "cos²θ − sin²θ = cos 2θ, so with θ = A/2 the bracket is cos A and the line becomes the cosine rule.",
+        "lines": [
+          "cos²(A/2) − sin²(A/2) = cos A",
+          "∴ L.H.S = b² + c² − 2bc cos A",
+          "= a²   [∵ a² = b² + c² − 2bc cosA]",
+          {
+            "text": "∴ L.H.S = a² = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²(A/2) − sin²(A/2) = cos A, leaving b² + c² − 2bc cos A, which is a² by the cosine rule.",
+          "accept": [
+            "cos squared minus sin squared is cos of double the angle so it is cos A",
+            "what is left is b squared plus c squared minus two b c cos A",
+            "that is the cosine rule so it equals a squared",
+            "cos square minus sin square ante cos A, adi cosine rule",
+            "the last line is the cosine rule written backwards"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A",
+            "double angle",
+            "cosine rule",
+            "a squared"
+          ]
+        },
+        "why": "cos²θ − sin²θ = cos 2θ with θ = A/2 gives cos A, and what is left is exactly the cosine rule read from right to left.",
+        "common_mistakes": [
+          "Writing cos²(A/2) − sin²(A/2) = cos(A/2).",
+          "Using a² = b² + c² + 2bc cosA with the wrong sign."
+        ]
+      }
+    ]
+  }
+}

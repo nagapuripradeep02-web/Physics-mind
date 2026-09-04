@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_sum_four_digit_numbers_1_3_5_7_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the sum of all 4-digit numbers that can be formed using the digits 1, 3, 5, 7, 9 (no digit repeated).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "How often each digit sits in each place",
+      "marks": 1
+    },
+    {
+      "label": "Contribution of each place value",
+      "marks": 2
+    },
+    {
+      "label": "Add the place contributions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 9 Permutations & Combinations, answer 76. Printed appearances: AP 18 and TS 18, 22. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The two digit-sum SAQs in this unit (answer 76 and the practice question under it) share the step ids s1_place_count and s2_place_values; the 0-digit version carries a third step that removes the numbers with a leading zero, so its split is 1+1+2 rather than 1+2+1, and that difference is deliberate. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 4 (book p.117). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The printed question does not say 'without repetition'; the book's working uses ⁴P₃, which assumes it, and the card states the assumption in the question text. The book's own working fixes one digit and reads the total as ⁴P₃ × (sum of digits) × 1111, the same method as here."
+  },
+  "recall_prompt": "Say how you would find the sum of all these four-digit numbers — how often a digit appears in a place, what each place contributes, and how you finish.",
+  "insider_note": "The number the whole sum is built on is 24: each digit sits in each place ⁴P₃ = 24 times, while ⁵P₄ = 120 counts the numbers themselves. The sum is 24 · 25 · 1111, and the digit sum is 25, not 24.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_place_count",
+        "kind": "text",
+        "label": "How often a digit sits in each place",
+        "marks": 1,
+        "mark_note": "Counting",
+        "margin_note": "First mark. Put 9 in the units place; the other three places take the remaining 4 digits in ⁴P₃ = 24 ways. The same is true for every digit and every place.",
+        "memory_tip": "Fix one digit in a place; the other three places take ⁴P₃ = 24 ways. 24 is the appearances, 120 is the numbers.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Digits 1, 3, 5, 7, 9, no repetition.",
+          "Fix one digit in the units place: the other",
+          "three places are filled in ⁴P₃ = 24 ways.",
+          "So each digit sits in each place 24 times."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with one digit fixed in a place the other three places are filled in 4 P 3 = 24 ways, so every digit appears 24 times in every place.",
+          "accept": [
+            "fix a digit in the units place and the remaining three places are four P three which is twenty four",
+            "each digit appears twenty four times in each place",
+            "four P three is twenty four arrangements for the other three places",
+            "oka digit ni units lo pedithe migatha three places four P three twenty four ways",
+            "every digit sits in every place twenty four times"
+          ],
+          "reject": [
+            "use permutations",
+            "count the numbers"
+          ],
+          "heard_as": [
+            "four P three",
+            "twenty four",
+            "each place",
+            "fix a digit"
+          ]
+        },
+        "why": "Adding 120 numbers one by one is not possible in an exam. The place-by-place method works because the count 24 is the same for every digit in every place, so the sum can be built from place values.",
+        "common_mistakes": [
+          "Using ⁵P₄ = 120 as the number of times a digit appears — that is the number of numbers, not the appearances of one digit in one place.",
+          "Using ³P₃ = 6 for the remaining places; four digits remain after one is fixed."
+        ]
+      },
+      {
+        "id": "s2_place_values",
+        "kind": "equation",
+        "label": "Contribution of each place value",
+        "marks": 2,
+        "mark_note": "Place values",
+        "margin_note": "Two marks. The units place holds each digit 24 times, so it contributes 24 × (1 + 3 + 5 + 7 + 9) × 1. The tens place contributes the same × 10, and so on. Collect the place values as 1111.",
+        "memory_tip": "The digit sum is 25, not 24. Collect the place values as 1000 + 100 + 10 + 1 = 1111.",
+        "lines": [
+          "Sum of the digits = 1 + 3 + 5 + 7 + 9 = 25",
+          "Units place contributes 24 · 25 · 1",
+          "Tens place contributes 24 · 25 · 10, and so on.",
+          "Sum = 24 · 25 · (1000 + 100 + 10 + 1)",
+          "= 24 · 25 · 1111 = 600 · 1111"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each place contributes 24 times the digit sum 25 times its place value, and the four places together give 24 × 25 × 1111.",
+          "accept": [
+            "sum of digits is twenty five, each place gives twenty four times twenty five times its place value, together twenty four times twenty five times one one one one",
+            "the units, tens, hundreds and thousands add up to one thousand one hundred and eleven times twenty four times twenty five",
+            "twenty four into twenty five into one one one one",
+            "digits sum twenty five, prathi place twenty four into twenty five into place value, total eleven eleven tho multiply",
+            "six hundred times one thousand one hundred eleven"
+          ],
+          "reject": [
+            "multiply",
+            "add the digits"
+          ],
+          "heard_as": [
+            "twenty five",
+            "one one one one",
+            "eleven eleven",
+            "place value",
+            "six hundred"
+          ]
+        },
+        "why": "A number is its digits times their place values, so the sum of all the numbers is the sum of all the digit-appearances times place values. Grouping by place turns 120 additions into one product.",
+        "common_mistakes": [
+          "Multiplying by 1111 but forgetting the 24 — each digit appears 24 times, not once.",
+          "Using 11111 (five places) — the numbers have four digits.",
+          "Taking the digit sum as 1 + 3 + 5 + 7 + 9 = 24 by slip; it is 25."
+        ]
+      },
+      {
+        "id": "s3_total",
+        "kind": "boxed_final",
+        "label": "Add the place contributions",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 600 × 1111 = 666600, written 6,66,600.",
+        "memory_tip": "600 × 1111 = 6,66,600. Check it as 6 × 1111 = 6666 with two zeros added.",
+        "lines": [
+          {
+            "text": "∴ required sum = 600 · 1111 = 6,66,600",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product 600 times 1111 is evaluated to 666600.",
+          "accept": [
+            "six hundred times one thousand one hundred eleven is six lakh sixty six thousand six hundred",
+            "the sum is six six six six zero zero",
+            "six lakh sixty six thousand six hundred",
+            "six hundred into eleven eleven cheste six lakhs sixty six thousand six hundred",
+            "the answer is six hundred sixty six thousand six hundred"
+          ],
+          "reject": [
+            "multiply it",
+            "six lakh"
+          ],
+          "heard_as": [
+            "six lakh",
+            "sixty six thousand",
+            "six hundred",
+            "six six six six zero zero"
+          ]
+        },
+        "why": "The last step is only arithmetic, but the examiner marks the number. 600 × 1111 = 666600 can be checked as 6 × 1111 = 6666 followed by two zeros.",
+        "common_mistakes": [
+          "Writing 66,660 or 6,66,000 by dropping a digit.",
+          "Leaving the answer as 24 × 25 × 1111 without evaluating it."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rotation_aat_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (cos α, sin α) and (−sin α, cos α), then show that AAᵀ = AᵀA = I.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write Aᵀ and form AAᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Form AᵀA and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 9, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each product, because the question asks for two products and a student who computes only AAᵀ has answered half of it. NOTATION: the book prints the transpose as A¹ (a clipped dash); it is written here as Aᵀ, which is the form the rest of this unit uses, and the mathematics is unchanged. CHECKED: both products were expanded position by position and every diagonal entry reduced to cos²α + sin²α = 1 and every off-diagonal entry to cos α sin α − sin α cos α = 0, so both land on I. Related card in the same unit: ts_ipe_m1a_mat_sqp_rotation_inverse asks for the adjoint and inverse of the closely related matrix with rows (cos α, −sin α) and (sin α, cos α); this one asks for the two transpose products, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show that this matrix times its transpose is the unit matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_aat",
+        "kind": "equation",
+        "label": "Write Aᵀ and form AAᵀ",
+        "marks": 1,
+        "mark_note": "First product",
+        "margin_note": "First mark. Aᵀ swaps rows with columns, so the two off-diagonal entries change places. A is 2×2, so both products are 2×2.",
+        "memory_tip": "Transposing this matrix only moves the minus sign from the lower left to the upper right.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} \\cos\\alpha & \\sin\\alpha \\\\ -\\sin\\alpha & \\cos\\alpha \\end{bmatrix}, \\quad A^{T} = \\begin{bmatrix} \\cos\\alpha & -\\sin\\alpha \\\\ \\sin\\alpha & \\cos\\alpha \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Each off-diagonal entry cancels:",
+          "−cos α sin α + sin α cos α = 0.",
+          {
+            "text": "AA^{T} = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Aᵀ is written by swapping rows and columns, and AAᵀ multiplies out to the unit matrix using cos²α + sin²α = 1.",
+          "accept": [
+            "write A transpose then multiply A by it and use cos squared plus sin squared equals one",
+            "the diagonal entries become one and the other two cancel to zero",
+            "A times A transpose gives the identity matrix",
+            "A transpose rasi multiply cheste diagonal lo one, migilinavi zero",
+            "row times column gives cos squared alpha plus sin squared alpha"
+          ],
+          "reject": [
+            "multiply them",
+            "it comes out as I"
+          ],
+          "heard_as": [
+            "A transpose",
+            "cos squared plus sin squared",
+            "identity",
+            "unit matrix"
+          ]
+        },
+        "why": "The whole result rests on one identity, cos²α + sin²α = 1, on the diagonal, and on the two products cancelling off the diagonal. Writing the entries out is what shows it.",
+        "common_mistakes": [
+          "Writing Aᵀ with the minus sign left in the lower left corner.",
+          "Multiplying entry by entry instead of row by column."
+        ]
+      },
+      {
+        "id": "s2_ata",
+        "kind": "boxed_final",
+        "label": "Form AᵀA and conclude",
+        "marks": 1,
+        "mark_note": "Second product",
+        "margin_note": "Second mark. The question asks for both products, so AᵀA is written out separately rather than quoted from the first.",
+        "memory_tip": "Both products give I, so Aᵀ is the inverse of A. A matrix with this property is called orthogonal.",
+        "lines": [
+          "Each off-diagonal entry cancels:",
+          "cos α sin α − sin α cos α = 0.",
+          {
+            "text": "A^{T}A = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AAᵀ = AᵀA = I",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AᵀA is computed as well and also equals I, so both products give the unit matrix.",
+          "accept": [
+            "do the product the other way round and it is also the identity",
+            "A transpose times A also gives one on the diagonal and zero elsewhere",
+            "both orders give I so A transpose is the inverse of A",
+            "reverse order lo multiply chesina kuda identity vasthundi",
+            "the second product is the unit matrix too"
+          ],
+          "reject": [
+            "same thing",
+            "hence proved"
+          ],
+          "heard_as": [
+            "A transpose A",
+            "other order",
+            "identity",
+            "inverse"
+          ]
+        },
+        "why": "Matrix multiplication is not commutative, so the second product is a separate calculation. Because both equal I, Aᵀ is the inverse of A.",
+        "common_mistakes": [
+          "Writing 'similarly' and stopping, without showing the second product.",
+          "Assuming AAᵀ = AᵀA holds for every square matrix."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_parallel_chord_y_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "On the curve y = x², find a point at which the tangent is parallel to the chord joining (0, 0) and (1, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the slope of the chord",
+      "marks": 1
+    },
+    {
+      "label": "Set dy/dx equal to that slope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what parallel means for two slopes, and which theorem says such a point exists.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chord_slope",
+        "kind": "equation",
+        "label": "Find the slope of the chord",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Parallel lines have equal slopes, so the chord's slope is the number the tangent's slope must equal. Both given points do lie on y = x², which is worth checking in one line.",
+        "memory_tip": "Parallel means equal slopes. So the question is really: where does dy/dx equal the chord slope?",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The chord joins A(0, 0) and B(1, 1), and both lie on y = x² since 0 = 0² and 1 = 1².",
+          "Slope of the chord AB = (1 − 0)/(1 − 0) = 1",
+          "A tangent parallel to AB has the same slope, so we need dy/dx = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chord from (0, 0) to (1, 1) has slope 1, and that a parallel tangent must have slope 1 as well.",
+          "accept": [
+            "the chord slope is one minus zero over one minus zero which is one",
+            "parallel lines have the same slope so the tangent slope is one",
+            "we need dy by dx equal to one",
+            "the slope of the chord is one",
+            "parallel ante slopes samaanam, so tangent slope one",
+            "find the chord slope first then match the derivative to it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chord",
+            "slope",
+            "one",
+            "parallel",
+            "dy by dx"
+          ]
+        },
+        "why": "This is Lagrange's mean value theorem in geometric form: the theorem says that somewhere between the two ends there is a point where the tangent slope equals the chord slope, and \"tangent parallel to the chord\" is exactly that statement in words. So the theorem is the statement that such a point exists, before you go looking for it.",
+        "common_mistakes": [
+          "Using the y values only and giving the slope as 1/0 or 0.",
+          "Reading \"parallel\" as perpendicular and setting the slope to −1."
+        ]
+      },
+      {
+        "id": "s2_find_point",
+        "kind": "boxed_final",
+        "label": "Set dy/dx equal to that slope",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The question asks for a POINT, so give both coordinates. Stopping at x = 1/2 answers only half of it.",
+        "memory_tip": "Solve for x from the derivative, then put that x back into the curve to get y.",
+        "lines": [
+          "y = x² ⇒ dy/dx = 2x",
+          "2x = 1 ⇒ x = 1/2",
+          "At x = 1/2, y = (1/2)² = 1/4",
+          "x = 1/2 lies between 0 and 1, as Lagrange's mean value theorem states it must.",
+          {
+            "text": "∴ the required point is (1/2, 1/4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2x = 1 gives x = 1/2, and that substituting back into y = x² gives the point (1/2, 1/4).",
+          "accept": [
+            "differentiate to get two x and set two x equal to one",
+            "x is half so y is one quarter",
+            "the point is half comma one fourth",
+            "put x equal to half back into y equals x squared",
+            "two x ni one ki equal chesthe x half, y one by four",
+            "the point lies between the two given points"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x",
+            "half",
+            "one fourth",
+            "the point"
+          ]
+        },
+        "why": "The x value comes from the derivative, but the y value has to come from the curve itself, so the substitution back into y = x² is a separate move. Checking that 1/2 lies between 0 and 1 confirms the point is on the arc the chord spans.",
+        "common_mistakes": [
+          "Giving y = 1/2 by substituting into y = x instead of y = x².",
+          "Giving the answer as x = 1/2 alone when a point was asked for."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Parallel means equal SLOPES, so find the chord's slope first, which is 1. Then 2x = 1 gives x = 1/2, and the y-coordinate must be worked out too."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_photonics_technologies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention two technologies powered by photonics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Optical fibre telecommunication",
+      "marks": 1
+    },
+    {
+      "label": "LiDAR",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 15 (printed p.144). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: optical fibre telecommunication and LiDAR are two distinct photonics technologies, one carrying data as light pulses and the other measuring distance from a reflected laser pulse, so they are not two names for the same technology."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_optical_fibre_telecom",
+        "kind": "text",
+        "label": "Optical fibre telecommunication",
+        "marks": 1,
+        "mark_note": "Technology 1",
+        "lines": [
+          "Optical fibre telecommunication:",
+          "data travels as pulses of light",
+          "through optical fibre cables."
+        ],
+        "why": "Photonics is the science and technology of generating, controlling and detecting light. Optical fibre telecommunication uses light pulses instead of an electric current to carry data, which allows much higher data rates over long distances.",
+        "common_mistakes": [
+          "Writing internet with no mention of light or fibre at all.",
+          "Confusing optical fibre with an ordinary copper cable."
+        ],
+        "memory_tip": "Photonics moves data as light pulses through optical fibre, not as current through copper.",
+        "margin_note": "Broadband internet or telephone cable is accepted as the same answer, worded differently."
+      },
+      {
+        "id": "s2_lidar",
+        "kind": "boxed_final",
+        "label": "LiDAR",
+        "marks": 1,
+        "mark_note": "Technology 2",
+        "lines": [
+          {
+            "text": "LiDAR (light detection",
+            "style": "boxed"
+          },
+          "and ranging): it measures",
+          "distance from the time a laser",
+          "pulse takes to reflect back."
+        ],
+        "why": "LiDAR sends out short laser pulses and times how long the reflected light takes to return. Since the speed of light is known, this time gives the distance to the object, building up a three dimensional map of it.",
+        "common_mistakes": [
+          "Writing radar instead of LiDAR; radar uses radio waves, not light.",
+          "Leaving the name LiDAR unexplained, with no mention of light or distance."
+        ],
+        "memory_tip": "LiDAR: laser pulse sent out, timed reflection back, distance calculated from the travel time.",
+        "margin_note": "Spelling out light detection and ranging in full is accepted in place of the short form."
+      }
+    ]
+  }
+}

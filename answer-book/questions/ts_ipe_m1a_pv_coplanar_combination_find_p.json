@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_coplanar_combination_find_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find p if the vectors a + b + c, a + pb + 2c and −a + b + c are coplanar, where a, b, c are non-coplanar.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the coefficients as rows",
+      "marks": 1
+    },
+    {
+      "label": "Expand the determinant",
+      "marks": 2
+    },
+    {
+      "label": "Solve for p and check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant of coefficients and a full mark to saying why [a b c] may be divided out, which is the step that makes the whole method legal. Both evaluations agree at 2p − 4: the first-row expansion gives (p − 2) − (1 + 2) + (1 + p), and the first-column expansion gives (p − 2) − 0 − (2 − p). Substituting p = 2 gives 1(0) − 1(3) + 1(3) = 0 exactly. A second, independent check: with p = 2 the middle vector a + 2b + 2c equals (3u + w)/2, where u = a + b + c and w = −a + b + c, so it genuinely lies in the plane of the other two. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find p — how the three vectors become rows of numbers, and what you do with the determinant.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rows",
+        "kind": "equation",
+        "label": "Write the coefficients as rows",
+        "marks": 1,
+        "mark_note": "Coefficient rows",
+        "margin_note": "First mark. [a b c] ≠ 0 is what allows it to be cancelled; say so before dividing by it.",
+        "memory_tip": "Read off the coefficients of a, b, c as one row per vector. The basis box product factors out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let u = a + b + c, v = a + pb + 2c,",
+          "w = −a + b + c.",
+          "a, b, c are non-coplanar, so [a b c] ≠ 0.",
+          "[u v w] = D[a b c], where D is the",
+          "determinant of the coefficients.",
+          "So u, v, w are coplanar ⇔ D = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the box product of the three combinations is the coefficient determinant times [a b c], which is non-zero.",
+          "accept": [
+            "write the coefficients of a b c as rows of a determinant",
+            "the box product is that determinant times a b c box product",
+            "a b c is non coplanar so its box product is not zero and can be cancelled",
+            "coefficients ni rows ga rasi determinant teeskovali",
+            "coplanar means the coefficient determinant is zero"
+          ],
+          "reject": [
+            "expand the determinant",
+            "p is two",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coefficients",
+            "determinant",
+            "non coplanar",
+            "a b c box product"
+          ]
+        },
+        "why": "Writing each vector by its coefficients on a, b, c turns the box product into a number times [a b c], and that number is the determinant of the coefficients.",
+        "common_mistakes": [
+          "Treating a, b, c as i, j, k and losing the factor [a b c].",
+          "Setting [u v w] = 0 without saying why [a b c] may be divided out."
+        ]
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The rows are the coefficients in the order a, b, c, including the −1 in the third row.",
+        "memory_tip": "One row per vector: (1, 1, 1), (1, p, 2), (−1, 1, 1). The minus sign is part of the row.",
+        "lines": [
+          {
+            "text": "D = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & p & 2 \\\\ -1 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(p − 2) − 1(1 + 2) + 1(1 + p)",
+          "= p − 2 − 3 + 1 + p = 2p − 4",
+          "Column 1 check:",
+          "(p − 2) − (1 − 1) − (2 − p) = 2p − 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient determinant expands to 2p − 4.",
+          "accept": [
+            "expand the three by three determinant to get two p minus four",
+            "the rows are one one one, one p two, minus one one one",
+            "column one gives the same two p minus four",
+            "determinant expand cheste two p minus four vasthundi",
+            "the expansion is linear in p"
+          ],
+          "reject": [
+            "write the coefficients as rows",
+            "p is two",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two p minus four",
+            "determinant",
+            "column one",
+            "rows"
+          ]
+        },
+        "why": "Expanding along a different line must give the same expression in p; the two agree, so the cofactor signs were handled correctly.",
+        "common_mistakes": [
+          "Reading the third row as (1, 1, 1) and losing the minus on a.",
+          "Writing −1(1 + 2) as −1(1 − 2)."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "boxed_final",
+        "label": "Solve for p and check",
+        "marks": 1,
+        "mark_note": "Value of p",
+        "margin_note": "Last mark. With p = 2 the middle vector is (3u + w)/2, so it really does lie in the plane of u and w.",
+        "memory_tip": "2p = 4 gives p = 2. Put it back: the determinant must read exactly 0.",
+        "lines": [
+          "2p − 4 = 0 ⇒ p = 2",
+          "Check: with p = 2 the rows are",
+          "(1, 1, 1), (1, 2, 2), (−1, 1, 1) and",
+          "1(0) − 1(1 + 2) + 1(1 + 2) = 0  ✓",
+          {
+            "text": "∴ p = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2p − 4 = 0 gives p = 2, and that substituting it makes the determinant zero.",
+          "accept": [
+            "two p minus four equals zero so p is two",
+            "p equals two",
+            "put two back and the determinant is exactly zero",
+            "p two vasthundi, substitute chesi zero ani check cheyyali",
+            "solve the linear equation and verify"
+          ],
+          "reject": [
+            "expand the determinant",
+            "write the coefficients as rows",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p equals two",
+            "two p minus four",
+            "check",
+            "zero"
+          ]
+        },
+        "why": "Putting p = 2 back gives a determinant of exactly zero, so the three combinations really do lie in one plane.",
+        "common_mistakes": [
+          "Solving 2p − 4 = 0 as p = −2.",
+          "Giving the answer without checking it in the determinant."
+        ]
+      }
+    ]
+  }
+}

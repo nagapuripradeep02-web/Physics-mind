@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_specific_heat_capacity_of_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define specific heat capacity of a substance. What is its value for water?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Value for water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 11 (printed p.137). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: specific heat capacity is the heat needed to raise the temperature of unit mass of a substance by one kelvin; for water this is 4186 J kg⁻¹ K⁻¹, equivalently 1 cal g⁻¹ °C⁻¹."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "The specific heat capacity of a",
+          "substance is the heat needed to",
+          "raise the temperature of unit",
+          "mass by one kelvin."
+        ],
+        "margin_note": "First mark. The words unit mass and one kelvin both carry it.",
+        "why": "Different substances need different amounts of heat to warm up by the same amount, so the heat is stated per unit mass and per one kelvin rise to make it a fixed property of the substance.",
+        "common_mistakes": [
+          "Saying it is the heat needed to raise the temperature, without naming unit mass and one kelvin."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That specific heat capacity is the heat needed to raise the temperature of unit mass of a substance by one kelvin.",
+          "accept": [
+            "heat needed to raise unit mass by one kelvin",
+            "heat per unit mass per kelvin rise",
+            "heat required for one kelvin rise in unit mass"
+          ],
+          "reject": [
+            "4186 joule per kilogram per kelvin"
+          ],
+          "heard_as": [
+            "specific heat capacity",
+            "unit mass, one kelvin"
+          ]
+        },
+        "memory_tip": "Specific means per unit mass. Heat capacity means heat needed for one kelvin rise."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Value for water",
+        "marks": 1,
+        "mark_note": "c = 4186 J kg⁻¹ K⁻¹",
+        "lines": [
+          "For water the specific heat",
+          "capacity has the value:",
+          {
+            "text": "c = 4186 J kg⁻¹ K⁻¹",
+            "style": "boxed"
+          },
+          "This is the same as",
+          "1 cal g⁻¹ °C⁻¹."
+        ],
+        "margin_note": "Second mark. Give the value with its unit; the SI form 4186 J kg⁻¹ K⁻¹ is the one to write, and 1 cal g⁻¹ °C⁻¹ is the same number.",
+        "why": "Water needs an unusually large amount of heat to warm up compared with most substances, which is why its specific heat capacity is a commonly quoted number in the SI unit J kg⁻¹ K⁻¹.",
+        "common_mistakes": [
+          "Writing the value as 4186 J without the kg⁻¹ K⁻¹ unit.",
+          "Confusing this number with the latent heat of water, which is a different quantity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the specific heat capacity of water is 4186 joule per kilogram per kelvin, the same as 1 calorie per gram per degree Celsius.",
+          "accept": [
+            "4186 joule per kilogram per kelvin",
+            "1 calorie per gram per degree Celsius",
+            "four one eight six J kg inverse K inverse"
+          ],
+          "reject": [
+            "heat needed to raise unit mass by one kelvin"
+          ],
+          "heard_as": [
+            "4186",
+            "one calorie per gram"
+          ]
+        },
+        "memory_tip": "Water's number, 4186, is worth remembering as 1 calorie per gram per degree Celsius."
+      }
+    ]
+  },
+  "insider_note": "Two marks means the definition AND the number — a bare 4186 with no definition loses the first mark."
+}

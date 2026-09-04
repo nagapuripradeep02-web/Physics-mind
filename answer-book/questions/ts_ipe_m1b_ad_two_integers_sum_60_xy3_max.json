@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_two_integers_sum_60_xy3_max",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find two positive integers x and y such that x + y = 60 and xy³ is maximum.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce xy³ to one variable",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and solve",
+      "marks": 1
+    },
+    {
+      "label": "Apply the second derivative test",
+      "marks": 1
+    },
+    {
+      "label": "State the two integers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.226, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 5. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which letter you eliminate, what you do with the root y = 0, and how you check the answer meets the condition the question sets.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_variable",
+        "kind": "equation",
+        "label": "Reduce xy³ to one variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Eliminate x, not y — y carries the cube, so replacing x keeps the working as a simple polynomial in y.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x + y = 60 with x > 0 and y > 0.",
+          "From the condition,  x = 60 − y,  and since x > 0 the domain is 0 < y < 60.",
+          "Let f(y) = xy³ = (60 − y)y³",
+          "f(y) = 60y³ − y⁴"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 60 − y turns xy³ into f(y) = 60y³ − y⁴, with 0 < y < 60.",
+          "accept": [
+            "write x as sixty minus y and substitute",
+            "the product becomes sixty y cubed minus y to the fourth",
+            "eliminate x because y carries the cube",
+            "x ni sixty minus y ga rasi substitute cheyyali",
+            "y lies between zero and sixty",
+            "reduce the product to a single variable"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty minus y",
+            "y cubed",
+            "y to the fourth",
+            "one variable"
+          ]
+        },
+        "why": "The sum is the constraint and the product is the quantity to be maximised. Eliminating x keeps the power on y untouched, so the function stays an ordinary polynomial.",
+        "common_mistakes": [
+          "Eliminating y instead, which gives (60 − x)³x and a harder differentiation.",
+          "Writing x = 60 + y by moving the term with the wrong sign."
+        ],
+        "memory_tip": "Eliminate the letter that carries the LOWER power. Here x appears to the first power, so x is the one to replace."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and solve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Take the common factor 4y² out before solving. Say in one line why y = 0 is discarded — the question asks for POSITIVE integers.",
+        "lines": [
+          "f′(y) = 180y² − 4y³ = 4y²(45 − y)",
+          "f′(y) = 0   ⇒   4y²(45 − y) = 0   ⇒   y = 0  or  y = 45",
+          "The question asks for positive integers, so y = 0 is discarded.",
+          "∴ y = 45"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(y) = 4y²(45 − y) = 0 gives y = 0 or y = 45, and y = 0 is discarded because y must be positive.",
+          "accept": [
+            "differentiate to get one eighty y squared minus four y cubed",
+            "factor out four y squared and solve forty five minus y equals zero",
+            "y equal to zero is not allowed because the numbers are positive",
+            "y zero reject cheyyali, positive integers kavali",
+            "the usable root is forty five",
+            "set the first derivative equal to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one eighty y squared",
+            "four y cubed",
+            "forty five",
+            "y equals zero"
+          ]
+        },
+        "why": "Factorising shows both roots at once. The root y = 0 is a genuine stationary point of the algebra but breaks the question's own condition, so it must be discarded in writing, not silently.",
+        "common_mistakes": [
+          "Differentiating (60 − y)y³ with the product rule and losing a term.",
+          "Reporting y = 0 as an answer."
+        ],
+        "memory_tip": "Take out the highest common factor before solving. A factored derivative shows every root without expanding anything."
+      },
+      {
+        "id": "s3_second_derivative",
+        "kind": "equation",
+        "label": "Apply the second derivative test",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. This is the step students skip. Write f″, put y = 45 into it, and state the sign — a stationary point is not automatically a maximum.",
+        "lines": [
+          "f″(y) = 360y − 12y²",
+          "At y = 45:  f″(45) = 360(45) − 12(45²) = 16200 − 24300 = −8100",
+          "f″(45) = −8100 < 0",
+          "A negative second derivative means the stationary point is a maximum, so f is greatest at y = 45."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f″(45) = −8100 < 0, which proves y = 45 gives a maximum.",
+          "accept": [
+            "second derivative is three sixty y minus twelve y squared",
+            "at forty five it comes to minus eight one zero zero",
+            "negative so it is a maximum",
+            "second derivative negative unte maximum ani chepthundi",
+            "apply the second derivative test at y equal to forty five",
+            "confirm it is a maximum before writing the answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three sixty y",
+            "twelve y squared",
+            "minus eight thousand one hundred",
+            "maximum"
+          ]
+        },
+        "why": "Setting the derivative to zero only finds where the product stops changing. Without the sign of f″ the value could equally be a minimum, so the test is a separate mark.",
+        "common_mistakes": [
+          "Assuming y = 45 is a maximum because it is the larger root.",
+          "Substituting y = 45 into f′ instead of f″."
+        ],
+        "memory_tip": "Second derivative negative means the graph bends downward, so the stationary point is a maximum."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "State the two integers",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Substitute back for x and say plainly that both values are positive integers — the question asked for integers, so that check belongs in the answer.",
+        "lines": [
+          "y = 45   ⇒   x = 60 − 45 = 15",
+          "Both 15 and 45 are positive integers, so the condition in the question is met.",
+          "Greatest value = xy³ = 15 × 45³ = 15 × 91125 = 1366875",
+          "Check: x = 16, y = 44 gives 16 × 85184 = 1362944, and x = 14, y = 46 gives 14 × 97336 = 1362704 — both smaller.",
+          {
+            "text": "∴ x = 15 and y = 45",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 45 gives x = 15, both positive integers, so the answer is x = 15 and y = 45.",
+          "accept": [
+            "substitute back to get x equal to fifteen",
+            "the two numbers are fifteen and forty five",
+            "both values are positive integers as asked",
+            "x fifteen y forty five vasthundi",
+            "check that the answer is a whole number",
+            "the greatest value of x y cubed is at fifteen and forty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fifteen",
+            "forty five",
+            "positive integers",
+            "substitute back"
+          ]
+        },
+        "why": "The question names two unknowns, so both must be stated. It also says integers, and the stationary point happens to be a whole number here — saying so shows the condition was checked rather than ignored.",
+        "common_mistakes": [
+          "Giving only y = 45 and never finding x.",
+          "Swapping the two values and writing x = 45, y = 15, which gives 45 × 3375 = 151875, far smaller."
+        ],
+        "memory_tip": "The letter carrying the cube has the larger value. With x + y = 60 and xy³ the split is 15 and 45, which is 60 divided in the ratio 1 to 3."
+      }
+    ]
+  },
+  "insider_note": "Substitute x = 60 − y so only y remains, and differentiate. f′ = 4y²(45 − y) has a repeated root at y = 0, which is rejected, leaving y = 45 and x = 15."
+}

@@ -49,6 +49,7 @@
         "label": "Write the slope from the two points",
         "marks": 1,
         "margin_note": "First mark. The slope between two points is the difference of the y's over the difference of the x's, taken in the same order both times.",
+        "memory_tip": "Difference of the y's over difference of the x's, taken in the SAME order both times.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "label": "Equate to the given slope and solve",
         "marks": 1,
         "margin_note": "Second mark. The given slope is 2, so set the two equal and solve the short linear equation.",
+        "memory_tip": "Set it equal to the given slope 2 and solve the short linear equation.",
         "lines": [
           "But given slope m₂ = 2",
           "Now, m₁ = m₂",
@@ -121,7 +123,7 @@
             "solve"
           ]
         },
-        "why": "The unknown sits in the denominator, so cross-multiplying is the quickest route and avoids a fraction on both sides.",
+        "why": "The unknown sits in the denominator, so multiply both sides by (x − 2) first: −2 = 2(x − 2). Dividing by 2 then gives x − 2 = −2/2 = −1, which is the line printed here.",
         "common_mistakes": [
           "Solving −2/(x − 2) = 2 as x − 2 = −1/2.",
           "Forgetting to add the 2 back at the end."
@@ -129,5 +131,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The unknown sits in the DENOMINATOR: −2/(x − 2) = 2 gives x − 2 = −1, not −4. Cross-multiplying the wrong way round is what turns the answer from 1 into 3."
 }

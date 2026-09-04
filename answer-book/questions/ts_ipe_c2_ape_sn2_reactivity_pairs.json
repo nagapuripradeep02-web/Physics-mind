@@ -90,7 +90,7 @@
           "A weaker bond and a better leaving group",
           "together make CH₃I the faster."
         ],
-        "why": "SN2 breaks the carbon–halogen bond in the same step as it makes the new one, so the strength of that bond appears directly in the rate. The stability of the departing ion counts for the same reason: the more stable the halide ion, the lower the energy of the transition state that leads to it.",
+        "why": "SN2 breaks the carbon–halogen bond in the same step as it makes the new one, so the strength of that bond appears directly in the rate. The stability of the departing ion counts for the same reason: the more stable the halide ion, the lower the energy of the transition state that leads to it. The figures above are the average carbon–halogen values; NCERT's table gives them for the methyl halides themselves, CH₃–I 234, CH₃–Br 293 and CH₃–Cl 351 kJ/mol, and either set shows the same trend, so quote whichever your textbook prints.",
         "common_mistakes": [
           "Giving electronegativity as the reason. Iodine is the least electronegative halogen, so that argument gives the opposite answer.",
           "Naming only the bond enthalpy. The leaving group ability is the second half of the reason and is often marked."
@@ -142,13 +142,13 @@
           "For SN1 the order is the reverse,",
           "3° > 2° > 1°."
         ],
-        "why": "SN2 has one step, so everything happens at a crowded transition state and steric hindrance determines the rate. SN1 has two steps and its rate depends on the stability of the carbocation formed first, which is why the order reverses. The question names SN2, so the SN2 order is the one that applies.",
+        "why": "SN2 has one step, so everything happens at a crowded transition state and steric hindrance determines the rate. SN1 has two steps and its rate depends on the stability of the carbocation formed first, which is why the order reverses. The question names SN2, so the SN2 order is the one that applies. Written in full the SN2 order begins with the methyl halide, CH₃ > 1° > 2° > 3°, and that is the part of it that decides this pair, because CH₃Cl is a methyl halide and (CH₃)₃CCl is tertiary.",
         "common_mistakes": [
           "Quoting the order 3° > 2° > 1° here. That is SN1; the question says SN2.",
           "Explaining the answer by the inductive effect of the methyl groups. The reason is steric, the three groups blocking the approach."
         ],
         "memory_tip": "SN2 is one crowded step, so the least crowded carbon reacts fastest. SN1 is two steps, so the most stable carbocation is formed.",
-        "margin_note": "Write both orders and mark which is SN2. The contrast is what stops the two being confused in the exam."
+        "margin_note": "Write both orders and mark which is SN2, and start the SN2 one at the methyl halide: CH₃ > 1° > 2° > 3°. The contrast is what stops the two being confused in the exam."
       }
     ]
   },

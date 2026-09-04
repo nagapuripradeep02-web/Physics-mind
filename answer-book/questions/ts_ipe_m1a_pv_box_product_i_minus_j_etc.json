@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_box_product_i_minus_j_etc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Compute [i − j  j − k  k − i].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three vectors as rows",
+      "marks": 1
+    },
+    {
+      "label": "Expand the determinant",
+      "marks": 2
+    },
+    {
+      "label": "State the value and the reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to naming the reason the answer had to be zero. Three evaluations agree at 0: the first-row expansion gives 1(1) + 1(−1) + 0 = 0; the third-column expansion gives 1(0 − 1) + 1(1) = 0; and computing (j − k) × (k − i) = i + j + k and dotting with (i − j) gives 1 − 1 + 0 = 0. The answer is the NUMBER 0, not the zero vector — a scalar triple product is a scalar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would compute this — the determinant you write, and the one-line reason the answer had to be zero.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write",
+        "kind": "equation",
+        "label": "Write the three vectors as rows",
+        "marks": 1,
+        "mark_note": "Set up",
+        "margin_note": "First mark. Write each vector as an ordered triple first; the missing component of each is 0.",
+        "memory_tip": "Each of the three has one zero component. Write the zero in its own column.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i − j = (1, −1, 0),",
+          "b = j − k = (0, 1, −1),",
+          "c = k − i = (−1, 0, 1).",
+          "The box product is the determinant",
+          "with these three as rows."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vectors are written in components as the rows of a 3×3 determinant.",
+          "accept": [
+            "write i minus j as one, minus one, zero and so on for the other two",
+            "the box product is the determinant with the three as rows",
+            "each vector has one zero component",
+            "moodu vectors ni components ga rasi rows ga pettali",
+            "set up the three by three determinant"
+          ],
+          "reject": [
+            "expand the determinant",
+            "the answer is zero",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus one zero",
+            "rows",
+            "determinant",
+            "components"
+          ]
+        },
+        "why": "Written in components, the scalar triple product of three vectors is the determinant whose rows are their components.",
+        "common_mistakes": [
+          "Writing i − j as (1, 1, 0) and losing the minus.",
+          "Reading k − i as (1, 0, −1) instead of (−1, 0, 1)."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The middle term carries the cofactor's minus and the entry's minus, so it turns into a plus.",
+        "memory_tip": "A minus cofactor times a −1 entry gives a plus. Two minus signs meet in the middle term.",
+        "lines": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & -1 & 0 \\\\ 0 & 1 & -1 \\\\ -1 & 0 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(1 − 0) + 1(0 − 1) + 0(0 + 1)",
+          "= 1 − 1 + 0 = 0",
+          "Check: (j − k) × (k − i) = i + j + k,",
+          "so (i − j)·(i + j + k) = 1 − 1 + 0 = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant expands to 0, confirmed by the cross-product route.",
+          "accept": [
+            "expand the determinant and get one minus one which is zero",
+            "j minus k crossed with k minus i is i plus j plus k",
+            "dotting that with i minus j gives zero",
+            "determinant expand cheste zero vasthundi",
+            "both methods give zero"
+          ],
+          "reject": [
+            "write the three vectors as rows",
+            "the three add to zero",
+            "hence proved"
+          ],
+          "heard_as": [
+            "zero",
+            "determinant",
+            "i plus j plus k",
+            "cross product"
+          ]
+        },
+        "why": "Computing the cross product first and dotting with the first vector must give the same number as the determinant, and it does.",
+        "common_mistakes": [
+          "Getting the sign of the middle cofactor wrong and reporting 2.",
+          "Reporting the answer as the vector 0 instead of the number 0."
+        ]
+      },
+      {
+        "id": "s3_value",
+        "kind": "boxed_final",
+        "label": "State the value and the reason",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Last mark. Naming the reason, that the three add to zero, is worth writing beside the answer.",
+        "memory_tip": "The three add to the zero vector, so they must be coplanar and the box product must be 0.",
+        "lines": [
+          "(i − j) + (j − k) + (k − i) = 0,",
+          "so the three vectors are dependent",
+          "and lie in one plane.",
+          {
+            "text": "∴ [i − j  j − k  k − i] = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is 0, because the three vectors add to the zero vector and so are coplanar.",
+          "accept": [
+            "the three vectors add up to the zero vector so they are coplanar",
+            "coplanar vectors have box product zero",
+            "the answer is the number zero",
+            "moodu kalipithe zero, so coplanar, box product zero",
+            "dependent vectors give a flat box of zero volume"
+          ],
+          "reject": [
+            "expand the determinant",
+            "write the three vectors as rows",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add to zero",
+            "coplanar",
+            "zero",
+            "dependent"
+          ]
+        },
+        "why": "A zero box product means the box built on the three vectors is flat, which is exactly what the three vectors summing to the zero vector forces.",
+        "common_mistakes": [
+          "Writing the answer as a vector.",
+          "Saying the vectors are parallel; they are coplanar, not parallel."
+        ]
+      }
+    ]
+  }
+}

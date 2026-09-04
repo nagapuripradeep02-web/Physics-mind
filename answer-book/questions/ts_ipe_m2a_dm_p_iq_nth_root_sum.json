@@ -1,0 +1,259 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_p_iq_nth_root_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If n is a positive integer, show that (p + iq)^(1/n) + (p − iq)^(1/n) = 2(p² + q²)^(1/2n) cos((1/n) Tan⁻¹(q/p)).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Mod-amp form of p + iq",
+      "marks": 2
+    },
+    {
+      "label": "Take the 1/n power by De Moivre's theorem",
+      "marks": 2
+    },
+    {
+      "label": "The conjugate root",
+      "marks": 1
+    },
+    {
+      "label": "Add and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 De Moivre's Theorem, answer 5. Printed appearances: AP 15,18. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] tags the book prints against answer 2 on book p.15, the same method over different numbers. The SAME split shape and the SAME step ids (s1_mod_amp, s2_de_moivre, s3_conjugate, s4_add) are used on answers 1.1, 1.2, 2 and 5 of this unit, deliberately: they are one method (mod-amp form → De Moivre → the conjugate pair → add) over different numbers. Answer 4 carries the same step names shifted by one because the book's own [1 Mark] roots step precedes them. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line on p.16 prints the left side as '(p+iq)^{1/n} + (p−q)^{1/n}' — the i is missing from the second bracket; it is (p − iq)^{1/n}, as the question and the book's own equation (2) say. The card writes it correctly. The 1/n power of a complex number has n values; the book, and this card, take the one value that De Moivre's theorem gives from the principal amplitude θ = Tan⁻¹(q/p) (p > 0 assumed, as the book assumes). Notation: (p+iq)^{1/n} and (p²+q²)^{1/2n} are typeset with KaTeX on the page per the notation ledger; in this plain-text question line they are written with a caret. Asked as Model Paper 4, Q18 (book p.118), whose answer-page index prints 'P 16(4)' although this answer is number 5."
+  },
+  "recall_prompt": "Say how you would prove this — how you write p + iq in mod-amp form, what a 1/n power does to r and to θ, and how the two roots combine.",
+  "insider_note": "Same method as the (1 + i)ⁿ questions, but with letters and a fractional power. The exponent on the modulus is 1/2n, not 1/n: the square root inside r is easy to forget.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mod_amp",
+        "kind": "equation",
+        "label": "Mod-amp form of p + iq",
+        "marks": 2,
+        "mark_note": "Mod-amp form",
+        "margin_note": "First and second marks. With x = p and y = q, r = √(p² + q²) and tan θ = q/p, so θ = Tan⁻¹(q/p). Name θ here; the final answer is written in terms of it.",
+        "memory_tip": "r = √(p² + q²) and θ = Tan⁻¹(q/p), which needs p > 0. Name θ here; the answer is written in terms of it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let p + iq = x + iy ⇒ x = p, y = q",
+          "r = √(x² + y²) = √(p² + q²)",
+          "Take p > 0, so p + iq is in Q1 or Q4. Then",
+          "tan θ = y/x = q/p ⇒ θ = Tan⁻¹(q/p)",
+          "∴ p + iq = √(p² + q²) (cos θ + i sin θ),",
+          "where θ = Tan⁻¹(q/p)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p + iq is first written in modulus-amplitude form: r = √(p² + q²) and θ = Tan⁻¹(q/p), giving r(cos θ + i sin θ).",
+          "accept": [
+            "first write p + iq in mod amp form with r equal to √(p² + q²) and theta equal to Tan⁻¹(q/p)",
+            "find the modulus and the amplitude of p + iq and write it as r cos theta plus i sin theta",
+            "convert p + iq to polar form r cis theta before raising the power",
+            "p + iq ni mod amp form lo rasi r √(p² + q²) theta Tan⁻¹(q/p) teeskovali",
+            "modulus amplitude form first, r is √(p² + q²) and the angle is Tan⁻¹(q/p)"
+          ],
+          "reject": [
+            "write it in polar form",
+            "find r",
+            "find theta"
+          ],
+          "heard_as": [
+            "mod amp",
+            "modulus amplitude",
+            "r cis theta",
+            "polar form",
+            "theta"
+          ]
+        },
+        "why": "De Moivre's theorem works only on a number written as cos θ + i sin θ. Pulling out r first is what makes the theorem usable, so this line is the method, not a preliminary. The condition p > 0 matters: Tan⁻¹ returns an angle in Q1 or Q4, so for p < 0 it gives the wrong quadrant and the result stated here is false — at p = −3, q = 4, n = 2 the true sum is 2 and this formula would give 4. The book states the identity without the condition.",
+        "common_mistakes": [
+          "Taking Tan⁻¹(q/p) as the argument when p < 0 — it names the wrong quadrant.",
+          "Writing (p² + q²)^(1/n) instead of (p² + q²)^(1/2n).",
+          "Claiming this is the only nth root, when the 1/n power is multi-valued."
+        ]
+      },
+      {
+        "id": "s2_de_moivre",
+        "kind": "equation",
+        "label": "Take the 1/n power by De Moivre",
+        "marks": 2,
+        "mark_note": "De Moivre",
+        "margin_note": "Third and fourth marks. A 1/n power divides the angle, so the cosine and the sine take θ/n. The modulus is (p² + q²) to the power 1/2 raised again to 1/n, so its exponent is 1/2n and not 1/n.",
+        "memory_tip": "A 1/n power DIVIDES the angle. The modulus already carries a square root, so its exponent is 1/2n, not 1/n.",
+        "lines": [
+          {
+            "text": "(p+iq)^{1/n} = \\left[(p^2+q^2)^{1/2}(\\cos\\theta + i\\sin\\theta)\\right]^{1/n}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} + i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(1)",
+            "render": "katex",
+            "style": "eq"
+          },
+          "(one value, by De Moivre's theorem)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That De Moivre's theorem is applied with the power 1/n: r becomes (p² + q²) to the 1/2n and the angle becomes θ/n, giving equation (1).",
+          "accept": [
+            "apply De Moivre with power one by n so the angle becomes theta by n and r becomes p squared plus q squared to the one by two n",
+            "the one by n power divides the angle by n and the modulus is raised to one by two n",
+            "by De Moivre cos theta plus i sin theta to the one by n is cos theta by n plus i sin theta by n",
+            "De Moivre lo power one by n pettite angle theta by n avuthundi",
+            "one value of the nth root is r to the one by n times cis theta by n"
+          ],
+          "reject": [
+            "take the root",
+            "use the theorem",
+            "raise to the power"
+          ],
+          "heard_as": [
+            "one by n",
+            "theta by n",
+            "one by two n",
+            "De Moivre",
+            "equation one"
+          ]
+        },
+        "why": "De Moivre's theorem with a fractional power gives ONE of the n values of the root, the one whose angle is θ/n. The square root inside r is why the modulus ends with exponent 1/2n: (1/2) times (1/n).",
+        "common_mistakes": [
+          "Writing the modulus power as 1/n instead of 1/2n; the square root contributes the extra 1/2.",
+          "Multiplying the angle by n instead of dividing it by n.",
+          "Claiming this is the only nth root; it is one value, which is all the question asks for."
+        ]
+      },
+      {
+        "id": "s3_conjugate",
+        "kind": "equation",
+        "label": "The conjugate root",
+        "marks": 1,
+        "mark_note": "Conjugate",
+        "margin_note": "Fifth mark. p − iq is the conjugate of p + iq, so this root carries the same modulus factor with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "memory_tip": "p − iq is the conjugate, so the same modulus factor with the sine sign reversed.",
+        "lines": [
+          "Similarly,",
+          {
+            "text": "(p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} - i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(2)",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate number is treated in the same way and gives (p² + q²) to the 1/2n times (cos(θ/n) − i sin(θ/n)), called equation (2), with the sign of the sine term changed.",
+          "accept": [
+            "similarly the conjugate gives the same thing with minus i sin, that is equation two",
+            "do the same for the conjugate and only the sign of the sine changes",
+            "the second bracket is the conjugate so its power is (p² + q²) to the 1/2n times (cos(θ/n) − i sin(θ/n))",
+            "conjugate ki same step, sin term sign matrame minus avuthundi",
+            "equation two is the conjugate with cos minus i sin"
+          ],
+          "reject": [
+            "do it again",
+            "the other one",
+            "similarly"
+          ],
+          "heard_as": [
+            "conjugate",
+            "minus i sin",
+            "equation two",
+            "similarly"
+          ]
+        },
+        "why": "The second number is the conjugate of the first, so it has the same r and the angle −θ. Nothing new has to be computed; only the sign of the sine changes.",
+        "common_mistakes": [
+          "Changing the sign of the cosine as well as the sine.",
+          "Recomputing r and θ from scratch and losing time.",
+          "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ]
+      },
+      {
+        "id": "s4_add",
+        "kind": "boxed_final",
+        "label": "Add (1) and (2)",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2(p² + q²) to the power 1/2n, times cos(θ/n). Replace θ by Tan⁻¹(q/p), which is the form the question asks for.",
+        "memory_tip": "Adding doubles the cosine. Replace θ by Tan⁻¹(q/p) — that is the form the question asks for.",
+        "lines": [
+          "Adding (1) and (2):",
+          {
+            "text": "(p+iq)^{1/n} + (p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\cdot 2\\cos\\tfrac{\\theta}{n}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= 2\\,(p^2+q^2)^{1/2n}\\cos\\!\\left(\\tfrac{1}{n}\\,\\mathrm{Tan}^{-1}\\tfrac{q}{p}\\right)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equations (1) and (2) are added, the i sin terms cancel, and the result is 2 times (p² + q²) to the 1/2n times cos of (1/n) Tan⁻¹(q/p).",
+          "accept": [
+            "add one and two, the i sin terms cancel and we get 2 times (p² + q²) to the 1/2n times cos of (1/n) Tan⁻¹(q/p)",
+            "adding the two equations the sine parts cancel leaving two times the cosine",
+            "one plus two gives two cos and the final answer is 2 times (p² + q²) to the 1/2n times cos of (1/n) Tan⁻¹(q/p)",
+            "rendu equations add cheste sin terms cancel ayyi 2 times (p² + q²) to the 1/2n times cos of (1/n) Tan⁻¹(q/p) vasthundi",
+            "the imaginary parts cancel on adding and the answer is two to the n plus one times cos"
+          ],
+          "reject": [
+            "add them",
+            "then we get the answer",
+            "simplify"
+          ],
+          "heard_as": [
+            "adding",
+            "cancel",
+            "two cos",
+            "n plus one",
+            "final answer"
+          ]
+        },
+        "why": "The two roots are conjugates, so their sum is twice the real part; adding removes the i sin terms and leaves the cosine. The book's last line prints the second bracket as (p − q) with the i missing; the card writes (p − iq).",
+        "common_mistakes": [
+          "Leaving θ in the answer instead of replacing it by Tan⁻¹(q/p), which the question asks for.",
+          "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
+          "Dropping the factor (p² + q²) to the 1/2n."
+        ]
+      }
+    ]
+  }
+}

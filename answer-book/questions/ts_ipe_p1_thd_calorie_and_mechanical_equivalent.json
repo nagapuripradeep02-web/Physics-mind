@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_calorie_and_mechanical_equivalent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define one calorie. Define the mechanical equivalent of heat.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "One calorie",
+      "marks": 1
+    },
+    {
+      "label": "Mechanical equivalent of heat",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 7 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The two-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: one calorie raises the temperature of one gram of water from 14.5 °C to 15.5 °C at one atmosphere; W = JQ defines the mechanical equivalent of heat J, with J ≈ 4.186 J cal⁻¹ (about 4.2), the conversion factor between calories and joules."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_calorie",
+        "kind": "text",
+        "label": "One calorie",
+        "marks": 1,
+        "mark_note": "One calorie",
+        "lines": [
+          "One calorie is the heat needed to",
+          "raise the temperature of one gram",
+          "of water from 14.5 °C to 15.5 °C,",
+          "at a pressure of one atmosphere."
+        ],
+        "margin_note": "First mark. State the definition — one gram of water from 14.5 °C to 15.5 °C; the one-atmosphere condition secures it.",
+        "why": "The range 14.5 °C to 15.5 °C is fixed because the specific heat of water changes slightly with temperature, so the calorie needs one fixed interval to have a single value.",
+        "common_mistakes": [
+          "Giving a rounded range such as 14 °C to 15 °C instead of the exact 14.5 °C to 15.5 °C.",
+          "Leaving out the pressure condition of one atmosphere — add it to secure the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one calorie is the heat needed to raise the temperature of one gram of water from 14.5 degrees Celsius to 15.5 degrees Celsius at one atmosphere pressure.",
+          "accept": [
+            "one gram of water by one degree",
+            "14.5 to 15.5 degrees Celsius",
+            "at one atmosphere"
+          ],
+          "reject": [
+            "ratio of work to heat"
+          ],
+          "heard_as": [
+            "one calorie",
+            "fourteen point five to fifteen point five"
+          ]
+        },
+        "memory_tip": "One gram, one degree, from 14.5 to 15.5 °C, at one atmosphere."
+      },
+      {
+        "id": "s2_mechanical_equivalent",
+        "kind": "boxed_final",
+        "label": "Mechanical equivalent",
+        "marks": 1,
+        "mark_note": "Mechanical equivalent",
+        "lines": [
+          "The mechanical equivalent of heat J",
+          "is the ratio of mechanical work",
+          "done to the heat it produces:",
+          {
+            "text": "W = JQ",
+            "style": "eq"
+          },
+          {
+            "text": "J ≈ 4.186 J cal⁻¹ (about 4.2)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. W = JQ, then J ≈ 4.186 J cal⁻¹, about 4.2.",
+        "why": "J is the factor that converts a quantity of heat, measured in calories, into the same quantity measured as mechanical work in joules — a conversion factor, not a new form of energy.",
+        "common_mistakes": [
+          "Writing Q = JW with J and Q swapped — work equals J times the heat, W = JQ.",
+          "Giving J without its value, about 4.2 joules per calorie."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mechanical equivalent of heat J is the ratio of work done to heat produced, W equals J times Q, and J is about 4.2 joules per calorie.",
+          "accept": [
+            "W equals J Q",
+            "ratio of work to heat",
+            "four point two joules per calorie"
+          ],
+          "reject": [
+            "one gram of water by one degree"
+          ],
+          "heard_as": [
+            "mechanical equivalent of heat",
+            "four point one eight six"
+          ]
+        },
+        "memory_tip": "J converts calories to joules — about 4.2 joules for every calorie."
+      }
+    ]
+  },
+  "insider_note": "The calorie's range, 14.5 °C to 15.5 °C, and J's value, about 4.2 J cal⁻¹, are the two numbers checked most often."
+}

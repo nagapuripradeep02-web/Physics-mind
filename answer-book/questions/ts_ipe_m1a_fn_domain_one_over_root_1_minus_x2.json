@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "A root in a DENOMINATOR needs > 0, not ≥ 0 — at zero the fraction is undefined.",
         "lines": [
           "f(x) is defined when 1 − x² > 0",
           "⇒ x² − 1 < 0",
@@ -87,6 +88,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Open interval (−1, 1). The two end points are exactly where the denominator vanishes.",
         "lines": [
           "⇒ x ∈ (−1, 1)",
           "∴ Domain = (−1, 1)"
@@ -126,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The root sits in a DENOMINATOR, so the inside must be > 0 and not ≥ 0 — the brackets are open and ±1 are excluded. A negative product means x lies between the roots."
 }

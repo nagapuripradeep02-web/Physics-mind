@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Stoichiometry (Chemistry)"
   },
   "chapter": "Stoichiometry",
@@ -81,5 +81,6 @@
         "margin_note": "Box the value with its unit mol⁻¹."
       }
     ]
-  }
+  },
+  "insider_note": "Two questions, one mark each, and the second is a number that must be exactly right, power of ten and mol⁻¹ included. The mole definition needs the carbon-12 standard, not the molecular-weight shortcut."
 }

@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_two_sin_minus_cos_325",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that 2 Sin⁻¹(3/5) − Cos⁻¹(5/13) = Cos⁻¹(323/325).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the two angles",
+      "marks": 1
+    },
+    {
+      "label": "Double the first angle",
+      "marks": 1
+    },
+    {
+      "label": "Expand cos of the difference",
+      "marks": 1
+    },
+    {
+      "label": "Check the range and close",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate pieces of work — naming the angles, doubling one of them, expanding the difference, and proving the result lies in the range of Cos⁻¹. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: 2·arcsin(0.6) − arccos(5/13) = arccos(323/325) = 0.110997010491. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_two_angles",
+        "kind": "equation",
+        "label": "Name the two angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Naming the angles turns the statement into cos(2A − B) = 323/325, which is a plain expansion.",
+        "memory_tip": "3-4-5 and 5-12-13 are the two triangles here. Write all four ratios before starting.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = Sin⁻¹(3/5) ⇒ sinA = 3/5",
+          "A ∈ (0, π/2), so cosA = 4/5",
+          "Let B = Cos⁻¹(5/13) ⇒ cosB = 5/13",
+          "B ∈ (0, π/2), so sinB = 12/13",
+          "RTP: 2A − B = Cos⁻¹(323/325)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are named as first-quadrant angles with all four ratios written down.",
+          "accept": [
+            "let a be sin inverse three fifths and b be cos inverse five thirteenths, then write all four ratios",
+            "both angles are first quadrant so every ratio is positive",
+            "cos a is four fifths and sin b is twelve thirteenths",
+            "rendu angles ki peru pettali, four ratios rasali",
+            "name the angles and use the three four five and five twelve thirteen triangles"
+          ],
+          "reject": [
+            "double the first angle",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse three fifths",
+            "cos inverse five thirteenths",
+            "twelve thirteenths",
+            "first quadrant"
+          ]
+        },
+        "why": "Both inverse values are positive, so A and B are first-quadrant angles. Every sine and cosine below is then a positive number.",
+        "common_mistakes": [
+          "Taking cosA as −4/5.",
+          "Reading Sin⁻¹(3/5) as an angle whose cosine is 3/5."
+        ]
+      },
+      {
+        "id": "s2_double_the_first_angle",
+        "kind": "equation",
+        "label": "Double the first angle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both double-angle values are needed, because the expansion of cos(2A − B) uses each one.",
+        "memory_tip": "cos2A = 1 − 2sin²A takes sinA straight in; sin2A = 2 sinA cosA needs both ratios.",
+        "lines": [
+          "cos2A = 1 − 2sin²A",
+          "= 1 − 2(9/25) = 7/25",
+          "sin2A = 2 sinA cosA",
+          "= 2(3/5)(4/5) = 24/25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos2A = 7/25 and sin2A = 24/25 are computed from the double-angle formulas.",
+          "accept": [
+            "use one minus two sine squared to get cos two a as seven over twenty five",
+            "sin two a is two sin a cos a which is twenty four over twenty five",
+            "find both double angle values first",
+            "cos two a seven by twenty five, sin two a twenty four by twenty five",
+            "double the first angle before subtracting"
+          ],
+          "reject": [
+            "expand cos of the difference",
+            "name the two angles",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos two a",
+            "seven over twenty five",
+            "sin two a",
+            "twenty four over twenty five"
+          ]
+        },
+        "why": "The statement has 2A, not A, so both double-angle values are needed before any subtraction can be written.",
+        "common_mistakes": [
+          "Using cos2A = 2cos²A − 1 with sinA by mistake.",
+          "Writing sin2A as 2 sinA."
+        ]
+      },
+      {
+        "id": "s3_expand_cos_of_the_difference",
+        "kind": "equation",
+        "label": "Expand cos of the difference",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "Third mark. Both products already sit over 325, so they add with no extra work.",
+        "memory_tip": "cos(X − Y) = cosX cosY + sinX sinY — the sign turns to plus for a difference.",
+        "lines": [
+          "cos(2A − B) = cos2A cosB + sin2A sinB",
+          "= (7/25)(5/13) + (24/25)(12/13)",
+          "= 35/325 + 288/325",
+          "= 323/325"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(2A − B) is expanded with a plus sign and comes to 323/325.",
+          "accept": [
+            "expand cos of two a minus b as cos cos plus sin sin",
+            "the two products are thirty five over three twenty five and two eighty eight over three twenty five",
+            "they add to three twenty three over three twenty five",
+            "cos difference lo plus sign vasthundi, three twenty three by three twenty five",
+            "the cosine of the difference is three twenty three by three twenty five"
+          ],
+          "reject": [
+            "double the first angle",
+            "check the range",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two a cos b",
+            "three twenty three",
+            "three twenty five",
+            "plus sin sin"
+          ]
+        },
+        "why": "The difference formula for cosine carries a plus sign between the two products. That sign is what produces 323 and not 253.",
+        "common_mistakes": [
+          "Writing a minus sign between the two products.",
+          "Using the sine difference formula instead."
+        ]
+      },
+      {
+        "id": "s4_check_the_range_and_close",
+        "kind": "boxed_final",
+        "label": "Check the range and close",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Cosine decreases as the angle increases on (0, π), so the smaller cosine 7/25 belongs to the bigger angle — that is how 2A > B is proved.",
+        "memory_tip": "Cos⁻¹ only returns angles in [0, π]. Show 2A − B is positive and below π before writing the last line.",
+        "lines": [
+          "cos2A = 7/25 > 0 ⇒ 2A ∈ (0, π/2)",
+          "7/25 < 5/13 and cos decreases on (0, π/2),",
+          "so 2A > B, giving 2A − B ∈ (0, π/2).",
+          "This is inside [0, π], the range of Cos⁻¹.",
+          "2Sin⁻¹(3/5) − Cos⁻¹(5/13) = Cos⁻¹(323/325)",
+          {
+            "text": "∴ L.H.S = Cos⁻¹(323/325) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2A − B is shown to lie in [0, π] before it is written as Cos⁻¹(323/325).",
+          "accept": [
+            "show two a minus b is positive and less than pi so it is inside the range of cos inverse",
+            "the smaller cosine belongs to the bigger angle so two a is greater than b",
+            "the angle is in the first quadrant so we can write it as cos inverse",
+            "range check cheyyali, appude cos inverse rayochu",
+            "since the difference lies in zero to pi the result follows"
+          ],
+          "reject": [
+            "expand cos of the difference",
+            "the two products add to three twenty three",
+            "then I get it"
+          ],
+          "heard_as": [
+            "range of cos inverse",
+            "zero to pi",
+            "two a greater than b",
+            "cos inverse three twenty three by three twenty five"
+          ]
+        },
+        "why": "Knowing the cosine is not enough. Cos⁻¹ returns a value in [0, π], so the angle 2A − B must be shown to lie there before it can be written as Cos⁻¹(323/325).",
+        "common_mistakes": [
+          "Writing the Cos⁻¹ line without checking the range.",
+          "Assuming 2A > B with no reason given."
+        ]
+      }
+    ]
+  }
+}

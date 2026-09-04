@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_cbrt_1_plus_x_minus_cbrt_1_minus_x_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (∛(1 + x) − ∛(1 − x))/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add and subtract 1 to split it",
+      "marks": 1
+    },
+    {
+      "label": "Apply the standard limit with n = 1/3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 34. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the standard limit you use and say what value of n goes into it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_into_two",
+        "kind": "equation",
+        "label": "Add and subtract 1 to split it",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Adding and subtracting 1 is the method. Rationalising with a² + ab + b² instead is an equally valid route and earns the same mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0 the numerator is 1 − 1 = 0 and the denominator is 0, so the form is 0/0.",
+          "Add and subtract 1 in the numerator:",
+          "(∛(1 + x) − ∛(1 − x))/x = (∛(1 + x) − 1)/x + (1 − ∛(1 − x))/x",
+          "In the second part put t = −x; as x → 0, t → 0, and (1 − ∛(1 − x))/x = (∛(1 + t) − 1)/t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding and subtracting 1 splits the expression into two copies of the standard limit ((1 + x)ⁿ − 1)/x.",
+          "accept": [
+            "add and subtract one so each cube root stands beside its own one",
+            "split it into two standard limits",
+            "put t equals minus x in the second part",
+            "okati add chesi okati subtract chesi rendu standard limits ga split cheyyali",
+            "use one plus x to the power n minus one over x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add and subtract one",
+            "standard limit",
+            "t equals minus x",
+            "cube root"
+          ]
+        },
+        "why": "Substitution gives the indeterminate form 0/0. Adding and subtracting 1 turns the expression into two copies of the standard limit lim(x → 0) ((1 + x)ⁿ − 1)/x = n.",
+        "common_mistakes": [
+          "Writing ∛(1 + x) − ∛(1 − x) = ∛(2x); a cube root does not split across a difference.",
+          "Losing the sign at t = −x, which makes the two halves cancel and gives 0."
+        ],
+        "memory_tip": "Add and subtract 1 so that each cube root stands beside its own 1."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Apply the standard limit with n = 1/3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 2/3. Checked numerically: at x = 0.001 the expression is 0.66667.",
+        "lines": [
+          "The standard limit is  lim(x → 0) ((1 + x)ⁿ − 1)/x = n.  Here n = 1/3.",
+          "∴ limit = 1/3 + 1/3",
+          {
+            "text": "∴ lim(x → 0) (∛(1 + x) − ∛(1 − x))/x = 2/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each half gives n = 1/3, so the sum is 2/3.",
+          "accept": [
+            "each half gives one third so the answer is two thirds",
+            "n is one by three because it is a cube root",
+            "the limit is two by three",
+            "rendu halves one third ichi two thirds vasthundi",
+            "twice one third is two thirds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two thirds",
+            "one third",
+            "n equals one by three",
+            "two by three"
+          ]
+        },
+        "why": "Each half contributes n = 1/3 and the two are added. The answer is twice the exponent, which is why the square-root version of the same question gives 1.",
+        "common_mistakes": [
+          "Giving 1/3, by using the standard limit only once.",
+          "Using n = 3 instead of n = 1/3; a cube root is the power one third."
+        ],
+        "memory_tip": "Both halves give the exponent 1/3, so the answer is 2 × 1/3."
+      }
+    ]
+  },
+  "insider_note": "Split it into two copies of ((1 + x)ⁿ − 1)/x → n with n = 1/3, adding and subtracting 1 to make them. The second half needs t = −x, and each piece gives 1/3."
+}

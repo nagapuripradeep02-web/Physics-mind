@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_equal_roots_a3_b3_c3_3abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If c² ≠ ab and the roots of (c² − ab)x² − 2(a² − bc)x + (b² − ac) = 0 are equal, then show that a³ + b³ + c³ = 3abc or a = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Compare with Ax² + Bx + C",
+      "marks": 1
+    },
+    {
+      "label": "Equal roots ⇒ Δ = 0",
+      "marks": 1
+    },
+    {
+      "label": "Expand and simplify",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.91 (PDF p.92 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — Star Questions Plus, Quadratic Equations banner, answer 194. The book prints no mark cut for Star Questions Plus; THE SECTION IS OURS — classed by shape: the discriminant of a symbolic quadratic has to be expanded, cancelled and factorised — four written moves and a 4-mark length, so it is filed as a SAQ (the printed TS 19 chip matches the Section-B slot; the two short sign-of-expression items 192–193 and the sum-of-squares item 191 on the same page are filed as VSAQs). Printed appearances: TS 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the four-move 1+1+1+1 used across this unit's SAQ chapter 8 (compare · Δ = 0 · expand · conclude). Star Questions Plus prints no stars and no mark cut; the star rank carried in the manifest is the CHAPTER's (SAQ chapter 8 ★★★ / VSAQ chapter 14 ★★), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth-check: (a² − bc)² − (c² − ab)(b² − ac) expands to a⁴ + ab³ + ac³ − 3a²bc = a(a³ + b³ + c³ − 3abc), as the book prints. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.91, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.75, the Quadratic VSAQ chapter end prints “Few More VSAQ are in Page 91” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+  },
+  "recall_prompt": "Say how you would show this — say what A, B and C are, what equal roots gives, how you expand and cancel the discriminant, and how the two possible conclusions come out.",
+  "insider_note": "Equal roots means Δ exactly zero, and never divide through by a — that silently deletes the a = 0 half of the printed answer. The condition c² ≠ ab is what makes the leading coefficient non-zero, so the equation really is a quadratic.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_compare",
+        "kind": "equation",
+        "label": "Compare with Ax² + Bx + C",
+        "marks": 1,
+        "mark_note": "Identify A, B, C",
+        "margin_note": "First mark. Capital A, B, C so they are not confused with the a, b, c inside them. B carries the minus sign: B = −2(a² − bc). The condition c² ≠ ab is what makes A ≠ 0, so the equation is really a quadratic.",
+        "memory_tip": "Use capital A, B, C so they are not confused with the a, b, c inside them. B carries the minus.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Comparing with Ax² + Bx + C = 0:",
+          "A = c² − ab, B = −2(a² − bc), C = b² − ac",
+          "c² ≠ ab, so A ≠ 0 and it is a quadratic."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given equation is matched to Ax² + Bx + C = 0 with A = c² − ab, B = −2(a² − bc), C = b² − ac, and that c² ≠ ab makes it a genuine quadratic.",
+          "accept": [
+            "compare with capital A x squared plus B x plus C and read off A B and C",
+            "A is c squared minus a b, B is minus two into a squared minus b c, C is b squared minus a c",
+            "identify the three coefficients using capital letters so they are not confused with a b c",
+            "given equation ni A x squared plus B x plus C tho compare chesi A B C rayali",
+            "c squared not equal to a b means the x squared coefficient is not zero"
+          ],
+          "reject": [
+            "write the equation",
+            "find the discriminant",
+            "compare it"
+          ],
+          "heard_as": [
+            "capital A",
+            "capital B",
+            "capital C",
+            "coefficients",
+            "not equal to a b"
+          ]
+        },
+        "why": "The discriminant formula needs the three coefficients named, and this equation's coefficients are themselves expressions in a, b, c. Naming them first is what stops the a's and b's from being mixed up.",
+        "common_mistakes": [
+          "Writing B = 2(a² − bc), dropping the minus.",
+          "Using small a, b, c for the coefficients and losing track of which is which.",
+          "Ignoring c² ≠ ab — without it the equation might not be a quadratic at all."
+        ]
+      },
+      {
+        "id": "s2_discriminant_zero",
+        "kind": "equation",
+        "label": "Equal roots ⇒ Δ = 0",
+        "marks": 1,
+        "mark_note": "Δ = 0",
+        "margin_note": "Second mark. Equal roots means the discriminant is exactly zero, not ≥ 0. Squaring B removes its minus sign, and every term carries a factor 4 that can be divided out at once.",
+        "memory_tip": "Equal roots means Δ is exactly 0, not ≥ 0. Every term carries a 4 — divide it out at once.",
+        "lines": [
+          "Roots are equal ⇒ Δ = B² − 4AC = 0",
+          "⇒ [−2(a² − bc)]² − 4(c² − ab)(b² − ac) = 0",
+          "⇒ 4(a² − bc)² − 4(c² − ab)(b² − ac) = 0",
+          "⇒ (a² − bc)² − (c² − ab)(b² − ac) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal roots means B² − 4AC = 0, which after dividing by 4 is (a² − bc)² − (c² − ab)(b² − ac) = 0.",
+          "accept": [
+            "equal roots so B squared minus four A C is zero",
+            "put the discriminant equal to zero, square B and divide the whole thing by four",
+            "the discriminant vanishes because the roots are equal",
+            "roots equal kabatti discriminant zero pettali, four tho divide cheyyali",
+            "a squared minus b c whole squared minus c squared minus a b into b squared minus a c equals zero"
+          ],
+          "reject": [
+            "find delta",
+            "expand it",
+            "write the discriminant"
+          ],
+          "heard_as": [
+            "equal roots",
+            "discriminant",
+            "B squared minus four A C",
+            "equal to zero",
+            "divide by four"
+          ]
+        },
+        "why": "A quadratic has equal roots exactly when its discriminant is zero. That is the only fact the question gives, so everything must come out of this one equation.",
+        "common_mistakes": [
+          "Writing Δ ≥ 0 or Δ > 0 — 'equal roots' means exactly zero.",
+          "Keeping the minus sign on B after squaring.",
+          "Not dividing by 4 and carrying large coefficients into the expansion."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand and simplify",
+        "marks": 1,
+        "mark_note": "Expand",
+        "margin_note": "Third mark. (a² − bc)² = a⁴ − 2a²bc + b²c². The product (c² − ab)(b² − ac) = b²c² − ac³ − ab³ + a²bc. The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every surviving term has a factor a.",
+        "memory_tip": "The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every survivor has a factor a.",
+        "lines": [
+          "⇒ a⁴ − 2a²bc + b²c²",
+          "   − (b²c² − ac³ − ab³ + a²bc) = 0",
+          "⇒ a⁴ − 2a²bc + b²c² − b²c²",
+          "   + ac³ + ab³ − a²bc = 0",
+          "⇒ a⁴ + ab³ + ac³ − 3a²bc = 0",
+          "⇒ a(a³ + b³ + c³ − 3abc) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives a⁴ − 2a²bc + b²c² − (b²c² − ac³ − ab³ + a²bc) = 0, the b²c² terms cancel, leaving a⁴ + ab³ + ac³ − 3a²bc = 0, which factors as a(a³ + b³ + c³ − 3abc) = 0.",
+          "accept": [
+            "expand both products, the b squared c squared terms cancel and what is left is a into a cubed plus b cubed plus c cubed minus three a b c",
+            "after expanding, take out the common factor a to get a times a cubed plus b cubed plus c cubed minus three a b c equals zero",
+            "the expansion reduces to a to the four plus a b cubed plus a c cubed minus three a squared b c",
+            "expand chesi b squared c squared cancel avthundi, a common ga teesthe a into a cube plus b cube plus c cube minus three a b c",
+            "every remaining term has a factor a so pull it out"
+          ],
+          "reject": [
+            "simplify",
+            "expand",
+            "take out a"
+          ],
+          "heard_as": [
+            "cancel",
+            "common factor a",
+            "a cubed plus b cubed plus c cubed",
+            "three a b c",
+            "a to the four"
+          ]
+        },
+        "why": "The expansion looks long but two pairs of terms cancel or combine, and the survivors all share the factor a. Seeing that common factor is the whole step; the identity in the answer is inside the bracket.",
+        "common_mistakes": [
+          "Sign error in the product: (c² − ab)(b² − ac) has −ac³ and −ab³, and +a²bc.",
+          "Combining −2a²bc − a²bc as −a²bc or −2a²bc.",
+          "Dividing through by a — that silently throws away the case a = 0."
+        ]
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. A product is zero when either factor is zero, and BOTH cases are part of the answer: a = 0, or the bracket is zero, which is a³ + b³ + c³ = 3abc. Write both.",
+        "memory_tip": "A product is zero when either factor is, so both cases are the answer. Never divide by a.",
+        "lines": [
+          "⇒ a = 0 or a³ + b³ + c³ − 3abc = 0",
+          {
+            "text": "∴ a³ + b³ + c³ = 3abc or a = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a product equal to zero gives two cases — a = 0, or a³ + b³ + c³ − 3abc = 0, i.e. a³ + b³ + c³ = 3abc — and both are stated.",
+          "accept": [
+            "a product is zero so either a is zero or a cubed plus b cubed plus c cubed equals three a b c",
+            "either factor can be zero which gives the two results in the question",
+            "so a equals zero or a cubed plus b cubed plus c cubed is three a b c, hence shown",
+            "product zero kabatti a zero leda a cube plus b cube plus c cube equals three a b c",
+            "both cases a equals zero and the cubes identity are the answer"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "either",
+            "or a equals zero",
+            "three a b c",
+            "hence shown",
+            "both cases"
+          ]
+        },
+        "why": "The question says 'or a = 0' because the algebra genuinely allows it: the factor a can vanish on its own. A proof that divides by a proves only half the statement.",
+        "common_mistakes": [
+          "Dropping the case a = 0.",
+          "Writing a³ + b³ + c³ = −3abc.",
+          "Ending without the sentence that states the result."
+        ]
+      }
+    ]
+  }
+}

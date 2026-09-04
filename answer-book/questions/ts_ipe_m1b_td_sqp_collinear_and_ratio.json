@@ -28,7 +28,7 @@
       "marks": 1
     },
     {
-      "label": "Add two of them to get the third",
+      "label": "Add two distances and read off the ratio",
       "marks": 1
     }
   ],
@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "All three squared differences are equal within each pair here, so each distance is a multiple of √3.",
         "lines": [
           {
             "text": "Sol:",
@@ -85,7 +86,7 @@
             "surd"
           ]
         },
-        "why": "Both questions on this page are answered by computing the SAME three distances. Only the conclusion drawn from them differs, which is why the book prints the note 'Questioning is different but Answering is similar' underneath.",
+        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -94,10 +95,11 @@
       {
         "id": "s2_draw_the_conclusion",
         "kind": "boxed_final",
-        "label": "Add two of them to get the third",
+        "label": "Add two distances and read off the ratio",
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",
+        "memory_tip": "AB + BC = CA proves collinear, and the ratio is AB : BC = 2√3 : 4√3 = 1 : 2.",
         "lines": [
           "Now, AB + BC = 2√3 + 4√3 = 6√3 = CA",
           "∴ A, B, C are collinear",
@@ -136,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two questions in one, and the ratio comes free once the distances are done: AB : BC = 2√3 : 4√3. Reduce it to 1 : 2 — leaving 2 : 4 is an unfinished answer."
 }

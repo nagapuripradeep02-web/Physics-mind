@@ -62,6 +62,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "No mark of its own. In a regular hexagon opposite sides are equal and parallel, and the three long diagonals all pass through the centre. Both facts are used below.",
+        "memory_tip": "Two facts do the work: opposite sides are equal and parallel, and the long diagonals pass through O.",
         "lines": [
           "Given ABCDEF is a regular hexagon with centre O."
         ],
@@ -98,6 +99,7 @@
         "label": "Draw the hexagon",
         "marks": 0,
         "margin_note": "Worth no mark but worth the thirty seconds. Mark A to F round the shape and draw the diagonal AD through O — with that line on the page the two substitutions below become obvious instead of memorised.",
+        "memory_tip": "Mark A to F and draw AD through O. With that line down, the two swaps below become obvious.",
         "figure": {
           "id": "hexagon_abcdef",
           "width": 300,
@@ -206,7 +208,7 @@
         "why": "AE and BD are opposite sides of the rectangle ABDE, and AF and CD are opposite sides of ACDF. You can assert that from the picture in a moment, or fail to see it at all without one.",
         "common_mistakes": [
           "Skipping the figure and then guessing which vectors are equal.",
-          "Labelling the vertices clockwise, which swaps the pairs."
+          "Labelling the vertices out of order, so ABCDEF does not run round the hexagon one vertex at a time."
         ]
       },
       {
@@ -216,6 +218,7 @@
         "marks": 1,
         "mark_note": "Equal vectors",
         "margin_note": "First mark. ABDE is a rectangle, so AE and BD are the same vector; ACDF is a rectangle, so AF and CD are the same. Replacing them is what lets the sum collapse.",
+        "memory_tip": "ABDE is a rectangle so AE = BD; ACDF is a rectangle so AF = CD. Those swaps make the sum collapse.",
         "lines": [
           "∴ (AB + AC) + AD + (AE + AF)",
           "= (AB + AC) + AD + (BD + CD)",
@@ -257,6 +260,7 @@
         "marks": 2,
         "mark_note": "Triangle law",
         "margin_note": "Half the marks. Regroup so each bracket is a nose-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
+        "memory_tip": "Regroup into nose-to-tail pairs: AB + BD = AD and AC + CD = AD. With the AD already there, three of them.",
         "lines": [
           "= (AB + BD) + AD + (AC + CD)",
           "= AD + AD + AD",
@@ -299,6 +303,7 @@
         "marks": 1,
         "mark_note": "Final form",
         "margin_note": "Last mark. O is the centre, so it is the midpoint of the long diagonal AD — which makes AD exactly twice AO. The question asked for both forms, so write both.",
+        "memory_tip": "O is the MIDPOINT of AD, so AD = 2AO. The question asked for both forms — write both.",
         "lines": [
           "O is the centre, so it is the midpoint of AD:",
           "3AD = 3(2AO)   [∵ AD = 2AO]",
@@ -337,5 +342,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof rests on two hexagon facts: AE = BD and AF = CD. Swapping those turns the five terms into three copies of AD, and O being the midpoint of AD then gives the 6AO."
 }

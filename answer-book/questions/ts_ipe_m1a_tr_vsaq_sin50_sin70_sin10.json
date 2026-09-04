@@ -50,7 +50,8 @@
         "label": "Pair the first two terms",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Pair sin50° with −sin70° using the sine sum formula. Note the half-difference comes out NEGATIVE, and that is what makes it cancel.",
+        "margin_note": "First mark. Pair sin50° with sin70° using the sine DIFFERENCE formula, sinC − sinD = 2 cos((C+D)/2) sin((C−D)/2). Note the half-difference comes out NEGATIVE, and that is what makes it cancel.",
+        "memory_tip": "Pair sin50° with −sin70°. The half-difference comes out NEGATIVE, which is what makes it cancel.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos60° is 1/2, so the 2 cancels; and sin(−10°) is −sin10°, which cancels the third term exactly.",
+        "memory_tip": "cos60° = 1/2 cancels the 2, and sin(−10°) = −sin10° cancels the third term exactly.",
         "lines": [
           "= 2 × (1/2) × sin(−10°) + sin10°",
           "= sin(−10°) + sin10°",
@@ -126,12 +128,13 @@
             "zero"
           ]
         },
-        "why": "sin is an odd function, so sin(−θ) = −sin θ. That sign is what makes the last two terms annihilate rather than double.",
+        "why": "sin is an odd function, so sin(−θ) = −sin θ. That sign is what makes the last two terms cancel instead of adding.",
         "common_mistakes": [
           "Writing sin(−10°) = sin 10° and getting 2 sin 10°.",
           "Writing cos 60° = √3/2."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair sin50° − sin70° with the difference formula; the half-difference is NEGATIVE, giving sin(−10°). That minus sign is exactly what cancels the third term."
 }

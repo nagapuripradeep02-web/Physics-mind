@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A′ is the transpose: rows become columns. Then A + A′ is an ordinary entry-by-entry addition.",
+        "memory_tip": "A′ swaps rows for columns; then A + A′ is an ordinary entry-by-entry addition.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark, and a different operation from the first — this one is row against column, not entry by entry. Both answers come out symmetric, which is worth noticing.",
+        "memory_tip": "A different operation from the first: row against COLUMN, not entry by entry.",
         "lines": [
           {
             "text": "AA' = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}\\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix} = \\begin{bmatrix} 20 & -22 \\\\ -22 & 34 \\end{bmatrix}",
@@ -145,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two different operations: A + A′ adds entry by entry, while AA′ is a full matrix product. Both results come out symmetric, which is a useful check."
 }

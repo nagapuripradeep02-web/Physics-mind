@@ -1,0 +1,176 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_circle_through_2_1_5_5_minus6_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the circle passing through the points (2,1), (5,5), (−6,7).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First equation from SA = SB",
+      "marks": 1
+    },
+    {
+      "label": "Second equation from SA = SC",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 2
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the circle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Circle, answer 2. This answer runs the full width of a single-column page but prints NO margin tags, so the split is still ours. Printed appearance tag: AP 18. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The book solves the two linear equations by cross-multiplication; the same centre (−1/2, 6) comes out by elimination, which is written here as well because cross-multiplication is easy to mis-sign. Every number was re-derived and the book is correct. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The centre has a fraction in it, so rounding −1/2 to 0 makes every later value wrong — carry the fraction all the way and clear it at the final multiplication.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_equation",
+        "kind": "equation",
+        "label": "First equation from SA = SB",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The numbers are larger here than in the earlier questions, so expand in two clear rows rather than one long line.",
+        "memory_tip": "Same three steps every time: square, cancel the second-degree terms, tidy.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(x₁, y₁) be the centre of the circle.",
+          "A = (2, 1), B = (5, 5), C = (−6, 7)",
+          "⇒ SA = SB = SC",
+          "Now SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−2)² + (y₁−1)² = (x₁−5)² + (y₁−5)²",
+          "⇒ −4x₁ + 4 − 2y₁ + 1 = −10x₁ + 25 − 10y₁ + 25",
+          "⇒ 6x₁ + 8y₁ − 45 = 0 … (1)"
+        ],
+        "why": "The squared terms cancel across the equals sign, so what is left is a straight line — the perpendicular bisector of AB. The centre must lie on it.",
+        "common_mistakes": [
+          "Collecting 4 + 1 = 5 on the left and 25 + 25 = 50 on the right, then subtracting the wrong way.",
+          "Dividing by 2 and losing the odd constant 45."
+        ]
+      },
+      {
+        "id": "s2_second_equation",
+        "kind": "equation",
+        "label": "Second equation from SA = SC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. C has a negative x, so (x₁ + 6)² gives +12x₁ — the sign that is missed most often.",
+        "memory_tip": "C = (−6, 7) gives brackets (x₁ + 6) and (y₁ − 7). Change the sign of the coordinate.",
+        "lines": [
+          "Also SA = SC ⇒ SA² = SC²",
+          "⇒ (x₁−2)² + (y₁−1)² = (x₁+6)² + (y₁−7)²",
+          "⇒ −4x₁ + 4 − 2y₁ + 1 = 12x₁ + 36 − 14y₁ + 49",
+          "⇒ −16x₁ + 12y₁ − 80 = 0",
+          "⇒ 4x₁ − 3y₁ + 20 = 0 … (2)"
+        ],
+        "why": "This is the perpendicular bisector of AC. Dividing through by −4 keeps the coefficients small, which matters when the two lines are solved together.",
+        "common_mistakes": [
+          "Writing (x₁ + 6)² as x₁² − 12x₁ + 36.",
+          "Dividing −16x₁ + 12y₁ − 80 = 0 by −4 and forgetting to change all three signs."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Elimination is written here; the book uses cross-multiplication and reaches the same pair.",
+        "memory_tip": "Multiply (1) by 3 and (2) by 8 to make the y coefficients 24 and −24, then add.",
+        "lines": [
+          "6x₁ + 8y₁ = 45 … (1)",
+          "4x₁ − 3y₁ = −20 … (2)",
+          "(1)×3: 18x₁ + 24y₁ = 135",
+          "(2)×8: 32x₁ − 24y₁ = −160",
+          "Adding: 50x₁ = −25 ⇒ x₁ = −1/2",
+          "From (2): 4(−1/2) − 3y₁ = −20 ⇒ y₁ = 6",
+          "∴ Centre S(x₁, y₁) = (−1/2, 6)"
+        ],
+        "why": "Two straight lines meet at exactly one point, which is the centre. Making the y coefficients equal and opposite removes y in one addition.",
+        "common_mistakes": [
+          "Reading 50x₁ = −25 as x₁ = −2.",
+          "Substituting x₁ = −1/2 into (1) and mishandling the fraction."
+        ]
+      },
+      {
+        "id": "s4_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. Keep r² as the improper fraction 125/4 — turning it into a decimal loses accuracy in the last step.",
+        "memory_tip": "2 + 1/2 = 5/2, and (5/2)² = 25/4. Add 25 as 100/4.",
+        "lines": [
+          "A = (2, 1) lies on the circle, so r = SA.",
+          "r² = SA² = (2 + 1/2)² + (1 − 6)²",
+          "= (5/2)² + (−5)² = 25/4 + 25",
+          "= (25 + 100)/4 = 125/4"
+        ],
+        "why": "The centre has a fraction, so r² is a fraction too. Writing 25 as 100/4 keeps one common denominator through to the end.",
+        "common_mistakes": [
+          "Writing (2 + 1/2) as 3/2 instead of 5/2.",
+          "Adding 25/4 + 25 as 50/4."
+        ]
+      },
+      {
+        "id": "s5_equation_of_circle",
+        "kind": "boxed_final",
+        "label": "Equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The fractions clear only at the constant: 1/4 + 36 − 125/4 = 5.",
+        "memory_tip": "Collect every constant over 4: (1 + 144 − 125)/4 = 20/4 = 5.",
+        "lines": [
+          "Circle with centre (−1/2, 6) and r² = 125/4 is",
+          "(x + 1/2)² + (y − 6)² = 125/4",
+          "⇒ x² + x + 1/4 + y² − 12y + 36 = 125/4",
+          "⇒ x² + y² + x − 12y + (1 + 144 − 125)/4 = 0",
+          {
+            "text": "∴ x² + y² + x − 12y + 5 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every constant is written over 4 so they can be combined in one step: 1 + 144 − 125 = 20, and 20/4 = 5. The fractions disappear and the answer is a clean integer equation.",
+        "common_mistakes": [
+          "Expanding (x + 1/2)² as x² + x/2 + 1/4.",
+          "Forgetting to bring 125/4 across before combining the constants."
+        ]
+      }
+    ]
+  }
+}

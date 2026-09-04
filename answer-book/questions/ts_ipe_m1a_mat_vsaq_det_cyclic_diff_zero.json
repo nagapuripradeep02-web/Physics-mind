@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_det_cyclic_diff_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the determinant with rows (a−b, b−c, c−a), (b−c, c−a, a−b) and (c−a, a−b, b−c) is 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add all three columns into C₁",
+      "marks": 1
+    },
+    {
+      "label": "Read off the value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the column operation and one on the conclusion it forces. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this determinant is zero — name the operation you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_add",
+        "kind": "equation",
+        "label": "Add all three columns into C₁",
+        "marks": 1,
+        "mark_note": "Column operation",
+        "margin_note": "First mark. Look along any row before starting: the entries are (a−b), (b−c) and (c−a), and those three add to zero. That is what makes this operation worth doing.",
+        "memory_tip": "The three entries of every row add to zero, so adding all three columns empties the first one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let Δ be the given determinant:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a-b & b-c & c-a \\\\ b-c & c-a & a-b \\\\ c-a & a-b & b-c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Apply C₁ → C₁ + C₂ + C₃.",
+          "In every row the three entries add to",
+          "(a−b) + (b−c) + (c−a) = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C₁ → C₁ + C₂ + C₃ is applied, and that each row total is (a−b)+(b−c)+(c−a) = 0.",
+          "accept": [
+            "add column two and column three into column one",
+            "apply C one goes to C one plus C two plus C three",
+            "every row adds to zero because a minus b plus b minus c plus c minus a is zero",
+            "moodu columns kalipithe prathi row zero avutundi",
+            "the sum along each row is zero so add the columns together"
+          ],
+          "reject": [
+            "do a column operation",
+            "add the columns"
+          ],
+          "heard_as": [
+            "C one plus C two plus C three",
+            "column operation",
+            "adds to zero",
+            "row sum"
+          ]
+        },
+        "why": "Adding one column to another leaves the value of a determinant unchanged, so C₁ → C₁ + C₂ + C₃ is allowed and costs nothing.",
+        "common_mistakes": [
+          "Expanding the 3×3 determinant term by term instead of using the column operation.",
+          "Thinking that adding columns changes the value of the determinant."
+        ]
+      },
+      {
+        "id": "s2_zero",
+        "kind": "boxed_final",
+        "label": "Read off the value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A determinant with one whole column of zeros is zero — expand along that column and every term carries a factor 0.",
+        "memory_tip": "A determinant with a full row or column of zeros is 0.",
+        "lines": [
+          "So C₁ becomes a column of zeros:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 0 & b-c & c-a \\\\ 0 & c-a & a-b \\\\ 0 & a-b & b-c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A determinant with a zero column is 0.",
+          {
+            "text": "∴ Δ = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first column becomes all zeros, and that a determinant with a zero column equals 0.",
+          "accept": [
+            "the first column becomes all zeros so the determinant is zero",
+            "a determinant with a zero column is zero",
+            "after the operation column one is zero zero zero, hence delta is zero",
+            "first column antha zero avutundi kabatti determinant zero",
+            "delta equals zero"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is zero"
+          ],
+          "heard_as": [
+            "zero column",
+            "delta is zero",
+            "all zeros",
+            "determinant zero"
+          ]
+        },
+        "why": "Expanding along the zero column gives 0 times a cofactor three times over, so the value is 0 for every a, b and c.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the zero column.",
+          "Deleting the zero column and expanding the 3×2 block that is left."
+        ]
+      }
+    ]
+  }
+}

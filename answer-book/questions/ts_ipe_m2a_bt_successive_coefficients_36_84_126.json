@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_successive_coefficients_36_84_126",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If 36, 84, 126 are three successive binomial coefficients in the expansion of (1 + x)ⁿ, then find n.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the three coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Divide (2) by (1)",
+      "marks": 2
+    },
+    {
+      "label": "Divide (3) by (2)",
+      "marks": 2
+    },
+    {
+      "label": "Solve for n",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 203. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is the coefficient-ratio method of book answer 20 (two ratios of consecutive terms, then solve for n) and takes the same length, so it is classed as a 7-mark LAQ, not a VSAQ. Printed appearances: TS 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the seven [1 Mark] tags of book answer 20 (p.27), grouped: naming the coefficients (1), the first ratio and the relation it gives (2), the second ratio and its relation (2), solving the two relations for n and checking (2). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The card also finds r = 3 and checks ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126; the book stops at n = 9. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.94, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.84, the Binomial VSAQ chapter end prints “Few More VSAQ are in Page 94” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+  },
+  "recall_prompt": "Say how you would find n — how you name the three coefficients, what the two ratios of consecutive coefficients give, and how the two relations are solved for n.",
+  "insider_note": "The two ratios use two different formulas: (n − r + 1)/r for 84/36 and (n − r)/(r + 1) for 126/84. The question asks for n — stopping at r = 3 answers the wrong question.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_terms",
+        "kind": "equation",
+        "label": "Name the three coefficients",
+        "marks": 1,
+        "mark_note": "Setting up",
+        "margin_note": "First mark. Successive coefficients are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁ for some r; the middle one is the natural anchor.",
+        "memory_tip": "Anchor on the middle one: ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁ for some r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take the three successive coefficients as",
+          "ⁿCᵣ₋₁ = 36 …(1), ⁿCᵣ = 84 …(2), ⁿCᵣ₊₁ = 126 …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three coefficients are ⁿCᵣ₋₁ = 36, ⁿCᵣ = 84, ⁿCᵣ₊₁ = 126.",
+          "accept": [
+            "take n C r minus one as thirty six, n C r as eighty four and n C r plus one as one twenty six",
+            "three successive coefficients are n C r minus one n C r and n C r plus one",
+            "let the middle coefficient be n C r equal to eighty four",
+            "n C r minus one thirty six, n C r eighty four, n C r plus one one twenty six",
+            "name them with consecutive lower indices"
+          ],
+          "reject": [
+            "write the coefficients",
+            "let them be"
+          ],
+          "heard_as": [
+            "n C r minus one",
+            "n C r",
+            "thirty six",
+            "eighty four",
+            "one twenty six"
+          ]
+        },
+        "why": "Two unknowns, n and r, need two equations; three named coefficients give two ratios, which is exactly enough.",
+        "common_mistakes": [
+          "Naming them ⁿCᵣ, ⁿCᵣ₊₁, ⁿCᵣ₊₂ — fine, but then the ratio formulas shift by one; the card uses the middle-anchored form."
+        ]
+      },
+      {
+        "id": "s2_first_ratio",
+        "kind": "equation",
+        "label": "Divide (2) by (1)",
+        "marks": 2,
+        "mark_note": "First relation",
+        "margin_note": "Second and third marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. 84/36 = 7/3.",
+        "memory_tip": "The LOWER ratio is ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. Here 84/36 = 7/3.",
+        "lines": [
+          "(2)/(1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+          "(n − r + 1)/r = 7/3",
+          "3n − 3r + 3 = 7r ⇒ 3n − 10r = −3 …(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r = 84/36 = 7/3 gives 3n − 10r = −3.",
+          "accept": [
+            "divide the second by the first, n minus r plus one by r equals seven by three, so three n minus ten r is minus three",
+            "eighty four by thirty six is seven by three and the ratio formula gives three n minus ten r equals minus three",
+            "n C r by n C r minus one is n minus r plus one over r",
+            "eighty four ni thirty six tho divide cheste seven by three, three n minus ten r equals minus three",
+            "the first ratio gives three n minus ten r equals minus three"
+          ],
+          "reject": [
+            "divide them",
+            "take the ratio"
+          ],
+          "heard_as": [
+            "seven by three",
+            "n minus r plus one",
+            "three n minus ten r",
+            "minus three"
+          ]
+        },
+        "why": "A ratio of consecutive coefficients is a simple fraction in n and r; the factorials never have to be expanded.",
+        "common_mistakes": [
+          "Using (n − r)/r for this ratio.",
+          "Simplifying 84/36 to 7/3 wrongly as 2/1."
+        ]
+      },
+      {
+        "id": "s3_second_ratio",
+        "kind": "equation",
+        "label": "Divide (3) by (2)",
+        "marks": 2,
+        "mark_note": "Second relation",
+        "margin_note": "Fourth and fifth marks. ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). 126/84 = 3/2.",
+        "memory_tip": "The UPPER ratio has a different formula: ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). Here 126/84 = 3/2.",
+        "lines": [
+          "(3)/(2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+          "(n − r)/(r + 1) = 3/2",
+          "2n − 2r = 3r + 3 ⇒ 2n − 5r = 3 …(5)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1) = 126/84 = 3/2 gives 2n − 5r = 3.",
+          "accept": [
+            "divide the third by the second, n minus r by r plus one equals three by two, so two n minus five r is three",
+            "one twenty six by eighty four is three by two and the ratio formula gives two n minus five r equals three",
+            "n C r plus one by n C r is n minus r over r plus one",
+            "one twenty six ni eighty four tho divide cheste three by two, two n minus five r equals three",
+            "the second ratio gives two n minus five r equals three"
+          ],
+          "reject": [
+            "divide again",
+            "do the same"
+          ],
+          "heard_as": [
+            "three by two",
+            "n minus r",
+            "two n minus five r",
+            "r plus one"
+          ]
+        },
+        "why": "The second ratio is independent of the first because it uses a different pair; with both, n and r are both fixed.",
+        "common_mistakes": [
+          "Cross-multiplying as 2(n − r) = 3r and dropping the +3.",
+          "Reducing 126/84 to 3/1."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Solve for n",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Sixth and seventh marks. Double (5) so the r-terms match, subtract (4), and n appears alone. Then r = 3 and the check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126 costs one line.",
+        "memory_tip": "Double (5) so the r terms match, then subtract. Check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126.",
+        "lines": [
+          "2 × (5): 4n − 10r = 6 …(6)",
+          "(6) − (4): n = 9",
+          "From (5): 18 − 5r = 3 ⇒ r = 3",
+          "Check: ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126",
+          {
+            "text": "∴ n = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That doubling 2n − 5r = 3 and subtracting 3n − 10r = −3 gives n = 9 (and r = 3, which checks against 36, 84, 126).",
+          "accept": [
+            "double the second relation to four n minus ten r equals six, subtract the first, n is nine",
+            "eliminate r between the two relations and n comes to nine",
+            "n equals nine and r equals three which checks with nine C two nine C three nine C four",
+            "rendu relations nunchi r eliminate cheste n nine vasthundi",
+            "solving the two equations gives n nine"
+          ],
+          "reject": [
+            "solve them",
+            "find n"
+          ],
+          "heard_as": [
+            "n equals nine",
+            "n is nine",
+            "r equals three",
+            "four n minus ten r"
+          ]
+        },
+        "why": "Two linear equations in n and r. Eliminating r is one doubling and one subtraction, and the check confirms both unknowns at once.",
+        "common_mistakes": [
+          "Subtracting in the wrong order and getting n = −9.",
+          "Reporting r = 3 as the answer — the question asks for n."
+        ]
+      }
+    ]
+  }
+}

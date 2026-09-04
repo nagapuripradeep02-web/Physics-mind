@@ -94,7 +94,7 @@
           "phenyl group –C₆H₅.",
           "Ex: ClCH₂COOH is stronger than CH₃COOH."
         ],
-        "why": "The negative charge on the carboxylate ion is what has to be spread out, and a group that pulls electron density away takes part of that charge onto itself. Two chlorine atoms pull twice as much as one, which is why each extra withdrawing group makes the acid measurably stronger.",
+        "why": "The negative charge on the carboxylate ion is what has to be spread out, and a group that pulls electron density away takes part of that charge onto itself. Two chlorine atoms pull more strongly than one, which is why each extra withdrawing group makes the acid measurably stronger.",
         "common_mistakes": [
           "Saying the group stabilises the acid molecule. It stabilises the carboxylate ANION.",
           "Listing –CH₃ as electron withdrawing. An alkyl group releases electron density.",
@@ -150,6 +150,7 @@
             "text": "> CH₃COOH > CH₃CH₂COOH",
             "style": "indent"
           },
+          "3 Cl > 2 Cl > 1 Cl > acetic > propanoic",
           {
             "text": "pKa  0.65   1.29   2.86  4.76  4.87",
             "style": "indent"
@@ -159,13 +160,13 @@
           "2.86, but 4-chlorobutanoic acid has 4.52,",
           "almost the same as butanoic acid itself."
         ],
-        "why": "The pKa numbers turn the argument into something that can be checked: each chlorine atom added lowers the pKa by more than one unit, and moving one chlorine atom two carbon atoms further away undoes nearly all of that. A trend stated without its distance limit is the commonest way this answer goes wrong.",
+        "why": "The pKa numbers turn the argument into something that can be checked: each chlorine atom added lowers the pKa again, by about 1.9 units, then 1.6, then 0.6, so every extra chlorine atom still strengthens the acid but by less than the one before it; and moving one chlorine atom two carbon atoms further away undoes nearly all of that. A trend stated without its distance limit is the commonest way this answer goes wrong.",
         "common_mistakes": [
           "Writing the order the wrong way round. A SMALLER pKa means a STRONGER acid.",
           "Ignoring how far the group is from –COOH. The effect is almost gone three carbon atoms away.",
           "Giving the order without a single example. One line of formulae with pKa values is what earns this mark."
         ],
-        "memory_tip": "Count the chlorine atoms: three, two, one, none. The pKa falls by about one unit for each one added.",
+        "memory_tip": "Count the chlorine atoms: three, two, one, none. Each one added lowers the pKa further, but by a smaller step than the one before it.",
         "margin_note": "Finish with the ordered line of formulae. The distance limit is one extra line and it is the point most students never make."
       }
     ]

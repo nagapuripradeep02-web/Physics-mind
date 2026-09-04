@@ -57,7 +57,7 @@
         "why": "All three molecules have the same –NH₂ group on the same benzene ring, so only the group in the para position separates them. Placing the values beside the names shows that the order is read off measured numbers, not guessed.",
         "common_mistakes": [
           "Writing the order backwards. The question asks for INCREASING strength, so the nitro compound, the weakest, comes first.",
-          "Assuming the pKb values run the same way as the basic strength. They run in the opposite direction: 13.0 is the weakest base here."
+          "Assuming the pKb values run the same way as the basic strength. They run in the opposite direction: the compound with the LARGEST pKb, p-nitroaniline at 13.0, is the weakest base here."
         ],
         "memory_tip": "Nitro withdraws electron density and methyl releases it, so nitro is weakest and methyl strongest.",
         "margin_note": "Write the chain with the < signs. Adding the pKb numbers is extra but makes the direction unmistakable."
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "The whole answer turns on one comparison — an electron-withdrawing group at the para position weakens the base, an electron-releasing group strengthens it. Read the direction of the question carefully: this one asks for INCREASING strength, while the pKb question in the same set asks for DECREASING pKb."
+  "insider_note": "The whole answer turns on one comparison — an electron-withdrawing group at the para position weakens the base, an electron-releasing group strengthens it. Read the direction of the wording carefully: INCREASING basic strength is the same order as DECREASING pKb, and the reverse of increasing pKb."
 }

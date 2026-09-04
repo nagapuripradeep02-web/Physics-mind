@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -81,5 +81,6 @@
         "margin_note": "This subtraction line is the reason the term exists; write it with the definition."
       }
     ]
-  }
+  },
+  "insider_note": "A one-line question worth two marks, because the second is the use rather than the meaning. Write the subtraction from the total pressure for a gas collected over water; defining the term and stopping is half an answer."
 }

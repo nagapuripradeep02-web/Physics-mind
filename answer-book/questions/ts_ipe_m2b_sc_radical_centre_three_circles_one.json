@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_radical_centre_three_circles_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the radical centre of the circles x² + y² − 4x − 6y + 5 = 0, x² + y² − 2x − 4y − 1 = 0, x² + y² − 6x − 2y = 0.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the first radical axis",
+      "marks": 1
+    },
+    {
+      "label": "Find the second radical axis",
+      "marks": 1
+    },
+    {
+      "label": "Solve the two axes",
+      "marks": 1
+    },
+    {
+      "label": "State the radical centre",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 System of Circles (chapter runs pp.54-56), answer 53.1, on a ★★★ Super Scoring Page (SSP 54). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tags: AP 18, AP 19, TS 18. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed anywhere in this chapter's three pages (54-56), unlike the neighbouring Circle and Ellipse SAQ chapters. It is patterned on the nearest same-shape split the book DOES print for a comparable four-step algebraic derivation: Circle SAQ answer 48 (book p.51, 'show a line touches a circle and find the point of contact'), which prints four separate 1-mark tags across four natural steps. This answer is cut the same way: 1 mark per natural step (first radical axis, second radical axis, solve, state the point). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.53 ends the Circle SAQ chapter at answer 52 (pole and conjugate-line questions, a different unit), and book p.57 opens SAQ chapter 8 Ellipse. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer any 5 of 7 (ABC_75). FIGURE: the question does not say draw, so the diagram step carries no marks; the three circles in it are a schematic (not drawn to the true scale of these equations) that shows why two radical axes of three circles must meet at one point. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Examiners give one mark per usable line, so write both radical axes as separate numbered equations before solving them together — a single jumbled block loses marks even when the final coordinate is correct.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_radical_axis",
+        "kind": "equation",
+        "label": "Find the first radical axis",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Any two of the three circles give a valid radical axis — this solution takes S and S′ first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "S ≡ x² + y² − 4x − 6y + 5 = 0",
+          "S′ ≡ x² + y² − 2x − 4y − 1 = 0",
+          "S″ ≡ x² + y² − 6x − 2y = 0",
+          "Radical axis of S, S′ is S − S′ = 0",
+          "⇒ −2x − 2y + 6 = 0",
+          "⇒ x + y − 3 = 0   ...(1)"
+        ],
+        "why": "The radical axis of two circles is the line S − S′ = 0 — subtracting cancels the x² and y² terms because both circles are written with coefficient 1 on x² and y², leaving a straight line.",
+        "common_mistakes": [
+          "Subtracting the circles in the wrong order and carrying a sign error into the rest of the answer.",
+          "Not writing S, S′, S″ first — three circles are easy to mix up without labels."
+        ],
+        "memory_tip": "Radical axis = one circle minus another, same letter order every time, so the sign never flips halfway through."
+      },
+      {
+        "id": "s2_second_radical_axis",
+        "kind": "equation",
+        "label": "Find the second radical axis",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. This uses the SAME S from step 1, paired now with the third circle.",
+        "lines": [
+          "Radical axis of S, S″ is S − S″ = 0",
+          "⇒ 2x − 4y + 5 = 0   ...(2)"
+        ],
+        "why": "A third circle gives a second, independent radical axis; two lines are enough to fix the one point where all three axes meet.",
+        "common_mistakes": [
+          "Taking S′ − S″ instead of S − S″ — still valid, but then it must be solved consistently with equation (1), not mixed with it.",
+          "Losing the constant term while simplifying."
+        ],
+        "memory_tip": "Keep S as the fixed reference circle in both subtractions — one fixed point of comparison, two moving partners."
+      },
+      {
+        "id": "s3_solve_the_two_axes",
+        "kind": "equation",
+        "label": "Solve the two axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Any correct elimination method earns this mark, not only the scaling shown here.",
+        "lines": [
+          "(1) × 2 ⇒ 2x + 2y − 6 = 0   ...(3)",
+          "(3) − (2) ⇒ 6y − 11 = 0",
+          "⇒ y = 11/6",
+          "From (1), x = 3 − y = 3 − 11/6 = 7/6"
+        ],
+        "why": "Two linear equations in x and y have exactly one common solution, and that common point is the radical centre — the point with equal power with respect to all three circles.",
+        "common_mistakes": [
+          "Substituting the y value into the wrong equation.",
+          "Arithmetic slip turning 18/6 − 11/6 into something other than 7/6."
+        ],
+        "memory_tip": "Scale one equation so the x-coefficients match, then subtract to remove x first — the same elimination used for any pair of straight lines."
+      },
+      {
+        "id": "s4_state_the_radical_centre",
+        "kind": "boxed_final",
+        "label": "State the radical centre",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Fourth mark, for the final coordinate pair.",
+        "lines": [
+          {
+            "text": "∴ Radical centre = (7/6, 11/6)",
+            "style": "boxed"
+          }
+        ],
+        "why": "This point has equal power with respect to all three circles — it is the unique meeting point of the three pairwise radical axes.",
+        "common_mistakes": [
+          "Writing the coordinates as (11/6, 7/6) — swapping x and y.",
+          "Leaving the answer as a rounded decimal instead of the exact fraction."
+        ],
+        "memory_tip": "The radical centre is a POINT, not a line — box a coordinate pair here, not an equation."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 0,
+        "margin_note": "The question does not ask for a diagram, so this earns no marks. The three circles are schematic, not drawn to the true scale of these equations.",
+        "figure": {
+          "id": "radical_centre_three_circles",
+          "width": 380,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "rc_circle_s",
+              "d": "M 165 90 A 55 55 0 1 0 55 90 A 55 55 0 1 0 165 90",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "rc_lbl_s",
+              "x": 90,
+              "y": 30,
+              "text": "S",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "rc_circle_sp",
+              "d": "M 315 90 A 55 55 0 1 0 205 90 A 55 55 0 1 0 315 90",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "rc_lbl_sp",
+              "x": 265,
+              "y": 30,
+              "text": "S′",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "rc_circle_spp",
+              "d": "M 240 175 A 55 55 0 1 0 130 175 A 55 55 0 1 0 240 175",
+              "ms": 4500
+            },
+            {
+              "type": "label",
+              "id": "rc_lbl_spp",
+              "x": 175,
+              "y": 240,
+              "text": "S″",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "rc_axis_one",
+              "d": "M 185 25 L 185 195",
+              "ms": 2430
+            },
+            {
+              "type": "stroke",
+              "id": "rc_axis_two",
+              "d": "M 100 174 L 270 24",
+              "ms": 3240
+            },
+            {
+              "type": "label",
+              "id": "rc_lbl_p",
+              "x": 193,
+              "y": 82,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            }
+          ]
+        },
+        "why": "Any two of the three circles' radical axes meet at the same point — the figure shows this concurrency, which is the geometric fact the algebra proves.",
+        "common_mistakes": [
+          "Thinking a diagram is required to solve this algebra — it is not; the figure only shows why the two lines above meet at one point.",
+          "Drawing the third radical axis through a different point — all three are concurrent by the same theorem."
+        ],
+        "memory_tip": "Three circles, three radical axes, one meeting point — that point is called the radical centre because it belongs to every pair at once."
+      }
+    ]
+  }
+}

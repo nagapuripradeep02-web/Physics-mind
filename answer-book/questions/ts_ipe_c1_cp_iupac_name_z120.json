@@ -85,5 +85,6 @@
         "margin_note": "Show the three digits and their roots; the boxed line is then self-checking."
       }
     ]
-  }
+  },
+  "insider_note": "The rule is a whole mark, so write the roots out even though the question asks only for a name and a symbol. Showing 1, 2 and 0 becoming un, bi and nil also makes the answer self-checking."
 }

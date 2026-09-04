@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "All three come to √6 — the same three numbers 1, 1, 4 in a different order each time.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +90,7 @@
             "surd"
           ]
         },
-        "why": "Both questions on this page are answered by computing the SAME three distances. Only the conclusion drawn from them differs, which is why the book prints the note 'Questioning is different but Answering is similar' underneath.",
+        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. All three distances come out the SAME, which is the definition of an equilateral triangle. Nothing further needs computing.",
+        "memory_tip": "All three EQUAL is the definition of equilateral. Nothing further needs computing.",
         "lines": [
           "∴ AB = BC = AC",
           {
@@ -138,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three distances have to be worked out and shown equal — checking only two proves isosceles, not equilateral. Each comes to √6 from a different arrangement of 1, 1 and 4."
 }

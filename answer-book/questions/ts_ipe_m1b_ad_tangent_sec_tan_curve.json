@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_sec_tan_curve",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the tangent at any point θ on the curve x = c sec θ, y = c tan θ is y sin θ = x − c cos θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate x and y with respect to θ",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Write the tangent at the point",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the required form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this — say how you get dy/dx for a curve given through θ, what that slope simplifies to, and which identity you use at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate x and y with respect to θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both derivatives are with respect to θ, not x. c is a constant and stays in front of both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given:   x = c sec θ,   y = c tan θ",
+          "Differentiate each with respect to θ:",
+          "dx/dθ = c sec θ tan θ",
+          "dy/dθ = c sec²θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dθ = c sec θ tan θ and dy/dθ = c sec²θ.",
+          "accept": [
+            "differentiate both x and y with respect to theta",
+            "sec theta differentiates to sec theta tan theta",
+            "tan theta differentiates to sec squared theta",
+            "theta tho rendu ni differentiate cheyyali",
+            "dx by d theta is c sec theta tan theta",
+            "dy by d theta is c sec squared theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec theta tan theta",
+            "sec squared theta",
+            "d theta",
+            "c is constant"
+          ]
+        },
+        "why": "The curve is given through a parameter, so x and y cannot be differentiated against each other directly. Each is differentiated against θ first, and the two results are combined in the next step.",
+        "common_mistakes": [
+          "Differentiating sec θ to sec θ only, leaving out the tan θ factor.",
+          "Differentiating tan θ to sec θ instead of sec²θ.",
+          "Differentiating with respect to x, which the parametric form does not allow."
+        ],
+        "memory_tip": "sec differentiates to sec times tan; tan differentiates to sec squared. Both keep sec in the answer."
+      },
+      {
+        "id": "s2_slope",
+        "kind": "equation",
+        "label": "Slope of the tangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. c cancels, and one sec θ cancels with the sec²θ above it. Writing sec θ and tan θ in terms of sin and cos makes the final form obvious.",
+        "lines": [
+          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          "dy/dx = c sec²θ / (c sec θ tan θ)",
+          "= sec θ / tan θ",
+          "= (1/cos θ) · (cos θ / sin θ)",
+          "∴ dy/dx = 1/sin θ = cosec θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (dy/dθ)/(dx/dθ) simplifies to 1/sin θ.",
+          "accept": [
+            "dy by dx is dy by d theta divided by dx by d theta",
+            "c cancels and one sec theta cancels",
+            "the slope is one by sin theta",
+            "dy by d theta ni dx by d theta tho divide cheyyali",
+            "sec theta by tan theta is cosec theta",
+            "the slope is cosec theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dy by d theta",
+            "cosec theta",
+            "one by sin theta",
+            "sec by tan"
+          ]
+        },
+        "why": "Dividing the two θ-derivatives cancels dθ and gives the slope in terms of θ alone. Converting to sin and cos at this point is what makes the last step short.",
+        "common_mistakes": [
+          "Writing dy/dx as (dx/dθ)/(dy/dθ), the two the wrong way round.",
+          "Simplifying sec θ/tan θ to cos θ instead of cosec θ.",
+          "Leaving c in the slope after it has cancelled."
+        ],
+        "memory_tip": "Divide the y-derivative by the x-derivative — the letter on top matches the letter on top of dy/dx."
+      },
+      {
+        "id": "s3_write_tangent",
+        "kind": "equation",
+        "label": "Write the tangent at the point",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The point is the parametric pair itself, (c sec θ, c tan θ). Multiplying through by sin θ removes the fraction and moves the working towards the printed form.",
+        "lines": [
+          "The point on the curve at parameter θ is  (c sec θ, c tan θ).",
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "y − c tan θ = (1/sin θ)(x − c sec θ)",
+          "Multiply both sides by sin θ:",
+          "y sin θ − c tan θ sin θ = x − c sec θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point is (c sec θ, c tan θ) and multiplying the point-slope form by sin θ gives y sin θ − c tan θ sin θ = x − c sec θ.",
+          "accept": [
+            "the point is c sec theta comma c tan theta",
+            "use the point slope form with slope one by sin theta",
+            "multiply both sides by sin theta",
+            "sin theta tho rendu vaipula multiply cheyyali",
+            "y sin theta minus c tan theta sin theta equals x minus c sec theta",
+            "write the tangent at the parametric point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "c sec theta",
+            "c tan theta",
+            "multiply by sin theta",
+            "point slope"
+          ]
+        },
+        "why": "The required form has y sin θ on the left, so multiplying by sin θ at this stage puts the working on the same shape as the target and leaves only the constant terms to simplify.",
+        "common_mistakes": [
+          "Using (c tan θ, c sec θ), swapping the coordinates.",
+          "Multiplying only the left side by sin θ.",
+          "Expanding (1/sin θ)(x − c sec θ) term by term and losing the c sec θ."
+        ],
+        "memory_tip": "Look at the printed answer first. It has y sin θ on the left, so multiply by sin θ as soon as the line is written."
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the required form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. This is where sec²θ − tan²θ = 1 is used. Take c cos θ out of the two constant terms and the bracket that is left equals 1.",
+        "lines": [
+          "y sin θ = x − c sec θ + c tan θ sin θ",
+          "= x − (c sec θ − c tan θ sin θ)",
+          "Now  sec θ = sec²θ · cos θ  and  tan θ sin θ = tan²θ · cos θ,  so",
+          "c sec θ − c tan θ sin θ = c cos θ (sec²θ − tan²θ)",
+          "Since sec²θ − tan²θ = 1, this equals c cos θ.",
+          {
+            "text": "∴ y sin θ = x − c cos θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That c sec θ − c tan θ sin θ = c cos θ(sec²θ − tan²θ) = c cos θ, giving y sin θ = x − c cos θ.",
+          "accept": [
+            "take c cos theta common from the two terms",
+            "sec squared theta minus tan squared theta is one",
+            "the two constant terms come to c cos theta",
+            "sec square minus tan square equal to one use cheyyali",
+            "that leaves y sin theta equals x minus c cos theta",
+            "the identity finishes the proof"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec squared minus tan squared",
+            "equals one",
+            "c cos theta",
+            "y sin theta"
+          ]
+        },
+        "why": "Both constant terms carry a cos θ once sec θ and tan θ sin θ are rewritten, so c cos θ comes out as a common factor and the standard identity reduces the bracket to 1. The same result follows from 1 − sin²θ = cos²θ.",
+        "common_mistakes": [
+          "Using sec²θ + tan²θ = 1, which is not an identity.",
+          "Losing the minus sign when moving −c tan θ sin θ across the equals sign.",
+          "Stopping at x − c(1 − sin²θ)/cos θ without reducing it to c cos θ."
+        ],
+        "memory_tip": "sec²θ − tan²θ = 1 comes straight from 1 + tan²θ = sec²θ. Whenever sec and tan appear squared together, that identity is the one to use."
+      }
+    ]
+  },
+  "insider_note": "Parametric, so dy/dx = (dy/dθ)/(dx/dθ), and it simplifies to cosec θ. Multiplying through by sin θ at the end is what produces the printed form."
+}

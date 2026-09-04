@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Line the equations up in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Line the equations up in x, y, z order before reading off A, X and D.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,7 +106,7 @@
             "constants"
           ]
         },
-        "why": "Cramer's rule is a recipe that reads off this matrix. Getting A right is the only place the original equations are used, so every later step inherits any mistake made here.",
+        "why": "Cramer's rule is a fixed procedure applied to this matrix. Getting A right is the only place the original equations are used, so every later step inherits any mistake made here.",
         "common_mistakes": [
           "Writing the coefficients in the order they appear rather than in x, y, z order.",
           "Missing a coefficient of 1 or −1 because the letter is written with no number in front.",
@@ -119,6 +120,7 @@
         "marks": 1,
         "mark_note": "Δ",
         "margin_note": "Second mark. Δ works out to 136 — a large positive number, which makes the three divisions at the end clean. Check it is not zero in writing before going on.",
+        "memory_tip": "Δ = 136, large and positive, which makes the three divisions clean. Check it is non-zero in writing.",
         "lines": [
           {
             "text": "\\Delta = \\det A = \\begin{vmatrix} 3 & 4 & 5 \\\\ 2 & -1 & 8 \\\\ 5 & -2 & 7 \\end{vmatrix}",
@@ -165,6 +167,7 @@
         "marks": 1,
         "mark_note": "Δ₁",
         "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ replaces the FIRST column with the constants; the other two stay as they are.",
         "lines": [
           "Replace C₁ of Δ by the constants:",
           {
@@ -210,6 +213,7 @@
         "marks": 1,
         "mark_note": "Δ₂",
         "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now — put the x coefficients back in column 1.",
         "lines": [
           "Replace C₂ of Δ by the constants:",
           {
@@ -254,6 +258,7 @@
         "marks": 1,
         "mark_note": "Δ₃",
         "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two restored.",
         "lines": [
           "Replace C₃ of Δ by the constants:",
           {
@@ -276,7 +281,7 @@
           ],
           "reject": [
             "find delta three",
-            "do the last one",
+            "do the last determinant",
             "replace the third column"
           ],
           "heard_as": [
@@ -298,6 +303,7 @@
         "marks": 3,
         "mark_note": "Solution",
         "margin_note": "The last three marks. Δ₂ and Δ₃ both came out equal to Δ itself, so y and z are both 1 — that is worth a second look rather than a suspicion, because the arithmetic really does land there.",
+        "memory_tip": "Δ₂ and Δ₃ both equal Δ, so y and z are both 1. That is the arithmetic landing, not a mistake.",
         "lines": [
           "By Cramer's rule:",
           "x = Δ₁/Δ = 408/136 = 3",
@@ -339,5 +345,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Δ = 136, and both Δ₂ and Δ₃ come to 136 as well, so y and z are both 1. That repetition is a genuine feature of this system, not a copying error."
 }

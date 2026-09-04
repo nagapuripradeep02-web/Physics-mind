@@ -11,24 +11,24 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
   "question_text": "Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.",
   "appearances": [],
   "mark_split": [
     {
       "label": "Find the required slope",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Solve for the point",
-      "marks": 1
+      "marks": 3
     },
     {
       "label": "Write the point-slope form",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Simplify to the line",
@@ -38,28 +38,28 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 56.2. No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 56.2. No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 20 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 2 + 3 + 2 + 1. The extra four went where the work is: three on solving the pair by cross-multiplication, which is the longest piece of algebra on the page, two on the perpendicular slope and two on writing and clearing the point-slope form. The closing line stays at one mark because it is one line. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone, not on its own weight. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner."
   },
   "recall_prompt": "Say how you would solve this — say how you get the slope, and how you get a point on the line.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
     ],
     "steps": [
       {
         "id": "s1_required_slope",
         "kind": "equation",
         "label": "Find the required slope",
-        "marks": 1,
-        "margin_note": "First mark. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope off the coefficients as −a/b, then flip and negate it.",
+        "marks": 2,
+        "margin_note": "The first two marks. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope off the coefficients as −a/b, then flip and negate it.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 5x − 2y − 7 = 0",
-          "It's slope  m = −a/b = −5/(−2) = 5/2",
+          "Its slope  m = −a/b = −5/(−2) = 5/2",
           "⇒ Slope of its perpendicular is −1/m = −2/5"
         ],
         "recall": {
@@ -89,14 +89,15 @@
           "Using the same slope, which would give a parallel line instead.",
           "Reading the slope as −b/a."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "PERPENDICULAR means flip and negate the given slope, before any point is known."
       },
       {
         "id": "s2_solve_for_point",
         "kind": "equation",
         "label": "Solve for the point",
-        "marks": 1,
-        "margin_note": "Second mark. The new line passes through the meeting point of two OTHER lines, so solve that pair. This half is independent of the slope work above.",
+        "marks": 3,
+        "margin_note": "The next three marks. The new line passes through the meeting point of two OTHER lines, so solve that pair. This half is independent of the slope work above.",
         "lines": [
           "Given  2x + 3y − 1 = 0 ……(1),  3x + 4y − 6 = 0 ……(2)",
           "Solving (1) & (2) we get P",
@@ -130,14 +131,15 @@
           "Solving the wrong pair of lines.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the other pair for the point — independent of the slope work."
       },
       {
         "id": "s3_point_slope",
         "kind": "equation",
         "label": "Write the point-slope form",
-        "marks": 1,
-        "margin_note": "Third mark. With a point and a slope, the point-slope form y − y₁ = m(x − x₁) writes the line in one line.",
+        "marks": 2,
+        "margin_note": "The next two marks. With a point and a slope, the point-slope form y − y₁ = m(x − x₁) writes the line in one line.",
         "lines": [
           "∴ Point of intersection is P(14, −9)",
           "∴ Perpendicular through P(14, −9) with slope −2/5 is",
@@ -171,7 +173,8 @@
           "Using the slope-intercept form and having to find c separately.",
           "Swapping x₁ and y₁ in the formula."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "y − y₁ = m(x − x₁) with the point and slope just found."
       },
       {
         "id": "s4_simplify",
@@ -212,8 +215,10 @@
           "Leaving fractions in the final answer.",
           "Sign slip when multiplying through by a denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Clear fractions and collect into ax + by + c = 0."
       }
     ]
-  }
+  },
+  "insider_note": "Take the slope from the third line first: 5/2 inverts to −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and that is where P(14, −9) is usually lost."
 }

@@ -77,7 +77,7 @@
           "Bithionol is added to soaps to give them",
           "antiseptic properties."
         ],
-        "why": "Phenol is the standard example asked in both questions, because a dilute solution is safe enough for skin while a stronger one is not. Writing the two concentrations side by side answers the antiseptic question and the disinfectant question at the same time.",
+        "why": "Phenol is the standard example, because a 0.2% solution is dilute enough to be safe on skin while a 1% solution is not. Writing the two concentrations side by side is what shows the same compound changing class with its concentration.",
         "common_mistakes": [
           "Giving formalin as an antiseptic. Formalin is a disinfectant; it is too harmful for living tissue.",
           "Writing phenol as an antiseptic with no concentration. The concentration is what makes the statement true."
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "The antiseptic and disinfectant questions are marked against each other. Write where the chemical is applied, living tissue here, and give the 0.2% and 1% phenol pair; that one line answers both questions."
+  "insider_note": "The mark depends on the boundary with disinfectants. Write where the chemical is applied, living tissue here, and give the 0.2% and 1% phenol pair; that one line separates the two classes."
 }

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sqrt_a2_minusx2_0_to_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^a √(a² − x²) dx.",
+  "appearances": [
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the standard formula",
+      "marks": 1
+    },
+    {
+      "label": "Apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 172, on the same page as answer 171 (not marked as a Super Scoring Page). Printed appearance: TS 16. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This integral is the area of a quarter circle of radius a, which is why the answer πa²/4 has such a familiar geometric shape.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Apply the standard formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ∫√(a²−x²)dx = (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c — a standard formula to know.",
+        "memory_tip": "The formula always pairs an algebraic term with a Sin⁻¹ term — never just one or the other.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^a √(a² − x²) dx",
+          "Formula: ∫√(a²−x²) dx",
+          "= (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c",
+          "∴ I = [(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀^a"
+        ],
+        "why": "√(a²−x²) has a standard antiderivative built from two pieces — an algebraic term and an inverse-sine term — that is worth memorising rather than deriving by a trigonometric substitution each time.",
+        "common_mistakes": [
+          "Misremembering the formula and dropping the (a²/2)Sin⁻¹(x/a) term.",
+          "Writing Sin⁻¹(x/a) as Sin⁻¹(a/x) by mistake."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Sin⁻¹(1) = π/2 — memorise this standard value.",
+        "memory_tip": "At x=a the square root itself becomes 0, so only the inverse-sine half of the formula contributes.",
+        "lines": [
+          "At x=a: (a/2)(0) + (a²/2)Sin⁻¹(1).",
+          "At x=0: 0 + (a²/2)Sin⁻¹(0) = 0",
+          {
+            "text": "∴ I = (a²/2)(π/2) = πa²/4",
+            "style": "boxed"
+          }
+        ],
+        "why": "At the upper limit x=a, √(a²−x²) becomes 0 so only the Sin⁻¹ term survives, giving (a²/2)Sin⁻¹(1)=(a²/2)(π/2); the lower limit x=0 contributes nothing since both terms vanish.",
+        "common_mistakes": [
+          "Using Sin⁻¹(1) = π instead of the correct π/2.",
+          "Forgetting that the algebraic term (x/2)√(a²−x²) vanishes at x=a because √(a²−a²)=0."
+        ]
+      }
+    ]
+  }
+}

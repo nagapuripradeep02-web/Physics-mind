@@ -75,6 +75,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. π is 180°, so this is the same halved condition as the previous two questions written in radians.",
+        "memory_tip": "π is 180°, so this is the halved condition written in radians: (A+B)/2 = π/2 − C/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,7 +105,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -115,8 +116,9 @@
         "kind": "equation",
         "label": "Pair two terms",
         "marks": 3,
-        "mark_note": "Sum to product",
-        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "mark_note": "Pythagorean identity",
+        "margin_note": "Three of the eight marks. Three squared terms will not factorise as they stand, so one of them is written as 1 − sin² to make a cos² − sin² pair appear. Quote every formula you use in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Write ONE squared term as 1 minus the other function squared: cos²(B/2) becomes 1 − sin²(B/2), so a cos² − sin² pair appears.",
         "lines": [
           "L.H.S = cos²(A/2) + cos²(B/2) + cos²(C/2)",
           "= cos²(A/2) + (1 − sin²(B/2)) + cos²(C/2)",
@@ -155,7 +157,8 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "The condition turns an expression in A and B into one in C, so every term shares a factor.",
         "lines": [
           "= 1 + cos((A+B)/2) cos((A−B)/2) + cos²(C/2)",
           "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
@@ -196,7 +199,8 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "memory_tip": "Pull the common factor out, then use the condition a SECOND time inside the bracket.",
         "lines": [
           "= 2 + sin(C/2) [cos((A−B)/2) − sin(C/2)]",
           "= 2 + sin(C/2) [cos((A−B)/2) − cos((A+B)/2)]",
@@ -223,7 +227,7 @@
             "difference of cosines"
           ]
         },
-        "why": "The 2 plays no further part, so setting it aside keeps the factorisation clean — the same tactic as the −1 in answer 26.2.",
+        "why": "The 2 plays no further part, so setting it aside keeps the factorisation clean — the same tactic used on the other half-angle proofs in this chapter.",
         "common_mistakes": [
           "Trying to factor the 2 into the bracket.",
           "Leaving a sine inside the bracket so no formula applies."
@@ -235,7 +239,8 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
+        "memory_tip": "One more sum-or-difference formula completes it. Write '= R.H.S' so the examiner sees the proof finished.",
         "lines": [
           "= 2 + sin(C/2) (2 sin(A/2) sin(B/2))",
           "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",
@@ -273,5 +278,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert ONE term with cos² = 1 − sin² so a cos² − sin² pair appears — that move starts every proof in this family. sin(C/2) = cos((A+B)/2) is what lets the last bracket combine."
 }

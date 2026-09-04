@@ -49,6 +49,7 @@
         "label": "Slope intercept form",
         "marks": 1,
         "margin_note": "First mark. Slope-intercept form is y = mx + c, so make y the subject and read off the slope and the y-intercept.",
+        "memory_tip": "Make y the subject; the coefficient of x is the slope and the constant is the y-intercept.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "label": "Intercept form",
         "marks": 1,
         "margin_note": "Second mark. Intercept form is x/a + y/b = 1, so move the constant to the right and divide everything by it — the two denominators are then the intercepts.",
+        "memory_tip": "Divide through by the constant on the right so it becomes 1; the denominators are then the intercepts.",
         "lines": [
           "(ii) Intercept form is  x/a + y/b = 1",
           "∴ √3x + y = 4",
@@ -131,5 +133,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two forms, one mark each. The slope is −√3, and dividing by 4 leaves x/(4/√3); the x-intercept 4/√3 may also be written 4√3/3, and either form is accepted."
 }

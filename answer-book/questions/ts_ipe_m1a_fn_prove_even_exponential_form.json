@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_prove_even_exponential_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that the real valued function f(x) = x/(eˣ − 1) + x/2 + 1 is an even function on R − {0}.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write and simplify f(−x)",
+      "marks": 1
+    },
+    {
+      "label": "Show that f(−x) = f(x)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to replacing x by −x and clearing e⁻ˣ, and one to the algebra that turns the result back into f(x), because those are two separate pieces of work and a student who stops after the first has done half. The domain condition x ≠ 0, and the fact that R − {0} contains −x whenever it contains x, are carried in the written lines where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — what you write first, how you clear e to the minus x, and what you compare at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_f_of_minus_x",
+        "kind": "equation",
+        "label": "Write f(−x) and clear e⁻ˣ",
+        "marks": 1,
+        "mark_note": "f(−x) simplified",
+        "margin_note": "One mark for replacing x by −x and clearing e⁻ˣ. Say first that −x is in the domain; a parity proof on a domain that is not symmetric is meaningless.",
+        "memory_tip": "Replace e⁻ˣ by 1/eˣ and multiply the top and the bottom by eˣ. That one move clears every negative power.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x/(eˣ − 1) + x/2 + 1, x ≠ 0",
+          "x ∈ R − {0} ⇒ −x ∈ R − {0},",
+          "so f(−x) is defined for every such x.",
+          "f(−x) = −x/(e⁻ˣ − 1) − x/2 + 1",
+          "e⁻ˣ − 1 = 1/eˣ − 1 = (1 − eˣ)/eˣ",
+          "⇒ −x/(e⁻ˣ − 1) = −x·eˣ/(1 − eˣ)",
+          "= xeˣ/(eˣ − 1)",
+          "∴ f(−x) = xeˣ/(eˣ − 1) − x/2 + 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(−x) is written by replacing x with −x, and that e⁻ˣ − 1 = (1 − eˣ)/eˣ turns the first term into xeˣ/(eˣ − 1).",
+          "accept": [
+            "put minus x in place of x everywhere",
+            "e to the minus x is one over e to the x so the bracket becomes one minus e to the x over e to the x",
+            "multiply the top and bottom by e to the x",
+            "the first term becomes x e to the x over e to the x minus one",
+            "e power minus x ni one by e power x ga rasi eˣ tho multiply cheyyali"
+          ],
+          "reject": [
+            "add and subtract one in the numerator",
+            "so f of minus x equals f of x",
+            "the function is even"
+          ],
+          "heard_as": [
+            "f of minus x",
+            "e to the minus x",
+            "e to the x minus one",
+            "one over e to the x",
+            "domain"
+          ]
+        },
+        "why": "Parity is decided by comparing f(−x) with f(x), so f(−x) must first be written in the same letters as f(x). The negative power e⁻ˣ is what blocks the comparison, and clearing it is the whole of this step.",
+        "common_mistakes": [
+          "Forgetting the minus sign on the middle term and writing −x/2 as x/2.",
+          "Treating e⁻ˣ as −eˣ, which is not the same thing.",
+          "Cancelling the sign wrongly and writing −x/(e⁻ˣ − 1) as x/(eˣ − 1)."
+        ]
+      },
+      {
+        "id": "s2_compare_with_f_of_x",
+        "kind": "boxed_final",
+        "label": "Compare with f(x)",
+        "marks": 1,
+        "mark_note": "f(−x) = f(x)",
+        "margin_note": "The second mark is the comparison. Split eˣ as (eˣ − 1) + 1 so the extra x appears, then cancel it against −x/2 to get +x/2.",
+        "memory_tip": "Write eˣ as (eˣ − 1) + 1. The first piece cancels the denominator and leaves a plain x, and x − x/2 is x/2.",
+        "lines": [
+          "xeˣ/(eˣ − 1) = x(eˣ − 1 + 1)/(eˣ − 1)",
+          "= x + x/(eˣ − 1)",
+          "∴ f(−x) = x + x/(eˣ − 1) − x/2 + 1",
+          "= x/(eˣ − 1) + x/2 + 1   [∵ x − x/2 = x/2]",
+          "= f(x) for every x ∈ R − {0}",
+          {
+            "text": "∴ f is an even function on R − {0}.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That splitting eˣ as (eˣ − 1) + 1 gives f(−x) = x + x/(eˣ − 1) − x/2 + 1, which is x/(eˣ − 1) + x/2 + 1 = f(x), so f is even.",
+          "accept": [
+            "write e to the x as e to the x minus one plus one",
+            "that splits into x plus x over e to the x minus one",
+            "then x minus x by two is x by two",
+            "so f of minus x is exactly f of x and the function is even",
+            "x minus x by two equals x by two so f of minus x equals f of x, even function"
+          ],
+          "reject": [
+            "e to the minus x is one over e to the x",
+            "replace x by minus x",
+            "the function is odd"
+          ],
+          "heard_as": [
+            "e to the x minus one plus one",
+            "x by two",
+            "even function",
+            "f of minus x equals f of x"
+          ]
+        },
+        "why": "The extra x produced by the split is exactly what the term −x/2 needs: x − x/2 = x/2, which is the middle term of f(x). A numerical check agrees — at x = 0.6 both f(0.6) and f(−0.6) are 2.0298, and at x = 1.7 both are 2.2300.",
+        "common_mistakes": [
+          "Writing x − x/2 as −x/2, which breaks the match with f(x); the correct value is x/2.",
+          "Stopping at f(−x) = xeˣ/(eˣ − 1) − x/2 + 1 and asserting it equals f(x) with no algebra.",
+          "Concluding odd because a minus sign appeared during the working."
+        ]
+      }
+    ]
+  }
+}

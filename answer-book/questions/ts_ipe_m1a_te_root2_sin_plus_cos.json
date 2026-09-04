@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Multiply the bracket out first so the coefficients are visible, then divide by √(a²+b²) — which is 2 again, since (√2)² + (√2)² = 4.",
+        "memory_tip": "Multiply the bracket out FIRST so the coefficients show, then divide by √((√2)² + (√2)²) = 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,14 +107,15 @@
         "label": "Recognise the standard angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so this pattern is cosA cosB + sinA sinB — the cos(A−B) form, not a sine one.",
+        "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so the left side can be read as cosA cosB + sinA sinB, the cos(A−B) form. Reading it instead as sin(x + 45°) also works; the cosine reading is the one shown here.",
+        "memory_tip": "1/√2 is both cos 45° and sin 45°, so the left side reads either as cos(x − 45°) or as sin(x + 45°). Both close; the cosine reading is used here.",
         "lines": [
           "⇒ cosx cos45° + sinx sin45° = cos30°",
           "⇒ cosx cos(π/4) + sinx sin(π/4) = cos(π/6)"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That 1/√2 is read as cos45° and sin45°, and √3/2 as cos30° — matching the cos(A−B) pattern.",
+          "must_convey": "That 1/√2 is read as cos45° and sin45°, and √3/2 as cos30° — matching the cos(A−B) pattern. Also accept the sine reading, sin(x + 45°) = sin60°, which gives the same solutions.",
           "accept": [
             "one over root two is both cos forty five and sin forty five and root three over two is cos thirty",
             "recognise the pattern as cos A cos B plus sin A sin B",
@@ -133,10 +135,10 @@
             "cos A minus B"
           ]
         },
-        "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why this twin gives a cosine equation where the other gave a sine.",
+        "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why equal coefficients give a cosine equation, where unequal ones such as √3 sinθ − cosθ give a sine one.",
         "common_mistakes": [
-          "Reading √3/2 as sin60° and finishing with a sine equation.",
-          "Using the sin(A+B) pattern."
+          "Matching 1/√2 to cos30° or sin30° instead of 45°.",
+          "Writing cosx cos45° − sinx sin45°, the cos(A+B) form, when the sign on the page is a plus."
         ]
       },
       {
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. cosA cosB + sinA sinB is cos(A−B). The principal value is π/6.",
+        "memory_tip": "cosA cosB + sinA sinB = cos(A − B), so the angle is x − π/4. The principal value is π/6.",
         "lines": [
           "⇒ cos(x − π/4) = cos(π/6)",
           "  [∵ cosA cosB + sinA sinB = cos(A−B)]",
@@ -185,6 +188,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. For a COSINE equation the general solution is 2nπ ± α — note the ± and the 2n, both different from the sine form.",
+        "memory_tip": "For a COSINE equation it is 2nπ ± α — the ± and the 2n both differ from the sine form. Add the π/4 back.",
         "lines": [
           "For cosθ = cosα, the general solution is",
           "θ = 2nπ ± α,  n ∈ Z",
@@ -224,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide by √(a² + b²) = 2, not by √2, so the right side becomes √3/2. It then collapses to cos(x − π/4) = cos(π/6), and the cosine general solution 2nπ ± α is the one to use."
 }

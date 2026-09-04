@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_sin_x_minus_sin_2x_on_0_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for the function f(x) = sin x − sin 2x on [0, π].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions on [0, π]",
+      "marks": 1
+    },
+    {
+      "label": "Solve cos c − 2 cos 2c = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you check first, and what you do with cos 2c before solving.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Check the conditions on [0, π]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both terms are 0 at each end. Write sin 2π = 0 explicitly — it is the value the examiner checks.",
+        "memory_tip": "Sine is 0 at every whole multiple of π, so sin π and sin 2π are both 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = sin x − sin 2x",
+          "(i) sin x and sin 2x are continuous for every real x, so f is continuous on [0, π]",
+          "(ii) sin x and sin 2x are differentiable for every real x, so f is differentiable on (0, π)",
+          "(iii) f(0) = sin 0 − sin 0 = 0 − 0 = 0  and  f(π) = sin π − sin 2π = 0 − 0 = 0",
+          "∴ f(0) = f(π) = 0, so Rolle's theorem applies on [0, π]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin x and sin 2x are continuous and differentiable everywhere, and that f(0) = f(π) = 0 because sin 0, sin π and sin 2π are all 0.",
+          "accept": [
+            "sine functions are continuous and differentiable everywhere so the first two conditions hold",
+            "sin pi is zero and sin two pi is zero so both ends give zero",
+            "f of zero and f of pi are both zero",
+            "sin pi, sin two pi rendu zero kabatti ends equal",
+            "check the three conditions before differentiating"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin pi",
+            "sin two pi",
+            "both zero",
+            "continuous everywhere"
+          ]
+        },
+        "why": "For a trigonometric function the third condition is the one that can fail, so it is worth the full substitution. Both terms are 0 at x = 0 and again at x = π, which is what makes this interval the right one.",
+        "common_mistakes": [
+          "Reading sin 2π as 2 sin π; sin 2π is the sine of the angle 2π, which is 0.",
+          "Excluding points from the domain, when sin x and sin 2x are defined and differentiable for every real x."
+        ]
+      },
+      {
+        "id": "s2_solve_c",
+        "kind": "boxed_final",
+        "label": "Solve cos c − 2 cos 2c = 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cos⁻¹ sends every value strictly between −1 and 1 to an angle strictly between 0 and π, so both roots give a usable c. Rolle's theorem requires only one such c; here there are two.",
+        "memory_tip": "A mixture of cos x and cos 2x becomes a quadratic only through cos 2x = 2cos²x − 1.",
+        "lines": [
+          "f′(x) = cos x − 2 cos 2x",
+          "f′(c) = 0  ⇒  cos c − 2 cos 2c = 0",
+          "Put cos 2c = 2cos²c − 1:  cos c − 2(2cos²c − 1) = 0",
+          "⇒ cos c − 4cos²c + 2 = 0  ⇒  4cos²c − cos c − 2 = 0",
+          "⇒ cos c = (1 ± √33)/8",
+          "√33 ≈ 5.745, so cos c ≈ 0.843 or cos c ≈ −0.593; both lie strictly between −1 and 1",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = Cos⁻¹((1 ± √33)/8), that is c ≈ 0.568 or c ≈ 2.206, both in (0, π)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = cos x − 2 cos 2x, that cos 2c = 2cos²c − 1 turns it into 4cos²c − cos c − 2 = 0, and that cos c = (1 ± √33)/8 gives c inside (0, π).",
+          "accept": [
+            "differentiate to cos x minus two cos two x and use the double angle to get a quadratic in cos c",
+            "four cos squared c minus cos c minus two equals zero",
+            "cos c is one plus or minus root thirty three over eight",
+            "cos two c ni two cos square c minus one ga rasi quadratic solve cheyyali",
+            "both values are between minus one and one so both give a c inside"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two c",
+            "two cos squared c minus one",
+            "quadratic in cos",
+            "root thirty three",
+            "over eight"
+          ]
+        },
+        "why": "The double angle has to be written in terms of cos c before the equation can be solved, because a mixture of cos c and cos 2c is not a quadratic. Of the three forms of cos 2c, only 2cos²c − 1 removes sin c and leaves a quadratic.",
+        "common_mistakes": [
+          "Differentiating sin 2x as cos 2x and losing the factor 2.",
+          "Using cos 2c = 1 − 2sin²c, which leaves both sin c and cos c in the equation.",
+          "Discarding (1 − √33)/8 as impossible; it is about −0.593, which is a valid value of a cosine."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Check all three conditions, then solve f′(c) = 0 as a quadratic in cos c. Both roots give a c inside (0, π), so both are valid values of c."
+}

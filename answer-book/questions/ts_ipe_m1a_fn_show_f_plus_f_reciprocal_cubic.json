@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_show_f_plus_f_reciprocal_cubic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R − {0} → R is defined by f(x) = x³ − 1/x³, show that f(x) + f(1/x) = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write f(1/x) out",
+      "marks": 1
+    },
+    {
+      "label": "Add the two and reach 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to writing f(1/x) correctly and one to the addition that cancels, because the whole question turns on 1/(1/x)³ = x³. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this — what you substitute, and what happens when you add.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_f_of_reciprocal",
+        "kind": "equation",
+        "label": "Write f(1/x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is f(1/x) written out. The step that earns it is 1/(1/x)³ = x³. Say that 1/x is in the domain, since x ≠ 0 makes 1/x ≠ 0 as well.",
+        "memory_tip": "1/x cubed is 1/x³, and 1 divided by 1/x³ is x³. The two terms simply swap places.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x³ − 1/x³,  x ≠ 0",
+          "x ≠ 0 ⇒ 1/x ≠ 0, so f(1/x) is defined.",
+          "Put 1/x in place of x:",
+          "f(1/x) = (1/x)³ − 1/(1/x)³",
+          "= 1/x³ − x³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That replacing x by 1/x gives f(1/x) = 1/x³ − x³, using 1/(1/x)³ = x³.",
+          "accept": [
+            "replace x by one over x so f of one over x is one over x cubed minus x cubed",
+            "one divided by one over x cubed is x cubed so the two terms swap",
+            "substitute the reciprocal into the same rule",
+            "x badulu one by x pedithe terms swap authai",
+            "f of the reciprocal is one over x cubed minus x cubed"
+          ],
+          "reject": [
+            "I substitute one over x",
+            "use the same formula",
+            "then I add them"
+          ],
+          "heard_as": [
+            "one over x",
+            "x cubed",
+            "one over x cubed",
+            "reciprocal",
+            "f of one by x"
+          ]
+        },
+        "why": "The whole proof is one substitution. Putting 1/x where x stands turns x³ into 1/x³ and turns 1/x³ into x³, so f(1/x) is f(x) with its two terms exchanged. The domain R − {0} matters here: it is what makes 1/x a legal input.",
+        "common_mistakes": [
+          "Writing 1/(1/x)³ as 1/x³; it is x³.",
+          "Writing f(1/x) as 1/f(x).",
+          "Using x = 0, which the domain R − {0} does not allow."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "boxed_final",
+        "label": "Add the two expressions",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the addition shown ending at 0. Write the added line first; jumping straight to 0 gives the examiner nothing to mark. Check with x = 2: f(2) = 63/8 and f(1/2) = −63/8.",
+        "memory_tip": "f(1/x) is f(x) with a minus sign in front, so the sum must be 0.",
+        "lines": [
+          "f(x) + f(1/x)",
+          "= (x³ − 1/x³) + (1/x³ − x³)",
+          "= x³ − 1/x³ + 1/x³ − x³",
+          "= 0",
+          {
+            "text": "∴ f(x) + f(1/x) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the two expressions cancels x³ with −x³ and −1/x³ with 1/x³, leaving 0.",
+          "accept": [
+            "add them and x cubed cancels with minus x cubed and the other pair cancels too",
+            "the two expressions are negatives of each other so the sum is zero",
+            "x cubed minus one over x cubed plus one over x cubed minus x cubed is zero",
+            "rendu terms cancel ayi zero vasthundi",
+            "everything cancels in pairs and the total is zero"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is zero",
+            "then I get the answer"
+          ],
+          "heard_as": [
+            "cancel",
+            "zero",
+            "x cubed",
+            "one over x cubed",
+            "add them"
+          ]
+        },
+        "why": "Adding the two expressions pairs x³ with −x³ and −1/x³ with +1/x³, so every term cancels. That is what the statement means: f(1/x) is the negative of f(x), for every x in R − {0}.",
+        "common_mistakes": [
+          "Substituting one number such as x = 2 and stopping; a single value is a check, not a proof.",
+          "Cancelling one pair of terms and leaving the other pair on the page.",
+          "Writing the answer as 0 with no added line above it."
+        ]
+      }
+    ]
+  }
+}

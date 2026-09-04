@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_incircle_excircle_areas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A, A₁, A₂, A₃ are the areas of the incircle and the three excircles of a triangle respectively, prove that 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write each area with its radius",
+      "marks": 1
+    },
+    {
+      "label": "Add the reciprocal radii",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing the four areas to their radii and one to the sum of the reciprocal exradii. In this question the letters A, A₁, A₂, A₃ stand for AREAS, not for the angle A; the card keeps the book's letters and states the meaning in the first line. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_area",
+        "kind": "equation",
+        "label": "Write each area with its radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. √(πr²) = r√π because every radius is positive, and the same √π appears in all four terms.",
+        "memory_tip": "√(πr²) = r√π. The √π is common to all four terms, so it cancels and only the radii matter.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here A, A₁, A₂, A₃ are AREAS, not angles.",
+          "Let r be the inradius and r₁, r₂, r₃ the exradii.",
+          "A = πr², A₁ = πr₁², A₂ = πr₂², A₃ = πr₃²",
+          "Every radius is positive, so",
+          "√A = r√π and √A₁ = r₁√π (same for r₂, r₃)",
+          "∴ L.H.S = (1/r₁ + 1/r₂ + 1/r₃)/√π"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A = πr² gives √A = r√π, so the whole statement reduces to one about 1/r₁ + 1/r₂ + 1/r₃ and 1/r.",
+          "accept": [
+            "each area is pi r squared so its root is r root pi",
+            "the root pi is common to all four terms and cancels",
+            "the question becomes one over r one plus one over r two plus one over r three",
+            "pi r square ki root teeste r root pi vasthundi",
+            "take the root of each area and the radii are all that is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi r squared",
+            "root pi",
+            "one over r one",
+            "radius"
+          ]
+        },
+        "why": "Each area is π times a square, so its square root is the radius times √π. The √π is the same in all four terms and can be taken out, which turns the question into one about the radii alone.",
+        "common_mistakes": [
+          "Writing √(πr²) = πr instead of r√π.",
+          "Using the circumference 2πr in place of the area πr²."
+        ]
+      },
+      {
+        "id": "s2_add_the_reciprocal_radii",
+        "kind": "boxed_final",
+        "label": "Add the reciprocal radii",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. (s−a) + (s−b) + (s−c) = 3s − 2s = s, so the three reciprocals add to s/Δ, which is 1/r.",
+        "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so 1/r₁ + 1/r₂ + 1/r₃ = s/Δ = 1/r.",
+        "lines": [
+          "r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
+          "∴ 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ",
+          "= (3s − 2s)/Δ = s/Δ = 1/r   [∵ r = Δ/s]",
+          "∴ L.H.S = 1/(r√π) = 1/√(πr²) = 1/√A",
+          {
+            "text": "∴ 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ = s/Δ = 1/r.",
+          "accept": [
+            "invert each exradius so the numerators are s minus a s minus b and s minus c",
+            "they add to three s minus two s which is s",
+            "the sum is s over delta which is one over r",
+            "moodu kalipithe three s minus two s ante s vasthundi",
+            "the reciprocals of the three exradii add to one over the inradius"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus a",
+            "three s minus two s",
+            "s over delta",
+            "one over r"
+          ]
+        },
+        "why": "Inverting each exradius makes the numerators (s−a), (s−b) and (s−c), and those three add to 3s − 2s = s. That is exactly s/Δ, which is 1/r.",
+        "common_mistakes": [
+          "Writing r₁ = (s−a)/Δ instead of Δ/(s−a).",
+          "Adding (s−a) + (s−b) + (s−c) and getting 2s instead of s."
+        ]
+      }
+    ]
+  }
+}

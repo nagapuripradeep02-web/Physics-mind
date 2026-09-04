@@ -11,10 +11,10 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 12,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Using the principle of finite Mathematical Induction, prove that a + ar + ar² + … upto n terms = a(rⁿ − 1)/(r − 1), for r ≠ 1.",
   "appearances": [
     {
@@ -28,10 +28,6 @@
   ],
   "mark_split": [
     {
-      "label": "Write the nth term and the statement",
-      "marks": 1
-    },
-    {
       "label": "Verify S(1)",
       "marks": 1
     },
@@ -41,7 +37,7 @@
     },
     {
       "label": "Prove S(k+1)",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclude by P.M.I.",
@@ -51,22 +47,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 144. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank gives no mark cut here, but Mathematical Induction is an LAQ-ONLY unit — the paper gives it only Q19 — so the section is fixed by the unit, not inferred. Printed appearances: AP 19 · TS 20. The geometric-progression sum, proved by induction. It uses the SAME five moves as every answer in Unit 2 — nth term, S(1), assume S(k), prove S(k+1), conclude by P.M.I. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove S(k+1)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 144. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank gives no mark cut here, but Mathematical Induction is an LAQ-ONLY unit — the paper gives it only Q19 — so the section is fixed by the unit, not inferred. [SUPERSEDED 2026-08-31: that claim came from the Baby Bullet-Q blueprint for the 75-mark paper, and it is exactly what the re-cut below overturns.] Printed appearances: AP 19 · TS 20. The geometric-progression sum, proved by induction. It uses the SAME five moves as every answer in Unit 2 — nth term, S(1), assume S(k), prove S(k+1), conclude by P.M.I. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove S(k+1). RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_write_the_nth_term_and_the",
         "kind": "equation",
         "label": "Write the nth term and the statement",
-        "marks": 1,
-        "mark_note": "nth term",
-        "margin_note": "First mark. The nth term of the series is arⁿ⁻¹ — note the n−1, since the first term has no r at all.",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the nth term of the series is arⁿ⁻¹, note the n−1, since the first term has no r at all.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,7 +95,8 @@
         "common_mistakes": [
           "Writing the nth term as arⁿ.",
           "Not stating S(n) explicitly."
-        ]
+        ],
+        "memory_tip": "The nth term is arⁿ⁻¹ — note the n − 1, because the first term carries no r at all."
       },
       {
         "id": "s2_verify_s_1",
@@ -108,7 +104,7 @@
         "label": "Verify S(1)",
         "marks": 1,
         "mark_note": "Base case",
-        "margin_note": "Second mark. Put n = 1 into both sides. The right side needs the (r−1) to cancel, which it does exactly.",
+        "margin_note": "First mark. Put n = 1 into both sides. The right side needs the (r−1) to cancel, which it does exactly.",
         "lines": [
           "For n = 1: L.H.S = a",
           "R.H.S = a(r¹ − 1)/(r − 1) = a(r−1)/(r−1) = a",
@@ -140,7 +136,8 @@
         "common_mistakes": [
           "Skipping the base case.",
           "Not noticing the (r−1) cancels."
-        ]
+        ],
+        "memory_tip": "At n = 1 the right side is a(r − 1)/(r − 1), and the brackets cancel exactly to a."
       },
       {
         "id": "s3_assume_s_k",
@@ -148,7 +145,7 @@
         "label": "Assume S(k)",
         "marks": 1,
         "mark_note": "Hypothesis",
-        "margin_note": "Third mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step leans on it entirely.",
+        "margin_note": "Second mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step leans on it entirely.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
           "a + ar + … + ar^(k−1) = a(r^k − 1)/(r − 1)   …(1)"
@@ -179,15 +176,16 @@
         "common_mistakes": [
           "Assuming S(n) rather than S(k).",
           "Assuming what has to be proved."
-        ]
+        ],
+        "memory_tip": "Write the hypothesis as a numbered equation; the next step leans on it entirely."
       },
       {
         "id": "s4_prove_s_k_1",
         "kind": "equation",
         "label": "Prove S(k+1)",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Inductive step",
-        "margin_note": "Four marks — the bulk. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
+        "margin_note": "Third mark, and the longest step on the page. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
         "lines": [
           "Adding the (k+1)th term ar^k to both sides of (1):",
           "L.H.S = a(r^k − 1)/(r − 1) + ar^k",
@@ -222,7 +220,8 @@
         "common_mistakes": [
           "Adding ar^(k+1) instead of ar^k.",
           "Not putting the two terms over a common denominator."
-        ]
+        ],
+        "memory_tip": "Add the (k+1)th term arᵏ to BOTH sides, then combine over (r − 1) — the arᵏ terms cancel."
       },
       {
         "id": "s5_conclude_by_p_m_i",
@@ -264,8 +263,10 @@
         "common_mistakes": [
           "Stopping after the inductive step.",
           "Writing \"hence proved\" without naming the principle."
-        ]
+        ],
+        "memory_tip": "Both halves are done, so name the principle. That sentence is the mark."
       }
     ]
-  }
+  },
+  "insider_note": "The nth term is arⁿ⁻¹, not arⁿ — getting that index wrong makes the inductive step fail even with perfect algebra. State r ≠ 1, since the formula divides by r − 1."
 }

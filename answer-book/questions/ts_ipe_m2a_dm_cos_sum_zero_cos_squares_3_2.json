@@ -1,0 +1,310 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_cos_sum_zero_cos_squares_3_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If cos α + cos β + cos γ = 0 = sin α + sin β + sin γ, then show that cos² α + cos² β + cos² γ = 3/2 = sin² α + sin² β + sin² γ.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Let a = cis α, b = cis β, c = cis γ; a + b + c = 0",
+      "marks": 1
+    },
+    {
+      "label": "Square, and show 1/a + 1/b + 1/c = 0",
+      "marks": 1
+    },
+    {
+      "label": "Equate real parts: cos 2α + cos 2β + cos 2γ = 0",
+      "marks": 1
+    },
+    {
+      "label": "The cos² result",
+      "marks": 2
+    },
+    {
+      "label": "The sin² result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 De Moivre's Theorem, answer 8. Printed appearances: AP 15,16,20 · TS 15,18 — five printed tags, the most-asked LAQ in this unit. THE 1+1+1+2+2 SPLIT IS THE BOOK'S — book p.18 prints [1 Mark] against a + b + c = 0, [1 Mark] against the line where 1/a + 1/b + 1/c is expanded with cis(−α), [1 Mark] against equating the real parts to get equation (1), [2 Marks] against the cos² result and [2 Marks] against the sin² result. The SAME 1+1+1+2+2 split and the SAME opening step id (s1_setup) are used on answers 8 and 9 of this unit, deliberately: both start from cos α + cos β + cos γ = 0 = sin α + sin β + sin γ and the substitution a = cis α, b = cis β, c = cis γ. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived from (a + b + c)² = 0 with 1/a + 1/b + 1/c = 0, giving Σcos 2α = 0 and then both sums = 3/2; the book's answer is correct. The book's page carries a 'BAHUBALI Q' coaching tag; it does not enter the card (Rule 41)."
+  },
+  "recall_prompt": "Say how you would prove this — what you call a, b, c, what squaring a + b + c = 0 gives, why the reciprocal sum is zero, and how the two identities for cos 2θ finish it.",
+  "insider_note": "Five printed year tags. The one mark students most often lose is the middle one: showing 1/a + 1/b + 1/c = 0 explicitly, not just writing it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Let a = cis α, b = cis β, c = cis γ",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Put a = cis α, b = cis β, c = cis γ; the two given sums are the real and imaginary parts of a + b + c, so a + b + c = 0 + i(0) = 0. Show both parts — writing a + b + c = 0 straight away skips what earns the mark.",
+        "memory_tip": "a + b + c = 0 because the given sums are its real and imaginary parts. Write both parts out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = cos α + i sin α = cis α,",
+          "b = cis β, c = cis γ. Then",
+          "a + b + c = (cos α + cos β + cos γ)",
+          "+ i(sin α + sin β + sin γ) = 0 + i(0) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = cis α, b = cis β, c = cis γ are introduced and the two given sums make a + b + c = 0 + i(0) = 0.",
+          "accept": [
+            "let a b c be cis alpha cis beta cis gamma then a plus b plus c is zero from the given sums",
+            "the sum of the cosines and the sum of the sines are both zero so a plus b plus c equals zero",
+            "put a equals cis alpha and so on and add them, real and imaginary parts are both zero",
+            "a b c ni cis alpha beta gamma ga teeskunte a plus b plus c zero avuthundi",
+            "combine the two given equations into one complex equation a plus b plus c equals zero"
+          ],
+          "reject": [
+            "let a be cis alpha",
+            "add them",
+            "use the given"
+          ],
+          "heard_as": [
+            "cis alpha",
+            "a plus b plus c",
+            "equals zero",
+            "real and imaginary"
+          ]
+        },
+        "why": "Three real equations become one complex equation a + b + c = 0. Everything after this is algebra on a, b, c; the trigonometry comes back only at the end when real and imaginary parts are separated.",
+        "common_mistakes": [
+          "Writing a + b + c = 0 without showing that both the real part and the imaginary part are given to be zero.",
+          "Using cis α to mean cos α − i sin α.",
+          "Naming a, b, c and never using the given condition."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "equation",
+        "label": "Square, and show 1/a + 1/b + 1/c = 0",
+        "marks": 1,
+        "mark_note": "Square",
+        "margin_note": "Second mark. Squaring gives a² + b² + c² + 2(ab + bc + ca) = 0, and ab + bc + ca = abc(1/a + 1/b + 1/c). Since 1/a = cis(−α), that reciprocal sum is the given data with the sine sign reversed, so it is 0 and the cross term goes.",
+        "memory_tip": "Squaring brings in a², b², c². Rewrite ab + bc + ca as abc(1/a + 1/b + 1/c), which the given data makes 0.",
+        "lines": [
+          "a + b + c = 0 ⇒ (a + b + c)² = 0",
+          "⇒ a² + b² + c² + 2(ab + bc + ca) = 0",
+          "⇒ a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0",
+          "Now 1/a + 1/b + 1/c",
+          "= cis(−α) + cis(−β) + cis(−γ)",
+          "= (cos α + cos β + cos γ)",
+          "− i(sin α + sin β + sin γ) = 0 − i(0) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring a + b + c = 0 gives a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0, and that 1/a + 1/b + 1/c is also zero because 1/a = cis(−α).",
+          "accept": [
+            "square a plus b plus c, write a b plus b c plus c a as a b c times one by a plus one by b plus one by c, and that sum is zero",
+            "the reciprocals are cis minus alpha and so on, their sum is the given sums with a minus i, so zero",
+            "squaring gives a squared plus b squared plus c squared plus two a b c into the sum of reciprocals which is zero",
+            "square chesi ab plus bc plus ca ni abc into reciprocal sum ga rasthe adi zero",
+            "one by a plus one by b plus one by c is zero by the same given condition"
+          ],
+          "reject": [
+            "square it",
+            "expand",
+            "the reciprocals"
+          ],
+          "heard_as": [
+            "square",
+            "one by a",
+            "reciprocal",
+            "cis minus alpha",
+            "a b c"
+          ]
+        },
+        "why": "Squaring is what brings in a², b², c² — the cis 2α terms the question is really about. The cross term ab + bc + ca is rewritten as abc(1/a + 1/b + 1/c) because the reciprocals are the conjugates, and the same given condition makes their sum zero too.",
+        "common_mistakes": [
+          "Expanding (a + b + c)² as a² + b² + c² with no cross terms.",
+          "Not rewriting ab + bc + ca through the reciprocals, so the cross term cannot be shown to vanish.",
+          "Writing 1/a = cis α instead of cis(−α)."
+        ]
+      },
+      {
+        "id": "s3_double",
+        "kind": "equation",
+        "label": "Equate real parts: Σcos 2α = 0",
+        "marks": 1,
+        "mark_note": "Real parts",
+        "margin_note": "Third mark. a² = cis 2α by De Moivre, so a² + b² + c² = 0 reads cis 2α + cis 2β + cis 2γ = 0. Equate real parts for cos 2α + cos 2β + cos 2γ = 0, and label it (1) — both remaining steps use it.",
+        "memory_tip": "a² = cis 2α, so a² + b² + c² = 0 is a statement about doubled angles. Label the real part (1).",
+        "lines": [
+          "∴ a² + b² + c² = 0",
+          "⇒ cis 2α + cis 2β + cis 2γ = 0  (De Moivre)",
+          "⇒ (cos 2α + cos 2β + cos 2γ)",
+          "+ i(sin 2α + sin 2β + sin 2γ) = 0 + i(0)",
+          "Equating real parts:",
+          "cos 2α + cos 2β + cos 2γ = 0 …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a² + b² + c² = 0 becomes cis 2α + cis 2β + cis 2γ = 0 by De Moivre, and equating real parts gives cos 2α + cos 2β + cos 2γ = 0.",
+          "accept": [
+            "a squared plus b squared plus c squared is zero so cis two alpha plus cis two beta plus cis two gamma is zero, real parts give cos two alpha plus cos two beta plus cos two gamma equals zero",
+            "square each cis by De Moivre and equate the real parts to get the sum of cos two alpha zero",
+            "the doubled angles come from squaring, and the cosine sum of the doubled angles is zero",
+            "De Moivre tho cis two alpha vasthundi, real parts equate cheste cos two alpha sum zero",
+            "equation one is cos two alpha plus cos two beta plus cos two gamma equals zero"
+          ],
+          "reject": [
+            "equate real parts",
+            "use De Moivre",
+            "equation one"
+          ],
+          "heard_as": [
+            "cis two alpha",
+            "cos two alpha",
+            "real parts",
+            "equation one",
+            "De Moivre"
+          ]
+        },
+        "why": "a² = cis 2α by De Moivre's theorem, so the vanishing of a² + b² + c² is a statement about the doubled angles. A complex number is zero only when both its parts are zero, which is what lets the real parts be equated on their own.",
+        "common_mistakes": [
+          "Writing a² = cos² α + i sin² α.",
+          "Equating imaginary parts and stopping; it is the real parts that lead to the cos² and sin² results.",
+          "Forgetting the '(1)' label and having nothing to refer back to."
+        ]
+      },
+      {
+        "id": "s4_cos",
+        "kind": "equation",
+        "label": "The cos² result",
+        "marks": 2,
+        "mark_note": "cos² result",
+        "margin_note": "Fourth and fifth marks. Put cos 2θ = 2cos² θ − 1 into (1): the three −1 terms give 2(cos² α + cos² β + cos² γ) − 3 = 0. Divide by 2 for 3/2.",
+        "memory_tip": "cos 2θ = 2cos²θ − 1. The three −1 terms give 2Σcos² = 3, so Σcos² = 3/2.",
+        "lines": [
+          "(1) ⇒ (2cos² α − 1) + (2cos² β − 1)",
+          "+ (2cos² γ − 1) = 0  (∵ cos 2θ = 2cos² θ − 1)",
+          "⇒ 2(cos² α + cos² β + cos² γ) = 3",
+          {
+            "text": "cos² α + cos² β + cos² γ = 3/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting cos 2θ = 2cos² θ − 1 into equation (1) gives 2Σcos² = 3, so Σcos² = 3/2.",
+          "accept": [
+            "replace each cos two theta by two cos squared theta minus one, the three minus ones give three, so the sum of cos squared is three by two",
+            "use cos two theta equals two cos squared minus one in equation one",
+            "two times the sum of cos squared equals three so the sum is three by two",
+            "cos two theta ni two cos squared minus one ga pettite sum three by two vasthundi",
+            "the cos squared sum comes to three by two"
+          ],
+          "reject": [
+            "use the formula",
+            "the first result",
+            "cos squared"
+          ],
+          "heard_as": [
+            "two cos squared minus one",
+            "three by two",
+            "cos squared",
+            "first result"
+          ]
+        },
+        "why": "Equation (1) is about cos 2α; the question is about cos² α. The identity cos 2θ = 2cos² θ − 1 is the link, and the three −1's collected on the other side give the 3 in 3/2.",
+        "common_mistakes": [
+          "Using cos 2θ = 1 − 2cos² θ, the wrong sign.",
+          "Moving the −1's across as −3 instead of +3.",
+          "Forgetting to divide by 2 at the end."
+        ]
+      },
+      {
+        "id": "s5_sin",
+        "kind": "boxed_final",
+        "label": "The sin² result",
+        "marks": 2,
+        "mark_note": "sin² result",
+        "margin_note": "Sixth and seventh marks. The same equation (1) with the other form, cos 2θ = 1 − 2sin² θ, gives 3 − 2(sin² α + sin² β + sin² γ) = 0. The marks are for showing this second identity, not for subtracting the first result from 3.",
+        "memory_tip": "The same equation (1), other form: cos 2θ = 1 − 2sin²θ. The mark is showing this identity, not subtracting from 3.",
+        "lines": [
+          "Again (1) ⇒ (1 − 2sin² α) + (1 − 2sin² β)",
+          "+ (1 − 2sin² γ) = 0  (∵ cos 2θ = 1 − 2sin² θ)",
+          "⇒ 2(sin² α + sin² β + sin² γ) = 3",
+          {
+            "text": "sin² α + sin² β + sin² γ = 3/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting cos 2θ = 1 − 2sin² θ into the same equation (1) gives 2Σsin² = 3, so Σsin² = 3/2.",
+          "accept": [
+            "use cos two theta equals one minus two sin squared theta in the same equation one, so the sum of sin squared is also three by two",
+            "the other form of cos two theta gives the sin squared sum three by two",
+            "two times the sum of sin squared equals three",
+            "cos two theta ni one minus two sin squared ga pettite sin squared sum kuda three by two",
+            "both sums are three by two, the second from the sine form of cos two theta"
+          ],
+          "reject": [
+            "same again",
+            "the second result",
+            "sin squared"
+          ],
+          "heard_as": [
+            "one minus two sin squared",
+            "three by two",
+            "sin squared",
+            "second result"
+          ]
+        },
+        "why": "The same equation (1) with the other form of cos 2θ gives the sine result. Nothing new is derived — the second half of the question is the first half with a different identity, which is why both results are worth the same two marks.",
+        "common_mistakes": [
+          "Deriving the sin² result by subtracting the cos² result from 3, which is fine mathematics but skips the marked step.",
+          "Using cos 2θ = 2sin² θ − 1, the wrong sign.",
+          "Forgetting to divide by 2 at the end."
+        ]
+      }
+    ]
+  }
+}

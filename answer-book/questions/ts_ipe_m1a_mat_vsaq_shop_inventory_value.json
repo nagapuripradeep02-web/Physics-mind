@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_shop_inventory_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A book shop holds 10 dozen chemistry books, 8 dozen physics books and 10 dozen economics books, selling at 80, 60 and 40 money units per book. Using matrix algebra, find the total value of the books in the shop.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the counts and the prices as matrices",
+      "marks": 1
+    },
+    {
+      "label": "Multiply and read off the total",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 30, book p.37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to setting the data up as a row matrix and a column matrix and one to the product, because the question says 'using matrix algebra' and a student who only multiplies three pairs of numbers has not answered it in the form asked. RULE 35 RESTATEMENT, recorded rather than quietly changed: the book prints the three prices as 'Rs. 80, Rs. 60 and Rs. 40'. This bank ships the same concepts to more than one syllabus, so country-specific currency is not written into a stem; the prices are written here as plain money units and the answer is 20160 money units. The arithmetic is unchanged in every digit — only the name of the currency is removed. CHECKED TWO WAYS: 120(80) + 96(60) + 120(40) = 9600 + 5760 + 4800 = 20160, and factoring the dozen out first gives 12(10 × 80 + 8 × 60 + 10 × 40) = 12(800 + 480 + 400) = 12 × 1680 = 20160. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would set this shop problem up as a matrix product.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the counts and the prices as matrices",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Convert the dozens to single books first, then write the counts as one row and the prices as one column. The order matters: a row times a column gives a single number.",
+        "memory_tip": "Counts across in a row, prices down in a column. A 1×3 times a 3×1 gives one number.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 dozen = 12 books, so the counts are",
+          "10 × 12 = 120, 8 × 12 = 96, 10 × 12 = 120.",
+          {
+            "text": "N = \\begin{bmatrix} 120 & 96 & 120 \\end{bmatrix}, \\quad P = \\begin{bmatrix} 80 \\\\ 60 \\\\ 40 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each count in dozens is multiplied by 12, and the counts are written as a row matrix with the prices as a column matrix.",
+          "accept": [
+            "change the dozens to books by multiplying by twelve, then write counts as a row and prices as a column",
+            "one hundred twenty, ninety six and one hundred twenty books, prices in a column",
+            "put the numbers in a one by three row and the prices in a three by one column",
+            "dozen ni twelve tho multiply chesi row matrix, prices column matrix ga rasukovali",
+            "counts across, prices down"
+          ],
+          "reject": [
+            "write the matrices",
+            "set it up"
+          ],
+          "heard_as": [
+            "dozen",
+            "twelve",
+            "row matrix",
+            "column matrix"
+          ]
+        },
+        "why": "A row of counts times a column of prices is exactly the sum count × price, so the matrix product does the whole calculation in one step. Converting the dozens first keeps every entry a plain count of books.",
+        "common_mistakes": [
+          "Leaving the counts as 10, 8 and 10 and forgetting the dozen.",
+          "Writing both the counts and the prices as rows, which makes the product undefined."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "boxed_final",
+        "label": "Multiply and read off the total",
+        "marks": 1,
+        "mark_note": "Total",
+        "margin_note": "Second mark. N is 1×3 and P is 3×1, so NP is 1×1 — a single number, which is what a total value should be. The answer is in the same money units as the prices.",
+        "memory_tip": "A 1×3 times a 3×1 is 1×1, so the answer is one number and not a matrix of three.",
+        "lines": [
+          "N is 1×3 and P is 3×1, so NP is 1×1.",
+          {
+            "text": "NP = \\begin{bmatrix} 120(80) + 96(60) + 120(40) \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "= \\begin{bmatrix} 9600 + 5760 + 4800 \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "∴ total value = 20160 money units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the row times the column gives 9600 + 5760 + 4800 = 20160 as a single 1×1 total.",
+          "accept": [
+            "row times column gives nine thousand six hundred plus five seven six zero plus four eight zero zero",
+            "the total is twenty thousand one hundred and sixty",
+            "one by three times three by one gives one number, twenty thousand one sixty",
+            "row into column multiply cheste total twenty thousand one sixty vasthundi",
+            "add the three products to get the total value"
+          ],
+          "reject": [
+            "multiply the matrices",
+            "add them up"
+          ],
+          "heard_as": [
+            "twenty thousand one sixty",
+            "20160",
+            "one by one",
+            "total value"
+          ]
+        },
+        "why": "The order of a product of an m × n by an n × p matrix is m × p, so a 1×3 by a 3×1 is 1×1. That single entry is the sum of count times price over all three kinds of book.",
+        "common_mistakes": [
+          "Computing PN, which is a 3×3 matrix and not a total.",
+          "Multiplying the three counts by the three prices but forgetting to add the results."
+        ]
+      }
+    ]
+  }
+}

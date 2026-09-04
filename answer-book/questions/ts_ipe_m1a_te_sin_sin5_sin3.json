@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Pair sin5θ with −sin3θ using the sine DIFFERENCE formula; their half-difference is θ, which matches the leftover term and gives the common factor.",
+        "memory_tip": "Pair sin 5θ with −sin 3θ using the DIFFERENCE formula; their half-difference is θ, matching the leftover term.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. sinθ = 0 gives θ = nπ — but every one of those is 0 or π or beyond, and the interval is OPEN, so this branch contributes nothing. Say so rather than leaving it out.",
+        "memory_tip": "sinθ = 0 gives θ = nπ, and the interval is OPEN, so none qualifies. Say that rather than omitting the branch.",
         "lines": [
           "⇒ sinθ = 0  (or)  1 + 2cos4θ = 0",
           "(i) If sinθ = 0 then θ = nπ,  n ∈ Z",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. cos4θ = −1/2 = cos(2π/3), so the cosine general solution applies — then divide by 4.",
+        "memory_tip": "cos 4θ = −1/2 = cos(2π/3), not π/3. Then divide every term by 4.",
         "lines": [
           "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
           "  Here α = 2π/3, and θ = 2nπ ± α gives",
@@ -183,6 +186,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark, and the point of this twin. Substitute n = 0, 1, 2 into the general solution and keep only what lies strictly between 0 and π.",
+        "memory_tip": "Substitute n = 0, 1, 2 and keep only what lies strictly between 0 and π — four values.",
         "lines": [
           "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
           "n = 0: θ = ±π/6 → π/6",
@@ -224,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair sin5θ − sin3θ, not sinθ + sin5θ, so that sinθ survives as the common factor. The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed."
 }

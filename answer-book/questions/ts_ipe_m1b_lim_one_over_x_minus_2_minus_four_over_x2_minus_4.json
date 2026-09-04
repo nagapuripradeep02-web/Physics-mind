@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_one_over_x_minus_2_minus_four_over_x2_minus_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 2) (1/(x − 2) − 4/(x² − 4)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Combine over the common denominator",
+      "marks": 1
+    },
+    {
+      "label": "Cancel (x − 2) and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 23. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/4 was checked numerically before it was written: the expression reads 0.2499937 at x = 2.0001 and 0.2500062 at x = 1.9999, closing on 0.25 from both sides."
+  },
+  "recall_prompt": "Say how you would do this one — say what the common denominator is and what the numerator becomes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine",
+        "kind": "equation",
+        "label": "Combine over the common denominator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Neither piece has a finite limit as x → 2 — each grows without bound in size, negative from the left and positive from the right — so neither may be given a limit on its own. Combine them into one fraction first.",
+        "memory_tip": "x² − 4 already contains x − 2, so the common denominator is x² − 4 itself — nothing new has to be built.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Neither part alone has a finite limit as x → 2,",
+          "so the two are combined into one fraction.",
+          "x² − 4 = (x − 2)(x + 2), so the common denominator is (x − 2)(x + 2)",
+          "1/(x − 2) − 4/(x² − 4) = (x + 2)/[(x − 2)(x + 2)] − 4/[(x − 2)(x + 2)]",
+          "= (x + 2 − 4)/[(x − 2)(x + 2)] = (x − 2)/[(x − 2)(x + 2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 4 = (x − 2)(x + 2) is the common denominator and the numerator becomes x + 2 − 4 = x − 2.",
+          "accept": [
+            "take the common denominator x minus two into x plus two",
+            "the numerator becomes x plus two minus four which is x minus two",
+            "combine the two fractions into one first",
+            "common denominator teesukoni rendintini kalapali",
+            "x squared minus four already has x minus two in it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "x minus two",
+            "x plus two",
+            "minus four"
+          ]
+        },
+        "why": "The difference of two limits rule needs each limit to exist, and neither piece has a limit here. Combining first replaces the difference by a single fraction whose numerator and denominator are both zero at 2, which is a form the chapter can handle.",
+        "common_mistakes": [
+          "Taking the limit of each piece separately and writing ∞ − ∞.",
+          "Writing the numerator as x + 2 + 4 by dropping the minus sign of the second fraction."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel (x − 2) and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Say x ≠ 2 before cancelling. What is left, 1/(x + 2), is defined at 2, so substitution finishes it.",
+        "memory_tip": "After combining, the whole numerator is x − 2 — the same factor as below — so the fraction reduces to 1/(x + 2).",
+        "lines": [
+          "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          "= lim(x → 2) 1/(x + 2)",
+          "= 1/(2 + 2)",
+          {
+            "text": "∴ lim(x → 2) (1/(x − 2) − 4/(x² − 4)) = 1/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − 2) cancels leaving 1/(x + 2), and x = 2 gives 1/4.",
+          "accept": [
+            "cancel x minus two and one over x plus two is left",
+            "put x equals two to get one by four",
+            "the answer is one fourth",
+            "x minus two cancel chesi two substitute cheste one by four",
+            "one over two plus two is one by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by four",
+            "cancel",
+            "one over x plus two",
+            "two plus two"
+          ]
+        },
+        "why": "A limit as x → 2 uses only values of x other than 2, so (x − 2) is not zero and may be divided out. The surviving expression 1/(x + 2) is defined at 2, so direct substitution is valid.",
+        "common_mistakes": [
+          "Writing 0 above after cancelling and giving the answer as 0.",
+          "Cancelling (x + 2) instead of (x − 2)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Neither part has a limit on its own, so combine them over the common denominator FIRST. The top collapses to x − 2, which cancels and leaves 1/(x + 2)."
+}

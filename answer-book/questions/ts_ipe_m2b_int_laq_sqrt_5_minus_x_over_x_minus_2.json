@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_sqrt_5_minus_x_over_x_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ √[(5 − x)/(x − 2)] dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rationalise the square root",
+      "marks": 2
+    },
+    {
+      "label": "Write the numerator as A·Dr′ + B and solve for A, B",
+      "marks": 1
+    },
+    {
+      "label": "Substitute back and split the integral",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.37 (PDF page 36) — LAQ chapter 3 ‘Integration’, answer 31, the last question of the chapter (the next page, printed p.38/PDF37, opens Definite Integrals at answer 32.1 — boundary confirmed by direct read). Printed appearances: TS 17 · AP 19. Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Multiplying top and bottom under the root by (5−x) is the move that turns an awkward ratio of two DIFFERENT linear expressions into a single linear numerator over one quadratic root — after that, this becomes exactly the same A·Dr′+B method used elsewhere in this chapter.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rationalise",
+        "kind": "equation",
+        "label": "Rationalise the square root",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "√[(5−x)/(x−2)] = √[(5−x)²/((x−2)(5−x))]",
+          "= (5−x)/√[(x−2)(5−x)]",
+          "(x−2)(5−x) = 5x−x²−10+2x = −x²+7x−10",
+          "= 7x−10−x²",
+          "So the integrand is (5−x)/√(7x−10−x²)"
+        ],
+        "why": "Multiplying inside the root by (5−x)/(5−x) turns the awkward ratio of two DIFFERENT expressions into a single (5−x) sitting over the square root of their product — now a familiar linear-over-root shape.",
+        "common_mistakes": [
+          "Trying to integrate the original √[(5−x)/(x−2)] form directly without this rationalising step first.",
+          "Sign slip expanding (x−2)(5−x) — expand as x(5−x)−2(5−x) = 5x−x²−10+2x, one term at a time."
+        ],
+        "memory_tip": "Multiply by (5−x)/(5−x) under the root to turn a QUOTIENT of two linear terms into a single linear numerator over their product."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr′ + B and solve for A, B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          "Let 5−x = A·d/dx(7x−10−x²) + B = A(7−2x) + B",
+          "Coeff of x: −2A=−1 ⇒ A=1/2; constant:",
+          "7A+B=5 ⇒ B=5−7/2=3/2"
+        ],
+        "why": "With the integrand now in the familiar linear-numerator-over-root-of-quadratic shape, the standard A·Dr′+B split applies directly.",
+        "common_mistakes": [
+          "Using the ORIGINAL denominator (x−2)(5−x) instead of its expanded quadratic form 7x−10−x² when differentiating.",
+          "Sign slip: 7(1/2)+B=5 gives B=5−7/2=3/2, not 5+7/2."
+        ],
+        "memory_tip": "7(1/2)=7/2, and 5−7/2=3/2 — subtract, don't add, when isolating B."
+      },
+      {
+        "id": "s3_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "I",
+          "= (1/2)∫[d/dx(7x−10−x²)]/√(7x−10−x²) dx",
+          "+ (3/2)∫dx/√(7x−10−x²)",
+          "= (1/2)·2√(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)",
+          "= √(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)"
+        ],
+        "why": "The A-part is again an f′(x)/√f(x) form worth 2√f(x), and here the outside 1/2 exactly cancels that 2, leaving a clean √(7x−10−x²) with no leftover coefficient.",
+        "common_mistakes": [
+          "Missing the factor-of-2 rule for ∫f′/√f dx once again.",
+          "Forgetting the leftover B=3/2 multiplier on the second integral."
+        ],
+        "memory_tip": "(1/2)×2=1 — the standard factor of 2 cancels the outside 1/2 exactly, a clean coincidence worth noticing."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Complete the square for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
+          "= 9/4−(x−7/2)² = (3/2)²−(x−7/2)²",
+          {
+            "text": "\\int\\frac{dx}{\\sqrt{a^2-u^2}}=\\operatorname{Sin}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ I = √(7x−10−x²)+(3/2)Sin⁻¹[(2x−7)/3] + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "The quadratic completes to a bounded (3/2)²−(x−7/2)² form, so the leftover integral is the standard Sin⁻¹ result; clearing the internal halves gives (2x−7)/3 inside it.",
+        "common_mistakes": [
+          "Sign slip completing the square on −x²+7x−10, which needs the leading −1 factored out first.",
+          "Leaving the Sin⁻¹ argument un-simplified as (x−7/2)/(3/2) instead of (2x−7)/3."
+        ],
+        "memory_tip": "Factor out the leading −1 BEFORE completing the square whenever the x² coefficient is negative — skipping this is the most common slip on this question."
+      }
+    ]
+  }
+}

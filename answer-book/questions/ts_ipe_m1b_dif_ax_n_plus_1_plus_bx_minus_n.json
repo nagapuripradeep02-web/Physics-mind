@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_ax_n_plus_1_plus_bx_minus_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If y = ax^(n+1) + bx^(−n), prove that x²y″ = n(n + 1)y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate term by term",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate again",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by x²",
+      "marks": 1
+    },
+    {
+      "label": "Take out n(n + 1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule you use on each term and what you do after the second derivative.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_derivative",
+        "kind": "equation",
+        "label": "Differentiate term by term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both terms are powers of x, so the power rule alone is enough — no product rule and no chain rule anywhere in this question.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = axⁿ⁺¹ + bx⁻ⁿ",
+          "Differentiate each power by bringing the index down and reducing it by one:",
+          "y′ = a(n + 1)xⁿ − bn x⁻ⁿ⁻¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power rule gives y′ = a(n + 1)xⁿ − bn x⁻ⁿ⁻¹.",
+          "accept": [
+            "use the power rule on both terms",
+            "y dash is a into n plus one x to the n minus b n x to the minus n minus one",
+            "bring the index down and reduce it by one",
+            "power rule vaadali, index ni kinda ki techi one thagginchali",
+            "the second term keeps a minus sign because the index is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "power rule",
+            "n plus one",
+            "x to the n",
+            "minus n minus one"
+          ]
+        },
+        "why": "The power rule applies to a negative index exactly as it does to a positive one, so both terms are handled by the same single rule.",
+        "common_mistakes": [
+          "Writing the derivative of bx⁻ⁿ as bn x⁻ⁿ⁻¹ with a plus sign.",
+          "Reducing the index of x⁻ⁿ to x⁻ⁿ⁺¹ instead of x⁻ⁿ⁻¹."
+        ],
+        "memory_tip": "Reducing an index by one always moves it DOWN the number line: −n becomes −n − 1, not −n + 1."
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "equation",
+        "label": "Differentiate again",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both terms now carry the same factor n(n + 1) — that shared factor is the whole reason the result works.",
+        "lines": [
+          "y″ = a(n + 1)n xⁿ⁻¹ − bn(−n − 1)x⁻ⁿ⁻²",
+          "y″ = an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y″ = an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻², with n(n + 1) common to both terms.",
+          "accept": [
+            "differentiate again and both terms carry n into n plus one",
+            "y double dash is a n n plus one x to the n minus one plus b n n plus one x to the minus n minus two",
+            "the two minus signs in the second term make it positive",
+            "rendo term lo rendu minus lu positive avuthai",
+            "n into n plus one is common to both terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y double dash",
+            "n into n plus one",
+            "x to the n minus one",
+            "minus n minus two"
+          ]
+        },
+        "why": "Multiplying by −n and then by −n − 1 gives +n(n + 1), so the second term turns positive and matches the first term’s factor.",
+        "common_mistakes": [
+          "Keeping the second term negative by multiplying only one of the two minus signs.",
+          "Writing the index of the second term as −n − 1 instead of −n − 2."
+        ],
+        "memory_tip": "Two negatives multiply to a positive, which is why both terms end up with the same +n(n + 1)."
+      },
+      {
+        "id": "s3_multiply_x_squared",
+        "kind": "equation",
+        "label": "Multiply by x²",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. Adding 2 to each index is the move the question is built on: n − 1 becomes n + 1 and −n − 2 becomes −n, the two indices y itself carries.",
+        "lines": [
+          "x²y″ = x²[an(n + 1)xⁿ⁻¹ + bn(n + 1)x⁻ⁿ⁻²]",
+          "= an(n + 1)xⁿ⁺¹ + bn(n + 1)x⁻ⁿ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by x² raises each index by 2, giving xⁿ⁺¹ and x⁻ⁿ.",
+          "accept": [
+            "multiply by x squared and add two to each index",
+            "n minus one plus two is n plus one",
+            "minus n minus two plus two is minus n",
+            "x square tho multiply cheste index lo two add avuthundi",
+            "the indices become the same as in y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x squared",
+            "add two to the index",
+            "n plus one",
+            "minus n"
+          ]
+        },
+        "why": "Multiplying powers adds indices. Adding 2 restores exactly the two indices y started with, which is why the right-hand side can be written as a multiple of y.",
+        "common_mistakes": [
+          "Multiplying the coefficients by 2 instead of adding 2 to the indices.",
+          "Applying x² to only the first term."
+        ],
+        "memory_tip": "Multiplying powers of x adds the indices; it never multiplies them."
+      },
+      {
+        "id": "s4_factorise",
+        "kind": "boxed_final",
+        "label": "Take out n(n + 1)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The bracket left behind must be y written out exactly as the question gives it — say so in words, or the proof is not finished.",
+        "lines": [
+          "x²y″ = n(n + 1)[axⁿ⁺¹ + bx⁻ⁿ]",
+          "The bracket is y itself, so",
+          {
+            "text": "∴ x²y″ = n(n + 1)y",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n(n + 1) is taken out and the remaining bracket is y, giving x²y″ = n(n + 1)y.",
+          "accept": [
+            "take n into n plus one common and the bracket is y",
+            "the bracket is exactly the original y",
+            "so x squared y double dash is n into n plus one times y",
+            "n into n plus one common teeste bracket lo y vasthundi",
+            "that completes the proof"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take common",
+            "bracket is y",
+            "n into n plus one",
+            "proved"
+          ]
+        },
+        "why": "A proof of this shape is finished only by naming the bracket as y. Stopping at the expanded line leaves the required statement unwritten.",
+        "common_mistakes": [
+          "Stopping at the expanded form without saying the bracket is y.",
+          "Taking out n(n + 1) from one term only."
+        ],
+        "memory_tip": "Check with n = 1 and b = 0: y = ax², y″ = 2a, x²y″ = 2ax² = 1·2·y."
+      }
+    ]
+  },
+  "insider_note": "Differentiate twice as plain powers; the second term's index −n − 1 times −n turns the sign positive. Multiplying by x² restores the original powers, so the bracket becomes y."
+}

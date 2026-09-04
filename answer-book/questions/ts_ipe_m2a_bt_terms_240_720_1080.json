@@ -1,0 +1,316 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_terms_240_720_1080",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If the 2nd, 3rd and 4th terms in the expansion of (a + x)ⁿ are respectively 240, 720 and 1080, then find the values of a, x and n.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write T₂, T₃, T₄",
+      "marks": 1
+    },
+    {
+      "label": "Divide (2) by (1)",
+      "marks": 2
+    },
+    {
+      "label": "Divide (3) by (2)",
+      "marks": 1
+    },
+    {
+      "label": "Find n",
+      "marks": 1
+    },
+    {
+      "label": "Find a",
+      "marks": 1
+    },
+    {
+      "label": "Find x and state all three",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 Binomial Theorem, answer 20. Printed appearances: TS 16. THE SPLIT IS THE BOOK'S: book p.27 prints seven [1 Mark] tags — the three terms written; the ratio T₃/T₂ set up; (n − 1)x = 6a; 2(n − 2)x = 9a; n = 5; a = 2; x = 3. This card groups the second and third tags into one 2-mark step (the first ratio and the relation it gives) and keeps the other five as printed, so the totals per idea are unchanged. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 1 (book p.112). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find a, x and n — how you write the three terms, what dividing consecutive terms gives, how the two relations give n, and how you then get a and x.",
+  "insider_note": "The 2nd term is Tᵣ₊₁ with r = 1, not r = 2. Divide consecutive terms so the powers of a and x cancel, and state all three values at the end — n alone is not the full answer.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_terms",
+        "kind": "equation",
+        "label": "Write T₂, T₃, T₄",
+        "marks": 1,
+        "mark_note": "Three terms",
+        "margin_note": "First mark. Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ. The 2nd term has r = 1, the 3rd has r = 2, the 4th has r = 3 — one less than the position every time.",
+        "memory_tip": "Tᵣ₊₁ = ⁿCᵣaⁿ⁻ʳxʳ, so the 2nd term has r = 1 — one less than the position, every time.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In (a + x)ⁿ, Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ",
+          "T₂ = ⁿC₁ aⁿ⁻¹ x = 240 …(1)",
+          "T₃ = ⁿC₂ aⁿ⁻² x² = 720 …(2)",
+          "T₄ = ⁿC₃ aⁿ⁻³ x³ = 1080 …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 2nd, 3rd and 4th terms are ⁿC₁aⁿ⁻¹x, ⁿC₂aⁿ⁻²x², ⁿC₃aⁿ⁻³x³, set equal to 240, 720, 1080.",
+          "accept": [
+            "write the second third and fourth terms using the general term and set them equal to two forty seven twenty and ten eighty",
+            "T two is n C one a to the n minus one x, T three is n C two a to the n minus two x squared and T four is n C three a to the n minus three x cubed",
+            "use T r plus one equals n C r a power n minus r x power r for r equal to one two and three",
+            "general term tho T two T three T four rasi two forty seven twenty ten eighty ki equal pettali",
+            "the three given terms are r equal to one two and three in the general term"
+          ],
+          "reject": [
+            "write the terms",
+            "use the general term"
+          ],
+          "heard_as": [
+            "n C one",
+            "n C two",
+            "n C three",
+            "two forty",
+            "seven twenty",
+            "ten eighty"
+          ]
+        },
+        "why": "Three equations for three unknowns. Writing the general term once and substituting r = 1, 2, 3 is the only way to get all three equations without error.",
+        "common_mistakes": [
+          "Taking the 2nd term as r = 2 — the r-th power of x appears in the (r + 1)-th term.",
+          "Writing xⁿ⁻ʳ aʳ: here a is the first entry of the bracket, so a carries n − r."
+        ]
+      },
+      {
+        "id": "s2_first_ratio",
+        "kind": "equation",
+        "label": "Divide (2) by (1)",
+        "marks": 2,
+        "mark_note": "First relation",
+        "margin_note": "Second and third marks. Dividing removes the unknown power of a. ⁿC₂/ⁿC₁ = (n − 1)/2 comes from ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1) with r = 1.",
+        "memory_tip": "Dividing consecutive terms cancels the unknown power of a. ⁿC₂/ⁿC₁ = (n − 1)/2.",
+        "lines": [
+          "(2)/(1): (ⁿC₂ aⁿ⁻² x²)/(ⁿC₁ aⁿ⁻¹ x)",
+          "  = 720/240 = 3",
+          "(ⁿC₂/ⁿC₁)(x/a) = 3",
+          "((n − 1)/2)(x/a) = 3   [ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)]",
+          "(n − 1)x = 6a …(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the 3rd term by the 2nd gives (n − 1)/2 times x/a = 3, so (n − 1)x = 6a.",
+          "accept": [
+            "divide the third term by the second, the ratio of the C values is n minus one by two, times x by a equals three, so n minus one into x is six a",
+            "T three by T two is three which gives n minus one by two into x by a equals three",
+            "use n C r plus one over n C r equals n minus r over r plus one to get n minus one x equals six a",
+            "T three ni T two tho divide cheste n minus one into x equals six a vasthundi",
+            "the first ratio gives n minus one times x equals six a"
+          ],
+          "reject": [
+            "divide them",
+            "take the ratio"
+          ],
+          "heard_as": [
+            "n minus one",
+            "six a",
+            "x by a",
+            "seven twenty by two forty"
+          ]
+        },
+        "why": "Ratios of consecutive terms remove the powers of a and leave n, x and a in one clean relation. Two such ratios are what solve the question.",
+        "common_mistakes": [
+          "Writing ⁿC₂/ⁿC₁ as 2/(n − 1) — it is (n − 1)/2.",
+          "Dividing (1) by (2) and then treating 1/3 as 3."
+        ]
+      },
+      {
+        "id": "s3_second_ratio",
+        "kind": "equation",
+        "label": "Divide (3) by (2)",
+        "marks": 1,
+        "mark_note": "Second relation",
+        "margin_note": "Fourth mark. Same move one step up: ⁿC₃/ⁿC₂ = (n − 2)/3.",
+        "memory_tip": "The same move one step up: ⁿC₃/ⁿC₂ = (n − 2)/3, and 1080/720 = 3/2.",
+        "lines": [
+          "(3)/(2): (ⁿC₃/ⁿC₂)(x/a) = 1080/720 = 3/2",
+          "((n − 2)/3)(x/a) = 3/2",
+          "2(n − 2)x = 9a …(5)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the 4th term by the 3rd gives (n − 2)/3 times x/a = 3/2, so 2(n − 2)x = 9a.",
+          "accept": [
+            "divide the fourth term by the third to get n minus two by three into x by a equals three by two, so two into n minus two into x is nine a",
+            "T four by T three is three by two which gives two n minus two x equals nine a",
+            "the second ratio is ten eighty by seven twenty equals three by two",
+            "T four ni T three tho divide cheste two into n minus two into x equals nine a",
+            "n minus two by three times x by a equals three by two"
+          ],
+          "reject": [
+            "divide again",
+            "do the same"
+          ],
+          "heard_as": [
+            "n minus two",
+            "nine a",
+            "three by two",
+            "ten eighty by seven twenty"
+          ]
+        },
+        "why": "The second ratio is independent of the first, so together they pin n down. One ratio alone would leave x/a and n mixed together.",
+        "common_mistakes": [
+          "Simplifying 1080/720 to 3 instead of 3/2.",
+          "Writing ⁿC₃/ⁿC₂ as (n − 3)/3."
+        ]
+      },
+      {
+        "id": "s4_find_n",
+        "kind": "equation",
+        "label": "Find n",
+        "marks": 1,
+        "mark_note": "n = 5",
+        "margin_note": "Fifth mark. Divide (5) by (4): the x and the a cancel and only n is left.",
+        "memory_tip": "Divide (5) by (4): both x and a cancel, leaving n alone.",
+        "lines": [
+          "(5)/(4): 2(n − 2)/(n − 1) = 9a/6a = 3/2",
+          "4(n − 2) = 3(n − 1) ⇒ 4n − 8 = 3n − 3",
+          "∴ n = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the two relations cancels x and a, giving 4(n − 2) = 3(n − 1) and n = 5.",
+          "accept": [
+            "divide the two relations, x and a cancel, four n minus eight equals three n minus three, so n is five",
+            "two n minus two over n minus one equals three by two which gives n equal to five",
+            "n comes to five",
+            "rendu relations ni divide cheste x a cancel ayyi n five vasthundi",
+            "cross multiply four into n minus two equals three into n minus one and n is five"
+          ],
+          "reject": [
+            "find n",
+            "solve for n"
+          ],
+          "heard_as": [
+            "n equals five",
+            "n is five",
+            "four n minus eight"
+          ]
+        },
+        "why": "Both relations contain the same product x·a-ratio, so dividing them is the fastest way to isolate n without ever knowing x or a.",
+        "common_mistakes": [
+          "Cross-multiplying as 2(n − 2)·2 = 3(n − 1) and losing a factor.",
+          "Getting n = 5 but not checking it makes both (4) and (5) consistent."
+        ]
+      },
+      {
+        "id": "s5_find_a",
+        "kind": "equation",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "a = 2",
+        "margin_note": "Sixth mark. With n = 5, (4) gives x = 3a/2. Put that and n = 5 into (1): 5·a⁴·(3a/2) = 240 gives a⁵ = 32.",
+        "memory_tip": "With n = 5, (4) gives x = 3a/2. Put it into (1): a⁵ = 32 = 2⁵.",
+        "lines": [
+          "From (4): 4x = 6a ⇒ x = 3a/2 …(6)",
+          "From (1): ⁵C₁ a⁴ x = 240 ⇒ 5a⁴(3a/2) = 240",
+          "a⁵ = (240 × 2)/15 = 32 = 2⁵",
+          "∴ a = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (4) with n = 5 gives x = 3a/2, and substituting into the first term gives a⁵ = 32 so a = 2.",
+          "accept": [
+            "n is five so x is three a by two, put it in the first term, five a to the four into three a by two is two forty, a to the five is thirty two, a is two",
+            "substitute x equals three a by two into T two to get a to the fifth equals thirty two",
+            "a comes to two because a power five is thirty two",
+            "x equals three a by two ni first equation lo pettithe a power five thirty two, a two",
+            "five a to the fourth times three a by two equals two forty gives a equals two"
+          ],
+          "reject": [
+            "find a",
+            "substitute back"
+          ],
+          "heard_as": [
+            "three a by two",
+            "a to the five",
+            "thirty two",
+            "a equals two"
+          ]
+        },
+        "why": "The ratios gave only the shape x = 3a/2; the actual size needs one of the original equations, and the first is the simplest.",
+        "common_mistakes": [
+          "Forgetting the ⁵C₁ = 5 in the first term.",
+          "Writing a⁵ = 32 and then a = 32/5."
+        ]
+      },
+      {
+        "id": "s6_find_x",
+        "kind": "boxed_final",
+        "label": "Find x and state all three",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. x = 3a/2 with a = 2 is x = 3. Check: T₂ = 5·2⁴·3 = 240.",
+        "memory_tip": "State all THREE values. Check T₂ = 5 · 2⁴ · 3 = 240.",
+        "lines": [
+          "From (6): x = 3(2)/2 = 3",
+          {
+            "text": "∴ a = 2, x = 3, n = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 3a/2 = 3, and the answer is a = 2, x = 3, n = 5.",
+          "accept": [
+            "x is three a by two which is three, so a is two x is three and n is five",
+            "a equals two x equals three n equals five",
+            "x comes to three",
+            "a two, x three, n five",
+            "the three values are two three and five"
+          ],
+          "reject": [
+            "that is the answer",
+            "find x"
+          ],
+          "heard_as": [
+            "x equals three",
+            "a two x three n five",
+            "two three five"
+          ]
+        },
+        "why": "All three unknowns were asked for. Substituting back into T₂ = 5·16·3 = 240 confirms the set in one line.",
+        "common_mistakes": [
+          "Stating only n and a because x was found on the way and forgotten.",
+          "Not checking against 720 or 1080 when time allows."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_marginal_revenue_x_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The total revenue in rupees from the sale of x units of a product is R(x) = 3x² + 36x + 5. Find the marginal revenue at x = 5. (Marginal revenue is the rate of change of total revenue.)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the revenue function",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 10(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what marginal revenue means and what you do with x = 5.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the revenue function",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rate measure question, worked exactly like marginal cost dC/dx. Differentiate term by term: 3x² gives 6x, 36x gives 36, and the constant 5 gives 0.",
+        "memory_tip": "Marginal means derivative. Marginal revenue is dR/dx, exactly as marginal cost is dC/dx.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rate measure question. Marginal revenue is the rate of change of total revenue,",
+          "so marginal revenue = dR/dx.",
+          "R(x) = 3x² + 36x + 5",
+          "dR/dx = 3(2x) + 36",
+          "= 6x + 36"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That marginal revenue is dR/dx, and that differentiating R(x) gives 6x + 36.",
+          "accept": [
+            "marginal revenue is the derivative of the revenue function",
+            "differentiate R of x and get six x plus thirty six",
+            "marginal revenue means d R by d x",
+            "marginal revenue ante derivative, differentiate cheyyali",
+            "the constant five differentiates to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "marginal revenue",
+            "d R by d x",
+            "six x plus thirty six",
+            "derivative"
+          ]
+        },
+        "why": "The question defines marginal revenue for you as a rate of change, so the method is one differentiation. Writing dR/dx before substituting earns the method mark on its own.",
+        "common_mistakes": [
+          "Substituting x = 5 into R(x), which gives the total revenue 260 and not the rate.",
+          "Writing dR/dx = 6x and dropping the 36.",
+          "Carrying the constant 5 into the derivative."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute x = 5",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 6 × 5 = 30 and 30 + 36 = 66. The unit is rupees per unit, because revenue in rupees is differentiated with respect to the number of units.",
+        "memory_tip": "Substitute only after the derivative is written down — the number goes into dR/dx, never into R(x).",
+        "lines": [
+          "At x = 5,",
+          "dR/dx = 6(5) + 36",
+          "= 30 + 36",
+          {
+            "text": "∴ marginal revenue at x = 5 is 66 rupees per unit",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting x = 5 into 6x + 36 gives 66 rupees per unit.",
+          "accept": [
+            "put x equals five to get sixty six rupees per unit",
+            "six into five is thirty, plus thirty six is sixty six",
+            "the marginal revenue is sixty six rupees",
+            "five substitute cheste sixty six vasthundi",
+            "the answer is sixty six rupees per unit"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty six",
+            "rupees per unit",
+            "x equals five",
+            "thirty plus thirty six"
+          ]
+        },
+        "why": "The answer is a rate of rupees against units, so the unit is rupees per unit of product. It is the extra revenue from selling one more unit around x = 5.",
+        "common_mistakes": [
+          "Giving 260, which is R(5) and not the rate.",
+          "Writing 6(5) = 36 and then adding 36 again.",
+          "Leaving the answer with no unit."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Marginal revenue is dR/dx, so differentiate before substituting. The constant 5 disappears entirely, which is a useful check."
+}

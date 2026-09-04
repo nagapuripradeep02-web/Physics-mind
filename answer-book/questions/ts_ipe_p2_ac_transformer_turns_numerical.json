@@ -83,7 +83,7 @@
       {
         "id": "s2_result",
         "kind": "boxed_final",
-        "label": "Substitute and solve",
+        "label": "Substitution and result",
         "marks": 1,
         "mark_note": "Nₛ = 100 turns",
         "lines": [

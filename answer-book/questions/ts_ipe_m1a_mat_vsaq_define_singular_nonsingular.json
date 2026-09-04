@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_singular_nonsingular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the definitions of singular and non-singular matrices, and give an example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define singular and non-singular",
+      "marks": 1
+    },
+    {
+      "label": "Give an example of each",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.37, chapter 5 MATRICES, Very Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split follows the two things the question names, the definitions and the examples, so a student who defines both but gives no example earns exactly one mark. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Give both definitions in terms of the determinant, and one example of each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "Define singular and non-singular",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Both definitions are about the determinant and nothing else. Say square once, because only a square matrix has a determinant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Singular and Non-singular:",
+            "style": "heading"
+          },
+          "Let A be a square matrix.",
+          "A is called singular if det A = 0.",
+          "A is called non-singular if det A ≠ 0.",
+          "Only a non-singular matrix has an inverse."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a square matrix is singular when its determinant is 0 and non-singular when its determinant is not 0.",
+          "accept": [
+            "singular means the determinant is zero",
+            "non singular means the determinant is not zero",
+            "a square matrix with determinant zero is singular",
+            "determinant zero aithe singular, zero kaakapothe non singular",
+            "only the non singular one has an inverse"
+          ],
+          "reject": [
+            "it is singular",
+            "the determinant of A"
+          ],
+          "heard_as": [
+            "singular",
+            "non singular",
+            "determinant zero",
+            "square matrix"
+          ]
+        },
+        "why": "The determinant is the single test, so the two words simply name the two cases det A = 0 and det A ≠ 0. The link to the inverse follows at once, because det A sits in the denominator of A⁻¹ = (Adj A)/(det A).",
+        "common_mistakes": [
+          "Swapping the two, so det A = 0 is called non-singular.",
+          "Saying singular means the matrix has no rows or columns repeated.",
+          "Using the definition on a matrix that is not square."
+        ],
+        "memory_tip": "Singular is the odd case, det A = 0; every other square matrix is non-singular."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Give an example of each",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Write the determinant out for each example. An example with no determinant shown proves nothing.",
+        "lines": [
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}, \\quad \\det A = 4 - 4 = 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "det A = 0, so A is singular.",
+          {
+            "text": "B = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}, \\quad \\det B = 4 - 6 = -2",
+            "render": "katex",
+            "style": "eq"
+          },
+          "det B = −2 ≠ 0, so B is non-singular.",
+          {
+            "text": "∴ A is singular, B is non-singular",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one example has determinant 0 and is singular, and the other has a non-zero determinant and is non-singular.",
+          "accept": [
+            "one two two four has determinant zero so it is singular",
+            "one two three four has determinant minus two so it is non singular",
+            "work out both determinants and name each matrix",
+            "modati determinant zero, rendo determinant minus two",
+            "the first is singular and the second is non singular"
+          ],
+          "reject": [
+            "give an example",
+            "the determinant"
+          ],
+          "heard_as": [
+            "determinant zero",
+            "minus two",
+            "singular",
+            "non singular"
+          ]
+        },
+        "why": "The two examples differ in one entry, so they show that being singular is a property of the numbers and not of the shape. Writing each determinant out is what turns an example into evidence.",
+        "common_mistakes": [
+          "Giving two examples but working out neither determinant.",
+          "Thinking the zero matrix is the only singular matrix.",
+          "Labelling the examples the wrong way round."
+        ],
+        "memory_tip": "A quick singular example: make one row a multiple of the other, and the determinant is 0."
+      }
+    ]
+  }
+}

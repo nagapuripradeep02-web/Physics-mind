@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_det_vandermonde_1_a_a2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the determinant with rows (1, a, a²), (1, b, b²) and (1, c, c²) is (a−b)(b−c)(c−a).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Subtract the rows in pairs",
+      "marks": 1
+    },
+    {
+      "label": "Take (a−b) and (b−c) out",
+      "marks": 1
+    },
+    {
+      "label": "Expand along the first column",
+      "marks": 1
+    },
+    {
+      "label": "Reach (a−b)(b−c)(c−a)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.39, chapter 5 MATRICES, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four moves: the row subtractions, the two common factors, the expansion, and the last factor. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each row operation in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_row_ops",
+        "kind": "equation",
+        "label": "Subtract the rows in pairs",
+        "marks": 1,
+        "mark_note": "Row operations",
+        "margin_note": "First mark. Do not expand this determinant. Subtracting neighbouring rows is what creates the differences a−b and b−c that the answer is built from.",
+        "memory_tip": "Subtract neighbouring rows first — that is what makes the factors a−b and b−c appear.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let Δ be the given determinant:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Apply R₁ → R₁ − R₂ and R₂ → R₂ − R₃:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 0 & a-b & a^2-b^2 \\\\ 0 & b-c & b^2-c^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R₁ → R₁ − R₂ and R₂ → R₂ − R₃ are applied, leaving two zeros in the first column.",
+          "accept": [
+            "subtract the second row from the first and the third row from the second",
+            "apply R one minus R two and R two minus R three",
+            "row subtractions make the first column zero zero one",
+            "R one minus R two, R two minus R three cheyyali",
+            "take differences of neighbouring rows so a minus b appears"
+          ],
+          "reject": [
+            "do row operations",
+            "subtract the rows"
+          ],
+          "heard_as": [
+            "R one minus R two",
+            "R two minus R three",
+            "zeros",
+            "first column"
+          ]
+        },
+        "why": "Subtracting one row from another leaves the value of a determinant unchanged, and here it turns two of the three 1s in the first column into zeros.",
+        "common_mistakes": [
+          "Expanding the determinant in full and hoping the algebra factorises.",
+          "Doing R₂ → R₂ − R₃ first, which changes R₂ before R₁ − R₂ uses it."
+        ]
+      },
+      {
+        "id": "s2_take_out",
+        "kind": "equation",
+        "label": "Take (a−b) and (b−c) out",
+        "marks": 1,
+        "mark_note": "Common factors",
+        "margin_note": "Second mark. Use a² − b² = (a−b)(a+b). Taking a factor out of a row divides that whole row by it, so both entries of R₁ change, not just the a² − b² entry.",
+        "memory_tip": "a² − b² = (a−b)(a+b), so (a−b) comes out of the whole first row.",
+        "lines": [
+          "a² − b² = (a−b)(a+b) and",
+          "b² − c² = (b−c)(b+c), so (a−b) comes",
+          "out of R₁ and (b−c) out of R₂:",
+          {
+            "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} 0 & 1 & a+b \\\\ 0 & 1 & b+c \\\\ 1 & c & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a²−b² and b²−c² are factorised so (a−b) leaves R₁ and (b−c) leaves R₂.",
+          "accept": [
+            "a squared minus b squared is a minus b into a plus b so take a minus b out",
+            "take a minus b common from the first row and b minus c from the second",
+            "pull the two factors outside the determinant",
+            "a minus b ni first row nunchi common teesukovali",
+            "factorise the difference of squares and take the factor out of the row"
+          ],
+          "reject": [
+            "take the factor out",
+            "factorise it"
+          ],
+          "heard_as": [
+            "a minus b",
+            "b minus c",
+            "difference of squares",
+            "common factor"
+          ]
+        },
+        "why": "Taking a common factor out of a row multiplies the determinant by that factor outside, and this is where two of the three answer brackets come from.",
+        "common_mistakes": [
+          "Taking (a−b) out of one entry only and leaving the rest of the row alone.",
+          "Writing a² − b² as (a−b)²."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand along the first column",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Third mark. The first column is now (0, 0, 1), so only one term of the expansion survives. Its sign is (−1)³⁺¹ = +1, so nothing changes sign here.",
+        "memory_tip": "A column of (0, 0, 1) leaves exactly one term when you expand along it.",
+        "lines": [
+          "Expand along C₁. Only the 1 in R₃ gives a",
+          "term, with sign (−1)³⁺¹ = +1:",
+          {
+            "text": "\\Delta = (a-b)(b-c)\\begin{vmatrix} 1 & a+b \\\\ 1 & b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expansion is along C₁, that only the entry 1 in row 3 contributes, and that its sign is plus.",
+          "accept": [
+            "expand along the first column since it is zero zero one",
+            "only the one in the third row gives a term and its sign is plus",
+            "the three by three drops to a two by two determinant",
+            "first column lo okate one undi kabatti oke term vasthundi",
+            "expand along the column with the zeros"
+          ],
+          "reject": [
+            "expand it",
+            "open the determinant"
+          ],
+          "heard_as": [
+            "expand along C one",
+            "first column",
+            "sign is plus",
+            "two by two"
+          ]
+        },
+        "why": "Expanding along the column that holds the zeros is what turns a 3×3 determinant into a single 2×2 one with no extra work.",
+        "common_mistakes": [
+          "Expanding along the first row, which brings back all three terms.",
+          "Using a minus sign for the (3, 1) position, where the sign is plus."
+        ]
+      },
+      {
+        "id": "s4_finish",
+        "kind": "boxed_final",
+        "label": "Reach (a−b)(b−c)(c−a)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 2×2 determinant is (b+c) − (a+b) = c − a, which is the third bracket. Check the letter order against what the question asks before boxing it.",
+        "memory_tip": "The 2×2 determinant gives (b+c) − (a+b) = c − a — the third bracket.",
+        "lines": [
+          "The 2×2 determinant is",
+          "(b+c) − (a+b) = c − a.",
+          "Multiplying the three factors:",
+          {
+            "text": "∴ Δ = (a−b)(b−c)(c−a)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 2×2 determinant equals c − a, giving the product (a−b)(b−c)(c−a).",
+          "accept": [
+            "b plus c minus a plus b is c minus a so the answer is the product of the three brackets",
+            "the last determinant gives c minus a",
+            "delta equals a minus b into b minus c into c minus a",
+            "chivari determinant c minus a isthundi",
+            "multiply the three factors to get the required result"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "c minus a",
+            "three brackets",
+            "product",
+            "proved"
+          ]
+        },
+        "why": "Each of the three brackets came from a different move: two from the row factors and this one from the 2×2 determinant. Together they are exactly the right-hand side asked for.",
+        "common_mistakes": [
+          "Writing a − c instead of c − a, which flips the sign of the whole answer.",
+          "Leaving the answer as (a−b)(b−c) times a 2×2 determinant."
+        ]
+      }
+    ]
+  }
+}

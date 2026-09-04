@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x2_2x_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If f(x) = x²2ˣ log x, x > 0, find f′(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the three factors and their derivatives",
+      "marks": 1
+    },
+    {
+      "label": "Apply the three-factor product rule and take x2ˣ out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 17. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer x2ˣ[2 log x + x(log 2)(log x) + 1] was checked against a numerical difference quotient before it was written: at x = 0.5 both read −0.4430172, at x = 1.4 both read 7.3872461, and at x = 2.6 both read 73.032533. Both logarithms are to base e, the convention of this paper."
+  },
+  "recall_prompt": "Say how you would do this one — name the three factors, say what each one differentiates to, and say what you take out at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factors",
+        "kind": "equation",
+        "label": "Name the three factors and their derivatives",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The three derivatives are all different standard results: the power rule for x², the exponential rule d/dx(aˣ) = aˣ log a for 2ˣ, and d/dx(log x) = 1/x. Listing them separately is what earns the mark.",
+        "memory_tip": "2ˣ is a constant raised to x, not x raised to a constant, so its derivative carries the factor log 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² · 2ˣ · log x, for x > 0",
+          "Take u = x²,  v = 2ˣ,  w = log x",
+          "u′ = 2x",
+          "v′ = 2ˣ log 2   [since d/dx(aˣ) = aˣ log a]",
+          "w′ = 1/x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u = x², v = 2ˣ, w = log x with u′ = 2x, v′ = 2ˣ log 2 and w′ = 1/x.",
+          "accept": [
+            "u is x squared, v is two power x, w is log x",
+            "two power x differentiates to two power x into log two",
+            "log x gives one by x and x squared gives two x",
+            "two power x ki derivative two power x log two",
+            "a power x derivative is a power x log a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two power x log two",
+            "one by x",
+            "two x",
+            "a power x log a"
+          ]
+        },
+        "why": "Three different rules meet in one question, so listing each derivative on its own line makes each one markable and stops the exponential rule being confused with the power rule.",
+        "common_mistakes": [
+          "Writing d/dx(2ˣ) as x2ˣ⁻¹, applying the power rule to a constant base.",
+          "Dropping the log 2 factor and writing d/dx(2ˣ) as 2ˣ."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the three-factor product rule and take x2ˣ out",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The rule is f′ = u′vw + uv′w + uvw′. In the third term x² · (1/x) reduces to x, which is why x2ˣ is common to all three terms.",
+        "memory_tip": "In the third term the 1/x cancels one power of x, so that term is x2ˣ and not x²2ˣ.",
+        "lines": [
+          "f′(x) = u′vw + uv′w + uvw′",
+          "= (2x)(2ˣ)(log x) + (x²)(2ˣ log 2)(log x) + (x²)(2ˣ)(1/x)",
+          "= 2x·2ˣ log x + x²·2ˣ (log 2)(log x) + x·2ˣ",
+          "Take x2ˣ common from all three terms:",
+          {
+            "text": "∴ f′(x) = x2ˣ[2 log x + x(log 2)(log x) + 1]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three terms are 2x·2ˣ log x, x²·2ˣ log 2 log x and x·2ˣ, giving x2ˣ[2 log x + x log 2 log x + 1].",
+          "accept": [
+            "write the three terms and take x into two power x common",
+            "the third term x squared into one by x becomes x",
+            "the answer is x two power x bracket two log x plus x log two log x plus one",
+            "x into two power x common teeste answer vasthundi",
+            "u dash v w plus u v dash w plus u v w dash with these three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x two power x common",
+            "two log x",
+            "log two log x",
+            "plus one"
+          ]
+        },
+        "why": "The third term is where marks are usually lost: x² × 1/x cancels to x, so the common factor is x2ˣ and the bracket ends in a plain 1, not in 1/x.",
+        "common_mistakes": [
+          "Leaving the third term as x²2ˣ/x and then taking x²2ˣ common, which leaves a wrong 1/x inside the bracket.",
+          "Writing (log 2)(log x) as log(2x), which is a different quantity."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Three factors, so three product-rule terms, and 2ˣ differentiates to 2ˣ log 2 — the log 2 is easily dropped. Take x2ˣ out at the end."
+}

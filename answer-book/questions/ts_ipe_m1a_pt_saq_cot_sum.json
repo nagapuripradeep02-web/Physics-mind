@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "In a △ABC, prove that cot A + cot B + cot C = (a² + b² + c²)/(4Δ).",
   "appearances": [
     {
@@ -29,32 +29,33 @@
   "mark_split": [
     {
       "label": "Use the cosine rule and the area",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Add and conclude",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 81, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15 · AP 16. The whole-angle partner of answer 80. Here the route is through the cosine rule and the area formula rather than a standard cotangent result. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 81, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15 · AP 16. The whole-angle partner of answer 80. Here the route is through the cosine rule and the area formula rather than a standard cotangent result. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, and lists this one among the very short ones (VSAQ 6), not among the short answers. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Properties of Triangles · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_use_the_cosine_rule_and_th",
         "kind": "equation",
         "label": "Use the cosine rule and the area",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
         "margin_note": "Half the marks. Write cot as cos/sin, put the cosine rule on top, and note that 2bc sinA is 4Δ — because Δ = ½ bc sinA.",
+        "memory_tip": "cot = cos/sin, cosine rule on top, and 2bc sinA = 4Δ because Δ = ½bc sinA.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,9 +97,10 @@
         "id": "s2_add_and_conclude",
         "kind": "boxed_final",
         "label": "Add and conclude",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The other half. With a common denominator of 4Δ, the three numerators add — and every squared term survives exactly once.",
+        "memory_tip": "Over 4Δ the three numerators add, and every squared term survives exactly once.",
         "lines": [
           "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
           "a²: −a² + a² + a² = a²  (and likewise for b², c²)",
@@ -135,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use Δ = ½bc sinA to turn every denominator into 4Δ — that is the move that makes the three numerators addable. They cancel in pairs, leaving a² + b² + c²."
 }

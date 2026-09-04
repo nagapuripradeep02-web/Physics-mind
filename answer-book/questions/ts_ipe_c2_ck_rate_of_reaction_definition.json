@@ -51,10 +51,10 @@
           "For the reaction R → P it can be measured",
           "as the fall in [R] or as the rise in [P]."
         ],
-        "why": "A rate is always something divided by a time. The concentration change alone tells how far the reaction has gone, not how fast it went, so the words per unit time are the whole content of the definition. The printed answer leaves them out.",
+        "why": "A rate is always something divided by a time. The concentration change alone tells how far the reaction has gone, not how fast it went, so the words per unit time are the whole content of the definition.",
         "common_mistakes": [
           "Writing only \"the change in concentration\". That is an amount, not a rate; the time has to be divided out.",
-          "Defining the rate on the reactant only. It can be measured on a product just as well, and the two give the same number for R → P."
+          "Giving the change in the amount, in moles, instead of the change in concentration. The rate is defined on concentration, mol L⁻¹, so the same reaction in a larger vessel does not get a larger rate."
         ],
         "memory_tip": "Concentration change divided by time. Both halves, or it is not a rate.",
         "margin_note": "The words per unit time carry this mark. Write them even if the rest is short."
@@ -88,5 +88,5 @@
       }
     ]
   },
-  "insider_note": "The two words most often missing are per unit time. Without them the answer defines a concentration change, and that is where the first mark is lost."
+  "insider_note": "The three words most often missing are per unit time. Without them the answer defines a concentration change, and that is where the first mark is lost."
 }

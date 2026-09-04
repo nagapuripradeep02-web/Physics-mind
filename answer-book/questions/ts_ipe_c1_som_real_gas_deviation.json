@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -90,5 +90,6 @@
         "margin_note": "This card joins the two asked VSAQs (Z and the van der Waals equation) into one story."
       }
     ]
-  }
+  },
+  "insider_note": "The question asks only why, but half the marks are for measuring the deviation with Z. A complete answer on the two faulty assumptions therefore caps at two of the four."
 }

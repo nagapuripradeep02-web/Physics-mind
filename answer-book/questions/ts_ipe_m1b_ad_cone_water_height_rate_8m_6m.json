@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cone_water_height_rate_8m_6m",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A container is in the shape of an inverted cone of height 8 m and radius 6 m at the top. It is filled with water at the rate of 2 cubic metres per minute. How fast is the height of the water changing when the level is 4 m?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write V in terms of h alone",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and put h = 4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. SOURCE STEM DEFECT, RECORDED AND NOT SILENTLY CORRECTED: the book prints the fill rate as '2 cubic metre/mm'. 'mm' is not a unit of time, and the book's own working treats the figure as a rate per unit of time, so per MINUTE is what is intended. The stem above is authored as '2 cubic metres per minute' and the answer carries m/min. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write first, say what you do about the radius, and say what you differentiate with respect to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_v_in_terms_of_h",
+        "kind": "equation",
+        "label": "Write V in terms of h alone",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The cone formula carries TWO variables, r and h, and only h is asked about. Similar triangles remove r before any differentiation happens. The examiner looks for the line r = 3h/4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: dV/dt = 2 m³/min.  Asked: dh/dt when h = 4 m.",
+          "Let r be the radius and h the height of the water cone at time t.",
+          "Volume of a cone:  V = (1/3)πr²h",
+          "The water cone and the full cone are similar, so",
+          "r/h = 6/8 = 3/4   ⇒   r = 3h/4",
+          "∴ V = (1/3)π(3h/4)²h = (1/3)π(9h²/16)h = (3π/16)h³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That similar triangles give r = 3h/4, so V becomes (3π/16)h³ in h alone.",
+          "accept": [
+            "use similar triangles to write r as three h by four",
+            "remove the radius first so volume is only in terms of height",
+            "r by h equals six by eight so r is three h by four",
+            "similar triangles use chesi r ni h lo rasta",
+            "substitute r equal to three h by four into the cone volume",
+            "volume becomes three pi by sixteen h cubed"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "similar triangles",
+            "r by h",
+            "three by four",
+            "h cubed",
+            "cone volume"
+          ]
+        },
+        "why": "The question asks for dh/dt, so V must be a function of h only. Differentiating V = (1/3)πr²h as it stands produces a dr/dt term that the question never gives, and the working stops there.",
+        "common_mistakes": [
+          "Treating the radius as a fixed 6 m and writing V = 12πh.",
+          "Writing r/h = 8/6 instead of 6/8, which turns the ratio upside down.",
+          "Differentiating before removing r, which leaves two unknown rates in one equation."
+        ],
+        "memory_tip": "Two letters in the formula, one letter in the question: keep the letter the question asks about and let similar triangles remove the other one."
+      },
+      {
+        "id": "s2_differentiate_and_substitute",
+        "kind": "boxed_final",
+        "label": "Differentiate and put h = 4",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Differentiate with respect to TIME — that is what puts dh/dt on the right side. The value h = 4 goes in only after differentiating. Carry the unit m/min into the box.",
+        "lines": [
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
+          "Put h = 4 and dV/dt = 2:",
+          "2 = (9π/16)(4²)(dh/dt) = (9π/16)(16)(dh/dt) = 9π(dh/dt)",
+          {
+            "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating with respect to t and putting h = 4 gives dh/dt = 2/(9π) m/min.",
+          "accept": [
+            "differentiate with respect to time and substitute h equal to four",
+            "two equals nine pi times dh by dt",
+            "the answer is two by nine pi metres per minute",
+            "time tho differentiate chesi h equal to four substitute cheyyali",
+            "solve for dh by dt and write the unit",
+            "dh by dt is two over nine pi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "with respect to time",
+            "nine pi",
+            "two by nine pi",
+            "metres per minute",
+            "chain rule"
+          ]
+        },
+        "why": "Every term is differentiated with respect to t, not x, so the chain rule attaches dh/dt to the h³ term. Substituting h = 4 first would make V a fixed number, and dV/dt would come out as 0.",
+        "common_mistakes": [
+          "Putting h = 4 into V before differentiating, which gives dV/dt = 0.",
+          "Dropping the dh/dt factor that the chain rule produces.",
+          "Writing the answer as 2/(9π) with no unit."
+        ],
+        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
+      }
+    ]
+  },
+  "insider_note": "Similar triangles give r = 3h/4 here, not h/2 — the ratio comes from the cone's own dimensions. Eliminate r first, so V = 3πh³/16."
+}

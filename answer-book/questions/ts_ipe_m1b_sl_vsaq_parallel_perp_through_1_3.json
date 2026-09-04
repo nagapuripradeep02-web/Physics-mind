@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_parallel_perp_through_1_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equations of the two straight lines through (1,3) which are (1) parallel to and (2) perpendicular to the line joining the points (3,−5) and (−6,1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Part (1) the parallel line",
+      "marks": 1
+    },
+    {
+      "label": "Part (2) the perpendicular line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 38, book p.147. The stem is kept as ONE object: a single setup with two riders under one instruction, as printed; the printed enumerators (1) and (2) are set inline and read awkwardly, and are reproduced here as parts. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is one mark per rider, because each rider is a complete answer on its own; the shared slope of the join is done inside part (1), where it is first needed. Perpendicularity was confirmed numerically, not assumed: m₁m₂ = (−2/3)(3/2) = −1, and the normals (2, 3) and (3, −2) have dot product 6 − 6 = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you compute once and use twice, and how the two required slopes come from it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parallel_line",
+        "kind": "equation",
+        "label": "Part (1) the parallel line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The slope of the join is computed once and used by both parts. A parallel line keeps that slope exactly.",
+        "memory_tip": "Parallel keeps the slope unchanged. Find the slope of the join once and reuse it for both parts.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = (3, −5), B = (−6, 1)",
+          "Slope of AB  m = (y₂ − y₁)/(x₂ − x₁)",
+          "= (1 + 5)/(−6 − 3) = 6/(−9) = −2/3",
+          "(1) The parallel line has the same slope",
+          "−2/3 and passes through (1, 3):",
+          "y − 3 = (−2/3)(x − 1)",
+          "⇒ 3y − 9 = −2x + 2",
+          {
+            "text": "⇒ 2x + 3y − 11 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of AB is −2/3 and the parallel line through (1, 3) is 2x + 3y − 11 = 0.",
+          "accept": [
+            "slope of the join is six over minus nine which is minus two by three",
+            "parallel means the same slope",
+            "y minus three equals minus two by three into x minus one",
+            "parallel ki same slope teesukovali",
+            "the parallel line is two x plus three y minus eleven equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two by three",
+            "slope of a b",
+            "two x plus three y minus eleven",
+            "parallel"
+          ]
+        },
+        "why": "Both riders depend on the same number, the slope of AB, so it is worth computing carefully once; parallel lines are exactly the lines with that same slope.",
+        "common_mistakes": [
+          "Computing the slope as (x₂ − x₁)/(y₂ − y₁), upside down.",
+          "Sign slip in 1 − (−5), giving −4 instead of 6."
+        ]
+      },
+      {
+        "id": "s2_perpendicular_line",
+        "kind": "boxed_final",
+        "label": "Part (2) the perpendicular line",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Flip the slope and change its sign, then check m₁m₂ = −1 before writing the line — that check is what catches a swap with no sign change.",
+        "memory_tip": "Perpendicular: flip the slope and change the sign. Then check m₁m₂ = −1 before you write the line.",
+        "lines": [
+          "(2) The perpendicular slope is",
+          "m₂ = −1/m = −1/(−2/3) = 3/2",
+          "Check: m·m₂ = (−2/3)(3/2) = −1",
+          "Through (1, 3):  y − 3 = (3/2)(x − 1)",
+          "⇒ 2y − 6 = 3x − 3",
+          {
+            "text": "⇒ 3x − 2y + 3 = 0",
+            "style": "boxed"
+          },
+          "Check: 2(1) + 3(3) − 11 = 0 and",
+          "3(1) − 2(3) + 3 = 0, so both lines do pass",
+          "through (1, 3)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the perpendicular slope is 3/2 and the line through (1, 3) is 3x − 2y + 3 = 0.",
+          "accept": [
+            "perpendicular slope is minus one over m which is three by two",
+            "flip the slope and change the sign",
+            "check that the product of the slopes is minus one",
+            "perpendicular kabatti minus one by m",
+            "the perpendicular line is three x minus two y plus three equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by two",
+            "minus one by m",
+            "three x minus two y plus three",
+            "perpendicular"
+          ]
+        },
+        "why": "Swapping the coefficients of a line without changing exactly one sign gives a line that still passes through the point but is not perpendicular, and the answer then looks right. Computing m₁m₂ and seeing −1 is what rules that out.",
+        "common_mistakes": [
+          "Writing 3x + 2y + k = 0, which swaps the coefficients but changes no sign.",
+          "Using the same slope −2/3 for both parts."
+        ]
+      }
+    ]
+  }
+}

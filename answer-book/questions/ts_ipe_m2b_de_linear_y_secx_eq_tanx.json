@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_y_secx_eq_tanx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve dy/dx + y sec x = tan x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identify P and find ∫P dx",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 11 Differential Equations, answer 97, the third answer on the page. On a ★★★ SSP (Super Scoring Page): book p.73 carries the SSP 73 banner. No printed appearance tag next to this answer, so appearances is empty. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 95's printed 1+1+2 shape on the same page, since both are linear equations solved by the same P/I.F./integrate sequence. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-equation skill. The book's working was re-derived line by line and is correct throughout — the integrating factor here is sec x + tan x, not the plain sec x seen in the neighbouring questions, because P is sec x itself rather than tan x. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The integrating factor here is sec x + tan x, not the plain sec x. A plain sec x is the I.F. when P = tan x; here P is sec x itself, so ∫P dx = log|sec x + tan x| and the I.F. carries both terms. Read P off the equation before writing the I.F.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identify_p",
+        "kind": "equation",
+        "label": "Identify P and find ∫P dx",
+        "marks": 1,
+        "mark_note": "P and ∫P dx",
+        "margin_note": "One mark. The equation is already in the standard linear form; P is the coefficient of y, which is sec x here.",
+        "memory_tip": "∫sec x dx = log|sec x + tan x| — a standard integral, worth memorising on its own.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          "This is a linear D.E in y.",
+          "Here P = sec x",
+          "⇒ ∫P dx = ∫sec x dx = log|sec x + tan x|"
+        ],
+        "why": "Reading P off the standard linear form here gives sec x, not tan x, and ∫sec x dx is a separate standard result that must be recalled correctly.",
+        "common_mistakes": [
+          "Confusing this P = sec x with P = tan x, which would give the different integrating factor sec x.",
+          "Writing ∫sec x dx as log(sec x) instead of the correct log|sec x + tan x|."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
+        "memory_tip": "e^(log|sec x + tan x|) = sec x + tan x — the log and exponential cancel directly.",
+        "lines": [
+          "∴ I.F. = e^(∫P dx) = e^(log|sec x + tan x|)",
+          "= sec x + tan x"
+        ],
+        "why": "Applying the integrating-factor formula to the ∫P dx found in step 1 gives sec x + tan x, since the exponential undoes the log exactly as in every other linear equation.",
+        "common_mistakes": [
+          "Writing the I.F. as just sec x, which is the integrating factor for P = tan x, not for P = sec x.",
+          "Losing the tan x term when simplifying e^(log|sec x + tan x|)."
+        ]
+      },
+      {
+        "id": "s3_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Two marks. Expand (sec x + tan x)tan x and use sec²x − 1 = tan²x to integrate.",
+        "memory_tip": "sec x tan x integrates to sec x, and tan²x becomes sec²x − 1 before integrating.",
+        "lines": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y(sec x + tan x) = ∫(sec x + tan x)tan x dx",
+          "= ∫(sec x tan x + tan²x) dx",
+          "= ∫[sec x tan x + (sec²x − 1)] dx",
+          "= sec x + tan x − x + c",
+          {
+            "text": "y(sec x + tan x) = sec x + tan x − x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Expanding the product (sec x + tan x)tan x gives two standard pieces: sec x tan x, whose antiderivative is sec x, and tan²x, which is rewritten as sec²x − 1 so it integrates to tan x − x.",
+        "common_mistakes": [
+          "Forgetting the identity tan²x = sec²x − 1 and being unable to integrate tan²x directly.",
+          "Losing the −x term that comes from integrating the −1 inside sec²x − 1."
+        ]
+      }
+    ]
+  }
+}

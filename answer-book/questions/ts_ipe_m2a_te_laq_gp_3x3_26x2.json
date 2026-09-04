@@ -1,0 +1,289 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_gp_3x3_26x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve 3x³ − 26x² + 52x − 24 = 0, given that the roots are in G.P.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the roots as a/r, a, ar",
+      "marks": 1
+    },
+    {
+      "label": "Product of roots S₃ = −a₃/a₀ gives a",
+      "marks": 1
+    },
+    {
+      "label": "Sum of roots S₁ = −a₁/a₀ gives a quadratic in r",
+      "marks": 2
+    },
+    {
+      "label": "Solve for r",
+      "marks": 1
+    },
+    {
+      "label": "Write the three roots",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Theory of Equations, answer 17. Printed appearances: TS 15 · AP 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the lower half of p.25 prints no [N Marks] tags against this answer. It is patterned on the 1+1+1+1+1+2 the same page prints against answer 16 (the A.P. counterpart), with the product relation taking the place of the sum as the 1-mark 'find a' stage and the sum relation, which here needs four lines of fraction-clearing, taking 2. Step ids are this card's own (s1_assume, s2_product, s3_sum, s4_solve_r, s5_roots) — the G.P. method uses the two relations in the opposite order to the A.P. family. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 5 Q19 (book p.120) is this question. Truth check: the roots 2/3, 2, 6 have a constant ratio 3, add to 26/3 = −a₁/a₀, multiply to 8 = −a₃/a₀, and their pairwise products add to 4/3 + 12 + 4 = 52/3 = a₂/a₀, the relation the book never uses. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would solve a cubic whose roots are in G.P. — how you name the roots, which relation you use first and why, and how you finish.",
+  "insider_note": "For a G.P. use the PRODUCT first: (a/r)·a·(ar) = a³ has one unknown; students who start with the sum are left with two.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_assume",
+        "kind": "text",
+        "label": "Roots in G.P.",
+        "marks": 1,
+        "mark_note": "Assume the roots",
+        "margin_note": "First mark. The G.P. form a/r, a, ar makes the product collapse to a³. Write out a₀ … a₃ so the sign rules can be applied without a slip.",
+        "memory_tip": "For a G.P. write a/r, a, ar — that form makes the PRODUCT collapse to a³.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The roots are in G.P., so take them as",
+          "a/r, a, ar.",
+          "Here a₀ = 3, a₁ = −26, a₂ = 52, a₃ = −24."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the three roots are written as a/r, a, ar because they are in G.P.",
+          "accept": [
+            "take the roots as a by r, a, a r because they are in geometric progression",
+            "write the three roots as a over r a and a r",
+            "roots in G P so let them be a by r a a r",
+            "roots G P lo unnayi kabatti a by r, a, a r ga teeskovali",
+            "use the symmetric form a by r a a r for the roots"
+          ],
+          "reject": [
+            "let the roots be alpha beta gamma",
+            "assume the roots"
+          ],
+          "heard_as": [
+            "a by r",
+            "a r",
+            "geometric progression",
+            "G P",
+            "common ratio"
+          ]
+        },
+        "why": "Writing the roots as a/r, a, ar builds the G.P. condition into the letters, and it makes the product collapse to a³ — one relation, one unknown. This is the G.P. version of the a − d, a, a + d form.",
+        "common_mistakes": [
+          "Using α, β, γ and never bringing in the G.P. condition.",
+          "Writing the roots as a, ar, ar², which works but makes the product a³r³ and the algebra longer."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "equation",
+        "label": "Product of roots",
+        "marks": 1,
+        "mark_note": "S₃ = −a₃/a₀",
+        "margin_note": "Second mark. The product is used FIRST for a G.P., because (a/r)·a·(ar) = a³ with r cancelling: −a₃/a₀ = 24/3 = 8, so a = 2.",
+        "memory_tip": "Use the product FIRST for a G.P.: r cancels, so a³ = 24/3 = 8 and a = 2.",
+        "lines": [
+          "Product of roots S₃ = −a₃/a₀:",
+          "(a/r)·a·(ar) = a³ = 24/3 = 8",
+          "a = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the roots is −a₃/a₀ = 8, that it equals a³ because the r's cancel, and so a = 2.",
+          "accept": [
+            "product of the roots is minus a three by a naught which is eight, the r's cancel, a cubed is eight so a is two",
+            "multiply the three roots, r cancels, a cubed equals eight, a equals two",
+            "S three equals eight gives a cubed equals eight",
+            "roots product eight, r cancel avutundi, a cube eight kabatti a equals two",
+            "use the product first because it gives a directly"
+          ],
+          "reject": [
+            "find the product",
+            "use S three",
+            "multiply them"
+          ],
+          "heard_as": [
+            "product of roots",
+            "S three",
+            "a cubed",
+            "a equals two",
+            "eight"
+          ]
+        },
+        "why": "For a G.P. the product, not the sum, is the relation that contains one unknown: (a/r)·a·(ar) = a³. Using it first gives a = 2 before r is touched — the opposite order to the A.P. case, where the sum gives a first.",
+        "common_mistakes": [
+          "Using the sum first, which leaves two unknowns a and r in one equation.",
+          "Writing S₃ = a₃/a₀ = −8 and losing the minus.",
+          "Writing a³ = 8 ⇒ a = 8/3 or some other non-cube-root slip."
+        ]
+      },
+      {
+        "id": "s3_sum",
+        "kind": "equation",
+        "label": "Sum of roots",
+        "marks": 2,
+        "mark_note": "S₁ = −a₁/a₀",
+        "margin_note": "Two marks. Sum = 26/3. Put a = 2, divide by 2, then put the bracket over r: (1 + r + r²)/r = 13/3. Cross-multiply to a quadratic in r.",
+        "memory_tip": "With a known, put the bracket over r: (1 + r + r²)/r = 13/3, then cross-multiply.",
+        "lines": [
+          "Sum of roots S₁ = −a₁/a₀:",
+          "a/r + a + ar = 26/3",
+          "2(1/r + 1 + r) = 26/3",
+          "(1 + r + r²)/r = 13/3",
+          "3 + 3r + 3r² = 13r",
+          "3r² − 10r + 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the roots is −a₁/a₀ = 26/3, that a = 2 is substituted, and that clearing the fraction gives the quadratic 3r² − 10r + 3 = 0.",
+          "accept": [
+            "sum of the roots is twenty six by three, put a equals two, clear the r in the denominator and get three r squared minus ten r plus three equals zero",
+            "S one equals twenty six by three with a equals two gives a quadratic in r",
+            "substitute a into the sum relation and cross multiply to a quadratic in r",
+            "sum twenty six by three, a equals two petti, r quadratic vasthundi",
+            "the sum relation becomes three r squared minus ten r plus three"
+          ],
+          "reject": [
+            "find the sum",
+            "use S one",
+            "add them"
+          ],
+          "heard_as": [
+            "sum of roots",
+            "S one",
+            "twenty six by three",
+            "quadratic in r",
+            "three r squared"
+          ]
+        },
+        "why": "With a known, the sum relation has only r in it. Multiplying through by r turns 1/r + 1 + r into a quadratic, which is the standard way a G.P. root problem ends.",
+        "common_mistakes": [
+          "Dropping the minus in S₁ = −a₁/a₀ (here it makes the sum positive, 26/3).",
+          "Forgetting to substitute a = 2 before clearing fractions.",
+          "A slip cross-multiplying: it is 3(1 + r + r²) = 13r, not 3(1 + r + r²) = 13."
+        ]
+      },
+      {
+        "id": "s4_solve_r",
+        "kind": "equation",
+        "label": "Solve for r",
+        "marks": 1,
+        "mark_note": "Values of r",
+        "margin_note": "Fifth mark. Split −10 = −9 − 1 with (−9)(−1) = 9 = 3 × 3. The two values of r are reciprocals, which is why they give the same roots.",
+        "memory_tip": "(3r − 1)(r − 3) = 0. The two values are reciprocals, so they give the same three roots.",
+        "lines": [
+          "3r² − 9r − r + 3 = 0",
+          "3r(r − 3) − 1(r − 3) = 0",
+          "(3r − 1)(r − 3) = 0",
+          "r = 3 or r = 1/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic in r is factorised to give r = 3 or r = 1/3.",
+          "accept": [
+            "factorise the quadratic in r to get r equals three or one third",
+            "split the middle term and r is three or one by three",
+            "the r quadratic gives r equals three or its reciprocal",
+            "r quadratic factorise chesthe r equals three or one by three",
+            "solve for r, three or one third"
+          ],
+          "reject": [
+            "solve it",
+            "find r",
+            "factorise"
+          ],
+          "heard_as": [
+            "r equals three",
+            "one third",
+            "one by three",
+            "factorise",
+            "middle term"
+          ]
+        },
+        "why": "The two values of r are reciprocals of each other, and that is not an accident: swapping r for 1/r only reverses the order a/r, a, ar. So both values describe the same three roots.",
+        "common_mistakes": [
+          "A sign slip splitting the middle term.",
+          "Treating r = 3 and r = 1/3 as two different answers."
+        ]
+      },
+      {
+        "id": "s5_roots",
+        "kind": "boxed_final",
+        "label": "The three roots",
+        "marks": 2,
+        "mark_note": "Roots",
+        "margin_note": "Last two marks. With a = 2 and r = 3: 2/3, 2, 6. The ratio between neighbours is 3 both times, and the three add to 26/3.",
+        "memory_tip": "With a = 2 and r = 3: 2/3, 2, 6. The ratio is 3 both times and they multiply to 8.",
+        "lines": [
+          "Take r = 3 (r = 1/3 gives the same three roots):",
+          "a/r = 2/3, a = 2, ar = 6",
+          {
+            "text": "∴ roots: 2/3, 2, 6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and r are put back into a/r, a, ar to give 2/3, 2, 6, and that r = 1/3 gives the same set.",
+          "accept": [
+            "put a equals two and r equals three back and the roots are two by three, two, six",
+            "the three roots are two thirds two and six",
+            "substitute a and r, the other value of r gives the same three roots",
+            "a, r values petti roots two by three, two, six vasthai",
+            "write out a by r a and a r with the numbers"
+          ],
+          "reject": [
+            "write the roots",
+            "the answer is",
+            "substitute back"
+          ],
+          "heard_as": [
+            "two by three",
+            "two thirds",
+            "six",
+            "roots are",
+            "same three roots"
+          ]
+        },
+        "why": "Substituting back is the check: the three numbers must have a constant ratio and must add to the sum used in step 3. Multiplying them gives 8, the product used in step 2.",
+        "common_mistakes": [
+          "Listing a and r as the roots.",
+          "Writing 2/3, 2, 6 and 6, 2, 2/3 as two different answers.",
+          "Not substituting one root back into the equation (each must give 0)."
+        ]
+      }
+    ]
+  }
+}

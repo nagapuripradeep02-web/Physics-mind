@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_bulk_modulus_order_three_states",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare the bulk modulus of solids, liquids and gases.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Order",
+      "marks": 1
+    },
+    {
+      "label": "Reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 9 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: bulk modulus decreases in the order solid > liquid > gas because intermolecular spacing increases in that order, so the fractional volume change for a given pressure change is smallest in solids and largest in gases."
+  },
+  "insider_note": "The order alone is only half the answer — the examiner looks for a reason connecting molecular spacing to the resistance to compression for the second step.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_order",
+        "kind": "equation",
+        "label": "Order of bulk modulus",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "The bulk modulus decreases in the order",
+          "solid, liquid, gas.",
+          {
+            "text": "B(solid) > B(liquid) > B(gas)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The order must be stated as solid > liquid > gas, not just described in words, to earn this mark cleanly.",
+        "why": "Bulk modulus B = −ΔP/(ΔV/V) measures resistance to compression; the closer the molecules, the smaller the fractional volume change for the same pressure change, so B is largest for solids.",
+        "common_mistakes": [
+          "Writing the order the wrong way round (gas > liquid > solid).",
+          "Comparing Young's modulus instead of bulk modulus."
+        ],
+        "memory_tip": "For the same increase in pressure the solid's volume changes least and the gas's changes most."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A solid resists a change in volume the",
+          "most because its molecules are held",
+          "tightly together; a gas resists least",
+          "because its molecules are far apart.",
+          {
+            "text": "Bulk modulus: solid > liquid > gas",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State a reason connected to molecular spacing — restating the order in different words does not earn this mark.",
+        "why": "The reasoning ties the order to the molecular picture: tightly packed molecules in a solid resist coming closer under pressure, while widely spaced gas molecules move closer easily.",
+        "common_mistakes": [
+          "Giving no reason at all, only the order.",
+          "Saying gases are 'weaker' instead of explaining the spacing between molecules."
+        ],
+        "memory_tip": "Widely spaced gas molecules move closer under a small pressure change."
+      }
+    ]
+  }
+}

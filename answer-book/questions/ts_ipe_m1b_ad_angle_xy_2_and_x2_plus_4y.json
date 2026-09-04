@@ -1,0 +1,195 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_xy_2_and_x2_plus_4y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves xy = 2 and x² + 4y = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you reduce the two equations to one, what cubic you get, and what formula gives the angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. From xy = 2 write y = 2/x and substitute. The result is a cubic, x³ + 8 = 0, which has exactly one real root — so there is only one point to work at.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  xy = 2   …(i)   and   x² + 4y = 0   …(ii)",
+          "From (i):  y = 2/x   (x ≠ 0)",
+          "Put this in (ii):  x² + 4(2/x) = 0",
+          "Multiply by x:  x³ + 8 = 0  ⇒  x³ = −8  ⇒  x = −2",
+          "(x³ + 8 = (x + 2)(x² − 2x + 4), and x² − 2x + 4 has no real root.)",
+          "x = −2  ⇒  y = 2/(−2) = −1",
+          "∴ the curves meet only at P(−2, −1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 2/x substituted into x² + 4y = 0 gives x³ + 8 = 0, so x = −2 and the point is (−2, −1).",
+          "accept": [
+            "write y as two by x and substitute into the second curve",
+            "multiply through by x to get x cubed plus eight equals zero",
+            "x is minus two and y is minus one",
+            "y equal to two by x substitute chesi cubic solve cheyyali",
+            "the point of intersection is minus two comma minus one",
+            "the quadratic factor has no real root so there is only one point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two by x",
+            "x cubed plus eight",
+            "minus two",
+            "minus one",
+            "cubic"
+          ]
+        },
+        "why": "The angle between two curves is the angle between their tangents at a shared point, so the point comes first. Substituting y = 2/x is the shorter route here because y appears to the first power in the second curve.",
+        "common_mistakes": [
+          "Reading x³ = −8 as x = 2 and losing the sign.",
+          "Taking three roots from the cubic without checking that two of them are not real.",
+          "Getting y = −2 and x = −1 by putting the coordinates in the wrong order."
+        ],
+        "memory_tip": "A rectangular hyperbola xy = c always gives y = c/x. Substituting that and clearing the x in the denominator raises the degree; here it gives a cubic."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The first curve is a product, so differentiating xy needs the product rule. Both coordinates are negative here, so watch every sign.",
+        "lines": [
+          "From (i):  xy = 2. Differentiate using the product rule:",
+          "y + x (dy/dx) = 0  ⇒  dy/dx = −y/x",
+          "At P(−2, −1):  m₁ = −(−1)/(−2) = 1/(−2) = −1/2",
+          "From (ii):  2x + 4 (dy/dx) = 0  ⇒  dy/dx = −x/2",
+          "At P(−2, −1):  m₂ = −(−2)/2 = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = −y/x = −1/2 and m₂ = −x/2 = 1 at (−2, −1).",
+          "accept": [
+            "use the product rule on x y equals two",
+            "dy by dx is minus y by x for the first curve",
+            "m one is minus one half and m two is one",
+            "product rule vaadi minus y by x teesukovali",
+            "the second curve gives dy by dx equal to minus x by two",
+            "substitute minus two and minus one carefully with the signs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "minus y by x",
+            "minus x by two",
+            "m one",
+            "m two"
+          ]
+        },
+        "why": "xy is a product of two functions of x, so its derivative is y + x·dy/dx. Treating x and y as if they multiplied to a single term is the usual error and gives the wrong slope.",
+        "common_mistakes": [
+          "Differentiating xy as dy/dx without the product rule.",
+          "Sign slip in −(−1)/(−2), giving +1/2 instead of −1/2.",
+          "Differentiating 4y as 4 with no dy/dx factor."
+        ],
+        "memory_tip": "For xy = c the slope is always −y/x, which is the product rule already done once."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The denominator 1 + m₁m₂ works out to 1/2, so the fraction is (−3/2) ÷ (1/2) = −3, and the modulus makes it 3.",
+        "lines": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−1/2 − 1)/(1 + (−1/2)(1))|",
+          "= |(−3/2)/(1/2)| = |−3| = 3",
+          {
+            "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = |(m₁ − m₂)/(1 + m₁m₂)| = 3, so θ = Tan⁻¹3.",
+          "accept": [
+            "tan theta is mod of m one minus m two by one plus m one m two",
+            "minus three by two over one half is minus three",
+            "the modulus makes it three",
+            "formula lo substitute cheste tan theta three vasthundi",
+            "the angle is tan inverse three",
+            "theta is about seventy one degrees thirty four minutes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "tan inverse three",
+            "one half",
+            "seventy one"
+          ]
+        },
+        "why": "There is only one point of intersection, so there is only one angle to report. The modulus keeps the acute angle, which is the standard answer for the angle between two curves.",
+        "common_mistakes": [
+          "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
+          "Reporting Tan⁻¹(−3) without the modulus.",
+          "Stopping at tanθ = 3 without stating the angle."
+        ],
+        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+      }
+    ]
+  },
+  "insider_note": "Substituting gives x³ = −8, which has ONE real root, x = −2 — the quadratic factor has no real roots. So there is a single point of intersection."
+}

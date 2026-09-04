@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This question runs the other way: the intercepts are given, so they go straight into the denominators of x/a + y/b + z/c = 1.",
+        "memory_tip": "The intercepts go straight into the DENOMINATORS of x/a + y/b + z/c = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer is in the plain ax + by + cz = d form the board expects.",
+        "memory_tip": "Put everything over a common denominator and multiply through to reach ax + by + cz = d.",
         "lines": [
           "⇒ (4x + 2y + z)/4 = 1",
           {
@@ -130,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The intercepts go in the DENOMINATORS: x/1 + y/2 + z/4 = 1. Clearing by the common 4 gives 4x + 2y + z = 4, and the 1 on the right has to be multiplied as well."
 }

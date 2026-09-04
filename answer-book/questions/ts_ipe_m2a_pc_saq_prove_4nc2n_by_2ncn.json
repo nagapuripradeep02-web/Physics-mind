@@ -1,0 +1,206 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_prove_4nc2n_by_2ncn",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that ⁴ⁿC₂ₙ / ²ⁿCₙ = 1·3·5·…·(4n − 1) / [1·3·5·…·(2n − 1)]².",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write both combinations as factorials",
+      "marks": 1
+    },
+    {
+      "label": "Split (4n)! and (2n)! into even and odd factors",
+      "marks": 2
+    },
+    {
+      "label": "Cancel and reach the right-hand side",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 9 Permutations & Combinations, answer 69. Printed appearances: AP 15, 19 and TS 15, 17, 19. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 3 (book p.115). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book's printed working expands (4n)! and (2n)! in full and is correct; the card writes the same argument with the even factors collected as 2²ⁿ·(2n)! and 2ⁿ·n! so that each line fits one ruled row."
+  },
+  "recall_prompt": "Say how you would prove this ratio of combinations — what you write each C as, how you split the factorials, and what cancels.",
+  "insider_note": "The proof turns on splitting (4n)! into even and odd factors: there are 2n even numbers up to 4n, so the power of 2 is 2²ⁿ, not 2ⁿ — and (2n)! must be given the same even–odd split before anything cancels.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_as_factorials",
+        "kind": "equation",
+        "label": "Write both C values as factorials",
+        "marks": 1,
+        "mark_note": "Set up",
+        "margin_note": "First mark. ⁿCᵣ = n!/(r!(n − r)!). For ⁴ⁿC₂ₙ both r and n − r are 2n; for ²ⁿCₙ both are n. Then divide.",
+        "memory_tip": "ⁿCᵣ = n!/(r!(n − r)!). For ⁴ⁿC₂ₙ both parts are 2n, so (2n)! appears TWICE below.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "⁴ⁿC₂ₙ = (4n)! / [(2n)!·(2n)!]",
+          "²ⁿCₙ = (2n)! / (n!·n!)",
+          "L.H.S. = (4n)!·(n!)² / [(2n)!]³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each combination is written with the factorial formula and the quotient becomes (4n)! times n factorial squared over (2n)! cubed.",
+          "accept": [
+            "write four n C two n as four n factorial over two n factorial squared and two n C n as two n factorial over n factorial squared then divide",
+            "use n C r equals n factorial over r factorial n minus r factorial on both and take the ratio",
+            "the ratio becomes four n factorial times n factorial squared over two n factorial cubed",
+            "rendu C lanu factorial formula tho rasi divide cheyali",
+            "express both combinations in factorials and simplify the fraction"
+          ],
+          "reject": [
+            "use the formula",
+            "write the factorials"
+          ],
+          "heard_as": [
+            "four n factorial",
+            "two n factorial",
+            "n factorial squared",
+            "cubed",
+            "ratio"
+          ]
+        },
+        "why": "A statement about odd products can only be reached through factorials, because a factorial is where even and odd factors sit together. Writing both C values out is the only way to start.",
+        "common_mistakes": [
+          "Writing ⁴ⁿC₂ₙ with (2n)! only once in the denominator — it appears twice.",
+          "Inverting the ratio and dividing the wrong way round."
+        ]
+      },
+      {
+        "id": "s2_split_even_odd",
+        "kind": "equation",
+        "label": "Split each factorial into even and odd factors",
+        "marks": 2,
+        "mark_note": "Splitting",
+        "margin_note": "Two marks. (4n)! is the product 1·2·3·…·4n. Take the even factors 2·4·…·4n = 2²ⁿ(2n)! out; what remains is the odd product 1·3·5·…·(4n − 1). Do the same for (2n)!.",
+        "memory_tip": "There are 2n even numbers up to 4n, so the even part is 2²ⁿ(2n)! — the power is 2n, not n.",
+        "lines": [
+          "(4n)! = [2·4·6·…·(4n)]·[1·3·5·…·(4n − 1)]",
+          "= 2²ⁿ·(2n)!·[1·3·5·…·(4n − 1)]",
+          "(2n)! = [2·4·…·(2n)]·[1·3·…·(2n − 1)]",
+          "= 2ⁿ·n!·[1·3·5·…·(2n − 1)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (4n)! splits into its even factors, which equal 2 to the 2n times (2n)!, and its odd factors 1·3·5 up to 4n minus 1, and (2n)! splits the same way into 2 to the n times n! and the odd product up to 2n minus 1.",
+          "accept": [
+            "four n factorial is the even factors two to the two n times two n factorial times the odd product one three five up to four n minus one",
+            "separate the even and odd factors of each factorial, the evens give a power of two times a smaller factorial",
+            "two n factorial is two to the n times n factorial times one three five up to two n minus one",
+            "factorial ni even odd factors ga split cheyali, even part two power n into n factorial",
+            "take out the even numbers as a power of two times a factorial and keep the odd product"
+          ],
+          "reject": [
+            "expand the factorial",
+            "split it"
+          ],
+          "heard_as": [
+            "even factors",
+            "odd factors",
+            "two to the two n",
+            "two to the n",
+            "one three five"
+          ]
+        },
+        "why": "The right-hand side has only odd products, so the even factors must be taken out and made to cancel. Every even number 2k contributes a 2 and a k, which is why the even factors of (4n)! are exactly 2²ⁿ times (2n)!.",
+        "common_mistakes": [
+          "Writing the even factors of (4n)! as 2ⁿ·(2n)! — there are 2n even numbers up to 4n, so the power is 2²ⁿ.",
+          "Ending the odd product of (4n)! at 4n + 1 or 4n − 3 instead of 4n − 1.",
+          "Splitting only (4n)! and forgetting that (2n)! must be split too."
+        ]
+      },
+      {
+        "id": "s3_cancel",
+        "kind": "boxed_final",
+        "label": "Cancel and reach R.H.S.",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Put the two splits into the fraction from step 1. One (2n)! cancels, then (2n)!² in the denominator is replaced by its split and 2²ⁿ(n!)² cancels top and bottom.",
+        "memory_tip": "The even parts were built to cancel: 2²ⁿ against (2ⁿ)², and (n!)² against (n!)². Only odd products survive.",
+        "lines": [
+          "L.H.S. = 2²ⁿ·(2n)!·[1·3·…·(4n − 1)]·(n!)²",
+          "÷ [(2n)!]³",
+          "= 2²ⁿ·[1·3·…·(4n − 1)]·(n!)² / [(2n)!]²",
+          "= 2²ⁿ·[1·3·…·(4n − 1)]·(n!)²",
+          "÷ [2ⁿ·n!·(1·3·…·(2n − 1))]²",
+          {
+            "text": "= 1·3·5·…·(4n − 1) / [1·3·5·…·(2n − 1)]²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the split forms are substituted, one (2n)! cancels, and 2 to the 2n times n factorial squared cancels against the square of 2 to the n times n factorial, leaving the odd product over the square of the smaller odd product.",
+          "accept": [
+            "substitute the splits, cancel one two n factorial, and two to the two n times n factorial squared cancels with the square of two to the n n factorial",
+            "after cancelling the powers of two and the factorials only the odd products remain",
+            "the two to the two n and n factorial squared cancel top and bottom leaving the odd product over the square of the odd product",
+            "powers of two and factorials cancel ayipoyi odd products matrame migulutayi",
+            "substitute and cancel to get one three five up to four n minus one over the square"
+          ],
+          "reject": [
+            "cancel",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cancel",
+            "odd product",
+            "square",
+            "right hand side",
+            "two to the two n"
+          ]
+        },
+        "why": "The even parts were built to cancel: 2²ⁿ against (2ⁿ)² and (n!)² against (n!)². What survives is exactly the odd products the question named, so the identity is not a coincidence of numbers but a fact about how factorials are made.",
+        "common_mistakes": [
+          "Cancelling (2n)! three times instead of once — only one (2n)! in the split of (4n)! is cancelled directly.",
+          "Forgetting to square the whole bracket 2ⁿ·n!·(odd product) in the denominator.",
+          "Not writing the final line as the right-hand side of the question."
+        ]
+      }
+    ]
+  }
+}

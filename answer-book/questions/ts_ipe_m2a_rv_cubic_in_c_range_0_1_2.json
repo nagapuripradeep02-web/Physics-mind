@@ -1,0 +1,353 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_cubic_in_c_range_0_1_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A random variable X has its range {0, 1, 2} and the probabilities are P(X = 0) = 3c³, P(X = 1) = 4c − 10c², P(X = 2) = 5c − 1, where c is a constant. Find (i) c (ii) P(0 < X < 3) (iii) P(1 < X ≤ 2) (iv) P(X < 1).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write ΣP = 1 as a cubic",
+      "marks": 1
+    },
+    {
+      "label": "Factorise the cubic",
+      "marks": 1
+    },
+    {
+      "label": "Reject c = 1 and c = 2",
+      "marks": 1
+    },
+    {
+      "label": "Find P(0 < X < 3)",
+      "marks": 2
+    },
+    {
+      "label": "Find P(1 < X ≤ 2)",
+      "marks": 1
+    },
+    {
+      "label": "Find P(X < 1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 Random Variables, answer 45. (In this part of the scan book page = PDF page − 1: book p.42 was read at PDF p.43, not p.44 as the −2 rule predicts.) Printed appearances: AP 15, 20 · TS 15, 17. THE SPLIT IS THE BOOK'S: this is the only answer in the chapter that prints [N Marks] tags — [1 Mark] against the cubic 3c³ − 10c² + 9c − 2 = 0, [1 Mark] against the factorisation (c − 1)(c − 2)(3c − 1), [1 Mark] against 'c = 1/3 is the only possible value', [2 Marks] against (ii), [1 Mark] against (iii), [1 Mark] against (iv) — 1 + 1 + 1 + 2 + 1 + 1 = 7. The book rejects c = 1 and c = 2 with the bare remark '∵ 0 ≤ p ≤ 1'; the card shows WHICH probability breaks for each rejected root (P(X = 2) = 4 and 9), which is what the mark is for. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 2 (book p.114). Book's printed values recompute: c = 1/3, 8/9, 2/3, 1/9. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find c and the three probabilities — what equation c satisfies, how you solve it, why two roots are rejected, and which values of X each probability covers.",
+  "insider_note": "One full mark is the rejection line: test c = 1 and c = 2 against P(X = 2) = 5c − 1, show the values 4 and 9 cannot be probabilities, and only then keep c = 1/3 — a bare c = 1/3 with no reason is a half answer.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_equation",
+        "kind": "equation",
+        "label": "Write ΣP = 1 as a cubic",
+        "marks": 1,
+        "mark_note": "Equation",
+        "margin_note": "First mark (the book's own [1 Mark]). The three probabilities add to 1. Move the 1 across and order the powers: 3c³ − 10c² + 9c − 2 = 0. The constant term is −2, not −1 — the −1 from P(X = 2) and the −1 moved from the right side combine.",
+        "memory_tip": "The probabilities add to 1, so move that 1 across: the constant term is −2, not −1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "X takes the values 0, 1, 2 with",
+          "P(X = 0) = 3c³, P(X = 1) = 4c − 10c²,",
+          "P(X = 2) = 5c − 1",
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = xᵢ) = 1",
+            "style": "eq"
+          },
+          "⇒ 3c³ + 4c − 10c² + 5c − 1 = 1",
+          "⇒ 3c³ − 10c² + 9c − 2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three probabilities add to 1, giving the cubic 3c³ − 10c² + 9c − 2 = 0.",
+          "accept": [
+            "the three probabilities add to one giving three c cubed minus ten c squared plus nine c minus two equals zero",
+            "sum of P equals one and collect terms into a cubic in c",
+            "three c cube minus ten c square plus nine c minus two is zero",
+            "moodu probabilities kalipithe one, cubic equation vastundi three c cube minus ten c square plus nine c minus two",
+            "set the sum equal to one and bring everything to one side"
+          ],
+          "reject": [
+            "find c",
+            "add them"
+          ],
+          "heard_as": [
+            "three c cubed",
+            "ten c squared",
+            "nine c",
+            "minus two",
+            "cubic",
+            "equal to one"
+          ]
+        },
+        "why": "ΣP = 1 is the only condition the question gives, and here it is a cubic in c — three candidate values, of which the later steps must pick one. Getting the constant −2 right is what makes c = 1 a root.",
+        "common_mistakes": [
+          "Ending with −1 instead of −2 as the constant term.",
+          "Adding 4c and 5c as 20c.",
+          "Writing 3c³ − 10c² + 9c − 1 = 0 and finding no rational root."
+        ]
+      },
+      {
+        "id": "s2_factorise",
+        "kind": "equation",
+        "label": "Factorise the cubic",
+        "marks": 1,
+        "mark_note": "Factors",
+        "margin_note": "Second mark (book's [1 Mark]). The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Synthetic division by 1 gives the quotient 3c² − 7c + 2, which factors as (c − 2)(3c − 1). Three roots: 1, 2, 1/3.",
+        "memory_tip": "The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Divide it out, then factor the quadratic.",
+        "lines": [
+          "Sum of the coefficients: 3 − 10 + 9 − 2 = 0,",
+          "so c = 1 is a root.",
+          "Divide by (c − 1) by synthetic division",
+          "(quotient 3, −7, 2; remainder 0):",
+          "3c³ − 10c² + 9c − 2 = (c − 1)(3c² − 7c + 2)",
+          "= (c − 1)(c − 2)(3c − 1)",
+          "⇒ c = 1, 2 or 1/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That c = 1 is a root because the coefficients add to zero, and the cubic factors as (c − 1)(c − 2)(3c − 1), giving c = 1, 2, 1/3.",
+          "accept": [
+            "coefficients add to zero so c equals one is a root, divide out and factor to get c equals one two or one by three",
+            "one is a root, synthetic division gives three c squared minus seven c plus two, roots one two and a third",
+            "the cubic factors as c minus one into c minus two into three c minus one",
+            "coefficients sum zero kabatti one root, divide chesi factor cheste one, two, one by three",
+            "find the three roots of the cubic by taking out c minus one"
+          ],
+          "reject": [
+            "solve it",
+            "factorise"
+          ],
+          "heard_as": [
+            "c minus one",
+            "synthetic division",
+            "one by three",
+            "three c squared minus seven c plus two",
+            "roots"
+          ]
+        },
+        "why": "A cubic with a rational root is solved by finding that root and dividing it out. The coefficient-sum test is the fastest way to see c = 1, and it is the step this mark is given for.",
+        "common_mistakes": [
+          "Trying c = 1/3 first by guesswork and never showing why.",
+          "Making an arithmetic slip in the synthetic division (3, −7, 2 is the quotient).",
+          "Factoring 3c² − 7c + 2 as (3c − 2)(c − 1)."
+        ]
+      },
+      {
+        "id": "s3_reject_roots",
+        "kind": "equation",
+        "label": "Reject c = 1 and c = 2",
+        "marks": 1,
+        "mark_note": "Accepted value",
+        "margin_note": "Third mark (book's [1 Mark]). A probability lies between 0 and 1. Test each root against P(X = 2) = 5c − 1: c = 1 gives 4, c = 2 gives 9 — both impossible. c = 1/3 gives 1/9, 2/9, 2/3, all valid and adding to 1. Write the rejections; the mark is for the reason, not for the value.",
+        "memory_tip": "Test each root against a probability: c = 1 gives 4 and c = 2 gives 9, both impossible. Write the reason.",
+        "lines": [
+          "Every probability must lie between 0 and 1.",
+          "c = 1 gives P(X = 2) = 5 − 1 = 4 > 1 — rejected.",
+          "c = 2 gives P(X = 2) = 10 − 1 = 9 > 1 — rejected.",
+          "c = 1/3 gives P(X = 0) = 1/9, P(X = 1) = 2/9,",
+          "P(X = 2) = 2/3 — all between 0 and 1,",
+          "and they add to 1.",
+          "(i) ∴ c = 1/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That c = 1 and c = 2 make P(X = 2) = 4 and 9, greater than 1, so they are rejected, and c = 1/3 gives valid probabilities.",
+          "accept": [
+            "c equals one and two give P of X equals two as four and nine which is more than one so they are rejected and c is one by three",
+            "check each root against zero to one, only one third works",
+            "reject one and two because a probability cannot exceed one, keep c equals one by three",
+            "c one aithe P four, c two aithe nine, one kanna ekkuva so reject, c one by three",
+            "the only root that gives probabilities between zero and one is one third"
+          ],
+          "reject": [
+            "c is one by three",
+            "reject the others"
+          ],
+          "heard_as": [
+            "rejected",
+            "greater than one",
+            "between zero and one",
+            "one by three",
+            "one third"
+          ]
+        },
+        "why": "The cubic is only a necessary condition; each root must also give probabilities inside [0, 1]. That check is a separate marked step because it is the only place the meaning of c is used.",
+        "common_mistakes": [
+          "Writing 'c = 1/3' with no reason for dropping 1 and 2.",
+          "Rejecting c = 1 because 'it is too big' without testing a probability.",
+          "Testing only P(X = 0) = 3c³, which is 3 and 24 — also fine as a reason, but say it."
+        ]
+      },
+      {
+        "id": "s4_p_0_x_3",
+        "kind": "equation",
+        "label": "Find P(0 < X < 3)",
+        "marks": 2,
+        "mark_note": "(ii)",
+        "margin_note": "Two marks (book's [2 Marks]). 0 < X < 3 with range {0, 1, 2} means X = 1 or 2. Add the two expressions first — (4c − 10c²) + (5c − 1) = 9c − 10c² − 1 — then put c = 1/3: 3 − 10/9 − 1 = 8/9.",
+        "memory_tip": "0 < X < 3 on {0, 1, 2} keeps X = 1 and 2. Add the expressions first, then put c = 1/3.",
+        "lines": [
+          "(ii) P(0 < X < 3) = P(X = 1) + P(X = 2)",
+          "= (4c − 10c²) + (5c − 1) = 9c − 10c² − 1",
+          "= 9(1/3) − 10(1/3)² − 1 = 3 − 10/9 − 1",
+          "= 2 − 10/9 = 8/9"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(0 < X < 3) = P(X = 1) + P(X = 2) = 9c − 10c² − 1 = 8/9 at c = 1/3.",
+          "accept": [
+            "P of zero less than X less than three is P of one plus P of two which is nine c minus ten c squared minus one equals eight by nine",
+            "add the probabilities for X equal to one and two and put c equal to a third to get eight by nine",
+            "X can be one or two, the sum comes to eight by nine",
+            "X one leda two, rendu probabilities add chesi c one by three pedithe eight by nine",
+            "the probability is eight ninths"
+          ],
+          "reject": [
+            "find the probability",
+            "part two"
+          ],
+          "heard_as": [
+            "eight by nine",
+            "P of one plus P of two",
+            "nine c",
+            "ten c squared",
+            "zero less than X less than three"
+          ]
+        },
+        "why": "The event is a set of values of X, and X has only three values, so 0 < X < 3 keeps two of them. Adding the expressions before substituting is fewer fractions than substituting twice.",
+        "common_mistakes": [
+          "Including X = 0 or X = 3 (there is no X = 3).",
+          "Computing 10(1/3)² as 10/3.",
+          "Writing 3 − 10/9 − 1 = 2/9 by subtracting wrongly."
+        ]
+      },
+      {
+        "id": "s5_p_1_x_2",
+        "kind": "equation",
+        "label": "Find P(1 < X ≤ 2)",
+        "marks": 1,
+        "mark_note": "(iii)",
+        "margin_note": "One mark (book's [1 Mark]). 1 < X ≤ 2 keeps only X = 2 — the left end is excluded, the right end included. P(X = 2) = 5c − 1 = 5/3 − 1 = 2/3.",
+        "memory_tip": "1 < X ≤ 2 keeps only X = 2 — left end excluded, right end included.",
+        "lines": [
+          "(iii) P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
+          "= 5(1/3) − 1 = 5/3 − 1 = 2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(1 < X ≤ 2) is P(X = 2) alone, which is 5c − 1 = 2/3.",
+          "accept": [
+            "P of one less than X less than or equal to two is just P of X equals two which is five c minus one equals two by three",
+            "only X equal to two is in that range so the answer is two by three",
+            "five by three minus one gives two thirds",
+            "one exclude, two include, so P of two only, five c minus one, two by three",
+            "the probability is two by three"
+          ],
+          "reject": [
+            "find the probability",
+            "part three"
+          ],
+          "heard_as": [
+            "two by three",
+            "P of X equals two",
+            "five c minus one",
+            "less than or equal to",
+            "two thirds"
+          ]
+        },
+        "why": "Reading a strict and a non-strict inequality on the same line is the skill being tested. With integer values, 1 < X ≤ 2 is exactly X = 2.",
+        "common_mistakes": [
+          "Including X = 1 because 1 appears in the inequality.",
+          "Using P(X = 1) instead of P(X = 2).",
+          "Leaving the answer as 5c − 1."
+        ]
+      },
+      {
+        "id": "s6_p_x_1",
+        "kind": "boxed_final",
+        "label": "Find P(X < 1)",
+        "marks": 1,
+        "mark_note": "(iv)",
+        "margin_note": "Last mark (book's [1 Mark]). X < 1 keeps only X = 0. P(X = 0) = 3c³ = 3(1/27) = 1/9. As a check, the three probabilities 1/9, 2/9, 2/3 add to 1.",
+        "memory_tip": "X < 1 keeps only X = 0. 3(1/3)³ = 3/27 = 1/9; the three probabilities should add to 1.",
+        "lines": [
+          "(iv) P(X < 1) = P(X = 0) = 3c³",
+          "= 3(1/3)³ = 3 · 1/27 = 1/9",
+          {
+            "text": "∴ c = 1/3; (ii) 8/9 (iii) 2/3 (iv) 1/9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(X < 1) is P(X = 0) = 3c³ = 1/9.",
+          "accept": [
+            "P of X less than one is P of X equals zero which is three c cubed equals one by nine",
+            "only X equal to zero is below one, three into one by twenty seven is one ninth",
+            "three c cube at c equals a third is one by nine",
+            "X zero matrame, three c cube, one by nine",
+            "the probability is one by nine"
+          ],
+          "reject": [
+            "find the probability",
+            "part four"
+          ],
+          "heard_as": [
+            "one by nine",
+            "P of X equals zero",
+            "three c cubed",
+            "one twenty seventh",
+            "less than one"
+          ]
+        },
+        "why": "X < 1 on the range {0, 1, 2} is the single value 0. The cube of 1/3 is 1/27, and 3/27 = 1/9 — the same value found in the rejection step, which is the built-in check.",
+        "common_mistakes": [
+          "Including X = 1 in X < 1.",
+          "Computing (1/3)³ as 1/9.",
+          "Forgetting the factor 3 and answering 1/27."
+        ]
+      }
+    ]
+  }
+}

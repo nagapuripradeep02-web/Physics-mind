@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_power_tan_x_plus_sin_x_power_cos_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find dy/dx if y = x^(tan x) + (sin x)^(cos x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split y into two terms",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the first term",
+      "marks": 2
+    },
+    {
+      "label": "Take the logarithm of the second term and differentiate",
+      "marks": 2
+    },
+    {
+      "label": "Simplify and write the second derivative",
+      "marks": 2
+    },
+    {
+      "label": "Add the two derivatives",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.204, chapter 9 DIFFERENTIATION, Long Answer question 2(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working actually takes: one mark for the split, two for each of the three pieces of derivative work, one for the sum. The second term is given two steps rather than one because (cos²x)/(sin x) has to be rewritten as cos x cot x before the answer matches the standard form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the boxed derivative agrees with a central difference quotient of x^(tan x) + (sin x)^(cos x) at x = 1 (2.005749647) and at x = 1.2 (5.846595999), to nine decimal places at both points. Both test points have x > 0 and sin x > 0, and both lie below π/2 where tan x is finite."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do with the two terms first, and what the second term needs that the first does not.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "text",
+        "label": "Split y into two terms",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. It is for the split and for naming the method. A single logarithm of the whole of y earns nothing, because log(u + v) does not open out.",
+        "memory_tip": "Two terms, two logarithms, two derivatives, then add. The logarithm is taken on each term, never on the sum.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = u + v,  where u = x^(tan x)  and  v = (sin x)^(cos x)",
+          "Then dy/dx = du/dx + dv/dx",
+          "Both terms carry x in the base and in the power, so the power rule and the exponential rule are both unavailable. Take logarithms of u and of v separately.",
+          "This requires x > 0 and sin x > 0, so that log x and log(sin x) exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y is split into u and v and each term is treated by logarithms on its own.",
+          "accept": [
+            "let u be x to the power tan x and v be sin x to the power cos x",
+            "take logs of each term separately",
+            "the power rule does not work because x is in the base and the power",
+            "differentiate the two terms one by one and add",
+            "rendu terms ki separate ga log teesukovali",
+            "log of the sum is not allowed here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "u plus v",
+            "separately",
+            "take log",
+            "x to the power tan x",
+            "sin x to the power cos x"
+          ]
+        },
+        "why": "Both terms have a variable base and a variable power, which no single rule of differentiation covers. Splitting first is what makes the logarithm usable, since a logarithm changes a power into a product but does nothing to a sum.",
+        "common_mistakes": [
+          "Writing log y for the whole expression and then treating it as a sum of two logarithms.",
+          "Differentiating x^(tan x) as tan x · x^(tan x − 1), which is the power rule used on a variable power."
+        ]
+      },
+      {
+        "id": "s2_first_term",
+        "kind": "equation",
+        "label": "Differentiate the first term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. One for log u = tan x · log x, one for the differentiated line. The derivative of tan x is sec²x, and the derivative of log x is 1/x.",
+        "memory_tip": "The bracket picks up one piece from each factor: sec²x from tan x, and 1/x from log x.",
+        "lines": [
+          "u = x^(tan x)",
+          "Taking logarithms,   log u = tan x · log x",
+          "Differentiating both sides with respect to x,",
+          "(1/u)(du/dx) = sec²x · log x + tan x · (1/x)",
+          "∴ du/dx = x^(tan x) [sec²x · log x + (tan x)/x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log u = tan x · log x, and that differentiating gives du/dx = x^(tan x) [sec²x log x + (tan x)/x].",
+          "accept": [
+            "log u is tan x times log x",
+            "differentiate to get sec squared x log x plus tan x by x",
+            "the derivative of tan x is sec squared x",
+            "multiply back by x to the power tan x",
+            "log u equals tan x log x, product rule vaadali",
+            "sec square x into log x plus tan x over x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log u",
+            "tan x log x",
+            "sec squared x",
+            "tan x by x",
+            "multiply back"
+          ]
+        },
+        "why": "Once the logarithm has turned the power into the product tan x · log x, the product rule and the two standard derivatives finish the work in one line.",
+        "common_mistakes": [
+          "Writing the derivative of tan x as sec x tan x, which belongs to sec x.",
+          "Leaving the answer as the bracket alone, without the factor x^(tan x) in front."
+        ]
+      },
+      {
+        "id": "s3_second_term_log",
+        "kind": "equation",
+        "label": "Take the logarithm of the second term and differentiate",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Here the power is cos x, whose derivative is −sin x, so the first product term carries a minus sign. Carrying that minus sign correctly is where this mark is most often lost.",
+        "memory_tip": "The power comes down as the outside factor of the logarithm. Here the power is cos x, and its derivative −sin x puts a minus sign on the first term.",
+        "lines": [
+          "v = (sin x)^(cos x)",
+          "Taking logarithms,   log v = cos x · log(sin x)",
+          "Differentiating both sides with respect to x,",
+          "(1/v)(dv/dx) = (−sin x) · log(sin x) + cos x · (cos x)/(sin x)",
+          "(1/v)(dv/dx) = −sin x · log(sin x) + (cos²x)/(sin x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log v = cos x · log(sin x), and that differentiating gives −sin x log(sin x) + (cos²x)/(sin x).",
+          "accept": [
+            "log v is cos x times log sin x",
+            "the derivative of cos x is minus sin x so the first part is negative",
+            "minus sin x log sin x plus cos squared x over sin x",
+            "product rule with the chain rule on log sin x",
+            "cos x derivative minus sin x vasthundi, so minus sign untundi",
+            "one by v into dv by dx equals minus sin x log sin x plus cos square x by sin x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log v",
+            "cos x log sin x",
+            "minus sin x",
+            "cos squared by sin",
+            "product rule"
+          ]
+        },
+        "why": "The logarithm brings the power cos x out in front, and differentiating it produces −sin x. The chain rule on log(sin x) supplies (cos x)/(sin x), which multiplies the cos x already there.",
+        "common_mistakes": [
+          "Writing the derivative of cos x as +sin x, which flips the sign of the whole first term.",
+          "Differentiating log(sin x) as 1/(sin x) and dropping the cos x."
+        ]
+      },
+      {
+        "id": "s4_simplify_second",
+        "kind": "equation",
+        "label": "Simplify and write the second derivative",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. (cos²x)/(sin x) is one cos x times (cos x)/(sin x), so it becomes cos x cot x. Then multiply the whole bracket by v.",
+        "memory_tip": "Split cos²x as cos x · cos x, send one of them over sin x, and cot x appears.",
+        "lines": [
+          "(cos²x)/(sin x) = cos x · (cos x)/(sin x) = cos x cot x",
+          "So  (1/v)(dv/dx) = cos x cot x − sin x · log(sin x)",
+          "∴ dv/dx = (sin x)^(cos x) [cos x cot x − sin x · log(sin x)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (cos²x)/(sin x) is rewritten as cos x cot x, and the bracket is multiplied by v = (sin x)^(cos x).",
+          "accept": [
+            "cos squared x over sin x is cos x into cot x",
+            "split cos squared as cos times cos and one goes over sin x",
+            "multiply the bracket by sin x to the power cos x",
+            "the second derivative is cos x cot x minus sin x log sin x, times v",
+            "cos square x by sin x ni cos x cot x ga rasta",
+            "then multiply back by v to finish"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos x cot x",
+            "cos squared over sin",
+            "multiply by v",
+            "minus sin x log sin x"
+          ]
+        },
+        "why": "Rewriting (cos²x)/(sin x) as cos x cot x puts the answer in the standard trigonometric form an examiner expects, and multiplying back by v is what recovers dv/dx from (1/v)(dv/dx).",
+        "common_mistakes": [
+          "Writing (cos²x)/(sin x) as cot²x, which is (cos²x)/(sin²x).",
+          "Multiplying only part of the bracket by v instead of the whole bracket."
+        ]
+      },
+      {
+        "id": "s5_add",
+        "kind": "boxed_final",
+        "label": "Add the two derivatives",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both brackets stay attached to their own factor, and the minus sign inside the second bracket must still be there in the final line.",
+        "memory_tip": "The first bracket is all plus; the second bracket carries the minus. Checking that one sign is a quick way to check the whole answer.",
+        "lines": [
+          "dy/dx = du/dx + dv/dx",
+          {
+            "text": "∴ dy/dx = x^(tan x) [sec²x · log x + (tan x)/x] + (sin x)^(cos x) [cos x cot x − sin x · log(sin x)]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two derivatives are added with each bracket keeping its own outside factor and the second bracket keeping its minus sign.",
+          "accept": [
+            "add the two results to get dy by dx",
+            "x power tan x bracket plus sin x power cos x bracket",
+            "the second bracket has a minus inside it",
+            "each term keeps its own factor in front",
+            "rendintini kalipithe answer vasthundi",
+            "that is the final answer, nothing cancels"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add them",
+            "two brackets",
+            "minus inside",
+            "final answer"
+          ]
+        },
+        "why": "A sum is differentiated term by term, so the two results are added unchanged. The brackets share no factor, so this is the shortest correct form.",
+        "common_mistakes": [
+          "Dropping the minus sign in the second bracket while copying the final line.",
+          "Adding the two brackets first and then multiplying by one factor."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — never log the sum. Both need x > 0 and sin x > 0 for the logarithms to exist."
+}

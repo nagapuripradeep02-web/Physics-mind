@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_coplanar_find_p_3ipj5k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the vectors a = 2i − j + k, b = i + 2j − 3k and c = 3i + pj + 5k are coplanar, find p.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the coplanarity condition",
+      "marks": 1
+    },
+    {
+      "label": "Expand the determinant",
+      "marks": 2
+    },
+    {
+      "label": "Solve for p and check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the substitution check, because a value of p is only proved once the determinant reads exactly zero. Both evaluations agree at 7p + 28: the first-row expansion gives 2(10 + 3p) + 1(5 + 9) + 1(p − 6), and computing b × c = (10 + 3p, −14, p − 6) and dotting with a gives the same. Substituting p = −4 gives 2(10 − 12) + 1(5 + 9) + 1(−4 − 6) = −4 + 14 − 10 = 0 exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find p — the condition for coplanar vectors, the determinant, and how you check your value.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. Coplanar means the box built on the three vectors is flat, so its volume is zero.",
+        "memory_tip": "Coplanar means a flat box: zero height, zero volume, zero box product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = 2i − j + k, b = i + 2j − 3k,",
+          "c = 3i + pj + 5k.",
+          "Three vectors are coplanar exactly when",
+          "their box product is zero, so",
+          "[a b c] = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That coplanar vectors have box product zero, so [a b c] = 0.",
+          "accept": [
+            "coplanar means the scalar triple product is zero",
+            "set the box product of the three vectors to zero",
+            "a flat box has zero volume, so the determinant is zero",
+            "coplanar ante box product zero",
+            "the condition is a b c box product equals zero"
+          ],
+          "reject": [
+            "expand the determinant",
+            "p is minus four",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coplanar",
+            "box product zero",
+            "flat box",
+            "determinant"
+          ]
+        },
+        "why": "A non-zero box product is the volume of a real box; if the three vectors lie in one plane that box is flat and the product is zero.",
+        "common_mistakes": [
+          "Setting the box product to 1 instead of 0.",
+          "Testing only two of the three vectors for a common plane."
+        ]
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The middle cofactor carries its own minus sign; with a −1 entry that gives a plus.",
+        "memory_tip": "Two minus signs meet in the middle term: the cofactor's and the entry's. They give a plus.",
+        "lines": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 2 & -1 & 1 \\\\ 1 & 2 & -3 \\\\ 3 & p & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(10 + 3p) + 1(5 + 9) + 1(p − 6)",
+          "= 20 + 6p + 14 + p − 6 = 7p + 28",
+          "Check by b × c = (10 + 3p, −14, p − 6):",
+          "a·(b × c) = 2(10 + 3p) + 14 + p − 6",
+          "= 7p + 28"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant expands to 7p + 28.",
+          "accept": [
+            "expand the determinant to get seven p plus twenty eight",
+            "b cross c is ten plus three p, minus fourteen, p minus six",
+            "dotting with a gives seven p plus twenty eight",
+            "determinant expand cheste seven p plus twenty eight vasthundi",
+            "the expansion is linear in p"
+          ],
+          "reject": [
+            "coplanar means box product zero",
+            "p is minus four",
+            "hence proved"
+          ],
+          "heard_as": [
+            "seven p plus twenty eight",
+            "determinant",
+            "b cross c",
+            "cofactor"
+          ]
+        },
+        "why": "Both routes give the same expression in p, which rules out a sign slip in the cofactor pattern.",
+        "common_mistakes": [
+          "Writing −(−1) as −1 in the middle term.",
+          "Expanding 2(10 + 3p) as 20 + 3p."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "boxed_final",
+        "label": "Solve for p and check",
+        "marks": 1,
+        "mark_note": "Value of p",
+        "margin_note": "Last mark. One substitution line turns a candidate into a proved answer.",
+        "memory_tip": "7p = −28 gives p = −4. Put it back and the determinant must read exactly 0.",
+        "lines": [
+          "7p + 28 = 0 ⇒ p = −4",
+          "Check: with p = −4, c = (3, −4, 5) and",
+          "2(10 − 12) + 1(5 + 9) + 1(−4 − 6)",
+          "= −4 + 14 − 10 = 0  ✓",
+          {
+            "text": "∴ p = −4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 7p + 28 = 0 gives p = −4, and that substituting it makes the determinant zero.",
+          "accept": [
+            "seven p plus twenty eight equals zero so p is minus four",
+            "p equals minus four",
+            "put minus four back and the determinant is exactly zero",
+            "p minus four vasthundi, substitute chesi zero ani choodali",
+            "solve the linear equation and check the value"
+          ],
+          "reject": [
+            "expand the determinant",
+            "coplanar means box product zero",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p equals minus four",
+            "seven p",
+            "check",
+            "zero"
+          ]
+        },
+        "why": "Substituting the value back is the proof; the determinant comes out exactly zero, not nearly zero.",
+        "common_mistakes": [
+          "Solving 7p + 28 = 0 as p = 4.",
+          "Leaving the answer as 7p = −28."
+        ]
+      }
+    ]
+  }
+}

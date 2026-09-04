@@ -1,0 +1,282 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_area_triangle_three_lines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the area of the triangle formed by the straight lines 2x − y − 5 = 0, x − 5y + 11 = 0 and x + y − 1 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Vertex A from (1) and (2)",
+      "marks": 2
+    },
+    {
+      "label": "Vertex B from (2) and (3)",
+      "marks": 2
+    },
+    {
+      "label": "Vertex C from (3) and (1)",
+      "marks": 2
+    },
+    {
+      "label": "Write the area formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.157, chapter 3 THE STRAIGHT LINE, Long Answer question 14. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts the marks where the work is: two on each of the three vertices, which is three quarters of the answer, then one for quoting the area formula and one for the substitution that finishes it. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Each vertex was substituted back into both of its own lines: A(4, 3) gives 8 − 3 − 5 = 0 and 4 − 15 + 11 = 0; B(−1, 2) gives −1 − 10 + 11 = 0 and −1 + 2 − 1 = 0; C(2, −1) gives 4 + 1 − 5 = 0 and 2 − 1 − 1 = 0. The area was found a second way, as half base times height: BC = 3√2 and the perpendicular from A(4, 3) to x + y − 1 = 0 is 6/√2 = 3√2, giving ½ × 3√2 × 3√2 = 9. A third route, the cross-product of AB = (−5, −1) and AC = (−2, −4), gives ½|20 − 2| = 9."
+  },
+  "recall_prompt": "Say how you would find this — say what you need before the area formula can be used, and say what must stay on the final line.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_vertex_a",
+        "kind": "equation",
+        "label": "Vertex A from (1) and (2)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The first two marks. Take the pair of lines that meet at A, make one variable the subject and substitute into the other line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let  2x − y − 5 = 0  ……(1)",
+          "x − 5y + 11 = 0  ……(2)",
+          "x + y − 1 = 0  ……(3)",
+          "A is the meeting point of (1) and (2).",
+          "From (1),  y = 2x − 5",
+          "In (2):  x − 5(2x − 5) + 11 = 0",
+          "⇒ x − 10x + 25 + 11 = 0",
+          "⇒ −9x + 36 = 0  ⇒  x = 4",
+          "Then  y = 2(4) − 5 = 3",
+          "∴ A(4, 3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving lines (1) and (2) together gives the vertex A(4, 3).",
+          "accept": [
+            "solve the first two lines to get four comma three",
+            "make y the subject and substitute into the second line",
+            "vertex A is four comma three",
+            "modati rendu lines solve chesthe four comma three vasthundi",
+            "A is the meeting point of one and two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "vertex A",
+            "four comma three",
+            "substitute",
+            "solve the pair"
+          ]
+        },
+        "why": "A triangle made by three lines is not given by its corners, so all three vertices have to be produced before any area formula can be used.",
+        "common_mistakes": [
+          "Distributing −5 over (2x − 5) as −10x − 25.",
+          "Solving (1) with (3) and calling the result A."
+        ],
+        "memory_tip": "Number the three lines first. Then each vertex is one named PAIR — A is (1) with (2)."
+      },
+      {
+        "id": "s2_vertex_b",
+        "kind": "equation",
+        "label": "Vertex B from (2) and (3)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The next two marks. The coefficients of x already match, so subtract one line from the other and read y straight off.",
+        "lines": [
+          "B is the meeting point of (2) and (3).",
+          "(3) − (2):  6y − 12 = 0  ⇒  y = 2",
+          "From (3),  x = 1 − y = 1 − 2 = −1",
+          "∴ B(−1, 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting lines (2) and (3) gives the vertex B(−1, 2).",
+          "accept": [
+            "subtract the two lines to remove x",
+            "vertex B is minus one comma two",
+            "six y minus twelve is zero so y is two",
+            "x coefficients same unnaayi so subtract cheyyali",
+            "B is the meeting point of two and three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "vertex B",
+            "minus one comma two",
+            "subtract",
+            "y is two"
+          ]
+        },
+        "why": "These two lines have the same coefficient of x, so subtracting removes x at once and there is no need to substitute anything.",
+        "common_mistakes": [
+          "Adding the two lines instead of subtracting, so x is not removed.",
+          "A sign slip in (x + y − 1) − (x − 5y + 11)."
+        ],
+        "memory_tip": "When one column already matches, SUBTRACT — no substitution is needed."
+      },
+      {
+        "id": "s3_vertex_c",
+        "kind": "equation",
+        "label": "Vertex C from (3) and (1)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The last two vertex marks. The y coefficients are +1 and −1, so add the two lines and read x straight off.",
+        "lines": [
+          "C is the meeting point of (3) and (1).",
+          "(1) + (3):  3x − 6 = 0  ⇒  x = 2",
+          "From (3),  y = 1 − x = 1 − 2 = −1",
+          "∴ C(2, −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding lines (1) and (3) gives the vertex C(2, −1).",
+          "accept": [
+            "add the two lines to remove y",
+            "vertex C is two comma minus one",
+            "three x minus six is zero so x is two",
+            "y coefficients opposite unnaayi so add cheyyali",
+            "C is the meeting point of three and one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "vertex C",
+            "two comma minus one",
+            "add",
+            "x is two"
+          ]
+        },
+        "why": "Here the y coefficients are equal and opposite, so adding removes y and the third vertex comes out in two lines.",
+        "common_mistakes": [
+          "Subtracting instead of adding, so y is not removed.",
+          "Reading the vertex as (−1, 2), swapping it with B."
+        ],
+        "memory_tip": "Equal and OPPOSITE coefficients means add; equal coefficients means subtract."
+      },
+      {
+        "id": "s4_area_formula",
+        "kind": "equation",
+        "label": "Write the area formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Quote the formula in full, modulus bars and ½ included, before any number is put in.",
+        "lines": [
+          "The area of the triangle with vertices",
+          "(x₁, y₁), (x₂, y₂), (x₃, y₃) is",
+          "Δ = ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|",
+          "Here  A(4, 3),  B(−1, 2),  C(2, −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area formula ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)| is written with the modulus.",
+          "accept": [
+            "half mod x one into y two minus y three and so on",
+            "quote the area formula with the modulus bars",
+            "the area of a triangle from its three vertices",
+            "area formula lo half and mod rendu undaali",
+            "each x times the difference of the other two y values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "area formula",
+            "half",
+            "modulus",
+            "three vertices"
+          ]
+        },
+        "why": "The formula is written with the modulus bars in place, because an area is never negative and the bracket can come out either way round.",
+        "common_mistakes": [
+          "Writing the formula without the modulus bars.",
+          "Forgetting the ½ in front."
+        ],
+        "memory_tip": "Half, modulus, and each x paired with the DIFFERENCE of the other two y values, taken in order."
+      },
+      {
+        "id": "s5_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and finish",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Substitute, keep the modulus until the bracket is evaluated, and write sq. units on the answer.",
+        "lines": [
+          "Δ = ½|4(2 + 1) + (−1)(−1 − 3) + 2(3 − 2)|",
+          "= ½|12 + 4 + 2|",
+          "= ½(18) = 9",
+          "Check by base and height:  BC = 3√2, and",
+          "the distance from A to (3) is 6/√2 = 3√2,",
+          "so Δ = ½(3√2)(3√2) = 9",
+          {
+            "text": "∴ Area = 9 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives ½|18| = 9 square units.",
+          "accept": [
+            "substitute the three vertices to get half of eighteen",
+            "the area is nine square units",
+            "keep the modulus until the bracket is worked out",
+            "moodu vertices pettithe nine square units vasthundi",
+            "half into eighteen is nine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine square units",
+            "half of eighteen",
+            "substitute",
+            "modulus"
+          ]
+        },
+        "why": "The modulus bars stay on until the number inside is known to be positive, and the answer is a measurement, so it carries its units.",
+        "common_mistakes": [
+          "Dropping the modulus and reporting a negative area.",
+          "Leaving off sq. units."
+        ],
+        "memory_tip": "Modulus bars come off only after the inside is worked out. An area always carries sq. units."
+      }
+    ]
+  }
+}

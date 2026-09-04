@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_pa2_pb2_2c2_general",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the locus of a point P such that PA² + PB² = 2c², where A = (a, 0), B = (−a, 0) and 0 < |a| < |c|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 11, book p.137. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards writing the condition already in squares, then the substitution in letters, and gives the remaining two marks to the cancellation of the ±2ax terms and the division by 2 — this question is answered entirely in letters, so the marks sit on the algebra, not on arithmetic. The unmarked opening step names the moving point and records the given range of a and c. Answer cross-checked at the point (√(c² − a²), 0): there PA² + PB² = (c² − 2a√(c² − a²)) + (c² + 2a√(c² − a²)) = 2c², as required. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what happens to the terms in a, and name the shape and the radius you end with.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. The two fixed points sit on the x-axis at equal distances either side of the origin, so the picture is symmetric about both axes before any algebra starts.",
+        "memory_tip": "A and B sit either side of the origin at the same distance, so the picture is already symmetric.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given A = (a, 0), B = (−a, 0), 0 < |a| < |c|"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the two fixed points are A(a, 0) and B(−a, 0).",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "A and B are a comma zero and minus a comma zero",
+            "locus point ni P x y ga teesukovali",
+            "the two fixed points are on the x axis either side of the origin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "a comma zero",
+            "minus a comma zero",
+            "locus point"
+          ]
+        },
+        "why": "This question is answered entirely in letters, so writing the fixed points down carefully is what keeps a and c apart later.",
+        "common_mistakes": [
+          "Giving a and c numbers of your own.",
+          "Writing B as (0, −a) instead of (−a, 0)."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The condition arrives already in squares, so it goes straight into coordinates with no squaring and no rearranging first.",
+        "memory_tip": "The condition is already squared, so no root is ever created and none has to be cleared.",
+        "lines": [
+          "Given condition: PA² + PB² = 2c²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given condition PA² + PB² = 2c² is written down.",
+          "accept": [
+            "the condition is P A squared plus P B squared equals two c squared",
+            "write P A square plus P B square is two c square",
+            "the condition is already in squares",
+            "given condition ni raasukovali P A square plus P B square equals two c square",
+            "state the given condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P A squared",
+            "P B squared",
+            "two c squared",
+            "given condition"
+          ]
+        },
+        "why": "A condition written in squares is the simplest case in this chapter, because no square root ever appears and no squaring step can introduce an extra solution.",
+        "common_mistakes": [
+          "Reading 2c² as (2c)².",
+          "Writing PA + PB = 2c, which is a different curve."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The two brackets differ only in the sign of the a term, because A and B differ only in the sign of their x-coordinate.",
+        "memory_tip": "The two brackets differ only in the sign of the a term, since A and B differ only in the sign of a.",
+        "lines": [
+          "⇒ [(x−a)² + y²] + [(x+a)² + y²] = 2c²",
+          "⇒ (x² − 2ax + a² + y²)",
+          "      + (x² + 2ax + a² + y²) = 2c²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both squared distances are written in coordinates and expanded, one with −2ax and one with +2ax.",
+          "accept": [
+            "substitute the distance formula for both P A squared and P B squared",
+            "x minus a whole squared plus y squared plus x plus a whole squared plus y squared",
+            "one bracket has minus two a x and the other has plus two a x",
+            "rendu distances ni coordinates lo raasi expand cheyyali",
+            "expand both squared distances"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus a whole squared",
+            "x plus a whole squared",
+            "minus two a x",
+            "plus two a x"
+          ]
+        },
+        "why": "Writing the two expansions one under the other makes the opposite signs on the 2ax terms sit in line, which is what shows the cancellation before it is done.",
+        "common_mistakes": [
+          "Expanding (x + a)² as x² + 2ax − a².",
+          "Writing only one y² when both distances contribute one."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The two 2ax terms cancel, every remaining term carries a factor 2, and dividing by 2 leaves a circle with centre at the origin and radius √(c² − a²).",
+        "memory_tip": "The ±2ax terms cancel, then divide the whole line by 2 — the answer is a circle centred at the origin.",
+        "lines": [
+          "⇒ 2x² + 2y² + 2a² = 2c²",
+          "   [the −2ax and +2ax terms cancel]",
+          "⇒ x² + y² = c² − a²",
+          "Here c² − a² > 0, because 0 < |a| < |c|.",
+          {
+            "text": "∴ Locus: x² + y² = c² − a²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 2ax terms cancel and dividing by 2 gives the circle x² + y² = c² − a².",
+          "accept": [
+            "the two a x terms cancel because their signs are opposite",
+            "divide the whole equation by two",
+            "the locus is x squared plus y squared equals c squared minus a squared",
+            "a x terms cancel avuthaayi, two tho divide cheyyali",
+            "it is a circle centred at the origin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "the a x terms cancel",
+            "divide by two",
+            "c squared minus a squared",
+            "circle at the origin"
+          ]
+        },
+        "why": "The given range 0 < |a| < |c| is what makes c² − a² positive, so the radius √(c² − a²) is a real number and the locus is a genuine circle rather than an empty set.",
+        "common_mistakes": [
+          "Forgetting to divide the whole line by 2 and leaving 2a² and 2c².",
+          "Writing the radius as c − a instead of √(c² − a²)."
+        ]
+      }
+    ]
+  }
+}

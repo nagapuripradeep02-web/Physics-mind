@@ -1,0 +1,316 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_plane_through_three_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Find the equation of the plane passing through the points A(2, 3, −1), B(4, 5, 2) and C(3, 6, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find two vectors lying in the plane",
+      "marks": 1
+    },
+    {
+      "label": "Cross them to get the normal",
+      "marks": 2
+    },
+    {
+      "label": "Find a · n",
+      "marks": 1
+    },
+    {
+      "label": "Write the vector equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the Cartesian equation and check",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split puts the heaviest weight on the cross product that produces the normal and on the closing Cartesian form, where all three points are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the equation of a plane through three given points.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Turn the three coordinate triples into vectors before anything else. Every later step reads off these three rows.",
+        "memory_tip": "Turn the three coordinate triples into vectors before anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A(2, 3, −1), B(4, 5, 2), C(3, 6, 5)",
+          "a = 2i + 3j − k,  b = 4i + 5j + 2k,",
+          "c = 3i + 6j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three points are written as position vectors a, b and c.",
+          "accept": [
+            "write the three points as position vectors a b and c",
+            "convert the coordinate triples into i j k form",
+            "turn the three points into vectors first",
+            "moodu points ni position vectors ga rasta",
+            "a is two i plus three j minus k and so on"
+          ],
+          "reject": [
+            "find AB and AC",
+            "cross them",
+            "then I get it"
+          ],
+          "heard_as": [
+            "position vectors",
+            "a b c",
+            "coordinates",
+            "i j k"
+          ]
+        },
+        "why": "The cross product works on vectors, not on coordinate triples, so the conversion has to happen first.",
+        "common_mistakes": [
+          "Reading a coordinate in the wrong order.",
+          "Missing the minus sign on the third coordinate of A."
+        ]
+      },
+      {
+        "id": "s2_two_vectors",
+        "kind": "equation",
+        "label": "Find two vectors in the plane",
+        "marks": 1,
+        "mark_note": "In-plane vectors",
+        "margin_note": "Second mark. Both differences start from the same point A. Two vectors from different starting points would still lie in the plane, but starting from A keeps the arithmetic in one place.",
+        "memory_tip": "Both vectors from the same point A, so the subtractions share one row.",
+        "lines": [
+          "AB = b − a = 2i + 2j + 3k",
+          "AC = c − a = i + 3j + 6k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = 2i + 2j + 3k and AC = i + 3j + 6k are two vectors lying in the plane, both taken from A.",
+          "accept": [
+            "find AB and AC from the same point A, both lie in the plane",
+            "AB is b minus a and AC is c minus a",
+            "two i plus two j plus three k, and i plus three j plus six k",
+            "A nunchi rendu vectors, avi plane lo untai",
+            "build two in plane vectors from one vertex"
+          ],
+          "reject": [
+            "write the position vectors",
+            "cross them",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB",
+            "AC",
+            "in the plane",
+            "two i plus two j"
+          ]
+        },
+        "why": "Any two vectors joining points of the plane lie inside it, and two non-parallel ones fix its direction completely.",
+        "common_mistakes": [
+          "Using the position vectors themselves instead of the differences.",
+          "Subtracting the wrong way round, which reverses both vectors."
+        ]
+      },
+      {
+        "id": "s3_normal",
+        "kind": "equation",
+        "label": "Cross them",
+        "marks": 2,
+        "mark_note": "Normal",
+        "margin_note": "Two marks. The cross product of two vectors that lie in the plane is at right angles to the whole plane. AB goes on the top row, AC below.",
+        "memory_tip": "The cross of two vectors IN the plane is at right angles to the plane.",
+        "lines": [
+          {
+            "text": "n = AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 2 & 2 & 3 \\\\ 1 & 3 & 6 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(12 − 9) − j(12 − 3) + k(6 − 2)",
+          "= 3i − 9j + 4k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product AB × AC gives a normal to the plane, here 3i − 9j + 4k.",
+          "accept": [
+            "cross AB with AC to get three i minus nine j plus four k",
+            "the cross product is at right angles to the plane",
+            "the normal is three i minus nine j plus four k",
+            "cross product plane ki perpendicular, three minus nine four",
+            "expand the determinant to find the normal"
+          ],
+          "reject": [
+            "find AB and AC",
+            "find a dot n",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "normal",
+            "three i",
+            "minus nine j",
+            "four k",
+            "cross product"
+          ]
+        },
+        "why": "A cross product is at right angles to both its factors. Since both factors lie in the plane, the result is at right angles to the plane itself.",
+        "common_mistakes": [
+          "Taking a dot product, which gives a number and no direction.",
+          "Losing the minus on the j term."
+        ]
+      },
+      {
+        "id": "s4_dot",
+        "kind": "equation",
+        "label": "Find a · n",
+        "marks": 1,
+        "mark_note": "a · n",
+        "margin_note": "Fifth mark. Any one of the three points can be used here. A is the shortest because its third coordinate is −1.",
+        "memory_tip": "Any of the three points works. Use the one with the smallest numbers.",
+        "lines": [
+          "a·n = (2i + 3j − k)·(3i − 9j + 4k)",
+          "= 6 − 27 − 4 = −25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·n = −25, found by dotting any one of the three points with the normal.",
+          "accept": [
+            "dot a with the normal to get minus twenty five",
+            "six minus twenty seven minus four is minus twenty five",
+            "any of the three points gives the same number",
+            "a dot n minus twenty five vasthundi",
+            "the constant on the right hand side is minus twenty five"
+          ],
+          "reject": [
+            "cross them",
+            "write the vector equation",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus twenty five",
+            "a dot n",
+            "six minus twenty seven"
+          ]
+        },
+        "why": "Every point of the plane has the same dot product with the normal, so this single number is the constant term of the plane equation.",
+        "common_mistakes": [
+          "Dotting the normal with AB instead of with a position vector, which gives 0.",
+          "Sign slip on the −k component."
+        ]
+      },
+      {
+        "id": "s5_vector_form",
+        "kind": "equation",
+        "label": "Write the vector equation",
+        "marks": 1,
+        "mark_note": "Vector equation",
+        "margin_note": "Sixth mark. The plane is every point r whose dot product with n matches the one A gives. That single line is the vector equation.",
+        "memory_tip": "The plane is every r with the SAME dot product against n that A has.",
+        "lines": [
+          "The plane is r·n = a·n, that is",
+          "r·(3i − 9j + 4k) = −25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vector equation of the plane is r·(3i − 9j + 4k) = −25.",
+          "accept": [
+            "the vector equation is r dot three i minus nine j plus four k equals minus twenty five",
+            "r dot n equals a dot n",
+            "every point of the plane has the same dot product with the normal",
+            "r dot n equals minus twenty five ani rasta",
+            "write the plane in r dot n form"
+          ],
+          "reject": [
+            "find a dot n",
+            "write the Cartesian equation",
+            "hence proved"
+          ],
+          "heard_as": [
+            "r dot n",
+            "minus twenty five",
+            "vector equation"
+          ]
+        },
+        "why": "Writing r·n = a·n before substituting coordinates keeps the vector form and the Cartesian form clearly separate, and the paper may ask for either.",
+        "common_mistakes": [
+          "Writing r·n = 0, which is the parallel plane through the origin.",
+          "Putting the normal on the right and the constant on the left."
+        ]
+      },
+      {
+        "id": "s6_cartesian",
+        "kind": "boxed_final",
+        "label": "Write the Cartesian equation",
+        "marks": 2,
+        "mark_note": "Cartesian equation",
+        "margin_note": "The last two marks. Substitute r = xi + yj + zk, then move the −25 across. Checking all three points costs three short lines and catches any earlier slip.",
+        "memory_tip": "Check all three points, not just one. A wrong normal can still fit a single point.",
+        "lines": [
+          "Put r = xi + yj + zk :",
+          "3x − 9y + 4z = −25",
+          {
+            "text": "3x − 9y + 4z + 25 = 0",
+            "style": "boxed"
+          },
+          "Check A: 6 − 27 − 4 + 25 = 0",
+          "Check B: 12 − 45 + 8 + 25 = 0",
+          "Check C: 9 − 54 + 20 + 25 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Cartesian equation is 3x − 9y + 4z + 25 = 0, and that all three given points satisfy it.",
+          "accept": [
+            "the plane is three x minus nine y plus four z plus twenty five equals zero",
+            "substitute r as x i plus y j plus z k to get the Cartesian form",
+            "all three points satisfy it, so the answer is right",
+            "moodu points ni check cheste zero vasthundi",
+            "three x minus nine y plus four z equals minus twenty five"
+          ],
+          "reject": [
+            "write the vector equation",
+            "find a dot n",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three x minus nine y",
+            "plus twenty five",
+            "equals zero",
+            "check"
+          ]
+        },
+        "why": "One point will fit almost any wrong normal, but all three fitting at once is a real check. It is the cheapest verification available in this question.",
+        "common_mistakes": [
+          "Checking only the point already used to find the constant.",
+          "Moving the −25 across without changing its sign."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_common_root_2_b_plus_d_equals_ac",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the equations x² + ax + b = 0 and x² + cx + d = 0 have a common root and the first equation has equal roots, then prove that 2(b + d) = ac.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the equal roots",
+      "marks": 1
+    },
+    {
+      "label": "Substitute in the second",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.75 (PDF p.76 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 126.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove this — say what the equal roots tell you about the common root, and where you put what you find.",
+  "insider_note": "'Equal roots' gives two facts about the common root: 2α = −a and α² = b, and both go into the second equation. The discriminant a² − 4b = 0 is true but produces no value of α to substitute.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equal_roots",
+        "kind": "equation",
+        "label": "Use the equal roots",
+        "marks": 1,
+        "mark_note": "α = −a/2, α² = b",
+        "margin_note": "First mark. 'Equal roots' means BOTH roots of x² + ax + b = 0 are the common root α. Then sum α + α = −a gives α = −a/2, and product α·α = b gives α² = b. Two facts about α, both needed.",
+        "memory_tip": "Equal roots means BOTH roots are α: the sum 2α = −a gives α = −a/2, the product gives α² = b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α be the common root.",
+          "x² + ax + b = 0 has equal roots, so",
+          "both its roots are α.",
+          "α + α = −a ⇒ α = −a/2",
+          "α·α = b ⇒ α² = b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the first equation has equal roots, both are the common root α, so sum gives 2α = −a (α = −a/2) and product gives α² = b.",
+          "accept": [
+            "equal roots means both roots are alpha, so two alpha is minus a and alpha squared is b",
+            "from sum of roots alpha is minus a by two and from product alpha squared equals b",
+            "use sum and product on the first equation with both roots equal to alpha",
+            "first equation ki rendu roots alpha kabatti two alpha equals minus a, alpha square equals b",
+            "alpha equals minus a over two and alpha squared equals b"
+          ],
+          "reject": [
+            "substitute",
+            "put in the second equation",
+            "prove it"
+          ],
+          "heard_as": [
+            "equal roots",
+            "both roots are alpha",
+            "minus a by two",
+            "alpha squared equals b",
+            "sum",
+            "product"
+          ]
+        },
+        "why": "Equal roots is the extra information the question gives, and it is used through sum and product: with both roots equal to α, the sum and product give α and α² directly in terms of a and b, ready to substitute.",
+        "common_mistakes": [
+          "Writing α = −a (forgetting the 2 in the sum 2α).",
+          "Using the discriminant a² − 4b = 0 instead — true, but it does not give α.",
+          "Writing the product as 2α = b."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute in the second",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. α is also a root of x² + cx + d = 0: α² + cα + d = 0. Replace α² by b and α by −a/2: b − ac/2 + d = 0, so b + d = ac/2, and multiplying by 2 gives 2(b + d) = ac.",
+        "memory_tip": "Replace α² by b and α by −a/2 in the second equation, then multiply through by 2.",
+        "lines": [
+          "α is a root of x² + cx + d = 0:",
+          "α² + cα + d = 0",
+          "⇒ b + c(−a/2) + d = 0",
+          "⇒ b + d = ac/2",
+          {
+            "text": "∴ 2(b + d) = ac",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α is substituted into x² + cx + d = 0, with α² = b and α = −a/2, giving b − ac/2 + d = 0 and hence 2(b + d) = ac.",
+          "accept": [
+            "put alpha into the second equation, replace alpha squared by b and alpha by minus a by two, then b plus d is a c by two so two b plus d is a c",
+            "alpha squared plus c alpha plus d is zero becomes b minus a c over two plus d equals zero",
+            "substitute and multiply by two to get two into b plus d equals a c",
+            "second equation lo alpha square ki b, alpha ki minus a by two pettithe two into b plus d equals a c",
+            "b plus d equals a c by two hence proved"
+          ],
+          "reject": [
+            "hence proved",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "substitute",
+            "second equation",
+            "b plus d",
+            "a c by two",
+            "two into b plus d",
+            "hence proved"
+          ]
+        },
+        "why": "The common root satisfies the second equation too, and the first step expressed everything about α in a and b — so substituting turns the second equation into a relation among a, b, c, d, which is the result.",
+        "common_mistakes": [
+          "Substituting α = −a/2 for α² as well, instead of α² = b.",
+          "Writing c(−a/2) as −ac and getting b + d = ac.",
+          "Stopping at b + d = ac/2 without the final form 2(b + d) = ac."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_cube_root_x_over_a_plus_y_over_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If (x − iy)^(1/3) = a − ib, then show that x/a + y/b = 4(a² − b²).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cube both sides",
+      "marks": 1
+    },
+    {
+      "label": "Expand (a − ib)³ into real and imaginary parts",
+      "marks": 1
+    },
+    {
+      "label": "Compare parts to get x/a and y/b",
+      "marks": 1
+    },
+    {
+      "label": "Add and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 56. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 18. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A house habit of one mark per named move for a four-move SAQ (the Cramer LAQs of 1A, book pp.27–28, give one mark per determinant). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 2 (book p.113); the Bullet Model Paper re-solves it on book p.100 with the same expansion. The fractional exponent in the first line is set in KaTeX per the notation ledger (a plain superscript 1/3 reads as a division). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — what you do to the cube root first, what you expand, what you compare, and how the two fractions combine.",
+  "insider_note": "The first mark is the first step: cube both sides, and the cube root never appears again. After that the minus sign in −iy on the left must be carried through to y — compare real parts with real parts and keep that minus.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cube",
+        "kind": "equation",
+        "label": "Cube both sides",
+        "marks": 1,
+        "mark_note": "Cube",
+        "margin_note": "First mark. A cube root on the left is removed by cubing both sides. From here the question is an expansion and a comparison — the root never appears again.",
+        "memory_tip": "The power 1/3 is a cube root, so cube both sides. The root never appears again.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "(x - iy)^{1/3} = a - ib \\;\\Rightarrow\\; x - iy = (a - ib)^3",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are cubed to remove the cube root, giving x − iy = (a − ib)³.",
+          "accept": [
+            "cube both sides so x minus i y equals a minus i b cubed",
+            "raise both sides to the power three to remove the cube root",
+            "cubing gives x minus i y equals a minus i b whole cube",
+            "rendu sides cube cheste x minus i y equals a minus i b cube",
+            "take the cube of both sides first"
+          ],
+          "reject": [
+            "remove the root",
+            "simplify"
+          ],
+          "heard_as": [
+            "cube",
+            "cubed",
+            "power three",
+            "a minus i b"
+          ]
+        },
+        "why": "The exponent 1/3 means cube root. Cubing undoes it exactly, and turns an unfamiliar equation into a polynomial identity between two complex numbers, which can be compared part by part.",
+        "common_mistakes": [
+          "Squaring instead of cubing.",
+          "Cubing only the right side.",
+          "Trying to take the cube root of a − ib instead of cubing it."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand (a − ib)³",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Second mark. Use (p − q)³ = p³ − 3p²q + 3pq² − q³ with p = a, q = ib. Then i² = −1 and i³ = −i. Collect the real terms and the i terms separately.",
+        "memory_tip": "(p − q)³ with q = ib. Then i² = −1 and i³ = −i move terms between the real group and the i group.",
+        "lines": [
+          "(a − ib)³ = a³ − 3a²(ib) + 3a(ib)² − (ib)³",
+          "= a³ − 3a²bi + 3ab²i² − b³i³",
+          "= a³ − 3a²bi − 3ab² + b³i",
+          "(since i² = −1 and i³ = −i)",
+          {
+            "text": "∴ x − iy = (a³ − 3ab²) − i(3a²b − b³)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a − ib)³ is expanded by the cube formula, i² = −1 and i³ = −i are used, and it becomes (a³ − 3ab²) − i(3a²b − b³).",
+          "accept": [
+            "expand a minus i b cubed with the cube formula and use i squared minus one and i cubed minus i",
+            "the cube expands to a cubed minus three a b squared as the real part and minus three a squared b plus b cubed as the imaginary part",
+            "use p minus q whole cube and replace i squared by minus one",
+            "cube formula tho expand chesi i square ni minus one ga pettali",
+            "real part a cubed minus three a b squared, imaginary part b cubed minus three a squared b"
+          ],
+          "reject": [
+            "expand it",
+            "open the bracket",
+            "simplify"
+          ],
+          "heard_as": [
+            "a cubed",
+            "three a b squared",
+            "i squared",
+            "i cubed",
+            "real part",
+            "imaginary part"
+          ]
+        },
+        "why": "The next step compares real with real and imaginary with imaginary, so the expansion must be grouped that way. The powers of i are what move a term from one group to the other — i² is real, i³ is imaginary.",
+        "common_mistakes": [
+          "Writing (ib)² as ib² instead of i²b² = −b².",
+          "Forgetting i³ = −i, so the b³ term gets the wrong sign.",
+          "Mixing the sign of the middle terms in (p − q)³."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare parts",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "margin_note": "Third mark. Two complex numbers are equal only when both parts match. The real parts give x, the imaginary parts give y — watch the minus in front of iy on the left.",
+        "memory_tip": "The left side is x − iy, so −y matches the i coefficient. Divide x by a and y by b, never crossed.",
+        "lines": [
+          "Comparing real parts:",
+          {
+            "text": "x = a³ − 3ab² = a(a² − 3b²) ⇒ x/a = a² − 3b²",
+            "style": "eq"
+          },
+          "Comparing imaginary parts:",
+          {
+            "text": "y = 3a²b − b³ = b(3a² − b²) ⇒ y/b = 3a² − b²",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating real parts gives x/a = a² − 3b² and equating imaginary parts gives y/b = 3a² − b².",
+          "accept": [
+            "compare real parts to get x by a equals a squared minus three b squared and imaginary parts to get y by b equals three a squared minus b squared",
+            "real parts give x over a, imaginary parts give y over b",
+            "equate the two parts and divide by a and by b",
+            "real parts compare cheste x by a, imaginary parts compare cheste y by b vasthundi",
+            "x by a is a squared minus three b squared, y by b is three a squared minus b squared"
+          ],
+          "reject": [
+            "compare both sides",
+            "find x and y"
+          ],
+          "heard_as": [
+            "x by a",
+            "y by b",
+            "real parts",
+            "imaginary parts",
+            "compare",
+            "equate"
+          ]
+        },
+        "why": "Dividing by a and by b is what produces the two fractions in the target. Factoring a out of x and b out of y first makes each division a single cancellation, with nothing left over.",
+        "common_mistakes": [
+          "Getting y with the wrong sign — the left side is −iy, so −y equals the imaginary coefficient.",
+          "Dividing x by b or y by a.",
+          "Stopping at x and y without forming the two fractions."
+        ]
+      },
+      {
+        "id": "s4_add",
+        "kind": "boxed_final",
+        "label": "Add and simplify",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Add the two fractions, collect a² with a² and b² with b², and take out the 4.",
+        "memory_tip": "(a² − 3b²) + (3a² − b²) = 4a² − 4b². Take the 4 out to match the form asked.",
+        "lines": [
+          "x/a + y/b = (a² − 3b²) + (3a² − b²)",
+          "= 4a² − 4b²",
+          {
+            "text": "∴ x/a + y/b = 4(a² − b²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding x/a and y/b gives 4a² − 4b² = 4(a² − b²).",
+          "accept": [
+            "add the two to get four a squared minus four b squared which is four times a squared minus b squared",
+            "x by a plus y by b equals four a squared minus four b squared",
+            "adding gives four into a squared minus b squared",
+            "rendu add cheste four a square minus four b square vasthundi",
+            "the sum is four times a squared minus b squared"
+          ],
+          "reject": [
+            "add them",
+            "hence proved"
+          ],
+          "heard_as": [
+            "four a squared",
+            "four b squared",
+            "four into",
+            "a squared minus b squared"
+          ]
+        },
+        "why": "The −3b² and −b² combine to −4b², the a² and 3a² to 4a². The factor 4 is shared, so the target's shape 4(a² − b²) appears directly — no rearranging is needed.",
+        "common_mistakes": [
+          "Adding −3b² and −b² as −2b².",
+          "Ending at 4a² − 4b² without taking out the 4 to match the form asked."
+        ]
+      }
+    ]
+  }
+}

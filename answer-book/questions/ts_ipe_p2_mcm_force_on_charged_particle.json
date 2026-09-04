@@ -33,7 +33,7 @@
     "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this paper the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: F = Bqv sin θ (the Lorentz magnetic force, F = q(v × B)); maximum F = Bqv when v ⊥ B. Matches the book's answer."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
-  "insider_note": "The same two-part shape as the conductor question: formula with θ named, then the θ = 90° maximum.",
+  "insider_note": "Two parts to answer: the formula with θ named, then the θ = 90° maximum. The formula on its own is half the answer.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

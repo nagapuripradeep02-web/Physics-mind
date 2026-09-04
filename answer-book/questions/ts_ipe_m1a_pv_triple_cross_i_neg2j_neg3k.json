@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_triple_cross_i_neg2j_neg3k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a = i − 2j − 3k, b = 2i + j − k and c = i + 3j − 2k, find a × (b × c).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find b × c, the vector in the bracket",
+      "marks": 2
+    },
+    {
+      "label": "Cross a into that result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+2 split gives half the marks to the inner bracket and half to the outer product, because each one is a complete 3 × 3 determinant expansion and a student who does only one has done half the work. CHECKED THREE WAYS: b × c = i + 3j + 5k dotted with b gives 2 + 3 − 5 = 0 and with c gives 1 + 9 − 10 = 0; a × (b × c) = −i − 8j + 5k dotted with a gives −1 + 16 − 15 = 0 and with b × c gives −1 − 24 + 25 = 0; and the expansion formula a × (b × c) = (a·c)b − (a·b)c with a·c = 1 and a·b = 3 gives b − 3c = −i − 8j + 5k, the same vector. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would work out this triple product — say which product you do first and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inner_bracket",
+        "kind": "equation",
+        "label": "Find b × c",
+        "marks": 2,
+        "mark_note": "Inner bracket",
+        "margin_note": "Half the marks. Put b on the second row and c on the third, in the order the bracket names them. Swapping those two rows reverses the sign of the whole answer.",
+        "memory_tip": "Row order copies the bracket: b on the second row, c on the third.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = i − 2j − 3k, b = 2i + j − k",
+          "and c = i + 3j − 2k.",
+          "The bracket is worked out first.",
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ 1 & 3 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 + 3) − j(−4 + 1) + k(6 − 1)",
+          "= i + 3j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket b × c is evaluated first and equals i + 3j + 5k.",
+          "accept": [
+            "do the bracket first so b cross c is i plus three j plus five k",
+            "b cross c comes out as i plus three j plus five k",
+            "evaluate the inner cross product before the outer one",
+            "modata bracket lo b cross c cheyyali, i plus three j plus five k",
+            "the inner product gives i plus three j plus five k"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "bracket",
+            "three j",
+            "five k"
+          ]
+        },
+        "why": "The outer cross product cannot start until the bracket has been reduced to a single vector, so b × c is done first. This is the same rule as doing brackets first in ordinary algebra.",
+        "common_mistakes": [
+          "Crossing a with b first because a is written first.",
+          "Dropping the minus sign that stands in front of the j term."
+        ]
+      },
+      {
+        "id": "s2_outer_product",
+        "kind": "boxed_final",
+        "label": "Cross a into that result",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "The other half. a goes on the second row because the product is written a × (…). The answer must be perpendicular to a, so dot it with a and look for 0.",
+        "memory_tip": "a sits above the bracket result, matching the order a × (b × c) is written in.",
+        "lines": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & -3 \\\\ 1 & 3 & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−10 + 9) − j(5 + 3) + k(3 + 2)",
+          "= −i − 8j + 5k",
+          "Check: (−i − 8j + 5k)·a = −1 + 16 − 15 = 0",
+          {
+            "text": "∴ a × (b × c) = −i − 8j + 5k",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is crossed into the bracket result, with a on the upper row, giving −i − 8j + 5k.",
+          "accept": [
+            "cross a with that vector keeping a on top to get minus i minus eight j plus five k",
+            "the answer is minus i minus eight j plus five k",
+            "put a on the second row and the bracket result on the third",
+            "a ni pai row lo petti cross cheste minus i minus eight j plus five k",
+            "the final vector is minus i minus eight j plus five k"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus eight j",
+            "five k",
+            "a cross",
+            "minus i"
+          ]
+        },
+        "why": "Reversing a cross product reverses its sign, so a must stay on the upper row. The result is perpendicular to a, and dotting it with a to get 0 catches a sign error in two lines.",
+        "common_mistakes": [
+          "Putting the bracket result above a, which negates the answer.",
+          "Sign slip in the j term of the second determinant."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_point_of_contact_x_minus2y_minus5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the point of contact of the tangent x − 2y − 5 = 0 and the circle x² + y² = 5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the point of contact formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 205, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is a single substitution into a standard formula, which is the VSAQ shape. It is the last Circle answer in the Star Questions Plus run: book p.98 opens with the SYSTEM OF CIRCLES banner and answers 206 and 207, so 205 closes the Circle share. No appearance tag is printed beside it. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: the point of contact is (1, −2). Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The formula has a minus sign in front and n in the denominator, so work out the sign of each coordinate on its own — do not assume the two come out with the same sign. Here n = −5 with l = 1 gives x = +1, while the same n = −5 with m = −2 gives y = −2. Writing the signs one at a time is safer than doing it in the head.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Write the point of contact formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Read l, m, n from the line as written, and r² from the circle.",
+        "memory_tip": "Point of contact of lx + my + n = 0 with x² + y² = r² is (−lr²/n, −mr²/n).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Compare x − 2y − 5 = 0 with lx + my + n = 0",
+          "⇒ l = 1, m = −2, n = −5",
+          "Given circle x² + y² = 5 ⇒ r² = 5",
+          "Point of contact = (−lr²/n, −mr²/n)"
+        ],
+        "why": "The point of contact is the foot of the perpendicular from the centre, and for a circle centred at the origin that works out to (−lr²/n, −mr²/n). It is only valid when the line really touches the circle.",
+        "common_mistakes": [
+          "Taking n = 5 instead of −5.",
+          "Using r = 5 in place of r² = 5."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Check the answer by putting it back into both the line and the circle.",
+        "memory_tip": "Both coordinates have −5 underneath, so both signs flip once more.",
+        "lines": [
+          "x = −(1)(5)/(−5) = 1",
+          "y = −(−2)(5)/(−5) = −2",
+          {
+            "text": "∴ Point of contact is (1, −2)",
+            "style": "boxed"
+          }
+        ],
+        "why": "A check: 1 − 2(−2) − 5 = 1 + 4 − 5 = 0, so the point is on the line, and 1² + (−2)² = 5, so it is on the circle. A point on both is the point of contact.",
+        "common_mistakes": [
+          "Getting y = 2 by cancelling only one of the two minus signs.",
+          "Reporting the answer as (−1, 2)."
+        ]
+      }
+    ]
+  }
+}

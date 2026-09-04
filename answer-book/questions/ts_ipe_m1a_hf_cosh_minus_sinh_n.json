@@ -54,7 +54,8 @@
         "label": "Simplify the left side",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the mirror of the twin.",
+        "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the mirror of the (cosh x + sinh x)ⁿ version.",
+        "memory_tip": "With a MINUS between them the eˣ terms cancel, leaving e⁻ˣ — the mirror of the plus version.",
         "lines": [
           {
             "text": "Sol:",
@@ -86,9 +87,9 @@
             "minus"
           ]
         },
-        "why": "Which pair cancels depends on the sign between them. A plus kills the e⁻ˣ terms, a minus kills the eˣ ones — that is the entire difference between the twins.",
+        "why": "Which pair cancels depends on the sign between them. A plus kills the e⁻ˣ terms, a minus kills the eˣ ones — that is the entire difference between this and the (cosh x + sinh x)ⁿ version.",
         "common_mistakes": [
-          "Copying the twin and writing eˣ.",
+          "Copying the (cosh x + sinh x)ⁿ version and writing eˣ.",
           "Distributing the minus over only one term of the second bracket."
         ]
       },
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The right side collapses the same way with nx, giving e⁻ⁿˣ, and the two agree.",
+        "memory_tip": "The right side collapses the same way with nx, giving e⁻ⁿˣ. Then say the two sides agree.",
         "lines": [
           "R.H.S = cosh nx − sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 − (eⁿˣ − e⁻ⁿˣ)/2",
@@ -130,12 +132,13 @@
             "from one and two"
           ]
         },
-        "why": "Taken together the twins say (cosh x ± sinh x)ⁿ = e^(±nx) — a compact fact worth carrying, since it makes both proofs immediate.",
+        "why": "Taken with the plus version, the two results say (cosh x ± sinh x)ⁿ = e^(±nx) — a compact fact worth carrying, since it makes both proofs immediate.",
         "common_mistakes": [
           "Never stating that the two sides agree.",
           "Losing the minus in the exponent."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The bracket collapses before the power is touched: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is a long road to the same place and usually does not arrive."
 }

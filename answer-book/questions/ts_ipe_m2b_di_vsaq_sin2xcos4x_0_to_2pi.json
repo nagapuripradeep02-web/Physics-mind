@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sin2xcos4x_0_to_2pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find ∫₀^(2π) sin²x cos⁴x dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce the range using the period property",
+      "marks": 1
+    },
+    {
+      "label": "Apply Walli's formula and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 180.2, on a printed Super Scoring Page (SSP 92), the right-hand twin of answer 180.1 and the last item of the chapter, immediately followed by a printed footer note reading '[More VSAQ are in Page 101,102]', which points to the Star Q+ share authored separately in this unit's Star Q+ cards. Printed appearance: AP 17, TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the 0-to-2π companion of the −π/2-to-π/2 integral of the same integrand — comparing the two shows how the reduction factor changes with the interval.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce the range using the period property",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same even-even pattern — the range always collapses by a factor of 4.",
+        "memory_tip": "This is the sin²xcos⁴x version of the reduction that works whenever both powers are even.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = sin²x cos⁴x.",
+          "Here f(2π−x) = f(π−x) = f(x)",
+          "∴ ∫₀^(2π) sin²x cos⁴x dx",
+          "= 2∫₀^π sin²x cos⁴x dx",
+          "= 2×2∫₀^(π/2) sin²x cos⁴x dx",
+          "= 4∫₀^(π/2) sin²x cos⁴x dx"
+        ],
+        "why": "The same even-power reasoning applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",
+        "common_mistakes": [
+          "Using the ×4 reduction without first checking that both f(π−x) = f(x) and f(2π−x) = f(x) hold.",
+          "Losing a factor of 2 somewhere in the double reduction."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply Walli's formula and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 3/48 simplifies to 1/16 before the final multiplication.",
+        "memory_tip": "4 × 1/16 × π/2 = π/8 — check each multiplication step separately.",
+        "lines": [
+          "= 4 × [(1)][(3)(1)]/[(6)(4)(2)] × π/2 = 4 × 3/48 × π/2",
+          {
+            "text": "∴ I = π/8",
+            "style": "boxed"
+          }
+        ],
+        "why": "Walli's mixed-power formula for m=2, n=4 (both even) gives 3/48·π/2, and multiplying by the outer factor 4 gives π/8.",
+        "common_mistakes": [
+          "Forgetting the outer factor 4 from the range reduction.",
+          "Miscomputing 3/48 as 1/8 instead of 1/16."
+        ]
+      }
+    ]
+  }
+}

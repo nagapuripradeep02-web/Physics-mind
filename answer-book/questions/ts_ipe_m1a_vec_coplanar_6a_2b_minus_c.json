@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Position vectors",
         "margin_note": "First mark. Name the four points P, Q, R, S and take O as the origin. The names are what let every later line stay short.",
+        "memory_tip": "Four points named P, Q, R, S, with O as the origin.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,7 +109,8 @@
         "label": "Find PQ, PR and PS",
         "marks": 1,
         "mark_note": "Edge vectors",
-        "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner is what makes them testable for coplanarity; three edges picked at random is not. PR has no b term at all, so its middle entry is 0 — write the 0 in, a blank there is the commonest way to lose the determinant.",
+        "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner always works; three edges that use only three of the four points do not, because one of them is then the difference of the other two. PR has no b term at all, so its middle entry is 0 — write the 0 in, a blank there is the commonest way to lose the determinant.",
+        "memory_tip": "All three from P. Here PR has no b term — write that coefficient as 0 in the determinant.",
         "lines": [
           "∴ PQ = OQ − OP = (2a − b + 3c) − (6a + 2b − c)",
           "  = −4a − 3b + 4c",
@@ -143,7 +145,7 @@
         },
         "why": "Four points are coplanar exactly when three vectors joining ONE of them to the other three lie in a plane. Anchoring all three at P is not a convention — it is the condition.",
         "common_mistakes": [
-          "Building PQ, QR and RS, a chain rather than three edges from one corner.",
+          "Using PQ, PR and QR, which involve only P, Q and R; since QR = PR − PQ, that determinant is zero for any four points and proves nothing.",
           "Subtracting the wrong way round; OQ − OP, not OP − OQ.",
           "A sign slip when the subtracted term is already negative."
         ]
@@ -155,6 +157,7 @@
         "marks": 1,
         "mark_note": "Scalar triple product",
         "margin_note": "Third mark. Write the three vectors as the rows of a determinant, in order, and expand along the top row. Three vectors lie in a plane exactly when this comes out 0.",
+        "memory_tip": "Three vectors as rows, expanded along the top row. Zero means coplanar.",
         "lines": [
           "Now,",
           {
@@ -202,6 +205,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark, and it is two statements, not one: the VECTORS are coplanar, therefore the POINTS are. Stopping at the vectors leaves the question half answered.",
+        "memory_tip": "Say both: the vectors are coplanar, so the four points are.",
         "lines": [
           "So PQ, PR, PS are coplanar.",
           {
@@ -238,5 +242,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three differences must start from the same point. PR here has no b component, so the middle entry is 0 — a zero in the determinant is a help, not a sign of error."
 }

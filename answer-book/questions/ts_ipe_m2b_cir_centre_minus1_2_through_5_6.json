@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_minus1_2_through_5_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle whose centre is (−1,2) and which passes through (5,6).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 108.2. It is the right-hand twin of answer 108.1. Printed appearance tag: TS 18. Every number was re-derived and the book is correct: r² = 52 and the circle is x² + y² + 2x − 4y − 47 = 0. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "r² = 52 is not a perfect square, so keep it as 52 all the way — writing r = √52 and squaring it again is where the constant term goes wrong.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Work in r² throughout; the square root is never needed.",
+        "memory_tip": "Radius = distance from centre to the given point. Keep it squared.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Centre C = (−1, 2), point on the circle P = (5, 6)",
+          "r² = CP² = (−1 − 5)² + (2 − 6)²",
+          "= 36 + 16 = 52"
+        ],
+        "why": "The equation of a circle uses r², so squaring the distance and stopping there avoids an unnecessary surd.",
+        "common_mistakes": [
+          "Writing (−1 − 5)² as −36.",
+          "Taking the square root and then losing accuracy."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Constant term: 1 + 4 − 52 = −47.",
+        "memory_tip": "Centre (−1, 2) gives brackets (x + 1) and (y − 2). Both signs flip.",
+        "lines": [
+          "Circle with centre (−1, 2) and r² = 52 is",
+          "(x + 1)² + (y − 2)² = 52",
+          "⇒ (x² + 2x + 1) + (y² − 4y + 4) = 52",
+          {
+            "text": "∴ x² + y² + 2x − 4y − 47 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Expanding the centre-radius form gives the general equation. The constant is 1 + 4 − 52 = −47, which is where the arithmetic mark sits.",
+        "common_mistakes": [
+          "Writing the brackets as (x − 1) and (y + 2).",
+          "Getting the constant as +47."
+        ]
+      }
+    ]
+  }
+}

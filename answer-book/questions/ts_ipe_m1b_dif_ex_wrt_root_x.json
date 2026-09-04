@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_ex_wrt_root_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of eˣ with respect to √x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the two functions and the rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate both and divide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 25. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2√x · eˣ was checked numerically before it was written, as the ratio of two difference quotients: at x = 1 it reads 5.436563656 against the formula's 5.436563657; at x = 0.25 it reads 1.284025417 against 1.284025417; at x = 2.5 it reads 38.52442849 against 38.52442850."
+  },
+  "recall_prompt": "Say how you would do this one — say which function goes on top and which goes underneath, and why the answer is not eˣ.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_rule",
+        "kind": "equation",
+        "label": "Name the two functions and the rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read the question again before starting: 'with respect to √x' means √x is the variable, not x. State du/dv = (du/dx)/(dv/dx) in symbols or in words.",
+        "memory_tip": "The function named after the words 'with respect to' is the one that goes underneath.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let u = eˣ  and  v = √x,  x > 0",
+          "The question asks for du/dv, not du/dx.",
+          "To differentiate one function with respect to another, use",
+          "du/dv = (du/dx)/(dv/dx)",
+          "du/dx = eˣ    and    dv/dx = d/dx(√x) = 1/(2√x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u = eˣ and v = √x and that du/dv = (du/dx)/(dv/dx), with du/dx = eˣ and dv/dx = 1/(2√x).",
+          "accept": [
+            "differentiate both with respect to x and then divide",
+            "d u by d v is d u by d x over d v by d x",
+            "root x is the one we differentiate with respect to so it goes below",
+            "rendintini x tho differentiate chesi divide cheyyali",
+            "derivative of root x is one by two root x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "with respect to root x",
+            "d u by d v",
+            "one by two root x",
+            "divide"
+          ]
+        },
+        "why": "'With respect to √x' changes the question. Differentiating with respect to x would give eˣ; here √x takes the place of x as the variable, so both functions are differentiated with respect to x and the two results divided.",
+        "common_mistakes": [
+          "Giving eˣ, which answers 'with respect to x' instead of the question asked.",
+          "Writing the derivative of √x as √x/2 or as 2√x."
+        ]
+      },
+      {
+        "id": "s2_divide",
+        "kind": "boxed_final",
+        "label": "Differentiate both and divide",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. x > 0 is stated because √x has no derivative at x = 0. Dividing by 1/(2√x) multiplies by 2√x, so the answer is eˣ times 2√x — larger than eˣ when x > 1/4, smaller when x < 1/4.",
+        "memory_tip": "The 2 in the answer comes from turning 1/(2√x) upside down. A half underneath becomes a two on top.",
+        "lines": [
+          "du/dv = (du/dx)/(dv/dx) = eˣ ÷ 1/(2√x)",
+          "Dividing by a fraction is the same as multiplying by its reciprocal.",
+          "= eˣ · 2√x",
+          {
+            "text": "∴ d(eˣ)/d(√x) = 2√x · eˣ,  x > 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing eˣ by 1/(2√x) gives 2√x · eˣ.",
+          "accept": [
+            "divide e power x by one by two root x",
+            "dividing by a fraction means multiplying by its reciprocal",
+            "the answer is two root x into e power x",
+            "reciprocal teesukoni multiply cheyyali, answer two root x e power x",
+            "the one by two root x flips to two root x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two root x",
+            "e power x",
+            "reciprocal",
+            "flip"
+          ]
+        },
+        "why": "Dividing by 1/(2√x) is the same as multiplying by 2√x. Writing 2√x on top rather than underneath is the check that the fraction has not been turned over the wrong way.",
+        "common_mistakes": [
+          "Multiplying by 1/(2√x) instead of dividing, which gives eˣ/(2√x).",
+          "Writing 2√x · eˣ as 2√(x eˣ), putting eˣ inside the square root."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The question asks for du/dv, not du/dx, so form (du/dx)/(dv/dx). Dividing by 1/(2√x) multiplies by 2√x, which is where that factor comes from."
+}

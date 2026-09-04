@@ -1,0 +1,283 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_wrt_sin_inverse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the derivative of f(x) = tan⁻¹(2x/(1 − x²)) with respect to g(x) = sin⁻¹(2x/(1 + x²)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write what derivative with respect to g means",
+      "marks": 1
+    },
+    {
+      "label": "Put x = tan θ and fix the range",
+      "marks": 1
+    },
+    {
+      "label": "Reduce f and find df/dx",
+      "marks": 2
+    },
+    {
+      "label": "Reduce g and find dg/dx",
+      "marks": 2
+    },
+    {
+      "label": "Divide the two derivatives",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.208, chapter 9 DIFFERENTIATION, Long Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: df/dx and dg/dx were each computed as central difference quotients and divided, at x = 0.2, 0.5, 0.8 and −0.6. Every one gave 1.000000000. The stated branch was checked as well, and it is not decoration: at x = 1.5 and x = 2.5 the same ratio is −1.000000000, because outside −1 < x < 1 the function g turns back on itself while f does not. That is why the answer is written with the condition −1 < x < 1 attached rather than as a bare 1."
+  },
+  "recall_prompt": "Say how you would solve this — say what derivative with respect to g means, and what substitution you use.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "Write what derivative with respect to g means",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the one most often lost. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = Tan⁻¹(2x/(1 − x²))  and  g(x) = Sin⁻¹(2x/(1 + x²)).",
+          "The derivative of f with respect to g means df/dg, not df/dx.",
+          "By the chain rule,  df/dx = (df/dg)·(dg/dx),  so provided dg/dx ≠ 0,",
+          "∴ df/dg = (df/dx)/(dg/dx)",
+          "So f and g are each differentiated with respect to x, and the two results are divided."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer wanted is df/dg = (df/dx)/(dg/dx), not df/dx.",
+          "accept": [
+            "with respect to g means df by dg",
+            "differentiate both with respect to x and divide",
+            "df by dg equals df by dx over dg by dx",
+            "df by dg kavali, df by dx kaadu",
+            "use the chain rule to write df by dg",
+            "divide the first derivative by the second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "df by dg",
+            "with respect to g",
+            "chain rule",
+            "divide"
+          ]
+        },
+        "why": "Differentiating with respect to a function rather than with respect to x is what this question tests. The chain rule turns it into two ordinary derivatives in x and one division, and the condition dg/dx ≠ 0 is what makes that division legal.",
+        "common_mistakes": [
+          "Answering df/dx and stopping, which ignores the words with respect to g entirely.",
+          "Writing df/dg = (dg/dx)/(df/dx), which is the reciprocal of the answer."
+        ],
+        "memory_tip": "The function named after with respect to goes underneath. Here that is g, so dg/dx is the denominator."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "text",
+        "label": "Put x = tan θ and fix the range",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both brackets are standard forms in tan θ, so one substitution serves both. Naming the range −1 < x < 1 here saves the argument in both of the next two steps.",
+        "lines": [
+          "Put x = tan θ, so θ = Tan⁻¹x.",
+          "Take −1 < x < 1. Then −π/4 < θ < π/4, so −π/2 < 2θ < π/2.",
+          "That range for 2θ is what both inverse functions need: it is inside (−π/2, π/2) for Tan⁻¹ and inside [−π/2, π/2] for Sin⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = tan θ is substituted and that −1 < x < 1 puts 2θ inside (−π/2, π/2).",
+          "accept": [
+            "put x equal to tan theta",
+            "take x between minus one and one so theta is between minus pi by four and pi by four",
+            "two theta then lies in the principal range of both functions",
+            "x ni tan theta ga teesukuni range cheppali",
+            "one substitution works for both brackets",
+            "restrict x so the inverse functions cancel exactly"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals tan theta",
+            "minus one to one",
+            "two theta",
+            "principal range"
+          ]
+        },
+        "why": "Both 2x/(1 − x²) and 2x/(1 + x²) become simple functions of 2θ under the same substitution, so choosing it once serves the whole question. The range matters because outside −1 < x < 1 the two inverse functions no longer return 2θ in the same way, and the final answer changes sign.",
+        "common_mistakes": [
+          "Using a different substitution for each function, which loses the shared angle 2θ that makes the answer come out.",
+          "Not stating any range, so the last step cannot say where the answer holds."
+        ],
+        "memory_tip": "1 − x² and 1 + x² with a 2x on top are both tan θ forms. The first is tan 2θ and the second is sin 2θ."
+      },
+      {
+        "id": "s3_reduce_f",
+        "kind": "equation",
+        "label": "Reduce f and find df/dx",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Quote the double angle formula for tangent, cancel the inverse, and only then differentiate. Differentiating Tan⁻¹(2x/(1 − x²)) by the quotient rule is far longer and earns no more.",
+        "lines": [
+          "The double angle formula for tangent is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          "With x = tan θ:  2x/(1 − x²) = tan 2θ",
+          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2), the principal range of Tan⁻¹, so",
+          "f = 2θ = 2 Tan⁻¹x",
+          "∴ df/dx = 2/(1 + x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f = 2 Tan⁻¹x, so df/dx = 2/(1 + x²).",
+          "accept": [
+            "two x over one minus x squared is tan two theta",
+            "f becomes two tan inverse x",
+            "df by dx is two over one plus x squared",
+            "f ni two tan inverse x ga rasi differentiate cheyyali",
+            "the inverse tangent cancels leaving two theta",
+            "use the double angle formula on the first bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan two theta",
+            "two tan inverse x",
+            "two over one plus x squared",
+            "double angle"
+          ]
+        },
+        "why": "Once f is written as 2 Tan⁻¹x it is a standard derivative, and the factor 2 comes straight from the double angle. This is also the reason the substitution was worth making: the quotient rule on 2x/(1 − x²) inside an inverse tangent takes most of a page.",
+        "common_mistakes": [
+          "Writing f = 2θ but then differentiating with respect to θ, giving 2 instead of 2/(1 + x²).",
+          "Reading 2x/(1 − x²) as sin 2θ, which belongs to the other function in this question."
+        ],
+        "memory_tip": "The derivative of Tan⁻¹x is 1/(1 + x²). The 2 in front of it is the same 2 that came from the double angle."
+      },
+      {
+        "id": "s4_reduce_g",
+        "kind": "equation",
+        "label": "Reduce g and find dg/dx",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ has no working to support it.",
+        "lines": [
+          "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
+          "1 + tan²θ = sec²θ, so",
+          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ = 2 sin θ cos θ = sin 2θ",
+          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "g = 2θ = 2 Tan⁻¹x",
+          "∴ dg/dx = 2/(1 + x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2x/(1 + x²) = sin 2θ, so g = 2 Tan⁻¹x and dg/dx = 2/(1 + x²).",
+          "accept": [
+            "two x over one plus x squared is sin two theta",
+            "one plus tan squared theta is sec squared theta",
+            "g also becomes two tan inverse x",
+            "g kuda two tan inverse x ki vasthundi",
+            "dg by dx is two over one plus x squared",
+            "two sin theta cos theta is sin two theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two theta",
+            "sec squared theta",
+            "two tan inverse x",
+            "two sin theta cos theta"
+          ]
+        },
+        "why": "1 + tan²θ = sec²θ turns the fraction into 2 sin θ cos θ, which is sin 2θ. So g reduces to the same 2θ that f did, and that is the whole reason the final ratio is as simple as it is.",
+        "common_mistakes": [
+          "Reading 2x/(1 + x²) as tan 2θ, mixing it up with the first bracket, which has 1 − x² underneath.",
+          "Writing g = Sin⁻¹(sin 2θ) = 2θ with no check on the range, which is exactly the check that fails when |x| > 1."
+        ],
+        "memory_tip": "1 minus x squared underneath gives a tangent; 1 plus x squared underneath gives a sine. Both have 2x on top and both give the angle 2θ."
+      },
+      {
+        "id": "s5_divide",
+        "kind": "boxed_final",
+        "label": "Divide the two derivatives",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Last two marks. State that dg/dx is never zero before dividing, then give the answer with the range attached. An answer of exactly 1 is the sign that both reductions were done on the right branch.",
+        "lines": [
+          "dg/dx = 2/(1 + x²), which is not zero for any real x, so the division is allowed.",
+          "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
+          "On −1 < x < 1 both f and g reduce to the same function 2 Tan⁻¹x, so the two derivatives are identical and their ratio is 1.",
+          {
+            "text": "∴ df/dg = 1,  for −1 < x < 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That df/dg = 1 on −1 < x < 1, because both derivatives are 2/(1 + x²).",
+          "accept": [
+            "both derivatives are the same so the ratio is one",
+            "df by dg equals one",
+            "two over one plus x squared divided by itself is one",
+            "rendu derivatives okate kabatti answer one",
+            "dg by dx is never zero so the division is valid",
+            "the answer is one on minus one to one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals one",
+            "same derivative",
+            "ratio",
+            "never zero",
+            "minus one to one"
+          ]
+        },
+        "why": "Both functions reduce to the same expression 2 Tan⁻¹x on this interval, so their graphs against each other form a straight line of slope 1. Getting exactly 1 is therefore the check that both reductions were made on the correct branch, and the range is stated because outside it the answer is −1.",
+        "common_mistakes": [
+          "Giving the answer as 1 with no range, which is wrong for |x| > 1.",
+          "Multiplying the two derivatives instead of dividing them, giving 4/(1 + x²)²."
+        ],
+        "memory_tip": "When two functions reduce to the same expression, their derivative with respect to each other is 1. Any other value means one of the two reductions was on the wrong branch."
+      }
+    ]
+  },
+  "insider_note": "Both brackets reduce to 2Tan⁻¹x under x = tan θ, so both derivatives are 2/(1 + x²) and the ratio is 1. Simplify each before dividing, never differentiate the fractions as they stand."
+}

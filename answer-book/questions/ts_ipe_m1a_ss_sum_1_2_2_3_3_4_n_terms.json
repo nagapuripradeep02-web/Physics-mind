@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_sum_1_2_2_3_3_4_n_terms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum to n terms of the series 1·2 + 2·3 + 3·4 + …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the nth term and split it",
+      "marks": 1
+    },
+    {
+      "label": "Take out n(n + 1) and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the nth term is, and which two standard sums you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nth_term",
+        "kind": "equation",
+        "label": "Write the nth term and split it",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Writing tₙ = n(n + 1) = n² + n and naming the two standard sums earns it.",
+        "memory_tip": "Two consecutive numbers multiplied means the nth term is n(n + 1).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The terms are 1·2, 2·3, 3·4, …, so the nth term is",
+          "tₙ = n(n + 1) = n² + n",
+          "Sₙ = Σn² + Σn = n(n + 1)(2n + 1)/6 + n(n + 1)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tₙ = n(n + 1) = n² + n, so Sₙ = Σn² + Σn.",
+          "accept": [
+            "the nth term is n into n plus one",
+            "expand it as n squared plus n",
+            "use the standard sums of n squared and of n",
+            "nth term n into n plus one, sigma n squared plus sigma n rasta",
+            "sum of n squared is n n plus one two n plus one by six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n into n plus one",
+            "n squared plus n",
+            "sigma n squared",
+            "sigma n"
+          ]
+        },
+        "why": "Each term is a product of two consecutive numbers, so the nth term is n(n + 1). Expanding it turns one unfamiliar sum into two standard sums whose formulas are already known.",
+        "common_mistakes": [
+          "Taking the nth term as n(n − 1) by reading the pattern from the second term.",
+          "Treating 2, 6, 12, 20 as an A.P. and using n/2[2a + (n − 1)d]."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Take out n(n + 1) and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The factored form is the expected answer. Test it with n = 2: 2 × 3 × 4/3 = 8, and 1·2 + 2·3 = 8.",
+        "memory_tip": "The answer uses the next consecutive number: n(n + 1)(n + 2) divided by 3.",
+        "lines": [
+          "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
+          "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",
+          "= n(n + 1)(2n + 4)/6 = 2n(n + 1)(n + 2)/6",
+          {
+            "text": "∴ Sₙ = n(n + 1)(n + 2)/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n(n + 1) comes out as a common factor and the sum simplifies to n(n + 1)(n + 2)/3.",
+          "accept": [
+            "take n into n plus one common from both sums",
+            "the bracket becomes two n plus four over six",
+            "the answer is n n plus one n plus two by three",
+            "n into n plus one common teesi simplify cheyyali",
+            "check with n equals one and you get two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n plus two",
+            "by three",
+            "common factor",
+            "two n plus four"
+          ]
+        },
+        "why": "n(n + 1) is common to both standard sums, so taking it out leaves one small bracket to add. Putting n = 1 gives 1 × 2 × 3/3 = 2, which is the first term, so the formula checks in one line.",
+        "common_mistakes": [
+          "Adding the two formulas without a common denominator of 6.",
+          "Leaving the answer as n(n + 1)(2n + 4)/6 without cancelling the 2."
+        ]
+      }
+    ]
+  }
+}

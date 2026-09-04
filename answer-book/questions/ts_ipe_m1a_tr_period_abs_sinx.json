@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_period_abs_sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the period of f(x) = |sin x|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show that f(x + π) = f(x)",
+      "marks": 1
+    },
+    {
+      "label": "State that π is the least period",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 1(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to showing that f(x + π) = f(x) and one to ruling out any smaller positive number, which is what makes π the period rather than only a period. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Show that f(x + π) = f(x)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sin x repeats after 2π, but the modulus turns the negative half of the wave upward, so the shape repeats after only π.",
+        "memory_tip": "The modulus turns the negative half up, so |sin x| repeats twice as often as sin x: 2π becomes π.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = |sin x|",
+          "sin(x + π) = −sin x",
+          "∴ f(x + π) = |sin(x + π)| = |−sin x|",
+          "= |sin x| = f(x)",
+          "So π is a period of f."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(x + π) = −sin x, so |sin(x + π)| = |sin x| and π is a period of |sin x|.",
+          "accept": [
+            "sin of x plus pi is minus sin x so the modulus makes them equal",
+            "shifting by pi changes only the sign and the modulus removes it",
+            "f of x plus pi equals f of x so pi is a period",
+            "sin x plus pi ante minus sin x, modulus tho sign pothundi",
+            "the modulus makes the shifted value the same"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin x plus pi",
+            "minus sin x",
+            "modulus",
+            "period"
+          ]
+        },
+        "why": "The modulus does not change the size, only the sign. Since sin(x + π) is exactly −sin x, taking the modulus removes the only difference between the two halves.",
+        "common_mistakes": [
+          "Answering 2π, the period of sin x, without using the modulus.",
+          "Writing sin(x + π) = sin x, which drops the minus sign."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "equation",
+        "label": "State that π is the least period",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. π is not only a period, it is the smallest one: |sin x| is 0 at x = 0 and stays above 0 for every x between 0 and π.",
+        "memory_tip": "Check the least period from the zeros: |sin x| is 0 at x = 0 and next 0 at x = π, so nothing smaller works.",
+        "lines": [
+          "|sin x| = 0 at x = 0, and |sin x| > 0 for",
+          "every x with 0 < x < π.",
+          "So no positive number smaller than π can",
+          "be a period of f.",
+          {
+            "text": "∴ Period of |sin x| = π",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That π is the least positive period, because |sin x| is zero at x = 0 and positive throughout 0 < x < π.",
+          "accept": [
+            "pi is the smallest period because the zeros are pi apart",
+            "the modulus halves the period from two pi to pi",
+            "no number smaller than pi repeats the values",
+            "period pi, zeros madhya duram pi kabatti",
+            "the period is pi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi",
+            "least period",
+            "zeros",
+            "two pi"
+          ]
+        },
+        "why": "The period means the SMALLEST positive repeat, so f(x + π) = f(x) on its own is not the full answer. The zeros are the quickest way to rule out anything shorter.",
+        "common_mistakes": [
+          "Stopping after f(x + π) = f(x) without saying π is the least period.",
+          "Giving π/2, which is the period of |sin 2x|, not of |sin x|."
+        ]
+      }
+    ]
+  }
+}

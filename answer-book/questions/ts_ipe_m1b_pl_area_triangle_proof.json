@@ -11,11 +11,11 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
-  "question_text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) : |am²−2hlm+bl²|.",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) / |am²−2hlm+bl²|.",
   "appearances": [
     {
       "year": 2019
@@ -34,27 +34,27 @@
     },
     {
       "label": "Find vertex A",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Find vertex B and write the area",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Convert to a, h, b",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Pair of Straight Lines, answer 7. Printed appearances: TS 19 · AP,TS M 17 · TS J-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Pair of Straight Lines, answer 7. Printed appearances: TS 19 · AP,TS M 17 · TS J-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four marked steps now carry 1+1+1+1 instead of 1+2+2+3, and the figure step stays at 0. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say where the third vertex is, and how you handle the difference of the two slopes.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
@@ -94,12 +94,13 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The pair passes through the ORIGIN, so O is one vertex for free. Split the pair in slope form."
       },
       {
         "id": "s1b_figure",
@@ -230,14 +231,15 @@
               "sm": true
             }
           ]
-        }
+        },
+        "memory_tip": "The picture makes it visible that only TWO vertices have to be found."
       },
       {
         "id": "s2_find_vertex_a",
         "kind": "equation",
         "label": "Find vertex A",
-        "marks": 2,
-        "margin_note": "Two marks. One vertex is where the given line meets the first of the two lines — solve that pair by cross-multiplication, keeping everything in letters.",
+        "marks": 1,
+        "margin_note": "One mark. One vertex is where the given line meets the first of the two lines — solve that pair by cross-multiplication, keeping everything in letters.",
         "lines": [
           "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
           "lx + my + n = 0",
@@ -273,14 +275,15 @@
           "Solving the given line against itself.",
           "Sign slip in one of the three cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the given line against the first of the pair by cross-multiplication, keeping everything in letters."
       },
       {
         "id": "s3_vertex_b_and_area",
         "kind": "equation",
         "label": "Find vertex B and write the area",
-        "marks": 2,
-        "margin_note": "Two marks. B comes from the same working with m₂ in place of m₁. With O at the origin, the area reduces to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
+        "marks": 1,
+        "margin_note": "One mark. B comes from the same working with m₂ in place of m₁. With O at the origin, the area reduces to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
         "lines": [
           "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
           "The area of the triangle with vertices O(0,0), A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
@@ -315,20 +318,21 @@
           "Using the full three-vertex determinant and mis-expanding it.",
           "Losing the n² when multiplying the two numerators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "With O at the origin the area collapses to ½|x₁y₂ − x₂y₁| — no third coordinate needed."
       },
       {
         "id": "s4_convert",
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
-        "marks": 3,
-        "margin_note": "The last three marks. m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "marks": 1,
+        "margin_note": "The last mark. m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
         "lines": [
           "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
-          "  [∵ (a − b) = √((a + b)² − 4ab)]",
+          "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
           "= ½ · n²√((−2h/b)² − 4(a/b)) / |l² + lm(−2h/b) + m²(a/b)|",
           "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
-          "= ½ · n²(2√(h² − ab)/b) / (|bl² − 2hlm + am²|/b)",
+          "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
           {
             "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|  sq.units",
             "style": "boxed"
@@ -361,8 +365,10 @@
           "Writing m₂ − m₁ = (m₁+m₂) − 2m₁m₂.",
           "Forgetting that b appears in both numerator and denominator and cancels."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first."
       }
     ]
-  }
+  },
+  "insider_note": "Only the SUM and PRODUCT of the slopes are needed, never the slopes themselves: m₁ + m₂ = −2h/b, m₁m₂ = a/b. Write m₂ − m₁ as √((m₁+m₂)² − 4m₁m₂), and the b cancels top and bottom at the end."
 }

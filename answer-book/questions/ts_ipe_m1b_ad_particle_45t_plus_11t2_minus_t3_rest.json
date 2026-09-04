@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_particle_45t_plus_11t2_minus_t3_rest",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The displacement of a particle travelling in a straight line in t seconds is S = 45t + 11t² − t³. Find the time at which the particle comes to rest.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and set v = 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve and reject the negative root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what comes to rest means in symbols, and what you do with the two roots.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity_zero",
+        "kind": "equation",
+        "label": "Differentiate and set v = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rectilinear motion question. Write the sentence 'at rest, v = 0' — that sentence is what earns the method mark. Watch the sign: −t³ differentiates to −3t².",
+        "memory_tip": "Comes to rest means not moving, and not moving is v = 0. It is never S = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rectilinear motion question. The particle comes to rest when its velocity is zero,",
+          "so first find v = dS/dt.",
+          "S = 45t + 11t² − t³",
+          "v = dS/dt = 45 + 22t − 3t²",
+          "At rest, v = 0  ⇒  45 + 22t − 3t² = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at rest the velocity is zero, and that v = dS/dt = 45 + 22t − 3t².",
+          "accept": [
+            "comes to rest means the velocity is zero",
+            "differentiate S to get forty five plus twenty two t minus three t squared",
+            "set the velocity equal to zero",
+            "rest ante velocity zero, so v equals zero pettali",
+            "v is d S by d t and it is put equal to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "comes to rest",
+            "velocity zero",
+            "forty five plus twenty two t",
+            "minus three t squared"
+          ]
+        },
+        "why": "At rest the particle is not moving, which in symbols is v = 0. Nothing is asked about the displacement, so the equation must be formed from the derivative and not from S.",
+        "common_mistakes": [
+          "Setting S = 0, which finds where the particle passes the starting point, not where it stops.",
+          "Losing the sign and writing +3t² when differentiating −t³.",
+          "Setting the acceleration to zero instead of the velocity."
+        ]
+      },
+      {
+        "id": "s2_solve_quadratic",
+        "kind": "boxed_final",
+        "label": "Solve and reject the negative root",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply through by −1 first so the t² term is positive, then split −22t as −27t + 5t. State in words why −5/3 is rejected.",
+        "memory_tip": "A quadratic gives two times; the clock starts at zero, so a negative root is not a time.",
+        "lines": [
+          "3t² − 22t − 45 = 0",
+          "3t² − 27t + 5t − 45 = 0",
+          "3t(t − 9) + 5(t − 9) = 0",
+          "(t − 9)(3t + 5) = 0  ⇒  t = 9 or t = −5/3",
+          "Time cannot be negative, so t = −5/3 is rejected.",
+          {
+            "text": "∴ the particle comes to rest at t = 9 sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic factorises to (t − 9)(3t + 5) = 0 and that only t = 9 seconds is accepted.",
+          "accept": [
+            "factorise to t minus nine into three t plus five",
+            "the roots are nine and minus five by three",
+            "reject minus five by three because time cannot be negative",
+            "minus five by three reject cheyyali, t equals nine seconds",
+            "the particle stops at nine seconds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine seconds",
+            "minus five by three",
+            "factorise",
+            "t minus nine"
+          ]
+        },
+        "why": "A quadratic in t has two roots, but t counts seconds from the start of the motion, so only the positive root describes an instant that actually occurs.",
+        "common_mistakes": [
+          "Keeping t = −5/3 as a second answer.",
+          "Splitting the middle term wrongly, so the factors do not multiply back to 3t² − 22t − 45.",
+          "Writing 9 with no unit."
+        ]
+      }
+    ]
+  },
+  "insider_note": "At rest means v = 0, not S = 0. The quadratic 3t² − 22t − 45 = 0 has a negative root as well, which is rejected because time cannot be negative."
+}

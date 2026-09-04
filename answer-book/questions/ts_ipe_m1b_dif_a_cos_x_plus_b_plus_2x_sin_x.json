@@ -1,0 +1,178 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_a_cos_x_plus_b_plus_2x_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If y = a cos x + (b + 2x) sin x, show that y″ + y = 4 cos x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate once",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 2
+    },
+    {
+      "label": "Add y and cancel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule the second term needs and what happens when you add y at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_derivative",
+        "kind": "equation",
+        "label": "Differentiate once",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. (b + 2x) sin x is a product of two functions of x, so the product rule is compulsory here — it is where most of the marks are lost.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = a cos x + (b + 2x) sin x",
+          "The second term is a product, so use the product rule:",
+          "y′ = −a sin x + [2 sin x + (b + 2x) cos x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product rule is applied to (b + 2x) sin x, giving y′ = −a sin x + 2 sin x + (b + 2x) cos x.",
+          "accept": [
+            "use the product rule on b plus two x times sin x",
+            "y dash is minus a sin x plus two sin x plus b plus two x cos x",
+            "differentiate the first factor times the second plus the first times the derivative of the second",
+            "product rule vaadali, rendo term product kabatti",
+            "the derivative of b plus two x is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "two sin x",
+            "minus a sin x",
+            "b plus two x"
+          ]
+        },
+        "why": "a cos x differentiates on its own, but (b + 2x) sin x is a product, so it needs two terms. Missing one of them breaks every line after it.",
+        "common_mistakes": [
+          "Writing the second term as 2 cos x, differentiating each factor separately.",
+          "Losing the minus sign on the derivative of a cos x."
+        ],
+        "memory_tip": "The product rule always produces TWO terms — count them before moving on."
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "equation",
+        "label": "Differentiate a second time",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks — the longest step. The product rule is used a second time on (b + 2x) cos x, and that is where the second 2 cos x comes from.",
+        "lines": [
+          "y″ = −a cos x + 2 cos x + [2 cos x − (b + 2x) sin x]",
+          "y″ = −a cos x + 4 cos x − (b + 2x) sin x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating again gives y″ = −a cos x + 4 cos x − (b + 2x) sin x.",
+          "accept": [
+            "differentiate again using the product rule on b plus two x cos x",
+            "y double dash is minus a cos x plus four cos x minus b plus two x sin x",
+            "two cos x appears twice so it becomes four cos x",
+            "malli product rule vaadithe four cos x vasthundi",
+            "the sin term keeps the bracket b plus two x with a minus sign"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y double dash",
+            "four cos x",
+            "minus a cos x",
+            "product rule again"
+          ]
+        },
+        "why": "Two separate terms each contribute a 2 cos x — one from differentiating 2 sin x, one from the product rule on (b + 2x) cos x — and together they make the 4 cos x the question asks for.",
+        "common_mistakes": [
+          "Getting 2 cos x instead of 4 cos x by using the product rule only once.",
+          "Writing the last term as +(b + 2x) sin x, forgetting that cos x differentiates to −sin x."
+        ],
+        "memory_tip": "The 4 in the answer is 2 + 2 — one 2 from each of the two places a 2 appears."
+      },
+      {
+        "id": "s3_add_y",
+        "kind": "boxed_final",
+        "label": "Add y and cancel",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Write the two lines side by side before cancelling — the a cos x pair and the (b + 2x) sin x pair each cancel, and 4 cos x is all that is left.",
+        "lines": [
+          "y″ + y = [−a cos x + 4 cos x − (b + 2x) sin x] + [a cos x + (b + 2x) sin x]",
+          "The −a cos x and a cos x cancel, and the two (b + 2x) sin x terms cancel",
+          {
+            "text": "∴ y″ + y = 4 cos x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding y removes the a cos x and (b + 2x) sin x terms, leaving 4 cos x.",
+          "accept": [
+            "add y and the a cos x terms cancel",
+            "the b plus two x sin x terms cancel as well",
+            "only four cos x is left so it is proved",
+            "y kalipithe rendu terms cancel ayi four cos x migulutundi",
+            "both constants a and b disappear from the answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add y",
+            "cancel",
+            "four cos x",
+            "a cos x"
+          ]
+        },
+        "why": "The constants a and b must vanish, because the required answer 4 cos x contains neither. Their cancelling is the check that the two derivatives are right.",
+        "common_mistakes": [
+          "Subtracting y instead of adding it.",
+          "Leaving a or b in the final line, which means an earlier sign is wrong."
+        ],
+        "memory_tip": "The result has no a and no b, so if either survives the cancelling, go back to y″."
+      }
+    ]
+  },
+  "insider_note": "The second term is a product, so the product rule is needed at BOTH differentiations. Adding y back cancels the a and b terms entirely, leaving only the 4 cos x."
+}

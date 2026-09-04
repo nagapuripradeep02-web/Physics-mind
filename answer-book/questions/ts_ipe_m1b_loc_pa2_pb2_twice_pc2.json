@@ -61,6 +61,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. Three fixed points this time, not two — C is the one the right side is measured from.",
+        "memory_tip": "THREE fixed points here, not two — C is the one the right side is measured from.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the book prints it against exactly this line. The condition is already in squares, so it goes straight into coordinates with no rearranging.",
+        "memory_tip": "The condition is already in squares, so it goes straight into coordinates with no rearranging.",
         "lines": [
           "Given condition: PA² + PB² = 2PC²"
         ],
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark, also printed. Both sides get the distance formula in squared form; the 2 on the right multiplies the whole bracket, not just one term.",
+        "memory_tip": "The 2 on the right multiplies the WHOLE bracket, not just one term.",
         "lines": [
           "⇒ [(x−1)² + (y−2)²] + [(x−2)² + (y+3)²] = 2[(x+2)² + (y−3)²]",
           "⇒ (x²+1−2x) + (y²+4−4y) + (x²+4−4x) + (y²+9+6y) = 2[(x²+4+4x) + (y²+9−6y)]"
@@ -180,10 +183,11 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks, printed as '2 Marks' in the book. Every x² and y² term cancels across the equals sign — that is why this locus is a straight LINE and not a circle.",
+        "memory_tip": "Every x² and y² cancels across the equals sign — which is why this locus is a straight LINE.",
         "lines": [
           "⇒ 2x² + 2y² − 6x + 2y + 18 = 2x² + 2y² + 8x − 12y + 26",
           "⇒ −6x + 2y + 18 = 8x − 12y + 26",
-          "⇒ 0 = 14x − 14y + 8   ⇒   7(2x − 2y) + 8 = 14x − 14y + 8",
+          "⇒ 0 = 14x − 14y + 8   ⇒   14x − 14y + 8 = 0",
           "⇒ 2(7x − 7y + 4) = 0",
           {
             "text": "∴ Locus of P is 7x − 7y + 4 = 0",
@@ -220,5 +224,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2PC² is twice the square, not (2PC)². The x² and y² terms cancel on both sides at once, so keep both, and the last mark is dividing 14x − 14y + 8 = 0 by 2 to reach the printed answer."
 }

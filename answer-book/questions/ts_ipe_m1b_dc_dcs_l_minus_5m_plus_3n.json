@@ -65,6 +65,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Make one letter the subject of the linear relation before substituting anywhere.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "One homogeneous quadratic comes out, and it factors into the two lines.",
         "lines": [
           "Solving (1) & (2), we get",
           "7(5m − 3n)² + 5m² − 3n² = 0",
@@ -153,7 +155,8 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Feed the first factor back and read off the ratio l : m : n.",
         "lines": [
           "Case (i): Put m = 2n/3 in (1), then",
           "l = 5(2n/3) − 3n = (10n − 9n)/3 = n/3   ∴ l = n/3",
@@ -194,7 +197,8 @@
         "label": "Case (ii): the second line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "The same on the second factor.",
         "lines": [
           "Case (ii): Put m = n/2 in (1), then",
           "l = 5(n/2) − 3n = (5n − 6n)/2 = −n/2   ∴ l = −n/2",
@@ -236,6 +240,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
+        "memory_tip": "The question asks for direction COSINES, so divide each triple by the root of its sum of squares.",
         "lines": [
           "On dividing (3) by √(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
           "d.c's of L₁ = (1/√14, 2/√14, 3/√14)",
@@ -270,9 +275,10 @@
         "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
-          "Dropping the ± that both directions along a line allow."
+          "Dividing both triples by the same root instead of each by its own, √14 and √6."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Substituting l = 5m − 3n leaves 30(6m² − 7mn + 2n²) = 0, so take the 30 out before factorising. The question asks for direction COSINES, so divide each triple by its own root, √14 and √6, not by a shared one."
 }

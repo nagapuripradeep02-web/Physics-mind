@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_additive_inverse_complex",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the additive inverse of the matrix with rows (i, 0, 1), (0, −i, 2) and (−1, 1, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State what the additive inverse is",
+      "marks": 1
+    },
+    {
+      "label": "Change the sign of every entry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 25, book p.36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to naming the defining property A + (−A) = O and one to writing the matrix, because a student who only writes the answer has not shown why it is the answer. CHECKED: all nine sums A + (−A) were evaluated entry by entry and every one is 0, including the two complex entries i + (−i) = 0 and −i + i = 0. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say what the additive inverse of a matrix is and how you would write it here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State what the additive inverse is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The additive inverse of A is the matrix −A for which A + (−A) = O, the zero matrix of the same order. Naming that property is the first mark.",
+        "memory_tip": "Additive inverse means the matrix that adds to zero, so it is A with every sign changed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The additive inverse of A is the matrix",
+          "−A for which A + (−A) = O, the zero",
+          "matrix of the same order.",
+          "So −A is A with every sign changed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the additive inverse is the matrix −A satisfying A + (−A) = O, which means every entry changes sign.",
+          "accept": [
+            "the additive inverse is minus A, the matrix that adds to the zero matrix",
+            "it is the matrix you add to A to get all zeros",
+            "A plus its additive inverse is the zero matrix, so change every sign",
+            "A ki add cheste zero matrix vachche matrix ne additive inverse antaru",
+            "negate every entry so the sum is the null matrix"
+          ],
+          "reject": [
+            "the opposite matrix",
+            "the inverse of A"
+          ],
+          "heard_as": [
+            "additive inverse",
+            "minus A",
+            "zero matrix",
+            "null matrix"
+          ]
+        },
+        "why": "The additive inverse is defined by the property A + (−A) = O, not by a formula. The rule 'change every sign' follows from that property, because addition acts on each position separately.",
+        "common_mistakes": [
+          "Confusing the additive inverse −A with the multiplicative inverse A⁻¹.",
+          "Writing the zero matrix O as the answer instead of −A."
+        ]
+      },
+      {
+        "id": "s2_write_it",
+        "kind": "boxed_final",
+        "label": "Change the sign of every entry",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Every entry changes sign, the complex ones included: i becomes −i, and −i becomes i. Entries that are 0 stay 0.",
+        "memory_tip": "The sign flips for complex entries too: i becomes −i and −i becomes i. Zero stays zero.",
+        "lines": [
+          "Change the sign of every entry:",
+          {
+            "text": "-A = \\begin{bmatrix} -i & 0 & -1 \\\\ 0 & i & -2 \\\\ 1 & -1 & -5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every entry is negated, giving rows (−i, 0, −1), (0, i, −2) and (1, −1, −5).",
+          "accept": [
+            "negate each entry so i becomes minus i and minus i becomes i",
+            "the answer has rows minus i zero minus one, zero i minus two, one minus one minus five",
+            "change the sign of all nine entries including the zeros which stay zero",
+            "anni entries sign marchali, i minus i avuthundi",
+            "flip every sign to get minus A"
+          ],
+          "reject": [
+            "change the signs",
+            "write minus A"
+          ],
+          "heard_as": [
+            "minus i",
+            "minus five",
+            "negate",
+            "every entry"
+          ]
+        },
+        "why": "Matrix addition is defined position by position, so the sum is the zero matrix exactly when each entry cancels its partner. That forces −A to be A with each entry negated.",
+        "common_mistakes": [
+          "Leaving the complex entries i and −i unchanged.",
+          "Changing 0 to some other value instead of leaving it as 0."
+        ]
+      }
+    ]
+  }
+}

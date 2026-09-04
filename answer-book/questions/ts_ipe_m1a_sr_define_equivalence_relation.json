@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_equivalence_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define an equivalence relation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the three properties",
+      "marks": 1
+    },
+    {
+      "label": "Check all three on one example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book prints reflexive, symmetric, transitive and equivalence as four separate questions in a row; this card is authored to build on the three before it rather than repeat them."
+  },
+  "recall_prompt": "Say how you would answer this — name every property it needs, and say how you would check them all on one relation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_properties",
+        "kind": "equation",
+        "label": "Name the three properties",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. All three properties must be named, and each written out. Two out of three is not an equivalence relation, so a list of two earns nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let R be a relation on a set A, that is R ⊆ A × A.",
+          "R is called an equivalence relation if it has all three of these properties:",
+          "(i) reflexive:  (a, a) ∈ R for every a ∈ A",
+          "(ii) symmetric:  (a, b) ∈ R ⇒ (b, a) ∈ R",
+          "(iii) transitive:  (a, b) ∈ R and (b, c) ∈ R ⇒ (a, c) ∈ R"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an equivalence relation is one that is reflexive, symmetric and transitive, all three together.",
+          "accept": [
+            "reflexive symmetric and transitive all three together",
+            "a relation with all three properties is an equivalence relation",
+            "name the three and write each condition out",
+            "moodu properties unte equivalence relation avuthundi",
+            "reflexive plus symmetric plus transitive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "reflexive",
+            "symmetric",
+            "transitive",
+            "all three",
+            "equivalence"
+          ]
+        },
+        "why": "This definition is the three earlier definitions taken together, so writing them as a numbered list shows each one is known separately and will be checked separately.",
+        "memory_tip": "Three letters in order: R for reflexive, S for symmetric, T for transitive.",
+        "common_mistakes": [
+          "Naming reflexive and symmetric only, and leaving transitive out.",
+          "Saying an equivalence relation is one where a = b, which is only one example of one.",
+          "Naming the three properties without writing what each one means."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Check all three on one example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. One relation, three checks, one line each. A relation that fails any single one of the three is not an equivalence relation, so all three lines must be on the page.",
+        "lines": [
+          "Take A = {1, 2, 3, 4} and let a R b mean a and b leave the same remainder on division by 2.",
+          "R = {(1,1), (2,2), (3,3), (4,4), (1,3), (3,1), (2,4), (4,2)}",
+          "Reflexive: (1,1), (2,2), (3,3), (4,4) are all in R.",
+          "Symmetric: (1,3) has (3,1) in R, and (2,4) has (4,2) in R.",
+          "Transitive: (1,3) with (3,1) gives (1,1) ∈ R, and (3,1) with (1,3) gives (3,3) ∈ R; the same holds for 2 and 4.",
+          {
+            "text": "∴ R is an equivalence relation on A.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one relation is chosen and all three properties are checked on it in turn.",
+          "accept": [
+            "take same remainder on division by two and check all three properties",
+            "check reflexive then symmetric then transitive on the same relation",
+            "the odd numbers group together and the even numbers group together",
+            "same remainder relation ki moodu properties check cheyyali",
+            "one three and three one are both there so it is symmetric"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "same remainder",
+            "reflexive",
+            "symmetric",
+            "transitive",
+            "one three"
+          ]
+        },
+        "why": "Working all three checks on one relation is what separates this question from the three before it: the properties are separate conditions on the same list of pairs, and only holding all three at once makes the relation an equivalence relation.",
+        "memory_tip": "Relations of the form same remainder or same value are always equivalence relations — a safe example to keep ready.",
+        "common_mistakes": [
+          "Checking reflexive only, because the (a, a) pairs are the easiest to see.",
+          "Adding (1, 2) to R, which puts an odd number with an even one and breaks the grouping.",
+          "Writing three different relations, one for each property, instead of one relation checked three times."
+        ]
+      }
+    ]
+  }
+}

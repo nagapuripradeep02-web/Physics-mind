@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_focal_chord_other_extremity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If (1/2, 2) is one extremity of a focal chord of the parabola y² = 8x, find the coordinates of the other extremity.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a and the parameter t of the given point",
+      "marks": 1
+    },
+    {
+      "label": "Find the other extremity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 125, printed alone below answers 123/124. Printed appearance: AP 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_t",
+        "kind": "equation",
+        "label": "Find a and the parameter t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 2 and t = 1/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 8x ⇒ 4a = 8 ⇒ a = 2",
+          "Write the given point as (at², 2at)",
+          "= (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2"
+        ],
+        "why": "Matching the given point to the parametric form (at²,2at) is the fastest way to find its own parameter t, and here the second coordinate 2at = 2 gives t directly without even needing the first coordinate.",
+        "common_mistakes": [
+          "Using the first coordinate at² = 1/2 to solve for t as a quadratic, when the second coordinate 2at = 2 gives t in one step.",
+          "Writing t = 1 instead of t = 1/2 by forgetting to divide by a = 2."
+        ],
+        "memory_tip": "The second coordinate of (at², 2at) is linear in t — use it first to find t quickly."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Find the other extremity",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the other extremity using (a/t², −2a/t).",
+        "lines": [
+          "For a focal chord, if one end is (at², 2at),",
+          "the other end is (a/t², −2a/t).",
+          "Other end = (2/(1/2)², −2(2)/(1/2))",
+          "= (2/(1/4), −4/(1/2)) = (8, −8)",
+          {
+            "text": "∴ the other extremity is (8, −8)",
+            "style": "boxed"
+          }
+        ],
+        "why": "A focal chord always joins the points with parameters t and −1/t on the curve — substituting −1/t for t in (at²,2at) directly gives the formula (a/t², −2a/t) for the second endpoint.",
+        "common_mistakes": [
+          "Using (a/t², 2a/t) with a positive sign, forgetting that the other end of a focal chord has parameter −1/t, not +1/t.",
+          "Dividing 2 by (1/4) incorrectly and getting a wrong first coordinate."
+        ],
+        "memory_tip": "A focal chord's two ends always have parameters t and −1/t — the sign flips, which is why the second coordinate's sign flips too."
+      }
+    ]
+  },
+  "insider_note": "The negative sign in (a/t², −2a/t) is the single most commonly dropped sign in this question — a focal chord's two ends are always on opposite sides of the axis, one y-coordinate positive and one negative, for every focal chord including the latus rectum, since y₁y₂ = (2at)(−2a/t) = −4a² is always negative."
+}

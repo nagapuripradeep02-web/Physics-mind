@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -82,7 +82,7 @@
           "Dropping the unit when a numerical follows — the speed comes out in m s⁻¹ with SI inputs."
         ],
         "memory_tip": "Two for the most probable, three for RMS: the smaller number under the root gives the smaller speed.",
-        "margin_note": "The 0.8165 line links this card to the speed-ratio question the same paper may ask."
+        "margin_note": "The 0.8165 line gives the ratio of the most probable speed to the RMS speed, which a paper may ask for on its own."
       }
     ]
   },

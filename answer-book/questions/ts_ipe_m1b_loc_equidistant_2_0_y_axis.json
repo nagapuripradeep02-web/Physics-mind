@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_equidistant_2_0_y_axis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of the point which is equidistant from A(2, 0) and the y-axis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distance",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(ii), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 gives its first mark to the one move that decides this question — writing the distance from P to the y-axis as |x| — then one for the substitution, and the remaining two for the cancellation of x² that leaves a parabola. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 2), which is 2 units from A(2, 0) and 2 units from the y-axis, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say how far P is from the y-axis, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. Here one of the two things P is measured from is a LINE, not a point — the y-axis. That single difference is what makes this question a parabola instead of a circle.",
+        "memory_tip": "One distance is to a point, one to a LINE, and the two are EQUAL — that always gives a parabola.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given point A = (2, 0). The y-axis is x = 0."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y), with the fixed point A(2, 0) and the fixed line x = 0.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "one is a point and the other is the y axis",
+            "locus point ni P x y ga teesukovali",
+            "the y axis is the line x equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "two comma zero",
+            "the y axis",
+            "x equals zero"
+          ]
+        },
+        "why": "Writing the y-axis as x = 0 makes it clear that the second distance is measured to a line, which is a different formula from the distance between two points.",
+        "common_mistakes": [
+          "Measuring to the x-axis instead of the y-axis.",
+          "Giving the moving point fixed numbers instead of (x, y)."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The distance from P(x, y) to the y-axis is |x|, not |y| — it is the sideways gap. Squaring removes the modulus bars.",
+        "memory_tip": "Distance to the y-axis is |x|, the sideways gap. Squaring removes the modulus bars.",
+        "lines": [
+          "Distance from P to the y-axis = |x|",
+          "Given condition: PA = |x|",
+          "⇒ PA² = x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distance from P to the y-axis is |x|, so the condition is PA = |x| and PA² = x².",
+          "accept": [
+            "the distance from P to the y axis is mod x",
+            "P A equals mod x so P A squared equals x squared",
+            "squaring removes the modulus",
+            "y axis nunchi distance mod x avuthundi",
+            "the perpendicular distance to the y axis is the x coordinate"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mod x",
+            "distance to the y axis",
+            "P A squared",
+            "x squared"
+          ]
+        },
+        "why": "Squaring is what lets the modulus be dropped safely: |x|² and x² are the same number for every real x, so nothing is lost or added.",
+        "common_mistakes": [
+          "Using |y| for the distance to the y-axis.",
+          "Dropping the modulus bars before squaring."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distance",
+        "kind": "equation",
+        "label": "Substitute the distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. A(2, 0) has y-coordinate 0, so the second bracket is (y − 0)², which is simply y².",
+        "memory_tip": "A sits on the x-axis, so its y bracket is (y − 0)², which is just y².",
+        "lines": [
+          "⇒ (x − 2)² + (y − 0)² = x²",
+          "⇒ x² − 4x + 4 + y² = x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squared distance PA is written as (x − 2)² + y² and set equal to x².",
+          "accept": [
+            "x minus two whole squared plus y squared equals x squared",
+            "substitute the distance formula on the left and x squared on the right",
+            "expand x minus two whole squared",
+            "distance formula substitute chesi expand cheyyali",
+            "the y bracket is just y squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus two whole squared",
+            "y squared",
+            "equals x squared",
+            "substitute"
+          ]
+        },
+        "why": "Both sides now carry an x² term, which is the setting for the cancellation that turns this from a second-degree curve in both variables into a parabola.",
+        "common_mistakes": [
+          "Writing (x + 2)² for a fixed x-coordinate of +2.",
+          "Expanding (x − 2)² as x² − 4x + 2."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The x² cancels on both sides, so no x² survives — the locus is a parabola, y² = 4(x − 1), with vertex (1, 0). Check: (2, 2) is 2 units from A and 2 units from the y-axis, and satisfies this equation.",
+        "memory_tip": "The x² cancels across the equals sign, so y² survives alone — that is the parabola.",
+        "lines": [
+          "⇒ y² − 4x + 4 = 0",
+          "⇒ y² = 4(x − 1)",
+          {
+            "text": "∴ Locus: y² − 4x + 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² cancels on both sides, leaving y² − 4x + 4 = 0, a parabola.",
+          "accept": [
+            "the x squared cancels on both sides",
+            "we are left with y squared minus four x plus four equals zero",
+            "it can also be written as y squared equals four into x minus one",
+            "x square cancel avuthundi so parabola vasthundi",
+            "the locus is a parabola"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x squared cancels",
+            "y squared minus four x",
+            "plus four",
+            "parabola"
+          ]
+        },
+        "why": "Only one of the two squared terms survives, so the curve is a parabola. The form y² = 4(x − 1) reads off the vertex (1, 0) directly, which is the midpoint of A and its foot on the y-axis.",
+        "common_mistakes": [
+          "Cancelling the x² and also cancelling the −4x with it.",
+          "Writing y² = 4(x + 1) by taking the 4 across with the wrong sign."
+        ]
+      }
+    ]
+  }
+}

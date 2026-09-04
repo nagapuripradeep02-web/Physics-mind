@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sum_zero_angle_ab",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a + b + c = 0, |a| = 3, |b| = 5 and |c| = 7, find the angle between a and b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Move c to the other side and take magnitudes",
+      "marks": 1
+    },
+    {
+      "label": "Expand |a + b|²",
+      "marks": 1
+    },
+    {
+      "label": "Solve for a·b",
+      "marks": 1
+    },
+    {
+      "label": "Find the angle from cos θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 8, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Symbolically: c = −(a + b) gives |c|² = |a|² + |b|² + 2(a·b), so 49 = 9 + 25 + 2(a·b), a·b = 15/2, and cos θ = (15/2)/(3 × 5) = 1/2, θ = 60° = π/3. Checked a second way by direct arithmetic on concrete vectors: with a = (3, 0) and b at 60° to it, b = (2.5, 4.330127); then a + b = (5.5, 4.330127) and |a + b| = √(30.25 + 18.75) = √49 = 7, which is exactly |c|, so the 60° answer reproduces the given data. Note the angle asked for is between a and b themselves, not between a and the side of the triangle opposite them; the interior angle of the triangle formed by the three vectors placed head to tail is the supplement, 120°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: isolating c, expanding the square, solving for the dot product, and converting it to an angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would get the angle between a and b when the three vectors add to zero — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isolate",
+        "kind": "equation",
+        "label": "Isolate c and take magnitudes",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The angle wanted is between a and b, so put a and b together on one side and the known length |c| on the other.",
+        "memory_tip": "Move the vector you are NOT asked about to its own side of the equation.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a + b + c = 0",
+          "⇒ c = −(a + b)",
+          "Taking magnitudes on both sides,",
+          "|c| = |a + b|",
+          "∴ |c|² = |a + b|²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That c = −(a + b), so |c| = |a + b| and therefore |c|² = |a + b|².",
+          "accept": [
+            "move c to the other side so c is minus a plus b",
+            "the magnitude of c equals the magnitude of a plus b",
+            "square both sides to get mod c squared equals mod a plus b squared",
+            "c ni other side ki teeskunte c equals minus a plus b",
+            "keep a and b together because the angle is between them"
+          ],
+          "reject": [
+            "rearrange the equation",
+            "that is the answer",
+            "take the dot product"
+          ],
+          "heard_as": [
+            "minus a plus b",
+            "magnitude",
+            "mod c squared",
+            "both sides"
+          ]
+        },
+        "why": "Only the lengths are known, and a length reaches the dot product through its square. Isolating c puts the pair a, b together, which is where the wanted angle lives.",
+        "common_mistakes": [
+          "Writing c = a + b and losing the minus sign, though squaring gives the same result either way here.",
+          "Isolating a instead of c, which puts the wanted angle inside the wrong bracket."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand |a + b|²",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Second mark. The minus sign disappears on squaring, because |−v|² = |v|². Substitute the three given lengths at once.",
+        "memory_tip": "|a + b|² = |a|² + |b|² + 2(a·b) — the same shape as (x + y)².",
+        "lines": [
+          "|a + b|² = |a|² + |b|² + 2(a·b)",
+          "So |c|² = |a|² + |b|² + 2(a·b)",
+          "7² = 3² + 5² + 2(a·b)",
+          "49 = 9 + 25 + 2(a·b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a + b|² = |a|² + |b|² + 2(a·b), so 49 = 9 + 25 + 2(a·b).",
+          "accept": [
+            "expand mod a plus b squared as mod a squared plus mod b squared plus twice a dot b",
+            "forty nine equals nine plus twenty five plus two a dot b",
+            "substitute three five and seven into the expansion",
+            "expand cheste forty nine equals nine plus twenty five plus two a dot b",
+            "the square of the sum brings in the dot product"
+          ],
+          "reject": [
+            "expand it",
+            "that is the answer",
+            "so a dot b is seven point five"
+          ],
+          "heard_as": [
+            "forty nine",
+            "nine plus twenty five",
+            "two a dot b",
+            "expand"
+          ]
+        },
+        "why": "The dot product is the only place an angle can enter, and expanding the square of a sum is what introduces it. Nothing else in the question mentions direction.",
+        "common_mistakes": [
+          "Writing |a + b|² = |a|² + |b|² and dropping the 2(a·b) term.",
+          "Squaring the lengths as 3 × 2 = 6 instead of 3² = 9."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "equation",
+        "label": "Solve for a·b",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Third mark. Simple rearrangement. Keep 15/2 as a fraction — it cancels cleanly against 15 in the next step.",
+        "memory_tip": "Keep a·b as the fraction 15/2; it cancels against |a||b| = 15.",
+        "lines": [
+          "49 = 34 + 2(a·b)",
+          "2(a·b) = 49 − 34 = 15",
+          "∴ a·b = 15/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2(a·b) = 15, so a·b = 15/2.",
+          "accept": [
+            "two a dot b is fifteen so a dot b is fifteen by two",
+            "forty nine minus thirty four is fifteen",
+            "the dot product comes to seven point five",
+            "forty nine minus thirty four fifteen, a dot b fifteen by two",
+            "rearrange to find the dot product"
+          ],
+          "reject": [
+            "solve for it",
+            "that is the answer",
+            "now divide by fifteen"
+          ],
+          "heard_as": [
+            "fifteen",
+            "fifteen by two",
+            "seven point five",
+            "a dot b"
+          ]
+        },
+        "why": "The dot product is the bridge between the lengths, which are given, and the angle, which is wanted. This step crosses that bridge halfway.",
+        "common_mistakes": [
+          "Forgetting to divide by 2 and taking a·b as 15.",
+          "Subtracting in the wrong order and getting a negative value."
+        ]
+      },
+      {
+        "id": "s4_angle",
+        "kind": "boxed_final",
+        "label": "Find the angle",
+        "marks": 1,
+        "mark_note": "Angle",
+        "margin_note": "Last mark. cos θ = 1/2 gives an exact standard angle, so write 60° and not an inverse cosine. The angle asked for is between a and b, not the interior angle of the triangle they form.",
+        "memory_tip": "cos θ = 1/2 is a standard value: θ = 60°.",
+        "lines": [
+          "Let θ be the angle between a and b.",
+          "cos θ = (a·b)/(|a||b|)",
+          "  = (15/2)/(3 × 5)",
+          "  = (15/2)/15 = 1/2",
+          {
+            "text": "∴ θ = 60° = π/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = (a·b)/(|a||b|) = 1/2, so the angle between a and b is 60°.",
+          "accept": [
+            "cos theta is a dot b over the product of the lengths which is a half",
+            "cos theta equals one half so theta is sixty degrees",
+            "the angle between a and b is sixty degrees or pi by three",
+            "cos theta half vasthundi kabatti theta sixty degrees",
+            "divide the dot product by fifteen to get one half"
+          ],
+          "reject": [
+            "find the angle",
+            "take cos inverse",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "cos theta",
+            "one half",
+            "sixty degrees",
+            "pi by three"
+          ]
+        },
+        "why": "The definition a·b = |a||b| cos θ is the only formula that turns a dot product back into an angle, and here the value is one of the standard cosines, so an exact answer is available.",
+        "common_mistakes": [
+          "Leaving the answer as Cos⁻¹(1/2) when the exact angle 60° is known.",
+          "Giving 120°, which is the interior angle of the triangle, not the angle between a and b."
+        ]
+      }
+    ]
+  }
+}

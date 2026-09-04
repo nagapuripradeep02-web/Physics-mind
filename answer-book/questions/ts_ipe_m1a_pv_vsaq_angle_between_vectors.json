@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Write the formula, then the dot product and the two magnitudes. Both magnitudes are √14 here, which makes the denominator simply 14.",
+        "memory_tip": "Write the formula, then the dot and the two magnitudes. Both are √14, so the denominator is 14.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. √14 times √14 is 14, so the fraction is 7/14 = 1/2 — and a cosine of a half is a familiar angle.",
+        "memory_tip": "7/14 = 1/2, and a cosine of a half is a familiar angle.",
         "lines": [
           "cos θ = 7/(√14 · √14) = 7/14 = 1/2",
           "cos θ = 1/2 = cos 60°",
@@ -150,5 +152,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both magnitudes are √14, so the denominator is exactly 14 and cos θ = ½, a standard angle. An untidy fraction here means a slip in the dot product."
 }

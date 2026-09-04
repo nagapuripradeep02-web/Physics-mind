@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Augmented matrix",
         "margin_note": "First mark. The augmented matrix is A with the constants column joined on. The rule down the middle is not decoration — it marks where the equals sign was, and every row operation acts across it.",
+        "memory_tip": "A with the constants attached; the rule down the middle marks the equals sign.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 2,
         "mark_note": "Forward elimination",
         "margin_note": "Two marks. No entry in column 1 is a 1, but R₁ − R₂ makes one — 3 − 2 = 1. Hunting for a leading 1 before clearing the column is what keeps this question free of fractions.",
+        "memory_tip": "No entry in column 1 is a 1, but R₁ − R₂ makes one — 3 − 2 = 1. Hunt for a leading 1 first.",
         "lines": [
           "R₁ → R₁ − R₂  (to get a leading 1)",
           {
@@ -160,9 +162,9 @@
             "eliminate"
           ]
         },
-        "why": "Gauss-Jordan works one column at a time, and it always wants a 1 at the pivot first. Chasing zeros before you have that 1 is what forces fractions into the working.",
+        "why": "Gauss-Jordan works one column at a time, and the method needs a 1 at the pivot first. Making zeros before that 1 is in place is what forces fractions into the working.",
         "common_mistakes": [
-          "Starting to clear the column before securing a leading 1 and drowning in fractions.",
+          "Starting to clear the column before securing a leading 1, which fills the working with fractions.",
           "Applying an operation to only part of a row — every entry moves, including the constant.",
           "Changing the pivot row while using it to clear the others."
         ]
@@ -173,7 +175,8 @@
         "label": "Reach a leading 1 in R₃",
         "marks": 1,
         "mark_note": "Last pivot",
-        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is bookkeeping to get x and y out.",
+        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is routine work to get x and y out.",
+        "memory_tip": "Once row 3 reads 0 0 1 with a number after the rule, z is already known.",
         "lines": [
           "R₂ → R₂ − 2R₃,  then R₂ → −R₂",
           {
@@ -225,6 +228,7 @@
         "marks": 3,
         "mark_note": "Backward elimination",
         "margin_note": "Three marks. Every pivot is a 1 by this point, so clearing upwards is pure addition. Work from the bottom row up: use row 3 to clear column 3, then row 2 to clear column 2.",
+        "memory_tip": "Every pivot is a 1 by now, so clearing upwards is pure addition. Work from the bottom row up.",
         "lines": [
           "R₁ → R₁ + 3R₃,  R₂ → R₂ + 26R₃",
           {
@@ -262,7 +266,7 @@
             "identity"
           ]
         },
-        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. It buys you an answer you can read straight off, with no back-substitution.",
+        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. The answer can then be read straight off, with no back-substitution.",
         "common_mistakes": [
           "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
           "Clearing upwards before the pivots are 1, which reintroduces fractions.",
@@ -276,6 +280,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Each row is now a one-letter equation, so the answer is read straight off with no substitution.",
+        "memory_tip": "Each row is a one-letter equation — read the answer straight off.",
         "lines": [
           "Each row is now a single equation:",
           "Row 1: x = 3",
@@ -309,13 +314,14 @@
             "z equals"
           ]
         },
-        "why": "A row reading 0 0 1 | 3 is literally the equation z = 3. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a trick.",
+        "why": "A row reading 0 0 1 | 1 is literally the equation z = 1. Understanding that the matrix never stopped being the equations is what makes the whole method easy to follow.",
         "common_mistakes": [
           "Reading the values in the wrong order.",
-          "Forgetting a row left with a −1 pivot, which needs one sign flip.",
+          "Stopping at the triangular form and back-substituting — Gauss-Jordan asks for the full identity before the values are read.",
           "Never substituting back to check — x=3, y=1, z=1 in the first equation gives 9+4+5 = 18."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "R₁ − R₂ produces a leading 1 with no fractions, which is worth doing before anything else. The numbers grow large in the middle but come back to 3, 1 and 1."
 }

@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_cross_product_distributive_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Compute a × (b + c) + b × (c + a) + c × (a + b).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expand the three brackets",
+      "marks": 1
+    },
+    {
+      "label": "Group the six terms into pairs",
+      "marks": 1
+    },
+    {
+      "label": "Show each pair is the zero vector",
+      "marks": 1
+    },
+    {
+      "label": "State the answer as the zero vector",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.75, chapter 7 PRODUCT OF VECTORS, Short Answer question 39. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the distributive expansion, the pairing, the cancellation rule, and the closing statement — the last mark is separate because the answer is the zero VECTOR and a student who writes the number 0 has not answered a question about cross products. ESTABLISHED ALGEBRAICALLY and CHECKED ON TWO CONCRETE TRIPLES. With a = i, b = j, c = k the three terms are k − j, i − k and j − i, which add to the zero vector. With a = i + 2j + 3k, b = 2i − j + k, c = i − k the three terms are (3, 9, −7), (−4, −2, 6) and (1, −7, 1), which also add to the zero vector; each of those three cross products was dotted with both of its own inputs and every one of the six dot products was 0 — for example (3, 9, −7)·a = 3 + 18 − 21 = 0 and (3, 9, −7)·(b + c) = 9 − 9 + 0 = 0. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would simplify this — say what happens to the six terms after you expand.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_brackets",
+        "kind": "equation",
+        "label": "Expand the three brackets",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "First mark. The cross product distributes over addition, so each bracket splits into two terms. The order inside each term must be kept exactly as written.",
+        "memory_tip": "Expand like ordinary brackets, but never swap the two vectors inside a term.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The cross product distributes over",
+          "addition, so expand each bracket:",
+          "a × (b + c) = a×b + a×c",
+          "b × (c + a) = b×c + b×a",
+          "c × (a + b) = c×a + c×b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each bracket distributes into two terms, keeping the order inside each term.",
+          "accept": [
+            "expand each bracket using the distributive law",
+            "a cross b plus c gives a cross b plus a cross c",
+            "each bracket splits into two cross products",
+            "distributive law tho prathi bracket rendu terms avutundi",
+            "open the brackets keeping the order"
+          ],
+          "reject": [
+            "the answer is the zero vector",
+            "each pair cancels",
+            "hence proved"
+          ],
+          "heard_as": [
+            "distributive",
+            "expand",
+            "a cross b plus a cross c",
+            "each bracket"
+          ]
+        },
+        "why": "The cross product distributes over addition in the same way ordinary multiplication does, so every bracket splits into two terms. The order inside each term matters, because reversing it changes the sign.",
+        "common_mistakes": [
+          "Writing a × (b + c) as (b + c) × a.",
+          "Adding b and c first and stopping there."
+        ]
+      },
+      {
+        "id": "s2_group_the_terms",
+        "kind": "equation",
+        "label": "Group the six terms into pairs",
+        "marks": 1,
+        "mark_note": "Grouping",
+        "margin_note": "Second mark. Six terms, three pairs. Each term has a partner with the same two vectors in the opposite order.",
+        "memory_tip": "Look for the partner of each term — the same two letters, written the other way round.",
+        "lines": [
+          "Sum = a×b + a×c + b×c",
+          {
+            "text": "+ b×a + c×a + c×b",
+            "style": "indent"
+          },
+          "Group the terms that are reverses of",
+          "each other:",
+          "= (a×b + b×a) + (a×c + c×a)",
+          {
+            "text": "+ (b×c + c×b)",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the six terms pair up as (a×b, b×a), (a×c, c×a) and (b×c, c×b).",
+          "accept": [
+            "the six terms form three pairs of reversed products",
+            "a cross b pairs with b cross a and so on",
+            "group each term with the one that has the same letters reversed",
+            "aaru terms moodu jodilu avutayi, reverse order lo",
+            "pair the reversed cross products"
+          ],
+          "reject": [
+            "expand each bracket",
+            "the answer is the zero vector",
+            "hence proved"
+          ],
+          "heard_as": [
+            "three pairs",
+            "reversed",
+            "a cross b and b cross a",
+            "group"
+          ]
+        },
+        "why": "Each of the six terms has exactly one partner with the two vectors in the opposite order. Spotting those three pairs is the whole idea of the question.",
+        "common_mistakes": [
+          "Pairing a×b with a×c, which are not reverses of each other.",
+          "Assuming a×b = b×a and cancelling the wrong terms."
+        ]
+      },
+      {
+        "id": "s3_each_pair_is_zero",
+        "kind": "equation",
+        "label": "Show each pair is the zero vector",
+        "marks": 1,
+        "mark_note": "Cancellation",
+        "margin_note": "Third mark. Reversing a cross product reverses its direction but not its length, so a vector and its reverse add to the zero vector.",
+        "memory_tip": "y × x = −(x × y), so a reversed pair always adds to the zero vector.",
+        "lines": [
+          "For any two vectors, y × x = −(x × y).",
+          "∴ a×b + b×a = 0",
+          "a×c + c×a = 0",
+          "b×c + c×b = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y × x = −(x × y), so each of the three pairs adds to the zero vector.",
+          "accept": [
+            "reversing a cross product changes its sign so each pair adds to zero",
+            "y cross x is minus x cross y",
+            "all three pairs give the zero vector",
+            "order marchithe sign marutundi, so pair zero avutundi",
+            "each reversed pair cancels out"
+          ],
+          "reject": [
+            "group the six terms",
+            "the answer is the zero vector",
+            "expand each bracket"
+          ],
+          "heard_as": [
+            "y cross x",
+            "minus x cross y",
+            "each pair zero",
+            "sign changes"
+          ]
+        },
+        "why": "Reversing the order of a cross product reverses its direction but leaves its length alone, so a term and its reverse are opposite vectors. Opposite vectors add to the zero vector.",
+        "common_mistakes": [
+          "Writing a×b + b×a as 2(a×b).",
+          "Treating the result as the number zero at this stage."
+        ]
+      },
+      {
+        "id": "s4_state_the_answer",
+        "kind": "boxed_final",
+        "label": "State the answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Three zero vectors add to the zero vector. Say vector, not number — every term in the sum was a cross product.",
+        "memory_tip": "The sum of cross products is a vector, so the answer is the zero vector, not the number zero.",
+        "lines": [
+          "All three pairs give the zero vector,",
+          "so the whole sum is the zero vector 0,",
+          "which is a vector, not the number 0.",
+          {
+            "text": "∴ a×(b+c) + b×(c+a) + c×(a+b) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the whole expression is the zero vector, and that this is a vector answer, not the number zero.",
+          "accept": [
+            "the whole sum is the zero vector",
+            "the answer is zero but as a vector not a number",
+            "all three pairs vanish so the total is the zero vector",
+            "answer zero vector, number zero kaadu",
+            "the expression simplifies to the zero vector"
+          ],
+          "reject": [
+            "each pair adds to zero",
+            "group the six terms",
+            "expand each bracket"
+          ],
+          "heard_as": [
+            "zero vector",
+            "not the number",
+            "the whole sum",
+            "vanishes"
+          ]
+        },
+        "why": "The sum of three zero vectors is the zero vector. The answer must be written as a vector, because every term added was a cross product and every cross product is a vector.",
+        "common_mistakes": [
+          "Writing the answer as the number 0.",
+          "Leaving the answer as a×b + b×c + c×a."
+        ]
+      }
+    ]
+  }
+}

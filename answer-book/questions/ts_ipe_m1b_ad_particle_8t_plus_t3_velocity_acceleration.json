@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_particle_8t_plus_t3_velocity_acceleration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A particle is moving in a straight line so that after t seconds its distance s (in cm) from a fixed point on the line is s = f(t) = 8t + t³. Find (i) the velocity at time t = 2 sec, (ii) the initial velocity, and (iii) the acceleration at t = 2 sec.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate for velocity and acceleration",
+      "marks": 1
+    },
+    {
+      "label": "Answer the three parts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 16. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question; all three parts are answered inside the one 2-mark card because the paper asks them as one question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what initial velocity means, and how many expressions you need before substituting.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity_acceleration",
+        "kind": "equation",
+        "label": "Differentiate for velocity and acceleration",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rectilinear motion question with three asks, but only two expressions are needed. Write v and a once, then read all three answers off them.",
+        "memory_tip": "Three questions, two expressions: v = ds/dt and a = dv/dt cover every part.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rectilinear motion question. Velocity v = ds/dt and acceleration a = dv/dt.",
+          "s = f(t) = 8t + t³",
+          "v = ds/dt = 8 + 3t²",
+          "a = dv/dt = 6t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = ds/dt = 8 + 3t² and a = dv/dt = 6t.",
+          "accept": [
+            "differentiate s to get eight plus three t squared",
+            "differentiate again to get six t",
+            "velocity is the first derivative and acceleration is the second",
+            "s ni differentiate cheste eight plus three t squared vasthundi",
+            "v is d s by d t and a is d v by d t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight plus three t squared",
+            "six t",
+            "first derivative",
+            "second derivative"
+          ]
+        },
+        "why": "All three parts are values of the same two expressions at particular times, so writing v and a first turns the rest of the question into three substitutions.",
+        "common_mistakes": [
+          "Writing v = 8t + 3t² by differentiating only the cube.",
+          "Differentiating once and treating 8 + 3t² as the acceleration.",
+          "Substituting t = 2 into s, which gives the distance 24 and not a velocity."
+        ]
+      },
+      {
+        "id": "s2_three_parts",
+        "kind": "boxed_final",
+        "label": "Answer the three parts",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Initial means at the start, so t = 0. Distance is in centimetres here, so velocity is cm/sec and acceleration is cm/sec² — do not write metres.",
+        "memory_tip": "Initial means the clock reads zero: put t = 0, not t = 1.",
+        "lines": [
+          "(i) At t = 2 sec:  v = 8 + 3(2)² = 8 + 12 = 20",
+          "(ii) Initial velocity is v at t = 0:  v = 8 + 3(0)² = 8",
+          "(iii) At t = 2 sec:  a = 6(2) = 12",
+          {
+            "text": "∴ velocity at t = 2 sec = 20 cm/sec,  initial velocity = 8 cm/sec,  acceleration at t = 2 sec = 12 cm/sec²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v(2) = 20, the initial velocity is 8, and a(2) = 12, in centimetre units.",
+          "accept": [
+            "at two seconds the velocity is twenty centimetres per second",
+            "initial velocity means t equals zero so it is eight",
+            "the acceleration at two seconds is twelve",
+            "initial velocity ante t equals zero, eight vasthundi",
+            "twenty, eight and twelve are the three answers"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty",
+            "eight",
+            "twelve",
+            "initial velocity",
+            "t equals zero"
+          ]
+        },
+        "why": "Initial velocity is the velocity at the instant the motion is timed from, which is t = 0. Putting t = 0 into 8 + 3t² leaves the constant 8, so the constant term of v is always the initial velocity.",
+        "common_mistakes": [
+          "Reading initial velocity as the velocity at t = 1, which gives 11.",
+          "Answering only part (i) and leaving (ii) and (iii) out.",
+          "Writing m/sec when the distance is given in centimetres."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Velocity is the first derivative and acceleration the second, so differentiate twice before substituting. Initial velocity means t = 0, which picks out the constant term."
+}

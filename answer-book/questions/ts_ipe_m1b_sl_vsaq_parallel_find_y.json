@@ -49,6 +49,7 @@
         "label": "Write both slopes",
         "marks": 1,
         "margin_note": "First mark. Two lines are named, so two slopes are needed — one carries the unknown, the other is fully numeric.",
+        "memory_tip": "Two lines named, so two slopes — one carries the unknown, the other is fully numeric.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "label": "Equate the slopes and solve",
         "marks": 1,
         "margin_note": "Second mark. Parallel lines have EQUAL slopes, so setting the two equal gives y in one step.",
+        "memory_tip": "Parallel means EQUAL slopes, so setting them equal gives y in one step.",
         "lines": [
           "Take, m₁ = m₂  [∵ Given lines are parallel]",
           "⇒ y − 7 = 2   ⇒   y = 2 + 7",
@@ -123,7 +125,7 @@
             "y equals nine"
           ]
         },
-        "why": "Parallel is equal slopes; perpendicular would be a product of −1. The two are constantly confused and the whole answer turns on which is meant.",
+        "why": "Parallel is equal slopes; perpendicular would be a product of −1. The two are constantly confused, and the whole answer depends on which one is meant.",
         "common_mistakes": [
           "Using m₁m₂ = −1, which is the perpendicular condition.",
           "Arithmetic slip on y − 7 = 2."
@@ -131,5 +133,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The denominator 2 − 3 = −1 flips the sign, so the slope of AB is y − 7, not 7 − y. Parallel means the slopes are equal, and that gives y = 9 in one line."
 }

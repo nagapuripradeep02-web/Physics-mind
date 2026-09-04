@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_particle_s_4t3_minus_3t2_acceleration_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A particle is moving along a line according to S = 4t³ − 3t² + 5t − 1, where S is measured in metres and t in seconds. Find the velocity and the acceleration at time t. At what time is the acceleration zero?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate for velocity and acceleration",
+      "marks": 1
+    },
+    {
+      "label": "Solve a = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 12. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how velocity and acceleration come from S, and what you set to zero at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity_acceleration",
+        "kind": "equation",
+        "label": "Differentiate for velocity and acceleration",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rectilinear motion question. Differentiate twice in order: S to v, then v to a. The constant −1 disappears at the first differentiation and the +5 at the second.",
+        "memory_tip": "S, then v, then a — one differentiation at each arrow, always in that order.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rectilinear motion question. Velocity v = dS/dt and acceleration a = dv/dt.",
+          "S = 4t³ − 3t² + 5t − 1",
+          "v = dS/dt = 12t² − 6t + 5",
+          "a = dv/dt = 24t − 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = dS/dt = 12t² − 6t + 5 and a = dv/dt = 24t − 6.",
+          "accept": [
+            "velocity is the first derivative and acceleration is the second derivative",
+            "differentiate S to get twelve t squared minus six t plus five",
+            "differentiate again to get twenty four t minus six",
+            "S ni differentiate cheste velocity, malli cheste acceleration",
+            "v is d S by d t and a is d v by d t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twelve t squared",
+            "twenty four t minus six",
+            "first derivative",
+            "second derivative"
+          ]
+        },
+        "why": "Velocity is the rate of change of displacement and acceleration is the rate of change of velocity, so both come from the one function by differentiating twice.",
+        "common_mistakes": [
+          "Differentiating S once and calling the result the acceleration.",
+          "Losing the +5 while writing v.",
+          "Writing a = 24t and dropping the −6."
+        ]
+      },
+      {
+        "id": "s2_acceleration_zero",
+        "kind": "boxed_final",
+        "label": "Solve a = 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Set the acceleration, not the velocity, to zero. 6/24 = 1/4, which is 0.25 sec. Carry the units into the box: m/sec for v and m/sec² for a.",
+        "memory_tip": "The words 'acceleration is zero' point at a, so a is the expression that goes equal to zero.",
+        "lines": [
+          "Acceleration is zero when a = 0.",
+          "24t − 6 = 0",
+          "24t = 6",
+          "t = 6/24 = 1/4",
+          {
+            "text": "∴ v = 12t² − 6t + 5 m/sec,  a = 24t − 6 m/sec²,  and a = 0 at t = 1/4 sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That setting 24t − 6 = 0 gives t = 1/4 second.",
+          "accept": [
+            "put the acceleration equal to zero and solve for t",
+            "twenty four t equals six so t is one by four",
+            "the acceleration is zero at one quarter of a second",
+            "acceleration zero ante a equals zero pettali, t equals one by four",
+            "t is zero point two five seconds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by four",
+            "zero point two five",
+            "acceleration zero",
+            "twenty four t equals six"
+          ]
+        },
+        "why": "The acceleration here is a linear expression in t, so it is zero at exactly one time, and that time is found by solving one linear equation.",
+        "common_mistakes": [
+          "Setting the velocity to zero instead of the acceleration.",
+          "Writing t = 4 by inverting 6/24.",
+          "Giving the three answers with no units."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Acceleration zero means the SECOND derivative is zero, not the first. 24t − 6 = 0 gives t = 1/4, and a fractional time is a perfectly good answer."
+}

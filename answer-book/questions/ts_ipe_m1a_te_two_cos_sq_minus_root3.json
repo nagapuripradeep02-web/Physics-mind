@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The equation mixes cos² with sin, so replace cos²θ by 1 − sin²θ. Everything is then in sine alone and it becomes an ordinary quadratic.",
+        "memory_tip": "The equation mixes cos² with sin, so replace cos²θ by 1 − sin²θ — everything is then in sine.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Split the middle term: 2√3 sinθ − √3 sinθ gives √3 sinθ, and the pairs then share a bracket.",
+        "memory_tip": "Split the middle term as 2√3 − √3; the pairs then share the bracket (sinθ + √3).",
         "lines": [
           "⇒ 2sin²θ + 2√3 sinθ − √3 sinθ − (√3)² = 0",
           "⇒ 2sinθ(sinθ + √3) − √3(sinθ + √3) = 0",
@@ -139,6 +141,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark, and the part most often skipped. sinθ = −√3 is about −1.73, and a sine can never leave [−1, 1] — so that branch is discarded, with the reason written down.",
+        "memory_tip": "sinθ = −√3 is about −1.73, and a sine never leaves [−1, 1]. Discard it IN WRITING.",
         "lines": [
           "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
           "⇒ sinθ = √3/2  (or)  sinθ = −√3",
@@ -181,6 +184,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. sinθ = √3/2 is sin(π/3), so the principal value is π/3 and the sine general solution applies.",
+        "memory_tip": "sinθ = √3/2 = sin(π/3), so the sine general solution applies: nπ + (−1)ⁿ(π/3).",
         "lines": [
           "Now sinθ = √3/2 = sin(π/3)",
           "Here the principal value is α = π/3",
@@ -219,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert cos² into 1 − sin² so everything is in sinθ, then factorise. One root is sinθ = −√3, impossible since |sinθ| ≤ 1, and saying so explicitly is part of the answer."
 }

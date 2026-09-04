@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_parallelepiped_volume_coterminous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the volume of the parallelepiped whose coterminous edges are the vectors 2i − 3j + 2k, i − j + 2k and 2i + j − k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the volume formula",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the determinant",
+      "marks": 2
+    },
+    {
+      "label": "Take the modulus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the modulus, because a negative triple product reported as a volume is the single most common loss here. Three evaluations agree at −11: the first-row expansion gives 2(1 − 2) + 3(−1 − 4) + 2(1 + 2) = −11; the third-row expansion gives 2(−4) − 2 − 1 = −11; and computing b × c = (−1, 5, 3) and dotting with a gives −2 − 15 + 6 = −11. The volume is therefore |−11| = 11 cubic units, never −11. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this volume — the formula, the determinant, and what you do with the sign.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Coterminous means the three edges already meet at one corner, so no subtraction is needed.",
+        "memory_tip": "Parallelepiped is the whole box product; the tetrahedron gets one sixth of it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 2i − 3j + 2k, b = i − j + 2k,",
+          "c = 2i + j − k.",
+          "These are coterminous edges, so",
+          {
+            "text": "V = |[a\\ b\\ c]|",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the volume of a parallelepiped on coterminous edges is the modulus of their box product.",
+          "accept": [
+            "the volume is mod of the box product of the three edges",
+            "coterminous edges go straight in with no subtraction",
+            "V equals mod a b c",
+            "coterminous ante oke corner daggara kalise edges",
+            "state the parallelepiped volume formula"
+          ],
+          "reject": [
+            "the determinant is minus eleven",
+            "the answer is eleven",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coterminous",
+            "box product",
+            "modulus",
+            "volume"
+          ]
+        },
+        "why": "The three edges meet at one corner, so they go straight into the box product with no subtraction, and the modulus is what makes the answer a volume.",
+        "common_mistakes": [
+          "Using ⅙|[a b c]|, which is the tetrahedron formula.",
+          "Subtracting the vectors first; these are already edges, not corners."
+        ]
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "Evaluate the determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. Rows are the three edges in the order given. Watch the minus in front of the middle term.",
+        "memory_tip": "The middle cofactor carries a minus, so −(−3) becomes +3 in front of its bracket.",
+        "lines": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 2 & -3 & 2 \\\\ 1 & -1 & 2 \\\\ 2 & 1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(1 − 2) + 3(−1 − 4) + 2(1 + 2)",
+          "= −2 − 15 + 6 = −11",
+          "Check by b × c = (−1, 5, 3):",
+          "a·(b × c) = −2 − 15 + 6 = −11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant of the three edges is −11.",
+          "accept": [
+            "expand the three by three determinant to get minus eleven",
+            "b cross c is minus one, five, three and dotting with a gives minus eleven",
+            "the box product is minus eleven",
+            "determinant expand cheste minus eleven vasthundi",
+            "both methods give minus eleven"
+          ],
+          "reject": [
+            "take the modulus",
+            "the volume is eleven",
+            "state the formula"
+          ],
+          "heard_as": [
+            "minus eleven",
+            "determinant",
+            "b cross c",
+            "box product"
+          ]
+        },
+        "why": "Computing b × c first and dotting with a is the definition of the box product, so it must agree with the determinant.",
+        "common_mistakes": [
+          "Getting the sign of the middle cofactor wrong.",
+          "Reading 2(1 − 2) as 2(2 − 1)."
+        ]
+      },
+      {
+        "id": "s3_volume",
+        "kind": "boxed_final",
+        "label": "Take the modulus",
+        "marks": 1,
+        "mark_note": "Volume",
+        "margin_note": "Last mark. The negative sign is about the order of the edges, not the size of the box.",
+        "memory_tip": "The sign belongs to the ORDER of the edges; the size is always the modulus.",
+        "lines": [
+          "V = |−11|",
+          "A volume is never negative, so take",
+          "the modulus of the box product.",
+          {
+            "text": "V = 11 cubic units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the volume is |−11| = 11 cubic units.",
+          "accept": [
+            "take the modulus so the volume is eleven cubic units",
+            "a volume cannot be negative, so eleven",
+            "eleven cubic units",
+            "modulus teeskunte eleven cubic units vasthundi",
+            "the minus sign only records the order of the edges"
+          ],
+          "reject": [
+            "the determinant is minus eleven",
+            "state the formula",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eleven",
+            "cubic units",
+            "modulus",
+            "volume"
+          ]
+        },
+        "why": "A negative triple product only means the three edges were taken in the left-handed order; the box itself still holds 11 cubic units.",
+        "common_mistakes": [
+          "Reporting the volume as −11.",
+          "Writing square units instead of cubic units."
+        ]
+      }
+    ]
+  }
+}

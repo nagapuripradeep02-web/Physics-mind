@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_independent_0_2_0_5_four_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If A and B are independent events with P(A) = 0.2, P(B) = 0.5, find (i) P(A|B) (ii) P(B|A) (iii) P(A ∩ B) (iv) P(A ∪ B).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "(i) P(A|B)",
+      "marks": 1
+    },
+    {
+      "label": "(ii) P(B|A)",
+      "marks": 1
+    },
+    {
+      "label": "(iii) P(A ∩ B)",
+      "marks": 1
+    },
+    {
+      "label": "(iv) P(A ∪ B)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 10 Probability, answer 78 (PDF p.60: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). Four parts asked, four marks: one mark per part is the natural split, with the \"A, B are independent\" set-up carrying no mark of its own. The SAME step ids (s1_independent, s2_part_i … s5_part_iv) and the SAME 0 + 1 + 1 + 1 + 1 split are used on both \"A and B are independent events with P(A), P(B) given\" answers of this unit (77 and 78), deliberately: one method, four one-mark parts each, over different numbers and different parts. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q16 of Model Paper 2 (book p.113); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answers checked: 0.2, 0.5, 0.1, 0.6 — agree with the book."
+  },
+  "recall_prompt": "Say how you would find the four quantities for independent events with P(A) = 0.2 and P(B) = 0.5 — the rule each part uses and the number.",
+  "insider_note": "Parts (i) and (ii) are one line each: for independent events a condition changes nothing. The only computation is part (iv).",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_independent",
+        "kind": "text",
+        "label": "A and B are independent",
+        "marks": 0,
+        "margin_note": "No mark of its own. Write the given values and the word \"independent\" — it is the reason behind parts (i), (ii) and (iii).",
+        "memory_tip": "Write the word 'independent' — it is the reason behind three of the four parts.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Given: A, B are independent,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 0.2, P(B) = 0.5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are independent with P(A) = 0.2 and P(B) = 0.5.",
+          "accept": [
+            "A and B are independent with P A point two and P B point five",
+            "the events are independent, point two and point five",
+            "independent events, P of A is 0.2 and P of B is 0.5",
+            "A B independent, P A 0.2, P B 0.5 ani given"
+          ],
+          "reject": [
+            "given",
+            "write the values"
+          ],
+          "heard_as": [
+            "independent",
+            "point two",
+            "point five"
+          ]
+        },
+        "why": "Independence is what makes each conditional probability equal the plain one and the intersection a product.",
+        "common_mistakes": [
+          "Not writing \"independent\" and then using the rules with no reason."
+        ]
+      },
+      {
+        "id": "s2_part_i",
+        "kind": "equation",
+        "label": "(i) P(A|B)",
+        "marks": 1,
+        "mark_note": "(i)",
+        "margin_note": "Independent: P(A|B) = P(A) = 0.2.",
+        "memory_tip": "For independent events a condition changes nothing: P(A|B) = P(A) = 0.2.",
+        "lines": [
+          {
+            "text": "(i) A, B independent ⇒ P(A|B) = P(A) = 0.2",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for independent events P(A|B) = P(A) = 0.2.",
+          "accept": [
+            "P of A given B equals P of A which is point two",
+            "independent so A given B is just P A, 0.2",
+            "A given B is point two",
+            "independent kabatti P A given B ante P A, 0.2"
+          ],
+          "reject": [
+            "conditional probability",
+            "find A given B"
+          ],
+          "heard_as": [
+            "A given B",
+            "point two",
+            "independent"
+          ]
+        },
+        "why": "Knowing B happened does not change the chance of A when the events are independent.",
+        "common_mistakes": [
+          "Writing P(A|B) = P(B) = 0.5.",
+          "Computing P(A ∩ B)/P(B) and mis-dividing."
+        ]
+      },
+      {
+        "id": "s3_part_ii",
+        "kind": "equation",
+        "label": "(ii) P(B|A)",
+        "marks": 1,
+        "mark_note": "(ii)",
+        "margin_note": "Independent: P(B|A) = P(B) = 0.5.",
+        "memory_tip": "The other way round: P(B|A) = P(B) = 0.5.",
+        "lines": [
+          {
+            "text": "(ii) P(B|A) = P(B) = 0.5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for independent events P(B|A) = P(B) = 0.5.",
+          "accept": [
+            "P of B given A equals P of B which is point five",
+            "independent so B given A is just P B, 0.5",
+            "B given A is half",
+            "independent kabatti P B given A ante P B, 0.5"
+          ],
+          "reject": [
+            "conditional probability",
+            "find B given A"
+          ],
+          "heard_as": [
+            "B given A",
+            "point five",
+            "half"
+          ]
+        },
+        "why": "Same reason as part (i) with the roles swapped.",
+        "common_mistakes": [
+          "Writing P(B|A) = P(A) = 0.2."
+        ]
+      },
+      {
+        "id": "s4_part_iii",
+        "kind": "equation",
+        "label": "(iii) P(A ∩ B)",
+        "marks": 1,
+        "mark_note": "(iii)",
+        "margin_note": "Multiply: 0.2 × 0.5 = 0.1.",
+        "memory_tip": "Independent, so multiply: 0.2 × 0.5 = 0.1.",
+        "lines": [
+          {
+            "text": "(iii) P(A ∩ B) = P(A)·P(B) = 0.2 × 0.5 = 0.1",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∩ B) = P(A)·P(B) = 0.2 × 0.5 = 0.1.",
+          "accept": [
+            "P of A intersection B is P A times P B which is point one",
+            "independent so multiply point two by point five to get 0.1",
+            "the intersection is the product 0.1",
+            "independent kabatti P A into P B, 0.1"
+          ],
+          "reject": [
+            "find the intersection",
+            "multiply"
+          ],
+          "heard_as": [
+            "point one",
+            "A intersection B",
+            "product"
+          ]
+        },
+        "why": "P(A ∩ B) = P(A)·P(B) is the definition of independence.",
+        "common_mistakes": [
+          "Adding 0.2 + 0.5 = 0.7.",
+          "Writing 0.2 × 0.5 = 0.01."
+        ]
+      },
+      {
+        "id": "s5_part_iv",
+        "kind": "boxed_final",
+        "label": "(iv) P(A ∪ B)",
+        "marks": 1,
+        "mark_note": "(iv)",
+        "margin_note": "Addition theorem with part (iii): 0.2 + 0.5 − 0.1 = 0.6.",
+        "memory_tip": "Addition theorem using part (iii): 0.2 + 0.5 − 0.1 = 0.6.",
+        "lines": [
+          {
+            "text": "(iv) P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.2 + 0.5 − 0.1",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A ∪ B) = 0.6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 0.2 + 0.5 − 0.1 = 0.6.",
+          "accept": [
+            "P of A union B is P A plus P B minus P A intersection B which is point six",
+            "addition theorem 0.2 plus 0.5 minus 0.1 equals 0.6",
+            "the union is point six",
+            "addition theorem tho 0.2 plus 0.5 minus 0.1 ante 0.6"
+          ],
+          "reject": [
+            "find the union",
+            "add them"
+          ],
+          "heard_as": [
+            "point six",
+            "A union B",
+            "addition theorem"
+          ]
+        },
+        "why": "The union subtracts the overlap once; the overlap is the product found in part (iii).",
+        "common_mistakes": [
+          "Writing P(A ∪ B) = 0.7, the plain sum.",
+          "Subtracting 0.1 twice."
+        ]
+      }
+    ]
+  }
+}

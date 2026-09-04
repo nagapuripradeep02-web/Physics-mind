@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_sin5x_over_sin5x_plus_cos5x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Evaluate ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 1
+    },
+    {
+      "label": "Write the second form",
+      "marks": 1
+    },
+    {
+      "label": "Add and solve",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', answer 84, on a printed Super Scoring Page (SSP 69). Printed appearance: AP 19, 17. No margin mark tags are printed for this item, so the 1+1+2 split is OURS, patterned on the identical shape carried by the two printed splits immediately before it in this chapter (answers 82 and 83, both 1+1+2). BOOK ERROR, corrected here: the printed working's second line (the x → π/2−x form) repeats the FIRST line's numerator sin⁵x unchanged instead of turning it into cos⁵x — the correct second form's numerator is cos⁵x, as re-derived below and as required for the addition step to reach 1. The book's stated final answer, π/4, is nonetheless correct (it is exactly what the corrected working also gives). Chapter star rank ★★★ applies. Boundary reading: printed p.67 (Hyperbola SAQ) and printed p.72 (Differential Equations SAQ opening) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the first Q16 item on the Bullet Model Paper, book p.110, with the corrected working already present there — same final value π/4. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book prints this question's second line with an error: it repeats sin⁵x instead of turning it into cos⁵x after the substitution. Write the corrected line — cos⁵x — the wrong line would not let the addition step reach 1.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a = π/2",
+        "marks": 1,
+        "mark_note": "First form",
+        "margin_note": "One mark. Label the given integral (1).",
+        "memory_tip": "sin(π/2 − x) = cosx — always check the substituted form actually changes the base.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We know ∫₀^a f(x)dx = ∫₀^a f(a − x)dx",
+          "∴ I = ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx …(1)"
+        ],
+        "why": "Labelling the given integral (1) sets it up for comparison with the transformed second form.",
+        "common_mistakes": [
+          "Not writing the property line before using it.",
+          "Skipping the label (1), which then confuses the addition step."
+        ]
+      },
+      {
+        "id": "s2_second_form",
+        "kind": "equation",
+        "label": "Write the second form",
+        "marks": 1,
+        "mark_note": "Second form",
+        "margin_note": "One more mark. sin⁵x turns into cos⁵x — check this line carefully, it is easy to leave it unchanged by mistake.",
+        "memory_tip": "sin(π/2 − x) = cosx, so sin⁵(π/2 − x) = cos⁵x — the base swaps, the power 5 stays.",
+        "lines": [
+          "By x → π/2 − x:",
+          "I",
+          "= ∫₀^(π/2) sin⁵(π/2−x)/[sin⁵(π/2−x) +",
+          "cos⁵(π/2−x)] dx",
+          "⇒ I = ∫₀^(π/2) cos⁵x/(cos⁵x + sin⁵x) dx …(2)"
+        ],
+        "why": "Under x → π/2 − x, sinx becomes cosx, so sin⁵x becomes cos⁵x in the numerator, while the denominator (a sum of both powers) reappears unchanged.",
+        "common_mistakes": [
+          "Leaving the numerator as sin⁵x instead of turning it into cos⁵x — a printed error in some editions of this exact question.",
+          "Forgetting that the denominator, being a sum of both terms, is unaffected by the swap."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Add and solve",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The numerator sum equals the denominator, so the fraction is 1.",
+        "memory_tip": "sin⁵x + cos⁵x over sin⁵x + cos⁵x is always 1 — the whole point of the swap was to make the two numerators add up to the denominator.",
+        "lines": [
+          "Adding (1) and (2): I + I",
+          "= ∫₀^(π/2) [sin⁵x + cos⁵x]/[sin⁵x + cos⁵x] dx",
+          "⇒ 2I = ∫₀^(π/2) 1 dx = [x]₀^(π/2) = π/2",
+          {
+            "text": "∴ I = π/4",
+            "style": "boxed"
+          }
+        ],
+        "why": "The added numerator matches the denominator exactly, so the integrand is 1 for every x, reducing the integral to the length of the interval.",
+        "common_mistakes": [
+          "Adding a wrongly-copied second form and getting a numerator that does NOT match the denominator.",
+          "Forgetting to divide by 2 at the end."
+        ]
+      }
+    ]
+  }
+}

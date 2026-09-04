@@ -11,10 +11,10 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 14,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "By Mathematical Induction, show that 49ⁿ + 16n − 1 is divisible by 64 for all positive integers n.",
   "appearances": [
     {
@@ -32,10 +32,6 @@
   ],
   "mark_split": [
     {
-      "label": "The statement S(n)",
-      "marks": 1
-    },
-    {
       "label": "Step 1 — S(1) is true",
       "marks": 1
     },
@@ -45,7 +41,7 @@
     },
     {
       "label": "Step 3 — S(k+1) follows",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclusion by P.M.I",
@@ -55,22 +51,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 10. Four [1 Mark] tags are printed on this page (statement, Step 1, Step 2, conclusion); the Step-3 tag is not legible on the scan, and 3 is the only value that makes the printed four sum to the chapter's 7. Publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 10. Four [1 Mark] tags are printed on this page (statement, Step 1, Step 2, conclusion); the Step-3 tag is not legible on the scan, and 3 is the only value that makes the printed four sum to the chapter's 7. Publisher's claims until a Telangana IPE teacher confirms them. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this by induction — how you write divisibility as an equation, and what happens in the third step.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_statement",
         "kind": "equation",
         "label": "Write the statement",
-        "marks": 1,
-        "mark_note": "Statement",
-        "margin_note": "One mark. Divisibility is written as an EQUATION — equal to 64 times an integer. Without that line there is nothing to substitute later.",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — divisibility is written as an EQUATION, equal to 64 times an integer. Without that line there is nothing to substitute later.",
         "lines": [
           "Let S(n): 49ⁿ + 16n − 1 = 64q,",
           "        where q ∈ Z"
@@ -100,7 +95,8 @@
         "common_mistakes": [
           "Leaving the statement in words, so Step 3 has nothing to use.",
           "Forgetting to say q is an integer, which is the whole content of divisibility."
-        ]
+        ],
+        "memory_tip": "Divisibility becomes = 64q with q an integer. Without that line there is nothing to substitute later."
       },
       {
         "id": "s2_base",
@@ -140,7 +136,8 @@
         "common_mistakes": [
           "Getting 66 by mishandling the −1.",
           "Asserting S(1) without the arithmetic."
-        ]
+        ],
+        "memory_tip": "At n = 1: 49 + 16 − 1 = 64 = 64 × 1, exactly one multiple."
       },
       {
         "id": "s3_assume",
@@ -180,15 +177,16 @@
         "common_mistakes": [
           "Assuming the statement for all k rather than one k.",
           "Not rearranging, which leaves Step 3 with nothing to put in."
-        ]
+        ],
+        "memory_tip": "Rearrange to make 49ᵏ the SUBJECT — the rearranged line is what Step 3 uses."
       },
       {
         "id": "s4_inductive",
         "kind": "equation",
         "label": "Show S(k+1) follows",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "Four of the eight marks. Split 49ᵏ⁺¹ as 49·49ᵏ, substitute (1), and gather until 64 comes out as a factor.",
+        "margin_note": "One mark, and the longest step on the page. Split 49ᵏ⁺¹ as 49·49ᵏ, substitute (1), and gather until 64 comes out as a factor.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "49ᵏ⁺¹ + 16(k+1) − 1 = 49·49ᵏ + 16k + 15",
@@ -227,7 +225,8 @@
           "Writing 49ᵏ⁺¹ as 49ᵏ + 49 instead of 49 × 49ᵏ.",
           "Stopping at 64(…) without saying the bracket is an integer, which is what divisibility requires.",
           "Slipping on 16(k+1) − 1 = 16k + 15."
-        ]
+        ],
+        "memory_tip": "Split 49ᵏ⁺¹ as 49·49ᵏ, substitute, and collect: 16k(49 − 1) = 16k(48) leaves 64 as a factor."
       },
       {
         "id": "s5_conclude",
@@ -265,8 +264,10 @@
         "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
-        ]
+        ],
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
       }
     ]
-  }
+  },
+  "insider_note": "Isolate 49ᵏ = 64q − 16k + 1 first. The 16k terms then combine as −16k(49 − 1) = −768k, and 768 = 64 × 12 is what leaves a whole number inside the bracket."
 }

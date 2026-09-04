@@ -81,7 +81,7 @@
         "why": "The class of an amine is determined by the nitrogen, not by the carbon. In (CH₃)₃C–NH₂ the carbon is a tertiary carbon, but only ONE carbon is joined to the nitrogen, so the amine is primary. This is the opposite of the rule used for alcohols and alkyl halides, where the carbon is what is counted.",
         "common_mistakes": [
           "Calling (CH₃)₃C–NH₂ a 3° amine because its carbon is tertiary. Count the carbons on the nitrogen, not the carbons on the carbon.",
-          "Counting the hydrogen atoms on nitrogen. Three carbons on nitrogen and no hydrogen is 3°; the count that is marked is the carbon count."
+          "Classifying (iii) as 2° by counting only the two ethyl groups. The methyl group sits on the nitrogen as well, so three carbons are joined to it and the amine is 3°."
         ],
         "memory_tip": "Look at the nitrogen and count its carbon neighbours: one, two or three gives 1°, 2° or 3°.",
         "margin_note": "Write 1°, 2° or 3° beside each name. The classification is the second mark and is often left out."

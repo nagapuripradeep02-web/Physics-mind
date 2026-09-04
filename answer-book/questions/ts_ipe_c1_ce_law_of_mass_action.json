@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -88,5 +88,6 @@
         "margin_note": "The Kc expression is the law's most-used consequence — box it."
       }
     ]
-  }
+  },
+  "insider_note": "The question says state the law, but the second mark is applying it — the Kc expression, products on top, coefficients as powers. The statement alone caps at one of the two."
 }

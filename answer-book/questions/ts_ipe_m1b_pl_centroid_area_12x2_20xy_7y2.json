@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_centroid_area_12x2_20xy_7y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the centroid and the area of the triangle formed by the lines 12x² − 20xy + 7y² = 0 and 2x − 3y + 4 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the pair into two lines",
+      "marks": 1
+    },
+    {
+      "label": "Find the two vertices",
+      "marks": 1
+    },
+    {
+      "label": "Find the centroid",
+      "marks": 1
+    },
+    {
+      "label": "Find the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 14(i), book p.169. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two separate results and each needs two separate pieces of work first: the pair has to be factorised, the two vertices have to be found from it, and only then can the centroid and the area each be written. Four equal actions, four equal marks. The area was cross-checked against the standard formula n²√(h² − ab) / |am² − 2hlm + bl²| with a = 12, h = −10, b = 7, l = 2, m = −3, n = 4: that gives 16(4)/|108 − 120 + 28| = 64/16 = 4, matching the coordinate calculation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say where the third vertex is, and how that shortens the area formula.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_the_pair",
+        "kind": "equation",
+        "label": "Split the pair into two lines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Split the middle term: 12 × 7 = 84 and −14 × −6 = 84 with −14 − 6 = −20. Always multiply the two factors back out before going on.",
+        "memory_tip": "Split the middle term using 12 × 7 = 84, then multiply the factors back out to check.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "12x² − 20xy + 7y² = 0   ……(1)",
+          "2x − 3y + 4 = 0   ……(2)",
+          "(1) ⇒ 12x² − 14xy − 6xy + 7y² = 0",
+          "⇒ 2x(6x − 7y) − y(6x − 7y) = 0",
+          "⇒ (2x − y)(6x − 7y) = 0",
+          "Multiplying back: (2x − y)(6x − 7y)",
+          "   = 12x² − 20xy + 7y², which is (1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair factorises as (2x − y)(6x − 7y) = 0, checked by multiplying the factors back out.",
+          "accept": [
+            "split the middle term into minus fourteen x y and minus six x y",
+            "the pair factorises as two x minus y into six x minus seven y",
+            "multiply the two factors back to check they give the pair",
+            "middle term split chesi factorise cheyyali",
+            "the two lines are two x minus y equals zero and six x minus seven y equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x minus y",
+            "six x minus seven y",
+            "split the middle term",
+            "factorise"
+          ]
+        },
+        "why": "A homogeneous second-degree equation is two lines through the origin. Once it is factorised the question is an ordinary coordinate-geometry question about three known lines.",
+        "common_mistakes": [
+          "Reading the xy coefficient as h instead of 2h, so h = −20 instead of −10.",
+          "Splitting −20xy as −10xy − 10xy, whose product is not 84x²y²."
+        ]
+      },
+      {
+        "id": "s2_find_the_vertices",
+        "kind": "equation",
+        "label": "Find the two vertices",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex, with no work needed. The other two come from solving each line of the pair with (2).",
+        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is the third vertex, with no work needed.",
+        "lines": [
+          "Both lines of (1) pass through O(0, 0).",
+          "2x − y = 0 ⇒ y = 2x. Put in (2):",
+          "2x − 6x + 4 = 0 ⇒ x = 1, y = 2",
+          "∴ A = (1, 2)",
+          "6x − 7y = 0 ⇒ y = 6x/7. Put in (2):",
+          "2x − 18x/7 + 4 = 0 ⇒ −4x/7 = −4 ⇒ x = 7",
+          "⇒ y = 6, so B = (7, 6)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vertices are O(0, 0), A(1, 2) and B(7, 6).",
+          "accept": [
+            "the origin is one vertex because the pair passes through it",
+            "solve each line of the pair with the given line",
+            "the vertices are one comma two and seven comma six",
+            "origin okati vertex, migatha rendu line tho solve chesthe vasthaayi",
+            "find where each line of the pair meets the given line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "the origin",
+            "one comma two",
+            "seven comma six",
+            "point of intersection"
+          ]
+        },
+        "why": "Solving each factor separately with the given line is safer than substituting the line into the whole pair, because each solve is a plain pair of linear equations.",
+        "common_mistakes": [
+          "Solving the given line against itself instead of against a factor.",
+          "Finding only one vertex and taking the triangle as done."
+        ]
+      },
+      {
+        "id": "s3_centroid",
+        "kind": "equation",
+        "label": "Find the centroid",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The centroid is the plain average of the three vertices. With the origin among them two of the six numbers are zero, but the divisor is still 3.",
+        "memory_tip": "The centroid is the plain average of all THREE vertices — the origin counts as one of them.",
+        "lines": [
+          "The vertices are O(0,0), A(1, 2), B(7, 6).",
+          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)",
+          "= ((0 + 1 + 7)/3, (0 + 2 + 6)/3)",
+          "= (8/3, 8/3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That averaging the three vertices gives the centroid (8/3, 8/3).",
+          "accept": [
+            "the centroid is the average of the three vertices",
+            "add the x values and divide by three, same for the y values",
+            "the centroid is eight by three comma eight by three",
+            "moodu vertices average teesukovali",
+            "centroid is eight thirds eight thirds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "centroid",
+            "average",
+            "divide by three",
+            "eight by three"
+          ]
+        },
+        "why": "The centroid needs all three vertices, unlike the area, which can be written from two of them when the third is the origin.",
+        "common_mistakes": [
+          "Averaging only the two vertices found by solving.",
+          "Dividing by 2 instead of 3."
+        ]
+      },
+      {
+        "id": "s4_area",
+        "kind": "boxed_final",
+        "label": "Find the area",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁|. Cross-check with n²√(h² − ab)/|am² − 2hlm + bl²|: here h = −10, so h² − ab = 16 and the formula also gives 4.",
+        "memory_tip": "With a vertex at the origin the determinant collapses to ½|x₁y₂ − x₂y₁| — only two points appear.",
+        "lines": [
+          "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
+          "= ½ |1(6) − 7(2)| = ½ |6 − 14|",
+          "= ½ (8) = 4",
+          {
+            "text": "∴ G = (8/3, 8/3), area = 4 sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area is ½|x₁y₂ − x₂y₁| = ½|6 − 14| = 4 sq.units.",
+          "accept": [
+            "the area with a vertex at the origin is half mod x one y two minus x two y one",
+            "one times six minus seven times two is minus eight",
+            "the area is four square units",
+            "origin vertex unnappudu area formula chinnadi",
+            "area is four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half mod",
+            "x one y two",
+            "four square units",
+            "area"
+          ]
+        },
+        "why": "The modulus keeps the area positive. The determinant itself comes out negative here, which says only that the two vertices were listed in clockwise order.",
+        "common_mistakes": [
+          "Reporting the area as −4 by dropping the modulus.",
+          "Reading h as −20 instead of −10 when checking with the standard formula."
+        ]
+      }
+    ]
+  }
+}

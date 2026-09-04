@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gof_reciprocal_sqrt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f(x) = 1/x and g(x) = √x for all x ∈ (0, ∞), find (gof)(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inner value f(x) = 1/x, positive on (0, ∞)",
+      "marks": 1
+    },
+    {
+      "label": "Value of g(1/x)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the inner value together with the reason the domain (0, ∞) lets g act on it, and one to the simplified root. The domain is not decoration here: it is the condition that makes gof a real valued function, so it is carried in the written lines and in the boxed answer, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (gof)(x) here — which function acts first, and why the domain (0, ∞) matters.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inner",
+        "kind": "equation",
+        "label": "Work f first and check the sign",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two things earn it: f(x) = 1/x as the inner value, and the sentence that 1/x is positive on (0, ∞) so the square root exists.",
+        "memory_tip": "In gof, f is inside. Here f makes 1/x, and the domain (0, ∞) keeps 1/x positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(gof)(x) = g[f(x)]",
+          "f acts first: f(x) = 1/x",
+          "For x ∈ (0, ∞) we have x > 0, so 1/x > 0.",
+          "A positive number has a real square root,",
+          "so g can act on 1/x."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is the inner function giving 1/x, and that on (0, ∞) this value is positive, so the square root is a real number.",
+          "accept": [
+            "in g o f the inner function is f so first we get one over x",
+            "x is positive so one over x is positive and the square root exists",
+            "f gives one by x and that is positive on the given domain",
+            "modata f apply chesthe one by x vastundi adi positive kabatti root teeskovachu",
+            "the inner value is one over x and it is greater than zero"
+          ],
+          "reject": [
+            "I take the square root",
+            "apply both functions",
+            "the answer is one over root x"
+          ],
+          "heard_as": [
+            "g o f",
+            "gof",
+            "one over x",
+            "one by x",
+            "positive",
+            "square root"
+          ]
+        },
+        "why": "The domain (0, ∞) is what makes this composition a real valued function. If x were 0 then 1/x would not exist, and if x were negative then 1/x would be negative and its square root would not be a real number.",
+        "common_mistakes": [
+          "Multiplying the two functions and writing (√x)(1/x) instead of composing them.",
+          "Allowing x = 0, where 1/x is not defined."
+        ]
+      },
+      {
+        "id": "s2_outer",
+        "kind": "boxed_final",
+        "label": "Apply g to 1/x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Either √(1/x) or 1/√x is a correct final form; the simplified 1/√x is the one to box, with the domain written beside it.",
+        "memory_tip": "√(a/b) = √a/√b for positive a and b, and √1 = 1, so √(1/x) = 1/√x.",
+        "lines": [
+          "Now apply g to 1/x:",
+          "g(1/x) = √(1/x)",
+          "= √1/√x = 1/√x",
+          {
+            "text": "∴ (gof)(x) = 1/√x, x ∈ (0, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g takes the square root of 1/x, which simplifies to 1 over root x.",
+          "accept": [
+            "g of one by x is the square root of one by x which is one over root x",
+            "root of one over x splits into root one over root x",
+            "the answer is one by root x on the interval zero to infinity",
+            "square root of one by x ante one by root x",
+            "one over the square root of x"
+          ],
+          "reject": [
+            "then I get the answer",
+            "take the root of x",
+            "it simplifies"
+          ],
+          "heard_as": [
+            "root of one by x",
+            "one over root x",
+            "one by root x",
+            "square root"
+          ]
+        },
+        "why": "The square root of a quotient of positive numbers is the quotient of the square roots, and √1 = 1. Both √(1/x) and 1/√x name the same number for every x > 0.",
+        "common_mistakes": [
+          "Writing √(1/x) as √x.",
+          "Leaving the domain x ∈ (0, ∞) off the final line."
+        ]
+      }
+    ]
+  }
+}

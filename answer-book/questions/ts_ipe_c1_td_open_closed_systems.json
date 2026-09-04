@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Thermodynamics (Chemistry)"
   },
   "chapter": "Thermodynamics",
@@ -83,5 +83,6 @@
         "margin_note": "The boundary material decides: sealed but conducting = closed."
       }
     ]
-  }
+  },
+  "insider_note": "One mark per system, and each example only completes its mark if it names what actually crosses the boundary. Keep closed apart from isolated: a closed system still lets energy through."
 }

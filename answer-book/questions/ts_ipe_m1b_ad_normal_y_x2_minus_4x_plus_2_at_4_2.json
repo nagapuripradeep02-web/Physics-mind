@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_normal_y_x2_minus_4x_plus_2_at_4_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the normal to the curve y = x² − 4x + 2 at (4, 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the point and differentiate",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the tangent at (4, 2)",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the normal",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed question uses the plural, \"the equations of the normal\", but only one point is given, so there is exactly one normal. It is reproduced as printed and answered as the single line it is."
+  },
+  "recall_prompt": "Say how you would do this one — say what dy/dx is, what the tangent slope is at (4, 2), and what you do to it to get the normal. Say also what this question does NOT ask for.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Check the point and differentiate",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Even though only the normal is asked for, the derivative is still the starting point — the normal's slope is defined through the tangent's.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y = x² − 4x + 2",
+          "Check the point: at x = 4,  y = 16 − 16 + 2 = 2,",
+          "so (4, 2) lies on the curve.",
+          "Differentiate with respect to x:",
+          "dy/dx = 2x − 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point is checked and dy/dx = 2x − 4.",
+          "accept": [
+            "differentiate the quadratic to two x minus four",
+            "check that x equal to four gives y equal to two",
+            "dy by dx is two x minus four",
+            "quadratic ni differentiate cheste two x minus four",
+            "the constant two differentiates to zero",
+            "start from the derivative even though only the normal is asked"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x minus four",
+            "x equal to four",
+            "sixteen minus sixteen",
+            "differentiate"
+          ]
+        },
+        "why": "The normal is defined as the perpendicular to the tangent, so the tangent's slope has to be found first even when the tangent itself is not asked for.",
+        "common_mistakes": [
+          "Differentiating −4x to −4x or to 0 instead of −4.",
+          "Carrying the constant +2 into dy/dx.",
+          "Checking the point with y = 4 and x = 2, reading the coordinates the wrong way round."
+        ],
+        "memory_tip": "The normal always comes through the tangent. Differentiate first, whichever of the two lines is asked for."
+      },
+      {
+        "id": "s2_tangent_slope",
+        "kind": "equation",
+        "label": "Slope of the tangent at (4, 2)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. m = 4 here is the TANGENT's slope, not the normal's. Label it clearly so the next step uses the right number.",
+        "lines": [
+          "The slope of the tangent is dy/dx at the given point.",
+          "At x = 4:",
+          "m = 2(4) − 4 = 8 − 4",
+          "∴ m = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = 4 into 2x − 4 gives the tangent slope m = 4.",
+          "accept": [
+            "substitute x equal to four into two x minus four",
+            "eight minus four is four",
+            "the slope of the tangent is four",
+            "x equal to four pettina slope four vasthundi",
+            "this four is the tangent slope not the normal slope",
+            "m equals four at this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight minus four",
+            "equal to four",
+            "tangent slope",
+            "x equal to four"
+          ]
+        },
+        "why": "The x-coordinate 4 and the resulting slope 4 are the same number here, which is a coincidence of this question. Naming the value as the tangent's slope prevents it being used directly in the normal.",
+        "common_mistakes": [
+          "Substituting y = 2 into 2x − 4 and getting 0.",
+          "Using 4 straight away as the normal's slope.",
+          "Substituting into the original curve instead of into dy/dx."
+        ],
+        "memory_tip": "The point's x is 4 and the slope also comes to 4 — write the word \"tangent\" beside it so the two 4's are not confused later."
+      },
+      {
+        "id": "s3_normal_slope",
+        "kind": "equation",
+        "label": "Slope of the normal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. −1/m, so 4 becomes −1/4. This single line is where most marks are lost on normal questions.",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so the product of their slopes is −1.",
+          "Slope of the normal = −1/m",
+          "∴ slope of the normal = −1/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −1/m = −1/4.",
+          "accept": [
+            "the normal slope is minus one over the tangent slope",
+            "four becomes minus one by four",
+            "the product of the two slopes is minus one",
+            "minus one by m teesukunte minus one by four",
+            "invert four and change the sign",
+            "the normal slope is minus one fourth"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by four",
+            "perpendicular",
+            "product is minus one",
+            "normal slope"
+          ]
+        },
+        "why": "Two perpendicular lines have slopes whose product is −1, so the normal's slope is the negative reciprocal of the tangent's. Both the inversion and the sign change are needed.",
+        "common_mistakes": [
+          "Using −4 as the normal's slope, changing the sign but not inverting.",
+          "Using 1/4, inverting but not changing the sign.",
+          "Using 4, the tangent's slope, for the normal."
+        ],
+        "memory_tip": "Perpendicular slopes multiply to −1. Check it: 4 × (−1/4) = −1."
+      },
+      {
+        "id": "s4_normal_equation",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The question asks for the normal ONLY, so do not spend time writing the tangent as well — it earns nothing. Check the boxed line at (4, 2): 4 + 8 − 12 = 0.",
+        "lines": [
+          "Normal at (x₁, y₁) with slope −1/m:   y − y₁ = (−1/m)(x − x₁)",
+          "Here (x₁, y₁) = (4, 2):",
+          "y − 2 = (−1/4)(x − 4)",
+          "4(y − 2) = −(x − 4)",
+          "4y − 8 = −x + 4",
+          {
+            "text": "∴ Normal: x + 4y − 12 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form with (4, 2) and slope −1/4 gives x + 4y − 12 = 0.",
+          "accept": [
+            "substitute the point four comma two and the slope minus one by four",
+            "multiply both sides by four to clear the fraction",
+            "the normal is x plus four y minus twelve equals zero",
+            "four tho multiply chesi fraction teesestha",
+            "the question asks only for the normal",
+            "four y minus eight equals minus x plus four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus four y",
+            "minus twelve",
+            "minus one by four",
+            "four comma two"
+          ]
+        },
+        "why": "The point-slope form is used exactly as for a tangent, with −1/m in place of m. Multiplying by 4 first removes the fraction, so the general form comes out in whole numbers.",
+        "common_mistakes": [
+          "Expanding −(x − 4) as −x − 4 and getting the constant wrong.",
+          "Writing the tangent 4x − y − 14 = 0 as well and presenting it as part of the answer.",
+          "Multiplying only the left side by 4 when clearing the fraction."
+        ],
+        "memory_tip": "Read the question again before writing the last line. This one names only the normal, so only the normal is marked."
+      }
+    ]
+  },
+  "insider_note": "The normal slope is −1/m, not m — check the point lies on the curve first. Here m = 4, so the normal has slope −1/4."
+}

@@ -48,7 +48,8 @@
         "kind": "equation",
         "label": "Match the coefficients",
         "marks": 1,
-        "margin_note": "First mark, and the step the whole question turns on. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "margin_note": "First mark, and the step that decides the whole answer. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "memory_tip": "Rescale one line so both share the same a and b — that is the whole question.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "label": "Apply the distance formula",
         "marks": 1,
         "margin_note": "Second mark. With matched coefficients, the distance is |c₁ − c₂| over √(a² + b²).",
+        "memory_tip": "Then it is just |c₁ − c₂| over √(a² + b²).",
         "lines": [
           "∴ The distance between (1) & (2) is",
           "|c₁ − c₂| / √(a² + b²) = |−8 + 9| / √(10² + 6²)",
@@ -132,5 +134,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Double the first line to 10x − 6y − 8 = 0 before the formula touches it. The answer 1/√136 can be written more neatly: √136 = 2√34, so it is also 1/(2√34), or √34/68. It does not reduce to a whole number, so leave it in surd form."
 }

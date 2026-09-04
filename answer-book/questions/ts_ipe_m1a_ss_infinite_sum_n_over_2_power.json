@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_infinite_sum_n_over_2_power",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum 1 + 2/2 + 3/2² + 4/2³ + … to ∞.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply by the ratio 1/2 and subtract",
+      "marks": 1
+    },
+    {
+      "label": "Sum the geometric series that is left",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say why a/(1 − r) cannot be used straight away, and what you do instead.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shift_and_subtract",
+        "kind": "equation",
+        "label": "Multiply by the ratio 1/2 and subtract",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The shift-and-subtract is the method mark. Line the powers of 2 up under each other before subtracting, or the differences come out wrong.",
+        "memory_tip": "Numerators in A.P. over denominators in G.P.: multiply by the ratio and subtract.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S = 1 + 2/2 + 3/2² + 4/2³ + … to ∞",
+          "The numerators 1, 2, 3, 4, … are in A.P. and the denominators are in G.P. of ratio 1/2",
+          "(1/2)S = 1/2 + 2/2² + 3/2³ + …",
+          "S − (1/2)S = 1 + (2 − 1)/2 + (3 − 2)/2² + (4 − 3)/2³ + …"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That this is not a G.P., so S is multiplied by the ratio 1/2 and subtracted term by term.",
+          "accept": [
+            "this is not a geometric series so multiply by half and subtract",
+            "the numerators are in A P and the denominators in G P",
+            "shift by one place and subtract so the numerators become one",
+            "half tho multiply chesi subtract cheyyali",
+            "use the S minus r S method"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply by half",
+            "subtract",
+            "S minus half S",
+            "not a G P"
+          ]
+        },
+        "why": "The terms are not in G.P., so a/(1 − r) cannot be applied to the series as it stands. Shifting by one place and subtracting makes every numerator difference equal to 1, and what is left IS a geometric series.",
+        "common_mistakes": [
+          "Treating the series as a G.P. with r = 1/2 and giving 2.",
+          "Multiplying by 2 instead of by the ratio 1/2, which does not line the terms up."
+        ]
+      },
+      {
+        "id": "s2_finish",
+        "kind": "boxed_final",
+        "label": "Sum the geometric series that is left",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The last move — multiplying by 2 — is the one most often missed. What the subtraction gives is S/2, not S.",
+        "memory_tip": "After the subtraction you are holding half of S, so double it at the end.",
+        "lines": [
+          "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",
+          "This is a G.P. with a = 1 and r = 1/2, and |r| < 1, so",
+          "(1/2)S = 1/(1 − 1/2) = 1/(1/2) = 2",
+          {
+            "text": "∴ S = 2 × 2 = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That half of S is a G.P. summing to 2, so S = 4.",
+          "accept": [
+            "what is left is a G P with first term one and ratio half",
+            "half of S is two so S is four",
+            "one over one minus half gives two",
+            "S by two equals two, so S four vasthundi",
+            "the sum is four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half of S",
+            "two",
+            "four",
+            "one minus half"
+          ]
+        },
+        "why": "The subtraction leaves half of S equal to a plain geometric series of first term 1 and ratio 1/2, which sums to 2, so S = 4. Adding the first five terms already gives 1 + 1 + 0.75 + 0.5 + 0.3125 = 3.5625, so 4 is the right size.",
+        "common_mistakes": [
+          "Forgetting that the left side is (1/2)S and giving 2 as the final answer.",
+          "Dropping the leading 1 when writing out the series that is left."
+        ]
+      }
+    ]
+  }
+}

@@ -58,7 +58,8 @@
         "label": "Write the ratio condition",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same condition as the last question, but here the unknowns sit on OPPOSITE sides — μ in the second vector, λ in the first — so watch which way each ratio goes.",
+        "margin_note": "First mark. Collinear means the components are in a constant ratio, and here the unknowns sit on OPPOSITE sides — μ in the second vector, λ in the first — so watch which way each ratio goes.",
+        "memory_tip": "The unknowns are on OPPOSITE sides — μ in the second vector, λ in the first. Watch which way each ratio goes.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. μ comes out negative — the common ratio is positive, so a negative numerator forces a negative denominator.",
+        "memory_tip": "μ comes out negative: the common ratio is positive, so a negative numerator forces a negative denominator.",
         "lines": [
           "−3/μ = 1/2 ⇒ μ = 2 × (−3) = −6",
           "λ/6 = 1/2 ⇒ λ = 6/2 = 3",
@@ -140,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Collinear means the components are in a constant RATIO, so equate the three fractions. The middle pair 4/8 gives ½ at once, and that value then unlocks both unknowns."
 }

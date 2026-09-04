@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_cos_ax",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of cos(ax) from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Use cos C − cos D",
+      "marks": 1
+    },
+    {
+      "label": "Substitute t = ah/2",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the definition you start from, the identity you use, and how you make the standard limit fit.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a is a constant, so a(x + h) = ax + ah. Expanding the angle on the same line saves rewriting it later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = cos(ax), where a is a constant",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [cos(ax + ah) − cos ax]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = cos(ax) and the angle expanded as ax + ah.",
+          "accept": [
+            "write the first principle with f of x equal to cos a x",
+            "a is a constant so a into x plus h is a x plus a h",
+            "take the limit of cos a x plus a h minus cos a x over h",
+            "first principle rasi, angle ni a x plus a h ga rasta",
+            "substitute x plus h into the angle a x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first principle",
+            "a x plus a h",
+            "cos a x",
+            "constant"
+          ]
+        },
+        "why": "The definition is the marked move. a stays fixed throughout, so pushing it through the bracket once at the start keeps every later line short.",
+        "common_mistakes": [
+          "Treating a as a variable and differentiating it as well.",
+          "Writing cos(ax + ah) as cos ax + cos ah."
+        ],
+        "memory_tip": "a is a fixed number. Push it through the bracket at once: a(x + h) = ax + ah."
+      },
+      {
+        "id": "s2_cos_difference",
+        "kind": "equation",
+        "label": "Use cos C − cos D",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. cos C − cos D carries a minus sign in front of it. That minus is where the minus in the final answer comes from.",
+        "lines": [
+          "cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2)",
+          "Here C = ax + ah and D = ax, so",
+          "(C+D)/2 = ax + ah/2  and  (C−D)/2 = ah/2",
+          "so f′(x) = lim(h → 0)",
+          "−2 sin(ax + ah/2) · (sin(ah/2))/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2) is applied, giving −2 sin(ax + ah/2) sin(ah/2).",
+          "accept": [
+            "use cos c minus cos d equals minus two sin half sum sin half difference",
+            "apply the cos minus cos formula and keep the minus sign",
+            "the numerator becomes minus two sin of a x plus a h by two into sin a h by two",
+            "cos minus cos formula lo minus sign untundi",
+            "convert the difference of cosines into a product of two sines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos c minus cos d",
+            "minus two sin",
+            "a h by two",
+            "half difference"
+          ]
+        },
+        "why": "A difference of two cosines becomes a product only through this identity, and the product is what lets the standard limit be used on one factor at a time.",
+        "common_mistakes": [
+          "Dropping the minus sign in front of the identity and finishing with +a sin ax.",
+          "Writing the half angle as ah instead of ah/2."
+        ],
+        "memory_tip": "cos minus cos is the only one of the four sum-to-product forms with a minus in front. Two sines, one minus."
+      },
+      {
+        "id": "s3_substitute_t",
+        "kind": "equation",
+        "label": "Substitute t = ah/2",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The angle inside the sine is ah/2, not h, so the standard limit does not fit yet. Renaming that angle t and rewriting h as 2t/a makes it fit in one line.",
+        "lines": [
+          "Put t = ah/2. As h → 0, t → 0, and h = 2t/a",
+          "f′(x) = lim(t → 0) −2 sin(ax + t) · (sin t)/(2t/a)",
+          "= lim(t → 0) −a sin(ax + t) · (sin t)/t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle ah/2 is renamed t, h is rewritten as 2t/a, and the expression becomes −a sin(ax + t)(sin t)/t.",
+          "accept": [
+            "put t equal to a h by two so that t tends to zero as well",
+            "rewrite h as two t by a so the angle matches the denominator",
+            "substitute the small angle as t and the a comes out in front",
+            "t ni a h by two ga substitute cheste angle match avuthundi",
+            "change the variable so sin t is divided by t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "t equal to a h by two",
+            "sin t by t",
+            "two t by a",
+            "substitute"
+          ]
+        },
+        "why": "The standard limit holds only when the angle inside the sine equals the whole denominator. The substitution makes that true and leaves the factor a outside, which is exactly the a in the final answer.",
+        "common_mistakes": [
+          "Using lim (sin(ah/2))/h = 1, which is a/2, not 1.",
+          "Substituting the angle but forgetting that h itself becomes 2t/a."
+        ],
+        "memory_tip": "When the sine angle is not h, give it a name and rewrite h in terms of that name. The angle and the denominator then agree."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The a in front is the derivative of the inside angle ax, and the minus comes from cos C − cos D. Both have to survive to the box.",
+        "lines": [
+          "As t → 0, sin(ax + t) → sin ax and (sin t)/t → 1",
+          "f′(x) = −a · sin ax · 1",
+          {
+            "text": "∴ d/dx (cos ax) = −a sin ax",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit gives −a sin ax.",
+          "accept": [
+            "the answer is minus a sin a x",
+            "sin t by t goes to one so it is minus a sin a x",
+            "derivative of cos a x is minus a sin a x",
+            "answer minus a sin a x vasthundi",
+            "put t equal to zero and get minus a sin a x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a sin a x",
+            "sin t by t",
+            "one"
+          ]
+        },
+        "why": "Setting a = 1 checks the whole answer in one second: it gives −sin x, the derivative of cos x, so the general form is consistent.",
+        "common_mistakes": [
+          "Writing −sin ax and losing the factor a.",
+          "Writing a sin ax with no minus sign."
+        ],
+        "memory_tip": "Cosine differentiates to minus sine, and the number inside the angle comes out in front: −a sin ax."
+      }
+    ]
+  },
+  "insider_note": "First principle means the limit definition, not the standard rule — quoting −a sin(ax) earns nothing. Use cos C − cos D to turn the difference into a product, then sin(ah/2)/(ah/2) → 1."
+}

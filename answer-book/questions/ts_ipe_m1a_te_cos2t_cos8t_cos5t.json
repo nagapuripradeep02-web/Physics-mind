@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Bring everything to one side, then pair the two terms whose half-sum matches the third angle — here 2θ and 8θ average to 5θ, which is exactly the term left over.",
+        "memory_tip": "Bring everything to one side, then pair the two whose HALF-SUM matches the third: 2θ and 8θ average to 5θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. cos(−3θ) is cos3θ because cosine is even. Then cos5θ is common to both terms and comes out.",
+        "memory_tip": "cos(−3θ) = cos 3θ, since cosine is even. Then FACTOR out cos 5θ — cancelling it loses a whole family.",
         "lines": [
           "⇒ 2cos5θ cos3θ − cos5θ = 0",
           "  [∵ cos(−θ) = cosθ]",
@@ -139,7 +141,8 @@
         "label": "Solve cos5θ = 0",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. cosθ = 0 has its own general solution — (2n+1)π/2 — different from cosθ = cosα. Note the equation is in 5θ, so divide at the end.",
+        "margin_note": "Third mark. cosθ = 0 has its own standard general solution, (2n+1)π/2, which divides through by 5 in one step. Note the equation is in 5θ, so divide at the end.",
+        "memory_tip": "The standard form for cos θ = 0 is (2n + 1)π/2. The equation is in 5θ, so divide every part by 5 at the end.",
         "lines": [
           "(i) If cos5θ = 0 then",
           "  5θ = (2n+1) π/2,  n ∈ Z",
@@ -150,7 +153,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That cos5θ = 0 gives 5θ = (2n+1)π/2, so θ = (2n+1)π/10.",
+          "must_convey": "That cos5θ = 0 gives 5θ = (2n+1)π/2, so θ = (2n+1)π/10. Accept the equivalent route 5θ = 2nπ ± π/2 giving θ = 2nπ/5 ± π/10 — it is the same set of angles.",
           "accept": [
             "cos five theta equals zero gives five theta equals two n plus one pi by two so theta is two n plus one pi by ten",
             "the cosine is zero so use the odd multiples of pi by two then divide by five",
@@ -170,9 +173,9 @@
             "cos equals zero"
           ]
         },
-        "why": "cos = 0 at every odd multiple of π/2, which is a different formula from cos = cos α. Using the wrong one here loses half the solutions.",
+        "why": "cos = 0 at every odd multiple of π/2, so (2n+1)π/2 is the standard form and it divides by 5 in one step. Writing it as 2nπ ± π/2 gives exactly the same set of angles, so that route is correct too — it just takes an extra line.",
         "common_mistakes": [
-          "Using 2nπ ± π/2 and missing solutions.",
+          "Writing only 5θ = π/2, so a single angle is given instead of the whole family.",
           "Forgetting to divide the whole right side by 5."
         ]
       },
@@ -183,6 +186,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. cos3θ = 1/2 = cos(π/3), so the cosine general solution applies — then divide through by 3.",
+        "memory_tip": "cos 3θ = 1/2 = cos(π/3), so θ = 2nπ ± α. Divide EVERY term by 3, the 2nπ included.",
         "lines": [
           "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
           "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
@@ -221,5 +225,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside does no harm."
 }

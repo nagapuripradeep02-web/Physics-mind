@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. Write the plan as well as the matrices: the solution of AX = D is X = A⁻¹D, so everything after this line is about building A⁻¹.",
+        "memory_tip": "X = A⁻¹D is the plan — write it down before building anything.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Determinant",
         "margin_note": "Second mark. det A is −2. It has to be non-zero or A has no inverse at all and this method cannot start — so write the check, do not just compute the number.",
+        "memory_tip": "det A = −2, and it must be non-zero or A has no inverse at all. Write the check.",
         "lines": [
           {
             "text": "\\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{vmatrix}",
@@ -163,6 +165,7 @@
         "marks": 3,
         "mark_note": "Cofactors",
         "margin_note": "Three marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
+        "memory_tip": "Nine 2×2 determinants with the + − + / − + − / + − + sign board.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, and apply the sign board + − + / − + − / + − +:",
@@ -208,7 +211,8 @@
         "label": "Transpose to get Adj A",
         "marks": 1,
         "mark_note": "Adjoint and inverse",
-        "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "margin_note": "Sixth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "memory_tip": "Adj A is the cofactor matrix TRANSPOSED, then divided by det A.",
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",
           {
@@ -245,7 +249,7 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. On a symmetric cofactor matrix the transpose changes nothing — which is exactly why the habit has to be written down every time.",
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. The cofactor matrix here is not symmetric, so the transpose really does change the entries — write that line every time.",
         "common_mistakes": [
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",
@@ -259,6 +263,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Multiply row by column, then divide every entry by det A. Here det A is −2 and all three products are negative, so all three answers come out positive.",
+        "memory_tip": "det A is −2 and all three products are negative, so all three answers come out positive.",
         "lines": [
           "X = A⁻¹D. Multiplying row by column:",
           "2(9) − 2(6) − 4(2) = 18 − 12 − 8 = −2",
@@ -305,5 +310,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same system as the Cramer and Gauss-Jordan versions, but the method asked for is the inverse: X = A⁻¹D. Multiply in that order — D A⁻¹ is not even defined."
 }

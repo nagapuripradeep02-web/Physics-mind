@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_verify_sum_transpose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (1, 4, 7) and (2, 5, 8), and B is the matrix with rows (−3, 4, 0) and (4, −2, −1), then verify that (A + B)ᵀ = Aᵀ + Bᵀ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add A and B",
+      "marks": 1
+    },
+    {
+      "label": "Transpose the sum",
+      "marks": 1
+    },
+    {
+      "label": "Add the two transposes",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(ii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split follows the four separate matrices the word 'verify' asks for — the sum, its transpose, the sum of the transposes, and the comparison — because a verification question is marked on both sides being computed independently, not on the final sentence. CHECKED ENTRY BY ENTRY: the left side (A + B)ᵀ was read off as the 3×2 with rows (−2, 6), (8, 3), (7, 7), and the right side Aᵀ + Bᵀ was built separately from Aᵀ and Bᵀ and gives the same six numbers in the same six positions. The transposed-index trap here is Bᵀ: its entry in row 3 column 1 is B's entry in row 1 column 3, which is 0, not B's row 3 (B has no row 3). Related card in the same unit: ts_ipe_m1a_mat_vsaq_reverse_law_transpose verifies (AB)′ = B′A′, a different law with a reversed order; this one is the addition law, where the order does not reverse. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the four things you would compute to verify (A + B)ᵀ = Aᵀ + Bᵀ.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum",
+        "kind": "equation",
+        "label": "Add A and B",
+        "marks": 1,
+        "mark_note": "Sum",
+        "margin_note": "First mark. Check the orders first: A and B are both 2×3, so A + B is defined and is 2×3. Add position by position.",
+        "memory_tip": "Addition needs matching orders. Both are 2×3, so the sum is 2×3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A and B are both 2×3, so A + B is 2×3.",
+          {
+            "text": "A + B = \\begin{bmatrix} 1-3 & 4+4 & 7+0 \\\\ 2+4 & 5-2 & 8-1 \\end{bmatrix} = \\begin{bmatrix} -2 & 8 & 7 \\\\ 6 & 3 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are both 2×3 and are added entry by entry to give the 2×3 matrix with rows (−2, 8, 7) and (6, 3, 7).",
+          "accept": [
+            "both are two by three so add them entry by entry",
+            "A plus B has rows minus two eight seven and six three seven",
+            "add the matching positions to get the sum first",
+            "rendu two by three kabatti entry by entry add cheyyachu",
+            "the sum is a two by three matrix"
+          ],
+          "reject": [
+            "add them",
+            "find A plus B"
+          ],
+          "heard_as": [
+            "two by three",
+            "A plus B",
+            "minus two",
+            "entry by entry"
+          ]
+        },
+        "why": "The left-hand side of the law is built from the sum, so the sum has to exist first. Matrices add only when they have the same order, which is why the orders are checked before anything else.",
+        "common_mistakes": [
+          "Adding the entries in the wrong positions.",
+          "Getting 1 + 3 = 4 instead of −2 by ignoring the minus sign on B."
+        ]
+      },
+      {
+        "id": "s2_lhs",
+        "kind": "equation",
+        "label": "Transpose the sum",
+        "marks": 1,
+        "mark_note": "Left side",
+        "margin_note": "Second mark. This is the left-hand side. Transposing a 2×3 gives a 3×2, so the answer has three rows of two entries.",
+        "memory_tip": "Row 1 of the sum becomes column 1 of its transpose, so the 2×3 becomes a 3×2.",
+        "lines": [
+          "Transposing turns the 2×3 into a 3×2.",
+          {
+            "text": "(A + B)^{T} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transpose of A + B is the 3×2 matrix with rows (−2, 6), (8, 3) and (7, 7).",
+          "accept": [
+            "transpose the sum so the two by three becomes three by two",
+            "the left side has rows minus two six, eight three, seven seven",
+            "rows of the sum become the columns of the transpose",
+            "sum ni transpose cheste three by two matrix vasthundi",
+            "this is the left hand side of the law"
+          ],
+          "reject": [
+            "take the transpose",
+            "that is the left side"
+          ],
+          "heard_as": [
+            "transpose",
+            "three by two",
+            "left side",
+            "minus two six"
+          ]
+        },
+        "why": "The transpose exchanges rows with columns, so the order of the matrix reverses from 2×3 to 3×2. This matrix is one of the two sides that must be compared.",
+        "common_mistakes": [
+          "Writing the transpose still as a 2×3 matrix.",
+          "Reversing the order of the rows instead of exchanging rows with columns."
+        ]
+      },
+      {
+        "id": "s3_rhs",
+        "kind": "equation",
+        "label": "Add the two transposes",
+        "marks": 1,
+        "mark_note": "Right side",
+        "margin_note": "Third mark. Build Aᵀ and Bᵀ separately from the original matrices, not from the sum — the point of a verification is that the two sides are computed independently.",
+        "memory_tip": "Read each original matrix down its columns. Column 1 of B is (−3, 4), so row 1 of Bᵀ is (−3, 4).",
+        "lines": [
+          {
+            "text": "A^{T} = \\begin{bmatrix} 1 & 2 \\\\ 4 & 5 \\\\ 7 & 8 \\end{bmatrix}, \\quad B^{T} = \\begin{bmatrix} -3 & 4 \\\\ 4 & -2 \\\\ 0 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{T} + B^{T} = \\begin{bmatrix} 1-3 & 2+4 \\\\ 4+4 & 5-2 \\\\ 7+0 & 8-1 \\end{bmatrix} = \\begin{bmatrix} -2 & 6 \\\\ 8 & 3 \\\\ 7 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Aᵀ and Bᵀ are written separately, each 3×2, and added to give rows (−2, 6), (8, 3) and (7, 7).",
+          "accept": [
+            "write A transpose and B transpose then add them",
+            "each transpose is three by two so their sum is three by two",
+            "the right side is A transpose plus B transpose",
+            "A transpose, B transpose rasi add cheste right side vasthundi",
+            "columns of the originals become the rows of the transposes"
+          ],
+          "reject": [
+            "add the transposes",
+            "same as before"
+          ],
+          "heard_as": [
+            "A transpose",
+            "B transpose",
+            "right side",
+            "three by two"
+          ]
+        },
+        "why": "This is the right-hand side of the law, and it must be built from A and B themselves. Taking it from the answer to step 2 would assume the result the question asks to verify.",
+        "common_mistakes": [
+          "Reading Bᵀ off the rows of B instead of its columns.",
+          "Copying the left-side answer across instead of computing this side."
+        ]
+      },
+      {
+        "id": "s4_compare",
+        "kind": "boxed_final",
+        "label": "Compare the two sides",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Fourth mark. Say that the two matrices are equal and why: same order, and the same entry in every one of the six positions. That sentence is what earns the last mark.",
+        "memory_tip": "Two matrices are equal only when the order matches and every position matches. Say both.",
+        "lines": [
+          "Both sides are 3×2 and every one of the",
+          "six entries matches, so the matrices are equal.",
+          {
+            "text": "∴ (A + B)ᵀ = Aᵀ + Bᵀ is verified",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two sides have the same order and the same entry in every position, so the law is verified for these matrices.",
+          "accept": [
+            "both are three by two and all six entries match so they are equal",
+            "the two sides are the same matrix, so the result is verified",
+            "same order and same entries in every position, hence verified",
+            "rendu sides same matrix, so verified",
+            "left side equals right side entry by entry"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is verified"
+          ],
+          "heard_as": [
+            "verified",
+            "same order",
+            "all six entries",
+            "equal"
+          ]
+        },
+        "why": "A verification is finished only when the two computed matrices are compared. Equality of matrices needs the same order and agreement in every position, so the comparison names both.",
+        "common_mistakes": [
+          "Writing 'hence verified' without comparing the two matrices.",
+          "Comparing only the first row and stopping."
+        ]
+      }
+    ]
+  }
+}

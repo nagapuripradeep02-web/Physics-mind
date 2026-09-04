@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_perp_distance_from_intersection_point",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the length of the perpendicular drawn from the point of intersection of the lines 3x + 2y + 4 = 0 and 2x + 5y − 1 = 0 to the straight line 7x + 24y − 15 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Solve the pair by cross-multiplication",
+      "marks": 3
+    },
+    {
+      "label": "Name the point and check it",
+      "marks": 1
+    },
+    {
+      "label": "Write the perpendicular distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the formula",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to the distance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 25, book p.162. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts three marks on solving the pair, which is the longest piece of algebra on the page, one on naming and checking the point, one on quoting the distance formula, two on substituting into it and one on the arithmetic that finishes it. The formula itself takes one mark because writing it down is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The printed folio is hidden or clipped on this scan, so p.162 is inferred from the strictly consecutive neighbours."
+  },
+  "recall_prompt": "Say how you would solve this — say how you get the point, and which formula gives the distance.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_solve_the_pair",
+        "kind": "equation",
+        "label": "Solve the pair by cross-multiplication",
+        "marks": 3,
+        "margin_note": "The first three marks. The point is not given, so it has to be found first. Cross-multiplication does it in one written pattern with no substitution back and forth.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "3x + 2y + 4 = 0 ……(1),  2x + 5y − 1 = 0 ……(2)",
+          "Solving (1) & (2) by cross-multiplication,",
+          "x / [2(−1) − 5(4)] = y / [4(2) − (−1)(3)]",
+          "= 1 / [3(5) − 2(2)]",
+          "⇒ x/(−2 − 20) = y/(8 + 3) = 1/(15 − 4)",
+          "⇒ x/(−22) = y/11 = 1/11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines are solved together by cross-multiplication.",
+          "accept": [
+            "use cross multiplication on the two equations",
+            "the point of intersection has to be found first",
+            "x over b one c two minus b two c one and so on",
+            "cross multiplication tho rendu lines solve cheyyali",
+            "solve the pair to get the point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiplication",
+            "solve the pair",
+            "point of intersection"
+          ]
+        },
+        "why": "The distance formula needs a POINT, and the question gives that point only as the crossing of two lines, so this half has to be finished before the formula can be used at all.",
+        "common_mistakes": [
+          "Writing c₁ as 4 in one denominator and −4 in another.",
+          "Mixing up the order of the terms in a cross-multiplication denominator."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The distance formula needs a POINT, so the pair has to be solved before anything else."
+      },
+      {
+        "id": "s2_name_and_check",
+        "kind": "equation",
+        "label": "Name the point and check it",
+        "marks": 1,
+        "margin_note": "One mark. Read x and y off the three equal ratios, then put the point back into the second line — a one-line test that the cross-multiplication was right.",
+        "lines": [
+          "⇒ x = −22/11 = −2 and y = 11/11 = 1",
+          "∴ P = (−2, 1)",
+          "Check in (2):  2(−2) + 5(1) − 1 = 0, correct."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point of intersection is P(−2, 1), checked in one of the given lines.",
+          "accept": [
+            "read x and y off the equal ratios",
+            "the point is minus two comma one",
+            "put the point back into the line to check it",
+            "point ni back substitute chesi check cheyyali",
+            "P is minus two comma one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two comma one",
+            "check",
+            "point P"
+          ]
+        },
+        "why": "Every later mark rests on this point, so a one-line check here protects the whole second half of the answer.",
+        "common_mistakes": [
+          "Reading x = 2 by dropping the minus sign.",
+          "Skipping the check and carrying an arithmetic slip into the formula."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Put the point back into one of the given lines — a one-line check protects every mark after it."
+      },
+      {
+        "id": "s3_distance_formula",
+        "kind": "equation",
+        "label": "Write the perpendicular distance formula",
+        "marks": 1,
+        "margin_note": "One mark. Quote the formula before substituting anything. The denominator uses the coefficients of the LINE, never the coordinates of the point.",
+        "lines": [
+          "Perpendicular distance from (x₁, y₁) to",
+          "ax + by + c = 0 is |ax₁ + by₁ + c| / √(a² + b²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the perpendicular distance formula |ax₁ + by₁ + c| / √(a² + b²) is written down.",
+          "accept": [
+            "the distance is mod a x one plus b y one plus c over root a squared plus b squared",
+            "quote the perpendicular distance formula",
+            "the denominator uses the coefficients of the line",
+            "perpendicular distance formula rayali",
+            "put the point into the line and divide by the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "mod a x one",
+            "root a squared plus b squared"
+          ]
+        },
+        "why": "The formula measures how far the point is from the line by putting the point INTO the line and scaling, so the numerator carries the point and the denominator carries only the line.",
+        "common_mistakes": [
+          "Using √(a² + b² + c²) in the denominator.",
+          "Dropping the modulus and reporting a negative distance."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The numerator carries the POINT, the denominator carries only the LINE."
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Substitute into the formula",
+        "marks": 2,
+        "margin_note": "The next two marks. Read a, b and c off the third line as printed, with c negative, then put P in. 7 and 24 are a Pythagorean pair, so the root is exact.",
+        "lines": [
+          "Here (x₁, y₁) = (−2, 1) and the line is",
+          "7x + 24y − 15 = 0, so a = 7, b = 24, c = −15",
+          "d = |7(−2) + 24(1) − 15| / √(7² + 24²)",
+          "= |−14 + 24 − 15| / √(49 + 576)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(−2, 1) and a = 7, b = 24, c = −15 are substituted into the formula.",
+          "accept": [
+            "put the point and the three coefficients into the formula",
+            "a is seven b is twenty four and c is minus fifteen",
+            "seven into minus two plus twenty four into one minus fifteen",
+            "point ni formula lo substitute cheyyali",
+            "forty nine plus five seventy six under the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "seven and twenty four",
+            "minus fifteen",
+            "under the root"
+          ]
+        },
+        "why": "The sign of c matters: reading c as +15 changes the numerator from 5 to 25 and the answer with it, so the line must be read exactly as printed.",
+        "common_mistakes": [
+          "Taking c as +15 instead of −15.",
+          "Squaring only 24 and not 7 under the root."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Read a, b and c off the line EXACTLY as printed — the sign of c changes the answer."
+      },
+      {
+        "id": "s5_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the distance",
+        "marks": 1,
+        "margin_note": "Last mark. √625 = 25 exactly, so the answer is a clean fraction. Keep the units.",
+        "lines": [
+          "= |−5| / √625 = 5/25",
+          {
+            "text": "∴ Length of the perpendicular = 1/5 units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the arithmetic gives 5/25 = 1/5 units.",
+          "accept": [
+            "the numerator is five and the root is twenty five",
+            "five over twenty five is one fifth",
+            "the length of the perpendicular is one fifth of a unit",
+            "five by twenty five equals one by five",
+            "the distance is one fifth"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one fifth",
+            "five by twenty five",
+            "length of the perpendicular"
+          ]
+        },
+        "why": "The modulus makes the numerator 5 even though the bracket is −5, and 49 + 576 = 625 is a perfect square, so no surd is left in the answer.",
+        "common_mistakes": [
+          "Reporting −5/25 by dropping the modulus.",
+          "Leaving the answer as 5/25 without reducing it."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "√(7² + 24²) = 25 exactly, so the answer reduces to a clean fraction."
+      }
+    ]
+  }
+}

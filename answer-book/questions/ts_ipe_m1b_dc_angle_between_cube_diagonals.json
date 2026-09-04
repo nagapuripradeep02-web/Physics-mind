@@ -69,6 +69,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "memory_tip": "Nothing fixes a cube, so CHOOSE one: a vertex at the origin, three edges along the axes.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. The remaining four vertices follow a pattern: three lie on the coordinate PLANES with one zero each, and the last is (a,a,a) out in space.",
+        "memory_tip": "Three of the remaining vertices lie on the coordinate PLANES with one zero each; the last is (a, a, a).",
         "lines": [
           "Take L, M, N on the XY-plane, YZ-plane, ZX-plane, then",
           "L = (a,a,0),  M = (0,a,a),  N = (a,0,a)",
@@ -152,6 +154,7 @@
         "label": "Draw the cube",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. With the cube and its three axes on the page you can read each diagonal's coordinate differences straight off, instead of holding eight vertices in your head.",
+        "memory_tip": "With the cube drawn you can read each diagonal's coordinate differences off instead of holding eight vertices in mind.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a labelled cube is drawn with the two diagonals OP and CL marked. Naming the drawing is full credit — it cannot be spoken.",
@@ -380,6 +383,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. A DIAGONAL joins opposite corners through the body of the cube — not a face diagonal. Its direction ratios are the coordinate differences.",
+        "memory_tip": "A DIAGONAL joins opposite corners through the BODY — not a face diagonal.",
         "lines": [
           "Take the 2 diagonals  OP,  CL",
           "d.r's of OP = (a−0, a−0, a−0) = (a, a, a) = (a₁, b₁, c₁)",
@@ -421,6 +425,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. The a² cancels between numerator and denominator, leaving a pure number — which is why the answer holds for a cube of ANY size.",
+        "memory_tip": "The a² cancels top and bottom, which is why the answer holds for a cube of any size.",
         "lines": [
           "So, angle between the two diagonals is given by",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
@@ -460,5 +465,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Put one corner at the origin, not the centre, or every coordinate turns into a half. Choose two body diagonals such as OP and CL, never face diagonals, and the a² cancels to leave Cos⁻¹(1/3) — never 90°."
 }

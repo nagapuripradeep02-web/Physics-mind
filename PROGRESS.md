@@ -1,5 +1,944 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
+
+**Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.
+
+### What the wave built
+
+| chapter | before | after | new cards |
+|---|---|---|---|
+| physics-9 Mechanical Properties of Solids | 4 | 26 | 20 |
+| physics-10 Mechanical Properties of Fluids | 9 | 41 | 30 |
+| physics-11 Thermal Properties of Matter | 14 | 26 | 12 |
+| physics-12 Thermodynamics | 2 | 39 | 37 |
+| physics-13 Kinetic Theory | 5 | 27 | 22 |
+
+physics-12 was the thinnest chapter in the first-year book: two cards against a book asking 44 entries.
+
+### The audits, chapter by chapter
+
+| | p9 | p13 | p12 | p10 | p11 |
+|---|---|---|---|---|---|
+| cards | 20 | 22 | 37 | 30 | 12 |
+| findings | 26 | 23 | 51 | 54 | 23 |
+| harmful | 3 | 5 | 7 | 6 | 5 |
+| **numbers wrong** | **0** | **0** | **0** | **0** | **0** |
+
+Every automated gate was green before every audit ran.
+
+### Reading the scans found four book errors the transcribed index could not
+
+- **Poisson's ratio for steel** prints as "027 - 0.30" — a dropped decimal.
+- **Sand heaps** are explained by "stress increases with depth", which is true of a heap of any shape. The pyramid shape comes from the shear-stress limit and the angle of repose.
+- **Critical velocity** names *d* the radius of the tube. It is the diameter, because the Reynolds number is defined with the diameter. Left alone, that puts a factor of two into every answer a student computes.
+- **Bernoulli's principle** is stated "per unit volume" while the formula printed two pages earlier is per unit mass.
+
+A fifth landed on a card that was already **live**: the angle-of-contact card gave 8° for water on glass where the question asks about *pure* water, which is 0°. The gap report had said that card lacked the values entirely. It had them. **Reading the card rather than the report is what found the real defect.**
+
+### The one pattern that produced eight of the 26 harmful findings
+
+**A correction became a prohibition.** The briefs told authors to correct the book; cards then went further and told students that a second, entirely correct form is an *error*:
+
+- the per-unit-volume statement of Bernoulli's principle, which is the standard board form
+- 80 cal g⁻¹ for the latent heat of fusion
+- C/100 = (F − 32)/180 before simplifying
+- converting both end temperatures to kelvin before subtracting
+- Y = FL/(AΔL) as a one-line route
+- a bare "pascal" as the SI unit of stress
+- C_V = (3/2)R without its numeric value
+- starting an absolute-zero argument from PV = Nk_BT
+
+It appeared in physics-9, recurred in physics-10, and recurred again in physics-11 after being written into the repair brief. **The rule belongs in the AUTHORING brief: a correction says "write this"; it never says "the other is wrong" unless the other really is wrong.**
+
+### The cut that did not stand alone
+
+physics-10 introduced `cuts` to this campaign, because the book prints two of its questions word for word in both the short-answer and long-answer sections. One authored step list, an 8-mark cut and a 4-mark cut, two rows reaching the student.
+
+Read on its own, **the Venturi card's 4-mark cut handed the student a boxed formula whose symbols it never named** — the two areas were identified only in a hidden step, the density nowhere — and its override called the wide-section speed the throat speed. The authoring brief warned about exactly this. **The schema checks a cut's arithmetic; nothing checks whether it makes sense. Read every cut back in isolation before it ships.**
+
+### An audit finding is a lead, not a verdict
+
+The viscosity-and-raindrop card's question text ended "using a graph" and no step drew one, so the audit proposed adding a velocity–time graph. The source settled it the other way: the book's stem asks for the definition, Stokes' law, the conditions for terminal velocity and the expression. **There is no graph in the question.** The defect was a question text that had drifted from the source, so the fix was to restore the stem, not to author a graph nobody asked for.
+
+### Cards in the same chapter contradicting each other
+
+Three instances, all caught only by audit:
+
+- one Reynolds card put 1000–2000 in the unsteady band, another said everything below 2000 stays streamline
+- the temperature-scales card gave the boiling point with no pressure qualifier while the pressure-cooker card in the same chapter teaches that the boiling point rises with pressure
+- a cooling card said the small-difference proviso is "not a condition" while its own fourth mark and the neighbouring conditions card both list it as one
+
+### The physics that nearly shipped wrong
+
+Newton's first law "does not apply to a moving, balancing robot" · the action–reaction pair "keeps the robot from falling" · plastic deformation "keeps the energy" rather than dissipating it as heat · one qubit holding more information than one bit · a bare glass rod treated as *not* a light pipe · indium tin oxide disowned as a transparent conductor · elastomers defined by a Young's modulus they do not obey · the bulk modulus without its minus sign · the elastic limit as the failure point · the internal energy of an ideal gas equated to its translational kinetic energy for *any* gas · absolute zero attributed to the second law rather than the third · "heat never flows from cold to hot", in a chapter that explains refrigerators · a two-thirds that "cancels" when it is divided across · squaring **speeds** to stop a cancellation that only velocities have · the wall area "cancelling" out of the pressure derivation when it becomes the volume · dynamic lift defined as upward on a card that then spends three steps on a ball swerving sideways · and the load-bearing ideal-gas step missing from all three cards that derive C_P − C_V = R.
+
+### What the gates cannot see, four chapters running
+
+`check:xrefs` catches "the previous question" and "the twin". It does not catch "as before", which pointed at a step that does not exist. Nothing catches a mark-scheme claim the card's own split does not support — those appeared on six cards in one chapter after the rule was established in the one before. Nothing catches a boxed line that is a word-chain rather than a relation. Nothing catches an internal card id spoken aloud to a student as "vsaq6".
+
+### Tooling
+
+`merge_unit.mjs` takes a small JSON plan and writes the manifest rows, reading each row's `text` from the card's own `question_text` so the two cannot disagree, and refusing on any qtype, marks, unit or subject mismatch. It now also understands a row that points at a **cut**.
+
+### Recorded, not fixed
+
+`recall` coverage is inconsistent — 27 of 39 cards in physics-12 have a rubric and 12 do not, because parallel agents each made a defensible choice about an optional field. physics-10 and physics-11 were briefed to author it everywhere and did. The grader endpoint is a standing founder-level blocker, so nothing is student-visible; but future briefs must state one way or the other rather than leaving it open.
+
+---
+
+
+## 📘 SESSION — Wave B opens: physics-9 and physics-13, 42 cards, two audits, 49 findings (2026-09-02, `feat/ipe-firstyear-2027`)
+
+**Bottom line: two of wave B's five chapters are authored, audited, repaired and green. Every number was right both times; every defect was in the prose.** Chapters 10, 11 and 12 remain, 83 cards.
+
+### What landed
+
+| chapter | before | after | new cards |
+|---|---|---|---|
+| physics-9 Mechanical Properties of Solids | 4 rows | 26 | 15 VSAQ + 5 SAQ |
+| physics-13 Kinetic Theory | 5 rows | 27 | 12 VSAQ + 9 SAQ + 1 LAQ |
+
+physics-9 held four cards against a book asking 37 entries. The book prints three sub-parts of one brass-wire question (find the stress, the strain, the Young's modulus of the same wire); that is **one card with four steps**, not three cards. The gap report counts entries, and entries fold into cards.
+
+physics-13's Long Answer is the derivation of P = ⅓(N/V)mv̄² and then the kinetic interpretation of temperature — nine steps, eight marked, with a 0-mark diagram between the model and the first collision because the wall-and-molecule geometry is what every later step refers back to. Its figure was paced by `pace_figures` rather than by hand, and its only horizontally overlapping label pair sits 98 figure units apart against a 40-unit minimum.
+
+### Reading the scans found two book errors the transcribed index could not
+
+- **Poisson's ratio for steel prints as "027 - 0.30"** — a dropped decimal point. The card writes 0.27 to 0.30 and records the typo.
+- **The sand-heap answer explains the pyramid SHAPE by "stress increases linearly with depth"** — which is true of any heap of any shape. Dry sand supports only a limited shear stress, so a slope steeper than the angle of repose slides until it settles back, which is why the heap keeps the same slope at any size.
+
+Neither was visible in the index. **Open the scan pages before authoring a chapter.**
+
+### Two audits, 49 findings, and not one of them machine-checkable
+
+| | physics-9 | physics-13 |
+|---|---|---|
+| cards | 20 | 22 |
+| findings | 26 in 14 cards | 23 in 15 cards |
+| harmful | 3 | 5 |
+| numbers wrong | **0** | **0** |
+
+Every gate was green before each audit ran. **Seven of the eight harmful findings are the same shape: a prose field telling a student that a correct answer is wrong**, usually contradicting the card's own mark split or a margin note two lines below it.
+
+- "Both marks need the words *restoring force*" — against the card's own split.
+- "A bare pascal loses this mark" — the pascal **is** the SI unit of stress.
+- Y = FL/(AΔL) called a mistake — it is the standard one-line route.
+- The oxygen/hydrogen `why` put the heavier molar mass on top while the card's own line put the lighter one there. Following the `why` gives 4:1, the exact error the card warns against.
+- The degrees-of-freedom card said 6 where its own line makes it 7.
+- C_V = (3/2)R called incomplete — it **is** the answer.
+- "Do not start from PV = Nk_BT" — the card's own third step then argues that way.
+
+The eighth was false physics: **Newton's first law "does not apply to a moving, balancing robot"**. It applies to every body.
+
+### Physics repaired across the two chapters
+
+Elastomers are not defined by a low Young's modulus (they do not obey Hooke's law — but the card now says the book's phrasing is safe to write, so one absolute did not replace another) · the bulk modulus needs its minus sign · shearing strain is tan θ · the elastic limit is not the failure point · plastic deformation **spends** energy as heat rather than storing it · squaring **speeds** stops nothing cancelling, because speeds are magnitudes · the wall area does not cancel out of the pressure derivation, it becomes the volume · the ⅔ does not cancel either, it is divided across, and that is what produces the 3/2 · "average energy" needs the word *translational* · temperature is not heat · and the internal energy of an ideal gas equals its translational kinetic energy only for a **monatomic** gas.
+
+### A new standing rule, and it recurred one chapter later
+
+**Never tell a student a printed answer "earns zero".** We do not hold the mark scheme. physics-9's sand-heap card asserted the book's reasoning scores nothing; physics-13 then produced three more marking claims — that a bare (3/2)R loses the mark, that the calorie form of the specific heat of water is "a bonus, not a substitute", and that the derivation's sixth mark requires the density form. Say what the complete answer is instead.
+
+### Two marks were paying for a calculator key
+
+The Boyle's law card split "V′ = V/1.02" from "= 0.9804V" across two marks; the four-molecules card split "add the squares" from "divide by four". Each is one operation. Both merged, and the freed mark given to the physics the question tests — in the Boyle's law card, why the answer is 1.96% and not 2%.
+
+### A line-count scare that was nothing
+
+Four physics-9 cards ran 12–16 printed lines and looked padded beside their siblings' 6–9. Measured against the **shipped** bank instead of against each other, two-mark cards run 8–17 lines with a median of 15 — so the long ones are house style and the short ones are the outliers. **An authoring brief is not the convention; the neighbouring cards are.**
+
+### What the gates caught, and what they cannot
+
+`check:xrefs` caught an `insider_note` pointing at "the stress question" by position. It did **not** catch "Same formula as before" pointing at a step that does not exist in that card — its pattern list has "the previous question" and "the twin" but not "as before". Worth widening.
+
+A whole-book figure sweep ran clean: 265 figures across 3,104 questions, no label collisions anywhere.
+
+### Coverage debt, recorded not fixed
+
+These cards carry no `recall` rubric, so the spoken-recall check is unavailable on them. The older first-year physics chapters (thermal, fluids, motion in a plane) are 100% recall-enabled; the three this campaign has authored are mostly not. `recall_available` is `steps.every(s => s.recall)` and degrades gracefully, and the grader endpoint is a standing founder-level blocker, so nothing is student-visible today.
+
+### Tooling that makes the next three chapters cheaper
+
+`merge_unit.mjs` takes a small JSON plan — subject, unit, id prefix, and an ordered list of `[section, slug]` — and writes the manifest rows. Each row's `text` is **read from the card's own `question_text`**, so the manifest and the card cannot disagree, and it refuses on any qtype, marks or unit mismatch. New refs continue the unit's own per-section numbering; existing rows keep theirs.
+
+### Left for wave B
+
+physics-10 Mechanical Properties of Fluids (32) · physics-11 Thermal Properties of Matter (12) · physics-12 Thermodynamics (37). Work orders already exist per chapter in `docs/reports/syllabus_2027_diff/`.
+
+---
+
+## 🚀 SESSION — The analytics half ships: merged, pushed, and all four deploy halves live (2026-09-02 evening, `master`)
+
+**Bottom line: `feat/answerbook-exclusion` is on master and every half of it is live.** The founder asked to "analyze what is updated on the Viditra site, merge, push, deploy". Measured first, live, before touching anything: `viditra.co/admin/answers` was serving the 08-28 dashboard byte-identical to the never-merged `feat/answerbook-analytics` — a file **master did not hold**, so a plain `deploy:cf-site` from master would have deleted it (the hazard the previous entry predicted); `answers.viditra.co` carried zero instrumentation (`notastudent`/`pm_internal`/`team_mark` = 0); `ab_events` = 0 rows; `ab_stats` still the pre-actor signature; the ledger's 80 rows all `answerbook_student`.
+
+### What ran, in the runbook's order
+
+1. `feat/answerbook-exclusion` → master, `--no-ff` (`ce4c23d7`), zero conflicts; verified on the merged tree: tsc 0, vitest 455/455. Pushed; remote SHA confirmed by `ls-remote`.
+2. `supabase_2026_09_02_answerbook_ledger_actor.sql` applied to `dxwpkjfypzxrzgbevfnx` (create-or-replace only). `ab_stats` now returns `ledger_all_*` — verified by `pg_get_functiondef`.
+3. Edge Functions redeployed from the merged tree, JWT off as their headers document: `answerbook-stats` v2, `answerbook-sync` v6, `answerbook-vidi-chat` (via `supabase functions deploy --use-api` from disk — the CLI is authenticated here, so a 563-line function need not be transcribed inline).
+4. `deploy:cf-site` → only two assets changed, both `/admin/` — the dashboard is now the 452-line version, not deleted.
+5. `build:answers:gated:mpc-both` (exit 0, 2482 questions · 94 chapters) → `wrangler deploy -c wrangler.answers.toml`. Live re-probe: `notastudent` 5, `pm_internal` 4, `team_mark` 1.
+
+### Two things checked that a straight run would have skipped
+
+- The maths-2b worktree holds an **uncommitted** edit to `answerbook-vidi-chat` (`stepHuman`), and live v17 was deployed at 14:57 IST today from an unknown desk. Before redeploying: `git log --all -S stepHuman` shows it landed on master via `07a7ca31` (PR #189) — the dirty file is *behind* master, not ahead, so master's function is a strict superset and nothing live could regress.
+- `feat/answerbook-analytics` is **not** an ancestor of `-exclusion` (separate lineages; exclusion is a port). Merging analytics now would re-introduce the un-frozen 08-28 migration and the 431-line dashboard. It is redundant and should be deleted, never merged.
+
+### Still founder-gated (nothing here was run)
+
+`AB_PROBE_TOKEN` secret (unset = probes are refused, the safe default); runbook §8b relabel (45 probe rows by explicit session id — idempotent) → §8c team sessions (founder must recognise the ids) → §8d the 14 network-sharing devices (depends on 8b); the team walks `#/notastudent/viditra-team` on every browser; the §6 incognito negative control. The `ab_events` count is the tell: it is 0 as of this deploy and must move.
+
+## 📗 SESSION — The 47 closed without a retirement, the sweeps raised, and physics-14 finished (2026-09-02, `feat/ipe-firstyear-2027`, PR #193 merged + LIVE)
+
+**Bottom line: nothing was retired, the Playwright ceiling was raised before it broke rather than after, and the first of the five empty chapters is authored, audited and on answers.viditra.co.** Wave A of the founder's five-wave campaign to make first-year Physics and Chemistry book-complete: 714 missing exam-section cards plus 107 re-cuts and 48 promotions, PROBLEM cards last.
+
+### The 47 "retire candidates" did not survive their own evidence
+
+The 2026-27 gap report flagged 47 bank rows whose topic the new Sri Chaitanya edition no longer prints. That column measures **one commercial digest**, not the syllabus, and the bank answered it three ways before anything was deleted:
+
+| group | count | what happened |
+|---|---|---|
+| already `source: "enumerated"` | 28 | nothing — they already render as "Predicted — not asked yet" |
+| asked on a real board paper | 11 | nothing — retiring them deletes answers the board still sets |
+| no appearance, no predicted label | 8 | relabelled `source: "enumerated"`, `stars: 0` |
+| (of the 11) missing a `source` | 5 | backfilled `ap_2026_paper` / `ts_paper` |
+
+Two of the eleven were on **AP 2026**, and `ts_ipe_p1_rot_vector_product_properties` has been asked **four times** — TS 2017, 2019, 2025 and AP 2026. Four of the eight relabelled rows are NCERT core (molarity, normality, mass percent, the laws of chemical combination) that only this digest dropped; zeroing their stars also removed them from the R1 exposure `check:originality` counts.
+
+**The rule this sets: a card the current book stops printing is a PREDICTED card, not a dead one.** Demotion is the mirror of a promotion, and `backtest:physics` failure-mode 8 — a paper-matched card may not sit on an `enumerated` row — is the gate that stops a demotion swallowing a live exam question. Entry-level retirement stays built and unused; no test covers it, and `retiredCount` is still hardcoded to 40.
+
+### Raise a fleet sweep before the wave, not after the red run
+
+Counted, not projected: the default unstreamed build the Playwright suite actually loads holds **3,007 questions and 3,018 question×cut entries**. The 2,472 the last raise scaled from was already **535 stale** — Maths-1A/1B and the syllabus retrofit both landed without a raise.
+
+| sweep | measured | after +714 | budget |
+|---|---|---|---|
+| every cut totals its own marks | ~53 min, **89% of budget with nothing new authored** | ~65 min | 60 → **120 min** |
+| construction lines, every question | 41.6 min | ~56 min | 60 → **90 min** |
+| figure labels, every question | 41.7 min | ~56 min | 60 → **90 min** |
+
+**`playwright.config.ts` was deliberately not raised.** The theory was that dist had outgrown its 60 s default, so it was measured instead: dist is **20.2 MB**, five times the size that comment cites, and a cold `file://` load still takes **1.4–1.6 s**. Bundle size is not what that timeout guards. The measurement is now in the comment so nobody raises it on the same theory again.
+
+### physics-14 — 15 cards, and that is the whole chapter
+
+The book prints no SHORT ANSWER, LONG ANSWER or PROBLEMS section for Chapter 14, so 15 Very Short Answer cards completes it. The two scan pages were opened and read before authoring rather than trusted from the index; the stems matched. Three gates are specific to this chapter and none belongs to `check_cards`: `check_originality.ts` step 5 **forbids `insider_note`** and **requires `appearances: []`** for any chapter in its `NEVER_ASKED` set, and every row keeps `stars: 0`.
+
+Two places the study material is wrong, and the cards do not follow it: **graphene** ("a million times thinner than a human hair" is nearer 200,000 — the card writes "one atom thick", which is exact) and **robots** (the book pairs electromagnetism with *thermodynamics*; the card answers mechanics and electromagnetism and records the book's pairing so a student who wrote either understands the difference).
+
+### The per-wave audit paid on its first run, and nothing else could have caught it
+
+Every automated gate was **green** — `check:cards`, `build:answers`, `check:originality`, `check:xrefs`, `check:papers`, `backtest:physics`, `vitest`, `measure:wrap`. The examiner audit then found **23 defects across 13 of the 15 cards: 7 harmful, 8 wrong, 5 weak, 3 register. None of the 23 is machine-checkable.**
+
+**Six of the seven harmful findings are the shape the second-year audit found** — a prose field contradicting its own card. Here it is `common_mistakes` calling a correct, mark-earning answer a mistake, usually contradicting the `margin_note` two lines below it. A student following those lines deletes a correct answer.
+
+**The seventh was false physics:** the card told students Newton's **first** law "does not apply to a moving, balancing robot". It applies to every body, and a robot standing balanced is first-law equilibrium.
+
+Also repaired: the **action-reaction misconception** ("the reaction force is what keeps the robot from falling" — the pair is equal and opposite whether it stands or topples); "one qubit holds more information than a 0 or a 1" (a single qubit yields one classical bit; the advantage is collective, 2ⁿ over n qubits); a bare glass rod treated as *not* a light pipe (it is — the cladding keeps the reflecting surface clean); "don't name a metal oxide" when **indium tin oxide is** the standard transparent conductor; nanotube confinement stated as flat level separation when it is **circumferential**, splitting states into sub-bands while axial states stay continuous.
+
+**Two auditor findings were declined on purpose,** with reasons in the report: materials science stays the lead answer for "another field of physics", and optics stays in the sunshield answer — both are what the printed key says. Report: `docs/reports/firstyear_2027/physics14_audit.md`.
+
+Separately, four cards cited "printed p.143" when questions 12–15 are printed on p.144. No gate looks at that, and the provenance line is the whole point of the originality boundary.
+
+### Shipped and verified against the live site, not the repo
+
+`content:push:mpc-both` then `deploy:answers` (worker `056ad3fb`). Openable answers **2,467 → 2,482**; chapters a student can open **93 → 94**; physics unit 14 shows 15 rows with 15 cards; and the served `ab_content` bundle for `physics-14` carries the repaired text, no company names, and none of the old false claim.
+
+### What is left
+
+Waves B–E, **699 cards**: physics 9–13 (125 + 4 re-cuts) · chemistry 7–10 (230, four never-authored chapters) · physics 1–8 (171 + 48 + 24) · chemistry 1–6 (173 + 55 + 24). Then PROBLEM cards — **no longer engine-blocked**, since the PRACTICE section merged the same day.
+
+Counts that must move as their wave lands: physics unit 1 `u1n` 25 (wave D), chemistry unit 4 `u4ready` 36 (wave E), chemistry `comingReady` `[0,0,0,0]` (wave C).
+
+Still to build: `answer-book/sources/coverage_2027.json` and `check:syllabus-coverage`, mirroring `answer-book/papers/matches.json` and `backtest_ipe_papers.ts`, so "first-year is complete" stops being a claim in a report. A seed extractor over the diffs' TABLE A parses 1,391 of the 1,421 book entries and reports 744 asked-missing against the report's 714 — that delta is what the gate must reconcile before it can be trusted.
+
+And a standing asymmetry worth naming: **chemistry has no real-paper corpus.** Physics is back-tested against 7 TS papers and sits at 100%. Chemistry completeness rests entirely on one commercial book.
+
+---
+## 🔎 SESSION — Team, founder and Claude's testing leave the student numbers (2026-09-02, `feat/answerbook-exclusion`)
+
+**Bottom line: the exclusion system already existed, half of it had never shipped, and the half that had never covered the money.** The founder asked why the usage dashboard counts his own laptop and phone, his friends' devices, and Claude's chatbot testing as students. It does — and worse than he thought.
+
+### What was actually true, measured live before any change
+
+- The device-level exclusion (`#/notastudent/<word>`, team Gmail list, per-device dashboard toggle, one-row-per-event `ab_events`) was built on `feat/answerbook-analytics` on 2026-08-28. Its **database half is live**; its **client half never shipped**. The branch never merged, master moved 176 commits, and every deploy since rebuilt answers.viditra.co from master. Verified by grepping the live bundle: `notastudent`, `pm_internal`, `ab_log_events`, `team_mark` — **0 hits each**.
+- So `ab_events` held **0 rows**. Every behaviour number on the dashboard — funnel, reading depth, by-day, top questions — was empty. Only device counts (62 / 29 team / 33 "students") and the Vidi ledger were real.
+- The ledger was never covered by the design at all: `answerbook-vidi-chat` wrote `actor:'answerbook_student'` hard-coded, the chat POST carried no device id, and `ab_stats`' own comment admitted it "counts EVERY ask including the team's". **Of 80 rows: 45 were script probes (`shakedown`, `deploy-verify*`, `senior_audit_probe`…), 10 more were browser sessions on a team device's network. 25 were real.**
+
+### What shipped here
+
+One idea: four actors — `answerbook_student` / `answerbook_team` / `answerbook_local` / `answerbook_probe` — decided from signals that already existed (`ab_device_is_internal`, the page's `pm_internal` claim, the request Origin, and a new `AB_PROBE_TOKEN` secret), with `metadata.actor_reason` recording *which* signal decided it.
+
+**Two rules hold the design up, and both are written into the code as comments so a later session cannot "optimise" them away:**
+
+1. **The actor is a LABEL, never a GUARD.** The $2/day cap and the per-IP limits still read the whole ledger, every actor included — a team ask costs the same dollar a student's does. An actor filter in `readTodayLedger()` would quietly raise our own rate limits and hand a spoofer a free budget.
+2. **The all-actors total is never hidden.** Three of the four signals are client-supplied and forgeable; the dashboard prints `everything: N ($X)` beside the student-only figure, so a forged "I am the team" can never hide real spend from the page that watches it.
+
+### Four things the port had to get right that a straight cherry-pick would have got wrong
+
+- **The 08-28 migration ends in an unqualified `update ab_devices set is_internal = true;`.** Applied then, it marked the 29 devices that existed. Re-run today it marks every device *now* — real students included — and `ab_sync` never clears a flag the page did not claim. It is committed **frozen**: a DO-NOT-RE-RUN banner, and section 10 replaced by a comment recording what ran. It also drops the `ab_sync` overload, which would break progress sync for every device at once.
+- **The obvious relabel regex is wrong.** `^ab_[a-z0-9]{12}$` looks safe because all 9 current browser sessions are 12 chars — but the client mints `'ab_' + Math.random().toString(36).slice(2,10) + …` and `toString(36)` is *not* fixed width, so it would eventually relabel genuine students as probes. The relabel goes by an explicit list of the 18 known probe session ids.
+- **33 devices are unattributable, not team.** They were minted after 08-28 by the un-instrumented page and carry no events at all. Guessing at them (the IP heuristic) mutates data on a shared-NAT signal; instead `devices.total` is now bounded by `since` and the dashboard's counting epoch moved to 2026-09-02. `total_ever` keeps the old number.
+- **`deploy:cf-site` would have deleted the dashboard.** `website/admin/answers.html` existed only on the unmerged branch; publishing `website/` from master removes what the branch lacks. Recorded in `answer_book_hosting.md`.
+
+### The guard that matters most
+
+`vidi_shakedown.ts` and `vidi_audit.ts` now **refuse to run** against a `*.supabase.co` endpoint when `AB_PROBE_TOKEN` is unset. That is the half that makes the *default* safe: a future session that simply forgets the token is stopped, instead of silently filing its probes as real student demand — which is exactly how 45 of the first 80 rows went wrong.
+
+### Not done here (founder-gated)
+
+Nothing was deployed and no row was written. Still to run, in order, with the founder: apply `supabase_2026_09_02_answerbook_ledger_actor.sql`; set `AB_PROBE_TOKEN`; redeploy `answerbook-vidi-chat` + `answerbook-sync`; the reviewed relabel of the 80 historical rows (`actor` UPDATE only — nothing deleted); `deploy:answers`; `deploy:cf-site`; then the team walks `#/notastudent/viditra-team` on every browser. The negative-control curls and the "if the number does not move, stop" check are in the runbook §6/§7.
+
+
+## 🧮 SESSION — The PRACTICE section: `qtype: "PROBLEM"`, the first question kind the paper does not ask (2026-09-02, `feat/answerbook-problems-section`)
+
+**Bottom line: the fourth section exists, it is gated harder than the three that came before it, and two real problems prove the path end to end.** Phase A2 of the 2026-09-02 plan; the founder reversed the 2026-08-20 deferral because the 2026-27 books print **328 practice problems** and the deferred ones kept turning up on real papers. No bulk authoring here — that is Phase C.
+
+### What a PROBLEM is, and the two properties that make it different
+
+Every source book prints a PROBLEMS block (physics) or an NCERT *intext solved problems* block (chemistry). They are real questions a student is set and an examiner reuses, but they sit on **no paper section and carry no board mark scheme** — which is exactly why holding one needed a fourth section across the build, the player and the gates.
+
+- **Marks are a LIST, not a slot.** `PAPER_PATTERNS[subject].practice = { marks: [2, 4] }`. A problem *borrows* the paper's numeric shapes — a one-step numerical is the 2-mark shape, a derive-then-substitute the 4-mark shape — rather than owning one. That also keeps it promotable: the day a paper asks one, it becomes a cut of the same card at the same marks.
+- **Shown everywhere, scheduled nowhere.** A problem is an answer the student can open: it has its own **Problems** chip, its own **Practice Problems** group, and it counts in every student-visible "N answers" figure. But the **study planner, its scope chooser and the exam-eve 15-minute list ignore it**, because those allocate a paper's marks and a question the paper never asks cannot be given a share of them. One predicate governs that — `PAPER_QTYPES` in the schema, mirrored as `isPaperQtype()` in the player — so the three strings are never hardcoded again.
+
+### The gate is FAIL-CLOSED, and that is the whole point
+
+`allowedMarks(subject, qtype)` returns `[]` — an error — for a paper that declares no `practice` section, and `undefined` only for a subject absent from the table entirely. The paper-section check does the opposite: it *skips* a subject it does not know, which is how a whole paper lost its marks gate by silence on 2026-08-29. Silence must not buy a free pass twice.
+
+`practice` is registered on **physics and chemistry only** — the two papers whose 2026-27 books were read chapter by chapter on 2026-09-02 (130 physics and 198 chemistry problems indexed). Every other paper omits it and therefore *forbids* problem cards until someone reads its book: botany and zoology print no numericals at all, and the maths and second-year books have not been checked.
+
+**`src/lib/answerBook/__tests__/practiceMarks.test.ts` is the negative control**, 10 cases: both legal shapes accepted, a 3-mark problem rejected, a problem on botany rejected by name, cuts held to the same rule, and the pre-2026-27 7-mark maths long answer still rejected so the old regression cannot come back.
+
+### Two real cards, not throwaway fixtures
+
+Physics Unit 9 gained the book's Problem 1 (**2 marks** — strain of a wire stretched by 1%) and Problem 6 (**4 marks** — tension from Young's modulus, 150 N, which is the book's own answer). Both authored from the indexed stem alone, to the full bar, and both carry the `chaitanya_fastrack` provenance the 2026-09-02 originality widening now binds. That widening got its first real exercise: **removing the boundary sentence from one card fails `check:originality` by name**, and restoring it passes — a positive control, not an assumption.
+
+### A pre-existing red, found and fixed
+
+`smoke:answers:gated` was failing on master, not on this branch: the lock sheet stopped stating a free-chapter COUNT on 2026-08-30 ("it was 'Four chapters are free', which was true only while the book was first year alone"), and one assertion was never updated. Proved it predates the branch by reading both strings out of `origin/master` before touching anything. The test now reads the per-subject promise, which is the part true in every year. **CI never runs the gated suite**, which is why it stayed red for three days.
+
+### Verification
+
+`npx tsc --noEmit` 0 · `npx vitest run` **455/455** (10 new) · `npm run build:answers` green, both problems listed `[PROBLEM 2M]` / `[PROBLEM 4M]` · `check:papers` · `check:originality` (524 fastrack rows, positive control exercised) · `check:xrefs` · `backtest:physics` · `build:answers:gated:mpc` ships both in the physics-9 bundle with the `Practice — Problem` header · **`smoke:answers:gated` 31/31** (was 30/31 on master) · **`smoke:answers` SMOKE_PLACEHOLDER**.
+
+### NOT done, deliberately
+
+No bulk problem authoring (Phase C, and problems come last in the founder's order). `practice` is not registered for maths, botany, zoology or any second-year paper — each waits on its own book being read. The 47 retire candidates from 2026-09-02 are still open, and nothing here is deployed.
+## 🔬 SESSION — All 1,124 second-year cards audited and repaired, and the chatbot stops volunteering the open question (2026-09-02, `fix/senior-book-audit` → PR #189)
+
+**Bottom line: every card of the four second-year papers was examined and repaired — 22 HARMFUL, 179 WRONG, 232 WEAK across 1,124 cards. Chemistry-II got its first truth audit and holds half the findings. The harmful defect has a shape: it is the `insider_note`, the line Vidi speaks to the student FIRST, contradicting its own card. Merged as `7d06f04c`, content-pushed, deployed (worker `a82efb82`), and the Edge Function redeployed to version 17 with the scope-creep clause removed.**
+
+### What was found
+
+| Paper | Cards | HARMFUL | WRONG | WEAK |
+|---|---|---|---|---|
+| Chemistry-II | 340 | 11 | 97 | 167 |
+| Physics-II | 256 | 3 | 15 | 40 |
+| Maths-2A | 257 | 1 | 30 | 9 |
+| Maths-2B | 271 | 7 | 37 | 16 |
+
+Reports: `docs/reports/senior_audit/` — 73 group files, `SUMMARY.md`, the examiner brief (`BRIEF.md`), the repair brief, `BASELINE.md`, `STATE.md`, the figure reviews and the chatbot grading.
+
+**Two different jobs — do not conflate them.** Chemistry-II had NEVER been truth-audited; its only prior content fixes came from Vidi reply graders, and `maths_audit/SUMMARY.md` wrongly claimed it had had an examiner pass. Physics-II, Maths-2A and Maths-2B got a PROSE-AND-CONSISTENCY pass on top of the answer-level examiner passes they already had at authoring time — they were **not** re-derived from scratch.
+
+### The defect shape
+
+In the maths papers the harmful finding is almost always an `insider_note` contradicting its own card: a point of contact with the wrong signs, "doubles every coefficient" where the result is actually non-linear, a focal-chord exception that does not exist (y₁y₂ = −4a² < 0 always), a latus rectum said to move with the centre, a chain giving 3π/512 under a boxed 3π/128. **Three of them call a VALID alternative method a mistake** — the "condemning correct work" defect from the 1A/1B audit, but worse, because the insider note is spoken before anything else.
+
+Chemistry-II's are chemistry: a `memory_tip` dropping p⁰ from the molar-mass formula (200 instead of 170 g/mol), Nessler's reagent cited as a SOURCE of ammonia when it is a test for it, an insider note naming the wrong one of matte/blister/pure copper, and a card asserting 300 atm "is the NCERT value" (NCERT prints 320) while marking 320 as a student error.
+
+Two `recall` rubrics on `p2_ray_compound_microscope_magnification` demanded a minus sign the card's own boxed equation lacks. Recall is grader-side, so a wrong one silently marks a CORRECT student answer wrong. The repair proved the RUBRIC was wrong, not the equations (thin lens is m = v/u; −v/u is the mirror convention), then found the same false minus in four more fields no report listed — including a `verification.note` whose own "hand-checked" chain was self-inconsistent.
+
+### Figures — render and LOOK
+
+All 146 were screenshotted and read. **Six were drawn WRONG, not mislabelled:** a reflected ray at 54.5° against an incident 61.0°, the rainbow's primary/secondary bows swapped, an inverted crystal-field barycentre, two ellipse "tangents" drawn as secants, and a parabola with a flat vertex whose drawn point had SP 67.1 vs PM 100.0 — on no parabola at all. The rainbow inversion had also reached a `recall.accept` string. One agent found what no gate or report could see: the STATIC picture was correct but the animation order faded each label onto the wrong curve.
+
+### The chatbot: scope creep, measured not guessed
+
+The situation block granted *"one short sentence offering to help with the question that IS open"*. The model read the grant as licence. Measured on the same corpus with the same frozen instrument — 1,124 out-of-bank replies each side, eight blind graders:
+
+**99.9% → 25.9%.** Refusal failure (a reply that actually answers the off-paper question) was **0 of 1,124 on both sides**, so the decline itself never broke. The counting definition here is stricter than the ~10–16% recorded in August (it counts even a bare offer), so the two are not comparable — only before-vs-after within this measurement is. Residual is mostly a bare redirect; roughly 8% still leaks content. Detail: `docs/reports/senior_audit/VIDI-SCOPE-CREEP.md`.
+
+**The gap that let it drift:** `vidiSeam.test.ts` parity-checked only `PERSONA`. This clause lives in the per-request `situation` block, which was unguarded — the mirror could certify a persona the deployed function does not run. The test now covers both and asserts the grant has not returned; **both new assertions were negative-controlled** before being trusted.
+
+### Two regressions the per-agent checks could not see
+
+Every repair agent verified its own prefix with `check_cards` (exit 0 every time) and the figure agents ran `check_figure_pace` (PASS every time). **Two whole-book measures still went red:**
+
+- **Figure label collisions 0 → 7 in 5 cards.** `check_figure_pace` measures stroke SPEED, not overlap. The real gate is the e2e label test / `find_label_clashes.mjs`, which measures RENDERED boxes in the built dist. It would have failed the suite.
+- **Line wrap 0/0/0/1 → 2/5/0/1.** No agent runs `measure:wrap` unless told. Four of the seven came from one bonus edit adding "(conc.)" to four Ostwald equations; no inline marker fits (measured: even bare `conc.` leaves S₈ at 587/568), so the concentration is now stated once in words and the insider note reworded to match.
+
+**Run `build:answers` → `find_label_clashes` → `measure:wrap` over the WHOLE book after any figure or printed-line wave, against a recorded baseline.** Both are fixed and both were re-verified after merging master in.
+
+### Verification
+
+`check:cards` ×4 · `check:p2cards` ×4 · `check:xrefs` · `check:originality` · `check:papers` · `check:figure-pace` (now including `ts_ipe_p2`) · `figcheck:m2b` 12/0 · `tsc` 0 · `vitest` 445/445 · `build:answers` 0 · `find_label_clashes` clean · `measure:wrap` 0/0/0/1 · **`smoke:answers` 70/70, exit 0** — re-run in full after merging `origin/master` (PR #187), because a branch's green result only proves it against its own base.
+
+### Shipped
+
+PR #189 merged as `7d06f04c` → `build:answers:gated:mpc-both` → `content:push:mpc-both` (98 units / 2,454 questions, all 8 free rows correct by name) → `deploy:answers` (worker `a82efb82`). Live-verified against the site, not the artifact. Edge Function redeployed separately to **version 17**; the deployed source was read back and confirmed to carry the new clause and not the old grant.
+
+### IS THE SECOND-YEAR BOOK READY FOR STUDENTS? — the honest answer (founder asked directly, 2026-09-02)
+
+**Live and usable: YES.** All four papers serve on answers.viditra.co, the repaired content is in the live bundles, and the chatbot answers. Verified against the site, not the repo.
+
+**"Everything is perfect": NO — and three gaps say why. None of them is closed by more agent work.**
+
+1. **No teacher has verified a single card.** Measured, not estimated: of the 1,124 second-year cards, **0 are `teacher_verified` and 1,124 still carry `needs_teacher_verification: true`**. This audit was a careful re-derivation; that is a different thing from a board teacher's sign-off. The group reports raise **184 numbered teacher-gate questions** that were deliberately NOT settled — Popoff's rule direction, the Dow-process pressure (300 vs NCERT's 320), ligand-name dialect (chlorido vs chloro), thiocyanato vs isothiocyanato, the vitamin E deficiency wording, the octane 8 g vs 10 g answer, "Daniel" vs "Daniell", whether a diagram earns a mark on a question that says "with a suitable diagram". Each is a place where a student writes what the card says and a Telangana examiner may disagree.
+2. **Every mark split is the bank's own claim, not the board's** — each card says so in its own `verification.note`. No second-year board paper exists in `answer-book/papers/`, so no split was ever back-tested. A student trusting "this step earns 2 marks" is trusting us.
+3. **This audit checked that what is there is CORRECT. It did not check that everything that should be there IS there.** There is no transcribed second-year source index (`answer-book/sources/` is first-year maths only), so a coverage diff against the source books was impossible. The equivalent check on Maths 1A/1B found **308 unauthored questions**. The second-year number is unknown and unmeasured.
+
+Smaller, also open: **three Chemistry-II question stems are themselves defective** and were referred out rather than rewritten, because `question_text` defines the question a student is answering — `ts_ipe_c2_df_iupac_formulae_from_names` ("Using IUPAC norms write the formulae for the following." — the eleven names exist only inside the answer steps, so the printed question cannot be attempted), `ts_ipe_c2_via_water_liquid_h2s_gas` and `ts_ipe_c2_va_ph3_weaker_base_than_nh3` (ungrammatical stems reproduced from the book). And the chatbot still drifts back to the open question on ~26% of off-paper asks, ~8% of them with real content.
+
+**The two things that would actually close the gap:** a board teacher working the 184 questions, and a coverage diff once a second-year source index exists. Only the first needs a person.
+
+### Left open, and owned by a teacher
+
+Also open: two low-rate model behaviours measured in 2,710 Maths-2B replies — one reply naming internal machinery, one walkthrough truncated at the 500-token cap — and 21 ungraded chatbot slices whose measurement is already stable at ~9.9/10.
+
+
+## 📚 SESSION — The 2026-27 syllabus lands on Physics-I and Chemistry-I: the three cut chemistry chapters named, States of Matter retired, every chapter of both new books indexed and diffed (2026-09-02, `feat/ipe-answerbook-syllabus-2027`)
+
+**Bottom line: no card was authored, and the bank now knows exactly what it is missing.** The founder scanned the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition (physics `DocScanner (3).pdf`, 142 pp.; chemistry `DocScanner (4).pdf`, 134 pp. — image-only, read visually). Physics is the 14-chapter list the bank already carried since 2026-08-28, and its Unit 14 prints **15 VSAQ and nothing else**. Chemistry is **10 chapters**: States of Matter, Hydrogen and Environmental Chemistry are gone; Stoichiometry / Thermodynamics / Equilibrium are now 4 / 5 / 6; s-Block, p-Block 13, p-Block 14 and General Organic Chemistry follow as 7–10 — four chapters the bank never had. **Marks are unchanged** (the material prints none; `PAPER_PATTERNS` untouched). Full record `docs/SYLLABUS_2026_27.md` §2; gap report `docs/reports/SYLLABUS_2027_GAP_REPORT.md`.
+
+### What changed in the desk (Phase A1 of the approved plan — structural, no content)
+
+- **First real use of the retire mechanism.** `chemistry-4` States of Matter → unit **99**, unit-level `status:"retired"` (40 files / 43 rows stay; forwarded `#/q/<id>` links render with the banner; the chapter is offered nowhere). It cannot keep number 4 — Stoichiometry owns `chemistry-4` now and the build's unit-key guard forbids two units on one key — and it never renders, so an out-of-range number is the honest label. The unit chip on a retired card shows the chapter name alone, never "Unit 99".
+- **Chemistry renumbered to the textbook**: 5/6/7 → 4/5/6, with all 123 chemistry cards' `unit.number` rewritten by regex (the build's card-vs-manifest key check forces it); units 7–10 added as coming-soon rows; physics-14's five topic labels replaced by the 15 printed VSAQ stems (restated; `source:"chaitanya_fastrack"`, `stars:0`).
+- **`LEGACY_UNIT_KEYS`** += `chemistry-4→chemistry-99, 5→4, 6→5, 7→6`. The first mapping matters: left unmapped, an old States-of-Matter link would silently open Stoichiometry. Known one-shot-marker limit recorded in the comment.
+- **Three engine gaps a retired unit exposed, all fixed:** `push_answer_content.ts` expected a bundle for every manifest unit while the build writes none for a retired one (the push would have exited 1); the hosted build's `loadQuestion` sent a retired card into the lock flow, then a 404 ("Could not reach the server") — it now shows a plain "Not in the 2026-27 syllabus" sheet with only the way back and never asks the server; the plan-less revision queue could still offer a retired card.
+- **`check:papers` was already RED on master** — 522 `chaitanya_fastrack` maths rows (the 2026-08-30 gap fill) were never added to `KNOWN_SOURCES`. Fixed; the vocabulary now carries the value.
+- **`check:originality` is scoped by ROW as well as by subject**: every `source:"chaitanya_fastrack"` manifest row in any subject must have `stars:0`, and its card (once it exists) must cite the book and record the boundary sentence; the 521 legacy starred physics/chemistry/botany/zoology rows stay counted-not-failed (founder-owned). "Physics of Emerging Technologies" joined the never-asked chapter list.
+- Tests: the pinned-fixture retire test became a real one on `ts_ipe_c1_som_aqueous_tension`; new gates for the chemistry numbering (10 live units, no 99), the legacy chemistry links (old `chemistry-5` → "Unit 4 — Stoichiometry"; old `chemistry-4` → catalog), and a gated retired-link test asserting the sheet appears and no `chemistry-*` bundle is ever requested; the gated bundle test filters retired units; the offer wall's "N chapters" is derived from `PM_UNITS` (the literal had gone stale twice in a week); "0 of 5 ready" → regex.
+- Docs: `SYLLABUS_2026_27.md` §2/§4/§5, `answer-book/README.md`, `CHEMISTRY_START_HERE.md` (+ reserved abbreviations `sb p13 p14 goc`), `patterns/answer_book.md`, `CHEMISTRY_2_START_HERE.md`, `ORIGINALITY_MATHS.md` §6b, `wrangler.answers.toml` (its free-chapter comment still said physics-4 / mathematics-4; the push script's printed reminder said mathematics-4 too — both now name the intended set: physics-3 · chemistry-3 · mathematics-6 · mathematics_1b-3).
+
+### Phase B — the index and the diff (the analysis the founder asked for)
+
+All 24 chapters transcribed into `answer-book/sources/chaitanya_{p1,c1}_2027_*.json` — **1,421 entries**, stems restated in our words, sub-parts split, PROBLEM / intext blocks included, stars kept as research signal only (R1–R6). Twenty per-chapter diffs (`docs/reports/syllabus_2027_diff/`) matched on the physics/chemistry, never the wording:
+
+| | book entries | matched | re-cuts | missing, asked sections | missing, problems | predicted rows confirmed | extras whose topic is gone |
+|---|---|---|---|---|---|---|---|
+| Physics-I | 635 | 133 | 52 | **311** | 130 | 24 | 28 |
+| Chemistry-I ch.1–6 | 457 | 118 | 55 | **173** | 110 | 24 | 19 |
+| Chemistry-I ch.7–10 | 329 | 0 | — | **230** | 88 | — | — |
+| **total** | **1,421** | 251 | **107** | **714** | **328** | **48** | 47 |
+
+The five thin physics units (9–13, built only from board papers) carry 154 of the physics gap; chemistry Thermodynamics gained a Long Answer section the bank never had; the four new chemistry chapters need 318 distinct cards after folding the book's own duplicates. The 47 "topic gone" extras are retire CANDIDATES listed in the report's appendix — nothing is retired without the founder's confirmation.
+
+### Founder decisions (AskUserQuestion, 2026-09-02)
+
+Keep EXTRA rows and retire only whole topics after confirmation · **Problems become a fourth section** (Phase A2 engine, its own PR: `qtype:"PROBLEM"`, `paper_section:"Practice"`, marks 2 or 4, the planner / exam-eve / readiness meter exclude it, student-visible counts include it — overrides the 2026-08-20 deferral) · no stars on new cards · authoring order physics 14 → physics 9–13 → chemistry 7–10 → remaining gaps, re-cuts and promotions → problems last.
+
+### Verification (desk, 2026-09-02)
+
+`npm run build:answers` green — `retired: 40 card(s)`, Unit 4 — Stoichiometry 36/36, Unit 14 0/15, 134 units · `npx tsc --noEmit` 0 · `npx vitest run` 443/443 · `check:papers` clean (was red) · `check:originality` passes over all 24 indexes (still prints the 521 legacy rows) · `check:xrefs` clean · `backtest:physics` every mapping resolves · `vidi:contexts` widest context 74% of the slice · `build:answers:gated:mpc` writes chemistry-1…10 and no 99 · targeted Playwright: 5/5 offline (retire banner, chemistry numbering, legacy links, physics numbering) and 4/4 gated (retired-link sheet, bundles, offer wall, never-sold-as-locked) · **full `smoke:answers`: 70/70 passed (2.4 h, exit 0)** — run 3, launched as a detached `cmd /c … & echo SMOKE_EXIT` process with a Monitor on its log; runs 1 and 2 were killed by machine load under the agent wave and by a harness turn boundary, not by a defect.
+
+### Lessons
+
+- **A "failed" agent notice says nothing about the disk.** 22 top-model agents in one wave hit the subscription's 5-hour session cap; 17 died at once. Every "failed" index agent had already written a complete, valid file; no diff agent had. The relaunched diff wave on `model: sonnet` finished cleanly. Fan-outs beyond ~6 agents go on sonnet unless the task needs the top model.
+- **Never run the 45-minute Playwright suite under a live wave of PDF-reading agents** — the browser worker died with a process-creation error (0xC0000142), and the harness-backgrounded re-run was stopped at a turn boundary. The final run is a detached `cmd /c … & echo SMOKE_EXIT` process with a Monitor on its log.
+- The shell transport still eats a long quoted heredoc: an EOL-aware Python replacer written to the scratchpad and run by path succeeded where the same edit inline failed twice (all six touched source files are CRLF).
+
+### NOT done, deliberately
+
+No card authored (Phase C starts with physics 14 from the index stems); the PROBLEM engine (A2) not built; nothing committed or pushed at the time of writing — the desk is handed to `git-steward` once the smoke result lands; nothing deployed (Rule 17); the `ab_content.free` UPDATE for physics-3 and the `ab_entitlements` per-unit remap check remain founder steps after the next `content:push:mpc-both`; the vault sync is proposed to the founder, not written.
+
+## 📐 SESSION — Maths 1B's calculus half, and what a competitor's book actually proves (2026-08-30, `feat/ipe-answerbook-maths-1ab-gap`)
+
+**Bottom line: 255 new cards. Maths-1B went from 7 units to 10 — Limits and Continuity, Differentiation and Applications of Derivatives did not exist in the product at all, which is roughly a third of that paper. The two Maths-1A chapters added for the 2026-27 syllabus stopped being placeholders whose "questions" were syllabus topic labels. And the question that started the session — whether Sri Chaitanya could claim we copied them — turned out to have a strong answer that points somewhere nobody was looking.**
+
+### The founder's question, answered with evidence rather than assurance
+
+Three phone scans of the Sri Chaitanya *FAST TRACK IPE* Maths-1A and 1B volumes arrived, typeset for the new syllabus. The worry was that the college could say our answer book was lifted from theirs.
+
+**Our maths bank was never built from a Sri Chaitanya book.** It came from the Baby Bullet-Q (Sri Publishers, Machilipatnam), declared in `IPE_MATHS_1A_SOURCE.md` on 2026-08-21 and `IPE_MATHS_1B_SOURCE.md` on 2026-08-24. Zero of the 358 maths cards mention Chaitanya. All 358 were first committed 21–24 August; the scans reached the machine on 30 August. That ordering is reproducible from the repository alone, and it was captured and committed **before** any of the new work started — `docs/ORIGINALITY_MATHS.md` plus a hashed 358-row table in `docs/evidence/`.
+
+**Running the new gate unscoped is what found the real exposure.** 521 non-maths cards cite Sri Chaitanya — zoology 190, chemistry 148, botany 115, physics 68 — and those subjects **do** republish that book's priority stars in `units.json`, which the live product renders. A publisher's star ranking is the most distinctive thing it owns. `check:originality` prints that count on every run rather than filtering it away, because a number that stops being printed stops being true. Bringing those subjects in scope is a founder decision, not a tidy-up.
+
+**On "did they copy us": no evidence, and the file says so.** 226 pages contain none of this book's distinctive features — no mark splits at all in the 1A volume, no step architecture, no common-mistakes rail. No scan includes a copyright page, so the edition is undated in our hands.
+
+### The player would have lied about every new card
+
+Vidi's gloss on a mark split had two branches: a *predicted* question ("this split is ours"), or anything else ("this mark split is the source book's"). Neither is true for a question the book **asks** but prints **no per-step allocation** for — which is every one of the 204 new 1B cards. Shipping it as the default would have laundered an authored split as a sourced one, the defect four graders named the highest-value one in the round-2 corpus. There is now a third branch. The stars gloss got the same treatment: for these sources `stars: 0` means NOT PUBLISHED, not "the book gave it no star". An undefined manifest entry still falls through to the old wording, so no existing subject changes behaviour.
+
+### The source book is wrong six times, and its own solutions prove it
+
+Recorded on the cards, never silently fixed:
+
+- **Limits Q20** is printed `lim(x→2)` of (2x²−7x−4)/((2x−1)(√x−2)) — not an indeterminate form at 2. The numerator factors as (2x+1)(x−4) and **the book's own working rationalises √x−2**, which only cancels at 4. Authored at x→4 (36/7).
+- Two mis-bracketed Continuity stems. The (x²−9)/(x²−2x−3) reading is self-confirming: it collapses to (x+3)/(x+1), exactly the 1.5 the book gives for f(3).
+- An interval printed `[2, 2]` whose own working uses `[−2, 2]`; a rate given as "2 cubic metre/**mm**"; a bacteria count in seconds asked at "4 hours"; `log_e^x` for logₑ x; and a `√65` whose own solution appears to use a cube root.
+
+### backtest:maths, and the four gaps enumeration cannot see
+
+Mathematics had no back-test — physics diffs against seven real TSBIE papers, but we hold no maths paper corpus, so the only coverage claim available was "everything the book lists is authored", which is a claim about the **list**, not about a paper. Both volumes print a full 21-question model paper on their last page: a free, independent test set assembled by someone else choosing what to examine. **42 of 42 now land on a chapter the bank answers.**
+
+It earned its place on the first run by finding four gaps where *every question involved is already authored — just at the wrong length*:
+
+| Model paper asks | Bank holds |
+|---|---|
+| Properties of Triangles at 2 marks | 12 SAQ + 11 LAQ, no VSAQ |
+| Functions at 4 marks | 20 VSAQ + 6 LAQ, no SAQ |
+| Mathematical Induction at 4 marks | all 10 at 8 marks |
+| Pair of Straight Lines at 4 marks | all 15 at 8 marks |
+
+Two independent sources now disagree with our section labels, which came from a third book. **A student revising Section B for Pair of Straight Lines finds nothing there.** The script prints these as THIN rather than failing — the section a question is asked at is the paper-setter's call — and its header is explicit that these are a coaching publisher's model papers, evidence about coverage and never about exam history.
+
+### Two things no gate checks, and one correction to my own instructions
+
+- **`expected_time_min` was wrong on 102 cards.** Maths-1B is uniform at VSAQ 5 / SAQ 9 / LAQ 15 across all 108 existing cards; the authoring brief said 4 and 8. An agent caught it by comparing its output against **the cards next to it** rather than against the brief it was handed. That is the only way this class of drift surfaces.
+- **A brief instruction was simply wrong.** It told an agent to reject a root outside the interval when verifying Rolle for (x²−1)(x−2) on [−1, 2]. Both roots of 3x²−4x−1, that is (2 ± √7)/3 ≈ 1.549 and −0.215, lie strictly inside. The agent checked instead of complying and recorded that the stem's singular "the point" does not match the mathematics.
+- **Two gate fixes, both the gate's fault.** `check:originality` matched the boundary sentence case-sensitively and called 46 correct cards violations for writing it in capitals — a gate that fails on typography teaches authors to fight the gate instead of the rule. And it assumed one index shape, so the model-paper corpus now flattens rather than being exempted from the questions-only rule.
+
+### Verification
+
+`build:answers` 2,727 cards / 130 units, all ten Maths-1B units ready · `check:cards` 255/255 · `check:originality` passes · `backtest:maths` 42/42 · `tsc` 0 · `vitest` 443/443 · Playwright suite launched detached.
+
+**Not done, and deliberately:** the ~60–80 scattered gaps in the chapters that already exist (Product of Vectors 55 vs 32, The Straight Line 67 vs 44, and the four section-label conflicts above). The founder's order was new chapters first, then everything.
+
+**Still needed from the founder:** the Telugu Akademi Maths 1A/1B textbooks (not on this disk — the only maths PDFs present are the TOSS 311 volumes, already established as the wrong book), a photo of both Fastrack **copyright pages**, and a re-scan of **printed page 173** of the 1B volume, which the scan skips along with one worked solution.
+## 📐 SESSION (part 2) — the first Vidi audit of Physics-II and Chemistry-II (2026-08-30, `master`)
+
+**Bottom line: both second-year science papers were audited for the first time — 5,960 replies, ten graders, the frozen rubric. Physics-II 9.86/10, Chemistry-II 9.96/10. Two real chemistry errors were found and fixed, both caught because the card contradicted ITSELF. Two constants sized for a smaller bank were found and raised, one of which was silently cutting four live cards' last step. And one accident makes every score in this file read differently: the same 520 replies were graded twice, independently, and came back 3.000 and 2.930 — a spread six times larger than the between-paper gaps I had been reporting as findings.**
+
+### What is live right now
+
+`answers.viditra.co` — Worker version `5f0d5e73`, second year at **52 chapters / 1,124 answers**, eight free chapters (one per subject in both years). Edge Function `answerbook-vidi-chat` redeployed twice this session: once for the persona fixes, once for the 14,000-char slice. `ab_content` at 92 units / 1,921 questions. **Do not redeploy blindly — check `git status` in the same breath, the build reads the working tree.**
+
+### The audit
+
+596 contexts × the 10-ask battery. Physics-II 2,560 replies, Chemistry-II 3,400.
+
+| | replies | mean | 0s | grounding defects |
+|---|---|---|---|---|
+| Physics-II | 2,560 | 2.958 = **9.86/10** | 2 | none |
+| Chemistry-II | ~3,400 | 2.989 = **9.96/10** | 5 (all guard-reply, infra) | **2, both fixed** |
+
+Mechanically: **zero critical flags on either paper** — no step-id leaks, no mark inventions, no truncations. 39 flags in 2,560 (Physics-II) and 29 in 3,400 (Chemistry-II), almost all `OVER_BUDGET` and `MARKDOWN`.
+
+### The two chemistry errors, and why they were findable
+
+Both were caught by the card disagreeing with itself, which is the signature worth teaching the next auditor to look for.
+
+- **`ts_ipe_c2_ocn_amines_with_nitrous_acid`** wrote the aliphatic diazotisation as `+ HCl → … + H₂O` (LHS H6 O2 Cl1, RHS H5 O1 Cl2 — does not balance) while the **aromatic step one line above** had `+ 2HCl → … + 2H₂O` correctly. Same reaction, same reagent, same card.
+- **`ts_ipe_c2_akc_oxidation_products_of_carbonyl_compounds`** stated Popoff's rule as "the carbonyl group stays with the **smaller** alkyl group", then four steps later concluded the **phenyl** (larger) side keeps it and gives benzoic acid. Read literally the printed rule predicts acetic acid. Acetophenone → benzoic acid is the certain half, so the rule line was what was backwards. Restated as which **bond** breaks, and **flagged for the teacher gate rather than asserted** — both directions circulate in Indian texts and what matters is the wording the board expects.
+
+Neither had reached a student in the transcript. That is luck, not safety: the next student to ask "what is Popoff's rule" would have had it backwards from the grounding.
+
+### Two constants sized for a bank that has since grown
+
+Same class as the e2e sweep budgets raised earlier today.
+
+- **The ANSWER FACTS slice.** Cut at 10,000 chars, silently. Its comment recorded why that was safe — *"measured max across the whole bank is 7,687 chars"*. It is **10,421** now, and four cards had crossed it (3 Physics-II, 1 Chemistry-II), losing their last step's supporting text on the live site with no symptom. Raised to 14,000 (warn 12,000) in the Edge Function, its byte-identical mirror, and `dump_vidi_contexts.ts` — which must track the server or its gate reports a truncation that is not happening, or misses one that is. **The slice is a ceiling, not a pad**: the 2,468 contexts already below it are unchanged. Verified live on the widest card — the function now answers about its final step (`i = Kθ`, `K = C/nAB`), the exact text that was being cut.
+- **`check_p2_cards.ts` had TWO hardcodes**, `LAQ = 8` and `subject = physics_2`, and together they made it worse than no check: pointed at either senior maths paper it reported 64 and 62 failures, one per long answer, every one correctly cut at 7. It now reads `paperMarksFor` and derives the subject from the cards. **This is the inverse of the PAPER_PATTERNS trap already recorded** — that one fails OPEN, silently skipping an unknown subject; this failed CLOSED and WRONG. Negative-controlled: a prefix spanning 2A and 2B still fails, exit 1.
+
+### THE MEASUREMENT LESSON — read this before quoting any score in this file
+
+**Physics-II slice 02 was graded twice by accident, independently, on the identical 520 replies. One returned 3.000. The other returned 2.930.** That 0.07 spread on one slice is **six times** the Maths-2A vs Maths-2B gap (0.012) that the earlier entry reports as a difference between papers.
+
+So the reliable output of this method is the **enumerated defects** — grounding errors, wrong-step counts, out-of-bank counts — each of which can be checked against the card. The third-decimal means are not. Every paper measured today sits at ~9.9/10 and the differences between them are inside grader noise. Say "flat" and name the defects.
+
+**Five grader claims did not survive checking against the card this session**, so check every one before acting: a "corrupted numeral 176" that was a real book answer number; a mark split said to sum to 6 that sums to 7; a "cm to m" mistakes line that already says the ratio is unit-invariant; a "wavelength contradiction" where the card was correctly correcting its book; and a wrong-step rate generalised from two of three slices that the third contradicted.
+
+### Also confirmed
+
+The structural step-id fix **holds on papers it was never tuned on** — 0 leaks in all 5,960 replies. And Physics-II's cards are actively **correcting their source book** rather than inheriting from it: swapped transistor arrows, a wrong Doppler application, √70 printed as 8.27 (it is 8.37 — copying it gives 517 Hz instead of 523), beryllium wrongly listed as a control-rod absorber, a 0.025 MeV→eV slip, a meter-bridge ratio printed 6/2 with a spurious unit. Graders re-derived each and confirmed all are genuine fixes.
+
+### Session totals
+
+**18,632 live replies, ₹390.32**, across four papers and five rounds. Commits: `83f8b76e` `f5948fe2` `0630a8fe` (this half) on top of `42cf9048` `39c76c85` `07a7ca31` `1217ddc3` `9a4ad013` `76f14e26`.
+
+---
+
+## ▶ NEXT SESSION'S FIRST TASK — backfill the maths memory tips
+
+**The gap.** Measured across the whole bank:
+
+| paper | cards | steps | `memory_tip` |
+|---|---|---|---|
+| Maths-1A (`ts_ipe_m1a`) | 250 | 801 | **0** |
+| Maths-1B (`ts_ipe_m1b`) | 108 | 367 | **0** |
+| Maths-2A (`ts_ipe_m2a`) | 257 | 768 | **0** |
+| Maths-2B (`ts_ipe_m2b`) | 271 | 828 | 828 (100%) |
+| every physics / chemistry / botany / zoology paper | — | — | 100% |
+
+**Why it matters.** `answer-book/notebook.js:5033` renders the chip only `if (s && s.memory_tip)`. So **the "How to remember?" chip has never appeared for a student on three of the four maths papers** — 1,936 steps, 615 cards, both years, all live. It is a whole Vidi feature that is simply absent, and no gate reports it because the field is optional.
+
+**Do NOT expect this to move the audit score.** It was predicted to and did not: 2A's tip-free `remember` scored at or above 2B's. Two reasons, both worth keeping in mind — the rubric grades against the ANSWER FACTS, so an improvised tip that no fact contradicts cannot be marked down; and the missing chip is invisible to reply-grading entirely. **The case for doing this is the dead chip, not the score.**
+
+**How.**
+1. Exemplar: any `ts_ipe_m2b_*` card — 828/828, and graders reported the model reliably uses the authored tip rather than improvising.
+2. Playbook: `docs/PHYSICS_BACKFILL_START_HERE.md` (the 599-string physics backfill). Its §3 bar is the one to hold.
+3. **`memory_tip` is ALL-OR-NONE per question** — a half-filled card fails `npm run build:answers`. Author every step of a card or none.
+4. Per-unit agents, one unit each. Each runs `npx tsx src/scripts/check_cards.ts --prefix ts_ipe_m1a` on its own prefix before reporting.
+5. **Never let a fix agent write its changelog into `why`** — `why` is student-facing and handed to the model. Revision history goes in `verification.note`.
+6. Suggested order: **Maths-2A first** (257 cards, second year, freshest in the bank and already audited), then 1A, then 1B.
+
+**Recommended: pilot ONE unit and show the founder the tips before spending the fleet on 615 cards.**
+
+**Verify + ship:** `check:cards` per prefix → `npx tsc --noEmit` → `npm run build:answers` (it prints per-unit `memory_tip` coverage, which is the progress meter) → `npm run measure:wrap -- <prefix>` → `content:push:mpc-both` → `deploy:answers`. No Edge Function redeploy needed for card content.
+
+### Open, not started
+
+1. **Out-of-bank scope creep, fleet-wide ~10–16%.** Vidi declines the off-paper ask correctly, then volunteers the open question's answer unasked. **The cause is a clause added this session**: the situation block grants "one short sentence offering to help with the question that IS open", and the model reads the grant as licence. Deleting the grant is a one-line change in BOTH persona copies, but it is shared by all eight subjects including the live first-year book, so measure it — a targeted `--only=outofbank` probe over four papers is ~1,100 calls, about ₹15, plus a few graders. **All three mechanical proxies for this defect under-detect it (0.6%–10.8% against readers' 10–16%); graders are the only instrument.**
+2. **43 book-answer cross-references across 35 cards in five papers** — "as in answer 22", pointing at numbers the product never shows. Listed in `docs/notes/answer_book_crossref_cleanup.md`. Three were fixed; the rest need reading, not a regex.
+3. **Wrong-step ~1.9% (maths), 0–4% (physics/chemistry).** Improved by naming the step instead of handing over an id; not closed.
+4. **~15 replies emit literal `**bold**`**, which renders as raw asterisks in the chat UI. Mostly Telugu replies.
+5. **Botany and Zoology have no `SUBJECTS` entry in `vidi_audit.ts`** — they fall through to `physics` and would take the ideal-gas bait. Fix before auditing either.
+6. **`ts_ipe_c2_df_ambidentate_ligand`** labels the N-bound SCN⁻ form "thiocyanato-N"; IUPAC calls it *isothiocyanato*. Both conventions appear in Indian texts — a teacher should rule, not an agent.
+7. **12 guard-reply non-answers** from transient DeepSeek failures during the runs (0.2%). Availability, not content.
+8. **Two harmful Physics-II replies with CORRECT grounding** — an inverted gauss/tesla conversion and a log-midpoint the card's own mistakes line warns against. **Both re-ran 0/6**, predicates positive-controlled on the originals, so they are stochastic at temperature 0.7, not traps. Nothing to fix in the cards; any mitigation is a temperature or output-check decision.
+9. **The teacher gate is still owed on everything** — `verification.status` is `unverified` across the bank, and the Popoff wording is now explicitly queued for it.
+
+## 📐 SESSION — Maths-2B ships, and the first Vidi audit of the two senior maths papers (2026-08-30, `master`)
+
+**Bottom line: Maths-2B is live at answers.viditra.co — second year went 44 → 52 chapters and 853 → 1,124 answers — and both senior maths papers went through the Vidi audit for the first time. 12,672 graded replies over three rounds, 37 independent graders, the frozen rubric. 2A scored 9.94/10 and 2B 9.90, the highest of any paper measured, with ZERO harmful replies in the 5,280 of round 1. Two cards were genuinely wrong and both reached a student. And the round that was supposed to be the before/after measured nothing of the kind — its local mirror never started, and a curl 200 from the old process was taken as proof that it had.**
+
+### Maths-2B was finished, pushed, and never merged
+
+The desk sat 23 commits ahead of `origin/master` with no PR. Everything else in the book was on master; this one paper was not, so `mathematics_2b` appeared nowhere on the live site. PR #179, clean fast-forward, CI green.
+
+Two things the branch had registered everywhere except where a student looks first:
+
+- **`TRACKS[0].subjects`** — the group tile on the door, the first screen a student meets, still read *"Maths 1A · Maths 1B · Maths 2A · Physics · Chemistry"*. The `mpc_2` year cell and its blurb were already correct, which is exactly why this was easy to miss: the tile that was wrong is the one no year owns.
+- **`smoke.pid`**, a Playwright pid file committed by accident and the only permanently dirty file in the worktree.
+
+Deployed in the documented order — `content:push` BEFORE the site, because the gated artifact fetches per-unit content from `ab_content` and a catalog listing eight chapters the table does not hold gives a student eight chapters that open empty. `ab_content` 84 → 92 rows; the 84 existing bundles were proven byte-identical before the push, so exactly the eight new ones changed. Integration (`mathematics_2b-6`) set free, keeping *"One chapter in every subject is free"* true in both years — eight free chapters now, four per year.
+
+**Verified against the live site, not the artifact.** A real browser walk of both door years passed 15 of 15: the door meets a fresh device, the MPC tile now names Maths 2B and counts 89 chapters, the second-year cell opens on *"Physics II · Chemistry II · Maths-2A · Maths-2B"*, Integration reads **Free · 51 of 51 ready**, a reload keeps the remembered year, first year does not leak 2B, zero page errors. The e2e suite structurally cannot test the door — it runs the unstreamed build where `PM_TRACKS` is null.
+
+### The audit: 9.94 and 9.90, and zero harmful replies
+
+528 grounding contexts × the 10-ask battery = 5,280 live replies per round against the local mirror, ten graders per paper, the rubric frozen in `vidi_slice.ts`.
+
+| | replies | mean | 3 | 2 | 1 | 0 |
+|---|---|---|---|---|---|---|
+| Maths-2A | 2,570 | 2.983 = **9.94/10** | 2,535 | 26 | 9 | **0** |
+| Maths-2B | 2,710 | 2.971 = **9.90/10** | ~2,630 | ~70 | 8 | **0** |
+
+Physics-I finished 9.85, Chemistry-I 9.78, Maths-1A 9.67. Cross-subject comparison is weaker evidence than a same-corpus before/after — different grader panels — but zero harmful replies in 5,280 is a hard number, and every grader re-derived the ANSWER FACTS arithmetic independently and found no 2A card mathematically wrong, matching the examiner pass that found zero wrong in 257.
+
+### Two cards were wrong, and both reached a student
+
+Neither is visible to any structural gate; both sit in the explanation layer Vidi is grounded on.
+
+- **`ts_ipe_m2b_di_laq_sqrt_x_minus_a_b_minus_x`** claimed its answer π(b−a)²/8 is *"one quarter"* of the area of the circle of diameter (b−a). That circle has radius (b−a)/2 and area π(b−a)²/4, so the answer is **half** of it — which the same sentence already says by calling it a semicircle. The card contradicted itself in one line, and the model repeated the wrong half verbatim when a student asked how to remember it, handing over a false sanity-check.
+- **`ts_ipe_m2b_sc_find_k_given_angle_45`** promised *"two rounds of squaring, not one"* in its insider note and again in a margin note, and labelled a division *"Squaring gave k² = 16"*. The algebra squares exactly once: `17k² = 272` then `k² = 16` is a division, and `k = ±4` is a square root. A grounding that insists on a step the working does not contain invites the model to explain it anyway — and the `mistakes` reply duly invented a rationale for the squaring that never happens.
+
+**Three pointers a student cannot follow** were also fixed — *"the neighbouring answer 176"*, *"the earlier answer 98"*, *"where 140.1 led to a linear equation"*. These are the source book's answer numbers, and the product never shows them. Generalising what three graders caught in replies, a scan found **43 such sites across 35 cards in five papers**; they are listed in `docs/notes/answer_book_crossref_cleanup.md` rather than rewritten, because each pointer has to be replaced by the thing it points at, which needs reading rather than a regex.
+
+**`Asked: AP 2019, 2019`.** `askedLine` never de-duplicated, so a card listing one board-year twice printed it twice — to a student that reads as two sittings, or as a typo. Eighteen cards do this, across Maths-2A and Botany-II. Nothing counts `appearances.length`, so the duplicate only ever reached the eye, which is why the fix belongs in the shared renderer and not in eighteen cards: it covers every paper including the ones not written yet. Negative-controlled — genuinely distinct years still print in full.
+
+### The round that measured nothing, and why it turned out to be the most useful one
+
+Round 2 was supposed to be the after. Its mirror never started: the port was still held by round 1's process, and the liveness check — a `curl` returning 200 — was answered by that old process. So round 2 ran the OLD persona with the NEW cards, and the two "results" it produced were both wrong readings that had to be retracted: a step-id leak that appeared to double, and an out-of-bank improvement that appeared real.
+
+What it actually produced is the thing a single before/after never has: **two runs of identical configuration, 5,280 replies each, at temperature 0.7 — a measured noise band.**
+
+| | persona | step-id leak | outofbank states a mark value |
+|---|---|---|---|
+| round 1 | old | 4 / 1584 (0.25%) | 39 / 528 (7.4%) |
+| round 2 | old — same config | 9 / 1584 (0.57%) | 27 / 528 (5.1%) |
+| **round 3** | **fixed** | **0 / 1584 (0.00%)** | **8 / 528 (1.5%)** |
+
+Rounds 1 and 2 bracket the noise; round 3 falls below both on both measures. That is the bar the accident set, and it is a far stronger claim than a single before/after could have made. **A liveness check must read the server's own startup line — a status code can be answered by the wrong process.**
+
+### The persona fix that did not work, and the structural one that did
+
+The step-id leak — replies telling students to *"skip the last step (s2_compute)"* — was first attacked with a rule: *"never write it in your reply."* Measured, that rule's round was the worse of the two old-persona rounds. So it was **withdrawn** rather than left in place unproven, and the id stopped being offered instead: the situation block now says `step 7, "All six roots"` in place of `s7_roots`, read out of the ANSWER FACTS the model already has, falling back to *"the step they are on"* and never to a raw id. Leak went to 0 of 1,584.
+
+The out-of-bank fix was a boundary, not a ban. The line already said *"Two sentences is the whole reply. You may then offer the question that IS open"* — and "offer" was read as permission to answer it in full, once signing off *"Good luck with your exam tomorrow — you have prepared well"* to a student who had not touched the question. It now grants one sentence, an offer only.
+
+### A check that was wrong, and withdrawn
+
+A mechanical wrong-step detector was written for the defect that produced the only grade-0 replies — a `whystep` reply that explains a neighbouring step and attaches its mark ("This step earns the 1 mark for the denominator" on a 2-mark division step). Validated against the cases graders had named by hand, it reached **3 of 5 recall while firing on 13% where readers found about 1%** — a twelve-fold over-fire. It is **withdrawn**, and its apparent round-over-round improvement is discarded with it. Graders remain the only instrument for wrong-step. A green run from a broken check implies a safety it cannot provide.
+
+### Two grader claims that did not survive checking
+
+Both were checked against the card rather than taken at face value, and both were wrong:
+- *"176 is a corrupted numeral"* — it is a real neighbouring printed answer number. The defect is the opaque pointer, not a corruption.
+- *"`te_laq_recip_6x6_25x5`'s mark split contradicts its steps, summing to 6 not 7"* — the split sums to 7, the steps sum to 7, and the six scoring steps map one-to-one onto the six buckets. `s3_substitute` is 1M, not the 0M claimed. A sweep of all 528 cards in both papers found **zero** split/step misalignments.
+
+
+### Round 3, read by graders: wrong-step solved, scope creep cut but alive
+
+Five graders read the 2,112 replies of the targeted re-probe.
+
+**Wrong-step improved but is NOT closed, and the first number I wrote for it was wrong.** It
+produced the audit's only grade-0 replies in round 2 — a `whystep` reply explaining a neighbouring
+step and claiming that step's mark ("This step earns the 1 mark for the denominator", on a 2-mark
+division step). Two of the three Maths-2A slices came back at 0/84 and 0/86 and I reported it as
+essentially solved; **the third slice then returned 4/85, two of them grade 0.** The honest figure
+is **10 / 526 whystep replies across both papers (1.9%)** — 4/255 on 2A, 6/271 on 2B.
+
+Naming the step by number and label instead of by an opaque id clearly helped, but it did not
+eliminate the class, and there is **no clean before/after here**: round 2's graders were never asked
+to count wrong-step, so round 3 is the first systematic measurement of it and has nothing to be
+compared against. What can be said is that round 2's only zeros were wrong-step, and that round 3's
+surviving cases are four times rarer than its own out-of-bank creep. **Do not generalise a rate from
+a subset of slices — the third slice is exactly where the cases were.**
+
+One further model-side falsehood surfaced in that slice: a `remember` reply asserting "for odd
+degree class II, only −1 is a root", which contradicts the sibling card's own facts. And two
+sub-graders scored structurally identical out-of-bank leaks 1 and 2 — a rubric-application
+inconsistency rather than a rubric change, but it means small per-template means carry grader
+variance.
+
+**And here is where I nearly reported a win that was not one.** My mechanical measure for
+out-of-bank scope creep was "does the reply state a mark value", and it read 7.4% → 5.1% → **1.5%**.
+The graders read the same round at **10–24%**. The narrow measure had gone narrow exactly the way a
+defect metric does: the model stopped naming marks and kept handing over the answer. The broader
+proxy already in the same script tells the true story, and the accidental duplicate round makes it
+airtight:
+
+| out-of-bank behaviour | R1 old | R2 old (same config) | R3 fixed |
+|---|---|---|---|
+| states a mark value (narrow) | 7.4% | 5.1% | 1.5% |
+| **quotes an equation** (broad) | 28.0% | 28.4% | **10.8%** |
+| median words | 58 | 58 | 52 |
+
+A noise band 0.4 points wide, and the fixed run 17 points below it. So the honest claim is that the
+behaviour **fell by roughly two thirds and did not go away** — Vidi still declines correctly and then
+volunteers the open question's final answer in about one reply in ten. **Trap 5 from the maths round,
+reproduced by me: the metric that says you succeeded lies the same way the one that says the model
+failed does. Report the measure that matches what a reader sees.**
+
+Also named by round-3 graders and not fixed: `remember` padding is the largest volume issue on 2B
+(46% of remember replies scored 2) — pure length and scope, never once a correctness error. Vidi
+reaches for neighbouring steps' authored tips as well as the one the student has open.
+
+### The maths papers have no memory tips at all
+
+Measured across the whole bank: **Maths-1A 0/801 steps, Maths-1B 0/367, Maths-2A 0/768. Maths-2B is 828/828.** Every physics, chemistry, botany and zoology paper is at 100%. The `"How to remember?"` chip renders only `if (s && s.memory_tip)` (`notebook.js:5033`), so **the chip has never appeared for a student on three of the four maths papers** — 1,936 steps across 615 cards, both years, all live.
+
+A prediction was made before the run and it was wrong: 2A's tip-free `remember` did not score below 2B's. It scored at or above it, and 2B's `remember` was in places its weakest template, because Vidi reaches for the adjacent step's authored tip. Two reasons that is not evidence tips do not matter — the rubric grades against the ANSWER FACTS, so an improvised tip that no fact contradicts cannot be marked down; and the missing chip is invisible to reply-grading entirely. **Reported as a wrong prediction, not quietly dropped.**
+
+### Also found, not fixed
+
+- **Four cards exceed the 10,000-char grounding slice** — three Physics-II, one Chemistry-II. The dump script warns that "tail steps are being dropped"; checked, no whole step is lost, only 154–421 characters off the last step's supporting text. The warning overstates it. Live, and outside the maths scope of this session.
+- **`check_p2_cards.ts` hardcodes `LAQ → 8` marks** rather than reading `PAPER_PATTERNS`, so pointing it at either 7-mark maths paper reports 64 and 62 false failures. Its own comment's premise ("PAPER_PATTERNS is not on this branch yet") has expired.
+- Both 40-minute fleet sweeps were raised to 60. The 2,472-entry run was **measured at 32.8 minutes** against the old budget — 82% of it, on a budget whose comment stopped at 2,238 entries. One more paper would have timed out, and a Playwright timeout is not an assertion: it fails naming nothing.
+
+### Cost
+
+12,672 live replies for **₹247.55** (round 1 ₹144.66, round 2 ₹63.71, round 3 ₹39.18). Round 2 cost less than half of round 1 for the same call count — the byte-stable context keeps DeepSeek's prompt cache warm across runs.
+
+## 📐 SESSION — Senior Inter Maths-2B: the book's EIGHTH subject, 8 units / 271 cards (2026-08-29, `feat/ipe-answerbook-maths-2b`)
+
+**Bottom line: Maths-2B is authored, catalogued and registered — 271 cards over 8 units, taking the bank 1777 → 2048 entries. Three things are worth carrying forward and none of them is a card. The 75-mark paper was VERIFIED rather than inferred, and the same table was built twice on two desks the same day. A rate limit killed five unit agents at once and cost nothing, because every card was already on disk. And two quality problems — 20.7% line wrap and nine defective figures — were invisible to every gate and only turned up by measuring and by looking.**
+
+### The paper: 75 marks, and why that is not the 60 of Maths-1A/1B
+
+The 2026-27 reform moved Maths-1A/1B to 60 written marks with 8-mark long answers. Applying that to
+second year by analogy would have mis-marked all 62 long answers on this paper. It is **first year
+only**: TV9 Telugu, 17 May 2026 — *"ఈ సంస్కరణలు ఈ ఏడాదికి ఫస్టియర్‌కు మాత్రమే వర్తిస్తాయి. 2027-28
+నుంచి సెకండ్‌ ఇయర్‌కీ ఇవి అమలవుతాయి"* (these reforms apply only to first year this year; they reach
+second year from 2027-28), with Newsmeter 15 May 2026 giving the same 60+15 figures for the reformed
+maths paper, careers360's 2026-27 syllabus page (updated 30 Jul 2026) still listing Maths-IIB's eight
+chapters unchanged, and the source book's own blueprint (p.5) and all five model papers cut at
+A 10×2 · B any 5 of 7 ×4 · C any 5 of 7 ×**7** = 75. One contrary Telugu report turned out to be
+about **Andhra Pradesh**, which switched first year a year earlier. Registered as
+`ABC_75_MATHS_PRE_REFORM` with `internal` omitted — second year carries no activity-based-learning
+mark in 2026-27, and that field is printed to students. **When the reform reaches second year in
+2027-28 this paper needs the same 7 → 8 re-cut that 1A/1B had; that is a dated change, not this
+year's.** Proved the row actually gates: a 2B VSAQ at `marks_total: 3` fails `check:cards` naming
+PAPER_PATTERNS, and the same card at 2 passes — an unregistered subject makes `paperMarksFor` return
+`undefined` and switches the gate off for the whole paper, silently.
+
+### The same constant, built twice, on the same day
+
+Maths-2A was authored in a parallel session on another desk, and independently produced the identical
+75-mark section table under a different name (`ABC_75_MATHS_PRE_REFORM` there, `ABC_75` here). That is
+Rule 40a happening in real time. Renamed mine to theirs so the merge is a keep-both of two
+`PAPER_PATTERNS` rows rather than two identical constants — the shared table is the point. Their
+branch also carried a genuine regression I found while diffing: collapsing `package.json`'s duplicated
+`check:figure-pace` key, they left a bare trailing `--strict`, and the parser returns `''` for a flag
+with no value, so `strict` was false for every file and **the figure gate silently gated nothing while
+exiting 0**. Flagged it; they reproduced it, adopted the comma-separated-prefix design used here, and
+went further — a bare `--strict` is now a hard error, exit 2. **A gate an argument slip can switch off
+without saying so is not a gate.**
+
+### A rate limit killed five agents at once and cost nothing
+
+All five running unit agents died together on a session limit. Every card already written was on disk
+and passed `check:cards`, so 112 of them were committed immediately and the units resumed from that
+state. This is the physics_2 lesson holding a second time: **order agents cards-first, and expect to
+finish someone else's chapter.** Circle turned out to be complete at 57 cards but had no manifest
+fragment, so its fragment was rebuilt here from each card's recorded page and answer number,
+cross-checked so that all 57 files are listed exactly once, and verified against pages read directly
+— including the book's own quirk of printing Star Q+ answer 203 before 202.
+
+### The scan is not the book
+
+Printed p.23 was never scanned and printed p.43 was scanned twice, so the two defects cancel to 128
+pages and nothing looks wrong from the page count: **PDF 23-42 are printed 24-43**. Parabola LAQ
+answers 10 and 11 lived on the missing page. Answer 10 is pinned by a guess-paper pointer and the hit
+list and was authored by the book's own three-point method; answer 11 is presumed to be the Bullet
+Model Paper p.113 item, which has no other home in the book. Both cards say so, and every card cites
+printed pages.
+
+### Two quality problems no gate could see
+
+- **Line wrap started at 20.7%** (557 of 2692 lines), five times Chemistry-I's 4.1%, the worst
+  previously shipped — the unit agents chained several algebra steps onto one `lines[]` entry. 653
+  lines were reflowed mechanically, no word changed, at the boundaries a hand actually uses, tried in
+  priority order: sentence end, label colon, chaining arrow, dash or comma clause, "compare X with Y",
+  continuation `=`, and last a plain word boundary (which `measure_wrap`'s own header sanctions). The
+  ladder exists because splitting at `=` first produced *"This is in the form dy/dx + yP(x)"* / *"= Q(x).
+  Here P = tanx"* — worse than the wrap it fixed. **Now 1.2%**, better than every subject shipped
+  except physics. Integration was excluded from the first pass while its agent was still writing, and
+  reflowed after it finished — never edit a file another agent has open.
+  **The cheaper fix, from the 2A desk which measured 0.0%: put the budgets in the unit agent's prompt
+  and make it run `measure:wrap` on its own prefix before reporting.** Retrofitting is far more
+  expensive, and a character-count proxy cannot find the `boxed` ones, whose budget is 535px not 624.
+- **Nine of the 26 figures were defective and every gate passed them.** Four labels clipped off the
+  canvas, three label collisions (the parabola derivation rendered "A(0,0)S(a,0)" as one unreadable
+  run), and two figures whose geometry contradicted the answer they illustrated: the equilateral-triangle
+  card drew the foci at the ellipse's vertices, which reads as e = 1 on a card whose answer is e = 1/2,
+  and the hyperbola's director circle sat beside an unrelated arc instead of concentric with it. Both
+  were rebuilt from the real geometry — the triangle from e = 1/2 (ST = SB = TB = 90 units), the
+  director circle from radius √(a²−b²) with the two tangent slopes solved from the tangency quadratic
+  (m₁m₂ = −1.000, perpendicular by construction rather than by eye). **`figures:gallery`'s bounds check
+  estimates a label at 8.5px per character where real Kalam runs to 9.8, so it under-reports by ~10%
+  and passing it is not evidence** — the same finding the senior-chemistry desk recorded, reproduced
+  here on four more labels.
+  The fixing agent corrected two of my own calls with evidence instead of following them: the auxiliary
+  circle was already concentric (a stray tangent and a mis-placed focus made it look otherwise), and the
+  O/(0,0) overlap I reported was one label all along. Both re-verified by eye.
+
+### Where the book is wrong
+
+Ten findings, each written correctly on the card with the printed claim recorded in that step's `why`
+and in `verification.note`. The two that matter most were caught by differentiating the printed result
+back: **answers 16.1 and 18.2 each drop the leading minus on the first term of the final reduction
+line**, though the line immediately above carries it — only the corrected forms differentiate back to
+sin⁴x and cosec⁵x. And **the practice question under answer 176 prints 8/315 for ∫₀^(π/2) cos⁷x sin²x dx
+when the value is 16/315** — 8/315 is answer 176's own value, copied from the question above it, and it
+carries an AP 22 tag so it would have surfaced in any back-test. Also: a Bullet-Model-Paper solution
+that restates the wrong circle and computes r₂ = 2 before using r₂ = 8 two lines later (final answers
+still correct); the p.69 substitution printed identically to the line above it; five dead or wrong
+`Ans-Page` pointers; a Star Q+ run printed 199, 200, 201, **203, 202**, 204, 205; and a star rank the
+divider and the chapter header disagree on.
+
+### Verification
+
+`tsc` 0 · `build:answers` passes at 2048 entries · `vitest` 443/443 · `check:cards` clean on all 271
+(26 katex lines, all letter-subscripted Iₙ reduction forms) · `check:figure-pace` PASS strict over
+`ts_ipe_c2,ts_ipe_z1,ts_ipe_m2b` · `check:papers` clean · `merge_units.py` validated both directions,
+8 units / 271 entries / 271 files, byte-identical round trip · `measure:wrap` 1.2%. e2e sweeps raised
+for the new fleet size (2048 now, ~2360 once 2A merges): the two 0.9 s/entry sweeps to 2_400_000, the
+widest questions × cuts sweep to 3_000_000, the typeset sweep to 360_000 — matching the 2A branch so
+the merge is one agreement rather than two budgets.
+
+### Not done, deliberately
+
+No PR yet — **2A merges first** by agreement, then this desk merges master and resolves (the constant,
+two `PAPER_PATTERNS` rows, the enum, `SUBJ_LABEL`, the `chapterLabel()` alternation, four Vidi sites,
+`STREAMS.mpc_2` plus its blurb and the og card copy naming BOTH papers, and `STREAM_SUBJECTS`). Not
+deployed — `deploy:answers` is founder-only, Rule 17, and no `mpc_2` deploy target exists. **Both
+structural checks are impossible for this paper and that sentence is on all 271 cards**: there is no
+second maths book to union against and no second-year maths paper in `answer-book/papers/`, so the
+book's own five Guess Papers are the only back-test corpus — a later session must never read "not
+checked" as "checked and clean". The enumeration sweep was not run, so this bank is asked-only.
+## 📐 SESSION — Maths 2A: the book's SEVENTH subject, and the first paper in the bank whose long answer is NOT 8 marks (2026-08-29, `feat/ipe-answerbook-maths-2a`)
+
+**Bottom line: 257 cards over 10 units take the bank 1,777 → 2,034 questions and complete the senior MPC stream (Physics-II + Chemistry-II + Maths-2A, 853 answers over 44 chapters). The cards are not the interesting part. The founder asked whether the second-year mark scheme had changed, and the answer — verified against two press sources, not inferred — is that it has NOT: Maths 2A still sits the OLD 75-mark paper with 7-mark long answers, while every other subject in the bank is on 8. That single fact had to be registered before a card was written, proven with a negative control, and then found a live defect in the study planner that had been shipping since the maths papers were re-cut.**
+
+### The paper, and why it is 75
+
+- **The 2026-27 TGBIE reform is FIRST YEAR ONLY.** Telangana Today (28 May 2026): the revision is to *"the first-year intermediate public examinations question paper pattern"*, *"Mathematics I-A and I-B … 60 marks each as against 75 marks in the past"*, and *"except for Physics, Chemistry, Botany and Zoology, the theory examination pattern has been revised"*. Resonance Colleges (15 May 2026): *"The examination framework reforms shall apply to second-year students from 2027-28 onwards."* Filed as `docs/SYLLABUS_2026_27.md` §1b. So a 2A student sitting March 2027 writes **A 10×2 · B any 5 of 7 ×4 · C any 5 of 7 ×7 = 75**, exactly what the source book's blueprint and all five of its model papers print. Founder decision, 2026-08-29: continue at 75 with the old marking scheme.
+- **`ABC_75_MATHS_PRE_REFORM` is a new `PAPER_PATTERNS` row, NOT `ABC_60`.** Reusing `ABC_60` by analogy with `physics_2`/`chemistry_2` — whose papers were never revised in either year — would have put every one of the 64 long answers at the wrong mark, the same defect the 99-card 1A/1B re-cut had just repaired, in the other direction. `internal` is omitted: `notebook.js` renders it into a student-facing sentence and there is no sourced second-year practical figure.
+- **The marks gate was PROVEN, not assumed.** A throwaway 2A VSAQ authored at `marks_total: 3` (with its split and step marks summing to 3, so only the paper gate could see it) failed `check:cards` naming PAPER_PATTERNS; the same card at 2 passed. An unregistered subject makes `paperMarksFor` return `undefined` and switches the gate off silently for the whole paper — so the row, the zod enum and `SUBJECTS` landed in one commit before any card.
+
+### The defect the new paper shape exposed
+
+- **`scopeMarks()` in the study planner read `PATTERNS.physics` for EVERY subject** and labelled its checkbox "Long answers (8 marks)". Correct while all eight subjects were 8; wrong the moment a 7-mark paper joined, and wrong for the exact student the senior book serves. It now reads the pattern of every subject the built artifact actually carries and prints a range when they differ. Its own comment already warned that a hardcoded number "is exactly how the maths section once printed 8 marks over 7-mark cards" — the constant had simply moved from a literal into a lookup keyed on one subject. **A per-subject constant read through one subject's key is a hardcode wearing a lookup's clothes.**
+- Same class, same commit: the paywall's "Every chapter in Physics, Chemistry, Maths-1A and Maths-1B" is now derived from the units on the page, so a second-year reader is no longer promised first-year chapters.
+
+### Authoring — ten agents, one unit each
+
+- **Ids `ts_ipe_m2a_<abbr>_<slug>`; the subject value MUST begin `mathematics`.** `notebook.js` picks the verification sentence by prefix (`indexOf('mathematics') === 0`), so `maths_2a` would have told every 2A student "the physics and the method are checked", silently, with no gate. `mathematics_2a` also passes `LEGACY_UNIT_KEYS` untouched, where a `mathematics-N` key would have been remapped onto Maths-1A's renumbering.
+- **The index was wrong in five places and every correction came from the agent that owned the pages.** Binomial's LAQ chapter runs to answer 32, not 30, and its VSAQ chapter to 168 — so Dispersion opens at 169.1, not 168. Partial Fractions starts at 92, not 90, which means Probability's SAQ chapter runs 77–91 and holds 15 short answers, not 13. The Star Questions Plus banner for P&C is on p.93; p.92 is Theory of Equations. And four units have no banner at all. **The `.1/.2` twins hide the real counts** — "ans 105–115" is 22 cards, and answer 110 alone is a sextuplet. This is the chemistry lesson reproducing: the orchestrator's table is a hint, and the boundary walk is what finds the truth.
+- **The page-offset rule I wrote was wrong, and all ten agents said so independently.** I read `book = PDF − 2` off the front matter; from the LAQ section onward it is **− 1**. Ten readings, no disagreement. Every card cites the BOOK page, so nothing needed re-authoring — but a doc's most confidently-stated number can be the one nobody re-measured.
+- **Four unsolved "PQ" practice questions** are printed with a final answer and no working (one under Theory of Equations answer 16, one under P&C 76, two under Partial Fractions p.68). All four are authored, each saying the working is ours and reaches the book's printed answer. With them and the 29 Star-bank backfills, every printed question in the book is a card.
+- **The Bullet Model Paper is a free second opinion.** It re-solves ~80 of these questions compactly and independently; every one agreed with the chapter answer. Not cards — cross-checks.
+
+### Where the book is wrong (7 real, all written correctly with the printed claim recorded)
+
+−1 − i given the amplitude 3π/4, which is −1 + i · a cubic misprinted `+5x` for `−5x`, and reproduced identically in the Bullet Model Paper and Model Paper 4, so it is set once and copied · Arg(z − 1) = π/2 given as the whole line x = 1, with no y > 0 · `⁹C₃ + ⁹C₅ = ¹⁰Cᵣ` answered r = 4 only when r = 6 works too (the book gives both values on the neighbouring question) · √24.25 printed 4.95 · a maximum printed +34/5 for −34/5 · a discriminant called positive when it is ≥ 0. Plus dropped i's in two proofs, a table header carrying the wrong assumed mean, and four off-by-one internal cross-references. **The book is markedly cleaner than the Senior Chemistry Fastrack (~130 findings) and four units found nothing mathematical at all.**
+
+### The notation ledger, and a correction to a doc that has been wrong since Maths-1A
+
+- **Google serves Kalam as latin + latin-ext + devanagari only — nothing above U+02FF.** Measured by rendering each glyph against the fallback face with every `unicode-range` chunk forced to load. So the only super/subscripts drawn in the handwriting are `¹ ² ³`; `⁴ ⁵…⁹ ⁰ ⁿ ᵏ ₀…₉ ᵣ ₙ ᵢ ᶜ`, all Greek, and `√ ∞ ⇒ ∴ ≠ ≤ ≥ ∩ ∪ ∈ x̄` all fall back to the same upright system face — **including the `ⁿ` and `₂` that hundreds of shipped 1A/1B cards already use**. `docs/IPE_MATHS_1A_SOURCE.md` §Kalam says otherwise because it was measured on a Mac with a full Kalam installed locally; the served font is the subset. The practical consequence is the opposite of the 1A worry: subscript letters are exactly as legitimate as `ⁿ`, so `ⁿCᵣ`, `Cₙ` and `Tᵣ₊₁` are plain Unicode and only fractional exponents (`2^{(n+2)/2}`) and `e^{−λ}` need KaTeX. 40 KaTeX lines across 257 cards.
+
+### Coherence work the gates would never have asked for
+
+- **De Moivre had no margin notes at all** (0 of 22 cards) while the other 235 had them on every step — `margin_note` is all-or-none per QUESTION, so 22 questions with none is legal, and the build reports 100% for a unit that has zero. And `insider_note` sat on 56 of 257, so Vidi greeted a student with examiner insight on some chapters and not others for no reason. Both retrofitted to 100%/100%; the second-year subjects that came before run `insider_note` at 100% and that is now the standard 2A meets.
+- **Three of five retrofit agents hit an API session limit mid-run — and two of them had already finished their writes.** The failure notification shows only the last thing the agent said, which for both was "let me reword these two hits", so the reports looked like nothing had landed. Auditing the FILES rather than believing the notifications showed 107 of 129 cards already done. **An agent's death notice is not a statement about the disk.**
+
+### Verification
+
+`build:answers` clean at 2,034 questions / 105 units / 343 KaTeX lines · `tsc` 0 · `vitest` 443/443 · `check:cards` clean on all 257 · `check:figure-pace` PASS strict (3 Argand figures re-paced to 70 u/s; the rhombus and square each hit the ≥16-elements-and-no-phase rule and are now drawn in four named steps) · `measure:wrap` **0.0% over 2,831 lines**, tied best in the bank · `find_label_clashes` clean across all 217 figures in the book after one real collision was fixed structurally · `scan:register` 1 advisory candidate in 8,882 strings ("a race", literal — it is a horse race) · zero duplicates against the other 1,777 cards · `check:papers` clean · the senior stream builds and reads back 44 units / 853 answers with `Maths 2A · 75 marks written · Section C any 5 of 7 × 7` and no invented practical figure. E2E suite (68 tests) run detached — **budgets raised first, never trimmed**: the two fleet sweeps 30 → 40 min, the widest 40 → 50, the typeset sweep 4 → 6.
+- **A tool that reads `dist` lies about a source you just edited.** `find_label_clashes.mjs` re-reported an identical collision after a real fix, because it measures rendered boxes in the BUILT artifact. Rebuild, then believe it.
+
+### Verified twice more, after the first write-up
+
+Two checks were added after the session first called the subject done, both on the sibling Maths-2B
+session's advice, and both changed what can honestly be claimed.
+
+- **The model-paper back-test — 199 of 199 slots, zero mis-cut cards.** No real second-year maths
+  paper exists in `answer-book/papers/`, so the book's OWN six papers were used as a substitute
+  corpus. The corpus is 199 slot-instances rather than the 144 briefed, because the **Bullet Model
+  Paper is not a 24-question paper but 79 questions grouped under the 24 slot headings** — which
+  makes it better evidence than a pointer, since it assigns each question to a section and a mark
+  value directly. Matching was on question TEXT, never on the printed pointer: the book's
+  cross-references are wrong in **eight** places, four already known and four found here. **A wrong
+  pointer is not a missing card** — in all eight the correct card exists. The two Star-bank cards a
+  paper actually places both CONFIRM their inferred section. Seven Star cards remain unsupported and
+  the honest finding is evidence AGAINST our classing — the book routes readers into those pages
+  from its VSAQ chapters ("Few More VSAQ are in Page N", verified at four chapter ends) — so each of
+  the seven now carries a `⚠ COUNTER-EVIDENCE` paragraph giving both readings, per the Maths-1A
+  answer-150 precedent.
+- **The independent examiner pass — 257 cards, ZERO wrong answers.** Every card had been re-derived
+  only by the agent that wrote it, which is the weakest verification there is; the house standard is
+  a separate adversarial pass (Senior Physics: 3 wrong, 6 misleading in 256). Four examiners split
+  by TECHNIQUE rather than unit count, told to solve from `question_text` alone before reading any
+  working, and required to name the check they ran on anything they called clean. Zero wrong
+  answers, machine-verified (`sympy.apart`, brute-force permutation ranks, complex Horner on 67
+  roots, 40-digit series sums). **23 prose defects fixed**, two of which would have reached a
+  student as mathematics: an identity derived with no `p > 0` condition that is FALSE for p < 0
+  (true sum 2, printed formula 4) on a card whose unit contains five siblings teaching that the step
+  is illegal; and a locus `x − y = 1` whose excluded point (0, −1) satisfies `x − y = 1`.
+
+**The transferable finding is 2B's, not mine: all four of ITS wrong cards carried a
+`verification.note` claiming an independent re-derivation had found no error.** 2A has 23 such
+claims and the examiners tested every one — **all 23 hold**. But the claim itself is worthless as
+evidence; it records what an author believed after checking their own working. Note the inversion:
+the card carrying 2A's most serious finding is the one De Moivre card that made no such claim.
+
+**A destructive mistake worth recording.** To stop my own suite I ran `taskkill /F /IM
+chrome-headless-shell.exe`, which kills every headless browser on the machine — it hit the 2B
+session's live 90-minute run, and when the process count did not drop I fired five more times. The
+count was flat because **Playwright was RESPAWNING browsers after each kill**, so every extra
+attempt did more damage while appearing to do nothing. Kill by PID filtered on your own worktree
+(`Get-CimInstance Win32_Process | Where-Object CommandLine -match '<desk>'`), and never use a shared
+resource count as a signal about your own process — detect completion from your own log
+(`bash -c 'cmd; echo EXIT=$?'`).
+
+### Not done, deliberately
+
+**SHIPPED 2026-08-30.** PR #174 merged, and the second year is LIVE at answers.viditra.co — a
+student picks MPC, then first or second year, and second year opens on Physics-II, Chemistry-II and
+Maths-2A. Founder's call on the shape: ONE book with the door routing both years, rather than a
+second domain. That needed `--stream` to take a comma list and the player to lens the catalog by the
+chosen year (PR #175), plus a fix for a remembered choice that opens nothing (PR #176). `ab_content`
+went 40 → 84 rows so the gated build can serve second-year chapters. Verified on the live site: door
+tiles 811/37 and 853/44, both year paths correct, zero page errors.
+**Still open, and deliberately the founder's:** every one of the 44 second-year chapters is
+paywalled — first year gives one free chapter per subject, second year gives none, so a student can
+list 44 and open zero. One `UPDATE ab_content SET free = true WHERE unit_key IN (…)`. And
+`website/students.html` still says "Second year has not been started yet", which is now visibly
+wrong · **both structural checks remain IMPOSSIBLE for this paper** (no second Maths-2A book in the corpus, no second-year maths paper in `answer-book/papers/`) and that sentence is on all 257 cards verbatim · `website/students.html` still says "First year only for now. Second year has not been started yet." — stale since Physics-II shipped, left for the founder because it is marketing copy, not a fact about the artifact.
+
 ## 🧪 SESSION — Senior Chemistry: the book's SIXTH subject and its FIRST second-year paper (2026-08-28, `feat/ipe-answerbook-sr-chemistry`)
 
 **Bottom line: 335 cards over 18 units are authored, catalogued and registered, taking the bank 991 → 1326 questions. The three things worth carrying forward are not the cards. My own derived unit table was wrong by two and a unit agent caught it. Rule 41 turned out to be enforced by nothing — the build's check is sixteen chat phrases written to grade Vidi's replies. And the source book's worst errors BALANCE, so no arithmetic or schema gate could ever have seen them.**

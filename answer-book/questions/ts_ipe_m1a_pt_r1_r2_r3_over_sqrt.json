@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_r1_r2_r3_over_sqrt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁) = a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write each ex-radius",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the numerator",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the sum of products",
+      "marks": 1
+    },
+    {
+      "label": "Take the root and divide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.131, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — writing the ex-radii with Heron, the numerator, the sum of the three products, and the division. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 3, b = 4, c = 5 the left side is 3.000000, for a = 4, b = 5, c = 6 it is 4.000000, and for a = 2, b = 3, c = 4 it is 2.000000 — each equal to that triangle's a. The two intermediate results were checked on the same triangles: r₁(r₂ + r₃) = as and r₁r₂ + r₂r₃ + r₃r₁ = s². This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_ex_radius",
+        "kind": "equation",
+        "label": "Write each ex-radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The subscript names the side that is subtracted. Heron read backwards is the line that makes everything cancel later, so it is numbered (1).",
+        "memory_tip": "Each ex-radius is Δ over s minus its own side, and Heron read backwards gives (s−a)(s−b)(s−c) = Δ²/s.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "r₁ = Δ/(s−a), r₂ = Δ/(s−b),",
+          "r₃ = Δ/(s−c)",
+          "By Heron, Δ² = s(s−a)(s−b)(s−c)",
+          "⇒ (s−a)(s−b)(s−c) = Δ²/s   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c), and that Heron gives (s−a)(s−b)(s−c) = Δ²/s.",
+          "accept": [
+            "each ex radius is delta over s minus its own side",
+            "heron says delta squared is s into the three brackets",
+            "so the product of the three brackets is delta squared over s",
+            "heron backwards ga rasthe brackets product delta square by s",
+            "write the three ex radii and Heron before anything else"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "write the formulas"
+          ],
+          "heard_as": [
+            "delta over s minus a",
+            "heron",
+            "delta squared over s",
+            "brackets"
+          ]
+        },
+        "why": "Every term in the question is an ex-radius, so writing all three in the s and Δ form first is what lets the numerator and the square root be handled by the same piece of algebra.",
+        "common_mistakes": [
+          "Pairing r₂ with (s−c) instead of (s−b).",
+          "Writing Δ = s(s−a)(s−b)(s−c) without the square on Δ."
+        ]
+      },
+      {
+        "id": "s2_simplify_the_numerator",
+        "kind": "equation",
+        "label": "Simplify the numerator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Add r₂ + r₃ first, then multiply by r₁. The bracket sum is a, and line (1) clears the Δ² — leaving as.",
+        "memory_tip": "(s−c) + (s−b) = 2s − b − c = a, and the bracket product is Δ²/s, so the numerator is as.",
+        "lines": [
+          "r₁(r₂ + r₃)",
+          "= Δ/(s−a) · Δ[(s−c) + (s−b)]/[(s−b)(s−c)]",
+          "= Δ²(2s − b − c)/[(s−a)(s−b)(s−c)]",
+          "= Δ²a/(Δ²/s)   [by (1), 2s − b − c = a]",
+          "= as"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₂ + r₃ combines to Δa over (s−b)(s−c) times the right factors, and that with (1) the numerator r₁(r₂ + r₃) equals as.",
+          "accept": [
+            "add r two and r three first then multiply by r one",
+            "s minus c plus s minus b is two s minus b minus c which is a",
+            "using heron backwards the delta squared cancels and you get a s",
+            "brackets sum a avuthundi, delta square cancel ayipoyi a s migulutundi",
+            "the numerator comes out as a times s"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "simplify the top"
+          ],
+          "heard_as": [
+            "r two plus r three",
+            "two s minus b minus c",
+            "a s",
+            "delta squared"
+          ]
+        },
+        "why": "The bracket sum 2s − b − c is simply a, and line (1) replaces the whole product of brackets. The Δ² then cancels completely and the numerator is a plain as.",
+        "common_mistakes": [
+          "Adding r₂ + r₃ without a common denominator.",
+          "Writing 2s − b − c = a − s."
+        ]
+      },
+      {
+        "id": "s3_simplify_the_sum_of_products",
+        "kind": "equation",
+        "label": "Simplify the sum of products",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Over the common denominator each term keeps the bracket it is missing; those three add to s, and line (1) makes the Δ² cancel.",
+        "memory_tip": "The three brackets add to 3s − 2s = s, so the sum of the products is s².",
+        "lines": [
+          "r₁r₂ + r₂r₃ + r₃r₁",
+          "= Δ²[(s−c)+(s−a)+(s−b)]/[(s−a)(s−b)(s−c)]",
+          "= Δ²s/(Δ²/s)   [∵ 3s − 2s = s, by (1)]",
+          "= s²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That combining the three products over one denominator gives Δ²[(s−a)+(s−b)+(s−c)] on top, that this sum is s, and that the whole thing is s².",
+          "accept": [
+            "each product is delta squared over two brackets so combine over all three",
+            "the missing bracket goes on top of each term",
+            "the three brackets add to three s minus two s which is s",
+            "brackets add cheste s vasthundi, so answer s squared",
+            "the sum of the three products is s squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "simplify the bottom"
+          ],
+          "heard_as": [
+            "r one r two",
+            "brackets",
+            "three s minus two s",
+            "s squared"
+          ]
+        },
+        "why": "When two of the three brackets sit in a denominator, combining over all three puts the MISSING one on top — which is why the numerator ends up as their sum, and that sum is s.",
+        "common_mistakes": [
+          "Getting the wrong bracket on top of a term.",
+          "Writing (s−a) + (s−b) + (s−c) = 3s."
+        ]
+      },
+      {
+        "id": "s4_take_the_root_and_divide",
+        "kind": "boxed_final",
+        "label": "Take the root and divide",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark. s is positive, so the root is +s. The numerator carried the same s, so it cancels and a single side is left.",
+        "memory_tip": "The numerator is as and the root is s, so the s cancels and a is left.",
+        "lines": [
+          "√(r₁r₂ + r₂r₃ + r₃r₁) = √(s²) = s",
+          "   [s > 0, so the root is +s]",
+          "∴ r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁)",
+          "= as/s",
+          {
+            "text": "= a = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the square root of s² is s because s is positive, and that as divided by s leaves a.",
+          "accept": [
+            "the root of s squared is s since s is positive",
+            "the top is a s and the bottom is s so the s cancels",
+            "what is left is a which is the right hand side",
+            "s positive kabatti root s, a s by s equals a",
+            "both parts gave the same s so it cancels"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then divide"
+          ],
+          "heard_as": [
+            "square root",
+            "s squared",
+            "a s by s",
+            "cancels",
+            "right hand side"
+          ]
+        },
+        "why": "The half perimeter s is positive, so the square root is +s and not ±s. The numerator produced the same s, so the two cancel exactly and only the side a survives.",
+        "common_mistakes": [
+          "Writing the square root as ±s — s is a half perimeter, so it is positive.",
+          "Leaving the answer as as/s without cancelling."
+        ]
+      }
+    ]
+  }
+}

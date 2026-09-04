@@ -15,7 +15,7 @@
   "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 15,
-  "question_text": "Find the angle between whose d.c's satisfy the equations 3l+m+5n=0 and 6mn−2nl+5lm=0.",
+  "question_text": "Find the angle between the lines whose d.c's satisfy the equations 3l+m+5n=0 and 6mn−2nl+5lm=0.",
   "appearances": [
     {
       "year": 2017,
@@ -73,6 +73,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Make one letter the subject of the LINEAR relation — it is always the easier of the two to rearrange.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "Substituting leaves ONE homogeneous quadratic in two letters, and it always factors.",
         "lines": [
           "Solving (1) & (2) we get",
           "6n(−3l − 5n) − 2nl + 5l(−3l − 5n) = 0",
@@ -160,7 +162,8 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Feed the first factor back into the linear relation and read off l : m : n.",
         "lines": [
           "Case (i): Put l = −n in (1), then",
           "m = −3(−n) − 5n = 3n − 5n = −2n   ∴ m = −2n",
@@ -201,7 +204,8 @@
         "label": "Case (ii): the second line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "The same work on the second factor gives the second line.",
         "lines": [
           "Case (ii): Put l = −2n in (1), then",
           "m = −3(−2n) − 5n = 6n − 5n = n   ∴ m = n",
@@ -243,6 +247,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
+        "memory_tip": "One direction-ratio triple per line, then the standard cosine formula.",
         "lines": [
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
@@ -278,9 +283,10 @@
         "why": "The angle formula needs direction cosines in principle, but the normalising roots cancel between numerator and denominator — so direction RATIOS may be used directly, which is what the book does.",
         "common_mistakes": [
           "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
-          "Multiplying the two roots without keeping them under one square root."
+          "Taking the square root of only one of the two sums of squares."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Eliminate using the LINEAR relation — rearranging the second-degree one brings in a square root. It factorises to (l + n)(l + 2n) = 0, and both factors are needed: one line each, and it takes two lines to make an angle."
 }

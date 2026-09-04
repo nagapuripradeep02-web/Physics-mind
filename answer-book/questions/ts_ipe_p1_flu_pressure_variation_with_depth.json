@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_pressure_variation_with_depth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the expression for the variation of pressure with depth in a fluid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "P = P₀ + hρg, name every symbol",
+      "marks": 1
+    },
+    {
+      "label": "hρg alone is the gauge pressure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 3 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The book's own printed answer gives only P = hρg for this expression, which is the gauge pressure, the pressure due to the liquid column alone — it omits the surface term P₀ entirely. The full and correct expression is P = P₀ + hρg, and that is what this card writes; the 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: at depth h in a fluid at rest, P = P₀ + hρg, where P₀ is the pressure at the free surface; hρg alone is the gauge pressure, the excess of the pressure at depth h over the surface pressure."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expression",
+        "kind": "boxed_final",
+        "label": "P = P₀ + hρg, name every symbol",
+        "marks": 1,
+        "mark_note": "P = P₀ + hρg",
+        "lines": [
+          "At a depth h below the surface of",
+          "a fluid at rest, the pressure is",
+          {
+            "text": "P = P₀ + hρg",
+            "style": "eq"
+          },
+          "where P₀ is the pressure at the",
+          "surface, ρ is the density of the",
+          "fluid and g is the acceleration",
+          "due to gravity."
+        ],
+        "margin_note": "First mark. Write P = P₀ + hρg and name every symbol: P₀ the surface pressure, ρ the density, g the acceleration due to gravity.",
+        "why": "Pressure grows with depth because each added layer of fluid adds its own weight on top of what the surface already carries, so the surface term P₀ has to appear in the expression, not just the added part.",
+        "common_mistakes": [
+          "Writing only P = hρg and leaving out P₀, which drops the pressure already present at the surface.",
+          "Taking h along a slanted path instead of the vertical depth."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pressure at depth h is P equals P naught plus h rho g, with P naught the pressure at the surface, rho the density and g the acceleration due to gravity.",
+          "accept": [
+            "P naught plus h rho g",
+            "surface pressure plus h rho g",
+            "P equals P naught plus h rho g"
+          ],
+          "reject": [
+            "h rho g alone is the gauge pressure"
+          ],
+          "heard_as": [
+            "P naught",
+            "h rho g",
+            "surface pressure"
+          ]
+        },
+        "memory_tip": "Depth adds on top of the surface: P = P₀ + hρg, never hρg alone."
+      },
+      {
+        "id": "s2_gauge_pressure",
+        "kind": "text",
+        "label": "hρg alone is the gauge pressure",
+        "marks": 1,
+        "mark_note": "hρg is the gauge pressure",
+        "lines": [
+          "The term hρg by itself is called",
+          "the gauge pressure: the amount by",
+          "which the pressure at depth h",
+          "exceeds the pressure at the",
+          "surface."
+        ],
+        "margin_note": "Second mark. Name hρg on its own as the gauge pressure, the excess over the surface pressure.",
+        "why": "Separating the excess term from the surface term is what makes P₀ + hρg more than a formula to memorise — it explains why a gauge reads zero at the surface and rises with depth.",
+        "common_mistakes": [
+          "Calling the whole sum P = P₀ + hρg the gauge pressure. Only the hρg part is.",
+          "Confusing hρg with the absolute pressure, which is P₀ + hρg together."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That hρg on its own, without P naught, is called the gauge pressure — the excess of the pressure at depth h over the surface pressure.",
+          "accept": [
+            "hρg is the gauge pressure",
+            "the excess over the surface pressure",
+            "gauge pressure is the added term"
+          ],
+          "reject": [
+            "P equals P naught plus h rho g"
+          ],
+          "heard_as": [
+            "gauge pressure",
+            "excess",
+            "hρg"
+          ]
+        },
+        "memory_tip": "hρg alone is the gauge reading; add P₀ to get the absolute pressure."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the full expression P = P₀ + hρg with every symbol named, then that hρg alone, without P₀, is the gauge pressure. Writing only hρg for the expression leaves out the surface term."
+}

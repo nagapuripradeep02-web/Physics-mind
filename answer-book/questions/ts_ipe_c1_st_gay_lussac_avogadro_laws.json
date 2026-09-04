@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Stoichiometry (Chemistry)"
   },
   "chapter": "Stoichiometry",
@@ -83,5 +83,6 @@
         "margin_note": "The closing line linking mole ratio to volume ratio shows the two laws connect."
       }
     ]
-  }
+  },
+  "insider_note": "Two laws, one mark each, and both carry the same condition at the same temperature and pressure. The pair is asked together because students blur them: volumes for the first, numbers of molecules for the second."
 }

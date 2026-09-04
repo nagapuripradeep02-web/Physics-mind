@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints two similarities and three differences and they are correct as printed. This card adds a THIRD similarity (both are held by strong forces, so both have high melting points), so the card lists three of each while the book lists two and three. The reason for the third difference (why ionic solids are brittle and metals are not) is added from NCERT, because the printed answer states the property without it. The point that an ionic solid conducts when molten or dissolved is added for the same reason: the book writes \"bad conductors (in solid state)\" and never says what happens outside the solid state."
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints two similarities and three differences and they are correct as printed. This card adds a THIRD similarity (in both, the particles are arranged in a regular three dimensional lattice, not as separate molecules), so the card lists three of each while the book lists two and three. That third similarity was first written as \"both are held by strong forces, so both have high melting points\", which the card's own second difference denies: metallic bonding ranges from weak to very strong, and caesium melts at 28 degrees Celsius. The reason for the third difference (why ionic solids are brittle and metals are not) is added from NCERT, because the printed answer states the property without it. The point that an ionic solid conducts when molten or dissolved is added for the same reason: the book writes \"bad conductors (in solid state)\" and never says what happens outside the solid state."
   },
   "answer": {
     "page_header": [
@@ -51,8 +51,9 @@
           "together are electrostatic.",
           "ii) In both, the bonding is non directional,",
           "so it acts equally in every direction.",
-          "iii) Both are held by strong forces, so both",
-          "have high melting points."
+          "iii) In both, the particles are arranged in",
+          "a regular three dimensional lattice, not as",
+          "separate molecules."
         ],
         "why": "Both solids are held together by the attraction between opposite charges: cations and anions in an ionic crystal, and metal cations with the surrounding electrons in a metal. Because a charge attracts equally in every direction, neither bond points along a fixed line, and this is why both form large regular lattices rather than separate molecules.",
         "common_mistakes": [

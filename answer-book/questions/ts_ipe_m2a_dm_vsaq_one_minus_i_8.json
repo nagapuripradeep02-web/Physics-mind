@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_one_minus_i_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of (1 − i)⁸.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Mod-amp form of 1 − i",
+      "marks": 1
+    },
+    {
+      "label": "Raise to 8 by De Moivre's theorem",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 119.1. Printed appearances: AP 18 · TS 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: 1 − i = √2 cis(−π/4), so (1 − i)⁸ = 2⁴ cis(−2π) = 16; the book's answer is correct. Asked as Model Paper 4, Q3 (book p.117). Twin of answer 119.2, (1 + i)¹⁶, a separate card."
+  },
+  "recall_prompt": "Say how you would find this — how you write 1 − i in mod-amp form, and what De Moivre's theorem does with the power 8.",
+  "insider_note": "Two lines: take √2 out, leaving cos π/4 − i sin π/4, then apply the power 8. The mark most often lost is (√2)⁸ = 2⁴ = 16 — reading it as 2⁸ gives 256, which is the value of (1 + i)¹⁶, not of (1 − i)⁸.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mod_amp",
+        "kind": "equation",
+        "label": "Mod-amp form of 1 − i",
+        "marks": 1,
+        "mark_note": "Mod-amp form",
+        "margin_note": "First mark. Take √2 out of 1 − i and it leaves 1/√2 − i/√2 = cos π/4 − i sin π/4. The modulus is √2, not 2, and the minus stays on the sine.",
+        "memory_tip": "Take √2 out and 1/√2 − i/√2 is left, which is cos π/4 − i sin π/4. The modulus is √2, not 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 − i = √2 (1/√2 − i · 1/√2)",
+          "= √2 (cos π/4 − i sin π/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − i is written as √2 (cos π/4 − i sin π/4).",
+          "accept": [
+            "take out root two so one minus i is root two times cos pi by four minus i sin pi by four",
+            "the modulus is root two and the angle is minus pi by four",
+            "write one minus i in mod amp form with r root two",
+            "one minus i ni root two into cos pi by four minus i sin pi by four ga rayali",
+            "modulus root two, amplitude minus pi by four"
+          ],
+          "reject": [
+            "write in polar form",
+            "find r",
+            "take out root two"
+          ],
+          "heard_as": [
+            "root two",
+            "pi by four",
+            "minus i sin",
+            "mod amp"
+          ]
+        },
+        "why": "De Moivre's theorem needs cos ± i sin inside the bracket. Taking √2 out of 1 − i leaves 1/√2 − i/√2, which is cos π/4 − i sin π/4.",
+        "common_mistakes": [
+          "Writing r = 2 instead of √2.",
+          "Writing cos π/4 + i sin π/4, losing the minus sign of the imaginary part.",
+          "Expanding (1 − i)⁸ by the binomial theorem."
+        ]
+      },
+      {
+        "id": "s2_de_moivre",
+        "kind": "boxed_final",
+        "label": "Raise to 8 by De Moivre",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (√2)⁸ = 2⁴ = 16, and the angle becomes 8 · π/4 = 2π, where cos 2π = 1 and sin 2π = 0. So the value is 16.",
+        "memory_tip": "(√2)⁸ = 2⁴ = 16, and 8 · π/4 = 2π, where cos = 1 and sin = 0.",
+        "lines": [
+          "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
+          "= 2⁴ (cos 2π − i sin 2π)",
+          {
+            "text": "= 16 (1 − i · 0) = 16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (√2)⁸ = 16 and De Moivre gives cos 2π − i sin 2π = 1, so (1 − i)⁸ = 16.",
+          "accept": [
+            "root two to the eight is sixteen and the angle becomes two pi so cos two pi minus i sin two pi is one, answer sixteen",
+            "by De Moivre the angle is eight times pi by four which is two pi, and cis two pi is one",
+            "sixteen times one equals sixteen",
+            "root two power eight sixteen, angle two pi, cos two pi one, answer sixteen",
+            "the angle multiplies by eight to two pi and the modulus part is sixteen"
+          ],
+          "reject": [
+            "raise it",
+            "use the theorem",
+            "we get sixteen"
+          ],
+          "heard_as": [
+            "sixteen",
+            "two pi",
+            "De Moivre",
+            "root two to the eight"
+          ]
+        },
+        "why": "(√2)⁸ = 2⁴ = 16 handles the modulus; De Moivre multiplies the angle by 8 to give 2π, where the cosine is 1 and the sine is 0.",
+        "common_mistakes": [
+          "Writing (√2)⁸ = 2⁸ = 256, forgetting the square root.",
+          "Writing cos 2π = −1.",
+          "Leaving the answer as 16(cos 2π − i sin 2π)."
+        ]
+      }
+    ]
+  }
+}

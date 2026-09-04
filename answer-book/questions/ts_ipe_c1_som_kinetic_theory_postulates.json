@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -88,7 +88,7 @@
           "Writing E ∝ T with T in Celsius. The proportionality holds for ABSOLUTE temperature only."
         ],
         "memory_tip": "Four outcomes: pressure from wall hits, elastic hits, no gravity effect, energy tracks absolute temperature.",
-        "margin_note": "E ∝ T is the postulate the deduction question (SAQ 3) leans on — box it."
+        "margin_note": "E ∝ T is the postulate every gas-law deduction uses — box it."
       }
     ]
   },

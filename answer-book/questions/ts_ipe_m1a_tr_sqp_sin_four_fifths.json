@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Quadrant",
         "margin_note": "First mark. sin θ = 4/5 is positive, so θ is in Q1 or Q2. Q1 is ruled out, leaving Q2 — where cos θ is negative.",
+        "memory_tip": "sin positive means Q1 or Q2; Q1 is ruled out, so Q2 — where cos is NEGATIVE.",
         "lines": [
           {
             "text": "Sol:",
@@ -84,7 +85,7 @@
         },
         "why": "Only the sine is given, and a sine value alone fits two different angles. The quadrant clause is what makes the answer unique.",
         "common_mistakes": [
-          "Assuming Q1 out of habit and writing 3/5.",
+          "Assuming the first quadrant and writing 3/5.",
           "Reporting both signs."
         ]
       },
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Value",
         "margin_note": "Second mark. cos²θ = 1 − 16/25 = 9/25, so cos θ = ±3/5 — and the quadrant picks the minus.",
+        "memory_tip": "cos²θ = 9/25 gives ±3/5, and the quadrant picks the minus.",
         "lines": [
           "cos²θ = 1 − sin²θ = 1 − (4/5)² = 1 − 16/25",
           "= 9/25 ⇒ cos θ = ±3/5",
@@ -124,12 +126,13 @@
             "negative root"
           ]
         },
-        "why": "Writing ±3/5 and then choosing shows the examiner that the quadrant was used, rather than the right sign appearing by luck.",
+        "why": "Writing ±3/5 and then choosing shows the examiner that the quadrant was used, rather than the right sign appearing without a reason.",
         "common_mistakes": [
           "Writing +3/5.",
           "Leaving the answer as ±3/5."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The phrase 'not in the first quadrant' is what fixes the sign: a positive sine allows Q₁ or Q₂, so it must be Q₂ and cos is negative. Without that sentence the answer would be ±3/5."
 }

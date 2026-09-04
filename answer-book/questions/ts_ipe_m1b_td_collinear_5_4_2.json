@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "Three pairs, three distances, each with a third squared difference. Keep them as surds.",
         "lines": [
           {
             "text": "Sol:",
@@ -85,7 +86,7 @@
             "surd"
           ]
         },
-        "why": "Both questions on this page are answered by computing the SAME three distances. Only the conclusion drawn from them differs, which is why the book prints the note 'Questioning is different but Answering is similar' underneath.",
+        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",
+        "memory_tip": "√14 + 2√14 = 3√14, so the two shorter add to the longest and the points are collinear.",
         "lines": [
           "Now, AB + BC = √14 + 2√14 = 3√14 = AC",
           {
@@ -134,5 +136,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three distances reduce to multiples of √14, and the longest, AC = 3√14, is the one that must equal the sum of the other two. Leave the surds unsimplified and the match cannot be seen."
 }

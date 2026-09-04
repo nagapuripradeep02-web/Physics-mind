@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Triangle law",
         "margin_note": "First mark. Apply the triangle law three times: OA + AB = OB, then OB + BC = OC, then OC + CD = OD. The inner letters cancel in pairs.",
+        "memory_tip": "Apply the triangle law three times; the inner letters cancel in pairs, leaving OD.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Add the i parts, the j parts and the k parts separately.",
+        "memory_tip": "Add the i parts, the j parts and the k parts separately.",
         "lines": [
           "OD = (i + j + k) + (3i − 2j + k)",
           "     + (i + 2j − 2k) + (2i + j + 3k)",
@@ -136,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The vectors chain head to tail, so OD is simply the sum of all four — there is no subtraction anywhere. Add component by component and the three sums come to 7, 2 and 3."
 }

@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_circle_on_chord_as_diameter_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x + y = 3 is the equation of the chord AB of the circle x² + y² − 2x + 4y − 8 = 0, find the equation of the circle having AB as diameter.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the family through S and L",
+      "marks": 1
+    },
+    {
+      "label": "Write the centre of the family",
+      "marks": 1
+    },
+    {
+      "label": "Apply the diameter condition",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 System of Circles, answer 55.1, on a ★★★ Super Scoring Page (SSP 55). Chapter star rank ★★★, per the SAQ section table (book p.49). Printed appearance tag: AP 15, AP 16, AP 17 (printed as 'AP 15,16,17'). ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this chapter. Cut 1+1+2, mirroring the 1B Maths-1B Locus template's shape for a three-stage derivation (set up, apply the condition, box the final equation) rather than the four-flat-marks shape used for the radical-centre/common-chord questions in this same chapter — this question genuinely has three logical stages, not four, so it is split accordingly. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. WORKING NOTE: the printed centre of the family in step 2 must carry a NEGATIVE sign on its y-coordinate — the book's own arithmetic in the next line (2 − λ − 4 − λ − 6 = 0) only follows if the centre is ((2 − λ)/2, −(4 + λ)/2), which is what the general form x² + y² + 2gx + 2fy + c = 0 (centre (−g, −f)) actually gives; this card writes that sign explicitly rather than reproducing the book's cramped, ambiguous printing. Re-derived independently and both routes give the identical final circle x² + y² − 6x + 4 = 0. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The centre of S + λL = 0 always has a MINUS sign on the y-coordinate half of it — write the centre as ((2 − λ)/2, −(4 + λ)/2) explicitly rather than trusting a half-remembered shortcut, or the diameter condition solves to the wrong λ.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_family_through_s_and_l",
+        "kind": "equation",
+        "label": "Write the family through S and L",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Every circle through the same two points as S and the line L can be written this way.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "S ≡ x² + y² − 2x + 4y − 8 = 0",
+          "L ≡ x + y − 3 = 0",
+          "Any circle through the points of intersection",
+          "of S = 0 and L = 0 is S + λL = 0",
+          "⇒ x² + y² + (λ − 2)x + (λ + 4)y − (8 + 3λ) = 0"
+        ],
+        "why": "S + λL = 0 is a one-parameter family of circles that all pass through the SAME two points where the line L cuts the circle S — choosing the right λ picks out one member of this family.",
+        "common_mistakes": [
+          "Writing S − λL = 0 instead of S + λL = 0, which is a different family.",
+          "Losing the constant −8 while collecting terms with λ."
+        ],
+        "memory_tip": "S + λL = 0 is the standard family formula whenever a circle must pass through the same two points as another circle and a line."
+      },
+      {
+        "id": "s2_centre_of_family",
+        "kind": "equation",
+        "label": "Write the centre of the family",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Read the centre straight from the coefficients in step 1 — half of each, then negate.",
+        "lines": [
+          "Centre of the above circle is",
+          "( (2 − λ)/2 , −(4 + λ)/2 )"
+        ],
+        "why": "For a circle x² + y² + 2gx + 2fy + c = 0 the centre is (−g, −f) — halving the x and y coefficients from step 1 and negating gives this centre in terms of λ.",
+        "common_mistakes": [
+          "Forgetting the negative sign on the y-coordinate, which then breaks the diameter condition in the next step.",
+          "Halving the coefficients but skipping the negation."
+        ],
+        "memory_tip": "Centre = −(half the x-coefficient), −(half the y-coefficient) — always two negatives, one for each coordinate."
+      },
+      {
+        "id": "s3_diameter_condition",
+        "kind": "boxed_final",
+        "label": "Apply the diameter condition",
+        "marks": 2,
+        "mark_note": "Method + Solution",
+        "margin_note": "Last two marks: one for finding λ, one for the final circle. The line L becomes a diameter exactly when the centre lies on L.",
+        "lines": [
+          "Line L = 0 becomes a diameter if the",
+          "centre lies on L ≡ x + y − 3 = 0",
+          "⇒ (2 − λ)/2 − (4 + λ)/2 − 3 = 0",
+          "⇒ 2 − λ − 4 − λ − 6 = 0",
+          "⇒ −2λ − 8 = 0 ⇒ λ = −4",
+          "From (1), the required circle is",
+          {
+            "text": "x² + y² − 6x + 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "A chord is a diameter of a circle exactly when the circle's centre lies on it — substituting the family's centre into L = 0 pins down the one member of the family whose diameter is AB.",
+        "common_mistakes": [
+          "Substituting the centre into S = 0 instead of L = 0.",
+          "Sign error from the missing minus on the y-coordinate, giving a wrong λ and a wrong final circle."
+        ],
+        "memory_tip": "Diameter condition = centre on the line, always — the same test works for any 'AB is a diameter' question, whatever the numbers."
+      }
+    ]
+  }
+}

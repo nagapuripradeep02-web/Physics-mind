@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_particle_s_t3_plus_2t_plus_3_at_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A particle moving along a straight line has the relation S = t³ + 2t + 3 connecting the distance S described by the particle in time t. Find the velocity and the acceleration of the particle at t = 4 sec.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate for velocity and acceleration",
+      "marks": 1
+    },
+    {
+      "label": "Substitute t = 4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 13. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no unit for the distance S (only that t is in seconds), so the answer is written in metres per second and metres per second squared, the standard reading for this formula, and a margin note says so. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how velocity and acceleration come from S, and where the 4 goes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity_acceleration",
+        "kind": "equation",
+        "label": "Differentiate for velocity and acceleration",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rectilinear motion question. Differentiate twice before putting any number in: S to v, then v to a. The constant 3 disappears at the first differentiation and the +2 at the second.",
+        "memory_tip": "S, then v, then a — one differentiation at each arrow, always in that order.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rectilinear motion question. Velocity v = dS/dt and acceleration a = dv/dt.",
+          "S = t³ + 2t + 3",
+          "v = dS/dt = 3t² + 2",
+          "a = dv/dt = 6t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = dS/dt = 3t² + 2 and a = dv/dt = 6t.",
+          "accept": [
+            "velocity is the first derivative and acceleration is the second",
+            "differentiate S to get three t squared plus two",
+            "differentiate again to get six t",
+            "S ni differentiate cheste three t squared plus two vasthundi",
+            "v is d S by d t and a is d v by d t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three t squared plus two",
+            "six t",
+            "first derivative",
+            "second derivative"
+          ]
+        },
+        "why": "Both answers come from the same relation, so differentiating twice first and substituting afterwards is shorter and safer than substituting into S.",
+        "common_mistakes": [
+          "Substituting t = 4 into S, which gives the distance 75 and not a velocity.",
+          "Writing v = 3t² and dropping the +2.",
+          "Differentiating only once and calling 3t² + 2 the acceleration."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute t = 4",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both values are wanted, so write both. The stem does not print a unit for S; metres and seconds are the standard reading, so velocity is m/sec and acceleration is m/sec². Use whatever unit the question paper prints.",
+        "memory_tip": "One substitution into each expression: 4 goes into v, then the same 4 goes into a.",
+        "lines": [
+          "At t = 4 sec,",
+          "v = 3(4)² + 2 = 3(16) + 2 = 48 + 2 = 50",
+          "a = 6(4) = 24",
+          {
+            "text": "∴ at t = 4 sec, velocity = 50 m/sec and acceleration = 24 m/sec²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at t = 4 the velocity is 50 and the acceleration is 24.",
+          "accept": [
+            "put four in and get velocity fifty and acceleration twenty four",
+            "three into sixteen plus two is fifty",
+            "six into four is twenty four",
+            "four substitute cheste velocity fifty, acceleration twenty four",
+            "the velocity is fifty metres per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fifty",
+            "twenty four",
+            "t equals four",
+            "metres per second"
+          ]
+        },
+        "why": "The question asks for two quantities at one instant, so the same value of t is put into two different expressions and both answers are reported.",
+        "common_mistakes": [
+          "Computing 3(4)² as (3 × 4)² = 144.",
+          "Answering only the velocity and leaving out the acceleration.",
+          "Giving the acceleration in m/sec instead of m/sec²."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both velocity and acceleration are asked, so differentiate twice. Substitute t = 4 only at the end, into each derivative separately."
+}

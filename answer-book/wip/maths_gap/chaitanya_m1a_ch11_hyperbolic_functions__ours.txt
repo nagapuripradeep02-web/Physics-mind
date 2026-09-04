@@ -1,0 +1,23 @@
+# OUR BANK — mathematics unit 11: Hyperbolic Functions (Maths-1A)  (10 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch11_hyperbolic_functions.json
+
+[VSAQ] ts_ipe_m1a_hf_sinh_three
+    If sinh x = 3, then show that x = logₑ(3 + √10).
+[VSAQ] ts_ipe_m1a_hf_sinh_five
+    If sinh x = 5, then show that x = log(5 + √26).
+[VSAQ] ts_ipe_m1a_hf_tanh_half
+    Show that Tanh⁻¹(1/2) = (1/2) logₑ 3.
+[VSAQ] ts_ipe_m1a_hf_tanh_quarter
+    Show that Tanh⁻¹(1/4) = (1/2) logₑ(5/3).
+[VSAQ] ts_ipe_m1a_hf_sinh_three_quarters
+    If sinh x = 3/4, then find cosh 2x and sinh 2x.
+[VSAQ] ts_ipe_m1a_hf_cosh_five_halves
+    If cosh x = 5/2, then find cosh(2x) and sinh(2x).
+[VSAQ] ts_ipe_m1a_hf_cosh_plus_sinh_n
+    Prove that (cosh x + sinh x)ⁿ = cosh(nx) + sinh(nx).
+[VSAQ] ts_ipe_m1a_hf_cosh_minus_sinh_n
+    Prove that (cosh x − sinh x)ⁿ = cosh(nx) − sinh(nx).
+[VSAQ] ts_ipe_m1a_hf_cosh_sq_minus_sinh_sq
+    Prove that cosh²x − sinh²x = 1.
+[VSAQ] ts_ipe_m1a_hf_cosh_2x_form
+    Prove that cosh 2x = 2 cosh²x − 1.

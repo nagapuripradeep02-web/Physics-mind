@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_common_tangents_circle_2a2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the equations of common tangents to the circle x² + y² = 2a² and the parabola y² = 8ax are y = ±(x + 2a).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the tangent to the parabola with slope m",
+      "marks": 2
+    },
+    {
+      "label": "Apply the tangential condition to the circle",
+      "marks": 2
+    },
+    {
+      "label": "Solve for m² and reject the impossible root",
+      "marks": 2
+    },
+    {
+      "label": "Write the combined equation of both tangents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.24 (this scan's page 22→24 jump — see the through_points_axis_parallel_x_v1 card) — LAQ chapter 2 Parabola, answer 13. Printed appearance tags sit at the cropped right edge of the page and only single digits survive with confidence: AP 2016 and TS 2016; further years may be cut off and are not recorded. THE MARK SPLIT IS OURS — no margin mark tags are printed for this answer; the 2/2/2/1 split below follows the natural stages of the proof. The book's own working reaches m² = 1 by inspection of (1+m²)m² = 2 without explicitly showing why the other algebraic root (m² = −2) is impossible; this card adds that one line, since m² cannot be negative for a real slope — a genuine gap filled, not a correction of an error. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_to_parabola",
+        "kind": "equation",
+        "label": "Write the tangent with slope m",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks: matching the given parabola to the standard form and writing its tangent.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 8ax, so y² = 4(2a)x   ……(1)",
+          "The tangent to (1)",
+          "with slope m is y = mx + 2a/m   ……(2)",
+          "Comparing (2) with y = mx + c gives c = 2a/m."
+        ],
+        "why": "Writing y² = 8ax as y² = 4(2a)x matches it to the standard form y² = 4Ax with A = 2a, so the standard tangent formula y = mx + A/m can be used directly with A replaced by 2a.",
+        "common_mistakes": [
+          "Reading 4a from y² = 8ax instead of comparing to 4Ax and getting A = 2a.",
+          "Writing the tangent as y = mx + a/m, forgetting the extra factor of 2."
+        ],
+        "memory_tip": "y² = 8ax is y² = 4(2a)x — the number multiplying x is always 4 times the tangent's own a-value."
+      },
+      {
+        "id": "s2_circle_condition",
+        "kind": "equation",
+        "label": "Apply the circle's tangential condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for setting up the shared condition — this is where the two curves meet in the algebra.",
+        "lines": [
+          "Given circle x² + y² = 2a²   ……(3)",
+          "A line y = mx + c touches a circle x² + y²",
+          "= r² when c² = r²(1 + m²).",
+          "Here r² = 2a²,",
+          "so applying this to (2) and (3):",
+          "(2a/m)² = 2a²(1 + m²)"
+        ],
+        "why": "The tangential condition c² = r²(1+m²) is the algebraic test for a line touching a circle centred at the origin — it is applied here with c taken from the parabola's own tangent line, which forces the same line to touch both curves at once.",
+        "common_mistakes": [
+          "Using the tangential condition for the parabola on the circle equation, or vice versa.",
+          "Writing r² = 2a instead of 2a² (dropping the square)."
+        ],
+        "memory_tip": "One line, two conditions: c = 2a/m makes it a tangent to the parabola, and c² = r²(1+m²) makes the same line a tangent to the circle."
+      },
+      {
+        "id": "s3_solve_m",
+        "kind": "equation",
+        "label": "Solve for m² and reject the impossible root",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the algebra and the rejection of the impossible root — both are needed for full credit.",
+        "lines": [
+          "(2a/m)² = 2a²(1 + m²)",
+          "⇒ 4a²/m² = 2a²(1 + m²) ⇒ 2/m² = 1 + m²",
+          "⇒ 2 = m² + m⁴ ⇒ m⁴ + m² − 2 = 0",
+          "⇒ (m² − 1)(m² + 2) = 0",
+          "m² = 1 or m² = −2; m² cannot be negative,",
+          "so m² = 1 ⇒ m = ±1"
+        ],
+        "why": "The equation is a quadratic in the new variable m², so it factors the same way any quadratic does; the root m² = −2 is thrown out immediately because a real slope always squares to something zero or positive.",
+        "common_mistakes": [
+          "Stopping at m⁴ + m² − 2 = 0 without factoring, or factoring it wrong.",
+          "Keeping both roots m² = 1 and m² = −2 instead of rejecting the impossible one."
+        ],
+        "memory_tip": "m⁴ + m² − 2 factors as (m² − 1)(m² + 2) — the second bracket can never be zero for a real m, so only m² = 1 survives."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Write the combined tangent equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark for combining both lines into the single boxed ± form the question asks for.",
+        "lines": [
+          "For m = 1: c = 2a/1 = 2a, giving y = x + 2a",
+          "For m = −1:",
+          "c = 2a/(−1) = −2a, giving y = −x − 2a = −(x + 2a)",
+          {
+            "text": "∴ the common tangents are y = ±(x + 2a)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each value of m gives its own value of c through c = 2a/m, and writing the two resulting lines together as one ± equation is simply a compact way to state both at once.",
+        "common_mistakes": [
+          "Pairing m = 1 with c = −2a or m = −1 with c = 2a — the sign of c always follows the sign of m through c = 2a/m.",
+          "Leaving the two lines unwritten together as two separate boxed answers instead of the single ± form asked for."
+        ],
+        "memory_tip": "c always equals 2a divided by m, so the sign of c copies the sign of m."
+      }
+    ]
+  },
+  "insider_note": "Both values m² = 1 and m² = −2 are expected to be considered, even though only m² = 1 gives a real slope m, because the square of a real number is never negative — stating why m² = −2 is rejected is worth the mark that a jump straight to m² = 1 would lose."
+}

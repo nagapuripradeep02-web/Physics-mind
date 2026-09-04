@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_power_y_equals_y_power_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If xʸ = yˣ, show that dy/dx = y(x log y − y)/(x(y log x − x)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take logarithms of both sides",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate both sides with respect to x",
+      "marks": 2
+    },
+    {
+      "label": "Collect the dy/dx terms",
+      "marks": 2
+    },
+    {
+      "label": "Clear the fractions and finish",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question: two marks for the logarithm move, two for the implicit differentiation, two for collecting dy/dx, two for reaching the printed form. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly. It was also checked numerically at two points of the curve xʸ = yˣ: at (2, 4) the printed formula gives −3.177398899, and at (1.5, 7.408765) it gives −14.465422816; both agree to nine decimal places with the implicit-derivative value obtained from the curve itself."
+  },
+  "recall_prompt": "Say how you would prove this — say what you do to both sides first, and what happens to dy/dx after that.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_logs",
+        "kind": "equation",
+        "label": "Take logarithms of both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. Both sides have a variable base and a variable power, so both sides need the logarithm. The rule log(aᵐ) = m log a is what brings each power down in front.",
+        "memory_tip": "The power always comes down and stands in front of the logarithm: xʸ gives y log x, and yˣ gives x log y.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  xʸ = yˣ",
+          "Here x and y each stand in a base and in a power, so neither the power rule nor the exponential rule applies. Take logarithms of both sides.",
+          "log(xʸ) = log(yˣ)",
+          "∴ y log x = x log y      …(1)",
+          "This needs x > 0 and y > 0, so that log x and log y exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logarithms are taken on both sides, giving y log x = x log y.",
+          "accept": [
+            "take log on both sides to get y log x equals x log y",
+            "the powers come down in front of the logarithms",
+            "log of x to the power y is y log x",
+            "both sides have variable base and variable power so use logs",
+            "rendu vaipulaki log teesukunte y log x equals x log y",
+            "apply log a to the m equals m log a on both sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log both sides",
+            "y log x",
+            "x log y",
+            "power comes down"
+          ]
+        },
+        "why": "A logarithm turns each power into a product, and a product can be differentiated by the product rule. Without this step neither side of the equation can be differentiated at all.",
+        "common_mistakes": [
+          "Writing log(xʸ) = (log x)ʸ, which keeps the power where it was.",
+          "Taking the logarithm of only one side of the equation."
+        ]
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate both sides with respect to x",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Each side is a product of two factors, and y is a function of x, so every derivative of y carries a dy/dx with it. Four terms should appear, two on each side.",
+        "memory_tip": "y is not a constant. Every time y is differentiated, a dy/dx is written beside it.",
+        "lines": [
+          "Differentiating (1) with respect to x, using the product rule on each side,",
+          "y · (1/x) + log x · (dy/dx) = x · (1/y)(dy/dx) + log y · 1",
+          "∴ (y/x) + log x · (dy/dx) = (x/y)(dy/dx) + log y      …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are differentiated by the product rule, with a dy/dx attached to every derivative of y.",
+          "accept": [
+            "use the product rule on both sides",
+            "y by x plus log x into dy by dx equals x by y into dy by dx plus log y",
+            "every time you differentiate y you write dy by dx",
+            "implicit differentiation because y depends on x",
+            "y ni differentiate cheste dy by dx kooda rayali",
+            "four terms come out, two on each side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "dy by dx",
+            "y by x",
+            "x by y",
+            "both sides"
+          ]
+        },
+        "why": "y is a function of x, not a constant, so differentiating log y gives (1/y)(dy/dx) and differentiating y gives dy/dx. That is what makes this an implicit problem as well as a logarithmic one.",
+        "common_mistakes": [
+          "Treating y as a constant, so that (dy/dx) never appears on the right side.",
+          "Differentiating log y as 1/y and leaving out the dy/dx factor."
+        ]
+      },
+      {
+        "id": "s3_collect",
+        "kind": "equation",
+        "label": "Collect the dy/dx terms",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Move both dy/dx terms to the left and both plain terms to the right, then take dy/dx outside a bracket. Nothing is cancelled here, only rearranged.",
+        "memory_tip": "All the dy/dx terms go to one side and everything else to the other, exactly as with an ordinary linear equation in one unknown.",
+        "lines": [
+          "From (2), bringing the dy/dx terms to the left and the rest to the right,",
+          "log x · (dy/dx) − (x/y)(dy/dx) = log y − (y/x)",
+          "∴ (dy/dx)[log x − (x/y)] = log y − (y/x)      …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dy/dx terms are gathered on one side and dy/dx is taken outside a bracket.",
+          "accept": [
+            "shift the dy by dx terms to one side and the others to the other side",
+            "take dy by dx common outside a bracket",
+            "log x minus x by y multiplies dy by dx",
+            "the right side becomes log y minus y by x",
+            "dy by dx terms okka vaipuki teesukoni common teeyali",
+            "treat dy by dx as the unknown and collect it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "collect",
+            "take common",
+            "bracket",
+            "shift terms",
+            "dy by dx"
+          ]
+        },
+        "why": "The equation is linear in dy/dx, so gathering its two terms and factoring it out is the only move needed to make it the subject.",
+        "common_mistakes": [
+          "Changing a sign while shifting a term across the equals sign.",
+          "Taking dy/dx outside but leaving one of its terms behind on the right."
+        ]
+      },
+      {
+        "id": "s4_clear_fractions",
+        "kind": "boxed_final",
+        "label": "Clear the fractions and finish",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Write each side over a single denominator first: the left bracket over y, the right side over x. Dividing then gives the printed form directly.",
+        "memory_tip": "The y that was under the bracket on the left ends up on top of the answer, and the x that was under the right side ends up on the bottom.",
+        "lines": [
+          "Writing each side over a single denominator,",
+          "log x − (x/y) = (y log x − x)/y     and     log y − (y/x) = (x log y − y)/x",
+          "So (3) becomes  (dy/dx) · (y log x − x)/y = (x log y − y)/x",
+          "∴ dy/dx = [(x log y − y)/x] · [y/(y log x − x)]",
+          {
+            "text": "∴ dy/dx = y(x log y − y) / (x(y log x − x))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each side is put over a single denominator and the division gives dy/dx = y(x log y − y)/(x(y log x − x)).",
+          "accept": [
+            "put both sides over a common denominator and divide",
+            "the left bracket becomes y log x minus x over y",
+            "the right side becomes x log y minus y over x",
+            "y comes to the top and x goes to the bottom",
+            "common denominator teesukunte printed form vasthundi",
+            "dy by dx equals y into x log y minus y over x into y log x minus x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "y log x minus x",
+            "x log y minus y",
+            "divide",
+            "final form"
+          ]
+        },
+        "why": "The question states the answer, so the marks are for landing on that exact form. Clearing the small fractions x/y and y/x is what turns the rearranged equation into the printed expression, with y on top and x on the bottom.",
+        "common_mistakes": [
+          "Leaving the answer as (log y − y/x)/(log x − x/y), which is correct but is not the form asked for.",
+          "Exchanging x and y in the final line, which reverses the whole fraction."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Logarithms give y log x = x log y, and both sides then need the product rule because each holds x and y together. Collect the dy/dx terms before dividing."
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangents_parallel_to_x_y_minus8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangents to the circle x² + y² − 4x + 6y − 12 = 0 and parallel to the line x + y − 8 = 0.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Parallel line and the touching condition",
+      "marks": 2
+    },
+    {
+      "label": "The two tangents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.52 — SAQ chapter 6 Circle, answer 50. Printed appearance tag: AP 22. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 5, k = 1 ± 5√2 and the tangents are x + y + 1 ± 5√2 = 0. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Any line parallel to x + y − 8 = 0 is x + y + k = 0 — keeping the same coefficients and changing only the constant is the whole idea, and the answer is a pair because k has two values.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centre_and_radius",
+        "kind": "equation",
+        "label": "Centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The constant is negative, so −c adds and the radius is a whole number.",
+        "memory_tip": "Centre (−g, −f) and radius √(g² + f² − c). Here −c is +12.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 4x + 6y − 12 = 0",
+          "Here g = −2, f = 3, c = −12",
+          "Centre C = (2, −3)",
+          "r = √(4 + 9 + 12) = √25 = 5"
+        ],
+        "why": "The touching condition compares the distance of a line from the centre with the radius, so both are needed before any line is written down.",
+        "common_mistakes": [
+          "Writing the centre as (−2, 3).",
+          "Computing √(4 + 9 − 12) = 1 by taking c as +12."
+        ]
+      },
+      {
+        "id": "s2_parallel_and_touching",
+        "kind": "equation",
+        "label": "Parallel line and the touching condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Keep the coefficients 1 and 1 and change only the constant; that is what \"parallel\" means here.",
+        "memory_tip": "Parallel to x + y − 8 = 0 means x + y + k = 0. Only k changes.",
+        "lines": [
+          "Any line parallel to x + y − 8 = 0 is x + y + k = 0",
+          "If it touches the circle then p = r",
+          "⇒ |2 − 3 + k| / √(1 + 1) = 5",
+          "⇒ |k − 1| = 5√2",
+          "⇒ k − 1 = ±5√2 ⇒ k = 1 ± 5√2"
+        ],
+        "why": "Two lines are parallel when they have the same coefficients of x and y, so only the constant is unknown. The modulus gives two values of k, which is right, because a circle has two tangents of any given slope.",
+        "common_mistakes": [
+          "Writing the parallel line as x + y − 8 + k = 0, which double-counts the constant.",
+          "Dropping the modulus and finding only one value of k."
+        ]
+      },
+      {
+        "id": "s3_the_tangents",
+        "kind": "boxed_final",
+        "label": "The two tangents",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Both values of k must appear; the ± form is accepted and is shorter to write.",
+        "memory_tip": "Put k = 1 ± 5√2 back into x + y + k = 0.",
+        "lines": [
+          "Substituting k = 1 ± 5√2 in x + y + k = 0:",
+          {
+            "text": "∴ x + y + 1 + 5√2 = 0 and x + y + 1 − 5√2 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two lines are the same distance from the centre, one on each side, which is why their constants are 1 + 5√2 and 1 − 5√2 — placed symmetrically about the value 1 that would put the line through the centre.",
+        "common_mistakes": [
+          "Giving only the tangent with the plus sign.",
+          "Writing 5√2 as √10."
+        ]
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. The book prints one showing the given line outside the circle.",
+        "memory_tip": "The given line is only a direction. Slide it either way until it touches, and there are two positions.",
+        "figure": {
+          "id": "cir_parallel_tangents_2",
+          "width": 400,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_2_circle",
+              "d": "M 123 115 A 62 62 0 1 0 247 115 A 62 62 0 1 0 123 115",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_2_t1",
+              "d": "M 177 19 L 281 123",
+              "ms": 2100
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_2_t2",
+              "d": "M 89 107 L 193 211",
+              "ms": 2100
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_2_given",
+              "d": "M 272 62 L 368 158",
+              "ms": 1940,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_parallel_tangents_2_dc",
+              "d": "M 181.5 115 A 3.5 3.5 0 1 0 188.5 115 A 3.5 3.5 0 1 0 181.5 115",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_2_lc",
+              "x": 179,
+              "y": 138,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_2_ll",
+              "x": 245,
+              "y": 178,
+              "text": "x + y − 8 = 0",
+              "ms": 520,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_parallel_tangents_2_cap",
+              "x": 24,
+              "y": 228,
+              "text": "slide the given line until it touches",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The given line sets the direction only. Moving a line of that direction towards the circle, it touches once on the near side and once on the far side, and those two positions are the two tangents.",
+        "common_mistakes": [
+          "Treating the given line itself as one of the tangents.",
+          "Drawing the two tangents with different slopes."
+        ]
+      }
+    ]
+  }
+}

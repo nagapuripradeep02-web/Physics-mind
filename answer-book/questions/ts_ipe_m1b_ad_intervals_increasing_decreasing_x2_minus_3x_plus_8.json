@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_intervals_increasing_decreasing_x2_minus_3x_plus_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the intervals on which f(x) = x² − 3x + 8 is increasing or decreasing.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(x) > 0 and f′(x) < 0",
+      "marks": 2
+    },
+    {
+      "label": "State the two intervals",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what inequality you solve for increasing and what you solve for decreasing, and say whether a second derivative is needed.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State that f is a polynomial and so is differentiable everywhere — that is what lets the sign of f′ decide the behaviour on the whole real line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² − 3x + 8",
+          "f is a polynomial, so it is continuous and differentiable for every real x.",
+          "f′(x) = 2x − 3",
+          "The sign of f′ decides where f increases and where it decreases:",
+          "f is increasing where f′(x) > 0, and decreasing where f′(x) < 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 2x − 3, and that the sign of f′ decides increasing and decreasing.",
+          "accept": [
+            "differentiate to get two x minus three",
+            "the sign of the first derivative decides it",
+            "positive derivative means increasing",
+            "derivative sign chusi increasing decreasing cheptam",
+            "f is a polynomial so it is differentiable everywhere",
+            "negative derivative means decreasing"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x minus three",
+            "first derivative",
+            "increasing",
+            "decreasing"
+          ]
+        },
+        "why": "The first derivative measures the rate of change. Where it is positive the values rise as x rises, and where it is negative they fall, so its sign is the whole answer to this question.",
+        "common_mistakes": [
+          "Differentiating −3x as −3x rather than −3.",
+          "Carrying the constant 8 into the derivative."
+        ],
+        "memory_tip": "Increasing and decreasing are questions about the FIRST derivative's sign. Maximum and minimum are questions about where it is zero."
+      },
+      {
+        "id": "s2_solve_inequalities",
+        "kind": "equation",
+        "label": "Solve f′(x) > 0 and f′(x) < 0",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, one for each inequality. Solve them as inequalities, not by testing a couple of sample numbers — the examiner looks for the two lines of algebra.",
+        "lines": [
+          "Increasing:  f′(x) > 0",
+          "2x − 3 > 0   ⇒   2x > 3   ⇒   x > 3/2",
+          "Decreasing:  f′(x) < 0",
+          "2x − 3 < 0   ⇒   2x < 3   ⇒   x < 3/2",
+          "At x = 3/2 the derivative is zero, so f is neither increasing nor decreasing at that single point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2x − 3 > 0 gives x > 3/2 and 2x − 3 < 0 gives x < 3/2.",
+          "accept": [
+            "solve two x minus three greater than zero",
+            "x greater than three by two for increasing",
+            "x less than three by two for decreasing",
+            "rendu inequalities solve cheyyali",
+            "the turning value is three by two",
+            "at three by two the derivative is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "greater than zero",
+            "less than zero",
+            "three by two",
+            "one point five"
+          ]
+        },
+        "why": "The derivative here is linear, so it changes sign exactly once. Solving the two inequalities gives both intervals directly and shows the boundary value 3/2 in the same working.",
+        "common_mistakes": [
+          "Dividing by 2 and writing x > 3 instead of x > 3/2.",
+          "Reversing the inequality sign when dividing by the positive number 2."
+        ],
+        "memory_tip": "Set the derivative to zero once to find the boundary, then decide which side is positive. A linear derivative changes sign only at that single value."
+      },
+      {
+        "id": "s3_state_intervals",
+        "kind": "boxed_final",
+        "label": "State the two intervals",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Write both intervals in interval notation and name which is which. No second derivative is needed anywhere in this question.",
+        "lines": [
+          "The boundary value 3/2 belongs to neither open interval, since f′(3/2) = 0.",
+          "Check: f(1) = 1 − 3 + 8 = 6, f(3/2) = 9/4 − 9/2 + 8 = 23/4 = 5.75, f(2) = 4 − 6 + 8 = 6.",
+          "The values fall up to x = 3/2 and rise after it, which matches the intervals found.",
+          {
+            "text": "∴ f is decreasing on (−∞, 3/2) and increasing on (3/2, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is decreasing on (−∞, 3/2) and increasing on (3/2, ∞).",
+          "accept": [
+            "decreasing on minus infinity to three by two",
+            "increasing on three by two to infinity",
+            "the function falls first and then rises",
+            "three by two varaku decreasing, taruvatha increasing",
+            "write both intervals in interval notation",
+            "no second derivative is needed for this question"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus infinity",
+            "three by two",
+            "infinity",
+            "decreasing then increasing"
+          ]
+        },
+        "why": "The question asks for intervals, so the answer is two intervals with their labels, not a single value of x. The check with three sample values confirms the direction of each one.",
+        "common_mistakes": [
+          "Swapping the two labels and calling the left interval increasing.",
+          "Applying the second derivative test, which answers a different question."
+        ],
+        "memory_tip": "For an upward parabola the graph falls to the vertex and rises after it, so decreasing always comes first and increasing second."
+      }
+    ]
+  },
+  "insider_note": "The sign of f′ = 2x − 3 decides everything, so the turning point 3/2 splits the line into two intervals. Give the answer as intervals, not as a single value."
+}

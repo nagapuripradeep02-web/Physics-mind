@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. |A| is negative here, which is fine — it only has to be non-zero. Then use the 2×2 shortcut for the adjoint.",
+        "memory_tip": "|A| is negative here, which is fine — it only has to be non-zero. Then use the 2×2 shortcut.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Dividing by −11 flips every sign as well as scaling — so the three negative entries become positive and the positive one becomes negative.",
+        "memory_tip": "Dividing by −11 flips every sign as well as scaling.",
         "lines": [
           {
             "text": "A^{-1} = \\frac{1}{-11}\\begin{bmatrix} -5 & -2 \\\\ -3 & 1 \\end{bmatrix}",
@@ -142,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "|A| = −11 is NEGATIVE, so dividing by it flips every sign in the adjoint. Losing that flip is what turns the answer into its own negative."
 }

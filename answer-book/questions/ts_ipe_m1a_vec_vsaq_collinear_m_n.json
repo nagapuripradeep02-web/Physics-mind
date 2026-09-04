@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Collinear means one vector is a multiple of the other, so corresponding components are in the same ratio. Write all three ratios equal.",
+        "memory_tip": "Collinear means one is a multiple of the other, so all three component ratios are equal.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The ratio 2/4 simplifies to 1/2 first, which makes both solves one line each.",
+        "memory_tip": "Simplify 2/4 to 1/2 first; both solves are then one line each.",
         "lines": [
           "1/2 = 5/m ⇒ m = 2 × 5 = 10",
           "1/2 = 1/n ⇒ n = 2",
@@ -148,5 +150,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Collinear means equal ratios, and the first pair 2/4 = ½ is the one to compute first. Then 5/m = ½ gives m = 10, not 2.5 — the unknown is sitting in the denominator."
 }

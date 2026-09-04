@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_cos_inverse_4x3_minus_3x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of y = cos⁻¹(4x³ − 3x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Put x = cos θ and use cos 3θ = 4cos³θ − 3cos θ",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate 3 Cos⁻¹x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 18(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer −3/√(1 − x²) was checked against a numerical difference quotient before it was written: on the stated range both read −3.750000 at x = 0.6, −5.000000 at x = 0.8 and −9.607689 at x = 0.95. A control was also run OUTSIDE that range: at x = 0.2 the difference quotient reads +3.061862, which is +3/√(1 − x²) and not the boxed answer — this is why the range 1/2 ≤ x ≤ 1 is written into the solution rather than left out."
+  },
+  "recall_prompt": "Say how you would do this one — name the substitution you make and the identity it turns the bracket into.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put x = cos θ and use cos 3θ = 4cos³θ − 3cos θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the step the rest of the answer depends on. The bracket 4x³ − 3x is the cosine triple-angle expansion written in x. Once x = cos θ is written down, the bracket is cos 3θ and the inverse cosine cancels it.",
+        "memory_tip": "4x³ − 3x with a cos⁻¹ outside it always means x = cos θ; 3x − 4x³ with a sin⁻¹ outside it means x = sin θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put x = cos θ, so θ = Cos⁻¹x",
+          "Then 4x³ − 3x = 4cos³θ − 3cos θ = cos 3θ   [triple-angle identity]",
+          "∴ y = Cos⁻¹(cos 3θ)",
+          "Take θ in [0, π/3], that is 1/2 ≤ x ≤ 1. Then 3θ lies in [0, π], the principal range of Cos⁻¹, so",
+          "y = 3θ = 3 Cos⁻¹x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = cos θ is substituted and 4cos³θ − 3cos θ = cos 3θ, so y = 3 Cos⁻¹x.",
+          "accept": [
+            "put x equal to cos theta and use the triple angle formula",
+            "four cos cube theta minus three cos theta is cos three theta",
+            "cos inverse of cos three theta is three theta so y is three cos inverse x",
+            "x ki cos theta substitute cheste cos three theta vasthundi",
+            "the bracket is the cos triple angle expansion"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals cos theta",
+            "cos three theta",
+            "triple angle",
+            "three cos inverse x"
+          ]
+        },
+        "why": "Differentiating cos⁻¹(4x³ − 3x) directly by the chain rule gives a long expression with √(1 − (4x³ − 3x)²) in it, which does not simplify by hand inside a 2-mark question. The substitution replaces the whole bracket by a single angle, and the rest is one standard derivative.",
+        "common_mistakes": [
+          "Substituting x = sin θ, which does not match 4x³ − 3x and does not simplify.",
+          "Differentiating the bracket directly by the chain rule and being unable to reduce √(1 − (4x³ − 3x)²).",
+          "Omitting the range and writing y = 3 Cos⁻¹x for every x, when the sign is different for −1/2 < x < 1/2."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate 3 Cos⁻¹x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. d/dx(Cos⁻¹x) = −1/√(1 − x²). The minus sign belongs to the inverse cosine and must be carried into the boxed line.",
+        "memory_tip": "Inverse cosine carries a minus and inverse sine does not; everything else about the two derivatives is identical.",
+        "lines": [
+          "y = 3 Cos⁻¹x",
+          "We know d/dx(Cos⁻¹x) = −1/√(1 − x²)",
+          "∴ dy/dx = 3 × (−1/√(1 − x²))",
+          {
+            "text": "∴ dy/dx = −3/√(1 − x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Cos⁻¹x) = −1/√(1 − x²), so the answer is −3/√(1 − x²).",
+          "accept": [
+            "cos inverse x differentiates to minus one over root one minus x squared",
+            "three times that gives minus three over root one minus x squared",
+            "the answer is minus three by root one minus x square",
+            "cos inverse ki minus vasthundi, so minus three by root one minus x square",
+            "keep the minus sign from the inverse cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus three",
+            "root one minus x squared",
+            "cos inverse derivative",
+            "minus sign"
+          ]
+        },
+        "why": "Only one standard derivative is left, so this mark is for quoting it with its minus sign. A positive 3/√(1 − x²) is the sin⁻¹ answer to a different question.",
+        "common_mistakes": [
+          "Dropping the minus sign and writing 3/√(1 − x²).",
+          "Writing the denominator as 1 − x² without the square root."
+        ]
+      }
+    ]
+  },
+  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ and the whole thing collapses to 3Cos⁻¹x. Differentiating the original directly is far harder and rarely lands."
+}

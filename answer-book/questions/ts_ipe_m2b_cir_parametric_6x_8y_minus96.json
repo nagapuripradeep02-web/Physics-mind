@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_parametric_6x_8y_minus96",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the parametric equations of the circle x² + y² + 6x + 8y − 96 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 106.2. It is the right-hand twin of answer 106.1. No appearance tag is printed beside it. Every number was re-derived and the book is correct: centre (−3, −4), radius 11. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The radius is 11 because 9 + 16 + 96 = 121 — a large negative constant is what makes a big circle, and checking that the sum is a perfect square is a quick check against a sign slip.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centre_and_radius",
+        "kind": "equation",
+        "label": "Centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both linear coefficients are positive, so both centre coordinates are negative.",
+        "memory_tip": "Halve 6 and 8 to get g = 3 and f = 4, then change both signs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² + 6x + 8y − 96 = 0",
+          "Here g = 3, f = 4, c = −96",
+          "Centre C = (−3, −4)",
+          "Radius r = √(9 + 16 + 96) = √121 = 11"
+        ],
+        "why": "The centre is (−g, −f), so positive linear coefficients put the centre in the third quadrant. Subtracting c = −96 adds 96, and 9 + 16 + 96 = 121 is a perfect square.",
+        "common_mistakes": [
+          "Writing the centre as (3, 4).",
+          "Computing √(9 + 16 − 96), which has no real value."
+        ]
+      },
+      {
+        "id": "s2_parametric",
+        "kind": "boxed_final",
+        "label": "Write the parametric equations",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The centre coordinates go in unchanged; only the radius multiplies the cosine and sine.",
+        "memory_tip": "x = −g + r cos θ and y = −f + r sin θ.",
+        "lines": [
+          "Parametric equations of a circle:",
+          "x = −g + r cos θ,  y = −f + r sin θ",
+          {
+            "text": "∴ x = −3 + 11 cos θ,  y = −4 + 11 sin θ",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every point on the circle is the centre plus a step of length 11 in the direction θ. The centre appears as the constant part and the radius as the multiplier.",
+        "common_mistakes": [
+          "Writing x = 3 + 11 cos θ by using g instead of −g.",
+          "Swapping cosine and sine between the two equations."
+        ]
+      }
+    ]
+  }
+}

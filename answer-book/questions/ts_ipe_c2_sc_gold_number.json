@@ -81,10 +81,10 @@
           "So gelatin is a far better protective",
           "colloid than starch."
         ],
-        "why": "The gold number counts how much of the colloid the job takes, so it runs opposite to protective power: the better the colloid, the less of it is needed and the smaller the number. Two contrasting values make the relation clear in one line.",
+        "why": "The gold number counts how many milligrams of the colloid are needed to protect the sol, so it runs opposite to protective power: the better the colloid, the less of it is needed and the smaller the number. Two contrasting values make the relation clear in one line.",
         "common_mistakes": [
           "Writing that a larger gold number means better protection. The relation is inverse.",
-          "Quoting a gold number with no units of mass. It is a number of milligrams, so the value has that meaning built in."
+          "Writing the gold number as a mass in grams, or attaching a unit to it. The gold number is a plain number, and it already means that many milligrams of the protective colloid, so 25 means 25 mg."
         ],
         "memory_tip": "Small number, small amount needed, strong protection. Gelatin about 0.005, starch about 25.",
         "margin_note": "The inverse relation is the second mark. One pair of example values is enough to show it."

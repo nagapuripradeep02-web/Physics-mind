@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_normal_xy_10_at_2_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangent and the normal to the curve xy = 10 at (2, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and find the slope",
+      "marks": 2
+    },
+    {
+      "label": "Equation of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you do to xy = 10 before differentiating, what slope you get at (2, 5), and how you turn that into the normal's slope.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope",
+        "kind": "equation",
+        "label": "Differentiate and find the slope",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for a correct dy/dx, one for its value at x = 2. Write the substitution line — a bare −5/2 with no working is a single mark at best.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  xy = 10",
+          "Check the point: at (2, 5),  xy = 2(5) = 10, so (2, 5) lies on the curve.",
+          "Write y in terms of x:   y = 10/x = 10x⁻¹",
+          "dy/dx = 10(−1)x⁻² = −10/x²",
+          "At x = 2:   m = −10/2² = −10/4",
+          "∴ m = −5/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 10/x is differentiated to −10/x², and x = 2 gives m = −5/2.",
+          "accept": [
+            "write y as ten by x and then differentiate",
+            "dy by dx is minus ten by x squared",
+            "at x equal to two the slope is minus five by two",
+            "ten by x ni ten x power minus one ga rasi differentiate cheyyali",
+            "the slope of the tangent is minus two point five",
+            "make y the subject first because the curve is a hyperbola"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ten by x",
+            "minus ten by x squared",
+            "minus five by two",
+            "x equal to two"
+          ]
+        },
+        "why": "xy = 10 is a rectangular hyperbola, and making y the subject turns it into a single power of x, which the power rule handles in one line. Differentiating xy = 10 as it stands needs the product rule and gives the same slope.",
+        "common_mistakes": [
+          "Differentiating xy = 10 as dy/dx = 0 without either rewriting or using the product rule.",
+          "Writing dy/dx = −10/x and losing the square in the denominator.",
+          "Substituting y = 5 into −10/x² instead of x = 2."
+        ],
+        "memory_tip": "10/x is 10x⁻¹. The power rule drops the index by one to −2 and multiplies by −1, giving −10x⁻², which is −10/x²."
+      },
+      {
+        "id": "s2_tangent",
+        "kind": "equation",
+        "label": "Equation of the tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The slope is a fraction, so multiply both whole sides by 2 at once. That keeps every later line in whole numbers.",
+        "lines": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (2, 5) and m = −5/2:",
+          "y − 5 = (−5/2)(x − 2)",
+          "2(y − 5) = −5(x − 2)",
+          "2y − 10 = −5x + 10",
+          "∴ 5x + 2y − 20 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form with (2, 5) and m = −5/2 gives 5x + 2y − 20 = 0.",
+          "accept": [
+            "substitute the point and the slope into y minus y one equals m into x minus x one",
+            "multiply both sides by two to clear the fraction",
+            "the tangent is five x plus two y minus twenty equals zero",
+            "rendu vaipula two tho multiply chesi fraction teesestha",
+            "two y minus ten equals minus five x plus ten",
+            "bring all the terms to the left side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five x plus two y",
+            "minus twenty",
+            "clear the fraction",
+            "two y minus ten"
+          ]
+        },
+        "why": "Clearing the denominator before expanding removes the fraction from every later line, which is where sign slips usually happen in this question.",
+        "common_mistakes": [
+          "Multiplying only the left side by 2 when clearing the fraction.",
+          "Expanding −5(x − 2) as −5x − 10 and getting the sign of the second term wrong.",
+          "Using the point (5, 2) instead of (2, 5)."
+        ],
+        "memory_tip": "Multiply through by the denominator of m before expanding. Two lines instead of four, and no fractions to carry."
+      },
+      {
+        "id": "s3_normal",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. m is negative, so the two minus signs in −1/m cancel and the normal's slope is +2/5. Substitute (2, 5) into both boxed lines as a check: 10 + 10 − 20 = 0 and 4 − 25 + 21 = 0.",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so its slope is −1/m = −1 ÷ (−5/2) = 2/5.",
+          "y − 5 = (2/5)(x − 2)",
+          "5(y − 5) = 2(x − 2)",
+          "5y − 25 = 2x − 4",
+          {
+            "text": "∴ Tangent: 5x + 2y − 20 = 0     Normal: 2x − 5y + 21 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −1/m = 2/5, giving 2x − 5y + 21 = 0.",
+          "accept": [
+            "the normal slope is minus one over m",
+            "minus five by two turns into plus two by five",
+            "the normal is two x minus five y plus twenty one equals zero",
+            "fraction ni upside down chesi sign marchali",
+            "the two minus signs cancel so the normal slope is positive",
+            "invert the slope and change its sign"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two by five",
+            "two x minus five y",
+            "plus twenty one",
+            "minus one by m"
+          ]
+        },
+        "why": "Perpendicular lines have slopes whose product is −1, so the normal's slope is −1/m. Because m is already negative, the result here is positive.",
+        "common_mistakes": [
+          "Writing the normal's slope as −2/5, keeping a minus sign that has already cancelled.",
+          "Using 5/2 as the normal's slope by inverting without the sign change.",
+          "Not substituting the point back into either final equation as a check."
+        ],
+        "memory_tip": "A negative reciprocal of a fraction: turn it over, then change the sign. −5/2 becomes +2/5."
+      }
+    ]
+  },
+  "insider_note": "Write y = 10/x as a power before differentiating rather than using the quotient rule. m = −5/2 is negative, so the normal slope is +2/5."
+}

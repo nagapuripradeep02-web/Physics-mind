@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_one_plus_i_16",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of (1 + i)¹⁶.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mod-amp form of 1 + i",
+      "marks": 1
+    },
+    {
+      "label": "Raise to 16 by De Moivre's theorem",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 119.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: 1 + i = √2 cis(π/4), so (1 + i)¹⁶ = 2⁸ cis(4π) = 256; the book's answer is correct. Twin of answer 119.1, (1 − i)⁸, a separate card."
+  },
+  "recall_prompt": "Say how you would find this — how you write 1 + i in mod-amp form, and what De Moivre's theorem does with the power 16.",
+  "insider_note": "Two lines: take √2 out, leaving cos π/4 + i sin π/4, then apply the power 16. The mark most often lost is (√2)¹⁶ = 2⁸ = 256; the angle 16 · π/4 = 4π is two full turns, so cos 4π = 1 and sin 4π = 0.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mod_amp",
+        "kind": "equation",
+        "label": "Mod-amp form of 1 + i",
+        "marks": 1,
+        "mark_note": "Mod-amp form",
+        "margin_note": "First mark. Take √2 out of 1 + i and it leaves 1/√2 + i/√2 = cos π/4 + i sin π/4. The modulus is √2, not 2, and the angle is π/4, not π/2.",
+        "memory_tip": "Take √2 out to leave cos π/4 + i sin π/4. The angle is π/4, not π/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + i = √2 (1/√2 + i · 1/√2)",
+          "= √2 (cos π/4 + i sin π/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + i is written as √2 (cos π/4 + i sin π/4).",
+          "accept": [
+            "take out root two so one plus i is root two times cos pi by four plus i sin pi by four",
+            "the modulus is root two and the angle is pi by four",
+            "write one plus i in mod amp form with r root two",
+            "one plus i ni root two into cos pi by four plus i sin pi by four ga rayali",
+            "modulus root two, amplitude pi by four"
+          ],
+          "reject": [
+            "write in polar form",
+            "find r",
+            "take out root two"
+          ],
+          "heard_as": [
+            "root two",
+            "pi by four",
+            "plus i sin",
+            "mod amp"
+          ]
+        },
+        "why": "De Moivre's theorem needs cos + i sin inside the bracket. Taking √2 out of 1 + i leaves 1/√2 + i/√2, which is cos π/4 + i sin π/4.",
+        "common_mistakes": [
+          "Writing r = 2 instead of √2.",
+          "Taking θ = π/2.",
+          "Expanding (1 + i)¹⁶ by the binomial theorem."
+        ]
+      },
+      {
+        "id": "s2_de_moivre",
+        "kind": "boxed_final",
+        "label": "Raise to 16 by De Moivre",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (√2)¹⁶ = 2⁸ = 256, and the angle becomes 16 · π/4 = 4π, where cos 4π = 1 and sin 4π = 0. So the value is 256.",
+        "memory_tip": "(√2)¹⁶ = 2⁸ = 256, and 16 · π/4 = 4π — two full turns, so cos = 1 and sin = 0.",
+        "lines": [
+          "(1 + i)¹⁶ = (√2)¹⁶ (cos π/4 + i sin π/4)¹⁶",
+          "= 2⁸ (cos 4π + i sin 4π)",
+          {
+            "text": "= 256 (1 + i · 0) = 256",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (√2)¹⁶ = 256 and De Moivre gives cos 4π + i sin 4π = 1, so (1 + i)¹⁶ = 256.",
+          "accept": [
+            "root two to the sixteen is two fifty six and the angle becomes four pi so cis four pi is one, answer two fifty six",
+            "by De Moivre the angle is sixteen times pi by four which is four pi, and cis four pi is one",
+            "two fifty six times one equals two fifty six",
+            "root two power sixteen two fifty six, angle four pi, cos four pi one",
+            "the angle multiplies by sixteen to four pi and the modulus part is two fifty six"
+          ],
+          "reject": [
+            "raise it",
+            "use the theorem",
+            "we get the answer"
+          ],
+          "heard_as": [
+            "two fifty six",
+            "four pi",
+            "De Moivre",
+            "root two to the sixteen"
+          ]
+        },
+        "why": "(√2)¹⁶ = 2⁸ = 256 handles the modulus; De Moivre multiplies the angle by 16 to give 4π, where the cosine is 1 and the sine is 0.",
+        "common_mistakes": [
+          "Writing (√2)¹⁶ = 2¹⁶, forgetting the square root.",
+          "Writing cos 4π = −1.",
+          "Leaving the answer as 256(cos 4π + i sin 4π)."
+        ]
+      }
+    ]
+  }
+}

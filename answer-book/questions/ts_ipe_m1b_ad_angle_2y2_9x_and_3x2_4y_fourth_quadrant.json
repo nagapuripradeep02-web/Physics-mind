@@ -1,0 +1,196 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_2y2_9x_and_3x2_4y_fourth_quadrant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves 2y² − 9x = 0 and 3x² + 4y = 0 in the fourth quadrant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the fourth-quadrant point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.219, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because this stem has TWO common points and only one of them is in the fourth quadrant. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many points the curves share, which one the question asks for and why, and what formula gives the angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fourth_quadrant_point",
+        "kind": "equation",
+        "label": "Find the fourth-quadrant point of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The elimination gives TWO common points, the origin and (2, −3). The question names the fourth quadrant, so the origin is set aside — it lies on the axes, in no quadrant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  2y² − 9x = 0   …(i)   and   3x² + 4y = 0   …(ii)",
+          "From (i):  x = 2y²/9",
+          "Put this in (ii):  3(2y²/9)² + 4y = 0",
+          "3(4y⁴/81) + 4y = 0   ⇒   4y⁴/27 + 4y = 0",
+          "Multiply by 27/4:  y⁴ + 27y = 0  ⇒  y(y³ + 27) = 0",
+          "⇒ y = 0  or  y³ = −27, that is y = −3",
+          "y = 0 gives x = 0, the origin, which lies on the axes and not in any quadrant.",
+          "y = −3 gives x = 2(9)/9 = 2, so the point is (2, −3), where x > 0 and y < 0.",
+          "∴ the fourth-quadrant point of intersection is P(2, −3)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eliminating x gives y(y³ + 27) = 0, so y = 0 (the origin) or y = −3, and the fourth-quadrant point is (2, −3).",
+          "accept": [
+            "write x as two y squared by nine and substitute",
+            "y to the fourth plus twenty seven y equals zero",
+            "y is zero or minus three",
+            "origin fourth quadrant lo ledu kabatti minus three teesukovali",
+            "the fourth quadrant point is two comma minus three",
+            "x positive and y negative is the fourth quadrant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two y squared by nine",
+            "y cubed plus twenty seven",
+            "two comma minus three",
+            "fourth quadrant",
+            "origin"
+          ]
+        },
+        "why": "The two curves meet at two points and the tangents at the origin are not the same pair as at (2, −3), so the answers differ. The question names the quadrant precisely because the point has to be chosen, and choosing it is where the marks are.",
+        "common_mistakes": [
+          "Using the origin, which is a common point but lies in no quadrant.",
+          "Solving y³ = −27 as y = 3 and landing in the first quadrant.",
+          "Substituting y = −3 into 2y²/9 as −2, since y² is positive whatever the sign of y."
+        ],
+        "memory_tip": "Fourth quadrant means x positive and y negative — check the signs of the point against that before going on."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The first slope needs y and the second needs x, so both coordinates of P are used. Substitute only after differentiating.",
+        "lines": [
+          "From (i):  4y (dy/dx) − 9 = 0  ⇒  dy/dx = 9/(4y)",
+          "At P(2, −3):  m₁ = 9/(4(−3)) = −3/4",
+          "From (ii):  6x + 4 (dy/dx) = 0  ⇒  dy/dx = −3x/2",
+          "At P(2, −3):  m₂ = −3(2)/2 = −3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = 9/(4y) = −3/4 and m₂ = −3x/2 = −3 at (2, −3).",
+          "accept": [
+            "differentiate the first curve to get nine by four y",
+            "differentiate the second curve to get minus three x by two",
+            "m one is minus three fourths and m two is minus three",
+            "rendintini differentiate chesi point substitute cheyyali",
+            "four y dy by dx minus nine equals zero",
+            "both slopes are negative at this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine by four y",
+            "minus three x by two",
+            "m one",
+            "m two",
+            "minus three"
+          ]
+        },
+        "why": "Each curve has its own tangent at the shared point, so two derivatives are needed. The first slope depends on y and the second on x, which is why the full coordinate pair from step 1 matters.",
+        "common_mistakes": [
+          "Differentiating 2y² as 2y·dy/dx instead of 4y·dy/dx.",
+          "Losing the minus sign when substituting y = −3 into 9/(4y).",
+          "Differentiating 3x² as 3x."
+        ],
+        "memory_tip": "The curve with y² gives a slope in y; the curve with x² and a plain y gives a slope in x."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both slopes are negative, so their product is positive and the denominator 1 + m₁m₂ = 13/4. The 4s cancel and leave 9/13.",
+        "lines": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−3/4 − (−3))/(1 + (−3/4)(−3))|",
+          "= |(9/4)/(1 + 9/4)| = |(9/4)/(13/4)| = 9/13",
+          {
+            "text": "∴ θ = Tan⁻¹(9/13) ≈ 34°42′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = |(m₁ − m₂)/(1 + m₁m₂)| = 9/13, so θ = Tan⁻¹(9/13).",
+          "accept": [
+            "tan theta is mod of m one minus m two by one plus m one m two",
+            "minus three fourths plus three is nine by four",
+            "one plus nine by four is thirteen by four",
+            "fours cancel ayyi nine by thirteen vasthundi",
+            "the angle is tan inverse nine by thirteen",
+            "theta is about thirty four degrees forty two minutes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine by thirteen",
+            "tan inverse",
+            "thirteen by four",
+            "thirty four"
+          ]
+        },
+        "why": "The 4 in the numerator and the 4 in the denominator cancel, so the answer is a clean fraction. Keeping the working in quarters until the last line is what makes that cancelling visible.",
+        "common_mistakes": [
+          "Writing −3/4 − (−3) as −3/4 − 3 = −15/4.",
+          "Taking the product of two negative slopes as negative.",
+          "Reporting the answer as Tan⁻¹(13/9) with the fraction inverted."
+        ],
+        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+      }
+    ]
+  },
+  "insider_note": "The question names the FOURTH quadrant, so only the point with x > 0 and y < 0 is wanted — the other root is discarded. Find the intersection first, then the two slopes there."
+}

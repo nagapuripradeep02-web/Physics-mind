@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_mult_inverse_7_plus_24i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the multiplicative inverse of 7 + 24i.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write 1/(7 + 24i) and multiply by the conjugate",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the form a + ib",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 108.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 16, 22 · AP 15, 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q1 of the book's Model Paper 3 (book p.115), and the Bullet Model Paper re-solves it on book p.96 with the same arithmetic. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the multiplicative inverse — what the inverse is, and how you write it as a + ib.",
+  "insider_note": "The multiplicative inverse is 1/z, not the conjugate — the conjugate is only the multiplier that clears the denominator. The denominator 7² + 24² = 625 comes from the 7, 24, 25 triple, so any other number there is an arithmetic slip.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reciprocal",
+        "kind": "equation",
+        "label": "Write the reciprocal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The multiplicative inverse of z is 1/z. Multiply above and below by the conjugate 7 − 24i so the denominator becomes 7² + 24².",
+        "memory_tip": "The multiplicative inverse is 1/z. The conjugate is only the multiplier that clears the denominator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Multiplicative inverse of 7 + 24i is 1/(7 + 24i).",
+          {
+            "text": "1/(7 + 24i) = (7 − 24i) / ((7 + 24i)(7 − 24i))",
+            "style": "eq"
+          },
+          {
+            "text": "= (7 − 24i) / (7² + 24²)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the multiplicative inverse is 1/(7 + 24i), and multiplying top and bottom by 7 − 24i makes the denominator 7² + 24².",
+          "accept": [
+            "the inverse is one over seven plus twenty four i, multiply top and bottom by seven minus twenty four i",
+            "write one by z and rationalise with the conjugate seven minus twenty four i",
+            "the denominator becomes seven squared plus twenty four squared",
+            "inverse ante one by z, conjugate tho multiply cheyali",
+            "multiplicative inverse is the reciprocal, rationalise it"
+          ],
+          "reject": [
+            "find the inverse",
+            "rationalise"
+          ],
+          "heard_as": [
+            "one by",
+            "reciprocal",
+            "conjugate",
+            "seven minus twenty four i",
+            "inverse"
+          ]
+        },
+        "why": "z times its multiplicative inverse is 1, so the inverse is 1/z. A quotient with a complex denominator is written as a + ib by the conjugate, and (7 + 24i)(7 − 24i) = 49 + 576 has no i.",
+        "common_mistakes": [
+          "Giving the conjugate 7 − 24i itself as the inverse.",
+          "Giving −7 − 24i (the additive inverse)."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 49 + 576 = 625. Write the answer with the real and imaginary parts separated.",
+        "memory_tip": "49 + 576 = 625, from the 7, 24, 25 triple. Split the answer into a real part and an imaginary part.",
+        "lines": [
+          "= (7 − 24i) / (49 + 576) = (7 − 24i)/625",
+          {
+            "text": "∴ inverse = 7/625 − (24/625)i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator is 625, so the inverse is 7/625 − (24/625)i.",
+          "accept": [
+            "forty nine plus five seventy six is six twenty five so the inverse is seven by six twenty five minus twenty four by six twenty five i",
+            "the answer is seven minus twenty four i over six hundred twenty five",
+            "seven by six two five minus twenty four i by six two five",
+            "denominator six twenty five, inverse seven by six twenty five minus twenty four by six twenty five i",
+            "divide seven minus twenty four i by six hundred and twenty five"
+          ],
+          "reject": [
+            "simplify",
+            "write the answer"
+          ],
+          "heard_as": [
+            "six twenty five",
+            "625",
+            "seven by",
+            "twenty four by",
+            "minus"
+          ]
+        },
+        "why": "7² + 24² = 625 = 25² — the same 7, 24, 25 triple appears when finding the square root of 7 + 24i. The answer must be split into a real part and an imaginary part to be in the form a + ib.",
+        "common_mistakes": [
+          "Adding 49 + 576 as 615.",
+          "Leaving the answer as (7 − 24i)/625 without separating — acceptable to many examiners, but the split form is safer."
+        ]
+      }
+    ]
+  }
+}

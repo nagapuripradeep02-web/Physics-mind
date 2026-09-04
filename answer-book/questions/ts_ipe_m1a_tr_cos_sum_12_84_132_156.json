@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_sum_12_84_132_156",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos 12° + cos 84° + cos 132° + cos 156° = −1/2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply cos C + cos D",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 9, book p.84. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the sum-to-product step and on the closing substitution; the opening pairing stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the sum was evaluated to 12 decimal places as −0.500000000000, which is exactly −1/2. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_the_four_terms",
+        "kind": "equation",
+        "label": "Pair the four terms",
+        "marks": 0,
+        "margin_note": "Take the first with the third, and the second with the fourth. Any other pairing leaves angles with no exact value.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos 12° + cos 84°",
+          "        + cos 132° + cos 156°",
+          "= (cos 12° + cos 132°)",
+          "  + (cos 84° + cos 156°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four terms are paired as (12°, 132°) and (84°, 156°).",
+          "accept": [
+            "pair twelve with one thirty two and eighty four with one fifty six",
+            "group the first with the third and the second with the fourth",
+            "skip one term when pairing",
+            "twelve and one thirty two okati, eighty four and one fifty six inkoti",
+            "make two pairs before using the formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twelve",
+            "one thirty two",
+            "eighty four",
+            "one fifty six",
+            "pair"
+          ]
+        },
+        "why": "The first term is paired with the third and the second with the fourth. Only this pairing gives half-differences of 60° and 36°, which are angles with exact values.",
+        "common_mistakes": [
+          "Pairing the terms in the printed order 12° with 84°.",
+          "Trying to work out each cosine as a decimal."
+        ],
+        "memory_tip": "Skip one term each time: 12° with 132°, then 84° with 156°."
+      },
+      {
+        "id": "s2_apply_sum_to_product",
+        "kind": "equation",
+        "label": "Apply cos C + cos D",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Half-sums are 72° and 120°; half-differences are 60° and 36°. cos(−θ) = cos θ, so the sign of the half-difference does not matter.",
+        "lines": [
+          "cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2)",
+          "cos 12° + cos 132° = 2 cos 72° cos 60°",
+          "cos 84° + cos 156° = 2 cos 120° cos 36°",
+          "= 2 cos 72° cos 60° + 2 cos 120° cos 36°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2) is applied to both pairs.",
+          "accept": [
+            "cos c plus cos d is two cos half the sum into cos half the difference",
+            "the first pair gives two cos seventy two cos sixty",
+            "the second pair gives two cos one twenty cos thirty six",
+            "sum to product formula rendu pairs meeda apply cheyyali",
+            "convert each pair into a product of cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cos thirty six is root five plus one by four"
+          ],
+          "heard_as": [
+            "cos c plus cos d",
+            "half the sum",
+            "cos seventy two",
+            "cos one twenty"
+          ]
+        },
+        "why": "The sum-to-product formula turns each pair into a product, and the half-differences 60° and 36° are exactly the angles whose cosines are known.",
+        "common_mistakes": [
+          "Using the cos C − cos D formula, which brings in sines.",
+          "Halving only the sum and forgetting to halve the difference."
+        ],
+        "memory_tip": "Half the sum sits in the first cosine, half the difference in the second."
+      },
+      {
+        "id": "s3_substitute_and_finish",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. 2 cos 60° = 1 and 2 cos 120° = −1, so the sum is cos 72° − cos 36°. The two square roots cancel and −2/4 remains.",
+        "lines": [
+          "cos 60° = 1/2 and cos 120° = −1/2",
+          "= cos 72° − cos 36°",
+          "cos 72° = (√5 − 1)/4, cos 36° = (√5 + 1)/4",
+          "= (√5 − 1)/4 − (√5 + 1)/4 = −2/4",
+          {
+            "text": "= −1/2 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 60° = 1/2 and cos 120° = −1/2 reduce the sum to cos 72° − cos 36°, which is −1/2.",
+          "accept": [
+            "two cos sixty is one and two cos one twenty is minus one so it becomes cos seventy two minus cos thirty six",
+            "cos seventy two is root five minus one by four and cos thirty six is root five plus one by four",
+            "the root five terms cancel and minus two by four is left",
+            "root five cancel ayipoyi minus half vasthundi",
+            "the answer is minus one by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "convert each pair into a product of cosines"
+          ],
+          "heard_as": [
+            "cos sixty",
+            "cos one twenty",
+            "root five",
+            "minus one by two"
+          ]
+        },
+        "why": "The 2 in front cancels against cos 60° = 1/2 and against cos 120° = −1/2, leaving cos 72° − cos 36°. The √5 terms then cancel and only −2/4 is left.",
+        "common_mistakes": [
+          "Taking cos 120° as +1/2.",
+          "Swapping the values of cos 36° and cos 72°."
+        ],
+        "memory_tip": "cos 36° is the larger value (√5 + 1)/4 and cos 72° the smaller (√5 − 1)/4; their difference is −2/4."
+      }
+    ]
+  }
+}

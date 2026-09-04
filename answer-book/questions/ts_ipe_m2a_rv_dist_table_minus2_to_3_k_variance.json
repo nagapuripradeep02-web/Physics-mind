@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_dist_table_minus2_to_3_k_variance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A random variable X has the following probability distribution: X = −2, −1, 0, 1, 2, 3; P(X = x) = 0.1, k, 0.2, 2k, 0.3, k. Find k and the variance of X.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find k",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean",
+      "marks": 2
+    },
+    {
+      "label": "Find the variance",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.40 — LAQ chapter 5 Random Variables, answer 41.2. (In this part of the scan book page = PDF page − 1: book p.40 was read at PDF p.41, not p.42 as the −2 rule predicts.) Printed appearances: TS 17 · AP 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the only printed split in this chapter, answer 45 on book p.42 (1 mark for the ΣP(X = xᵢ) = 1 equation, 1 for solving it, 1 for the accepted value; 2 marks for a two-term probability, 1 for a one-term probability), grouped into the three things this question asks for. The SAME split and the SAME step ids (s1_find_k, s2_mean, s3_variance / s3_prob) are used on the three distribution-table LAQs of this unit (41.1, 41.2, 42) deliberately: they are one method over different tables. The question asks for k and the variance only; the mean is still a marked step because σ² = Σxᵢ²P − μ² cannot be found without it. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot. Book's printed working recomputes: k = 0.1, μ = 0.8, σ² = 2.16. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find k and the variance from this table — what equation gives k, why you still need the mean, and what you square in the variance formula.",
+  "insider_note": "The question never mentions the mean, but two of the seven marks are for finding it — the variance formula subtracts μ² = 0.64; keep the minus signs on the −2 and −1 rows, since they disappear only when the values are squared.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_k",
+        "kind": "equation",
+        "label": "Find k",
+        "marks": 2,
+        "mark_note": "k",
+        "margin_note": "First two marks. The table mixes decimals and k's. Add the decimals (0.1 + 0.2 + 0.3 = 0.6) and the k's (k + 2k + k = 4k) separately, set 4k + 0.6 = 1, and k = 0.1. Work in decimals throughout — the whole table is in decimals.",
+        "memory_tip": "Add the decimals (0.6) and the k terms (4k) separately. Count 2k as two, so it is 4k not 3k.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "X = xᵢ:      −2    −1     0     1     2     3",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ):  0.1     k   0.2    2k   0.3     k",
+            "style": "indent"
+          },
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = xᵢ) = 1",
+            "style": "eq"
+          },
+          "⇒ 0.1 + k + 0.2 + 2k + 0.3 + k = 1",
+          "⇒ 4k + 0.6 = 1 ⇒ 4k = 0.4",
+          "⇒ k = 0.1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the probabilities add to 1, so 4k + 0.6 = 1 and k = 0.1.",
+          "accept": [
+            "the probabilities add to one so four k plus point six is one and k is point one",
+            "sum of P equals one gives four k equals point four so k is point one",
+            "add the decimals and the k terms, set equal to one, k comes to zero point one",
+            "anni probabilities kalipithe one, four k plus point six equals one, k point one",
+            "use sigma P equals one and k is one by ten"
+          ],
+          "reject": [
+            "find k",
+            "add them"
+          ],
+          "heard_as": [
+            "four k",
+            "point six",
+            "point one",
+            "sum of probabilities",
+            "equal to one"
+          ]
+        },
+        "why": "The probabilities must add to 1 because X takes exactly one of the six values in every trial. Nothing else in the table fixes k.",
+        "common_mistakes": [
+          "Adding the x-values (−2 − 1 + 0 + 1 + 2 + 3) instead of the probabilities.",
+          "Counting 2k as k and getting 3k + 0.6 = 1.",
+          "Writing 4k = 0.4 and then k = 4."
+        ]
+      },
+      {
+        "id": "s2_mean",
+        "kind": "equation",
+        "label": "Find the mean",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "Two marks, even though the question does not ask for the mean — the variance formula needs μ². Negative values give negative products: (−2)(0.1) = −0.2 and (−1)(k) = −k. Collect: 4k + 0.4 = 0.8.",
+        "memory_tip": "The question does not ask for the mean, but the variance needs it. Keep the minus signs: (−2)(0.1) = −0.2.",
+        "lines": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= (−2)(0.1) + (−1)(k) + 0(0.2)",
+          "   + 1(2k) + 2(0.3) + 3(k)",
+          "= −0.2 − k + 0 + 2k + 0.6 + 3k = 4k + 0.4",
+          "= 4(0.1) + 0.4 = 0.8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is Σxᵢ·P(X = xᵢ) = 4k + 0.4 = 0.8, keeping the signs of −2 and −1.",
+          "accept": [
+            "mean is sigma x times P of x which is four k plus point four equals point eight",
+            "multiply each value by its probability with the minus signs and add to get point eight",
+            "mu equals sum of x i P x i, comes to zero point eight",
+            "prathi x ni probability tho multiply chesi, minus signs tho add cheste mean point eight",
+            "the mean is four k plus point four which is point eight"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "mu",
+            "sigma x P",
+            "point eight",
+            "four k plus point four",
+            "mean"
+          ]
+        },
+        "why": "The mean is the weighted average of the values, and the variance formula subtracts its square — so the mean is a required step even when the question does not name it.",
+        "common_mistakes": [
+          "Dropping the minus signs on −2 and −1.",
+          "Skipping the mean because the question asks only for the variance.",
+          "Writing 0(0.2) as 0.2."
+        ]
+      },
+      {
+        "id": "s3_variance",
+        "kind": "boxed_final",
+        "label": "Find the variance",
+        "marks": 3,
+        "mark_note": "Variance",
+        "margin_note": "Three marks. Square each value first — (−2)² = 4, (−1)² = 1, so every squared term is positive — multiply by its probability, add, then subtract μ² = 0.64. The k terms are k + 2k + 9k = 12k = 1.2.",
+        "memory_tip": "Square each value FIRST, so every squared term is positive. Then subtract μ² = 0.64, not μ.",
+        "lines": [
+          {
+            "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+            "style": "eq"
+          },
+          "= 4(0.1) + 1(k) + 0(0.2) + 1(2k) + 4(0.3) + 9(k) − μ²",
+          "= 0.4 + 12k + 1.2 − (0.8)²",
+          "= 0.4 + 1.2 + 1.2 − 0.64",
+          "= 2.8 − 0.64 = 2.16",
+          {
+            "text": "∴ k = 0.1, σ² = 2.16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variance is Σxᵢ²·P(X = xᵢ) − μ² = 2.8 − 0.64 = 2.16, with the values squared before multiplying.",
+          "accept": [
+            "variance is sigma x squared P of x minus mu squared which is two point eight minus point six four equals two point one six",
+            "square each value times its probability, add, subtract the mean squared to get two point one six",
+            "sigma squared equals two point eight minus zero point six four",
+            "x square into probability add chesi mean square teesesthe variance two point one six",
+            "the variance comes to two point one six"
+          ],
+          "reject": [
+            "find the variance",
+            "subtract the mean"
+          ],
+          "heard_as": [
+            "sigma squared",
+            "x squared",
+            "mu squared",
+            "two point one six",
+            "variance"
+          ]
+        },
+        "why": "Squaring removes the signs, so negative values still increase the variance — a value at −2 is as far from the centre as one at +2. The formula Σxᵢ²P − μ² is quicker than Σ(xᵢ − μ)²P when μ is a decimal.",
+        "common_mistakes": [
+          "Keeping the sign after squaring, writing (−2)² = −4.",
+          "Subtracting μ = 0.8 instead of μ² = 0.64.",
+          "Squaring the probabilities instead of the values."
+        ]
+      }
+    ]
+  }
+}

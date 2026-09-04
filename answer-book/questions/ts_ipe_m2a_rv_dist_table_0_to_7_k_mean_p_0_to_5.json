@@ -1,0 +1,247 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_dist_table_0_to_7_k_mean_p_0_to_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A random variable X has the following probability distribution: X = 0, 1, 2, 3, 4, 5, 6, 7; P(X = xᵢ) = 0, k, 2k, 2k, 3k, k², 2k², 7k² + k. Find (i) k (ii) the mean (iii) P(0 < X < 5).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find k",
+      "marks": 3
+    },
+    {
+      "label": "Find the mean",
+      "marks": 2
+    },
+    {
+      "label": "Find P(0 < X < 5)",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.41 — LAQ chapter 5 Random Variables, answer 42. (In this part of the scan book page = PDF page − 1: book p.41 was read at PDF p.42, not p.43 as the −2 rule predicts.) Printed appearances: AP 16, 17, 19 · TS 16, 18, 20, 22 — the most-asked question in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the only printed split in this chapter, answer 45 on book p.42 (1 mark for the ΣP(X = xᵢ) = 1 equation, 1 for solving it, 1 for the accepted value; 2 marks for a two-term probability, 1 for a one-term probability), grouped into the three things this question asks for. The SAME split and the SAME step ids (s1_find_k, s2_mean, s3_variance / s3_prob) are used on the three distribution-table LAQs of this unit (41.1, 41.2, 42) deliberately: they are one method over different tables. Here the constant carries 3 marks (the quadratic, its factors, and the rejected root k = −1), the mean 2 and the probability 2. The eight-column table is written as two four-column halves because one row of eight entries with k² terms does not fit a ruled line. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 4 (book p.118). Book's printed working recomputes: 10k² + 9k − 1 = 0 ⇒ k = 1/10, μ = 66k² + 30k = 3.66, P(0 < X < 5) = 8k = 4/5. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find k, the mean and P(0 < X < 5) from this table — what equation gives k, why one root is rejected, what you add for the mean, and which values of X the probability covers.",
+  "insider_note": "Σ P(X = xᵢ) = 1 carries the first three marks and here it is a quadratic, 10k² + 9k − 1 = 0 — the lone k inside 7k² + k is the term most often dropped; k = −1 must be rejected in writing, because a probability cannot be negative.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_k",
+        "kind": "equation",
+        "label": "Find k",
+        "marks": 3,
+        "mark_note": "k",
+        "margin_note": "Three marks. The sum of the probabilities is a QUADRATIC in k this time: 10k² + 9k − 1 = 0. Factor it — (10k − 1)(k + 1) — and reject k = −1 in words, because a probability cannot be negative. The rejection is a marked line, not a footnote.",
+        "memory_tip": "The lone k inside 7k² + k is easy to drop — the k terms add to 9k, not 8k. Reject k = −1 in writing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "X = xᵢ:      0     1     2     3",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ):   0     k    2k    2k",
+            "style": "indent"
+          },
+          {
+            "text": "X = xᵢ:      4     5     6      7",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ):  3k    k²   2k²   7k² + k",
+            "style": "indent"
+          },
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = xᵢ) = 1",
+            "style": "eq"
+          },
+          "⇒ 0 + k + 2k + 2k + 3k + k² + 2k² + 7k² + k = 1",
+          "⇒ 10k² + 9k = 1 ⇒ 10k² + 9k − 1 = 0",
+          "⇒ 10k² + 10k − k − 1 = 0",
+          "⇒ 10k(k + 1) − 1(k + 1) = 0 ⇒ (10k − 1)(k + 1) = 0",
+          "⇒ k = 1/10 or k = −1",
+          "A probability cannot be negative,",
+          "so k = −1 is rejected.",
+          "(i) k = 1/10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the probabilities add to 1, giving 10k² + 9k − 1 = 0, which factors as (10k − 1)(k + 1) = 0; k = −1 is rejected because a probability cannot be negative, so k = 1/10.",
+          "accept": [
+            "the probabilities add to one giving ten k squared plus nine k minus one equals zero, factor it, reject minus one, k is one by ten",
+            "sum of P equals one is a quadratic in k, solve it and drop the negative root",
+            "ten k square plus nine k minus one is zero so k is one by ten or minus one and minus one is not allowed",
+            "probabilities kalipithe one, quadratic vastundi, minus one reject chesi k one by ten",
+            "solve the quadratic from sigma P equals one and keep only the positive k"
+          ],
+          "reject": [
+            "find k",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "ten k squared",
+            "nine k",
+            "one by ten",
+            "minus one",
+            "rejected",
+            "negative"
+          ]
+        },
+        "why": "Adding the k² terms and the k terms separately turns the rule ΣP = 1 into a quadratic, and a quadratic has two roots. Only one of them can be a probability, so the rejection is part of the answer, not a remark.",
+        "common_mistakes": [
+          "Missing the k inside 7k² + k, so the k terms add to 8k instead of 9k.",
+          "Writing k = 1/10 without saying why k = −1 is rejected.",
+          "Factoring as (10k + 1)(k − 1) and reaching k = 1."
+        ]
+      },
+      {
+        "id": "s2_mean",
+        "kind": "equation",
+        "label": "Find the mean",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ). The x = 0 term is 0, so start from 1(k). Collect the k terms (30k) and the k² terms (66k²) separately, then put k = 1/10: 3 + 0.66 = 3.66.",
+        "memory_tip": "Collect the k terms (30k) and the k² terms (66k²) separately. Note 66k² = 66/100, not 66/10.",
+        "lines": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 0(0) + 1(k) + 2(2k) + 3(2k) + 4(3k)",
+          "   + 5(k²) + 6(2k²) + 7(7k² + k)",
+          "= k + 4k + 6k + 12k + 5k² + 12k² + 49k² + 7k",
+          "= 30k + 66k²",
+          "= 30(1/10) + 66(1/100) = 3 + 0.66",
+          "(ii) μ = 3.66"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is Σxᵢ·P(X = xᵢ) = 30k + 66k² = 3 + 0.66 = 3.66.",
+          "accept": [
+            "mean is sigma x times P of x which is thirty k plus sixty six k squared equals three point six six",
+            "multiply each value by its probability, collect the k and k squared terms, put k equal to one by ten",
+            "mu equals thirty k plus sixty six k square which is three point six six",
+            "prathi x ni probability tho multiply chesi add cheste thirty k plus sixty six k square, mean three point six six",
+            "the mean comes to three point six six"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "mu",
+            "thirty k",
+            "sixty six k squared",
+            "three point six six",
+            "mean"
+          ]
+        },
+        "why": "The mean is the weighted average of the values. Collecting like terms in k before substituting keeps the arithmetic to two short products at the end instead of eight fractions.",
+        "common_mistakes": [
+          "Forgetting the 7·k part of 7(7k² + k), so the k terms add to 23k.",
+          "Writing 66k² = 66/10 instead of 66/100.",
+          "Including the x = 0 term as something other than zero."
+        ]
+      },
+      {
+        "id": "s3_prob",
+        "kind": "boxed_final",
+        "label": "Find P(0 < X < 5)",
+        "marks": 2,
+        "mark_note": "Probability",
+        "margin_note": "Last two marks. 0 < X < 5 means X = 1, 2, 3, 4 — both ends are EXCLUDED. Add those four probabilities: k + 2k + 2k + 3k = 8k = 4/5. Including X = 0 changes nothing here (its probability is 0), but including X = 5 is wrong.",
+        "memory_tip": "0 < X < 5 means X = 1, 2, 3, 4 — BOTH ends excluded. That is k + 2k + 2k + 3k = 8k.",
+        "lines": [
+          "(iii) P(0 < X < 5)",
+          "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",
+          "= k + 2k + 2k + 3k = 8k",
+          "= 8(1/10) = 8/10 = 4/5",
+          {
+            "text": "∴ k = 1/10, μ = 3.66, P(0 < X < 5) = 4/5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(0 < X < 5) is the sum of the probabilities for X = 1, 2, 3, 4 (strict inequalities), which is 8k = 4/5.",
+          "accept": [
+            "P of zero less than X less than five is P of one plus P of two plus P of three plus P of four which is eight k equals four by five",
+            "add the probabilities for X equal to one two three and four to get four by five",
+            "strict inequality so take one to four only, eight k is four by five",
+            "zero and five ni vadili one nunchi four varaku probabilities add cheste eight k, four by five",
+            "the probability is eight k which is four fifths"
+          ],
+          "reject": [
+            "find the probability",
+            "add the probabilities"
+          ],
+          "heard_as": [
+            "eight k",
+            "four by five",
+            "one to four",
+            "strictly less than",
+            "P of X"
+          ]
+        },
+        "why": "The event 0 < X < 5 is a set of values of X, and its probability is the sum of the probabilities of those values. Reading the inequality signs correctly is the whole step.",
+        "common_mistakes": [
+          "Including X = 5 (k²) because 5 appears in the question.",
+          "Reading 0 < X < 5 as 0 ≤ X ≤ 5.",
+          "Leaving the answer as 8k."
+        ]
+      }
+    ]
+  }
+}

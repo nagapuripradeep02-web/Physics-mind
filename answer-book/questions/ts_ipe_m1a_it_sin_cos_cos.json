@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. One angle arrives by its sine, the other by its cosine — so the missing ratio is found the other way round in each case. Both are 3-4-5 style triangles.",
+        "memory_tip": "One angle arrives by its sine, the other by its cosine, so the missing ratio is found the other way round each time.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The target is a Cos⁻¹, so the cosine formula is the one to use — and note the MINUS between the two products, where the sine formula had a plus.",
+        "memory_tip": "The target is a Cos⁻¹, so use cos(A + B) — with a MINUS between the two products.",
         "lines": [
           "cos(α + β) = cosα cosβ − sinα sinβ",
           "= (4/5)(12/13) − (3/5)(5/13)",
@@ -129,7 +131,7 @@
             "thirty three"
           ]
         },
-        "why": "cos(A+B) carries a minus where sin(A+B) carries a plus. Using the sine formula here would give 63/65 and a wrong answer.",
+        "why": "cos(A+B) carries a minus where sin(A+B) carries a plus. Putting a plus between the two products gives 48/65 + 15/65 = 63/65, which is cos(α − β), not cos(α + β).",
         "common_mistakes": [
           "Using a plus between the two products.",
           "Using the sine addition formula because the first inverse was a sine."
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. cos(α+β) = 33/65 means α+β = Cos⁻¹(33/65).",
+        "memory_tip": "cos(α + β) = 33/65 means α + β = Cos⁻¹(33/65), not Sin⁻¹.",
         "lines": [
           "cos(α + β) = 33/65",
           "⇒ α + β = Cos⁻¹(33/65)",
@@ -171,12 +174,13 @@
             "alpha plus beta"
           ]
         },
-        "why": "Which inverse function appears in the answer is decided by which compound formula was used — cosine here, sine in the twin.",
+        "why": "Which inverse function appears in the answer is decided by which compound formula was used — the cosine formula here gives a Cos⁻¹ answer, while the sine formula would give a Sin⁻¹ one.",
         "common_mistakes": [
           "Writing Sin⁻¹(33/65).",
           "Stopping at the fraction."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The target is a Cos⁻¹, so build cos(α + β) and stay with sines and cosines rather than tangents. The two angles give 3-4-5 and 5-12-13 triangles, so every ratio is exact."
 }

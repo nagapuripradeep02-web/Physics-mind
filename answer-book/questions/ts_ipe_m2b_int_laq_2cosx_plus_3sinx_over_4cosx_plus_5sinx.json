@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_2cosx_plus_3sinx_over_4cosx_plus_5sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ [(2cosx + 3sinx)/(4cosx + 5sinx)] dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the numerator as A·Dr′ + B·Dr and equate coefficients",
+      "marks": 2
+    },
+    {
+      "label": "Solve the pair of equations for A and B",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back and split the integral",
+      "marks": 2
+    },
+    {
+      "label": "Integrate both parts for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.31 (PDF page 30) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-IV, answer 24.2, the twin of 24.1 on the same ★★★ SSP 31 page. Printed appearances: AP 15,18 · TS 16,19. Chapter star rank ★★★. This same question reappears verbatim in the Bullet Model Paper's Q21 & 22: Integration section (book p.115) — no extra card is authored for that repeat. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Unlike the earlier example of this method, A and B both come out as awkward fractions with denominator 41 here — that is not a sign of a mistake, it is simply what the two linear equations give; do not round the fractions to make them look tidier.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr′ + B·Dr and equate coefficients",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 2cosx+3sinx",
+          "= A·d/dx(4cosx+5sinx) + B(4cosx+5sinx)",
+          "= A(−4sinx+5cosx) + B(4cosx+5sinx) …(i)",
+          "Coefficient of cosx: 5A+4B = 2",
+          "Coefficient of sinx: −4A+5B = 3"
+        ],
+        "why": "The same A·Dr′+B·Dr split used earlier in this chapter, now with the denominator 4cosx+5sinx instead of 4sinx+5cosx — differentiating it swaps which term carries the minus sign.",
+        "common_mistakes": [
+          "Differentiating 4cosx+5sinx as 4sinx+5cosx by confusing which term keeps its sign under differentiation.",
+          "Swapping the cosx and sinx coefficient equations."
+        ],
+        "memory_tip": "d/dx(cosx) = −sinx, d/dx(sinx) = +cosx — the minus sign moves to whichever term WAS cosx."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "equation",
+        "label": "Solve the pair of equations for A and B",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "(1)×5: 25A+20B=10 …(3)   (2)×4:",
+          "−16A+20B=12 …(4)",
+          "(3)−(4): 41A=−2 ⇒ A=−2/41",
+          "From (1): 4B=2−5A=2+10/41=92/41 ⇒ B=23/41"
+        ],
+        "why": "The same elimination move as 24.1 — match the B coefficient, subtract to isolate A — but the arithmetic here does not simplify to whole numbers, which is expected, not a warning sign.",
+        "common_mistakes": [
+          "Rounding −2/41 and 23/41 to decimals or 'nicer' fractions, which is not the exact answer.",
+          "Sign slip turning 2−(−10/41) into 2−10/41 instead of 2+10/41."
+        ],
+        "memory_tip": "Subtracting a negative ADDS — 2−(−10/41) = 2+10/41, a common slip in this exact line."
+      },
+      {
+        "id": "s3_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Putting A=−2/41, B=23/41 in (i):",
+          "2cosx+3sinx",
+          "= (−2/41)d/dx(4cosx+5sinx) +",
+          "(23/41)(4cosx+5sinx)",
+          "I",
+          "=",
+          "(−2/41)∫[d/dx(4cosx+5sinx)]/(4cosx+5sinx)",
+          "dx + (23/41)∫1 dx"
+        ],
+        "why": "With A and B now known fractions, the split into a log term and an x term proceeds exactly as in 24.1, only carrying awkward-looking but exact coefficients through.",
+        "common_mistakes": [
+          "Forgetting to carry the negative sign on A=−2/41 into the log term's coefficient.",
+          "Mixing up which fraction (A or B) belongs with the log term and which with the plain x term."
+        ],
+        "memory_tip": "A always pairs with the log term (it multiplied Dr′); B always pairs with the plain x term (it multiplied Dr)."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Integrate both parts for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ I = −(2/41)log|4cosx+5sinx| +(23/41)x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫f′(x)/f(x) dx = log|f(x)| and ∫1 dx = x, exactly as before, now carrying the fractional coefficients −2/41 and 23/41 found in step 2.",
+        "common_mistakes": [
+          "Dropping the negative sign on the log coefficient in the final line.",
+          "Writing 23/41 as a decimal approximation instead of the exact fraction."
+        ],
+        "memory_tip": "The negative sign on A survives all the way to the final boxed line — it is part of the exact answer, not an error."
+      }
+    ]
+  }
+}

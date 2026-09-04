@@ -1,0 +1,314 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, every datum exact, no solution content by policy. VSAQ 22 entries (19 printed numbers; nos. 3 and 13 carry sub-parts), SAQ 16 entries (15 numbers; no. 5 carries sub-parts), LAQ 1, PROBLEM 22 entries (19 numbers; nos. 16 and 18 carry sub-parts) — 61 entries. The FORMULAE block on scan pp.30–31 (printed pp.32–33) is not indexed. No exam-year citations are printed anywhere in this chapter. The right margin is cropped on scan pp.32, 34 and 38 (last characters of a few lines cut; all recovered from context).",
+  "chapter": { "number": 4, "printed_title": "LAWS OF MOTION" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "State the law of inertia. Which scientist formulated it?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Explain what is meant by the term momentum.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "a", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Write the unit of momentum in the CGS system.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "b", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Write the unit of momentum in the SI system.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Define the absolute unit of force in the CGS system and in the SI system.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "State the principle of conservation of linear momentum.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "When a bullet is fired from a gun, the gun moves backward (recoils). Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Why does a cricketer pull his hands back while catching a ball?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Why does a heavy rifle recoil less strongly than a light rifle when both fire the same cartridges?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "A bomb at rest explodes into two pieces. Explain why the two pieces must move in opposite directions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Define force. Name the basic forces in nature.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Define one newton.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Explain what is meant by impulse and write its SI unit.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "a", "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Explain why wet clothes are jerked (shaken sharply) before they are spread on a rope.",
+      "appearance_years": [], "notes": "Printed as question 13 'Explain the following' with three parts (a), (b), (c)." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "b", "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Explain why dust flies off a carpet when the carpet is hit with a stick.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "c", "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Explain why fruits fall off the branches of a tree in a strong wind.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 1,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Can the coefficient of friction be greater than one?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 1,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "What happens to the coefficient of friction if the weight of the body is doubled?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 1,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Why does a car with a flattened tyre stop sooner than a car with inflated tyres?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 1,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "A horse has to pull harder at the start of the motion than later. Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "A bullet of mass 0.05 kg moving at a speed of 80 m/s enters a heavy wooden block and stops after travelling 80 cm inside it. Find the average resistive force the block exerts on the bullet.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "A batsman hits a ball straight back toward the bowler without changing its initial speed of 10 m/s. The mass of the ball is 0.25 kg. Find the impulse given to the ball.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 35, "scan_page": 33,
+      "stem": "Explain what is meant by inertia. What are its kinds? Give two examples of each kind.",
+      "appearance_years": [], "notes": "Printed as 'Give two examples of each choice' — 'choice' is a typo for 'kind'." },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 35, "scan_page": 33,
+      "stem": "State Newton's three laws of motion. Give one example each to explain the first law and the third law.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 35, "scan_page": 33,
+      "stem": "State Newton's second law of motion and derive the equation F = ma from it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "State Newton's three laws of motion and discuss the significance of each law.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": "a", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Explain what is meant by contact forces and give examples.",
+      "appearance_years": [], "notes": "Printed as question 5 'What do you understand by the following terms. Give the examples of each one?' with parts (a) Contact forces, (b) Non-Contact forces." },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": "b", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Explain what is meant by non-contact forces and give examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Show that impulse equals the change in momentum.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Why are shock absorbers used in motorcycles and cars?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Define the terms momentum and impulse. State and explain the law of conservation of linear momentum, and give examples of it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 37, "scan_page": 35,
+      "stem": "Explain the terms limiting friction, dynamic friction and rolling friction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 37, "scan_page": 35,
+      "stem": "Explain the advantages and disadvantages of friction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 37, "scan_page": 35,
+      "stem": "Mention the methods used to decrease friction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Under what condition will a car skid on a level circular road?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Briefly explain centrifugal force with suitable examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq14", "section": "SAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Derive an expression for the maximum velocity of a car moving in a circle on a level (unbanked) road.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq15", "section": "SAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "A box lies on the floor of a train. The coefficient of static friction between the box and the train floor is 0.18. Find the maximum acceleration of the train for which the box stays stationary on the floor.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Derive an expression for the maximum velocity of a car moving in a circle on a banked road.",
+      "appearance_years": [], "notes": "The book treats the banked road WITH friction (banking angle θ, coefficient of friction μ); a free-body figure of the car on the bank accompanies the derivation on printed p.39." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 39, "scan_page": 37,
+      "stem": "A body has a linear momentum of 5 N s. If the velocity of the body is 200 m/s, find the mass of the body.",
+      "appearance_years": [], "notes": "The unit is printed as '5 NS' (newton-second)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 39, "scan_page": 37,
+      "stem": "A body of mass 0.5 kg has a linear momentum of 5 N s. Calculate its velocity.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A motorcycle of mass 100 kg is moving at 10 m/s. Its engine gives it an extra linear momentum of 2000 N s. Calculate the new velocity of the motorcycle.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A force F₁ acting on a body of mass 2.0 kg produces an acceleration of 2.5 m/s². Find the ratio F₂ + F₁ (as printed).",
+      "appearance_years": [], "notes": "PRINTED DEFECT: the stem is incomplete — F₂ is never defined; the book's working supplies a second force F₂ that gives a 5 kg body an acceleration of 2 m/s². The printed 'ratio F₂ + F₁' is almost certainly F₂/F₁ (the working divides)." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A force of 10 N toward the east and an unknown force F balance each other. Find the unknown force.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A force acting on a body of mass 20 g produces an acceleration of 5 cm/s². Find the force in newtons.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A force of 12 N starts to act on a body that is at rest. Find the momentum of the body 1 s, 2 s and 5 s after the force starts acting.",
+      "appearance_years": [], "notes": "The right margin of this scan page is cropped; the last word of each line of this stem is partly cut but readable from context." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 1,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "The linear momentum of a particle as a function of time t is p = a + bt, where a and b are positive constants. What is the force acting on the particle?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 1,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "Calculate the time needed for a net force of 5 N to change the velocity of a 10 kg mass by 2 m/s.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "A ball of mass m is thrown vertically upward from the ground and reaches a height h before it comes to rest for an instant. Take g as the acceleration due to gravity and neglect air resistance. What is the impulse the ball receives from the force of gravity during its whole flight?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "A constant force acts on a body of mass 3.0 kg and changes its speed from 2.0 m/s to 3.5 m/s in 25 s. The direction of motion of the body does not change. What are the magnitude and the direction of the force?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "A man in a lift feels an apparent weight W when the lift moves up with a uniform acceleration equal to 1/3 of the acceleration due to gravity. If the same man is in the same lift while it moves down with a uniform acceleration equal to 1/2 of the acceleration due to gravity, what is his apparent weight?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "A container of mass 200 kg rests on the bed of an open truck. The truck accelerates at 1.5 m/s². What is the minimum coefficient of static friction between the container and the truck bed needed to stop the container from sliding off the back of the truck?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "A bomb at rest at a height of 40 m above the ground suddenly explodes into two identical fragments. One fragment starts moving vertically downward with an initial speed of 10 m/s. Take the acceleration due to gravity as 10 m/s². What is the separation between the two fragments 2 s after the explosion?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "A light string passes over a fixed pulley with a smooth groove. A 4 kg mass hangs on one side and a 3 kg mass on the other side. A second 3 kg mass hangs from the first 3 kg mass by another light string. The system is released from rest. Find the common acceleration. Take g = 10 m/s².",
+      "appearance_years": [], "notes": "Figure printed: an Atwood machine — 4 kg on the left; on the right a 3 kg mass (tension T₂ in the string above it) with a second 3 kg mass hung below it (tension T₁ in the string between them)." },
+
+    { "ref": "prob16", "section": "PROBLEM", "number": 16, "part": "a", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A block of mass 2 kg is on an inclined plane that makes an angle of 30° with the horizontal. The coefficient of friction between the block and the surface is √3/2. What force must be applied to the block so that it moves down the plane without any acceleration?",
+      "appearance_years": [], "notes": "Parts (a) and (b) share the same setup; a figure of the block on the 30° incline is printed with the working only." },
+
+    { "ref": "prob16", "section": "PROBLEM", "number": 16, "part": "b", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A block of mass 2 kg is on an inclined plane that makes an angle of 30° with the horizontal. The coefficient of friction between the block and the surface is √3/2. What force must be applied to the block so that it moves up the plane without any acceleration?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob17", "section": "PROBLEM", "number": 17, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A block is placed on a ramp whose shape is the parabola y = x²/20. The coefficient of static friction is μₛ = 0.5. What is the maximum height above the ground at which the block can be placed without slipping? Use tan θ = μₛ = dy/dx.",
+      "appearance_years": [], "notes": "Printed typos: 'If i_s = 0.5' for μₛ = 0.5, and 'secFig.' for 'see Fig.'; no figure is actually printed for this question." },
+
+    { "ref": "prob18", "section": "PROBLEM", "number": 18, "part": "a", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A metal block of mass 2 kg on a horizontal table is tied by a light string, passing over a frictionless pulley at the edge of the table, to a hanging mass of 0.45 kg. The hanging mass is allowed to fall, which pulls the block horizontally. The coefficient of sliding friction between the block and the table is 0.2. Calculate the initial acceleration.",
+      "appearance_years": [], "notes": "Parts (a), (b), (c) share the same setup. Figure printed: block M = 2 kg on the table, string over a pulley at the table edge, mass M = 0.45 kg hanging." },
+
+    { "ref": "prob18", "section": "PROBLEM", "number": 18, "part": "b", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A metal block of mass 2 kg on a horizontal table is tied by a light string, passing over a frictionless pulley at the edge of the table, to a hanging mass of 0.45 kg. The hanging mass is allowed to fall, which pulls the block horizontally. The coefficient of sliding friction between the block and the table is 0.2. Calculate the tension in the string.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob18", "section": "PROBLEM", "number": 18, "part": "c", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "A metal block of mass 2 kg on a horizontal table is tied by a light string, passing over a frictionless pulley at the edge of the table, to a hanging mass of 0.45 kg. The hanging mass is allowed to fall, which pulls the block horizontally. The coefficient of sliding friction between the block and the table is 0.2. If the string breaks after 2 s of motion, calculate the distance the block would continue to move.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob19", "section": "PROBLEM", "number": 19, "part": null, "stars": 0,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "A block A of mass 10 kg is kept on a smooth horizontal surface. A second block B of mass 5 kg is kept on top of block A. The coefficient of friction between the two blocks is 0.4. A horizontal force of 30 N is applied to the lower block A. Find the force of friction between the two blocks. Take g = 10 m/s².",
+      "appearance_years": [], "notes": "Figure printed: block B on top of block A, μ = 0.4 between them, the 30 N force pulls A to the right, the surface under A is labelled frictionless." }
+  ]
+}

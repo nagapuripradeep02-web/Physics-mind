@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_altitudes_reciprocal_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If p₁, p₂, p₃ are the lengths of the altitudes drawn from the vertices A, B, C of a △ABC to the opposite sides, show that 1/p₁² + 1/p₂² + 1/p₃² = (cot A + cot B + cot C)/Δ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Express each altitude",
+      "marks": 1
+    },
+    {
+      "label": "Add the three squares",
+      "marks": 1
+    },
+    {
+      "label": "Write each cotangent",
+      "marks": 1
+    },
+    {
+      "label": "Add and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.126, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 3(II). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — expressing the altitudes, adding the squares, writing a single cotangent, and adding the three. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. PRINTED DEFECT, AUTHORED AGAINST: the book's stem reads \"the centers of altitudes drawn from the vertices A, B, C\", but a centre cannot be squared and inverted — the identity 1/p₁² + 1/p₂² + 1/p₃² = (cot A + cot B + cot C)/Δ holds only when p₁, p₂, p₃ are the LENGTHS of those altitudes, which is also how part (I) of the same printed question uses them. This card is authored on the lengths reading and its stem says \"lengths\"; the printed wording is recorded here rather than silently repaired. Verified numerically before authoring: for a = 3, b = 4, c = 5 both sides come to 25/72, and for a = 4, b = 5, c = 6 both come to 0.195556. A copy reproduces its source's errors, so this record is itself part of the independence evidence. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_express_each_altitude",
+        "kind": "equation",
+        "label": "Express each altitude",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark, and the whole setup. Δ = ½ a p₁ gives p₁ = 2Δ/a, so 1/p₁ = a/(2Δ). The other two follow in the same way, each altitude with its own base.",
+        "memory_tip": "Area from any side and its own height: Δ = ½ a p₁, so p₁ = 2Δ/a and 1/p₁ = a/(2Δ).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "p₁ is the altitude from A onto BC, so",
+          "Δ = ½ (base)(height) = ½ a p₁",
+          "⇒ p₁ = 2Δ/a, p₂ = 2Δ/b, p₃ = 2Δ/c",
+          "∴ 1/p₁ = a/(2Δ), 1/p₂ = b/(2Δ),",
+          "   1/p₃ = c/(2Δ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area gives Δ = ½ a p₁, so p₁ = 2Δ/a and 1/p₁ = a/(2Δ), and the same for p₂ and p₃.",
+          "accept": [
+            "area is half base times height so p one is two delta over a",
+            "each altitude is twice the area divided by its own base",
+            "one over p one is a over two delta",
+            "delta equals half a p one so p one equals two delta by a",
+            "area formula vaadi p one equals two delta by a rastam"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "I write the altitudes"
+          ],
+          "heard_as": [
+            "two delta over a",
+            "half base times height",
+            "a over two delta",
+            "altitude"
+          ]
+        },
+        "why": "Each altitude is twice the area divided by its own base, so the RECIPROCAL of an altitude is a plain multiple of a side. That is what makes the three squares easy to add.",
+        "common_mistakes": [
+          "Writing p₁ = Δ/a and losing the 2.",
+          "Pairing p₁ with the wrong side — p₁ stands on a, p₂ on b, p₃ on c."
+        ]
+      },
+      {
+        "id": "s2_add_the_three_squares",
+        "kind": "equation",
+        "label": "Add the three squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Squaring each reciprocal puts the same 4Δ² underneath, so the sum is (a² + b² + c²)/(4Δ²). Number this line — the last step comes back to it.",
+        "memory_tip": "Squaring 1/p₁ = a/(2Δ) gives a²/(4Δ²), so every term shares the same 4Δ².",
+        "lines": [
+          "L.H.S = 1/p₁² + 1/p₂² + 1/p₃²",
+          "= a²/(4Δ²) + b²/(4Δ²) + c²/(4Δ²)",
+          "= (a² + b² + c²)/(4Δ²)   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring each reciprocal gives a²/(4Δ²) and the three add to (a² + b² + c²)/(4Δ²).",
+          "accept": [
+            "square each one to get a squared over four delta squared and add",
+            "the sum is a squared plus b squared plus c squared over four delta squared",
+            "all three share four delta squared so they add straight away",
+            "square chesi add cheste a square plus b square plus c square by four delta square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "add the reciprocals"
+          ],
+          "heard_as": [
+            "four delta squared",
+            "a squared plus b squared plus c squared",
+            "left hand side"
+          ]
+        },
+        "why": "Squaring the reciprocals gives every term the same denominator 4Δ², so they add in one line and only a² + b² + c² is left on top.",
+        "common_mistakes": [
+          "Squaring only the numerator and leaving 2Δ below.",
+          "Writing 2Δ² instead of 4Δ² after squaring."
+        ]
+      },
+      {
+        "id": "s3_write_each_cotangent",
+        "kind": "equation",
+        "label": "Write each cotangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Take cos A from the cosine rule and sin A from Δ = ½ bc sin A. Dividing them cancels bc and leaves a single denominator 4Δ.",
+        "memory_tip": "cos A over sin A, with cos A = (b² + c² − a²)/(2bc) and sin A = 2Δ/(bc): the bc cancels and 4Δ is left.",
+        "lines": [
+          "cot A = cos A/sin A",
+          "cos A = (b² + c² − a²)/(2bc)  and",
+          "Δ = ½ bc sin A ⇒ sin A = 2Δ/(bc)",
+          "∴ cot A = (b² + c² − a²)/(4Δ)",
+          "Similarly cot B = (c² + a² − b²)/(4Δ)",
+          "and cot C = (a² + b² − c²)/(4Δ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot A = cos A/sin A with cos A from the cosine rule and sin A = 2Δ/(bc), giving cot A = (b² + c² − a²)/(4Δ).",
+          "accept": [
+            "cot A is cos A over sin A so it is b squared plus c squared minus a squared over four delta",
+            "use the cosine rule on top and the area formula for sine",
+            "the b c cancels and four delta is left underneath",
+            "cosine rule and area formula divide cheste four delta vasthundi",
+            "each cotangent is its cosine rule numerator over four delta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "write the cotangents"
+          ],
+          "heard_as": [
+            "cot A",
+            "cosine rule",
+            "four delta",
+            "b squared plus c squared minus a squared"
+          ]
+        },
+        "why": "The cosine rule gives cos A and the area formula gives sin A. Dividing one by the other cancels bc completely, so every cotangent ends up over the same 4Δ.",
+        "common_mistakes": [
+          "Using sin A = a/(2R) here, which brings in R and does not cancel bc.",
+          "Writing 2Δ instead of 4Δ in the denominator."
+        ]
+      },
+      {
+        "id": "s4_add_and_compare",
+        "kind": "boxed_final",
+        "label": "Add and compare",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark. The three numerators add to a² + b² + c²; dividing by Δ gives (a² + b² + c²)/(4Δ²), which is line (1).",
+        "memory_tip": "Adding the three cosine-rule numerators cancels every minus sign and leaves a² + b² + c².",
+        "lines": [
+          "cot A + cot B + cot C",
+          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
+          "= (a² + b² + c²)/(4Δ)",
+          "∴ R.H.S = (a² + b² + c²)/(4Δ²)",
+          {
+            "text": "= 1/p₁² + 1/p₂² + 1/p₃² = L.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three numerators add to a² + b² + c², so cot A + cot B + cot C = (a²+b²+c²)/(4Δ), and dividing by Δ matches line (1).",
+          "accept": [
+            "the minus signs cancel so the sum is a squared plus b squared plus c squared over four delta",
+            "divide that by delta and you get the left hand side",
+            "cot sum over delta equals a squared plus b squared plus c squared over four delta squared",
+            "minus signs cancel ayipoyi a square plus b square plus c square migulutundi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "so both sides match"
+          ],
+          "heard_as": [
+            "cot A plus cot B plus cot C",
+            "four delta squared",
+            "right hand side",
+            "delta"
+          ]
+        },
+        "why": "Adding the three numerators cancels the minus signs in pairs, so only a² + b² + c² survives. Dividing that by Δ produces exactly the sum found in line (1).",
+        "common_mistakes": [
+          "Cancelling wrongly and losing one of a², b², c².",
+          "Forgetting to divide by Δ, so the answer is short by one Δ."
+        ]
+      }
+    ]
+  }
+}

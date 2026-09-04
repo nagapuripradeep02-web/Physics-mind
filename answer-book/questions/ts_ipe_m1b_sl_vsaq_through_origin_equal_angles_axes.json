@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_through_origin_equal_angles_axes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equations of the straight lines through the origin that make equal angles with the coordinate axes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the inclination",
+      "marks": 1
+    },
+    {
+      "label": "Write the two equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 9, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the angle work that produces 45°, and the second for both equations — the question says lines, plural, so a candidate who writes only y = x has answered half of it. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked: both x − y = 0 and x + y = 0 satisfy the point (0, 0), and each has slope of modulus 1, so each makes 45° with the X-axis and 45° with the Y-axis."
+  },
+  "recall_prompt": "Say how you would solve this — say what angle each line makes with the X-axis, and why there are two answers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_inclination",
+        "kind": "equation",
+        "label": "Find the inclination",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The two axes are perpendicular, so the angle with the Y-axis is 90° minus the angle with the X-axis. Setting them equal fixes the angle at 45°.",
+        "memory_tip": "The axes are perpendicular, so the two angles add to 90°. Equal parts of 90° are 45° each.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the line make an angle θ with the X-axis.",
+          "Then it makes 90° − θ with the Y-axis.",
+          "Equal angles ⇒ θ = 90° − θ",
+          "⇒ 2θ = 90°  ⇒  θ = 45°",
+          "A line at 135° also makes 45° with each axis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle with the Y-axis is 90° − θ, so equal angles give θ = 45°, and 135° works as well.",
+          "accept": [
+            "the angle with the y axis is ninety minus theta",
+            "theta equals ninety minus theta so theta is forty five",
+            "the inclination is forty five degrees",
+            "rendu axes madhya angle equal ante forty five",
+            "one thirty five degrees also gives equal angles"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the equations are y equals x and y equals minus x"
+          ],
+          "heard_as": [
+            "ninety minus theta",
+            "forty five degrees",
+            "one thirty five degrees",
+            "inclination"
+          ]
+        },
+        "why": "A line drawn at 135° leans the other way, but the angle it makes with each axis is still measured as the acute angle, and that angle is again 45°. That is why the question asks for lines and not one line.",
+        "common_mistakes": [
+          "Stopping at 45° and giving only one line.",
+          "Taking the angle with the Y-axis as θ as well, which gives no equation."
+        ]
+      },
+      {
+        "id": "s2_write_the_two_equations",
+        "kind": "boxed_final",
+        "label": "Write the two equations",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A line through the origin has no constant term, so y = mx is enough; only the slope has to be filled in.",
+        "memory_tip": "Through the origin the constant term is zero, so the line is just y = mx.",
+        "lines": [
+          "Slope m = tan θ",
+          "θ = 45° ⇒ m = tan 45° = 1",
+          "θ = 135° ⇒ m = tan 135° = −1",
+          "A line through the origin is y = mx",
+          "m = 1 ⇒ y = x;   m = −1 ⇒ y = −x",
+          {
+            "text": "∴ x − y = 0 and x + y = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slopes are 1 and −1, and the lines through the origin are y = x and y = −x.",
+          "accept": [
+            "tan forty five is one and tan one thirty five is minus one",
+            "the lines are y equals x and y equals minus x",
+            "through the origin y equals m x",
+            "origin nunchi y equals m x rayali",
+            "x minus y is zero and x plus y is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the angle with the y axis is ninety minus theta"
+          ],
+          "heard_as": [
+            "y equals x",
+            "y equals minus x",
+            "slope one",
+            "slope minus one"
+          ]
+        },
+        "why": "tan 135° = −tan 45° = −1, so the second line has the same steepness with the opposite lean. Both pass through the origin because the constant term is zero.",
+        "common_mistakes": [
+          "Writing tan 135° as 1 and losing the second line.",
+          "Adding a constant term to a line that must pass through the origin."
+        ]
+      }
+    ]
+  }
+}

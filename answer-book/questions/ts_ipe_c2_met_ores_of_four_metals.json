@@ -99,16 +99,16 @@
           },
           {
             "text": "Copper pyrites CuFeS₂ is also a Cu ore",
-            "style": "boxed"
+            "style": "indent"
           }
         ],
-        "why": "Magnetite is Fe₃O₄ and haematite is Fe₂O₃, so the two iron ores differ only in the subscripts and that is where the mark is lost. Copper pyrites CuFeS₂ is the ore used in the extraction question later in this unit, so it is worth naming here as a third choice.",
+        "why": "Magnetite is Fe₃O₄ and haematite is Fe₂O₃, so the two iron ores differ only in the subscripts and that is where the mark is lost. Copper pyrites CuFeS₂ is the ore most copper is actually extracted from, so it is worth naming here as a third choice.",
         "common_mistakes": [
           "Writing magnetite as Fe₂O₃. That is haematite; magnetite is Fe₃O₄.",
           "Writing copper glance as CuS. Copper is in the +1 state, so it is Cu₂S."
         ],
         "memory_tip": "Haematite has two irons, magnetite has three. Cuprite is the oxide, copper glance the sulphide.",
-        "margin_note": "Two ores per metal is what the question asks for. A third ore earns nothing extra."
+        "margin_note": "Two ores per metal is what the question asks for, so the four names with their formulae are the mark. Copper pyrites is worth knowing but earns nothing extra here."
       }
     ]
   },

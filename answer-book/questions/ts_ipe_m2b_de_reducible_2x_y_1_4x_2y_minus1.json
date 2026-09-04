@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_reducible_2x_y_1_4x_2y_minus1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Solve the differential equation (2x + y + 1)dx + (4x + 2y − 1)dy = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Test the coefficients and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Reduce to a function of the new variable",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.48 — LAQ chapter 5 Differential Equations, answer 44.1, the first answer on the last page of the chapter. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: TS 15 — no AP tag. The mark split is OURS: this chapter prints no margin mark tags. It uses a five-checkpoint shape specific to this coincident-lines case — test the ratio of coefficients a1/a2 = b1/b2 and choose the substitution, reduce the equation to a function of the new variable alone, separate it, integrate, then state the final relation — matching the checkpoints the book's own working passes through. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Differential Equations holds Q24. This exact question is also the Bullet Model Paper's Q24 (book p.117), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout — this is the special case where a1/a2 = b1/b2, so the substitution is the linear combination 2x + y = v rather than the shifted-origin x = X+h, y = Y+k used when the ratios differ. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Checking a1/a2 = b1/b2 first is what tells a student to use the linear substitution v = a1x + b1y rather than the shifted-origin method — picking the wrong method here wastes most of the answer's time.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_test_substitute",
+        "kind": "equation",
+        "label": "Test the coefficients and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Comparing coefficients shows a1/a2 = b1/b2 = 1/2, so the lines 2x+y+1=0 and 4x+2y−1=0 are parallel.",
+        "memory_tip": "Equal ratios of x and y coefficients means: substitute the linear combination itself, here v = 2x + y.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given that (4x + 2y − 1)dy = −(2x + y + 1)dx",
+          "⇒ dy/dx = −(2x + y + 1)/(4x + 2y − 1) … (1)",
+          "Comparing (2x + y + 1)/(4x + 2y − 1)",
+          "with (a1x + b1y + c1)/(a2x + b2y + c2)",
+          "a1/a2 = 2/4 = 1/2, b1/b2 = 1/2",
+          "⇒ a1/a2 = b1/b2",
+          "So take the substitution 2x + y = v"
+        ],
+        "why": "When the ratio of x-coefficients equals the ratio of y-coefficients, both linear expressions are proportional to the same combination of x and y, so treating that whole combination as one new variable v turns the equation into one with a single unknown.",
+        "common_mistakes": [
+          "Comparing 4x + 2y − 1 with a1x + b1y + c1 instead of a2x + b2y + c2, swapping which is which.",
+          "Missing that a1/a2 = b1/b2 here and instead attempting the shifted-origin method, which does not work in this case."
+        ]
+      },
+      {
+        "id": "s2_reduce",
+        "kind": "equation",
+        "label": "Reduce to a function of the new variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Differentiate v = 2x + y to relate dv/dx to dy/dx, then substitute into (1).",
+        "memory_tip": "v = 2x + y gives dv/dx = 2 + dy/dx, so dy/dx = dv/dx − 2.",
+        "lines": [
+          "2x + y = v ⇒ 2 + dy/dx = dv/dx",
+          "⇒ dy/dx = dv/dx − 2",
+          "(1) ⇒ dv/dx − 2 = −(v + 1)/(2v − 1)",
+          "⇒ dv/dx = 2 − (v + 1)/(2v − 1)"
+        ],
+        "why": "Differentiating the substitution v = 2x + y gives a direct relation between dv/dx and dy/dx, which replaces dy/dx everywhere in (1) and leaves an equation purely in v and x.",
+        "common_mistakes": [
+          "Forgetting the derivative of 2x contributes a 2 when differentiating v = 2x + y.",
+          "Writing dy/dx = dv/dx + 2 instead of dv/dx − 2, a sign slip."
+        ]
+      },
+      {
+        "id": "s3_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Combine the two fractions on the right over the common denominator (2v − 1).",
+        "memory_tip": "2(2v − 1) − (v + 1) = 3v − 3 = 3(v − 1) — the numerator simplifies to a clean multiple of (v − 1).",
+        "lines": [
+          "dv/dx = [2(2v − 1) − (v + 1)]/(2v − 1)",
+          "= (4v − 2 − v − 1)/(2v − 1) = 3(v − 1)/(2v − 1)",
+          "⇒ dx = (1/3)·(2v − 1)/(v − 1) dv"
+        ],
+        "why": "Combining the two right-hand terms into a single fraction gives dv/dx as a clean function of v, and inverting turns the equation into a separated form where x is isolated on one side.",
+        "common_mistakes": [
+          "Sign error combining 4v − 2 − v − 1 into 3v − 3.",
+          "Forgetting to invert dv/dx = (...) into dx = (...) dv when separating."
+        ]
+      },
+      {
+        "id": "s4_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Split (2v − 1)/(v − 1) into a whole number plus a simple fraction before integrating.",
+        "memory_tip": "2v − 1 = 2(v − 1) + 1 — always rewrite the numerator around the denominator's own bracket.",
+        "lines": [
+          "(2v − 1)/(v − 1) = [2(v − 1) + 1]/(v − 1)",
+          "= 2 + 1/(v − 1)",
+          "∫ dx = (1/3) ∫ [2 + 1/(v − 1)] dv",
+          "⇒ x = (2v/3) + (1/3)log(v − 1) + c"
+        ],
+        "why": "Rewriting the top-heavy fraction as a constant plus a simple 1/(v−1) piece splits the integral into a plain term and a standard log term, which together give x as an explicit function of v.",
+        "common_mistakes": [
+          "Trying to integrate (2v − 1)/(v − 1) directly as a log without first splitting off the constant 2.",
+          "Losing the factor of 1/3 that sits in front of the whole integral."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Multiply by 3, substitute v = 2x + y, and collect terms.",
+        "memory_tip": "3x = 2v + log(v − 1) + c, then v = 2x + y turns 2v into 4x + 2y — watch the x terms combine.",
+        "lines": [
+          "⇒ 3x = 2v + log(v − 1) + c, and putting v = 2x + y:",
+          "3x = 2(2x + y) + log(2x + y − 1) + c",
+          "⇒ 3x = 4x + 2y + log(2x + y − 1) + c",
+          {
+            "text": "x + 2y + log(2x + y − 1) + c = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying through by 3 clears the fraction, substituting v = 2x + y returns the equation to the original variables, and collecting the x terms on one side gives the compact final relation the examiner expects.",
+        "common_mistakes": [
+          "Losing the constant relabelling from 3c to c after multiplying the whole equation by 3.",
+          "Combining 3x − 4x incorrectly and getting the sign of x wrong in the final line."
+        ]
+      }
+    ]
+  }
+}

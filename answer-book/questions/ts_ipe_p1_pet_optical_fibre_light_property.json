@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_optical_fibre_light_property",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which property of light lets an optical fibre carry light over long distances?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The property",
+      "marks": 1
+    },
+    {
+      "label": "Why little loss",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 14 (printed p.144). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: total internal reflection occurs only when light travels from the denser core into the less dense cladding at an angle beyond the critical angle, which is why light stays inside the fibre core over long distances with very little loss; this is one idea, so the split is between naming the property and explaining why it keeps the loss low, not two separate facts."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_property",
+        "kind": "text",
+        "label": "The property",
+        "marks": 1,
+        "mark_note": "Property",
+        "lines": [
+          "Light entering an optical fibre",
+          "undergoes total internal",
+          "reflection at the boundary",
+          "between the core and cladding."
+        ],
+        "why": "Total internal reflection happens only when light travels from a denser medium into a less dense medium at an angle greater than the critical angle. The fibre core is denser than the cladding, so light striking the boundary reflects completely back into the core.",
+        "common_mistakes": [
+          "Writing reflection alone, without the words total and internal.",
+          "Naming refraction or diffraction instead of total internal reflection."
+        ],
+        "memory_tip": "Fibre core denser than cladding, angle beyond the critical angle, so total internal reflection.",
+        "margin_note": "The full name total internal reflection must be written, not just reflection."
+      },
+      {
+        "id": "s2_why_little_loss",
+        "kind": "boxed_final",
+        "label": "Why little loss",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "No light crosses the boundary",
+            "style": "boxed"
+          },
+          "so it keeps reflecting inside",
+          "the core along the full length",
+          "of the fibre, with very little loss."
+        ],
+        "why": "Because total internal reflection sends all of the light back into the core with none crossing into the cladding, the light keeps reflecting along the length of the fibre and reaches the far end with very little loss of intensity.",
+        "common_mistakes": [
+          "Saying the fibre stops light from escaping, with no mention of the reflection being complete.",
+          "Confusing very little loss with zero loss over any distance."
+        ],
+        "memory_tip": "Total reflection means no light is lost at the boundary, only a small amount along the path.",
+        "margin_note": "The cladding keeps the reflecting surface clean and protected, so total internal reflection continues along the whole length of the fibre."
+      }
+    ]
+  }
+}

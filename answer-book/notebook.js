@@ -83,7 +83,10 @@
   applyCut(0);
 
   var QTYPE_WORD = { LAQ: 'Long Answer Question', SAQ: 'Short Answer Question',
-                     VSAQ: 'Very Short Answer Question' };
+                     VSAQ: 'Very Short Answer Question',
+                     // paper_section is "Practice" on these, so the header reads
+                     // "Practice — Problem" (2026-09-02).
+                     PROBLEM: 'Problem' };
 
   /** Derived, never literal: a hardcoded "· 8 marks" cannot follow a cut switch. */
   function pageHeaderLines() {
@@ -120,7 +123,9 @@
       question.class_label,
       // The chip names the PAPER, same table as the catalog's subject chips.
       subjLabel(question.subject),
-      'Unit ' + question.unit.number + ' · ' + question.unit.name,
+      // A retired card's unit number is a sentinel (99), never a chapter number
+      // a student could look up — show the chapter name alone.
+      (retiredOf(question.question_id) ? question.unit.name : 'Unit ' + question.unit.number + ' · ' + question.unit.name),
       cut.paper_section + ' · ' + cut.qtype,
       'about ' + cut.expected_time_min + ' minutes'
     ];
@@ -246,6 +251,9 @@
     // page — Gate fetches the unit's bundle (or shows the lock sheet) and
     // re-enters here once the real question object is in place. Both
     // routes funnel through loadQuestion, so this is the WHOLE gate.
+    // A card whose chapter left the syllabus (2026-27): on the hosted build its
+    // unit has no bundle and nothing to sell, so the gate must never run for it.
+    if (questions[i] && questions[i].gated && retiredOf(questions[i].question_id)) { Gate.showRetired(i); return; }
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
@@ -269,7 +277,33 @@
   // the chapter keeps its true shape. Routes: #/ = catalog, #/q/<id>(/<cutKey>)
   // = notebook — hash-based so back/forward work from file://.
 
-  var UNITS = window.PM_UNITS || [];
+  /** Every unit in the artifact. UNITS below is the LENSED view a student sees. */
+  var ALL_UNITS = window.PM_UNITS || [];
+  var UNITS = ALL_UNITS;
+  /** Multi-stream builds only: subjects and year label per stream, else null. */
+  var STREAM_SUBJECTS = window.PM_STREAM_SUBJECTS || null;
+  var STREAM_YEARS = window.PM_STREAM_YEARS || null;
+  /** The year the student is actually in, once the door knows. */
+  var EFFECTIVE_YEAR = window.PM_YEAR || null;
+  /**
+   * Lens the catalog to ONE stream's subjects.
+   *
+   * A single-stream artifact is already exactly one year, so this is a no-op there
+   * and the junior book behaves precisely as it did — that is what keeps a live
+   * product safe while the second year is added beside it. On a multi-stream
+   * artifact an unknown or missing stream falls back to the WHOLE book rather than
+   * to an empty one: a student who lands with a stale remembered choice should see
+   * too much, never nothing.
+   */
+  function applyYearLens(streamId) {
+    if (!STREAM_SUBJECTS) return;
+    var subs = streamId && STREAM_SUBJECTS[streamId];
+    if (!subs) { UNITS = ALL_UNITS; EFFECTIVE_YEAR = window.PM_YEAR || null; return; }
+    var want = {};
+    for (var i = 0; i < subs.length; i++) want[subs[i]] = 1;
+    UNITS = ALL_UNITS.filter(function (u) { return want[u.subject || 'physics'] === 1; });
+    if (STREAM_YEARS && STREAM_YEARS[streamId]) EFFECTIVE_YEAR = STREAM_YEARS[streamId];
+  }
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
@@ -283,6 +317,17 @@
   var RETIRED = window.PM_RETIRED || {};
   function retiredOf(qid) { return RETIRED[qid] || null; }
 
+  /** The question kinds the PAPER examines — the mirror of PAPER_QTYPES in
+      src/schemas/answerBook.ts. A PROBLEM is a practice question the source book
+      prints: it IS an answer the student can open, and it counts in every
+      "N answers" figure and every chapter's readiness, but it sits on no paper
+      section and carries no board mark scheme. So every MARKS-WEIGHTED surface
+      ignores it — the study planner and its scope options, and the exam-eve
+      15-minute list, which are allocating a paper's marks and cannot allocate a
+      question the paper never asks (founder, 2026-09-02). */
+  var PAPER_QTYPES = ['VSAQ', 'SAQ', 'LAQ'];
+  function isPaperQtype(t) { return PAPER_QTYPES.indexOf(t) >= 0; }
+
   /** The 2026-27 textbooks renumbered two papers (2026-08-28): the PHYSICS book
       merged the old Units 1+2 into one and added a Unit 14, moving every chapter
       down by one; the MATHS-1A book inserted "Sets and Relations" at 1 and
@@ -291,8 +336,15 @@
       valid keys, now naming a different chapter — so a legacy key cannot be told
       from a new one by its shape. New exam-eve links therefore carry the exam
       year as a trailing segment (#/exam-eve/physics-3/2027) and saved plans carry
-      `syllabus`; anything without the marker is remapped here. Maths-1B,
-      Chemistry and Botany did not move and pass through unchanged. */
+      `syllabus`; anything without the marker is remapped here. Maths-1B and
+      Botany did not move and pass through unchanged.
+      CHEMISTRY moved on 2026-09-02: the 2026-27 book dropped States of Matter
+      (old chemistry-4), so old 5/6/7 are now 4/5/6. The retired chapter maps to
+      chemistry-99, a key no live unit has, so an old link to it lands on the
+      catalog instead of on Stoichiometry (which now owns chemistry-4). Known
+      limit: the marker is one-shot, so a chemistry-5/6/7 link that already
+      carried /2027 (written 2026-08-28 to 2026-09-02) opens the neighbouring
+      chapter — accepted; exam-eve links exist only in the Vidi triage box. */
   var SYLLABUS_YEAR = '2027';
   var LEGACY_UNIT_KEYS = {
     'physics-1': 'physics-1', 'physics-2': 'physics-1', 'physics-3': 'physics-2',
@@ -304,7 +356,9 @@
     'mathematics-3': 'mathematics-5', 'mathematics-4': 'mathematics-6',
     'mathematics-5': 'mathematics-7', 'mathematics-6': 'mathematics-8',
     'mathematics-7': 'mathematics-9', 'mathematics-8': 'mathematics-10',
-    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12'
+    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12',
+    'chemistry-4': 'chemistry-99', 'chemistry-5': 'chemistry-4',
+    'chemistry-6': 'chemistry-5', 'chemistry-7': 'chemistry-6'
   };
   function legacyUnitKey(key) {
     return Object.prototype.hasOwnProperty.call(LEGACY_UNIT_KEYS, key) ? LEGACY_UNIT_KEYS[key] : key;
@@ -366,15 +420,35 @@
   /** "Asked: TS 2012, 2004 · AP 2026" from a question's appearances[]. Board absent
       = TS (the historical meaning). Empty appearances → null (no line, never "Asked:"
       with nothing after it). */
+  /* A source whose book ASKS the question but prints no per-step mark split, and
+     whose priority stars we deliberately do not republish (docs/ORIGINALITY_MATHS.md
+     R1). Both facts matter downstream and neither existing branch stated them:
+     'enumerated' says the book does not contain the question (false here), and the
+     default says the mark split is the book's (false here — it is ours). Vidi prints
+     both to students, so getting this wrong launders an authored split as a sourced
+     one, which is the defect four graders named as the highest-value one in the
+     round-2 corpus. For these sources `stars: 0` means NOT PUBLISHED, not 'the book
+     gave it no star'. */
+  var UNSPLIT_SOURCES = { chaitanya_fastrack: 1 };
+  function bookPrintsSplit(e) { return !!e && e.source !== 'enumerated' && !UNSPLIT_SOURCES[e.source]; }
+  function starsArePublished(e) { return bookPrintsSplit(e); }
+
   function askedLine(q) {
     if (!q || !q.appearances || !q.appearances.length) return null;
     var by = { ts_ipe: [], ap_ipe: [] };
     q.appearances.forEach(function (a) {
       by[a.board === 'ap_ipe' ? 'ap_ipe' : 'ts_ipe'].push(a.year);
     });
+    // De-duplicate per board. A card whose appearances[] lists the same year
+    // twice for one board rendered it twice — 'Asked: AP 2019, 2019' — which reads
+    // to a student as two separate sittings, or as a typo. 18 cards across
+    // Maths-2A and Botany-II carry such a pair (2026-08-30 audit); nothing counts
+    // appearances.length, so the duplicate only ever reached the eye. Fixing it
+    // here rather than in the cards protects every paper, including future ones.
+    var uniq = function (ys) { return ys.filter(function (y, i) { return ys.indexOf(y) === i; }); };
     var parts = [];
-    if (by.ts_ipe.length) parts.push('TS ' + by.ts_ipe.sort().reverse().join(', '));
-    if (by.ap_ipe.length) parts.push('AP ' + by.ap_ipe.sort().reverse().join(', '));
+    if (by.ts_ipe.length) parts.push('TS ' + uniq(by.ts_ipe).sort().reverse().join(', '));
+    if (by.ap_ipe.length) parts.push('AP ' + uniq(by.ap_ipe).sort().reverse().join(', '));
     return 'Asked: ' + parts.join(' · ');
   }
 
@@ -416,9 +490,25 @@
                      physics_2: 'Physics II',
                      chemistry_2: 'Chemistry II',
                      botany_2: 'Botany-II',
-                     zoology_2: 'Zoology-II' };
+                     zoology_2: 'Zoology-II',
+                     mathematics_2a: 'Maths-2A',
+                     mathematics_2b: 'Maths-2B' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
+  }
+  /** The subjects THIS build carries, as a sentence ("Physics II, Chemistry II and
+      Maths-2A"), derived from the units on the page — never a typed list, which is
+      how the paywall once promised Maths-1A to a second-year student. */
+  function subjectsSentence() {
+    var seen = [], out = [];
+    for (var i = 0; i < UNITS.length; i++) {
+      var s = UNITS[i].subject || 'physics';
+      if (seen.indexOf(s) >= 0) continue;
+      seen.push(s); out.push(subjLabel(s));
+    }
+    if (!out.length) return 'every subject';
+    if (out.length === 1) return out[0];
+    return out.slice(0, -1).join(', ') + ' and ' + out[out.length - 1];
   }
 
   /** Unit numbers namespace PER SUBJECT (physics Unit 3 and maths Unit 3 are
@@ -537,7 +627,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2A|Maths-2B)\)\s*$/, ''
     );
   }
 
@@ -605,7 +695,7 @@
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
-      var base = 'Telangana IPE · ' + (window.PM_YEAR || 'First year');
+      var base = 'Telangana IPE · ' + (EFFECTIVE_YEAR || 'First year');
       var eyeText = base + ' · ' + window.PM_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is
@@ -660,6 +750,7 @@
       // addEventListener here would stack a new listener per render and fire
       // renderCatalog N times on the Nth change.
       subjSel.onchange = function () {
+        Vidi.log('cat_subject', { subject: subjSel.value });
         catFilter.subject = subjSel.value;
         // Changing subject invalidates the chapter: a physics chapter is not in
         // the chemistry list, and a stale key would filter everything to zero.
@@ -682,7 +773,10 @@
     });
     var chipRow = $('qtypeChips');
     chipRow.innerHTML = '';
-    ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
+    // Paper sections first in marks order, then the practice problems, which sit
+    // on no paper at all (2026-09-02). A chip label is not always its key.
+    var CHIP_LABEL = { ALL: 'All', PROBLEM: 'Problems' };
+    ['ALL', 'LAQ', 'SAQ', 'VSAQ', 'PROBLEM'].forEach(function (t) {
       var n = t === 'ALL'
         ? scopedEntries.length
         : scopedEntries.filter(function (e) { return e.section === t; }).length;
@@ -696,12 +790,15 @@
       b.setAttribute('data-qtype', t);
       b.setAttribute('aria-pressed', catFilter.qtype === t ? 'true' : 'false');
       b.innerHTML = '';
-      b.appendChild(document.createTextNode(t === 'ALL' ? 'All' : t));
+      b.appendChild(document.createTextNode(CHIP_LABEL[t] || t));
       var ct = document.createElement('span');
       ct.className = 'ct';
       ct.textContent = String(n);
       b.appendChild(ct);
-      b.addEventListener('click', function () { catFilter.qtype = t; renderCatalog(); });
+      b.addEventListener('click', function () {
+        Vidi.log('cat_qtype', { qtype: t });
+        catFilter.qtype = t; renderCatalog();
+      });
       chipRow.appendChild(b);
     });
 
@@ -769,6 +866,7 @@
       unitSel.value = catFilter.unit;
       unitSel.className = 'cat-select' + (catFilter.unit !== 'ALL' ? ' on' : '');
       unitSel.onchange = function () {
+        Vidi.log('cat_unit', { unit: unitSel.value });
         catFilter.unit = unitSel.value;
         renderCatalog();
       };
@@ -832,14 +930,23 @@
       var SECTIONS = [
         { key: 'LAQ', label: 'Long Answer Questions' },
         { key: 'SAQ', label: 'Short Answer Questions' },
-        { key: 'VSAQ', label: 'Very Short Answer Questions' }
+        { key: 'VSAQ', label: 'Very Short Answer Questions' },
+        // Last, and named for what it is: the book's practice problems, which the
+        // paper does not have a section for (2026-09-02).
+        { key: 'PROBLEM', label: 'Practice Problems' }
       ];
       function sectionLabel(sg, group) {
+        // A single mark VALUE is printed only when the group agrees on one. Every
+        // paper section does by construction; a practice-problem group does NOT —
+        // it holds both the 2-mark and the 4-mark shape — and printing the first
+        // card's number over a mixed group is how the old code would have said
+        // "2 marks" above a 4-mark problem.
+        var seen = [];
         for (var gi = 0; gi < group.length; gi++) {
           var gc = entryCut(group[gi]);
-          if (gc) return sg.label + ' · ' + gc.marks_total + ' marks';
+          if (gc && seen.indexOf(gc.marks_total) < 0) seen.push(gc.marks_total);
         }
-        return sg.label;
+        return seen.length === 1 ? sg.label + ' · ' + seen[0] + ' marks' : sg.label;
       }
       SECTIONS.forEach(function (sg) {
         var group = visible.filter(function (e) { return e.section === sg.key; });
@@ -854,6 +961,13 @@
           var authored = e.question_id !== undefined;
           var card = document.createElement(authored ? 'a' : 'div');
           card.className = 'cat-card' + (authored ? '' : ' soon');
+          // A tap on a card we have NOT written yet = demand, and the only
+          // signal that says which question to author next.
+          if (!authored) {
+            card.addEventListener('click', function () {
+              Vidi.log('soon_tap', { unit: unitKey(u), ref: e.section + ' ' + e.number });
+            });
+          }
           var ec = entryCut(e);
           if (authored) {
             card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
@@ -1017,12 +1131,38 @@
       }, 1100);
     };
     no.onclick = function () {
+      Vidi.log('ask_answer', { qid: qid, k: kind, ok: false });
       ov.hidden = true;
       askConsumed = true; route();
     };
   }
 
+  /** #/notastudent/<word> — the team's own browsers say "do not count me".
+      Reuses the ask overlay's DOM, so shell.html needs no new markup. With no
+      staff word baked in (every offline build) `want` is '' and the route can
+      only ever answer "not valid". */
+  function showTeamMark(word, off) {
+    var want = (window.PM_STAFF_WORD || '').trim();
+    var ok = !!want && word === want;
+    if (ok) Vidi.markInternal(!off);
+    var ov = $('askOverlay'), yes = $('askYes'), no = $('askNo');
+    $('askText').textContent = !ok
+      ? 'That link is not valid.'
+      : (off ? 'This device is a student again. Its visits will be counted.'
+             : 'This device is marked as team. Its visits will not be counted as a student.');
+    yes.textContent = 'Open the book';
+    yes.hidden = false; no.hidden = true;
+    ov.hidden = false;
+    yes.onclick = function () { ov.hidden = true; no.hidden = false; location.hash = '#/'; };
+    no.onclick = null;
+    showCatalog();
+  }
+
   function route() {
+    // The team mark is an admin action, not reading — it resolves ABOVE the
+    // leave-question ask, so marking a phone never turns into a stage tick.
+    var ns = location.hash.match(/^#\/notastudent\/([^\/]+)(?:\/(off))?$/);
+    if (ns) { showTeamMark(decodeURIComponent(ns[1]), !!ns[2]); return; }
     if (askGuard()) return;
     // Subject keys carry underscores (mathematics_1b-3) — the old [a-z]+ never
     // matched a Maths-1B link. The optional trailing year is the post-renumbering
@@ -1634,6 +1774,9 @@
       finishCurrent = null;
       stepIndex = next;
       marksEarned += steps[next].marks;
+      // Depth of read: i of n. The single most useful number on the dashboard —
+      // it separates "opened it" from "actually read it".
+      Vidi.log('advance', { qid: question.question_id, step: steps[next].id, i: next + 1, n: steps.length });
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
@@ -1681,6 +1824,7 @@
   }
 
   function goToIndex(i) {
+    Vidi.log('step_jump', { qid: question.question_id, i: i + 1 });
     if (i === stepIndex + 1 && !revealing) { advance(); return; }
     renderUpTo(i, true);
   }
@@ -1689,10 +1833,20 @@
 
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
-  $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
+  $('btnRestart').addEventListener('click', function () {
+    Vidi.log('restart', { qid: question.question_id });
+    renderUpTo(-1, false);
+  });
   $('doorBack').addEventListener('click', function () { Door.show(); });
+  var searchLogTimer = null;
   $('catSearch').addEventListener('input', function () {
     catFilter.search = this.value.trim().toLowerCase();
+    // Debounced: what a student SEARCHED FOR is the signal, not each keystroke.
+    var q = catFilter.search;
+    if (searchLogTimer) clearTimeout(searchLogTimer);
+    searchLogTimer = setTimeout(function () {
+      if (q) Vidi.log('cat_search', { q: q.slice(0, 60) });
+    }, 900);
     renderCatalog();
   });
   document.addEventListener('keydown', function (e) {
@@ -2413,6 +2567,30 @@
       lsSet('pm_vidi_session', session);
     }
 
+    // One id per TAB, so two tabs are two visits but one device. sessionStorage
+    // can throw under file://, so it gets the same try/catch care as lsGet.
+    var visit = '';
+    try { visit = sessionStorage.getItem('pm_visit') || ''; } catch (e) {}
+    if (!visit) {
+      visit = 'v_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+      try { sessionStorage.setItem('pm_visit', visit); } catch (e) {}
+    }
+
+    // ── who is asking ───────────────────────────────────────────────────────
+    // The team opens this book many times a day on their own phones and
+    // laptops, and every one of those visits used to count as a student.
+    // #/notastudent/<word> writes pm_internal once per browser; the flag then
+    // rides every event batch, every sync push and every Vidi ask, and the
+    // server makes it stick to the device.
+    function isInternal() { return lsGet('pm_internal') === '1'; }
+    /** true = marked team, false = explicitly un-marked, null = never said.
+        The tri-state matters on sync: "never said" must not clear a device that
+        another browser of the same person already marked. */
+    function internalClaim() {
+      var v = lsGet('pm_internal');
+      return v === '1' ? true : (v === '0' ? false : null);
+    }
+
     // Telemetry — fire-and-forget; silently dropped with no base (offline gate).
     var evq = [];
     function log(type, data) {
@@ -2422,18 +2600,75 @@
       evq.push(e);
       if (evq.length >= 10) flush();
     }
+    /** Bounded: a dead endpoint must never grow memory for a whole session. */
+    function requeue(batch) { evq = batch.concat(evq).slice(-200); }
     function flush() {
       if (!VIDI_BASE || !evq.length) return;
       var batch = evq.splice(0, evq.length);
+      var body = { type: 'events', session_id: session, visit_id: visit, internal: isInternal(), events: batch };
+      // Sync owns the device id and mints one only when it has a base itself,
+      // so the offline build stays exactly as inert as it was.
+      if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
       try {
         fetch(VIDI_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type: 'events', session_id: session, events: batch })
-        }).catch(function () {});
-      } catch (e) {}
+          body: JSON.stringify(body), keepalive: true
+        }).then(function (r) { if (!r.ok) requeue(batch); })
+          .catch(function () { requeue(batch); });
+      } catch (e) { requeue(batch); }
     }
+
+    /** #/notastudent/<word> lands here. Stored beside pm_device_id, so a device
+        id minted later in this browser inherits it; the sync push carries it to
+        the server, where it sticks to the device. */
+    function markInternal(on) {
+      lsSet('pm_internal', on ? '1' : '0');
+      log('team_mark', { on: !!on });
+      flush();
+      syncTouch();
+    }
+
+    // Visible seconds only — a tab left open behind another window is not being
+    // read. Every listener below returns early without a base, so the offline
+    // build still makes zero requests (the suite asserts exactly that).
+    var visSec = 0, dwellSeq = 0;
+    var visSince = document.visibilityState === 'visible' ? Date.now() : 0;
+    function visNow() { return visSec + (visSince ? Math.round((Date.now() - visSince) / 1000) : 0); }
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'hidden') flush();
+      if (document.visibilityState === 'hidden') { visSec = visNow(); visSince = 0; flush(); }
+      else if (!visSince) { visSince = Date.now(); }
+    });
+    setInterval(function () {
+      if (!VIDI_BASE || !visSince) return;
+      dwellSeq++;
+      log('dwell', { seq: dwellSeq, vis_s: visNow() });
+    }, 60000);
+    window.addEventListener('pagehide', function () {
+      if (VIDI_BASE) log('page_leave', { after_s: visNow() });
+      flush();
+    });
+
+    // Errors on a student's phone are invisible to us otherwise. Capped, so a
+    // loop cannot bill one batch per frame.
+    var errN = 0;
+    function onErr(kind, msg, src, line) {
+      if (!VIDI_BASE || errN >= 10) return;
+      errN++;
+      log('err', {
+        kind: kind, msg: String(msg || '').slice(0, 200),
+        src: String(src || '').slice(0, 120), line: line || 0
+      });
+    }
+    window.addEventListener('error', function (ev) {
+      if (ev && ev.target && ev.target !== window && !ev.message) {
+        onErr('resource', (ev.target.src || ev.target.href || ''), ev.target.tagName || '');
+        return;
+      }
+      onErr('js', ev && ev.message, ev && ev.filename, ev && ev.lineno);
+    }, true);
+    window.addEventListener('unhandledrejection', function (ev) {
+      var r = ev && ev.reason;
+      onErr('rejection', r && (r.message || r));
     });
 
     return {
@@ -2526,7 +2761,11 @@
         return changed;
       },
       log: log,
-      flush: flush
+      flush: flush,
+      visit: visit,
+      internal: isInternal,
+      internalClaim: internalClaim,
+      markInternal: markInternal
     };
   })();
 
@@ -2550,8 +2789,11 @@
       return d.getUTCFullYear() + '-' + (mm < 10 ? '0' : '') + mm + '-' + (dd < 10 ? '0' : '') + dd;
     }
 
-    var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
-    var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers' };
+    // PROBLEM is ranked and worded for completeness only — itemsFor drops it
+    // before any of this runs, because a plan allocates paper marks.
+    var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1, PROBLEM: 0 };
+    var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers',
+                     PROBLEM: 'practice problems' };
     /** ['SAQ','VSAQ'] → 'short answers and very short answers'. */
     function scopeWords(scope) {
       var out = [];
@@ -2575,6 +2817,10 @@
           seen[e.question_id] = true;
           var q = questions[qIndexById[e.question_id]];
           if (!q) continue;
+          // A practice problem is on no paper section and carries no board mark
+          // scheme, so it cannot be given a share of a marks-weighted day. It
+          // stays open in the catalog; it never enters a plan (2026-09-02).
+          if (!isPaperQtype(q.qtype)) continue;
           if (scope && scope.indexOf(q.qtype) < 0) continue;
           items.push({
             qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
@@ -2874,12 +3120,13 @@
 
     /** The plan-less revision queue (founder, 2026-08-23): anything understood
         on an EARLIER day and not yet revised, whether or not a plan exists.
-        Guarded by qIndexById so a stale stage for a removed question is inert. */
+        Guarded by qIndexById so a stale stage for a removed question is inert,
+        and by retiredOf so a chapter that left the syllabus is never revised. */
     function dueWithoutPlan(today) {
       var ids = Vidi.stageIds(), out = [];
       for (var i = 0; i < ids.length; i++) {
         var s = Vidi.stageFor(ids[i]);
-        if (s.u && !s.r && s.u < today && qIndexById[ids[i]] !== undefined) out.push(ids[i]);
+        if (s.u && !s.r && s.u < today && qIndexById[ids[i]] !== undefined && !retiredOf(ids[i])) out.push(ids[i]);
       }
       return out;
     }
@@ -3106,7 +3353,10 @@
         device_id: deviceId(),
         stages: rows(),
         plan: plan || null,
-        plan_saved_at: (plan && plan.saved_at) || null
+        plan_saved_at: (plan && plan.saved_at) || null,
+        // null = this browser never said; true/false = #/notastudent[/off].
+        // Sent every push so the flag survives a cleared server-side row.
+        internal: Vidi.internalClaim()
       };
       var done = function () {
         inFlight = false;
@@ -3209,6 +3459,8 @@
         the hash, which capture() strips before anything else reads the URL. */
     function signIn() {
       if (!BASE) return;
+      Vidi.log('sign_in_start', {});
+      Vidi.flush();               // the page leaves for Google in a moment
       var back = location.origin + location.pathname;
       location.href = BASE + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
     }
@@ -3238,6 +3490,7 @@
       });
       if (!p.access_token) return false;
       s(K_AT, p.access_token);
+      Vidi.log('sign_in_done', {});
       if (p.refresh_token) s(K_RT, p.refresh_token);
       try {
         history.replaceState(null, '', location.pathname + location.search + '#/');
@@ -3427,6 +3680,8 @@
       // a successful payment lands on the catalog rather than trying to reopen
       // question index null.
       pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
+      Vidi.log('pay_start', { signed_in: Auth.signedIn() });
+      Vidi.flush();             // Razorpay takes the page from here
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
       if (Auth.signedIn()) body.access_token = Auth.token();
@@ -3540,12 +3795,12 @@
                ' — your pass works on every device you sign in on'
                + (linkedDevices > 1 ? ' (' + linkedDevices + ' so far)' : ''))
             : 'Sign in with Google and your pass follows you to any phone or laptop',
-          'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
+          'Every chapter in ' + subjectsSentence(),
           'The answer an examiner wants, written out step by step',
           'Diagrams that draw themselves, line by line',
           'Vidi explains any step you are stuck on',
           'Memory tips and insider notes on the questions that repeat',
-          'Four chapters stay free — one in each subject'
+          'One chapter in every subject stays free'
         ];
         for (var i = 0; i < items.length; i++) {
           var li = document.createElement('li');
@@ -3561,13 +3816,20 @@
     }
 
     function showLocked(i, cutKey, k) {
+      Vidi.log('lock_wall', { unit: k });
       var buttons = [];
-      // Four chapters — one per subject — are free for EVERY student since
-      // 2026-08-27. The old copy here said "you have already used your free
-      // chapter", which under this model tells a student they spent something
-      // they never had. Say what is true: some chapters are free, this one is
-      // not, and here is what the rest costs.
-      var text = 'This chapter is locked. Four chapters are free, one in each subject. '
+      // ONE chapter per subject is free for EVERY student since 2026-08-27. The
+      // old copy here said "you have already used your free chapter", which under
+      // this model tells a student they spent something they never had. Say what
+      // is true: some chapters are free, this one is not, and here is what the
+      // rest costs.
+      //
+      // The count is deliberately NOT stated. It was "Four chapters are free",
+      // which was true only while the book was first year alone: a second-year
+      // student has three subjects and three free chapters, and would have been
+      // told a number they could not find. The per-subject promise is the part
+      // that is true in every year (2026-08-30).
+      var text = 'This chapter is locked. One chapter in every subject is free. '
                + offerLine();
       if (payable()) {
         buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
@@ -3588,6 +3850,7 @@
     }
 
     function claimFree(i, cutKey, k) {
+      Vidi.log('unlock_free', { unit: k });
       sheet('Opening your free chapter…', []);
       post({ unit_key: k, claim_free: true }, function (out) {
         adoptStanding(out);
@@ -3600,6 +3863,16 @@
     function showError(i, cutKey) {
       sheet('Could not reach the server. Check your connection and try again.',
         [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+    }
+
+    /** A forwarded link to a card whose chapter left the syllabus. The chapter
+        has no bundle on the server and no lock to open, so say why, plainly,
+        and offer the way back — never fetch, never sell. */
+    function showRetired(i) {
+      var q = questions[i];
+      var ret = q ? retiredOf(q.question_id) : null;
+      if (!ret) { location.hash = '#/'; return; }
+      sheet('Not in the ' + ret.wef + ' syllabus — ' + ret.reason + '. This chapter is no longer in the book.', [backBtn()]);
     }
 
     function showLockFlow(i, cutKey) {
@@ -3627,6 +3900,7 @@
 
     return {
       showLockFlow: showLockFlow,
+      showRetired: showRetired,
       showPricing: showPricing,
       /** Is the chapter gate live at all? False in every ungated build, where
           the whole module is inert and no lock vocabulary should appear. */
@@ -3726,12 +4000,50 @@
 
     function enabled() { return !!TRACKS; }
 
+    /**
+     * Which stream a remembered choice opens. A choice saved BEFORE the
+     * multi-stream build carries no `stream` key, so it is resolved from TRACKS
+     * by group+year — that is what stops the first two-year deploy from
+     * stranding everyone who already has a choice in localStorage.
+     */
+    function resolveStream(t) {
+      if (!t) return null;
+      if (t.stream) return t.stream;
+      for (var i = 0; i < TRACKS.length; i++) {
+        if (TRACKS[i].id !== t.group) continue;
+        for (var j = 0; j < TRACKS[i].years.length; j++) {
+          if (TRACKS[i].years[j].id === t.year) return TRACKS[i].years[j].stream || null;
+        }
+      }
+      return null;
+    }
+
     function chosen() {
       if (!TRACKS) return null;
       try {
         var t = JSON.parse(g(KEY) || 'null');
-        return (t && t.group && t.year) ? t : null;
+        if (!(t && t.group && t.year)) return null;
+        // On a MULTI-stream artifact a remembered cell that opens nothing must
+        // send the student back to the door. Treating it as a choice skips the
+        // chooser and — because there is no stream to lens by — paints BOTH
+        // years at once under an eyebrow naming one of them: 1,664 answers
+        // labelled "First year · MPC". Found by replaying a stored BiPC choice,
+        // which no live cell can currently write but which any future stream
+        // change could strand. Falling back to the whole book was the wrong
+        // instinct: too much, wrongly labelled, is worse than asking again.
+        if (STREAM_SUBJECTS && !resolveStream(t)) return null;
+        return t;
       } catch (e) { return null; }
+    }
+
+    /**
+     * Re-apply a remembered choice on load, BEFORE the router paints anything —
+     * a student who chose second year last week must not open on first year.
+     */
+    function restore() {
+      var t = chosen();
+      if (!t) return;
+      applyYearLens(resolveStream(t));
     }
 
     function trackById(id) {
@@ -3742,6 +4054,24 @@
     function liveYear(t) {
       for (var i = 0; i < t.years.length; i++) if (t.years[i].live) return t.years[i];
       return null;
+    }
+
+    /** Every live year of a group, summed — a group offering two years offers both. */
+    function liveTotals(t) {
+      var q = 0, u = 0, n = 0;
+      for (var i = 0; i < t.years.length; i++) {
+        if (!t.years[i].live) continue;
+        q += t.years[i].questions; u += t.years[i].units; n++;
+      }
+      return n ? { questions: q, units: u, years: n } : null;
+    }
+
+    /** The papers a cell actually contains, named the way the catalog names them. */
+    function cellSubjects(y, t) {
+      if (!y.subjects || !y.subjects.length) return t.subjects;
+      var out = [];
+      for (var i = 0; i < y.subjects.length; i++) out.push(subjLabel(y.subjects[i]));
+      return out.join(' · ');
     }
 
     function asked() {
@@ -3780,8 +4110,10 @@
         door must not sit in history behind the catalog, where Back would drop a
         student who just chose straight back onto the chooser. It also fires no
         hashchange, so the catalog is shown once — here — and not again by route(). */
-    function choose(group, year) {
-      s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+    function choose(group, year, stream) {
+      s(KEY, JSON.stringify({ group: group, year: year, stream: stream || null, at: new Date().toISOString() }));
+      Vidi.log('door_choose', { group: group, year: year, stream: stream || null });
+      applyYearLens(stream || null);
       if (location.hash && location.hash !== '#/') {
         try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
         catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
@@ -3800,8 +4132,11 @@
         b.setAttribute('data-door-group', t.id);
         b.appendChild(el('door-tile-name', t.label));
         b.appendChild(el('door-tile-sub', t.subjects));
+        var tot = liveTotals(t);
         b.appendChild(el('door-pill' + (live ? ' on' : ''),
-          live ? live.questions + ' answers · ' + live.units + ' chapters' : 'Coming soon'));
+          tot ? tot.questions + ' answers · ' + tot.units + ' chapters'
+                + (tot.years > 1 ? ' · both years' : '')
+              : 'Coming soon'));
         b.addEventListener('click', function () { showYears(t.id); });
         host.appendChild(b);
       });
@@ -3818,10 +4153,10 @@
           b.className = 'door-tile live';
           b.setAttribute('data-door-year', y.id);
           b.appendChild(el('door-tile-name', y.label));
-          b.appendChild(el('door-tile-sub', t.subjects));
+          b.appendChild(el('door-tile-sub', cellSubjects(y, t)));
           b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
           b.appendChild(el('door-go', 'Open the Answer Book →'));
-          b.addEventListener('click', function () { choose(t.id, y.id); });
+          b.addEventListener('click', function () { choose(t.id, y.id, y.stream); });
           host.appendChild(b);
           return;
         }
@@ -3859,7 +4194,7 @@
       showView('door');
     }
 
-    return { enabled: enabled, chosen: chosen, show: show };
+    return { enabled: enabled, chosen: chosen, show: show, restore: restore };
   })();
 
   var VidiPanel = (function () {
@@ -4389,14 +4724,31 @@
     // A deterministic plan dimension, never the model's: all three ticked =
     // null scope = everything, so the default student never notices the step.
     // The mark values are read off PM_PATTERNS (the same table the schema holds
-    // every card to), never typed here: on the 2026-27 papers every subject's
-    // long answer is 8 marks, but a hardcoded number is exactly how the maths
-    // section once printed "8 marks" over 7-mark cards.
+    // every card to), never typed here — a hardcoded number is exactly how the
+    // maths section once printed "8 marks" over 7-mark cards. Read for EVERY
+    // subject this build carries, not just physics: the 2026-27 second-year book
+    // holds Physics-II/Chemistry-II at 8-mark long answers beside Maths-2A at 7
+    // (its paper is unchanged until 2027-28), so the label prints a range.
     function scopeMarks(qtype, fallback) {
-      var p = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
-      if (!p || !p.sections) return fallback;
-      for (var i = 0; i < p.sections.length; i++) if (p.sections[i].key === qtype) return p.sections[i].marks;
-      return fallback;
+      var seen = [], vals = [];
+      for (var i = 0; i < UNITS.length; i++) {
+        var s = UNITS[i].subject || 'physics';
+        if (seen.indexOf(s) >= 0) continue;
+        seen.push(s);
+        var p = PATTERNS[s];
+        if (!p || !p.sections) continue;
+        for (var j = 0; j < p.sections.length; j++) {
+          if (p.sections[j].key === qtype && vals.indexOf(p.sections[j].marks) < 0) vals.push(p.sections[j].marks);
+        }
+      }
+      if (!vals.length) {
+        var p0 = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
+        if (!p0 || !p0.sections) return fallback;
+        for (var k = 0; k < p0.sections.length; k++) if (p0.sections[k].key === qtype) return p0.sections[k].marks;
+        return fallback;
+      }
+      vals.sort(function (a, b) { return a - b; });
+      return vals.length === 1 ? vals[0] : vals[0] + '\u2013' + vals[vals.length - 1];
     }
     var SCOPE_OPTS = [
       ['LAQ', 'Long answers (' + scopeMarks('LAQ', 8) + ' marks)'],
@@ -5071,6 +5423,8 @@
       if (e) {
         out.push(e.source === 'enumerated'
           ? 'STARS: none — this question is PREDICTED BY THIS ANSWER BOOK. The source book does not ask it, so there is no frequency rank and no exam history to report. If you must name who expects it, say this answer book or this card — never the book, which does not contain the question.'
+          : !starsArePublished(e)
+          ? 'STARS: none published. The source book does rank this question, but this answer book does not republish that ranking, so there is no frequency rank to report. Do NOT say the book gives it no star — say no frequency rank is published for it.'
           : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
           + (asked ? ' An Asked line below gives this question’s exam history.'
                    : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
@@ -5093,6 +5447,8 @@
       if (question.verification && question.verification.needs_teacher_verification) {
         out.push(e && e.source === 'enumerated'
           ? 'VERIFICATION: this mark split was authored by THIS ANSWER BOOK for a predicted question; it was not copied from the source book, which does not contain the question, and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
+          : e && !bookPrintsSplit(e)
+          ? 'VERIFICATION: the source book asks this question but prints NO per-step mark split for it, so this split was authored by THIS ANSWER BOOK and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
           : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic
@@ -5191,6 +5547,16 @@
         plan_status: Plan.modelStatus(home ? null : question.question_id) || undefined,
         tutor_context: home ? buildHomeContext() : buildVidiContext()
       };
+      // WHO is asking — for the cost ledger only. ai_usage_log has no device
+      // column, so a team ask and a student ask were the same row and every
+      // cost-per-student number was wrong. Sync owns the device id and mints
+      // one only when it has a base of its own, so the offline build still
+      // stores nothing — the suite asserts pm_device_id stays null.
+      // `internal` is sent ONLY when true: no claim is the default, and the
+      // server treats anything but a literal true as no claim.
+      if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
+      if (Vidi.internal()) body.internal = true;
+      Vidi.log('vidi_ask', { len: txt.length, home: home });
       postAsk(body, 1).then(function (res) {
         if (g !== gen) return;
         typing.remove();
@@ -5251,7 +5617,11 @@
       syncDock();
     }
 
-    function minWin() {
+    /** `silent` skips the close event. Used for the first-visit default below,
+        where nothing was ever open — logging a vidi_close there would invent a
+        student action and put a close in the funnel ahead of the open. */
+    function minWin(silent) {
+      if (!silent) Vidi.log('vidi_close', { view: currentView });
       winOpen = false;
       winEl().hidden = true;
       // the pill returns wherever the window itself lives (notebook + catalog)
@@ -5292,6 +5662,7 @@
         rec.maxAlternatives = 1;
         active = true;
         btn.classList.add('rec');
+        Vidi.log('vidi_mic', {});
         rec.onresult = function (ev) {
           var t = ev.results && ev.results[0] && ev.results[0][0] ? ev.results[0][0].transcript : '';
           if (t) { $('vidiInput').value = t; vidiAsk(); }
@@ -5384,11 +5755,24 @@
           greet();                               // plan-aware; silent without a plan
         }
         renderVidiChips();
-        // First question ever on this device: open the window once so the
-        // student MEETS Vidi. After that, respect what they chose.
+        // First question ever on this device: START MINIMISED (founder,
+        // 2026-09-02). The window used to open itself here so the student would
+        // MEET Vidi — but measured on a phone it covers the notebook page from
+        // the first ruled line down, so the very first thing every new student
+        // saw was a chat panel, not the answer with its marks. The answer is
+        // what the book is; Vidi is the help beside it. The pill is left
+        // PULSING (markUnread) so meeting Vidi is one tap away and the intro
+        // still sits unread in the thread. After the first visit, respect what
+        // the student chose. Watch vidi_open vs open_q: if the pill is too
+        // quiet a nudge belongs on the pill, not back on top of the answer.
         var w = Vidi.getWin();
-        if (!w || w.open) openWin(); else minWin();
-        Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
+        if (!w) { minWin(true); markUnread(); }
+        else if (w.open) openWin(); else minWin(true);
+        Vidi.log('open_q', {
+        qid: question.question_id, cut: cut.key,
+        unit: (question.subject || 'physics') + '-' + question.unit.number,
+        subject: question.subject || 'physics'
+      });
       },
       /** View change (catalog / exam-eve). Keeps the strip current, and on the
           catalog pulses the pill until the intro has been seen. */
@@ -5399,6 +5783,7 @@
       /** The fab on the CATALOG opens the home conversation (plan status /
           onboarding). On the notebook it re-opens the question thread as-is. */
       openHome: function () {
+        Vidi.log('vidi_open', { view: currentView });
         openWin();
         if (currentView !== 'notebook') renderHome();
       },
@@ -5492,7 +5877,7 @@
     var weak = [];
     for (var k = 0; k < u.questions.length; k++) {
       var e = u.questions[k];
-      if (!e.question_id) continue;
+      if (!e.question_id || !isPaperQtype(e.section)) continue;   // exam work only
       var h = Vidi.checkFor(e.question_id);
       if (h && h.total > 0 && h.best < h.total) weak.push({ e: e, r: h.best / h.total, h: h });
     }
@@ -5506,7 +5891,7 @@
       for (var m = 0; m < u.questions.length; m++) {
         if (most.length >= 7 - weak.length) break;
         var me = u.questions[m];
-        if (me.question_id && !inWeak[me.ref] && me.stars === st) most.push(me);
+        if (me.question_id && isPaperQtype(me.section) && !inWeak[me.ref] && me.stars === st) most.push(me);
       }
     }
 
@@ -5650,8 +6035,36 @@
     // The email arrives a moment later; repaint so the chip shows the real
     // initial rather than the placeholder dot.
     Auth.loadProfile(function () { Auth.paintChip(); });
+    // Read BEFORE Sync.init() mints one: afterwards every device looks old.
+    // This is what separates a first-ever visit from a return on this browser.
+    var hadDevice = null;
+    try { hadDevice = !!localStorage.getItem('pm_device_id'); } catch (e) {}
     Sync.init();
     Gate.init();
+    // BEFORE route(): a remembered door choice decides WHICH YEAR's catalog the
+    // student sees, and on a multi-stream artifact route() would otherwise paint
+    // the whole book — both years at once — for anyone returning with a choice
+    // already made. No-op on a single-stream build.
+    Door.restore();
+    // ONE app_open per page load, emitted last so Door.restore() has settled
+    // and the track/year it reports is the one the student actually sees.
+    // `newdev` distinguishes a first-ever visit from a return on this browser:
+    // read BEFORE Sync mints an id, which init() above has already done, so the
+    // key is present exactly when the device is not new to us.
+    (function () {
+      var t = null;
+      try { t = Door.chosen(); } catch (e) {}
+      var ref = '';
+      try { ref = document.referrer ? new URL(document.referrer).host : ''; } catch (e) {}
+      Vidi.log('app_open', {
+        track: (t && t.group) || null,
+        year: (t && t.year) || null,
+        ref: ref.slice(0, 60),
+        w: window.innerWidth, h: window.innerHeight,
+        signed_in: (function () { try { return Auth.signedIn(); } catch (e) { return false; } })(),
+        newdev: hadDevice === false
+      });
+    })();
     route();
     window.addEventListener('hashchange', route);
   });

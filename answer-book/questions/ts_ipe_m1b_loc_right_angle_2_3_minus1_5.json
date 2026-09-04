@@ -53,7 +53,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
+        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are fixed.",
+        "memory_tip": "P is the point that moves; A and B are fixed.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "label": "Draw the right angle at P",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The right angle sits at P, so AB is the HYPOTENUSE — that is the whole reason the condition becomes PA² + PB² = AB² with AB alone on the right.",
+        "memory_tip": "The right angle sits at P, so AB is the HYPOTENUSE — that is why AB alone is on the right.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That triangle APB is sketched with the right angle marked at P and AB as the hypotenuse. Naming the drawing is full credit — it cannot be spoken.",
@@ -189,6 +191,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A right angle at P means the triangle APB is right angled AT P, so AB is its hypotenuse and Pythagoras applies as PA² + PB² = AB². Writing this line earns the mark on its own.",
+        "memory_tip": "Right angle AT P means AB is the hypotenuse: PA² + PB² = AB². That line earns the mark on its own.",
         "lines": [
           "Given condition: ∠APB = 90°",
           "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
@@ -218,7 +221,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Trying to use the slope condition m₁m₂ = −1 and then losing the sign."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
         ]
       },
       {
@@ -228,6 +231,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
+        "memory_tip": "The condition is already squared, so no square root appears anywhere in this line.",
         "lines": [
           "⇒ [(x−2)² + (y−3)²] + [(x+1)² + (y−5)²] = (2+1)² + (3−5)²"
         ],
@@ -266,6 +270,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "memory_tip": "Every x² and y² survives with the SAME coefficient — that identifies a circle. Divide by it.",
         "lines": [
           "⇒ (x² − 4x + 4) + (y² − 6y + 9) + (x² + 2x + 1) + (y² − 10y + 25) = 9 + 4",
           "⇒ 2x² + 2y² − 2x − 16y + 39 = 13",
@@ -302,9 +307,10 @@
         "why": "The locus of a point that sees a fixed segment at a right angle is the circle on that segment as diameter, so a circle is the expected shape and a check on the algebra.",
         "common_mistakes": [
           "Forgetting to divide by the common factor 2 at the end.",
-          "Losing a sign when expanding a bracket like (y − 4)²."
+          "Losing a sign when expanding (y − 5)², which gives −10y."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The right angle is at P, so AB is the hypotenuse: AB² stands alone on the right and is a plain number, 13. Put a distance from P there instead and the answer stops being a circle."
 }

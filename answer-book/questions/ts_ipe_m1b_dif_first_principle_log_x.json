@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of log x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Write it as one logarithm",
+      "marks": 1
+    },
+    {
+      "label": "Match the standard limit",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(ix). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you combine the two logarithms and which standard limit finishes it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. log here is the natural logarithm to base e. The domain is x > 0, so x + h stays positive for small h.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = log x, x > 0  (logarithm to base e)",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [log(x + h) − log x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = log x, the natural logarithm, on x > 0.",
+          "accept": [
+            "write the first principle with f of x equal to log x",
+            "take the limit of log x plus h minus log x over h",
+            "log means natural log to base e and x is positive",
+            "first principle rasta, log x plus h minus log x by h",
+            "start from the definition of the derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log x",
+            "first principle",
+            "base e",
+            "x greater than zero"
+          ]
+        },
+        "why": "The definition is the marked move, and naming the base matters: the answer 1/x is the natural logarithm result, not the base-10 one.",
+        "common_mistakes": [
+          "Writing log(x + h) as log x + log h.",
+          "Quoting 1/x from the standard table with no limit work."
+        ],
+        "memory_tip": "Definition first. log(x + h) is the logarithm of the whole of x + h."
+      },
+      {
+        "id": "s2_one_log",
+        "kind": "equation",
+        "label": "Write it as one logarithm",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Dividing inside the logarithm gives the 1 + h/x form the standard limit needs. Note that (x + h)/x is 1 + h/x, not h/x.",
+        "lines": [
+          "log A − log B = log(A/B), so",
+          "log(x + h) − log x = log((x + h)/x)",
+          "= log(1 + h/x)",
+          "f′(x) = lim(h → 0) (1/h) log(1 + h/x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log A − log B = log(A/B) is used, giving log(1 + h/x).",
+          "accept": [
+            "log minus log is log of the quotient",
+            "log of x plus h by x is log of one plus h by x",
+            "combine the two logarithms into a single logarithm",
+            "log minus log ni log of quotient ga rasta",
+            "the argument becomes one plus h by x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log of the quotient",
+            "one plus h by x",
+            "combine the logs"
+          ]
+        },
+        "why": "Two logarithms subtract into one, and the argument becomes 1 plus a small quantity — the exact shape the standard logarithm limit needs.",
+        "common_mistakes": [
+          "Writing log(x + h) − log x as log(x + h)/log x.",
+          "Simplifying (x + h)/x to h/x and losing the 1."
+        ],
+        "memory_tip": "log minus log is log of the quotient. Here that quotient is 1 + h/x."
+      },
+      {
+        "id": "s3_standard_limit",
+        "kind": "equation",
+        "label": "Match the standard limit",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The standard limit is log(1 + t)/t → 1, so the denominator must be t and not h. The substitution h = xt is what supplies the 1/x.",
+        "lines": [
+          "Put t = h/x. As h → 0, t → 0, and h = xt",
+          "f′(x) = lim(t → 0) (1/(xt)) log(1 + t)",
+          "= (1/x) · lim(t → 0) log(1 + t)/t",
+          "and lim(t → 0) log(1 + t)/t = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h/x is renamed t, h becomes xt, and the standard limit log(1 + t)/t = 1 is named.",
+          "accept": [
+            "put t equal to h by x so the denominator becomes t",
+            "the standard limit is log of one plus t by t equals one",
+            "h becomes x t so one by x comes outside",
+            "t ni h by x ga substitute cheste one by x bayata vasthundi",
+            "match the denominator to the quantity added to one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log one plus t by t",
+            "t equal to h by x",
+            "one by x",
+            "standard limit"
+          ]
+        },
+        "why": "The standard limit holds only when the denominator equals the quantity added to 1. Renaming h/x as t makes that true and leaves 1/x outside the limit.",
+        "common_mistakes": [
+          "Using lim (log(1 + h/x))/h = 1, which is 1/x, not 1.",
+          "Renaming the argument but forgetting that h itself becomes xt."
+        ],
+        "memory_tip": "The standard limit needs the same small quantity above and below: log(1 + t) over t."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 1/x came from the substitution, not from the limit — the limit itself contributes only 1. Keep the domain x > 0 beside the answer.",
+        "lines": [
+          "f′(x) = (1/x) · lim(t → 0) log(1 + t)/t",
+          "= (1/x) · 1",
+          {
+            "text": "∴ d/dx (log x) = 1/x,  x > 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard limit is 1, so the derivative is 1/x for x > 0.",
+          "accept": [
+            "the answer is one by x",
+            "the limit is one so what is left is one by x",
+            "derivative of log x is one by x for positive x",
+            "one by x answer vasthundi",
+            "the standard limit contributes one and the one by x stays"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by x",
+            "the limit is one",
+            "x greater than zero"
+          ]
+        },
+        "why": "Every factor is now accounted for: the 1/x is outside the limit and the limit is 1, so nothing is left to evaluate.",
+        "common_mistakes": [
+          "Giving 1/(x + h) by taking the limit in only part of the expression.",
+          "Giving (log x)/x by cancelling the wrong thing."
+        ],
+        "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1."
+      }
+    ]
+  },
+  "insider_note": "Combine the two logarithms into log(1 + h/x) before taking the limit. Then log(1 + t)/t → 1 with t = h/x, and the 1/x left outside is the answer."
+}

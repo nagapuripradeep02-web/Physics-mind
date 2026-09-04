@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_cot_inverse_x3_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of (Cot⁻¹(x³))².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the outer square",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate Cot⁻¹(x³) and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 5. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −3.2628233 at x = 0.7 against −6x²Cot⁻¹(x³)/(1 + x⁶) = −3.2628233, and −0.3138460 at x = 1.5 against −0.3138460. The book prints the stem with a lower-case cot⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cot⁻¹, matching the 500-plus inverse-function lines already in the bank."
+  },
+  "recall_prompt": "Say how you would do this one — say which layer you differentiate first and what sign the Cot⁻¹ derivative carries.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer_square",
+        "kind": "equation",
+        "label": "Differentiate the outer square",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The outermost operation is the square, not the inverse function. Differentiate it first and carry Cot⁻¹(x³) unchanged inside the second factor.",
+        "memory_tip": "Whatever is written last on the outside is differentiated first. Here the small 2 sits outside the bracket, so the square comes first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = (Cot⁻¹(x³))²",
+          "Take u = Cot⁻¹(x³). Then y = u² and d/dx(u²) = 2u · du/dx",
+          "∴ dy/dx = 2·Cot⁻¹(x³) · d/dx(Cot⁻¹(x³))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the square is the outer layer, so dy/dx = 2·Cot⁻¹(x³) times the derivative of Cot⁻¹(x³).",
+          "accept": [
+            "the square is outside so differentiate it first",
+            "u squared gives two u times du by dx",
+            "two times cot inverse x cubed times its own derivative",
+            "square bayata undi kabatti daanni mundu cheyyali",
+            "take u as cot inverse x cubed and differentiate u squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two u",
+            "cot inverse",
+            "x cubed",
+            "square first"
+          ]
+        },
+        "why": "Reading the layers in the right order is the only decision here. Differentiating the inverse function first and squaring afterwards changes the expression completely.",
+        "common_mistakes": [
+          "Differentiating Cot⁻¹ first and then squaring the result.",
+          "Writing 2·Cot⁻¹(x³) alone, with no further derivative attached."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate Cot⁻¹(x³) and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two things are checked here: the minus sign that belongs to the Cot⁻¹ derivative, and the denominator, which is 1 + x⁶ because (x³)² = x⁶.",
+        "memory_tip": "Tan⁻¹ is positive and Cot⁻¹ is the same expression with a minus in front. The pair Sin⁻¹ and Cos⁻¹ works the same way.",
+        "lines": [
+          "For v = x³,  d/dx(Cot⁻¹v) = −1/(1 + v²) · dv/dx  and  dv/dx = 3x²",
+          "(x³)² = x⁶, so d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶)",
+          "∴ dy/dx = 2·Cot⁻¹(x³) · (−3x²/(1 + x⁶))",
+          {
+            "text": "∴ d/dx[(Cot⁻¹(x³))²] = −6x²·Cot⁻¹(x³)/(1 + x⁶)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Cot⁻¹(x³)) = −3x²/(1 + x⁶), giving −6x²·Cot⁻¹(x³)/(1 + x⁶).",
+          "accept": [
+            "cot inverse differentiates with a minus one over one plus v squared",
+            "the denominator is one plus x to the six",
+            "the answer is minus six x squared cot inverse x cubed over one plus x power six",
+            "cot inverse ki minus sign vasthundi, denominator one plus x power six",
+            "three x squared comes from x cubed and the sign is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus sign",
+            "one plus x power six",
+            "three x squared",
+            "minus six x squared"
+          ]
+        },
+        "why": "The minus sign and the x⁶ are the two places this question is lost. Squaring x³ to get x⁶ is easy to skip when the working is done quickly.",
+        "common_mistakes": [
+          "Using +1/(1 + v²), which is the Tan⁻¹ derivative, and losing the minus sign.",
+          "Writing 1 + x³ or 1 + x⁹ in the denominator instead of 1 + x⁶."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two chain rules nest here: the square outside, then Cot⁻¹, then x³. The Cot⁻¹ derivative carries a MINUS sign, which is what makes the answer negative."
+}

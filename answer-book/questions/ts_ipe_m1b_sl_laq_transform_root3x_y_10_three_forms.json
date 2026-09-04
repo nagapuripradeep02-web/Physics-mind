@@ -1,0 +1,275 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_transform_root3x_y_10_three_forms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write the equation √3x + y + 10 = 0 in (a) slope-intercept form, (b) intercept form and (c) normal form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope-intercept form",
+      "marks": 2
+    },
+    {
+      "label": "Intercept form",
+      "marks": 2
+    },
+    {
+      "label": "Make the right side positive",
+      "marks": 1
+    },
+    {
+      "label": "Divide and read cos α, sin α",
+      "marks": 2
+    },
+    {
+      "label": "Name α and write the normal form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.158, chapter 3 THE STRAIGHT LINE, Long Answer question 16(vi). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the three parts the question names: two marks for each of the two easy forms, and four for the normal form, which is the only part with a sign condition in it — one for making the right side positive, two for dividing and reading cos α and sin α, and one for naming α. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every form was checked back against the original. The slope-intercept form y = −√3x − 10 rearranges to √3x + y + 10 = 0; the intercept form x/(−10/√3) + y/(−10) = 1 multiplies out to √3x + y = −10; and the normal form, with cos 210° = −√3/2 and sin 210° = −1/2, reads −√3x/2 − y/2 = 5, which multiplies by −2 back to √3x + y = −10. The value p = 5 also agrees with the direct perpendicular distance from the origin, |0 + 0 + 10|/√((√3)² + 1²) = 10/2 = 5."
+  },
+  "recall_prompt": "Say how you would do this — name all three forms, and say what condition fixes the angle in the normal form.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_intercept",
+        "kind": "equation",
+        "label": "Slope-intercept form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The first two marks. Quote y = mx + c, make y the subject, and then read off m and c separately.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(a) Slope-intercept form is  y = mx + c",
+          "√3x + y + 10 = 0  ⇒  y = −√3x − 10",
+          "∴ m = −√3  and  c = −10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That making y the subject gives y = −√3x − 10, so m = −√3 and c = −10.",
+          "accept": [
+            "make y the subject to get y equals minus root three x minus ten",
+            "slope intercept form is y equals m x plus c",
+            "the slope is minus root three and c is minus ten",
+            "y ni subject ga cheste minus root three x minus ten vasthundi",
+            "m equals minus root three and c equals minus ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y equals m x plus c",
+            "make y the subject",
+            "minus root three",
+            "minus ten"
+          ]
+        },
+        "why": "Slope-intercept form shows the slope and the y-intercept directly, so the only work is to make y the subject.",
+        "common_mistakes": [
+          "Writing m as √3 instead of −√3.",
+          "Reading c as 10."
+        ],
+        "memory_tip": "y = mx + c: make y the subject, then m is the number in front of x and c is what is left."
+      },
+      {
+        "id": "s2_intercept",
+        "kind": "equation",
+        "label": "Intercept form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The next two marks. Quote x/a + y/b = 1, move the constant to the right, and divide every term by it.",
+        "lines": [
+          "(b) Intercept form is  x/a + y/b = 1",
+          "√3x + y + 10 = 0  ⇒  √3x + y = −10",
+          "Dividing by −10,",
+          "√3x/(−10) + y/(−10) = 1",
+          "⇒ x/(−10/√3) + y/(−10) = 1",
+          "∴ a = −10/√3 = −10√3/3  and  b = −10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by −10 gives x/(−10/√3) + y/(−10) = 1.",
+          "accept": [
+            "move the constant right and divide by minus ten",
+            "intercept form is x over a plus y over b equals one",
+            "a is minus ten over root three and b is minus ten",
+            "constant tho divide chesthe intercept form vasthundi",
+            "x over minus ten by root three plus y over minus ten equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "divide by minus ten",
+            "a and b",
+            "equals one"
+          ]
+        },
+        "why": "Intercept form must have 1 on the right-hand side, and dividing by the constant is the only way to arrange that.",
+        "common_mistakes": [
+          "Leaving the x term as √3x/(−10) instead of x over a single number.",
+          "Writing a as −10 and b as −10/√3, swapping the two."
+        ],
+        "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide by the constant and then move the √3 into the denominator."
+      },
+      {
+        "id": "s3_make_positive",
+        "kind": "equation",
+        "label": "Make the right side positive",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it lands negative, change every sign.",
+        "lines": [
+          "(c) Normal form is  x cos α + y sin α = p,",
+          "where p > 0.",
+          "√3x + y = −10 gives a negative right side,",
+          "so change every sign:  −√3x − y = 10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p must be positive, so the signs are changed to give −√3x − y = 10.",
+          "accept": [
+            "normal form needs p positive so change every sign",
+            "minus root three x minus y equals ten",
+            "p is a distance so it cannot be negative",
+            "p positive undaali so signs anni marchali",
+            "make the right hand side positive first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p greater than zero",
+            "change every sign",
+            "normal form",
+            "positive"
+          ]
+        },
+        "why": "In normal form p is a perpendicular distance from the origin, so it must be positive, and that single condition is what fixes α.",
+        "common_mistakes": [
+          "Dividing by 2 while the right side is still negative.",
+          "Changing the sign of only the constant term."
+        ],
+        "memory_tip": "p is a distance, so p > 0. If the constant lands negative, change every sign at once."
+      },
+      {
+        "id": "s4_divide",
+        "kind": "equation",
+        "label": "Divide and read cos α, sin α",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Divide every term by √(a² + b²), then read cos α, sin α and p off the result in that order.",
+        "lines": [
+          "Here √((−√3)² + (−1)²) = √(3 + 1) = 2.",
+          "On dividing by 2, we get",
+          "x(−√3/2) + y(−1/2) = 10/2 = 5",
+          "∴ cos α = −√3/2,  sin α = −1/2,  p = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 2 gives cos α = −√3/2, sin α = −1/2 and p = 5.",
+          "accept": [
+            "divide by two which is the root of three plus one",
+            "cos alpha is minus root three by two and sin alpha is minus half",
+            "p is five",
+            "root a square plus b square tho divide cheyyali",
+            "root of three plus one is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two",
+            "cos alpha",
+            "sin alpha",
+            "p equals five"
+          ]
+        },
+        "why": "Dividing by √(a² + b²) makes the two coefficients into a cosine and a sine, because their squares then add to 1.",
+        "common_mistakes": [
+          "Writing √((√3)² + 1²) as √3 + 1.",
+          "Dividing the left side by 2 but leaving 10 on the right."
+        ],
+        "memory_tip": "√((√3)² + 1²) = √4 = 2, so this one divides by a whole number."
+      },
+      {
+        "id": "s5_alpha",
+        "kind": "boxed_final",
+        "label": "Name α and write the normal form",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Use the signs of cos α and sin α to name the quadrant, then write the finished normal form with the angle in it.",
+        "lines": [
+          "cos α and sin α are both negative, so α lies",
+          "in the third quadrant.",
+          "The related acute angle is 30°,",
+          "so α = 180° + 30° = 210°",
+          {
+            "text": "∴ x cos 210° + y sin 210° = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both being negative puts α in the third quadrant, so α = 210°.",
+          "accept": [
+            "both are negative so alpha is in the third quadrant",
+            "alpha is two hundred and ten degrees",
+            "x cos two ten plus y sin two ten equals five",
+            "rendu negative so third quadrant, alpha two ten",
+            "one eighty plus thirty gives two ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "third quadrant",
+            "two hundred and ten degrees",
+            "alpha",
+            "normal form"
+          ]
+        },
+        "why": "The signs of cos α and sin α together name one quadrant, and that is what turns the pair of values into a single angle α.",
+        "common_mistakes": [
+          "Naming α as 30° from the size of the numbers, ignoring the two minus signs.",
+          "Using 60° as the related angle, from cos α = −√3/2 read as a sine."
+        ],
+        "memory_tip": "Both cosine and sine negative means the third quadrant, so α = 180° + the related acute angle."
+      }
+    ]
+  }
+}

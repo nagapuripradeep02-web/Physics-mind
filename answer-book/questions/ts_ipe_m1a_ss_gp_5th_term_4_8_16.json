@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_gp_5th_term_4_8_16",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the 5th term of the G.P. 4, 8, 16, …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a and r and state the nth term formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute n = 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula for the nth term of a G.P. and say what a and r are here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_a_and_r",
+        "kind": "equation",
+        "label": "Find a and r and state the nth term formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both a and r must be named. Divide to get the ratio, never subtract — an A.P. has a common difference, a G.P. has a common ratio.",
+        "memory_tip": "The power on r is one less than the term number, because the first term carries no r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For the G.P. 4, 8, 16, …",
+          "a = 4  and  r = 8/4 = 2",
+          "The nth term of a G.P. is  tₙ = arⁿ⁻¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 4, r = 2, and the nth term of a G.P. is arⁿ⁻¹.",
+          "accept": [
+            "first term is four and the common ratio is two",
+            "divide the second term by the first to get the ratio",
+            "the nth term of a G P is a r to the power n minus one",
+            "ratio ki divide cheyyali, so r equals two",
+            "state the nth term formula before substituting"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common ratio",
+            "a r to the n minus one",
+            "four",
+            "two"
+          ]
+        },
+        "why": "The ratio has to be read off the given terms before any formula is used, and writing tₙ = arⁿ⁻¹ earns a mark on its own even if the arithmetic then slips.",
+        "common_mistakes": [
+          "Taking r as 8 − 4 = 4, which is a common difference and belongs to an A.P.",
+          "Writing the nth term as arⁿ, which returns the 6th term when n = 5."
+        ]
+      },
+      {
+        "id": "s2_fifth_term",
+        "kind": "boxed_final",
+        "label": "Substitute n = 5",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Show ar⁴ before the number. Writing the terms out — 4, 8, 16, 32, 64 — is a fair check of the answer.",
+        "memory_tip": "Doubling 4 four times gives 8, 16, 32, 64, and 64 is the fifth term.",
+        "lines": [
+          "t₅ = ar⁵⁻¹ = ar⁴",
+          "= 4 × 2⁴ = 4 × 16",
+          {
+            "text": "∴ t₅ = 64",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t₅ = ar⁴ = 4 × 16 = 64.",
+          "accept": [
+            "the fifth term is a r to the fourth",
+            "four times two to the fourth is sixty four",
+            "two to the power four is sixteen and four sixteens are sixty four",
+            "four into sixteen equals sixty four vasthundi",
+            "the answer is sixty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a r to the fourth",
+            "sixteen",
+            "sixty four",
+            "two to the four"
+          ]
+        },
+        "why": "With a = 4 and r = 2 the fourth power of 2 is 16, so the whole answer is one multiplication. Writing 2⁴ before evaluating it keeps the power visible for the examiner.",
+        "common_mistakes": [
+          "Multiplying the power instead of raising it: 4 × 2 × 4 = 32.",
+          "Using 2⁵ = 32 and giving 128, which is the 6th term."
+        ]
+      }
+    ]
+  }
+}

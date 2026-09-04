@@ -81,7 +81,7 @@
           "The effect is therefore used to tell a",
           "colloidal solution from a true solution."
         ],
-        "why": "Scattering is strong only when the particle is about as large as the wavelength of the light. Colloidal particles, from 1 nm to 1000 nm across, are in that range; the ions and molecules of a true solution are about a hundred times smaller, so their scattering is too weak to see. This size difference is what turns the effect into a test.",
+        "why": "Scattering is strong only when the particle is not much smaller than the wavelength of the light. Colloidal particles are large enough for this; the ions and molecules of a true solution are smaller than 1 nm, so their scattering is far too weak to see. This size difference is what turns the effect into a test.",
         "common_mistakes": [
           "Writing that a true solution also shows the effect faintly. In the exam answer a true solution shows no Tyndall effect.",
           "Giving the reason as the number of particles. It is the size of the particle compared with the wavelength of light."

@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_sum_squares_8r2_right_angled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, if a² + b² + c² = 8R², prove that the triangle is right angled.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the sine rule",
+      "marks": 1
+    },
+    {
+      "label": "Pair two of the squares",
+      "marks": 1
+    },
+    {
+      "label": "Add the third square",
+      "marks": 1
+    },
+    {
+      "label": "Read off the right angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.130, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — the sine rule, the pair of squares, the third square, and reading the right angle off the product. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring, in the direction the question asks and against a control: for a = 3, b = 4, c = 5 the condition holds (50 = 8R² = 50) and C is 90°, and for a = 5, b = 12, c = 13 it holds (338 = 338) with C again 90°; for the non-right a = 4, b = 5, c = 6 the two sides are 77 and 73.14, and for a = 7, b = 8, c = 9 they are 194 and 176.4. The intermediate identity sin²A + sin²B + sin²C = 2 + 2 cos A cos B cos C was checked separately on all four triangles. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use_the_sine_rule",
+        "kind": "equation",
+        "label": "Use the sine rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Each side squared gives 4R² sin², so R² cancels throughout and the condition becomes sin²A + sin²B + sin²C = 2.",
+        "memory_tip": "a = 2R sin A turns a² + b² + c² = 8R² into sin²A + sin²B + sin²C = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "By the sine rule a = 2R sin A,",
+          "b = 2R sin B, c = 2R sin C",
+          "Given a² + b² + c² = 8R²",
+          "⇒ 4R²(sin²A + sin²B + sin²C) = 8R²",
+          "⇒ sin²A + sin²B + sin²C = 2   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 2R sin A and so on, so a² + b² + c² = 8R² becomes sin²A + sin²B + sin²C = 2.",
+          "accept": [
+            "put a equals two R sin A so each square gives four R squared sin squared",
+            "R squared cancels and the sum of the sine squares is two",
+            "the sine rule turns the side condition into an angle condition",
+            "sine rule vaadithe sin square sum two avuthundi",
+            "four R squared comes out and eight over four is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "use the sine rule"
+          ],
+          "heard_as": [
+            "two R sin A",
+            "sine rule",
+            "four R squared",
+            "sin squared",
+            "equals two"
+          ]
+        },
+        "why": "The sine rule removes every side, so the condition becomes a statement about the angles alone — and 'right angled' is itself a statement about an angle.",
+        "common_mistakes": [
+          "Using a = R sin A and losing the 2.",
+          "Cancelling R² from only some of the terms."
+        ]
+      },
+      {
+        "id": "s2_pair_two_of_the_squares",
+        "kind": "equation",
+        "label": "Pair two of the squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Lower the two squares to cos 2A and cos 2B, combine them, then use A + B = 180° − C so cos(A+B) = −cos C.",
+        "memory_tip": "sin²θ = (1 − cos2θ)/2, then cos2A + cos2B = 2cos(A+B)cos(A−B), and cos(A+B) = −cos C.",
+        "lines": [
+          "sin²A + sin²B",
+          "= (1 − cos2A)/2 + (1 − cos2B)/2",
+          "= 1 − ½(cos2A + cos2B)",
+          "= 1 − cos(A+B) cos(A−B)",
+          "= 1 + cos C cos(A−B)",
+          "   [∵ A + B = 180° − C]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A + sin²B = 1 − cos(A+B)cos(A−B), and since A + B = 180° − C this is 1 + cos C cos(A−B).",
+          "accept": [
+            "write each sine square as one minus cos two theta over two",
+            "cos two A plus cos two B is two cos A plus B cos A minus B",
+            "A plus B is one eighty minus C so cos A plus B is minus cos C",
+            "cos A plus B ante minus cos C, so plus cos C cos A minus B vasthundi",
+            "the pair becomes one plus cos C cos A minus B"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I simplify"
+          ],
+          "heard_as": [
+            "cos two A",
+            "one minus cos",
+            "cos A plus B",
+            "minus cos C",
+            "cos A minus B"
+          ]
+        },
+        "why": "Turning the two squares into cos 2A and cos 2B lets the sum-to-product formula combine them into one term, and the angle sum then replaces cos(A+B) by −cos C.",
+        "common_mistakes": [
+          "Writing sin²A = (1 + cos2A)/2.",
+          "Writing cos(A+B) = cos C and losing the minus sign."
+        ]
+      },
+      {
+        "id": "s3_add_the_third_square",
+        "kind": "equation",
+        "label": "Add the third square",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Add sin²C = 1 − cos²C; the constant 2 matches the right side, so the rest must be zero. Then cos(A−B) + cos(A+B) = 2 cos A cos B.",
+        "memory_tip": "The two 1's make the 2 on the right, so everything left over must be zero: cos C[cos(A−B) − cos C] = 0.",
+        "lines": [
+          "sin²C = 1 − cos²C, so (1) becomes",
+          "2 + cos C cos(A−B) − cos²C = 2",
+          "⇒ cos C[cos(A−B) − cos C] = 0",
+          "Now −cos C = cos(A+B), so",
+          "cos(A−B) − cos C",
+          "= cos(A−B) + cos(A+B) = 2 cos A cos B"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding sin²C = 1 − cos²C leaves cos C[cos(A−B) − cos C] = 0, and that cos(A−B) − cos C = cos(A−B) + cos(A+B) = 2 cos A cos B.",
+          "accept": [
+            "sin squared C is one minus cos squared C so the twos match and the rest is zero",
+            "take cos C common and the bracket is cos A minus B minus cos C",
+            "minus cos C is cos A plus B so the bracket is two cos A cos B",
+            "rendu ones kalisi two avuthai, migilinadi zero",
+            "the whole thing reduces to a product equal to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "add the third one"
+          ],
+          "heard_as": [
+            "sin squared C",
+            "cos squared C",
+            "cos C common",
+            "two cos A cos B",
+            "zero"
+          ]
+        },
+        "why": "Once the third square is added the two constants make the 2 that the condition already gives, so everything else must add to zero — and that leaves a single product equal to zero.",
+        "common_mistakes": [
+          "Writing sin²C = 1 + cos²C.",
+          "Cancelling cos C out of the product; cos C may itself be zero, which is the answer."
+        ]
+      },
+      {
+        "id": "s4_read_off_the_right_angle",
+        "kind": "boxed_final",
+        "label": "Read off the right angle",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark. The product 2 cos A cos B cos C = 0 forces one cosine to be zero, and inside a triangle that means that angle is 90°.",
+        "memory_tip": "A product of cosines is zero only if one cosine is zero, and in a triangle cos X = 0 means X = 90°.",
+        "lines": [
+          "∴ cos C · 2 cos A cos B = 0",
+          "⇒ 2 cos A cos B cos C = 0",
+          "So cos A, cos B or cos C is zero.",
+          "Each angle lies between 0° and 180°, and",
+          "the only such angle with zero cosine is 90°.",
+          {
+            "text": "∴ △ABC is right angled",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 cos A cos B cos C = 0 forces one of the cosines to be zero, and an angle of a triangle with zero cosine is 90°, so the triangle is right angled.",
+          "accept": [
+            "a product is zero so one of the cosines is zero",
+            "cos of an angle in a triangle is zero only at ninety degrees",
+            "so one of A B or C is ninety and the triangle is right angled",
+            "product zero ante one cosine zero, ante aa angle ninety",
+            "it does not say which vertex, only that one angle is ninety"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "so C is ninety"
+          ],
+          "heard_as": [
+            "product is zero",
+            "cos A cos B cos C",
+            "ninety degrees",
+            "right angled"
+          ]
+        },
+        "why": "A product is zero only when one of its factors is zero, and in a triangle the only angle whose cosine is zero is 90°. The condition is symmetric in A, B and C, so it does not say which vertex carries the right angle.",
+        "common_mistakes": [
+          "Concluding C = 90° only — the condition is symmetric, so any one of the three may be the right angle.",
+          "Dividing by cos A cos B cos C, which removes the answer."
+        ]
+      }
+    ]
+  }
+}

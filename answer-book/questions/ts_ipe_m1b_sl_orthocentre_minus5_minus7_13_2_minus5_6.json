@@ -53,6 +53,7 @@
         "label": "Set up the orthocentre",
         "marks": 1,
         "margin_note": "First mark. The orthocentre is where the three altitudes meet. An altitude runs through one vertex PERPENDICULAR to the opposite side, so every altitude needs two things: a point and a perpendicular slope.",
+        "memory_tip": "Altitudes meet at the orthocentre; each is a vertex plus the opposite side's perpendicular.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark is the whole definition of an altitude.",
+        "memory_tip": "Two altitudes are enough — the third is automatic.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a triangle ABC is sketched with two altitudes drawn and their meeting point marked O. Naming the drawing is full credit — it cannot be spoken.",
@@ -165,7 +167,7 @@
             {
               "type": "stroke",
               "id": "alt_b",
-              "d": "M 45 190 L 190 118",
+              "d": "M 45 190 L 174 94",
               "ms": 520,
               "pen": "pencil",
               "wipe": "x"
@@ -173,14 +175,14 @@
             {
               "type": "stroke",
               "id": "rt_b",
-              "d": "M 184 106 L 195 112 L 189 123",
+              "d": "M 181 103 L 172 110 L 165 101",
               "ms": 180,
               "pen": "pencil"
             },
             {
               "type": "stroke",
               "id": "dot_o",
-              "d": "M 129 155 A 3 3 0 1 0 135 155 A 3 3 0 1 0 129 155",
+              "d": "M 129 125 A 3 3 0 1 0 135 125 A 3 3 0 1 0 129 125",
               "ms": 200,
               "w": 3
             },
@@ -215,7 +217,7 @@
               "type": "label",
               "id": "lbl_o",
               "x": 142,
-              "y": 150,
+              "y": 120,
               "text": "O",
               "ms": 200,
               "em": true
@@ -229,6 +231,7 @@
         "label": "First altitude through A",
         "marks": 2,
         "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, flip-and-negate it for the perpendicular, then the point-slope form through the vertex.",
+        "memory_tip": "Slope of the OPPOSITE side first, then flip and negate, then point-slope.",
         "lines": [
           "Step-1: Finding altitude through A(−5, −7):",
           "Slope of BC is m = (6 − 2)/(−5 − 13) = 4/(−18) = −2/9",
@@ -271,7 +274,8 @@
         "kind": "equation",
         "label": "Second altitude through B",
         "marks": 2,
-        "margin_note": "Two marks. The same three moves from a different vertex. Two altitudes are enough — the third passes through their intersection automatically.",
+        "margin_note": "Two marks. Here the opposite side AC is VERTICAL, so its altitude is horizontal: write y = 2, the y-coordinate of B, with no slope formula at all. Two altitudes are enough — the third passes through their intersection automatically.",
+        "memory_tip": "A vertical side has a horizontal altitude: write y = the vertex's y-coordinate and use no slope formula.",
         "lines": [
           "Step-2: Finding altitude through B(13, 2):",
           "A(−5, −7) and C(−5, 6) share x = −5, so AC is a VERTICAL line",
@@ -281,12 +285,12 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the altitude through B, perpendicular to AC, is found the same way.",
+          "must_convey": "That AC is vertical, so the altitude through B is the horizontal line y = 2.",
           "accept": [
-            "do the same from B using the slope of A C",
-            "find the slope of A C, its perpendicular, and the line through B",
-            "the second altitude is perpendicular to A C through B",
-            "A C slope teesi B gundaa second altitude rayali",
+            "A C is vertical, so the altitude through B is horizontal",
+            "the altitude through B is y equals two",
+            "a vertical side gives a horizontal altitude, so no slope is needed",
+            "A C vertical ga undi kabatti altitude horizontal, y equals two",
             "this gives the second altitude equation"
           ],
           "reject": [
@@ -295,8 +299,9 @@
             "then I get it"
           ],
           "heard_as": [
-            "slope of A C",
-            "perpendicular",
+            "vertical side",
+            "horizontal altitude",
+            "y equals two",
             "altitude through B",
             "second equation"
           ]
@@ -304,7 +309,7 @@
         "why": "Two altitudes fix the point. The third is a check, not extra information — all three are concurrent by the theorem.",
         "common_mistakes": [
           "Reusing the slope of BC for the second altitude.",
-          "Sign slip when the perpendicular slope is a negative fraction."
+          "Trying −1/m on AC, whose slope is undefined because the side is vertical."
         ],
         "mark_note": "Method"
       },
@@ -314,6 +319,7 @@
         "label": "Solve the pair",
         "marks": 3,
         "margin_note": "The last three marks. Two linear equations, one point. Like the circumcentre, this point may lie outside the triangle when the triangle is obtuse.",
+        "memory_tip": "Two linear equations, one point.",
         "lines": [
           "Step-3: Solving (1), (2), we get O;",
           "(1) ⇒ 9x − 2y + 31 = 0;   (2) ⇒ y = 2",
@@ -346,7 +352,7 @@
             "the point"
           ]
         },
-        "why": "In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, which is a quick sanity check when the numbers look surprising.",
+        "why": "Two altitudes meet at exactly one point, so this pair of equations has a single solution — and that point is the orthocentre.",
         "common_mistakes": [
           "Arithmetic slip in the elimination.",
           "Writing the coordinates the wrong way round."
@@ -354,5 +360,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "A and C share x = −5, so AC is vertical and its altitude is simply horizontal: y = 2, with no slope formula at all. Reaching for −1/m on a vertical side is where this question is lost."
 }

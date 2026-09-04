@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the alkali metals sodium, potassium, lithium and caesium have work functions near 2 eV (caesium 2.14 eV), and visible-light photons carry roughly 1.6 to 3.1 eV, so visible light can emit photoelectrons from them — the book's reason (very low work function) is correct. The book's example list also names calcium, zinc, cadmium and magnesium; those respond to ultraviolet rather than visible light, but the list is reproduced as the book prints it. A lecturer's pen tick marks this question in the source scan as one to expect."
+    "note": "From FAST TRACK IPE for Sr. Students, physics section, Ch.12 (printed p.42); the book prints no exam-year citations for this chapter. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked physically: the alkali metals sodium, potassium, lithium and caesium have work functions near 2 eV (caesium 2.14 eV), and visible-light photons carry roughly 1.6 to 3.1 eV, so visible light can emit photoelectrons from them. The book's example list also names calcium, zinc, cadmium and magnesium, whose work functions are higher (calcium 3.20 eV against 3.10 eV for a 400 nm photon, and zinc, cadmium and magnesium higher still), so those four need ultraviolet light. The example list is reproduced as the book prints it, but the book's blanket reason — that visible light is enough for all of them — is NOT reproduced: step s2 states the low work function as the reason and names the visible/ultraviolet split, so no line on this card claims visible light works for calcium, zinc, cadmium or magnesium. A lecturer's pen tick marks this question in the source scan as one to expect."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -82,30 +82,33 @@
         "kind": "boxed_final",
         "label": "Why they are called photosensitive",
         "marks": 1,
-        "mark_note": "Low work function, visible light works",
+        "mark_note": "Low work function, suitable light works",
         "lines": [
-          "These metals have a very low work function.",
-          "Even a visible-light photon carries enough",
-          "energy to remove an electron, so they emit",
-          "photoelectrons under ordinary light. Because",
-          "light makes them emit electrons, they are",
-          "called photosensitive substances.",
+          "These metals have a low work function, so",
+          "light can remove an electron from them. For",
+          "sodium, potassium, lithium and caesium even",
+          "visible light is enough; calcium, zinc,",
+          "cadmium and magnesium need ultraviolet.",
+          "Because light of a suitable frequency makes",
+          "them emit electrons, they are called",
+          "photosensitive substances.",
           {
-            "text": "Low work function: visible light is enough",
+            "text": "Low work function: visible or UV light works",
             "style": "boxed"
           }
         ],
-        "margin_note": "Second mark. The reason is the low work function; connect it to visible light emitting photoelectrons.",
-        "why": "A visible photon carries about 1.6 to 3.1 eV. Only a metal whose work function sits at or below this range can emit electrons under visible light, which is why low work function is the whole reason.",
+        "margin_note": "Second mark. The reason is the low work function; connect it to light emitting photoelectrons.",
+        "why": "A visible photon carries about 1.6 to 3.1 eV. Sodium, potassium, lithium and caesium have work functions near 2 eV, so visible light is already enough for them. Calcium (3.2 eV), magnesium, cadmium and zinc are higher, so they need ultraviolet light instead. All eight are still photosensitive because their work functions are low enough for light to remove an electron, unlike platinum at 5.65 eV.",
         "common_mistakes": [
-          "Saying they are sensitive because they are metals. All the examples are metals; the low work function is what sets them apart.",
-          "Writing high work function. The work function must be LOW for visible light to be enough."
+          "Saying they are sensitive because they are metals. All the examples are metals; the low work function is the reason.",
+          "Writing high work function. The work function must be LOW for light of a suitable frequency to remove an electron.",
+          "Saying visible light works for every metal in the list. Calcium, zinc, cadmium and magnesium need ultraviolet light."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That these substances have a very low work function, so even visible light can make them emit photoelectrons.",
+          "must_convey": "That these substances have a low work function, so light of a suitable frequency makes them emit photoelectrons.",
           "accept": [
-            "very low work function",
+            "low work function",
             "visible light can emit electrons",
             "light makes them give out electrons"
           ],
@@ -118,7 +121,7 @@
             "photoelectrons"
           ]
         },
-        "memory_tip": "Photo plus sensitive: sensitive even to ordinary visible light, because the work function is low."
+        "memory_tip": "Photo plus sensitive: light emits electrons from them, because the work function is low."
       }
     ]
   },

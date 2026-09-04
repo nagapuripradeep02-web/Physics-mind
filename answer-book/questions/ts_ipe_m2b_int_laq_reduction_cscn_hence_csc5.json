@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_reduction_cscn_hence_csc5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Obtain the reduction formula for I_n = ∫ cosecⁿx dx, and hence find ∫ cosec⁵x dx.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up integration by parts",
+      "marks": 1
+    },
+    {
+      "label": "Apply by parts and use cot²x = csc²x − 1",
+      "marks": 2
+    },
+    {
+      "label": "Solve for the reduction formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitute n = 5, 3, 1 for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.28 (PDF page 27) — LAQ chapter 3 ‘Integration’, answer 18.2, the twin of 18.1 on the same ★★★ SSP 28 page. Printed appearances: AP 19 · TS 19 (partly obscured by a sticker in the scan; TS year read from the visible fragment). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). Where this book is wrong — the task's own flagged suspect, confirmed: the book's printed final line drops the leading minus sign on the −csc³x·cotx/4 term, printing it as though the term were positive, even though the SAME derivation's immediately preceding lines (‘I₅ = −csc³x cotx/4 + …’) carry that minus sign correctly. Differentiating the book's printed (unsigned) final line does not return csc⁵x; differentiating −csc³x cotx/4 − (3/8)cscx cotx + (3/8)log|tan(x/2)| + c does. This card keeps the mathematically correct minus sign and records the book's printed slip here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the one reduction in the chapter where the book's own printed final answer needs a correction — double check the sign on the csc³x·cotx term against this card's boxed line before copying it into an exam script.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up integration by parts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given I_n = ∫ cosecⁿx dx",
+          "= ∫ cosecⁿ⁻²x · cosec²x dx",
+          "Take first function u = cosecⁿ⁻²x,",
+          "second v = cosec²x",
+          "Then ∫v dx = ∫cosec²x dx = −cotx"
+        ],
+        "why": "Peeling off csc²x (whose antiderivative is the known −cotx) leaves cscⁿ⁻²x to differentiate — the cosecant partner of the secⁿx split, now carrying a minus sign because ∫csc²x dx = −cotx.",
+        "common_mistakes": [
+          "Writing ∫cosec²x dx = +cotx, dropping the minus sign that belongs to this integral (unlike sec²x, which integrates to plain tanx).",
+          "Peeling off only one cscx instead of csc²x."
+        ],
+        "memory_tip": "∫cosec²x dx = −cotx (minus); ∫sec²x dx = +tanx (plus) — the two twins differ here."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "equation",
+        "label": "Apply by parts and use cot²x = csc²x − 1",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "By the by-parts rule, I_n",
+          "= −cosecⁿ⁻²x cotx −",
+          "∫(n−2)cosecⁿ⁻³x(−cscx cotx)(−cotx)dx",
+          "= −cosecⁿ⁻²x cotx − (n−2)∫cosecⁿ⁻²x cot²x dx",
+          "= −cosecⁿ⁻²x cotx −",
+          "(n−2)∫cosecⁿ⁻²x(cosec²x − 1)dx",
+          {
+            "text": "I_n = -\\csc^{n-2}x\\cot x - (n-2)\\left(I_n - I_{n-2}\\right)",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "cot²x = csc²x − 1 closes the loop back to I_n and I_{n−2} exactly as tan²x = sec²x − 1 does for secⁿx; the only difference is the leading term −cosecⁿ⁻²x cotx, which carries the minus sign picked up in the setup step, while the −(n−2)(I_n − I_{n−2}) part matches secⁿx term for term.",
+        "common_mistakes": [
+          "Dropping the minus sign carried from step 1 partway through this expansion.",
+          "Writing cot²x = 1 − csc²x with the sign reversed."
+        ],
+        "memory_tip": "Copy secⁿx's working, then put a minus sign in front of ONLY the leading power term (−cosecⁿ⁻²x cotx in place of +secⁿ⁻²x tanx) — the −(n−2)(I_n − I_{n−2}) part is exactly the same in both."
+      },
+      {
+        "id": "s3_reduction",
+        "kind": "boxed_final",
+        "label": "Solve for the reduction formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Result",
+        "lines": [
+          "I_n = −cosecⁿ⁻²x cotx − (n−2)I_n + (n−2)I_{n−2}",
+          "(n−1)I_n = −cosecⁿ⁻²x cotx + (n−2)I_{n−2}",
+          {
+            "text": "\\therefore\\ I_n = -\\frac{\\csc^{n-2}x\\cot x}{n-1} + \\frac{n-2}{n-1}I_{n-2}\\ \\dots(1)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "why": "Same algebra as secⁿx — collect I_n terms, divide by (n−1) — but the first term keeps the minus sign that was present from the very first line of this derivation.",
+        "common_mistakes": [
+          "Losing the minus sign in front of cosecⁿ⁻²x cotx/(n−1) at this step — this is exactly where the book's own printed error happens two steps later.",
+          "Dividing by n instead of (n−1)."
+        ],
+        "memory_tip": "The minus sign on the first term must survive every line to the very end — that is this question's whole trap."
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "boxed_final",
+        "label": "Substitute n = 5, 3, 1 for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "Put n = 5, 3, 1 successively in (1):",
+          "I₅ = −cosec³x cotx/4 + (3/4)I₃",
+          "I₃ = −cosecx cotx/2 + (1/2)I₁,",
+          "and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
+          "So I₃ = −cosecx cotx/2 + (1/2)log|tan(x/2)| + c",
+          "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
+          {
+            "text": "+ (3/8)log|tan(x/2)| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Odd n stops at I₁ = ∫cosecx dx = log|tan(x/2)|, the cosecant's own standard result — and the leading minus sign from every earlier line must still be there on the boxed final answer.",
+        "common_mistakes": [
+          "Dropping the leading minus sign on −cosec³x cotx/4 in the final line — this is precisely the book's own printed slip; a differentiation check catches it immediately.",
+          "Writing log|tan(x/2)| as log|tanx/2| without the half-angle grouping, which is a different function."
+        ],
+        "memory_tip": "Differentiate the final answer to check: only −cosec³x cotx/4 − (3/8)cosecx cotx + (3/8)log|tan(x/2)| gives back cosec⁵x."
+      }
+    ]
+  }
+}

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This question runs the other way: the intercepts are given, so they go straight into the denominators of x/a + y/b + z/c = 1.",
+        "memory_tip": "Intercepts a, b, c go into the denominators: x/2 + y/3 + z/4 = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer is in the plain ax + by + cz = d form the board expects.",
+        "memory_tip": "Common denominator 12, then multiply through for the plain form the board expects.",
         "lines": [
           "⇒ (6x + 4y + 3z)/12 = 1",
           {
@@ -125,5 +127,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The intercepts go underneath, never on top: x/2 + y/3 + z/4 = 1. The common denominator is 12, and every term including the 1 on the right gets multiplied by it."
 }

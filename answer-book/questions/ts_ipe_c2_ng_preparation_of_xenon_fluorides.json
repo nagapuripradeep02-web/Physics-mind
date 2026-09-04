@@ -85,7 +85,7 @@
           },
           "Conditions: 673 K and 1 bar pressure."
         ],
-        "why": "Xenon is kept in excess so that each xenon atom meets only enough fluorine for two bonds; with fluorine in excess the reaction continues to XeF₄ and XeF₆. This is why the book's printed 1 : 3 ratio cannot give XeF₂ — that ratio has fluorine in excess.",
+        "why": "Xenon is kept in excess so that each xenon atom meets only enough fluorine for two bonds; with fluorine in excess the reaction continues to XeF₄ and XeF₆. Some books print a 1 : 3 ratio for this step, but that ratio has fluorine in excess; write \"Xe in excess\".",
         "common_mistakes": [
           "Using excess fluorine for XeF₂. Fluorine in excess gives the higher fluorides; xenon is the one kept in excess here.",
           "Writing Xe + 2F₂ for XeF₂. Only one F₂ molecule is needed for the two fluorine atoms."
@@ -131,7 +131,7 @@
           "This is the largest excess of fluorine and",
           "the highest pressure of the three."
         ],
-        "why": "The highest fluoride needs the largest excess of fluorine and by far the highest pressure, which pushes the gases together. The temperature is lower than for XeF₄, so it is the pressure and the ratio, not the temperature, that give XeF₆. The book prints 600 K here; NCERT prints 573 K, which is the figure used.",
+        "why": "The highest fluoride needs the largest excess of fluorine and by far the highest pressure, which pushes the gases together. The temperature is lower than for XeF₄, so it is the pressure and the ratio, not the temperature, that give XeF₆. Some books print 600 K for this step; write 573 K.",
         "common_mistakes": [
           "Writing 873 K for XeF₆. The XeF₆ temperature, 573 K, is the LOWEST of the three, not the highest.",
           "Writing Xe + 6F₂ for XeF₆. Six fluorine atoms come from three fluorine molecules."

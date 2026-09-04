@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_y2_8x_and_ellipse_32",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves y² = 8x and 4x² + y² = 32.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 5(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you find where the curves meet, which root you reject and why, and what formula gives the angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Substituting y² = 8x into the ellipse leaves a quadratic in x alone. The root x = −4 must be rejected in writing, with the reason: y² = 8x forces x ≥ 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  y² = 8x   …(i)   and   4x² + y² = 32   …(ii)",
+          "Put y² = 8x into (ii):",
+          "4x² + 8x = 32   ⇒   x² + 2x − 8 = 0",
+          "(x + 4)(x − 2) = 0   ⇒   x = −4 or x = 2",
+          "From (i), y² = 8x ≥ 0, so x cannot be negative. Reject x = −4.",
+          "x = 2  ⇒  y² = 16  ⇒  y = ±4",
+          "∴ the curves meet at P(2, 4) and at (2, −4). Work at P(2, 4)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting y² = 8x into the ellipse gives x² + 2x − 8 = 0, x = 2 (rejecting x = −4), so the point is (2, 4).",
+          "accept": [
+            "substitute y squared equal to eight x into the second curve",
+            "four x squared plus eight x equals thirty two",
+            "x squared plus two x minus eight equals zero so x is two",
+            "y square eight x kabatti x negative undakoodadu",
+            "the point of intersection is two comma four",
+            "reject x equal to minus four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "x squared plus two x minus eight",
+            "reject minus four",
+            "two comma four"
+          ]
+        },
+        "why": "The angle between two curves is the angle between their tangents at a point they share, so the shared point must be found before any differentiation. Dividing 4x² + 8x = 32 through by 4 first keeps the numbers small.",
+        "common_mistakes": [
+          "Keeping x = −4 and finding an angle at a point that does not exist on the parabola.",
+          "Forgetting to divide by 4 and mis-factorising 4x² + 8x − 32 = 0.",
+          "Taking y = ±4 but then using x = −4 as the y-value."
+        ],
+        "memory_tip": "A parabola y² = 4ax has no point with x negative, so any negative x from the algebra is not on the curve."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Differentiate each curve implicitly, then substitute (2, 4). The 4 in 4x² becomes 8x, which is where the slope −4x/y comes from.",
+        "lines": [
+          "From (i):  2y (dy/dx) = 8  ⇒  dy/dx = 4/y",
+          "At P(2, 4):  m₁ = 4/4 = 1",
+          "From (ii):  8x + 2y (dy/dx) = 0  ⇒  dy/dx = −4x/y",
+          "At P(2, 4):  m₂ = −4(2)/4 = −2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = 4/y = 1 for the parabola and m₂ = −4x/y = −2 for the ellipse at (2, 4).",
+          "accept": [
+            "differentiate the parabola to get four by y",
+            "differentiate the ellipse to get minus four x by y",
+            "m one is one and m two is minus two",
+            "rendintini implicit ga differentiate chesi point substitute cheyyali",
+            "eight x plus two y dy by dx equals zero",
+            "the ellipse slope at two comma four is minus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four by y",
+            "minus four x by y",
+            "m one",
+            "m two",
+            "minus two"
+          ]
+        },
+        "why": "Each curve has its own tangent at the shared point, so two separate derivatives are needed. Substituting the point only after differentiating keeps both slopes correct.",
+        "common_mistakes": [
+          "Differentiating 4x² as 4x instead of 8x.",
+          "Writing the ellipse slope as −x/y, which is the circle formula, not this one.",
+          "Substituting x = 2 and y = 4 into the curve before differentiating."
+        ],
+        "memory_tip": "For any curve Ax² + By² = C the slope is −Ax/(By) — the circle case A = B = 1 is just the simplest example."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Here 1 + m₁m₂ = −1, so the fraction is negative before the modulus is taken. The modulus is what keeps the acute angle.",
+        "lines": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(1 − (−2))/(1 + (1)(−2))|",
+          "= |3/(−1)| = 3",
+          {
+            "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = |(m₁ − m₂)/(1 + m₁m₂)| = |3/(−1)| = 3, so θ = Tan⁻¹3.",
+          "accept": [
+            "tan theta is mod of m one minus m two by one plus m one m two",
+            "one plus one into minus two is minus one",
+            "the modulus turns minus three into three",
+            "modulus vaadithe acute angle vasthundi",
+            "the angle is tan inverse three",
+            "theta is about seventy one degrees thirty four minutes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "minus one",
+            "tan inverse three",
+            "seventy one",
+            "modulus"
+          ]
+        },
+        "why": "A negative value inside the modulus only means the difference of the two direction angles is obtuse. Taking the modulus reports the acute angle, which is the standard answer.",
+        "common_mistakes": [
+          "Reporting θ = Tan⁻¹(−3) and giving an obtuse angle.",
+          "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
+          "Writing the numerator as 1 + (−2) = −1 instead of 1 − (−2) = 3."
+        ],
+        "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
+      }
+    ]
+  },
+  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The surviving x = 2 gives y = ±4, and the angle is the same at both by symmetry."
+}

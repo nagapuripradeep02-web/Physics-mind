@@ -61,7 +61,7 @@
         "why": "The whole essay rests on one idea — where the last electron goes — so stating that basis first tells the examiner every block that follows is defined the same way.",
         "common_mistakes": [
           "Starting the four blocks without stating the basis of the classification.",
-          "Writing valence electron for differentiating electron. The differentiating electron is the last one added."
+          "Writing valence electron for differentiating electron. The differentiating electron is the electron added last."
         ],
         "memory_tip": "One question sorts every element: which sublevel did the last electron enter?",
         "margin_note": "An opening line, not a marked point — the eight marks sit on the four blocks below."
@@ -247,7 +247,7 @@
           "Counting eight groups by treating VIII as one. VIII spans three vertical columns, giving ten in all."
         ],
         "memory_tip": "Ten seats in the d orbitals, ten columns in the middle of the table.",
-        "margin_note": "Variable oxidation states links this block to the short answer question on transition elements."
+        "margin_note": "Write variable oxidation states. It is the d-block property the examiner looks for, and it is what the chemistry of the transition elements rests on."
       },
       {
         "id": "s6_f_block",

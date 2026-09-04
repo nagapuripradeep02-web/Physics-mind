@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_nearest_point_to_focus_is_vertex",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that the point on the parabola y² = 4ax, (a > 0), nearest to the focus is its vertex.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the focal distance and show it is smallest at x₁ = 0",
+      "marks": 1
+    },
+    {
+      "label": "Identify the nearest point as the vertex",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 129, the last answer in this chapter (book p.84 opens Hyperbola VSAQ chapter 15, confirming the boundary). No appearance tag is printed. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the focal distance and show it is smallest at x₁ = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for the focal distance formula and the reasoning that x₁ = 0 gives the minimum.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The focal distance of any point P(x₁,y₁) on y²",
+          "= 4ax is SP = x₁ + a",
+          "Every point on this parabola has x₁ ≥ 0,",
+          "and a is a fixed positive number,",
+          "so SP = x₁ + a is smallest when x₁ = 0"
+        ],
+        "why": "The focal distance formula SP = x₁ + a is an increasing function of x₁ alone, since a is fixed, so its smallest value over every point of the curve happens at the smallest possible x₁, which is 0.",
+        "common_mistakes": [
+          "Trying to minimise SP using calculus (differentiating) instead of the simpler direct argument that x₁ + a grows as x₁ grows.",
+          "Forgetting to state that x₁ ≥ 0 is what makes x₁ = 0 the smallest allowed value, not just any small number."
+        ],
+        "memory_tip": "SP = x₁ + a only grows as x₁ grows, so its smallest value on the curve is at the smallest x₁, which is 0."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Identify the nearest point as the vertex",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for identifying the minimising point as the vertex itself.",
+        "lines": [
+          "When x₁ = 0: y₁² = 4a(0) = 0 ⇒ y₁ = 0",
+          {
+            "text": "∴ x₁ = 0, y₁ = 0 — the vertex A(0, 0)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the minimising value x₁ = 0 back into the parabola's own equation pins down y₁ as well, and the resulting point (0,0) is exactly the vertex by definition.",
+        "common_mistakes": [
+          "Stopping at x₁ = 0 without finding y₁ and naming the point as the vertex.",
+          "Assuming without checking that y₁ = 0 follows automatically, rather than substituting x₁ = 0 into y₁² = 4ax₁."
+        ],
+        "memory_tip": "Setting x₁ = 0 in y₁² = 4ax₁ always gives y₁ = 0 too — that point is the vertex by definition."
+      }
+    ]
+  },
+  "insider_note": "This is a proof, not a calculation, so the final line has to name the vertex explicitly — simply stopping at x₁ = 0, y₁ = 0 without saying that this is the vertex misses the point of the question."
+}

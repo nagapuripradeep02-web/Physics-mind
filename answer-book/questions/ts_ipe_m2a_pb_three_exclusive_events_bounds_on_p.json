@@ -1,0 +1,303 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_three_exclusive_events_bounds_on_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "The probabilities of three mutually exclusive events are respectively given as (1 + 3p)/3, (1 − p)/4, (1 − 2p)/2. Prove that 1/3 ≤ p ≤ 1/2.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Every probability lies between 0 and 1",
+      "marks": 1
+    },
+    {
+      "label": "Bounds on p from each of the three probabilities",
+      "marks": 3
+    },
+    {
+      "label": "Bound on p from the sum of the three (mutually exclusive)",
+      "marks": 2
+    },
+    {
+      "label": "Intersect the four ranges",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 4 Probability, answer 40 (PDF p.40: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 40. Patterned on the weighting of answer 36 on book p.37 (set-up light, the main computation heavy): the principle 1, one mark for each of the three single-event bounds, 2 for the sum bound (the only place 'mutually exclusive' is used), 1 for the intersection. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: the four ranges are −1/3 ≤ p ≤ 2/3, −3 ≤ p ≤ 1, −1/2 ≤ p ≤ 1/2 and 1/3 ≤ p ≤ 13/3; the common part is 1/3 ≤ p ≤ 1/2 — agrees with the book. The sum simplifies as (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12 = (13 − 3p)/12, which the book also has."
+  },
+  "recall_prompt": "Say how you would prove the bounds on p — the fact about every probability, the three separate inequalities, the inequality from the sum, and how the four combine.",
+  "insider_note": "The sum inequality is the only step that uses \"mutually exclusive\", and it is the step that gives the lower bound 1/3. The single-event bounds alone give only p ≤ 1/2.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "Each probability is in [0, 1]",
+        "marks": 1,
+        "mark_note": "Principle",
+        "margin_note": "First mark. State the rule and write the three inequalities it gives before solving any of them.",
+        "memory_tip": "Every probability lies between 0 AND 1 — write the lower bound too, not just the upper.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "The probability of any event lies between 0 and 1.",
+            "style": "normal"
+          },
+          {
+            "text": "So 0 ≤ (1 + 3p)/3 ≤ 1, 0 ≤ (1 − p)/4 ≤ 1,",
+            "style": "eq"
+          },
+          {
+            "text": "0 ≤ (1 − 2p)/2 ≤ 1.",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every probability lies between 0 and 1, so each of the three given expressions is between 0 and 1.",
+          "accept": [
+            "every probability is between zero and one so each of the three expressions is between zero and one",
+            "each given probability satisfies zero less than or equal to it less than or equal to one",
+            "write zero to one bounds for all three expressions",
+            "prathi probability zero and one madhya untundi, so moodu expressions ki aa bounds rayali",
+            "the three expressions each lie in the closed interval zero to one"
+          ],
+          "reject": [
+            "use the definition",
+            "probability is positive",
+            "write the inequalities"
+          ],
+          "heard_as": [
+            "between zero and one",
+            "zero and one",
+            "each probability",
+            "closed interval"
+          ]
+        },
+        "why": "Nothing else is known about p. The only tools are that each expression is a probability, and that the three events cannot overlap.",
+        "common_mistakes": [
+          "Using only the upper bound 1 and forgetting the lower bound 0.",
+          "Starting from the sum without the single-event bounds."
+        ]
+      },
+      {
+        "id": "s2_single_bounds",
+        "kind": "equation",
+        "label": "Solve the three inequalities",
+        "marks": 3,
+        "mark_note": "One mark each",
+        "margin_note": "Three marks, one per inequality. Multiply through by the denominator, then isolate p. When dividing by a negative number, reverse the inequality signs.",
+        "memory_tip": "Multiply through by the denominator, then isolate p. Dividing by a negative REVERSES the signs.",
+        "lines": [
+          {
+            "text": "0 ≤ (1 + 3p)/3 ≤ 1 ⇒ 0 ≤ 1 + 3p ≤ 3",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ −1 ≤ 3p ≤ 2 ⇒ −1/3 ≤ p ≤ 2/3  …(1)",
+            "style": "eq"
+          },
+          {
+            "text": "0 ≤ (1 − p)/4 ≤ 1 ⇒ 0 ≤ 1 − p ≤ 4",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ −1 ≤ −p ≤ 3 ⇒ −3 ≤ p ≤ 1  …(2)",
+            "style": "eq"
+          },
+          {
+            "text": "0 ≤ (1 − 2p)/2 ≤ 1 ⇒ 0 ≤ 1 − 2p ≤ 2",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ −1 ≤ −2p ≤ 1 ⇒ −1/2 ≤ p ≤ 1/2  …(3)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the three inequalities gives −1/3 ≤ p ≤ 2/3, −3 ≤ p ≤ 1 and −1/2 ≤ p ≤ 1/2, reversing the signs when dividing by a negative.",
+          "accept": [
+            "the first gives minus one third to two thirds the second minus three to one and the third minus half to half",
+            "solve each inequality for p reversing the sign when dividing by a negative",
+            "from the three expressions p is between minus a third and two thirds, minus three and one, minus half and half",
+            "moodu inequalities solve cheste minus one by three to two by three, minus three to one, minus half to half vasthai",
+            "each expression gives an interval for p, the tightest upper bound is half"
+          ],
+          "reject": [
+            "solve them",
+            "find p",
+            "three inequalities"
+          ],
+          "heard_as": [
+            "minus one by three",
+            "two by three",
+            "minus three",
+            "minus half",
+            "reverse the inequality"
+          ]
+        },
+        "why": "Each inequality on its own restricts p. The third gives p ≤ 1/2, the upper bound to be proved; the lower bound 1/3 is not among these three and must come from somewhere else.",
+        "common_mistakes": [
+          "Not reversing the inequality signs when dividing by −1 or −2.",
+          "Multiplying only one side by the denominator.",
+          "Writing p ≤ 2/3 from (1) and then forgetting the lower bound from (1)."
+        ]
+      },
+      {
+        "id": "s3_sum_bound",
+        "kind": "equation",
+        "label": "Sum of the three probabilities ≤ 1",
+        "marks": 2,
+        "mark_note": "Mutually exclusive",
+        "margin_note": "Two marks. Mutually exclusive events: the probability of their union is the SUM, and that union is an event, so the sum is between 0 and 1. Common denominator 12: 4(1 + 3p) + 3(1 − p) + 6(1 − 2p) = 13 − 3p.",
+        "memory_tip": "Mutually exclusive means the union's probability is the SUM, and it is still ≤ 1 — not = 1.",
+        "lines": [
+          {
+            "text": "The three events are mutually exclusive, so the",
+            "style": "normal"
+          },
+          {
+            "text": "probability of their union is the sum, which",
+            "style": "normal"
+          },
+          {
+            "text": "is again a probability:",
+            "style": "normal"
+          },
+          {
+            "text": "0 ≤ (1 + 3p)/3 + (1 − p)/4 + (1 − 2p)/2 ≤ 1",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ 0 ≤ (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12 ≤ 1",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ 0 ≤ (13 − 3p)/12 ≤ 1 ⇒ 0 ≤ 13 − 3p ≤ 12",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ −13 ≤ −3p ≤ −1 ⇒ 1 ≤ 3p ≤ 13",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ 1/3 ≤ p ≤ 13/3  …(4)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the events are mutually exclusive the sum of the three probabilities is itself a probability, between 0 and 1, which gives 1/3 ≤ p ≤ 13/3.",
+          "accept": [
+            "mutually exclusive so the sum of the three probabilities is between zero and one which gives one third less than or equal to p less than or equal to thirteen by three",
+            "add the three expressions over twelve to get thirteen minus three p over twelve between zero and one",
+            "the union probability is the sum and it is at most one so p is at least a third",
+            "mutually exclusive kabatti sum kuda probability, zero and one madhya, so p one by three nunchi thirteen by three",
+            "sum bound gives thirteen minus three p between zero and twelve"
+          ],
+          "reject": [
+            "add them",
+            "use mutually exclusive",
+            "the sum"
+          ],
+          "heard_as": [
+            "mutually exclusive",
+            "thirteen minus three p",
+            "one by three",
+            "thirteen by three",
+            "sum"
+          ]
+        },
+        "why": "This is the only step that uses \"mutually exclusive\", and it is the step that supplies the lower bound 1/3. Without it the proof cannot reach the stated range.",
+        "common_mistakes": [
+          "Writing the sum = 1 (exhaustive) instead of ≤ 1 — the question does not say the events are exhaustive.",
+          "Combining the fractions wrongly: over 12 the numerators are 4, 3 and 6 times the brackets.",
+          "Losing the sign reversal when dividing −3p by −3."
+        ]
+      },
+      {
+        "id": "s4_intersect",
+        "kind": "boxed_final",
+        "label": "Intersect the four ranges",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. p must satisfy all four. The largest lower bound is 1/3 (from (4)); the smallest upper bound is 1/2 (from (3)).",
+        "memory_tip": "Take the INTERSECTION of all four ranges: the largest lower bound and the smallest upper bound.",
+        "lines": [
+          {
+            "text": "p must satisfy (1), (2), (3) and (4) together.",
+            "style": "normal"
+          },
+          {
+            "text": "Largest lower bound 1/3, smallest upper bound 1/2:",
+            "style": "normal"
+          },
+          {
+            "text": "∴ 1/3 ≤ p ≤ 1/2",
+            "style": "boxed"
+          },
+          {
+            "text": "Hence proved.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That taking the common part of the four ranges gives 1/3 ≤ p ≤ 1/2 — the largest lower bound and the smallest upper bound.",
+          "accept": [
+            "take the common part of all four ranges, the largest lower bound is a third and the smallest upper bound is half",
+            "intersect the four intervals to get one third to one half",
+            "p must satisfy all four so it is between one by three and one by two",
+            "nalugu ranges common part teeste one by three to half vasthundi",
+            "the intersection of the intervals is a third to a half hence proved"
+          ],
+          "reject": [
+            "hence proved",
+            "combine them",
+            "so p is between"
+          ],
+          "heard_as": [
+            "common part",
+            "intersection",
+            "one by three",
+            "one by two",
+            "hence proved"
+          ]
+        },
+        "why": "Each range is a condition p must meet; meeting all of them means lying in every range at once, which is their intersection.",
+        "common_mistakes": [
+          "Taking the union of the ranges instead of the intersection.",
+          "Reporting the range from (4) alone, 1/3 ≤ p ≤ 13/3."
+        ]
+      }
+    ]
+  }
+}

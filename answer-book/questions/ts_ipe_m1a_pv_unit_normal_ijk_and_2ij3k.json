@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_unit_normal_ijk_and_2ij3k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the unit vector perpendicular to both i + j + k and 2i + j + 3k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State that a × b is perpendicular to both",
+      "marks": 1
+    },
+    {
+      "label": "Find a × b",
+      "marks": 2
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split rewards naming the construction, the determinant that does the work, and the division that turns a normal vector into a unit vector; it mirrors the split used on the sibling part 23(i) so the pair reads consistently. ANSWER IS DETERMINATE, not a method sketch: the unit vectors are ± (2i − j − k)/√6. VERIFIED: a × b = 2i − j − k dotted with a = (1, 1, 1) gives 2 − 1 − 1 = 0 and dotted with b = (2, 1, 3) gives 4 − 1 − 3 = 0, so it is perpendicular to both; its squared length is 4 + 1 + 1 = 6, so the reported unit vector has squared length 6/6 = 1 exactly. BOTH SIGNS ARE ANSWERS: the two vectors span a plane, and a plane has one unit normal on each side, so the ± is written on the line the student reads, not left to the note. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would build this unit vector — say why there are two answers.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_construction",
+        "kind": "equation",
+        "label": "State the construction",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The cross product is perpendicular to both vectors by construction, so the whole question is one cross product and one division.",
+        "memory_tip": "Perpendicular to two given vectors means cross them; make it a unit vector by dividing by its own length.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i + j + k and b = 2i + j + 3k.",
+          "a × b is perpendicular to both a and b.",
+          "∴ required unit vector",
+          {
+            "text": "= ± (a × b)/|a × b|",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b is perpendicular to both vectors, so the answer is ± (a × b)/|a × b|.",
+          "accept": [
+            "the cross product is perpendicular to both so cross them first",
+            "the unit vector is plus or minus a cross b over its magnitude",
+            "perpendicular to two vectors means take the cross product",
+            "rendu vectors ki perpendicular ante cross product teesukovali",
+            "build it from a cross b divided by its length"
+          ],
+          "reject": [
+            "the answer is root six",
+            "expand the determinant",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "perpendicular to both",
+            "over its magnitude",
+            "plus or minus"
+          ]
+        },
+        "why": "A cross product is perpendicular to each of the two vectors that make it, so no other construction is needed. Writing the ± from the start makes it harder to lose at the end.",
+        "common_mistakes": [
+          "Using a·b = 0, which is a test for perpendicular vectors, not a way to build one.",
+          "Giving only one of the two directions."
+        ]
+      },
+      {
+        "id": "s2_cross_product",
+        "kind": "equation",
+        "label": "Find a × b",
+        "marks": 2,
+        "mark_note": "Cross product",
+        "margin_note": "Half the marks. Expand the determinant and then dot the answer with a and with b — both must give 0 before you go on.",
+        "memory_tip": "The middle term of the expansion carries a minus sign of its own: i(…) − j(…) + k(…).",
+        "lines": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & 1 \\\\ 2 & 1 & 3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(3 − 1) − j(3 − 2) + k(1 − 2)",
+          "= 2i − j − k",
+          "Check: (2i − j − k)·a = 2 − 1 − 1 = 0",
+          "and (2i − j − k)·b = 4 − 1 − 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b = 2i − j − k, and that dotting it with a and with b gives 0 each time.",
+          "accept": [
+            "a cross b is two i minus j minus k",
+            "expand the determinant to get two i minus j minus k",
+            "check it by dotting with both vectors, both give zero",
+            "two i minus j minus k, rendu dot products zero",
+            "the cross product comes out two i minus j minus k"
+          ],
+          "reject": [
+            "divide by root six",
+            "the cross product is perpendicular to both",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two i minus j minus k",
+            "determinant",
+            "dot product zero",
+            "three minus one"
+          ]
+        },
+        "why": "The determinant is the whole calculation, and the two dot products check its direction: a cross product that is not perpendicular to both inputs has a sign error in it. They do not test the magnitude, so re-read the determinant for that.",
+        "common_mistakes": [
+          "Dropping the minus in front of the j term.",
+          "Writing the second row as 2, 1, 3 and the third as 1, 1, 1, which reverses the answer."
+        ]
+      },
+      {
+        "id": "s3_divide_by_magnitude",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Unit vector",
+        "margin_note": "Last mark. Divide by √6, not by 6. Both signs are correct because the plane of a and b has one unit normal on each side.",
+        "memory_tip": "Divide by the square root, never by the sum of squares — and keep both signs.",
+        "lines": [
+          "|a × b| = √(4 + 1 + 1) = √6",
+          "Both directions are unit normals, so",
+          "the answer carries a ± sign.",
+          {
+            "text": "∴ Unit vector = ± (2i − j − k)/√6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a × b| = √6, so the unit vector is ± (2i − j − k)/√6.",
+          "accept": [
+            "the magnitude is root six so divide by root six",
+            "the answer is plus or minus two i minus j minus k over root six",
+            "both signs are correct because a plane has two normals",
+            "root six tho divide cheste plus or minus answer vastundi",
+            "unit vector is that vector over root six"
+          ],
+          "reject": [
+            "the cross product is two i minus j minus k",
+            "a cross b is perpendicular to both",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root six",
+            "plus or minus",
+            "unit vector",
+            "divide by root six"
+          ]
+        },
+        "why": "Dividing by the length leaves a vector of length 1. The check is that 4 + 1 + 1 = 6, so the squared length of the answer is 6/6 = 1, and both signs give length 1.",
+        "common_mistakes": [
+          "Dividing by 6 instead of √6.",
+          "Omitting the ± sign."
+        ]
+      }
+    ]
+  }
+}

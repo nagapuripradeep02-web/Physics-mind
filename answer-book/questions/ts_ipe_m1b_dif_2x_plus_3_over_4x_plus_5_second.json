@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_2x_plus_3_over_4x_plus_5_second",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = (2x + 3)/(4x + 5), find y″.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the fraction and differentiate once",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both derivatives were checked numerically before they were written: at x = 0 the first difference quotient reads −0.08 against −2/(4x + 5)² = −0.08 and the second reads 0.1280000106 against 16/125 = 0.128; at x = 1 the second reads 0.02194786575 against 16/729 = 0.02194787380; at x = −2, where 4x + 5 = −3, it reads −0.5925925917 against 16/(−27) = −0.5925925926, so the sign follows the cube of 4x + 5 as it should. The quotient rule gives the same first derivative, which was the cross-check on the rewriting step."
+  },
+  "recall_prompt": "Say how you would do this one — say how you rewrite the fraction before differentiating, and how many times you differentiate.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_and_first",
+        "kind": "equation",
+        "label": "Rewrite the fraction and differentiate once",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Either route is accepted — the quotient rule gives the same −2/(4x + 5)². Check the division before using it: ½(4x + 5) + ½ = 2x + 2.5 + 0.5 = 2x + 3.",
+        "memory_tip": "A linear over a linear is always a constant plus a constant over the same linear. In that form each differentiation is one chain rule on a power.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Write the numerator in terms of the denominator:",
+          "2x + 3 = ½(4x + 5) + ½",
+          "∴ y = ½ + ½(4x + 5)⁻¹,  x ≠ −5/4",
+          "Differentiate once, by the chain rule on the power:",
+          "dy/dx = 0 + ½ · (−1)(4x + 5)⁻² · 4 = −2/(4x + 5)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y is rewritten as ½ + ½(4x + 5)⁻¹ (or the quotient rule is used), giving dy/dx = −2/(4x + 5)².",
+          "accept": [
+            "split it as a half plus a half over four x plus five",
+            "the quotient rule gives the same first derivative",
+            "d y by d x is minus two over four x plus five whole squared",
+            "numerator ni denominator terms lo rasi split cheyyali",
+            "the inner derivative four comes out each time"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half plus half",
+            "minus two over four x plus five squared",
+            "quotient rule",
+            "chain rule"
+          ]
+        },
+        "why": "The quotient rule gives the same first derivative, but it would then have to be used again on a squared denominator. Splitting the fraction into a constant plus a power turns both differentiations into one chain rule each.",
+        "common_mistakes": [
+          "Using the quotient rule with a plus sign in the numerator, writing 2(4x + 5) + 4(2x + 3).",
+          "Forgetting the inner derivative 4 that comes from 4x + 5."
+        ]
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "boxed_final",
+        "label": "Differentiate a second time",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two minus signs multiply to a plus, so y″ is positive wherever 4x + 5 is positive. Check at x = 0: 16/125 = 0.128.",
+        "memory_tip": "Each differentiation multiplies by the power and by the inner 4. Here (−2) × 4 = −8, and −2 × (−8) = 16.",
+        "lines": [
+          "dy/dx = −2(4x + 5)⁻²",
+          "Differentiate again by the chain rule:",
+          "d²y/dx² = −2 · (−2)(4x + 5)⁻³ · 4",
+          {
+            "text": "∴ y″ = 16/(4x + 5)³,  x ≠ −5/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating −2(4x + 5)⁻² gives y″ = 16/(4x + 5)³.",
+          "accept": [
+            "differentiate the power minus two again",
+            "minus two times minus two times four is sixteen",
+            "y double dash is sixteen over four x plus five cubed",
+            "malli chain rule vaadithe sixteen by four x plus five cube",
+            "the power goes from minus two to minus three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixteen",
+            "four x plus five cubed",
+            "minus two times minus two",
+            "power minus three"
+          ]
+        },
+        "why": "The power drops from −2 to −3 and the chain rule brings out another factor of 4. The two minus signs cancel each other, so the sign of y″ follows the sign of (4x + 5)³.",
+        "common_mistakes": [
+          "Losing one of the two minus signs and writing −16/(4x + 5)³.",
+          "Forgetting the inner 4 the second time and writing 4/(4x + 5)³."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Rewrite the top in terms of the bottom, 2x + 3 = ½(4x + 5) + ½, so the quotient rule is never needed. What is left is a simple power differentiated twice."
+}

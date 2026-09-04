@@ -83,10 +83,10 @@
         "why": "The Ellingham diagram plots ΔG° against T. The C → CO line slopes downward because the reaction makes more gas than it uses, while the CO → CO₂ line slopes upward. The two cross at about 983 K, and above the crossing carbon lies lower and is the stronger reducing agent. The book gives the same answer with the reason written as the temperature needed with CO being very high.",
         "common_mistakes": [
           "Quoting the crossing temperature as 983 °C. It is 983 K, which is about 710 °C.",
-          "Giving the reason without naming the diagram. What is marked here is the position of the two Ellingham lines above 983 K."
+          "Giving the reason without the crossing temperature. The reason has to say that the C → CO and CO → CO₂ lines cross at 983 K and that the zinc furnace runs far above it."
         ],
         "memory_tip": "The two lines cross at 983 K. Above 983 K carbon is better, below it CO is better.",
-        "margin_note": "The Ellingham diagram must be named. A reason with no diagram in it usually earns half of this mark."
+        "margin_note": "Quote 983 K and say which line is lower above it. Naming the Ellingham diagram is worth writing, but the two lines and the crossing temperature are what is marked."
       }
     ]
   },

@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_average_energy_at_27c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the average kinetic energy of a molecule of a gas at 27°C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "Energy value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 17 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: average molecular energy = (3/2)k_BT with T = 27°C = 300 K, giving 1.5 × 1.38 × 10⁻²³ × 300 = 6.21 × 10⁻²¹ J, arithmetic verified."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "(3/2)k_BT",
+        "lines": [
+          "Average translational kinetic energy",
+          "of a molecule depends only on T:",
+          {
+            "text": "Average energy = (3/2)k_BT",
+            "style": "eq"
+          },
+          "T = 27°C = 300 K."
+        ],
+        "margin_note": "First mark. Write (3/2)k_BT and convert 27°C to 300 K before substituting.",
+        "why": "This result follows from the kinetic interpretation of temperature — the average translational kinetic energy of a molecule is (3/2)k_BT for any gas, so only the absolute temperature is needed to find it.",
+        "common_mistakes": [
+          "Using k_BT instead of (3/2)k_BT for the average energy of a molecule.",
+          "Forgetting to convert 27°C to the absolute scale before substituting."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average kinetic energy of a molecule is (3/2)k_BT, and 27°C converts to 300 K.",
+          "accept": [
+            "average energy equals three by two k B T",
+            "27 degree Celsius is 300 kelvin",
+            "kinetic energy depends only on temperature"
+          ],
+          "reject": [
+            "6.21 into 10 to the minus 21 joule"
+          ],
+          "heard_as": [
+            "three by two k B T",
+            "300 kelvin"
+          ]
+        },
+        "memory_tip": "Average translational kinetic energy = (3/2)k_BT, the same for every gas at a given temperature."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Energy value",
+        "marks": 1,
+        "mark_note": "6.21 × 10⁻²¹ J",
+        "lines": [
+          {
+            "text": "= 1.5 × 1.38×10⁻²³ × 300",
+            "style": "eq"
+          },
+          {
+            "text": "= 6.21 × 10⁻²¹ J",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the value with the correct power of ten and the unit joule.",
+        "why": "Substituting k_B = 1.38 × 10⁻²³ J K⁻¹ and T = 300 K into (3/2)k_BT gives the numerical value directly by multiplication.",
+        "common_mistakes": [
+          "Losing track of the power of ten and reporting 6.21 × 10⁻²² J or 6.21 × 10⁻²⁰ J.",
+          "Omitting the unit joule after writing the numeric value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average kinetic energy comes out to 6.21 times 10 to the minus 21 joule.",
+          "accept": [
+            "6.21 into 10 to the minus 21 joule",
+            "1.5 times 1.38 times 10 to minus 23 times 300",
+            "six point two one e minus twenty one joule"
+          ],
+          "reject": [
+            "average energy equals three by two k B T"
+          ],
+          "heard_as": [
+            "6.21 e minus 21",
+            "joule"
+          ]
+        },
+        "memory_tip": "1.5 × 1.38 = 2.07; 2.07 × 300 = 621, so the answer is 6.21 × 10⁻²¹ J."
+      }
+    ]
+  },
+  "insider_note": "Keep the power of ten straight through the multiplication — a slipped exponent is the most common way this mark is lost."
+}

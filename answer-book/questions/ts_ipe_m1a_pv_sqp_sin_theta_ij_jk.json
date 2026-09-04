@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Cross product",
         "margin_note": "First mark. Both vectors have length √2. Then the cross product, laid out as a determinant with i, j, k on top.",
+        "memory_tip": "Both vectors have length √2. Then the cross product as a determinant with i, j, k on top.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,7 +89,7 @@
             "cross product"
           ]
         },
-        "why": "Each vector has a zero component, so one column of the determinant carries a 0 — write it in rather than shortening the row.",
+        "why": "Each vector has a zero component, so each of the two rows carries a 0 — write it in rather than shortening the row.",
         "common_mistakes": [
           "Writing a as i + j + 0k but forgetting the 0 in the determinant row.",
           "Sign slip on the j term."
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Rearrange to sin θ = |a×b| / (|a||b|), then substitute.",
+        "memory_tip": "Rearrange |a×b| = |a||b| sin θ to sin θ = |a×b|/(|a||b|), then substitute.",
         "lines": [
           "sin θ = |a × b| / (|a| |b|)",
           "= √3 / (√2 · √2) = √3 / 2",
@@ -130,12 +132,13 @@
             "divide"
           ]
         },
-        "why": "sin θ = √3/2 corresponds to θ = 60°, which is what two edge-vectors of a cube meeting at a vertex actually make.",
+        "why": "sin θ = √3/2 corresponds to θ = 60°, the angle between two face diagonals of a cube that share an edge.",
         "common_mistakes": [
           "Using the dot product and reporting cos θ.",
           "Writing √2·√2 as 2√2."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "sin θ needs the CROSS product, so a dot product is no use here. |a||b| comes to exactly 2, which is what makes the answer the standard √3/2."
 }

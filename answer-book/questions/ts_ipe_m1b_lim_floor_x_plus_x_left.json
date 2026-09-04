@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_floor_x_plus_x_left",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 2⁻) ([x] + x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find [x] just below 2",
+      "marks": 1
+    },
+    {
+      "label": "Add and take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 27, part (ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what [x] equals just below 2, and what x itself does.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_floor_below_two",
+        "kind": "text",
+        "label": "Find [x] just below 2",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The value of [x] here is 1, not 2. The mark is for that statement together with its interval.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "[x] is the greatest integer function: [x] is the greatest integer less than or equal to x.",
+          "x → 2⁻ means x takes values slightly less than 2, that is 1 < x < 2.",
+          "For every such x,  [x] = 1",
+          "(for example [1.9] = 1 and [1.999] = 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for 1 < x < 2 the greatest integer function [x] has the constant value 1.",
+          "accept": [
+            "just below two the greatest integer is one",
+            "between one and two the floor value is one",
+            "x is a little less than two so bracket x is one",
+            "two kanna thakkuva unte bracket x equals one",
+            "the greatest integer below one point nine nine is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "greatest integer",
+            "bracket x",
+            "one point nine",
+            "just below two"
+          ]
+        },
+        "why": "On the interval 1 < x < 2 the greatest integer function is the constant 1. The value at x = 2 itself is never used, because a limit looks only at values near the point.",
+        "common_mistakes": [
+          "Writing [x] = 2 by rounding 1.999 up to the nearer integer.",
+          "Using [2] = 2, the value AT the point, which the one-sided limit does not use."
+        ],
+        "memory_tip": "Just below 2 the step up to 2 has not happened yet, so [x] is still 1."
+      },
+      {
+        "id": "s2_add_and_limit",
+        "kind": "boxed_final",
+        "label": "Add and take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 3. Only [x] is held at 1; x itself still approaches 2, so the two terms are different numbers.",
+        "lines": [
+          "So for 1 < x < 2,  [x] + x = 1 + x",
+          "lim(x → 2⁻) ([x] + x) = lim(x → 2⁻) (1 + x)",
+          "= 1 + 2",
+          {
+            "text": "∴ lim(x → 2⁻) ([x] + x) = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression becomes 1 + x, whose limit as x approaches 2 is 3.",
+          "accept": [
+            "one plus x gives three as x approaches two",
+            "the floor part is one and x approaches two so the sum is three",
+            "the left hand limit is three",
+            "one plus two equals three ani vasthundi",
+            "the answer is three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three",
+            "one plus two",
+            "left hand limit",
+            "one plus x"
+          ]
+        },
+        "why": "Only the integer part is held at 1; x itself still approaches 2, so the sum approaches 1 + 2 = 3.",
+        "common_mistakes": [
+          "Giving 4, which is the RIGHT-hand limit, where [x] = 2.",
+          "Writing 1 + 1 by letting x approach 1 as well as the floor value."
+        ],
+        "memory_tip": "Below 2 the pair is 1 from the step and 2 from x, which is 3."
+      }
+    ]
+  },
+  "insider_note": "Approaching 2 from BELOW keeps x in (1, 2), where [x] = 1 — not 2. So the expression is 1 + x and the limit is 3."
+}

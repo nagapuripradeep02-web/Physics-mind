@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_divisible_4n_3n_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that 4ⁿ − 3n − 1 is divisible by 9, ∀ n ∈ N.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 7(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. A note on the base case: at n = 1 the expression is 0, and 0 = 9 × 0 is divisible by 9, so S(1) is true and the card says so in full rather than quietly starting at n = 2. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — how you write divisibility as an equation, and what you substitute in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — divisibility is written as an EQUATION, equal to 9 times an integer. Without that line there is nothing to substitute later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(n): 4ⁿ − 3n − 1 = 9q,",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 'divisible by 9' is written as an equation: the expression equals 9q for some integer q.",
+          "accept": [
+            "write it as four to the n minus three n minus one equals nine q where q is an integer",
+            "divisible by nine means it equals nine times some integer",
+            "set the expression equal to nine q with q an integer",
+            "nine q ki equal ga rastam q integer"
+          ],
+          "reject": [
+            "let s of n be the statement",
+            "I write s of n",
+            "it is divisible by nine"
+          ],
+          "heard_as": [
+            "nine q",
+            "integer",
+            "divisible",
+            "four to the n"
+          ]
+        },
+        "why": "You cannot do algebra with the word 'divisible'. Turning it into = 9q is what lets Step 3 replace 4ᵏ by something written in terms of q.",
+        "common_mistakes": [
+          "Leaving the statement in words, so Step 3 has nothing to use.",
+          "Forgetting to say q is an integer, which is the whole content of divisibility."
+        ],
+        "memory_tip": "Divisibility becomes = 9q with q an integer. That one line is what Step 3 substitutes."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. The value at n = 1 is 0, and 0 is a multiple of 9 — write that out, do not skip past it.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "4¹ − 3(1) − 1 = 4 − 3 − 1 = 0",
+          "0 = 9(0), so 0 is divisible by 9.",
+          "So S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the expression is 0, and 0 equals 9 times 0, so it is divisible by 9 and S(1) is true.",
+          "accept": [
+            "four minus three minus one is zero and zero is nine times zero so it is divisible",
+            "at n equals one you get zero which is a multiple of nine",
+            "the first case gives zero and zero counts as divisible by nine",
+            "n equals one ki zero vasthundi adi nine multiple"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "it works for one"
+          ],
+          "heard_as": [
+            "zero",
+            "nine times zero",
+            "four minus three minus one",
+            "s of one"
+          ]
+        },
+        "why": "Zero is a multiple of every number, so S(1) is genuinely true and the proof may start at n = 1. The first non-zero case, n = 2, gives 16 − 6 − 1 = 9, which is a useful check that the expression was copied correctly.",
+        "common_mistakes": [
+          "Saying 0 is not divisible by 9 and starting the proof at n = 2 without being asked to.",
+          "Mishandling the −1 and getting 1 instead of 0."
+        ],
+        "memory_tip": "At n = 1 the value is 0, and 0 = 9 × 0. Check n = 2 as well: 16 − 6 − 1 = 9."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for k, then REARRANGE to make 4ᵏ the subject — that rearranged line is what Step 3 substitutes.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 4ᵏ − 3k − 1 = 9q   …(1)",
+          "⇒ 4ᵏ = 9q + 3k + 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed as 4ᵏ − 3k − 1 = 9q, and rearranged to give 4ᵏ = 9q + 3k + 1.",
+          "accept": [
+            "assume it for k so four to the k minus three k minus one is nine q and make four to the k the subject",
+            "rearrange the assumption to get four to the k equals nine q plus three k plus one",
+            "suppose s of k holds then write the power in terms of q",
+            "k ki assume chesi four power k ni subject ga rastam"
+          ],
+          "reject": [
+            "assume s of k",
+            "take it as true for k",
+            "let it hold for k"
+          ],
+          "heard_as": [
+            "assume",
+            "four to the k",
+            "nine q",
+            "equation one",
+            "rearrange"
+          ]
+        },
+        "why": "Step 3 meets 4ᵏ⁺¹, which is 4 × 4ᵏ. Having 4ᵏ already written in terms of q is what makes that substitution possible.",
+        "common_mistakes": [
+          "Assuming the statement for all k rather than one k.",
+          "Sign slip when moving −3k − 1 across, giving 4ᵏ = 9q − 3k − 1."
+        ],
+        "memory_tip": "Rearrange to make 4ᵏ the SUBJECT: 4ᵏ = 9q + 3k + 1. Step 3 puts that straight in."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. Split 4ᵏ⁺¹ as 4·4ᵏ, substitute (1), and gather until 9 comes out as a factor.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "4ᵏ⁺¹ − 3(k+1) − 1 = 4·4ᵏ − 3k − 4",
+          "= 4(9q + 3k + 1) − 3k − 4   [from (1)]",
+          "= 36q + 12k + 4 − 3k − 4",
+          "= 36q + 9k",
+          "= 9(4q + k)",
+          "which is divisible by 9, since",
+          "4q + k is an integer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4ᵏ⁺¹ is written as 4·4ᵏ, the rearranged assumption is substituted, and everything collects into 9(4q + k) — a multiple of 9 because the bracket is an integer.",
+          "accept": [
+            "write four to the k plus one as four times four to the k then substitute and it comes to nine into four q plus k",
+            "substitute the assumption and take nine out as a factor",
+            "the constants cancel and twelve k minus three k leaves nine k",
+            "substitute chesi nine common teeste integer migulutundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "substitute and simplify",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "four to the k plus one",
+            "thirty six q",
+            "nine k",
+            "four q plus k",
+            "integer"
+          ]
+        },
+        "why": "The two constants +4 and −4 cancel, and 12k − 3k leaves 9k. Both surviving terms, 36q and 9k, carry a factor 9 — that is why the expression works.",
+        "common_mistakes": [
+          "Writing 4ᵏ⁺¹ as 4ᵏ + 4 instead of 4 × 4ᵏ.",
+          "Slipping on −3(k+1) − 1 = −3k − 4.",
+          "Stopping at 9(…) without saying the bracket is an integer, which is what divisibility requires."
+        ],
+        "memory_tip": "Split 4ᵏ⁺¹ as 4·4ᵏ, substitute, and the +4 and −4 cancel: 36q + 9k = 9(4q + k)."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the expression is divisible by 9 for every natural number n.",
+          "accept": [
+            "since the first case is true and each case gives the next by p m i it is true for all n",
+            "hence by the principle of mathematical induction it is divisible by nine for every natural number",
+            "base case plus inductive step gives it for all n in n",
+            "p m i prakaram anni n ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is divisible",
+            "that completes it"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the principle."
+        ],
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
+      }
+    ]
+  }
+}

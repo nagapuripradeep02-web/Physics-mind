@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -81,8 +81,9 @@
           "Saying the vapour pressure must EXCEED the external pressure. Boiling starts when the two are equal."
         ],
         "memory_tip": "Boiling happens when the vapour pressure reaches the outside pressure.",
-        "margin_note": "The hills and cooker examples tie this card to the asked pressure-cooker question."
+        "margin_note": "Name both examples: hills for lower outside pressure, pressure cooker for higher. They are the same rule read in two directions."
       }
     ]
-  }
+  },
+  "insider_note": "Two questions, one mark each, and the second is a single sentence about two pressures being equal. Give the definition, then the relation; there is nothing else at two marks worth the space."
 }

@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_ap_cd_3_15th_term_37_second_term",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The common difference of an A.P. is 3 and the 15th term is 37. Find the second term.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the 15th term to find the first term",
+      "marks": 1
+    },
+    {
+      "label": "Add one common difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say what you find first and how many common differences you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a",
+        "kind": "equation",
+        "label": "Use the 15th term to find the first term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Fourteen common differences separate the 1st term from the 15th, not fifteen. The first term is negative here.",
+        "memory_tip": "From the 1st term to the 15th is 14 steps of 3, which is 42.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  d = 3  and  a₁₅ = 37",
+          "aₙ = a + (n − 1)d,  so  a + 14(3) = 37",
+          "a + 42 = 37",
+          "a = 37 − 42 = −5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + 14(3) = 37 gives a = −5.",
+          "accept": [
+            "use the nth term formula with n equals fifteen",
+            "fourteen threes is forty two so a is minus five",
+            "find the first term first",
+            "a plus forty two equals thirty seven, a minus five",
+            "the first term comes out negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fourteen",
+            "forty two",
+            "minus five",
+            "first term"
+          ]
+        },
+        "why": "The second term needs the first term, and the only route to it is the given 15th term. Fourteen common differences are subtracted, not fifteen.",
+        "common_mistakes": [
+          "Using 15d = 45 instead of 14d = 42, which gives a = −8.",
+          "Writing a = 37 + 42 = 79 by moving 42 across with the wrong sign."
+        ]
+      },
+      {
+        "id": "s2_second_term",
+        "kind": "boxed_final",
+        "label": "Add one common difference",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. −5 + 3 = −2. Check it: −2 + 13(3) = −2 + 39 = 37, which is the given 15th term.",
+        "memory_tip": "Second term = first term + one common difference.",
+        "lines": [
+          "a₂ = a + d",
+          "= −5 + 3",
+          {
+            "text": "∴ a₂ = −2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a₂ = a + d = −5 + 3 = −2.",
+          "accept": [
+            "the second term is the first term plus d",
+            "minus five plus three is minus two",
+            "the answer is minus two",
+            "a plus d ante minus five plus three, minus two",
+            "add one common difference to the first term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus d",
+            "minus two",
+            "second term"
+          ]
+        },
+        "why": "The second term is one common difference after the first, so a single addition finishes the question once a is known.",
+        "common_mistakes": [
+          "Writing a₂ = a + 2d by using n instead of n − 1.",
+          "Getting −8 by subtracting the common difference instead of adding it."
+        ]
+      }
+    ]
+  }
+}

@@ -48,7 +48,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
+        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are fixed.",
+        "memory_tip": "The 'third vertex' is the moving point P; the hypotenuse ends are fixed.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A right angle at P means the triangle APB is right angled AT P, so AB is its hypotenuse and Pythagoras applies as PA² + PB² = AB². Writing this line earns the mark on its own.",
+        "memory_tip": "The named HYPOTENUSE tells you where the right angle is: at P. So PA² + PB² = AB².",
         "lines": [
           "Given condition: ∠APB = 90°",
           "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
@@ -120,7 +122,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Trying to use the slope condition m₁m₂ = −1 and then losing the sign."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
         ]
       },
       {
@@ -130,6 +132,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
+        "memory_tip": "Every distance is a squared coordinate difference — no roots here.",
         "lines": [
           "⇒ [(x−0)² + (y−6)²] + [(x−6)² + (y−0)²] = (0−6)² + (6−0)²"
         ],
@@ -168,6 +171,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "memory_tip": "Same coefficient on x² and y² — a circle.",
         "lines": [
           "⇒ x² + (y² − 12y + 36) + (x² − 12x + 36) + y² = 36 + 36",
           "⇒ 2x² + 2y² − 12x − 12y + 72 = 72",
@@ -204,9 +208,10 @@
         "why": "The locus of a point that sees a fixed segment at a right angle is the circle on that segment as diameter, so a circle is the expected shape and a check on the algebra.",
         "common_mistakes": [
           "Forgetting to divide by the common factor 2 at the end.",
-          "Losing a sign when expanding a bracket like (y − 4)²."
+          "Losing a sign when expanding (y − 6)², which gives −12y."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The hypotenuse is named in the question, so its two ends are the fixed points and the right angle sits at the third vertex: AB² = 72 is a plain number on the right. Divide by the common 2 at the end."
 }

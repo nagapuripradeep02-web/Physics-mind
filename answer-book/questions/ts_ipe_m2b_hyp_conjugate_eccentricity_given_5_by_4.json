@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_conjugate_eccentricity_given_5_by_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the eccentricity of a hyperbola is 5/4, then find the eccentricity of its conjugate hyperbola.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up using the reciprocal identity",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the conjugate's eccentricity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Hyperbola, answer 131, immediately after answer 130 (whose reciprocal identity this question applies), and repeated verbatim as the second sub-item of the Bullet Model Paper's Q5 (book p.104). On the same ★★★ SSP page as 130. Printed appearances: AP 15,16,17,19 · TS 15,19,22 — the most-repeated printed appearance list of any card in this unit, worth flagging to a teacher as very high priority. No mark tags printed on this page — the 1+1 split here is OURS. No error found in the book's printed working. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim, so no Bullet Model Paper extra was authored for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Notice e = 5/4 and e₁ = 5/3 are BOTH greater than 1, as they must be — every hyperbola (and its conjugate) has eccentricity greater than 1, so a computed e₁ less than 1 is a sure sign of an arithmetic slip.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up using the reciprocal identity",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Quote the identity 1/e² + 1/e₁² = 1 rather than deriving it again.",
+        "memory_tip": "1/e² + 1/e₁² = 1 is the fastest route here — rearrange for 1/e₁² and substitute.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let e",
+          "= 5/4 and let e₁ be the eccentricity of the",
+          "conjugate hyperbola.",
+          "By the reciprocal identity, 1/e² + 1/e₁² = 1",
+          "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)²",
+          "= 1 − 16/25 = 9/25"
+        ],
+        "why": "The fastest route to e₁ is the reciprocal identity 1/e² + 1/e₁² = 1 — rearrange it for 1/e₁² and substitute the given e.",
+        "common_mistakes": [
+          "Squaring 5/4 as 25/4 by squaring only the numerator, instead of the correct 25/16.",
+          "Subtracting 16/25 from 1 as 1/25 instead of 9/25."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for the conjugate's eccentricity",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Both 25 and 9 are perfect squares, so the root is exact.",
+        "memory_tip": "e₁ = 5/3 is bigger than e = 5/4, and both are greater than 1 — the identity 1/e² + 1/e₁² = 1 requires that of a hyperbola and its conjugate.",
+        "lines": [
+          "e₁² = 25/9",
+          {
+            "text": "e₁ = 5/3",
+            "style": "boxed"
+          }
+        ],
+        "why": "Taking the square root of 25/9 gives 5/3 directly, since both numerator and denominator are perfect squares.",
+        "common_mistakes": [
+          "Leaving the answer as e₁² = 25/9 without taking the square root.",
+          "Writing e₁ as a decimal approximation instead of the exact fraction 5/3."
+        ]
+      }
+    ]
+  }
+}

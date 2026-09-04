@@ -1,0 +1,137 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_fof_at_x2_plus_1",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f: R→R and g: R→R are defined by f(x) = 3x − 1 and g(x) = x² + 1, find (fof)(x² + 1).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Rule for (fof)(t)",
+            "marks": 1
+        },
+        {
+            "label": "Value at t = x² + 1",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 13(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the rule (fof)(t) = 9t − 4 first and the substitution t = x² + 1 second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (fof)(x² + 1) — the rule for f composed with itself, and the value at this input.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_rule",
+                "kind": "equation",
+                "label": "Build f of f",
+                "marks": 1,
+                "mark_note": "Rule for (fof)(t)",
+                "margin_note": "First mark. fof means f applied twice, so the output of the first f goes into the second f. The function g is not needed in this part.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 3x − 1",
+                    "Let t be the input. Then",
+                    "(fof)(t) = f[f(t)] = 3f(t) − 1",
+                    "= 3(3t − 1) − 1",
+                    "= 9t − 3 − 1 = 9t − 4"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That fof means f applied twice, giving f[f(t)] = 3(3t − 1) − 1 = 9t − 4.",
+                    "accept": [
+                        "f of f of t is three times three t minus one minus one which is nine t minus four",
+                        "apply f twice so the rule is nine t minus four",
+                        "put three t minus one back into f and simplify",
+                        "f ni rendu sarlu apply cheste nine t minus four vastundi",
+                        "f composed with itself gives nine t minus four"
+                    ],
+                    "reject": [
+                        "I apply the function",
+                        "f of f",
+                        "use the composition rule"
+                    ],
+                    "heard_as": [
+                        "f of f",
+                        "fof",
+                        "nine t minus four",
+                        "twice",
+                        "composition"
+                    ]
+                },
+                "why": "fof is f composed with itself, so the output of the first f becomes the input of the second. Writing the rule for a general input t first keeps the substitution clean.",
+                "memory_tip": "fof means f twice: replace x in 3x − 1 by 3t − 1, not by t.",
+                "common_mistakes": [
+                    "Reading fof as f × f and writing (3t − 1)².",
+                    "Using g here, which this part does not ask for."
+                ]
+            },
+            {
+                "id": "s2_substitute",
+                "kind": "boxed_final",
+                "label": "Put t = x² + 1",
+                "marks": 1,
+                "mark_note": "Value at t = x² + 1",
+                "margin_note": "Second mark. Put the whole bracket x² + 1 in place of t, multiply 9 across it, then subtract 4.",
+                "lines": [
+                    "Put t = x² + 1:",
+                    "∴ (fof)(x² + 1) = 9(x² + 1) − 4",
+                    "= 9x² + 9 − 4",
+                    {
+                        "text": "(fof)(x² + 1) = 9x² + 5",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That t is replaced by x² + 1, giving 9(x² + 1) − 4 = 9x² + 5.",
+                    "accept": [
+                        "put x squared plus one in place of t so nine x squared plus nine minus four",
+                        "nine times the bracket minus four gives nine x squared plus five",
+                        "the answer is nine x squared plus five",
+                        "t place lo x square plus one pettali so nine x square plus five",
+                        "substitute the bracket and simplify to nine x squared plus five"
+                    ],
+                    "reject": [
+                        "then substitute",
+                        "simplify it",
+                        "that is the answer"
+                    ],
+                    "heard_as": [
+                        "x squared plus one",
+                        "nine x squared plus five",
+                        "substitute",
+                        "bracket"
+                    ]
+                },
+                "why": "The input is the whole expression x² + 1, so it replaces t inside the bracket. Multiplying 9 across the bracket before subtracting 4 is what keeps the constant right.",
+                "memory_tip": "Multiply 9 into the whole bracket first, then subtract 4: 9x² + 9 − 4 = 9x² + 5.",
+                "common_mistakes": [
+                    "Writing 9x² + 1 − 4 by multiplying 9 into x² only.",
+                    "Subtracting 4 before the bracket is expanded."
+                ]
+            }
+        ]
+    }
+}

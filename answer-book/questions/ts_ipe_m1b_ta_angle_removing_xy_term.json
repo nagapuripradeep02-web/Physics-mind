@@ -58,6 +58,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Nothing here has numbers — the whole answer is carried in letters, so the two rotation formulas are written exactly as they stand.",
+        "memory_tip": "No numbers anywhere — the whole answer runs in letters, so write both rotation formulas exactly as they stand.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Substitute into (1) and expand all three terms. Only the XY parts matter for what follows, but the whole expansion is written out.",
+        "memory_tip": "Expand all three terms. Only the XY parts matter next, but the full expansion is what is marked.",
         "lines": [
           "From (1), transformed equation is",
           "a(Xcosθ − Ysinθ)² + 2h(Xcosθ − Ysinθ)(Ycosθ + Xsinθ) + b(Ycosθ + Xsinθ)² = 0",
@@ -145,6 +147,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark, and the move the whole question turns on. Removing the xy term means its coefficient is zero — so collect every XY term from (2) and set that total to 0.",
+        "memory_tip": "Removing the xy term MEANS its coefficient is zero. Collect every XY term and set that total to 0.",
         "lines": [
           "To remove the XY term, its coefficient in (2) must be zero:",
           "⇒ −2a cosθ sinθ + 2h cos²θ − 2h sin²θ + 2b sinθ cosθ = 0",
@@ -188,6 +191,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Divide by cos2θ to get a tangent, then invert. The a = b case has to be handled separately, because the division by (a − b) is not allowed there.",
+        "memory_tip": "Divide by cos 2θ to get a tangent. The a = b case needs separate treatment — that division is illegal there.",
         "lines": [
           "⇒ sin2θ (a − b) = 2h cos2θ",
           "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
@@ -227,5 +231,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Set only the XY coefficient to zero, not the whole transformed equation — that single line is what the proof turns on. Keep the ½ at the end, and answer the a = b case the question names; that case is the fourth mark."
 }

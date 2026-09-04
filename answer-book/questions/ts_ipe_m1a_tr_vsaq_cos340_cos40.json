@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Reduce so that every angle becomes 20° or 40°. The sin 200° picks up a minus, and that minus is what turns the sum into a difference.",
+        "memory_tip": "Reduce every angle to 20° or 40°. sin200° picks up a MINUS, and that minus is the whole point.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The minus makes the expression cos20°cos40° − sin20°sin40°, which is exactly cos(20° + 40°) = cos60°.",
+        "memory_tip": "The minus makes it cos20°cos40° − sin20°sin40°, which is cos(20° + 40°) = cos60°.",
         "lines": [
           "L.H.S = cos20° cos40° + (−sin20°)(sin40°)",
           "= cos20° cos40° − sin20° sin40°",
@@ -128,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce all three angles to 20° and 40° first; the minus sign coming out of sin200° is what turns the sum into cos(A+B). Without that reduction the identity stays invisible."
 }

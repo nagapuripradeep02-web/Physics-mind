@@ -59,7 +59,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. A ratio question, not a sum — and a ratio is far easier, because it squares away in one move.",
+        "margin_note": "No mark of its own. A ratio question, not a sum — and a ratio is far easier, because one squaring clears both roots.",
+        "memory_tip": "A ratio, not a sum — far easier, because one squaring clears both roots.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, printed in the book's margin. Cross-multiply the ratio, then square BOTH sides at once — a ratio has no cross term, so one squaring clears both roots.",
+        "memory_tip": "Cross-multiply the ratio, then square BOTH sides at once. No cross term means one squaring clears both roots.",
         "lines": [
           "Given condition: PA / PB = 2 / 3",
           "⇒ 3 PA = 2 PB",
@@ -143,6 +145,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark, also printed. Both distances go in squared. Note the two brackets differ only in the sign inside the y-term, because A and B differ only in the sign of their y-coordinate.",
+        "memory_tip": "The two brackets differ ONLY in the sign inside the y-term, since A and B differ only in y.",
         "lines": [
           "⇒ 9[(x−2)² + (y−3)²] = 4[(x−2)² + (y+3)²]",
           "⇒ 9[(x² + 4 − 4x) + (y² + 9 − 6y)] = 4[(x² + 4 − 4x) + (y² + 9 + 6y)]"
@@ -183,6 +186,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks, printed as '2 Marks'. The x² and y² coefficients survive EQUAL (both 5), so this locus is a circle — the circle of Apollonius for the ratio 2:3.",
+        "memory_tip": "The x² and y² coefficients survive EQUAL, so this is a circle — the circle of Apollonius.",
         "lines": [
           "⇒ 9x² + 36 − 36x + 9y² + 81 − 54y = 4x² + 16 − 16x + 4y² + 36 + 24y",
           "⇒ 9x² − 4x² + 9y² − 4y² − 36x + 16x − 54y − 24y + 117 − 52 = 0",
@@ -222,5 +226,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The ratio PA : PB = 2 : 3 becomes 3PA = 2PB, so the numbers cross over before squaring and it is 9PA² = 4PB². Both numbers get squared, and the y terms collect as −54y − 24y = −78y, the usual slip."
 }

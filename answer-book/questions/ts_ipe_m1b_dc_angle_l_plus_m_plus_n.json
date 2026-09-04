@@ -70,6 +70,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Rearrange the LINEAR relation first — one letter as the subject.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "Substituting gives one homogeneous quadratic in two letters, which factors into the two lines.",
         "lines": [
           "Solving (1) & (2) we get",
           "[−(m + n)]² + m² − n² = 0",
@@ -155,7 +157,8 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Put the first factor back into the linear relation and clear the common letter for whole numbers.",
         "lines": [
           "Case (i): Put m = 0 in (1), then",
           "l = −(0 + n) = −n   ∴ l = −n",
@@ -196,7 +199,8 @@
         "label": "Case (ii): the second line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "Repeat on the second factor. Those two lines are what the question is about.",
         "lines": [
           "Case (ii): Put m = −n in (1), then",
           "l = −(−n + n) = 0   ∴ l = 0",
@@ -238,6 +242,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
+        "memory_tip": "The standard cosine formula on the two direction-ratio triples.",
         "lines": [
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
@@ -273,9 +278,10 @@
         "why": "The angle formula needs direction cosines in principle, but the normalising roots cancel between numerator and denominator — so direction RATIOS may be used directly, which is what the book does.",
         "common_mistakes": [
           "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
-          "Multiplying the two roots without keeping them under one square root."
+          "Taking the square root of only one of the two sums of squares."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Substituting l = −(m + n) makes the n² terms cancel, leaving 2m(m + n) = 0 — a factorisation that needs no middle-term splitting. Both roots matter, and the two lines come out at exactly 60°."
 }

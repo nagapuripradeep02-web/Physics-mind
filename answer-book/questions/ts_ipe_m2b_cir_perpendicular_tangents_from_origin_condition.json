@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_perpendicular_tangents_from_origin_condition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the condition that the tangents drawn from the exterior point (0,0) to S ≡ x² + y² + 2gx + 2fy + c = 0 are perpendicular to each other.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Angle between the pair of tangents",
+      "marks": 1
+    },
+    {
+      "label": "Put the angle equal to 90°",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r and S₁₁ and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.96 — Star Questions Plus, answer 198, printed under the banner \"CIRCLE-LAQ & SAQ\". The banner does not say which mark cut, so the SECTION IS OURS: it is classed SAQ because it is a short standard derivation with one formula and one substitution, which is the Section-B shape. Printed appearance tag: TS 16. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every step was re-derived and the book is correct: tan(θ/2) = r/√S₁₁ with θ = 90° gives r² = S₁₁, and with the point (0, 0) that is g² + f² − c = c, so g² + f² = 2c. The book also prints this same answer in the Bullet Model Paper (book p.107) under Q11 CIRCLES, so it is authored once, here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the half-angle in the formula is only readable from the picture. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The formula is written with HALF the angle, so perpendicular tangents mean θ/2 = 45° and tan 45° = 1 — students who put θ = 90° straight into tan θ get an undefined value and stop.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_angle_formula",
+        "kind": "equation",
+        "label": "Angle between the pair of tangents",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Note that the formula uses θ/2, not θ. The line of symmetry through the centre halves the angle.",
+        "memory_tip": "tan(θ/2) = r/√S₁₁ — radius over the length of the tangent.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let θ be the angle between the pair of",
+          "tangents drawn from P(0, 0) to S = 0.",
+          "Then tan(θ/2) = r / √S₁₁"
+        ],
+        "why": "The line joining the external point to the centre bisects the angle between the two tangents, so each half-angle sits in a right-angled triangle whose opposite side is r and whose adjacent side is the tangent length √S₁₁.",
+        "common_mistakes": [
+          "Writing tan θ = r/√S₁₁ and losing the half.",
+          "Using the radius as the adjacent side and the tangent length as the opposite."
+        ]
+      },
+      {
+        "id": "s2_angle_90",
+        "kind": "equation",
+        "label": "Put the angle equal to 90°",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Perpendicular means θ = 90°, so θ/2 = 45° and tan 45° = 1.",
+        "memory_tip": "Perpendicular tangents: θ = 90°, half of it is 45°, and tan 45° = 1.",
+        "lines": [
+          "The tangents are perpendicular ⇒ θ = 90°",
+          "⇒ tan(90°/2) = tan 45° = 1",
+          "⇒ r / √S₁₁ = 1 ⇒ r² = S₁₁"
+        ],
+        "why": "Setting the half-angle to 45° makes the tangent of it exactly 1, so the radius equals the tangent length. Squaring both sides removes the root and gives a condition on the coefficients.",
+        "common_mistakes": [
+          "Substituting θ = 90° into tan θ, which is not defined.",
+          "Writing tan 45° = 0."
+        ]
+      },
+      {
+        "id": "s3_substitute_and_simplify",
+        "kind": "boxed_final",
+        "label": "Substitute r and S₁₁ and simplify",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. With the point (0, 0), S₁₁ collapses to c alone.",
+        "memory_tip": "At the origin every term of S₁₁ except c is zero, so S₁₁ = c.",
+        "lines": [
+          "r² = g² + f² − c",
+          "S₁₁ at (0, 0) = 0 + 0 + 2g(0) + 2f(0) + c = c",
+          "⇒ g² + f² − c = c",
+          {
+            "text": "∴ g² + f² = 2c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the origin into S kills every term that carries an x or a y, so S₁₁ is just c. Setting r² = S₁₁ then gives g² + f² − c = c, and moving c across gives the condition.",
+        "common_mistakes": [
+          "Writing S₁₁ = 0 because the point is the origin.",
+          "Stopping at g² + f² − c = c without collecting the c terms."
+        ]
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. It is the only way to see where the half-angle comes from.",
+        "memory_tip": "The line from the outside point to the centre splits the angle into two equal halves.",
+        "figure": {
+          "id": "cir_pair_angle_1",
+          "width": 400,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_circle",
+              "d": "M 182 115 A 58 58 0 1 0 298 115 A 58 58 0 1 0 182 115",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_t1",
+              "d": "M 60 115 L 360 217",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_t2",
+              "d": "M 60 115 L 360 13",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_oc",
+              "d": "M 60 115 L 240 115",
+              "ms": 2570,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_rad",
+              "d": "M 240 115 L 221 170",
+              "ms": 830,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_ra",
+              "d": "M 212.5 167.1 L 215.4 158.6 L 223.9 161.5",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_arc",
+              "d": "M 102 101 A 44 44 0 0 0 102 129",
+              "ms": 410
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_dc",
+              "d": "M 236.5 115 A 3.5 3.5 0 1 0 243.5 115 A 3.5 3.5 0 1 0 236.5 115",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_do",
+              "d": "M 56.5 115 A 3.5 3.5 0 1 0 63.5 115 A 3.5 3.5 0 1 0 56.5 115",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_pair_angle_1_lo",
+              "x": 44,
+              "y": 109,
+              "text": "O",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_pair_angle_1_lc",
+              "x": 246,
+              "y": 138,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_pair_angle_1_lth",
+              "x": 130,
+              "y": 110,
+              "text": "θ",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_pair_angle_1_lr",
+              "x": 234,
+              "y": 155,
+              "text": "r",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_pair_angle_1_cap",
+              "x": 24,
+              "y": 220,
+              "text": "the line OC halves the angle θ",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two tangents from O are equal in length and the figure is symmetric about the line OC, so OC bisects the angle between them. That gives a right-angled triangle with the radius opposite the half-angle and the tangent length adjacent to it, which is exactly tan(θ/2) = r/√S₁₁.",
+        "common_mistakes": [
+          "Marking the full angle θ inside the right-angled triangle.",
+          "Drawing the radius to a point that is not where the tangent touches."
+        ]
+      }
+    ]
+  }
+}

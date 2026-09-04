@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
   "appearances": [
     {
@@ -24,40 +24,36 @@
   ],
   "mark_split": [
     {
-      "label": "Find the points of intersection",
+      "label": "Solve for both vertices",
       "marks": 1
     },
     {
-      "label": "Solve for both vertices",
-      "marks": 2
-    },
-    {
       "label": "Find the centroid",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Find the area",
-      "marks": 3
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 186, under its 'PAIR OF LINES' heading. Printed appearance: AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It applies chapter answer 7 (book p.20), which derives the area formula in general; this bank question does the same job with numbers, and additionally asks for the centroid. Its split follows the same 1+2+2+2 shape. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the area."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 186, under its 'PAIR OF LINES' heading. Printed appearance: AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It applies chapter answer 7 (book p.20), which derives the area formula in general; this bank question does the same job with numbers, and additionally asks for the centroid. Its split follows the same 1+2+2+2 shape. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the area. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+2+2+3 — rearranging the given line to y = 2x − 6 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — say where the third vertex is, and how that shortens the area formula.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_find_intersections",
         "kind": "equation",
         "label": "Find the points of intersection",
-        "marks": 1,
-        "margin_note": "First mark. Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex. Substitute the line into the pair to find where the other two vertices sit.",
+        "marks": 0,
+        "margin_note": "No mark of its own. Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex. Substitute the line into the pair to find where the other two vertices sit.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,14 +89,14 @@
           "Trying to factorise the pair before substituting, which is more work.",
           "Forgetting that the origin is a vertex."
         ],
-        "mark_note": "Method"
+        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex."
       },
       {
         "id": "s2_both_vertices",
         "kind": "equation",
         "label": "Solve for both vertices",
-        "marks": 2,
-        "margin_note": "Two marks. Substituting collapses the pair to a single quadratic in x, and its two roots give the two vertices.",
+        "marks": 1,
+        "margin_note": "First mark. Substituting collapses the pair to a single quadratic in x, and its two roots give the two vertices.",
         "lines": [
           "∴ (1) ⇒ 3x² − 4x(2x − 6) + (2x − 6)² = 0",
           "⇒ 3x² − 8x² + 24x + 4x² + 36 − 24x = 0",
@@ -138,14 +134,15 @@
           "Losing the +36 when expanding (2x − 6)².",
           "Taking only the positive root and finding one vertex."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Substituting collapses the pair to one quadratic in x, whose two roots give the two vertices."
       },
       {
         "id": "s3_centroid",
         "kind": "equation",
         "label": "Find the centroid",
-        "marks": 2,
-        "margin_note": "Two marks. The centroid is the plain average of the three vertices. With the origin among them, two of the six numbers are zero.",
+        "marks": 1,
+        "margin_note": "One mark. The centroid is the plain average of the three vertices. With the origin among them, two of the six numbers are zero.",
         "lines": [
           "∴ The centroid of the triangle formed by O(0,0), A(6, 6), B(−6, −18) is",
           "G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)",
@@ -179,14 +176,15 @@
           "Averaging only the two non-origin vertices.",
           "Dividing by 2 instead of 3."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The plain average of the three vertices — and with the origin among them, two numbers are zero."
       },
       {
         "id": "s4_area",
         "kind": "boxed_final",
         "label": "Find the area",
-        "marks": 3,
-        "margin_note": "The last three marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
+        "marks": 2,
+        "margin_note": "The last two marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
         "lines": [
           "Area of △OAB = ½ |x₁y₂ − x₂y₁|",
           "= ½ |6(−18) − (−6)(6)|",
@@ -223,8 +221,10 @@
           "Reporting the area as −36 by dropping the modulus.",
           "Using all three vertices in a determinant and mis-expanding it."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "With a vertex at the origin the determinant collapses to ½|x₁y₂ − x₂y₁|."
       }
     ]
-  }
+  },
+  "insider_note": "The third vertex is the ORIGIN, where the homogeneous pair meets; miss it and there is no triangle. With O at the origin the shortcut ½|x₁y₂ − x₂y₁| gives the area, much quicker than the full determinant."
 }

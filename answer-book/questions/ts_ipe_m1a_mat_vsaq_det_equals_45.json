@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The top row is 1, 0, 0 — two zeros — so expanding along it leaves a single 2×2 minor. Keep x as a letter.",
+        "memory_tip": "The top row is 1, 0, 0 — two zeros — so expanding along it leaves a single 2×2 minor. Keep x as a letter.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,7 +91,7 @@
             "minor"
           ]
         },
-        "why": "A row of zeros is a gift — expanding along it turns three 2×2 determinants into one. Choosing the right row to expand along is the skill this question tests.",
+        "why": "A row with two zeros saves work — expanding along it leaves a single 2×2 minor instead of three. Choosing the right row to expand along is the skill this question tests.",
         "common_mistakes": [
           "Expanding along a row with no zeros and doing three times the work.",
           "Substituting a guess for x before expanding."
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Set the expansion equal to 45 and solve. Watch the double negative: 4 × (−6) = −24, and subtracting it ADDS 24.",
+        "memory_tip": "Watch the double negative: 4 × (−6) = −24, and subtracting it ADDS 24.",
         "lines": [
           "3x + 24 = 45",
           "3x = 45 − 24 = 21",
@@ -140,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Expand along the first row, where two of the three entries are 0, so only the leading 1 contributes. That reduces the whole determinant to 3x + 24."
 }

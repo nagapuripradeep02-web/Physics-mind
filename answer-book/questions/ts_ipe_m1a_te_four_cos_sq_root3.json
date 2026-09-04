@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_four_cos_sq_root3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve 4 cos²θ + √3 = 2(√3 + 1) cosθ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write as a quadratic in cosθ",
+      "marks": 1
+    },
+    {
+      "label": "Split the middle term",
+      "marks": 1
+    },
+    {
+      "label": "Solve the first factor",
+      "marks": 1
+    },
+    {
+      "label": "Solve the second factor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each root because BOTH survive here — the surd coefficient makes students expect a rejection, and this question is the one in the set where no root is discarded. EXTRANEOUS-ROOT RECORD: nothing is squared and no denominator is cleared, so no candidate can enter that the original equation refuses. Both cosθ = √3/2 and cosθ = 1/2 lie inside [−1, 1] and both were substituted back: 4(3/4) + √3 = 3 + √3 against 2(√3+1)(√3/2) = 3 + √3, and 4(1/4) + √3 = 1 + √3 against 2(√3+1)(1/2) = √3 + 1. The card says both are kept and why, so a student does not discard one out of habit. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_as_a_quadratic",
+        "kind": "equation",
+        "label": "Write as a quadratic in cosθ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Only cosθ appears, so no identity is needed. Bring every term to the left and read the equation as a quadratic with cosθ as the unknown.",
+        "memory_tip": "Only cosine appears, so no identity is needed — just move everything to one side.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 4cos²θ + √3 = 2(√3 + 1) cosθ",
+          "⇒ 4cos²θ − 2(√3 + 1) cosθ + √3 = 0",
+          "This is a quadratic in cosθ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every term is moved to one side, giving a quadratic in cosθ.",
+          "accept": [
+            "bring everything to the left so it is four cos squared minus two root three plus one cos theta plus root three equals zero",
+            "no identity is needed because only cosine appears",
+            "read it as a quadratic with cos theta as the unknown",
+            "anni oka vaipuki teesukoni cos theta lo quadratic ga chudali",
+            "write it in standard quadratic form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quadratic in cos theta",
+            "four cos squared",
+            "two root three plus one"
+          ]
+        },
+        "why": "The equation already holds one ratio, so the Pythagorean identity is not needed. Recognising it as a quadratic is the only insight this step asks for.",
+        "common_mistakes": [
+          "Replacing cos²θ by 1 − sin²θ and creating a second ratio.",
+          "Losing the sign when moving 2(√3 + 1) cosθ across."
+        ]
+      },
+      {
+        "id": "s2_split_the_middle_term",
+        "kind": "equation",
+        "label": "Split the middle term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Expand 2(√3 + 1) as 2√3 + 2 and split the middle term into those two pieces. The bracket (2cosθ − √3) is then shared.",
+        "memory_tip": "2(√3 + 1) = 2√3 + 2, and the split is already written for you: −2√3 cosθ and −2cosθ.",
+        "lines": [
+          "Now 2(√3 + 1) = 2√3 + 2, so split the",
+          "middle term as −2√3 cosθ − 2cosθ:",
+          "⇒ 4cos²θ − 2√3 cosθ − 2cosθ + √3 = 0",
+          "⇒ 2cosθ(2cosθ − √3) − 1(2cosθ − √3) = 0",
+          "⇒ (2cosθ − √3)(2cosθ − 1) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the middle term splits as −2√3 cosθ − 2cosθ, giving (2cosθ − √3)(2cosθ − 1) = 0.",
+          "accept": [
+            "expand two into root three plus one and split the middle term into minus two root three cos and minus two cos",
+            "the factors are two cos theta minus root three and two cos theta minus one",
+            "the coefficient itself tells you how to split it",
+            "middle term ni two root three, two ga split cheyyali",
+            "factorise into the two brackets"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos theta minus root three",
+            "two cos theta minus one",
+            "split the middle term",
+            "two root three"
+          ]
+        },
+        "why": "The coefficient 2(√3 + 1) is already written as a sum, so the split needs no searching — the two pieces of that sum ARE the two parts of the middle term.",
+        "common_mistakes": [
+          "Using the quadratic formula and mishandling √(16 − 8√3).",
+          "Splitting as −√3 cosθ − (√3 + 2) cosθ, which shares no bracket."
+        ]
+      },
+      {
+        "id": "s3_solve_the_first_factor",
+        "kind": "equation",
+        "label": "Solve the first factor",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Both roots lie inside [−1, 1], so neither is discarded — say so, because the surds make students expect a rejection. Then solve cosθ = √3/2.",
+        "memory_tip": "Check the range before solving: √3/2 ≈ 0.87 and 1/2 are both inside [−1, 1], so BOTH roots are kept.",
+        "lines": [
+          "⇒ 2cosθ − √3 = 0  (or)  2cosθ − 1 = 0",
+          "⇒ cosθ = √3/2  (or)  cosθ = 1/2",
+          "Both lie between −1 and 1, so both are kept.",
+          "Now cosθ = √3/2 = cos(π/6), so α = π/6",
+          "For cosθ = cosα, θ = 2nπ ± α",
+          "⇒ θ = 2nπ ± π/6,  n ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both roots are inside [−1, 1] and cosθ = √3/2 gives θ = 2nπ ± π/6.",
+          "accept": [
+            "both roots are inside minus one to one so both are kept and cos theta root three by two gives two n pi plus or minus pi by six",
+            "check the range first, neither root is discarded",
+            "cos theta is root three over two which is cos pi by six",
+            "rendu roots range lo unnayi, edi reject cheyyakoodadu",
+            "solve the first bracket with the cosine general solution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three over two",
+            "cos pi by six",
+            "two n pi plus or minus",
+            "both roots"
+          ]
+        },
+        "why": "Checking the range is a habit worth keeping even when nothing fails it — here both values are possible cosines, so discarding one would lose half the answer.",
+        "common_mistakes": [
+          "Discarding cosθ = 1/2 as if it were out of range.",
+          "Using the sine general solution nπ + (−1)ⁿα for a cosine equation."
+        ]
+      },
+      {
+        "id": "s4_solve_the_second_factor",
+        "kind": "boxed_final",
+        "label": "Solve the second factor",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. cosθ = 1/2 is cos(π/3). Write BOTH families in the final answer, joined by 'or', with n ∈ Z.",
+        "memory_tip": "cosθ = 1/2 = cos(π/3). Two factors, two families — write both in the final line.",
+        "lines": [
+          "Now cosθ = 1/2 = cos(π/3), so α = π/3",
+          "⇒ θ = 2nπ ± π/3,  n ∈ Z",
+          "Both families are solutions of the equation.",
+          {
+            "text": "∴ θ = 2nπ ± π/6 or 2nπ ± π/3, n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosθ = 1/2 gives θ = 2nπ ± π/3, and BOTH families are written in the answer.",
+          "accept": [
+            "cos theta is a half which is cos pi by three so theta is two n pi plus or minus pi by three",
+            "write both families two n pi plus or minus pi by six and two n pi plus or minus pi by three",
+            "the second bracket gives pi by three as the principal value",
+            "cos theta half ante cos pi by three, rendu families rasali",
+            "give both answers with n belongs to Z"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos pi by three",
+            "two n pi plus or minus",
+            "pi by three",
+            "both families"
+          ]
+        },
+        "why": "Each factor of the quadratic is a separate equation with its own family of angles. A final answer that names only one of them answers half the question.",
+        "common_mistakes": [
+          "Writing only one of the two families.",
+          "Combining them into a single nπ ± α line, which is a different set.",
+          "Omitting n ∈ Z."
+        ]
+      }
+    ]
+  }
+}

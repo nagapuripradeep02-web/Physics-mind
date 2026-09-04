@@ -1,0 +1,102 @@
+{
+  "source_book": "Sri Chaitanya — FAST TRACK IPE for Jr. Students, Mathematics-IA (2026-27 edition)",
+  "scan_file": "DocScanner (2).pdf",
+  "scan_sha256": "f53997a011c78869da3eff0b1ee4ca8d02de07189b671306ce1d8c5810f0150c",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring. Stems restated in our own wording; the mathematics is exact. No solution content from the source book appears in this file, by policy.",
+  "chapter": { "number": 4, "printed_title": "MATHEMATICAL INDUCTION" },
+  "section_banners": [
+    "Short Answer Questions : (Q1-10, printed pp. 25-30) — the ONLY banner in the chapter. The book prints no VSAQ block and no LAQ/Theorems block for Mathematical Induction."
+  ],
+  "questions": [
+    { "ref": "saq1i", "section": "SAQ", "number": 1, "part": "i",
+      "stars": 0, "kind": "exercise",
+      "printed_page": 25, "scan_page": 21,
+      "stem": "Prove by mathematical induction that 1³ + 2³ + 3³ + … + n³ = n²(n + 1)²/4.",
+      "appearance_years": [], "notes": "STAR GUTTER CLIPPED on printed p.25 — the scan loses about one character at the left edge (Sol: prints as ol:). Recorded 0 is a FLOOR, not a reading. Each sub-part reprints the instruction Prove by mathematical induction, so the two are separate questions." },
+
+    { "ref": "saq1ii", "section": "SAQ", "number": 1, "part": "ii",
+      "stars": 0, "kind": "exercise",
+      "printed_page": 25, "scan_page": 21,
+      "stem": "Prove by mathematical induction that 1² + 2² + 3² + … + n² = n(n + 1)(2n + 1)/6.",
+      "appearance_years": [], "notes": "Star gutter clipped on printed p.25. Recorded 0 is a floor." },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null,
+      "stars": 3, "kind": "exercise",
+      "printed_page": 26, "scan_page": 22,
+      "stem": "Prove by mathematical induction that a + (a + d) + (a + 2d) + … up to n terms = (n/2)[2a + (n − 1)d].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null,
+      "stars": 1, "kind": "exercise",
+      "printed_page": 26, "scan_page": 22,
+      "stem": "Prove by induction that a + ar + ar² + … up to n terms = a(rⁿ − 1)/(r − 1), r ≠ 1.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null,
+      "stars": 3, "kind": "exercise",
+      "printed_page": 26, "scan_page": 22,
+      "stem": "Show that 1·2·3 + 2·3·4 + 3·4·5 + … up to n terms = n(n + 1)(n + 2)(n + 3)/4, ∀ n ∈ N.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5i", "section": "SAQ", "number": 5, "part": "i",
+      "stars": 3, "kind": "exercise",
+      "printed_page": 27, "scan_page": 23,
+      "stem": "Show that 1/(1·4) + 1/(4·7) + 1/(7·10) + … up to n terms = n/(3n + 1), ∀ n ∈ N.",
+      "appearance_years": [], "notes": "The stars sit on the SUB-PARTS here, not on the number. The number 5. itself is lost in the clipped left gutter of printed p.27; it is fixed by the tail of printed p.26, which shows 5.*** in its right margin." },
+
+    { "ref": "saq5ii", "section": "SAQ", "number": 5, "part": "ii",
+      "stars": 3, "kind": "exercise",
+      "printed_page": 27, "scan_page": 23,
+      "stem": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + 1/((2n − 1)(2n + 1)) = n/(2n + 1), ∀ n ∈ N.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null,
+      "stars": 3, "kind": "exercise",
+      "printed_page": 28, "scan_page": 24,
+      "stem": "Show that 1² + (1² + 2²) + (1² + 2² + 3²) + … up to n terms = n(n + 1)²(n + 2)/12, ∀ n ∈ N.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7i", "section": "SAQ", "number": 7, "part": "i",
+      "stars": 3, "kind": "exercise",
+      "printed_page": 28, "scan_page": 24,
+      "stem": "Show that 49ⁿ + 16n − 1 is divisible by 64, ∀ n ∈ N.",
+      "appearance_years": [], "notes": "The number 7 carries no stars of its own; each sub-part carries its own count. Q7 opens on printed p.28 and its parts ii) and iii) run onto p.29." },
+
+    { "ref": "saq7ii", "section": "SAQ", "number": 7, "part": "ii",
+      "stars": 2, "kind": "exercise",
+      "printed_page": 29, "scan_page": 25,
+      "stem": "Show that 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ is divisible by 17, ∀ n ∈ N.",
+      "appearance_years": [], "notes": "Two stars legible, gutter clipped on printed p.29 — recorded 2 is a FLOOR (3 is likely, matching its siblings). PRINTED DEFECT: the quantifier reads ∀ k ∈ N although the statement is in n; it should be ∀ n ∈ N." },
+
+    { "ref": "saq7iii", "section": "SAQ", "number": 7, "part": "iii",
+      "stars": 1, "kind": "exercise",
+      "printed_page": 29, "scan_page": 25,
+      "stem": "Show that 4ⁿ − 3n − 1 is divisible by 9, ∀ n ∈ N.",
+      "appearance_years": [], "notes": "One star, read from the right-margin bleed of printed p.28 where the gutter of p.29 is not clipped." },
+
+    { "ref": "saq8i", "section": "SAQ", "number": 8, "part": "i",
+      "stars": 0, "kind": "exercise",
+      "printed_page": 29, "scan_page": 25,
+      "stem": "Show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
+      "appearance_years": [], "notes": "Q8 sits in the right column, gutter intact — the 0 is a reading, not a floor." },
+
+    { "ref": "saq8ii", "section": "SAQ", "number": 8, "part": "ii",
+      "stars": 1, "kind": "exercise",
+      "printed_page": 29, "scan_page": 25,
+      "stem": "If x and y are natural numbers with x ≠ y, show by mathematical induction that xⁿ − yⁿ is divisible by x − y, ∀ n ∈ N.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null,
+      "stars": 1, "kind": "exercise",
+      "printed_page": 30, "scan_page": 26,
+      "stem": "Use mathematical induction to prove that 2 + 3·2 + 4·2² + … up to n terms = n·2ⁿ, ∀ n ∈ N.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null,
+      "stars": 0, "kind": "exercise",
+      "printed_page": 30, "scan_page": 26,
+      "stem": "Use mathematical induction to prove that 4³ + 8³ + 12³ + … up to n terms = 16n²(n + 1)².",
+      "appearance_years": [], "notes": "Q10 sits in the right column, gutter intact — the 0 is a reading. The chapter ends here; printed p.31 opens chapter 5." }
+  ]
+}

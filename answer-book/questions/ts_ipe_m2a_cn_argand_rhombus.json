@@ -1,0 +1,432 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_argand_rhombus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the points in the Argand plane represented by the complex numbers −2 + 7i, −3/2 + (1/2)i, 4 − 3i, (7/2)(1 + i) are the vertices of a rhombus.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the four points and the distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Find the four sides and the two diagonals",
+      "marks": 2
+    },
+    {
+      "label": "State equal sides, unequal diagonals, and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 55. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15, 20 · TS 16, 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 5 (book p.119). Small simplification, not an error: the book leaves BD as √136/2; the card writes the equal value √34 so the comparison with AC = √136 is read at a glance. The figure carries no mark. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show that the four points make a rhombus — what you compute, and which two facts you compare at the end.",
+  "insider_note": "A rhombus answer needs the two diagonals as well as the four sides: equal sides with unequal diagonals is what separates a rhombus from a square. The last mark is the sentence that states both and names the shape.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_points",
+        "kind": "equation",
+        "label": "Write the points",
+        "marks": 1,
+        "mark_note": "Points",
+        "margin_note": "First mark. Expand (7/2)(1 + i) to 7/2 + (7/2)i before reading its point. Keep the fractions as halves — the arithmetic stays clean if every coordinate is written over 2.",
+        "memory_tip": "Expand (7/2)(1 + i) to 7/2 + (7/2)i before reading its point. Keep every coordinate written over 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(7/2)(1 + i) = 7/2 + (7/2)i, so the four numbers",
+          "are the points A(−2, 7), B(−3/2, 1/2),",
+          "C(4, −3), D(7/2, 7/2).",
+          "Distance between two points:",
+          {
+            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four complex numbers are taken as the points A(−2, 7), B(−3/2, 1/2), C(4, −3), D(7/2, 7/2), and that the distance formula gives the lengths.",
+          "accept": [
+            "write the four numbers as points, expanding seven by two times one plus i first",
+            "the points are minus two seven, minus three by two comma half, four minus three and seven by two comma seven by two",
+            "take real and imaginary parts as coordinates for all four",
+            "naalugu numbers ni points ga rayali, last di seven by two comma seven by two",
+            "convert each number to a point and use the distance formula"
+          ],
+          "reject": [
+            "plot the points",
+            "write the points"
+          ],
+          "heard_as": [
+            "seven by two",
+            "three by two",
+            "point",
+            "argand",
+            "distance formula"
+          ]
+        },
+        "why": "A rhombus is four equal sides — a coordinate fact. The complex numbers are only used here, to give the four points; the fraction in D is the one place the reading can go wrong.",
+        "common_mistakes": [
+          "Reading (7/2)(1 + i) as the point (7/2, 1).",
+          "Writing B as (−3/2, −1/2) — its imaginary part is +1/2.",
+          "Converting the halves to decimals and losing exactness inside the root."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch the rhombus",
+        "marks": 0,
+        "margin_note": "Worth no mark. The rhombus is tall and tilted; its diagonals AC (long) and BD (short) are dashed. Unequal diagonals is what makes it a rhombus and not a square.",
+        "memory_tip": "AC and BD are diagonals, not sides. Unequal diagonals is what makes this a rhombus and not a square.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the four points are marked, joined in order A B C D, and both diagonals drawn. Naming the sketch is full credit.",
+          "accept": [
+            "draw the four points and join them in order with both diagonals",
+            "sketch A B C D and draw the diagonals A C and B D",
+            "mark the points and draw the rhombus with its diagonals",
+            "naalugu points guruthu pettukoni rhombus geesi diagonals geeyali",
+            "plot the points, join them, then draw the two diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "sketch",
+            "rhombus",
+            "diagonals",
+            "plot"
+          ]
+        },
+        "why": "The sketch shows which four segments are sides and which two are diagonals, and it shows the diagonals are clearly different lengths — the picture matches the numbers that follow.",
+        "common_mistakes": [
+          "Joining A to C as a side.",
+          "Drawing a square and then being surprised the diagonals differ."
+        ],
+        "figure": {
+          "id": "argand_rhombus",
+          "width": 300,
+          "height": 220,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "phase1",
+              "caption": "Step 1 — the axes"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 22 150 L 280 150",
+              "ms": 3690,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 110 208 L 110 18",
+              "ms": 2710,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_x",
+              "d": "M 272 145 L 280 150 L 272 155",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_y",
+              "d": "M 105 26 L 110 18 L 115 26",
+              "ms": 300
+            },
+            {
+              "type": "pause",
+              "id": "phase2",
+              "caption": "Step 2 — the four sides AB, BC, CD, DA"
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 78 38 L 86 142",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 86 142 L 174 198",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "side_cd",
+              "d": "M 174 198 L 166 94",
+              "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "side_da",
+              "d": "M 166 94 L 78 38",
+              "ms": 1490
+            },
+            {
+              "type": "pause",
+              "id": "phase3",
+              "caption": "Step 3 — the two diagonals AC and BD"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ac",
+              "d": "M 78 38 L 174 198",
+              "ms": 2670,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_bd",
+              "d": "M 86 142 L 166 94",
+              "ms": 1330,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "pause",
+              "id": "phase4",
+              "caption": "Step 4 — the vertex labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 268,
+              "y": 168,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 116,
+              "y": 30,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 50,
+              "y": 32,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 62,
+              "y": 160,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 182,
+              "y": 208,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 176,
+              "y": 92,
+              "text": "D",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_sides",
+        "kind": "equation",
+        "label": "Find sides and diagonals",
+        "marks": 2,
+        "mark_note": "Six distances",
+        "margin_note": "Half the marks. Each side is √170/2 — the pairs 1/4 + 169/4 and 121/4 + 49/4 both add to 170/4. The diagonals are √136 and √34, which are not equal.",
+        "memory_tip": "Six distances, not four. Every side is √170/2; the diagonals √136 and √34 are different.",
+        "lines": [
+          {
+            "text": "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(1/4 + 169/4) = √(170/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "BC = √((−3/2 − 4)² + (1/2 + 3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(121/4 + 49/4) = √(170/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "CD = √((4 − 7/2)² + (−3 − 7/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(1/4 + 169/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "DA = √((7/2 + 2)² + (7/2 − 7)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(121/4 + 49/4) = √170/2",
+            "style": "indent"
+          },
+          {
+            "text": "AC = √((−2 − 4)² + (7 + 3)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(36 + 100) = √136",
+            "style": "indent"
+          },
+          {
+            "text": "BD = √((−3/2 − 7/2)² + (1/2 − 7/2)²)",
+            "style": "eq"
+          },
+          {
+            "text": "= √(25 + 9) = √34",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four sides AB, BC, CD, DA each come to √170/2, and the diagonals AC = √136 and BD = √34 are different.",
+          "accept": [
+            "the four sides are each root one seventy by two and the diagonals are root one thirty six and root thirty four",
+            "compute six distances, all four sides are equal and the two diagonals are not",
+            "sides come to root one hundred seventy over two each, diagonals differ",
+            "naalugu sides root one seventy by two, diagonals veru veru vasthai",
+            "equal sides, unequal diagonals from the distance formula"
+          ],
+          "reject": [
+            "find the sides",
+            "find the distances",
+            "use the distance formula"
+          ],
+          "heard_as": [
+            "root one seventy",
+            "root 170",
+            "root one thirty six",
+            "root thirty four",
+            "diagonal"
+          ]
+        },
+        "why": "Four equal sides make a rhombus. The diagonals are computed to show the figure is not a square as well — a square is a rhombus with equal diagonals, and the question asks for the shape to be named precisely.",
+        "common_mistakes": [
+          "A sign slip in (−2 + 3/2) or (−3 − 7/2), which both need the fraction subtracted from a negative.",
+          "Stopping after the sides — the diagonals are what separate rhombus from square.",
+          "Leaving BD as √136/2 and not noticing it equals √34, then comparing it wrongly with √136."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Say the sides are equal, say the diagonals are not, and name the shape.",
+        "memory_tip": "Two facts, then the name: sides equal, diagonals unequal, therefore rhombus.",
+        "lines": [
+          "AB = BC = CD = DA = √170/2 — four equal sides.",
+          "AC = √136 ≠ BD = √34 — the diagonals are unequal.",
+          {
+            "text": "∴ A, B, C, D form a rhombus.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That four equal sides with unequal diagonals make ABCD a rhombus and not a square.",
+          "accept": [
+            "four equal sides and unequal diagonals so it is a rhombus",
+            "sides equal, diagonals not equal, therefore A B C D is a rhombus",
+            "since the sides match but the diagonals do not it is a rhombus not a square",
+            "sides equal kani diagonals equal kaadu kabatti rhombus",
+            "equal sides with different diagonals means rhombus"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a rhombus"
+          ],
+          "heard_as": [
+            "rhombus",
+            "equal sides",
+            "unequal diagonals",
+            "not a square"
+          ]
+        },
+        "why": "The question is 'show that', so the shape must be named from the two facts. The unequal-diagonals line is what makes the word 'rhombus' the exact answer.",
+        "common_mistakes": [
+          "Concluding 'square' from the four equal sides without checking the diagonals.",
+          "Ending on the last distance with no sentence."
+        ]
+      }
+    ]
+  }
+}

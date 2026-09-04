@@ -308,7 +308,7 @@
             "totally reflected"
           ]
         },
-        "memory_tip": "A sine cannot pass 1. When Snell's law asks for more, refraction stops and everything reflects."
+        "memory_tip": "A sine cannot pass 1. When Snell's law would need sin r greater than 1, refraction stops and everything reflects."
       }
     ]
   }

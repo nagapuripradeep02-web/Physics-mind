@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_find_c_x2_minus_3x_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find c so that f′(c) = (f(b) − f(a))/(b − a) for f(x) = x² − 3x − 1, a = −11/7, b = 13/7.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work out the chord slope",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = the chord slope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 10(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name the theorem this equation belongs to, and say what you compute first.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chord_slope",
+        "kind": "equation",
+        "label": "Work out the chord slope",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Put both values over 49 before subtracting; mixing sevenths and forty-ninths in one line is where the arithmetic usually goes wrong.",
+        "memory_tip": "b − a = 13/7 + 11/7 = 24/7. Subtracting a negative a is an addition — write that step out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² − 3x − 1,   a = −11/7,   b = 13/7",
+          "f is a polynomial, so it is continuous on [a, b] and differentiable on (a, b).",
+          "f(13/7) = 169/49 − 39/7 − 1 = 169/49 − 273/49 − 49/49 = −153/49",
+          "f(−11/7) = 121/49 + 33/7 − 1 = 121/49 + 231/49 − 49/49 = 303/49",
+          "b − a = 13/7 − (−11/7) = 24/7",
+          "(f(b) − f(a))/(b − a) = (−153/49 − 303/49)/(24/7) = (−456/49)·(7/24) = −19/7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chord slope (f(b) − f(a))/(b − a) is computed first and comes to −19/7.",
+          "accept": [
+            "work out f at b and f at a and divide by b minus a",
+            "the chord slope is minus nineteen by seven",
+            "b minus a is twenty four by seven",
+            "put everything over forty nine then subtract",
+            "modata f of b minus f of a by b minus a compute chestha",
+            "the right hand side comes to minus nineteen over seven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f of b",
+            "f of a",
+            "minus nineteen by seven",
+            "twenty four by seven",
+            "chord slope"
+          ]
+        },
+        "why": "The equation in the question IS Lagrange's mean value theorem, written out instead of named — so the paper can ask this same thing either way, and the method does not change. The right-hand side is a plain number, so compute it before touching the derivative.",
+        "common_mistakes": [
+          "Taking b − a as 2/7 by subtracting 11/7 instead of adding it.",
+          "Writing 39/7 as 39/49 when putting the terms over a common denominator.",
+          "Dividing by 49 twice and getting −19/49."
+        ]
+      },
+      {
+        "id": "s2_solve_for_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = the chord slope",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. c = 1/7 is the midpoint of [−11/7, 13/7], which is where the point always falls for a quadratic — a quick way to check the arithmetic.",
+        "memory_tip": "For any quadratic, c is the midpoint of the interval: (−11/7 + 13/7)/2 = 1/7.",
+        "lines": [
+          "f′(x) = 2x − 3,   so f′(c) = 2c − 3",
+          "2c − 3 = −19/7",
+          "2c = 3 − 19/7 = (21 − 19)/7 = 2/7",
+          "c = 1/7",
+          "−11/7 < 1/7 < 13/7, so c lies inside the interval",
+          {
+            "text": "∴ c = 1/7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2c − 3 = −19/7 gives c = 1/7, and that 1/7 lies between −11/7 and 13/7.",
+          "accept": [
+            "differentiate to get two x minus three and set it equal to the slope",
+            "two c minus three equals minus nineteen by seven",
+            "c is one by seven",
+            "one seventh lies between minus eleven sevenths and thirteen sevenths",
+            "two c minus three ni slope ki equal chesthe c one by seven vasthundi",
+            "c is the midpoint of the interval"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two c minus three",
+            "one by seven",
+            "midpoint",
+            "inside the interval"
+          ]
+        },
+        "why": "Solving f′(c) = chord slope is the whole content of the mean value theorem. Saying c lies inside (a, b) at the end is the check that the arithmetic is right, since a value outside would contradict the theorem.",
+        "common_mistakes": [
+          "Solving 2c = −19/7 and forgetting to move the −3 across.",
+          "Giving c = 2/7 by not dividing by 2 at the last step."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The awkward endpoints −11/7 and 13/7 are chosen so c comes out neat: c is the MIDPOINT for any quadratic. Work with sevenths throughout rather than decimals."
+}

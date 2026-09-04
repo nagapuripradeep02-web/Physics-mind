@@ -52,7 +52,7 @@
             "text": "N ≡ N   bond order = 3",
             "style": "eq"
           },
-          "The N–N bond length is short, only 110 pm."
+          "The N≡N bond length is short, only 110 pm."
         ],
         "why": "Bond order and bond length go together: three shared pairs pull the two nuclei closer than one shared pair would, so the bond is both short and strong. Naming the bond order is what turns \"small size\" into a reason.",
         "common_mistakes": [
@@ -79,7 +79,7 @@
           "break the bond, so N₂ is stable and does not",
           "react at ordinary temperature."
         ],
-        "why": "Stability is an energy statement, so the answer is finished only when the energy is named. The group trend supports it and has a clear exception: the E≡E multiple bond disappears after nitrogen, and the E–E SINGLE bond enthalpy is the opposite of the usual order, N–N (159 kJ/mol) being weaker than P–P (213 kJ/mol) because of lone-pair repulsion between two small atoms.",
+        "why": "Stability is an energy statement, so the answer is finished only when the energy is named. The group trend supports it: nitrogen is the only member of group 15 that forms a strong E≡E multiple bond, and from phosphorus downwards that multiple bond disappears, which is why no other element of the group exists as a stable diatomic gas.",
         "common_mistakes": [
           "Writing high \"bond energy\" without saying it is the bond DISSOCIATION enthalpy of the triple bond.",
           "Confusing stability with inertness at all temperatures. N₂ does react above about 700 K and in an electric arc."

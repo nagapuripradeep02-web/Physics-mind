@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x3_over_2x_minus_1_x_plus_2_x_minus_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x³/((2x − 1)(x + 2)(x − 3)) into partial fractions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, the 'PQ' practice question printed between answers 103 and 104, which the book gives with its final answer only ([Ans: 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3))]) and no working — the full solution on this card is OURS, and it reaches the book's printed answer. Printed appearances: none — the practice question carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 0 in the identity gives 0 = (1/2)(−1)(2)(−3) + A(2)(−3) + B(−1)(−3) + C(−1)(2) = 3 − 6A + 3B − 2C = 3 + 3/25 − 24/25 − 54/25 = 3 − 75/25 = 0 with A = −1/50, B = −8/25, C = 27/25, so the book's printed answer is confirmed."
+  },
+  "recall_prompt": "Say how you would resolve x³/((2x − 1)(x + 2)(x − 3)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "Write the constant 1/2 before the three fractions — the degrees are equal, so the fraction is improper; and fractions with 25 and 50 are expected here: A = −1/50 is correct, not a sign of an error.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. Degree 3 over degree 3: improper, and the quotient is the constant 1/2 from the leading coefficients 1 and 2·1·1 = 2. Three different linear factors, so A, B, C over each.",
+        "memory_tip": "Equal degrees, so improper. The denominator's leading coefficient is 2·1·1 = 2, giving the quotient 1/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 3 = degree 3: improper.",
+          "Leading coefficients 1 and 2, so the",
+          "quotient is the constant 1/2.",
+          "Let x³/((2x − 1)(x + 2)(x − 3))",
+          "= 1/2 + A/(2x − 1) + B/(x + 2)",
+          "+ C/(x − 3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal degrees make the quotient the constant 1/2, and the form is 1/2 + A/(2x − 1) + B/(x + 2) + C/(x − 3).",
+          "accept": [
+            "the degrees are equal so the quotient is half, then write half plus A over two x minus one plus B over x plus two plus C over x minus three",
+            "improper with equal degrees so a constant half comes first and then one constant over each of the three factors",
+            "half plus A by 2x minus 1 plus B by x plus 2 plus C by x minus 3",
+            "degrees same kabatti quotient half, tarvata A by two x minus one plus B by x plus two plus C by x minus three rasali",
+            "write the constant from the leading coefficients and then three fractions for the three linear factors"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "equal degrees",
+            "quotient half",
+            "leading coefficients",
+            "A over two x minus one",
+            "B over x plus two",
+            "C over x minus three"
+          ]
+        },
+        "why": "The denominator expands to 2x³ + …, so x³ divided by it is 1/2 plus a proper fraction. The constant must appear in the form; without it the identity has no solution.",
+        "common_mistakes": [
+          "Writing the three fractions with no 1/2 in front.",
+          "Taking the leading coefficient of the denominator as 1 and writing a quotient of 1.",
+          "Writing A/(x − 1) instead of A/(2x − 1)."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (2x − 1)(x + 2)(x − 3). The 1/2 keeps the whole denominator; each constant keeps the two factors that are not its own.",
+        "memory_tip": "The 1/2 keeps the whole denominator; each constant keeps the two factors that are not its own.",
+        "lines": [
+          "Multiply by (2x − 1)(x + 2)(x − 3):",
+          "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
+          "+ A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
+          "+ C(2x − 1)(x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x³ = (1/2)(2x − 1)(x + 2)(x − 3) + A(x + 2)(x − 3) + B(2x − 1)(x − 3) + C(2x − 1)(x + 2).",
+          "accept": [
+            "multiply both sides by all three factors to get x cubed equals half into the whole denominator plus A into x plus two into x minus three plus B into two x minus one into x minus three plus C into two x minus one into x plus two",
+            "clear the denominators and the half keeps the whole denominator while each constant keeps the other two factors",
+            "x cubed equals half times the denominator plus A B C times the other two factors each",
+            "moodu factors tho multiply cheste x cube equals half into whole denominator plus A B C into migatha rendu factors",
+            "remove the fractions and keep the half term multiplied by the full denominator"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "half into",
+            "A into x plus two",
+            "B into two x minus one",
+            "C into two x minus one",
+            "identity"
+          ]
+        },
+        "why": "The constant 1/2 is a term and is multiplied like every other term. The three products then carry the three constants, each ready to be isolated by one root.",
+        "common_mistakes": [
+          "Dropping the (1/2)(2x − 1)(x + 2)(x − 3) term.",
+          "Giving A the factor (2x − 1) that it sits over.",
+          "Writing the identity over x³ but forgetting one of the three products."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. Three roots: x = 1/2 for A, x = −2 for B, x = 3 for C. At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = (1/8)(−4/25) = −1/50. Fractions with 25 and 50 are expected here.",
+        "memory_tip": "At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = −1/50. Fractions with 25 and 50 are expected.",
+        "lines": [
+          "Put x = 1/2: 1/8 = A(5/2)(−5/2)",
+          "⇒ 1/8 = −25A/4 ⇒ A = −1/50",
+          "Put x = −2: −8 = B(−5)(−5) ⇒ B = −8/25",
+          "Put x = 3: 27 = C(5)(5) ⇒ C = 27/25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1/2 gives A = −1/50, x = −2 gives B = −8/25 and x = 3 gives C = 27/25.",
+          "accept": [
+            "put x equals half to get A equals minus one by fifty, x equals minus two to get B equals minus eight by twenty five and x equals three to get C equals twenty seven by twenty five",
+            "the three roots half minus two and three give A minus one fiftieth B minus eight twenty fifths and C twenty seven twenty fifths",
+            "A minus one by fifty, B minus eight by twenty five, C twenty seven by twenty five",
+            "x equals half pedithe A minus one by fifty, x equals minus two pedithe B minus eight by twenty five, x equals three pedithe C twenty seven by twenty five",
+            "three substitutions at the roots give the three constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals half",
+            "x equals minus two",
+            "x equals three",
+            "minus one by fifty",
+            "minus eight by twenty five",
+            "twenty seven by twenty five"
+          ]
+        },
+        "why": "Each root makes two of the three products and the 1/2 term vanish, leaving one constant. The root of 2x − 1 is 1/2; forgetting that and using x = 1 gives nothing useful.",
+        "common_mistakes": [
+          "Using x = 1 for the factor (2x − 1); its root is 1/2.",
+          "At x = 1/2 computing (1/2 + 2)(1/2 − 3) as (5/2)(5/2) = +25/4 and getting A = +1/50.",
+          "At x = −2 computing (−4 − 1)(−2 − 3) as −25 and getting B = +8/25."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 1/2 first, then −1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3)). This matches the answer the book prints for its practice question. The result is too long for one box, so the constants are boxed under it.",
+        "memory_tip": "The 1/2 comes first, then the three fractions with their signs. Check x = 0: 0 = 3 + 3/25 − 24/25 − 54/25.",
+        "lines": [
+          "∴ x³/((2x − 1)(x + 2)(x − 3))",
+          "= 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2))",
+          "+ 27/(25(x − 3))",
+          {
+            "text": "∴ A = −1/50, B = −8/25, C = 27/25",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3)), with the constant 1/2 in front.",
+          "accept": [
+            "the answer is half minus one over fifty into two x minus one minus eight over twenty five into x plus two plus twenty seven over twenty five into x minus three",
+            "half first then minus one by fifty two x minus one minus eight by twenty five x plus two plus twenty seven by twenty five x minus three",
+            "the constant half comes first and then the three fractions with their signs",
+            "final answer half minus one by fifty into two x minus one minus eight by twenty five into x plus two plus twenty seven by twenty five into x minus three ani rasali",
+            "put A B C back into the form with the half in front"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "half minus",
+            "one over fifty",
+            "eight over twenty five",
+            "twenty seven over twenty five",
+            "final answer"
+          ]
+        },
+        "why": "The constant quotient and all three fractions, with their signs, make the answer. Two of the constants are negative, so two terms are subtracted.",
+        "common_mistakes": [
+          "Leaving out the 1/2 in the final line.",
+          "Writing +8/(25(x + 2)) after finding B = −8/25.",
+          "Not checking: put x = 0 in the identity, 0 = 3 + 3/25 − 24/25 − 54/25. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

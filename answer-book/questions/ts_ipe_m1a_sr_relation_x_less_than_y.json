@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_relation_x_less_than_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the relation R : A → B, where A = {1, 2, 3} and B = {1, 3, 6}, is defined by R = {(x, y) : x < y, x ∈ A and y ∈ B}, find R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Test each x in A against B",
+      "marks": 1
+    },
+    {
+      "label": "Write R as a set of ordered pairs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 26. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would work this out — say the order you test the elements in, and what the condition x < y rules out.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_test_each_x",
+        "kind": "equation",
+        "label": "Test each x in A against B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Take the elements of A one at a time and keep every y in B that is strictly greater. The condition is x < y, so y = x is left out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {1, 2, 3},   B = {1, 3, 6}",
+          "For each x in A, keep every y in B with x < y:",
+          "x = 1:  y = 3, 6     (y = 1 fails, since 1 < 1 is false)",
+          "x = 2:  y = 3, 6",
+          "x = 3:  y = 6        (y = 3 fails, since 3 < 3 is false)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each x in A is tested against every y in B and only the pairs with x strictly less than y are kept.",
+          "accept": [
+            "take one then two then three and keep the y values bigger than each",
+            "for x equal to one the y values are three and six",
+            "test every x against every y and keep x less than y",
+            "prathi x ni B lo prathi y tho compare cheyyali",
+            "one is not less than one so that pair is dropped"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals one",
+            "three and six",
+            "strictly less",
+            "dropped"
+          ]
+        },
+        "why": "The condition x < y is strict, so a pair with equal entries is not allowed. Taking each x separately means that check is made three times instead of once, which is where the two rejected pairs are caught.",
+        "memory_tip": "The condition is x < y, not x ≤ y — equal values are left out.",
+        "common_mistakes": [
+          "Including (1, 1) and (3, 3), which would need the condition to be x ≤ y.",
+          "Taking x from B and y from A, which reverses the relation.",
+          "Testing only some of the y values because B is not written in order beside each x."
+        ]
+      },
+      {
+        "id": "s2_write_r",
+        "kind": "boxed_final",
+        "label": "Write R as a set of ordered pairs",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Five ordered pairs inside one pair of braces, each with its first entry from A. The count 2 + 2 + 1 = 5 checks the list against the three lines above.",
+        "lines": [
+          "Collect the pairs from the three lines above:",
+          "x = 1 gives (1, 3) and (1, 6);  x = 2 gives (2, 3) and (2, 6);  x = 3 gives (3, 6)",
+          "R has 5 pairs, and R ⊆ A × B, which has 3 × 3 = 9 pairs.",
+          {
+            "text": "∴ R = {(1, 3), (1, 6), (2, 3), (2, 6), (3, 6)}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R = {(1, 3), (1, 6), (2, 3), (2, 6), (3, 6)}, five ordered pairs.",
+          "accept": [
+            "R is one three one six two three two six and three six",
+            "five pairs in all",
+            "write them as ordered pairs inside braces",
+            "aidu pairs vasthayi anni ordered pairs ga rayali",
+            "two plus two plus one is five pairs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one three",
+            "one six",
+            "three six",
+            "five pairs",
+            "ordered pairs"
+          ]
+        },
+        "why": "R is a subset of A × B, so every pair must have its first entry in A and its second in B. Writing the count beside the list shows the answer has been checked and not just copied down.",
+        "memory_tip": "Count the pairs from your working before writing them: 2 + 2 + 1 = 5.",
+        "common_mistakes": [
+          "Writing (3, 1) or (6, 1), whose entries are in the wrong sets.",
+          "Giving the answer as a list of y values instead of ordered pairs.",
+          "Leaving out (3, 6), because 3 is the last element of A and is checked in a hurry."
+        ]
+      }
+    ]
+  }
+}

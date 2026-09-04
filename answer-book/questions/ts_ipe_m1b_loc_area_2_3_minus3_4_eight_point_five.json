@@ -49,6 +49,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. A and B are the fixed ends of the base; P is the vertex that moves.",
+        "memory_tip": "A and B are the fixed ends of the base; P is the vertex that MOVES.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The area of a triangle from three coordinate pairs is the half-determinant form. Writing it with the given area on the right earns the mark.",
+        "memory_tip": "Area from three coordinate pairs is the half-determinant form, set equal to the given area.",
         "lines": [
           "Given condition: area of △PAB = 8.5 sq.units",
           {
@@ -133,6 +135,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The determinant rows are differences of coordinates, so the moving point (x, y) enters as the third pair. Expand the 2×2 determinant as a cross product of diagonals.",
+        "memory_tip": "The determinant rows are coordinate DIFFERENCES, so (x, y) enters as the third pair.",
         "lines": [
           "Here (x₁, y₁) = (2, 3), (x₂, y₂) = (−3, 4), (x₃, y₃) = (x, y)",
           {
@@ -181,6 +184,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks, and the place this family differs from every other in the chapter. A modulus opens to PLUS OR MINUS, so there are TWO lines, and both are part of the locus. Write them as one product equal to zero.",
+        "memory_tip": "A modulus opens to PLUS OR MINUS, so there are TWO lines — write them as one product.",
         "lines": [
           "⇒ |x + 5y − 17| = 17   ⇒   x + 5y − 17 = ±17",
           "⇒ x + 5y − 34 = 0   (or)   x + 5y = 0",
@@ -219,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so TWO lines survive — the answer is their product, and reporting a single branch loses the last mark."
 }

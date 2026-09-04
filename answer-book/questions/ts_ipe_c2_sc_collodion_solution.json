@@ -79,7 +79,7 @@
         ],
         "why": "Collodion is in the surface chemistry chapter only because of what the dried film does: ions and small molecules pass through it while colloidal particles do not. That is the property a dialyser needs, so the use is the second half of the answer.",
         "common_mistakes": [
-          "Writing that collodion is itself a colloidal solution. It is a true solution of nitro cellulose; the membrane made from it is what matters here.",
+          "Writing that the collodion solution is itself the dialysing membrane. The membrane is the dry film left after the alcohol and ether evaporate, not the liquid.",
           "Naming coagulation as the use. Collodion is used for purification by dialysis, not for coagulating a sol."
         ],
         "memory_tip": "Dry the film, and it becomes the membrane bag of the dialyser.",

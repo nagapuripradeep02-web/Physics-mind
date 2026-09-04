@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same as the cosine version — sine has the same period formula, so nothing changes but the name.",
+        "memory_tip": "Sine has the same period formula as cosine, so 2π/k = 2/3 is the equation.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Cross-multiplying gives 2k = 6π, so k = 3π.",
+        "memory_tip": "Cross-multiplying gives 2k = 6π, so k = 3π and the function is sin(3πx).",
         "lines": [
           "⇒ 2k = 6π  ⇒  k = 3π",
           {
@@ -135,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2π/k = 2/3 gives k = 3π, so the answer is sin(3πx). A period smaller than 2π means k must be bigger than 1, which is the sanity check."
 }

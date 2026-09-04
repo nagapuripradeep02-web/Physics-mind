@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_angle_between_combined_vectors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a = 2i + 2j − 3k and b = 3i − 2j + 2k, find the angle between 2a + b and a + 2b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Form 2a + b and a + 2b",
+      "marks": 1
+    },
+    {
+      "label": "Take their dot product",
+      "marks": 1
+    },
+    {
+      "label": "Find both magnitudes",
+      "marks": 1
+    },
+    {
+      "label": "Find the angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 40, book p.75. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Component route, the route on the page: 2a + b = 7i + 2j − 4k and a + 2b = 8i − 2j + k; their dot product is 56 − 4 − 4 = 48; |2a + b| = √(49 + 4 + 16) = √69 and |a + 2b| = √(64 + 4 + 1) = √69; so cos θ = 48/69 = 16/23. Symbolic route, done independently from |a|² = 17, |b|² = 17 and a·b = 6 − 4 − 6 = −4: |2a + b|² = 4(17) + 4(−4) + 17 = 69; |a + 2b|² = 17 + 4(−4) + 4(17) = 69; (2a + b)·(a + 2b) = 2(17) + 5(−4) + 2(17) = 34 − 20 + 34 = 48. Both routes give 48 and 69 twice, so cos θ = 16/23 ≈ 0.6957 and θ = Cos⁻¹(16/23) ≈ 45.92°. The two combined vectors happening to have equal length is a real feature of these numbers, not an arithmetic slip: |a| = |b| = √17, so 2a + b and a + 2b are mirror images of each other. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: forming the two combinations, the dot product, the two magnitudes, and the angle. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the angle between two combinations of a and b — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Form the two vectors",
+        "marks": 1,
+        "mark_note": "The two vectors",
+        "margin_note": "First mark. The angle is between the two COMBINATIONS, not between a and b, so build them in components first. Double each component, do not double only the first one.",
+        "memory_tip": "Build the two combinations first — the angle is between them, not between a and b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = 2i + 2j − 3k,  b = 3i − 2j + 2k",
+          "2a = 4i + 4j − 6k",
+          "2a + b = 7i + 2j − 4k",
+          "2b = 6i − 4j + 4k",
+          "a + 2b = 8i − 2j + k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2a + b = 7i + 2j − 4k and a + 2b = 8i − 2j + k.",
+          "accept": [
+            "two a plus b is seven i plus two j minus four k",
+            "a plus two b is eight i minus two j plus k",
+            "double each vector and add component by component",
+            "two a plus b seven i two j minus four k vasthundi",
+            "form both combinations before doing anything else"
+          ],
+          "reject": [
+            "form the vectors",
+            "that is the answer",
+            "now dot them"
+          ],
+          "heard_as": [
+            "two a plus b",
+            "seven i",
+            "a plus two b",
+            "eight i"
+          ]
+        },
+        "why": "The angle formula works on whatever two vectors are named, so the two named combinations have to exist in component form before it can be applied.",
+        "common_mistakes": [
+          "Finding the angle between a and b instead of between the two combinations.",
+          "Doubling only the i component when writing 2a."
+        ]
+      },
+      {
+        "id": "s2_dot",
+        "kind": "equation",
+        "label": "Take their dot product",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Second mark. Multiply matching components and add, watching the two negative products. Naming the combinations u and v keeps the next two lines short.",
+        "memory_tip": "Name the two combinations u and v so the formula stays short.",
+        "lines": [
+          "Let u = 2a + b and v = a + 2b.",
+          "u·v = 7(8) + 2(−2) + (−4)(1)",
+          "    = 56 − 4 − 4",
+          "    = 48"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u·v = 56 − 4 − 4 = 48.",
+          "accept": [
+            "the dot product is fifty six minus four minus four which is forty eight",
+            "u dot v is forty eight",
+            "multiply matching components and add",
+            "fifty six minus four minus four, forty eight",
+            "seven eights are fifty six and then two negatives"
+          ],
+          "reject": [
+            "find the dot product",
+            "that is the answer",
+            "now the magnitudes"
+          ],
+          "heard_as": [
+            "forty eight",
+            "fifty six",
+            "u dot v",
+            "dot product"
+          ]
+        },
+        "why": "The dot product is the numerator of the cosine formula and it also fixes the sign of the answer. Here it is positive, so the angle will be acute.",
+        "common_mistakes": [
+          "Adding the two negative terms as +4 each.",
+          "Taking a cross product, which does not give an angle directly."
+        ]
+      },
+      {
+        "id": "s3_magnitudes",
+        "kind": "equation",
+        "label": "Find both magnitudes",
+        "marks": 1,
+        "mark_note": "Magnitudes",
+        "margin_note": "Third mark. Both come out as √69 — that is genuine here, because |a| and |b| are both √17. Do not simplify √69 further; 69 = 3 × 23 has no square factor.",
+        "memory_tip": "Both magnitudes are √69 here, so the product underneath is just 69.",
+        "lines": [
+          "|u| = √(7² + 2² + (−4)²)",
+          "    = √(49 + 4 + 16) = √69",
+          "|v| = √(8² + (−2)² + 1²)",
+          "    = √(64 + 4 + 1) = √69"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |u| = √69 and |v| = √69.",
+          "accept": [
+            "both magnitudes are root sixty nine",
+            "forty nine plus four plus sixteen is sixty nine",
+            "sixty four plus four plus one is also sixty nine",
+            "rendu magnitudes root sixty nine same vasthai",
+            "the two lengths are equal here"
+          ],
+          "reject": [
+            "find the magnitudes",
+            "that is the answer",
+            "now divide"
+          ],
+          "heard_as": [
+            "root sixty nine",
+            "sixty nine",
+            "mod u",
+            "mod v"
+          ]
+        },
+        "why": "The two lengths are equal because a and b have the same length, so swapping their coefficients produces a mirror image. That equality makes the denominator a whole number and the arithmetic short.",
+        "common_mistakes": [
+          "Deciding the two equal magnitudes must be a slip and changing one of them; the equality is genuine here.",
+          "Squaring −4 as −16."
+        ]
+      },
+      {
+        "id": "s4_angle",
+        "kind": "boxed_final",
+        "label": "Find the angle",
+        "marks": 1,
+        "mark_note": "Angle",
+        "margin_note": "Last mark. √69 × √69 = 69, so the fraction is 48/69, which cancels by 3 to 16/23. That is not a standard cosine, so leave the exact answer as an inverse cosine.",
+        "memory_tip": "√69 × √69 = 69, and 48/69 cancels by 3 to 16/23.",
+        "lines": [
+          "Let θ be the angle between u and v.",
+          "cos θ = (u·v)/(|u||v|)",
+          "  = 48/(√69 × √69)",
+          "  = 48/69 = 16/23",
+          {
+            "text": "∴ θ = Cos⁻¹(16/23)",
+            "style": "boxed"
+          },
+          "16/23 ≈ 0.696, so θ ≈ 46°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = 48/69 = 16/23, so θ = Cos⁻¹(16/23), about 46°.",
+          "accept": [
+            "cos theta is forty eight over sixty nine which cancels to sixteen over twenty three",
+            "the angle is cos inverse sixteen by twenty three",
+            "root sixty nine times root sixty nine is sixty nine",
+            "forty eight by sixty nine, cancel cheste sixteen by twenty three",
+            "the angle is about forty six degrees"
+          ],
+          "reject": [
+            "find the angle",
+            "take cos inverse",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "cos inverse",
+            "sixteen by twenty three",
+            "forty eight by sixty nine",
+            "forty six degrees"
+          ]
+        },
+        "why": "The product of the two square roots is the number itself, which removes every root from the answer. A positive cosine below 1 confirms an acute angle, matching the positive dot product found earlier.",
+        "common_mistakes": [
+          "Writing √69 × √69 as √138.",
+          "Leaving 48/69 uncancelled, which is not wrong but loses the simplest form."
+        ]
+      }
+    ]
+  }
+}

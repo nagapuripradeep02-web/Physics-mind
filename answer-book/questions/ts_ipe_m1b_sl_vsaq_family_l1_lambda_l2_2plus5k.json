@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_family_l1_lambda_l2_2plus5k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Write the equation (2 + 5k)x − 3(1 + 2k)y + (2 − k) = 0 in the form L₁ + λL₂ = 0, and find the point of concurrency of the family of straight lines it represents.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group the k terms",
+      "marks": 1
+    },
+    {
+      "label": "Solve L₁ and L₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 17, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. PRINTED DEFECT RECORDED: the book prints the instruction as \"Transofrm the equation\", a typographical error for \"Transform\". The mathematics of the stem is sound, so only the spelling was normalised in question_text; no number, sign or coefficient was changed. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the regrouping that exposes L₁ and L₂, and the second for solving them; the question asks for two things and the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked three ways. In L₂: 5(5) − 6(4) − 1 = 0. In L₁: 2(5) − 3(4) + 2 = 0. In the original equation with k = 1: (2 + 5)(5) − 3(1 + 2)(4) + (2 − 1) = 35 − 36 + 1 = 0; and with k = 0: 2(5) − 3(4) + 2 = 0. So (5, 4) lies on the line for more than one value of k."
+  },
+  "recall_prompt": "Say how you would solve this — say how you separate the k terms, and what you then do with the two lines.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_k_terms",
+        "kind": "equation",
+        "label": "Group the k terms",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Expand everything, then collect the terms with k in one bracket and the terms without k in the other. The bracket without k is L₁ and the bracket multiplying k is L₂.",
+        "memory_tip": "Put the terms free of k in one bracket and the terms carrying k in another. That is L₁ + λL₂.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(2 + 5k)x − 3(1 + 2k)y + (2 − k) = 0",
+          "⇒ 2x + 5kx − 3y − 6ky + 2 − k = 0",
+          "⇒ (2x − 3y + 2) + k(5x − 6y − 1) = 0",
+          "This is L₁ + λL₂ = 0 with λ = k, where",
+          "L₁ ≡ 2x − 3y + 2 = 0  ……(1)",
+          "L₂ ≡ 5x − 6y − 1 = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and collecting gives (2x − 3y + 2) + k(5x − 6y − 1) = 0, so L₁ is 2x − 3y + 2 and L₂ is 5x − 6y − 1.",
+          "accept": [
+            "expand and collect the k terms together",
+            "l one is two x minus three y plus two",
+            "l two is five x minus six y minus one",
+            "k unna terms ni separate ga teesukovali",
+            "lambda is k here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "solve the two equations"
+          ],
+          "heard_as": [
+            "l one plus lambda l two",
+            "two x minus three y plus two",
+            "five x minus six y minus one",
+            "collect the k terms"
+          ]
+        },
+        "why": "In the form L₁ + λL₂ = 0 the changing quantity sits only in λ, so any point that satisfies both L₁ = 0 and L₂ = 0 satisfies the whole equation whatever λ is.",
+        "common_mistakes": [
+          "Forgetting to multiply −3 into both terms of (1 + 2k)y.",
+          "Leaving the k inside the bracket instead of taking it outside as the multiplier."
+        ]
+      },
+      {
+        "id": "s2_solve_l1_and_l2",
+        "kind": "boxed_final",
+        "label": "Solve L₁ and L₂",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The fixed point is where L₁ and L₂ meet, because only there do both brackets vanish at once. Doubling (1) matches the y terms and lets them subtract away.",
+        "memory_tip": "Both brackets must be zero at once, so the fixed point is where L₁ and L₂ cross.",
+        "lines": [
+          "The point where L₁ = 0 and L₂ = 0 makes",
+          "the equation true for every k.",
+          "(1) × 2:  4x − 6y + 4 = 0   ……(3)",
+          "(2) − (3):  x − 5 = 0  ⇒  x = 5",
+          "In (1):  2(5) − 3y + 2 = 0",
+          "⇒ 3y = 12  ⇒  y = 4",
+          {
+            "text": "∴ Point of concurrency is (5, 4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving 2x − 3y + 2 = 0 and 5x − 6y − 1 = 0 together gives x = 5, y = 4.",
+          "accept": [
+            "solve l one and l two together",
+            "double the first equation to match the y terms",
+            "x is five and y is four",
+            "rendu lines solve chesthe point vasthundi",
+            "the point of concurrency is five comma four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "expand and collect the k terms"
+          ],
+          "heard_as": [
+            "five comma four",
+            "x equals five",
+            "y equals four",
+            "point of concurrency"
+          ]
+        },
+        "why": "Concurrent means one point serves every line of the family. That point cannot depend on k, so both brackets must be zero there, which is exactly the intersection of L₁ and L₂.",
+        "common_mistakes": [
+          "Substituting one value of k and solving that single line, which gives a point on it but not the common point.",
+          "Sign slip when subtracting, giving x = −5."
+        ]
+      }
+    ]
+  }
+}

@@ -213,7 +213,7 @@
         "why": "The example shows the size of the effect as well as its direction: a tenfold change in concentration moves the potential by only 0.0591/n volts. That is why standard potentials stay useful even when a cell is not exactly at 1 M.",
         "common_mistakes": [
           "Reading log(0.1) as 0.1. The logarithm of 0.1 is −1.",
-          "Dividing 0.0591 by the charge of the sulphate ion. n = 2 comes from the two electrons in the zinc electrode reaction."
+          "Taking n = 1 because one zinc ion is deposited. n is the number of electrons in the electrode reaction, which is 2 here."
         ],
         "memory_tip": "One tenfold dilution shifts the potential by 0.0591/n volts. For n = 2 that is about 0.03 V.",
         "margin_note": "One worked number is worth more than another paragraph of words. Keep the arithmetic on two lines."

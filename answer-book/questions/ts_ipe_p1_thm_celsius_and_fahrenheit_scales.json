@@ -1,0 +1,214 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_celsius_and_fahrenheit_scales",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the Celsius and Fahrenheit scales of temperature. Obtain the relation between the Celsius and Fahrenheit scales of temperature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The Celsius scale",
+      "marks": 1
+    },
+    {
+      "label": "The Fahrenheit scale",
+      "marks": 1
+    },
+    {
+      "label": "The relation between the scales",
+      "marks": 1
+    },
+    {
+      "label": "Using the relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Short Answer Question 1 (printed p.118). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the Celsius scale has fixed points 0 °C and 100 °C with 100 equal degrees between them; the Fahrenheit scale has fixed points 32 °F and 212 °F with 180 equal degrees between them; equating the fraction of each scale, (C − 0)/100 = (F − 32)/180, simplifies to C/5 = (F − 32)/9; substituting C = 37 °C gives F = 98.6 °F."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermal Properties of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_celsius",
+        "kind": "text",
+        "label": "The Celsius scale",
+        "marks": 1,
+        "mark_note": "0 °C to 100 °C, 100 degrees",
+        "lines": [
+          "The Celsius scale has the melting point",
+          "of ice as its lower fixed point, marked",
+          "0 °C, and the boiling point of water at",
+          "normal atmospheric pressure as its upper",
+          "fixed point, marked 100 °C.",
+          "The interval between them is divided",
+          "into 100 equal degrees."
+        ],
+        "margin_note": "First mark. Name both fixed points, 0 °C and 100 °C, and that the interval is divided into 100 equal degrees.",
+        "why": "Melting ice and boiling water each hold one fixed temperature while the change of state goes on, so they give two temperatures that can be reproduced in any laboratory, and the 100 equal degrees between them fix the size of one Celsius degree.",
+        "common_mistakes": [
+          "Naming only one of the two fixed points.",
+          "Leaving out that the interval is divided into 100 equal degrees."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Celsius scale runs from 0 °C at the ice point to 100 °C at the steam point, divided into 100 equal degrees.",
+          "accept": [
+            "0 to 100 degrees Celsius, ice point to steam point",
+            "Celsius scale has 100 equal degrees",
+            "melting ice is 0, boiling water is 100"
+          ],
+          "reject": [
+            "32 and 212 degrees Fahrenheit"
+          ],
+          "heard_as": [
+            "ice point",
+            "steam point",
+            "100 degrees"
+          ]
+        },
+        "memory_tip": "Celsius: 0 at ice, 100 at steam, 100 degrees between."
+      },
+      {
+        "id": "s2_fahrenheit",
+        "kind": "text",
+        "label": "The Fahrenheit scale",
+        "marks": 1,
+        "mark_note": "32 °F to 212 °F, 180 degrees",
+        "lines": [
+          "The Fahrenheit scale marks the same two",
+          "fixed points differently: the melting",
+          "point of ice is 32 °F and the boiling",
+          "point of water at normal atmospheric",
+          "pressure is 212 °F.",
+          "The interval between them is divided",
+          "into 180 equal degrees."
+        ],
+        "margin_note": "Second mark. Name both fixed points, 32 °F and 212 °F, and that the interval is divided into 180 equal degrees.",
+        "why": "The same two physical states of water are used, so a Fahrenheit degree is a different size from a Celsius degree — dividing the same physical interval into 180 parts instead of 100 makes each Fahrenheit degree smaller.",
+        "common_mistakes": [
+          "Writing 0 °F and 100 °F for the fixed points, copying the Celsius numbers.",
+          "Leaving out that the interval is divided into 180 equal degrees."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Fahrenheit scale runs from 32 °F at the ice point to 212 °F at the steam point, divided into 180 equal degrees.",
+          "accept": [
+            "32 to 212 degrees Fahrenheit",
+            "Fahrenheit has 180 equal degrees",
+            "ice point 32, steam point 212"
+          ],
+          "reject": [
+            "0 to 100 degrees Celsius"
+          ],
+          "heard_as": [
+            "thirty two",
+            "two twelve",
+            "180 degrees"
+          ]
+        },
+        "memory_tip": "Fahrenheit: 32 at ice, 212 at steam, 180 degrees between."
+      },
+      {
+        "id": "s3_relation",
+        "kind": "equation",
+        "label": "The relation between the scales",
+        "marks": 1,
+        "mark_note": "C/5 = (F − 32)/9",
+        "lines": [
+          "The same physical temperature is the",
+          "same fraction of the way up each scale,",
+          "so (C − 0)/100 = (F − 32)/180.",
+          {
+            "text": "C/5 = (F − 32)/9",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. Simplify (C − 0)/100 = (F − 32)/180 to C/5 = (F − 32)/9.",
+        "why": "Both scales measure the same physical temperature, so the fraction of the way from the lower fixed point to the upper fixed point must be the same number on each scale; setting those two fractions equal and simplifying 100/180 to 5/9 gives the relation between C and F directly.",
+        "common_mistakes": [
+          "Writing C/100 = F/180 without first subtracting the lower fixed points 0 and 32.",
+          "Not simplifying the relation — C/5 = (F − 32)/9 is the standard form to quote, though (C)/100 = (F − 32)/180 is the same relation before simplifying and is equally correct."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the relation is C/5 = (F − 32)/9, obtained by equating the same fraction of each scale.",
+          "accept": [
+            "C by 5 equals F minus 32 by 9",
+            "same fraction of the way up each scale",
+            "C over 5 equals F minus 32 over 9"
+          ],
+          "reject": [
+            "100 equal degrees on the Celsius scale"
+          ],
+          "heard_as": [
+            "C by 5",
+            "F minus 32",
+            "over 9"
+          ]
+        },
+        "memory_tip": "Same fraction up each scale: (C − 0)/100 = (F − 32)/180, simplifying to C/5 = (F − 32)/9."
+      },
+      {
+        "id": "s4_example",
+        "kind": "boxed_final",
+        "label": "Using the relation",
+        "marks": 1,
+        "mark_note": "37 °C = 98.6 °F",
+        "lines": [
+          "Using it once: at body temperature,",
+          "C = 37 °C.",
+          "C/5 = (F − 32)/9 gives 37/5 = (F − 32)/9,",
+          "so F − 32 = 66.6, and F = 98.6.",
+          {
+            "text": "37 °C = 98.6 °F",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Substitute one value into C/5 = (F − 32)/9 and solve for F.",
+        "why": "Using the relation on a real number turns the algebra into a working conversion: a healthy human body temperature of 37 °C converts to 98.6 °F, a number every student can check against a thermometer.",
+        "common_mistakes": [
+          "Substituting 37 for F instead of C.",
+          "Forgetting to add back 32 after solving for F − 32."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting C = 37 °C into C/5 = (F − 32)/9 gives F = 98.6 °F.",
+          "accept": [
+            "37 degrees Celsius equals 98.6 degrees Fahrenheit",
+            "substitute 37 for C and solve for F",
+            "F equals ninety eight point six"
+          ],
+          "reject": [
+            "100 equal degrees on the Celsius scale"
+          ],
+          "heard_as": [
+            "37 degrees",
+            "98.6",
+            "substituting"
+          ]
+        },
+        "memory_tip": "37 °C is 98.6 °F — a number worth remembering on its own."
+      }
+    ]
+  },
+  "insider_note": "Four marks, four stages: the Celsius scale with its two fixed points, the Fahrenheit scale with its two fixed points, the relation C/5 = (F − 32)/9 obtained from equal fractions of each scale, and one worked use of that relation."
+}

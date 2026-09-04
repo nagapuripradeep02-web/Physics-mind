@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_stress_copper_wire_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A force of 10 N is applied to a copper wire of diameter 1 mm. Calculate the stress produced in it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Area of cross-section",
+      "marks": 1
+    },
+    {
+      "label": "Stress value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 2 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: d = 1 mm gives r = 0.5 × 10⁻³ m, A = πr² = 7.85 × 10⁻⁷ m², stress = F/A = 10 / (7.85 × 10⁻⁷) = 1.27 × 10⁷ N m⁻², arithmetic verified."
+  },
+  "insider_note": "The area calculation is graded separately from the final value — a wrong final answer with the correct area shown still earns the first mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_area",
+        "kind": "equation",
+        "label": "Area of cross-section",
+        "marks": 1,
+        "mark_note": "A = πr²",
+        "lines": [
+          "Diameter d = 1 mm, so radius",
+          "r = 0.5 × 10⁻³ m.",
+          {
+            "text": "Area A = πr² = 7.85 × 10⁻⁷ m²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Convert the diameter to radius before squaring — a common slip is squaring the diameter instead.",
+        "why": "The cross-sectional area is what carries the force, so it must be found before the stress can be calculated.",
+        "common_mistakes": [
+          "Using the diameter directly in A = πr² instead of first halving it to get the radius.",
+          "Forgetting the ×10⁻³ when converting mm to m."
+        ],
+        "memory_tip": "Radius is half the diameter — halve first, then square."
+      },
+      {
+        "id": "s2_stress",
+        "kind": "boxed_final",
+        "label": "Stress value",
+        "marks": 1,
+        "mark_note": "σ = F/A",
+        "lines": [
+          {
+            "text": "Stress σ = F/A",
+            "style": "eq"
+          },
+          "= 10 / (7.85 × 10⁻⁷)",
+          {
+            "text": "σ = 1.27 × 10⁷ N m⁻²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State the final value with its power of ten and unit — a bare number without N m⁻² loses this mark.",
+        "why": "Dividing the given force by the area found in the previous step gives the stress directly from its defining formula.",
+        "common_mistakes": [
+          "Losing track of the negative exponent and reporting the answer as 1.27 × 10⁻⁷.",
+          "Omitting the unit N m⁻² after the numeric value."
+        ],
+        "memory_tip": "Now use σ = F/A with the given force and the area just found."
+      }
+    ]
+  }
+}

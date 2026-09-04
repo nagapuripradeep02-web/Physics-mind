@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer never defines the valence band or the conduction band, although the whole answer is written in those two terms (book p.64, SAQ 6). They are defined here from NCERT as step 1. The book also writes that an insulator has \"very small conductivity\"; the more exact statement, that it is too small to measure at ordinary temperatures, is used here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps. The book does print a band diagram, and it is reproduced because the size of the gap is the entire answer."
+    "note": "Unit 1 (Solid State) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book p.64, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP: the printed answer never defines the valence band or the conduction band, although the whole answer is written in those two terms (book p.64, SAQ 6). They are defined here from NCERT as step 1. The book writes that an insulator has \"very small conductivity\" and that wording is kept, with the NCERT range 10⁻²⁰ to 10⁻¹⁰ Ω⁻¹ m⁻¹ added. An earlier draft of this card wrote \"too small to measure\", which is wrong: the range is a measured, tabulated one. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps. The book does print a band diagram, and it is reproduced because the size of the gap is the entire answer."
   },
   "answer": {
     "page_header": [
@@ -94,7 +94,7 @@
           "Saying a conductor needs no electrons in the conduction band. The current is carried by the electrons that move into it."
         ],
         "memory_tip": "Partly filled or overlapping. Either way an electron has an empty level just above it.",
-        "margin_note": "Both cases must appear: partly filled band AND overlapping bands. The book's diagram shows the two side by side."
+        "margin_note": "Both cases must appear: partly filled band AND overlapping bands."
       },
       {
         "id": "s3_insulator",
@@ -109,8 +109,8 @@
           "Electrons cannot take the energy needed to",
           "cross such a large gap at room temperature.",
           "The conduction band stays empty, so an",
-          "insulator has a conductivity too small to",
-          "measure."
+          "insulator has a very small conductivity, of",
+          "the order of 10⁻²⁰ to 10⁻¹⁰ Ω⁻¹ m⁻¹."
         ],
         "why": "A full band cannot carry current, because an electron has no empty level to move into. The only way out is up into the conduction band, and in an insulator that step is far larger than the energy available at ordinary temperatures.",
         "common_mistakes": [
@@ -218,7 +218,7 @@
         },
         "why": "The two columns show the one thing that differs. In the conductor the filled band runs straight into the empty one with no space between them; in the insulator a wide empty stretch of energy separates the two.",
         "common_mistakes": [
-          "Drawing the insulator gap the same size as the conductor gap. The width of the gap is the whole point of the diagram.",
+          "Drawing the insulator gap as a narrow strip. It has to be drawn wide, because the width of the gap is the whole point of the diagram.",
           "Shading the conduction band. It is empty in an insulator, so it is drawn as an empty box."
         ],
         "memory_tip": "Two boxes touching for the conductor, two boxes far apart for the insulator.",

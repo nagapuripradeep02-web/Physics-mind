@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x3_over_x_minus_1_x_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x³/((x − 1)(x + 2)) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 11 Partial Fractions, answer 101 (the book's 'TYPE 3 [deg(Nr) ≥ deg(Dr)]', the first improper fraction). Printed appearances: AP 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book shows the long division in a boxed layout; the card writes the same division as two subtraction lines and the product-plus-remainder identity x³ = (x − 1)(x² + x − 2) + 3x − 2, which a student can check by expanding. Truth check: expanding (x − 1)(x² + x − 2) + 3x − 2 = x³ − 3x + 2 + 3x − 2 = x³, and putting x = 0 in the remainder identity gives −2 = A(2) + B(−1) = 2/3 − 8/3 = −2 with A = 1/3, B = 8/3."
+  },
+  "recall_prompt": "Say how you would resolve x³/((x − 1)(x + 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "Degree 3 over degree 2 is improper, so divide FIRST — quotient x − 1, remainder 3x − 2 — because no A and B can resolve x³ directly; the quotient must also appear again in the final line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. The numerator has degree 3 and the denominator degree 2, so the fraction is IMPROPER. Divide first: quotient x − 1, remainder 3x − 2. Only the remainder fraction is resolved.",
+        "memory_tip": "Degree 3 over degree 2 — divide FIRST. Quotient x − 1, remainder 3x − 2; only the remainder is resolved.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 3 ≥ degree 2: improper, so divide.",
+          "(x − 1)(x + 2) = x² + x − 2",
+          "x³ − x(x² + x − 2) = −x² + 2x",
+          "−x² + 2x + (x² + x − 2) = 3x − 2",
+          "So x³ = (x − 1)(x² + x − 2) + 3x − 2",
+          "x³/((x − 1)(x + 2))",
+          "= x − 1 + (3x − 2)/((x − 1)(x + 2))",
+          "Let (3x − 2)/((x − 1)(x + 2))",
+          "= A/(x − 1) + B/(x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction is improper, so x³ is divided by x² + x − 2 to give quotient x − 1 and remainder 3x − 2, and only (3x − 2)/((x − 1)(x + 2)) is written as A/(x − 1) + B/(x + 2).",
+          "accept": [
+            "the degree on top is not less than the degree below so divide first, x cubed by x squared plus x minus two gives x minus one remainder three x minus two, then split three x minus two over the factors as A over x minus one plus B over x plus two",
+            "improper fraction so long divide to get quotient x minus one and remainder three x minus two and resolve only the remainder",
+            "divide first, then A by x minus 1 plus B by x plus 2 for the remainder fraction",
+            "numerator degree ekkuva kabatti mundu divide cheyali, quotient x minus one remainder three x minus two, remainder fraction ni A by x minus one plus B by x plus two ga rasali",
+            "write it as x minus one plus a proper fraction and set up the form for the proper part"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "improper",
+            "divide first",
+            "long division",
+            "quotient x minus one",
+            "remainder three x minus two",
+            "A over x minus one",
+            "B over x plus two"
+          ]
+        },
+        "why": "Partial fractions are defined only for proper fractions, where the numerator has lower degree. Dividing separates the polynomial part x − 1, and the remainder over the same denominator is proper and can be resolved.",
+        "common_mistakes": [
+          "Writing x³/((x − 1)(x + 2)) = A/(x − 1) + B/(x + 2) without dividing; no A and B can make that identity hold.",
+          "Getting the remainder as 3x + 2 or −3x − 2 by a sign error in the second subtraction.",
+          "Dividing by (x − 1)(x + 2) without expanding it to x² + x − 2 first."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply the remainder fraction equation by (x − 1)(x + 2). The quotient x − 1 stays aside; it is not part of this identity.",
+        "memory_tip": "The left side of the identity is the REMAINDER 3x − 2, not x³. The quotient stays aside.",
+        "lines": [
+          "Multiply by (x − 1)(x + 2):",
+          "3x − 2 = A(x + 2) + B(x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the remainder equation through gives 3x − 2 = A(x + 2) + B(x − 1).",
+          "accept": [
+            "multiply both sides by x minus one into x plus two to get three x minus two equals A into x plus two plus B into x minus one",
+            "clear the denominators of the remainder fraction to get an identity",
+            "three x minus two equals A into x plus two plus B into x minus one",
+            "remainder fraction ni denominator tho multiply cheste three x minus two equals A into x plus two plus B into x minus one",
+            "remove the fractions from the proper part only"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "three x minus two",
+            "A into x plus two",
+            "B into x minus one",
+            "identity"
+          ]
+        },
+        "why": "The identity is written for the proper fraction, whose numerator is the remainder 3x − 2, not x³. Using x³ here is the most common error in this question.",
+        "common_mistakes": [
+          "Writing x³ = A(x + 2) + B(x − 1); the left side must be the remainder.",
+          "Pairing A with (x − 1) instead of (x + 2).",
+          "Carrying the quotient x − 1 into the identity."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A and B",
+        "margin_note": "Third mark. x = 1 gives A = 1/3, x = −2 gives B = 8/3. Fractions with 3; keep them as fractions.",
+        "memory_tip": "Substitute into 3x − 2, not into x³: x = 1 gives A = 1/3 and x = −2 gives B = 8/3.",
+        "lines": [
+          "Put x = 1: 1 = A(3) ⇒ A = 1/3",
+          "Put x = −2: −8 = B(−3) ⇒ B = 8/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1 gives A = 1/3 and x = −2 gives B = 8/3.",
+          "accept": [
+            "put x equals one to get A equals one by three and x equals minus two to get B equals eight by three",
+            "the roots one and minus two give A one third and B eight thirds",
+            "A one by three, B eight by three",
+            "x equals one pedithe A one by three, x equals minus two pedithe B eight by three",
+            "two substitutions give the two constants a third and eight thirds"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals one",
+            "x equals minus two",
+            "one by three",
+            "eight by three",
+            "A is a third"
+          ]
+        },
+        "why": "Each root of a linear factor makes the other term vanish and leaves one constant. Two factors, two roots, two constants, no simultaneous equations.",
+        "common_mistakes": [
+          "Putting x = −2 and writing 3(−2) − 2 as −4 instead of −8.",
+          "Writing B = −8/3 by dropping the minus on (−2 − 1) = −3.",
+          "Putting x = 1 into x³ instead of into 3x − 2."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The quotient x − 1 comes back in front of the two fractions. The answer has a polynomial part AND two fractions. Write the original fraction on the left.",
+        "memory_tip": "The quotient x − 1 returns in front. Check x = 0: −2 = 2/3 − 8/3.",
+        "lines": [
+          "∴ x³/((x − 1)(x + 2))",
+          {
+            "text": "= x − 1 + 1/(3(x − 1)) + 8/(3(x + 2))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals x − 1 + 1/(3(x − 1)) + 8/(3(x + 2)), with the quotient x − 1 in front.",
+          "accept": [
+            "the answer is x minus one plus one over three x minus one plus eight over three x plus two",
+            "quotient x minus one plus one by three into x minus one plus eight by three into x plus two",
+            "write the quotient first and then the two fractions",
+            "final answer x minus one plus one by three x minus one plus eight by three x plus two ani rasali",
+            "put the quotient back in front of the partial fractions"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "x minus one plus",
+            "one over three",
+            "eight over three",
+            "quotient in front",
+            "final answer"
+          ]
+        },
+        "why": "The quotient found in step 1 is part of the answer. Leaving it out gives the resolution of the remainder fraction, not of x³/((x − 1)(x + 2)).",
+        "common_mistakes": [
+          "Forgetting the x − 1 in the final line.",
+          "Writing 1/3(x − 1) so it reads as one third times (x − 1); put the 3 in the denominator bracket.",
+          "Not checking: expand (x − 1)(x² + x − 2) + 3x − 2 and confirm it is x³; then put x = 0 in the identity, −2 = 2/3 − 8/3."
+        ]
+      }
+    ]
+  }
+}

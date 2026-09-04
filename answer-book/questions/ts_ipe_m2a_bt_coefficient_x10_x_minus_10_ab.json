@@ -1,0 +1,349 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_coefficient_x10_x_minus_10_ab",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If the coefficient of x¹⁰ in the expansion of (ax² + 1/(bx))¹¹ is equal to the coefficient of x⁻¹⁰ in the expansion of (ax − 1/(bx²))¹¹, find the relation between a and b, where a and b are real numbers.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "General term of the first expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find r for x¹⁰",
+      "marks": 1
+    },
+    {
+      "label": "Coefficient of x¹⁰",
+      "marks": 1
+    },
+    {
+      "label": "General term of the second expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find r for x⁻¹⁰",
+      "marks": 1
+    },
+    {
+      "label": "Coefficient of x⁻¹⁰",
+      "marks": 1
+    },
+    {
+      "label": "Equate and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 Binomial Theorem, answer 23. Printed appearances: AP 15, 19. THE SPLIT IS THE BOOK'S: book p.29 prints seven [1 Mark] tags — the general term of the first expansion; r = 4; the coefficient of x¹⁰; the general term of the second expansion; r = 7; the coefficient of x⁻¹⁰; equating to reach ab = −1. The card keeps all seven as printed. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the relation — the general term of each expansion, how you pick r to get x¹⁰ and x⁻¹⁰, what the two coefficients are, and how equating them gives ab = −1.",
+  "insider_note": "Keep ¹¹C₄ and ¹¹C₇ unevaluated — 4 + 7 = 11 makes them equal, so they cancel — and keep the (−1)⁷ from the second bracket. That minus is what makes the answer ab = −1, not ab = 1.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_general_term_1",
+        "kind": "equation",
+        "label": "General term of the first expansion",
+        "marks": 1,
+        "mark_note": "Tᵣ₊₁ of (ax² + 1/(bx))¹¹",
+        "margin_note": "First mark. Collect the powers of x: (x²)¹¹⁻ʳ gives x²²⁻²ʳ and (1/x)ʳ gives x⁻ʳ, so the power is 22 − 3r.",
+        "memory_tip": "(x²)¹¹⁻ʳ gives x²²⁻²ʳ and (1/x)ʳ gives x⁻ʳ, so the power is 22 − 3r.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In (ax² + 1/(bx))¹¹, the general term is",
+          "Tᵣ₊₁ = ¹¹Cᵣ (ax²)¹¹⁻ʳ (1/(bx))ʳ",
+          "= ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x²²⁻³ʳ …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the general term of the first expansion is ¹¹Cᵣ a¹¹⁻ʳ b⁻ʳ x²²⁻³ʳ.",
+          "accept": [
+            "the general term is eleven C r into a to the eleven minus r by b to the r into x to the twenty two minus three r",
+            "T r plus one equals eleven C r a x squared to the eleven minus r times one by b x to the r, power of x is twenty two minus three r",
+            "collect the x powers to get x to the twenty two minus three r",
+            "first expansion general term lo x power twenty two minus three r vasthundi",
+            "a to the eleven minus r over b to the r times eleven C r"
+          ],
+          "reject": [
+            "write the general term",
+            "use T r plus one"
+          ],
+          "heard_as": [
+            "eleven C r",
+            "twenty two minus three r",
+            "a to the eleven minus r",
+            "b to the r"
+          ]
+        },
+        "why": "Every coefficient question is the general term plus one condition on the power of x. Writing the power as a single expression in r is the whole set-up.",
+        "common_mistakes": [
+          "Writing the power of x as 22 − 2r and forgetting the x in the second entry.",
+          "Putting bʳ in the numerator."
+        ]
+      },
+      {
+        "id": "s2_r_value_1",
+        "kind": "equation",
+        "label": "Find r for x¹⁰",
+        "marks": 1,
+        "mark_note": "r = 4",
+        "margin_note": "Second mark. Set the power equal to 10.",
+        "memory_tip": "Set the power equal to 10, not to 0 — the term independent of x is not what is asked.",
+        "lines": [
+          "For x¹⁰: 22 − 3r = 10 ⇒ 3r = 12 ⇒ r = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 22 − 3r = 10 gives r = 4.",
+          "accept": [
+            "twenty two minus three r equals ten so r is four",
+            "set the power to ten and r comes to four",
+            "r equals four for x to the ten",
+            "power ten pettithe r four vasthundi",
+            "three r is twelve so r is four"
+          ],
+          "reject": [
+            "find r",
+            "set the power"
+          ],
+          "heard_as": [
+            "r equals four",
+            "r is four",
+            "twenty two minus three r"
+          ]
+        },
+        "why": "Only one value of r gives x¹⁰, so only one term contributes to the coefficient.",
+        "common_mistakes": [
+          "Solving 22 − 3r = 0 (the term independent of x) by habit."
+        ]
+      },
+      {
+        "id": "s3_coeff_1",
+        "kind": "equation",
+        "label": "Coefficient of x¹⁰",
+        "marks": 1,
+        "mark_note": "First coefficient",
+        "margin_note": "Third mark. Put r = 4 into (1) and drop the x.",
+        "memory_tip": "Keep ¹¹C₄ unevaluated. It is going to cancel, so turning it into 330 wastes the chance.",
+        "lines": [
+          "From (1), the coefficient of x¹⁰ is",
+          "¹¹C₄ a⁷/b⁴ …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient of x¹⁰ is ¹¹C₄ a⁷/b⁴.",
+          "accept": [
+            "the coefficient of x to the ten is eleven C four a to the seven by b to the four",
+            "put r equal to four to get eleven C four a seven over b four",
+            "eleven C four a to the seventh over b to the fourth",
+            "r four pettithe coefficient eleven C four a power seven by b power four",
+            "a to the eleven minus four is a to the seven"
+          ],
+          "reject": [
+            "find the coefficient",
+            "substitute r"
+          ],
+          "heard_as": [
+            "eleven C four",
+            "a to the seven",
+            "b to the four"
+          ]
+        },
+        "why": "The coefficient is everything in the term except the power of x; keeping ¹¹C₄ symbolic lets it cancel later.",
+        "common_mistakes": [
+          "Evaluating ¹¹C₄ = 330 now and losing the chance to cancel it against ¹¹C₇."
+        ]
+      },
+      {
+        "id": "s4_general_term_2",
+        "kind": "equation",
+        "label": "General term of the second expansion",
+        "marks": 1,
+        "mark_note": "Tᵣ₊₁ of (ax − 1/(bx²))¹¹",
+        "margin_note": "Fourth mark. The minus sign gives (−1)ʳ; the powers of x are x¹¹⁻ʳ and x⁻²ʳ, so the power is 11 − 3r.",
+        "memory_tip": "The minus in the bracket gives (−1)ʳ, and x⁻²ʳ makes the power 11 − 3r.",
+        "lines": [
+          "In (ax − 1/(bx²))¹¹, the general term is",
+          "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
+          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the general term of the second expansion is (−1)ʳ ¹¹Cᵣ a¹¹⁻ʳ b⁻ʳ x¹¹⁻³ʳ.",
+          "accept": [
+            "the general term is minus one to the r into eleven C r a to the eleven minus r by b to the r into x to the eleven minus three r",
+            "second expansion has a minus one to the r and the power of x is eleven minus three r",
+            "a x to the eleven minus r times minus one by b x squared to the r",
+            "second expansion lo minus one power r vasthundi, x power eleven minus three r",
+            "the sign alternates with r and the power is eleven minus three r"
+          ],
+          "reject": [
+            "write the general term",
+            "do the same"
+          ],
+          "heard_as": [
+            "minus one to the r",
+            "eleven minus three r",
+            "eleven C r"
+          ]
+        },
+        "why": "The second bracket has a minus sign and x² in the denominator, so both the sign and the power change; the (−1)ʳ is what will produce the minus in the final relation.",
+        "common_mistakes": [
+          "Dropping the (−1)ʳ.",
+          "Writing the power as 11 − 2r."
+        ]
+      },
+      {
+        "id": "s5_r_value_2",
+        "kind": "equation",
+        "label": "Find r for x⁻¹⁰",
+        "marks": 1,
+        "mark_note": "r = 7",
+        "margin_note": "Fifth mark. Set the power equal to −10.",
+        "memory_tip": "A negative power needs a LARGER r: 11 − 3r = −10 gives r = 7.",
+        "lines": [
+          "For x⁻¹⁰: 11 − 3r = −10 ⇒ 3r = 21 ⇒ r = 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 11 − 3r = −10 gives r = 7.",
+          "accept": [
+            "eleven minus three r equals minus ten so r is seven",
+            "set the power to minus ten and r comes to seven",
+            "r equals seven for x to the minus ten",
+            "power minus ten pettithe r seven vasthundi",
+            "three r is twenty one so r is seven"
+          ],
+          "reject": [
+            "find r",
+            "set the power"
+          ],
+          "heard_as": [
+            "r equals seven",
+            "r is seven",
+            "minus ten"
+          ]
+        },
+        "why": "A negative power of x is reached by a larger r, because each step of r lowers the power by 3.",
+        "common_mistakes": [
+          "Solving 11 − 3r = 10 and getting a fraction."
+        ]
+      },
+      {
+        "id": "s6_coeff_2",
+        "kind": "equation",
+        "label": "Coefficient of x⁻¹⁰",
+        "marks": 1,
+        "mark_note": "Second coefficient",
+        "margin_note": "Sixth mark. r = 7 is odd, so (−1)⁷ = −1.",
+        "memory_tip": "r = 7 is odd, so (−1)⁷ = −1. That minus is what makes the answer ab = −1.",
+        "lines": [
+          "From (3), the coefficient of x⁻¹⁰ is",
+          "(−1)⁷ ¹¹C₇ a⁴/b⁷ = −¹¹C₇ a⁴/b⁷ …(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient of x⁻¹⁰ is −¹¹C₇ a⁴/b⁷, the minus coming from (−1)⁷.",
+          "accept": [
+            "the coefficient is minus eleven C seven a to the four by b to the seven",
+            "r is seven so minus one to the seven is minus one and the coefficient is minus eleven C seven a four over b seven",
+            "negative eleven C seven a to the fourth over b to the seventh",
+            "r seven pettithe minus eleven C seven a power four by b power seven",
+            "odd r gives a negative coefficient"
+          ],
+          "reject": [
+            "find the coefficient",
+            "substitute r"
+          ],
+          "heard_as": [
+            "eleven C seven",
+            "minus",
+            "a to the four",
+            "b to the seven"
+          ]
+        },
+        "why": "The sign of this coefficient is what the question tests: without it the relation would be ab = 1.",
+        "common_mistakes": [
+          "Writing (−1)⁷ = +1.",
+          "Forgetting a¹¹⁻⁷ = a⁴."
+        ]
+      },
+      {
+        "id": "s7_equate",
+        "kind": "boxed_final",
+        "label": "Equate and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. ¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so they cancel. Then a³b³ = −1 and, for real a and b, ab = −1.",
+        "memory_tip": "¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so both cancel. Then a³b³ = −1 gives ab = −1.",
+        "lines": [
+          "Given the two coefficients are equal, from (2), (4):",
+          "¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷   [¹¹C₄ = ¹¹C₇]",
+          "a⁷/b⁴ = −a⁴/b⁷ ⇒ a³ = −1/b³ ⇒ a³b³ = −1",
+          {
+            "text": "∴ ab = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ¹¹C₄ = ¹¹C₇ cancels, leaving a³b³ = −1, so ab = −1 since a and b are real.",
+          "accept": [
+            "equate the coefficients, eleven C four equals eleven C seven so they cancel, a cubed b cubed is minus one, so a b is minus one",
+            "a to the seven by b to the four equals minus a to the four by b to the seven gives a b cubed equals minus one",
+            "a b equals minus one",
+            "eleven C four eleven C seven cancel ayyi a cube b cube minus one, a b minus one",
+            "the relation is a b equals minus one"
+          ],
+          "reject": [
+            "equate them",
+            "cancel and solve"
+          ],
+          "heard_as": [
+            "a b equals minus one",
+            "a cubed b cubed",
+            "eleven C four equals eleven C seven"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ is what makes the binomial coefficients disappear; the cube root is unique for real numbers, so a³b³ = −1 gives exactly ab = −1.",
+        "common_mistakes": [
+          "Mishandling the b powers when cross-multiplying: writing a³ = −b³, which gives a = −b, instead of a³ = −1/b³.",
+          "Stopping at a³b³ = −1.",
+          "Writing ab = 1 after losing the sign in step 6."
+        ]
+      }
+    ]
+  }
+}

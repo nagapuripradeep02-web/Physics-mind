@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Normalise",
         "margin_note": "First mark. Here a = 1 and b = √3, so √(1 + 3) = 2. Dividing by 2 makes both coefficients at most 1, so they can be a sine and a cosine.",
+        "memory_tip": "a = 1 and b = √3, so √(1 + 3) = 2. Divide BOTH sides by 2, not by 4.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Single ratio",
         "margin_note": "Second mark. ½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
+        "memory_tip": "½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
         "lines": [
           "½ = sin(π/6) and √3/2 = cos(π/6), so",
           "sin x sin(π/6) + cos x cos(π/6) = √2/2",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Principal value",
         "margin_note": "Third mark. 1/√2 = cos(π/4), so the principal value is α = π/4.",
+        "memory_tip": "√2/2 is 1/√2, which is cos(π/4). So the principal value is π/4.",
         "lines": [
           "1/√2 = cos(π/4)",
           "⇒ cos(x − π/6) = cos(π/4)",
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "General solution",
         "margin_note": "Last mark. For a cosine equation the general solution is θ = 2nπ ± α, so x − π/6 = 2nπ ± π/4.",
+        "memory_tip": "Cosine equation, so 2nπ ± α. Then add the π/6 back to reach x.",
         "lines": [
           "For cos θ = cos α, the general solution is",
           "θ = 2nπ ± α, n ∈ Z",
@@ -218,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide by 2 and read ½ as sin(π/6) with √3/2 as cos(π/6) — that pairing is what makes it a COSINE difference. The answer is x = 2nπ ± π/4 + π/6, using the cosine general form."
 }

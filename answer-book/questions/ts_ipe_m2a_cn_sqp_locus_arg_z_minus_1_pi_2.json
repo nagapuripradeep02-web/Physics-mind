@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqp_locus_arg_z_minus_1_pi_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the locus of z in the Argand plane if Arg(z − 1) = π/2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write z − 1 in terms of x and y and read the condition",
+      "marks": 1
+    },
+    {
+      "label": "State the locus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 184. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (two lines of working) and folded into the Complex Numbers unit as backfill. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. ⚠ CORRECTION TO THE BOOK, recorded not silently fixed: the book's answer 184 reads 'Arg(z − 1) = π/2 ⇒ its real part x − 1 = 0 ∴ Locus of z is x − 1 = 0' — the whole line x = 1. But Arg(z − 1) = π/2 means z − 1 lies on the POSITIVE imaginary axis, so y > 0 as well; on the lower half of the line x = 1 the argument is −π/2, and at z = 1 it is undefined. The card writes the locus as x = 1 with y > 0 (the half-line above the point (1, 0)) and records the book's printed line in the last step's 'why'. A teacher marking to the book's key may accept x − 1 = 0 alone; the card gives the complete answer. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the locus — what z − 1 is in x and y, and what an argument of π/2 forces on its two parts.",
+  "insider_note": "The answer is a half-line, not the whole line x = 1: an argument of π/2 forces the real part of z − 1 to be 0 and its imaginary part to be positive, so y > 0 must appear next to x = 1. Without y > 0 the line includes points whose argument is −π/2.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write z − 1 and the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. z − 1 = (x − 1) + iy. An argument of π/2 means the number points straight up the imaginary axis: real part 0, imaginary part positive.",
+        "memory_tip": "Argument π/2 points straight up: real part 0 AND imaginary part positive. Two conditions, not one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let z = x + iy. Then z − 1 = (x − 1) + iy",
+          "Arg(z − 1) = π/2 ⇒ z − 1 lies on the",
+          "positive imaginary axis",
+          "⇒ real part = 0 and imaginary part > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z − 1 = (x − 1) + iy, and an argument of π/2 means its real part is 0 and its imaginary part is positive.",
+          "accept": [
+            "z minus one is x minus one plus i y, and argument pi by two means real part zero and imaginary part positive",
+            "argument pi by two puts z minus one on the positive imaginary axis",
+            "the real part of z minus one must be zero and the imaginary part must be positive",
+            "arg pi by two ante positive imaginary axis meeda untundi, real part zero",
+            "write z minus one in x and y and set its real part to zero with y positive"
+          ],
+          "reject": [
+            "substitute z",
+            "use the argument"
+          ],
+          "heard_as": [
+            "z minus one",
+            "x minus one",
+            "pi by two",
+            "positive imaginary axis",
+            "real part zero"
+          ]
+        },
+        "why": "A number with argument π/2 is a positive multiple of i. That is two conditions at once — real part zero AND imaginary part positive — and both are needed to describe the locus exactly.",
+        "common_mistakes": [
+          "Writing z − 1 = x − 1 + y, dropping the i.",
+          "Reading Arg = π/2 as 'the number is purely imaginary' and forgetting that the imaginary part must also be positive."
+        ]
+      },
+      {
+        "id": "s2_locus",
+        "kind": "boxed_final",
+        "label": "State the locus",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. x − 1 = 0 and y > 0: the vertical half-line above the point (1, 0).",
+        "memory_tip": "x = 1 with y > 0 — a half-line. The whole line would include points with argument −π/2.",
+        "lines": [
+          "⇒ x − 1 = 0 and y > 0",
+          {
+            "text": "∴ Locus of z: x = 1, with y > 0",
+            "style": "boxed"
+          },
+          "(the half-line above the point (1, 0))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the locus is x = 1 with y > 0 — the half of the vertical line x = 1 that lies above the real axis.",
+          "accept": [
+            "x minus one is zero and y is positive, so the locus is the line x equals one above the real axis",
+            "the locus is x equals one with y greater than zero",
+            "the vertical half line x equals one above the point one comma zero",
+            "x equals one, y positive, upper half line",
+            "x minus one equals zero with y greater than zero"
+          ],
+          "reject": [
+            "find the locus",
+            "x equals one"
+          ],
+          "heard_as": [
+            "x equals one",
+            "y greater than zero",
+            "half line",
+            "x minus one equals zero",
+            "above"
+          ]
+        },
+        "why": "On the line x = 1, points above the real axis have Arg(z − 1) = π/2 and points below have −π/2, while z = 1 itself has no argument. So the locus is the upper half-line only. The book prints the answer as the whole line x − 1 = 0; the y > 0 condition is what makes the answer exact, and a teacher marking to the book's key will accept x − 1 = 0 as the main line.",
+        "common_mistakes": [
+          "Giving the whole line x = 1, which includes points with argument −π/2.",
+          "Giving y = 0 instead of x = 1 — that would be argument 0 or π."
+        ]
+      }
+    ]
+  }
+}

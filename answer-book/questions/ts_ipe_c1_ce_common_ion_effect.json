@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -87,5 +87,6 @@
         "margin_note": "Point at the common ion by name in the example."
       }
     ]
-  }
+  },
+  "insider_note": "The example is a full mark and only earns it if the shared ion is named. Acetic acid with sodium acetate is the safe pair; a pair with no common ion cannot score, however well it is written."
 }

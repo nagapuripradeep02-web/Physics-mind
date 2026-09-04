@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_3x_plus_7_over_x2_minus_3x_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve (3x + 7)/(x² − 3x + 2) into partial fractions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 11 Partial Fractions, answer 92. Printed appearances: a plain 'IPE 14' chip with no board letter, so it is recorded here and not as an appearance. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers; the (x + 4)/((x² − 4)(x + 1)) question on the same page is. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book also prints the answer as 10/(1 − x) + 13/(x − 2), which is the same thing with the sign moved into the denominator; the card keeps −10/(x − 1) so the constant A = −10 is visible. Truth check: recombining −10/(x − 1) + 13/(x − 2) gives (−10(x − 2) + 13(x − 1))/((x − 1)(x − 2)) = (3x + 7)/((x − 1)(x − 2)), the given fraction."
+  },
+  "recall_prompt": "Say how you would resolve (3x + 7)/(x² − 3x + 2) into partial fractions — name each move in order.",
+  "insider_note": "Factorise x² − 3x + 2 as (x − 1)(x − 2) first; then one substitution gives one constant — x = 2 makes the A term zero, x = 1 makes the B term zero — and no simultaneous equations are needed.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Set up the form",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "First mark. Factorise the denominator first: x² − 3x + 2 = (x − 1)(x − 2), two different linear factors, so the form is one constant over each factor.",
+        "memory_tip": "Factorise first: x² − 3x + 2 = (x − 1)(x − 2). Over a LINEAR factor the numerator is a constant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² − 3x + 2 = (x − 1)(x − 2)",
+          "Let (3x + 7)/((x − 1)(x − 2))",
+          "= A/(x − 1) + B/(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator factorises as (x − 1)(x − 2) and the fraction is written as A/(x − 1) + B/(x − 2).",
+          "accept": [
+            "factorise the denominator into x minus one and x minus two and write A over x minus one plus B over x minus two",
+            "the denominator is x minus one times x minus two so write one constant over each factor",
+            "split it as A by x minus 1 plus B by x minus 2",
+            "denominator ni x minus one, x minus two ga factorise chesi A by x minus one plus B by x minus two ani rasali",
+            "write the fraction as A over the first factor plus B over the second factor"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "factorise",
+            "x minus one",
+            "x minus two",
+            "A by",
+            "B by",
+            "A over",
+            "B over"
+          ]
+        },
+        "why": "A fraction whose denominator is a product of different linear factors is the sum of one constant over each factor. Writing that form is the whole plan of the answer, so it is written before any working.",
+        "common_mistakes": [
+          "Not factorising x² − 3x + 2 and trying to write one fraction over the whole quadratic.",
+          "Writing Ax + B over a linear factor; over a linear factor the numerator is a constant.",
+          "Getting the factors as (x + 1)(x + 2); the middle term is −3x, so both signs are minus."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply both sides by (x − 1)(x − 2). Each fraction loses its own factor and keeps the other one. The result is an identity: it is true for every value of x.",
+        "memory_tip": "Each fraction loses its own factor and keeps the other. A sits over (x − 1), so A keeps (x − 2).",
+        "lines": [
+          "Multiply both sides by (x − 1)(x − 2):",
+          "3x + 7 = A(x − 2) + B(x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through by (x − 1)(x − 2) gives the identity 3x + 7 = A(x − 2) + B(x − 1).",
+          "accept": [
+            "multiply both sides by x minus one times x minus two to get three x plus seven equals A times x minus two plus B times x minus one",
+            "clear the denominators so three x plus seven equals A into x minus two plus B into x minus one",
+            "multiply through by the denominator and get an identity in x",
+            "rendu sides ni denominator tho multiply cheste three x plus seven equals A into x minus two plus B into x minus one",
+            "remove the fractions by multiplying with the common denominator"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "A into x minus two",
+            "B into x minus one",
+            "identity",
+            "three x plus seven"
+          ]
+        },
+        "why": "Constants are found from a polynomial identity, not from fractions. Multiplying by the full denominator removes every fraction in one line, and because both sides are then equal for every x, any value of x may be put in.",
+        "common_mistakes": [
+          "Pairing A with (x − 1) instead of (x − 2); A sits over (x − 1), so it is multiplied by the OTHER factor.",
+          "Dropping the left side and writing only the right side.",
+          "Leaving a denominator on one term because it was not multiplied."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A and B",
+        "margin_note": "Third mark. Put x = 2 to make the A term zero, then x = 1 to make the B term zero. One substitution gives one constant; there are no simultaneous equations here.",
+        "memory_tip": "One substitution gives one constant: x = 2 kills the A term, x = 1 kills the B term. No simultaneous equations.",
+        "lines": [
+          "Put x = 2: 6 + 7 = A(0) + B(1)",
+          "⇒ B = 13",
+          "Put x = 1: 3 + 7 = A(−1) + B(0)",
+          "⇒ A = −10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = 2 gives B = 13 and putting x = 1 gives A = −10.",
+          "accept": [
+            "put x equals two to get B equals thirteen and x equals one to get A equals minus ten",
+            "substitute the roots of the factors x equals two and x equals one to get B thirteen and A minus ten",
+            "x equals two makes the A term zero so B is thirteen, x equals one makes the B term zero so A is minus ten",
+            "x equals two pedithe B thirteen vastundi, x equals one pedithe A minus ten vastundi",
+            "B is thirteen and A is minus ten from putting in two and one"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals two",
+            "x equals one",
+            "B is thirteen",
+            "A is minus ten",
+            "thirteen",
+            "minus ten"
+          ]
+        },
+        "why": "The identity holds for every x, so choosing x equal to the root of a factor makes that whole term zero and leaves one constant alone. That is why the values put in are exactly 2 and 1, the roots of the factors.",
+        "common_mistakes": [
+          "Putting x = 1 and writing A(1 − 2) = A instead of −A, so A comes out as +10.",
+          "Adding 3(2) + 7 as 12 instead of 13.",
+          "Solving two simultaneous equations when one substitution each was enough."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Put A and B back into the form from step 1 and write the left side again beside it. The book also writes −10/(x − 1) as 10/(1 − x); both are correct.",
+        "memory_tip": "A = −10 stays negative in the answer. Check with x = 0: 7 = 20 − 13.",
+        "lines": [
+          "∴ (3x + 7)/(x² − 3x + 2)",
+          {
+            "text": "= −10/(x − 1) + 13/(x − 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals −10/(x − 1) + 13/(x − 2), written with the original fraction on the left.",
+          "accept": [
+            "the answer is minus ten over x minus one plus thirteen over x minus two",
+            "three x plus seven over the quadratic equals minus ten by x minus one plus thirteen by x minus two",
+            "write minus ten by x minus 1 plus 13 by x minus 2 as the final answer",
+            "final answer minus ten by x minus one plus thirteen by x minus two ani rasali",
+            "put A and B back to get minus ten over x minus one plus thirteen over x minus two"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "minus ten over",
+            "thirteen over",
+            "x minus one",
+            "x minus two",
+            "final answer"
+          ]
+        },
+        "why": "The question asked for the fraction resolved, not for A and B. The mark is for the resolved form with the constants in place, so the last line must show the fractions, not only the values.",
+        "common_mistakes": [
+          "Stopping at A = −10, B = 13 and never writing the fractions.",
+          "Writing +10/(x − 1) after finding A = −10.",
+          "Not checking: put x = 0 in the identity, 7 = A(−2) + B(−1) = 20 − 13 = 7. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

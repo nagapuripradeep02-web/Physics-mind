@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_sum_2_3_5_6_8_9_2n_terms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum of 2 + 3 + 5 + 6 + 8 + 9 + … to 2n terms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split into two A.P.s of n terms each",
+      "marks": 1
+    },
+    {
+      "label": "Add the two sums",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say why it is not one A.P. and how you split it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split into two A.P.s of n terms each",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both A.P.s must be named with their own a and d, and each must be given n terms, not 2n.",
+        "memory_tip": "Alternate terms give two lists, 2, 5, 8 and 3, 6, 9, and both have common difference 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The differences run 1, 2, 1, 2, …, so the 2n terms are not one A.P.",
+          "Take the terms in alternate positions:",
+          "1st, 3rd, 5th, … give  2, 5, 8, …  : an A.P. with a = 2, d = 3, n terms",
+          "2nd, 4th, 6th, … give  3, 6, 9, …  : an A.P. with a = 3, d = 3, n terms",
+          "S = (2 + 5 + 8 + … n terms) + (3 + 6 + 9 + … n terms)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 2n terms split into two A.P.s of n terms each: 2, 5, 8, … and 3, 6, 9, …, both with d = 3.",
+          "accept": [
+            "the whole thing is not an a p so split it",
+            "odd places give two five eight and even places give three six nine",
+            "two arithmetic progressions of n terms each with common difference three",
+            "rendu a p lu ga split cheyyali, each n terms",
+            "take alternate terms to make two progressions"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two five eight",
+            "three six nine",
+            "two a p s",
+            "n terms each"
+          ]
+        },
+        "why": "Consecutive differences run 1, 2, 1, 2, …, so the whole list is not an A.P. Taking alternate terms gives two A.P.s that both have common difference 3.",
+        "common_mistakes": [
+          "Treating the whole list as one A.P. with d = 1.",
+          "Giving each part 2n terms instead of n."
+        ]
+      },
+      {
+        "id": "s2_add_sums",
+        "kind": "boxed_final",
+        "label": "Add the two sums",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Check with n = 2, which is 4 terms: 2 + 3 + 5 + 6 = 16, and 3(2²) + 2(2) = 16.",
+        "memory_tip": "Two A.P.s share the factor n/2: add the brackets, then halve 6n + 4.",
+        "lines": [
+          "Sₙ = n/2 [2a + (n − 1)d]",
+          "First A.P.:  n/2 [4 + 3(n − 1)] = n/2 (3n + 1)",
+          "Second A.P.:  n/2 [6 + 3(n − 1)] = n/2 (3n + 3)",
+          "S = n/2 [(3n + 1) + (3n + 3)] = n/2 (6n + 4)",
+          {
+            "text": "∴ S = n(3n + 2) = 3n² + 2n",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two sums are n/2(3n + 1) and n/2(3n + 3), and together they give S = n(3n + 2).",
+          "accept": [
+            "use the sum formula on each progression",
+            "add the two brackets three n plus one and three n plus three",
+            "the answer is three n squared plus two n",
+            "rendu sums add cheste n into three n plus two",
+            "n by two into six n plus four is n into three n plus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three n plus one",
+            "six n plus four",
+            "three n squared plus two n",
+            "n into three n plus two"
+          ]
+        },
+        "why": "Both parts share the factor n/2, so the brackets can be added before multiplying, and the 2 inside 6n + 4 cancels with the half.",
+        "common_mistakes": [
+          "Putting 2n into each sum formula as the term count, which totals 4n terms. Each A.P. has only n terms.",
+          "Giving the answer in terms of 2n and doubling it a second time."
+        ]
+      }
+    ]
+  }
+}

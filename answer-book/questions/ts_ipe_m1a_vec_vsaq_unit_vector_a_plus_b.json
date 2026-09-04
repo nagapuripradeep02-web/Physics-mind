@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Add first, THEN take the magnitude — |a+b| is not |a|+|b|. Note b has no k term, so the k component of the sum is just 3.",
+        "memory_tip": "Add FIRST, then take the magnitude — |a + b| is not |a| + |b|. b has no k, so the sum's k is just 3.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Same finish as any unit-vector question: the sum over its own length.",
+        "memory_tip": "Same finish as any unit-vector question: the sum over its own length.",
         "lines": [
           "∴ Required unit vector = (a + b)/|a + b|",
           {
@@ -138,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add first and take the magnitude afterwards — |a| + |b| is not |a + b|. b has no k component, so the sum is 4i + 3j + 3k and the magnitude is √34."
 }

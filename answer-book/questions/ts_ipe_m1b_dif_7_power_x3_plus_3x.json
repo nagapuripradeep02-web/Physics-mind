@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_7_power_x3_plus_3x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of 7ˣ³⁺³ˣ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the aᵘ rule with base 7",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the exponent and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 2. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 38.643497 at x = 0.3 against 3(x²+1)·7ˣ³⁺³ˣ·logₑ7 = 38.643497, and 2767.0269 at x = 0.8 against 2767.0269."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule applies when the base is a number and the power is a function of x.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_exponential_rule",
+        "kind": "equation",
+        "label": "Use the aᵘ rule with base 7",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The base 7 is fixed and the power varies, so this is aᵘ, not uⁿ. The logₑ7 factor belongs to the aᵘ rule and must appear on this line.",
+        "memory_tip": "Constant base with a varying power brings down the logarithm of the base. Varying base with a constant power does not.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = 7ˣ³⁺³ˣ",
+          "The base 7 is a constant and the exponent is a function of x, so the rule is",
+          "d/dx(aᵘ) = aᵘ · logₑa · du/dx",
+          "Here a = 7 and u = x³ + 3x",
+          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · d/dx(x³ + 3x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rule d/dx(aᵘ) = aᵘ · logₑa · du/dx is used with a = 7 and u = x³ + 3x.",
+          "accept": [
+            "seven power u differentiates to seven power u into log seven into du by dx",
+            "the base is constant so the log of the base comes down",
+            "use the a power u rule with a equal to seven",
+            "base seven constant, so log seven vasthundi",
+            "write log seven times the same exponential times the derivative of the power"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log seven",
+            "a power u",
+            "seven power",
+            "derivative of the power"
+          ]
+        },
+        "why": "Choosing the rule is the whole decision in this question. The power rule d/dx(uⁿ) = nuⁿ⁻¹ applies when the power is a fixed number; here the power moves with x and the base does not, so the exponential rule applies instead. logₑ7 means the natural logarithm of 7, written simply as log 7 at this level.",
+        "common_mistakes": [
+          "Using the power rule and writing (x³ + 3x)·7ˣ³⁺³ˣ⁻¹.",
+          "Leaving out the logₑ7 factor."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate the exponent and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The exponent differentiates term by term to 3x² + 3. Taking 3 out as 3(x² + 1) is the tidy form an examiner expects.",
+        "memory_tip": "The exponent x³ + 3x gives 3x² + 3, and both terms carry a 3, so 3(x² + 1) comes out in one move.",
+        "lines": [
+          "d/dx(x³ + 3x) = 3x² + 3 = 3(x² + 1)",
+          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
+          {
+            "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the exponent differentiates to 3x² + 3 = 3(x² + 1), giving 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7.",
+          "accept": [
+            "the derivative of x cubed plus three x is three x squared plus three",
+            "take three common to get three into x squared plus one",
+            "the answer is three x squared plus three times seven power x cubed plus three x times log seven",
+            "power ni differentiate cheste three x square plus three vasthundi",
+            "multiply by three x squared plus three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three x squared plus three",
+            "three x square plus one",
+            "log seven",
+            "exponent"
+          ]
+        },
+        "why": "The exponent is a polynomial, so its derivative is routine. Writing it as 3(x² + 1) shows the common factor and keeps the final line short enough to read in one go.",
+        "common_mistakes": [
+          "Differentiating 3x to 3x rather than 3.",
+          "Writing the exponent's derivative as 3x² only, dropping the 3."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The base is constant and the exponent is a function, so the rule is aᵘ · logₑa · du/dx. The logₑ7 is part of the answer, not an optional extra."
+}

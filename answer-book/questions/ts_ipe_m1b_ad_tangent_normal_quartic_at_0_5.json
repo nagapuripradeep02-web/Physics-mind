@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_normal_quartic_at_0_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equations of the tangent and the normal to the curve y = x⁴ − 6x³ + 13x² − 10x + 5 at (0, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the curve",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the tangent at (0, 5)",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 10. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate, what number you get for the slope at (0, 5), and how the normal's slope comes from it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the curve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write dy/dx in full before substituting anything. The one-line check that x = 0 gives y = 5 confirms the point is on the curve, and the examiner accepts it as part of the method.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  y = x⁴ − 6x³ + 13x² − 10x + 5",
+          "Check the point: at x = 0,  y = 0 − 0 + 0 − 0 + 5 = 5,",
+          "so (0, 5) lies on the curve.",
+          "Differentiate term by term with respect to x:",
+          "dy/dx = 4x³ − 18x² + 26x − 10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the curve is differentiated term by term to dy/dx = 4x³ − 18x² + 26x − 10.",
+          "accept": [
+            "differentiate the polynomial term by term",
+            "dy by dx is four x cubed minus eighteen x squared plus twenty six x minus ten",
+            "bring each power down and reduce the index by one",
+            "prathi term ni differentiate cheyyali",
+            "the constant five differentiates to zero",
+            "first find dy by dx of the whole curve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four x cubed",
+            "eighteen x squared",
+            "twenty six x",
+            "minus ten",
+            "differentiate"
+          ]
+        },
+        "why": "Both the tangent and the normal are built from the same derivative, so differentiating once is the whole starting move. A tangent can only be drawn at a point that lies on the curve, so the check at x = 0 is worth the one line it costs.",
+        "common_mistakes": [
+          "Differentiating 13x² to 13x instead of 26x.",
+          "Carrying the constant 5 into dy/dx instead of differentiating it to 0.",
+          "Reading the slope as 5 from the point (0, 5) instead of from the derivative."
+        ],
+        "memory_tip": "Differentiate the whole polynomial first, substitute second. A number put in early leaves nothing to differentiate."
+      },
+      {
+        "id": "s2_slope",
+        "kind": "equation",
+        "label": "Slope of the tangent at (0, 5)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Show the substitution line, not only the value. m = −10 must be a plain number before it can go into a line equation.",
+        "lines": [
+          "The slope of the tangent is the value of dy/dx at the given point.",
+          "At x = 0:",
+          "m = 4(0)³ − 18(0)² + 26(0) − 10",
+          "∴ m = −10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = 0 into dy/dx gives the tangent slope m = −10.",
+          "accept": [
+            "substitute x equal to zero into dy by dx",
+            "the slope of the tangent is minus ten",
+            "every term with an x becomes zero so only minus ten is left",
+            "x equal to zero substitute cheste minus ten vasthundi",
+            "m is minus ten at this point",
+            "put the x of the point into the derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equal to zero",
+            "minus ten",
+            "slope",
+            "substitute"
+          ]
+        },
+        "why": "dy/dx is a function of x, so it gives a different slope at every point. Only after x = 0 is substituted is m a fixed number that the line equation can use.",
+        "common_mistakes": [
+          "Substituting y = 5 into dy/dx instead of x = 0.",
+          "Writing m = −10x and leaving x in the slope.",
+          "Substituting into the original curve instead of into dy/dx."
+        ],
+        "memory_tip": "At x = 0 every term carrying an x disappears, so the slope is just the constant term of dy/dx. Here that constant is −10."
+      },
+      {
+        "id": "s3_tangent",
+        "kind": "equation",
+        "label": "Equation of the tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. Quote y − y₁ = m(x − x₁) before substituting; the formula line itself carries part of the mark. Finish in the general form ax + by + c = 0.",
+        "lines": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (0, 5) and m = −10:",
+          "y − 5 = −10(x − 0)",
+          "y − 5 = −10x",
+          "∴ 10x + y − 5 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form with (0, 5) and m = −10 gives 10x + y − 5 = 0.",
+          "accept": [
+            "use y minus y one equals m into x minus x one",
+            "y minus five equals minus ten x",
+            "the tangent is ten x plus y minus five equals zero",
+            "point slope form use chesi tangent rasta",
+            "substitute the point and the slope into the straight line formula",
+            "bring everything to one side for the general form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y minus y one",
+            "ten x plus y",
+            "minus five",
+            "point slope"
+          ]
+        },
+        "why": "The point-slope form is the shortest route from a point and a slope to an equation, and it needs no intercept. Moving every term to one side gives the standard form the board expects.",
+        "common_mistakes": [
+          "Dropping the −5 when rearranging y − 5 = −10x.",
+          "Using the normal's slope 1/10 here instead of m = −10.",
+          "Leaving the answer as y = −10x + 5 when the general form is asked for."
+        ],
+        "memory_tip": "Point-slope form is y minus the y of the point, equals m times x minus the x of the point. Nothing else goes in."
+      },
+      {
+        "id": "s4_normal",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The most common loss on this question is the normal's slope: it is −1/m, so −10 becomes +1/10, not −1/10. Check the answer by putting (0, 5) back in: 0 − 50 + 50 = 0.",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so its slope is −1/m = −1/(−10) = 1/10.",
+          "y − 5 = (1/10)(x − 0)",
+          "10y − 50 = x",
+          {
+            "text": "∴ Tangent: 10x + y − 5 = 0     Normal: x − 10y + 50 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −1/m = 1/10, giving x − 10y + 50 = 0.",
+          "accept": [
+            "the normal slope is minus one by m",
+            "minus ten turns into plus one over ten",
+            "the normal is x minus ten y plus fifty equals zero",
+            "normal slope ki minus one by m teesukovali",
+            "turn the slope upside down and change its sign",
+            "the normal passes through the same point five on the y axis"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by m",
+            "one by ten",
+            "perpendicular",
+            "x minus ten y",
+            "plus fifty"
+          ]
+        },
+        "why": "The normal is perpendicular to the tangent, so its slope is the negative reciprocal of m. Turning −10 into 1/10 needs both moves: the reciprocal and the sign change.",
+        "common_mistakes": [
+          "Writing the normal's slope as −1/10, doing the reciprocal but not the sign change.",
+          "Using −m = 10 as the normal's slope instead of −1/m.",
+          "Writing the normal through a different point than (0, 5)."
+        ],
+        "memory_tip": "Turn the tangent slope upside down, then change its sign. Both moves, every time."
+      }
+    ]
+  },
+  "insider_note": "At x = 0 every power term vanishes, so m is just the coefficient of x, which is −10. That makes the normal slope 1/10."
+}

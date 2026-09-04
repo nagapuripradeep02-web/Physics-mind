@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "The equation and symbols",
+      "label": "Non-volatile solute form",
       "marks": 1
     }
   ],
@@ -92,5 +92,5 @@
       }
     ]
   },
-  "insider_note": "Most answers stop at the sentence and never write the equation. The board's model answer to this question is a sentence and a formula, so write both even though the question only says \"state\"."
+  "insider_note": "Most answers stop at the sentence and never write the equation. A full answer to this question is a sentence and a formula, so write both even though the question only says \"state\"."
 }

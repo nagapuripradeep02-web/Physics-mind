@@ -89,7 +89,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The couple question shows why both conditions are needed: a couple satisfies ΣF = 0 and still rotates the body.",
+        "why": "A couple shows why both conditions are needed: two equal and opposite forces on different lines give ΣF = 0 and still rotate the body.",
         "common_mistakes": [
           "Computing torques about one special point only — in equilibrium the sum vanishes about ANY point. But once ΣF = 0 holds, a zero torque sum about ONE point makes it zero about every point, so checking a single convenient point is enough."
         ],

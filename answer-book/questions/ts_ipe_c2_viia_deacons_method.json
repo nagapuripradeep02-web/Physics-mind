@@ -73,7 +73,7 @@
           "(catalyst CuCl₂, temperature 723 K)",
           "Atom count: 4 H, 4 Cl and 2 O on each side."
         ],
-        "why": "The book prints this equation on book p.86 with 3H₂O on the right, which does not balance: 3H₂O would need 6 H and 3 O, while the left side supplies only 4 H and 2 O. The same book prints the correct 2H₂O in the Long Answer on book p.88, so the printed pages disagree with each other. Count the hydrogen atoms and the balanced form settles it.",
+        "why": "Some books print this equation with 3H₂O on the right, which does not balance: 3H₂O would need 6 H and 3 O, while the left side supplies only 4 H and 2 O. The same books print the correct 2H₂O in the Long Answer, so their own pages disagree with each other. Count the hydrogen atoms and the balanced form settles it.",
         "common_mistakes": [
           "Copying 3H₂O from the printed answer. Only 4 H and 2 O are available, so the product is 2H₂O.",
           "Writing HCl + O₂ → Cl₂ + H₂O without coefficients. Four HCl are needed for one O₂."

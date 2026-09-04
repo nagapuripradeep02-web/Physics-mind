@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cos_inverse_p_a_q_b_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If Cos⁻¹(p/a) + Cos⁻¹(q/b) = α, prove that p²/a² − (2pq/(ab)) cosα + q²/b² = sin²α.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the two angles",
+      "marks": 1
+    },
+    {
+      "label": "Expand cos of the sum",
+      "marks": 1
+    },
+    {
+      "label": "Square both sides",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange to the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.114, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1 because the four moves are genuinely separate — naming the angles with their domain, expanding the sum, squaring, and rearranging to sin²α. NOTATION: the book prints the inverse functions in lower case (cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. The identity was checked numerically to twelve decimal places on four independent quadruples (p,a,q,b) = (3,5,5,13), (1,2,2,3), (−1,4,3,7) and (0.3,1,−0.8,1); left and right sides agreed in every case. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_two_angles",
+        "kind": "equation",
+        "label": "Name the two angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The domain lines are part of the answer: without |p/a| ≤ 1 and |q/b| ≤ 1 the two inverse cosines do not exist.",
+        "memory_tip": "Cos⁻¹ gives an angle in [0, π], and sine is never negative there — so both sines take the positive root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = Cos⁻¹(p/a) and B = Cos⁻¹(q/b).",
+          "These need a ≠ 0, b ≠ 0,",
+          "|p/a| ≤ 1 and |q/b| ≤ 1.",
+          "A, B ∈ [0, π] ⇒ sinA ≥ 0, sinB ≥ 0",
+          "cosA = p/a, cosB = q/b, A + B = α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are named, the domain conditions are written, and both sines are non-negative.",
+          "accept": [
+            "let a be cos inverse p over a and b be cos inverse q over b, with both fractions between minus one and one",
+            "cos inverse gives an angle between zero and pi so both sines are non negative",
+            "write the domain first, p by a and q by b must be at most one in size",
+            "domain rasali, p by a and q by b modulus one kanna thakkuva",
+            "the sum of the two angles is alpha"
+          ],
+          "reject": [
+            "expand cos of the sum",
+            "square both sides",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos inverse p over a",
+            "zero to pi",
+            "sine is non negative",
+            "domain"
+          ]
+        },
+        "why": "Cos⁻¹ returns an angle in [0, π], where the sine is never negative. That is why the positive square root is used for sinA and sinB later.",
+        "common_mistakes": [
+          "Skipping the conditions |p/a| ≤ 1 and |q/b| ≤ 1.",
+          "Allowing sinA to be negative."
+        ]
+      },
+      {
+        "id": "s2_expand_cos_of_the_sum",
+        "kind": "equation",
+        "label": "Expand cos of the sum",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "Second mark. Keep the product of the sines alone on one side — the next step squares that line.",
+        "memory_tip": "Move the sine product to one side by itself. Everything else is already known in p, q, a and b.",
+        "lines": [
+          "cosα = cos(A + B)",
+          "= cosA cosB − sinA sinB",
+          "= pq/(ab) − sinA sinB",
+          "⇒ sinA sinB = pq/(ab) − cosα"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A + B) is expanded and the product sinA sinB is isolated as pq/(ab) − cosα.",
+          "accept": [
+            "expand cos of a plus b as cos cos minus sin sin and make the sine product the subject",
+            "sin a sin b equals p q over a b minus cos alpha",
+            "isolate the product of the sines before squaring",
+            "sin product ni okka side ki teeskoni ravali",
+            "the sine product is p q by a b minus cos alpha"
+          ],
+          "reject": [
+            "name the two angles",
+            "square both sides",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos a plus b",
+            "sin a sin b",
+            "p q over a b",
+            "cos alpha"
+          ]
+        },
+        "why": "Isolating the product of the sines is what allows both square roots to be removed in a single squaring step.",
+        "common_mistakes": [
+          "Writing cos(A + B) with a plus between the two products.",
+          "Leaving the sine product mixed with the other terms."
+        ]
+      },
+      {
+        "id": "s3_square_both_sides",
+        "kind": "equation",
+        "label": "Square both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Squaring both sides of a true equation always gives a true equation, so nothing extra has to be checked here.",
+        "memory_tip": "Square once. The term p²q²/(a²b²) appears on both sides and cancels.",
+        "lines": [
+          "sin²A sin²B = (pq/(ab) − cosα)²",
+          "sin²A = 1 − p²/a², sin²B = 1 − q²/b²",
+          "(1 − p²/a²)(1 − q²/b²)",
+          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α",
+          "⇒ 1 − p²/a² − q²/b² + p²q²/(a²b²)",
+          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are squared, the sines are replaced by 1 − p²/a² and 1 − q²/b², and p²q²/(a²b²) cancels.",
+          "accept": [
+            "square both sides and replace sin squared a by one minus p squared over a squared",
+            "the p squared q squared term appears on both sides and cancels",
+            "expand the square of the difference with its middle term",
+            "square chesthe p squared q squared term rendu vaipula cancel avthundi",
+            "squaring removes both square roots at once"
+          ],
+          "reject": [
+            "expand cos of the sum",
+            "rearrange to the result",
+            "hence proved"
+          ],
+          "heard_as": [
+            "square both sides",
+            "sin squared a",
+            "p squared q squared",
+            "middle term"
+          ]
+        },
+        "why": "Squaring removes both square roots at once. The term p²q²/(a²b²) then appears on both sides and cancels, which is what leaves a clean identity.",
+        "common_mistakes": [
+          "Squaring only one side of the equation.",
+          "Expanding the square of a difference without its middle term."
+        ]
+      },
+      {
+        "id": "s4_rearrange_to_the_result",
+        "kind": "boxed_final",
+        "label": "Rearrange to the result",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Write the three terms in the order the question asks so an examiner can match them line for line.",
+        "memory_tip": "Finish with 1 − cos²α = sin²α — the whole right-hand side of the question is only that.",
+        "lines": [
+          "1 − p²/a² − q²/b²",
+          "= cos²α − (2pq/(ab)) cosα",
+          "⇒ 1 − cos²α",
+          "= p²/a² − (2pq/(ab)) cosα + q²/b²",
+          "and 1 − cos²α = sin²α",
+          {
+            "text": "∴ p²/a² − (2pq/(ab)) cosα + q²/b² = sin²α",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms are rearranged and 1 − cos²α is replaced by sin²α.",
+          "accept": [
+            "move the terms across and use one minus cos squared alpha equals sin squared alpha",
+            "the last step is just the pythagorean identity",
+            "rearranging gives exactly the expression the question asks for",
+            "one minus cos squared alpha ante sin squared alpha",
+            "collect the terms and finish with sin squared alpha"
+          ],
+          "reject": [
+            "square both sides",
+            "the sine product is p q by a b minus cos alpha",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus cos squared alpha",
+            "sin squared alpha",
+            "rearrange",
+            "two p q over a b"
+          ]
+        },
+        "why": "The last move is only the Pythagorean identity: 1 − cos²α is sin²α. Everything before it was rearrangement.",
+        "common_mistakes": [
+          "Stopping at 1 − cos²α without writing sin²α.",
+          "Losing the sign of the middle term."
+        ]
+      }
+    ]
+  }
+}

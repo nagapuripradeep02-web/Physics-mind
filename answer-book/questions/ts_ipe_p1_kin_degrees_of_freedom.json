@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_degrees_of_freedom",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the degrees of freedom of a molecule? Give the values for a monoatomic and a diatomic molecule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Monoatomic and diatomic values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 13 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 13: a monoatomic molecule has 3 degrees of freedom, all translational; a diatomic molecule has 5 at ordinary temperature — 3 translational and 2 rotational — with two further vibrational degrees appearing only at high temperature."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "The degrees of freedom of a",
+          "molecule are the number of",
+          "independent ways it can hold",
+          "energy."
+        ],
+        "margin_note": "First mark. The word independent is what the examiner looks for.",
+        "why": "A molecule can move along three independent directions, and depending on its shape it can also rotate about independent axes and vibrate along independent bonds — each such independent way of holding energy is one degree of freedom.",
+        "common_mistakes": [
+          "Saying degrees of freedom means the number of atoms in the molecule. It means the number of independent ways to hold energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That degrees of freedom are the number of independent ways a molecule can hold energy.",
+          "accept": [
+            "independent ways to hold energy",
+            "independent coordinates needed for its motion",
+            "number of independent modes of energy"
+          ],
+          "reject": [
+            "3 for monoatomic, 5 for diatomic"
+          ],
+          "heard_as": [
+            "degrees of freedom",
+            "independent ways"
+          ]
+        },
+        "memory_tip": "Each independent way to store energy is one degree of freedom — count the ways, not the atoms."
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "Monoatomic and diatomic values",
+        "marks": 1,
+        "mark_note": "3 (monoatomic), 5 (diatomic)",
+        "lines": [
+          "A monoatomic molecule has 3,",
+          "all translational.",
+          {
+            "text": "Diatomic molecule: 5",
+            "style": "boxed"
+          },
+          "3 translational + 2 rotational.",
+          "Two vibrational degrees appear",
+          "only at high temperature."
+        ],
+        "margin_note": "Second mark. Both numbers, 3 and 5, are needed; the split into translational and rotational is the extra detail.",
+        "why": "A monoatomic molecule is a point mass with only three independent directions of motion. A diatomic molecule can also rotate about two axes perpendicular to its bond, giving two more independent ways to hold energy at ordinary temperature.",
+        "common_mistakes": [
+          "Giving 7 degrees of freedom for a diatomic molecule by counting the two vibrational degrees at ordinary temperature, when the answer is 5.",
+          "Reversing the numbers and writing 5 for monoatomic and 3 for diatomic."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a monoatomic molecule has 3 degrees of freedom and a diatomic molecule has 5 at ordinary temperature, 3 translational and 2 rotational.",
+          "accept": [
+            "3 for monoatomic",
+            "5 for diatomic, 3 translational plus 2 rotational",
+            "diatomic gains 2 rotational degrees"
+          ],
+          "reject": [
+            "independent ways to hold energy"
+          ],
+          "heard_as": [
+            "3 and 5",
+            "translational and rotational"
+          ]
+        },
+        "memory_tip": "Monoatomic: 3, just motion. Diatomic: 5, motion plus 2 rotations about the bond."
+      }
+    ]
+  },
+  "insider_note": "Give both numbers, 3 and 5 — writing only the definition, with no numbers, earns just the first mark."
+}

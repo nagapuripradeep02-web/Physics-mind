@@ -57,7 +57,7 @@
           "Writing that only cations are missing. In a Schottky defect the cations and anions are missing in equal numbers.",
           "Describing an ion moving to a new position inside the crystal. That is a Frenkel defect; in a Schottky defect the ions are absent from the crystal."
         ],
-        "memory_tip": "Schottky has an S for Sites left empty, in pairs. Frenkel has no missing ion at all.",
+        "memory_tip": "Schottky has an S for Sites left empty, in pairs. In a Frenkel defect the ion stays inside the crystal, at an interstitial site, and its old site is still left vacant.",
         "margin_note": "The phrase \"equal number of cations and anions\" is the scoring phrase. Write it before anything else."
       },
       {

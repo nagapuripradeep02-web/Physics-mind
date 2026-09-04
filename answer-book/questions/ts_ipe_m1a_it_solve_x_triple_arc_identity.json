@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_solve_x_triple_arc_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve for x: 3 Sin⁻¹(2x/(1 + x²)) − 4 Cos⁻¹((1 − x²)/(1 + x²)) + 2 Tan⁻¹(2x/(1 − x²)) = π/3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the three standard forms",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the left side",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x",
+      "marks": 1
+    },
+    {
+      "label": "Check the range and close",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.115, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. A full mark is given to stating the three standard forms with the range each one needs, because that is where the question is actually decided; the arithmetic afterwards is short. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹, tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: at x = 1/√3 the left side equals 1.047197551197 = π/3. A scan of x over [−200, 200] in steps of 0.001, skipping x = ±1 where the third term is undefined, found the left side to be negative at every point outside 0 ≤ x < 1 (largest value there ≈ −0.018), so x = 1/√3 is the only root. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this one — name each move in order, and say how you test the root you find.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_the_three_standard_forms",
+        "kind": "equation",
+        "label": "State the three standard forms",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Naming the range is the whole difficulty here — outside 0 ≤ x < 1 each form gains or loses a π and the working changes.",
+        "memory_tip": "All three reduce to 2Tan⁻¹x, but on different ranges: |x| ≤ 1, x ≥ 0 and |x| < 1. The common part is 0 ≤ x < 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Sin⁻¹(2x/(1 + x²)) = 2Tan⁻¹x, if |x| ≤ 1",
+          "Cos⁻¹((1 − x²)/(1 + x²)) = 2Tan⁻¹x, if x ≥ 0",
+          "Tan⁻¹(2x/(1 − x²)) = 2Tan⁻¹x, if |x| < 1",
+          "All three hold together only when",
+          "0 ≤ x < 1, so we solve on that range."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each of the three forms equals 2Tan⁻¹x only on its own range, and the common range is 0 ≤ x < 1.",
+          "accept": [
+            "all three expressions reduce to two tan inverse x but each has its own range and the overlap is zero to one",
+            "the sine form needs modulus x at most one, the cosine form needs x non negative, the tangent form needs modulus x below one",
+            "state the ranges before reducing anything",
+            "moodu forms ki ranges veru veru, overlap zero to one",
+            "we work on x between zero and one"
+          ],
+          "reject": [
+            "reduce the left side",
+            "the answer is one over root three",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two tan inverse x",
+            "modulus x less than one",
+            "x greater than or equal to zero",
+            "zero to one"
+          ]
+        },
+        "why": "Each of the three standard forms equals 2Tan⁻¹x only on its own range of x. The common part of the three ranges is 0 ≤ x < 1, so the equation is solved there.",
+        "common_mistakes": [
+          "Using all three reductions without naming the range.",
+          "Writing the Cos⁻¹ form as 2Tan⁻¹x for negative x."
+        ]
+      },
+      {
+        "id": "s2_reduce_the_left_side",
+        "kind": "equation",
+        "label": "Reduce the left side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Collect the coefficients first — all three terms are the same quantity, so only 6 − 8 + 4 matters.",
+        "memory_tip": "6 − 8 + 4 = 2, so the whole left side is 2 Tan⁻¹x.",
+        "lines": [
+          "On 0 ≤ x < 1, put t = Tan⁻¹x.",
+          "L.H.S = 3(2t) − 4(2t) + 2(2t)",
+          "= 6t − 8t + 4t = 2t",
+          "So L.H.S = 2 Tan⁻¹x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three terms become multiples of 2Tan⁻¹x and the coefficients give 6 − 8 + 4 = 2.",
+          "accept": [
+            "every term is two tan inverse x so the coefficients give six minus eight plus four which is two",
+            "the whole left side is two tan inverse x",
+            "collect the coefficients before doing anything with x",
+            "six minus eight plus four rendu, so two tan inverse x",
+            "the left side collapses to two tan inverse x"
+          ],
+          "reject": [
+            "state the three standard forms",
+            "solve for x",
+            "check the range"
+          ],
+          "heard_as": [
+            "six minus eight plus four",
+            "two tan inverse x",
+            "coefficients",
+            "t equals tan inverse x"
+          ]
+        },
+        "why": "All three terms carry the same 2Tan⁻¹x, so the whole left side becomes a single multiple of it. The coefficients 3, −4 and 2 give 6 − 8 + 4 = 2.",
+        "common_mistakes": [
+          "Adding 3, 4 and 2 as 9 instead of 6 − 8 + 4.",
+          "Dropping the minus sign on the Cos⁻¹ term."
+        ]
+      },
+      {
+        "id": "s3_solve_for_x",
+        "kind": "equation",
+        "label": "Solve for x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. π/6 lies inside (−π/2, π/2), the range of Tan⁻¹, so x follows with no extra branch.",
+        "memory_tip": "tan(π/6) = 1/√3, tan(π/4) = 1, tan(π/3) = √3 — keep the three in that order.",
+        "lines": [
+          "2 Tan⁻¹x = π/3",
+          "⇒ Tan⁻¹x = π/6",
+          "⇒ x = tan(π/6) = 1/√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 2 gives Tan⁻¹x = π/6, so x = tan(π/6) = 1/√3.",
+          "accept": [
+            "divide by two to get tan inverse x equals pi by six so x is one over root three",
+            "tan of pi by six is one by root three",
+            "halve the angle first then take the tangent",
+            "pi by six ki tan one by root three",
+            "x comes to one over root three"
+          ],
+          "reject": [
+            "reduce the left side",
+            "check the range and close",
+            "hence proved"
+          ],
+          "heard_as": [
+            "pi by six",
+            "one over root three",
+            "tan inverse x",
+            "tan pi by six"
+          ]
+        },
+        "why": "Dividing by 2 first keeps the angle inside the principal range of Tan⁻¹, so the tangent can be taken directly.",
+        "common_mistakes": [
+          "Writing tan(π/6) as √3.",
+          "Solving Tan⁻¹x = π/3 instead of π/6."
+        ]
+      },
+      {
+        "id": "s4_check_the_range_and_close",
+        "kind": "boxed_final",
+        "label": "Check the range and close",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The range check is the marked idea here, not the arithmetic — a root outside 0 ≤ x < 1 would have to be thrown away.",
+        "memory_tip": "Check the root sits in the range you solved on: 0 ≤ 1/√3 < 1.",
+        "lines": [
+          "1/√3 ≈ 0.577, so 0 ≤ 1/√3 < 1  ✓",
+          "The root is inside the working range.",
+          "For x < 0 or |x| > 1 the left side is",
+          "negative, so it cannot equal π/3.",
+          "Hence there is no other solution.",
+          {
+            "text": "∴ x = 1/√3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/√3 lies inside 0 ≤ x < 1, so the root is valid, and that no root exists outside that range.",
+          "accept": [
+            "one over root three is about zero point five eight so it lies in the range we worked on",
+            "outside that range the left side is negative so it cannot be pi by three",
+            "the root passes the range check so it is the answer",
+            "root range lo undi, so valid, and vere solution ledu",
+            "check the root against the range before writing the answer"
+          ],
+          "reject": [
+            "solve for x",
+            "six minus eight plus four is two",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero point five seven seven",
+            "in the range",
+            "negative",
+            "one over root three"
+          ]
+        },
+        "why": "A root found on a restricted range must be shown to lie in that range. Outside 0 ≤ x < 1 the three forms change by π and the left side is negative, so x = 1/√3 is the only answer.",
+        "common_mistakes": [
+          "Skipping the range check on the root.",
+          "Giving −1/√3 as a second answer."
+        ]
+      }
+    ]
+  }
+}

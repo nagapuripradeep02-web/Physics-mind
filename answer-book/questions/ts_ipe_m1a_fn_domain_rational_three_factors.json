@@ -50,7 +50,8 @@
         "label": "Write the condition",
         "marks": 1,
         "mark_note": "Condition",
-        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "margin_note": "One of the two marks is for the condition alone. Here the denominator is already factorised, so no factorising step is needed.",
+        "memory_tip": "No root here — only the denominator matters. Find where it is ZERO: x = 1, 2, 3.",
         "lines": [
           "f(x) is not defined when",
           "(x − 1)(x − 2)(x − 3) = 0",
@@ -91,7 +92,8 @@
         "label": "Write the domain",
         "marks": 1,
         "mark_note": "Domain",
-        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "margin_note": "The second mark is the answer set. Write it as R minus the excluded points — this one is not an interval.",
+        "memory_tip": "Remove those three points from R. The numerator plays no part.",
         "lines": [
           "∴ Domain = R − {1, 2, 3}"
         ],
@@ -130,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "No root and no logarithm, so nothing has to be positive — only the denominator must not vanish. The answer is R minus three points; writing an interval answers a different question."
 }

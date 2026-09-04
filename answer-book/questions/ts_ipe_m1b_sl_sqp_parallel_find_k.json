@@ -50,6 +50,7 @@
         "label": "Write both slopes",
         "marks": 1,
         "margin_note": "First mark. Read each slope off its coefficients as −a/b. The second carries k, which the parallel condition will fix.",
+        "memory_tip": "Read each slope off its coefficients as −a/b; the second carries k.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "label": "Equate the slopes",
         "marks": 1,
         "margin_note": "Second mark. Parallel lines have equal slopes, so setting m₁ = m₂ gives k at once.",
+        "memory_tip": "Parallel means EQUAL slopes, so m₁ = m₂ gives k at once.",
         "lines": [
           "If the two lines are parallel then  m₁ = m₂",
           "⇒ 3/5 = k/5   ⇒   k = 3",
@@ -125,10 +127,11 @@
         "why": "Both denominators are 5, so the equation reduces to comparing the numerators directly.",
         "common_mistakes": [
           "Using m₁m₂ = −1, which is the perpendicular condition.",
-          "Cross-multiplying incorrectly and getting k = 15."
+          "Multiplying the 3 by 5 as if the k side had no denominator, and getting k = 15."
         ],
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Slope is −a/b, so the −10 makes m₁ = +3/5; the sign of b is where this goes wrong. Parallel means m₁ = m₂, never m₁m₂ = −1, and both denominators being 5 gives k = 3 at once."
 }

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Rewrite in exponent form",
         "margin_note": "One mark. Undo a logarithm by writing it in exponent form — the definition of a log is all you need.",
+        "memory_tip": "Undo a logarithm by writing it in EXPONENT form — the definition of a log is all that is needed.",
         "lines": [
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "log₂x = y ⇒ x = 2ʸ",
@@ -86,6 +87,7 @@
         "marks": 1,
         "mark_note": "The inverse function",
         "margin_note": "The second mark is the finished function, renamed in x.",
+        "memory_tip": "Rename back to x: f⁻¹(x) = 2ˣ. A log and a power are each other's inverse.",
         "lines": [
           "⇒ f⁻¹(y) = 2ʸ",
           "∴ f⁻¹(x) = 2ˣ"
@@ -112,12 +114,13 @@
             "base two"
           ]
         },
-        "why": "This is the previous question read backwards: the inverse of a logarithm is the exponential with the same base.",
+        "why": "This is the log-to-power rewrite read as a function: the inverse of a logarithm is the exponential with the same base.",
         "common_mistakes": [
           "Writing x² instead of 2ˣ.",
           "Changing the base to e or 10."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A logarithm inverts to a POWER: log₂x = y means x = 2ʸ, so f⁻¹(x) = 2ˣ. No algebra is needed here — it is the definition read backwards."
 }

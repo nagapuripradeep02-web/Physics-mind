@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_x_x_plus_3_e_minus_x_over_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for f(x) = x(x + 3)e^(−x/2) on [−3, 0].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions on [−3, 0]",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and test the roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.229, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. The derivative was checked against a numerical difference quotient at several points of the interval, and c = −2 was confirmed as the only root inside (−3, 0); the second root x = 3 is outside and is rejected in the working. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you take out as a common factor after differentiating, and which root you reject.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Check the conditions on [−3, 0]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Anything multiplied by 0 is 0, whatever the exponential is worth. Write the zero bracket instead of working out a decimal for e^(3/2).",
+        "memory_tip": "e raised to any real power is positive, never zero, so a product with an exponential is zero only where the other factor is zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x(x + 3)e^(−x/2) = (x² + 3x)e^(−x/2)",
+          "(i) x² + 3x is a polynomial and e^(−x/2) is an exponential function; both are continuous for every real x, so f is continuous on [−3, 0]",
+          "(ii) both are differentiable for every real x, so f is differentiable on (−3, 0)",
+          "(iii) f(−3) = (−3)(−3 + 3)e^(3/2) = (−3)(0)e^(3/2) = 0  and  f(0) = (0)(0 + 3)e⁰ = 0",
+          "∴ f(−3) = f(0) = 0, so Rolle's theorem applies on [−3, 0]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the polynomial and the exponential are both continuous and differentiable everywhere, and that f(−3) = f(0) = 0 because the polynomial factor is zero at each end.",
+          "accept": [
+            "both factors are continuous and differentiable for every real x",
+            "at minus three the bracket x plus three is zero so f is zero",
+            "at zero the factor x is zero so f is zero",
+            "rendu ends lo polynomial factor zero kabatti f zero avuthundi",
+            "the exponential is never zero so only the polynomial matters at the ends"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus three is zero",
+            "e to the power",
+            "both ends zero",
+            "exponential"
+          ]
+        },
+        "why": "The exponential factor is never zero, so the end values come entirely from the polynomial part — and −3 and 0 are exactly its two roots. Saying so is quicker and safer than evaluating e^(3/2) as a decimal.",
+        "common_mistakes": [
+          "Working out e^(3/2) as a decimal when the other factor is already 0.",
+          "Writing e⁰ as 0 instead of 1."
+        ]
+      },
+      {
+        "id": "s2_differentiate_and_test",
+        "kind": "boxed_final",
+        "label": "Differentiate and test the roots",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Rejecting x = 3 is part of the answer, not a detail — c has to lie strictly inside (−3, 0). Say which root is rejected and why.",
+        "memory_tip": "Take the exponential out as a common factor first; only the bracket that is left can be zero.",
+        "lines": [
+          "By the product rule, f′(x) = (2x + 3)e^(−x/2) + (x² + 3x)(−1/2)e^(−x/2)",
+          "= (e^(−x/2)/2)[2(2x + 3) − (x² + 3x)]",
+          "= (e^(−x/2)/2)(4x + 6 − x² − 3x) = (e^(−x/2)/2)(−x² + x + 6)",
+          "= −(e^(−x/2)/2)(x − 3)(x + 2)",
+          "e^(−x/2) > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0 ⇒ x = 3 or x = −2",
+          "x = 3 does not lie in (−3, 0), so it is rejected; x = −2 lies in (−3, 0)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = −2 ∈ (−3, 0)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product rule gives f′(x) = −(e^(−x/2)/2)(x − 3)(x + 2), that the exponential is never zero, and that x = 3 is rejected leaving c = −2.",
+          "accept": [
+            "use the product rule and take the exponential out as a common factor",
+            "the exponential is never zero so only the quadratic bracket can vanish",
+            "the roots are three and minus two, and three is outside so reject it",
+            "three interval bayata undi kabatti reject cheyyali, c minus two",
+            "c equals minus two which is inside minus three to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "common factor",
+            "never zero",
+            "reject three",
+            "minus two"
+          ]
+        },
+        "why": "The product rule leaves e^(−x/2) in both terms, and taking it out is what turns the equation into a quadratic. Since an exponential is never zero, every root of f′ has to come from the bracket that remains.",
+        "common_mistakes": [
+          "Differentiating e^(−x/2) as e^(−x/2) and losing the factor −1/2 from the chain rule.",
+          "Setting e^(−x/2) = 0 and trying to solve it, when an exponential is never zero.",
+          "Keeping x = 3 as an answer; it is outside [−3, 0] and must be rejected."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The exponential is never zero, so it can be divided out after differentiating and only the polynomial factor gives c. Both endpoints make f zero, which is condition (iii)."
+}

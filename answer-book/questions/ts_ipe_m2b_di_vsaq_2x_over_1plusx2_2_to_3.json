@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_2x_over_1plusx2_2_to_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₂³ 2x dx/(1 + x²).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Recognise the log-derivative form",
+      "marks": 1
+    },
+    {
+      "label": "Apply the limits and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.90 — VSAQ chapter 17 'Definite Integrals', answer 167, on the printed Super Scoring Page (SSP 90). Printed appearance: AP 17, TS 16. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used for answers 165–166 on the same page. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.105 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∑∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This exact integral is re-answered word for word as a Bullet Model Paper item, so it is worth memorising as a standard log-derivative example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_recognise",
+        "kind": "equation",
+        "label": "Recognise the log-derivative form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ∫f'(x)/f(x) dx = log|f(x)| — a formula worth recognising immediately.",
+        "memory_tip": "Whenever the numerator is the exact derivative of the denominator, the antiderivative is always a log.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₂³ 2x dx/(1+x²)",
+          "Since d/dx[log|1+x²|] = 2x/(1+x²),",
+          "the antiderivative is log|1+x²|",
+          "∴ I = [log|1 + x²|]₂³"
+        ],
+        "why": "The numerator 2x is exactly the derivative of the denominator 1+x², so the integral is of the standard form ∫f'(x)/f(x) dx = log|f(x)|.",
+        "common_mistakes": [
+          "Missing the derivative-of-denominator pattern and attempting an unnecessary substitution.",
+          "Writing the antiderivative without the modulus sign."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the limits and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. log a − log b = log(a/b) — always combine before reporting the final value.",
+        "memory_tip": "10/5 = 2, so the final answer is simply log2.",
+        "lines": [
+          "= log|1 + 3²| − log|1 + 2²| = log10 − log5",
+          {
+            "text": "∴ I = log(10/5) = log2",
+            "style": "boxed"
+          }
+        ],
+        "why": "Subtracting two logs is the same as taking the log of their quotient, so log10 − log5 collapses to log2 directly.",
+        "common_mistakes": [
+          "Leaving the answer as log10 − log5 instead of combining it.",
+          "Computing 1+3² as 1+3=4 instead of 1+9=10."
+        ]
+      }
+    ]
+  }
+}

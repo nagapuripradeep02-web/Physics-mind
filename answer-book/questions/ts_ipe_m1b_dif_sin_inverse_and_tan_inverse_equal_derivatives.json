@@ -1,0 +1,287 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_inverse_and_tan_inverse_equal_derivatives",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If f(x) = sin⁻¹√((x − β)/(α − β)) and g(x) = tan⁻¹√((x − β)/(α − x)), show that f′(x) = g′(x), where β < x < α.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute x − β = (α − β)sin²θ",
+      "marks": 2
+    },
+    {
+      "label": "Reduce f(x) to θ",
+      "marks": 2
+    },
+    {
+      "label": "Reduce g(x) to the same θ",
+      "marks": 2
+    },
+    {
+      "label": "Equal functions have equal derivatives",
+      "marks": 1
+    },
+    {
+      "label": "Find the common derivative",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: three parameter pairs were used, (α, β) = (5, 1), (3, −2) and (2, 0.5), and at three interior points of each interval both f′(x) and g′(x) were computed as central difference quotients and compared with 1/(2√((x − β)(α − x))). All eighteen comparisons agreed to eight decimal places — for example α = 5, β = 1, x = 2 gives 0.288675135 for f′, for g′ and for the closed form. The question asks only for f′ = g′; the common value is given as well because it is one extra line and it is what makes the equality checkable."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute for x, and what both functions turn into.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "text",
+        "label": "Substitute x − β = (α − β)sin²θ",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. The substitution is chosen so that x − β becomes a sine squared and α − x becomes the matching cosine squared. Write both lines — the second one is what step 3 needs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = Sin⁻¹√((x − β)/(α − β))  and  g(x) = Tan⁻¹√((x − β)/(α − x)),  with β < x < α.",
+          "β < x < α makes x − β > 0, α − x > 0 and α − β > 0, so both radicands are positive and both functions are defined. That is what the given condition is for.",
+          "Also 0 < (x − β)/(α − β) < 1.",
+          "Put x − β = (α − β)sin²θ,  so  sin²θ = (x − β)/(α − β)  and  θ = Sin⁻¹√((x − β)/(α − β)).",
+          "Then 0 < sin²θ < 1, and taking the principal value gives 0 < θ < π/2.",
+          "α − x = (α − β) − (x − β) = (α − β) − (α − β)sin²θ = (α − β)cos²θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x − β = (α − β)sin²θ is substituted, which makes α − x equal to (α − β)cos²θ.",
+          "accept": [
+            "put x minus beta equal to alpha minus beta times sin squared theta",
+            "then alpha minus x becomes alpha minus beta times cos squared theta",
+            "the substitution makes both differences into squares",
+            "x minus beta ni sin square theta tho substitute cheyyali",
+            "use sin squared plus cos squared equals one on the two differences",
+            "theta lies between zero and pi by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin squared theta",
+            "cos squared theta",
+            "x minus beta",
+            "alpha minus x",
+            "alpha minus beta"
+          ]
+        },
+        "why": "The two functions look different only because one has α − β underneath and the other has α − x. This substitution turns the first into a sine squared and the second into a cosine squared, so both fractions become one trigonometric ratio and the difference between the functions disappears.",
+        "common_mistakes": [
+          "Substituting x = sin²θ directly, which ignores β and does not simplify either fraction.",
+          "Working with θ outside (0, π/2), where sin θ or cos θ can be negative and the square roots then need modulus signs."
+        ],
+        "memory_tip": "One substitution has to serve both functions, so it is built from the three differences x − β, α − x and α − β. Their relation (x − β) + (α − x) = α − β is the reason sin²θ + cos²θ = 1 fits."
+      },
+      {
+        "id": "s2_reduce_f",
+        "kind": "equation",
+        "label": "Reduce f(x) to θ",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The examiner wants the reason sin θ is positive and the reason θ lies in the principal range, not only the final line f(x) = θ.",
+        "lines": [
+          "(x − β)/(α − β) = sin²θ, so",
+          "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
+          "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
+          "f(x) = Sin⁻¹(sin θ)",
+          "θ lies in (0, π/2), which is inside [−π/2, π/2], the principal range of Sin⁻¹.",
+          "∴ f(x) = θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(x) = Sin⁻¹(sin θ) = θ, because θ lies in the principal range of Sin⁻¹.",
+          "accept": [
+            "the fraction inside f is sin squared theta so the root is sin theta",
+            "sin inverse of sin theta is theta here",
+            "theta is between zero and pi by two so it is in the principal range",
+            "f of x theta ki equal avuthundi",
+            "the square root and the square cancel because sin theta is positive",
+            "f reduces to theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse sin theta",
+            "equals theta",
+            "principal range",
+            "sin theta positive"
+          ]
+        },
+        "why": "√(sin²θ) is |sin θ| and not sin θ in general, so the sign has to be settled before the modulus is dropped. The range 0 < θ < π/2 settles it and also puts θ inside the principal range, which is what lets Sin⁻¹ and sin cancel exactly.",
+        "common_mistakes": [
+          "Writing √(sin²θ) = sin θ without saying why sin θ is positive.",
+          "Cancelling Sin⁻¹ with sin when θ has not been shown to lie in [−π/2, π/2]."
+        ],
+        "memory_tip": "A square root of a square is a modulus. Deal with the modulus first, and only then cancel the inverse function."
+      },
+      {
+        "id": "s3_reduce_g",
+        "kind": "equation",
+        "label": "Reduce g(x) to the same θ",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. This is the step the question is really testing: the SAME θ comes out of a different-looking function. The factor (α − β) cancels between the top and the bottom.",
+        "lines": [
+          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ) = sin²θ/cos²θ = tan²θ",
+          "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
+          "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
+          "g(x) = Tan⁻¹(tan θ)",
+          "θ lies in (0, π/2), which is inside (−π/2, π/2), the principal range of Tan⁻¹.",
+          "∴ g(x) = θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − β)/(α − x) = tan²θ, so g(x) = Tan⁻¹(tan θ) = θ, the same θ as in f.",
+          "accept": [
+            "alpha minus beta cancels and the fraction becomes tan squared theta",
+            "tan inverse of tan theta is theta",
+            "g also reduces to the same theta as f",
+            "g kuda ade theta ki vasthundi",
+            "sin squared over cos squared is tan squared",
+            "both functions give the same angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan squared theta",
+            "tan inverse tan theta",
+            "same theta",
+            "alpha minus beta cancels"
+          ]
+        },
+        "why": "Once α − x is written as (α − β)cos²θ, the common factor α − β cancels and only sin²θ/cos²θ is left. That is the whole reason a sine inverse and a tangent inverse of two different fractions turn out to be the same angle.",
+        "common_mistakes": [
+          "Using α − β in place of α − x in the denominator of g, which is the other function and defeats the question.",
+          "Writing √(tan²θ) as tan θ with no word about the sign, the same slip as in the previous step."
+        ],
+        "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f sees a sine and g sees a tangent."
+      },
+      {
+        "id": "s4_equal",
+        "kind": "text",
+        "label": "Equal functions have equal derivatives",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. This is the sentence the question asks for. Say that f and g agree at EVERY point of the open interval, not at one point — equality at a single point would prove nothing about derivatives.",
+        "lines": [
+          "For every x with β < x < α, both f(x) and g(x) equal the same θ.",
+          "∴ f(x) = g(x) for all x in (β, α)",
+          "Two functions that are equal at every point of an interval have equal derivatives at every interior point of it.",
+          "∴ f′(x) = g′(x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(x) = g(x) throughout the interval, so their derivatives are equal there.",
+          "accept": [
+            "both are equal to theta so the two functions are the same",
+            "equal functions on an interval have equal derivatives",
+            "f of x equals g of x for every x between beta and alpha",
+            "rendu functions okate kabatti derivatives kuda okate",
+            "since they agree everywhere their slopes agree",
+            "that proves f dash equals g dash"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equal functions",
+            "equal derivatives",
+            "every x",
+            "the whole interval"
+          ]
+        },
+        "why": "The derivative is determined by the values of a function on an interval, so two functions that agree on the whole interval have the same derivative there. Reaching f = g first is shorter and safer than differentiating each function separately and then comparing two messy expressions.",
+        "common_mistakes": [
+          "Checking f and g at one value of x and claiming the derivatives are equal from that alone.",
+          "Differentiating f and g separately and stopping when the two answers do not look alike, without simplifying both."
+        ],
+        "memory_tip": "Equal on an interval means equal derivatives. Equal at one point means nothing about derivatives, which is why the words for all x are part of the answer."
+      },
+      {
+        "id": "s5_common_value",
+        "kind": "boxed_final",
+        "label": "Find the common derivative",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. One extra line gives the shared value, and it is the honest check on everything above: the result is symmetric in x − β and α − x, exactly as the two forms of the question are.",
+        "lines": [
+          "Differentiate sin²θ = (x − β)/(α − β) with respect to x, taking θ as a function of x:",
+          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),  that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          "(α − β) sin 2θ = 2(α − β) sin θ cos θ = 2·√((α − β)sin²θ)·√((α − β)cos²θ) = 2√(x − β)·√(α − x)",
+          "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
+          {
+            "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the common derivative is dθ/dx = 1/(2√((x − β)(α − x))).",
+          "accept": [
+            "differentiate sin squared theta equals the fraction to get d theta by dx",
+            "the common derivative is one over two root x minus beta into alpha minus x",
+            "two sin theta cos theta is sin two theta",
+            "d theta by dx kanukkovali, adi common derivative",
+            "the answer is symmetric in the two differences",
+            "both derivatives equal one by two root of the product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d theta by dx",
+            "one by two root",
+            "x minus beta into alpha minus x",
+            "sin two theta"
+          ]
+        },
+        "why": "Differentiating the substitution itself is shorter than differentiating either inverse function directly, because sin²θ = (x − β)/(α − β) has no inverse function in it at all. Writing (α − β)sin 2θ back in terms of x is what turns the answer into a formula in x.",
+        "common_mistakes": [
+          "Leaving the answer as 1/((α − β) sin 2θ), which is correct but is still written in θ and not in x.",
+          "Writing the denominator as 2√((x − β)(α − β)), by using the wrong one of the two differences."
+        ],
+        "memory_tip": "The final denominator holds the two differences that meet at x: the part below it, x − β, and the part above it, α − x. Their product sits under one root."
+      }
+    ]
+  },
+  "insider_note": "Both functions reduce to the SAME angle θ, so f(x) = g(x) exactly and their derivatives match — the given β < x < α is what keeps both radicands positive. Showing f = g first is shorter than differentiating each separately."
+}

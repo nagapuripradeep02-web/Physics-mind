@@ -92,7 +92,7 @@
           "The emf of a dry cell is about 1.5 V.",
           "The mercury cell is another example."
         ],
-        "why": "The dry cell cannot be recharged because the ammonia formed at the cathode escapes as a gas and the zinc container is used up, so there is nothing left in place to be turned back into the starting materials.",
+        "why": "The dry cell cannot be recharged because its electrode reactions cannot be reversed. The ammonia formed at the cathode is taken up as the complex ion [Zn(NH₃)₄]²⁺ and the zinc container itself is used up, so there is nothing left in place to be turned back into the starting materials.",
         "common_mistakes": [
           "Giving the lead storage battery as the example. That is a secondary battery and can be recharged.",
           "Writing 2e⁻ in the dry cell cathode reaction. Manganese goes from +4 to +3, so only one electron is taken."

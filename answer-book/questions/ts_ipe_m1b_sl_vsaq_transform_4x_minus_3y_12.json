@@ -54,6 +54,7 @@
         "label": "Slope intercept form",
         "marks": 1,
         "margin_note": "First mark. Slope-intercept form is y = mx + c, so make y the subject and read off the slope and the y-intercept.",
+        "memory_tip": "y = mx + c, so make y the subject and read off the slope and the y-intercept.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "label": "Intercept form",
         "marks": 1,
         "margin_note": "Second mark. Intercept form is x/a + y/b = 1, so move the constant to the right and divide everything by it — the two denominators are then the intercepts.",
+        "memory_tip": "x/a + y/b = 1: move the constant right and divide everything by it — the denominators are the intercepts.",
         "lines": [
           "(ii) Intercept form is  x/a + y/b = 1",
           "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
@@ -137,5 +139,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two forms, one mark each. For intercept form divide by −12, not 12, so the right-hand side becomes 1 — that sign is what makes the x-intercept −3."
 }

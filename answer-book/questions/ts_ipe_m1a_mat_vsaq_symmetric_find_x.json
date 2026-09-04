@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The question says \"define\", so write the definition: A is symmetric when A equals its own transpose.",
+        "memory_tip": "The question says 'define', so write it: A is symmetric when A equals its own transpose.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. In a symmetric matrix the entry in row 3 column 2 equals the entry in row 2 column 3. Those are x and 6.",
+        "memory_tip": "In a symmetric matrix the (3,2) entry equals the (2,3) entry — those are x and 6.",
         "lines": [
           "A = Aᵀ, so the (3,2) entry equals the (2,3) entry:",
           "x = 6",
@@ -145,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Symmetric means A = Aᵀ, so mirror entries are EQUAL and x = 6 directly. The contrast with a skew symmetric matrix is the sign: equal here, opposite there."
 }

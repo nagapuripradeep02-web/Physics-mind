@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_normal_at_theta_pi_by_3_3x2_minus4y2_12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the normal at θ = π/3 to the hyperbola 3x² − 4y² = 12.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the normal formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Hyperbola, answer 138, the last answer of this chapter (p.86 opens chapter 16 Integration, confirming the boundary). NOT on an SSP page. No printed appearance tag is visible for this answer — recorded here as 'no appearance printed' rather than inventing one. No mark tags printed — the 1+1 split here is OURS. Re-derived the parametric normal formula ax/secθ + by/tanθ = a²+b² independently from implicit differentiation of x²/a²−y²/b²=1 at the point (a secθ, b tanθ); it matches the book's printed formula, and the final substitution x+y=7 checks out exactly. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim; answer 138 does not appear in the Bullet Model Paper. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The parametric normal formula ax/secθ + by/tanθ = a²+b² is worth memorising as a single ready-made line — deriving it from implicit differentiation under exam pressure costs several extra minutes this 2-mark question does not budget for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the normal formula",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. The parametric point on a hyperbola is (a secθ, b tanθ).",
+        "memory_tip": "Hyperbola normal uses secθ, tanθ and a PLUS sign — not sinθ, cosθ and a minus sign, as an ellipse's normal does.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given hyperbola 3x² − 4y² = 12",
+          "⇒ x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3",
+          "⇒ a = 2, b = √3",
+          "Equation of the normal at the point P(θ)",
+          "= (a secθ, b tanθ) is: ax/secθ + by/tanθ",
+          "= a² + b²"
+        ],
+        "why": "The parametric point on a hyperbola is (a secθ, b tanθ); the normal formula at this point is a ready-made result, so the only work here is reading off a, b and substituting θ.",
+        "common_mistakes": [
+          "Using the ellipse's normal formula (with sinθ, cosθ, and a minus sign) instead of the hyperbola's, which uses secθ, tanθ and a plus sign.",
+          "Forgetting to take the square root of b² = 3 to get b = √3."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. sec60° and tan60° are standard exact values.",
+        "memory_tip": "sec60° = 2, tan60° = √3 — both cancel neatly against a = 2, b = √3.",
+        "lines": [
+          "θ = π/3: secθ = sec60° = 2, tanθ = tan60° = √3",
+          "2x/2 + √3y/√3 = 4 + 3",
+          {
+            "text": "x + y = 7",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting sec60°=2 and tan60°=√3 makes both denominators cancel neatly against a=2 and b=√3, leaving a simple linear equation.",
+        "common_mistakes": [
+          "Using sec(π/3) and tan(π/3) as decimal approximations instead of the exact values 2 and √3.",
+          "Adding a² + b² as 4 + √3 instead of 4 + 3 = 7 — b² is 3, not √3."
+        ]
+      }
+    ]
+  }
+}

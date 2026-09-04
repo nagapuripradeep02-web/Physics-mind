@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Required to prove",
         "margin_note": "First mark, and the idea of the question. Multiply both sides by A: A⁻¹ = A³ becomes AA⁻¹ = AA³, that is I = A⁴. Finding A⁴ is arithmetic; finding A⁻¹ would be nine cofactors.",
+        "memory_tip": "Multiply both sides by A: A⁻¹ = A³ becomes I = A⁴. Finding A⁴ is arithmetic; finding A⁻¹ would not be.",
         "lines": [
           {
             "text": "Sol:",
@@ -82,7 +83,7 @@
             "RTP"
           ]
         },
-        "why": "A⁻¹ is defined by AA⁻¹ = I, so any statement about A⁻¹ can be turned into one about products of A. That swap is what makes this a 4-mark question instead of a 7-mark one.",
+        "why": "A⁻¹ is defined by AA⁻¹ = I, so any statement about A⁻¹ can be turned into one about products of A. That swap is what makes this a 4-mark question instead of a full long-answer one.",
         "common_mistakes": [
           "Computing A⁻¹ by cofactors and running out of time.",
           "Multiplying only one side by A."
@@ -95,6 +96,7 @@
         "marks": 2,
         "mark_note": "A squared",
         "margin_note": "Half the marks. Nine row-by-column products. The middle row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
+        "memory_tip": "Nine row-by-column products. The 0 in the middle row shortens three of them.",
         "lines": [
           {
             "text": "A^2 = A\\!\\cdot\\!A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}",
@@ -145,6 +147,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. A⁴ = (A²)(A²) — square the matrix just found. It comes out as the identity, which is exactly what was required.",
+        "memory_tip": "A⁴ = (A²)(A²) — square the matrix just found rather than multiplying by A twice more.",
         "lines": [
           {
             "text": "A^4 = (A^2)(A^2) = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I",
@@ -187,5 +190,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not compute A⁻¹ at all. A⁻¹ = A³ is the same statement as A⁴ = I, so square A twice — two multiplications instead of an inverse."
 }

@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_particle_t3_minus_9t2_velocity_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The distance-time formula for the motion of a particle along a straight line is S = t³ − 9t² + 24t − 18. Find when and where the velocity is zero.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and solve v = 0",
+      "marks": 1
+    },
+    {
+      "label": "Find S at each time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units, so the answer is written in seconds and metres, the standard reading for a distance-time formula, and a margin note says so. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what when asks for, what where asks for, and how many answers there are.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_solve_velocity_zero",
+        "kind": "equation",
+        "label": "Differentiate and solve v = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rectilinear motion question with two asks: when is the time, where is the position. Take the common factor 3 out first — the quadratic then factorises by inspection.",
+        "memory_tip": "When comes from v = 0 and where comes from S. Two asks, two separate pieces of work.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rectilinear motion question. Velocity v = dS/dt, and the question asks for",
+          "the times and also the positions at those times.",
+          "S = t³ − 9t² + 24t − 18",
+          "v = dS/dt = 3t² − 18t + 24 = 3(t² − 6t + 8)",
+          "v = 0  ⇒  3(t − 2)(t − 4) = 0  ⇒  t = 2 or t = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = 3(t − 2)(t − 4) and that v = 0 at t = 2 and t = 4.",
+          "accept": [
+            "differentiate to get three t squared minus eighteen t plus twenty four",
+            "take three common and factorise into t minus two into t minus four",
+            "the velocity is zero at two seconds and four seconds",
+            "v equals zero pettite t equals two and t equals four vasthundi",
+            "there are two times, not one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three t squared minus eighteen t",
+            "t minus two",
+            "t minus four",
+            "two and four"
+          ]
+        },
+        "why": "The velocity is a quadratic here, so it is zero at two separate instants. Both must be found, because the question then asks where the particle is at each of them.",
+        "common_mistakes": [
+          "Giving only one of the two roots.",
+          "Factorising t² − 6t + 8 as (t − 1)(t − 8), which does not multiply back.",
+          "Setting the acceleration to zero, which gives the single time t = 3."
+        ]
+      },
+      {
+        "id": "s2_positions",
+        "kind": "boxed_final",
+        "label": "Find S at each time",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and the mark most often lost: answering only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
+        "memory_tip": "Where means position, and position lives in S. Substitute back into the original formula, never into v.",
+        "lines": [
+          "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18 = 8 − 36 + 48 − 18 = 2",
+          "At t = 4:  S = (4)³ − 9(4)² + 24(4) − 18 = 64 − 144 + 96 − 18 = −2",
+          {
+            "text": "∴ the velocity is zero at t = 2 sec, where S = 2 m, and at t = 4 sec, where S = −2 m",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting the two times back into S gives S = 2 and S = −2.",
+          "accept": [
+            "put the times back into S to find the positions",
+            "at two seconds S is two and at four seconds S is minus two",
+            "where means the position so substitute into the distance formula",
+            "S lo substitute cheste two and minus two vasthundi",
+            "the second position is negative, which is allowed"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "S is two",
+            "minus two",
+            "substitute back",
+            "position"
+          ]
+        },
+        "why": "'Where' asks for the position, and the position is given by S, not by v. Substituting the times into v would return 0 both times, which answers nothing.",
+        "common_mistakes": [
+          "Stopping after t = 2 and t = 4 and never finding the positions, which loses half the question.",
+          "Substituting the times into v instead of S.",
+          "Changing the sign of S = −2 because a negative distance looks wrong."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two things are wanted: the times AND the positions there. Factor v = 3(t − 2)(t − 4) to get the times, then put each back into S, not into v."
+}

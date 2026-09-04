@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_balloon_radius_rate_900",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A balloon which always remains spherical on inflation is being inflated by pumping in 900 cubic centimetres of gas per second. Find the rate at which the radius of the balloon increases when the radius is 15 cm.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate V = (4/3)πr³ with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r = 15 and solve for dr/dt",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write, say which rate is given and which one is asked for, and say what you differentiate with respect to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sphere_volume_rate",
+        "kind": "equation",
+        "label": "Differentiate V = (4/3)πr³ with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The gas pumped in per second is dV/dt, and dr/dt is the unknown. Saying which of the two rates is given and which is asked for is the first thing the examiner looks for.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The balloon stays spherical, so let r be its radius at time t.",
+          "Given: dV/dt = 900 cm³/sec.  Asked: dr/dt when r = 15 cm.",
+          "Volume of a sphere:  V = (4/3)πr³",
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V = (4/3)πr³ differentiated with respect to t gives dV/dt = 4πr²(dr/dt), with dV/dt given and dr/dt unknown.",
+          "accept": [
+            "volume of a sphere is four by three pi r cubed",
+            "differentiate it with respect to time to get four pi r squared d r by d t",
+            "nine hundred is d v by d t and d r by d t is the unknown",
+            "sphere volume formula rasi time tho differentiate cheyyali",
+            "d v by d t equals four pi r squared into d r by d t",
+            "the three cancels the three in the denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four by three pi r cubed",
+            "four pi r squared",
+            "d v by d t",
+            "d r by d t",
+            "nine hundred"
+          ]
+        },
+        "why": "The 3 from differentiating r³ cancels the 3 in the denominator, so dV/dt = 4πr²(dr/dt), and 4πr² is the surface area of the sphere.",
+        "common_mistakes": [
+          "Using the surface area 4πr² as the volume formula.",
+          "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
+          "Treating 900 cm³/sec as dr/dt."
+        ],
+        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — the same pair as in the circle, where the area gives the circumference."
+      },
+      {
+        "id": "s2_solve_for_dr_dt",
+        "kind": "boxed_final",
+        "label": "Substitute r = 15 and solve for dr/dt",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Here dr/dt is the unknown, so the equation has to be rearranged after substituting. 4π(15²) = 900π, and the 900 on both sides cancels to leave 1/π.",
+        "lines": [
+          "Put r = 15 and dV/dt = 900:",
+          "900 = 4π(15²)(dr/dt) = 4π(225)(dr/dt) = 900π(dr/dt)",
+          "dr/dt = 900/(900π) = 1/π",
+          {
+            "text": "∴ dr/dt = 1/π cm/sec ≈ 0.32 cm/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting r = 15 gives 900 = 900π(dr/dt), so dr/dt = 1/π cm/sec.",
+          "accept": [
+            "four pi into two twenty five is nine hundred pi",
+            "nine hundred cancels on both sides leaving one by pi",
+            "the radius increases at one by pi centimetres per second",
+            "nine hundred cancel ayipoyi one by pi vasthundi",
+            "the answer is one over pi centimetre per second",
+            "about zero point three two centimetres per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine hundred pi",
+            "one by pi",
+            "two twenty five",
+            "centimetres per second",
+            "d r by d t"
+          ]
+        },
+        "why": "dr/dt is the unknown here, so the equation is solved for it rather than read off. The unit is cm/sec because a radius is a length.",
+        "common_mistakes": [
+          "Squaring 15 as 30, which gives 120π instead of 900π.",
+          "Writing the answer as π instead of 1/π.",
+          "Giving the unit as cm³/sec, which belongs to the given rate and not the answer."
+        ],
+        "memory_tip": "4π × 225 is 900π, and the 900 pumped in per second cancels it — so the answer is exactly 1/π."
+      }
+    ]
+  },
+  "insider_note": "Here dV/dt is given and dr/dt is the unknown, not the other way round. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π."
+}

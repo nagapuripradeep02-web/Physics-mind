@@ -53,6 +53,7 @@
         "label": "Find the angle with the X-axis",
         "marks": 1,
         "margin_note": "First mark. The slope of a line is the tangent of the angle it makes with the X-AXIS, so start there even though the question asks about the Y-axis.",
+        "memory_tip": "A slope is the tangent of the angle with the X-AXIS, so start there even though the Y-axis is asked.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "label": "Subtract from 90°",
         "marks": 1,
         "margin_note": "Second mark. The two axes are at right angles, so the angle with the Y-axis is whatever is left of 90° after the X-axis angle.",
+        "memory_tip": "The axes are at right angles, so the Y-axis angle is what is left of 90°.",
         "lines": [
           "The axes are perpendicular, so the two angles add to 90°",
           "∴ Angle made by the line with the Y-axis is 90° − 60°",
@@ -136,5 +138,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° is the standard way this second mark goes."
 }

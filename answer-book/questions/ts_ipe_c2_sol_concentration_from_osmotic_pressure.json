@@ -97,5 +97,5 @@
       }
     ]
   },
-  "insider_note": "Every mark in this question is in matching R to the unit of pressure. Pressure in bar takes R = 0.083 L bar mol⁻¹ K⁻¹; pressure in atmospheres takes 0.0821 L atm mol⁻¹ K⁻¹."
+  "insider_note": "The one place to be careful in this question is matching R to the unit of pressure. Pressure in bar takes R = 0.083 L bar mol⁻¹ K⁻¹; pressure in atmospheres takes 0.0821 L atm mol⁻¹ K⁻¹. The marks themselves are for the equation with its data, and for the division line ending in 0.061 mol L⁻¹."
 }

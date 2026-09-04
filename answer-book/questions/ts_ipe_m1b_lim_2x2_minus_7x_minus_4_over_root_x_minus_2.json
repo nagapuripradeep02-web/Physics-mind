@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_2x2_minus_7x_minus_4_over_root_x_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Factorise and split x − 4",
+      "marks": 1
+    },
+    {
+      "label": "Cancel √x − 2 and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 20. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. ⚠ SOURCE STEM CORRECTED, NOT SILENTLY: the book prints the limit point as x → 2. This card authors it at x → 4. At x → 2 there is no indeterminate form — the numerator is 2(4) − 14 − 4 = −10 and the denominator is 3(√2 − 2) ≈ −1.7574, so plain substitution already gives the finite value −10/(3(√2 − 2)) ≈ 5.6904 and no limit method is being tested at all. The algebra of the printed expression points at 4: the numerator factors as 2x² − 7x − 4 = (2x + 1)(x − 4), and the denominator's factor √x − 2 is zero exactly at x = 4, so the two pair as x − 4 = (√x − 2)(√x + 2). At x → 4 the expression is the 0/0 form that cancellation resolves, with the clean value 36/7. Verified numerically before authoring: the expression reads 5.142857 at both x = 4.00001 and x = 3.99999, against 36/7 = 5.1428571, and the x = 2 substitution above was evaluated as the negative control. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split — and the corrected limit point — stay unverified until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would do this one — say what the numerator factorises into and how you make √x − 2 appear in it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factorise",
+        "kind": "equation",
+        "label": "Factorise and split x − 4",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The denominator carries √x, so the numerator must be written in terms of √x too. x − 4 is a difference of squares in √x, which is what produces the matching factor.",
+        "memory_tip": "x − 4 is (√x)² − 2². Whenever a root sits below, treat the number above as a difference of squares in that root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 4 gives (32 − 28 − 4)/(7 · 0) = 0/0, so the expression is factorised first.",
+          "2x² − 7x − 4 = 2x² − 8x + x − 4 = 2x(x − 4) + 1(x − 4) = (2x + 1)(x − 4)",
+          "For x > 0,  x − 4 = (√x)² − 2² = (√x − 2)(√x + 2)",
+          "∴ 2x² − 7x − 4 = (2x + 1)(√x − 2)(√x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2x² − 7x − 4 = (2x + 1)(x − 4) and that x − 4 is written as (√x − 2)(√x + 2).",
+          "accept": [
+            "the numerator is two x plus one into x minus four",
+            "x minus four is root x minus two into root x plus two",
+            "write x minus four as a difference of squares in root x",
+            "x minus four ni root x minus two into root x plus two ga rayali",
+            "factorise the top so root x minus two appears"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x plus one",
+            "x minus four",
+            "root x minus two",
+            "root x plus two"
+          ]
+        },
+        "why": "The 0/0 form comes from √x − 2 in the denominator, so that same factor has to be produced upstairs before anything can be cancelled. Splitting the middle term gives (x − 4), and writing it as a difference of squares in √x delivers √x − 2 exactly.",
+        "common_mistakes": [
+          "Splitting the middle term as 2x² − 7x − 4 = (2x − 1)(x + 4), which multiplies out to 2x² + 7x − 4.",
+          "Writing x − 4 = (√x − 2)², which is x − 4√x + 4."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel √x − 2 and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Only √x − 2 cancels; the factor (2x − 1) in the denominator is 7 at x = 4 and stays where it is. Say x ≠ 4 before cancelling.",
+        "memory_tip": "Cancel only the factor that is zero at the limit point. (2x − 1) is 7 there, so it stays below.",
+        "lines": [
+          "As x → 4 we have x ≠ 4, so √x − 2 ≠ 0 and it may be cancelled:",
+          "lim(x → 4) (2x + 1)(√x − 2)(√x + 2) / [(2x − 1)(√x − 2)]",
+          "= lim(x → 4) (2x + 1)(√x + 2)/(2x − 1)",
+          "= (8 + 1)(2 + 2)/(8 − 1) = (9)(4)/7",
+          {
+            "text": "∴ lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2)) = 36/7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √x − 2 cancels, and substituting x = 4 gives 9 × 4 / 7 = 36/7.",
+          "accept": [
+            "cancel root x minus two and put x equals four",
+            "nine into four over seven is thirty six by seven",
+            "the answer is thirty six by seven",
+            "root x minus two cancel chesi four substitute cheste thirty six by seven",
+            "two x minus one stays below and is seven at four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty six by seven",
+            "cancel",
+            "nine into four",
+            "seven"
+          ]
+        },
+        "why": "A limit as x → 4 uses only values of x other than 4, so √x − 2 is not zero and may be divided out. Once it is gone the remaining expression is defined at 4 and direct substitution is valid.",
+        "common_mistakes": [
+          "Cancelling (2x − 1) as well, which is not a common factor.",
+          "Substituting √4 = 2 into (2x + 1) and writing 5 instead of 9."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The (√x − 2) below must be matched above, so write x − 4 as (√x − 2)(√x + 2) after factorising the quadratic. Cancelling that root factor is the only way past the 0/0."
+}

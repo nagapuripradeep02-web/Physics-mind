@@ -219,13 +219,13 @@
           "across the four acids, and the shape",
           "changes with them."
         ],
-        "why": "Four bond pairs and no lone pair give the regular tetrahedron of HClO₄; taking one bond pair away and putting a lone pair in its place pushes the remaining bonds down into the pyramid of HClO₃. The same argument, applied twice more, gives the angular HClO₂ and then HOCl.",
+        "why": "Four bond pairs and no lone pair give the tetrahedral shape of HClO₄; taking one bond pair away and putting a lone pair in its place pushes the remaining bonds down into the pyramid of HClO₃. The same argument, applied twice more, gives the angular HClO₂ and then HOCl.",
         "common_mistakes": [
           "Calling HClO₃ tetrahedral. Four electron pairs around chlorine are arranged tetrahedrally, but one of them is a lone pair, so the SHAPE is pyramidal.",
           "Writing that HClO₄ is pyramidal. A pyramidal shape needs a lone pair on chlorine, and HClO₄ has none, so it is tetrahedral."
         ],
-        "memory_tip": "No lone pair gives a tetrahedron; each lone pair added takes one arm away, giving pyramidal, then angular.",
-        "margin_note": "Name the two shapes in the same words the question uses: pyramidal and tetrahedral."
+        "memory_tip": "No lone pair gives a tetrahedron; each lone pair added takes the place of one bond, giving pyramidal, then angular.",
+        "margin_note": "Name the two shapes in the standard words: pyramidal for HClO₃ and tetrahedral for HClO₄."
       },
       {
         "id": "s5_figure_2",
@@ -237,6 +237,11 @@
           "width": 520,
           "height": 235,
           "elements": [
+            {
+              "type": "pause",
+              "id": "ox3_phase",
+              "caption": "Step 1 — HClO₃: three bonds and one lone pair on chlorine"
+            },
             {
               "type": "label",
               "id": "ox3_cl",
@@ -283,12 +288,26 @@
             },
             {
               "type": "label",
+              "id": "ox3_lone_pair",
+              "x": 132,
+              "y": 68,
+              "text": "••",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
               "id": "ox3_caption",
               "x": 60,
               "y": 218,
               "text": "HClO₃ — pyramidal",
               "ms": 450,
               "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "ox4_phase",
+              "caption": "Step 2 — HClO₄: a fourth bond in place of that lone pair"
             },
             {
               "type": "label",

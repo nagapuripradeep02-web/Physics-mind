@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same opening as any direction question: get the length, then divide to get the unit vector. Note a lies in the xy-plane, so there is no k term.",
+        "memory_tip": "Get the length, then divide to get the unit vector. a lies in the xy-plane, so there is no k term.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Length times direction: 7 times the unit vector has length exactly 7 and points the same way.",
+        "memory_tip": "Length times direction: 7 times the unit vector has length exactly 7 and points the same way.",
         "lines": [
           "A vector of magnitude 7 in this direction is",
           "7 × (unit vector):",
@@ -125,5 +127,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Find the unit vector first and then multiply by 7 — scaling the original vector by 7 gives a magnitude of 7√5, not 7. The answer keeps the √5 in the denominator."
 }

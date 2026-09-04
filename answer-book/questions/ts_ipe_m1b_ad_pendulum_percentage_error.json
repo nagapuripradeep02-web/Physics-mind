@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_pendulum_percentage_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The time T of one complete oscillation of a simple pendulum of length l is given by T = 2π√(l/g), where g is the gravitational constant. Find the approximate percentage error in T when the percentage error in l is 1%.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write T as a constant times √l",
+      "marks": 1
+    },
+    {
+      "label": "Divide by T and put 1% in",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.210, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. PRINTED STEM RECORDED, NOT SILENTLY CORRECTED: the book names the period with TWO different symbols in one sentence — it prints 'The time t of one complete oscillation ... is given by T = 2π√(l/g)'. The stem carried on this card uses T throughout, which is the symbol the printed formula itself uses; nothing else in the question was changed, and that one symbol is then used consistently through the answer. The answer was checked numerically before it was written: with g = 9.8 and l raised by exactly 1%, T rises by 0.49876%, which the linear approximation reports as 0.5%."
+  },
+  "recall_prompt": "Say how you would do this one — say what is constant in the formula, and what the square root does to the percentage error.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constant_times_root_l",
+        "kind": "equation",
+        "label": "Write T as a constant times √l",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Separate what varies from what does not. Only l is measured here, so 2π and g go into one constant before anything is differentiated.",
+        "memory_tip": "Only l is measured. Put 2π and g into a single constant k and differentiate √l alone.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "T = 2π√(l/g) = (2π/√g) · √l",
+          "Here 2π and g are constants, so put k = 2π/√g.",
+          "Then T = k√l",
+          "dT/dl = k · 1/(2√l)   ⇒   dT = k · dl/(2√l)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2π and g are constants, so T = k√l with k = 2π/√g, and this is differentiated with respect to l.",
+          "accept": [
+            "two pi and g are constants so T is a constant times root l",
+            "put k equals two pi by root g and differentiate root l",
+            "only l changes, everything else is constant",
+            "g constant, so T equals k into root l ani raasi differentiate cheyyali",
+            "separate the constant part from the square root of l"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi by root g",
+            "constant",
+            "root l",
+            "differentiate"
+          ]
+        },
+        "why": "The error is made in l only; g is a constant and contributes no error. Writing T = k√l says that on the page and reduces the whole question to differentiating a square root.",
+        "common_mistakes": [
+          "Treating g as a variable and differentiating it as well.",
+          "Differentiating √(l/g) as 1/(2√(l/g)) and losing the 1/√g factor."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by T and put 1% in",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The constant k cancels in the ratio, so the answer does not depend on g at all. The square root halves the percentage error.",
+        "memory_tip": "A square root is the power ½, so it halves the percentage error: half of 1% is 0.5%.",
+        "lines": [
+          "dT/T = [k · dl/(2√l)] / (k√l)",
+          "k cancels, and 1/(√l · √l) = 1/l, so",
+          "dT/T = (1/2) · (dl/l)",
+          "Percentage error in T = (1/2) × percentage error in l",
+          "= (1/2) × 1 = 0.5",
+          {
+            "text": "∴ the approximate percentage error in T is 0.5%",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dT/T = ½(dl/l), so a 1% error in l gives a 0.5% error in T.",
+          "accept": [
+            "d T over T is half of d l over l so the answer is zero point five percent",
+            "the square root halves it, half of one percent",
+            "percentage error in T is half a percent",
+            "root undi kabatti sagam, zero point five percent",
+            "one half into one percent is zero point five percent"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half",
+            "zero point five percent",
+            "d T over T",
+            "one percent"
+          ]
+        },
+        "why": "√l is l to the power ½, and for a power law the relative error is multiplied by the exponent. The exponent here is ½, so the percentage error is halved. That the constant k cancels is the check that g never enters the answer.",
+        "common_mistakes": [
+          "Giving 1% by carrying the error across unchanged.",
+          "Giving 2% by multiplying by 2 instead of by ½."
+        ]
+      }
+    ]
+  },
+  "insider_note": "T depends on √l, so the index is 1/2 and the relative error is HALVED, not doubled. The constants 2π and g cancel out of dT/T entirely."
+}

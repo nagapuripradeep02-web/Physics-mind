@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. cos²A − sin²B = cos(A+B)cos(A−B). The halves add and subtract cleanly: 52½ + 22½ = 75 and 52½ − 22½ = 30.",
+        "memory_tip": "cos²A − sin²B = cos(A+B)cos(A−B). The halves add and subtract cleanly to 75° and 30°.",
         "lines": [
           {
             "text": "Sol:",
@@ -83,7 +84,7 @@
             "identity"
           ]
         },
-        "why": "This identity mixes a cosine squared with a sine squared, unlike the previous question — so no conversion is needed first, only the right formula.",
+        "why": "The expression is already a cosine squared minus a sine squared, which is exactly the left side of cos²A − sin²B = cos(A+B)cos(A−B). Neither term has to be converted first — only the right formula is needed.",
         "common_mistakes": [
           "Converting one term and then using the wrong identity.",
           "Getting 52½ + 22½ as 74."
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
+        "memory_tip": "cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
         "lines": [
           "cos75° = (√3 − 1)/(2√2),  cos30° = √3/2",
           "= [(√3 − 1)/(2√2)] × [√3/2]",
@@ -134,5 +136,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The identity here is cos²A − sin²B = cos(A+B)cos(A−B), with cosine on the left — not the sin² version. The half-degrees combine neatly into 75° and 30°."
 }

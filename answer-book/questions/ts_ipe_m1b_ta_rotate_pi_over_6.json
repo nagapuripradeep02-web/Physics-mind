@@ -65,6 +65,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The equation handed to you is the ORIGINAL, so it is in small x and small y. Number it (1).",
+        "memory_tip": "The given equation is the ORIGINAL, in small x and y.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Under a rotation the old coordinates mix BOTH new ones: x = Xcosθ − Ysinθ and y = Ycosθ + Xsinθ. Put θ = π/6 = 30° and read off the values.",
+        "memory_tip": "θ = 30°, so cos θ = √3/2 and sin θ = 1/2 — both coordinates mix X and Y.",
         "lines": [
           "Angle of rotation θ = π/6 = 30°, then",
           "x = Xcos30° − Ysin30° = X(√3/2) − Y(1/2)  ⇒  x = (√3X − Y)/2",
@@ -147,6 +149,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Put both lines into equation (1). Everything sits over a common denominator, so clearing it once at the end keeps the working short.",
+        "memory_tip": "Everything lands over 4, so clear that denominator once at the end.",
         "lines": [
           "From (1), transformed equation is",
           "((√3X − Y)/2)² + 2√3((√3X − Y)/2)((√3Y + X)/2) − ((√3Y + X)/2)² = 2a²",
@@ -186,6 +189,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Expand and collect. The whole point of choosing this angle is that the XY terms cancel — if an XY term survives, an expansion went wrong.",
+        "memory_tip": "The XY terms cancel by design here too — if one survives, check the expansions.",
         "lines": [
           "⇒ (3X² + Y² − 2√3XY) + 2√3(3XY + √3X² − √3Y² − XY) − (3Y² + X² + 2√3XY) = 8a²",
           "⇒ 3X² + Y² − 2√3XY + 6√3XY + 6X² − 6Y² − 2√3XY − 3Y² − X² − 2√3XY = 8a²",
@@ -224,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "At 30° the halves make the denominator 4, not 2, and it is cleared only at the end. Every √3 XY group must cancel; if any XY survives, the 2√3 was not distributed across both parts of the product."
 }

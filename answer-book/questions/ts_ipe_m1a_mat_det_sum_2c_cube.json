@@ -74,6 +74,7 @@
         "label": "Write the determinant",
         "marks": 0,
         "margin_note": "No mark of its own. Before writing anything else, add the three entries of any row in your head — each row sums to 2(a+b+c). That is the whole question in one observation.",
+        "memory_tip": "Add the three entries of any ROW in your head — each sums to 2(a+b+c). That is the whole question.",
         "lines": [
           {
             "text": "Sol:",
@@ -118,6 +119,7 @@
         "marks": 3,
         "mark_note": "Column operation",
         "margin_note": "Three of the eight marks, and the only idea in the question. Adding C₂ and C₃ into C₁ makes every entry of column 1 the same: 2a+2b+2c. Nothing else in the proof is hard.",
+        "memory_tip": "Adding C₂ and C₃ into C₁ makes every entry of column 1 the same: 2a+2b+2c.",
         "lines": [
           "C₁ → C₁ + C₂ + C₃",
           "Each row of C₁ becomes 2a + 2b + 2c:",
@@ -162,7 +164,8 @@
         "label": "Take 2(a+b+c) common",
         "marks": 1,
         "mark_note": "Common factor",
-        "margin_note": "Third mark. Column 1 is now 2(a+b+c) three times over, so that factor comes out and column 1 becomes 1, 1, 1.",
+        "margin_note": "Fourth mark. Column 1 is now 2(a+b+c) three times over, so that factor comes out and column 1 becomes 1, 1, 1.",
+        "memory_tip": "2(a+b+c) comes out of column 1, leaving it as 1, 1, 1.",
         "lines": [
           "Taking 2(a+b+c) common from C₁:",
           {
@@ -207,6 +210,7 @@
         "marks": 2,
         "mark_note": "Row operations",
         "margin_note": "Two more marks. Column 1 is all 1s now, so subtracting row 1 clears it. What is left is a triangular determinant — zeros below the diagonal — and those are read straight off.",
+        "memory_tip": "Column 1 is all 1s, so subtracting row 1 clears it, leaving a TRIANGULAR determinant.",
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
           {
@@ -251,7 +255,8 @@
         "label": "Expand along the first column",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Sixth mark. Column 1 is 1, 0, 0 so only one term survives, and its minor is a 2×2 with zeros off the diagonal — its value is just the product of the diagonal.",
+        "margin_note": "Seventh mark. Column 1 is 1, 0, 0 so only one term survives, and its minor is a 2×2 with zeros off the diagonal — its value is just the product of the diagonal.",
+        "memory_tip": "Column 1 is 1, 0, 0, so one term survives and its minor has zeros off the diagonal.",
         "lines": [
           "Expanding along C₁:",
           "Δ = 2(a+b+c)[(a+b+c)(a+b+c) − 0]",
@@ -292,6 +297,7 @@
         "marks": 1,
         "mark_note": "Final answer",
         "margin_note": "Last mark. One factor of (a+b+c) came from the column, two more from the diagonal — three in all, and the 2 that came out with them.",
+        "memory_tip": "One factor from the column and two from the diagonal — three in all, plus the 2.",
         "lines": [
           "One (a+b+c) from C₁ and two from the minor:",
           {
@@ -328,5 +334,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add all three COLUMNS into C₁ and every entry becomes 2(a+b+c) — the 2 in the answer comes from there, not from the final expansion. Row subtractions then leave a diagonal."
 }

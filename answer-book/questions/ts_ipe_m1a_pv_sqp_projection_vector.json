@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Ingredients",
         "margin_note": "First mark. Two ingredients: the dot product on top, and the SQUARE of the length of a underneath.",
+        "memory_tip": "Two ingredients: the dot product on top, and the SQUARE of |a| underneath.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Projection vector of b on a = (a·b / |a|²) a. The direction is a, so a stays in the answer.",
+        "memory_tip": "(a·b / |a|²)a — the direction is a, so a stays in the answer.",
         "lines": [
           "Projection vector of b on a = (a·b / |a|²) a",
           "= (4/3)(i − j − k)",
@@ -132,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The word VECTOR matters: divide by |a|² and keep the a, giving (4/3)(i − j − k). Dividing by |a| once instead gives the scalar projection, which answers a different question."
 }

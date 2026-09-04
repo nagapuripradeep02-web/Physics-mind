@@ -46,6 +46,20 @@ async function openFirst(page: any): Promise<void> {
     await page.waitForSelector('.page');
 }
 
+/** Open the Vidi panel the way a student does — by tapping the pill.
+
+    Since 2026-09-02 the panel starts MINIMISED on a device's first question
+    (founder: on a phone it covered the answer). Gates that exercise what is
+    INSIDE the panel therefore have to open it first; the gate on the minimised
+    default itself lives in the 'Vidi panel renders in the rail' test, which is
+    the one place that must NOT call this. */
+async function openVidi(page: any): Promise<void> {
+    if (await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)) {
+        await page.click('#vidiFab');
+    }
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+}
+
 async function openQ(page: any, id: string, cut?: string): Promise<void> {
     await page.evaluate(
         ([qid, ck]: [string, string | undefined]) => (window as any).PM_ANSWER.openQuestion(qid, ck),
@@ -355,7 +369,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), and at Botany-II (~1981 entries). Never trim the sweep.
+    test.setTimeout(5_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), at Maths-2B (2472), and at the 2026-27 first-year Physics/Chemistry campaign. Never trim the sweep. COUNTED 2026-09-02: the default build holds 3007 live questions, so the 2472 the last raise scaled from was already 535 stale — Maths-1A/1B (+317) and the syllabus retrofit both landed without a raise. Two runs that day took 41.6 and 41.7 min of the 60-min budget (69%), and the campaign adds 714 cards: ~3721 questions x ~0.9 s = ~56 min, 93% of 60. Raised to 90 min BEFORE the cards land, because 7% headroom was judged too tight the last time it happened.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +403,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), and at Botany-II (~1981 entries). Never trim the sweep.
+    test.setTimeout(5_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), at Maths-2B (2472), and at the 2026-27 first-year Physics/Chemistry campaign. Never trim the sweep. COUNTED 2026-09-02: the default build holds 3007 live questions, so the 2472 the last raise scaled from was already 535 stale — Maths-1A/1B (+317) and the syllabus retrofit both landed without a raise. Two runs that day took 41.6 and 41.7 min of the 60-min budget (69%), and the campaign adds 714 cards: ~3721 questions x ~0.9 s = ~56 min, 93% of 60. Raised to 90 min BEFORE the cards land, because 7% headroom was judged too tight the last time it happened.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -670,7 +684,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(2_400_000);   // the WIDEST sweep: questions x cuts. ~1600 entries with zoology AND Physics-II.
+    test.setTimeout(7_200_000);   // the WIDEST sweep: questions x cuts, and the one master did NOT raise for Botany-II. ~1600 entries with zoology AND Physics-II; 1981 on master; ~2238 with Maths-2A; 2509 once Maths-2B landed. COUNTED 2026-09-02: 3018 entries today — this sweep was already at ~53 min of its 60-min budget (89%) with nothing new authored. The 2026-27 first-year campaign adds 714 cards, so >=3732 entries x ~1.05 s = ~65 min, OVER the 60-min ceiling. Raised to 120 min. A timeout is not an assertion: it fails naming nothing. Never trim the sweep.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
     // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
     // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
@@ -850,7 +864,7 @@ test('qtype filter chips match on the section alone, with true counts', async ({
         }, qtype);
     };
 
-    for (const t of ['LAQ', 'SAQ', 'VSAQ', 'ALL']) {
+    for (const t of ['LAQ', 'SAQ', 'VSAQ', 'PROBLEM', 'ALL']) {
         const r = await expectFilter(t);
         expect(r.chipOn, t + ' chip active').toBe(true);
         expect(r.visible, t + ' visible cards').toBe(r.want);
@@ -1119,6 +1133,20 @@ test('Vidi panel renders in the rail, chips answer deterministically, zero netwo
     });
     await openFirst(page);
 
+    // FIRST VISIT = MINIMISED (founder, 2026-09-02). The window used to open
+    // itself on a device's first question; on a phone that covered the notebook
+    // page, so the first thing a new student saw was a chat panel and not the
+    // answer. The pill stands in for it, pulsing. This is the gate on that
+    // decision — if the panel ever auto-opens over a first answer again, it
+    // fails here.
+    expect(await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)).toBe(true);
+    expect(await page.evaluate(() => document.getElementById('vidiFab')!.hidden)).toBe(false);
+    expect(await page.evaluate(
+        () => document.getElementById('vidiFab')!.classList.contains('vf-unread'))).toBe(true);
+
+    // the student taps the pill — from here the panel behaves exactly as before
+    await page.click('#vidiFab');
+
     // panel visible, greeting bubble lands after its typing beat
     await page.waitForSelector('#pm-assistant-slot:not([hidden])');
     await page.waitForSelector('#vidiThread .vidi-msg.tutor:not(.vidi-typing)', { timeout: 4000 });
@@ -1326,8 +1354,11 @@ test('the Vidi window minimizes to the launcher pill and comes back, no sideways
     await page.setViewportSize({ width: 390, height: 844 });
     await openFirst(page);
 
-    // first question on a fresh device: the window opens once so the student meets her
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    // first question on a fresh device: the window stays MINIMISED and the pill
+    // pulses (founder, 2026-09-02 — it used to open over the answer). Tapping
+    // the pill is how the student meets her, so that is where this gate starts.
+    expect(await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)).toBe(true);
+    await openVidi(page);
     const open = await page.evaluate(() => ({
         fabHidden: document.getElementById('vidiFab')!.hidden,
         hScroll: document.documentElement.scrollWidth > window.innerWidth + 1,
@@ -1355,7 +1386,7 @@ test('the Vidi window minimizes to the launcher pill and comes back, no sideways
 test('at desktop width Vidi docks as the third column and minimize collapses it', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
 
     const docked = await page.evaluate(() => {
         const win = document.getElementById('pm-assistant-slot')!.getBoundingClientRect();
@@ -1389,7 +1420,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
     // 1100px sits in the FLOATING band (721–1179): docked above it never drags
     await page.setViewportSize({ width: 1100, height: 800 });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
 
     const before = (await page.locator('#pm-assistant-slot').boundingBox())!;
     const head = (await page.locator('#vidiHead').boundingBox())!;
@@ -1409,7 +1440,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
     });
     if (storageWorks) {
         await openFirst(page);
-        await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+        await openVidi(page);
         const kept = (await page.locator('#pm-assistant-slot').boundingBox())!;
         expect(Math.abs(kept.x - after.x)).toBeLessThan(8);
         expect(Math.abs(kept.y - after.y)).toBeLessThan(8);
@@ -1418,7 +1449,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
 
 test('the ask field and the mic exist exactly when the build has a chat base', async ({ page }) => {
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
     const r = await page.evaluate(() => ({
         base: (window as any).PM_VIDI_BASE,
         askRowHidden: document.getElementById('vidiAskRow')!.hidden,
@@ -1677,7 +1708,7 @@ test('without a plan a question opens silently — chips only, and a quiet offer
     // intro already seen, no plan: the founder's "no 3-star talk" rule, locked
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
     await page.waitForTimeout(1500);
     const bubbles = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
         (els) => els.map((e) => e.textContent || ''));
@@ -1932,7 +1963,7 @@ test('the catalog filters by subject and each section shows its own mark value',
 });
 
 test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
-    test.setTimeout(240_000);   // fleet sweep — cost grows with every typeset question; raised deliberately
+    test.setTimeout(360_000);   // fleet sweep — cost grows with every typeset question; raised deliberately at Maths-2A (fractional exponents and e^{-λ} lines), as before
                                 // when Maths-1A Unit 3 (Matrices) took the book from 2 typeset questions to 39.
                                 // NEVER trim the sweep instead: .kx-clip is overflow:hidden, so an over-wide
                                 // typeset line is truncated with NO other symptom, and this is the only guard.
@@ -2538,6 +2569,100 @@ test('the home chat is never blank: a returning student with nothing due still g
 });
 
 
+// ═══ the PRACTICE section (2026-09-02) ═══════════════════════════════════════
+// A PROBLEM is a question the source book prints and the paper does not ask. It
+// is an answer the student can open and it counts in every "N answers" figure —
+// but it sits on no paper section and carries no board mark scheme, so the
+// marks-weighted surfaces (the plan, its scope, the exam-eve list) ignore it.
+
+test('a practice problem is a real answer in the catalog, with its own chip and group', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // Derived from the data, never hardcoded: the bank grows.
+    const want = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        let n = 0;
+        for (const u of units) {
+            for (const e of u.questions) if (e.section === 'PROBLEM' && e.question_id) n++;
+        }
+        return n;
+    });
+    expect(want).toBeGreaterThan(0);
+
+    const chip = page.locator('.cat-chip[data-qtype="PROBLEM"]');
+    expect(await chip.count()).toBe(1);
+    // The chip is labelled for a student, not with the enum key.
+    expect(await chip.textContent()).toContain('Problems');
+    await chip.click();
+    await page.waitForTimeout(120);
+    const shown = await page.evaluate(() => ({
+        cards: document.querySelectorAll('.cat-card').length,
+        heads: [...document.querySelectorAll('#catSections h3, #catSections h2')]
+            .map((h) => h.textContent || ''),
+    }));
+    expect(shown.cards).toBe(want);
+    expect(shown.heads.join(' ')).toContain('Practice Problems');
+});
+
+test('a practice problem opens with the Practice header and its own marks', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const probe = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const p = qs.filter((q) => q.qtype === 'PROBLEM');
+        return { n: p.length, marks: p.map((q) => q.marks_total).sort(), id: p[0]?.question_id };
+    });
+    expect(probe.n).toBeGreaterThan(0);
+    // Both practice shapes exist, and neither is a paper mark value by accident:
+    // a problem borrows 2 or 4, it never owns a slot.
+    for (const m of probe.marks) expect([2, 4]).toContain(m);
+
+    await page.evaluate((qid: string) => (window as any).PM_ANSWER.openQuestion(qid), probe.id);
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const r = await page.evaluate(() => ({
+        header: [...document.querySelectorAll('.page-header-block .line')].map((n) => n.textContent || ''),
+        chips: [...document.querySelectorAll('.question-meta .chip')].map((n) => n.textContent || ''),
+    }));
+    // "Practice — Problem", never "Section A/B/C", and never the raw enum key.
+    expect(r.header[0]).toBe('Practice — Problem');
+    expect(r.header.join(' ')).not.toContain('Section');
+    expect(r.chips.join(' ')).toContain('Practice · PROBLEM');
+});
+
+test('the study plan never schedules a practice problem', async ({ page }) => {
+    // The whole reason PROBLEM is not a paper section: a plan allocates a
+    // paper's marks across the days left, and a question the paper never asks
+    // cannot be given a share of them.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21',
+        ['Mechanical Properties of Solids', 'Motion in a Plane'], '1 hour');
+
+    const qids: string[] = Object.keys(plan.learnDay).concat(plan.optional);
+    expect(qids.length).toBeGreaterThan(0);
+    const seen = await page.evaluate((ids: string[]) => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const types = ids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
+        // the chapter DOES hold problems — otherwise this gate proves nothing
+        const units = (window as any).PM_UNITS as any[];
+        const unit = units.find((u) => u.name === 'Mechanical Properties of Solids');
+        const problems = unit.questions.filter((e: any) => e.section === 'PROBLEM' && e.question_id).length;
+        return { types, problems };
+    }, qids);
+    expect(seen.problems).toBeGreaterThan(0);     // positive control
+    expect(seen.types).not.toContain('PROBLEM');  // and none of them was scheduled
+
+    // the scope chooser offers the paper's three sections and no fourth box
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Change my plan' }).click();
+    await page.locator('.vw-btn', { hasText: 'Change question types' }).click();
+    // The thread keeps every widget it has drawn, so the same three boxes appear
+    // once per scope chooser — the property is the DISTINCT set: no fourth kind
+    // is ever offered, because a plan cannot schedule what the paper never asks.
+    const boxes = await page.$$eval('.vw-scope-box', (ns: Element[]) =>
+        ns.map((n) => (n as HTMLInputElement).value));
+    expect([...new Set(boxes)].sort()).toEqual(['LAQ', 'SAQ', 'VSAQ']);
+});
+
 // ═══ the 2026-27 syllabus revision (2026-08-28) ═══════════════════════════════
 // Three mechanisms landed together: the physics renumbering (old Units 1+2 merged,
 // old 3-14 → 2-13, new Unit 14), the legacy-link remap that keeps forwarded
@@ -2566,7 +2691,7 @@ test('a pre-renumbering exam-eve link still lands on the chapter it meant', asyn
     expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
 });
 
-test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', async ({ page }) => {
+test('the physics bank is on the 2026-27 numbering and Unit 14 is fully authored', async ({ page }) => {
     await page.goto(URL);
     await page.waitForFunction(() => (window as any).PM_ANSWER);
     const r = await page.evaluate(() => {
@@ -2587,26 +2712,84 @@ test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', 
     expect(r.u1n).toBe(25);                               // 3 + 22 merged
     expect(r.u3).toBe('Motion in a Plane');
     expect(r.u14).toBe('Physics of Emerging Technologies');
-    expect(r.u14ready).toBe(0);
-    expect(r.u14coming).toBeGreaterThan(0);
+    // Authored 2026-09-02 (wave A of the 2026-27 first-year campaign): all 15 of the
+    // chapter's Very Short Answer questions now have cards, so the chapter that
+    // opened as a coming-soon shell is the first one this campaign closed. The book
+    // prints no SAQ, LAQ or PROBLEM section for it, so 15 is the whole chapter.
+    expect(r.u14ready).toBe(15);
+    expect(r.u14coming).toBe(15);
     expect(r.patternsLaq).toBe(8);                        // the maths LAQ is 8 marks now
 });
 
 test('a retired card renders on a forwarded link with the syllabus banner', async ({ page }) => {
-    // No card is retired yet (the official syllabus lists are not in hand), so the
-    // banner path is exercised by pinning PM_RETIRED before the page's own data
-    // script assigns it — a setter that ignores the assignment keeps the pin.
-    const qid = 'ts_ipe_p1_um_fundamental_vs_derived_units';
-    await page.addInitScript((id: string) => {
-        const pinned = { [id]: { wef: '2026-27', reason: 'this topic was removed from the syllabus', unit: 'Physical World and Measurement' } };
-        Object.defineProperty(window, 'PM_RETIRED', { get: () => pinned, set: () => { /* pinned */ }, configurable: true });
-    }, qid);
+    // The first REAL retirement (2026-09-02): the 2026-27 chemistry book dropped
+    // States of Matter, so its 40 cards stay on file under unit 99 and leave the
+    // catalog. A forwarded link still renders, with the banner, and the unit
+    // chip shows the chapter name alone — 99 is a sentinel, not a chapter.
+    const qid = 'ts_ipe_c1_som_aqueous_tension';
     await page.goto(URL + '#/q/' + qid);
     await page.waitForSelector('.page', { timeout: 8000 });
     const chip = page.locator('.question-meta .chip-retired');
     expect(await chip.count()).toBe(1);
     expect(await chip.textContent()).toContain('Not in the 2026-27 syllabus');
-    expect(await chip.textContent()).toContain('removed from the syllabus');
+    expect(await chip.textContent()).toContain('States of Matter');
+    const chips = await page.locator('.question-meta .chip').allTextContents();
+    expect(chips.some((c) => c.includes('Unit 99'))).toBe(false);
+    expect(chips.some((c) => c.includes('States of Matter (Chemistry)'))).toBe(true);
+    // and it is offered nowhere: not in PM_UNITS, but still in PM_RETIRED
+    const r = await page.evaluate((id: string) => {
+        const units = (window as any).PM_UNITS as any[];
+        const listed = units.some((u) => u.questions.some((e: any) => e.question_id === id));
+        const retired = (window as any).PM_RETIRED || {};
+        return { listed, retiredCount: Object.keys(retired).length, unit: retired[id]?.unit };
+    }, qid);
+    expect(r.listed).toBe(false);
+    expect(r.retiredCount).toBe(40);
+    expect(r.unit).toBe('States of Matter (Chemistry)');
+});
+
+test('the chemistry bank is on the 2026-27 numbering: ten chapters, States of Matter gone', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const units = ((window as any).PM_UNITS as any[]).filter((u) => u.subject === 'chemistry');
+        const byN: Record<number, any> = {};
+        for (const u of units) byN[u.number] = u;
+        const ready = (n: number) => byN[n]?.questions.filter((e: any) => e.question_id).length;
+        return {
+            n: units.length,
+            numbers: units.map((u) => u.number),
+            names: units.map((u) => u.name),
+            u4: byN[4]?.name, u4ready: ready(4),
+            u6: byN[6]?.name, u7: byN[7]?.name, u10: byN[10]?.name,
+            comingReady: [7, 8, 9, 10].map(ready),
+        };
+    });
+    expect(r.n).toBe(10);
+    expect(r.numbers).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);   // textbook order, no 99
+    expect(r.names.some((s: string) => s.includes('States of Matter'))).toBe(false);
+    expect(r.u4).toBe('Stoichiometry (Chemistry)');
+    expect(r.u4ready).toBe(36);
+    expect(r.u6).toBe('Chemical Equilibrium, Acids and Bases (Chemistry)');
+    expect(r.u7).toBe('s-Block Elements (Chemistry)');
+    expect(r.u10).toBe('General Organic Chemistry (Chemistry)');
+    expect(r.comingReady).toEqual([0, 0, 0, 0]);                  // listed, not written
+});
+
+test('a pre-2026-09-02 chemistry exam-eve link still lands on the chapter it meant', async ({ page }) => {
+    // Old chemistry-5 meant Stoichiometry, which is chemistry-4 in the 2026-27 book.
+    await page.goto(URL + '#/exam-eve/chemistry-5');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Stoichiometry');
+    // With the year the key is taken literally: chemistry-4 IS Stoichiometry now.
+    await page.goto(URL + '#/exam-eve/chemistry-4/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Stoichiometry');
+    // Old chemistry-4 meant States of Matter, which left the book: back to the catalog,
+    // never silently onto Stoichiometry.
+    await page.goto(URL + '#/exam-eve/chemistry-4');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await page.locator('#examEveView').isHidden()).toBe(true);
 });
 
 test('a card that is not retired shows no syllabus banner', async ({ page }) => {
@@ -2652,12 +2835,191 @@ test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', as
     });
     expect(r.n).toBe(12);
     expect(r.u1).toContain('Sets and Relations');
-    expect(r.u1ready).toBe(0);                       // announced, not written yet
     expect(r.u3).toContain('Sequences and Series');
-    expect(r.u3ready).toBe(0);
+    // Both were coming-soon placeholders whose rows carried syllabus topic names rather than
+    // questions; authored 2026-08-30 (26 and 25 cards). Asserted as "answered at all" rather
+    // than a count, so adding cards later cannot fail this test for the wrong reason - what it
+    // is really guarding is the 2026-27 numbering and that both chapters are present.
+    expect(r.u1ready).toBeGreaterThan(0);
+    expect(r.u3ready).toBeGreaterThan(0);
     // the book says "and", not the old "upto"
     expect(r.u8).toContain('Trigonometric Ratios and Transformations');
     // NOT removed, despite a circular proposing it — see docs/SYLLABUS_2026_27.md
     expect(r.u9).toContain('Trigonometric Equations');
     expect(r.u12).toContain('Properties of Triangles');
+});
+
+// ── Who is asking — the team/testing exclusion (runbook §2 + §7, 2026-09-02) ──
+// The founder and the team open this book many times a day on their own phones
+// and laptops, and Claude probes the live chat endpoint to verify deploys. All
+// of it used to count as students. Three gates: the offline build must stay
+// completely inert, the hosted build must say WHO is asking on both the
+// telemetry batch AND the ask itself (the ask is the one that reaches the money
+// in ai_usage_log), and the built file must prove it is the offline one.
+
+test('offline: #/notastudent does nothing, and no ask can leak a device id', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await page.goto(URL + '#/notastudent/anything');
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('not valid');
+
+    const r = await page.evaluate(() => ({
+        staff: (window as any).PM_STAFF_WORD,
+        internal: localStorage.getItem('pm_internal'),
+        deviceId: localStorage.getItem('pm_device_id'),
+    }));
+    expect(r.staff).toBe('');            // the offline build carries no word,
+    expect(r.internal).toBe(null);       // so the route can mark nothing
+    expect(r.deviceId).toBe(null);
+
+    await page.click('#askYes');
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // The ask row does not exist offline, so vidiAsk() can never run — and the
+    // PM_SYNC_BASE guard inside it is what stops Sync.deviceId() MINTING an id
+    // on a page that is supposed to touch nothing. Assert both halves: a
+    // missing guard would leave pm_device_id populated right here.
+    await openFirst(page);
+    expect(await page.evaluate(() => document.getElementById('vidiAskRow')!.hidden)).toBe(true);
+    expect(await page.evaluate(() => localStorage.getItem('pm_device_id'))).toBe(null);
+
+    await page.waitForTimeout(500);
+    expect(external).toEqual([]);
+});
+
+test('hosted: telemetry AND the ask both say who is asking, and the team route flips it', async ({ page }) => {
+    const VIDI = 'https://vidi.test/functions/v1/answerbook-vidi-chat';
+    const SYNC = 'https://sync.test/functions/v1/answerbook-sync';
+    const posts: any[] = [];
+    const syncs: any[] = [];
+    const batches = () => posts.filter((b) => b.type === 'events');
+    const asks = () => posts.filter((b) => b.type !== 'events');
+
+    await page.addInitScript(([v, s]: [string, string]) => {
+        // The data block assigns these before notebook.js reads them, so the
+        // override has to be a getter that swallows that write.
+        for (const [k, val] of [['PM_VIDI_BASE', v], ['PM_SYNC_BASE', s], ['PM_STAFF_WORD', 'secret-word']]) {
+            Object.defineProperty(window, k, { get: () => val, set: () => { }, configurable: true });
+        }
+        try { localStorage.setItem('pm_intro_done', '1'); } catch { /* file:// */ }
+    }, [VIDI, SYNC] as [string, string]);
+
+    const cors = {
+        'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type', 'Content-Type': 'application/json',
+    };
+    await page.route('https://vidi.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        posts.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({ status: 200, headers: cors, body: JSON.stringify({ ok: true, reply: 'ok' }) });
+    });
+    await page.route('https://sync.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        syncs.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({
+            status: 200, headers: cors,
+            body: JSON.stringify({ ok: true, plan: null, plan_saved_at: null, stages: [], internal: false }),
+        });
+    });
+
+    // Open, read up to three steps (the first question may be a 2-step VSAQ),
+    // then hide the tab: the batch flushes on hidden.
+    await openFirst(page);
+    const stepCount = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps.length);
+    const reveals = Math.min(3, stepCount);
+    for (let i = 0; i < reveals; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 120);
+        }));
+    }
+    await page.evaluate(() => {
+        Object.defineProperty(document, 'visibilityState', { get: () => 'hidden', configurable: true });
+        document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await expect.poll(() => batches().length, { timeout: 5000 }).toBeGreaterThan(0);
+
+    const deviceId = await page.evaluate(() => localStorage.getItem('pm_device_id'));
+    expect(deviceId).toMatch(/^[0-9a-f-]{36}$/i);
+    const all = batches().flatMap((b) => b.events || []);
+    const types = all.map((e: any) => e.t);
+    expect(types.filter((t: string) => t === 'app_open').length).toBe(1);   // once per load
+    expect(types).toContain('open_q');
+    expect(types.filter((t: string) => t === 'advance').length).toBe(reveals);
+    const adv = all.find((e: any) => e.t === 'advance');
+    expect(adv.i).toBe(1); expect(adv.n).toBeGreaterThan(0); expect(adv.qid).toBeTruthy();
+    expect(all.find((e: any) => e.t === 'open_q').unit).toMatch(/^[a-z_0-9]+-\d+$/);
+    for (const b of batches()) {
+        expect(b.device_id).toBe(deviceId);      // tied to the device
+        expect(b.visit_id).toMatch(/^v_/);       // and to the visit
+        expect(b.internal).toBe(false);          // a student, so far
+    }
+
+    // ── the ASK, not just the telemetry ─────────────────────────────────────
+    // ai_usage_log is where the money is and it has NO device column, so the
+    // ask body itself has to carry who is asking. This is the assertion that
+    // would have caught the original bug: the analytics branch instrumented
+    // telemetry and left the ask untouched, so every team ask was still
+    // written as a student.
+    await page.waitForSelector('#vidiAskRow:not([hidden])');
+    await page.fill('#vidiInput', 'why this step');
+    await page.click('#vidiSend');
+    await expect.poll(() => asks().length, { timeout: 6000 }).toBeGreaterThan(0);
+    const ask = asks()[asks().length - 1];
+    expect(ask.question).toBe('why this step');
+    expect(ask.session_id).toMatch(/^ab_/);
+    expect(ask.device_id).toBe(deviceId);        // the same id the batches carry
+    expect(ask.internal).toBeUndefined();        // no claim = a student
+    expect(ask.probe_token).toBeUndefined();     // a browser never holds the secret
+
+    // The team route with the RIGHT word flips the flag; the next batch, the
+    // next sync AND the next ask all carry it.
+    const before = batches().length;
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word'; });
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('marked as team');
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('1');
+    await expect.poll(() => batches().length, { timeout: 5000 }).toBeGreaterThan(before);
+    const marked = batches()[batches().length - 1];
+    expect(marked.internal).toBe(true);
+    expect(marked.events.some((e: any) => e.t === 'team_mark' && e.on === true)).toBe(true);
+    await expect.poll(() => syncs.some((s) => s.internal === true), { timeout: 6000 }).toBe(true);
+
+    await page.click('#askYes');
+    await openFirst(page);
+    const nAsks = asks().length;
+    await page.waitForSelector('#vidiAskRow:not([hidden])');
+    await page.fill('#vidiInput', 'and now');
+    await page.click('#vidiSend');
+    await expect.poll(() => asks().length, { timeout: 6000 }).toBeGreaterThan(nAsks);
+    expect(asks()[asks().length - 1].internal).toBe(true);   // the ledger can now tell
+    expect(asks()[asks().length - 1].probe_token).toBeUndefined();
+
+    // A WRONG word does nothing — a forwarded link cannot mark a class.
+    await page.evaluate(() => { localStorage.removeItem('pm_internal'); location.hash = '#/notastudent/wrong'; });
+    await page.waitForFunction(() => /not valid/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe(null);
+
+    // /off with the right word turns a team device back into a student.
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word/off'; });
+    await page.waitForFunction(() => /student again/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('0');
+});
+
+test('the offline build bakes no staff word and no ask endpoint', async () => {
+    // Read the BUILT file, not the page. A hosted bundle sitting in
+    // answer-book/dist would make every "offline" gate above pass for the wrong
+    // reason — the beforeAll hook catches PM_VIDI_BASE, and this pins the staff
+    // word beside it so the team link can never ship in an emailable copy.
+    const src = readFileSync(DIST, 'utf8');
+    expect(/PM_STAFF_WORD\s*=\s*""/.test(src)).toBe(true);
+    expect(/PM_VIDI_BASE\s*=\s*""/.test(src)).toBe(true);
 });

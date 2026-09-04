@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_np7_42_np5_find_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿP₇ = 42 · ⁿP₅, then find n.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide and cancel the common factors",
+      "marks": 1
+    },
+    {
+      "label": "Solve for n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 139.2. Printed appearances: AP 17, 20, 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; this exact question is Q6 of the book's Model Paper 5 (book p.119) and is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find n when n P 7 is 42 times n P 5.",
+  "insider_note": "Dividing the two permutations leaves (n − 5)(n − 6) = 42, two consecutive factors 7 · 6. The larger factor is n − 5, so n = 12 — matching 7 to n − 6 instead gives 13, which fails a one-line check.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Divide and cancel the common factors",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿP₇ = n(n − 1)…(n − 6) and ⁿP₅ = n(n − 1)…(n − 4). Their ratio leaves (n − 5)(n − 6).",
+        "memory_tip": "ⁿP₇ contains ⁿP₅ as its first five factors, so dividing leaves just (n − 5)(n − 6).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿP₇ / ⁿP₅ = 42",
+          "n(n − 1)…(n − 6) / [n(n − 1)…(n − 4)] = 42",
+          "(n − 5)(n − 6) = 42"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing n P 7 by n P 5 cancels the first five factors and leaves n minus 5 times n minus 6 equal to 42.",
+          "accept": [
+            "n P seven over n P five is forty two, the first five factors cancel leaving n minus five into n minus six equal forty two",
+            "cancel the common factors to get n minus five times n minus six is forty two",
+            "the ratio of the permutations is n minus five into n minus six",
+            "n P seven by n P five cheste n minus five into n minus six forty two vasthundi",
+            "divide both sides by n P five and cancel"
+          ],
+          "reject": [
+            "divide",
+            "use the formula"
+          ],
+          "heard_as": [
+            "n minus five",
+            "n minus six",
+            "forty two",
+            "cancel",
+            "ratio"
+          ]
+        },
+        "why": "ⁿP₇ contains ⁿP₅ as its first five factors, so dividing removes everything except the last two factors. That turns a relation between two permutations into a quadratic in n.",
+        "common_mistakes": [
+          "Writing ⁿP₇/ⁿP₅ = 7/5 or 7!/5! — the factorials of r do not appear in ⁿPᵣ.",
+          "Leaving (n − 5)(n − 6) as (n − 6)(n − 7) by miscounting the factors."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for n",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (n − 5)(n − 6) = 7 · 6, two consecutive numbers, so n − 5 = 7 and n = 12.",
+        "memory_tip": "42 = 7 × 6, two consecutive numbers. The LARGER is n − 5, so n = 12, not 13.",
+        "lines": [
+          "(n − 5)(n − 6) = 7 · 6",
+          "n − 5 = 7",
+          {
+            "text": "∴ n = 12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 42 is 7 times 6, two consecutive numbers, so n minus 5 = 7 and n = 12.",
+          "accept": [
+            "forty two is seven times six so n minus five is seven and n is twelve",
+            "n equals twelve",
+            "match n minus five with seven to get n twelve",
+            "forty two ni seven into six ga rasi n minus five seven, n twelve",
+            "solve the quadratic, n is twelve"
+          ],
+          "reject": [
+            "solve",
+            "forty two"
+          ],
+          "heard_as": [
+            "n is twelve",
+            "seven times six",
+            "twelve"
+          ]
+        },
+        "why": "Two consecutive numbers with product 42 are 7 and 6; the other solution of the quadratic, n − 5 = −6, gives n = −1, which is not allowed because n must be at least 7 for ⁿP₇ to exist.",
+        "common_mistakes": [
+          "Taking n − 6 = 7 and answering n = 13; the larger factor is n − 5.",
+          "Expanding to n² − 11n − 12 = 0 and keeping the negative root."
+        ]
+      }
+    ]
+  }
+}

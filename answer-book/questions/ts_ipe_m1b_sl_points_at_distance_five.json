@@ -11,10 +11,10 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
   "question_text": "Find the points on the line 3x−4y−1=0 which are at a distance of 5 units from the point (3,2).",
   "appearances": [
     {
@@ -32,24 +32,20 @@
       "marks": 1
     },
     {
-      "label": "Write the parametric point",
-      "marks": 1
-    },
-    {
       "label": "State both required points",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 59, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M-16 · AP 15. THE MARK SPLIT 1+1+2 IS THE BOOK'S: answer 59 on book p.63 is the ONE answer in this unit's SAQ chapter that carries printed margin tags — '1 Mark' beside the slope-to-cos-and-sin step, '1 Mark' beside the parametric-point line, and '2 Marks' beside the two required points. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 59, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M-16 · AP 15. THE MARK SPLIT 1+1+2 IS THE BOOK'S: answer 59 on book p.63 is the ONE answer in this unit's SAQ chapter that carries printed margin tags — '1 Mark' beside the slope-to-cos-and-sin step, '1 Mark' beside the parametric-point line, and '2 Marks' beside the two required points. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 35 ii, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the parametric-point line carried unmarked as setup for the two points that follow. Still unverified until a Telangana IPE teacher confirms it. IMPORTANT, and the one place in this unit where two sources disagree outright: the 1 + 1 + 2 tags recorded above are PRINTED in the Baby Bullet margin, so this is the only Straight Line card whose old 4-mark split was the book's own rather than ours. Those tags are kept above as history and are no longer this card's mark scheme, because the 2026-27 chapter has no 4-mark slot for this unit to fill. The mark-position wording in the step margins was rewritten accordingly and no longer claims the book printed it."
   },
   "recall_prompt": "Say how you would solve this — say what you convert the slope into, and why there are two answers.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
     ],
     "steps": [
       {
@@ -57,14 +53,14 @@
         "kind": "equation",
         "label": "Slope to cosθ and sinθ",
         "marks": 1,
-        "margin_note": "First mark, printed in the book's margin. The parametric form needs cosθ and sinθ, not the slope — and from tanθ = 3/4 the 3-4-5 triangle gives both at once with no calculator.",
+        "margin_note": "First mark. The parametric form needs cosθ and sinθ, not the slope — and from tanθ = 3/4 the 3-4-5 triangle gives both at once with no calculator.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 3x − 4y − 1 = 0",
-          "It's slope  m = −a/b = −3/(−4) = 3/4",
+          "Its slope  m = −a/b = −3/(−4) = 3/4",
           "m = tanθ = 3/4  ⇒  cosθ = 4/5,  sinθ = 3/5"
         ],
         "recall": {
@@ -95,14 +91,15 @@
           "Taking cosθ = 3/5 and sinθ = 4/5, with the two swapped.",
           "Trying to find θ itself instead of just its cosine and sine."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The parametric form needs cos θ and sin θ. From tan θ = 3/4 the 3-4-5 triangle gives both with no calculator."
       },
       {
         "id": "s2_parametric_point",
         "kind": "equation",
         "label": "Write the parametric point",
-        "marks": 1,
-        "margin_note": "Second mark, also printed. The two points sit at distance 5 on EITHER side of (3,2), so the ± is written into the parametric form from the start.",
+        "marks": 0,
+        "margin_note": "The two points sit at distance 5 on EITHER side of (3,2), so the ± is written into the parametric form from the start.",
         "lines": [
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (3, 2)",
@@ -137,14 +134,14 @@
           "Using only + and finding one point.",
           "Multiplying 5 by cosθ and sinθ the wrong way round."
         ],
-        "mark_note": "Method"
+        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start."
       },
       {
         "id": "s3_state_both_points",
         "kind": "boxed_final",
         "label": "State both required points",
-        "marks": 2,
-        "margin_note": "The last two marks, printed as '2 Marks'. Take the signs TOGETHER — both plus, then both minus. Mixing them gives points that are not on the line.",
+        "marks": 1,
+        "margin_note": "The last mark. Take the signs TOGETHER — both plus, then both minus. Mixing them gives points that are not on the line.",
         "lines": [
           "Taking both upper signs:  (3 + 4, 2 + 3) = (7, 5)",
           "Taking both lower signs:  (3 − 4, 2 − 3) = (−1, −1)",
@@ -180,8 +177,10 @@
           "Mixing the signs and reporting (7, −1) or (−1, 5).",
           "Reporting only one of the two points."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line."
       }
     ]
-  }
+  },
+  "insider_note": "Turn the slope 3/4 into cosθ = 4/5 and sinθ = 3/5 with the 3-4-5 triangle; that is what keeps the arithmetic whole. Both signs are answers, (7, 5) and (−1, −1), and one point alone is half the marks."
 }

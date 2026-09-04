@@ -1,0 +1,105 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_abs_1_minusx_0_to_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀² |1 − x| dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the modulus using its definition",
+      "marks": 1
+    },
+    {
+      "label": "Integrate each piece and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 173.1, the left-hand twin of answer 173.2 (not marked as a Super Scoring Page). Printed appearance: AP 15, 19 and TS 16, 18. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "A modulus integral is always split at the point where the inside expression is zero — get that point right and the rest is routine integration.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split the modulus using its definition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. |1−x| changes sign exactly where 1−x=0, i.e. at x=1 — always split there.",
+        "memory_tip": "The split point for |a−x| is always x=a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the definition of the modulus function,",
+          "|1−x| = 1−x for 1−x ≥ 0, i.e. x ≤ 1",
+          "|1−x| = x−1 for 1−x < 0, i.e. x > 1",
+          "∴ ∫₀² |1−x| dx = ∫₀¹ (1−x) dx + ∫₁² (x−1) dx"
+        ],
+        "why": "The modulus |1−x| changes its algebraic sign at x=1, so the single integral must be split into two pieces at that point, one for each sign of (1−x).",
+        "common_mistakes": [
+          "Integrating |1−x| as (1−x) over the whole interval without splitting at x=1.",
+          "Splitting at the wrong point, e.g. x=0 instead of x=1."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate each piece and add",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both pieces contribute exactly 1/2 each — a useful check on the arithmetic.",
+        "memory_tip": "By symmetry about x=1, the two pieces of a V-shaped modulus graph often contribute equal areas.",
+        "lines": [
+          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
+          "[(2 − 2) − (1/2 − 1)]",
+          {
+            "text": "∴ I = 1/2 + 0 + 1/2 = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating each piece over its own interval and adding the two results gives the total area under |1−x| from 0 to 2, which comes out to a clean whole number.",
+        "common_mistakes": [
+          "Sign errors when evaluating the second integral's limits.",
+          "Adding the two pieces incorrectly instead of tracking each bracket separately."
+        ]
+      }
+    ]
+  }
+}

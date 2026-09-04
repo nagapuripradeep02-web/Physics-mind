@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_series_1_by_3_3_6_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the sum of the infinite series 1 + 1/3 + (1·3)/(3·6) + (1·3·5)/(3·6·9) + … ∞.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite with factorials",
+      "marks": 2
+    },
+    {
+      "label": "Compare with the standard expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find p, q and x",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the power",
+      "marks": 1
+    },
+    {
+      "label": "State the sum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.32 — LAQ chapter 3 Binomial Theorem, answer 26.1. Printed appearances: TS 15. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.32) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the sum of this series — how you rewrite it, what you compare it with, how you find p, q and x, and what the sum comes to.",
+  "insider_note": "The marks are for matching p, q and x, and x is not the common ratio: the bracket holds x/q, so x = 2/3, not 1/3. The answer stays as √3 — a decimal is not the expected final form.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite with factorials",
+        "marks": 2,
+        "mark_note": "Series in standard shape",
+        "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/3)ᵏ. This series already starts with 1 and 1/3, so nothing has to be added.",
+        "memory_tip": "3·6·9 = 3³·3!, so each term is (a product)/k! times (1/3)ᵏ. This series already starts with 1 and 1/3 — add nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S = 1 + 1/3 + (1·3)/(3·6)",
+          "  + (1·3·5)/(3·6·9) + …",
+          "= 1 + (1/1!)(1/3) + (1·3/2!)(1/3)²",
+          "  + (1·3·5/3!)(1/3)³ + …"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is rewritten so the k-th term is a product over k! times (1/3) to the power k.",
+          "accept": [
+            "write each term as a product over k factorial times one by three to the power k",
+            "split each denominator into three to the power k times k factorial",
+            "bring the series to the shape one plus p by one factorial into x by q and so on",
+            "prathi term ni k factorial tho, one by three power k tho rayali",
+            "rewrite the denominators as powers of three times factorials"
+          ],
+          "reject": [
+            "write the series",
+            "compare with the formula"
+          ],
+          "heard_as": [
+            "factorial",
+            "one by three",
+            "power k",
+            "both sides"
+          ]
+        },
+        "why": "The standard expansion of (1 − x)^(−p/q) has a k! in every denominator and a fixed ratio x/q raised to k. Until the given series is written in that exact shape, p, q and x cannot be read off.",
+        "common_mistakes": [
+          "Adding 1 + 1/3 to both sides out of habit — this series already prints both of those terms, so nothing has to be added.",
+          "Writing 3·6·9 as 3·3! instead of 3³·3! — every factor carries a 3."
+        ]
+      },
+      {
+        "id": "s2_compare",
+        "kind": "equation",
+        "label": "Compare with the standard expansion",
+        "marks": 1,
+        "mark_note": "Standard form",
+        "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write the standard expansion beside the series.",
+        "lines": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - x)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{x}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{x}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is compared with the expansion of (1 − x) to the power minus p by q, whose coefficients are p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!.",
+          "accept": [
+            "compare with the expansion of (1 − x) to the power minus p by q",
+            "match it with one plus p by one factorial into x by q plus p into p plus q by two factorial into x by q squared and so on",
+            "use the standard binomial series with negative fractional index (1 − x) to the power minus p by q",
+            "(1 − x)^(−p/q) formula tho compare cheyali",
+            "the pattern p then p into p plus q over the factorials is the standard series"
+          ],
+          "reject": [
+            "compare it",
+            "use the formula"
+          ],
+          "heard_as": [
+            "minus p by q",
+            "p plus q",
+            "standard expansion",
+            "x by q"
+          ]
+        },
+        "why": "This is the only binomial expansion whose coefficients grow as p, p(p + q), p(p + q)(p + 2q). Naming it turns the rest of the question into reading off three numbers.",
+        "common_mistakes": [
+          "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
+          "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ]
+      },
+      {
+        "id": "s3_p_q_x",
+        "kind": "equation",
+        "label": "Find p, q and x",
+        "marks": 2,
+        "mark_note": "p, q, x",
+        "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and x/q equals the common ratio 1/3 so x = q/3 = 2/3.",
+        "memory_tip": "p = 1, p + q = 3 so q = 2. The bracket holds x/q, so x = q/3 = 2/3, not 1/3.",
+        "lines": [
+          "p = 1, p + q = 3 ⇒ q = 2",
+          "x/q = 1/3 ⇒ x = q/3 = 2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 1 and p + q = 3 give q = 2, and x/q = 1/3 gives x = two by three.",
+          "accept": [
+            "p is one, p plus q is three so q is two, and x by q is one by three so x is two by three",
+            "the first factor gives p equal to one and the second gives q equal to two",
+            "x by q equals one by three so x equals two by three",
+            "p one, q two vasthai, x by q one by three kabatti x two by three",
+            "read off p from the first numerator and q from the gap between the factors"
+          ],
+          "reject": [
+            "find p and q",
+            "find the values"
+          ],
+          "heard_as": [
+            "p equals",
+            "q equals",
+            "x equals",
+            "two by three"
+          ]
+        },
+        "why": "Three unknowns need three matches: the first numerator fixes p, the second fixes p + q, and the ratio inside the bracket fixes x/q. Nothing else in the series is free.",
+        "common_mistakes": [
+          "Taking x = 1/3 directly — the bracket holds x/q, so x = q × 1/3.",
+          "Reading q from the second factor as a whole instead of as p + q."
+        ]
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "equation",
+        "label": "Evaluate the power",
+        "marks": 1,
+        "mark_note": "Value of the power",
+        "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "Invert the fraction first: (1/3) to the power −1/2 is 3 to the power 1/2.",
+        "lines": [
+          {
+            "text": "S = (1 - x)^{-p/q} = \\left(1 - \\tfrac{2}{3}\\right)^{-1/2} = \\left(\\tfrac{1}{3}\\right)^{-1/2} = 3^{1/2}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives one by three to the power minus half, which is three to the power half.",
+          "accept": [
+            "substituting gives one by three to the power minus half, which is three to the power half",
+            "put the values into (1 − x)^(−p/q) and simplify to get one by three to the power minus half, which is three to the power half",
+            "the bracket becomes one by three and the power gives one by three to the power minus half, which is three to the power half",
+            "values substitute cheste one by three to the power minus half, which is three to the power half vasthundi",
+            "simplify the bracket first then apply the negative index"
+          ],
+          "reject": [
+            "substitute",
+            "simplify it"
+          ],
+          "heard_as": [
+            "power",
+            "root",
+            "one by three to the power minus half, which is three to the power half"
+          ]
+        },
+        "why": "A negative index inverts the fraction and a fractional index takes a root. Doing the inversion first keeps the root over a simple fraction.",
+        "common_mistakes": [
+          "Inverting the exponent instead of the fraction when the index is negative.",
+          "Leaving a root in the denominator without a clear final value."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "State the sum",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. 3 to the power half is √3 — write it as a root, not as a decimal.",
+        "memory_tip": "Leave it as √3. A decimal is not the expected final form.",
+        "lines": [
+          {
+            "text": "∴ S = √3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the series is √3.",
+          "accept": [
+            "the sum is root three",
+            "S equals root three",
+            "three to the power half which is root three",
+            "sum root three vasthundi",
+            "the series adds up to root three"
+          ],
+          "reject": [
+            "that gives the answer",
+            "finish it"
+          ],
+          "heard_as": [
+            "root three",
+            "root 3",
+            "square root of three"
+          ]
+        },
+        "why": "The whole series reduces to one number because it IS the expansion of (1 − 2/3) to the power −1/2, which is √3.",
+        "common_mistakes": [
+          "Writing 1.732 instead of √3.",
+          "Stopping at (1/3) to the power −1/2 without simplifying."
+        ]
+      }
+    ]
+  }
+}

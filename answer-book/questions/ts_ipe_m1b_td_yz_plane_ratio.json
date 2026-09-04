@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A coordinate plane is where one coordinate is ZERO, so the YZ-plane divides the join in the ratio −x₁ : x₂ — the two x-coordinates, with a minus on the first.",
+        "memory_tip": "On the YZ-plane the X coordinate is zero, so the ratio is −x₁ : x₂.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Put that ratio into the section formula. A NEGATIVE ratio means the plane cuts the line EXTERNALLY, outside the segment — a real answer, not an error.",
+        "memory_tip": "Put that ratio into the section formula. The negative ratio means an EXTERNAL division.",
         "lines": [
           "∴ the point which divides A(2,4,5) and B(3,5,−4) in the ratio −2 : 3 is",
           "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n), (mz₂ + nz₁)/(m+n))",
@@ -122,12 +124,13 @@
             "point of intersection"
           ]
         },
-        "why": "A negative ratio is the standard signal for EXTERNAL division, and it is what makes the denominator m + n small — which is why the coordinates can come out large.",
+        "why": "A negative ratio marks EXTERNAL division: the cut lies outside the segment AB, not between A and B, which is why the point can come out far from both of them.",
         "common_mistakes": [
           "Swapping m and n in the section formula.",
           "Treating a negative ratio as an error and flipping its sign."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The YZ-plane is x = 0, so here it is the x-coordinates that give the ratio: −x₁ : x₂ = −2 : 3. The negative ratio is correct, not an error, and the answer's x-coordinate coming out 0 is the check."
 }

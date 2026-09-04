@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_a2_e_x_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of a²eˣ².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take the constant out and open the chain rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the inner x² and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 1. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: with a = 3, the central difference quotient of a²eˣ² reads 8.449278 at x = 0.4 against 2a²x eˣ² = 8.449278, and −20.567184 at x = −0.7 against −20.567184."
+  },
+  "recall_prompt": "Say how you would do this one — say what a² is here, and which part of the expression the chain rule is applied to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constant_and_chain",
+        "kind": "equation",
+        "label": "Take the constant out and open the chain rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a² holds no x, so it is a constant multiplier and comes straight outside. The mark is for writing d/dx(eˣ²) as eˣ² times the derivative of x², not for the arithmetic.",
+        "memory_tip": "Read a²eˣ² from the outside in: constant first, exponential next, x² innermost. Differentiate in that same order.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = a²eˣ²",
+          "Here a is a constant, so a² is a constant multiplier and stays outside.",
+          "∴ dy/dx = a² · d/dx(eˣ²)",
+          "For eᵘ the chain rule gives d/dx(eᵘ) = eᵘ · du/dx, and here u = x²",
+          "∴ dy/dx = a² · eˣ² · d/dx(x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a² is a constant taken outside, and that d/dx(eˣ²) = eˣ² times the derivative of x².",
+          "accept": [
+            "a squared is a constant so take it outside",
+            "e power x squared differentiates to e power x squared times the derivative of x squared",
+            "use the chain rule with u equal to x squared",
+            "a square constant, bayata teesi rasi, tarvata chain rule",
+            "constant stays, then differentiate the exponential"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared",
+            "constant",
+            "chain rule",
+            "e power x squared"
+          ]
+        },
+        "why": "The letter a carries no x, so differentiating it would be treating a constant as a variable. Pulling a² out first leaves one clean chain rule to do, and that chain rule is the only real work in the question.",
+        "common_mistakes": [
+          "Treating a² as a variable and differentiating it to 2a.",
+          "Writing d/dx(eˣ²) = eˣ² and stopping, with no inner derivative."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate the inner x² and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The factor 2x is the whole content of this mark. Without it the answer reads a²eˣ². The 2x is the first thing an examiner looks for.",
+        "memory_tip": "The 2 in the final 2a²x comes from the power 2 in x², not from the a².",
+        "lines": [
+          "d/dx(x²) = 2x",
+          "∴ dy/dx = a² · eˣ² · 2x",
+          {
+            "text": "∴ d/dx(a²eˣ²) = 2a²x eˣ²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inner derivative is 2x, giving 2a²x eˣ².",
+          "accept": [
+            "the derivative of x squared is two x so the answer is two a squared x e power x squared",
+            "multiply by two x at the end",
+            "two a square x into e power x square",
+            "chivarlo two x tho multiply cheyyali",
+            "the inner derivative gives the two x factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x",
+            "two a squared x",
+            "e power x squared",
+            "inner derivative"
+          ]
+        },
+        "why": "The chain rule is only finished when the inner derivative is written. A missing 2x is the single most common way this two-line question loses a mark.",
+        "common_mistakes": [
+          "Leaving out the factor 2x.",
+          "Writing 2ax instead of 2a²x by dropping one power of a."
+        ]
+      }
+    ]
+  },
+  "insider_note": "a is a constant, so a² sits outside untouched — only eˣ² is differentiated. The chain rule on x² supplies the 2x that appears in the answer."
+}

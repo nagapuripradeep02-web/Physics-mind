@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. cos(5π/8) and cos(7π/8) both come out NEGATIVE, which turns two of the brackets from (1 + …) into (1 − …).",
+        "memory_tip": "Both reduce NEGATIVE, which turns two brackets from (1 + …) into (1 − …).",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Pair each (1 + x) with its matching (1 − x). Each pair gives 1 − x², and 1 − cos² is sin².",
+        "memory_tip": "Pair each (1 + x) with its matching (1 − x): each pair gives 1 − x², and 1 − cos² is sin².",
         "lines": [
           "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))(1 − cos(3π/8))(1 − cos(π/8))",
           "= (1 − cos²(π/8))(1 − cos²(3π/8))",
@@ -137,6 +139,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sin(3π/8) is cos(π/8), so the product becomes sin² times cos² of the SAME angle — which the double-angle formula can handle.",
+        "memory_tip": "sin(3π/8) = cos(π/8), so the product is sin² times cos² of the SAME angle.",
         "lines": [
           "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
           "= sin²(π/8) cos²(π/8)"
@@ -162,7 +165,7 @@
             "sin squared cos squared"
           ]
         },
-        "why": "A product of a sine and cosine of the SAME angle is a double angle in disguise. Getting both into one angle is what unlocks the last step.",
+        "why": "A product of a sine and cosine of the SAME angle can be written as a double angle. Getting both into one angle is what makes the last step possible.",
         "common_mistakes": [
           "Leaving the two different angles and being unable to finish.",
           "Writing sin(3π/8) = sin(π/8)."
@@ -175,6 +178,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Introduce a 1/4 so that 2 sin cos can be formed, then sin(π/4) = 1/√2.",
+        "memory_tip": "Introduce a 1/4 so 2 sin cos can be formed, then sin(π/4) = 1/√2.",
         "lines": [
           "= (1/4)[2 sin(π/8) cos(π/8)]²",
           "= (1/4)[sin(π/4)]² = (1/4)(1/√2)²",
@@ -212,5 +216,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce the last two angles so they pair as (1 + x)(1 − x) with the first two. That leaves sin²·sin², and sin(3π/8) = cos(π/8) turns it into the double-angle form."
 }

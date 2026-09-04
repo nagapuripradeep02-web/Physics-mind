@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_isochoric_and_isobaric_discuss",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss the isochoric process and the isobaric process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The isochoric process",
+      "marks": 1
+    },
+    {
+      "label": "Isochoric heat",
+      "marks": 1
+    },
+    {
+      "label": "The isobaric process",
+      "marks": 1
+    },
+    {
+      "label": "Isobaric heat",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 11 (printed p.130). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: isochoric has ΔV = 0 so W = 0 and ΔQ = ΔU = nC_VΔT; isobaric has W = PΔV = nRΔT and, by the first law with Mayer's relation C_P = C_V + R, ΔQ = nC_PΔT; the isochoric line is vertical and the isobaric line horizontal on a P–V diagram. C_V and C_P here are MOLAR specific heats."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isochoric",
+        "kind": "equation",
+        "label": "The isochoric process",
+        "marks": 1,
+        "mark_note": "W = 0",
+        "lines": [
+          "An isochoric process holds volume",
+          "fixed, so no work is done:",
+          {
+            "text": "W = 0",
+            "style": "eq"
+          },
+          "On a P–V diagram it is a vertical",
+          "line. Example: a gas heated inside",
+          "a rigid, closed vessel."
+        ],
+        "margin_note": "First mark. W = 0, the vertical P–V line, and the rigid-vessel example.",
+        "why": "Work is P dV, and dV = 0 throughout a fixed-volume process, so the work is zero however the pressure changes.",
+        "common_mistakes": [
+          "Confusing this with the isobaric line, which is horizontal, not vertical.",
+          "Saying no work is done because pressure is constant — pressure is NOT constant here, volume is."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an isochoric process has W equal to zero, is a vertical line on a P V diagram, with the example of a gas heated in a rigid closed vessel.",
+          "accept": [
+            "W equals zero",
+            "vertical line",
+            "rigid closed vessel"
+          ],
+          "reject": [
+            "W equals P delta V"
+          ],
+          "heard_as": [
+            "W zero",
+            "vertical line"
+          ]
+        },
+        "memory_tip": "The walls do not move, so ΔV = 0 and W = ∫P dV = 0 — a force with no displacement does no work."
+      },
+      {
+        "id": "s2_isochoric_heat",
+        "kind": "equation",
+        "label": "Isochoric heat",
+        "marks": 1,
+        "mark_note": "ΔQ = n C_V ΔT",
+        "lines": [
+          "With W = 0, the first law",
+          "ΔQ = ΔU + W gives",
+          {
+            "text": "ΔQ = ΔU = n C_V ΔT",
+            "style": "eq"
+          },
+          "All the heat supplied raises the",
+          "internal energy; none of it is",
+          "spent doing work."
+        ],
+        "margin_note": "Second mark. ΔQ = ΔU = n C_V ΔT, from the first law with W = 0.",
+        "why": "With no work to share the heat with, every joule supplied goes straight into raising the internal energy — that is why C_V, the constant-volume specific heat, appears here.",
+        "common_mistakes": [
+          "Writing ΔQ = n C_P ΔT — C_P belongs to the isobaric process, not this one.",
+          "Forgetting to set W = 0 before applying the first law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delta Q equals delta U equals n C V delta T for the isochoric process.",
+          "accept": [
+            "delta Q equals delta U",
+            "n C V delta T"
+          ],
+          "reject": [
+            "n C P delta T"
+          ],
+          "heard_as": [
+            "delta Q equals delta U",
+            "n C V delta T"
+          ]
+        },
+        "memory_tip": "No work to share the heat with: ALL of it raises the internal energy."
+      },
+      {
+        "id": "s3_isobaric",
+        "kind": "equation",
+        "label": "The isobaric process",
+        "marks": 1,
+        "mark_note": "W = P ΔV",
+        "lines": [
+          "An isobaric process holds",
+          "pressure fixed, so the work done",
+          "is",
+          {
+            "text": "W = P ΔV = nR ΔT",
+            "style": "eq"
+          },
+          "On a P–V diagram it is a",
+          "horizontal line. Example: water",
+          "heated in an open vessel at",
+          "atmospheric pressure."
+        ],
+        "margin_note": "Third mark. W = P ΔV = nR ΔT, the horizontal line, and the open-vessel example.",
+        "why": "Pressure is fixed here, so the work is simply pressure times the change in volume, and PΔV can be rewritten as nRΔT using the gas equation.",
+        "common_mistakes": [
+          "Confusing this with the isochoric line, which is vertical, not horizontal.",
+          "Writing W = V ΔP instead of W = P ΔV — pressure is what stays fixed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an isobaric process has W equal to P delta V equal to n R delta T, is a horizontal line, with the example of water heated in an open vessel.",
+          "accept": [
+            "W equals P delta V",
+            "n R delta T",
+            "horizontal line",
+            "open vessel"
+          ],
+          "reject": [
+            "W equals zero"
+          ],
+          "heard_as": [
+            "P delta V",
+            "horizontal line"
+          ]
+        },
+        "memory_tip": "Isobaric: fixed PRESSURE, horizontal line, work is P times ΔV."
+      },
+      {
+        "id": "s4_isobaric_heat",
+        "kind": "boxed_final",
+        "label": "Isobaric heat",
+        "marks": 1,
+        "mark_note": "ΔQ = n C_P ΔT",
+        "lines": [
+          "For an ideal gas, internal energy",
+          "depends on temperature ALONE, so",
+          "ΔU = n C_V ΔT holds here too,",
+          "even though pressure, not volume,",
+          "is fixed in this process.",
+          "By the first law, ΔQ = ΔU + W =",
+          "n C_V ΔT + nR ΔT. Using Mayer's",
+          "relation C_P = C_V + R, this is",
+          {
+            "text": "ΔQ = n C_P ΔT",
+            "style": "boxed"
+          },
+          "More heat is needed than at",
+          "constant volume, because part of",
+          "it now also does work."
+        ],
+        "margin_note": "Fourth mark. ΔQ = n C_P ΔT, reached through Mayer's relation.",
+        "why": "At constant pressure the heat has two jobs — raising the internal energy AND doing work — so it needs the larger specific heat C_P, which is exactly C_V + R more per mole.",
+        "common_mistakes": [
+          "Writing ΔQ = n C_V ΔT here — that is the isochoric relation, not this one.",
+          "Forgetting Mayer's relation and leaving the answer as n C_V ΔT + nR ΔT unsimplified."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delta Q equals n C P delta T for the isobaric process, reached through Mayer's relation C P equals C V plus R.",
+          "accept": [
+            "delta Q equals n C P delta T",
+            "Mayer's relation",
+            "C P equals C V plus R"
+          ],
+          "reject": [
+            "delta Q equals n C V delta T"
+          ],
+          "heard_as": [
+            "n C P delta T",
+            "Mayer's relation"
+          ]
+        },
+        "memory_tip": "Constant pressure needs C_P, the LARGER specific heat — heat here also has to do work."
+      }
+    ]
+  },
+  "insider_note": "The heat relations are where marks are lost — an answer that states W = 0 and W = PΔV but never reaches ΔQ = nC_VΔT and ΔQ = nC_PΔT has written only half of this answer."
+}

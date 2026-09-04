@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_absolute_zero_kinetic_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the concept of absolute zero of temperature on the basis of kinetic theory.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Average KE and temperature",
+      "marks": 1
+    },
+    {
+      "label": "The zero point",
+      "marks": 1
+    },
+    {
+      "label": "Pressure at T = 0",
+      "marks": 1
+    },
+    {
+      "label": "The definition and its limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 3 (printed p.139). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: ½mv̄² = (3/2)k_BT falls to zero only at T = 0 on the absolute scale, and P = ⅔(E/V) means the pressure of an ideal gas falls to zero too; absolute zero is this theoretical limit, never reached by any real gas because every real gas liquefies first."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_avg_ke",
+        "kind": "equation",
+        "label": "Average KE and temperature",
+        "marks": 1,
+        "mark_note": "The energy-temperature relation",
+        "lines": [
+          "From kinetic theory, the average",
+          "translational kinetic energy of a",
+          "molecule of a gas is",
+          {
+            "text": "½mv̄² = (3/2)k_BT",
+            "style": "eq"
+          },
+          "where T is the absolute temperature."
+        ],
+        "margin_note": "State the relation between average kinetic energy and T before discussing the limit.",
+        "why": "This relation is the only place T appears in the kinetic picture of a gas, so its behaviour as T falls decides what absolute zero means.",
+        "common_mistakes": [
+          "Taking the longer route through PV = Nk_BT — that route is also valid, but the energy relation is quicker here, because the question is about molecular motion."
+        ],
+        "memory_tip": "Average kinetic energy and absolute temperature: one relation, ½mv̄² = (3/2)k_BT."
+      },
+      {
+        "id": "s2_zero_point",
+        "kind": "text",
+        "label": "The zero point",
+        "marks": 1,
+        "mark_note": "Motion stops at T = 0",
+        "lines": [
+          "As T decreases, the average kinetic",
+          "energy ½mv̄² decreases in direct",
+          "proportion.",
+          "It can fall to zero only when T = 0",
+          "on the absolute (kelvin) scale."
+        ],
+        "margin_note": "Say clearly that T = 0 is where the average kinetic energy becomes zero.",
+        "why": "Since ½mv̄² = (3/2)k_BT is a direct proportion with no additive constant, the only temperature at which the average kinetic energy is zero is T = 0 itself.",
+        "common_mistakes": [
+          "Saying molecular motion slows down at absolute zero. Kinetic theory says it stops completely — the average kinetic energy is exactly zero."
+        ],
+        "memory_tip": "Zero kinetic energy needs zero T — a direct proportion has no other zero."
+      },
+      {
+        "id": "s3_pressure",
+        "kind": "equation",
+        "label": "Pressure at T = 0",
+        "marks": 1,
+        "mark_note": "Pressure falls to zero too",
+        "lines": [
+          "Since pressure is related to the",
+          "translational kinetic energy by",
+          {
+            "text": "P = ⅔(E/V)",
+            "style": "eq"
+          },
+          "the pressure of an ideal gas would",
+          "also fall to zero at T = 0."
+        ],
+        "margin_note": "Connect the falling kinetic energy to the falling pressure of the gas.",
+        "why": "P = ⅔(E/V) makes pressure directly proportional to the total translational kinetic energy E, so the same zero at T = 0 carries through to the pressure of an ideal gas.",
+        "common_mistakes": [
+          "Stopping at the falling kinetic energy without connecting it to a falling pressure — the question is about the gas's observable behaviour too."
+        ],
+        "memory_tip": "Zero average kinetic energy means zero pressure too, through P = ⅔(E/V)."
+      },
+      {
+        "id": "s4_definition",
+        "kind": "boxed_final",
+        "label": "The definition and its limit",
+        "marks": 1,
+        "mark_note": "Definition + real-gas limit",
+        "lines": [
+          "Absolute zero is the temperature at",
+          "which molecular translational",
+          "motion, and so the pressure of an",
+          "ideal gas, would fall to zero.",
+          {
+            "text": "Absolute zero: T = 0 K",
+            "style": "boxed"
+          },
+          "It is a theoretical limit. No real",
+          "gas reaches it, because every real",
+          "gas liquefies before T = 0 is",
+          "reached."
+        ],
+        "margin_note": "State both the definition AND that it is a limit no real gas reaches.",
+        "why": "The definition follows directly from the previous two steps, and the liquefaction point matters because kinetic theory assumes molecules interact only through elastic collisions — an assumption that fails once a real gas condenses.",
+        "common_mistakes": [
+          "Saying absolute zero has been reached in real experiments. Only temperatures a small fraction of a kelvin above it have been reached; every real gas liquefies first."
+        ],
+        "memory_tip": "Absolute zero is a limit approached, never reached — real gases liquefy first."
+      }
+    ]
+  },
+  "insider_note": "The mark for stating that no real gas reaches absolute zero, because every real gas liquefies first, is often missed — students give the definition and stop."
+}

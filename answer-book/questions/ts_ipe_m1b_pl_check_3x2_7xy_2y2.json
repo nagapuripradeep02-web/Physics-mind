@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
   "appearances": [
     {
@@ -24,40 +24,36 @@
   ],
   "mark_split": [
     {
-      "label": "Compare the coefficients",
+      "label": "Test Δ = 0",
       "marks": 1
     },
     {
-      "label": "Test Δ = 0",
-      "marks": 2
-    },
-    {
       "label": "Test the three inequalities",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Find the point of intersection",
-      "marks": 3
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the point of intersection."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Find the point of intersection. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+2+2+3 — reading the six coefficients off the given equation earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — name the four conditions you must check, and how you get the point without factorising.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_compare_coefficients",
         "kind": "equation",
         "label": "Compare the coefficients",
-        "marks": 1,
-        "margin_note": "First mark. Every test that follows is written in a, h, b, g, f, c — so read all six off the given equation first, halving the ones the standard form doubles.",
+        "marks": 0,
+        "margin_note": "No mark of its own. Every test that follows is written in a, h, b, g, f, c — so read all six off the given equation first, halving the ones the standard form doubles.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,14 +91,14 @@
           "Taking h as the whole xy coefficient instead of half of it.",
           "Getting the sign of a negative coefficient wrong."
         ],
-        "mark_note": "Method"
+        "memory_tip": "Read off all six coefficients first, halving the doubled ones."
       },
       {
         "id": "s2_delta",
         "kind": "equation",
         "label": "Test Δ = 0",
-        "marks": 2,
-        "margin_note": "Two marks. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "marks": 1,
+        "margin_note": "First mark. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
         "lines": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           "= 3(2)(2) + 2(5/2)(5/2)(7/2) − 3(5/2)² − 2(5/2)² − 2(7/2)²",
@@ -131,19 +127,20 @@
             "master test"
           ]
         },
-        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the condition proved in answer 10 of this same chapter.",
+        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the standard condition for a general second-degree equation to represent a pair of lines.",
         "common_mistakes": [
           "Dropping one of the five terms of Δ.",
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two lines."
       },
       {
         "id": "s3_inequalities",
         "kind": "equation",
         "label": "Test the three inequalities",
-        "marks": 2,
-        "margin_note": "Two marks. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "marks": 1,
+        "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
         "lines": [
           "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6 = (49 − 24)/4 = 25/4 > 0",
           "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4 = (25 − 16)/4 = 9/4 > 0",
@@ -177,14 +174,15 @@
           "Stopping at Δ = 0 and declaring the answer.",
           "Testing only one of the three inequalities."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together settle it."
       },
       {
         "id": "s4_point",
         "kind": "boxed_final",
         "label": "Find the point of intersection",
-        "marks": 3,
-        "margin_note": "The last three marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
+        "marks": 2,
+        "margin_note": "The last two marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
         "lines": [
           "(b) Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
           "(hf − bg)/(ab − h²) = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
@@ -223,8 +221,10 @@
           "Swapping the two numerators between x and y.",
           "Using ab + h² in the denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving."
       }
     ]
-  }
+  },
+  "insider_note": "The point of intersection carries two of the four marks, so the Δ test and the inequalities are one line each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
 }

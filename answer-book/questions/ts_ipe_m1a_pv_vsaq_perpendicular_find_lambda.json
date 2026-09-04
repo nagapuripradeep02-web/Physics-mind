@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Perpendicular means dot product zero — write that condition down as an equation before substituting anything.",
+        "memory_tip": "Perpendicular means the dot product is ZERO. Write that condition as an equation first.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Expand, collect, solve. One line each.",
+        "memory_tip": "Expand, collect, solve — one line each.",
         "lines": [
           "⇒ 2(4) − 2λ − 2 = 0",
           "⇒ 8 − 2λ − 2 = 0",
@@ -129,12 +131,13 @@
             "two lambda"
           ]
         },
-        "why": "The dot product is linear in λ here, so there is exactly one answer — unlike the next question, where λ appears squared.",
+        "why": "The dot product is linear in λ here, so there is exactly one answer. When λ sits in both vectors the equation becomes quadratic and there are two.",
         "common_mistakes": [
           "Sign slip on the k term: (−1)(2) = −2.",
           "Getting λ = −3."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Perpendicular means the dot product is zero — no cross product is involved. The k terms give (−1)(2) = −2, and losing that sign turns λ = 3 into 5."
 }

@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos2_sum_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A, B, C are the angles of a triangle, prove that cos 2A + cos 2B − cos 2C = 1 − 4 sin A sin B cos C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 3
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.97, chapter 8 TRANSFORMATIONS, Long Answer question 1(v). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.0923962655, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. C is the angle whose term carries the minus sign, so the condition is rearranged around C. It is used twice below, once on a cosine of a sum and once inside the bracket.",
+        "memory_tip": "A + B = 180° − C. Keep C separate — it is the angle carrying the minus sign.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = 180°  ⇒  A + B = 180° − C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first in the form the proof needs",
+            "state the given condition and rearrange it as A plus B equals one eighty minus C",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "rearrange",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is false, so this line is the hypothesis the whole proof depends on, not preamble.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 3,
+        "mark_note": "Sum to product",
+        "margin_note": "Three of the eight marks. Pair the two plus terms. For the third term, choose the double angle form that produces the 1 the right-hand side begins with — that choice is what makes the rest of the proof work.",
+        "memory_tip": "Choose cos 2C = 2cos²C − 1. With the minus in front it gives 1 − 2cos²C, and that supplies the leading 1.",
+        "lines": [
+          "L.H.S = cos 2A + cos 2B − cos 2C",
+          "= 2 cos((2A+2B)/2) cos((2A−2B)/2) − cos 2C",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "= 2 cos(A+B) cos(A−B) − (2cos²C − 1)",
+          "  [∵ cos2θ = 2cos²θ − 1]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2A and cos 2B are paired with the cos C + cos D formula, and cos 2C is expanded as 2cos²C − 1.",
+          "accept": [
+            "pair the first two with cos C plus cos D and write cos two C as two cos squared C minus one",
+            "apply sum to product on the two plus terms and the double angle form on the third",
+            "use the cosine sum formula on cos two A and cos two B",
+            "modati rendu ki cos C plus cos D formula, moodava term two cos square C minus one",
+            "combine two terms and expand the third to get the one"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos C plus cos D",
+            "two cos squared C minus one",
+            "sum to product",
+            "double angle"
+          ]
+        },
+        "why": "The right-hand side starts with 1, so a 1 has to be produced. Subtracting 2cos²C − 1 is where it comes from.",
+        "common_mistakes": [
+          "Using cos 2C = 1 − 2sin²C, which cannot produce the leading 1 once the minus sign is in front.",
+          "Dropping the bracket around 2cos²C − 1 and losing the sign on the 1."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. The condition turns cos(A+B) into −cos C, and that minus sign is what lets both cosine terms be collected under the same factor.",
+        "memory_tip": "cos(180° − C) = −cos C, with the MINUS. Cosine changes sign across 180°, sine does not.",
+        "lines": [
+          "= 2 cos(180° − C) cos(A−B) − 2cos²C + 1",
+          "  [∵ (A+B) + C = 180°]",
+          "= −2 cosC cos(A−B) − 2cos²C + 1",
+          "  [∵ cos(180° − θ) = −cosθ]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B becomes 180° − C, and cos(180° − C) = −cos C, which introduces the minus sign.",
+          "accept": [
+            "replace A plus B by one eighty minus C and the cosine picks up a minus sign",
+            "cos of one eighty minus C is minus cos C",
+            "use the angle condition, the cosine becomes negative",
+            "cos one eighty minus C ante minus cos C",
+            "substitute and the sign flips"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus cos C",
+            "one eighty minus C",
+            "sign flips",
+            "angle condition"
+          ]
+        },
+        "why": "Cosine changes sign across 180°. That single sign is what makes both terms share the factor 2 cos C.",
+        "common_mistakes": [
+          "Writing cos(180° − C) = +cos C.",
+          "Forgetting to use the condition at all."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Seventh mark. The 1 is set aside and 2 cos C comes out; the condition is used a SECOND time inside the bracket so that the bracket becomes a difference of two cosines.",
+        "memory_tip": "Set the 1 aside first, then take 2 cos C out. Inside, cos C = −cos(A+B) makes the bracket a difference.",
+        "lines": [
+          "= 1 − 2 cosC [cos(A−B) + cosC]",
+          "= 1 − 2 cosC [cos(A−B) − cos(A+B)]",
+          "  [∵ cosC = cos(180° − (A+B)) = −cos(A+B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 1 is separated out and 2 cos C taken as the common factor, with cos C rewritten as −cos(A+B) so the bracket becomes a difference.",
+          "accept": [
+            "keep the one outside and take two cos C common, then cos C becomes minus cos A plus B",
+            "separate the one and factor out two cos C",
+            "the bracket becomes cos A minus B minus cos A plus B",
+            "one ni veru chesi, two cos C common teeyyali",
+            "use the condition a second time so the bracket subtracts"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus",
+            "two cos C",
+            "common factor",
+            "cos A plus B",
+            "difference"
+          ]
+        },
+        "why": "The right-hand side carries sin A sin B, and only a DIFFERENCE of cosines gives a product of sines. That is why the second substitution is made.",
+        "common_mistakes": [
+          "Trying to take the 1 inside the bracket.",
+          "Leaving the bracket as a sum, which would give cosines instead of sines."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The difference of two cosines becomes a product of two sines and the proof is finished. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
+        "memory_tip": "A DIFFERENCE of cosines gives 2 sinA sinB. Keep the leading 1.",
+        "lines": [
+          "= 1 − 2 cosC (2 sinA sinB)",
+          "  [∵ cos(A−B) − cos(A+B) = 2 sinA sinB]",
+          {
+            "text": "= 1 − 4 sinA sinB cosC = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A−B) − cos(A+B) = 2 sinA sinB is applied, giving 1 − 4 sinA sinB cosC.",
+          "accept": [
+            "use cos A minus B minus cos A plus B equals two sin A sin B to get one minus four sin A sin B cos C",
+            "the bracket becomes two sin A sin B so the answer is one minus four sin A sin B cos C",
+            "apply the product formula and keep the one",
+            "cos difference formula tho two sin A sin B vasthundi, one minus four sin A sin B cos C",
+            "the final answer is one minus four sin A sin B cos C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin A sin B",
+            "four sin A sin B cos C",
+            "one minus",
+            "product formula"
+          ]
+        },
+        "why": "cos(A−B) − cos(A+B) = 2 sin A sin B supplies the two sine factors, and the cos C is the factor already taken out.",
+        "common_mistakes": [
+          "Using cos(A+B) − cos(A−B), which flips the sign.",
+          "Losing the leading 1 at the very end."
+        ]
+      }
+    ]
+  }
+}

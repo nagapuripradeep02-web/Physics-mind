@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_bacteria_t_three_halves_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A kind of bacteria grows so that at time t seconds there are t³⁄² bacteria. Find the rate of growth at time t = 4 seconds.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the count",
+      "marks": 1
+    },
+    {
+      "label": "Substitute t = 4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 11(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. PRINTED STEM DEFECT, RECORDED AND NOT SILENTLY CORRECTED: the book's stem gives the count in SECONDS (at time t sec there are t to the power 3/2 bacteria) and then asks for the rate of growth at t = 4 HOURS, while its own working substitutes t = 4 into the derivative. The two readings cannot both hold — with t in seconds, 4 hours is t = 14400, and the book does not use that number anywhere. The stem authored here therefore reads 't = 4 seconds', the only reading consistent with the formula and with the book's own substitution. The exponent is also written here in real Unicode (t³⁄²) rather than the ASCII transcription t^(3/2), per this bank's notation rule; the quantity is unchanged. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what rate of growth means here and what you differentiate.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the count",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rate of growth question. The rate of growth is the derivative of the number of bacteria with respect to time. The power rule works on 3/2 exactly as on a whole number: 3/2 − 1 = 1/2, and t to the power 1/2 is √t.",
+        "memory_tip": "A fractional power follows the same rule as any other: multiply by the power, then subtract one from it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rate of growth question, so differentiate the count with respect to time.",
+          "Let N = t³⁄² be the number of bacteria at time t seconds.",
+          "dN/dt = (3/2) t¹⁄²",
+          "= (3/2)√t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rate of growth is dN/dt, and that differentiating t³⁄² gives (3/2)√t.",
+          "accept": [
+            "rate of growth is the derivative of the number with respect to time",
+            "differentiate t to the power three by two and get three by two root t",
+            "bring the three by two down and reduce the power to one by two",
+            "rate of growth ante d N by d t, differentiate cheyyali",
+            "the derivative is three by two times root t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by two",
+            "root t",
+            "d N by d t",
+            "power rule"
+          ]
+        },
+        "why": "Rate of growth means the derivative of the population with respect to time, so the whole method is one use of the power rule on a fractional index.",
+        "common_mistakes": [
+          "Reducing the power but writing t³⁄² again in the derivative.",
+          "Reading t³⁄² as (3/2)t and differentiating to 3/2.",
+          "Substituting t = 4 into t³⁄² and reporting 8, which is the count and not the rate."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute t = 4",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. √4 = 2 exactly, so (3/2)(2) = 3 and the answer is a whole number. The unit is bacteria per second, because the count is differentiated with respect to time in seconds.",
+        "memory_tip": "At t = 4 the count is 8 and the rate is 3 — two different numbers from one question. Read which one is asked before starting.",
+        "lines": [
+          "At t = 4,",
+          "dN/dt = (3/2)√4",
+          "= (3/2)(2)",
+          {
+            "text": "∴ rate of growth at t = 4 sec is 3 bacteria per second",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting t = 4 gives (3/2)(2) = 3 bacteria per second.",
+          "accept": [
+            "root four is two so three by two into two is three",
+            "the rate is three bacteria per second",
+            "put t equals four in three by two root t and get three",
+            "four substitute cheste three bacteria per second vasthundi",
+            "the answer is three per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root four",
+            "three",
+            "bacteria per second",
+            "t equals four"
+          ]
+        },
+        "why": "The 2 from √4 cancels the 2 in the denominator, so the rate comes out as the exact whole number 3 with no rounding.",
+        "common_mistakes": [
+          "Writing (3/2) × 4 = 6 by substituting into t instead of into √t.",
+          "Giving 8, the value of t³⁄² at t = 4, which is the number of bacteria and not the rate.",
+          "Leaving the answer without the unit bacteria per second."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Differentiate t^(3/2) by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3."
+}

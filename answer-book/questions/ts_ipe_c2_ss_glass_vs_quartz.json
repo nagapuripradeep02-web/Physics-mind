@@ -51,9 +51,9 @@
           "are arranged irregularly, with short range",
           "order only."
         ],
-        "why": "Glass and quartz are both silicon dioxide built from the same SiO4 tetrahedra, so the composition cannot be the answer. The only thing that differs is how those tetrahedra are arranged, and in glass the arrangement is irregular.",
+        "why": "Quartz and quartz glass are both silicon dioxide, built from the same SiO4 tetrahedra, so the composition cannot be the answer. The only thing that differs is how those tetrahedra are arranged, and in glass the arrangement is irregular.",
         "common_mistakes": [
-          "Saying the two have different chemical formulae. Both are silicon dioxide; only the arrangement differs.",
+          "Naming a composition difference as the answer. The comparison here is with quartz glass, which is silicon dioxide like quartz, so only the arrangement differs.",
           "Writing that glass has no order at all. It has short range order and lacks long range order."
         ],
         "memory_tip": "Same building block, different stacking. Glass is the disordered stack.",
@@ -75,7 +75,7 @@
           "with long range order.",
           "Both are made of the same SiO4 units."
         ],
-        "why": "The second mark is the other half of the comparison. Quartz has the same SiO4 tetrahedra joined in an ordered three dimensional network, so it has long range order, a sharp melting point and anisotropic properties.",
+        "why": "The second mark is the other half of the comparison. Quartz has the same SiO4 tetrahedra joined in an ordered three dimensional network, so it has long range order, a sharp melting point and anisotropic properties. The glass in this comparison is quartz glass, the amorphous form of quartz; ordinary window glass also contains sodium and calcium oxides, so its composition is not exactly that of quartz.",
         "common_mistakes": [
           "Describing only one of the two solids. A comparison question needs both sides written.",
           "Writing that quartz is amorphous because it looks glassy. Quartz is crystalline; fused quartz, made by melting it and cooling it quickly, is the amorphous form."

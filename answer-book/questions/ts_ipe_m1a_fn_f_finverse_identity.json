@@ -66,6 +66,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "No mark of its own. The one fact both parts need is that f is a bijection, so f⁻¹ exists and is itself a bijection. Write that before either part.",
+        "memory_tip": "f is a bijection, so f⁻¹ exists and runs B→A. Say that before either part.",
         "lines": [
           {
             "text": "Given:",
@@ -120,6 +121,7 @@
         "marks": 4,
         "mark_note": "First part",
         "margin_note": "Four of the eight marks. This side starts at B, so the element you take is b, not a. Get the domain line down, then the substitution.",
+        "memory_tip": "This side starts at B, so take b, not a. It lands on I_B, whose domain is B.",
         "lines": [
           {
             "text": "\\text{(i) To prove } f \\circ f^{-1} = I_B",
@@ -192,6 +194,7 @@
         "marks": 4,
         "mark_note": "Second part",
         "margin_note": "Four of the eight marks. The mirror of part (i): this side starts at A, so take a, and it lands on I_A. Write it out fully, never 'by symmetry'.",
+        "memory_tip": "The mirror: this side starts at A, take a, and it lands on I_A. Write it out — never 'by symmetry'.",
         "lines": [
           {
             "text": "\\text{(ii) To prove } f^{-1} \\circ f = I_A",
@@ -215,7 +218,7 @@
             "render": "katex"
           },
           {
-            "text": "= f^{-1}(b) \\quad (\\because f(a) = b)",
+            "text": "= f^{-1}(b) \\quad (\\text{where } b = f(a) \\in B)",
             "render": "katex"
           },
           {
@@ -263,6 +266,7 @@
         "label": "Conclude",
         "marks": 0,
         "margin_note": "No separate mark. Both results on the final line, in the order the question asked.",
+        "memory_tip": "Both results on the final line, in the order the question asked.",
         "lines": [
           {
             "text": "f \\circ f^{-1} = I_B, \\quad f^{-1} \\circ f = I_A",
@@ -299,5 +303,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both parts need the DOMAIN check before the values — that is half the structure the marks follow. Watch which identity belongs to which side: fof⁻¹ lands in B, so it equals I_B and never I_A."
 }

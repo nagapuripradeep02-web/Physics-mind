@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_pv_diagrams_four_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw the P–V diagrams for the isothermal process, the adiabatic process, the isobaric process and the isochoric process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The isothermal curve",
+      "marks": 1
+    },
+    {
+      "label": "The adiabatic curve",
+      "marks": 1
+    },
+    {
+      "label": "The isobaric line",
+      "marks": 1
+    },
+    {
+      "label": "The isochoric line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 9 (printed p.129). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: PV = constant and PV^γ = constant are both falling hyperbolas with the adiabatic curve steeper because γ = C_P/C_V is greater than 1; the isobaric process traces a horizontal line and the isochoric process a vertical line on the P–V diagram; the area under any of the four curves is the work done in that process. No figure is authored on this card — a text description of each curve is used instead, per the authoring brief's figure-risk note."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isothermal",
+        "kind": "equation",
+        "label": "The isothermal curve",
+        "marks": 1,
+        "mark_note": "Isothermal curve",
+        "lines": [
+          "On axes of pressure P (vertical)",
+          "against volume V (horizontal), the",
+          "isothermal process is a smooth",
+          "falling curve obeying",
+          {
+            "text": "PV = constant",
+            "style": "eq"
+          },
+          "a rectangular hyperbola: as V",
+          "increases, P falls, and the curve",
+          "never touches either axis."
+        ],
+        "margin_note": "First mark. A smooth falling curve, PV = constant, drawn as a hyperbola.",
+        "why": "PV = constant is a hyperbola, and drawing it as a straight or a J-shaped line is the single commonest mistake on this figure.",
+        "common_mistakes": [
+          "Drawing a straight line instead of a curve.",
+          "Letting the curve touch or cross an axis — it only approaches each axis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the isothermal curve is a smooth falling hyperbola obeying P V equals constant, never touching either axis.",
+          "accept": [
+            "P V equals constant",
+            "hyperbola",
+            "never touches the axes"
+          ],
+          "reject": [
+            "P V to the gamma equals constant"
+          ],
+          "heard_as": [
+            "hyperbola",
+            "falling curve"
+          ]
+        },
+        "memory_tip": "PV = constant is a hyperbola: it falls smoothly and never touches either axis."
+      },
+      {
+        "id": "s2_adiabatic",
+        "kind": "equation",
+        "label": "The adiabatic curve",
+        "marks": 1,
+        "mark_note": "Adiabatic curve",
+        "lines": [
+          "The adiabatic process obeys",
+          {
+            "text": "PV^γ = constant",
+            "style": "eq"
+          },
+          "also a falling hyperbola, but at",
+          "any point it shares with an",
+          "isothermal curve it falls MORE",
+          "steeply, because γ = C_P/C_V is",
+          "greater than 1."
+        ],
+        "margin_note": "Second mark. A steeper falling curve than the isothermal one, crossing it at one point.",
+        "why": "The extra power γ is exactly what makes the adiabatic curve fall faster than the isothermal one — that is the one comparison this figure is drawn to show.",
+        "common_mistakes": [
+          "Drawing the adiabatic curve less steep than the isothermal curve — it must always be the steeper of the two.",
+          "Drawing the two curves on separate axes instead of one shared set of axes, where the crossing and the relative steepness are visible together."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adiabatic curve obeys P V to the gamma equals constant and is steeper than the isothermal curve at any shared point, because gamma is greater than one.",
+          "accept": [
+            "P V to the gamma equals constant",
+            "steeper than isothermal",
+            "gamma greater than one"
+          ],
+          "reject": [
+            "horizontal line"
+          ],
+          "heard_as": [
+            "steeper curve",
+            "P V gamma constant"
+          ]
+        },
+        "memory_tip": "Adiabatic is always the STEEPER curve — the exponent γ is greater than 1."
+      },
+      {
+        "id": "s3_isobaric",
+        "kind": "text",
+        "label": "The isobaric line",
+        "marks": 1,
+        "mark_note": "Isobaric line",
+        "lines": [
+          "The isobaric process holds",
+          "pressure fixed while volume",
+          "changes, so it is drawn as a",
+          "straight HORIZONTAL line on the",
+          "P–V diagram, at the height of the",
+          "fixed pressure."
+        ],
+        "margin_note": "Third mark. A horizontal straight line, at constant P.",
+        "why": "A constant pressure is a constant height on the vertical axis, so the process traces a horizontal line, not a curve.",
+        "common_mistakes": [
+          "Drawing a sloped line instead of a horizontal one.",
+          "Confusing this line with the isochoric line, which is vertical."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the isobaric process is drawn as a horizontal straight line at constant pressure.",
+          "accept": [
+            "horizontal line",
+            "constant pressure"
+          ],
+          "reject": [
+            "vertical line"
+          ],
+          "heard_as": [
+            "horizontal line",
+            "constant P"
+          ]
+        },
+        "memory_tip": "Isobaric: P is fixed, so the line runs flat, left to right."
+      },
+      {
+        "id": "s4_isochoric",
+        "kind": "text",
+        "label": "The isochoric line",
+        "marks": 1,
+        "mark_note": "Isochoric line",
+        "lines": [
+          "The isochoric process holds",
+          "volume fixed while pressure",
+          "changes, so it is drawn as a",
+          "straight VERTICAL line on the",
+          "P–V diagram, at the position of",
+          "the fixed volume.",
+          "On every one of the four curves,",
+          "the area under the curve is the",
+          "work done in that process."
+        ],
+        "margin_note": "Fourth mark. A vertical straight line, at constant V. The area-under-curve rule is a closing note about all four curves, not part of this mark.",
+        "why": "A constant volume is a constant position on the horizontal axis, so the process traces a vertical line — and the shared rule for all four is that the enclosed area under each curve reads off the work.",
+        "common_mistakes": [
+          "Drawing a sloped line instead of a vertical one.",
+          "Forgetting that the isochoric process alone does zero work — its line encloses no area with the V-axis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the isochoric process is a vertical straight line at constant volume, and the area under any curve is the work done.",
+          "accept": [
+            "vertical line",
+            "constant volume",
+            "area under the curve is work"
+          ],
+          "reject": [
+            "horizontal line"
+          ],
+          "heard_as": [
+            "vertical line",
+            "area is work"
+          ]
+        },
+        "memory_tip": "Isochoric: V is fixed, so the line runs straight up. No area, no work."
+      }
+    ]
+  },
+  "insider_note": "The two curves are best drawn on one shared set of axes, with the adiabatic curve visibly steeper than the isothermal one where they cross — that is what makes the comparison clear, though each curve carries its own mark."
+}

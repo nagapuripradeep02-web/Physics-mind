@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_a_cos_sin_x_plus_b_sin_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If y = a cos(sin x) + b sin(sin x), prove that y₂ + (tan x)y₁ + y cos²x = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate once by the chain rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 1
+    },
+    {
+      "label": "Form the middle term",
+      "marks": 1
+    },
+    {
+      "label": "Add the three terms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the chain rule gives you and why the tan x term is in the result.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_derivative",
+        "kind": "equation",
+        "label": "Differentiate once by the chain rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The inner function is sin x, so every differentiation of the outer part brings out a factor cos x. Naming the bracket P keeps the second differentiation short.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = a cos(sin x) + b sin(sin x)",
+          "The inner function is sin x, whose derivative is cos x, so",
+          "y₁ = [−a sin(sin x) + b cos(sin x)]·cos x",
+          "Write P = b cos(sin x) − a sin(sin x),   so   y₁ = P cos x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chain rule gives y₁ = [b cos(sin x) − a sin(sin x)] cos x.",
+          "accept": [
+            "use the chain rule with sin x as the inner function",
+            "y one is the bracket times cos x",
+            "differentiating the inside gives a cos x factor",
+            "chain rule vaadali, lopala sin x undi kabatti cos x vasthundi",
+            "call the bracket P so that y one is P cos x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chain rule",
+            "inner function",
+            "cos x factor",
+            "y one"
+          ]
+        },
+        "why": "Both terms have sin x inside, so both bring out the same factor cos x. Taking it outside once keeps the next differentiation to two terms instead of four.",
+        "common_mistakes": [
+          "Forgetting the cos x factor from the inner function.",
+          "Writing cos(sin x) as cos x sin x."
+        ],
+        "memory_tip": "Differentiate outside first, then multiply by the derivative of what is inside."
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "equation",
+        "label": "Differentiate a second time",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Differentiating P returns −y cos x, because P and y swap places under differentiation. That single fact is what makes this question short.",
+        "lines": [
+          "P′ = [−b sin(sin x) − a cos(sin x)]·cos x = −y cos x",
+          "y₂ = P′cos x + P(−sin x)",
+          "y₂ = −y cos²x − P sin x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P′ = −y cos x, so y₂ = −y cos²x − P sin x.",
+          "accept": [
+            "differentiating P gives minus y cos x",
+            "use the product rule on P times cos x",
+            "y two is minus y cos squared x minus P sin x",
+            "P differentiate cheste minus y cos x vasthundi",
+            "P and y change into each other when differentiated"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P dash",
+            "minus y cos x",
+            "y two",
+            "product rule"
+          ]
+        },
+        "why": "P is built from the same two functions as y with the roles exchanged, so its derivative returns y. That is why the answer closes with only y, y₁ and y₂ in it.",
+        "common_mistakes": [
+          "Differentiating P cos x as P′cos x only, leaving out the second product term.",
+          "Writing P′ as +y cos x and losing the sign of the whole result."
+        ],
+        "memory_tip": "y differentiates into P cos x and P differentiates into −y cos x — each differentiation brings the same cos x out of the inner sin x."
+      },
+      {
+        "id": "s3_middle_term",
+        "kind": "equation",
+        "label": "Form the middle term",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. This one line explains why the identity carries a tan x: it converts y₁, which has a cos x, into the P sin x that y₂ needs cancelling.",
+        "lines": [
+          "(tan x)y₁ = (sin x / cos x)·P cos x",
+          "= P sin x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (tan x)y₁ = P sin x, because the cos x cancels against the cos x in tan x.",
+          "accept": [
+            "tan x times y one is P sin x",
+            "the cos x cancels with the cos x in tan x",
+            "tan x is sin x over cos x so only sin x is left",
+            "cos x cancel ayipoyi P sin x migulutundi",
+            "that is why the identity has a tan x in it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan x",
+            "P sin x",
+            "cancels",
+            "sin over cos"
+          ]
+        },
+        "why": "y₂ contains −P sin x, and nothing else in the identity can remove it. Multiplying y₁ by tan x produces exactly +P sin x, so the tan x is there to cancel that term.",
+        "common_mistakes": [
+          "Writing (tan x)y₁ as P sin x cos x, forgetting the cancellation.",
+          "Using cot x in place of tan x, which leaves a cos²x/sin x factor."
+        ],
+        "memory_tip": "tan x = sin x / cos x, so multiplying anything that carries a cos x by tan x trades that cos x for a sin x."
+      },
+      {
+        "id": "s4_add_terms",
+        "kind": "boxed_final",
+        "label": "Add the three terms",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Two cancelling pairs: P sin x against −P sin x, and y cos²x against −y cos²x. Write both pairs down before claiming the result.",
+        "lines": [
+          "y₂ + (tan x)y₁ + y cos²x = (−y cos²x − P sin x) + P sin x + y cos²x",
+          "The two P sin x terms cancel, and so do the two y cos²x terms",
+          {
+            "text": "∴ y₂ + (tan x)y₁ + y cos²x = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the P sin x terms and the y cos²x terms cancel in pairs, giving 0.",
+          "accept": [
+            "add all three and everything cancels in pairs",
+            "P sin x cancels and y cos squared x cancels",
+            "the sum is zero so it is proved",
+            "anni cancel ayi zero vasthundi",
+            "the two pairs cancel and nothing is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel in pairs",
+            "zero",
+            "P sin x",
+            "y cos squared x"
+          ]
+        },
+        "why": "The identity is exactly the statement that these two pairs cancel. Showing both pairs is the proof; a bare \"= 0\" is not.",
+        "common_mistakes": [
+          "Writing the answer as 0 without showing which terms cancelled.",
+          "Substituting P back and expanding, which makes the cancelling much harder to see."
+        ],
+        "memory_tip": "y₂ has two terms. The other two parts of the identity cancel one each: (tan x)y₁ removes −P sin x, and y cos²x removes −y cos²x."
+      }
+    ]
+  },
+  "insider_note": "Name the bracket P = b cos(sin x) − a sin(sin x) so the second differentiation stays readable. P′ comes out as −y cos x, and that is what makes every term collapse."
+}

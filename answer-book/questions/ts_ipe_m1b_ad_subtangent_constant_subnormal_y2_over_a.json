@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subtangent_constant_subnormal_y2_over_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that at any point (x, y) on the curve y = b e^(x/a): (i) the length of the subtangent is constant, and (ii) the length of the subnormal is y²/a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and write dy/dx in terms of y",
+      "marks": 1
+    },
+    {
+      "label": "State the two lengths",
+      "marks": 1
+    },
+    {
+      "label": "(i) The subtangent is constant",
+      "marks": 1
+    },
+    {
+      "label": "(ii) The subnormal is y²/a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 15. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = b e^(x/a); the working writes the same function in real Unicode as b eˣ⁄ᵃ."
+  },
+  "recall_prompt": "Say how you would show both parts — say what dy/dx works out to in terms of y, then the two formulas you divide and multiply with.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and write dy/dx in terms of y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Writing dy/dx as y/a rather than as (b/a)eˣ⁄ᵃ is the move that makes both parts one line each. Both parts of the question are about y, not about x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y = b eˣ⁄ᵃ",
+          "Differentiate with respect to x. The exponent x/a differentiates to 1/a:",
+          "dy/dx = b · eˣ⁄ᵃ · (1/a) = (1/a)(b eˣ⁄ᵃ)",
+          "But  b eˣ⁄ᵃ = y, so",
+          "∴ m = dy/dx = y/a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (b/a)eˣ⁄ᵃ, and since b eˣ⁄ᵃ is y itself, dy/dx = y/a.",
+          "accept": [
+            "differentiate and the chain rule gives one by a",
+            "b e power x by a is y itself so dy by dx is y by a",
+            "replace the exponential by y",
+            "b e power x by a ante y ye kabatti dy by dx equals y by a",
+            "the derivative is the curve divided by a",
+            "dy by dx equals y over a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y by a",
+            "one by a",
+            "b e power x by a",
+            "chain rule"
+          ]
+        },
+        "why": "An exponential differentiates to a constant times itself, so dy/dx can be written in terms of y with no exponential left. Both parts asked for are stated in y, so this form is the one that answers them directly.",
+        "common_mistakes": [
+          "Writing dy/dx = b eˣ⁄ᵃ and omitting the 1/a from the chain rule.",
+          "Writing dy/dx = ay instead of y/a, inverting the constant.",
+          "Differentiating b as well, when b is a constant."
+        ],
+        "memory_tip": "An exponential is its own derivative up to a constant. For b eˣ⁄ᵃ that constant is 1/a, so dy/dx is y/a."
+      },
+      {
+        "id": "s2_definitions",
+        "kind": "text",
+        "label": "State the two lengths",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both definitions are worth writing down before either is used — the examiner gives the mark for the correct pair, and stating them stops the two being swapped.",
+        "lines": [
+          "At a point (x, y) on a curve, with m = dy/dx:",
+          "length of the subtangent = y/m",
+          "length of the subnormal = y · m"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtangent = y/m and subnormal = ym.",
+          "accept": [
+            "the subtangent is y divided by the slope",
+            "the subnormal is y times the slope",
+            "subtangent is y by m and subnormal is y m",
+            "subtangent ante y by m, subnormal ante y into m",
+            "one divides by the slope and the other multiplies",
+            "state both definitions before substituting"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y by m",
+            "y into m",
+            "subtangent",
+            "subnormal"
+          ]
+        },
+        "why": "The two lengths differ only in whether m divides or multiplies, so they are easy to swap under exam pressure. Writing both down first makes the choice in each part deliberate.",
+        "common_mistakes": [
+          "Writing the subtangent as ym and the subnormal as y/m, the two exchanged.",
+          "Using the length of the tangent y√(1 + m²)/m in place of the subtangent.",
+          "Substituting numbers before either definition is stated, so no method mark is available."
+        ],
+        "memory_tip": "Both start from y. The subtangent divides by the slope, the subnormal multiplies by it."
+      },
+      {
+        "id": "s3_subtangent",
+        "kind": "equation",
+        "label": "(i) The subtangent is constant",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. y cancels completely, which is what makes the length constant. Say so in words — a proof of \"constant\" is not finished until the absence of x and y is stated.",
+        "lines": [
+          "Length of the subtangent = y/m",
+          "= y ÷ (y/a)",
+          "= y · (a/y)",
+          "= a",
+          "a is a fixed number, and no x or y is left in the result.",
+          "∴ the length of the subtangent is a, the same at every point of the curve."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y/m = y ÷ (y/a) = a, so the subtangent is the constant a.",
+          "accept": [
+            "divide y by y over a",
+            "the y cancels and only a is left",
+            "the subtangent is a which is a constant",
+            "y cancel ayipoyi a matrame migulutundi",
+            "it does not depend on the point",
+            "the length of the subtangent is the constant a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y cancels",
+            "equal to a",
+            "constant",
+            "y by m"
+          ]
+        },
+        "why": "Dividing by a fraction is multiplying by its reciprocal, so y ÷ (y/a) becomes y × a/y and the y's cancel. The result contains only the given constant a, which is exactly what \"constant\" means here.",
+        "common_mistakes": [
+          "Writing y ÷ (y/a) as y²/a, multiplying instead of dividing.",
+          "Getting 1/a by cancelling the a as well.",
+          "Stopping at the value a without saying that it does not depend on the point."
+        ],
+        "memory_tip": "Dividing by y/a is the same as multiplying by a/y. The two y's then cancel and a survives alone."
+      },
+      {
+        "id": "s4_subnormal",
+        "kind": "boxed_final",
+        "label": "(ii) The subnormal is y²/a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Same m, the other operation. The subnormal does depend on the point, so unlike part (i) it is not constant — do not claim it is.",
+        "lines": [
+          "Length of the subnormal = y · m",
+          "= y · (y/a)",
+          "= y²/a",
+          {
+            "text": "∴ (i) subtangent = a, a constant     (ii) subnormal = y²/a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ym = y(y/a) = y²/a.",
+          "accept": [
+            "multiply y by y over a",
+            "the subnormal is y squared by a",
+            "y into y by a gives y square by a",
+            "y ni y by a tho multiply cheste y square by a",
+            "this one changes from point to point",
+            "the subnormal is not constant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y squared by a",
+            "y into m",
+            "subnormal",
+            "y by a"
+          ]
+        },
+        "why": "The same slope y/a is used, multiplied this time instead of divided. y stays in the answer, so the subnormal grows as the curve rises — only the subtangent is constant on this curve.",
+        "common_mistakes": [
+          "Writing the subnormal as a as well, copying the answer to part (i).",
+          "Writing y²a instead of y²/a, multiplying by a rather than dividing.",
+          "Saying the subnormal is also constant, when it still contains y."
+        ],
+        "memory_tip": "Part (i) divides, part (ii) multiplies, and the slope y/a is the same in both. One answer keeps y, the other loses it."
+      }
+    ]
+  },
+  "insider_note": "The derivative simplifies to y/a, which is the key step — the exponential reappears as y itself. Subtangent y/m is then a, and subnormal y·m is y²/a."
+}

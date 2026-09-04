@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_lmvt_sin_x_minus_sin_2x_on_0_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify the conditions of Lagrange's mean value theorem for sin x − sin 2x on [0, π], and find a point c in the interval as stated by the theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions and the chord slope",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = 0 for c",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 8(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what the chord slope comes to here, and what that turns the equation for c into.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions_and_slope",
+        "kind": "equation",
+        "label": "Check the conditions and the chord slope",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The two end values are both 0, so the chord slope is 0. Say that in writing — it is the fact that makes the next step short.",
+        "memory_tip": "sin 0, sin π and sin 2π are all 0, so both end values come to zero and the chord is flat.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Lagrange's mean value theorem: if f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with",
+          "f′(c) = (f(b) − f(a))/(b − a)",
+          "Here f(x) = sin x − sin 2x, a = 0, b = π",
+          "sin x and sin 2x are continuous and differentiable for every real x, so f is continuous on [0, π] and differentiable on (0, π). Both conditions hold.",
+          "f(0) = sin 0 − sin 0 = 0,   f(π) = sin π − sin 2π = 0 − 0 = 0",
+          "(f(π) − f(0))/(π − 0) = 0/π = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sine functions are continuous and differentiable everywhere, and that f(0) = f(π) = 0 makes the chord slope 0.",
+          "accept": [
+            "sine functions are continuous and differentiable everywhere so both conditions hold",
+            "f of zero and f of pi are both zero so the chord slope is zero",
+            "the average slope over the interval comes to zero",
+            "both end values are zero",
+            "rendu chivara values zero, so chord slope zero vasthundi",
+            "check the conditions then work out the chord slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sine",
+            "continuous",
+            "zero",
+            "pi",
+            "chord slope"
+          ]
+        },
+        "why": "Because both end values are 0, the chord slope is 0 and the mean value equation becomes f′(c) = 0 — the same equation Rolle's theorem gives for this function. Saying so shows the examiner you know why the two theorems meet here.",
+        "common_mistakes": [
+          "Taking sin 2π as 1 instead of 0, which makes the chord slope −1/π.",
+          "Writing only the value of c and leaving the two conditions unstated."
+        ]
+      },
+      {
+        "id": "s2_solve_for_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = 0 for c",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Turn cos 2c into 2cos²c − 1 so the equation becomes a quadratic in cos c. Both roots of that quadratic lie between −1 and 1, so both give a usable c.",
+        "memory_tip": "When an equation mixes cos x with cos 2x, replace cos 2x by 2cos²x − 1 and it becomes a quadratic in cos x.",
+        "lines": [
+          "f′(x) = cos x − 2 cos 2x",
+          "By the theorem there is c in (0, π) with f′(c) = 0",
+          "cos c − 2 cos 2c = 0.  Using cos 2c = 2cos²c − 1:",
+          "cos c − 2(2cos²c − 1) = 0 ⇒ 4cos²c − cos c − 2 = 0",
+          "cos c = (1 ± √(1 + 32))/8 = (1 ± √33)/8",
+          "(1 + √33)/8 ≈ 0.843 and (1 − √33)/8 ≈ −0.593, and both lie between −1 and 1",
+          "So c ≈ 0.568 or c ≈ 2.206 radians, and both lie in (0, π)",
+          {
+            "text": "∴ c = Cos⁻¹((1 ± √33)/8), both values lying in (0, π)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2c = 2cos²c − 1 turns f′(c) = 0 into 4cos²c − cos c − 2 = 0, giving cos c = (1 ± √33)/8.",
+          "accept": [
+            "write cos two c as two cos squared c minus one and solve the quadratic",
+            "four cos squared c minus cos c minus two equals zero",
+            "cos c is one plus or minus root thirty three over eight",
+            "c is cos inverse of one plus or minus root thirty three by eight",
+            "cos two c ni two cos square c minus one ga rasi quadratic solve chestha",
+            "both roots are between minus one and one so both give a c inside the interval"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two c",
+            "quadratic",
+            "root thirty three",
+            "cos inverse",
+            "by eight"
+          ]
+        },
+        "why": "The theorem asks for at least one c, and here the quadratic gives two. Both are inside (0, π), so either one is a complete answer; naming both shows the equation was solved rather than guessed.",
+        "common_mistakes": [
+          "Differentiating sin 2x as cos 2x and losing the factor 2.",
+          "Using cos 2c = 1 − 2sin²c, which leaves both sin c and cos c in the equation.",
+          "Rejecting the negative root, which is valid because c may lie past π/2."
+        ]
+      }
+    ]
+  },
+  "insider_note": "f(0) and f(π) are both 0, so the average slope is 0 and this reduces to the Rolle case. Solve f′(c) = 0 as a quadratic in cos c."
+}

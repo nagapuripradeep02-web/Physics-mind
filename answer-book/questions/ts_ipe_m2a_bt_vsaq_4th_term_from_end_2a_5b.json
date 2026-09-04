@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_4th_term_from_end_2a_5b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the 4th term from the end in the expansion of (2a + 5b)⁸.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Turn it into a term from the beginning",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 157. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book stops at ⁸C₃·2³·5⁵·a³b⁵; the card also gives the number, 1400000 a³b⁵."
+  },
+  "recall_prompt": "Say how you would find the 4th term from the end — how you turn it into a term from the beginning, and what the term comes to.",
+  "insider_note": "Reverse the bracket first: the 4th term from the end of (2a + 5b)⁸ is the 4th term from the beginning of (5b + 2a)⁸. One line, and the from-the-end formula is never needed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Turn it into a term from the beginning",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Reverse the bracket: the 4th term from the end of (2a + 5b)⁸ is the 4th term from the beginning of (5b + 2a)⁸.",
+        "memory_tip": "Reverse the bracket: 4th from the end of (2a + 5b)⁸ is 4th from the start of (5b + 2a)⁸.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "4th term from the end of (2a + 5b)⁸",
+          "= 4th term from the beginning of (5b + 2a)⁸",
+          "T₄ = T₃₊₁ = ⁸C₃ (5b)⁸⁻³ (2a)³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 4th term from the end of (2a + 5b)⁸ is the 4th term from the beginning of (5b + 2a)⁸, which is ⁸C₃ (5b)⁵ (2a)³.",
+          "accept": [
+            "reverse the bracket, the fourth from the end is the fourth from the start of five b plus two a to the eight, which is eight C three five b to the five two a cubed",
+            "the fourth term from the end is T four of the reversed binomial",
+            "write it as five b plus two a to the eight and take r equal to three",
+            "bracket reverse chesi fourth term teesukovali, eight C three five b power five two a power three",
+            "from the end means swap the two entries"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "from the end",
+            "five b plus two a",
+            "eight C three",
+            "r equal to three"
+          ]
+        },
+        "why": "Counting from the end of (x + y)ⁿ is the same as counting from the start of (y + x)ⁿ, and terms from the start have the ready formula.",
+        "common_mistakes": [
+          "Using the (n − r + 2)-th term formula and slipping in the arithmetic.",
+          "Keeping (2a + 5b) and taking r = 3, which gives the 4th term from the start."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ⁸C₃ = 56, 5⁵ = 3125, 2³ = 8; 56 × 3125 × 8 = 1400000.",
+        "memory_tip": "⁸C₃ = 56, 5⁵ = 3125, 2³ = 8, and 56 × 3125 × 8 = 1400000.",
+        "lines": [
+          "= ⁸C₃ · 5⁵ · 2³ · a³b⁵ = 56 × 3125 × 8 · a³b⁵",
+          {
+            "text": "∴ ⁸C₃·2³·5⁵·a³b⁵ = 1400000 a³b⁵",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the term is ⁸C₃·2³·5⁵·a³b⁵, which is 1400000 a³b⁵.",
+          "accept": [
+            "eight C three into five to the five into two cubed a cubed b to the five, which is fourteen lakh a cubed b to the five",
+            "fifty six times three thousand one twenty five times eight a cube b power five",
+            "the term is eight C three two cube five power five a cube b power five",
+            "eight C three two power three five power five a cube b power five, fourteen lakh",
+            "one million four hundred thousand a cubed b to the fifth"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "fourteen lakh",
+            "fifty six",
+            "a cubed",
+            "b to the five"
+          ]
+        },
+        "why": "The examiner accepts the factored form; the number is a check that the factors were read correctly.",
+        "common_mistakes": [
+          "Writing a⁵b³ — the power on b is 5 because b came first in the reversed bracket.",
+          "Forgetting the 2³ on a."
+        ]
+      }
+    ]
+  }
+}

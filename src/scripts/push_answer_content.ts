@@ -13,7 +13,7 @@
  * stream TransformError on its first row). The working pattern: write the row
  * to a temp file, POST it with curl -H "Expect:" and retry until 2xx.
  *
- * Fails loudly on drift: every unit in units.json must have a bundle file, and
+ * Fails loudly on drift: every LIVE unit in units.json must have a bundle file, and
  * no orphan bundle may upload — a stale file for a renamed unit would serve
  * dead content forever.
  */
@@ -35,15 +35,23 @@ const STREAM_SUBJECTS: Record<string, string[]> = {
     // BY HAND: the bundles this pushes are written by that build, so a stream
     // listed in one and not the other either pushes nothing or pushes content
     // the artifact does not serve.
-    mpc_2: ['physics_2', 'chemistry_2'],
+    mpc_2: ['physics_2', 'chemistry_2', 'mathematics_2a', 'mathematics_2b'],
 };
-if (STREAM !== null && !STREAM_SUBJECTS[STREAM]) {
-    console.error(`✗ --stream="${STREAM}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);
-    process.exit(1);
+// `--stream` takes a COMMA-SEPARATED list, matching build_answer_book.ts since
+// 2026-08-29: one artifact can carry both years, so its bundles live in one
+// directory named for the joined key and must all be pushed together.
+const STREAM_KEYS = STREAM ? STREAM.split(',').map((x) => x.trim()).filter(Boolean) : [];
+for (const key of STREAM_KEYS) {
+    if (!STREAM_SUBJECTS[key]) {
+        console.error(`✗ --stream="${key}" is not one of ${Object.keys(STREAM_SUBJECTS).join('/')}`);
+        process.exit(1);
+    }
 }
-const WANT_SUBJECTS = STREAM ? new Set(STREAM_SUBJECTS[STREAM]) : null;
+const WANT_SUBJECTS = STREAM_KEYS.length
+    ? new Set(STREAM_KEYS.flatMap((k) => STREAM_SUBJECTS[k]))
+    : null;
 const CONTENT_DIR = STREAM
-    ? join(ROOT, 'answer-book', 'content', STREAM)
+    ? join(ROOT, 'answer-book', 'content', STREAM_KEYS.join('+'))
     : join(ROOT, 'answer-book', 'content');
 const MANIFEST = join(ROOT, 'answer-book', 'units.json');
 
@@ -58,10 +66,14 @@ if (!existsSync(CONTENT_DIR)) {
     process.exit(1);
 }
 
-type ManifestUnit = { number: number; name: string; subject?: string; questions: unknown[] };
+type ManifestUnit = { number: number; name: string; subject?: string; status?: string; questions: unknown[] };
 const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8')) as { units: ManifestUnit[] };
+// A retired unit (status:"retired" — a chapter the 2026-27 syllabus dropped, first used for
+// Chemistry-I States of Matter on 2026-09-02) is stripped by the build BEFORE bundles are
+// written, so it has no bundle to push and must not be expected here either.
 const expected = new Set(
     manifest.units
+        .filter((u) => u.status !== 'retired')
         .filter((u) => !WANT_SUBJECTS || WANT_SUBJECTS.has(u.subject || 'physics'))
         .map((u) => `${u.subject || 'physics'}-${u.number}`)
 );
@@ -137,8 +149,11 @@ if (totalQ === 0) { console.error('✗ zero questions uploaded — refusing to c
 // a row flagged free as "physics-4 Motion in a Plane" is, after this push,
 // "physics-4 Laws of Motion" — still flagged free. Nothing in the push can
 // know which chapter the founder MEANT to be free, so it prints the free rows
-// by NAME and leaves the UPDATE to a human:
-//   UPDATE ab_content SET free = (unit_key IN ('physics-3','chemistry-3','mathematics-4','mathematics_1b-3'));
+// by NAME and leaves the UPDATE to a human. The same trap fired again on
+// 2026-08-28 for Maths-1A (Addition of Vectors moved mathematics-4 -> 6) and
+// on 2026-09-02 for Chemistry-I (units 5/6/7 -> 4/5/6; chemistry-3 Chemical
+// Bonding, the free chapter, did NOT move). The set as intended today:
+//   UPDATE ab_content SET free = (unit_key IN ('physics-3','chemistry-3','mathematics-6','mathematics_1b-3'));
 try {
     const listed = execFileSync('curl', [
         '-s', `${url}/rest/v1/ab_content?select=unit_key,name,question_n&free=is.true&order=unit_key`,

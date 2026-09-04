@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Determinant",
         "margin_note": "First mark. Expand along the top row. It comes to 27, which is 3³ — a hint that the factor of 3 in the question is not accidental.",
+        "memory_tip": "det A = 27, which is 3³ — a hint that the 3 in the question is not accidental.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,7 +106,8 @@
         "label": "Find the adjoint",
         "marks": 1,
         "mark_note": "Adjoint",
-        "margin_note": "Second mark. Nine cofactors, then transpose. The result turns out symmetric, so the transpose changes nothing here.",
+        "margin_note": "Second mark. Nine cofactors, then transpose. The cofactor matrix is not symmetric here, so skipping the transpose gives the wrong matrix.",
+        "memory_tip": "Nine cofactors, then transpose. The cofactor matrix is not symmetric here, so the transpose really does change it.",
         "lines": [
           "Cofactor matrix, then transposing:",
           {
@@ -148,6 +150,7 @@
         "marks": 1,
         "mark_note": "Comparison",
         "margin_note": "Third mark. Transpose A, multiply every entry by 3, and set it beside the adjoint — the claim is an equality, so both sides must be shown.",
+        "memory_tip": "The claim is an EQUALITY, so both sides must be written out and set side by side.",
         "lines": [
           {
             "text": "A^{T} = \\begin{bmatrix} -1 & 2 & 2 \\\\ -2 & 1 & -2 \\\\ -2 & -2 & 1 \\end{bmatrix}",
@@ -196,6 +199,7 @@
         "marks": 1,
         "mark_note": "Inverse",
         "margin_note": "Last mark. A⁻¹ = (Adj A)/det A = 3Aᵀ/27 = Aᵀ/9 — the identity just proved makes this one line instead of nine.",
+        "memory_tip": "A⁻¹ = 3Aᵀ/27 = Aᵀ/9 — the identity just proved makes this one line instead of nine.",
         "lines": [
           "A⁻¹ = (Adj A)/(det A) = 3Aᵀ/27",
           {
@@ -237,5 +241,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 27 = 3³, which is why the adjoint comes out as exactly 3Aᵀ. Once that is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
 }

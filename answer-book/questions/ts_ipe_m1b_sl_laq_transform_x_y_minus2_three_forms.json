@@ -1,0 +1,273 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_transform_x_y_minus2_three_forms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write the equation x + y − 2 = 0 in (a) slope-intercept form, (b) intercept form and (c) normal form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope-intercept form",
+      "marks": 2
+    },
+    {
+      "label": "Intercept form",
+      "marks": 2
+    },
+    {
+      "label": "Make the right side positive",
+      "marks": 1
+    },
+    {
+      "label": "Divide and read cos α, sin α",
+      "marks": 2
+    },
+    {
+      "label": "Name α and write the normal form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.158, chapter 3 THE STRAIGHT LINE, Long Answer question 16(v). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split follows the three parts the question names: two marks for each of the two easy forms, and four for the normal form, which is the only part with a sign condition in it — one for making the right side positive, two for dividing and reading cos α and sin α, and one for naming α. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every form was checked back against the original. The slope-intercept form y = −x + 2 rearranges to x + y − 2 = 0; the intercept form x/2 + y/2 = 1 multiplies by 2 to x + y = 2; and the normal form, with cos 45° = 1/√2 and sin 45° = 1/√2, reads x/√2 + y/√2 = √2, which multiplies by √2 back to x + y = 2. The value p = √2 also agrees with the direct perpendicular distance from the origin, |0 + 0 − 2|/√(1² + 1²) = 2/√2 = √2. Note that this line and x + y + 2 = 0 are parallel and equally far from the origin, and their normal angles differ by 180°, which is the expected pattern."
+  },
+  "recall_prompt": "Say how you would do this — name all three forms, and say what condition fixes the angle in the normal form.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_intercept",
+        "kind": "equation",
+        "label": "Slope-intercept form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The first two marks. Quote y = mx + c, make y the subject, and then read off m and c separately.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(a) Slope-intercept form is  y = mx + c",
+          "x + y − 2 = 0  ⇒  y = −x + 2",
+          "∴ m = −1  and  c = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That making y the subject gives y = −x + 2, so m = −1 and c = 2.",
+          "accept": [
+            "make y the subject to get y equals minus x plus two",
+            "slope intercept form is y equals m x plus c",
+            "the slope is minus one and c is two",
+            "y ni subject ga cheste minus x plus two vasthundi",
+            "m equals minus one and c equals two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y equals m x plus c",
+            "make y the subject",
+            "minus one",
+            "two"
+          ]
+        },
+        "why": "Slope-intercept form shows the slope and the y-intercept directly, so the only work is to make y the subject.",
+        "common_mistakes": [
+          "Writing y = −x − 2 by carrying the sign of the constant across wrongly.",
+          "Reading m as 1."
+        ],
+        "memory_tip": "y = mx + c: make y the subject, then m is the number in front of x and c is what is left."
+      },
+      {
+        "id": "s2_intercept",
+        "kind": "equation",
+        "label": "Intercept form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The next two marks. Quote x/a + y/b = 1, move the constant to the right, and divide every term by it.",
+        "lines": [
+          "(b) Intercept form is  x/a + y/b = 1",
+          "x + y − 2 = 0  ⇒  x + y = 2",
+          "Dividing by 2,  x/2 + y/2 = 1",
+          "∴ a = 2  and  b = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 2 gives x/2 + y/2 = 1, so a = b = 2.",
+          "accept": [
+            "move the constant right and divide by two",
+            "intercept form is x over a plus y over b equals one",
+            "a is two and b is two",
+            "constant tho divide chesthe intercept form vasthundi",
+            "x over two plus y over two equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "divide by two",
+            "a and b",
+            "equals one"
+          ]
+        },
+        "why": "Intercept form must have 1 on the right-hand side, and dividing by the constant is the only way to arrange that.",
+        "common_mistakes": [
+          "Leaving 2 on the right instead of dividing to make it 1.",
+          "Dividing only one of the two terms by 2."
+        ],
+        "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide every term by the constant."
+      },
+      {
+        "id": "s3_make_positive",
+        "kind": "equation",
+        "label": "Make the right side positive",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Normal form carries the condition p > 0. Move the constant across and, if it lands negative, change every sign.",
+        "lines": [
+          "(c) Normal form is  x cos α + y sin α = p,",
+          "where p > 0.",
+          "x + y = 2  already has a positive right side,",
+          "so no sign needs to be changed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side is already positive, so no sign change is needed.",
+          "accept": [
+            "the right side is already positive so no sign change",
+            "normal form needs p positive",
+            "p is a distance so it cannot be negative",
+            "right side already positive undi so change avasaram ledu",
+            "check the sign of the constant first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p greater than zero",
+            "already positive",
+            "normal form",
+            "no sign change"
+          ]
+        },
+        "why": "In normal form p is a perpendicular distance from the origin, so it must be positive, and that single condition is what fixes α.",
+        "common_mistakes": [
+          "Changing every sign anyway, which makes the right side negative.",
+          "Not checking the sign of the constant at all before dividing."
+        ],
+        "memory_tip": "p is a distance, so p > 0. Check the sign of the constant before dividing; here it is already positive."
+      },
+      {
+        "id": "s4_divide",
+        "kind": "equation",
+        "label": "Divide and read cos α, sin α",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Divide every term by √(a² + b²), then read cos α, sin α and p off the result in that order.",
+        "lines": [
+          "Here √(1² + 1²) = √2.",
+          "On dividing by √2, we get",
+          "x(1/√2) + y(1/√2) = 2/√2 = √2",
+          "∴ cos α = 1/√2,  sin α = 1/√2,  p = √2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by √2 gives cos α = 1/√2, sin α = 1/√2 and p = √2.",
+          "accept": [
+            "divide by root two which is root of one plus one",
+            "cos alpha and sin alpha are both one over root two",
+            "p is root two",
+            "root a square plus b square tho divide cheyyali",
+            "divide every term by the root of the sum of the squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root two",
+            "cos alpha",
+            "sin alpha",
+            "p equals root two"
+          ]
+        },
+        "why": "Dividing by √(a² + b²) makes the two coefficients into a cosine and a sine, because their squares then add to 1.",
+        "common_mistakes": [
+          "Writing p as 2 instead of 2/√2.",
+          "Dividing the left side by √2 but not the right."
+        ],
+        "memory_tip": "Divide by √(a² + b²) — the square root of the sum of the squares of the two coefficients."
+      },
+      {
+        "id": "s5_alpha",
+        "kind": "boxed_final",
+        "label": "Name α and write the normal form",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Use the signs of cos α and sin α to name the quadrant, then write the finished normal form with the angle in it.",
+        "lines": [
+          "cos α and sin α are both positive, so α lies",
+          "in the first quadrant.",
+          "The related acute angle is 45°,",
+          "so α = 45°",
+          {
+            "text": "∴ x cos 45° + y sin 45° = √2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both being positive puts α in the first quadrant, so α = 45°.",
+          "accept": [
+            "both are positive so alpha is in the first quadrant",
+            "alpha is forty five degrees",
+            "x cos forty five plus y sin forty five equals root two",
+            "rendu positive so first quadrant, alpha forty five",
+            "the related acute angle is forty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first quadrant",
+            "forty five degrees",
+            "alpha",
+            "normal form"
+          ]
+        },
+        "why": "The signs of cos α and sin α together name one quadrant, and that is what turns the pair of values into a single angle α.",
+        "common_mistakes": [
+          "Placing α in the third quadrant, where both would be negative.",
+          "Leaving the answer as x/√2 + y/√2 = √2 without naming α."
+        ],
+        "memory_tip": "Both cosine and sine positive means the first quadrant, so α is the related acute angle itself."
+      }
+    ]
+  }
+}

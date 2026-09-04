@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The hyperbolic identity is cosh²x − sinh²x = 1, so cosh x = √(sinh²x + 1) — note the PLUS, where the circular version would have a minus.",
+        "memory_tip": "The hyperbolic identity gives cosh x = √(sinh²x + 1) — a PLUS, where the circular version has a minus.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cosh2x = cosh²x + sinh²x — a PLUS, unlike the circular cos2x which has a minus. sinh2x = 2 sinh x cosh x matches its circular twin exactly.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x, a PLUS, unlike cos 2x. sinh 2x = 2 sinh x cosh x matches its circular twin.",
         "lines": [
           "cosh 2x = cosh²x + sinh²x = 25/16 + 9/16 = 34/16 = 17/8",
           "sinh 2x = 2 sinh x cosh x = 2(3/4)(5/4) = 30/16 = 15/8",
@@ -137,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "sinh = 3/4 gives cosh = 5/4 through the 3-4-5 triangle, so every number stays whole over 16. Use cosh 2x = cosh²x + sinh²x; the trigonometric version with its minus sign is wrong here."
 }

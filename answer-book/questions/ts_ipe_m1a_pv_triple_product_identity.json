@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. This is an identity about EVERY triple of vectors, so it cannot use particular numbers. Components with subscripts are what make the proof general.",
+        "memory_tip": "This is an identity about EVERY triple, so it cannot use particular numbers. Subscripted components make it general.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "a × b",
         "margin_note": "Second mark. The standard cross-product determinant, but with letters. Write the j term with its sign already absorbed — it makes the next step readable.",
+        "memory_tip": "The usual determinant, with letters. Absorb the j sign now so the next step reads cleanly.",
         "lines": [
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix}",
@@ -155,6 +157,7 @@
         "marks": 2,
         "mark_note": "L.H.S",
         "margin_note": "Two marks. Cross that result with c, then multiply out. Only the i component is written in full below — j and k follow exactly the same pattern with the letters rotated.",
+        "memory_tip": "Writing all three components in full is correct but long. Write the i component in full and say j and k follow the same pattern with the letters rotated.",
         "lines": [
           "Now cross with c. The i component of (a×b)×c is",
           "(a₃b₁ − a₁b₃)c₃ − (a₁b₂ − a₂b₁)c₂",
@@ -188,7 +191,7 @@
         "why": "Four terms per component is what the right-hand side must also produce. Counting them is the quickest check that nothing has been dropped.",
         "common_mistakes": [
           "Dropping a term when multiplying out.",
-          "Expanding all three components in full and running out of time and space."
+          "Writing the j and k components by copying the i one instead of rotating the letters."
         ]
       },
       {
@@ -198,6 +201,7 @@
         "marks": 3,
         "mark_note": "R.H.S",
         "margin_note": "Three marks. c·a and c·b are NUMBERS, each a sum of three products. Multiplying them into b and a gives six terms per component, of which two always cancel.",
+        "memory_tip": "c·a and c·b are NUMBERS. Multiplying them in gives six terms per component, two of which always cancel.",
         "lines": [
           "c·a = c₁a₁ + c₂a₂ + c₃a₃,",
           "c·b = c₁b₁ + c₂b₂ + c₃b₃",
@@ -228,7 +232,7 @@
             "a one b one c one"
           ]
         },
-        "why": "The cancellation is the heart of the proof: the term that appears in both products is exactly the one that must vanish for the two sides to match.",
+        "why": "The cancellation is the key step of the proof: the term that appears in both products is exactly the one that must cancel for the two sides to match.",
         "common_mistakes": [
           "Treating c·a as a vector.",
           "Missing the cancellation and being left with six terms that will not match."
@@ -241,6 +245,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The four surviving terms on each side are the same four. Say that they match — a proof by expansion is only finished when the comparison is stated.",
+        "memory_tip": "The four survivors on each side are the same four. Say so — expansion is not a proof until compared.",
         "lines": [
           "The four terms in (1) and the four in (2) are",
           "identical, and the same holds for j and k.",
@@ -280,5 +285,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Components are the safe route here, because the letters in (c·a)b − (c·b)a are easy to swap. Note that c sits OUTSIDE the bracket on the left, so both dot products start with c."
 }

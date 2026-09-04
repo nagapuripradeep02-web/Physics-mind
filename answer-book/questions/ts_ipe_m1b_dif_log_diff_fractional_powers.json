@@ -1,0 +1,277 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_diff_fractional_powers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the derivative dy/dx of the function y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Say why logarithms are used here",
+      "marks": 1
+    },
+    {
+      "label": "Take logarithms and expand into four terms",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate both sides term by term",
+      "marks": 2
+    },
+    {
+      "label": "Simplify the four coefficients",
+      "marks": 2
+    },
+    {
+      "label": "Multiply back by y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.207, chapter 9 DIFFERENTIATION, Long Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working takes: one mark for naming the method, two for the expansion into four logarithm terms, two for the term-by-term differentiation, two for simplifying the four coefficients, one for multiplying back by y. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the boxed derivative agrees with a central difference quotient of the given function at x = 0.05 (11.909443547), at x = 0.02 (8.618498728) and at x = −0.03 (6.434622690), to nine decimal places at all three points. All three lie inside −1/7 < x < 1/6, where all four brackets are positive."
+  },
+  "recall_prompt": "Say how you would solve this — say why logarithms help when the function is a product and quotient of powers.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why_logs",
+        "kind": "text",
+        "label": "Say why logarithms are used here",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Here the powers are constants, so the product rule and quotient rule would work — but on four factors they take many lines. The logarithm changes multiplication into addition, and a sum of four terms is differentiated one term at a time.",
+        "memory_tip": "A logarithm turns multiply into add and divide into subtract. Four factors become four separate terms, and each one is easy.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)] / [(1 − 6x)^(5/6)(1 + 7x)^(−6/7)]",
+          "The function is a product and a quotient of four powers. Applying the product rule and the quotient rule directly takes many lines, and a term is easily lost part way through.",
+          "A logarithm turns a product into a sum and a quotient into a difference, and brings every power down in front. So take logarithms of both sides.",
+          "All four brackets must be positive for the logarithms to exist, which holds for −1/7 < x < 1/6."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logarithms are used because they turn the product and quotient of four powers into a sum of four simple terms.",
+          "accept": [
+            "take log on both sides because it turns multiplication into addition",
+            "log makes the quotient a subtraction",
+            "the powers come down in front of the logarithms",
+            "four factors become four separate terms",
+            "log teesukunte multiplication addition ga maruthundi",
+            "logarithmic differentiation is quicker than the product and quotient rules here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log",
+            "multiplication becomes addition",
+            "four terms",
+            "powers come down"
+          ]
+        },
+        "why": "This is logarithmic differentiation used for a different reason from a variable power such as xˣ, where the method is the only way in. Nothing here forces it, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
+        "common_mistakes": [
+          "Starting the quotient rule on the whole expression and running out of room part way through.",
+          "Saying the method is needed because the power rule fails, which is not true here — the powers are constants."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Take logarithms and expand into four terms",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Watch the two negative powers. (1 + 3x)^(−3/4) is in the numerator, so its term is −(3/4)log(1 + 3x); (1 + 7x)^(−6/7) is in the denominator, so subtracting a negative gives +(6/7)log(1 + 7x).",
+        "memory_tip": "Numerator terms get a plus, denominator terms get a minus, and a negative power flips that sign once more.",
+        "lines": [
+          "Taking logarithms on both sides,",
+          "log y = log[(1 − 2x)^(2/3)] + log[(1 + 3x)^(−3/4)] − log[(1 − 6x)^(5/6)] − log[(1 + 7x)^(−6/7)]",
+          "Bringing each power down in front,",
+          "∴ log y = (2/3)log(1 − 2x) − (3/4)log(1 + 3x) − (5/6)log(1 − 6x) + (6/7)log(1 + 7x)      …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log y expands into the four terms with signs +2/3, −3/4, −5/6 and +6/7.",
+          "accept": [
+            "log y is two thirds log one minus two x minus three fourths log one plus three x and so on",
+            "numerator terms are added and denominator terms are subtracted",
+            "the minus three by four power gives a minus sign in front",
+            "the denominator term with a negative power becomes positive",
+            "negative power vunte sign marchuthundi",
+            "four log terms with the fractions in front"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log y equals",
+            "two thirds",
+            "three fourths",
+            "five sixths",
+            "six sevenths"
+          ]
+        },
+        "why": "The negative exponents are what make this step worth two marks. A factor with a negative power really belongs on the other side of the fraction bar, and that shows up in the logarithm form as a change of sign.",
+        "common_mistakes": [
+          "Giving all four terms a plus sign by forgetting that the denominator is subtracted.",
+          "Reading (1 + 7x)^(−6/7) in the denominator as a minus term, when the two minus signs make it plus."
+        ]
+      },
+      {
+        "id": "s3_differentiate",
+        "kind": "equation",
+        "label": "Differentiate both sides term by term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The left side gives (1/y)(dy/dx). On the right each term needs the chain rule, so each one brings out the derivative of its own bracket: −2, 3, −6 and 7.",
+        "memory_tip": "Every log(bracket) differentiates to (derivative of the bracket) over (the bracket). The number in front of x is what comes out on top.",
+        "lines": [
+          "Differentiating (1) with respect to x, using the chain rule on each term,",
+          "(1/y)(dy/dx) = (2/3)·(−2)/(1 − 2x) − (3/4)·(3)/(1 + 3x) − (5/6)·(−6)/(1 − 6x) + (6/7)·(7)/(1 + 7x)      …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each log term differentiates by the chain rule, giving the bracket derivative over the bracket, and the left side gives (1/y)(dy/dx).",
+          "accept": [
+            "the left side is one by y into dy by dx",
+            "each log term gives the derivative of the bracket over the bracket",
+            "minus two comes out of one minus two x, three out of one plus three x",
+            "chain rule on every term",
+            "prathi log term ki chain rule vaadali",
+            "the inner derivatives are minus two, three, minus six and seven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by y",
+            "chain rule",
+            "minus two",
+            "minus six",
+            "over the bracket"
+          ]
+        },
+        "why": "Each term is a constant times log of a linear bracket, so its derivative is that constant times the bracket's own derivative divided by the bracket. Writing the raw form first keeps the two minus signs visible before they are simplified away.",
+        "common_mistakes": [
+          "Differentiating log(1 − 2x) as 1/(1 − 2x) and losing the −2 from the chain rule.",
+          "Writing the left side as dy/dx instead of (1/y)(dy/dx)."
+        ]
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "equation",
+        "label": "Simplify the four coefficients",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "Two marks. Two of the four terms change sign here: (2/3)(−2) is negative, and −(5/6)(−6) is positive. The third and fourth coefficients cancel to whole numbers, 5 and 6.",
+        "memory_tip": "In the last two terms the fraction and the bracket derivative cancel exactly: 5/6 with 6, and 6/7 with 7. Only the first two stay as fractions.",
+        "lines": [
+          "Simplifying each coefficient,",
+          "(2/3)·(−2) = −4/3,   (3/4)·(3) = 9/4,   (5/6)·(−6) = −5,   (6/7)·(7) = 6",
+          "∴ (1/y)(dy/dx) = −4/(3(1 − 2x)) − 9/(4(1 + 3x)) + 5/(1 − 6x) + 6/(1 + 7x)      …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four coefficients simplify to −4/3, −9/4, +5 and +6, so two of the terms are negative and two are positive.",
+          "accept": [
+            "two thirds into minus two is minus four by three",
+            "five sixths into minus six is minus five, and the minus in front makes it plus five",
+            "six sevenths into seven is just six",
+            "the first two terms are negative and the last two are positive",
+            "five by six and six cancel ipothayi, five vasthundi",
+            "minus four by three minus nine by four plus five plus six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four by three",
+            "nine by four",
+            "plus five",
+            "plus six",
+            "cancel"
+          ]
+        },
+        "why": "This is where the answer's signs are settled. The third term has a minus in front and a minus inside, and two minus signs give a plus — the single most common place to lose a mark in this question.",
+        "common_mistakes": [
+          "Keeping the third term negative by using only one of its two minus signs.",
+          "Writing −4/(3(1 − 2x)) as −4/3 − 2x, splitting a denominator that cannot be split."
+        ]
+      },
+      {
+        "id": "s5_multiply_back",
+        "kind": "boxed_final",
+        "label": "Multiply back by y",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Multiply both sides of (3) by y and write y back out in full, since the question gave y as an expression and not as a name.",
+        "memory_tip": "Logarithmic differentiation always ends the same way: multiply by y, then replace y with the original expression.",
+        "lines": [
+          "Multiplying both sides of (3) by y,",
+          {
+            "text": "∴ dy/dx = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)] × [ −4/(3(1 − 2x)) − 9/(4(1 + 3x)) + 5/(1 − 6x) + 6/(1 + 7x) ]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are multiplied by y and y is written back as the original expression.",
+          "accept": [
+            "multiply both sides by y to get dy by dx",
+            "write y back as the original function",
+            "the answer is the original expression times the bracket",
+            "y ni malli original expression ga rasi multiply cheyyali",
+            "dy by dx equals y into the four term bracket",
+            "put the given function back in place of y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply by y",
+            "write y back",
+            "original expression",
+            "final answer"
+          ]
+        },
+        "why": "The working found (1/y)(dy/dx), not dy/dx, so the answer is not complete until it is multiplied by y. Writing y out in full is what makes the answer a function of x alone.",
+        "common_mistakes": [
+          "Stopping at (1/y)(dy/dx) and calling it the derivative.",
+          "Leaving the letter y in the final answer when the question defined y by an expression."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would run for pages. Each power becomes a coefficient times a simple log."
+}

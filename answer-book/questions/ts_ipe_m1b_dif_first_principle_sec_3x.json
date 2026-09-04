@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_sec_3x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of sec 3x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Write sec as 1/cos",
+      "marks": 1
+    },
+    {
+      "label": "Use cos C − cos D",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(v). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you turn sec into, and which identity handles the numerator.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sec 3(x + h) is sec(3x + 3h). Expand the inside angle before anything else happens.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = sec 3x, where cos 3x ≠ 0",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [sec(3x + 3h) − sec 3x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = sec 3x and the angle expanded as 3x + 3h.",
+          "accept": [
+            "write the first principle for sec three x",
+            "substitute x plus h so the angle is three x plus three h",
+            "take the limit of sec three x plus three h minus sec three x over h",
+            "first principle rasi three x plus three h ani rasta",
+            "start from the definition of the derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first principle",
+            "sec three x",
+            "three x plus three h"
+          ]
+        },
+        "why": "The definition earns the mark, and expanding 3(x + h) at once means the identity in the next step can be applied to angles that are already written out.",
+        "common_mistakes": [
+          "Writing sec(3x + 3h) as sec 3x + sec 3h.",
+          "Quoting 3 sec 3x tan 3x from the standard table, which earns nothing on a first-principle question."
+        ],
+        "memory_tip": "The inside angle triples with x: 3(x + h) = 3x + 3h."
+      },
+      {
+        "id": "s2_reciprocal",
+        "kind": "equation",
+        "label": "Write sec as 1/cos",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Taking reciprocals swaps the order on top: 1/p − 1/q = (q − p)/pq, so cos 3x now comes first in the numerator.",
+        "lines": [
+          "sec θ = 1/cos θ, so",
+          "sec(3x+3h) − sec 3x = 1/cos(3x+3h) − 1/cos 3x",
+          "= [cos 3x − cos(3x + 3h)]/[cos(3x+3h) cos 3x]",
+          "Dividing by h, the denominator becomes",
+          "h cos(3x + 3h) cos 3x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec is written as 1/cos and the two fractions combined, leaving cos 3x − cos(3x + 3h) on top.",
+          "accept": [
+            "write sec as one by cos and take a common denominator",
+            "one by p minus one by q is q minus p over p q so the order flips",
+            "the numerator becomes cos three x minus cos three x plus three h",
+            "sec ni one by cos ga rasi common denominator teesukovali",
+            "combine the two reciprocals into one fraction"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by cos",
+            "order flips",
+            "common denominator",
+            "cos three x"
+          ]
+        },
+        "why": "sec has no addition formula of its own. Written as 1/cos it becomes an ordinary difference of fractions, and the top is then a difference of cosines that the standard identity handles.",
+        "common_mistakes": [
+          "Keeping the order cos(3x + 3h) − cos 3x on top after taking reciprocals, which flips the sign of the answer.",
+          "Writing 1/cos A − 1/cos B as 1/(cos A − cos B)."
+        ],
+        "memory_tip": "Taking reciprocals swaps the order on top: 1/p − 1/q = (q − p)/pq."
+      },
+      {
+        "id": "s3_sum_to_product",
+        "kind": "equation",
+        "label": "Use cos C − cos D",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The half difference is −3h/2, and sin(−3h/2) = −sin(3h/2). That second minus cancels the minus in front of the identity, so the numerator ends up positive.",
+        "lines": [
+          "cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2)",
+          "Here C = 3x and D = 3x + 3h, so",
+          "(C+D)/2 = 3x + 3h/2  and  (C−D)/2 = −3h/2",
+          "Numerator = −2 sin(3x + 3h/2) sin(−3h/2)",
+          "= 2 sin(3x + 3h/2) sin(3h/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C − cos D = −2 sin((C+D)/2) sin((C−D)/2) is applied and the numerator becomes 2 sin(3x + 3h/2) sin(3h/2).",
+          "accept": [
+            "apply cos minus cos to get minus two sin half sum sin half difference",
+            "the half difference is minus three h by two so the sign flips back",
+            "the numerator becomes two sin of three x plus three h by two into sin three h by two",
+            "sin of minus theta is minus sin theta kabatti sign marchipothundi",
+            "use the cos minus cos identity on the numerator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos minus cos",
+            "three h by two",
+            "sin of minus",
+            "half difference"
+          ]
+        },
+        "why": "A difference of two cosines becomes a product only through this identity, and only a product can be separated into a standard limit and a factor that is continuous at h = 0.",
+        "common_mistakes": [
+          "Ignoring sin(−3h/2) = −sin(3h/2) and finishing with the wrong sign.",
+          "Halving 3h to get 3h instead of 3h/2."
+        ],
+        "memory_tip": "cos minus cos: minus two, sine of the half sum, sine of the half difference. Sine is an odd function, so a negative half difference flips the sign back."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. sin 3x/cos²3x is split as (1/cos 3x)(sin 3x/cos 3x) to reach the sec-tan form the answer key uses.",
+        "lines": [
+          "Write (sin(3h/2))/h = (3/2) · (sin(3h/2))/(3h/2)",
+          "As h → 0 that second factor → 1, so",
+          "f′(x) = 2 · (3/2) · sin 3x/(cos 3x · cos 3x)",
+          "= 3 · (1/cos 3x) · (sin 3x/cos 3x)",
+          {
+            "text": "∴ d/dx (sec 3x) = 3 sec 3x tan 3x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard limit is matched by writing (sin(3h/2))/h as (3/2)(sin(3h/2))/(3h/2), and the answer is 3 sec 3x tan 3x.",
+          "accept": [
+            "multiply and divide by three h by two to use the standard limit",
+            "the answer is three sec three x tan three x",
+            "sin three x over cos squared three x is sec three x tan three x",
+            "three sec three x tan three x vasthundi",
+            "derivative of sec three x is three sec three x tan three x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three sec three x tan three x",
+            "three h by two",
+            "standard limit"
+          ]
+        },
+        "why": "The 2 from the identity and the 3/2 from matching the standard limit multiply to 3, which is the derivative of the inside angle 3x. Both factors have to be tracked or the 3 is lost.",
+        "common_mistakes": [
+          "Losing the 3/2 needed to match the standard limit and giving 2 sec 3x tan 3x.",
+          "Stopping at 3 sin 3x/cos²3x, which is right but not in the expected form."
+        ],
+        "memory_tip": "sec differentiates to sec times tan, with the inside multiplier in front: 3 sec 3x tan 3x."
+      }
+    ]
+  },
+  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears twice over."
+}

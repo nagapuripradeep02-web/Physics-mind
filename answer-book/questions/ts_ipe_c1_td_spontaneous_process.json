@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Thermodynamics (Chemistry)"
   },
   "chapter": "Thermodynamics",
@@ -82,5 +82,6 @@
         "margin_note": "This one mark covers both halves of the row: give an example and the ΔG < 0 test."
       }
     ]
-  }
+  },
+  "insider_note": "The second mark is one row covering the example and the ΔG < 0 test together, so write both — an example on its own does not fill it. Speed is a different question; a slow process can still be spontaneous."
 }

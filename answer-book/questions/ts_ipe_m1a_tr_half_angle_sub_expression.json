@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_half_angle_sub_expression",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x = 2 sin θ/(1 + cos θ + sin θ), find the value of (1 − cos θ + sin θ)/(1 + sin θ).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply by 1 + cos θ + sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and read off x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 23, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the multiplication and the difference-of-two-squares grouping first and the cancellation that produces x second. The route here uses no half-angle substitution on purpose: tan(θ/2) would add the extra condition cos θ ≠ −1, and the difference-of-two-squares route needs only the two conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at θ = 50°, 130°, 240° and 310°: x and the asked expression agree to ten decimal places at every one (0.6360297657, 1.3639702343, 4.7320508076 and −1.7474774195)."
+  },
+  "recall_prompt": "Say what you would multiply this expression by, and say what value it comes out to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply by 1 + cos θ + sin θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Group the numerator as (1 + sin θ) − cos θ so that the multiplier is (1 + sin θ) + cos θ. Both conditions written here are the ones the two given fractions already need.",
+        "memory_tip": "Group as (1 + sin θ) − cos θ and (1 + sin θ) + cos θ. Their product is (1 + sin θ)² − cos²θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x is given, so 1 + cos θ + sin θ ≠ 0.",
+          "The asked expression needs 1 + sin θ ≠ 0.",
+          "Multiply its top and bottom by",
+          "(1 + cos θ + sin θ):",
+          "Nr = (1 + sin θ − cos θ)(1 + sin θ + cos θ)",
+          "= (1 + sin θ)² − cos²θ",
+          "= 1 + 2 sin θ + sin²θ − (1 − sin²θ)",
+          "= 2 sin θ (1 + sin θ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the top and bottom are multiplied by (1 + cos θ + sin θ), and the numerator becomes 2 sin θ (1 + sin θ) by the difference of two squares.",
+          "accept": [
+            "multiply top and bottom by one plus cos theta plus sin theta",
+            "group as one plus sin theta minus cos theta and one plus sin theta plus cos theta to get a difference of two squares",
+            "the numerator becomes two sin theta into one plus sin theta",
+            "top and bottom ni one plus cos theta plus sin theta tho multiply chestam",
+            "use a squared minus b squared with a as one plus sin theta"
+          ],
+          "reject": [
+            "cancel one plus sin theta",
+            "the answer is x",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "difference of two squares",
+            "one plus sin theta",
+            "multiply top and bottom",
+            "two sin theta"
+          ]
+        },
+        "why": "Grouping the numerator as (1 + sin θ) − cos θ and the multiplier as (1 + sin θ) + cos θ makes them a difference of two squares, and cos²θ then becomes 1 − sin²θ. That single grouping is the whole question.",
+        "common_mistakes": [
+          "Multiplying only the numerator by (1 + cos θ + sin θ).",
+          "Writing cos²θ as 1 + sin²θ instead of 1 − sin²θ."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel and read off x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The factor 1 + sin θ is on the top and the bottom and is not 0, so it cancels. What is left is the given expression for x.",
+        "memory_tip": "After the multiplication the factor (1 + sin θ) cancels, and what remains is exactly the given expression for x.",
+        "lines": [
+          "Dr = (1 + sin θ)(1 + cos θ + sin θ)",
+          "Since 1 + sin θ ≠ 0 it cancels, leaving",
+          "2 sin θ/(1 + cos θ + sin θ), which is x.",
+          {
+            "text": "∴ (1 − cos θ + sin θ)/(1 + sin θ) = x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + sin θ cancels and the remaining expression is the given x, so the value is x.",
+          "accept": [
+            "one plus sin theta cancels and what is left is two sin theta over one plus cos theta plus sin theta which is x",
+            "the value is x",
+            "after cancelling you get back the given expression so the answer is x",
+            "one plus sin theta cancel avutundi, answer x",
+            "the whole thing equals x"
+          ],
+          "reject": [
+            "multiply top and bottom",
+            "difference of two squares",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancels",
+            "equals x",
+            "one plus sin theta",
+            "two sin theta"
+          ]
+        },
+        "why": "The factor 1 + sin θ appears on the top and the bottom and cancels, because the question already needs it to be non-zero for the expression to exist. What is left is exactly the given expression for x, so the value asked for is x itself.",
+        "common_mistakes": [
+          "Cancelling 1 + sin θ without saying that it is not 0.",
+          "Leaving the answer in θ when the question asks for a value in terms of x."
+        ]
+      }
+    ]
+  }
+}

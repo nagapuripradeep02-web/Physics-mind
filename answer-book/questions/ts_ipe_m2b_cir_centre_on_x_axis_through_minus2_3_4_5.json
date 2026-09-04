@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_on_x_axis_through_minus2_3_4_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the circle whose centre lies on the x-axis and passing through (−2,3) and (4,5).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equation from SA = SB",
+      "marks": 2
+    },
+    {
+      "label": "Use the x-axis condition",
+      "marks": 2
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the circle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.96 — Star Questions Plus, answer 196, printed under the banner \"CIRCLE-LAQ & SAQ\". The banner names the chapter and a pair of mark cuts but not which one this question belongs to, so the SECTION IS OURS: it is classed LAQ because its shape is exactly that of the chapter’s answers 5.1 and 5.2 (two points plus a condition on the centre), and the book itself cross-references it from the LAQ chapter — the practice box on book p.18 carries this question with the pointer \"P 96(196)\", and the LAQ hit list on book p.7 lists it as LAQ 5. Printed appearance tags: AP 15 and TS 15. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct, including the final multiplication by 3. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The centre is on the x-axis, so its y-coordinate is 0 — that is the whole second condition, and the answer keeps a factor of 3 in front of x² and y², which is correct and should not be divided away.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation_from_sa_sb",
+        "kind": "equation",
+        "label": "Equation from SA = SB",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. With two points there is one distance equation, so it carries the larger share.",
+        "memory_tip": "Two points give one equation. The words \"centre lies on the x-axis\" give the other.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(x₁, y₁) be the centre of the circle.",
+          "A = (−2, 3), B = (4, 5)",
+          "S is the same distance from A and B.",
+          "⇒ SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁+2)² + (y₁−3)² = (x₁−4)² + (y₁−5)²",
+          "⇒ 4x₁ + 4 − 6y₁ + 9 = −8x₁ + 16 − 10y₁ + 25",
+          "⇒ 12x₁ + 4y₁ − 28 = 0",
+          "⇒ 3x₁ + y₁ − 7 = 0 … (1)"
+        ],
+        "why": "Equation (1) is the perpendicular bisector of AB. The centre lies on it, but that alone does not fix a single point — a second condition is needed.",
+        "common_mistakes": [
+          "Writing (x₁ + 2)² as x₁² − 4x₁ + 4.",
+          "Dividing 12x₁ + 4y₁ − 28 = 0 by 4 and leaving the constant as 28."
+        ]
+      },
+      {
+        "id": "s2_x_axis_condition",
+        "kind": "equation",
+        "label": "Use the x-axis condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Every point on the x-axis has y = 0, so the second condition is y₁ = 0 and nothing more.",
+        "memory_tip": "On the x-axis, y is zero. On the y-axis, x is zero.",
+        "lines": [
+          "The centre lies on the x-axis,",
+          "and the x-axis has equation y = 0.",
+          "⇒ y₁ = 0",
+          "Put y₁ = 0 in (1): 3x₁ + 0 − 7 = 0",
+          "⇒ x₁ = 7/3",
+          "∴ Centre S(x₁, y₁) = (7/3, 0)"
+        ],
+        "why": "The x-axis is the line y = 0, so a centre on it has y₁ = 0. Substituting that into equation (1) leaves one unknown and gives the centre at once.",
+        "common_mistakes": [
+          "Setting x₁ = 0 instead of y₁ = 0.",
+          "Rounding 7/3 to 2 and losing every later value."
+        ]
+      },
+      {
+        "id": "s3_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. Write 3 as 9/3 first so both terms of the bracket share a denominator.",
+        "memory_tip": "7/3 + 2 = 13/3. Square it as 169/9, then add 9 as 81/9.",
+        "lines": [
+          "A = (−2, 3) lies on the circle, so r = SA.",
+          "r² = (7/3 + 2)² + (0 − 3)²",
+          "= (13/3)² + 9 = 169/9 + 81/9 = 250/9"
+        ],
+        "why": "The centre has a third in it, so r² is a ninth. Writing 9 as 81/9 keeps one denominator through to the end.",
+        "common_mistakes": [
+          "Writing 7/3 + 2 as 9/3.",
+          "Adding 169/9 + 9 as 178/9."
+        ]
+      },
+      {
+        "id": "s4_equation_of_circle",
+        "kind": "boxed_final",
+        "label": "Equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Multiplying by 9 clears the fractions and leaves a factor 3 that divides out.",
+        "memory_tip": "Multiply through by 9, then take out the common factor 3.",
+        "lines": [
+          "Circle with centre (7/3, 0) and r² = 250/9 is",
+          "(x − 7/3)² + y² = 250/9",
+          "⇒ (3x − 7)² + 9y² = 250",
+          "⇒ 9x² − 42x + 49 + 9y² = 250",
+          "⇒ 9x² + 9y² − 42x − 201 = 0",
+          {
+            "text": "∴ 3x² + 3y² − 14x − 67 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying by 9 removes both denominators at once. Every term then carries a factor 3, so dividing by 3 gives the smallest whole-number form. The leading 3 stays: dividing again would put fractions back in.",
+        "common_mistakes": [
+          "Dividing the final answer by 3 again and writing x² + y² − 14x/3 − 67/3 = 0.",
+          "Multiplying (x − 7/3)² by 9 and writing (3x − 7)² as 3x² − 7."
+        ]
+      }
+    ]
+  }
+}

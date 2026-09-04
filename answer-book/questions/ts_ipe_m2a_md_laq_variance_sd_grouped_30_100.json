@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_laq_variance_sd_grouped_30_100",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Calculate the variance and standard deviation for the following distribution: Class 30–40, 40–50, 50–60, 60–70, 70–80, 80–90, 90–100; Frequency 3, 7, 12, 15, 8, 3, 2.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form the table with dᵢ, dᵢ², fᵢdᵢ, fᵢdᵢ²",
+      "marks": 3
+    },
+    {
+      "label": "Find the variance by the step deviation formula",
+      "marks": 3
+    },
+    {
+      "label": "Find the standard deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Measures of Dispersion, answer 52. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 16 · TS 17. ⚠ THE 3+3+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30): 3 for the table (midpoints, dᵢ, dᵢ², fᵢdᵢ, fᵢdᵢ² and the three sums), 3 for the variance by the step-deviation formula, 1 for the square root. Answer 53 (discrete data, direct formula) is a different method and carries its own 2+2+2+1 split and step ids. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 4 (book p.118, index P46(52)). The book's first line says 'Here h = 10' and its next line 'Here C = 10' — the same class width under two letters; the card uses C throughout, as the ledger does. Every column and every sum was recomputed for this card: Σfᵢdᵢ = −15, Σfᵢdᵢ² = 105, σ² = 100·(105/50 − (−15/50)²) = 100·(2.1 − 0.09) = 201, σ = √201 = 14.177…, printed 14.18 — the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the variance and standard deviation of grouped data by the step deviation method — what columns the table needs, what the variance formula does with the two sums, and how you finish.",
+  "insider_note": "The last column is fᵢ·dᵢ² — frequency times the square — never (fᵢdᵢ)²; and the bracket value 2.01 is not yet the variance: the C² = 100 outside the bracket turns it into 201.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Measures of Dispersion · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_table",
+        "kind": "equation",
+        "label": "Table: dᵢ, dᵢ², fᵢdᵢ, fᵢdᵢ²",
+        "marks": 3,
+        "mark_note": "Table",
+        "margin_note": "First three marks. Columns: class, frequency fᵢ, midpoint xᵢ, step deviation dᵢ = (xᵢ − 65)/10, its square dᵢ², and the two products fᵢdᵢ and fᵢdᵢ². The formula needs the two sums Σfᵢdᵢ = −15 and Σfᵢdᵢ² = 105. Note dᵢ² is never negative, so Σfᵢdᵢ² adds straight up.",
+        "memory_tip": "The last column is fᵢ × dᵢ², frequency times the square: 3 × 9 = 27, not (−9)² = 81.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Assumed mean A = 65, class width C = 10.",
+          "dᵢ = (xᵢ − A)/C = (xᵢ − 65)/10",
+          {
+            "text": "Class      fᵢ     xᵢ     dᵢ     dᵢ²     fᵢdᵢ     fᵢdᵢ²",
+            "style": "indent"
+          },
+          {
+            "text": "30–40      3      35     −3     9       −9       27",
+            "style": "indent"
+          },
+          {
+            "text": "40–50      7      45     −2     4       −14      28",
+            "style": "indent"
+          },
+          {
+            "text": "50–60      12     55     −1     1       −12      12",
+            "style": "indent"
+          },
+          {
+            "text": "60–70      15     65     0      0       0        0",
+            "style": "indent"
+          },
+          {
+            "text": "70–80      8      75     1      1       8        8",
+            "style": "indent"
+          },
+          {
+            "text": "80–90      3      85     2      4       6        12",
+            "style": "indent"
+          },
+          {
+            "text": "90–100     2      95     3      9       6        18",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ = 50 = N,   Σfᵢdᵢ = −15,   Σfᵢdᵢ² = 105",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the table has midpoints, dᵢ = (xᵢ − 65)/10, dᵢ², fᵢdᵢ and fᵢdᵢ², with N = 50, Σfᵢdᵢ = −15 and Σfᵢdᵢ² = 105.",
+          "accept": [
+            "take midpoints, assumed mean sixty five, d i equals x i minus sixty five by ten, then d i squared, f i d i and f i d i squared, sums minus fifteen and one hundred five",
+            "make the step deviation table with a d squared column, sigma f i d i is minus fifteen and sigma f i d i squared is one hundred and five",
+            "the table needs f i d i and f i d i squared, their sums are minus fifteen and one hundred five with N fifty",
+            "midpoints teesukoni A sixty five tho d i, d i square, f i d i, f i d i square columns rayali, sums minus fifteen and one oh five",
+            "build the table with d i squared and get minus fifteen and one hundred five"
+          ],
+          "reject": [
+            "make a table",
+            "find the midpoints",
+            "write the data"
+          ],
+          "heard_as": [
+            "midpoint",
+            "assumed mean",
+            "sixty five",
+            "d i squared",
+            "f i d i squared",
+            "minus fifteen",
+            "one hundred and five"
+          ]
+        },
+        "why": "Variance needs second-order sums. Working in dᵢ instead of xᵢ keeps every square a single digit (0, 1, 4, 9); the C² in the formula puts the scale back at the end.",
+        "common_mistakes": [
+          "Squaring fᵢdᵢ instead of multiplying fᵢ by dᵢ²: the last column is fᵢ·dᵢ², so 3 × 9 = 27, not (−9)² = 81.",
+          "Carrying a minus sign into the dᵢ² or fᵢdᵢ² column.",
+          "Adding fᵢdᵢ without the signs: 9 + 14 + 12 + 0 + 8 + 6 + 6 = 55, instead of the correct −9 − 14 − 12 + 0 + 8 + 6 + 6 = −15."
+        ]
+      },
+      {
+        "id": "s2_variance",
+        "kind": "equation",
+        "label": "Variance",
+        "marks": 3,
+        "mark_note": "Variance",
+        "margin_note": "Next three marks. The bracket is (mean of dᵢ²) − (mean of dᵢ)²: 105/50 = 2.1 and (−15/50)² = 0.09. Squaring removes the minus sign. The C² = 100 outside the bracket converts the variance of dᵢ back to the variance of marks.",
+        "memory_tip": "σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]. The bracket gives 2.01; the C² = 100 outside is what makes it 201.",
+        "lines": [
+          "Variance σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
+          "= 100·[105/50 − (−15/50)²]",
+          "= 100·[2.1 − 0.09] = 100·(2.01) = 201"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variance is C²[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²] = 100(105/50 − (−15/50)²) = 100(2.1 − 0.09) = 201.",
+          "accept": [
+            "variance is C squared into sigma f i d i squared by N minus the square of sigma f i d i by N, hundred into two point one minus point zero nine, equals two hundred one",
+            "sigma squared equals hundred times one hundred five by fifty minus minus fifteen by fifty squared which is two oh one",
+            "take the mean of d squared minus the square of the mean of d, multiply by C squared, get two hundred and one",
+            "variance ante C square into sigma f i d i square by N minus sigma f i d i by N whole square, two hundred one",
+            "the variance is two hundred and one"
+          ],
+          "reject": [
+            "find the variance",
+            "use the formula",
+            "square it"
+          ],
+          "heard_as": [
+            "sigma squared",
+            "C squared",
+            "two point one",
+            "point zero nine",
+            "two hundred and one",
+            "two oh one"
+          ]
+        },
+        "why": "Variance is the mean of the squared deviations from the mean. The formula Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)² computes exactly that for dᵢ without ever writing the mean, and C² rescales it because dᵢ = (xᵢ − A)/C.",
+        "common_mistakes": [
+          "Forgetting the C² = 100 and answering 2.01.",
+          "Subtracting Σfᵢdᵢ/N without squaring it: 2.1 − (−0.3) = 2.4 is wrong.",
+          "Using N = 7 (the number of classes) in the divisions."
+        ]
+      },
+      {
+        "id": "s3_sd",
+        "kind": "boxed_final",
+        "label": "Standard deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. √201 = 14.177…, written 14.18. Standard deviation is the square root of the variance, in the same unit as the marks.",
+        "memory_tip": "√201 = 14.18. The variance is in marks squared; the square root brings it back to marks.",
+        "lines": [
+          "Standard deviation σ = √201 = 14.18",
+          {
+            "text": "∴ Variance σ² = 201, S.D. σ = 14.18",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard deviation is the square root of the variance: σ = √201 = 14.18.",
+          "accept": [
+            "standard deviation is root two hundred one which is fourteen point one eight",
+            "take the square root of the variance two oh one to get fourteen point one eight",
+            "sigma equals root of two hundred and one equals fourteen point one eight",
+            "variance ki square root theesthe fourteen point one eight",
+            "S D is fourteen point one eight"
+          ],
+          "reject": [
+            "find the S D",
+            "square root",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "root two hundred one",
+            "fourteen point one eight",
+            "standard deviation",
+            "S D"
+          ]
+        },
+        "why": "Variance is in squared units (marks²). The square root brings the spread back to marks, so σ = 14.18 can be compared directly with the data.",
+        "common_mistakes": [
+          "Reporting only the variance when the question asks for both.",
+          "√201 taken as 14.2 or 14.17 — the book's two-decimal convention gives 14.18.",
+          "Writing σ = 201 and σ² = 14.18 the wrong way round."
+        ]
+      }
+    ]
+  }
+}

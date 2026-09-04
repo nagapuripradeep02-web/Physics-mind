@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_r_r1_r2_minus_r3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that r + r₁ + r₂ − r₃ = 4R cos C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group into two pairs",
+      "marks": 2
+    },
+    {
+      "label": "Apply the compound formulas",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.129, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 2 + 2: half the marks for choosing the grouping that keeps C to the end, half for the compound-angle finish. It matches the sibling card ts_ipe_m1a_pt_saq_r_r3_r1_minus_r2, which is the same identity written around B. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 both sides come to 1.511858; for a = 2, b = 3, c = 4 both come to −2.065591; and for the right-angled a = 3, b = 4, c = 5 both are 0, as cos C = 0 requires. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_into_two_pairs",
+        "kind": "equation",
+        "label": "Group into two pairs",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Write the four half-angle forms first, then group (r₁ + r₂) and (r − r₃): the first pair shares 4R cos(C/2), the second shares 4R sin(C/2).",
+        "memory_tip": "r is all three sines; each ex-radius keeps the sine at its own vertex. Group (r₁ + r₂) and (r − r₃) so the C half-angles come out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "r = 4R sin(A/2)sin(B/2)sin(C/2),",
+          "r₁ = 4R sin(A/2)cos(B/2)cos(C/2),",
+          "r₂ = 4R cos(A/2)sin(B/2)cos(C/2),",
+          "r₃ = 4R cos(A/2)cos(B/2)sin(C/2)",
+          "L.H.S = (r₁ + r₂) + (r − r₃)",
+          "= 4R cos(C/2)[sin(A/2)cos(B/2)",
+          "   + cos(A/2)sin(B/2)]",
+          " − 4R sin(C/2)[cos(A/2)cos(B/2)",
+          "   − sin(A/2)sin(B/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four radii are written in their 4R half-angle forms and grouped as (r₁ + r₂) and (r − r₃), so 4R cos(C/2) and 4R sin(C/2) come out.",
+          "accept": [
+            "group r one plus r two and r minus r three then take four R cos half C and four R sin half C out",
+            "pair them around C because the answer keeps cos C",
+            "the common factors are the C half angles",
+            "C chuttu group cheyyali, cos half C and sin half C common",
+            "write the four half angle forms first then group them in pairs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I group them"
+          ],
+          "heard_as": [
+            "r one plus r two",
+            "r minus r three",
+            "cos half C",
+            "sin half C",
+            "four R"
+          ]
+        },
+        "why": "The answer contains cos C, so the four radii must be grouped in a way that keeps C to the end. (r₁ + r₂) shares 4R cos(C/2) and (r − r₃) shares 4R sin(C/2).",
+        "common_mistakes": [
+          "Adding the four half-angle forms term by term without pairing them first, so no common factor comes out.",
+          "Swapping r₂ and r₃ — r₂ keeps sin(B/2), r₃ keeps sin(C/2)."
+        ]
+      },
+      {
+        "id": "s2_apply_the_compound_formulas",
+        "kind": "boxed_final",
+        "label": "Apply the compound formulas",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. The brackets become sin((A+B)/2) and cos((A+B)/2); the complementary angle turns both into C/2, and cos² − sin² gives cos C.",
+        "memory_tip": "(A+B)/2 = 90° − C/2 turns both brackets into C, and cos²(C/2) − sin²(C/2) is cos C.",
+        "lines": [
+          "= 4R cos(C/2) sin((A+B)/2)",
+          " − 4R sin(C/2) cos((A+B)/2)",
+          "Now (A+B)/2 = 90° − C/2, so",
+          "sin((A+B)/2) = cos(C/2) and",
+          "cos((A+B)/2) = sin(C/2)",
+          "= 4R[cos²(C/2) − sin²(C/2)]",
+          "   [∵ cos 2θ = cos²θ − sin²θ]",
+          {
+            "text": "∴ L.H.S = 4R cos C = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets are sin((A+B)/2) and cos((A+B)/2), that these equal cos(C/2) and sin(C/2), and that 4R[cos²(C/2) − sin²(C/2)] = 4R cos C.",
+          "accept": [
+            "the brackets are sine and cosine of half A plus B",
+            "sin of half A plus B is cos half C so it becomes four R cos squared minus sin squared",
+            "cos squared half C minus sin squared half C is cos C",
+            "A plus B by two ante ninety minus C by two, so cos half C vasthundi",
+            "the difference of the squares gives cos C"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "take the factors out"
+          ],
+          "heard_as": [
+            "cos half C",
+            "ninety minus",
+            "cos squared minus sin squared",
+            "four R cos C"
+          ]
+        },
+        "why": "Both brackets collapse onto the same pair of C half-angles, so what is left is cos²(C/2) − sin²(C/2) — and that is exactly cos C, the angle the question asked for.",
+        "common_mistakes": [
+          "Adding the two squares instead of subtracting, which gives 4R.",
+          "Writing (A+B)/2 = 90° − C and forgetting to halve C."
+        ]
+      }
+    ]
+  }
+}

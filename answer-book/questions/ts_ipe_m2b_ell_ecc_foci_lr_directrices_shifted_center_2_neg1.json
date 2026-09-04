@@ -1,0 +1,175 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_ecc_foci_lr_directrices_shifted_center_2_neg1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the eccentricity, coordinates of foci, length of latus rectum and equations of directrices of the ellipse 9x² + 16y² − 36x + 32y − 92 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Ellipse, answer 59, on a ★★★ SSP page (book p.49 also ranks chapter 8 ★★★ on its chapter table). Printed appearances: AP 15 · TS 15,18. The mark split 1+1+1+1 IS THE BOOK'S — each of the four results carries its own printed '1 Mark' margin tag. This is the shifted-centre twin of Q58 (answer 58, same a, b, e once completed to the square): the centre-shift step is folded into this card's step 1 at 0 marks, matching how the book gives it no separate tag. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5) — 4+4 marks in Section B, no VSAQ or LAQ chapter for this unit. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Completing the square turns this into the standard ellipse x²/16 + y²/9 = 1 moved to the centre (2, −1) — so the eccentricity and the length of the latus rectum come straight from a = 4, b = 3 and need no re-deriving; only the foci and the directrices need the centre added in, because those are positions, not lengths.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Complete the square to standard form",
+        "marks": 0,
+        "margin_note": "No mark of its own, but this is the real extra work here compared with an ellipse already given in standard form.",
+        "memory_tip": "Group the x-terms and y-terms separately before completing each square.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "9x² + 16y² − 36x + 32y − 92 = 0",
+          "⇒ 9(x² − 4x) + 16(y² + 2y) = 92",
+          "⇒ 9(x − 2)² + 16(y + 1)² = 92 + 36 + 16 = 144",
+          "⇒ (x − 2)²/16 + (y + 1)²/9 = 1"
+        ],
+        "why": "Completing the square in x and y turns the general equation into the shifted standard form (x − h)²/a² + (y − k)²/b² = 1, which reads off the same a² = 16, b² = 9 as the centred ellipse x²/16 + y²/9 = 1, but centred at (h, k) = (2, −1).",
+        "common_mistakes": [
+          "Adding 4 and 1 (the numbers needed inside each bracket) but forgetting to also add 9·4 and 16·1 on the right-hand side.",
+          "Losing the sign of k when reading (y − k)² — here y + 1 means k = −1, not +1."
+        ]
+      },
+      {
+        "id": "s2_eccentricity",
+        "kind": "equation",
+        "label": "Eccentricity",
+        "marks": 1,
+        "mark_note": "Eccentricity",
+        "margin_note": "First mark. a² = 16, b² = 9, a > b, centre (h, k) = (2, −1) — the same a and b as x²/16 + y²/9 = 1.",
+        "memory_tip": "The eccentricity never depends on where the centre is — only on a and b.",
+        "lines": [
+          "e = √(a² − b²) / a",
+          "= √(16 − 9) / 4",
+          {
+            "text": "e = √7 / 4",
+            "style": "boxed"
+          }
+        ],
+        "why": "Shifting the centre never changes the shape of the ellipse, so a, b and e are identical to an ellipse of the same a² and b² centred at the origin.",
+        "common_mistakes": [
+          "Trying to fold the centre (2, −1) into the eccentricity formula — it has no effect on e.",
+          "Leaving a² in the denominator instead of a."
+        ]
+      },
+      {
+        "id": "s3_foci",
+        "kind": "equation",
+        "label": "Foci",
+        "marks": 1,
+        "mark_note": "Foci",
+        "margin_note": "Second mark. Shift both foci by the centre (2, −1); the y-coordinate stays −1 for a horizontal ellipse.",
+        "memory_tip": "Foci = (centre x ± ae, centre y).",
+        "lines": [
+          "Foci = (h ± ae, k)",
+          "= (2 ± 4·√7/4, −1)",
+          {
+            "text": "Foci = (2 ± √7, −1)",
+            "style": "boxed"
+          }
+        ],
+        "why": "For a horizontal ellipse centred at (h, k), the foci move ae to the right and left of the centre along the line y = k.",
+        "common_mistakes": [
+          "Forgetting to shift the y-coordinate to −1 and leaving it at 0.",
+          "Adding ae to k instead of h."
+        ]
+      },
+      {
+        "id": "s4_latus_rectum",
+        "kind": "equation",
+        "label": "Length of latus rectum",
+        "marks": 1,
+        "mark_note": "Latus rectum",
+        "margin_note": "Third mark. Identical to the centred ellipse — the centre shift never changes a length.",
+        "memory_tip": "Latus rectum equals 2 times the smaller square, over the bigger axis length.",
+        "lines": [
+          "Length of latus rectum = 2b² / a",
+          "= 2(9) / 4",
+          {
+            "text": "= 9/2",
+            "style": "boxed"
+          }
+        ],
+        "why": "The latus rectum is a length, and lengths are unchanged by shifting the centre — only positions move.",
+        "common_mistakes": [
+          "Trying to add the centre coordinates into a length calculation.",
+          "Writing 2a²/b instead of 2b²/a."
+        ]
+      },
+      {
+        "id": "s5_directrices",
+        "kind": "equation",
+        "label": "Equations of directrices",
+        "marks": 1,
+        "mark_note": "Directrices",
+        "margin_note": "Fourth mark. Shift x = h ± a/e, and multiply through by √7 to clear the fraction.",
+        "memory_tip": "Directrices use a/e from the shifted centre x = h, not from the origin.",
+        "lines": [
+          "x = h ± a/e",
+          "= 2 ± 4/(√7/4) = 2 ± 16/√7",
+          "Multiply by √7: √7x = 2√7 ± 16",
+          {
+            "text": "√7x − 2√7 − 16 = 0 and √7x − 2√7 + 16 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each directrix shifts by the same h as the centre, so x = h ± a/e replaces x = ±a/e once the ellipse is off-centre.",
+        "common_mistakes": [
+          "Using x = ±a/e without adding the centre's x-coordinate h = 2.",
+          "Multiplying only the a/e term by √7 and forgetting to multiply the shifted 2 as well."
+        ]
+      }
+    ]
+  }
+}

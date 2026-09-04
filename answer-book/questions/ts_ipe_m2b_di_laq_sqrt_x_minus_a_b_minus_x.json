@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_sqrt_x_minus_a_b_minus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ₐ^b √((x − a)(b − x)) dx.",
+  "appearances": [
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand the product under the root",
+      "marks": 2
+    },
+    {
+      "label": "Complete the square",
+      "marks": 2
+    },
+    {
+      "label": "Apply the standard √(k² − u²) formula",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate at the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.43 (PDF page 42) — LAQ chapter 4 'Definite Integrals', answer 37, the top item on this page. Printed appearance: TS 18. Chapter star rank ★★★ applies. No margin mark tags are printed here, so the 2+2+2+1 split is OURS, patterned on the standard-formula-application shape of book p.22 answer 9 (2+2+2+1, already authored as ts_ipe_m2b_par_standard_form_derivation). Note: PDF page 42 was read for printed p.43, and a SECOND scan of the same physical page recurs at PDF page 43 (a duplicate, confirmed identical on comparison — matches the book-wide page-map note that printed p.43 was scanned twice). Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span on both sides. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the same completing-the-square + √(k²−u²) technique used for a semicircle's area — the answer π(b−a)²/8 is exactly half the area of the circle of diameter (b−a), which is a fast way to sanity-check the final number.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Expand the product under the root",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. Expand (x−a)(b−x) fully before touching the square root.",
+        "memory_tip": "(x−a)(b−x) always expands to −x² + (a+b)x − ab — memorise the sign pattern.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x − a)(b − x) = bx − x² − ab + ax",
+          "= −x² + (a + b)x − ab",
+          "∴ I = ∫ₐ^b √(−x² + (a + b)x − ab) dx"
+        ],
+        "why": "Multiplying out (x−a)(b−x) turns the product of two linear factors into a plain quadratic in x, which can then be handled by completing the square — the standard route to a √(k²−u²) form.",
+        "common_mistakes": [
+          "Losing a sign while expanding, e.g. writing +x² instead of −x².",
+          "Expanding only one of the two brackets and leaving the product unexpanded."
+        ]
+      },
+      {
+        "id": "s2_complete_square",
+        "kind": "equation",
+        "label": "Complete the square",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. The constant that comes out, (b−a)²/4, is the k² of the standard formula.",
+        "memory_tip": "The half-sum (a+b)/2 is always the centre of the completed square; the half-difference (b−a)/2 is always the radius k.",
+        "lines": [
+          "−x² + (a+b)x − ab = −[x² − (a+b)x + ab]",
+          "= −[(x − (a+b)/2)² − ((a+b)/2)² + ab]",
+          "((a+b)/2)² − ab = (a² + 2ab + b² − 4ab)/4",
+          "= (a − b)²/4 = (b − a)²/4",
+          "∴ (x − a)(b − x) = (b − a)²/4 − (x − (a+b)/2)²"
+        ],
+        "why": "Completing the square turns the quadratic into a fixed constant minus a squared deviation from the midpoint (a+b)/2, exactly the k² − u² shape the standard root-integral formula needs.",
+        "common_mistakes": [
+          "Making a sign error when pulling the negative sign out of the bracket.",
+          "Simplifying ((a+b)/2)² − ab incorrectly instead of reaching (b−a)²/4."
+        ]
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "Apply the standard √(k² − u²) formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for correctly identifying k = (b−a)/2 and u = x − (a+b)/2 and applying the formula.",
+        "memory_tip": "∫√(k² − u²) du = (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c — a formula to have ready for this whole chapter.",
+        "lines": [
+          "With k = (b − a)/2 and u = x − (a+b)/2:",
+          "I",
+          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐ^b",
+          "[∵ ∫√(k² − u²) du",
+          "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
+        ],
+        "why": "The completed-square form is exactly k² − u² with k = (b−a)/2 fixed and u = x − (a+b)/2 varying, so the standard result for ∫√(k²−u²) du applies directly, ready to be evaluated at the two limits.",
+        "common_mistakes": [
+          "Mixing up which quantity is k (fixed) and which is u (the variable, depending on x).",
+          "Forgetting the antiderivative has two terms — dropping the algebraic term and keeping only the Sin⁻¹ term, or vice versa."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate at the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. At both endpoints, u = ±k, so √(k²−u²) = 0 and only the Sin⁻¹ terms survive.",
+        "memory_tip": "At x = b, u = k so Sin⁻¹(1) = π/2; at x = a, u = −k so Sin⁻¹(−1) = −π/2 — the algebraic term vanishes at both ends.",
+        "lines": [
+          "At x = b:",
+          "u = k, so the first term is 0 and Sin⁻¹(1) = π/2",
+          "At x = a: u = −k,",
+          "so the first term is 0 and Sin⁻¹(−1) = −π/2",
+          "I = (k²/2)(π/2) − (k²/2)(−π/2) = k²·(π/2)",
+          "= ((b−a)²/4)(π/2)",
+          {
+            "text": "∴ I = π(b − a)²/8",
+            "style": "boxed"
+          }
+        ],
+        "why": "At both endpoints the point lies exactly on the boundary of the square-root term (u = ±k), so that term vanishes and only the two Sin⁻¹ terms, which add rather than cancel because Sin⁻¹(−1) = −π/2, are left.",
+        "common_mistakes": [
+          "Wrongly cancelling the two Sin⁻¹ terms instead of adding them.",
+          "Substituting k² = (b−a)²/4 incorrectly as (b−a)²/2."
+        ]
+      }
+    ]
+  }
+}

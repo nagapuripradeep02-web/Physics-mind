@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_e_a_sin_inverse_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = eᵃ ˢⁱⁿ⁻¹ˣ, prove that dy/dx = ay/√(1 − x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the exponential and name it y",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the exponent and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, with the concrete value a = 2.5: the central difference quotient reads 4.2211033 at x = 0.2 against ay/√(1 − x²) = 4.2211033, and 19.293635 at x = 0.65 against 19.293635. The exponent is written in superscript as a Sin⁻¹x."
+  },
+  "recall_prompt": "Say how you would do this one — say why the answer can be written in terms of y, and what the exponent differentiates to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer_exponential",
+        "kind": "equation",
+        "label": "Differentiate the exponential and name it y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. eᵘ differentiates to eᵘ times du/dx, and here eᵘ is the whole of y. That is the reason the answer is stated in terms of y rather than the exponential.",
+        "memory_tip": "An exponential differentiates to itself, so eᵃ ˢⁱⁿ⁻¹ˣ can be replaced by y at any point in the working.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y = eᵃ ˢⁱⁿ⁻¹ˣ, that is y = eᵘ where u = a Sin⁻¹x and a is a constant.",
+          "d/dx(eᵘ) = eᵘ · du/dx",
+          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · d/dx(a Sin⁻¹x)",
+          "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself, so dy/dx = y · d/dx(a Sin⁻¹x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(eᵘ) = eᵘ·du/dx, and that the eᵘ factor is y itself, so dy/dx = y times the derivative of the exponent.",
+          "accept": [
+            "e power u differentiates to e power u times du by dx",
+            "the exponential that comes back is y itself",
+            "replace e power a sin inverse x by y",
+            "e power u ne malli vasthundi, adi y ye",
+            "dy by dx is y times the derivative of the power"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power u",
+            "y itself",
+            "du by dx",
+            "exponent"
+          ]
+        },
+        "why": "The target has y on the right side, which only makes sense once the repeated exponential is recognised as y. Naming it here is what makes the last line match the statement being proved.",
+        "common_mistakes": [
+          "Differentiating the exponential to a Sin⁻¹x · eᵃ ˢⁱⁿ⁻¹ˣ⁻¹, using the power rule.",
+          "Leaving the answer as an exponential and never connecting it back to y."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate the exponent and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. a is a constant multiplier inside the exponent, so it stays as it is, and d/dx(Sin⁻¹x) = 1/√(1 − x²), valid for −1 < x < 1.",
+        "memory_tip": "Sin⁻¹ contributes 1/√(1 − x²). The constant a is unchanged and stays as a multiplier beside the y.",
+        "lines": [
+          "d/dx(Sin⁻¹x) = 1/√(1 − x²),  so  d/dx(a Sin⁻¹x) = a/√(1 − x²)",
+          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
+          "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
+          {
+            "text": "∴ dy/dx = ay/√(1 − x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(a Sin⁻¹x) = a/√(1 − x²), so dy/dx = ay/√(1 − x²).",
+          "accept": [
+            "sin inverse x differentiates to one over root one minus x squared",
+            "a stays outside so the exponent gives a over root one minus x squared",
+            "the answer is a y over root one minus x squared",
+            "sin inverse ki one by root one minus x square vasthundi",
+            "multiply y by a over root one minus x squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by root one minus x squared",
+            "sin inverse",
+            "a y",
+            "root"
+          ]
+        },
+        "why": "The proof finishes because the exponential appears again unchanged and is replaced by y. Nothing is cancelled or rearranged, which is why this question is short even though it is written as a proof.",
+        "common_mistakes": [
+          "Using 1/(1 + x²), which is the Tan⁻¹ derivative.",
+          "Dropping the constant a from the numerator."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The exponential factor IS y, so replace it rather than writing it out again — that is what produces the y on the right-hand side. The a comes out of a Sin⁻¹x."
+}

@@ -707,5 +707,5 @@
       }
     ]
   },
-  "insider_note": "The two workings are the same four stages twice — holes for p-n-p, electrons for n-p-n. Write the p-n-p case carefully and the n-p-n case is a rewrite with one word changed."
+  "insider_note": "Points (i) to (iv) are the same four stages twice: write the p-n-p case carefully, then rewrite it with holes replaced by electrons, p-type by n-type, and the positive terminal by the negative one. Point (v) is not a swap — in p-n-p, holes carry the current inside the transistor and electrons carry it in the external circuit, while in n-p-n electrons carry it both inside and outside."
 }

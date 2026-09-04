@@ -52,7 +52,7 @@
           "nuclei, which release still more neutrons."
         ],
         "margin_note": "First mark. The neutrons from one fission start the next fissions.",
-        "why": "Fission produces the very particle that triggers fission, so the process feeds itself — that is the whole idea behind the word \"chain\".",
+        "why": "Fission produces the very particle that triggers fission, so the process is self-sustained — that is the whole idea behind the word \"chain\".",
         "common_mistakes": [
           "Saying the energy causes the next fission. It is the neutrons.",
           "Naming no fuel. The mark scheme expects ²³⁵U or uranium."
@@ -74,7 +74,7 @@
             "uranium"
           ]
         },
-        "memory_tip": "Fission needs a neutron and makes three — that is why it keeps itself alive."
+        "memory_tip": "Fission needs a neutron and makes about three — that is why the reaction is self-sustained."
       },
       {
         "id": "s2_definition",

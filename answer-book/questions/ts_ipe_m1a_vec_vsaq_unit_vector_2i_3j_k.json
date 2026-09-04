@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Square each component, add, take the root. √14 does not simplify, and leaving it as a surd is the expected answer — not a decimal.",
+        "memory_tip": "Square each component, add, take the root. √14 does not simplify — leave it as a surd.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The unit vector is the vector over its own length. Leave the surd in the denominator — rationalising is not expected here.",
+        "memory_tip": "The unit vector is the vector over its OWN length. Rationalising is not expected here.",
         "lines": [
           "∴ Unit vector = a/|a|",
           {
@@ -129,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide by the magnitude, never by the number of components. √14 does not simplify, so leave the answer as a single fraction over √14."
 }

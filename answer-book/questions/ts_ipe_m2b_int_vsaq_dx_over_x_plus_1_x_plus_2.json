@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_dx_over_x_plus_1_x_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ dx/[(x + 1)(x + 2)].",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split into partial fractions",
+      "marks": 1
+    },
+    {
+      "label": "Integrate each part for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.86 (PDF page 86) — VSAQ chapter 16 ‘Integration’, answer 144, on a ★★★ SSP 86 page (banner printed at the top of the VSAQ chapter). Printed appearance: AP 19. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "With two distinct linear factors already sitting in the denominator, this needs no A/B system of equations at all — the standard shortcut 1/[(x+a)(x+b)] = [1/(x+a) − 1/(x+b)]/(b−a) gives the split in one line.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split into partial fractions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1/[(x+1)(x+2)] = [(x+2)−(x+1)]/[(x+1)(x+2)]",
+          "= 1/(x+1) − 1/(x+2)"
+        ],
+        "why": "Writing the numerator 1 as the difference (x+2)−(x+1) — which really does equal 1 — and splitting the fraction term by term gives the two simple partial fractions directly.",
+        "common_mistakes": [
+          "Setting up a full A/(x+1)+B/(x+2) system and solving for A, B, which is unnecessary extra work for two distinct linear factors this simple.",
+          "Writing 1/(x+2) − 1/(x+1) with the two terms swapped."
+        ],
+        "memory_tip": "(x+2)−(x+1) = 1, always — use THIS numerator trick to split two linear factors without solving equations."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate each part for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ dx/[(x+1)(x+2)] = log|x+1| − log|x+2| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each partial fraction integrates to a plain log — ∫dx/(x+1) = log|x+1|, ∫dx/(x+2) = log|x+2| — and the two are subtracted, matching the split found above.",
+        "common_mistakes": [
+          "Dropping the modulus bars on either log.",
+          "Combining the two logs with the ratio inverted, writing log|(x+2)/(x+1)|; subtracting log|x+2| puts (x+2) in the DENOMINATOR."
+        ],
+        "memory_tip": "Two logs subtracted — or equivalently, one log of the ratio (x+1)/(x+2) — either form is correct, but write only one."
+      }
+    ]
+  }
+}

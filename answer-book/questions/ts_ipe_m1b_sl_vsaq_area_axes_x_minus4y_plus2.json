@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_area_axes_x_minus4y_plus2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the area of the triangle formed by the straight line x − 4y + 2 = 0 with the coordinate axes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read off the coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Compute the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 4, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for comparing with ax + by + c = 0 and naming the area formula, and the second for substituting and reaching a positive number. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: the intercepts are x = −2 and y = 1/2, so the area is ½|(−2)(1/2)| = 1/2, which matches the formula result. Related card in the same unit: ts_ipe_m1b_sl_vsaq_area_with_axes asks the same method on 3x − 4y + 12 = 0 and comes from a different source book; the two are separate questions with different numbers, not duplicates."
+  },
+  "recall_prompt": "Say how you would solve this — name the area formula for a line with the two axes, then say what you substitute.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_off_the_coefficients",
+        "kind": "equation",
+        "label": "Read off the coefficients",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The triangle a line cuts from BOTH axes has a formula of its own, Δ = c²/(2|ab|), so nothing has to be set up except the comparison with ax + by + c = 0.",
+        "memory_tip": "Compare with ax + by + c = 0; the axes-triangle area is c²/(2|ab|).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is x − 4y + 2 = 0",
+          "Compare it with ax + by + c = 0",
+          "∴ a = 1, b = −4, c = 2",
+          "Area of the triangle is  Δ = c²/(2|ab|)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line is compared with ax + by + c = 0 to read a = 1, b = −4, c = 2, and the area formula Δ = c²/(2|ab|) is written.",
+          "accept": [
+            "compare with a x plus b y plus c equals zero",
+            "a is one b is minus four c is two",
+            "area is c squared by two mod a b",
+            "a b c teesukoni area formula rayali",
+            "use the axes triangle area formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "substitute and simplify"
+          ],
+          "heard_as": [
+            "a x plus b y plus c",
+            "c squared",
+            "two mod a b",
+            "area formula"
+          ]
+        },
+        "why": "The formula already contains both intercepts and the right angle at the origin, so the two intercepts need not be found separately.",
+        "common_mistakes": [
+          "Reading b as 4 instead of −4.",
+          "Getting the sign of c wrong after rearranging the equation."
+        ]
+      },
+      {
+        "id": "s2_compute_the_area",
+        "kind": "boxed_final",
+        "label": "Compute the area",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Substitute and simplify. The modulus in the denominator is what keeps the answer positive, and the unit is square units.",
+        "memory_tip": "An area is never negative — the modulus sign in the denominator is what guarantees that.",
+        "lines": [
+          "∴ Δ = c²/(2|ab|) = 2²/(2|(1)(−4)|)",
+          "= 4/(2 × 4) = 4/8 = 1/2",
+          {
+            "text": "∴ Area of the triangle is 1/2 sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives Δ = 4/8 = 1/2 sq.units.",
+          "accept": [
+            "two squared over two into four",
+            "four by eight is one half",
+            "the area is half a square unit",
+            "values substitute chesthe area half vasthundi",
+            "the area comes out one by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "compare with a x plus b y plus c"
+          ],
+          "heard_as": [
+            "four by eight",
+            "one half",
+            "half square units",
+            "area"
+          ]
+        },
+        "why": "|ab| = |(1)(−4)| = 4 is positive even though b is negative, so the area comes out positive without any extra sign work.",
+        "common_mistakes": [
+          "Forgetting the 2 in the denominator and writing 4/4 = 1.",
+          "Dropping the square on c and writing 2/(2 × 4)."
+        ]
+      }
+    ]
+  }
+}

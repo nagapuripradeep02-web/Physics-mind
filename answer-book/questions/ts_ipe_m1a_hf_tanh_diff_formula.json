@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_tanh_diff_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that tanh(x − y) = (tanh x − tanh y)/(1 − tanh x tanh y).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the difference formulas",
+      "marks": 1
+    },
+    {
+      "label": "Divide by cosh x cosh y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh(x − y) as the ratio of the two difference formulas first and the division by cosh x cosh y second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Use the difference formulas",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. tanh is sinh over cosh, so write both parts using the difference formulas. These come from the addition formulas with y replaced by −y.",
+        "memory_tip": "Replace y by −y in the addition formulas: sinh(−y) = −sinh y and cosh(−y) = cosh y, so both signs flip to minus.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = tanh(x − y) = sinh(x − y)/cosh(x − y)",
+          "Numerator = sinh x cosh y − cosh x sinh y",
+          "Denominator = cosh x cosh y − sinh x sinh y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanh(x − y) is written as sinh(x − y) over cosh(x − y) and both are expanded by the difference formulas.",
+          "accept": [
+            "tanh is sinh over cosh so write both with the difference formulas",
+            "numerator is sinh x cosh y minus cosh x sinh y",
+            "denominator is cosh x cosh y minus sinh x sinh y",
+            "sinh by cosh ga rasi difference formulas apply cheyyali",
+            "these come from the addition formulas with y replaced by minus y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh over cosh",
+            "difference formula",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "why": "There is no separate definition of tanh(x − y) to expand. The only route is through sinh and cosh, whose difference formulas the chapter already has.",
+        "common_mistakes": [
+          "Writing a plus in the denominator, copying the tan formula from trigonometry.",
+          "Expanding tanh(x − y) as tanh x − tanh y."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by cosh x cosh y",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide the top and the bottom by cosh x cosh y. This is allowed because cosh is never less than 1, so the product is never zero.",
+        "memory_tip": "Divide top and bottom by cosh x cosh y: every sinh over its own cosh becomes a tanh.",
+        "lines": [
+          "cosh x ≥ 1 and cosh y ≥ 1, so cosh x cosh y ≠ 0",
+          "Divide the top and the bottom by cosh x cosh y",
+          "The top becomes tanh x − tanh y",
+          "The bottom becomes 1 − tanh x tanh y",
+          "∴ tanh(x − y)",
+          {
+            "text": "= (tanh x − tanh y)/(1 − tanh x tanh y)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the numerator and the denominator by cosh x cosh y turns each sinh into a tanh and gives the required form.",
+          "accept": [
+            "divide the top and the bottom by cosh x cosh y",
+            "each sinh over its own cosh becomes a tanh",
+            "the top gives tanh x minus tanh y and the bottom gives one minus tanh x tanh y",
+            "cosh x cosh y tho divide cheste tanh vasthundi",
+            "cosh is never zero so the division is allowed"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by cosh x cosh y",
+            "tanh x minus tanh y",
+            "one minus",
+            "never zero"
+          ]
+        },
+        "why": "Dividing by cosh x cosh y is the one move that converts every term at once, because each sinh is paired with the cosh of the same variable.",
+        "common_mistakes": [
+          "Dividing by cosh(x − y) instead of by cosh x cosh y.",
+          "Getting 1 in the numerator and forgetting it belongs in the denominator."
+        ]
+      }
+    ]
+  }
+}

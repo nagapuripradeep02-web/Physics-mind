@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_two",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find k if the pairs of circles x² + y² + 4x + 8 = 0, x² + y² − 16y + k = 0 are orthogonal.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write g, f, c for both circles",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles, answer 116.2, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 16, TS 16. ⚠ THE MARK SPLIT IS OURS, same 1+1 reasoning as the twin answer 116.1 (justified in full in that card's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Both circles here have a zero coefficient somewhere (no y-term in the first, no x-term in the second) — that halves the arithmetic, since g′ and f both vanish in the orthogonality formula.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_g_f_c",
+        "kind": "equation",
+        "label": "Write g, f, c for both circles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Note f = 0 (no y term in the first circle) and g′ = 0 (no x term in the second).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the given circles, we get",
+          "g = 2, f = 0, c = 8 and",
+          "g′ = 0, f′ = −8, c′ = k"
+        ],
+        "why": "Reading g, f, c off each circle — including the zero values where a term is simply absent — is essential before the orthogonality formula can be applied correctly.",
+        "common_mistakes": [
+          "Leaving f or g′ blank instead of explicitly writing 0, which then causes a term to be dropped in the next step.",
+          "Reading f′ as −16 instead of −8 (half the coefficient of y)."
+        ],
+        "memory_tip": "A missing x-term or y-term in a circle's equation always means the matching g or f is exactly 0 — write it down, do not skip it."
+      },
+      {
+        "id": "s2_orthogonal_condition",
+        "kind": "boxed_final",
+        "label": "Apply the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both product terms vanish here, leaving the shortest possible equation in k.",
+        "lines": [
+          "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
+          "⇒ 2(2)(0) + 2(0)(−8) = 8 + k",
+          "⇒ 0 = 8 + k",
+          {
+            "text": "∴ k = −8",
+            "style": "boxed"
+          }
+        ],
+        "why": "With g′ = 0 and f = 0, both terms on the left of the orthogonality condition vanish, leaving the simplest possible equation to solve for k.",
+        "common_mistakes": [
+          "Assuming the left side must be nonzero and searching for an error when it comes out to 0.",
+          "Sign slip turning 0 = 8 + k into k = 8 instead of k = −8."
+        ],
+        "memory_tip": "When both circles have a zero in the matching spot (no x-term in one, no y-term in the other), the orthogonality equation collapses to 0 = c + c′ — the fastest version of this question type."
+      }
+    ]
+  }
+}

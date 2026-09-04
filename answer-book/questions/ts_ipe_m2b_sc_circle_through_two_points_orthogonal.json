@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_circle_through_two_points_orthogonal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the circle which passes through the points (2, 0), (0, 2) and is orthogonal to the circle 2x² + 2y² + 5x − 6y + 4 = 0.",
+  "appearances": [
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the circle and use both points",
+      "marks": 1
+    },
+    {
+      "label": "Relate g and f",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve and write the final circle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.98 — Star Questions Plus, under the 'SYSTEM OF CIRCLES' banner (this unit's Star Q+ run is answers 206-207, both on p.98), answer 207. No printed 'SAQ' or 'VSAQ' label appears on this banner — ⚠ THE SECTION IS OURS: classed as SAQ because it uses the same three-unknown (g, f, c), three-equation setup as this chapter's other orthogonal-circle SAQ answers (57.1, 57.2, and the p.56 practice question), not a one-or-two-line VSAQ. Printed appearance tag: TS 19. Chapter star rank taken as the SAQ section's ★★★ (per book p.49), since this entry is classed SAQ. ⚠ THE MARK SPLIT IS ALSO OURS — Star Questions Plus pages print no per-line mark tags. Cut 1+1+1+1, matching the four-flat-marks shape used for the other three-unknown orthogonal-circle answers in this chapter (justified in ts_ipe_m2b_sc_orthogonal_circle_through_origin's note). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked: book p.97 is a Circle VSAQ Star Q+ page (a different unit) and book p.99 opens the Parabola VSAQ Star Q+ run — so this unit's entire Star Q+ contribution is answers 206 and 207, both on p.98. Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The given circle has a leading coefficient of 2 — divide it by 2 before reading off g′, f′, c′ for the orthogonality condition, exactly as a radical-centre question needs first.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up_and_points",
+        "kind": "equation",
+        "label": "Set up the circle and use both points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for both point conditions written together.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the required circle be",
+          "S ≡ x² + y² + 2gx + 2fy + c = 0",
+          "S = 0 passes through (2, 0)",
+          "⇒ 4 + 4g + c = 0   ...(1)",
+          "S = 0 passes through (0, 2)",
+          "⇒ 4 + 4f + c = 0   ...(2)"
+        ],
+        "why": "Each given point, substituted into the general circle's equation, gives one linear equation — two points give two equations, both linking c to one of g or f.",
+        "common_mistakes": [
+          "Substituting (2, 0) and (0, 2) into each other's equation by mixing up which coordinate is x and which is y.",
+          "Losing the constant 4 = 2² while expanding either substitution."
+        ],
+        "memory_tip": "(2, 0) makes the y-terms vanish, so it links g and c; (0, 2) makes the x-terms vanish, so it links f and c — the symmetry of the two points is doing the work here."
+      },
+      {
+        "id": "s2_relate_g_and_f",
+        "kind": "equation",
+        "label": "Relate g and f",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Subtracting (1) and (2) directly compares g and f.",
+        "lines": [
+          "(1) − (2) ⇒ 4g − 4f = 0",
+          "⇒ g = f"
+        ],
+        "why": "Because both point-conditions have the same constant 4 + c, subtracting them cancels c completely and reveals a direct relation between g and f — a useful shortcut given the near-symmetry of (2, 0) and (0, 2).",
+        "common_mistakes": [
+          "Subtracting (2) − (1) instead, which still gives g = f but with the terms flipped — either is fine as long as it is used consistently.",
+          "Forgetting to keep this relation g = f for use in the final solving step."
+        ],
+        "memory_tip": "Two points that are mirror images of each other along y = x (like (2, 0) and (0, 2)) usually force g = f in the circle through them."
+      },
+      {
+        "id": "s3_orthogonal_condition",
+        "kind": "equation",
+        "label": "Apply the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Divide the given circle by 2 first, to read off g′, f′, c′ correctly.",
+        "lines": [
+          "S is orthogonal to 2x² + 2y² + 5x − 6y + 4 = 0",
+          "⇒ orthogonal to x² + y² + 5/4 · 2x − 3/2 ·",
+          "2y + 2",
+          "= 0",
+          "∴ 2gg′ + 2ff′ = c + c′",
+          "2g(5/4) + 2f(−3/2) = c + 2",
+          "⇒ 5g − 6f = 2c + 4"
+        ],
+        "why": "Dividing the given circle by its leading coefficient 2 first puts it in standard form, x² + y² + 5/2 x − 3y + 2 = 0. The lines above keep it as 5/4 · 2x − 3/2 · 2y + 2 = 0 so that the 2g′ and 2f′ brackets stay visible, and g′ = 5/4, f′ = −3/2, c′ = 2 can be read off correctly before applying the orthogonality test; multiplying the resulting equation by 2 clears the remaining fraction.",
+        "common_mistakes": [
+          "Applying the orthogonality formula directly to the un-divided circle, which doubles every coefficient on the wrong side.",
+          "Clearing the fraction 5g/2 by multiplying only the left side by 2 and leaving the right side as c + 2 instead of 2c + 4."
+        ],
+        "memory_tip": "Divide by the leading coefficient FIRST, always, before touching the orthogonality formula — 2gg′ + 2ff′ = c + c′ only holds when both circles carry x² + y² with coefficient 1. Whatever you multiply on the left to clear a fraction, multiply on the right too."
+      },
+      {
+        "id": "s4_solve_final_circle",
+        "kind": "boxed_final",
+        "label": "Solve and write the final circle",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Fourth mark. Use g = f from step 2 to collapse the orthogonality equation to one unknown.",
+        "lines": [
+          "But g = f ⇒ 5g − 6g = 2c + 4 ⇒ −g = 2c + 4",
+          "⇒ g = −2c − 4",
+          "From (1), 4 + 4g + c = 0",
+          "⇒ 4 + 4(−2c − 4) + c = 0 ⇒ −7c − 12 = 0",
+          "⇒ c = −12/7",
+          "g = f = −2c − 4 = 24/7 − 4 = −4/7",
+          {
+            "text": "⇒ 7x² + 7y² − 8x − 8y − 12 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting g = f into the orthogonality equation leaves one equation in g and c; combining it with (1) then solves the whole system, and substituting g, f, c back into S = 0 gives the final circle — this reproduces the book's own printed answer.",
+        "common_mistakes": [
+          "Solving for c but forgetting that g = f = −4/7 must both be substituted back into the final circle.",
+          "Leaving the final circle with a fraction instead of clearing it to whole-number coefficients."
+        ],
+        "memory_tip": "Once one unknown is expressed in terms of another (g = f, here), always substitute it into the EARLIEST equation available, not a fresh derivation."
+      }
+    ]
+  }
+}

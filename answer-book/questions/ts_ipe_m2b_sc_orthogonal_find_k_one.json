@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find k if the pair of circles x² + y² − 5x − 14y − 34 = 0, x² + y² + 2x + 4y + k = 0 are orthogonal.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write g, f, c for both circles",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 13 System of Circles (chapter runs pp.80-81), answer 116.1, on a ★★★ Super Scoring Page (SSP 80). Chapter star rank ★★, per the VSAQ section table (book p.76). Three separate printed appearance tags surround this answer — AP 18 and TS 18 beside the question, and a further AP 20 beside the g/f/c line mid-solution — all three are recorded as appearances here since the book prints no other question between them. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed anywhere in this VSAQ chapter. Cut 1+1: one mark for correctly reading off g, f, c from both circles, one mark for applying the orthogonal condition and solving for k — the same 1+1 shape used throughout this book's 2-mark VSAQ answers (e.g. the Chemistry-II VSAQ template). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "A VSAQ orthogonal-circle question is the same test as the SAQ ones, just with only ONE unknown (k) instead of three (g, f, c) — the whole answer is two lines once g, f, c are identified.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_g_f_c",
+        "kind": "equation",
+        "label": "Write g, f, c for both circles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both circles already have coefficient 1 on x² and y² — no dividing needed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the given circles, we get",
+          "g = −5/2, f = −7, c = −34 and",
+          "g′ = 1, f′ = 2, c′ = k"
+        ],
+        "why": "Reading g, f, c off each circle (half the x-coefficient, half the y-coefficient, the constant term) is the setup step every orthogonality question needs before the condition can be applied.",
+        "common_mistakes": [
+          "Reading g as −5 instead of −5/2 — it is HALF the coefficient of x, not the coefficient itself.",
+          "Mixing up which circle's values are primed and which are not."
+        ],
+        "memory_tip": "g and f are always half the coefficient of x and y — c is the constant term with no halving."
+      },
+      {
+        "id": "s2_orthogonal_condition",
+        "kind": "boxed_final",
+        "label": "Apply the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for solving the one linear equation in k.",
+        "lines": [
+          "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
+          "⇒ 2(−5/2)(1) + 2(−7)(2) = −34 + k",
+          "⇒ −5 − 28 = −34 + k",
+          {
+            "text": "∴ k = −33 + 34 = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Two circles cut orthogonally exactly when 2gg′ + 2ff′ = c + c′ — substituting the known g, f, c values leaves one linear equation in the single unknown k.",
+        "common_mistakes": [
+          "Substituting g′ and f′ with the wrong sign, since they happen to both be positive here unlike g and f.",
+          "Sign slip turning −33 + 34 into −1 instead of 1."
+        ],
+        "memory_tip": "2gg′ + 2ff′ = c + c′ is the ONE formula this whole chapter's VSAQ section tests — memorise it exactly as written, both sides."
+      }
+    ]
+  }
+}

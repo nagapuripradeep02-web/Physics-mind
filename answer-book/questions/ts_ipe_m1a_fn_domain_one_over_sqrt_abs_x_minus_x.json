@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_one_over_sqrt_abs_x_minus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = 1/√(|x| − x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 19 part (b-v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. The book prints this part as v. where the earlier parts of the block use i) to iv); the numbering style changes, the question does not. The same expression appears in part (b-iii) without the fraction, where the answer is the whole of R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Test both cases of the modulus",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write the strict inequality first, then split the modulus at 0.",
+        "memory_tip": "The root sits in a denominator, so ≥ 0 becomes > 0, and that single change removes every x ≥ 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The root is in a denominator, so it must be",
+          "|x| − x > 0, strictly",
+          "If x ≥ 0 then |x| = x, so |x| − x = 0, which fails",
+          "If x < 0 then |x| = −x, so |x| − x = −2x > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the root is in a denominator, so |x| − x must be strictly positive, and that this fails for every x ≥ 0 because the value there is 0.",
+          "accept": [
+            "strictly greater than zero because the root is in the denominator",
+            "for x at least zero the inside is zero so the denominator is zero and it fails",
+            "only negative x gives minus two x which is positive",
+            "denominator lo undi so zero avvakoodadu strictly positive undali",
+            "the condition is strict so the right half of the line goes out"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "modulus",
+            "mod x minus x",
+            "minus two x",
+            "denominator",
+            "strictly positive",
+            "cases"
+          ]
+        },
+        "why": "√(|x| − x) is 0 for every x ≥ 0. A zero is allowed under a root but not under a root in a denominator, so the whole right half of the line is lost here.",
+        "common_mistakes": [
+          "Using ≥ 0 and answering R, which is the answer to the same expression without the fraction.",
+          "Including x = 0, where the denominator is √0 = 0."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Open at 0: the point where the two cases meet is exactly where the denominator is zero.",
+        "lines": [
+          "Only x < 0 makes |x| − x strictly positive.",
+          {
+            "text": "∴ Domain = (−∞, 0)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the domain is every negative real number, written as the open interval minus infinity to 0.",
+          "accept": [
+            "all negative real numbers",
+            "minus infinity to zero open at zero",
+            "x strictly less than zero",
+            "zero kanna takkuva unna anni numbers",
+            "the negative half line with zero excluded"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "modulus",
+            "mod x minus x",
+            "minus two x",
+            "denominator",
+            "strictly positive",
+            "cases",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Only x < 0 makes |x| − x strictly positive, so the domain is the negative half of the line with 0 itself excluded.",
+        "common_mistakes": [
+          "Writing (−∞, 0] and including 0, where the function is undefined.",
+          "Writing (0, ∞), the wrong half of the line."
+        ]
+      }
+    ]
+  }
+}

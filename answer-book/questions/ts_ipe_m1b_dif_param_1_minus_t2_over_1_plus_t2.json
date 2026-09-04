@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_param_1_minus_t2_over_1_plus_t2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find dy/dx for x = a((1 − t²)/(1 + t²)), y = 2bt/(1 + t²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the parametric rule",
+      "marks": 1
+    },
+    {
+      "label": "Substitute t = tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate with respect to θ",
+      "marks": 1
+    },
+    {
+      "label": "Write the answer in t",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what makes it a parametric problem and how you reach dy/dx.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parametric_rule",
+        "kind": "equation",
+        "label": "State the parametric rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The rule itself earns it, so write it before differentiating anything. The substitution t = tan θ is a choice, not a rule — say that you are making it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Both x and y are given through the parameter t, so",
+          "dy/dx = (dy/dt) / (dx/dt),   provided dx/dt ≠ 0",
+          "Any parameter may be used. Put t = tan θ, so that",
+          "dy/dx = (dy/dθ) / (dx/dθ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (dy/dt)/(dx/dt) for a parametric pair, and that t = tan θ is being substituted.",
+          "accept": [
+            "x and y are both in terms of t so dy by dx is dy by dt over dx by dt",
+            "use the parametric rule and put t equal to tan theta",
+            "differentiate both with respect to the parameter and divide",
+            "parametric rule rasi, t ni tan theta ga substitute cheyyali",
+            "state the chain rule for a parameter first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parametric",
+            "dy by dt",
+            "dx by dt",
+            "tan theta"
+          ]
+        },
+        "why": "Neither x nor y is written in terms of the other, so the derivative has to be reached through the parameter. Writing the rule earns the method mark even if the algebra afterwards slips.",
+        "common_mistakes": [
+          "Differentiating y with respect to t and calling that dy/dx.",
+          "Writing dy/dx = (dx/dt)/(dy/dt), the two the wrong way round."
+        ],
+        "memory_tip": "The dt cancels in (dy/dt)/(dx/dt) — that cancellation tells you the fraction is the right way up."
+      },
+      {
+        "id": "s2_substitute_tan",
+        "kind": "equation",
+        "label": "Substitute t = tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both standard forms follow from 1 + tan²θ = sec²θ: (1 − tan²θ)/(1 + tan²θ) = cos 2θ and 2 tan θ/(1 + tan²θ) = sin 2θ.",
+        "lines": [
+          "x = a(1 − tan²θ)/(1 + tan²θ) = a cos 2θ",
+          "y = 2b tan θ/(1 + tan²θ) = b sin 2θ",
+          "So the point (x, y) lies on the ellipse x²/a² + y²/b² = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the substitution turns x into a cos 2θ and y into b sin 2θ.",
+          "accept": [
+            "x becomes a cos two theta and y becomes b sin two theta",
+            "use the tan half angle forms of sin two theta and cos two theta",
+            "after substituting the point is on an ellipse",
+            "x a cos two theta avuthundi, y b sin two theta avuthundi",
+            "both reduce to single trigonometric terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two theta",
+            "sin two theta",
+            "ellipse",
+            "tan theta"
+          ]
+        },
+        "why": "These are the standard tan-half-angle forms of cos 2θ and sin 2θ. Once they are used, x and y are single trigonometric terms and each differentiates in one line.",
+        "common_mistakes": [
+          "Writing 2 tan θ/(1 + tan²θ) as tan 2θ instead of sin 2θ.",
+          "Using (1 − tan²θ)/(1 + tan²θ) = cos θ instead of cos 2θ."
+        ],
+        "memory_tip": "Both forms carry 2θ: numerator 2 tan θ gives sin 2θ, numerator 1 − tan²θ gives cos 2θ."
+      },
+      {
+        "id": "s3_differentiate_theta",
+        "kind": "equation",
+        "label": "Differentiate with respect to θ",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The factor 2 comes from the chain rule on 2θ and cancels between the two derivatives, so only the sign and b/a survive.",
+        "lines": [
+          "dx/dθ = a(−sin 2θ)(2) = −2a sin 2θ",
+          "dy/dθ = b(cos 2θ)(2) = 2b cos 2θ",
+          "dy/dx = (2b cos 2θ) / (−2a sin 2θ) = −(b/a) cot 2θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dθ = −2a sin 2θ, dy/dθ = 2b cos 2θ and dividing gives −(b/a) cot 2θ.",
+          "accept": [
+            "differentiate both and divide to get minus b over a cot two theta",
+            "dx by d theta is minus two a sin two theta",
+            "dy by d theta is two b cos two theta",
+            "rendintini theta tho differentiate chesi divide cheyyali",
+            "the twos cancel and cos over sin gives cot"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot two theta",
+            "minus b over a",
+            "sin two theta",
+            "cos two theta"
+          ]
+        },
+        "why": "Dividing cos 2θ by sin 2θ gives cot 2θ, so the result is one short term instead of the long quotient the direct route produces.",
+        "common_mistakes": [
+          "Leaving out the factor 2 from the chain rule on 2θ.",
+          "Losing the minus sign that comes from differentiating cos 2θ."
+        ],
+        "memory_tip": "cos over sin is cot, sin over cos is tan — the answer here is a cot because cos 2θ is on top."
+      },
+      {
+        "id": "s4_back_to_t",
+        "kind": "boxed_final",
+        "label": "Write the answer in t",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The answer must return to t, because the question is set in t. −(1 − t²) = t² − 1, so the two written forms are the same.",
+        "lines": [
+          "cot 2θ = (1 − tan²θ) / (2 tan θ) = (1 − t²) / (2t)",
+          "dy/dx = −(b/a) · (1 − t²)/(2t)",
+          {
+            "text": "∴ dy/dx = b(t² − 1) / (2at)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot 2θ is rewritten in t and the answer is b(t² − 1)/(2at).",
+          "accept": [
+            "convert cot two theta back into t and get b times t squared minus one over two a t",
+            "the answer is b t squared minus one divided by two a t",
+            "put tan theta equal to t again",
+            "chivarilo t lo ne answer rayali",
+            "cot two theta is one minus t squared over two t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "t squared minus one",
+            "two a t",
+            "cot two theta",
+            "back in t"
+          ]
+        },
+        "why": "A parametric answer is expected in the parameter the question uses. Leaving θ in the final line answers a different question.",
+        "common_mistakes": [
+          "Leaving the answer in θ when the question is set in t.",
+          "Writing cot 2θ as 2t/(1 − t²), which is tan 2θ."
+        ],
+        "memory_tip": "Check at t = 1: the point is (0, b), the top of the ellipse, where the tangent is horizontal — and the answer gives dy/dx = 0."
+      }
+    ]
+  },
+  "insider_note": "Put t = tan θ and the point becomes (a cos2θ, b sin2θ) — an ellipse — so both derivatives are one line. Differentiating the fractions in t directly is far heavier."
+}

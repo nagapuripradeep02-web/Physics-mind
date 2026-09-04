@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_inverse_root_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = sin⁻¹√x, find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the inverse sine derivative with u = √x",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by the derivative of √x and combine",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 14. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/(2√(x − x²)) was checked against a numerical difference quotient before it was written: at x = 0.5 both read exactly 1, and at x = 0.81 both read 1.2745319."
+  },
+  "recall_prompt": "Say how you would do this one — name the standard derivative you start from and what you multiply by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer",
+        "kind": "equation",
+        "label": "Apply the inverse sine derivative with u = √x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The standard result is d/dx(Sin⁻¹u) = (1/√(1 − u²)) · du/dx. Here u = √x, so u² = x and the square root under the sign becomes √(1 − x), not √(1 − √x).",
+        "memory_tip": "Squaring √x gives x, so the denominator holds 1 − x with no inner root left in it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = Sin⁻¹(√x), so take u = √x",
+          "We know d/dx(Sin⁻¹u) = (1/√(1 − u²)) · du/dx",
+          "Here u² = (√x)² = x",
+          "∴ dy/dx = (1/√(1 − x)) · d/dx(√x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Sin⁻¹u) = (1/√(1 − u²)) · du/dx is used with u = √x, so 1 − u² becomes 1 − x.",
+          "accept": [
+            "use sin inverse u derivative with u equal to root x",
+            "one over root one minus u squared and u squared is x",
+            "the root x squared is just x so the denominator is root one minus x",
+            "u ki root x pettu, appudu u square ante x avuthundi",
+            "start from the sin inverse standard derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse",
+            "one minus u squared",
+            "root x",
+            "u squared is x"
+          ]
+        },
+        "why": "Naming u before substituting is what keeps 1 − u² from being written as 1 − √x. The mark is for the standard derivative correctly set up, not for the arithmetic that follows.",
+        "common_mistakes": [
+          "Writing the denominator as √(1 − √x), by forgetting that u must be squared.",
+          "Stopping at 1/√(1 − x) and never multiplying by du/dx."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Multiply by the derivative of √x and combine",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. d/dx(√x) = 1/(2√x). Two separate square roots multiply into one: √x · √(1 − x) = √(x − x²).",
+        "memory_tip": "√x times √(1 − x) is √(x(1 − x)), and x(1 − x) expands to x − x².",
+        "lines": [
+          "d/dx(√x) = 1/(2√x)",
+          "∴ dy/dx = (1/√(1 − x)) · 1/(2√x) = 1/(2√x · √(1 − x))",
+          "√x · √(1 − x) = √(x(1 − x)) = √(x − x²)",
+          {
+            "text": "∴ dy/dx = 1/(2√(x − x²))",
+            "style": "boxed"
+          },
+          "This holds for 0 < x < 1, where both square roots are real and non-zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by 1/(2√x) and joining the two roots gives 1/(2√(x − x²)).",
+          "accept": [
+            "multiply by one over two root x and join the roots",
+            "the answer is one over two root x minus x squared",
+            "root x times root one minus x is root x minus x squared",
+            "rendu roots ni kalipithe root of x minus x square vasthundi",
+            "one by two root of x minus x square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two root x",
+            "x minus x squared",
+            "join the roots",
+            "one by two root"
+          ]
+        },
+        "why": "Combining the two roots into one is what turns a correct but untidy line into the printed answer, and it costs one line.",
+        "common_mistakes": [
+          "Writing d/dx(√x) as 2√x instead of 1/(2√x).",
+          "Adding under the root as √(1 − x + x), which is not how roots multiply."
+        ]
+      }
+    ]
+  },
+  "insider_note": "u = √x makes u² = x, so the 1 − u² under the root becomes simply 1 − x. Combining the two roots gives √(x − x²), valid only for 0 < x < 1."
+}

@@ -65,6 +65,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "memory_tip": "Choose the cube: vertex at the origin, edges along the axes. The side a cancels at the end.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. A cube has FOUR body diagonals, and the question needs all of them. Each joins a vertex to the one diagonally opposite through the body.",
+        "memory_tip": "A cube has FOUR body diagonals and the question needs all of them.",
         "lines": [
           "The vertices of the cube on xy-plane, yz-plane, zx-plane be L, M, N and P the remaining vertex in the space.",
           "The 4 diagonals of the cube are  OP,  CL,  NB,  AM",
@@ -144,7 +146,7 @@
         },
         "why": "The four triples are (±a, a, ±a) in all four sign combinations — which is what makes the final sum collapse so neatly.",
         "common_mistakes": [
-          "Listing only two diagonals, as the previous question needed.",
+          "Listing only two diagonals; this question needs all four.",
           "Including face diagonals among the four."
         ]
       },
@@ -154,6 +156,7 @@
         "label": "Draw the cube",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. All FOUR body diagonals are needed here, and the drawing is what stops one being missed or a face diagonal being counted by mistake.",
+        "memory_tip": "Drawing it is what stops a diagonal being missed or a FACE diagonal being counted by mistake.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a labelled cube is drawn with all four diagonals OP, CL, NB and AM marked. Naming the drawing is full credit — it cannot be spoken.",
@@ -181,7 +184,7 @@
         },
         "why": "A cube has exactly four body diagonals, one from each pair of opposite corners. Drawing them is the quickest way to see that there are four and not six.",
         "common_mistakes": [
-          "Drawing only two diagonals, as the previous question needed.",
+          "Drawing only two diagonals; this question needs all four.",
           "Counting face diagonals among the four."
         ],
         "figure": {
@@ -398,6 +401,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. Let the ray have direction cosines (l, m, n), so l² + m² + n² = 1 — that identity is what makes the denominator collapse to √3·a.",
+        "memory_tip": "The ray's own l² + m² + n² = 1 is what collapses the denominator to √3·a.",
         "lines": [
           "Let (l, m, n) be the d.c's of the given ray, then we have  l² + m² + n² = 1",
           "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
@@ -440,6 +444,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "One mark. The other three diagonals differ only in signs, so their cosines are the same expression with signs changed — no new working is needed.",
+        "memory_tip": "The other three differ only in SIGNS, so no new working is needed.",
         "lines": [
           "Similarly,  cosβ = (l + m − n)/√3,   cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
         ],
@@ -478,6 +483,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "Two marks (the last two). Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel and only l² + m² + n² survives, which is 1.",
+        "memory_tip": "Pair the terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel.",
         "lines": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
           "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
@@ -519,5 +525,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All four body diagonals are needed here, not one pair. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 closes it."
 }

@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_define_relative_and_percentage_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Define the relative error and the percentage error of a variable y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the two definitions",
+      "marks": 1
+    },
+    {
+      "label": "Show both on one number",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This is a definition question, so there is no exam answer to check against a calculation. The illustration in the second step was computed for this card: y = 50 with Δy = 0.5 gives a relative error of 0.5/50 = 0.01 and a percentage error of 1%."
+  },
+  "recall_prompt": "Say how you would answer this — say both definitions in full, and say what each one is divided by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "State the two definitions",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Both definitions are wanted, so both must appear. The examiner looks for the division by y — an answer that gives only Δy has defined the absolute error, which is a third thing.",
+        "memory_tip": "Relative error divides the error by y. Percentage error is that same ratio multiplied by 100.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y be a variable and let Δy be the error made in y. For a small error the differential dy is used in place of Δy.",
+          "Relative error in y = Δy/y  —  the error measured against the value of y itself.",
+          "Percentage error in y = (Δy/y) × 100  —  the same ratio written as a percentage.",
+          "Both are defined only when y ≠ 0, and both are pure numbers with no unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the relative error is Δy/y and the percentage error is (Δy/y) × 100.",
+          "accept": [
+            "relative error is delta y by y",
+            "percentage error is delta y by y into hundred",
+            "divide the error by the value of y, and multiply by hundred for the percentage",
+            "relative error ante delta y by y, percentage ki hundred tho multiply cheyyali",
+            "the error compared with y itself, and then times one hundred"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "delta y by y",
+            "into hundred",
+            "relative error",
+            "percentage error"
+          ]
+        },
+        "why": "An error of 0.5 means nothing on its own: it is large in a quantity of 2 and small in a quantity of 2000. Dividing by y is what makes the size of the error comparable, and multiplying by 100 only changes the way that same ratio is written.",
+        "common_mistakes": [
+          "Defining only the absolute error Δy and stopping there.",
+          "Writing the percentage error as Δy × 100, with no division by y."
+        ]
+      },
+      {
+        "id": "s2_worked_number",
+        "kind": "boxed_final",
+        "label": "Show both on one number",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. One short numerical illustration shows the two definitions are different quantities, not two names for the same one.",
+        "memory_tip": "The same error gives two answers: 0.01 as a ratio, 1 as a percentage. They differ only by the factor 100.",
+        "lines": [
+          "For example, let y = 50 and let the error made be Δy = 0.5.",
+          "Relative error = Δy/y = 0.5/50 = 0.01",
+          "Percentage error = (Δy/y) × 100 = 0.01 × 100 = 1, that is, 1%",
+          {
+            "text": "∴ relative error = Δy/y  and  percentage error = (Δy/y) × 100",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an example is worked, for instance y = 50 with Δy = 0.5 giving a relative error of 0.01 and a percentage error of 1%.",
+          "accept": [
+            "if y is fifty and the error is zero point five then the relative error is zero point zero one",
+            "the same case gives one percent",
+            "point five by fifty is point zero one, into hundred is one percent",
+            "example cheppali, zero point zero one and one percent",
+            "the percentage error is a hundred times the relative error"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero point zero one",
+            "one percent",
+            "fifty",
+            "point five"
+          ]
+        },
+        "why": "A definition question is answered by the statement, and the number is what proves the statement was understood rather than copied. It also fixes the order of operations: divide first, then multiply by 100.",
+        "common_mistakes": [
+          "Giving 0.5% by dividing 0.5 by 100 instead of by y.",
+          "Reporting the relative error as 1 and the percentage error as 100."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two definitions, one mark each, and they differ only by the factor 100. Relative error is Δy/y — dividing by the value itself is what makes it relative."
+}

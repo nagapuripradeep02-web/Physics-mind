@@ -59,7 +59,7 @@
           "each, so O₂ has two unpaired electrons and",
           "is paramagnetic."
         ],
-        "why": "Paramagnetism means the molecule has at least one unpaired electron. Oxygen has sixteen electrons, and after every bonding orbital is filled the last two go singly into the two antibonding orbitals π*2px and π*2py, following Hund's rule. This is a molecular orbital result and cannot be read off the Lewis structure O=O, which shows all eight pairs neatly paired and predicts the wrong answer.",
+        "why": "Paramagnetism means the molecule has at least one unpaired electron. The O₂ molecule has sixteen electrons, and after every bonding orbital is filled the last two go singly into the two antibonding orbitals π*2px and π*2py, following Hund's rule. This is a molecular orbital result and cannot be read off the Lewis structure O=O, which shows all eight pairs neatly paired and predicts the wrong answer.",
         "common_mistakes": [
           "Writing that oxygen has two unpaired electrons in its 2p atomic orbitals. The question is about the O₂ molecule, so the electrons must be placed in molecular orbitals.",
           "Putting both electrons in one antibonding orbital. Hund's rule fills π*2px and π*2py singly first, which is what makes the molecule paramagnetic."

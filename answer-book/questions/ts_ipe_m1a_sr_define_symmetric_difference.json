@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_symmetric_difference",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the symmetric difference of two sets.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Show it on an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition in set form, and say what example you would show it on.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The line that earns it is A Δ B = (A − B) ∪ (B − A). Both differences must appear, and they must be joined by a union.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A and B be two sets.",
+          "The symmetric difference of A and B, written A Δ B, is",
+          "A Δ B = (A − B) ∪ (B − A)",
+          "So A Δ B is the set of elements that lie in exactly one of A and B."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A Δ B = (A − B) ∪ (B − A), the elements lying in exactly one of the two sets.",
+          "accept": [
+            "A delta B is A minus B union B minus A",
+            "the elements that are in one set but not in both",
+            "state it as the union of the two differences",
+            "symmetric difference ante A minus B union B minus A",
+            "take both differences and join them with a union"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A minus B",
+            "B minus A",
+            "union",
+            "delta",
+            "not in both"
+          ]
+        },
+        "why": "A definition question is marked on the exact statement, so both differences and the union between them have to be on the page. Getting the definition right also fixes the example that follows.",
+        "memory_tip": "Symmetric difference means in one set or the other, but not in both.",
+        "common_mistakes": [
+          "Writing only A − B and calling that the symmetric difference.",
+          "Writing A ∪ B, which keeps the shared elements as well.",
+          "Using an intersection in place of the union of the two differences."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Show it on an example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Two small sets are enough. The examiner looks for the shared element being dropped, so choose sets that actually share one.",
+        "lines": [
+          "Take A = {1, 2, 3} and B = {3, 4}.",
+          "A − B = {1, 2}   and   B − A = {4}",
+          "3 lies in both sets, so it is not included.",
+          {
+            "text": "∴ A Δ B = (A − B) ∪ (B − A) = {1, 2, 4}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an example is worked and the shared element is left out, giving A Δ B = {1, 2, 4}.",
+          "accept": [
+            "take A as one two three and B as three four so the answer is one two four",
+            "three is in both sets so it is dropped",
+            "work a small example and remove the common element",
+            "common element ni theesi migilina vaatini rayali",
+            "the answer is one two four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one two four",
+            "three is in both",
+            "dropped",
+            "common element"
+          ]
+        },
+        "why": "The example shows the definition has been understood and not only memorised. The element 3 being dropped is the part that separates the symmetric difference from the union.",
+        "memory_tip": "Remove whatever the two sets share, then keep everything else.",
+        "common_mistakes": [
+          "Keeping 3 in the answer, which gives A ∪ B instead.",
+          "Computing only B − A and writing {4} as the answer.",
+          "Choosing two sets with no common element, so the example proves nothing."
+        ]
+      }
+    ]
+  }
+}

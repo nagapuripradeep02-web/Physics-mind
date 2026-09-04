@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan_60_shift_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 3A ≠ (2n + 1)π/2, prove that tan A tan(60° + A) tan(60° − A) = tan 3A, and find the value of tan 6° tan 42° tan 66° tan 78°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Prove the product equals tan 3A",
+      "marks": 1
+    },
+    {
+      "label": "Use the identity twice for the value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 48, book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The question asks for two things — a proof and a number — so the 1 + 1 gives one mark to each. The stem's condition was checked and is sufficient: 1 − 3tan²A = 0 forces 3A to be an odd multiple of π/2, and so does tan A or tan(60° ± A) being undefined, so the single printed inequality covers every case. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — name how you prove the identity, and which two values of A you use for the number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_prove_identity",
+        "kind": "equation",
+        "label": "Prove the product equals tan 3A",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiply the two brackets before anything else. The numerators give 3 − tan²A and the denominators give 1 − 3tan²A, which is the tan 3A formula short of one tan A.",
+        "memory_tip": "tan 60° = √3. Multiply the two brackets first — what comes out is the tan 3A formula apart from one factor of tan A.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "3A is not an odd multiple of π/2, so tan 3A",
+          "exists and 1 − 3tan²A ≠ 0.",
+          "tan(60° + A) tan(60° − A)",
+          "= [(√3 + tanA)/(1 − √3 tanA)] ×",
+          {
+            "text": "[(√3 − tanA)/(1 + √3 tanA)]",
+            "style": "indent"
+          },
+          "= (3 − tan²A)/(1 − 3tan²A)",
+          "∴ tanA tan(60° + A) tan(60° − A)",
+          "= (3tanA − tan³A)/(1 − 3tan²A) = tan 3A"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two brackets are multiplied first, giving (3 − tan²A)/(1 − 3tan²A), and that one more factor of tan A makes it the tan 3A formula.",
+          "accept": [
+            "expand both brackets with tan sixty equal to root three",
+            "multiply them and you get three minus tan squared over one minus three tan squared",
+            "one more tan A gives the tan three A formula",
+            "tan sixty ante root three, rendu brackets multiply cheyyali",
+            "so the product is tan three A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "take A equal to six degrees"
+          ],
+          "heard_as": [
+            "root three",
+            "tan sixty",
+            "three minus tan squared",
+            "tan three A"
+          ]
+        },
+        "why": "Multiplying the two brackets first is what makes this short: the numerators give 3 − tan²A and the denominators give 1 − 3tan²A, and that pair is exactly the tan 3A formula with one factor of tan A still missing.",
+        "common_mistakes": [
+          "Writing tan 60° = 3 instead of √3.",
+          "Multiplying the numerator of one bracket by the denominator of the other."
+        ]
+      },
+      {
+        "id": "s2_find_the_value",
+        "kind": "boxed_final",
+        "label": "Use the identity twice for the value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A = 6° gives the triple 6°, 66°, 54°; A = 18° gives 18°, 78°, 42°. The leftover ratios tan18°/tan54° and tan54°/tan18° are reciprocals, so their product is 1.",
+        "memory_tip": "Each printed pair sits inside one triple: 6° with 66°, and 42° with 78°. The missing members are tan 54° and tan 18°, and they cancel.",
+        "lines": [
+          "Put A = 6°: tan6° tan66° tan54° = tan18°",
+          "⇒ tan6° tan66° = tan18°/tan54°",
+          "Put A = 18°: tan18° tan78° tan42° = tan54°",
+          "⇒ tan42° tan78° = tan54°/tan18°",
+          "Multiplying these two results:",
+          {
+            "text": "tan6° tan42° tan66° tan78° = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A = 6° and A = 18° are substituted into the identity and the two results multiplied, so tan 54° and tan 18° cancel and the value is 1.",
+          "accept": [
+            "put A equal to six degrees and then A equal to eighteen degrees",
+            "six with sixty six gives tan eighteen over tan fifty four",
+            "forty two with seventy eight gives tan fifty four over tan eighteen",
+            "rendu results multiply cheste tan fifty four tan eighteen cancel",
+            "the value is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "tan sixty is root three"
+          ],
+          "heard_as": [
+            "A equal to six",
+            "A equal to eighteen",
+            "tan fifty four",
+            "tan eighteen",
+            "the value is one"
+          ]
+        },
+        "why": "The four printed angles are two of the identity's triples with one member missing from each. A = 6° leaves the extra factor tan18°/tan54° and A = 18° leaves tan54°/tan18°. Those two are reciprocals, so their product is 1.",
+        "common_mistakes": [
+          "Using A = 6° only, which never produces 42° and 78°.",
+          "Leaving the answer as a ratio of tangents instead of the number 1."
+        ]
+      }
+    ]
+  }
+}

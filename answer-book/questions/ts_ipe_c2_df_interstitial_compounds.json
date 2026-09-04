@@ -170,7 +170,7 @@
           "positions rather than spaces, so it is",
           "not an interstitial compound."
         ],
-        "why": "TiC and TiN are the safe pair: each is titanium with a small non-metal atom in the spaces of the metal lattice, and both are used industrially for exactly the hardness described above. FeO does not belong on the list — it is an ionic oxide, and its non-stoichiometry comes from missing iron ions, not from atoms occupying spaces — so it is replaced here.",
+        "why": "TiC and TiN are the two examples to choose: each is titanium with a small non-metal atom in the spaces of the metal lattice, and both are used industrially for exactly the hardness described above. FeO does not belong on the list — it is an ionic oxide, and its non-stoichiometry comes from missing iron ions, not from atoms occupying spaces — so it is replaced here.",
         "common_mistakes": [
           "Giving an oxide such as FeO as an interstitial compound. The small atoms in these compounds are H, B, C and N.",
           "Giving only one example. The question asks for two."

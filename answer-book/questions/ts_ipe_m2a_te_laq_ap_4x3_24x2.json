@@ -1,0 +1,318 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_ap_4x3_24x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve the equation 4x³ − 24x² + 23x + 18 = 0, the roots being in A.P.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the roots as a − d, a, a + d",
+      "marks": 1
+    },
+    {
+      "label": "Sum of roots S₁ = −a₁/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find a",
+      "marks": 1
+    },
+    {
+      "label": "Product of roots S₃ = −a₃/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find d",
+      "marks": 1
+    },
+    {
+      "label": "Write the three roots",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Theory of Equations, the 'PQ' (practice question) printed under answer 16, with only the final answer '[Ans: −1/2, 2, 9/2]' and no worked solution. Printed appearances: AP 20. It is authored as a full card because it carries a year chip and is the same method as answer 16; the whole solution is OURS and was checked as below. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no working and no [N Marks] tags are printed; it is the 1+1+1+1+1+2 the page prints against answer 16 directly above. The SAME step ids (s1_assume, s2_sum, s3_a, s4_product, s5_d, s6_roots) and the same 1+1+1+1+1+2 shape are used on answers 16, 18 and the practice question under 16, deliberately: they are one method — roots a − d, a, a + d, S₁ gives a, S₃ gives d — over different numbers. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: the roots −1/2, 2, 9/2 have equal gaps of 5/2, add to 6 = −a₁/a₀, multiply to −9/2 = −a₃/a₀, and their pairwise products add to −1 + 9 − 9/4 = 23/4 = a₂/a₀; the book's printed answer is confirmed. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would solve a cubic whose roots are in A.P. — how you name the roots, which two relations you use, and what each one gives you.",
+  "insider_note": "The book gives only the answer for this one; the working is the same six steps as the 8x³ question, and the product relation is where the fraction arithmetic sits.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_assume",
+        "kind": "text",
+        "label": "Roots in A.P.",
+        "marks": 1,
+        "mark_note": "Assume the roots",
+        "margin_note": "First mark. The A.P. form a − d, a, a + d is the whole idea: it makes the sum collapse to 3a. Also write out a₀ … a₃ so the sign rules can be applied without a slip.",
+        "memory_tip": "Write the roots as a − d, a, a + d — that form makes the sum collapse to 3a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The roots are in A.P., so take them as",
+          "a − d, a, a + d.",
+          "Here a₀ = 4, a₁ = −24, a₂ = 23, a₃ = 18."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the three roots are written as a − d, a, a + d because they are in A.P.",
+          "accept": [
+            "take the roots as a minus d, a, a plus d because they are in arithmetic progression",
+            "write the three roots as a minus d a and a plus d",
+            "roots in A P so let them be a minus d a a plus d",
+            "roots A P lo unnayi kabatti a minus d, a, a plus d ga teeskovali",
+            "use the symmetric form a minus d a a plus d for the roots"
+          ],
+          "reject": [
+            "let the roots be alpha beta gamma",
+            "assume the roots",
+            "use the formula"
+          ],
+          "heard_as": [
+            "a minus d",
+            "a plus d",
+            "arithmetic progression",
+            "A P",
+            "common difference"
+          ]
+        },
+        "why": "Writing the roots as a − d, a, a + d builds the A.P. condition into the letters, and it makes the sum collapse to 3a — one relation, one unknown. Letters chosen this way do half the work before any arithmetic starts.",
+        "common_mistakes": [
+          "Using α, β, γ and never bringing in the A.P. condition.",
+          "Writing the roots as a, a + d, a + 2d, which works but makes the sum 3a + 3d and the arithmetic longer."
+        ]
+      },
+      {
+        "id": "s2_sum",
+        "kind": "equation",
+        "label": "Sum of roots",
+        "marks": 1,
+        "mark_note": "S₁ = −a₁/a₀",
+        "margin_note": "Second mark. S₁ = −a₁/a₀ = 24/4 = 6. The two d's cancel, so the left side is just 3a.",
+        "memory_tip": "S₁ = −a₁/a₀ = 24/4 = 6. The two d's cancel, so the left side is just 3a.",
+        "lines": [
+          "Sum of roots S₁ = −a₁/a₀:",
+          "(a − d) + a + (a + d) = 24/4 = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the three roots equals −a₁/a₀ = 6, and that the d terms cancel in the sum.",
+          "accept": [
+            "sum of the roots is minus a one by a naught which is 6",
+            "add the three roots, the d's cancel, and the sum is 6",
+            "S one equals 6 from the coefficients",
+            "roots sum minus a one by a naught, ante 6",
+            "the sum of roots comes from the x squared coefficient and is 6"
+          ],
+          "reject": [
+            "find the sum",
+            "add them",
+            "use S one"
+          ],
+          "heard_as": [
+            "sum of roots",
+            "S one",
+            "minus a one by a naught",
+            "6"
+          ]
+        },
+        "why": "For a₀x³ + a₁x² + a₂x + a₃ = 0 the sum of the roots is −a₁/a₀ — note the minus. With the symmetric letters the ±d cancel, so the sum relation contains a alone.",
+        "common_mistakes": [
+          "Dropping the minus sign in S₁ = −a₁/a₀.",
+          "Dividing by the constant term instead of the leading coefficient.",
+          "Not cancelling the fraction before writing 3a = …"
+        ]
+      },
+      {
+        "id": "s3_a",
+        "kind": "equation",
+        "label": "Find a",
+        "marks": 1,
+        "mark_note": "a",
+        "margin_note": "Third mark. 3a = 6 gives a = 2, the middle root.",
+        "memory_tip": "3a = 6 gives a = 2, the middle root. Divide by 3 — do not take the sum itself.",
+        "lines": [
+          "3a = 6, so a = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3a equals the sum, so a = 2.",
+          "accept": [
+            "three a equals the sum so a is 2",
+            "the middle root a comes out as 2",
+            "divide the sum by three to get a equals 2",
+            "three a ante sum, kabatti a equals 2",
+            "a is one third of the sum, 2"
+          ],
+          "reject": [
+            "find a",
+            "solve for a"
+          ],
+          "heard_as": [
+            "three a",
+            "a equals",
+            "2"
+          ]
+        },
+        "why": "Because the sum is 3a exactly, a is found before d is even touched. a is the middle root, so the other two sit at equal distances d on either side of it.",
+        "common_mistakes": [
+          "Writing a = the sum instead of a = the sum divided by 3."
+        ]
+      },
+      {
+        "id": "s4_product",
+        "kind": "equation",
+        "label": "Product of roots",
+        "marks": 1,
+        "mark_note": "S₃ = −a₃/a₀",
+        "margin_note": "Fourth mark. S₃ = −a₃/a₀ = −18/4 = −9/2. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
+        "memory_tip": "S₃ = −a₃/a₀ = −9/2. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
+        "lines": [
+          "Product of roots S₃ = −a₃/a₀:",
+          "(a − d)·a·(a + d) = −18/4 = −9/2",
+          "a(a² − d²) = −9/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the three roots equals −a₃/a₀ = −9/2, and that (a − d)·a·(a + d) = a(a² − d²).",
+          "accept": [
+            "product of the roots is minus a three by a naught which is −9/2 and it equals a times a squared minus d squared",
+            "multiply the three roots, a minus d times a plus d is a squared minus d squared, and set it equal to −9/2",
+            "S three equals −9/2 gives a times a square minus d square",
+            "roots product minus a three by a naught, ante −9/2, a into a square minus d square",
+            "the product of roots comes from the constant term and equals −9/2"
+          ],
+          "reject": [
+            "find the product",
+            "multiply them",
+            "use S three"
+          ],
+          "heard_as": [
+            "product of roots",
+            "S three",
+            "a squared minus d squared",
+            "−9/2"
+          ]
+        },
+        "why": "The product of the roots is −a₃/a₀ — again a minus, because the constant term is a₃. (a − d)(a + d) = a² − d², so with a known the product relation has only d² in it.",
+        "common_mistakes": [
+          "Writing S₃ = a₃/a₀ and losing the minus.",
+          "Expanding (a − d)·a·(a + d) as a³ − d² instead of a(a² − d²).",
+          "Using the x coefficient a₂ instead of the constant a₃."
+        ]
+      },
+      {
+        "id": "s5_d",
+        "kind": "equation",
+        "label": "Find d",
+        "marks": 1,
+        "mark_note": "d",
+        "margin_note": "Fifth mark. Put a = 2 in, divide out the a, and solve for d². d = ±5/2; either sign gives the same three roots.",
+        "memory_tip": "Put a = 2 in and solve for d²: d = ±5/2. Either sign gives the same three roots.",
+        "lines": [
+          "2(4 − d²) = −9/2",
+          "4 − d² = −9/4",
+          "d² = 4 + 9/4 = 25/4",
+          "d = ±5/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is substituted into the product relation and solved for d², giving d = ±5/2.",
+          "accept": [
+            "put a into the product equation and solve for d squared, d is ±5/2",
+            "substitute a and get d squared, so d equals ±5/2",
+            "solve the product relation for d which is ±5/2",
+            "a value petti d square kanukkovali, d equals ±5/2",
+            "d comes from the product relation as ±5/2"
+          ],
+          "reject": [
+            "find d",
+            "solve for d"
+          ],
+          "heard_as": [
+            "d squared",
+            "d equals",
+            "plus or minus",
+            "±5/2"
+          ]
+        },
+        "why": "d² is what the product relation gives; d = ± its square root. Both signs produce the same three numbers in a different order, so either one may be used.",
+        "common_mistakes": [
+          "A slip when dividing both sides by the fraction a.",
+          "Forgetting the ± when taking the square root, and never noticing it does not matter.",
+          "Leaving d² = 25/4 as if d were 25/4."
+        ]
+      },
+      {
+        "id": "s6_roots",
+        "kind": "boxed_final",
+        "label": "The three roots",
+        "marks": 2,
+        "mark_note": "Roots",
+        "margin_note": "Last two marks. Substitute a and d back; the three numbers must have equal gaps and must add to the sum found in step 2.",
+        "memory_tip": "a and d are not the roots. Substitute back for −1/2, 2, 9/2, which have equal gaps.",
+        "lines": [
+          "Take d = 5/2 (−5/2 gives the same three roots):",
+          "a − d = 2 − 5/2 = −1/2, a = 2, a + d = 9/2",
+          {
+            "text": "∴ roots: −1/2, 2, 9/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and d are put back into a − d, a, a + d to give the roots −1/2, 2, 9/2, and that the sign of d does not change the set of roots.",
+          "accept": [
+            "put a and d back into a minus d a a plus d and the roots are −1/2, 2, 9/2",
+            "the three roots are −1/2, 2, 9/2",
+            "substitute a and d and list the roots, the other sign of d gives the same three",
+            "a, d values petti roots −1/2, 2, 9/2 vasthai",
+            "write out a minus d a and a plus d with the numbers"
+          ],
+          "reject": [
+            "write the roots",
+            "the answer is",
+            "substitute back"
+          ],
+          "heard_as": [
+            "roots are",
+            "a minus d",
+            "a plus d",
+            "same three roots"
+          ]
+        },
+        "why": "Substituting back is the check as much as the answer: the three numbers must be in A.P. (equal gaps) and must satisfy the sum found in step 2. A wrong sign anywhere shows up here.",
+        "common_mistakes": [
+          "Listing a and d as the roots.",
+          "Not substituting one root back into the equation (each must give 0).",
+          "Leaving the fractions unsimplified so the A.P. is not visible."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_max_area_rectangle_perimeter_20",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the maximum area of the rectangle that can be formed with a fixed perimeter 20.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the perimeter to write the area in one variable",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate, solve and apply the second derivative test",
+      "marks": 2
+    },
+    {
+      "label": "State the maximum area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.226, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how the perimeter lets you remove one side, and how you would prove the value you find gives the largest area.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_area_in_one_variable",
+        "kind": "equation",
+        "label": "Use the perimeter to write the area in one variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for y written as 10 − x and the area then written in x alone. The perimeter is the constraint; the area is the quantity being maximised.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the sides of the rectangle be x and y, both positive.",
+          "Perimeter is fixed:  2(x + y) = 20   ⇒   x + y = 10   ⇒   y = 10 − x",
+          "Both sides are positive, so the domain is 0 < x < 10.",
+          "Area:  A(x) = xy = x(10 − x) = 10x − x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2(x + y) = 20 gives y = 10 − x, so A(x) = x(10 − x) = 10x − x².",
+          "accept": [
+            "the perimeter gives x plus y equal to ten",
+            "write y as ten minus x and put it in the area",
+            "area becomes ten x minus x squared",
+            "perimeter nunchi y ni ten minus x ga rasta",
+            "reduce the area to a single variable first",
+            "x lies between zero and ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two into x plus y",
+            "ten minus x",
+            "x y",
+            "ten x minus x squared"
+          ]
+        },
+        "why": "The perimeter is the only link between x and y. Using it removes y, and the area becomes a function of one variable, which is the only form that can be differentiated here.",
+        "common_mistakes": [
+          "Using x + y = 20 and forgetting that the perimeter counts each side twice.",
+          "Differentiating A = xy directly, which leaves an unknown dy/dx."
+        ],
+        "memory_tip": "The fixed quantity is the constraint and the asked quantity is what you maximise. Here the perimeter is fixed and the area is asked, so substitute the perimeter into the area."
+      },
+      {
+        "id": "s2_maximise",
+        "kind": "equation",
+        "label": "Differentiate, solve and apply the second derivative test",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for A′(x) = 0 solved, one for the second derivative test. A stationary point is not a maximum until A″ < 0 is written down.",
+        "lines": [
+          "A′(x) = 10 − 2x",
+          "A′(x) = 0   ⇒   10 − 2x = 0   ⇒   x = 5",
+          "A″(x) = −2, which is negative for every x.",
+          "A negative second derivative means the stationary point is a maximum.",
+          "So the area is greatest at x = 5."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A′(x) = 10 − 2x is zero at x = 5, and A″ = −2 < 0 confirms a maximum.",
+          "accept": [
+            "differentiate and set ten minus two x equal to zero",
+            "x is five at the stationary point",
+            "the second derivative is minus two which is negative",
+            "second derivative negative kabatti maximum",
+            "apply the second derivative test to confirm",
+            "so this value gives the largest area"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ten minus two x",
+            "x equals five",
+            "minus two",
+            "maximum"
+          ]
+        },
+        "why": "A′ = 0 only says the area has stopped changing at that point. The sign of A″ is what separates a largest area from a smallest one, so it must be written even when the answer looks obvious.",
+        "common_mistakes": [
+          "Writing x = 5 and calling it a maximum with no test.",
+          "Differentiating 10x − x² as 10 − x."
+        ],
+        "memory_tip": "For a quadratic with a negative x² term the second derivative is a constant negative number, so the test is one line long."
+      },
+      {
+        "id": "s3_maximum_area",
+        "kind": "boxed_final",
+        "label": "State the maximum area",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The question asks for the AREA, not for x, so the number 25 must appear. Naming the shape as a square is a useful extra line but is not the answer by itself.",
+        "lines": [
+          "x = 5   ⇒   y = 10 − 5 = 5",
+          "So the rectangle of greatest area is a square of side 5.",
+          "Maximum area = 5 × 5 = 25 square units",
+          "Check: sides 4 and 6 give 24 and sides 3 and 7 give 21, both less than 25.",
+          {
+            "text": "∴ the maximum area is 25 square units, reached when the rectangle is a square of side 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = y = 5, so the shape is a square and the maximum area is 25 square units.",
+          "accept": [
+            "both sides are five so it is a square",
+            "the maximum area is twenty five square units",
+            "substitute back to get y equal to five",
+            "rendu sides five kabatti square avuthundi",
+            "the largest rectangle with a fixed perimeter is a square",
+            "answer is twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five by five",
+            "twenty five",
+            "square",
+            "square units"
+          ]
+        },
+        "why": "The question asks for the maximum area, so the working is not finished at x = 5. Substituting back gives both sides and the area itself.",
+        "common_mistakes": [
+          "Stopping at x = 5 and never computing the area.",
+          "Giving the perimeter 20 as the answer."
+        ],
+        "memory_tip": "Among all rectangles with the same perimeter the square has the largest area. That result is worth remembering as a check on the working."
+      }
+    ]
+  },
+  "insider_note": "Use the fixed perimeter to eliminate one side before differentiating. The maximum comes at x = 5, so the rectangle is a SQUARE — worth stating as the conclusion."
+}

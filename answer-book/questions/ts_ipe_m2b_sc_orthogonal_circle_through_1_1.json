@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_orthogonal_circle_through_1_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the circle passing through the point (1, 1) and cutting orthogonally the circles x² + y² − 8x − 2y + 16 = 0, x² + y² − 4x − 4y − 1 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the circle and use the point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the first orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Apply the second orthogonal condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for g, f, c and write the circle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 System of Circles, the practice question ('PQ') printed directly under answer 57.2, at the foot of the page, immediately before the Ellipse SAQ chapter opens on p.57. Book p.56 is NOT a Super Scoring Page. Chapter star rank ★★★, per the SAQ section table (book p.49). No appearance year is printed against this practice question. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED — '[Ans: 3x²+3y²−14x+23y−15=0]' — and no worked solution. THE WORKING BELOW IS OURS, checked independently against the book's own printed final answer, and it reproduces that answer exactly: 3x² + 3y² − 14x + 23y − 15 = 0. Precedent for authoring a PQ as a full card with our own steps: Maths-1B Unit 2 laq8/answer-15-PQ (see docs/IPE_MATHS_1B_SOURCE.md). ⚠ THE MARK SPLIT IS ALSO OURS, patterned on the same 1+1+1+1 shape used for the twin orthogonal-circle answers 57.1/57.2 immediately above it on the same page and of the identical question type. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary: chapter runs book pp.54-56, walked at both ends (p.53 Circle SAQ ends at 52; p.57 opens Ellipse SAQ). Paper position: Maths-2B Section B runs Q1-Q7 at 4 marks each (Q3 = System of Circles), answer any 5 of 7 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The working here is fully ours and lands on the standard final answer exactly, so it is a reliable extra worked example of the orthogonal-circle technique.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "System of Circles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up_and_point",
+        "kind": "equation",
+        "label": "Set up the circle and use the point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The point (1, 1) links all three unknowns g, f, c together in one equation.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the required circle be",
+          "S ≡ x² + y² + 2gx + 2fy + c = 0",
+          "S = 0 passes through (1, 1)",
+          "⇒ 2 + 2g + 2f + c = 0   ...(1)"
+        ],
+        "why": "Substituting the given point into the general circle's equation gives the first of the three linear equations needed to fix g, f, c.",
+        "common_mistakes": [
+          "Losing the constant 2 from 1² + 1² while expanding.",
+          "Writing 2g + 2f = −c instead of keeping all three terms together as one equation for elimination."
+        ],
+        "memory_tip": "A point with both coordinates nonzero links all three unknowns g, f, c in a single equation — no shortcut like c = 0 is available here."
+      },
+      {
+        "id": "s2_first_orthogonal_condition",
+        "kind": "equation",
+        "label": "Apply the first orthogonal condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. g′ = −4, f′ = −1, c′ = 16 from the first given circle.",
+        "lines": [
+          "S is orthogonal to x² + y² − 8x − 2y + 16 = 0",
+          "∴ 2gg′ + 2ff′ = c + c′",
+          "2g(−4) + 2f(−1) = c + 16",
+          "⇒ −8g − 2f − c = 16   ...(2)"
+        ],
+        "why": "The standard orthogonality test applied to the first circle gives the second linear equation for g, f, c.",
+        "common_mistakes": [
+          "Reading g′ as −8 instead of −4 — it is half the coefficient of x.",
+          "Sign slip when moving c to the left with the other terms."
+        ],
+        "memory_tip": "Always halve the x- and y-coefficients of the OTHER circle to get g′ and f′, never the coefficients themselves."
+      },
+      {
+        "id": "s3_second_orthogonal_condition",
+        "kind": "equation",
+        "label": "Apply the second orthogonal condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. g″ = −2, f″ = −2, c″ = −1 from the second given circle.",
+        "lines": [
+          "S is orthogonal to x² + y² − 4x − 4y − 1 = 0",
+          "∴ 2gg″ + 2ff″ = c + c″",
+          "2g(−2) + 2f(−2) = c − 1",
+          "⇒ −4g − 4f − c = −1   ...(3)"
+        ],
+        "why": "The orthogonality test applied to the second circle gives the third and final equation, completing a system of three equations in g, f, c.",
+        "common_mistakes": [
+          "Missing the negative constant −1 on the right side, which comes from c″ = −1.",
+          "Confusing which circle is 'first' and 'second' halfway through and reusing the wrong g′, f′, c′."
+        ],
+        "memory_tip": "Label each given circle clearly (first, second) before writing its orthogonality equation, and keep that labelling for the rest of the answer."
+      },
+      {
+        "id": "s4_solve_and_final_circle",
+        "kind": "boxed_final",
+        "label": "Solve for g, f, c and write the circle",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Fourth mark. Eliminate g, then f, then substitute back for the final circle.",
+        "lines": [
+          "From (1), c = −2 − 2g − 2f",
+          "Sub in (2): −6g + 2 = 16 ⇒ g = −7/3",
+          "Sub in (3): −2g − 2f + 2 = −1 ⇒ g + f = 3/2",
+          "⇒ f = 3/2 − g = 23/6",
+          "c = −2 − 2g − 2f = −5",
+          "Substituting g, f, c in S = 0,",
+          {
+            "text": "3x² + 3y² − 14x + 23y − 15 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Eliminating c between the three equations reduces the system to two equations in g and f, which solve directly; substituting all three values back into the general circle gives the one circle satisfying every condition — matching the book's printed final answer exactly.",
+        "common_mistakes": [
+          "Substituting c from (1) into (2) but forgetting the x² and y² terms already cancelled, and re-adding them.",
+          "Leaving the final equation with fractions instead of clearing it to whole-number coefficients (multiplying by 3)."
+        ],
+        "memory_tip": "Eliminate the SAME unknown first in every such question — c is usually easiest, since it appears alone (no g or f multiplying it) in every orthogonality equation."
+      }
+    ]
+  }
+}

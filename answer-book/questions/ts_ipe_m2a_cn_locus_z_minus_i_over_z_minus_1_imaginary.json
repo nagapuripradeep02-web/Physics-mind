@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_locus_z_minus_i_over_z_minus_1_imaginary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If the point P denotes the complex number z = x + iy in the Argand plane and if (z − i)/(z − 1) is a purely imaginary number, find the locus of P.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the quotient in terms of x and y",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by the conjugate and separate real and imaginary parts",
+      "marks": 2
+    },
+    {
+      "label": "Set the real part to zero and state the locus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Complex Numbers, answer 60. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: set-up, bulk computation, conclusion); the two locus SAQs of this unit (60, 61) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot. The book's answer x² + y² − x − y = 0 is followed as the board-expected locus; strictly the point z = 1 (where the quotient is undefined) is excluded from it, and the card records that in the last step's 'why' rather than on the page. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the locus — what you substitute for z, what you multiply by, and which part you set to zero and why.",
+  "insider_note": "Purely imaginary means the real part is 0 — setting the imaginary part to zero answers a different question. The last mark needs the locus as an equation in x and y, with the positive denominator dropped: x² + y² − x − y = 0.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Substitute z = x + iy",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Put z = x + iy in and group each of the top and bottom as (real) + i(imaginary). The −i on top joins the y; the −1 below joins the x.",
+        "memory_tip": "The −i on top joins the y; the −1 below joins the x. Group each as (real) + i(imaginary).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let z = x + iy. Then",
+          {
+            "text": "(z − i)/(z − 1) = (x + iy − i)/(x + iy − 1)",
+            "style": "eq"
+          },
+          {
+            "text": "= [x + i(y − 1)] / [(x − 1) + iy]",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z = x + iy is substituted so the quotient becomes [x + i(y − 1)] over [(x − 1) + iy].",
+          "accept": [
+            "put z equals x plus i y so the top is x plus i times y minus one and the bottom is x minus one plus i y",
+            "substitute x plus i y for z and group real and imaginary parts above and below",
+            "the fraction becomes x plus i y minus one over x minus one plus i y",
+            "z ki x plus i y pettithe numerator x plus i y minus one, denominator x minus one plus i y",
+            "write numerator and denominator each as real plus i imaginary"
+          ],
+          "reject": [
+            "substitute z",
+            "write it in x and y"
+          ],
+          "heard_as": [
+            "x plus i y",
+            "y minus one",
+            "x minus one",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "why": "A locus is an equation in x and y, so z has to become x + iy before anything can be said. Grouping the real and imaginary parts now is what makes the conjugate in the next step easy to write.",
+        "common_mistakes": [
+          "Grouping the −i with x instead of with iy.",
+          "Writing the denominator as x − 1 + y, dropping the i.",
+          "Substituting only in the numerator."
+        ]
+      },
+      {
+        "id": "s2_rationalise",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 2,
+        "mark_note": "Real and imaginary parts",
+        "margin_note": "Half the marks. The conjugate of the denominator is (x − 1) − iy. The denominator becomes (x − 1)² + y², a real number; the numerator's real part is x(x − 1) + y(y − 1) and it is the only thing needed next.",
+        "memory_tip": "The conjugate of (x − 1) + iy is (x − 1) − iy. Only the numerator's real part is needed.",
+        "lines": [
+          "Multiply above and below by (x − 1) − iy:",
+          {
+            "text": "= [x + i(y − 1)][(x − 1) − iy]",
+            "style": "eq"
+          },
+          {
+            "text": "/ [(x − 1)² + y²]",
+            "style": "indent"
+          },
+          "Numerator = x(x − 1) − ixy + i(x − 1)(y − 1)",
+          "+ y(y − 1)        (since −i² = 1)",
+          {
+            "text": "= [x² + y² − x − y] + i[(x − 1)(y − 1) − xy]",
+            "style": "eq"
+          },
+          "∴ real part = (x² + y² − x − y)/((x − 1)² + y²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate (x − 1) − iy makes the denominator real and gives real part (x² + y² − x − y) over (x − 1)² + y².",
+          "accept": [
+            "multiply by the conjugate x minus one minus i y, the denominator becomes x minus one squared plus y squared and the real part on top is x squared plus y squared minus x minus y",
+            "rationalise the denominator and separate the real part x squared plus y squared minus x minus y",
+            "after multiplying by the conjugate the real part of the numerator is x squared plus y squared minus x minus y",
+            "conjugate tho multiply chesi real part x square plus y square minus x minus y teeyali",
+            "make the denominator real with the conjugate and collect the real terms"
+          ],
+          "reject": [
+            "rationalise",
+            "multiply by the conjugate",
+            "separate the parts"
+          ],
+          "heard_as": [
+            "conjugate",
+            "x minus one minus i y",
+            "real part",
+            "x squared plus y squared",
+            "minus x minus y"
+          ]
+        },
+        "why": "'Purely imaginary' is a statement about the real part, and the real part of a quotient can only be read once the denominator is real. The conjugate does exactly that, and the expansion is the price.",
+        "common_mistakes": [
+          "Using (x − 1) + iy as the 'conjugate' — the sign of the i term must flip.",
+          "Writing −i·iy(y − 1) as −y(y − 1) instead of +y(y − 1).",
+          "Spending time simplifying the imaginary part, which is not used."
+        ]
+      },
+      {
+        "id": "s3_locus",
+        "kind": "boxed_final",
+        "label": "Real part = 0",
+        "marks": 1,
+        "mark_note": "Locus",
+        "margin_note": "Last mark. Purely imaginary means the real part is 0. The denominator is positive, so only the numerator has to vanish.",
+        "memory_tip": "Purely imaginary means the REAL part is 0. The denominator is positive, so only the numerator must vanish.",
+        "lines": [
+          "(z − i)/(z − 1) is purely imaginary",
+          "⇒ real part = 0",
+          "⇒ (x² + y² − x − y)/((x − 1)² + y²) = 0",
+          {
+            "text": "∴ Locus of P: x² + y² − x − y = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a purely imaginary number has real part zero, so x² + y² − x − y = 0 is the locus of P.",
+          "accept": [
+            "purely imaginary means real part zero so the locus is x squared plus y squared minus x minus y equals zero",
+            "set the real part to zero and the locus is x squared plus y squared minus x minus y equals zero",
+            "the numerator of the real part must be zero, that is the locus",
+            "purely imaginary ante real part zero, so x square plus y square minus x minus y equals zero",
+            "real part equals zero gives the circle x squared plus y squared minus x minus y equals zero"
+          ],
+          "reject": [
+            "find the locus",
+            "set it to zero"
+          ],
+          "heard_as": [
+            "purely imaginary",
+            "real part zero",
+            "locus",
+            "x squared plus y squared minus x minus y"
+          ]
+        },
+        "why": "The condition in the question is used exactly once, here. A purely imaginary number is 0 + i(something), so its real part is 0 — and the resulting equation is a circle through the origin. The point z = 1 itself is not on the locus because the quotient is undefined there; the board answer is the circle's equation.",
+        "common_mistakes": [
+          "Setting the imaginary part to zero — that is the condition for 'purely real'.",
+          "Leaving the denominator in the final answer.",
+          "Writing the answer as an inequality — the condition is an equality, so the locus is a circle, not a region. (Leaving it as x² + y² = x + y is the same locus and is not wrong, but the standard '= 0' form is expected.)"
+        ]
+      }
+    ]
+  }
+}

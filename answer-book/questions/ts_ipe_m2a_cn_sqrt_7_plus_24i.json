@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_sqrt_7_plus_24i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the square root of 7 + 24i.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find r = |7 + 24i| = 25",
+      "marks": 1
+    },
+    {
+      "label": "Apply the square-root formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 109.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15 · TS 16, 16 — the book prints TS 16 twice (two papers in one year); the card lists the year once. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q1 of the book's Model Paper 4 (book p.117). The card adds a one-line check (4 + 3i)² = 7 + 24i that the book does not print. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the square root of a complex number — what you compute first and what formula you put it into.",
+  "insider_note": "The formula's sign choice needs a sentence: b = 24 is positive, so the two parts of the root take the same sign, giving ±(4 + 3i). Keep the ± — a square root has two values — and the one-line check by squaring catches any swap of the 16 and the 9.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find the modulus",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. Read off a = 7, b = 24 and find r = √(a² + b²). Here 7, 24, 25 is a Pythagorean triple, so r = 25.",
+        "memory_tip": "r = √(a² + b²), not √(a + b). Here 7, 24, 25 is a Pythagorean triple, so r = 25.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 7 + 24i = a + ib ⇒ a = 7, b = 24",
+          "r = √(a² + b²) = √(49 + 576) = √625 = 25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 7, b = 24 and the modulus r = √(49 + 576) = 25.",
+          "accept": [
+            "a is seven, b is twenty four, and r is root of forty nine plus five seventy six which is twenty five",
+            "the modulus is root six twenty five equals twenty five",
+            "find r equals root a squared plus b squared, that is twenty five",
+            "modulus kanukunte root six twenty five, twenty five vasthundi",
+            "seven twenty four twenty five triple, so r is twenty five"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "twenty five",
+            "six twenty five",
+            "modulus",
+            "r equals",
+            "a squared plus b squared"
+          ]
+        },
+        "why": "The square-root formula is written in terms of r and a. r is the only new number to compute, and it must be a whole number here because the question is built on the 7-24-25 triple.",
+        "common_mistakes": [
+          "Taking r = √(7 + 24) = √31.",
+          "Squaring 24 as 476."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply the formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Since b > 0 the two parts have the same sign. (25 + 7)/2 = 16 and (25 − 7)/2 = 9 — both perfect squares, which is the check that the arithmetic is right.",
+        "memory_tip": "(25 + 7)/2 = 16 and (25 − 7)/2 = 9, both perfect squares. Keep the ±, and square back to check.",
+        "lines": [
+          "For b > 0:",
+          {
+            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
+            "style": "eq"
+          },
+          {
+            "text": "√(7 + 24i) = ±(√((25 + 7)/2) + i·√((25 − 7)/2))",
+            "style": "eq"
+          },
+          "= ±(√16 + i√9)",
+          {
+            "text": "∴ √(7 + 24i) = ±(4 + 3i)",
+            "style": "boxed"
+          },
+          "Check: (4 + 3i)² = 16 + 24i − 9 = 7 + 24i"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the formula √(a + ib) = ±(√((r + a)/2) + i√((r − a)/2)) gives ±(√16 + i√9) = ±(4 + 3i).",
+          "accept": [
+            "use root of r plus a by two plus i root of r minus a by two, that is root sixteen plus i root nine, so plus or minus four plus three i",
+            "the square root is plus or minus four plus three i",
+            "twenty five plus seven by two is sixteen and twenty five minus seven by two is nine, so four plus three i",
+            "formula lo pettithe root sixteen plus i root nine, plus or minus four plus three i",
+            "plus or minus four plus three i, and four plus three i squared is seven plus twenty four i"
+          ],
+          "reject": [
+            "apply the formula",
+            "substitute"
+          ],
+          "heard_as": [
+            "four plus three i",
+            "plus or minus",
+            "root sixteen",
+            "root nine",
+            "r plus a by two"
+          ]
+        },
+        "why": "Every non-zero complex number has two square roots, one the negative of the other — that is the ±. When b is positive both parts of the root share a sign; when b is negative they have opposite signs.",
+        "common_mistakes": [
+          "Dropping the ±.",
+          "Swapping (r + a)/2 and (r − a)/2 to get ±(3 + 4i), which squares to −7 + 24i.",
+          "Not checking by squaring — the check takes one line and catches every sign error."
+        ]
+      }
+    ]
+  }
+}

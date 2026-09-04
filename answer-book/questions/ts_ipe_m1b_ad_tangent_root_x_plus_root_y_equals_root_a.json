@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_root_x_plus_root_y_equals_root_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the equation of the tangent to the curve √x + √y = √a at the point (x₁, y₁) is x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the curve implicitly",
+      "marks": 1
+    },
+    {
+      "label": "Write the slope at (x₁, y₁)",
+      "marks": 1
+    },
+    {
+      "label": "Form the tangent and clear the surds",
+      "marks": 1
+    },
+    {
+      "label": "Use √x₁ + √y₁ = √a to finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the negative half powers are set here in superscript form (x₁⁻¹⁄²), the same expression the book prints with a caret; x₁⁻¹⁄² is 1/√x₁ and a¹⁄² is √a. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you differentiate the curve, what the slope is at the given point, and which given fact you use in the last line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the curve implicitly",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Do not make y the subject first. Differentiating √x + √y = √a term by term takes one line, because √a is a constant and its derivative is 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  √x + √y = √a,  where a is a constant.",
+          "Differentiate both sides with respect to x:",
+          "1/(2√x) + 1/(2√y) · dy/dx = 0",
+          "1/(2√y) · dy/dx = −1/(2√x)",
+          "∴ dy/dx = −√y/√x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That implicit differentiation of √x + √y = √a gives dy/dx = −√y/√x.",
+          "accept": [
+            "differentiate both sides with respect to x implicitly",
+            "one by two root x plus one by two root y times dy by dx equals zero",
+            "dy by dx is minus root y by root x",
+            "implicit differentiation chesi dy by dx teesukovali",
+            "root a is a constant so its derivative is zero",
+            "the derivative of root y needs the chain rule with dy by dx"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "implicit",
+            "one by two root x",
+            "minus root y by root x",
+            "chain rule",
+            "constant"
+          ]
+        },
+        "why": "Squaring the equation to remove the surds produces a cross term 2√(xy) and makes the working longer. Implicit differentiation keeps every term in the form the final answer needs.",
+        "common_mistakes": [
+          "Forgetting the dy/dx factor on the √y term.",
+          "Treating √a as a function of x and differentiating it to something other than 0.",
+          "Squaring both sides first and then losing a term in the expansion."
+        ],
+        "memory_tip": "Each square root differentiates to 1 over twice itself, and any term in y carries dy/dx behind it."
+      },
+      {
+        "id": "s2_slope_at_point",
+        "kind": "equation",
+        "label": "Write the slope at (x₁, y₁)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The point (x₁, y₁) is on the curve, so it satisfies √x₁ + √y₁ = √a. Write that line down here — it is the fact the last step needs.",
+        "lines": [
+          "The point (x₁, y₁) lies on the curve, so",
+          "√x₁ + √y₁ = √a     …(i)",
+          "Slope of the tangent at (x₁, y₁):",
+          "m = (dy/dx) at (x₁, y₁) = −√y₁/√x₁"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope at (x₁, y₁) is −√y₁/√x₁, and that the point satisfies √x₁ + √y₁ = √a.",
+          "accept": [
+            "substitute x one and y one to get the slope",
+            "m equals minus root y one by root x one",
+            "the point lies on the curve so root x one plus root y one is root a",
+            "point curve meeda undi kabatti root x one plus root y one equals root a",
+            "write down the on the curve condition before forming the tangent",
+            "slope at the given point is minus root y one over root x one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root y one by root x one",
+            "slope",
+            "lies on the curve",
+            "root a"
+          ]
+        },
+        "why": "The relation √x₁ + √y₁ = √a is the only place the letter a can enter the final answer, so it has to be written explicitly before the tangent is formed.",
+        "common_mistakes": [
+          "Leaving the slope as −√y/√x with general x and y instead of the point.",
+          "Never writing √x₁ + √y₁ = √a, which leaves no way to reach √a at the end.",
+          "Writing the slope as −√x₁/√y₁ with the two swapped."
+        ],
+        "memory_tip": "Two facts belong to the point: it satisfies the curve, and it fixes the slope. Write both before touching the tangent."
+      },
+      {
+        "id": "s3_form_tangent",
+        "kind": "equation",
+        "label": "Form the tangent and clear the surds",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Multiply through by √x₁ at once. Working with a fraction of surds through the next two lines is where the algebra usually breaks.",
+        "lines": [
+          "Tangent at (x₁, y₁):  y − y₁ = m(x − x₁)",
+          "y − y₁ = −(√y₁/√x₁)(x − x₁)",
+          "Multiply both sides by √x₁:",
+          "√x₁ y − √x₁ y₁ = −√y₁ x + √y₁ x₁",
+          "∴ √y₁ x + √x₁ y = √y₁ x₁ + √x₁ y₁     …(ii)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y − y₁ = m(x − x₁) with m = −√y₁/√x₁ rearranges to √y₁ x + √x₁ y = √y₁ x₁ + √x₁ y₁.",
+          "accept": [
+            "use y minus y one equals m into x minus x one",
+            "multiply by root x one to clear the fraction",
+            "root y one x plus root x one y equals root y one x one plus root x one y one",
+            "point slope form rasi root x one tho multiply cheyyali",
+            "bring the x and y terms to the left side",
+            "clear the surd in the denominator first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y minus y one",
+            "m into x minus x one",
+            "multiply by root x one",
+            "point slope"
+          ]
+        },
+        "why": "The required answer has x and y on the left and a single constant on the right, so the tangent is rearranged into that shape before anything is simplified.",
+        "common_mistakes": [
+          "Dropping the minus sign when multiplying out −(√y₁/√x₁)(x − x₁).",
+          "Multiplying only the left side by √x₁.",
+          "Writing the point-slope form as y − y₁ = m(x + x₁)."
+        ],
+        "memory_tip": "Point-slope first, denominator cleared second, terms collected third — always in that order."
+      },
+      {
+        "id": "s4_use_condition",
+        "kind": "boxed_final",
+        "label": "Use √x₁ + √y₁ = √a to finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The right side of (ii) factorises as √(x₁y₁)(√x₁ + √y₁). That factor is √a by (i), and dividing by √(x₁y₁) produces exactly the printed form.",
+        "lines": [
+          "Right side of (ii):  √y₁ x₁ + √x₁ y₁",
+          "= √x₁·√x₁·√y₁ + √x₁·√y₁·√y₁ = √(x₁y₁)(√x₁ + √y₁)",
+          "By (i), √x₁ + √y₁ = √a, so the right side is √(x₁y₁)·√a.",
+          "So (ii) becomes  √y₁ x + √x₁ y = √(x₁y₁)·√a",
+          "Divide both sides by √(x₁y₁) = √x₁·√y₁:",
+          "x/√x₁ + y/√y₁ = √a",
+          {
+            "text": "∴ x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄², which is the required equation of the tangent.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side factorises to √(x₁y₁)(√x₁ + √y₁) = √(x₁y₁)·√a, and dividing by √(x₁y₁) gives x/√x₁ + y/√y₁ = √a.",
+          "accept": [
+            "factorise the right side as root x one y one into root x one plus root y one",
+            "use the on the curve condition to replace that bracket with root a",
+            "divide both sides by root x one y one",
+            "root x one y one tho divide cheste answer vasthundi",
+            "x by root x one plus y by root y one equals root a",
+            "x one to the power minus half is one by root x one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "factorise",
+            "root x one y one",
+            "root a",
+            "divide both sides",
+            "minus half power"
+          ]
+        },
+        "why": "A negative half power is the same as one over a square root, so x/√x₁ and x·x₁⁻¹⁄² are the same term written two ways. Saying that line is what connects the working to the printed form.",
+        "common_mistakes": [
+          "Dividing by √x₁y₁ on the left only.",
+          "Reading x₁⁻¹⁄² as −√x₁ instead of 1/√x₁.",
+          "Stopping at √y₁ x + √x₁ y = √(x₁y₁)·√a without dividing, so the printed form is never reached."
+        ],
+        "memory_tip": "A negative power turns the term upside down and a half power is a square root, so x₁⁻¹⁄² is simply 1/√x₁."
+      }
+    ]
+  },
+  "insider_note": "Implicit differentiation gives the neat slope −√y/√x. Substituting the point and clearing the roots produces the stated form directly."
+}

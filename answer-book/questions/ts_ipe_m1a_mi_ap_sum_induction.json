@@ -1,0 +1,273 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_ap_sum_induction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove by mathematical induction that a + (a + d) + (a + 2d) + … up to n terms = (n/2)[2a + (n − 1)d].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.26, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove the A.P. sum by induction — what is held fixed, what the induction runs on, and what you add in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks. Say clearly that a and d are fixed and the induction runs on n alone — that sentence is what makes the proof valid.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a and d are fixed real numbers.",
+          "The induction is on n only.",
+          "nth term = a + (n−1)d",
+          "Let S(n): a + (a+d) + …",
+          "        + [a + (n−1)d]",
+          "        = (n/2)[2a + (n−1)d]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and d stay fixed throughout and the induction runs on n only, and that the nth term is a + (n−1)d.",
+          "accept": [
+            "a and d are fixed and the induction is only on n and the nth term is a plus n minus one d",
+            "hold the first term and the common difference fixed and induct on the number of terms",
+            "general term a plus n minus one times d then write out s of n",
+            "a and d fix chesi n meeda matrame induction cheyyali"
+          ],
+          "reject": [
+            "I write the nth term",
+            "state s of n",
+            "assume a and d"
+          ],
+          "heard_as": [
+            "a plus n minus one d",
+            "common difference",
+            "fixed",
+            "s of n",
+            "nth term"
+          ]
+        },
+        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the only kind induction can prove.",
+        "common_mistakes": [
+          "Writing the nth term as a + nd instead of a + (n−1)d.",
+          "Trying to induct on d or on a as well as on n."
+        ],
+        "memory_tip": "The nth term is a + (n−1)d: the first term has taken no steps yet, so n = 1 gives a."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. At n = 1 the bracket (n−1)d becomes 0 — write that line out rather than skipping to a.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = a",
+          "R.H.S of S(1) = (1/2)[2a + (0)d]",
+          "        = (1/2)(2a) = a",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is a, and the right side is half of 2a plus zero times d, which is also a.",
+          "accept": [
+            "left side is just a and right side is half of two a plus zero d which is a",
+            "put n equals one and the n minus one d term vanishes leaving a on both sides",
+            "the first case gives a on each side",
+            "n equals one pettina rendu sides a vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "verify for n equals one"
+          ],
+          "heard_as": [
+            "l h s",
+            "r h s",
+            "two a",
+            "zero d",
+            "s of one"
+          ]
+        },
+        "why": "The single-term sum is just a. Showing the formula also gives a is the check that the (n−1) in the bracket is placed correctly.",
+        "common_mistakes": [
+          "Asserting S(1) is true without working out both sides.",
+          "Putting n = 1 into (n−1)d and getting d instead of 0."
+        ],
+        "memory_tip": "At n = 1 the (n−1)d part is zero, so the right side is half of 2a, which is a."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k, with a and d unchanged, and number the line (1).",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): a + (a+d) + …",
+          "        + [a + (k−1)d]",
+          "        = (k/2)[2a + (k−1)d]   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — the sum of k terms equals (k/2)[2a + (k−1)d], with a and d unchanged — and the line is numbered (1).",
+          "accept": [
+            "assume the sum of k terms is k by two into two a plus k minus one d",
+            "suppose s of k holds with the same a and d and call it equation one",
+            "take it as true for one value k in the naturals and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "k minus one d",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "Only n is replaced by k. Keeping a and d as the same letters is what allows the answer at k+1 to be compared with the formula.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Changing a or d while replacing n by k."
+        ],
+        "memory_tip": "Replace n by k everywhere and leave a and d alone. Number the line (1)."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. The next term is a + kd. Add it to both sides of (1) and collect the a terms and the d terms separately.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = a + kd.",
+          "Add it to both sides of (1):",
+          "L.H.S = (k/2)[2a + (k−1)d] + a + kd",
+          "= [k(2a + (k−1)d) + 2a + 2kd]/2",
+          "= [2ak + k(k−1)d + 2a + 2kd]/2",
+          "= [2a(k+1) + d(k² + k)]/2",
+          "= [2a(k+1) + dk(k+1)]/2",
+          "= ((k+1)/2)(2a + kd) = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the next term a + kd is added to both sides of (1), the a terms give 2a(k+1) and the d terms give dk(k+1), so (k+1) comes out and the result is ((k+1)/2)(2a + kd).",
+          "accept": [
+            "add a plus k d to both sides collect the a terms and the d terms and k plus one comes out of both",
+            "the a parts give two a into k plus one and the d parts give d k into k plus one",
+            "take k plus one over two out and what is left is two a plus k d",
+            "next term a plus k d add chesi k plus one common teestam"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "add the next term",
+            "then it follows"
+          ],
+          "heard_as": [
+            "a plus k d",
+            "two a into k plus one",
+            "k squared plus k",
+            "common factor",
+            "k plus one by two"
+          ]
+        },
+        "why": "The d terms are k(k−1)d + 2kd, which is d(k² + k) = dk(k+1). That is where the shared factor (k+1) comes from, and it is the only step in the proof that needs care.",
+        "common_mistakes": [
+          "Adding a + (k+1)d as the next term instead of a + kd.",
+          "Losing the 2 in the denominator when the next term is brought over.",
+          "Stopping at 2a + kd without writing it as the formula at k+1."
+        ],
+        "memory_tip": "The d terms are k(k−1)d + 2kd = d(k² + k) = dk(k+1). That is the shared (k+1)."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the sum formula holds for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k gives s of k plus one by the principle of mathematical induction it holds for all n",
+            "hence by p m i the sum formula is true for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The earlier steps prove two single statements — one about n = 1 and one about a step. Only the principle turns them into a claim about every n, for the fixed a and d.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+      }
+    ]
+  }
+}

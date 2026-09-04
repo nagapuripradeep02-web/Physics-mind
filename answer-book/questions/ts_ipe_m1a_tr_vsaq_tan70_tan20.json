@@ -50,7 +50,8 @@
         "label": "Start from tan(70° − 20°)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. 70° − 20° is 50°, which is the angle in the answer. Same backwards start as the twin.",
+        "margin_note": "First mark. 70° − 20° is 50°, which is the angle in the answer. Same backwards start as the tan50° − tan40° proof.",
+        "memory_tip": "70° − 20° = 50°, the angle in the answer. Same backwards start as the tan50° − tan40° proof.",
         "lines": [
           {
             "text": "Sol:",
@@ -81,7 +82,7 @@
             "seventy minus twenty"
           ]
         },
-        "why": "Identical opening to the twin — the difference of the two angles on the left is always the angle on the right in this family.",
+        "why": "Identical opening to the tan50° − tan40° proof — the difference of the two angles on the left is always the angle on the right in this family.",
         "common_mistakes": [
           "Using the sum formula.",
           "Expanding each tangent separately."
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 20° is 90° − 70°, so tan20° = cot70° and the product is 1 again. Denominator 2, then cross-multiply.",
+        "memory_tip": "20° = 90° − 70°, so tan20° = cot70° and the product is 1 again. Denominator 2, then cross-multiply.",
         "lines": [
           "tan20° = tan(90° − 70°) = cot70°",
           "⇒ (tan70° − tan20°)/(1 + tan70° cot70°) = tan50°",
@@ -126,12 +128,13 @@
             "two tan fifty"
           ]
         },
-        "why": "Both twins work because the two angles on the left are complementary. That is the condition to look for when a question of this shape appears.",
+        "why": "This proof works because the two angles on the left are complementary — 70° + 20° = 90°. That is the condition to look for when a question of this shape appears.",
         "common_mistakes": [
           "Missing the complementary pair.",
           "Leaving the answer as a fraction."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same method as the 50°/40° version: start from tan(70° − 20°) = tan50°. tan20° = cot70° makes the denominator exactly 2."
 }

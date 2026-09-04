@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_line_plane_intersection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the point of intersection of the line r = 2a + b + t(b − c) and the plane r = a + x(b + c) + y(a + 2b − c), where a, b, c are non-coplanar vectors.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Collect the a, b, c coefficients on the line",
+      "marks": 1
+    },
+    {
+      "label": "Collect the a, b, c coefficients on the plane",
+      "marks": 1
+    },
+    {
+      "label": "Compare coefficients and solve for t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute back to get the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 9. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. The answer is 2a + 2b − c, from t = 1, x = 0, y = 1. It was derived twice: once from the line's equation with t = 1, and once independently from the plane's equation with x = 0 and y = 1, which returns the same vector. The a, b and c coefficients are collected in three separate columns on purpose — a sign slip in one column here produces a wrong point that still looks plausible, which is the recorded error cluster for this chapter. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards each of the two collections, the comparison that fixes the parameters, and the substitution that turns them back into a point. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find where a line meets a plane in vector form — say what you must do to both equations before comparing them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_line",
+        "kind": "equation",
+        "label": "Collect the line's coefficients",
+        "marks": 1,
+        "mark_note": "Line in a, b, c form",
+        "margin_note": "First mark. Expand the bracket and gather the a terms, the b terms and the c terms separately. Write the a coefficient even though it carries no parameter — an empty column is where the comparison goes wrong.",
+        "memory_tip": "Expand, then gather a terms, b terms and c terms into three separate brackets.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "On the line,",
+          "r = 2a + b + t(b − c)",
+          "  = 2a + (1+t)b + (−t)c   ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line's equation is expanded and written as 2a + (1 + t)b − tc.",
+          "accept": [
+            "expand the bracket and collect the a b and c terms on the line",
+            "the line becomes two a plus one plus t times b minus t c",
+            "gather the coefficients of a b and c separately",
+            "line ni expand chesi a b c coefficients separate ga rayali",
+            "the a coefficient on the line is just two"
+          ],
+          "reject": [
+            "write the line",
+            "expand it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "line",
+            "two a",
+            "one plus t",
+            "minus t c",
+            "coefficients"
+          ]
+        },
+        "why": "The comparison ahead is column by column, so both sides have to be in the same shape first: one coefficient for a, one for b, one for c. Expanding is what produces that shape.",
+        "common_mistakes": [
+          "Leaving t(b − c) unexpanded, so there is nothing to compare.",
+          "Losing the minus sign on the c term."
+        ]
+      },
+      {
+        "id": "s2_plane",
+        "kind": "equation",
+        "label": "Collect the plane's coefficients",
+        "marks": 1,
+        "mark_note": "Plane in a, b, c form",
+        "margin_note": "Second mark. The plane has TWO parameters, x and y, so each column can pick up terms from both brackets. Work down the columns rather than across the brackets.",
+        "memory_tip": "The plane has two parameters, so each of a, b and c can collect a term from both brackets.",
+        "lines": [
+          "On the plane,",
+          "r = a + x(b + c) + y(a + 2b − c)",
+          "  = (1+y)a + (x+2y)b + (x−y)c   ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the plane's equation is expanded and written as (1 + y)a + (x + 2y)b + (x − y)c.",
+          "accept": [
+            "expand both brackets on the plane and collect a b and c",
+            "the plane becomes one plus y times a plus x plus two y times b plus x minus y times c",
+            "each coefficient can take a piece from both parameters",
+            "plane ki rendu parameters unnai, prathi column ki rendu terms vasthai",
+            "gather the a terms the b terms and the c terms"
+          ],
+          "reject": [
+            "write the plane",
+            "expand it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "plane",
+            "one plus y",
+            "x plus two y",
+            "x minus y",
+            "two parameters"
+          ]
+        },
+        "why": "A plane needs two parameters because it is two-dimensional. Both of them can appear in the same column, which is why the collection has to be done carefully rather than bracket by bracket.",
+        "common_mistakes": [
+          "Forgetting the standalone a, so the a coefficient reads y instead of 1 + y.",
+          "Writing the c coefficient as x + y instead of x − y."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare and solve",
+        "marks": 1,
+        "mark_note": "Solve for the parameters",
+        "margin_note": "Third mark. a, b, c are non-coplanar, so they are independent and one vector equation splits into three number equations. Two of them give x in terms of t, and setting those equal fixes t.",
+        "memory_tip": "Non-coplanar a, b, c means three separate equations. Two expressions for x set equal give t.",
+        "lines": [
+          "At the common point (1) = (2).",
+          "a, b, c are non-coplanar, so compare the",
+          "three coefficients separately:",
+          "a:  2 = 1 + y        ⇒  y = 1",
+          "b:  1 + t = x + 2y   ⇒  x = t − 1",
+          "c:  −t = x − y       ⇒  x = 1 − t",
+          "So t − 1 = 1 − t ⇒ 2t = 2 ⇒ t = 1,",
+          "and then x = 0, y = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing the three coefficients gives y = 1 and two expressions for x, and that equating them gives t = 1, x = 0, y = 1.",
+          "accept": [
+            "since a b c are non coplanar compare the three coefficients separately",
+            "the a equation gives y equals one",
+            "the b and c equations both give x so set them equal and get t equals one",
+            "a b c non coplanar kabatti moodu equations vasthai, t equals one",
+            "then x is zero and y is one"
+          ],
+          "reject": [
+            "compare the coefficients",
+            "solve them",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "compare coefficients",
+            "non coplanar",
+            "t equals one",
+            "y equals one",
+            "x equals zero"
+          ]
+        },
+        "why": "Independence is the whole reason the comparison is legal: if a, b, c were coplanar, one could be written using the other two and no column would stand on its own. Three columns give three equations, which is exactly enough for the three unknowns t, x and y.",
+        "common_mistakes": [
+          "Comparing only two columns, which leaves t undetermined.",
+          "Substituting y before finishing the b column, then losing the 2y term.",
+          "A sign slip in the c column, which changes t and gives a plausible but wrong point."
+        ]
+      },
+      {
+        "id": "s4_point",
+        "kind": "boxed_final",
+        "label": "Substitute back",
+        "marks": 1,
+        "mark_note": "Point of intersection",
+        "margin_note": "Last mark. Put t = 1 back into the line's equation. Putting x = 0 and y = 1 into the plane's equation is a free check that costs one line and catches a sign slip.",
+        "memory_tip": "Put the parameter back to get a POINT, not a value of t. The other equation is a free check.",
+        "lines": [
+          "Put t = 1 in (1):",
+          "r = 2a + (1+1)b + (−1)c = 2a + 2b − c",
+          "Check in (2) with x = 0, y = 1:",
+          "r = (1+1)a + (0+2)b + (0−1)c",
+          "  = 2a + 2b − c",
+          {
+            "text": "∴ Point of intersection = 2a + 2b − c",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting t = 1 into the line gives the point 2a + 2b − c, and that the plane with x = 0, y = 1 gives the same vector.",
+          "accept": [
+            "put t equals one back into the line and get two a plus two b minus c",
+            "the point of intersection is two a plus two b minus c",
+            "check the plane with x zero and y one and it gives the same point",
+            "t equals one substitute cheste two a plus two b minus c vasthundi",
+            "substitute the parameter back to get the point"
+          ],
+          "reject": [
+            "substitute",
+            "that is the answer",
+            "we get the point"
+          ],
+          "heard_as": [
+            "two a plus two b minus c",
+            "substitute",
+            "point of intersection",
+            "check"
+          ]
+        },
+        "why": "The question asks for a point, not for parameter values, so the last step has to turn t back into a vector. Both equations describe the same point, so each one is a check on the other.",
+        "common_mistakes": [
+          "Stopping at t = 1 and calling it the answer.",
+          "Substituting x and y into the line, or t into the plane."
+        ]
+      }
+    ]
+  }
+}

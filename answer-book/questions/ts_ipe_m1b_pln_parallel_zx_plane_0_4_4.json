@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_parallel_zx_plane_0_4_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the plane parallel to the ZX-plane and passing through (0, 4, 4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the form of a plane parallel to the ZX-plane",
+      "marks": 1
+    },
+    {
+      "label": "Use the given point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 10, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards naming the ZX-plane as y = 0 and writing the parallel family y = k first, then fixing k from the given point second. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what the equation of the ZX-plane is, and what a plane parallel to it looks like.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form_of_a_parallel_plane",
+        "kind": "equation",
+        "label": "Write the form of a plane parallel to the ZX-plane",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The ZX-plane is the plane on which every point has y = 0. Parallel planes share a normal, so a plane parallel to it must also have the Y-axis as its normal.",
+        "memory_tip": "The ZX-plane is y = 0: the letter missing from its name is the coordinate that stays zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The ZX-plane is the plane y = 0, and the",
+          "Y-axis is normal to it.",
+          "A plane parallel to the ZX-plane has the",
+          "same normal, so its direction ratios are",
+          "(a, b, c) = (0, 1, 0)",
+          "Its equation is therefore y = k, where k is",
+          "a constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ZX-plane is y = 0, and that any plane parallel to it has the form y = k.",
+          "accept": [
+            "the Z X plane is y equals zero",
+            "a plane parallel to it is y equals some constant",
+            "parallel planes share the same normal, the Y axis",
+            "Z X plane ante y equals zero, parallel ga unte y equals k",
+            "only the y coordinate is fixed on such a plane"
+          ],
+          "reject": [
+            "the constant is four",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "Z X plane",
+            "y equals zero",
+            "y equals k",
+            "parallel"
+          ]
+        },
+        "why": "The ZX-plane holds the Z-axis and the X-axis, so the coordinate that is missing from its name is the one that stays 0 on it. Planes parallel to it fix that same coordinate at some other value.",
+        "common_mistakes": [
+          "Writing the ZX-plane as x = 0 or z = 0.",
+          "Letting x or z appear in the answer, which would tilt the plane."
+        ]
+      },
+      {
+        "id": "s2_use_the_given_point",
+        "kind": "boxed_final",
+        "label": "Use the given point",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Only the y coordinate of the given point is used. The x and z coordinates do not enter the answer at all.",
+        "memory_tip": "Only the y coordinate of the point matters here: y = 4.",
+        "lines": [
+          "The plane passes through (0, 4, 4), whose",
+          "y-coordinate is 4.",
+          "⇒ k = 4",
+          "Check: the point (0, 4, 4) has y = 4, so it",
+          "lies on the plane y = 4.",
+          {
+            "text": "∴ y = 4,  that is  y − 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k is the y coordinate of the given point, so the plane is y = 4.",
+          "accept": [
+            "put the point into y equals k to get k is four",
+            "the plane is y equals four",
+            "only the y coordinate of the point is used",
+            "point yokka y coordinate ye k, so y equals four",
+            "the answer is y minus four equals zero"
+          ],
+          "reject": [
+            "the Z X plane is y equals zero",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "y equals four",
+            "k is four",
+            "y coordinate",
+            "y minus four"
+          ]
+        },
+        "why": "A plane of the form y = k is fixed by one number, so one point is enough and only its y coordinate is read. The two 4's in the point are a coincidence, not a pattern.",
+        "common_mistakes": [
+          "Using the z coordinate and writing z = 4.",
+          "Writing y = 0 by copying the ZX-plane instead of the parallel plane through the point."
+        ]
+      }
+    ]
+  }
+}

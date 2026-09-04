@@ -1,0 +1,138 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_sum_f_g_const_2x_minus1_x2",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f(x) = 2x − 1 and g(x) = x², find (f + g + 2)(x).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Meaning of (f + g + 2)(x)",
+            "marks": 1
+        },
+        {
+            "label": "Collected form and domain",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 16(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing f(x) + g(x) + 2 first and the collected form with its domain second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (f + g + 2)(x) — what the 2 stands for, the collected form, and the domain.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_meaning",
+                "kind": "equation",
+                "label": "Add the outputs and the constant",
+                "marks": 1,
+                "mark_note": "Meaning of (f + g + 2)(x)",
+                "margin_note": "First mark. Adding a number to a function means adding it to every output. Write f(x) + g(x) + 2 before collecting terms.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 2x − 1 and g(x) = x², both on R",
+                    "Here 2 means the constant function 2.",
+                    "(f + g + 2)(x) = f(x) + g(x) + 2",
+                    "= (2x − 1) + x² + 2"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That (f + g + 2)(x) = f(x) + g(x) + 2 = (2x − 1) + x² + 2.",
+                    "accept": [
+                        "f plus g plus two means f of x plus g of x plus two",
+                        "add the two outputs and then add two",
+                        "two is a constant added to every output",
+                        "prathi output ki two add avutundi",
+                        "write two x minus one plus x squared plus two"
+                    ],
+                    "reject": [
+                        "I add them",
+                        "add two",
+                        "then simplify"
+                    ],
+                    "heard_as": [
+                        "f plus g plus two",
+                        "outputs",
+                        "constant",
+                        "two x minus one",
+                        "x squared"
+                    ]
+                },
+                "why": "A number added to a function is read as the constant function with that value, so it is added to the output at every x. The inputs are untouched.",
+                "memory_tip": "Adding 2 to a function adds 2 to every output. The inputs do not change.",
+                "common_mistakes": [
+                    "Adding 2 to the input, writing f(x + 2) + g(x + 2).",
+                    "Adding 2 to f only instead of to the whole sum."
+                ]
+            },
+            {
+                "id": "s2_simplify",
+                "kind": "boxed_final",
+                "label": "Collect terms and state the domain",
+                "marks": 1,
+                "mark_note": "Collected form and domain",
+                "margin_note": "Second mark. Collect the constants: −1 + 2 = 1. Then x² + 2x + 1 is (x + 1)², and the domain is R because both parts are polynomials.",
+                "lines": [
+                    "= x² + 2x − 1 + 2",
+                    "= x² + 2x + 1",
+                    "x² + 2x + 1 is a perfect square.",
+                    "f and g are defined for every real x.",
+                    {
+                        "text": "(f + g + 2)(x) = (x + 1)², x ∈ R",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That the constants collect to +1, giving x² + 2x + 1 = (x + 1)², with domain R.",
+                    "accept": [
+                        "minus one plus two is one so x squared plus two x plus one",
+                        "that is x plus one all squared",
+                        "the domain is all real numbers because both are polynomials",
+                        "constant one avutundi so x plus one whole square",
+                        "the answer is x plus one squared"
+                    ],
+                    "reject": [
+                        "collect the terms",
+                        "simplify it",
+                        "that is the answer"
+                    ],
+                    "heard_as": [
+                        "x squared plus two x plus one",
+                        "x plus one squared",
+                        "perfect square",
+                        "domain",
+                        "R"
+                    ]
+                },
+                "why": "Collecting the constants gives x² + 2x + 1, which factors as (x + 1)². Either form is a correct answer, and the factored form shows the value is never negative.",
+                "memory_tip": "−1 + 2 = 1, so the constant is +1, and x² + 2x + 1 = (x + 1)².",
+                "common_mistakes": [
+                    "Writing the constant as 3 or as −1 instead of +1.",
+                    "Leaving the answer without saying the domain is R."
+                ]
+            }
+        ]
+    }
+}

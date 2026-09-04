@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Move the sine term across so only the cosine is on one side, then square — which turns cos²θ into 1 − sin²θ and leaves everything in sine.",
+        "memory_tip": "Move the sine term across so ONLY the cosine is squared — otherwise a sinθcosθ cross term survives.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +94,7 @@
             "cos squared"
           ]
         },
-        "why": "Squaring is what removes the cosine, and it is legitimate here because the roots are being characterised, not found — any extraneous root introduced would still satisfy the squared equation.",
+        "why": "Squaring is what removes the cosine. It is sound here because sinα and sinβ both satisfy the quadratic that results, and a quadratic has only two roots — so those two ARE its roots, and the sum and product of roots formulas apply to them.",
         "common_mistakes": [
           "Squaring the equation as it stands, leaving a cross term in sinθcosθ.",
           "Forgetting the middle term of (c − b sinθ)²."
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Bring everything to one side. The sin²θ terms combine to (a²+b²), which is where the denominator of both answers comes from.",
+        "memory_tip": "The two sin²θ terms combine to (a² + b²), which is the denominator of both answers.",
         "lines": [
           "Transposing all terms to one side:",
           "⇒ a² sin²θ + b² sin²θ − 2bc sinθ + c² − a² = 0",
@@ -133,7 +135,7 @@
             "quadratic"
           ]
         },
-        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the twin, reached by a different route.",
+        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached by a different route.",
         "common_mistakes": [
           "Sign slip on the c² − a² term.",
           "Failing to gather both sin²θ terms."
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Sum of roots is −B/A and product is C/A. Both denominators are (a²+b²), and the two minus signs on the sum cancel.",
+        "memory_tip": "Sum is −B/A and product is C/A. The two minus signs on the sum cancel, so it is +2bc/(a² + b²).",
         "lines": [
           "This is a quadratic in sinθ with roots sinα, sinβ.",
           "Sum of roots = −B/A:",
@@ -185,5 +188,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate the cosθ term BEFORE squaring, so only one squaring is needed and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
 }

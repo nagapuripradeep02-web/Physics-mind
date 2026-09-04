@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_cis_abc_triangle_xyz",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A, B, C are the angles of a triangle and x = cis A, y = cis B, z = cis C, then find the value of xyz.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Product of cis is cis of the sum",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate cis 180°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 116. Printed appearances: TS 15,22 · AP 15,16,16 (the book prints AP 16 twice, presumably two 2016 papers; recorded as two entries) — five printed tags, the most-asked VSAQ in this unit. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: cis A · cis B · cis C = cis(A + B + C) = cis 180° = −1; the book's answer is correct. Asked as Model Paper 1, Q3 (book p.111); re-solved in the Bullet Model Paper Q3 (book p.96) with the same steps."
+  },
+  "recall_prompt": "Say how you would find xyz — what happens to the angles when cis numbers are multiplied, and what the triangle tells you.",
+  "insider_note": "The phrase 'angles of a triangle' is the given fact: A + B + C = 180°, so xyz = cis 180° = −1. The first mark is for writing that angle sum down; without it only the second mark is earned.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_de_moivre",
+        "kind": "equation",
+        "label": "Product of cis is cis of the sum",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiplying cis numbers adds the angles, so xyz = cis(A + B + C), and in a triangle A + B + C = 180°. Both lines have to be on the page.",
+        "memory_tip": "A product of cis numbers adds the angles, and in a triangle A + B + C = 180°. Both lines are needed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In △ABC, A + B + C = 180°",
+          "xyz = cis A · cis B · cis C = cis(A + B + C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cis A · cis B · cis C = cis(A + B + C), and that A + B + C = 180° in a triangle.",
+          "accept": [
+            "the product of cis A cis B cis C is cis of A plus B plus C, and the angles of a triangle add to one eighty",
+            "multiply the three and the angles add, giving cis one eighty degrees",
+            "x y z is cis of the sum of the angles which is one eighty",
+            "cis multiply cheste angles add avuthai, triangle lo A plus B plus C one eighty",
+            "the angles add when cis numbers are multiplied"
+          ],
+          "reject": [
+            "multiply them",
+            "use the triangle",
+            "add the angles"
+          ],
+          "heard_as": [
+            "cis A plus B plus C",
+            "one eighty",
+            "angles add",
+            "triangle"
+          ]
+        },
+        "why": "Multiplying cis numbers adds their angles (the moduli are all 1). The triangle fact A + B + C = 180° is the only other input, and it is why the question says 'angles of a triangle'.",
+        "common_mistakes": [
+          "Multiplying the angles instead of adding them.",
+          "Using A + B + C = 90° or 360°.",
+          "Expanding each cis into cos and sin and multiplying three brackets."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate cis 180°",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos 180° = −1 and sin 180° = 0, so xyz = −1 + i(0) = −1. Write the i(0) to show the imaginary part was checked.",
+        "memory_tip": "cos 180° = −1 and sin 180° = 0, so xyz = −1. Write the i(0) to show the imaginary part was checked.",
+        "lines": [
+          "= cis 180° = cos 180° + i sin 180°",
+          {
+            "text": "xyz = −1 + i(0) = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to −1.",
+          "accept": [
+            "evaluate the reduced form and get −1",
+            "the answer comes to −1",
+            "simplify the powers of omega and the value is −1",
+            "reduce chesaka value −1 vasthundi",
+            "finally it equals −1"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "−1"
+          ]
+        },
+        "why": "cos 180° = −1 and sin 180° = 0, so cis 180° is −1. Writing the i(0) shows the imaginary part was not forgotten.",
+        "common_mistakes": [
+          "Writing cis 180° = 1.",
+          "Leaving the answer as cos 180° + i sin 180° without evaluating.",
+          "Writing sin 180° = 1."
+        ]
+      }
+    ]
+  }
+}

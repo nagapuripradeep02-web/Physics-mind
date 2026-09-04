@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_largest_coefficient_24_19",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the largest binomial coefficients in the expansions of (i) (1 + x)²⁴ and (ii) (1 + x)¹⁹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Even case (i)",
+      "marks": 1
+    },
+    {
+      "label": "Odd case (ii)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 162. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Here the two moves are the two parts: the even case (1) and the odd case (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say which coefficient is largest in each expansion and why — what an even n gives and what an odd n gives.",
+  "insider_note": "One answer for (i) and TWO for (ii): even n has a single largest coefficient, odd n has an equal middle pair. Giving only one of the pair is the usual half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Even case (i)",
+        "marks": 1,
+        "mark_note": "Part (i)",
+        "margin_note": "First mark. For even n the largest binomial coefficient is the middle one, ⁿC with lower index n/2.",
+        "memory_tip": "Even n has ONE largest coefficient, the middle one with lower index n/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(i) n = 24 is even, so the largest coefficient",
+          "is the middle one, ²⁴C₁₂"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for n = 24 (even) the largest coefficient is the middle one, ²⁴C₁₂.",
+          "accept": [
+            "n is twenty four which is even so the largest coefficient is the middle one twenty four C twelve",
+            "even n gives one largest coefficient n C n by two",
+            "twenty four C twelve is the largest",
+            "n twenty four even kabatti twenty four C twelve largest",
+            "the middle coefficient of an even power is the biggest"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "twenty four C twelve",
+            "even",
+            "middle"
+          ]
+        },
+        "why": "Binomial coefficients rise to the middle and fall again symmetrically; with n even there is exactly one middle.",
+        "common_mistakes": [
+          "Answering ²⁴C₂₄ or ²⁴C₁.",
+          "Giving two coefficients for an even n."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Odd case (ii)",
+        "marks": 1,
+        "mark_note": "Part (ii)",
+        "margin_note": "Second mark. For odd n the two middle coefficients are equal and both are largest.",
+        "memory_tip": "Odd n has TWO equal largest coefficients. Give both ¹⁹C₉ and ¹⁹C₁₀.",
+        "lines": [
+          "(ii) n = 19 is odd, so the two middle coefficients",
+          "are equal and largest: ¹⁹C₉ = ¹⁹C₁₀",
+          {
+            "text": "∴ (i) ²⁴C₁₂  (ii) ¹⁹C₉ and ¹⁹C₁₀",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for n = 19 (odd) the two middle coefficients ¹⁹C₉ and ¹⁹C₁₀ are equal and largest.",
+          "accept": [
+            "n is nineteen which is odd so the two middle coefficients nineteen C nine and nineteen C ten are equal and largest",
+            "odd n gives two largest coefficients n minus one by two and n plus one by two",
+            "nineteen C nine equals nineteen C ten and both are largest",
+            "n nineteen odd kabatti nineteen C nine and nineteen C ten rendu largest",
+            "the two middle ones tie for largest"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "nineteen C nine",
+            "nineteen C ten",
+            "odd",
+            "two middle"
+          ]
+        },
+        "why": "With n odd there is no single middle; ⁿCᵣ = ⁿCₙ₋ᵣ makes the two central coefficients equal.",
+        "common_mistakes": [
+          "Giving only ¹⁹C₉.",
+          "Writing ¹⁹C₁₀ and ¹⁹C₁₁."
+        ]
+      }
+    ]
+  }
+}

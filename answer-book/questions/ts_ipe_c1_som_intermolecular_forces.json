@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 99,
     "name": "States of Matter (Chemistry)"
   },
   "chapter": "States of Matter",
@@ -113,5 +113,6 @@
         "margin_note": "The boxed order line is the summarising mark; all three force names must appear above it."
       }
     ]
-  }
+  },
+  "insider_note": "Three forces but four marks, because hydrogen bonding shares two of them with the strength order. Three good descriptions with no ranking line at the end leave half of that pair unearned."
 }

@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_composition_associative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Let f: A→B, g: B→C and h: C→D be functions. Show that ho(gof) = (hog)of, that is, that composition of functions is associative.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show both sides are functions A→D",
+      "marks": 1
+    },
+    {
+      "label": "Show both sides give the same value",
+      "marks": 2
+    },
+    {
+      "label": "Conclude the two functions are equal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, the THEOREMS section, question 6, book p.19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ON THE SOURCE FORM: the book prints this under its THEOREMS banner rather than as a numbered exercise question, so it carries no exercise number and no star rating of its own; it is authored here as a Section B short answer because that is the section and the length a Telangana paper asks a two-part proof of this size at. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape is one of the two shapes this bank uses for a Maths-1A Section B question; the double mark sits on the element chase because that is where both sides have to be unwrapped separately, and the opening 'Given' step is unmarked because it only records the test for equality of functions. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.19, so the source book's zero star count here is a reading rather than a clipped count; appearances[] is empty because the book prints no year for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — the two things you have to show, and how you handle a general element.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own, but it sets up both marked parts. Equality of functions has two halves: the same domain, and the same value at every point.",
+        "memory_tip": "Equality of functions has two halves: same domain, and same value everywhere. Write both down before starting.",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f: A→B, g: B→C and h: C→D are functions.",
+          "To prove: ho(gof) = (hog)of",
+          "Two functions are equal when they have the",
+          "same domain and the same value everywhere."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the claim is an equality of two functions, so both halves of the test must be settled: same domain, and same value at every point.",
+          "accept": [
+            "two functions are equal when they have the same domain and the same value everywhere",
+            "state what is given and what has to be proved before starting",
+            "the proof has two halves, the domains and then the values",
+            "rendu functions equal avvalante domain okate mariyu value okate undali",
+            "write down the test for equality of functions first"
+          ],
+          "reject": [
+            "take any element a in A",
+            "both sides are functions from A to D",
+            "hence proved"
+          ],
+          "heard_as": [
+            "same domain",
+            "same value",
+            "to prove",
+            "equal functions"
+          ]
+        },
+        "why": "The statement to be proved is an equality of two functions, so the proof has to settle both halves of what that means. Writing the test down first fixes the shape of the answer.",
+        "common_mistakes": [
+          "Starting straight from an element without saying what has to be proved.",
+          "Treating the two sides as expressions to be rearranged rather than as functions."
+        ]
+      },
+      {
+        "id": "s2_domains",
+        "kind": "equation",
+        "label": "Show both sides are functions A→D",
+        "marks": 1,
+        "mark_note": "Same domain",
+        "margin_note": "One of the four marks. Build each side in two moves and read off its domain and codomain. Both must come out as A→D before any element is taken.",
+        "memory_tip": "Build each side in two moves. The bracketed composition is formed first, and both sides must land on A→D.",
+        "lines": [
+          {
+            "text": "Part 1 — both sides are functions A→D",
+            "style": "heading"
+          },
+          "f: A→B and g: B→C give gof: A→C.",
+          "gof: A→C and h: C→D give ho(gof): A→D.",
+          "g: B→C and h: C→D give hog: B→D.",
+          "f: A→B and hog: B→D give (hog)of: A→D.",
+          "So both sides have domain A and codomain D."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof: A→C makes ho(gof): A→D, and hog: B→D makes (hog)of: A→D, so both sides have domain A and codomain D.",
+          "accept": [
+            "g o f goes from A to C so h after it goes from A to D",
+            "h o g goes from B to D so composing with f gives A to D",
+            "both sides are functions from A to D so they can be compared",
+            "rendu sides A nunchi D ki functions, so compare cheyyochu",
+            "check the domains and codomains match before taking an element"
+          ],
+          "reject": [
+            "take any element a in A",
+            "two functions are equal when they have the same domain",
+            "both sides send a to h of c"
+          ],
+          "heard_as": [
+            "A to D",
+            "g o f",
+            "h o g",
+            "codomain"
+          ]
+        },
+        "why": "A composition exists only when the codomain of the inner function is the domain of the outer one. Checking that here is what makes both sides functions at all, so that they can be compared.",
+        "common_mistakes": [
+          "Assuming the two sides are comparable without checking the domains.",
+          "Writing hog as a function from C to D instead of from B to D."
+        ]
+      },
+      {
+        "id": "s3_values",
+        "kind": "equation",
+        "label": "Show both sides give the same value",
+        "marks": 2,
+        "mark_note": "Same value",
+        "margin_note": "Two of the four marks, and the main part of the proof. Take one arbitrary a and unwrap each side separately until both read h(c). Do not unwrap only one side.",
+        "memory_tip": "Both sides unwrap to h[g(f(a))]. Only the bracket order differs, so name b = f(a) and c = g(b) and follow one element.",
+        "lines": [
+          {
+            "text": "Part 2 — both sides give the same value",
+            "style": "heading"
+          },
+          "Let a ∈ A. Put f(a) = b, where b ∈ B,",
+          "and g(b) = c, where c ∈ C.",
+          "[ho(gof)](a) = h[(gof)(a)] = h[g(f(a))]",
+          "  = h[g(b)] = h(c)   …(1)",
+          "[(hog)of](a) = (hog)[f(a)] = (hog)(b)",
+          "  = h[g(b)] = h(c)   …(2)",
+          "From (1) and (2), both sides send a to h(c)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an arbitrary a in A, with b = f(a) and c = g(b), both ho(gof) and (hog)of reduce to h(c), so the two sides agree at a.",
+          "accept": [
+            "take any a in A and put b equal f of a and c equal g of b",
+            "h after g o f at a gives h of g of f of a which is h of c",
+            "h o g after f at a gives h of g of b which is also h of c",
+            "rendu vaipula h of c vasthundi, so same value",
+            "both sides unwrap to the same expression h of g of f of a"
+          ],
+          "reject": [
+            "both sides are functions from A to D",
+            "a was any element of A",
+            "two functions are equal when they have the same domain"
+          ],
+          "heard_as": [
+            "h of c",
+            "g of f of a",
+            "any element a",
+            "unwrap"
+          ]
+        },
+        "why": "Both chains reduce to the same expression h[g(f(a))]; they differ only in the order the brackets are opened. Naming b and c keeps that visible instead of hiding it inside nested brackets.",
+        "common_mistakes": [
+          "Checking one particular element instead of an arbitrary a.",
+          "Opening the brackets of only one side and then declaring the two equal."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude the two functions are equal",
+        "marks": 1,
+        "mark_note": "Conclude",
+        "margin_note": "The fourth mark. Say in words that a was arbitrary, then state the equality of the two functions. The calculation on its own is not the conclusion.",
+        "memory_tip": "Say that a was any element of A. Without that sentence you have only checked one element.",
+        "lines": [
+          "a was any element of A, so the two functions",
+          "agree at every point of A.",
+          "They also have the same domain A.",
+          {
+            "text": "∴ ho(gof) = (hog)of",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a was arbitrary, so the two sides agree at every point of A and, having the same domain, are equal as functions.",
+          "accept": [
+            "a was any element of A so the two sides agree everywhere",
+            "same domain and same value at every point so the functions are equal",
+            "therefore h after g o f equals h o g after f",
+            "a ni general ga teesukunnam kabatti prathi point daggara same",
+            "composition of functions is associative"
+          ],
+          "reject": [
+            "both sides send a to h of c",
+            "both sides are functions from A to D",
+            "put b equal f of a"
+          ],
+          "heard_as": [
+            "any element",
+            "every point",
+            "associative",
+            "equal"
+          ]
+        },
+        "why": "The element a was never given a particular value, so the result at a holds for every element of A. That is why the calculation is a statement about the two functions and not about one element.",
+        "common_mistakes": [
+          "Stopping at the value and not stating the equality of the functions.",
+          "Claiming the result for one chosen element only."
+        ]
+      }
+    ]
+  }
+}

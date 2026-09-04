@@ -49,7 +49,8 @@
         "label": "Equate the diagonal midpoints",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, printed in the book's margin. A parallelogram's diagonals BISECT each other, so the midpoint of AC equals the midpoint of BD. Note the vertices are CONSECUTIVE, so the diagonals are AC and BD, not AB and CD.",
+        "margin_note": "First mark. A parallelogram's diagonals BISECT each other, so the midpoint of AC equals the midpoint of BD. Note the vertices are CONSECUTIVE, so the diagonals are AC and BD, not AB and CD.",
+        "memory_tip": "A parallelogram's diagonals BISECT each other. The vertices are consecutive, so the diagonals are AC and BD.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "label": "Draw the parallelogram",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The vertices are given CONSECUTIVE, so the diagonals are AC and BD — the two dashed lines. Reading them off a sketch is safer than reading them off the question.",
+        "memory_tip": "Read the diagonals off a sketch rather than off the question — consecutive labelling is easy to misread.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That parallelogram ABCD is sketched with both diagonals AC and BD drawn. Naming the drawing is full credit — it cannot be spoken.",
@@ -232,7 +234,8 @@
         "label": "Solve for the fourth vertex",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark, also printed. The halves cancel on both sides, leaving three short equations that are solved one at a time.",
+        "margin_note": "Second mark. The halves cancel on both sides, leaving three short equations that are solved one at a time.",
+        "memory_tip": "The halves cancel on both sides, leaving three short equations solved one at a time.",
         "lines": [
           "⇒ (3 + a)/2 = 6/2  ⇒  a + 3 = 6  ⇒  a = 6 − 3 = 3;",
           "⇒ (6 + b)/2 = 9/2  ⇒  b + 6 = 9  ⇒  b = 9 − 6 = 3;",
@@ -271,5 +274,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The vertices are given as consecutive, so AC and BD are the diagonals while AB and CD are sides. Equating the midpoints of the sides instead is what makes this question come out wrong."
 }

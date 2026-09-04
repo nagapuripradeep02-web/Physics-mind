@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_new_origin_translation_1_2_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If the point (1, 2, 3) is changed to the point (2, 3, 1) through translation of axes, find the new origin.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the translation rule",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the new origin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 5 THREE DIMENSIONAL COORDINATES, Very Short Answer question 11, book p.177. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. FILING NOTE: translation of axes is a change-of-axes topic rather than a three-dimensional-coordinates one, but the book prints this question inside chapter 5 THREE DIMENSIONAL COORDINATES, and we file it in unit 5 as the book does so that a student who works through the printed chapter finds every question of it here. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards stating the translation rule with the right direction first, and solving the three one-line equations second. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what a translation of axes does to a point's coordinates, and which way round the subtraction goes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_translation_rule",
+        "kind": "equation",
+        "label": "Write the translation rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. In a translation the axes keep their directions and only the origin moves, so each new coordinate is the old one minus the matching coordinate of the new origin.",
+        "memory_tip": "New coordinate = old coordinate − new origin, one coordinate at a time.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the new origin be O' = (h, k, l).",
+          "In a translation of axes the directions of",
+          "the axes do not change, so a point (x, y, z)",
+          "gets new coordinates (X, Y, Z) where",
+          "X = x − h,  Y = y − k,  Z = z − l",
+          "Here (x, y, z) = (1, 2, 3) and",
+          "(X, Y, Z) = (2, 3, 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That under a translation of axes the new coordinates are the old coordinates minus the new origin, written as X = x − h, Y = y − k, Z = z − l.",
+          "accept": [
+            "the new coordinates are the old ones minus the new origin",
+            "X equals x minus h, Y equals y minus k, Z equals z minus l",
+            "only the origin moves, the axis directions stay the same",
+            "translation lo axes direction marchadu, origin matrame move avuthundi",
+            "write the translation rule with the given point and its new coordinates"
+          ],
+          "reject": [
+            "the new origin is minus one, minus one, two",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "translation of axes",
+            "new origin",
+            "x minus h",
+            "new coordinates"
+          ]
+        },
+        "why": "The rule has to be written the right way round before any numbers go in. The axes do not turn, so each coordinate is handled on its own and the shift is a plain subtraction.",
+        "common_mistakes": [
+          "Writing X = x + h, which moves the origin the wrong way.",
+          "Treating the change as a rotation, where the axis directions would also change."
+        ]
+      },
+      {
+        "id": "s2_solve_for_the_new_origin",
+        "kind": "boxed_final",
+        "label": "Solve for the new origin",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Three separate one-line equations. Substitute the answer back into the rule to make sure the shift is the right way round.",
+        "memory_tip": "New origin = old point − new point: (1, 2, 3) − (2, 3, 1) = (−1, −1, 2).",
+        "lines": [
+          "⇒ 1 − h = 2  ⇒  h = 1 − 2 = −1",
+          "   2 − k = 3  ⇒  k = 2 − 3 = −1",
+          "   3 − l = 1  ⇒  l = 3 − 1 = 2",
+          "Check: (1 + 1, 2 + 1, 3 − 2) = (2, 3, 1)",
+          {
+            "text": "∴ New origin O' = (−1, −1, 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the three equations gives the new origin (−1, −1, 2), and that substituting it back returns (2, 3, 1).",
+          "accept": [
+            "solve each coordinate equation separately",
+            "h is minus one, k is minus one and l is two",
+            "the new origin is the old point minus the new point",
+            "moodu equations separate ga solve chesi new origin ravali",
+            "put it back and check the point becomes two three one"
+          ],
+          "reject": [
+            "the new coordinates are the old ones minus the new origin",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus one",
+            "new origin",
+            "check",
+            "two three one"
+          ]
+        },
+        "why": "The subtraction is easy to reverse by accident, so the check matters: transforming (1, 2, 3) forward through the answer must give back (2, 3, 1) exactly.",
+        "common_mistakes": [
+          "Giving (1, 1, −2), which is the new point minus the old point.",
+          "Stopping at the three equations without solving for h, k and l."
+        ]
+      }
+    ]
+  }
+}

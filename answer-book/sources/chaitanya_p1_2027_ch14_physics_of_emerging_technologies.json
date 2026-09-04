@@ -1,0 +1,86 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 15, SAQ 0, LAQ 0, PROBLEM 0 (15 entries). This chapter prints no FORMULAE block and no SHORT ANSWER, LONG ANSWER or PROBLEMS section (scan pp.141–142, printed pp.143–144); the second page is more than half blank. Stems restated in our own wording; no solution content from the source book appears in this file, by policy. Two stems name commercial products in the book and are restated neutrally per Rule 35 (see notes). Scan oddity: the footer page number on scan p.142 is clipped at the left edge (only '4' visible) and is read as 144 from the page sequence.",
+  "chapter": { "number": 14, "printed_title": "PHYSICS OF EMERGING TECHNOLOGIES" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "How do AI and ML (artificial intelligence and machine learning) help scientists in the field of astrophysics?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "Name another field of physics, other than astrophysics, where AI and ML speed up discoveries.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "State two fundamental areas of physics that are combined to build robots.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "A four-legged walking robot uses principles of dynamics to keep its balance. Which physicist's laws are mainly applied for this?",
+      "appearance_years": [],
+      "notes": "Rule 35 restatement: the book names a specific commercial four-legged robot (a company's 'Spot' robot); the brand is replaced with neutral wording." },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "Why do materials such as carbon nanotubes show very different properties at the nano scale?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "Give one example of how nanotechnology is used in modern technology.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "What is the key property of a qubit in a quantum computer that allows it to be more powerful than a classical bit?",
+      "appearance_years": [], "notes": "Printed typo: 'tha' for 'that'." },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "A quantum processor has demonstrated \"quantum supremacy\". What does this term mean?",
+      "appearance_years": [],
+      "notes": "Rule 35 restatement: the book attributes the demonstration to a named company's quantum processor (its 'Sycamore' chip); the brand is replaced with neutral wording." },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "How does fusion energy reproduce a natural process that happens in our universe?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "What is graphene, and what makes it a super material?",
+      "appearance_years": [], "notes": "Printed typo: 'maks' for 'makes'." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 143, "scan_page": 141,
+      "stem": "Name two potential applications of graphene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 144, "scan_page": 142,
+      "stem": "What is the primary function of the sunshield on the James Webb Space Telescope (JWST), and which branch of physics does this relate to?",
+      "appearance_years": [], "notes": "The instrument's name is kept; it is a scientific instrument, not a brand." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 144, "scan_page": 142,
+      "stem": "Which physics principle is the basis of Magnetic Resonance Imaging (MRI), and how does it help doctors to diagnose?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 144, "scan_page": 142,
+      "stem": "Which property of light allows an optical cable to send light over a long distance with very little loss?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 144, "scan_page": 142,
+      "stem": "Name two technologies that are powered by photonics.",
+      "appearance_years": [], "notes": null }
+  ]
+}

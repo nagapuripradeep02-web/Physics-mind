@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_cosec_inverse_e_2x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = Cosec⁻¹(e²ˣ⁺¹), find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the Cosec⁻¹ rule and resolve the modulus",
+      "marks": 1
+    },
+    {
+      "label": "Cancel the exponential and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads −0.50891002 at x = 0.2 against −2/√(e⁴ˣ⁺² − 1) = −0.50891002, and −0.12184562 at x = 0.9 against −0.12184562. The book prints the stem with a lower-case cosec⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Cosec⁻¹."
+  },
+  "recall_prompt": "Say how you would do this one — say what happens to the modulus in the Cosec⁻¹ formula and why.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule_and_modulus",
+        "kind": "equation",
+        "label": "Write the Cosec⁻¹ rule and resolve the modulus",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The Cosec⁻¹ derivative carries |u| in the denominator. State that e²ˣ⁺¹ is positive for every real x, so |u| = u — do not drop the bars without a reason.",
+        "memory_tip": "Cosec⁻¹ and Sec⁻¹ are the two inverse derivatives with a modulus. Cosec⁻¹ also carries the minus sign, the same way Cot⁻¹ and Cos⁻¹ do.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = Cosec⁻¹(u), where u = e²ˣ⁺¹",
+          "d/dx(Cosec⁻¹u) = −1/(|u|√(u² − 1)) · du/dx",
+          "du/dx = e²ˣ⁺¹ · d/dx(2x + 1) = 2e²ˣ⁺¹",
+          "An exponential is positive for every real x, so u = e²ˣ⁺¹ > 0 and |u| = e²ˣ⁺¹",
+          "∴ dy/dx = −2e²ˣ⁺¹ / (e²ˣ⁺¹ · √((e²ˣ⁺¹)² − 1))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Cosec⁻¹u) = −1/(|u|√(u² − 1))·du/dx, that du/dx = 2e²ˣ⁺¹, and that |u| = e²ˣ⁺¹ because an exponential is positive.",
+          "accept": [
+            "cosec inverse gives minus one over mod u root u squared minus one",
+            "e power two x plus one is always positive so the modulus goes away",
+            "the inner derivative is two e power two x plus one",
+            "exponential eppudu positive kabatti mod teesesukovacchu",
+            "write the modulus and then say it is positive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mod u",
+            "root u squared minus one",
+            "always positive",
+            "two e power"
+          ]
+        },
+        "why": "The modulus is part of the formula and is not decoration — it exists because Cosec⁻¹ is defined for u ≤ −1 as well as u ≥ 1. Here u = e²ˣ⁺¹ is positive, so only the branch u ≥ 1 arises, and that branch needs 2x + 1 > 0. Saying why the modulus resolves is what separates a quoted formula from an applied one.",
+        "common_mistakes": [
+          "Dropping the modulus with no reason given.",
+          "Writing du/dx = e²ˣ⁺¹ and losing the factor 2 from the exponent."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel the exponential and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The e²ˣ⁺¹ on top cancels the one below, and (e²ˣ⁺¹)² = e⁴ˣ⁺² because the powers multiply. Only the 2 remains on top.",
+        "memory_tip": "Squaring an exponential doubles the whole exponent: (e²ˣ⁺¹)² = e⁴ˣ⁺², not e⁴ˣ⁺¹.",
+        "lines": [
+          "(e²ˣ⁺¹)² = e²⁽²ˣ⁺¹⁾ = e⁴ˣ⁺²",
+          "The e²ˣ⁺¹ in the numerator cancels the e²ˣ⁺¹ in the denominator.",
+          {
+            "text": "∴ dy/dx = −2/√(e⁴ˣ⁺² − 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the exponentials cancel and (e²ˣ⁺¹)² = e⁴ˣ⁺², giving dy/dx = −2/√(e⁴ˣ⁺² − 1).",
+          "accept": [
+            "the exponential cancels top and bottom leaving minus two",
+            "e power two x plus one squared is e power four x plus two",
+            "the answer is minus two over root e power four x plus two minus one",
+            "exponential cancel ayipothundi, minus two migulutundi",
+            "double the exponent when you square it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two",
+            "e power four x plus two",
+            "cancels",
+            "root"
+          ]
+        },
+        "why": "The cancelling is the reason this answer is short. An examiner reading a long unsimplified fraction cannot tell whether the exponent was squared correctly, so the tidy form also shows the arithmetic.",
+        "common_mistakes": [
+          "Writing (e²ˣ⁺¹)² as e⁴ˣ⁺¹, doubling only part of the exponent.",
+          "Cancelling the exponential but keeping the minus sign off the answer."
+        ]
+      }
+    ]
+  },
+  "insider_note": "An exponential is always positive, so |u| = u and the modulus in the Cosec⁻¹ rule can be dropped. The e²ˣ⁺¹ then cancels top and bottom."
+}

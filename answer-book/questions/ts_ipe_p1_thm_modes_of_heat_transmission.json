@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_modes_of_heat_transmission",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the different modes of transmission of heat?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three modes, named",
+      "marks": 1
+    },
+    {
+      "label": "Radiation needs no medium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 13 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: heat is transmitted by conduction, convection and radiation; conduction and convection both require a material medium because heat is carried by the particles of the medium, while radiation carries heat as electromagnetic waves and needs no medium, which is how the heat of the Sun reaches the Earth."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_modes",
+        "kind": "text",
+        "label": "The three modes",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          "Heat travels from one place to another",
+          "in three ways: conduction, convection",
+          "and radiation.",
+          "Conduction passes heat from particle",
+          "to particle without the material",
+          "itself moving. Convection needs a",
+          "medium that can move, and it carries",
+          "the heat with it."
+        ],
+        "margin_note": "First mark. Name all three modes: conduction, convection, radiation.",
+        "why": "Naming all three, not just one or two, is what the question asks for — each is a distinct way heat can move from a hotter place to a colder one.",
+        "common_mistakes": [
+          "Naming only conduction and convection and leaving out radiation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That heat travels by conduction, convection and radiation, and that conduction and convection need a material medium.",
+          "accept": [
+            "conduction convection and radiation",
+            "the three modes of heat transfer",
+            "conduction and convection need a medium"
+          ],
+          "reject": [
+            "radiation needs no medium"
+          ],
+          "heard_as": [
+            "conduction",
+            "convection",
+            "radiation"
+          ]
+        },
+        "memory_tip": "Three ways heat travels: conduction, convection, radiation — name all three."
+      },
+      {
+        "id": "s2_radiation_no_medium",
+        "kind": "text",
+        "label": "Radiation needs no medium",
+        "marks": 1,
+        "mark_note": "Radiation",
+        "lines": [
+          "Radiation alone needs no material",
+          "medium. It travels as electromagnetic",
+          "waves.",
+          "This is how the heat of the Sun",
+          "reaches the Earth across empty space."
+        ],
+        "margin_note": "Second mark. Say radiation alone needs no medium, with the Sun example.",
+        "why": "Electromagnetic waves carry their energy by themselves, with no particles needed to pass it along, which is why radiation is the one mode that can cross a vacuum.",
+        "common_mistakes": [
+          "Saying radiation also needs a medium. It is the one mode that does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That radiation alone needs no medium, travelling as electromagnetic waves, as in the heat received from the Sun.",
+          "accept": [
+            "radiation needs no medium",
+            "electromagnetic waves",
+            "heat from the Sun crosses space"
+          ],
+          "reject": [
+            "conduction convection and radiation"
+          ],
+          "heard_as": [
+            "radiation",
+            "no medium",
+            "the Sun"
+          ]
+        },
+        "memory_tip": "Only radiation crosses empty space — that is how the Sun's heat reaches us."
+      }
+    ]
+  },
+  "insider_note": "Two marks — naming all three modes with the medium requirement for conduction and convection, then radiation singled out as needing no medium."
+}

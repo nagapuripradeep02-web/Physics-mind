@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_triangle_side_cross_products_equal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In triangle ABC, if BC = a, CA = b and AB = c, show that a × b = b × c = c × a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the closed triangle to get a + b + c = 0",
+      "marks": 1
+    },
+    {
+      "label": "Show b × c = a × b",
+      "marks": 1
+    },
+    {
+      "label": "Show c × a = a × b",
+      "marks": 1
+    },
+    {
+      "label": "State the common value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four moves a proof of this shape is marked on — the closure relation a + b + c = 0, each of the two substitutions, and the closing statement. CHECKED ON A CONCRETE TRIANGLE as well as algebraically: with A(0, 0, 0), B(1, 0, 0) and C(0, 1, 0) the sides are a = BC = (−1, 1, 0), b = CA = (0, −1, 0) and c = AB = (1, 0, 0), which sum to the zero vector, and a × b = b × c = c × a = k. That common vector was dotted with a, giving −0 + 0 + 0 = 0, and with b, giving 0 — it is perpendicular to both sides, and its length 1 is twice the area of a triangle with legs 1 and 1. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name the one relation the whole proof rests on.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_closed_triangle",
+        "kind": "equation",
+        "label": "Use the closed triangle",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. B to C, then C to A, then A to B returns to B, so the three side vectors add to the zero vector. Everything else follows from that one line.",
+        "memory_tip": "Sides taken in order round a triangle add to zero, because you finish where you started.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The three sides taken in order form a",
+          "closed path, so BC + CA + AB = 0.",
+          "∴ a + b + c = 0",
+          "⇒ c = −(a + b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three sides taken in order add to the zero vector, so a + b + c = 0 and c = −(a + b).",
+          "accept": [
+            "the sides taken in order close up so a plus b plus c is zero",
+            "b c plus c a plus a b equals the zero vector",
+            "from the closed triangle c equals minus a plus b",
+            "triangle close avuthundi kabatti a plus b plus c zero",
+            "the three side vectors sum to zero"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b plus c",
+            "zero vector",
+            "closed",
+            "c equals minus"
+          ]
+        },
+        "why": "Going B to C, then C to A, then A to B brings you back to the starting point, so the three side vectors add to the zero vector. Every later line is a substitution into this one relation.",
+        "common_mistakes": [
+          "Writing BC + CA + AB as a non-zero vector.",
+          "Using a, b and c as position vectors of the vertices."
+        ]
+      },
+      {
+        "id": "s2_first_pair",
+        "kind": "equation",
+        "label": "Show b × c = a × b",
+        "marks": 1,
+        "mark_note": "First pair",
+        "margin_note": "Second mark. Replace c by −(a + b) and expand. Only two facts are used: b × b = 0 and −(b × a) = a × b.",
+        "memory_tip": "Any vector crossed with itself is zero, and reversing a cross product flips its sign.",
+        "lines": [
+          "b × c = b × (−(a + b))",
+          "= −(b × a) − (b × b)",
+          "= −(b × a)   [∵ b × b = 0]",
+          "= a × b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting c = −(a + b) into b × c gives −(b × a), which is a × b.",
+          "accept": [
+            "put c equal to minus a plus b and expand, b cross b is zero",
+            "b cross c becomes minus b cross a which is a cross b",
+            "substitute for c and use that a vector crossed with itself is zero",
+            "c place lo minus a plus b petti expand cheyyali",
+            "the b cross b term drops out and the sign flips"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "the same working with c cross a"
+          ],
+          "heard_as": [
+            "b cross c",
+            "b cross b is zero",
+            "sign flips",
+            "a cross b"
+          ]
+        },
+        "why": "Reversing the order of a cross product changes only its sign, and any vector crossed with itself is the zero vector. Those two facts turn b × c into a × b in three lines.",
+        "common_mistakes": [
+          "Treating b × a as equal to a × b.",
+          "Forgetting that b × b = 0."
+        ]
+      },
+      {
+        "id": "s3_second_pair",
+        "kind": "equation",
+        "label": "Show c × a = a × b",
+        "marks": 1,
+        "mark_note": "Second pair",
+        "margin_note": "Third mark. The same substitution, now in c × a. This time it is a × a that vanishes.",
+        "memory_tip": "Same substitution, same two facts — only the vector that vanishes changes, from b × b to a × a.",
+        "lines": [
+          "c × a = (−(a + b)) × a",
+          "= −(a × a) − (b × a)",
+          "= −(b × a)   [∵ a × a = 0]",
+          "= a × b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting c = −(a + b) into c × a gives −(b × a), which is again a × b.",
+          "accept": [
+            "the same substitution in c cross a gives minus b cross a again",
+            "c cross a expands to minus a cross a minus b cross a",
+            "a cross a is zero so c cross a is a cross b",
+            "ade substitution c cross a lo kuda a cross b istundi",
+            "repeat the working for c cross a"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "b cross b is zero"
+          ],
+          "heard_as": [
+            "c cross a",
+            "a cross a is zero",
+            "minus b cross a",
+            "same working"
+          ]
+        },
+        "why": "The same substitution works on the second product because a + b + c = 0 is symmetric in the three sides. Here it is a × a that becomes the zero vector.",
+        "common_mistakes": [
+          "Expanding (−(a + b)) × a as a × a + b × a, with the sign lost.",
+          "Claiming the result by symmetry without showing the working."
+        ]
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "State the common value",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Both products reduced to the same vector, so all three are equal. Say what that vector means: its length is twice the area of the triangle.",
+        "memory_tip": "The common vector is twice the area vector of the triangle, which is why the three products must agree.",
+        "lines": [
+          "Both products reduce to a × b.",
+          "Its length |a × b| is twice the area",
+          "of triangle ABC.",
+          {
+            "text": "∴ a × b = b × c = c × a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three products equal the same vector a × b, whose length is twice the area of the triangle.",
+          "accept": [
+            "all three are the same vector a cross b",
+            "so a cross b equals b cross c equals c cross a",
+            "the common vector has length twice the area of the triangle",
+            "moodu okate vector, a cross b",
+            "the three cross products are equal"
+          ],
+          "reject": [
+            "b cross b is zero",
+            "a plus b plus c is zero",
+            "substitute for c"
+          ],
+          "heard_as": [
+            "all three equal",
+            "twice the area",
+            "a cross b",
+            "same vector"
+          ]
+        },
+        "why": "The three products are one and the same vector, and its length is twice the area of the triangle. That is why the equality is useful: any of the three may be used to find the area.",
+        "common_mistakes": [
+          "Stating that only two of the three products are equal.",
+          "Writing the common value as a number instead of a vector."
+        ]
+      }
+    ]
+  }
+}

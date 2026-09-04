@@ -53,7 +53,7 @@
           "It is also called an interstitial defect or a",
           "dislocation defect."
         ],
-        "why": "The ion is displaced, not removed, so the answer has two halves: the empty site it came from and the interstitial site it now occupies. Naming both is what makes the definition complete, and it is the half the printed answer leaves out.",
+        "why": "The ion is displaced, not removed, so the answer has two halves: the empty site it came from and the interstitial site it now occupies. Naming both is what makes the definition complete.",
         "common_mistakes": [
           "Writing only that an ion sits in an interstitial site. The vacancy it leaves behind is the other half of the defect.",
           "Saying an ion is missing from the crystal. Nothing leaves the crystal in a Frenkel defect; the ion moves inside it."
@@ -184,7 +184,7 @@
             {
               "type": "stroke",
               "id": "fk_leader_interstitial",
-              "d": "M 250 88 L 172 88 M 180 84 L 172 88 L 180 92",
+              "d": "M 250 92 L 162 94 M 170 90 L 162 94 L 170 98",
               "ms": 1370
             },
             {
@@ -223,5 +223,5 @@
       }
     ]
   },
-  "insider_note": "The line that earns the second mark is that the density does not change. Write it beside the definition, because the Schottky question on the same paper is marked on the opposite line."
+  "insider_note": "The line that earns the second mark is that the density does not change. Write it beside the definition: no ion leaves the crystal in a Frenkel defect, while a Schottky defect removes ions and lowers the density."
 }

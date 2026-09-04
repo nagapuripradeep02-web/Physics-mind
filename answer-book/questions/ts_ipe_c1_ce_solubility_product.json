@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -86,5 +86,6 @@
         "margin_note": "The ionic-product comparison line links Ksp to precipitation."
       }
     ]
-  }
+  },
+  "insider_note": "Definition and expression, one mark each, and the expression is checked for one omission before anything else. Write the dissolution equilibrium first and the expression falls out of it correctly."
 }

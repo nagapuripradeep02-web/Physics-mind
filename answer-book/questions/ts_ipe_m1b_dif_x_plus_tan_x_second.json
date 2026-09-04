@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_plus_tan_x_second",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = x + tan x, show that cos²x · d²y/dx² + 2x = 2y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate twice",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by cos²x and rebuild 2y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 28. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity was checked numerically before it was written, using a second difference quotient for y″: at x = 0.4 the left side cos²x · y″ + 2x reads 1.645586453 against 2y = 1.645586437; at x = −0.9 it reads −4.320316514 against −4.320316435; at x = 1.2 it reads 7.544303622 against 7.544303244. The result holds wherever tan x is defined, that is x ≠ (2n + 1)π/2."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate twice, and what cancels when you multiply by cos²x.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_twice",
+        "kind": "equation",
+        "label": "Differentiate twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write sec²x as (sec x)² so that the chain rule is visible on the second differentiation. Use d/dx(sec x) = sec x tan x.",
+        "memory_tip": "Differentiating tan x once gives sec²x. Differentiating that again brings out a second sec x tan x, so the answer is 2 sec²x tan x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = x + tan x",
+          "dy/dx = 1 + sec²x",
+          "Differentiate again, using the chain rule on (sec x)²:",
+          "d²y/dx² = 0 + 2 sec x · d/dx(sec x) = 2 sec x · sec x tan x",
+          "∴ d²y/dx² = 2 sec²x tan x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = 1 + sec²x and d²y/dx² = 2 sec²x tan x.",
+          "accept": [
+            "first derivative is one plus sec squared x",
+            "differentiate sec squared x by the chain rule",
+            "the second derivative is two sec squared x tan x",
+            "modati derivative one plus sec squared x, tarvata two sec squared x tan x",
+            "derivative of sec x is sec x tan x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus sec squared x",
+            "two sec squared x tan x",
+            "sec x tan x",
+            "chain rule"
+          ]
+        },
+        "why": "The statement to be shown contains d²y/dx², so both derivatives have to be written first. sec²x needs the chain rule because sec x is itself a function of x, and that is where this mark is earned.",
+        "common_mistakes": [
+          "Writing d/dx(sec²x) as 2 sec x, which leaves out the derivative of sec x inside.",
+          "Writing d/dx(tan x) as sec x instead of sec²x."
+        ]
+      },
+      {
+        "id": "s2_multiply_and_compare",
+        "kind": "boxed_final",
+        "label": "Multiply by cos²x and rebuild 2y",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A 'show that' question is finished only when the required form is written. The last line must name y, not stop at 2x + 2 tan x.",
+        "memory_tip": "cos²x times sec²x is 1. That single cancellation is the reason the question puts cos²x in front of the second derivative.",
+        "lines": [
+          "cos²x · d²y/dx² = cos²x · 2 sec²x tan x",
+          "sec x = 1/cos x, so cos²x · sec²x = 1",
+          "∴ cos²x · d²y/dx² = 2 tan x",
+          "Adding 2x to both sides:",
+          "cos²x · d²y/dx² + 2x = 2 tan x + 2x = 2(x + tan x)",
+          {
+            "text": "∴ cos²x · d²y/dx² + 2x = 2y",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²x cancels sec²x leaving 2 tan x, and adding 2x gives 2(x + tan x) = 2y.",
+          "accept": [
+            "cos squared x cancels the sec squared x and leaves two tan x",
+            "add two x to get two into x plus tan x",
+            "x plus tan x is y so it is two y",
+            "cos squared x, sec squared x cancel aipoyi two tan x migulutundi",
+            "the bracket is the given y so the answer is two y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancels",
+            "two tan x",
+            "x plus tan x",
+            "two y"
+          ]
+        },
+        "why": "The cos²x in front is placed there to cancel the sec²x. Once it does, only 2 tan x is left, and adding 2x rebuilds 2(x + tan x), which is the given y doubled.",
+        "common_mistakes": [
+          "Cancelling cos²x against sec²x but leaving a stray cos x or sec x behind.",
+          "Stopping at 2 tan x + 2x without saying that this equals 2y."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Differentiate twice to reach 2sec²x tan x, then multiply by cos²x so the sec² cancels exactly. What is left, 2tan x, plus 2x rebuilds 2y."
+}

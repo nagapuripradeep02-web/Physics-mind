@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_average_rate_2t2_plus_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the average rate of change of s = f(t) = 2t² + 3 between t = 2 and t = 4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the average rate of change",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 17. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. The printed stem gives no units for s or t, so the answer is written as units of s per unit of t rather than inventing metres and seconds. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say whether you differentiate here, and what you divide by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_difference_quotient",
+        "kind": "equation",
+        "label": "State the average rate of change",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is an average rate of change question, not a derivative question. Write the difference quotient before any numbers go in. Both f(4) and f(2) are needed — one alone gives nothing.",
+        "memory_tip": "Average rate uses two points and a subtraction; instantaneous rate uses one point and a derivative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is an average rate of change question. Over an interval the average rate is the",
+          "change in s divided by the change in t, so no differentiation is used here.",
+          "Average rate of change = [f(4) − f(2)] / (4 − 2)",
+          "f(t) = 2t² + 3, so f(4) = 2(4)² + 3 = 32 + 3 = 35",
+          "and f(2) = 2(2)² + 3 = 8 + 3 = 11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average rate of change is [f(4) − f(2)]/(4 − 2), a difference quotient and not a derivative.",
+          "accept": [
+            "average rate is f of four minus f of two divided by four minus two",
+            "change in s divided by change in t over the interval",
+            "this one is not a derivative, it is a difference quotient",
+            "average rate ante f of four minus f of two by two",
+            "f of four is thirty five and f of two is eleven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "average rate",
+            "f of four minus f of two",
+            "difference quotient",
+            "thirty five",
+            "eleven"
+          ]
+        },
+        "why": "An average rate over an interval compares two end values, so it is a difference quotient. The derivative would give the rate at one instant, which is a different question.",
+        "common_mistakes": [
+          "Differentiating and giving f′(t) = 4t, which is the instantaneous rate and not the average rate.",
+          "Computing 2(4)² as (2 × 4)² = 64.",
+          "Using only f(4) and forgetting to subtract f(2)."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 24/2 = 12. Divide by 4 − 2 = 2, not by 4. The stem gives no units for s and t, so the answer is written as units of s per unit of t.",
+        "memory_tip": "Change in s over change in t — the same shape as the slope of the line joining the two points on the graph.",
+        "lines": [
+          "Average rate of change = (35 − 11) / (4 − 2)",
+          "= 24 / 2",
+          {
+            "text": "∴ average rate of change = 12 units of s per unit of t",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (35 − 11)/(4 − 2) = 24/2 = 12.",
+          "accept": [
+            "thirty five minus eleven is twenty four, divided by two is twelve",
+            "the average rate of change is twelve",
+            "divide the change in s by the change in t to get twelve",
+            "twenty four by two, twelve vasthundi",
+            "the answer is twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty four by two",
+            "twelve",
+            "thirty five minus eleven",
+            "four minus two"
+          ]
+        },
+        "why": "The answer can be checked against the derivative: f′(t) = 4t gives 8 at t = 2 and 16 at t = 4, and 12 lies between them because f′(t) = 4t is increasing here. The mean value theorem is what guarantees the average rate equals f′(c) for some c in (2, 4); that c is 3.",
+        "common_mistakes": [
+          "Writing 12t, as if the answer were still a function of t.",
+          "Giving 24, the change in s, as the rate.",
+          "Quoting f′(3) = 12 as the method — the number agrees here only because f is a quadratic, and it would not for other functions."
+        ]
+      }
+    ]
+  },
+  "insider_note": "AVERAGE rate over an interval, so no differentiation at all — it is [f(4) − f(2)]/(4 − 2). Differentiating gives the instantaneous rate, which answers a different question."
+}

@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_on_4x_3y_minus24_through_4_1_6_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the circle passing through (4,1), (6,5) and having the centre on the line 4x + 3y − 24 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equation from SA = SB",
+      "marks": 2
+    },
+    {
+      "label": "Use the line the centre lies on",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 1
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the circle",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 Circle, answer 5.1. It sits on a ★★★ SSP (Super Scoring Page): book p.18 carries the SSP banner. Printed appearance tags: AP 16,20. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. The two-point form is given more weight than in the three-point questions because the second condition here is a single substitution. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct. The book prints a practice question beneath it that swaps the line for 4x + y − 16 = 0 and gives the same answer; that is consistent, because the centre (3,4) satisfies both lines, so it is a genuine variant and not a misprint — it is not authored separately because it is a practice box with an answer only, not a worked answer. The same question is re-answered in the Bullet Model Paper (book p.112), so it is authored once. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Only two points are given, so one distance equation is all the circle offers — the line the centre lies on is the second equation, and it is used exactly as printed, not rearranged.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation_from_sa_sb",
+        "kind": "equation",
+        "label": "Equation from SA = SB",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. With only two points there is one distance equation, so it carries more weight than in a three-point question.",
+        "memory_tip": "Two points give one equation. The line given in the question is the second.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S(x₁, y₁) be the centre of the circle.",
+          "A = (4, 1), B = (6, 5)",
+          "S is the same distance from A and B.",
+          "⇒ SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−4)² + (y₁−1)² = (x₁−6)² + (y₁−5)²",
+          "⇒ −8x₁ + 16 − 2y₁ + 1 = −12x₁ + 36 − 10y₁ + 25",
+          "⇒ 4x₁ + 8y₁ − 44 = 0 … (1)"
+        ],
+        "why": "Two points fix only the perpendicular bisector of the segment joining them, not a single centre. The centre lies somewhere on that bisector, which is what equation (1) says.",
+        "common_mistakes": [
+          "Expecting a third point and stopping when none is given.",
+          "Collecting 16 + 1 = 17 and 36 + 25 = 61 but subtracting in the wrong direction."
+        ]
+      },
+      {
+        "id": "s2_use_the_given_line",
+        "kind": "equation",
+        "label": "Use the line the centre lies on",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Write the given line with x₁ and y₁ in it — the centre is the point that has to satisfy it.",
+        "memory_tip": "The centre lies on the line, so its coordinates satisfy the line’s equation.",
+        "lines": [
+          "The centre (x₁, y₁) lies on 4x + 3y − 24 = 0",
+          "⇒ 4x₁ + 3y₁ − 24 = 0 … (2)"
+        ],
+        "why": "Saying a point lies on a line means its coordinates make the line equation true. That turns the geometric condition into the second algebraic equation.",
+        "common_mistakes": [
+          "Substituting one of the given points into the line instead of the centre.",
+          "Changing the line to 4x + 3y = 24 and then dropping the sign later."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. Both equations have 4x₁, so subtracting removes x₁ immediately.",
+        "memory_tip": "Both equations start with 4x₁. Subtract and only y₁ is left.",
+        "lines": [
+          "(2) − (1) ⇒ −5y₁ + 20 = 0 ⇒ y₁ = 4",
+          "From (2): 4x₁ + 12 − 24 = 0",
+          "⇒ 4x₁ = 12 ⇒ x₁ = 3",
+          "∴ Centre S(x₁, y₁) = (3, 4)"
+        ],
+        "why": "The centre is where the perpendicular bisector of AB meets the given line. Both equations already carry 4x₁, so one subtraction is enough.",
+        "common_mistakes": [
+          "Subtracting the other way round and getting y₁ = −4.",
+          "Solving 4x₁ = 12 as x₁ = 4."
+        ]
+      },
+      {
+        "id": "s4_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. r² = 10 is not a perfect square, so keep it as 10 and never take the root.",
+        "memory_tip": "Check with the other point as well: (3 − 6)² + (4 − 5)² = 9 + 1 = 10 too.",
+        "lines": [
+          "A = (4, 1) lies on the circle, so r = SA.",
+          "r² = SA² = (3−4)² + (4−1)² = 1 + 9 = 10"
+        ],
+        "why": "Either given point serves. Computing r² from B as well is a further check: (3 − 6)² + (4 − 5)² = 10, the same value, which confirms the centre.",
+        "common_mistakes": [
+          "Writing r = 10 instead of r² = 10.",
+          "Measuring from the origin instead of from a given point."
+        ]
+      },
+      {
+        "id": "s5_equation_of_circle",
+        "kind": "boxed_final",
+        "label": "Equation of the circle",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Constant term: 9 + 16 − 10 = 15.",
+        "memory_tip": "Expand (x − 3)² + (y − 4)² = 10 and collect: 9 + 16 − 10 = 15.",
+        "lines": [
+          "Circle with centre (3, 4) and r² = 10 is",
+          "(x − 3)² + (y − 4)² = 10",
+          "⇒ (x² − 6x + 9) + (y² − 8y + 16) = 10",
+          {
+            "text": "∴ x² + y² − 6x − 8y + 15 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Expanding gives the general form with g = −3, f = −4 and c = 15. A quick check is that g² + f² − c = 9 + 16 − 15 = 10 = r², as it must be.",
+        "common_mistakes": [
+          "Getting the constant as 25 by forgetting to subtract r².",
+          "Leaving the answer in the centre-radius form."
+        ]
+      }
+    ]
+  }
+}

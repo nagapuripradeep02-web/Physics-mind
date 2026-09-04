@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_series_4_by_5_prove_9t_16",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If t = 4/5 + (4·6)/(5·10) + (4·6·8)/(5·10·15) + …, then prove that 9t = 16.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite with factorials",
+      "marks": 2
+    },
+    {
+      "label": "Compare with the standard expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find p, q and x",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the power",
+      "marks": 1
+    },
+    {
+      "label": "Clear the fraction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 3 Binomial Theorem, answer 32. Printed appearances: TS 20. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.35) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove 9t = 16 — what you add to both sides, what you compare with, how you find p, q and x, and why the power comes out as a plain fraction 25/9.",
+  "insider_note": "No leading 1 is printed, so add 1 on both sides first. The power is (3/5)⁻² = 25/9 — the negative index inverts the fraction, and writing 9/25 is the one slip that stops 9t = 16.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite with factorials",
+        "marks": 2,
+        "mark_note": "Series in standard shape",
+        "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. No leading 1, so add 1 on both sides. The numerators 4, 4·6, 4·6·8 step by 2, so q = 2 and p/q = 2 is a whole number — the power is an ordinary square.",
+        "memory_tip": "5·10·15 = 5³·3!. No leading 1 is printed, so add 1 to both sides. The numerators 4, 6, 8 step by 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given t = 4/5 + (4·6)/(5·10)",
+          "  + (4·6·8)/(5·10·15) + …",
+          "Adding 1 on both sides:",
+          "1 + t = 1 + (4/1!)(1/5) + (4·6/2!)(1/5)²",
+          "  + (4·6·8/3!)(1/5)³ + …"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is rewritten so the k-th term is a product over k! times (1/5) to the power k, after adding 1 on both sides so the missing early terms are present.",
+          "accept": [
+            "write each term as a product over k factorial times one by five to the power k and add 1 on both sides",
+            "split each denominator into five to the power k times k factorial",
+            "add 1 to both sides and bring the series to the shape one plus p by one factorial into x by q and so on",
+            "prathi term ni k factorial tho, one by five power k tho rayali, rendu sides ki 1 add cheyali",
+            "rewrite the denominators as powers of five times factorials"
+          ],
+          "reject": [
+            "write the series",
+            "compare with the formula"
+          ],
+          "heard_as": [
+            "factorial",
+            "one by five",
+            "power k",
+            "both sides"
+          ]
+        },
+        "why": "The standard expansion of (1 − x)^(−p/q) has a k! in every denominator and a fixed ratio x/q raised to k. Until the given series is written in that exact shape, p, q and x cannot be read off.",
+        "common_mistakes": [
+          "Forgetting to add 1 on both sides when the series starts late, so the comparison has no 1 to match.",
+          "Writing 5·10·15 as 5·3! instead of 5³·3! — every factor carries a 5."
+        ]
+      },
+      {
+        "id": "s2_compare",
+        "kind": "equation",
+        "label": "Compare with the standard expansion",
+        "marks": 1,
+        "mark_note": "Standard form",
+        "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write the standard expansion out beside the series.",
+        "lines": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - x)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{x}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{x}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is compared with the expansion of (1 − x) to the power minus p by q, whose coefficients are p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!.",
+          "accept": [
+            "compare with the expansion of (1 − x) to the power minus p by q",
+            "match it with one plus p by one factorial into x by q plus p into p plus q by two factorial into x by q squared and so on",
+            "use the standard binomial series with negative fractional index (1 − x) to the power minus p by q",
+            "(1 − x)^(−p/q) formula tho compare cheyali",
+            "the pattern p then p into p plus q over the factorials is the standard series"
+          ],
+          "reject": [
+            "compare it",
+            "use the formula"
+          ],
+          "heard_as": [
+            "minus p by q",
+            "p plus q",
+            "standard expansion",
+            "x by q"
+          ]
+        },
+        "why": "This is the only binomial expansion whose coefficients grow as p, p(p + q), p(p + q)(p + 2q). Naming it turns the rest of the question into reading off three numbers.",
+        "common_mistakes": [
+          "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
+          "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ]
+      },
+      {
+        "id": "s3_p_q_x",
+        "kind": "equation",
+        "label": "Find p, q and x",
+        "marks": 2,
+        "mark_note": "p, q, x",
+        "margin_note": "Fourth and fifth marks. p is the first factor (4), p + q is the second (6) so q = 2, and x/q equals the common ratio 1/5 so x = q/5 = 2/5.",
+        "memory_tip": "p = 4, p + q = 6 so q = 2, and x/q = 1/5 gives x = 2/5.",
+        "lines": [
+          "p = 4, p + q = 6 ⇒ q = 2",
+          "x/q = 1/5 ⇒ x = q/5 = 2/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 4 and p + q = 6 give q = 2, and x/q = 1/5 gives x = two by five.",
+          "accept": [
+            "p is four, p plus q is six so q is two, and x by q is one by five so x is two by five",
+            "the first factor gives p equal to four and the second gives q equal to two",
+            "x by q equals one by five so x equals two by five",
+            "p four, q two vasthai, x by q one by five kabatti x two by five",
+            "read off p from the first numerator and q from the gap between the factors"
+          ],
+          "reject": [
+            "find p and q",
+            "find the values"
+          ],
+          "heard_as": [
+            "p equals",
+            "q equals",
+            "x equals",
+            "two by five"
+          ]
+        },
+        "why": "Three unknowns need three matches: the first numerator fixes p, the second fixes p + q, and the ratio inside the bracket fixes x/q. Nothing else in the series is free.",
+        "common_mistakes": [
+          "Taking x = 1/5 directly — the bracket holds x/q, so x = q × 1/5.",
+          "Reading q from the second factor as a whole instead of as p + q."
+        ]
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "equation",
+        "label": "Evaluate the power",
+        "marks": 1,
+        "mark_note": "Value of the power",
+        "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "The negative index inverts the FRACTION: (3/5)⁻² = (5/3)² = 25/9, never 9/25.",
+        "lines": [
+          {
+            "text": "1 + t = \\left(1 - \\tfrac{2}{5}\\right)^{-4/2} = \\left(\\tfrac{3}{5}\\right)^{-2} = \\left(\\tfrac{5}{3}\\right)^{2} = \\dfrac{25}{9}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives one plus t equals five by three squared, which is twenty five by nine.",
+          "accept": [
+            "substituting gives one plus t equals five by three squared, which is twenty five by nine",
+            "put the values into (1 − x)^(−p/q) and simplify to get one plus t equals five by three squared, which is twenty five by nine",
+            "the bracket becomes three by five and the power gives one plus t equals five by three squared, which is twenty five by nine",
+            "values substitute cheste one plus t equals five by three squared, which is twenty five by nine vasthundi",
+            "simplify the bracket first then apply the negative index"
+          ],
+          "reject": [
+            "substitute",
+            "simplify it"
+          ],
+          "heard_as": [
+            "power",
+            "root",
+            "one plus t equals five by three squared, which is twenty five by nine"
+          ]
+        },
+        "why": "A negative index inverts the fraction and a fractional index takes a root. Doing the inversion first keeps the root over a simple fraction.",
+        "common_mistakes": [
+          "Inverting the exponent instead of the fraction when the index is negative.",
+          "Leaving a root in the denominator without a clear final value."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Clear the fraction",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. Multiply by 9 and the 16 appears: 9 + 9t = 25.",
+        "memory_tip": "Multiply by 9: 9 + 9t = 25, so 9t = 16.",
+        "lines": [
+          "9(1 + t) = 25 ⇒ 9 + 9t = 25",
+          {
+            "text": "∴ 9t = 16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + t = 25/9 gives 9 + 9t = 25 and so 9t = 16.",
+          "accept": [
+            "one plus t is twenty five by nine so nine plus nine t is twenty five and nine t is sixteen",
+            "multiply by nine and subtract nine to get sixteen",
+            "nine t equals sixteen",
+            "nine tho multiply cheste nine t sixteen vasthundi",
+            "twenty five minus nine is sixteen"
+          ],
+          "reject": [
+            "that gives the answer",
+            "finish it"
+          ],
+          "heard_as": [
+            "twenty five by nine",
+            "nine t",
+            "sixteen"
+          ]
+        },
+        "why": "Because p/q = 2 is a whole number, the power is a plain square and the result is a rational number — no roots at all in this one.",
+        "common_mistakes": [
+          "Writing (3/5) to the power −2 as 9/25 instead of 25/9.",
+          "Reading q as 6 instead of p + q = 6."
+        ]
+      }
+    ]
+  }
+}

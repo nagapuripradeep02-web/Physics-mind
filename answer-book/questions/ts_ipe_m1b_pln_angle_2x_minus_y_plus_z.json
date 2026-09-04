@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The angle between two planes IS the angle between their normals, and each normal's direction ratios are simply that plane's coefficients.",
+        "memory_tip": "The angle between PLANES is the angle between their NORMALS, and the coefficients ARE the normal's ratios.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
+        "memory_tip": "Both roots are √6, so the denominator is 6 and cos θ = 1/2 — a familiar angle.",
         "lines": [
           "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
           "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
@@ -134,9 +136,10 @@
         "why": "The modulus is what fixes the answer as the acute angle — without it the same two planes could report an obtuse one, since a normal points both ways.",
         "common_mistakes": [
           "Forgetting the modulus and reporting an obtuse angle.",
-          "Multiplying the two roots separately instead of keeping them under one root."
+          "Adding the two sums of squares instead of multiplying them."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Keep both sums of squares under one root: √(6 × 6) = 6, which gives the clean cos θ = 1/2 and θ = 60°. The modulus is what keeps the angle acute, and that is the angle asked for."
 }

@@ -58,6 +58,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. Write the plan as well as the matrices: the solution of AX = D is X = A⁻¹D, so everything after this line is about building A⁻¹.",
+        "memory_tip": "Write X = A⁻¹D as the plan; everything after is building A⁻¹.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,7 +107,8 @@
         "label": "Find det A",
         "marks": 1,
         "mark_note": "Determinant",
-        "margin_note": "Second mark. det A is 136, non-zero, so A⁻¹ exists. It is a large number, which is good — the nine cofactors below are all whole numbers and the final divisions are exact.",
+        "margin_note": "Second mark. det A is 136, non-zero, so A⁻¹ exists. The nine cofactors below are whole numbers because the entries of A are whole numbers, and 136 divides all three products in the last step exactly, so no fractions survive.",
+        "memory_tip": "det A = 136 ≠ 0, so A⁻¹ exists — and 136 divides all three products in the last step exactly.",
         "lines": [
           {
             "text": "\\det A = \\begin{vmatrix} 3 & 4 & 5 \\\\ 2 & -1 & 8 \\\\ 5 & -2 & 7 \\end{vmatrix}",
@@ -154,6 +156,7 @@
         "marks": 3,
         "mark_note": "Cofactors",
         "margin_note": "Three marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
+        "memory_tip": "Nine 2×2 determinants, sign board + − + / − + − / + − +.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, and apply the sign board + − + / − + − / + − +:",
@@ -199,7 +202,8 @@
         "label": "Transpose to get Adj A",
         "marks": 1,
         "mark_note": "Adjoint and inverse",
-        "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "margin_note": "Sixth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "memory_tip": "TRANSPOSE the cofactor matrix to get Adj A, then divide by det A.",
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",
           {
@@ -236,7 +240,7 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. On a symmetric cofactor matrix the transpose changes nothing — which is exactly why the habit has to be written down every time.",
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. The cofactor matrix here is not symmetric, so the transpose really does change the entries — write that line every time.",
         "common_mistakes": [
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",
@@ -250,6 +254,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Two of the three products come out as 136, which is det A itself, so y and z are both 1. The arithmetic really does land there.",
+        "memory_tip": "Two products equal det A itself, so y and z are both 1. The arithmetic really does land there.",
         "lines": [
           "X = A⁻¹D. Multiplying row by column:",
           "9(18) − 38(13) + 37(20) = 162 − 494 + 740 = 408",
@@ -296,5 +301,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same system as the Cramer and Gauss-Jordan versions, but the inverse is the method asked for. det A = 136 divides all three products exactly, and 408/136 = 3 is the check."
 }

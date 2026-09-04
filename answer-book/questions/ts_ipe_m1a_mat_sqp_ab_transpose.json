@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "First mark. B is 2×3, so B′ is 3×2 — and A (2×3) times B′ (3×2) gives a 2×2. Check the sizes fit before multiplying.",
+        "memory_tip": "B is 2×3 so B′ is 3×2, and A (2×3) times B′ (3×2) gives a 2×2. Check the sizes fit first.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Transpose the 2×2 just found — rows become columns.",
+        "memory_tip": "Transpose the 2×2 just found — rows become columns.",
         "lines": [
           {
             "text": "(AB')' = \\begin{bmatrix} -2 & 2 \\\\ -2 & -9 \\end{bmatrix}",
@@ -142,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Transpose B FIRST, then multiply — AB is not even defined without it. The final transpose only flips the 2×2 result, so the arithmetic is done just once."
 }

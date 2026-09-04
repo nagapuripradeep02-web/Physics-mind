@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_alpha2_plus_beta2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If α, β are the roots of ax² + bx + c = 0, then find α² + β².",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sum and product of roots",
+      "marks": 1
+    },
+    {
+      "label": "Substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.91 (PDF p.92 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — Star Questions Plus, Quadratic Equations banner, answer 191. The book prints no mark cut for Star Questions Plus; THE SECTION IS OURS — classed by shape: a two-line symmetric-function evaluation, the same length and shape as VSAQ answers 122.1–122.2 in chapter 14, so it is filed as a VSAQ. (Not a duplicate: 122.2 asks for 1/α² + 1/β², this asks for α² + β².) Printed appearances: TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the 1 (method) + 1 (answer) split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). Star Questions Plus prints no stars and no mark cut; the star rank carried in the manifest is the CHAPTER's (SAQ chapter 8 ★★★ / VSAQ chapter 14 ★★), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find this — say what two facts you write about α and β first, and how you rewrite the asked expression in terms of them.",
+  "insider_note": "Write α + β = −b/a and αβ = c/a before anything else — the minus belongs to the sum only. Then α² + β² = (α + β)² − 2αβ; solving for α and β with the quadratic formula earns nothing here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_product",
+        "kind": "equation",
+        "label": "Sum and product of roots",
+        "marks": 1,
+        "mark_note": "α + β and αβ",
+        "margin_note": "First mark. Two relations, written before anything else: α + β = −b/a and αβ = c/a. The minus sign belongs to the SUM only.",
+        "memory_tip": "α + β = −b/a and αβ = c/a. The minus belongs to the SUM only.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "α, β are the roots of ax² + bx + c = 0",
+          "⇒ α + β = −b/a, αβ = c/a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for the roots of ax² + bx + c = 0, the sum α + β = −b/a and the product αβ = c/a.",
+          "accept": [
+            "sum of the roots is minus b by a and product is c by a",
+            "alpha plus beta equals minus b over a and alpha beta equals c over a",
+            "write the two relations between roots and coefficients",
+            "alpha plus beta minus b by a, alpha beta c by a rayali",
+            "the sum is minus b upon a and the product is c upon a"
+          ],
+          "reject": [
+            "find the roots",
+            "solve the equation",
+            "substitute"
+          ],
+          "heard_as": [
+            "minus b by a",
+            "c by a",
+            "sum of roots",
+            "product of roots",
+            "alpha plus beta",
+            "alpha beta"
+          ]
+        },
+        "why": "Any symmetric expression in the roots can be built from the sum and the product, and these two are read straight off the coefficients — no solving needed.",
+        "common_mistakes": [
+          "Writing α + β = b/a without the minus.",
+          "Writing αβ = −c/a.",
+          "Trying to solve for α and β with the quadratic formula."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. α² + β² = (α + β)² − 2αβ. Substitute: (−b/a)² = b²/a² and 2(c/a) = 2c/a = 2ac/a². The common denominator is a².",
+        "memory_tip": "α² + β² = (α + β)² − 2αβ. Over the common denominator a², the 2c/a becomes 2ac/a².",
+        "lines": [
+          "α² + β² = (α + β)² − 2αβ",
+          "= (−b/a)² − 2(c/a)",
+          "= b²/a² − 2c/a",
+          {
+            "text": "∴ α² + β² = (b² − 2ac)/a²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α² + β² is rewritten as (α + β)² − 2αβ, and substituting −b/a and c/a gives (b² − 2ac)/a².",
+          "accept": [
+            "alpha squared plus beta squared is sum squared minus twice the product which is b squared by a squared minus two c by a equals b squared minus two a c over a squared",
+            "use the identity sum squared minus two product and substitute",
+            "the answer is b squared minus two a c over a squared",
+            "alpha square plus beta square ante sum square minus two product, substitute cheste b square minus two a c by a square",
+            "b squared minus two a c upon a squared"
+          ],
+          "reject": [
+            "substitute",
+            "simplify",
+            "find the value"
+          ],
+          "heard_as": [
+            "sum squared minus two product",
+            "b squared minus two a c",
+            "over a squared",
+            "identity"
+          ]
+        },
+        "why": "α² + β² is not itself a sum or product of the roots, but (α + β)² − 2αβ is, and that identity is the whole bridge from the question to the coefficients.",
+        "common_mistakes": [
+          "Writing α² + β² = (α + β)², forgetting the −2αβ.",
+          "Writing (−b/a)² as −b²/a².",
+          "Combining b²/a² − 2c/a as (b² − 2c)/a² — the second term needs a factor a."
+        ]
+      }
+    ]
+  }
+}

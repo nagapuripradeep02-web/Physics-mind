@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Treat it like an ordinary equation: move A across, then deal with the 2. B − A is an entry-by-entry subtraction.",
+        "memory_tip": "Treat it like an ordinary equation: move A across, then deal with the 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Dividing a matrix by 2 halves EVERY entry, including the negative one: −2 becomes −1.",
+        "memory_tip": "Dividing a matrix by 2 halves EVERY entry, the negative one included.",
         "lines": [
           "Dividing every entry by 2:",
           {
@@ -133,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Rearrange to 2X = B − A before dividing, and keep the order B − A. Every entry is then halved, which is what makes the answer come out in whole numbers."
 }

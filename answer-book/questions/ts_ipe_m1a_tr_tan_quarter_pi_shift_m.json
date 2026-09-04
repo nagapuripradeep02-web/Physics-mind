@@ -1,0 +1,320 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan_quarter_pi_shift_m",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If α − β is not an odd multiple of π/2 and sin(α + β)/cos(α − β) = (1 − m)/(1 + m), prove that tan(π/4 − α) = m tan(π/4 + β).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given ratio and the conditions",
+      "marks": 1
+    },
+    {
+      "label": "Cross multiply and collect m",
+      "marks": 2
+    },
+    {
+      "label": "Write the sine as a cosine",
+      "marks": 1
+    },
+    {
+      "label": "Turn both sides into products",
+      "marks": 2
+    },
+    {
+      "label": "Divide and read off m",
+      "marks": 1
+    },
+    {
+      "label": "Use the complementary angle and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 11, book p.104. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to collecting m and two to the pair of sum-to-product conversions, because those are the two places the proof can stall, and one mark each to the set-up, the division and the complementary-angle finish. NOT A TRIANGLE QUESTION: there is no angle condition on α + β + anything, so no substitution of the A + B + C family applies. The route is componendo in the plain form — cross multiply, collect m on one side, then convert the resulting sum and difference of a cosine and a sine into products. THE SOLUTION USES CROSS MULTIPLICATION, NOT THE COMPONENDO-AND-DIVIDENDO SHORTCUT: both reach the same line, but cross multiplication needs no extra non-zero assumption on sin(α + β), which the shortcut silently requires. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry cos(α − β) ≠ 0, 1 + m ≠ 0, cos(π/4 − α) ≠ 0 and cos(π/4 − β) ≠ 0 where the student reads them. NUMERIC CHECK (before authoring and again after), on three witnesses, taking m from the given ratio each time: α = 20°, β = 35° gives m = 0.0822226214 with L.H.S = 0.4663076582 and R.H.S = 0.4663076582; α = 10°, β = −25° gives m = 1.9238044002 with both sides 0.7002075382; α = 48°, β = 12° gives m = −0.0340340098 with both sides −0.0524077793. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which two formulas turn the sum and the difference into products.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Write the given ratio",
+        "marks": 1,
+        "mark_note": "Given",
+        "margin_note": "First mark. Write the given ratio and every non-zero condition the working will need. There is no angle sum here, so nothing from the triangle family applies.",
+        "memory_tip": "There is no angle condition here. Only the given ratio and the non-zero conditions are available.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sin(α+β)/cos(α−β) = (1−m)/(1+m)",
+          "α − β is not an odd multiple of π/2,",
+          "so cos(α−β) ≠ 0. Also 1 + m ≠ 0.",
+          "Take cos(π/4 − α) ≠ 0, cos(π/4 − β) ≠ 0,",
+          "and cos(π/4 + β) ≠ 0 so the right side exists."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given ratio is written down with its non-zero conditions, and that no angle-sum condition is available here.",
+          "accept": [
+            "write the given ratio and state that cos alpha minus beta is not zero",
+            "note the non zero conditions before starting",
+            "there is no angle sum condition in this question, only the given ratio",
+            "modata given ratio rasi, denominators zero kaadu ani cheppali",
+            "write the given and the conditions on the denominators"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "given ratio",
+            "not an odd multiple",
+            "not zero",
+            "denominator"
+          ]
+        },
+        "why": "Every step below divides by something. Naming the non-zero conditions first means no later line has to be defended, and it shows the examiner the proof is complete.",
+        "common_mistakes": [
+          "Looking for an angle sum condition; this question has none.",
+          "Dividing later by cos(π/4 − α) without ever saying it is not zero."
+        ]
+      },
+      {
+        "id": "s2_cross",
+        "kind": "equation",
+        "label": "Cross multiply and collect m",
+        "marks": 2,
+        "mark_note": "Collect m",
+        "margin_note": "Two of the eight marks. Cross multiply, then gather every term carrying m on one side. The result is a single equation with a SUM on the left and a DIFFERENCE on the right — both ready for a product formula.",
+        "memory_tip": "Gather m on one side. It leaves a sum on one side and a difference on the other, which is exactly what the product formulas want.",
+        "lines": [
+          "Cross multiply:",
+          "(1 + m) sin(α+β) = (1 − m) cos(α−β)",
+          "sin(α+β) + m sin(α+β)",
+          "     = cos(α−β) − m cos(α−β)",
+          "⇒ m [cos(α−β) + sin(α+β)]",
+          "     = cos(α−β) − sin(α+β)   … (1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross multiplying and collecting the m terms gives m times a SUM equal to a DIFFERENCE.",
+          "accept": [
+            "cross multiply and bring all the m terms to one side",
+            "m times cos alpha minus beta plus sin alpha plus beta equals cos alpha minus beta minus sin alpha plus beta",
+            "collect m on the left, leaving a sum times m equal to a difference",
+            "cross multiply chesi m unna terms anni oka vaipuki teeyali",
+            "gather the m terms and factor m out"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "collect m",
+            "sum and difference",
+            "factor out m"
+          ]
+        },
+        "why": "The result to prove has m alone on one side, so m has to be isolated first. Collecting it produces a sum and a difference of the same two quantities, and both have product forms.",
+        "common_mistakes": [
+          "Leaving m on both sides, so no product formula can be applied.",
+          "Taking reciprocals first, which needs sin(α + β) ≠ 0 as an extra assumption."
+        ]
+      },
+      {
+        "id": "s3_to_cosine",
+        "kind": "equation",
+        "label": "Write the sine as a cosine",
+        "marks": 1,
+        "mark_note": "Same kind",
+        "margin_note": "Fourth mark. A sum-to-product formula needs two terms of the SAME kind. sin(α+β) is rewritten as a cosine so both terms in each bracket are cosines.",
+        "memory_tip": "sin θ = cos(π/2 − θ). Make both terms cosines before reaching for a product formula.",
+        "lines": [
+          "sin(α+β) = cos(π/2 − α − β)",
+          "  [∵ sinθ = cos(π/2 − θ)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(α+β) is rewritten as cos(π/2 − α − β) so both terms are cosines.",
+          "accept": [
+            "write sin alpha plus beta as cos of pi by two minus alpha minus beta",
+            "turn the sine into a cosine so both terms are the same kind",
+            "sin theta equals cos of pi by two minus theta",
+            "sine ni cosine ga marchali, rendu okate kind undali",
+            "convert the sine before using the product formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "pi by two minus",
+            "cos of pi by two",
+            "same kind",
+            "convert the sine"
+          ]
+        },
+        "why": "cos C + cos D and cos C − cos D act on two cosines. A cosine plus a sine matches no standard formula, so the sine is converted first.",
+        "common_mistakes": [
+          "Trying to apply cos C + cos D to a cosine and a sine directly.",
+          "Writing sin θ = cos(θ − π/2) and then losing track of the sign."
+        ]
+      },
+      {
+        "id": "s4_products",
+        "kind": "equation",
+        "label": "Turn both sides into products",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two marks. Both brackets in (1) are now cosines, so one sum formula and one difference formula turn them into products. Both half-angles come out as π/4 − β and π/4 − α.",
+        "memory_tip": "Both brackets give the same two half-angles, π/4 − β and π/4 − α — the sum gives cosines, the difference gives sines.",
+        "lines": [
+          "cos(α−β) + cos(π/2 − α − β)",
+          "     = 2 cos(π/4 − β) cos(π/4 − α)",
+          "cos(α−β) − cos(π/2 − α − β)",
+          "     = 2 sin(π/4 − β) sin(π/4 − α)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum becomes 2 cos(π/4 − β) cos(π/4 − α) and the difference becomes 2 sin(π/4 − β) sin(π/4 − α).",
+          "accept": [
+            "the sum of the cosines is two cos pi by four minus beta into cos pi by four minus alpha",
+            "the difference of the cosines is two sin pi by four minus beta into sin pi by four minus alpha",
+            "apply the sum formula on one bracket and the difference formula on the other",
+            "sum ki cos formula, difference ki sin formula apply cheyyali",
+            "both brackets become products in pi by four minus alpha and pi by four minus beta"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "pi by four minus beta",
+            "pi by four minus alpha",
+            "two cos",
+            "two sin",
+            "sum to product"
+          ]
+        },
+        "why": "The half sum of the two angles is π/4 − β and the half difference is π/4 − α. Those are exactly the angles the result is written in, which is why this conversion is the whole proof.",
+        "common_mistakes": [
+          "Using the sine product formula on the sum bracket, which gives the wrong pair of factors.",
+          "Writing the difference as 2 sin(π/4 − α) cos(π/4 − β), mixing the two formulas."
+        ]
+      },
+      {
+        "id": "s5_divide",
+        "kind": "equation",
+        "label": "Divide and read off m",
+        "marks": 1,
+        "mark_note": "Divide",
+        "margin_note": "Seventh mark. Put both products back into (1), cancel the 2s, then divide by the two cosines. Each pair of a sine over its own cosine becomes a tangent.",
+        "memory_tip": "Divide by cos(π/4 − β) cos(π/4 − α). Each sine over its own cosine becomes a tangent.",
+        "lines": [
+          "Put both in (1) and cancel the 2:",
+          "m cos(π/4 − β) cos(π/4 − α)",
+          "     = sin(π/4 − β) sin(π/4 − α)",
+          "⇒ m = tan(π/4 − α) tan(π/4 − β)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by cos(π/4 − β) cos(π/4 − α) gives m = tan(π/4 − α) tan(π/4 − β).",
+          "accept": [
+            "divide both sides by the two cosines to get m equals tan pi by four minus alpha into tan pi by four minus beta",
+            "each sine over its own cosine becomes a tangent",
+            "m comes out as a product of two tangents",
+            "rendu cosines tho divide chesthe m rendu tangents product avutundi",
+            "cancel the twos and divide to get m in tangents"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "divide by the cosines",
+            "product of two tangents",
+            "tan pi by four minus alpha",
+            "cancel"
+          ]
+        },
+        "why": "This is why the non-zero conditions were written in step 1. With both cosines non-zero the division is allowed, and m comes out as a clean product of two tangents.",
+        "common_mistakes": [
+          "Dividing without saying the two cosines are not zero.",
+          "Cancelling only one of the 2s."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Use the complementary angle",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. (π/4 − β) and (π/4 + β) add to π/2, so their tangents multiply to 1. Multiplying m by tan(π/4 + β) removes the second tangent and leaves the result.",
+        "memory_tip": "(π/4 − β) + (π/4 + β) = π/2, so tan(π/4 − β) tan(π/4 + β) = 1. That is what removes the extra tangent.",
+        "lines": [
+          "(π/4 − β) + (π/4 + β) = π/2",
+          "⇒ tan(π/4 − β) tan(π/4 + β) = 1",
+          "Multiply both sides by tan(π/4 + β):",
+          {
+            "text": "m tan(π/4 + β) = tan(π/4 − α)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(π/4 − β) tan(π/4 + β) = 1 because the two angles add to π/2, so multiplying by tan(π/4 + β) leaves tan(π/4 − α).",
+          "accept": [
+            "the two angles add to pi by two so their tangents multiply to one",
+            "multiply by tan pi by four plus beta and the extra tangent cancels",
+            "tan pi by four minus beta times tan pi by four plus beta is one",
+            "rendu angles kalipithe pi by two, so tangents product one",
+            "that leaves tan pi by four minus alpha equals m tan pi by four plus beta"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "add to pi by two",
+            "product is one",
+            "complementary",
+            "tan pi by four plus beta"
+          ]
+        },
+        "why": "Two angles that add to π/2 have tangents that are reciprocals. That one fact converts the product of two tangents into the single tangent the question asks for.",
+        "common_mistakes": [
+          "Writing tan(π/4 − β) = tan(π/4 + β), which is only true when β is a multiple of π/2.",
+          "Stopping at m = tan(π/4 − α) tan(π/4 − β) without reaching the asked form."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the 7th term in the expansion of (4/x³ + x²/2)¹⁴.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write T₇ from the general term",
+      "marks": 1
+    },
+    {
+      "label": "Combine the powers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 156. Printed appearances: AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as ¹⁴C₆·4⁵/x¹²; the card does the same and adds that ¹⁴C₆ = 3003 if a number is wanted."
+  },
+  "recall_prompt": "Say how you would find the 7th term — which r you use in the general term, and how the powers of 4, 2 and x combine.",
+  "insider_note": "Take r = 6, and combine the constants through base 2: 4⁸/2⁶ is a single power of 2. The x-powers subtract to leave x¹² in the DENOMINATOR — subtracting the wrong way puts it on top.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write T₇ from the general term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The 7th term is Tᵣ₊₁ with r = 6: ¹⁴C₆ times the first entry to the power 14 − 6 times the second to the power 6.",
+        "memory_tip": "The 7th term takes r = 6: ¹⁴C₆ times the first entry to the power 8, the second to the power 6.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
+          "T₇ = T₆₊₁ = ¹⁴C₆ (4/x³)¹⁴⁻⁶ (x²/2)⁶"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 7th term is T₆₊₁ = ¹⁴C₆ (4/x³)⁸ (x²/2)⁶.",
+          "accept": [
+            "the seventh term is r equal to six in the general term, fourteen C six into four by x cubed to the eight into x squared by two to the six",
+            "use T r plus one equals n C r x to the n minus r y to the r with r six",
+            "T seven is fourteen C six times four by x cube power eight times x square by two power six",
+            "seventh term ante r six, fourteen C six four by x cube power eight x square by two power six",
+            "r is one less than seven"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "fourteen C six",
+            "r equal to six",
+            "power eight",
+            "power six"
+          ]
+        },
+        "why": "The r-th power of the second entry appears in the (r + 1)-th term, so the 7th term has r = 6, never 7.",
+        "common_mistakes": [
+          "Using r = 7 and getting the 8th term.",
+          "Swapping the two entries so 4/x³ gets the power 6."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Combine the powers",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵, and x¹²/x²⁴ = 1/x¹².",
+        "memory_tip": "Work the constants in base 2: 4⁸/2⁶ = 2¹⁰ = 4⁵. The x¹² lands in the DENOMINATOR.",
+        "lines": [
+          "= ¹⁴C₆ · (4⁸/x²⁴) · (x¹²/2⁶) = ¹⁴C₆ · 4⁸/(2⁶ x¹²)",
+          "4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵",
+          {
+            "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the powers combine to ¹⁴C₆ · 4⁵/x¹².",
+          "accept": [
+            "four to the eight by two to the six is two to the ten which is four to the five, and x twelve by x twenty four is one by x twelve",
+            "the seventh term is fourteen C six into four to the five over x to the twelve",
+            "combine the powers of two and of x to get fourteen C six four power five by x power twelve",
+            "powers combine cheste fourteen C six four power five by x power twelve",
+            "x to the twelve over x to the twenty four leaves x to the twelve below"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "four to the five",
+            "x to the twelve",
+            "fourteen C six",
+            "two to the ten"
+          ]
+        },
+        "why": "Writing 4 as 2² lets the 4⁸ and the 2⁶ combine into one power; the x powers subtract because the x is in the denominator.",
+        "common_mistakes": [
+          "Writing 4⁸/2⁶ as 2².",
+          "Getting x¹² in the numerator by subtracting the wrong way."
+        ]
+      }
+    ]
+  }
+}

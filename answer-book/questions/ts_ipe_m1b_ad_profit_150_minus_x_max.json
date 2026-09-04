@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_profit_150_minus_x_max",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "The profit function P(x) of a company selling x items per day is given by P(x) = (150 − x)x − 1600. Find the number of items that the company should sell to get the maximum profit. Also find the maximum profit.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expand the profit function and differentiate",
+      "marks": 1
+    },
+    {
+      "label": "Solve P′(x) = 0",
+      "marks": 1
+    },
+    {
+      "label": "Confirm the maximum",
+      "marks": 1
+    },
+    {
+      "label": "Find the maximum profit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, and it is cut four ways here because the question asks for TWO things — the number of items and the profit itself. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you do to the bracket before differentiating, and say the two things the question asks you to report.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_and_differentiate",
+        "kind": "equation",
+        "label": "Expand the profit function and differentiate",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiply the bracket out first — the expanded form shows at once that P is a downward parabola in x. The constant −1600 differentiates to zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "P(x) = (150 − x)x − 1600,  where x is the number of items sold per day.",
+          "Expanding:  P(x) = 150x − x² − 1600",
+          "The coefficient of x² is negative, so the graph of P is a downward parabola.",
+          "P′(x) = 150 − 2x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(x) = 150x − x² − 1600, so P′(x) = 150 − 2x.",
+          "accept": [
+            "expand the bracket to get one fifty x minus x squared minus sixteen hundred",
+            "the derivative is one fifty minus two x",
+            "the constant sixteen hundred differentiates to zero",
+            "bracket expand chesi differentiate cheyyali",
+            "the x squared coefficient is negative so it is a downward parabola",
+            "differentiate the profit function first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one fifty x",
+            "minus x squared",
+            "sixteen hundred",
+            "downward parabola"
+          ]
+        },
+        "why": "Expanding turns a product into a plain quadratic, so one differentiation gives a linear equation. The fixed cost 1600 does not change with x, so it disappears on differentiating.",
+        "common_mistakes": [
+          "Differentiating the product (150 − x)x as (−1)(1) and losing both terms.",
+          "Carrying the −1600 through into the derivative."
+        ],
+        "memory_tip": "A constant cost never changes WHERE the profit is greatest, only how large that greatest profit is. It vanishes in the derivative and returns only in the final substitution."
+      },
+      {
+        "id": "s2_solve",
+        "kind": "equation",
+        "label": "Solve P′(x) = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. This answers the first half of the question — the number of items. x = 75 is a whole number, which suits a count of items.",
+        "lines": [
+          "For the stationary point, put P′(x) = 0.",
+          "150 − 2x = 0   ⇒   2x = 150   ⇒   x = 75",
+          "x = 75 is a whole number, which is what a count of items must be."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P′(x) = 0 gives 150 − 2x = 0, so x = 75.",
+          "accept": [
+            "set the derivative equal to zero",
+            "one fifty minus two x equals zero gives x equal to seventy five",
+            "the company should sell seventy five items",
+            "derivative zero pettina x seventy five vasthundi",
+            "two x is one fifty so x is seventy five",
+            "the stationary point is at seventy five items"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one fifty minus two x",
+            "seventy five",
+            "derivative zero",
+            "items"
+          ]
+        },
+        "why": "The profit stops rising and starts falling where its rate of change is zero, so P′ = 0 locates the number of items being asked for.",
+        "common_mistakes": [
+          "Solving 150 − 2x = 0 as x = 150.",
+          "Reading 150 as the answer because it appears in the question."
+        ],
+        "memory_tip": "For P = ax² + bx + c the stationary point is at x = −b/(2a). Here that is 150/2 = 75, which is a quick check on the algebra."
+      },
+      {
+        "id": "s3_confirm",
+        "kind": "equation",
+        "label": "Confirm the maximum",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Write P″ and state its sign. A stationary point is not a maximum until the test says so, even when the shape of the graph makes it obvious.",
+        "lines": [
+          "P″(x) = −2",
+          "P″(x) = −2 < 0 for every x.",
+          "A negative second derivative means the stationary point is a maximum.",
+          "So the profit is greatest when x = 75 items are sold per day."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P″(x) = −2 < 0, which proves x = 75 gives the maximum profit.",
+          "accept": [
+            "the second derivative is minus two",
+            "negative so it is a maximum",
+            "apply the second derivative test",
+            "second derivative negative kabatti maximum profit",
+            "the profit is greatest at seventy five items",
+            "confirm it is a maximum and not a minimum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second derivative",
+            "minus two",
+            "maximum",
+            "seventy five"
+          ]
+        },
+        "why": "Setting the derivative to zero alone cannot tell a greatest profit from a smallest one. The sign of P″ is the proof, and it carries its own mark even for a quadratic.",
+        "common_mistakes": [
+          "Skipping the test because the answer looks obvious from the shape.",
+          "Writing P″ = 2 and then claiming a maximum, which contradicts itself."
+        ],
+        "memory_tip": "For any quadratic the second derivative is the constant 2a. Here a = −1, so P″ = −2 and the sign is settled in one line."
+      },
+      {
+        "id": "s4_maximum_profit",
+        "kind": "boxed_final",
+        "label": "Find the maximum profit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The question asks for TWO things, so the profit value must be computed as well. Substitute into the ORIGINAL P(x), not into the derivative.",
+        "lines": [
+          "Maximum profit = P(75) = (150 − 75)(75) − 1600",
+          "= 75 × 75 − 1600 = 5625 − 1600 = 4025",
+          "Check: P(74) = 76 × 74 − 1600 = 5624 − 1600 = 4024 and P(76) = 74 × 76 − 1600 = 4024, both smaller.",
+          {
+            "text": "∴ the company should sell 75 items per day, and the maximum profit is 4025",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(75) = 5625 − 1600 = 4025, so the maximum profit is 4025 at 75 items.",
+          "accept": [
+            "substitute seventy five back into the profit function",
+            "seventy five into seventy five is five six two five",
+            "subtract sixteen hundred to get four thousand and twenty five",
+            "original function lo substitute chesi profit teesukovali",
+            "the maximum profit is four zero two five",
+            "the question asks for both the items and the profit"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five six two five",
+            "sixteen hundred",
+            "four zero two five",
+            "maximum profit"
+          ]
+        },
+        "why": "The question asks for the number of items and for the profit, so an answer that stops at x = 75 is only half done. Substituting into the original P(x) brings the fixed cost back in.",
+        "common_mistakes": [
+          "Stopping at x = 75 and never computing the profit.",
+          "Substituting into P′(x), which gives 0 and not the profit.",
+          "Forgetting to subtract the 1600 and writing 5625."
+        ],
+        "memory_tip": "Substitute into the ORIGINAL function for the value, never into the derivative — the derivative is zero there, which is how the point was found."
+      }
+    ]
+  },
+  "insider_note": "Expand before differentiating. The x² coefficient is negative, so you can see in advance that the stationary point is a maximum — but the second-derivative test still carries a mark of its own, so write P″ = −2 < 0 anyway."
+}

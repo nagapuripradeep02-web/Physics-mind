@@ -58,6 +58,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. The angle condition is the ONLY thing that makes this an identity rather than a false statement, so it is written before any transformation.",
+        "memory_tip": "A + B = 180° − C. This condition is the ONLY thing making the statement true, so write it first.",
         "lines": [
           {
             "text": "Sol:",
@@ -87,7 +88,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -100,6 +101,7 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Pair sin2A with sin2B, and expand sin2C as 2 sinC cosC so both terms carry sin C.",
         "lines": [
           "L.H.S = sin2A + sin2B + sin2C",
           "= 2 sin((2A+2B)/2) cos((2A−2B)/2) + sin2C",
@@ -142,7 +144,8 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "sin(180° − C) = +sin C — a PLUS here, unlike the cosine version.",
         "lines": [
           "= 2 sin(180° − C) cos(A−B) + 2 sinC cosC",
           "  [∵ (A+B) + C = 180°]",
@@ -173,7 +176,7 @@
         },
         "why": "sin(180° − θ) = sin θ is what turns sin(A+B) into sin C. Without the angle condition the two terms would never share a factor.",
         "common_mistakes": [
-          "Writing sin(180° − C) = −sin C, which is the cosine rule not the sine one.",
+          "Writing sin(180° − C) = −sin C. That is what happens to the COSINE: cos(180° − θ) = −cos θ, but sin(180° − θ) = +sin θ.",
           "Forgetting to use the condition at all."
         ]
       },
@@ -183,7 +186,8 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "memory_tip": "Take 2 sinC out, then use cos(180° − θ) = −cos θ so the bracket becomes a difference.",
         "lines": [
           "= 2 sinC [cos(A−B) + cosC]",
           "= 2 sinC [cos(A−B) + cos(180° − (A+B))]",
@@ -224,7 +228,8 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
+        "memory_tip": "cos(A−B) − cos(A+B) = 2 sinA sinB, giving the 4 in the answer.",
         "lines": [
           "= 2 sinC (2 sinA sinB)",
           "  [∵ cos(A−B) − cos(A+B) = 2 sinA sinB]",
@@ -261,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair the first two into 2sin(A+B)cos(A−B), then sin(180° − C) = sinC. The bracket becomes cos(A−B) − cos(A+B) = 2 sinA sinB, and that minus sign is essential."
 }

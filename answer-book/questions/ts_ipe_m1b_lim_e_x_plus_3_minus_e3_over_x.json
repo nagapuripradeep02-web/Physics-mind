@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_e_x_plus_3_minus_e3_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (e^(x+3) − e³)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take e³ out as a common factor",
+      "marks": 1
+    },
+    {
+      "label": "Apply (eˣ − 1)/x → 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 17. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer e³ was checked numerically before it was written: the expression reads 20.08564 at x = 10⁻⁴ and 20.08453 at x = −10⁻⁴, against e³ = 20.085537."
+  },
+  "recall_prompt": "Say how you would do this one — say what comes out as a common factor and what is left inside the limit.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factor_e3",
+        "kind": "equation",
+        "label": "Take e³ out as a common factor",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. e³ is a fixed number, not a function of x, so it comes outside the limit sign. What is left inside is the plain standard form (eˣ − 1)/x.",
+        "memory_tip": "e^(x+3) is e³ times eˣ. Split the power at the plus sign and the constant part comes straight out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 0 gives 0/0, so the numerator is rewritten first.",
+          "e^(x+3) = eˣ · e³, so  e^(x+3) − e³ = e³(eˣ − 1)",
+          "e³ is a constant, so it comes outside the limit:",
+          "∴ lim(x → 0) (e^(x+3) − e³)/x = e³ · lim(x → 0) (eˣ − 1)/x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That e^(x+3) = eˣ · e³, so the numerator is e³(eˣ − 1) and the constant e³ comes outside the limit.",
+          "accept": [
+            "e power x plus three is e power x times e cubed",
+            "take e cubed out as a common factor",
+            "e cubed is a constant so it comes outside the limit",
+            "e cube ni common ga bayataki teeyali",
+            "the numerator becomes e cubed into e power x minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power x plus three",
+            "e cubed",
+            "common factor",
+            "constant"
+          ]
+        },
+        "why": "The law e^(a+b) = eᵃ · eᵇ separates the fixed part of the power from the part that moves. e³ carries no x, so it plays no role in the limit and is taken outside, leaving the standard form behind.",
+        "common_mistakes": [
+          "Treating e³ as part of the limit and letting it change as x → 0.",
+          "Writing e^(x+3) = eˣ + e³. A sum in the power means the two exponentials are multiplied, not added."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply (eˣ − 1)/x → 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The limit inside is exactly the standard one and equals 1, so the constant already outside is the whole answer. Leave it as e³; do not turn it into a decimal.",
+        "memory_tip": "The limit inside is worth 1, so the answer is whatever was carried outside.",
+        "lines": [
+          "We know lim(x → 0) (eˣ − 1)/x = 1",
+          "= e³ · 1",
+          {
+            "text": "∴ lim(x → 0) (e^(x+3) − e³)/x = e³",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard limit equals 1, so the value is e³.",
+          "accept": [
+            "the standard limit is one so the answer is e cubed",
+            "e power x minus one over x is one",
+            "the value is e cubed",
+            "answer e cube",
+            "one times e cubed is e cubed"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e cubed",
+            "standard limit",
+            "one",
+            "e power three"
+          ]
+        },
+        "why": "Quoting the standard limit is what earns the mark. e³ is an exact value, so writing 20.09 instead loses the exact form the board expects.",
+        "common_mistakes": [
+          "Replacing e³ by a decimal such as 20.09.",
+          "Cancelling e³ against something and giving the answer as 1."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Split the power first: e^(x+3) = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1."
+}

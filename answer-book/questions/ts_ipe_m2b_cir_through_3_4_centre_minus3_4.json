@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_through_3_4_centre_minus3_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle passing through (3,4) and with centre at (−3,4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.103 — the Bullet Model Paper, under \"Q1 & 2: CIRCLES\". It is NOT worked in the numbered VSAQ chapter, whose nearest answers are 108.1 (centre at the origin) and 108.2 (a different centre and point), so it is authored here as an extra. Its SECTION follows the paper slot: the Bullet Model Paper places it at Q1/Q2, which is Section A, so it is a VSAQ. No appearance tag is printed beside it. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: r = 6 and the circle is x² + y² + 6x − 8y − 11 = 0. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The centre and the given point share the same y-coordinate, so the radius is just the horizontal gap — reading that off saves the whole distance calculation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both points are at y = 4, so the y part of the distance is zero.",
+        "memory_tip": "Same y-coordinate means the distance is the difference of the x-coordinates.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Centre C = (−3, 4), point on the circle P = (3, 4)",
+          "r = CP = √((3 + 3)² + (4 − 4)²)",
+          "= √(36 + 0) = 6"
+        ],
+        "why": "The radius is the distance from the centre to any point on the circle. Here the two points lie on the same horizontal line, so the distance is simply 3 − (−3) = 6.",
+        "common_mistakes": [
+          "Writing (3 + 3) as 0 by subtracting instead of adding.",
+          "Using the centre as the point on the circle."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Constant term: 9 + 16 − 36 = −11.",
+        "memory_tip": "Centre (−3, 4) gives brackets (x + 3) and (y − 4).",
+        "lines": [
+          "Circle with centre (−3, 4) and radius 6 is",
+          "(x + 3)² + (y − 4)² = 6²",
+          "⇒ (x² + 6x + 9) + (y² − 8y + 16) = 36",
+          {
+            "text": "∴ x² + y² + 6x − 8y − 11 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Expanding the centre-radius form gives the general equation, and the constant is 9 + 16 − 36 = −11. A check: putting (3, 4) in gives 9 + 16 + 18 − 32 − 11 = 0.",
+        "common_mistakes": [
+          "Writing the brackets as (x − 3) and (y + 4).",
+          "Getting the constant as +11."
+        ]
+      }
+    ]
+  }
+}

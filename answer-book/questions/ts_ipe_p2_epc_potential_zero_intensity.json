@@ -113,7 +113,7 @@
             "spherical conductor"
           ]
         },
-        "memory_tip": "Hollow sphere: the field stops at the surface, the potential walks in unchanged."
+        "memory_tip": "Hollow sphere: the field inside is zero, and the potential inside equals the surface value."
       }
     ]
   },

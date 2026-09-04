@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_tan_cos_plus_tan_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the value of tan[Cos⁻¹(4/5) + Tan⁻¹(2/3)].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the angles and find their tangents",
+      "marks": 1
+    },
+    {
+      "label": "Apply the tangent sum formula",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to the value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.111, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 1(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two of the four marks to the tangent sum formula and its condition, because that is the step an examiner reads for method, and one mark each to the setting up and the arithmetic. NOTATION: the book prints the inverse functions in lower case (cos⁻¹, tan⁻¹); they are written here with capitals (Cos⁻¹, Tan⁻¹) to match the principal-value convention used across the rest of this unit. The value 17/6 was checked numerically to twelve decimal places against tan(arccos(0.8) + arctan(2/3)). Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_angles_and_tangents",
+        "kind": "equation",
+        "label": "Name the angles and find their tangents",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Cos⁻¹ returns an angle in [0, π]; here the cosine is positive, so α is a first-quadrant angle and sinα is the positive root 3/5.",
+        "memory_tip": "Cos⁻¹ of a positive number is a first-quadrant angle, so sinα is the positive root: sinα = 3/5 and tanα = 3/4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α = Cos⁻¹(4/5) ⇒ cosα = 4/5",
+          "α ∈ [0, π] and cosα > 0, so α ∈ (0, π/2)",
+          "∴ sinα = √(1 − 16/25) = 3/5",
+          "⇒ tanα = (3/5)/(4/5) = 3/4",
+          "Let β = Tan⁻¹(2/3) ⇒ tanβ = 2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Cos⁻¹(4/5) is a first-quadrant angle α with tanα = 3/4, and that tanβ = 2/3.",
+          "accept": [
+            "call the first angle alpha, its cosine is four fifths so its sine is three fifths and its tangent is three quarters",
+            "convert the cos inverse into a tangent, three by four",
+            "alpha is first quadrant so the sine is the positive root",
+            "cos inverse ni tan lo maarchali, tan alpha three by four",
+            "the second angle has tangent two thirds"
+          ],
+          "reject": [
+            "apply the tangent sum formula",
+            "the answer is seventeen by six",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos inverse four fifths",
+            "three quarters",
+            "tan beta two thirds",
+            "first quadrant"
+          ]
+        },
+        "why": "Cos⁻¹(4/5) lies in the first quadrant, so its sine is the positive root. That sign is what makes tanα = 3/4 and not −3/4.",
+        "common_mistakes": [
+          "Taking sinα as negative.",
+          "Writing tanα as 4/3 instead of 3/4."
+        ]
+      },
+      {
+        "id": "s2_apply_the_tangent_sum_formula",
+        "kind": "equation",
+        "label": "Apply the tangent sum formula",
+        "marks": 2,
+        "mark_note": "Formula",
+        "margin_note": "Two marks — the formula and its condition together. tanα tanβ = 1/2, so the denominator is not zero and the sum is a genuine angle.",
+        "memory_tip": "Sum on top, 1 minus the product below. The formula needs tanα tanβ ≠ 1.",
+        "lines": [
+          "tan(α + β) = (tanα + tanβ)/(1 − tanα tanβ)",
+          "This needs 1 − tanα tanβ ≠ 0.",
+          "tanα tanβ = (3/4)(2/3) = 1/2 ≠ 1  ✓",
+          "∴ tan(α + β) = (3/4 + 2/3)/(1 − 1/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent sum formula is written and the product tanα tanβ is checked to be different from 1.",
+          "accept": [
+            "write tan of alpha plus beta as the sum over one minus the product, and check the product is not one",
+            "the product is one half so the denominator is not zero",
+            "quote the tangent addition formula and substitute",
+            "formula rasi, product one kaadu ani check cheyyali",
+            "sum on top and one minus the product below"
+          ],
+          "reject": [
+            "the tangent of alpha is three quarters",
+            "the answer is seventeen by six",
+            "hence proved"
+          ],
+          "heard_as": [
+            "tan alpha plus beta",
+            "one minus the product",
+            "one half",
+            "denominator"
+          ]
+        },
+        "why": "The tangent sum formula fails when tanα tanβ = 1, because α + β is then a right angle and its tangent does not exist. Checking the product first is what makes the line valid.",
+        "common_mistakes": [
+          "Using the formula without checking that tanα tanβ ≠ 1.",
+          "Writing the denominator as 1 + tanα tanβ."
+        ]
+      },
+      {
+        "id": "s3_simplify_to_the_value",
+        "kind": "boxed_final",
+        "label": "Simplify to the value",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. 3/4 + 2/3 is 17/12, not 5/7. Dividing by 1/2 means multiplying by 2.",
+        "memory_tip": "Common denominator 12 on top: 9 + 8 = 17. Then divide by 1/2, which doubles it.",
+        "lines": [
+          "= ((9 + 8)/12)/(1/2)",
+          "= (17/12) × 2 = 17/6",
+          {
+            "text": "∴ tan[Cos⁻¹(4/5) + Tan⁻¹(2/3)] = 17/6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions are added over 12 to give 17/12, and dividing by 1/2 gives 17/6.",
+          "accept": [
+            "three quarters plus two thirds is seventeen twelfths and dividing by a half doubles it to seventeen sixths",
+            "the value is seventeen over six",
+            "add over twelve then multiply by two",
+            "seventeen by twelve into two, seventeen by six vasthundi",
+            "the answer is seventeen sixths"
+          ],
+          "reject": [
+            "check the product is not one",
+            "the tangent of alpha is three quarters",
+            "then I get it"
+          ],
+          "heard_as": [
+            "seventeen twelfths",
+            "seventeen over six",
+            "nine plus eight",
+            "divide by a half"
+          ]
+        },
+        "why": "The two fractions must be put over a common denominator before dividing. 3/4 + 2/3 is 17/12, not 5/7.",
+        "common_mistakes": [
+          "Adding 3/4 and 2/3 as 5/7.",
+          "Multiplying by 1/2 instead of dividing by it, which gives 17/24."
+        ]
+      }
+    ]
+  }
+}

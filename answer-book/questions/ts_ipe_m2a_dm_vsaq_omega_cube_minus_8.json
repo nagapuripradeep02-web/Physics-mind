@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_omega_cube_minus_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, ω, ω² are the cube roots of unity, find the value of (1 − ω + ω²)³.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce 1 − ω + ω²",
+      "marks": 1
+    },
+    {
+      "label": "Cube",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.90 — Star Questions Plus, De Moivre's Theorem banner, answer 185. Printed appearances: TS 19. Section OURS: the book's Star Questions Plus pages carry no mark cut; this answer is a short reduction of the same shape as the chapter's 2-mark VSAQs, so it is classed VSAQ (2 marks). This unit has no SAQ chapter, so a 4-mark class was not available. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book p.90; 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses. The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. Chapter stars: the Star Questions Plus section prints none; the ★★★ carried in the manifest is the De Moivre VSAQ CHAPTER's rank (book p.73), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: 1 − ω + ω² = −2ω, cube = −8ω³ = −8; the book's answer is correct."
+  },
+  "recall_prompt": "Say how you would find this — what 1 − ω + ω² reduces to, and what its cube is.",
+  "insider_note": "1 − ω + ω² reduces to −2ω, not −ω: 1 + ω² = −ω, and the −ω already in the bracket adds to it. Miss that doubling and the cube comes out −1 instead of −8.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce 1 − ω + ω²",
+        "marks": 1,
+        "mark_note": "Reduce",
+        "margin_note": "First mark. From 1 + ω + ω² = 0 comes 1 + ω² = −ω, so 1 − ω + ω² = −ω − ω = −2ω. Two −ω terms, not one.",
+        "memory_tip": "1 + ω² = −ω, and the bracket's own −ω adds to it: 1 − ω + ω² = −2ω. Two terms, not one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + ω + ω² = 0 ⇒ 1 + ω² = −ω",
+          "1 − ω + ω² = (1 + ω²) − ω = −ω − ω = −2ω"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 and ω³ = 1 are used to reduce 1 − ω + ω² to −2ω.",
+          "accept": [
+            "use one plus omega plus omega squared equals zero and omega cubed equals one to reduce 1 − ω + ω² to −2ω",
+            "replace using the two omega facts, omega cubed is one and the three add to zero",
+            "reduce 1 − ω + ω² to −2ω with the cube roots of unity properties",
+            "omega cube one, one plus omega plus omega square zero use chesi 1 − ω + ω² to −2ω ni reduce cheyyali",
+            "the sum of the three cube roots is zero, so substitute"
+          ],
+          "reject": [
+            "simplify",
+            "use omega",
+            "reduce"
+          ],
+          "heard_as": [
+            "omega cubed",
+            "one plus omega",
+            "omega squared",
+            "reduce",
+            "cube roots of unity"
+          ]
+        },
+        "why": "Every ω question is the same two facts: ω³ = 1 (so high powers of ω reduce) and 1 + ω + ω² = 0 (so any two of 1, ω, ω² can be replaced by minus the third). The reduction is the mark; the arithmetic after it is short.",
+        "common_mistakes": [
+          "Reducing to −ω instead of −2ω.",
+          "Writing 1 + ω² = ω, the wrong sign.",
+          "Expanding the cube of the trinomial."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Cube",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (−2ω)³ = −8ω³ and ω³ = 1, so the value is −8. An odd power keeps the minus sign.",
+        "memory_tip": "(−2ω)³ = −8ω³ and ω³ = 1. An odd power keeps the minus sign.",
+        "lines": [
+          "(1 − ω + ω²)³ = (−2ω)³ = −8ω³",
+          {
+            "text": "= −8(1) = −8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to −8.",
+          "accept": [
+            "evaluate the reduced form and get −8",
+            "the answer comes to −8",
+            "simplify the powers of omega and the value is −8",
+            "reduce chesaka value −8 vasthundi",
+            "finally it equals −8"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "−8"
+          ]
+        },
+        "why": "An odd power keeps the minus sign, 2³ = 8, and ω³ = 1.",
+        "common_mistakes": [
+          "Writing (−2ω)³ = 8ω³, dropping the sign.",
+          "Writing ω³ = −1.",
+          "Getting 2³ = 6."
+        ]
+      }
+    ]
+  }
+}

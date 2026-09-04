@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_x2_over_1plusx_0_to_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀⁴ x² dx/(1 + x).",
+  "appearances": [
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split using x²−1 = (x−1)(x+1)",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.90 — VSAQ chapter 17 'Definite Integrals', answer 170, on the printed Super Scoring Page (SSP 90), the last item on this page. Printed appearance: TS 15. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used elsewhere in this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∑∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Whenever the numerator's degree is at least the denominator's, always try adding and subtracting a constant to expose a cancelling factor before reaching for partial fractions.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split using x²−1 = (x−1)(x+1)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. x²/(1+x) = (x−1) + 1/(1+x) after the add-and-subtract-1 split — always check for a cancelling factor first.",
+        "memory_tip": "x² − 1 factors as (x−1)(x+1) — the (x+1) always cancels a (1+x) denominator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀⁴ x²/(1+x) dx",
+          "= ∫₀⁴ [(x² − 1) + 1]/(1+x) dx",
+          "= ∫₀⁴ (x−1)(x+1)/(1+x) dx + ∫₀⁴ dx/(1+x)",
+          "= ∫₀⁴ (x−1) dx + ∫₀⁴ dx/(1+x)"
+        ],
+        "why": "Adding and subtracting 1 in the numerator creates x²−1, which factors as (x−1)(x+1); the (x+1) factor cancels the denominator (1+x), leaving a plain polynomial plus one standard log term.",
+        "common_mistakes": [
+          "Leaving x²/(1+x) as an improper fraction without adding and subtracting 1 to expose the (x−1)(x+1) factor.",
+          "Forgetting that (x+1) and (1+x) are the same factor and failing to cancel."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. log1 = 0 always — the lower limit of the log term never contributes.",
+        "memory_tip": "16/2 − 4 = 8 − 4 = 4 — check this arithmetic before combining with log5.",
+        "lines": [
+          "= [x²/2 − x]₀⁴ + [log(1+x)]₀⁴",
+          "= (16/2 − 4) + (log5 − log1)",
+          {
+            "text": "∴ I = 4 + log5",
+            "style": "boxed"
+          }
+        ],
+        "why": "The polynomial part integrates to x²/2 − x, evaluating to 4 at x=4 and 0 at x=0; the log part gives log5 at x=4 and log1=0 at x=0, so the two pieces add to 4+log5.",
+        "common_mistakes": [
+          "Dropping the log1=0 term incorrectly, e.g. writing log(1+0) as 1 instead of 0.",
+          "An arithmetic slip in 16/2−4, e.g. writing 12 by forgetting to halve the 16, instead of the correct value 4."
+        ]
+      }
+    ]
+  }
+}

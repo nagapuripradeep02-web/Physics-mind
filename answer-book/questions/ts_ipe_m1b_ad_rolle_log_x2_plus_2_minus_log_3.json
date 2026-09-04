@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_log_x2_plus_2_minus_log_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for the function log(x² + 2) − log 3 on (−1, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions on [−1, 1]",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = 0 inside (−1, 1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. STEM NOTE — NOT SILENTLY CORRECTED: the printed stem gives the interval as the OPEN interval (−1, 1), and question_text keeps it exactly as printed. Rolle's theorem needs continuity on a CLOSED interval and the equality of the values at its two endpoints, so the answer reads the question as the closed interval [−1, 1] with differentiability on the open interval (−1, 1), which is the only reading under which the theorem can be applied. The working says so on the page. A second reading of the source: 'log' is taken as the natural logarithm, as elsewhere in this chapter; with any other base the derivative only picks up a constant factor, so c is unchanged. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say why the function is defined everywhere, and how you get c.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Check the conditions on [−1, 1]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State that x² + 2 > 0 for every real x — that one line is what makes continuity and differentiability free here. The interval is read as the closed interval [−1, 1], since the endpoint values are needed.",
+        "memory_tip": "x² is never negative, so x² + 2 is never below 2 and the logarithm is defined for every real x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = log(x² + 2) − log 3, taken on the closed interval [−1, 1]",
+          "x² ≥ 0 for every real x, so x² + 2 ≥ 2 > 0 and the logarithm is defined for every real x",
+          "(i) f is continuous on the closed interval [−1, 1]",
+          "(ii) f is differentiable on the open interval (−1, 1)",
+          "(iii) f(−1) = log((−1)² + 2) − log 3 = log 3 − log 3 = 0  and  f(1) = log(1 + 2) − log 3 = log 3 − log 3 = 0",
+          "∴ f(−1) = f(1) = 0, so Rolle's theorem applies."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² + 2 > 0 for every real x, so f is continuous on [−1, 1] and differentiable on (−1, 1), and that f(−1) = f(1) = 0.",
+          "accept": [
+            "x squared plus two is always at least two so the log is always defined",
+            "both ends give log three minus log three which is zero",
+            "the function is continuous and differentiable for every real x",
+            "x square plus two eppudu positive kabatti log define avuthundi",
+            "there is no point to exclude from the domain"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "always positive",
+            "log three minus log three",
+            "both ends zero",
+            "defined everywhere"
+          ]
+        },
+        "why": "A logarithm is continuous only where the expression inside it is positive, so that has to be settled first. Here x² + 2 is at least 2 for every real x, so there is no point to exclude and the first two conditions hold on the whole real line.",
+        "common_mistakes": [
+          "Excluding points where x² + 2 = 0, an equation with no real solution.",
+          "Reading log(x² + 2) − log 3 as log(x² + 2 − 3) instead of a difference of two logarithms."
+        ]
+      },
+      {
+        "id": "s2_solve_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = 0 inside (−1, 1)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. log 3 is a constant, so it differentiates to 0 and only log(x² + 2) contributes. The chain rule supplies the 2x on top.",
+        "memory_tip": "The derivative of log u is u′/u, so the numerator carries the derivative of the expression inside.",
+        "lines": [
+          "f′(x) = 2x/(x² + 2) − 0 = 2x/(x² + 2)",
+          "f′(c) = 0  ⇒  2c/(c² + 2) = 0",
+          "c² + 2 is never 0, so the fraction is 0 only when its numerator is 0",
+          "⇒ 2c = 0  ⇒  c = 0",
+          "−1 < 0 < 1, so c = 0 lies in the open interval (−1, 1)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = 0 ∈ (−1, 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 2x/(x² + 2), that the denominator is never zero so only 2c = 0 matters, and that c = 0 lies in (−1, 1).",
+          "accept": [
+            "the derivative is two x over x squared plus two",
+            "the denominator is never zero so set the numerator to zero",
+            "two c equals zero so c is zero, which is inside the interval",
+            "numerator zero pettina c zero vasthundi",
+            "log three is a constant so it differentiates to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x over",
+            "x squared plus two",
+            "numerator zero",
+            "c is zero",
+            "constant"
+          ]
+        },
+        "why": "A fraction is zero only where its numerator is zero and its denominator is not, so saying that c² + 2 can never vanish is what makes c = 0 the only root. Here log is the natural logarithm; with any other base the derivative only picks up a constant factor, so c = 0 either way.",
+        "common_mistakes": [
+          "Differentiating log(x² + 2) as 1/(x² + 2) and leaving out the factor 2x from the chain rule.",
+          "Differentiating the constant log 3 to 1/3 instead of 0.",
+          "Setting the denominator to zero as well and inventing extra roots."
+        ]
+      }
+    ]
+  },
+  "insider_note": "x² + 2 is never zero, so the logarithm is defined everywhere and continuity is easy to argue. The −log 3 is a constant and vanishes on differentiating."
+}

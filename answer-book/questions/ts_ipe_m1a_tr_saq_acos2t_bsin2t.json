@@ -11,20 +11,16 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.",
   "appearances": [],
   "mark_split": [
     {
-      "label": "Rewrite the condition",
-      "marks": 1
-    },
-    {
       "label": "Expand sin2θ and substitute",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Expand cos2θ and cancel",
@@ -34,22 +30,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 65, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 10' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. undefined ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 65, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 10' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. undefined ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 43. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the substitution step and on the closing cancellation, and the opening step stays on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_rewrite_the_condition",
         "kind": "equation",
         "label": "Rewrite the condition",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. tanθ = b/a is a ratio of sine to cosine, so cross-multiplying gives a relation with no fraction in it — much easier to substitute.",
+        "marks": 0,
+        "margin_note": "tanθ = b/a is a ratio of sine to cosine, so cross-multiplying gives a relation with no fraction in it — much easier to substitute.",
         "lines": [
           {
             "text": "Sol:",
@@ -85,15 +80,16 @@
         "common_mistakes": [
           "Leaving the condition as a fraction.",
           "Cross-multiplying the wrong way to a cosθ = b sinθ."
-        ]
+        ],
+        "memory_tip": "Cross-multiply tanθ = b/a into b cosθ = a sinθ — a relation with no fraction, easy to substitute."
       },
       {
         "id": "s2_expand_sin2_and_substitu",
         "kind": "equation",
         "label": "Expand sin2θ and substitute",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Expand sin2θ as 2 sinθ cosθ, then spot the b cosθ inside it and swap it for a sinθ using the condition.",
+        "margin_note": "First mark. Expand sin2θ as 2 sinθ cosθ, then spot the b cosθ inside it and swap it for a sinθ using the condition.",
         "lines": [
           "L.H.S = a cos2θ + b sin2θ",
           "= a cos2θ + b(2 sinθ cosθ)",
@@ -128,7 +124,8 @@
         "common_mistakes": [
           "Expanding sin2θ but never grouping b with cosθ.",
           "Substituting for the wrong factor."
-        ]
+        ],
+        "memory_tip": "Expand sin2θ = 2 sinθ cosθ, then spot the b cosθ inside and swap it for a sinθ."
       },
       {
         "id": "s3_expand_cos2_and_cancel",
@@ -172,8 +169,10 @@
         "common_mistakes": [
           "Using cos2θ = 2cos²θ − 1 and being left with a mixture.",
           "Cancelling before substituting."
-        ]
+        ],
+        "memory_tip": "Choose cos2θ = 1 − 2sin²θ — the one form whose second term cancels what is already there."
       }
     ]
-  }
+  },
+  "insider_note": "Turn tanθ = b/a into b cosθ = a sinθ and substitute it into the sin2θ term — that substitution is the key step. Then cos2θ = 1 − 2sin²θ makes the remaining terms cancel."
 }

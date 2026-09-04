@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_truth_75_80_statements_do_not_match",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A speaks truth in 75% of the cases and B in 80% of the cases. What is the probability that their statements about an incident do not match?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Events and the two truth probabilities",
+      "marks": 1
+    },
+    {
+      "label": "Complements: each one lies",
+      "marks": 1
+    },
+    {
+      "label": "Do not match = (A true, B false) or (A false, B true)",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 10 Probability, answer 82 (PDF p.61: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: AP 16,19 · TS 16,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q17 of Model Paper 2 (book p.113) and is re-solved in the Bullet Model Paper Q16 & 17 block (book p.103) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: (3/4)(1/5) + (1/4)(4/5) = 3/20 + 4/20 = 7/20 — agrees with the book. The book writes the complements with bars; the card writes Aᶜ, Bᶜ per the notation ledger."
+  },
+  "recall_prompt": "Say how you would find the probability that A and B contradict each other — the events, the two ways it can happen, and why they are added.",
+  "insider_note": "\"Do not match\" happens in TWO disjoint ways; each way is a product (independent) and the two are added (mutually exclusive). Both words must be used.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Events and truth probabilities",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Convert the percentages: 75% = 3/4, 80% = 4/5. A and B speak independently.",
+        "memory_tip": "75% = 3/4 and 80% = 4/5. The two speak independently.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let A, B be the events that A and B speak the",
+            "style": "normal"
+          },
+          {
+            "text": "truth respectively. They are independent, and",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 75/100 = 3/4,  P(B) = 80/100 = 4/5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are the events of each speaking the truth, independent, with P(A) = 3/4 and P(B) = 4/5.",
+          "accept": [
+            "let A and B be speaking the truth with probabilities three quarters and four fifths",
+            "A is true with 3 by 4 and B with 4 by 5, independent",
+            "convert 75 percent to 3 by 4 and 80 percent to 4 by 5",
+            "A nijam cheppe event 3 by 4, B 4 by 5, independent"
+          ],
+          "reject": [
+            "define the events",
+            "write the percentages"
+          ],
+          "heard_as": [
+            "three by four",
+            "four by five",
+            "truth",
+            "seventy five percent"
+          ]
+        },
+        "why": "The statements match when both are true or both are false; they do not match when exactly one is true. The events must be named before that can be written.",
+        "common_mistakes": [
+          "Leaving the values as 75 and 80 instead of fractions.",
+          "Not saying the two people speak independently."
+        ]
+      },
+      {
+        "id": "s2_complements",
+        "kind": "equation",
+        "label": "Complements",
+        "marks": 1,
+        "mark_note": "Complements",
+        "margin_note": "Second mark. P(Aᶜ) = 1/4 and P(Bᶜ) = 1/5: the chance each one does not speak the truth.",
+        "memory_tip": "The chance each one does not tell the truth: 1/4 and 1/5.",
+        "lines": [
+          {
+            "text": "P(Aᶜ) = 1 − 3/4 = 1/4,  P(Bᶜ) = 1 − 4/5 = 1/5",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(Aᶜ) = 1/4 and P(Bᶜ) = 1/5.",
+          "accept": [
+            "A lies with a quarter and B lies with a fifth",
+            "P A complement is 1 by 4 and P B complement is 1 by 5",
+            "the complements are one by four and one by five",
+            "A abaddham cheppe probability 1 by 4, B 1 by 5"
+          ],
+          "reject": [
+            "find the complements",
+            "one minus"
+          ],
+          "heard_as": [
+            "one by four",
+            "one by five",
+            "complement"
+          ]
+        },
+        "why": "Each \"does not match\" case has one person not speaking the truth, so each case needs one complement.",
+        "common_mistakes": [
+          "Writing P(Bᶜ) = 1/4 by copying P(Aᶜ)."
+        ]
+      },
+      {
+        "id": "s3_contradict",
+        "kind": "boxed_final",
+        "label": "Two ways to contradict",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. E = (A ∩ Bᶜ) ∪ (Aᶜ ∩ B). The two cases cannot both happen, so add; inside each case the events are independent, so multiply.",
+        "memory_tip": "TWO disjoint ways: multiply inside each case (independent), then add the cases (exclusive).",
+        "lines": [
+          {
+            "text": "Let E = their statements do not match, i.e.",
+            "style": "normal"
+          },
+          {
+            "text": "exactly one of them speaks the truth:",
+            "style": "normal"
+          },
+          {
+            "text": "P(E) = P[(A ∩ Bᶜ) ∪ (Aᶜ ∩ B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= P(A)·P(Bᶜ) + P(Aᶜ)·P(B)   [independent]",
+            "style": "eq"
+          },
+          {
+            "text": "= (3/4)(1/5) + (1/4)(4/5) = 3/20 + 4/20",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(statements do not match) = 7/20",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(do not match) = P(A)P(Bᶜ) + P(Aᶜ)P(B) = (3/4)(1/5) + (1/4)(4/5) = 7/20.",
+          "accept": [
+            "do not match is A true B false or A false B true so three quarters times a fifth plus a quarter times four fifths equals seven by twenty",
+            "add the two exclusive cases each a product, 3 by 20 plus 4 by 20 is 7 by 20",
+            "the answer is seven twentieths",
+            "rendu cases add cheyyali, 3 by 4 into 1 by 5 plus 1 by 4 into 4 by 5, 7 by 20"
+          ],
+          "reject": [
+            "add the cases",
+            "seven by twenty"
+          ],
+          "heard_as": [
+            "seven by twenty",
+            "A true B false",
+            "two cases",
+            "three by twenty plus four by twenty"
+          ]
+        },
+        "why": "The two cases are mutually exclusive (exactly one person is truthful in each, but a different one), so their probabilities add; each case is a product because the two people are independent.",
+        "common_mistakes": [
+          "Taking only one case, (3/4)(1/5) = 3/20.",
+          "Answering P(both true) + P(both false) = 13/20, the probability that they DO match."
+        ]
+      }
+    ]
+  }
+}

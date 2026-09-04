@@ -1,0 +1,318 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cot_power_n_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If none of the denominators is zero, prove that ((cos A + cos B)/(sin A − sin B))ⁿ + ((sin A + sin B)/(cos A − cos B))ⁿ equals 2 cotⁿ((A − B)/2) when n is even and 0 when n is odd.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the non-zero conditions",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the first ratio",
+      "marks": 2
+    },
+    {
+      "label": "Simplify the second ratio",
+      "marks": 2
+    },
+    {
+      "label": "Add the two n-th powers",
+      "marks": 1
+    },
+    {
+      "label": "Take the even case",
+      "marks": 1
+    },
+    {
+      "label": "Take the odd case",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 12, book p.104, its working closing on book p.105. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives two marks to each of the two ratio simplifications, since between them they are the whole proof, and one mark each to the set-up, the addition and the two cases — BOTH CASES ARE MARKED SEPARATELY because the question asks for both and an answer that stops at the even case is incomplete. NOT A TRIANGLE QUESTION: there is no condition on A + B + C, so no substitution of the A + B + C family applies. The second ratio is −cot((A−B)/2), NOT +cot((A−B)/2): cos A − cos B = −2 sin((A+B)/2) sin((A−B)/2), and losing that minus makes both cases collapse to 2 cotⁿ((A−B)/2), which is wrong for every odd n. CONDITIONS ARE ON THE PAGE, NOT ONLY HERE: step 1's lines carry sin((A−B)/2) ≠ 0, sin((A+B)/2) ≠ 0 and cos((A+B)/2) ≠ 0, which is what \"none of the denominators is zero\" means once the sums are written as products, and the assumption that n is a positive integer (implied by the printed stem's even/odd split, but not printed). NUMERIC CHECK (before authoring and again after): at A = 70°, B = 20°, the first ratio is 2.1445069205 and the second is −2.1445069205, and cot((A−B)/2) = cot 25° = 2.1445069205; the sum of the n-th powers is L.H.S = 9.1978198642 against R.H.S = 9.1978198642 at n = 2, L.H.S = 42.2999451274 against R.H.S = 42.2999451274 at n = 4, and 0.0000000000 on both sides at n = 3 and n = 5; re-checked on a second witness A = 130°, B = −15°, where n = 2 gives 0.1988266525 on both sides and n = 3 gives 0 on both. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what each of the two ratios simplifies to, and how the even and odd cases come apart.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "State the non-zero conditions",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Name the two half angles once, then say exactly which quantities must not be zero. \"None of the denominators is zero\" becomes three plain conditions once the sums are written as products.",
+        "memory_tip": "Name x = (A−B)/2 and y = (A+B)/2 first. Every line below is built from those two angles only.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let x = (A−B)/2 and y = (A+B)/2.",
+          "Here n is a positive integer.",
+          "sinA − sinB ≠ 0 and cosA − cosB ≠ 0,",
+          "so sin x ≠ 0, sin y ≠ 0 and cos y ≠ 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two half angles are named and the non-zero conditions on sin x, sin y and cos y are stated.",
+          "accept": [
+            "let x be A minus B over two and y be A plus B over two, and state the non zero conditions",
+            "name the two half angles first and say which ones cannot be zero",
+            "the denominators being non zero means sin x, sin y and cos y are all non zero",
+            "modata x and y ni A minus B by two, A plus B by two ga rasi conditions cheppali",
+            "write the half angles and the conditions on the denominators"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "A minus B over two",
+            "A plus B over two",
+            "not zero",
+            "half angle"
+          ]
+        },
+        "why": "Both ratios are divided by, and both cases depend on n being a whole number. Stating that once at the top keeps every later line clean.",
+        "common_mistakes": [
+          "Starting the working without saying which quantities are not zero.",
+          "Leaving out the assumption that n is a positive integer, which the even and odd cases need."
+        ]
+      },
+      {
+        "id": "s2_first_ratio",
+        "kind": "equation",
+        "label": "Simplify the first ratio",
+        "marks": 2,
+        "mark_note": "First ratio",
+        "margin_note": "Two of the eight marks. Both the top and the bottom carry a factor 2 cos y, so it cancels and what is left is a cosine over a sine — a cotangent.",
+        "memory_tip": "Top and bottom both carry 2 cos y. Cancel it and a cotangent of x is what remains.",
+        "lines": [
+          "cosA + cosB = 2 cos y cos x",
+          "sinA − sinB = 2 cos y sin x",
+          "⇒ (cosA + cosB)/(sinA − sinB)",
+          "     = cos x / sin x = cot x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sums become products sharing 2 cos y, so the first ratio simplifies to cot x, that is cot((A−B)/2).",
+          "accept": [
+            "both become products with two cos y, which cancels, leaving cot of A minus B over two",
+            "cos A plus cos B over sin A minus sin B is cot x",
+            "the common factor cancels and a cotangent is left",
+            "rendu ki two cos y common, adi cancel ayyi cot x vasthundi",
+            "the first ratio is cot of A minus B over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos y",
+            "cot x",
+            "cancel",
+            "cot A minus B over two"
+          ]
+        },
+        "why": "Writing both the sum and the difference as products is what exposes the shared factor. Once it cancels the ratio no longer depends on A + B at all.",
+        "common_mistakes": [
+          "Writing sin A − sin B = 2 sin y cos x, which swaps the two half angles.",
+          "Leaving the answer as cos x / sin x without naming it cot x."
+        ]
+      },
+      {
+        "id": "s3_second_ratio",
+        "kind": "equation",
+        "label": "Simplify the second ratio",
+        "marks": 2,
+        "mark_note": "Second ratio",
+        "margin_note": "Two marks, and the minus sign here is what the whole question turns on. cos A − cos B = −2 sin y sin x, so this ratio is the NEGATIVE of the first one.",
+        "memory_tip": "cos A − cos B carries a MINUS: it is −2 sin y sin x. So the second ratio is −cot x, not +cot x.",
+        "lines": [
+          "sinA + sinB = 2 sin y cos x",
+          "cosA − cosB = −2 sin y sin x",
+          "⇒ (sinA + sinB)/(cosA − cosB)",
+          "     = −cos x / sin x = −cot x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos A − cos B = −2 sin y sin x, so the second ratio is −cot x — the negative of the first.",
+          "accept": [
+            "cos A minus cos B is minus two sin y sin x so the second ratio is minus cot x",
+            "the second ratio is the negative of the first one",
+            "both share two sin y, and the minus sign stays",
+            "cos A minus cos B lo minus untundi, so minus cot x vasthundi",
+            "the second ratio is minus cot of A minus B over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus two sin y",
+            "minus cot x",
+            "negative of the first",
+            "cos A minus cos B"
+          ]
+        },
+        "why": "cos A − cos B is the one formula in this family that carries a minus sign. That single sign is what makes the two powers cancel for odd n and add for even n.",
+        "common_mistakes": [
+          "Writing cos A − cos B = 2 sin y sin x and losing the minus.",
+          "Writing sin A + sin B = 2 cos y sin x, which swaps the two half angles."
+        ]
+      },
+      {
+        "id": "s4_combine",
+        "kind": "equation",
+        "label": "Add the two n-th powers",
+        "marks": 1,
+        "mark_note": "Combine",
+        "margin_note": "Sixth mark. Raise both ratios to the n-th power and add. The sign is the only difference between them, so it collects into the factor 1 + (−1)ⁿ.",
+        "memory_tip": "(−cot x)ⁿ = (−1)ⁿ cotⁿ x. Everything then depends on the single factor 1 + (−1)ⁿ.",
+        "lines": [
+          "L.H.S = cotⁿ x + (−cot x)ⁿ",
+          "= cotⁿ x + (−1)ⁿ cotⁿ x",
+          "= [1 + (−1)ⁿ] cotⁿ x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum is cotⁿ x + (−1)ⁿ cotⁿ x, which factors as [1 + (−1)ⁿ] cotⁿ x.",
+          "accept": [
+            "raise both to the n and add, giving one plus minus one to the n times cot to the n x",
+            "minus cot x to the n is minus one to the n times cot to the n x",
+            "everything comes down to the factor one plus minus one to the power n",
+            "rendu ni n power cheyyali, one plus minus one power n factor vasthundi",
+            "factor out cot to the n x"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus one to the n",
+            "cot to the n",
+            "factor out",
+            "one plus minus one"
+          ]
+        },
+        "why": "The two ratios differ only in sign, so the whole question reduces to what (−1)ⁿ is. That is why the answer has two cases and not one.",
+        "common_mistakes": [
+          "Writing (−cot x)ⁿ = −cotⁿ x, which is only true for odd n.",
+          "Adding the two ratios before raising them to the n-th power."
+        ]
+      },
+      {
+        "id": "s5_even",
+        "kind": "equation",
+        "label": "Take the even case",
+        "marks": 1,
+        "mark_note": "n even",
+        "margin_note": "Seventh mark. For even n the factor is 1 + 1 = 2, so the two powers add. Write the answer back in terms of (A − B)/2, not in x.",
+        "memory_tip": "n even: (−1)ⁿ = 1, the factor is 2, and the two powers add.",
+        "lines": [
+          "If n is even, (−1)ⁿ = 1.",
+          "L.H.S = [1 + 1] cotⁿ x = 2 cotⁿ x",
+          {
+            "text": "= 2 cotⁿ((A−B)/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for even n the factor is 2, giving 2 cotⁿ((A−B)/2).",
+          "accept": [
+            "for even n minus one to the n is one so the answer is two cot to the n of A minus B over two",
+            "the factor becomes two and the two powers add",
+            "even case gives two cot to the n half of A minus B",
+            "n even aithe minus one power n one, so two cot power n vasthundi",
+            "even n gives twice cot to the n"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "n is even",
+            "two cot to the n",
+            "minus one to the n is one",
+            "A minus B over two"
+          ]
+        },
+        "why": "An even power removes the sign, so both terms are the same and simply double. Writing the answer back in (A − B)/2 is what the question asked for.",
+        "common_mistakes": [
+          "Leaving the answer in x without saying x = (A − B)/2.",
+          "Writing cotⁿ((A−B)/2) and losing the factor 2."
+        ]
+      },
+      {
+        "id": "s6_odd",
+        "kind": "boxed_final",
+        "label": "Take the odd case",
+        "marks": 1,
+        "mark_note": "n odd",
+        "margin_note": "Last mark. For odd n the factor is 1 − 1 = 0, so the two powers cancel. An answer that gives only the even case is incomplete and loses this mark.",
+        "memory_tip": "n odd: (−1)ⁿ = −1, the factor is 0, and the two powers cancel exactly.",
+        "lines": [
+          "If n is odd, (−1)ⁿ = −1.",
+          "L.H.S = [1 − 1] cotⁿ x",
+          {
+            "text": "= 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for odd n the factor is 1 − 1 = 0, so the sum is 0.",
+          "accept": [
+            "for odd n minus one to the n is minus one so the factor is zero and the sum is zero",
+            "the two powers cancel and the answer is zero",
+            "odd case gives zero",
+            "n odd aithe minus one vasthundi, factor zero, answer zero",
+            "odd n makes the two terms cancel"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "n is odd",
+            "zero",
+            "cancel",
+            "minus one to the n is minus one"
+          ]
+        },
+        "why": "An odd power keeps the sign, so the second term is the exact negative of the first and they cancel. Both cases together are the complete answer.",
+        "common_mistakes": [
+          "Giving only the even case and stopping there.",
+          "Writing the odd answer as 2 cotⁿ((A−B)/2) with a minus in front instead of 0."
+        ]
+      }
+    ]
+  }
+}

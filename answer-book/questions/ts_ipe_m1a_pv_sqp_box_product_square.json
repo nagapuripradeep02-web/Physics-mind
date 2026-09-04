@@ -27,7 +27,7 @@
       "marks": 3
     },
     {
-      "label": "Kill the repeated term",
+      "label": "The repeated term is zero",
       "marks": 1
     },
     {
@@ -58,6 +58,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. A box product [p q r] means p·(q×r). Apply that with p = b×c, q = c×a, r = a×b.",
+        "memory_tip": "A box product [p q r] means p·(q×r). Apply it with p = b×c, q = c×a, r = a×b.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,7 +102,8 @@
         "label": "Expand with the triple product",
         "marks": 3,
         "mark_note": "Triple product",
-        "margin_note": "Three marks. Use (X × Y) = ... with X = c×a treated as a single vector: (c×a) × (a×b) = [(c×a)·b]a − [(c×a)·a]b.",
+        "margin_note": "Three marks. Use the vector triple product p × (q × r) = (p·r)q − (p·q)r, with p = c×a treated as a single vector: (c×a) × (a×b) = [(c×a)·b]a − [(c×a)·a]b.",
+        "memory_tip": "Treat c×a as ONE vector and apply the triple product expansion to (c×a) × (a×b).",
         "lines": [
           "Treating (c×a) as one vector and using",
           "p × (q × r) type expansion:",
@@ -139,10 +141,11 @@
       {
         "id": "s3_kill_the_repeated_term",
         "kind": "equation",
-        "label": "Kill the repeated term",
+        "label": "The repeated term is zero",
         "marks": 1,
         "mark_note": "Zero term",
         "margin_note": "Fifth mark, and the step the proof turns on. [c a a] has a REPEATED vector, so it is zero — the second term vanishes completely.",
+        "memory_tip": "[c a a] has a REPEATED vector, so it is zero — the second term vanishes completely.",
         "lines": [
           "A box product with a repeated vector is zero.",
           "∴ [c a a] = 0",
@@ -183,6 +186,7 @@
         "marks": 2,
         "mark_note": "Second box",
         "margin_note": "Two marks. [c a b] is a scalar, so it comes straight out of the dot product, leaving (b×c)·a — which is another box product.",
+        "memory_tip": "[c a b] is a scalar, so it comes straight out of the dot, leaving another box product.",
         "lines": [
           "L.H.S = (b×c) · ([c a b] a)",
           "= [c a b] · [(b×c)·a]   [scalar comes out]",
@@ -223,6 +227,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. A box product is unchanged by a cyclic shift, so [c a b] and [b c a] are BOTH equal to [a b c] — the product is [a b c]².",
+        "memory_tip": "A box product survives a CYCLIC shift, so both factors equal [a b c] — hence the square.",
         "lines": [
           "A box product is unchanged by a cyclic shift:",
           "[c a b] = [a b c]  and  [b c a] = [a b c]",
@@ -261,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The move is to expand (c×a) × (a×b) treating c×a as a single vector. [c a a] = 0 because a repeats, and the cyclic property then turns both remaining factors into [a b c]."
 }

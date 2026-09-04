@@ -1,0 +1,196 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_x2_3y_3_and_x2_minus_y2_25",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves x² + 3y = 3 and x² − y² + 25 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the points of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(iv). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the points of intersection because one of the two roots for y has to be rejected in writing. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which variable you eliminate, which root of y you reject and why, and what formula gives the angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the points of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Eliminate x², not y — both equations carry x² by itself, so one substitution leaves a quadratic in y. The root y = 4 must be rejected in writing, because it makes x² negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  x² + 3y = 3   …(i)   and   x² − y² + 25 = 0   …(ii)",
+          "From (i):  x² = 3 − 3y",
+          "Put this in (ii):  (3 − 3y) − y² + 25 = 0",
+          "−y² − 3y + 28 = 0   ⇒   y² + 3y − 28 = 0",
+          "(y + 7)(y − 4) = 0   ⇒   y = −7 or y = 4",
+          "If y = 4:  x² = 3 − 12 = −9, which is impossible. Reject y = 4.",
+          "If y = −7:  x² = 3 + 21 = 24  ⇒  x = ±2√6",
+          "∴ the curves meet at P(2√6, −7) and at (−2√6, −7). Work at P."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eliminating x² gives y² + 3y − 28 = 0, y = −7 (rejecting y = 4), and x = ±2√6.",
+          "accept": [
+            "write x squared as three minus three y and substitute",
+            "y squared plus three y minus twenty eight equals zero",
+            "y is minus seven because y equals four makes x squared negative",
+            "x square negative avutundi kabatti y equals four reject cheyyali",
+            "x squared is twenty four so x is plus or minus two root six",
+            "eliminate x squared not y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three minus three y",
+            "y squared plus three y minus twenty eight",
+            "minus seven",
+            "two root six",
+            "reject"
+          ]
+        },
+        "why": "Both equations contain x² and no other power of x, so eliminating x² is one substitution and leaves an ordinary quadratic. Rejecting y = 4 with a stated reason, that x² cannot be negative, is part of the method mark.",
+        "common_mistakes": [
+          "Keeping y = 4 and reporting a second angle at a point that does not exist.",
+          "Sign slip in −y² − 3y + 28 = 0 when multiplying through by −1.",
+          "Writing √24 as 4√6 or 2√12 instead of 2√6."
+        ],
+        "memory_tip": "When both curves show the same square term on its own, eliminate that square — it is one substitution instead of two."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Keep the surd as 2√6 through the whole step. Turning it into a decimal here makes the cancelling in the last step impossible to see.",
+        "lines": [
+          "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
+          "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
+          "From (ii):  2x − 2y (dy/dx) = 0  ⇒  dy/dx = x/y",
+          "At P(2√6, −7):  m₂ = 2√6/(−7) = −2√6/7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = −2x/3 = −4√6/3 and m₂ = x/y = −2√6/7 at (2√6, −7).",
+          "accept": [
+            "differentiate the first curve to get minus two x by three",
+            "differentiate the second curve to get x by y",
+            "m one is minus four root six by three",
+            "surd ni decimal ga marchakunda 2 root 6 ga unchali",
+            "m two is minus two root six by seven",
+            "keep the root six as it is"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two x by three",
+            "x by y",
+            "four root six",
+            "two root six by seven"
+          ]
+        },
+        "why": "The second curve differentiates to the very simple x/y because the x² and the −y² have opposite signs and the same coefficient. Keeping the surd exact is what makes the √6 factor out cleanly in the last step.",
+        "common_mistakes": [
+          "Writing the second slope as −x/y by mishandling the minus on y².",
+          "Replacing 2√6 by 4.9 and then being unable to reach an exact answer.",
+          "Differentiating 3y as 3 without the dy/dx factor."
+        ],
+        "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign inside the curve is the sign that flips."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Take the numerator over the common denominator 21 and write the denominator over 21 as well; the 21s then cancel and leave 22√6/69.",
+        "lines": [
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21 = −22√6/21",
+          "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
+          "1 + m₁m₂ = 1 + 48/21 = 69/21",
+          "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",
+          {
+            "text": "∴ θ = Tan⁻¹(22√6/69) ≈ 37°59′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = 22√6/69, so θ = Tan⁻¹(22√6/69), roughly 38 degrees.",
+          "accept": [
+            "take a common denominator of twenty one for both parts",
+            "m one minus m two is minus twenty two root six by twenty one",
+            "one plus m one m two is sixty nine by twenty one",
+            "twenty one cancel ayyi twenty two root six by sixty nine vasthundi",
+            "the angle is tan inverse twenty two root six by sixty nine",
+            "root six times root six is six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty two root six",
+            "sixty nine",
+            "twenty one",
+            "tan inverse",
+            "thirty eight degrees"
+          ]
+        },
+        "why": "√6 · √6 = 6, so the product of the two slopes is a plain rational number while their difference keeps one factor of √6. That is why the surd is left only in the numerator of the final answer.",
+        "common_mistakes": [
+          "Writing (√6)² as √36 or as 36 instead of 6.",
+          "Cancelling 22 against 69, which share no factor.",
+          "Forgetting the 1 in 1 + m₁m₂ and using only 48/21."
+        ],
+        "memory_tip": "Put both the numerator and the denominator over the same number, here 21, and that number cancels itself out."
+      }
+    ]
+  },
+  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = −7 is rejected because it makes x² negative."
+}

@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_reciprocal_1_plus_cos_theta_4x2_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If x + iy = 1/(1 + cos θ + i sin θ), then show that 4x² − 1 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite the denominator with half angles",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by the conjugate and simplify",
+      "marks": 2
+    },
+    {
+      "label": "Compare real parts and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 7 Complex Numbers, answer 59. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 16, 16, 17, 19 · TS 15, 16, 19, 22 — the book prints AP 16 twice (two papers in one year); the card lists each year once. This is the most-asked SAQ in the chapter. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: set-up, bulk computation, conclusion). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 4 (book p.117). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show 4x² − 1 = 0 — what identities you use on the denominator, what you multiply by, and which part you read off at the end.",
+  "insider_note": "Everything after depends on the first line: 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2)·cos(θ/2) share the factor 2cos(θ/2), and taking it out of the whole denominator is the step the other three marks depend on. Only the real part x is used at the end — time spent simplifying y brings no mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_angle",
+        "kind": "equation",
+        "label": "Use half angles",
+        "marks": 1,
+        "mark_note": "Half angles",
+        "margin_note": "First mark. The two identities 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2) share the factor 2cos(θ/2). Taking it out is the key step of the question.",
+        "memory_tip": "1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2) share the factor 2cos(θ/2). Take it out of both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + cos θ = 2cos²(θ/2),",
+          "sin θ = 2 sin(θ/2) cos(θ/2)",
+          "∴ 1 + cos θ + i sin θ",
+          {
+            "text": "= 2cos(θ/2)[cos(θ/2) + i sin(θ/2)]",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + cos θ and sin θ are written with half angles so the denominator becomes 2cos(θ/2) times [cos(θ/2) + i sin(θ/2)].",
+          "accept": [
+            "write one plus cos theta as two cos squared theta by two and sin theta as two sin theta by two cos theta by two",
+            "use half angle identities and take two cos theta by two common from the denominator",
+            "the denominator becomes two cos theta by two times cos theta by two plus i sin theta by two",
+            "half angle formulas use chesi two cos theta by two common teeyali",
+            "factor two cos of half theta out of the denominator"
+          ],
+          "reject": [
+            "simplify the denominator",
+            "use identities"
+          ],
+          "heard_as": [
+            "half angle",
+            "theta by two",
+            "two cos squared",
+            "two sin cos",
+            "common factor"
+          ]
+        },
+        "why": "In the form 2cos(θ/2)·cis(θ/2) the denominator is a real number times a unit complex number, and the unit complex number has an easy conjugate. Without the half angles the division is much longer.",
+        "common_mistakes": [
+          "Using 1 + cos θ = 2sin²(θ/2) — that is 1 − cos θ.",
+          "Writing sin θ = 2 sin(θ/2) and forgetting the cos(θ/2).",
+          "Taking 2cos(θ/2) out of the first term only."
+        ]
+      },
+      {
+        "id": "s2_rationalise",
+        "kind": "equation",
+        "label": "Divide by the conjugate",
+        "marks": 2,
+        "mark_note": "Division",
+        "margin_note": "Half the marks. Multiply above and below by cos(θ/2) − i sin(θ/2). The bracket product is cos² + sin² = 1, so only 2cos(θ/2) is left underneath, and it cancels the cos(θ/2) on top of the real part.",
+        "memory_tip": "(cos A + i sin A)(cos A − i sin A) = 1, so only 2cos(θ/2) is left underneath.",
+        "lines": [
+          "x + iy = 1 / (2cos(θ/2)[cos(θ/2) + i sin(θ/2)])",
+          "Multiply above and below by",
+          "cos(θ/2) − i sin(θ/2):",
+          {
+            "text": "= [cos(θ/2) − i sin(θ/2)]",
+            "style": "eq"
+          },
+          {
+            "text": "/ (2cos(θ/2)[cos²(θ/2) + sin²(θ/2)])",
+            "style": "indent"
+          },
+          {
+            "text": "= [cos(θ/2) − i sin(θ/2)] / (2cos(θ/2))",
+            "style": "eq"
+          },
+          {
+            "text": "= 1/2 − (i/2) tan(θ/2)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate cos(θ/2) − i sin(θ/2) leaves x + iy = 1/2 − (i/2) tan(θ/2), because cos² + sin² = 1.",
+          "accept": [
+            "multiply by cos theta by two minus i sin theta by two, the bracket product is one, and x plus i y becomes half minus i by two tan theta by two",
+            "rationalise with the conjugate, cos squared plus sin squared is one, so it is half minus i half tan of theta by two",
+            "after dividing by the conjugate the real part is half and the imaginary part is minus half tan theta by two",
+            "conjugate tho multiply cheste half minus i by two tan theta by two vasthundi",
+            "the result is one by two minus i tan theta by two over two"
+          ],
+          "reject": [
+            "rationalise",
+            "multiply by the conjugate",
+            "simplify"
+          ],
+          "heard_as": [
+            "conjugate",
+            "half",
+            "one by two",
+            "tan theta by two",
+            "cos squared plus sin squared"
+          ]
+        },
+        "why": "The point of the conjugate is that (cos A + i sin A)(cos A − i sin A) = cos²A + sin²A = 1 — the i is removed from the denominator with no extra work. Then cos(θ/2)/(2cos(θ/2)) = 1/2 is the real part, and it does not depend on θ at all.",
+        "common_mistakes": [
+          "Multiplying by cos(θ/2) + i sin(θ/2) again instead of the conjugate.",
+          "Forgetting the 2cos(θ/2) that stays in the denominator.",
+          "Writing the imaginary part as −(1/2) sin(θ/2) instead of −(1/2) tan(θ/2)."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "boxed_final",
+        "label": "Compare real parts",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Only x is needed. Read it off, square, and rearrange into the form asked.",
+        "memory_tip": "x = 1/2 for every θ. Only x is needed — square it and rearrange, and leave y alone.",
+        "lines": [
+          "Equating real parts: x = 1/2 ⇒ 2x = 1",
+          "⇒ (2x)² = 1 ⇒ 4x² = 1",
+          {
+            "text": "∴ 4x² − 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing real parts gives x = 1/2, so 2x = 1 and squaring gives 4x² − 1 = 0.",
+          "accept": [
+            "the real part is half so two x is one and squaring gives four x squared minus one equals zero",
+            "x equals half, so four x squared equals one",
+            "compare real parts, x is one by two, square two x equals one",
+            "real part half kabatti two x equals one, square cheste four x square minus one zero",
+            "x is a half and that gives four x squared minus one is zero"
+          ],
+          "reject": [
+            "hence proved",
+            "compare both sides"
+          ],
+          "heard_as": [
+            "real part",
+            "half",
+            "two x",
+            "four x squared",
+            "square"
+          ]
+        },
+        "why": "The question asks about x only, so the imaginary part is not needed once the division is done. x = 1/2 for every θ is the fact; 4x² − 1 = 0 is just that fact written in the form the question asks for.",
+        "common_mistakes": [
+          "Also equating imaginary parts and trying to use y — not needed here.",
+          "Writing x = 1/2 and stopping without reaching 4x² − 1 = 0."
+        ]
+      }
+    ]
+  }
+}

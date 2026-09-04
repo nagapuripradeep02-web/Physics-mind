@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_con_sin_2x_over_x_at_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Is the function f, defined by f(x) = (sin 2x)/x for x ≠ 0 and f(0) = 1, continuous at 0?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the continuity test at 0",
+      "marks": 1
+    },
+    {
+      "label": "Find the limit at 0",
+      "marks": 2
+    },
+    {
+      "label": "Compare with f(0) and answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+2+1 shape follows the shape this bank uses for a Maths-1B Section B question, weighted so the limit — the only real work here — carries two marks. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: the question asks whether f is continuous and the honest answer is NO — the limit is 2 while f(0) is given as 1. The discontinuity is removable, and f(0) = 2 would make f continuous; that is stated in the last step so the student sees what the question is testing."
+  },
+  "recall_prompt": "Say how you would do this one — say what you would compare, what the limit comes to, and what your answer is.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Limits and Continuity · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_the_test",
+        "kind": "text",
+        "label": "State the continuity test at 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The question is a yes-or-no question, so the test must be written down before it can be answered. One formula covers both sides of 0, so one two-sided limit is enough.",
+        "memory_tip": "A yes-or-no continuity question is still a two-part answer: find the limit, then compare it with the value.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = (sin 2x)/x   for x ≠ 0,   and f(0) = 1",
+          "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
+          "The same formula applies for x < 0 and for x > 0, so one two-sided limit settles it.",
+          "So the limit must be found and then compared with 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That continuity at 0 means lim(x → 0) f(x) must equal f(0), which is 1 here.",
+          "accept": [
+            "continuity at zero means the limit must equal f of zero",
+            "compare the limit at zero with the given value one",
+            "state the test, limit equals value, then check it",
+            "limit x tends to zero, f of zero ki samanam avvala ani choodali",
+            "find the limit and see whether it is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "limit equals f of zero",
+            "continuous at zero",
+            "f of zero is one",
+            "two sided limit"
+          ]
+        },
+        "why": "Writing the test first is what turns a yes-or-no question into work that can be marked: the limit is one piece of work, the comparison is another.",
+        "common_mistakes": [
+          "Answering yes because f(0) is defined, without finding the limit at all.",
+          "Substituting x = 0 in (sin 2x)/x and writing 0/0 as the limit."
+        ]
+      },
+      {
+        "id": "s2_find_the_limit",
+        "kind": "equation",
+        "label": "Find the limit at 0",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The angle inside the sine is 2x, so the denominator has to be made 2x as well before the standard limit is quoted. The compensating 2 in front is where the answer 2 comes from.",
+        "memory_tip": "sin(2x)/x is sin(2x)/(2x) times 2 — write the 2 outside first, then the standard limit is ready to use.",
+        "lines": [
+          "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
+          "Put θ = 2x. As x → 0, θ → 0 as well.",
+          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
+          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ = 2 · 1 = 2",
+          "The same value is reached from the left and from the right, so lim(x → 0) f(x) exists and equals 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin 2x over x is written as 2 times sin 2x over 2x, so the standard limit gives 2.",
+          "accept": [
+            "write it as two into sin two x over two x so the limit is two",
+            "multiply and divide by two then use sin theta by theta equals one",
+            "put theta equals two x and the limit becomes two",
+            "two tho multiply and divide chesi sin theta by theta use cheyyali",
+            "the limit at zero is two not one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two x by two x",
+            "sin theta by theta",
+            "limit is two",
+            "multiply and divide by two"
+          ]
+        },
+        "why": "The standard limit works only when the angle inside the sine matches the expression below it. Making the denominator 2x costs a factor of 2 outside, and that factor is the whole difference between the limit and the given value.",
+        "common_mistakes": [
+          "Writing lim (sin 2x)/x = 1 by quoting the standard limit without matching the angle.",
+          "Cancelling the 2 wrongly and getting ½ instead of 2."
+        ]
+      },
+      {
+        "id": "s3_compare_and_answer",
+        "kind": "boxed_final",
+        "label": "Compare with f(0) and answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The answer to the question as asked is no. Naming the discontinuity as removable, and saying which value of f(0) would repair it, is what shows the point of the question has been understood.",
+        "memory_tip": "When the limit exists but does not match the value, the discontinuity is removable — only the assigned value is different, so redefining f(0) = 2 makes f continuous.",
+        "lines": [
+          "lim(x → 0) f(x) = 2,   but the given value is   f(0) = 1",
+          "2 ≠ 1, so lim(x → 0) f(x) ≠ f(0)",
+          "The limit exists but does not equal the value, so this is a removable discontinuity: defining f(0) = 2 instead of 1 would make f continuous at 0.",
+          {
+            "text": "∴ f is not continuous at x = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit 2 does not equal f(0) = 1, so f is not continuous at 0, and that f(0) = 2 would make it continuous.",
+          "accept": [
+            "the limit is two but f of zero is one so it is not continuous",
+            "no it is not continuous at zero because two is not one",
+            "it is a removable discontinuity, f of zero should be two",
+            "limit two, f of zero one, so continuous kaadu",
+            "if f of zero were two then it would be continuous"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two is not one",
+            "not continuous",
+            "removable",
+            "f of zero should be two"
+          ]
+        },
+        "why": "The question asks whether f is continuous, so the answer must be stated in words. The limit exists here, so only the assigned value is wrong, and that is what makes the discontinuity removable rather than a jump.",
+        "common_mistakes": [
+          "Writing that f is continuous because the limit exists, without comparing it with f(0).",
+          "Calling this a jump discontinuity, which needs the two one-sided limits to differ."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The limit exists and equals 2, but f(0) is given as 1, so the answer is NO. Saying it is a removable discontinuity, which is fixed by redefining f(0) = 2, is what finishes the answer."
+}

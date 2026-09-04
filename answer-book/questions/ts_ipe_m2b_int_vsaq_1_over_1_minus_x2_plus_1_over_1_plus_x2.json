@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_1_over_1_minus_x2_plus_1_over_1_plus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ [1/(1 − x²) + 1/(1 + x²)] dx.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split into two standard integrals",
+      "marks": 1
+    },
+    {
+      "label": "Apply both standard formulas for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.86 (PDF page 86) — VSAQ chapter 16 ‘Integration’, answer 143, on a ★★★ SSP 86 page (banner printed at the top of the VSAQ chapter). Printed appearances: TS 16,22. Chapter star rank ★★★. This same question reappears verbatim in the Bullet Model Paper's Q6 & 7: Integration section (book p.105) — no extra card is authored for that repeat. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Tanh⁻¹x and Tan⁻¹x look almost identical in writing — the ONLY difference is the h — so read the denominator's sign carefully before choosing which one to write: 1−x² takes the hyperbolic one, 1+x² the circular one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split into two standard integrals",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "∫[1/(1−x²) + 1/(1+x²)] dx",
+          "= ∫dx/(1−x²) + ∫dx/(1+x²)"
+        ],
+        "why": "The integrand is already a sum of two separate standard forms — no algebra is needed beyond recognising each piece on sight.",
+        "common_mistakes": [
+          "Trying to combine the two fractions into one over a common denominator first, which only complicates the working.",
+          "Missing that these are two DIFFERENT standard results, not the same formula applied twice."
+        ],
+        "memory_tip": "1−x² in a denominator signals Tanh⁻¹; 1+x² signals Tan⁻¹ — two completely different standard results, spotted on sight."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply both standard formulas for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "\\int\\frac{dx}{1-x^2}=\\operatorname{Tanh}^{-1}x+c,\\quad \\int\\frac{dx}{1+x^2}=\\operatorname{Tan}^{-1}x+c",
+            "render": "katex",
+            "style": "eq"
+          },
+          "∴ ∫[1/(1−x²)+1/(1+x²)] dx =",
+          {
+            "text": "Tanh⁻¹x + Tan⁻¹x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both pieces are standard, memorised results with a=1, so no completing the square or substitution is needed — just quote the two formulas and add.",
+        "common_mistakes": [
+          "Writing log|(1+x)/(1−x)| in place of Tanh⁻¹x — the correct equivalent is ½log|(1+x)/(1−x)|; dropping the ½ doubles the answer, so keep it in front.",
+          "Only one +c for the whole sum, which is correct, but forgetting it entirely."
+        ],
+        "memory_tip": "Two standard results, added — one h, one without — and a single +c at the very end."
+      }
+    ]
+  }
+}

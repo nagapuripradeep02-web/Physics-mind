@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_root_a2_plus_x2_plus_a2_log",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If y = x√(a² + x²) + a² log(x + √(a² + x²)), prove that dy/dx = 2√(a² + x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the derivative of the square root",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the first term by the product rule",
+      "marks": 2
+    },
+    {
+      "label": "Combine the first term into one fraction",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the logarithm term",
+      "marks": 2
+    },
+    {
+      "label": "Add the two parts and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.205, chapter 9 DIFFERENTIATION, Long Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working takes and weighted so that the two places where something genuinely cancels — the logarithm term and the final cancellation — carry two marks each. Unlike the other Section-C questions in this chapter, this one uses no logarithmic differentiation: it is the product rule and the chain rule, and the logarithm is part of the function rather than a method. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: with a = 2, the result 2√(a² + x²) agrees with a central difference quotient of the given function at x = 1 (4.472135955), at x = 3 (7.211102551) and at x = −1.5 (5.000000000), to nine decimal places at all three points."
+  },
+  "recall_prompt": "Say how you would prove this — say which rule each of the two terms needs, and what happens when the two derivatives are added.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_root_derivative",
+        "kind": "equation",
+        "label": "Write the derivative of the square root",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This one derivative is used twice, once in each term, so writing it out at the top saves repeating the chain rule later. No logarithmic differentiation is needed anywhere in this question.",
+        "memory_tip": "The derivative of √(a² + x²) is x over the same root. The root reappears underneath, never squared.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  y = x√(a² + x²) + a² log(x + √(a² + x²))",
+          "Here a is a constant. Both terms need the derivative of the square root, so write it once,",
+          "d/dx √(a² + x²) = (1/(2√(a² + x²))) · 2x = x/√(a² + x²)      …(1)",
+          "The logarithm exists for every real x, because √(a² + x²) is larger than |x|, so x + √(a² + x²) is always positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the derivative of √(a² + x²) is x/√(a² + x²), and that it is needed by both terms.",
+          "accept": [
+            "the derivative of root a squared plus x squared is x over the same root",
+            "chain rule gives two x over two times the root",
+            "a is a constant so only x is differentiated",
+            "this derivative is used in both terms",
+            "root ki derivative x by root a square plus x square",
+            "write the root derivative once at the start"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root derivative",
+            "x over the root",
+            "chain rule",
+            "two x by two root"
+          ]
+        },
+        "why": "The chain rule gives one over twice the root, multiplied by the derivative of the inside, which is 2x. The two 2s cancel, which is why the result is as short as x over the root.",
+        "common_mistakes": [
+          "Writing the derivative as 2x/√(a² + x²), keeping the 2 that cancels.",
+          "Differentiating a² to 2a, when a is a constant."
+        ]
+      },
+      {
+        "id": "s2_product_rule",
+        "kind": "equation",
+        "label": "Differentiate the first term by the product rule",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. x√(a² + x²) is a product of two functions of x, so the product rule applies: derivative of the first times the second, plus the first times the derivative of the second.",
+        "memory_tip": "First stays, second differentiates; second stays, first differentiates. Here that gives the root itself plus x times (1).",
+        "lines": [
+          "Let u = x√(a² + x²). By the product rule and (1),",
+          "du/dx = 1 · √(a² + x²) + x · x/√(a² + x²)",
+          "∴ du/dx = √(a² + x²) + x²/√(a² + x²)      …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product rule on x√(a² + x²) gives √(a² + x²) + x²/√(a² + x²).",
+          "accept": [
+            "product rule gives the root plus x squared over the root",
+            "one times the root plus x times x over the root",
+            "differentiate x and keep the root, then keep x and differentiate the root",
+            "the second part becomes x squared over the root",
+            "product rule vaadithe root plus x square by root vasthundi",
+            "two terms come from the first part"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "root plus",
+            "x squared over root",
+            "first term"
+          ]
+        },
+        "why": "The first term is a genuine product, and the derivative of x is 1, so the first piece is just the root itself. The second piece is where the root derivative from step (1) is used.",
+        "common_mistakes": [
+          "Differentiating x√(a² + x²) as the product of the two derivatives.",
+          "Writing x · x/√(a² + x²) as x²/(a² + x²), squaring the root by mistake."
+        ]
+      },
+      {
+        "id": "s3_single_fraction",
+        "kind": "equation",
+        "label": "Combine the first term into one fraction",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Put both parts of (2) over the root. The first part contributes (a² + x²) on top, because √(a² + x²) × √(a² + x²) = a² + x².",
+        "memory_tip": "A root multiplied by itself gives what is inside it. That is how a² + x² appears on top and joins the x² already there.",
+        "lines": [
+          "Writing (2) over the single denominator √(a² + x²),",
+          "du/dx = [(a² + x²) + x²] / √(a² + x²)",
+          "∴ du/dx = (a² + 2x²)/√(a² + x²)      …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both parts are put over √(a² + x²), giving (a² + 2x²)/√(a² + x²).",
+          "accept": [
+            "put both parts over the root as a common denominator",
+            "the root times the root gives a squared plus x squared",
+            "a squared plus x squared plus x squared is a squared plus two x squared",
+            "the first term becomes a squared plus two x squared over the root",
+            "common denominator root teesukunte a square plus two x square vasthundi",
+            "combine the two parts into one fraction"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "a squared plus two x squared",
+            "over the root",
+            "combine"
+          ]
+        },
+        "why": "The final cancellation only becomes visible when both parts are over the same denominator. Combining now, rather than at the end, keeps the last step to a single line.",
+        "common_mistakes": [
+          "Writing the top as a² + x² + x⁴, squaring the x² a second time.",
+          "Adding a² + x² and x² to get a² + x⁴ rather than a² + 2x²."
+        ]
+      },
+      {
+        "id": "s4_log_term",
+        "kind": "equation",
+        "label": "Differentiate the logarithm term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The chain rule gives the derivative of the bracket over the bracket. The top then contains the same factor (x + √(a² + x²)) that stands underneath, so it cancels and only a²/√(a² + x²) is left.",
+        "memory_tip": "After the chain rule, put the top over the root. The bracket that appears on top is the same one underneath, so it cancels completely.",
+        "lines": [
+          "Let v = a² log(x + √(a² + x²)). By the chain rule and (1),",
+          "dv/dx = a² · [1 + x/√(a² + x²)] / (x + √(a² + x²))",
+          "The bracket on top over the root is  [√(a² + x²) + x]/√(a² + x²), so",
+          "dv/dx = a² · [√(a² + x²) + x] / [√(a² + x²) · (x + √(a² + x²))]",
+          "∴ dv/dx = a²/√(a² + x²)      …(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chain rule gives a²[1 + x/√(a² + x²)]/(x + √(a² + x²)), and the bracket cancels to leave a²/√(a² + x²).",
+          "accept": [
+            "chain rule gives the derivative of the bracket over the bracket",
+            "one plus x over the root, put over the root, gives root plus x over the root",
+            "the bracket x plus the root cancels top and bottom",
+            "what is left is a squared over the root",
+            "bracket cancel ipoyi a square by root migiluthundi",
+            "the log term simplifies to a squared over the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chain rule",
+            "cancels",
+            "a squared over the root",
+            "bracket",
+            "one plus x by root"
+          ]
+        },
+        "why": "This cancellation is the reason the logarithm term is in the question at all. Without it the answer would carry a logarithm; with it, the term reduces to a single fraction over the same root as the first term, ready to be added.",
+        "common_mistakes": [
+          "Differentiating log(x + √(a² + x²)) as 1/(x + √(a² + x²)) and leaving out the inner derivative.",
+          "Cancelling the root instead of the bracket, which loses the denominator."
+        ]
+      },
+      {
+        "id": "s5_add_and_simplify",
+        "kind": "boxed_final",
+        "label": "Add the two parts and simplify",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks, and they are for the cancellation, not for writing the answer down. Both parts already sit over the same root, so the tops add to 2a² + 2x² = 2(a² + x²), and 2(a² + x²) divided by √(a² + x²) is 2√(a² + x²).",
+        "memory_tip": "A quantity divided by its own square root gives that square root back: (a² + x²)/√(a² + x²) = √(a² + x²).",
+        "lines": [
+          "Adding (3) and (4), both of which have the same denominator,",
+          "dy/dx = (a² + 2x²)/√(a² + x²) + a²/√(a² + x²)",
+          "= (a² + 2x² + a²)/√(a² + x²) = (2a² + 2x²)/√(a² + x²)",
+          "= 2(a² + x²)/√(a² + x²) = 2 · [√(a² + x²)]² / √(a² + x²)",
+          {
+            "text": "∴ dy/dx = 2√(a² + x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions add over the same denominator to 2(a² + x²)/√(a² + x²), which reduces to 2√(a² + x²).",
+          "accept": [
+            "add the two fractions, the tops give two a squared plus two x squared",
+            "take two common to get two into a squared plus x squared",
+            "a squared plus x squared over its own root is the root itself",
+            "the answer is two root a squared plus x squared",
+            "rendu kalipithe two into a square plus x square over root vasthundi",
+            "the two long terms add and reduce to twice the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add",
+            "two a squared plus two x squared",
+            "take two common",
+            "two root",
+            "reduce"
+          ]
+        },
+        "why": "Three long expressions reduce to one short one, and showing that reduction is what earns the marks. The check that it is right is that a² and x² appear in the same 2:2 ratio, so 2 comes out as a common factor and the root divides exactly once.",
+        "common_mistakes": [
+          "Stopping at 2(a² + x²)/√(a² + x²) without dividing out the root.",
+          "Writing the answer as 2(a² + x²), forgetting the square root."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Work out d/dx√(a² + x²) once and reuse it in both terms. The two awkward pieces cancel exactly, leaving 2√(a² + x²) — a much simpler answer than the working suggests."
+}

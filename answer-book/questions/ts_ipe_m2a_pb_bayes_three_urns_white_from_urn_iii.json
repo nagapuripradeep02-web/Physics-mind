@@ -1,0 +1,325 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_bayes_three_urns_white_from_urn_iii",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Three urns have the following composition of balls. Urn I: 1 white, 2 black. Urn II: 2 white, 1 black. Urn III: 2 white, 2 black. One of the urns is selected at random and a ball is drawn. It turns out to be white. Find the probability that it came from urn III.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define the events",
+      "marks": 1
+    },
+    {
+      "label": "Prior probabilities of choosing each container",
+      "marks": 1
+    },
+    {
+      "label": "Probability of the colour from each container",
+      "marks": 1
+    },
+    {
+      "label": "Total probability of the colour",
+      "marks": 2
+    },
+    {
+      "label": "Bayes' theorem and the answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 4 Probability, answer 39 (PDF p.40: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 39. It is the book's own 1 + 2 + 4 split printed against answer 36 on book p.37 (define the events · the priors and the colour probabilities · Bayes' computation), refined as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 5 (book p.120); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: P(W|U₁) = 1/3, P(W|U₂) = 2/3, P(W|U₃) = 2/4 = 1/2; P(W) = (1/3)(1/3 + 2/3 + 1/2) = (1/3)(3/2) = 1/2; P(U₃|W) = (1/6)/(1/2) = 1/3 — agrees with the book."
+  },
+  "recall_prompt": "Say how you would find the probability that the white ball came from urn III — the events, the priors, the three white-ball probabilities, the total, and Bayes.",
+  "insider_note": "The arithmetic is clean here: 1/3 + 2/3 = 1 makes the bracket 3/2 and the total exactly 1/2. Write every step anyway — the marks are for the method.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Define the events",
+        "marks": 1,
+        "mark_note": "Events",
+        "margin_note": "First mark. Three urn events and one colour event.",
+        "memory_tip": "Three urn events and one colour event, including the urns not asked about.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let U₁, U₂, U₃ be the events of selecting",
+            "style": "normal"
+          },
+          {
+            "text": "urn I, urn II, urn III respectively, and let",
+            "style": "normal"
+          },
+          {
+            "text": "W be the event that the ball drawn is white.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U₁, U₂, U₃ are the events of choosing urns I, II, III and W is the event that the drawn ball is white.",
+          "accept": [
+            "let U one U two U three be choosing the three urns and W be drawing a white ball",
+            "define an event for each urn and one for white",
+            "U one is urn one and so on, W is white",
+            "moodu urns ki U one U two U three, white ball ki W",
+            "name the three urn events and the white ball event"
+          ],
+          "reject": [
+            "define the events",
+            "let the events be",
+            "three events"
+          ],
+          "heard_as": [
+            "U one U two U three",
+            "urn",
+            "white ball",
+            "event W"
+          ]
+        },
+        "why": "The urn events are mutually exclusive and exhaustive; W is the observed event. These are the roles Bayes' theorem needs.",
+        "common_mistakes": [
+          "Defining only U₃, the urn asked about.",
+          "Not defining the colour event."
+        ]
+      },
+      {
+        "id": "s2_priors",
+        "kind": "equation",
+        "label": "Priors",
+        "marks": 1,
+        "mark_note": "Priors",
+        "margin_note": "Second mark. One of three urns at random: 1/3 each.",
+        "memory_tip": "One of three urns at random is 1/3 each, whatever the ball counts are.",
+        "lines": [
+          {
+            "text": "The urn is chosen at random, so",
+            "style": "normal"
+          },
+          {
+            "text": "P(U₁) = P(U₂) = P(U₃) = 1/3",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each urn has probability 1/3 of being chosen.",
+          "accept": [
+            "each urn has probability one third",
+            "P of U one equals P U two equals P U three equals one by three",
+            "the three priors are all a third",
+            "prathi urn ki probability one by three",
+            "one urn out of three so a third each"
+          ],
+          "reject": [
+            "find the priors",
+            "equal chance",
+            "the urn probabilities"
+          ],
+          "heard_as": [
+            "one by three",
+            "a third",
+            "P of U one"
+          ]
+        },
+        "why": "Random selection among three urns gives 1/3 each, independent of how many balls each urn holds.",
+        "common_mistakes": [
+          "Weighting the urns by their ball counts (3/10, 3/10, 4/10).",
+          "Omitting the priors because they are equal."
+        ]
+      },
+      {
+        "id": "s3_likelihoods",
+        "kind": "equation",
+        "label": "P(white | each urn)",
+        "marks": 1,
+        "mark_note": "Conditional probabilities",
+        "margin_note": "Third mark. Urn I: 1 white of 3. Urn II: 2 white of 3. Urn III: 2 white of 4.",
+        "memory_tip": "Each over its own urn total: 1 of 3, 2 of 3, 2 of 4. Never 10, the grand total.",
+        "lines": [
+          {
+            "text": "P(W|U₁) = 1/3",
+            "style": "eq"
+          },
+          {
+            "text": "P(W|U₂) = 2/3",
+            "style": "eq"
+          },
+          {
+            "text": "P(W|U₃) = 2/4 = 1/2",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(W|U₁) = 1/3, P(W|U₂) = 2/3, P(W|U₃) = 1/2.",
+          "accept": [
+            "white given urn one is one by three, urn two two by three, urn three two by four which is half",
+            "the white probabilities are a third, two thirds and a half",
+            "P of W given U one is 1 by 3, U two 2 by 3, U three 1 by 2",
+            "urn one lo white 1 by 3, urn two lo 2 by 3, urn three lo half",
+            "one of three, two of three, two of four"
+          ],
+          "reject": [
+            "find the conditional probabilities",
+            "white probabilities",
+            "one two and two"
+          ],
+          "heard_as": [
+            "one by three",
+            "two by three",
+            "two by four",
+            "half",
+            "W given U"
+          ]
+        },
+        "why": "Each urn has its own total (3, 3, 4), so each white probability is read inside its own urn.",
+        "common_mistakes": [
+          "Using 10 (all balls) as every denominator.",
+          "Leaving P(W|U₃) as 2/4 and then mis-adding."
+        ]
+      },
+      {
+        "id": "s4_total_probability",
+        "kind": "equation",
+        "label": "Total probability of white",
+        "marks": 2,
+        "mark_note": "Total probability",
+        "margin_note": "Two marks. Factor out 1/3: 1/3 + 2/3 + 1/2 = 1 + 1/2 = 3/2, so P(W) = (1/3)(3/2) = 1/2.",
+        "memory_tip": "1/3 + 2/3 = 1, plus 1/2 gives 3/2, so P(W) = (1/3)(3/2) = 1/2.",
+        "lines": [
+          {
+            "text": "By total probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(W) = P(U₁)P(W|U₁) + P(U₂)P(W|U₂)",
+            "style": "eq"
+          },
+          {
+            "text": "+ P(U₃)P(W|U₃)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(1/3 + 2/3 + 1/2)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(3/2) = 1/2",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(W) = (1/3)(1/3 + 2/3 + 1/2) = (1/3)(3/2) = 1/2.",
+          "accept": [
+            "P of W is a third times a third plus two thirds plus half which is a third of three by two equals half",
+            "total probability of white is one by two",
+            "add the three routes, the bracket is three by two, so P W is half",
+            "P of white ante one by three into bracket three by two, answer half",
+            "the denominator of bayes is one half"
+          ],
+          "reject": [
+            "find P of W",
+            "total probability",
+            "add them"
+          ],
+          "heard_as": [
+            "one by two",
+            "half",
+            "three by two",
+            "total probability"
+          ]
+        },
+        "why": "White can come by three disjoint routes; their probabilities add to give P(W), the denominator of Bayes' theorem.",
+        "common_mistakes": [
+          "Adding 1/3 + 2/3 + 1/2 and calling that P(W).",
+          "Bracket arithmetic: 1/3 + 2/3 = 1, plus 1/2 is 3/2, not 5/6."
+        ]
+      },
+      {
+        "id": "s5_bayes",
+        "kind": "boxed_final",
+        "label": "Bayes' theorem",
+        "marks": 2,
+        "mark_note": "Bayes' theorem",
+        "margin_note": "Last two marks. P(U₃|W) = (1/3)(1/2)/(1/2) = 1/3.",
+        "memory_tip": "The answer 1/3 equals the prior by coincidence — write the Bayes line anyway.",
+        "lines": [
+          {
+            "text": "By Bayes' theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(U₃|W) = P(U₃)·P(W|U₃) / P(W)",
+            "style": "eq"
+          },
+          {
+            "text": "= (1/3)(1/2) / (1/2) = (1/6) / (1/2)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(U₃|W) = 1/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(U₃|W) = P(U₃)·P(W|U₃)/P(W) = (1/6)/(1/2) = 1/3.",
+          "accept": [
+            "P of U three given W is a third times half over half which is one third",
+            "by bayes theorem the answer is one by three",
+            "the urn three route one by six divided by the total half gives a third",
+            "bayes prakaram 1 by 6 ni half tho divide cheste one by three",
+            "the probability it came from urn three is one third"
+          ],
+          "reject": [
+            "apply bayes",
+            "one by three",
+            "use the formula"
+          ],
+          "heard_as": [
+            "one by three",
+            "a third",
+            "U three given W",
+            "bayes",
+            "one by six"
+          ]
+        },
+        "why": "The answer equals the prior 1/3 because P(W|U₃) happens to equal P(W): seeing white gives no new information about urn III in this particular set-up.",
+        "common_mistakes": [
+          "Answering P(W|U₃) = 1/2, the forward direction.",
+          "Writing 1/3 without the Bayes line — the number equals the prior by coincidence and the method is not shown."
+        ]
+      }
+    ]
+  }
+}

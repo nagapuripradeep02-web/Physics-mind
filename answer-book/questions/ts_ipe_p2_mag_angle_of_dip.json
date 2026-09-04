@@ -90,7 +90,7 @@
           "vertical, so the dip is 90°."
         ],
         "margin_note": "Second mark. Give the two extreme values — 0° at the magnetic equator, 90° at the magnetic poles.",
-        "why": "The two extreme values show what the angle measures: where the field lies flat the dip is zero, and where the field stands straight down the dip is a right angle. Papers reuse these two values in the pole questions.",
+        "why": "The two extreme values show what the angle measures: where the field lies flat the dip is zero, and where the field stands straight down the dip is a right angle.",
         "common_mistakes": [
           "Swapping the two values. The field is horizontal at the equator (dip 0°) and vertical at the poles (dip 90°).",
           "Writing geographic equator. The values belong to the magnetic equator and magnetic poles."

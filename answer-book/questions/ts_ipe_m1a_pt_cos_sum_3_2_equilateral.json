@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_cos_sum_3_2_equilateral",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If cos A + cos B + cos C = 3/2, show that the triangle is equilateral.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Form a quadratic in sin(C/2)",
+      "marks": 1
+    },
+    {
+      "label": "Read off the three angles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.124, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to forming the quadratic and taking its discriminant and one to reading the three angles off; the opening combination step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine_the_cosines",
+        "kind": "equation",
+        "label": "Combine the three cosines",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. Pair two cosines, use the angle sum on the half angle, and write cos C in sines so both terms carry sin(C/2).",
+        "memory_tip": "Pair two cosines and write the third as 1 − 2sin²(C/2), so every term carries sin(C/2).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cos A + cos B = 2 cos((A+B)/2) cos((A−B)/2)",
+          "(A+B)/2 = 90° − C/2",
+          "⇒ cos((A+B)/2) = sin(C/2)",
+          "cos C = 1 − 2 sin²(C/2)",
+          "∴ 2 sin(C/2) cos((A−B)/2) + 1 − 2 sin²(C/2)",
+          {
+            "text": "= 3/2",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos A + cos B is combined to 2 sin(C/2) cos((A−B)/2) and cos C written as 1 − 2sin²(C/2).",
+          "accept": [
+            "add cos A and cos B by sum to product and use ninety minus C over two",
+            "cos of A plus B over two is sin of C over two",
+            "write cos C as one minus two sin squared C over two",
+            "cos A plus cos B ni product ga rasi, cos C ni sin lo rayali",
+            "get everything in terms of sin of C over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum to product",
+            "sin of C over two",
+            "one minus two sin squared",
+            "ninety minus C by two"
+          ]
+        },
+        "why": "Two of the three cosines are combined into one product and the third is written in half angles, so the whole condition holds only two unknowns: sin(C/2) and cos((A−B)/2).",
+        "common_mistakes": [
+          "Writing cos((A+B)/2) = cos(C/2) and losing the complement.",
+          "Using cos C = 2cos²(C/2) − 1, which does not match the sine that appears."
+        ]
+      },
+      {
+        "id": "s2_form_a_quadratic",
+        "kind": "equation",
+        "label": "Form a quadratic in sin(C/2)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One of the two marks. The unknown is sin(C/2); cos((A−B)/2) is the coefficient. A real root needs b² − 4ac ≥ 0.",
+        "memory_tip": "Treat sin(C/2) as the unknown. A real root needs b² − 4ac ≥ 0, which here is 16cos²((A−B)/2) − 16 ≥ 0.",
+        "lines": [
+          "Multiply by 2 and rearrange:",
+          "4 sin²(C/2) − 4 cos((A−B)/2) sin(C/2) + 1 = 0",
+          "This is a quadratic in sin(C/2), and sin(C/2)",
+          {
+            "text": "is a real number, so its discriminant ≥ 0",
+            "style": "indent"
+          },
+          "16 cos²((A−B)/2) − 16 ≥ 0",
+          "⇒ cos²((A−B)/2) ≥ 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is quadratic in sin(C/2) and a real root forces 16cos²((A−B)/2) − 16 ≥ 0.",
+          "accept": [
+            "rearrange into a quadratic with sin C over two as the unknown",
+            "the discriminant must be greater than or equal to zero",
+            "sixteen cos squared minus sixteen is at least zero",
+            "sin C by two ni unknown ga theesukoni discriminant zero kanna ekkuva",
+            "a real root means b squared minus four a c is not negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quadratic",
+            "discriminant",
+            "sixteen cos squared",
+            "real root"
+          ]
+        },
+        "why": "sin(C/2) is a real number, so the quadratic it satisfies must have a real root. That single requirement is what forces cos((A−B)/2) to its largest possible value.",
+        "common_mistakes": [
+          "Treating cos((A−B)/2) as the unknown instead of sin(C/2).",
+          "Writing the discriminant as b² + 4ac."
+        ]
+      },
+      {
+        "id": "s3_read_off_the_angles",
+        "kind": "boxed_final",
+        "label": "Read off the three angles",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. cos²((A−B)/2) ≥ 1 and ≤ 1 force equality, and (A−B)/2 lies strictly between −90° and 90°, so the cosine is +1.",
+        "memory_tip": "A cosine is never more than 1, so ≥ 1 forces exactly 1, which means A = B. Then the quadratic becomes a perfect square.",
+        "lines": [
+          "But cos²θ ≤ 1 for every θ, so cos²((A−B)/2) = 1",
+          "(A−B)/2 lies between −90° and 90°, so its cosine",
+          {
+            "text": "is positive: cos((A−B)/2) = 1 ⇒ A = B",
+            "style": "indent"
+          },
+          "Then 4 sin²(C/2) − 4 sin(C/2) + 1 = 0",
+          "⇒ (2 sin(C/2) − 1)² = 0 ⇒ sin(C/2) = 1/2",
+          "⇒ C/2 = 30° ⇒ C = 60°, so A = B = 60°",
+          {
+            "text": "∴ A = B = C = 60°, so it is equilateral",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²((A−B)/2) = 1 forces A = B, and the quadratic then becomes (2sin(C/2) − 1)² = 0, giving C = 60°.",
+          "accept": [
+            "a cosine cannot be more than one so it must equal one and A equals B",
+            "put cos equal to one back and the quadratic is a perfect square",
+            "sin C over two is a half so C is sixty degrees and all three are sixty",
+            "cos value one kanna ekkuva undadu, so A equals B",
+            "the perfect square gives sin half C equals one half"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosine at most one",
+            "A equals B",
+            "perfect square",
+            "sixty degrees"
+          ]
+        },
+        "why": "A cosine can never exceed 1, so the inequality can only hold as an equality. That fixes A = B, and putting cos((A−B)/2) = 1 back leaves a perfect square that fixes C.",
+        "common_mistakes": [
+          "Stopping at A = B and calling the triangle isosceles.",
+          "Taking cos((A−B)/2) = −1, which no angle of a triangle allows."
+        ]
+      }
+    ]
+  }
+}

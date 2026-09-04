@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_reducible_x_minus_y_plus3_over_2x_minus2y_plus5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Solve dy/dx = (x − y + 3)/(2x − 2y + 5).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Test the coefficients and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Reduce to a function of the new variable",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.48 — LAQ chapter 5 Differential Equations, answer 44.2, the last answer of the chapter, on the same page as 44.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: AP 15 — no TS tag. The mark split is OURS: this chapter prints no margin mark tags. It uses the same five-checkpoint shape as answer 44.1 on the facing column, since both are coincident-lines reducible equations solved by the same linear-combination substitution method. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q24 set (book pp.116-117), which answers 39.1, 40.1, 41.1 and 44.2 — wait, 44.2 IS one of those four (book p.117 second column reproduces this exact question), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout, including the split of (x − y + 3)/(2x − 2y + 5) as (x−y)+3 over 2(x−y)+5 to expose the ratio 1/2 = 1/2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Writing the numerator and denominator as (x−y)+3 and 2(x−y)+5 makes the coincident-ratio pattern visible at a glance, which is why the substitution here is x − y = v rather than any other combination.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_test_substitute",
+        "kind": "equation",
+        "label": "Test the coefficients and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Comparing coefficients shows a1/a2 = b1/b2 = 1/2, so x − y is the combination common to both.",
+        "memory_tip": "x − y + 3 and 2x − 2y + 5 are both built from x − y — that repeated block is the substitution.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given that dy/dx = (x − y + 3)/(2x − 2y + 5)",
+          "= [(x − y) + 3]/[2(x − y) + 5] … (1)",
+          "Comparing (x − y + 3)/(2x − 2y + 5)",
+          "with (a1x + b1y + c1)/(a2x + b2y + c2)",
+          "a1/a2 = 1/2, b1/b2 = −1/−2 = 1/2",
+          "⇒ a1/a2 = b1/b2",
+          "So take the substitution x − y = v"
+        ],
+        "why": "Both the numerator and denominator reduce to the same combination x − y with different constants added, which is exactly the coincident-ratio case, so treating x − y as a single new variable v collapses the equation to one unknown.",
+        "common_mistakes": [
+          "Taking b1/b2 as −1/2 instead of correctly cancelling the two minus signs to get 1/2.",
+          "Choosing the substitution 2x − 2y = v instead of the simpler x − y = v."
+        ]
+      },
+      {
+        "id": "s2_reduce",
+        "kind": "equation",
+        "label": "Reduce to a function of the new variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Differentiate v = x − y to relate dv/dx to dy/dx, then substitute into (1).",
+        "memory_tip": "v = x − y gives dv/dx = 1 − dy/dx, so dy/dx = 1 − dv/dx.",
+        "lines": [
+          "x − y = v ⇒ 1 − dy/dx = dv/dx",
+          "⇒ dy/dx = 1 − dv/dx",
+          "(1) ⇒ 1 − dv/dx = (v + 3)/(2v + 5)",
+          "⇒ dv/dx = 1 − (v + 3)/(2v + 5)"
+        ],
+        "why": "Differentiating the substitution v = x − y gives a direct relation between dv/dx and dy/dx, which replaces dy/dx everywhere in (1) and leaves an equation purely in v and x.",
+        "common_mistakes": [
+          "Writing dy/dx = dv/dx − 1 instead of 1 − dv/dx, a sign slip from differentiating x − y.",
+          "Substituting the un-simplified (x−y+3)/(2x−2y+5) instead of the rewritten (v+3)/(2v+5)."
+        ]
+      },
+      {
+        "id": "s3_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Combine the two fractions on the right over the common denominator (2v + 5).",
+        "memory_tip": "(2v + 5) − (v + 3) = v + 2 — the numerator simplifies cleanly once the denominators match.",
+        "lines": [
+          "dv/dx = [(2v + 5) − (v + 3)]/(2v + 5)",
+          "= (v + 2)/(2v + 5)",
+          "⇒ dx = (2v + 5)/(v + 2) dv"
+        ],
+        "why": "Combining the two right-hand terms into a single fraction gives dv/dx as a clean function of v, and inverting turns the equation into a separated form ready for integration.",
+        "common_mistakes": [
+          "Losing the +3 or the +5 when combining the two fractions.",
+          "Forgetting to invert dv/dx = (...) into dx = (...) dv before integrating."
+        ]
+      },
+      {
+        "id": "s4_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Split (2v + 5)/(v + 2) into a whole number plus a simple fraction before integrating.",
+        "memory_tip": "2v + 5 = 2(v + 2) + 1 — rewrite the numerator around the denominator's own bracket.",
+        "lines": [
+          "(2v + 5)/(v + 2) = [2(v + 2) + 1]/(v + 2)",
+          "= 2 + 1/(v + 2)",
+          "∫ dx = ∫ [2 + 1/(v + 2)] dv",
+          "⇒ x = 2v + log(v + 2) + c"
+        ],
+        "why": "Rewriting the top-heavy fraction as a constant plus a simple 1/(v+2) piece splits the integral into a plain term and a standard log term, which together give x as an explicit function of v.",
+        "common_mistakes": [
+          "Trying to integrate (2v + 5)/(v + 2) directly as a log without splitting off the constant 2 first.",
+          "Dropping the constant of integration c."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Substitute v = x − y and collect the x and y terms.",
+        "memory_tip": "x = 2v + log(v + 2) + c, with v = x − y, so 2v = 2x − 2y — watch the x terms combine on both sides.",
+        "lines": [
+          "Putting v = x − y: x = 2(x − y) + log(x − y + 2) + c",
+          "⇒ x = 2x − 2y + log(x − y + 2) + c",
+          {
+            "text": "x − 2y + log(x − y + 2) = c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting v = x − y returns the equation to the original variables, and collecting the x terms on one side gives the compact final relation the examiner expects.",
+        "common_mistakes": [
+          "Combining x − 2x incorrectly and getting the sign of x wrong in the final line.",
+          "Leaving the constant on the wrong side, writing −x + 2y + log(x−y+2) = c instead of x − 2y + log(x−y+2) = c."
+        ]
+      }
+    ]
+  }
+}

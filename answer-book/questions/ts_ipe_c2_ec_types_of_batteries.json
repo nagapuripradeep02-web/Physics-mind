@@ -255,25 +255,26 @@
             "text": "MnO(OH) + NH₃",
             "style": "indent"
           },
-          "MnO₂ acts as the depolariser: it removes the",
-          "hydrogen formed at the carbon rod, which",
-          "would otherwise collect there and stop the",
-          "cell.",
+          "MnO₂ acts as the depolariser: it is reduced",
+          "at the carbon rod instead of hydrogen being",
+          "released there. Without it, hydrogen would",
+          "collect on the rod and stop the cell.",
           {
             "text": "emf of a dry cell = 1.5 V",
             "style": "boxed"
           },
           "It cannot be recharged, because the ammonia",
-          "escapes and the zinc wall is used up.",
+          "is taken up as the complex ion [Zn(NH₃)₄]²⁺",
+          "and the zinc wall is used up.",
           "Dry cells are used in clocks, torches and",
           "small radios."
         ],
         "why": "Manganese goes from the +4 state in MnO₂ to the +3 state in MnO(OH), so only one electron is taken at the cathode while two are released at the anode. That is why the two half reactions are not written with matching electron counts here.",
         "common_mistakes": [
           "Writing 2e⁻ in the cathode reaction. Manganese changes by one oxidation state, so only one electron is taken.",
-          "Saying the dry cell can be recharged. The ammonia leaves as a gas, so the reaction cannot be reversed."
+          "Saying the dry cell can be recharged. The zinc container is used up and the ammonia is taken up as a complex ion, so the reaction cannot be reversed."
         ],
-        "memory_tip": "Zinc gives electrons at the wall, MnO₂ takes them at the rod, and MnO₂ also clears the hydrogen away.",
+        "memory_tip": "Zinc gives electrons at the wall and MnO₂ takes them at the rod. Because MnO₂ is reduced there, no hydrogen collects on the rod.",
         "margin_note": "Both electrode reactions, the word depolariser and the 1.5 V figure carry these two marks."
       },
       {

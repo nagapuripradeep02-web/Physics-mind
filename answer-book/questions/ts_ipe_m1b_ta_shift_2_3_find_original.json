@@ -66,6 +66,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This time the equation you are handed is the NEW one, so it is written in capital X and capital Y. Number it (1).",
+        "memory_tip": "The equation handed over is the NEW one, so write it in capital X and Y.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,7 +109,8 @@
         "label": "Write the change of axes",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark, and the one that separates this from its facing question. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round.",
+        "margin_note": "Second mark, and the one that decides the direction. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
+        "memory_tip": "Going BACK means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
         "lines": [
           "We take origin (h, k) = (2, 3), then",
           "X = x − h  ⇒  X = x − 2",
@@ -149,6 +151,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Put those two lines into equation (1) — every capital X and capital Y is replaced by its small-letter expression.",
+        "memory_tip": "Every capital X and Y is replaced by its small-letter expression.",
         "lines": [
           "From (1), original equation is",
           "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2) − 7(y−3) − 11 = 0"
@@ -188,6 +191,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Expand, collect and write the original equation in small x and small y. A capital letter left in the answer means a term was missed.",
+        "memory_tip": "A capital letter left in the answer means a term was missed.",
         "lines": [
           "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y) + 17x − 34 − 7y + 21 − 11 = 0",
           "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18 + 17x − 34 − 7y + 21 − 11 = 0",
@@ -226,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The transformed equation is given, so the substitution reverses: X = x − 2 and Y = y − 3, never x = X + 2. Substitute inside the XY product as well, and the quadratic part comes out unchanged."
 }

@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_npr_5040_ncr_210",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿPᵣ = 5040 and ⁿCᵣ = 210, find n and r.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide to get r!",
+      "marks": 1
+    },
+    {
+      "label": "Find n from ⁿP₄ = 5040",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 142. Printed appearances: AP 16, 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; this exact question is Q7 of the book's Model Paper 2 (book p.113) and is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find n and r from n P r = 5040 and n C r = 210.",
+  "insider_note": "Divide the two given numbers before anything else: ⁿPᵣ/ⁿCᵣ = r!, so r! = 5040/210 = 24 and r = 4. Then 5040 = 10 · 9 · 8 · 7 gives n = 10 — and the answer must state both letters.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Divide to get r!",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿPᵣ = r! · ⁿCᵣ, so r! = 5040/210 = 24 = 4! and r = 4.",
+        "memory_tip": "ⁿPᵣ = r!·ⁿCᵣ, so the ratio is r! whatever n is: 5040/210 = 24 = 4!, and r = 4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿPᵣ = r! · ⁿCᵣ",
+          "r! = ⁿPᵣ / ⁿCᵣ = 5040/210 = 24 = 4!",
+          "∴ r = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n P r is r factorial times n C r, so r factorial is 5040 over 210 = 24 = 4 factorial, giving r = 4.",
+          "accept": [
+            "n P r is r factorial times n C r so r factorial is five thousand forty by two ten which is twenty four which is four factorial so r is four",
+            "divide the permutation by the combination to get r factorial twenty four, r is four",
+            "r factorial is twenty four so r is four",
+            "n P r by n C r cheste r factorial twenty four, r four",
+            "the ratio gives four factorial"
+          ],
+          "reject": [
+            "divide",
+            "find r"
+          ],
+          "heard_as": [
+            "r factorial",
+            "twenty four",
+            "four factorial",
+            "r is four",
+            "five thousand forty"
+          ]
+        },
+        "why": "A permutation counts each selection r! times over, once for each order. So the ratio ⁿPᵣ/ⁿCᵣ is r! whatever n is — which is why r can be found before n.",
+        "common_mistakes": [
+          "Dividing the other way, 210/5040, and getting a fraction.",
+          "Reading 24 as r = 24 instead of r! = 24."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Find n from ⁿP₄ = 5040",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10.",
+        "memory_tip": "Then ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10. State BOTH letters.",
+        "lines": [
+          "ⁿP₄ = 5040 = 10 · 9 · 8 · 7 = ¹⁰P₄",
+          {
+            "text": "∴ n = 10, r = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n P 4 = 5040 = 10 times 9 times 8 times 7, so n = 10, and the answer is n = 10, r = 4.",
+          "accept": [
+            "n P four is five thousand forty which is ten nine eight seven so n is ten and r is four",
+            "n equals ten and r equals four",
+            "five thousand forty as four consecutive factors from ten",
+            "n P four five thousand forty, ten nine eight seven, n ten r four",
+            "n is ten"
+          ],
+          "reject": [
+            "find n",
+            "ten"
+          ],
+          "heard_as": [
+            "n is ten",
+            "ten nine eight seven",
+            "r is four",
+            "five thousand forty"
+          ]
+        },
+        "why": "With r known, ⁿP₄ is a product of four consecutive numbers and 5040 matches only 10 · 9 · 8 · 7. Both unknowns must be stated in the answer.",
+        "common_mistakes": [
+          "Answering n = 7 (the smallest factor).",
+          "Stating n only and forgetting to write r = 4 in the answer."
+        ]
+      }
+    ]
+  }
+}

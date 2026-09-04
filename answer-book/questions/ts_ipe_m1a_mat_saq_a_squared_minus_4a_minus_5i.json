@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "A squared",
         "margin_note": "Half the marks. A² means A × A, not each entry squared. Multiply row by column: the top-left entry is row 1 against column 1, which is 1(1) + 2(2) + 2(2) = 9.",
+        "memory_tip": "A² means A × A, NOT each entry squared. Multiply row by column.",
         "lines": [
           {
             "text": "Sol:",
@@ -118,6 +119,7 @@
         "marks": 1,
         "mark_note": "The other terms",
         "margin_note": "Third mark. 4A multiplies EVERY entry of A by 4. 5I is 5 down the diagonal and 0 everywhere else — I is the identity matrix, not a matrix of ones.",
+        "memory_tip": "4A multiplies every entry by 4. 5I is 5 down the DIAGONAL and 0 elsewhere — not a matrix of 5s.",
         "lines": [
           {
             "text": "4A = \\begin{bmatrix} 4 & 8 & 8 \\\\ 8 & 4 & 8 \\\\ 8 & 8 & 4 \\end{bmatrix}, \\quad 5I = \\begin{bmatrix} 5 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & 5 \\end{bmatrix}",
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Subtract entry by entry. The diagonal gives 9 − 4 − 5 = 0 and every other entry gives 8 − 8 − 0 = 0, so the whole matrix is zero.",
+        "memory_tip": "The diagonal gives 9 − 4 − 5 = 0 and every other entry 8 − 8 − 0 = 0.",
         "lines": [
           "Subtracting entry by entry:",
           "Diagonal:  9 − 4 − 5 = 0",
@@ -207,5 +210,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is symmetric with a repeating pattern, so A² comes out as 9 on the diagonal and 8 everywhere else. Only two checks are then needed: 9 − 4 − 5 and 8 − 8 − 0."
 }

@@ -52,7 +52,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. Both fixed points sit on the y-axis, so the x-terms will cancel in the same way as its partner question.",
+        "margin_note": "No mark of its own. Both fixed points sit on the y-axis, symmetric about the origin, so the x-terms will cancel.",
+        "memory_tip": "Both fixed points sit on the Y-axis, so this time the x-terms are what cancel.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Isolate one distance, then square — never square a sum of two roots directly.",
+        "memory_tip": "ISOLATE one distance before squaring — never square a sum of two roots directly.",
         "lines": [
           "Given condition: PA + PB = 6",
           "⇒ PA = 6 − PB",
@@ -136,6 +138,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Both fixed points have x = 0, so the x² terms are identical and cancel, and a difference of two squares in y finishes the line.",
+        "memory_tip": "Both have x = 0, so the x² terms are identical and cancel, leaving squares in y.",
         "lines": [
           "⇒ 12 PB = 36 + [x² + (y+2)²] − [x² + (y−2)²]",
           "⇒ 12 PB = 36 + (y+2)² − (y−2)²",
@@ -178,6 +181,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. The 36y cancels across, 9y² − 4y² leaves 5y², and the constants give 45. Unequal positive coefficients again — an ellipse.",
+        "memory_tip": "Unequal but both POSITIVE coefficients — an ellipse.",
         "lines": [
           "Squaring on both sides:  9 PB² = (9 + 2y)²",
           "⇒ 9[(x−0)² + (y+2)²] = 81 + 4y² + 36y",
@@ -218,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate PA before squaring or a cross term survives. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
 }

@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_classify_2x_plus1_over3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Decide with justification whether f: R→R defined by f(x) = (2x + 1)/3 is an injection, a surjection or a bijection.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Proof that f is one one",
+      "marks": 1
+    },
+    {
+      "label": "Proof that f is onto",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The domain and the codomain answered against are the ones printed in the stem, R and R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — the two things you have to test, and how each test goes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_one",
+        "kind": "equation",
+        "label": "Prove f is one one",
+        "marks": 1,
+        "mark_note": "One one",
+        "margin_note": "First mark. Copy the domain and the codomain out of the question first, then assume two inputs share an image and force them to be equal.",
+        "memory_tip": "For one one, start from f(x₁) = f(x₂) and end at x₁ = x₂. Never start from x₁ = x₂.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f: R→R, f(x) = (2x + 1)/3",
+          "Domain = R, codomain = R",
+          "Let f(x₁) = f(x₂), where x₁, x₂ ∈ R",
+          "⇒ (2x₁ + 1)/3 = (2x₂ + 1)/3",
+          "⇒ 2x₁ + 1 = 2x₂ + 1 ⇒ x₁ = x₂",
+          "∴ f is one one (an injection)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That assuming f(x₁) = f(x₂) leads to 2x₁ + 1 = 2x₂ + 1 and so to x₁ = x₂, which is what one one means.",
+          "accept": [
+            "let f of x one equal f of x two then two x one plus one by three equals two x two plus one by three so x one equals x two",
+            "assume the two images are equal cancel the three then the one then the two and the inputs are equal",
+            "take two inputs with the same image and show they must be the same input",
+            "f of x one equals f of x two anukunte x one equals x two vastundi so one one",
+            "equating the images gives x one equals x two so f is injective"
+          ],
+          "reject": [
+            "f is one one because it is linear",
+            "I prove it is an injection",
+            "it is a straight line so it is one one"
+          ],
+          "heard_as": [
+            "one one",
+            "one to one",
+            "injection",
+            "injective",
+            "x one",
+            "x two"
+          ]
+        },
+        "why": "One one means two different inputs never share an image. The clean way to show that is to assume two inputs DO share an image and be forced to conclude they were the same input.",
+        "common_mistakes": [
+          "Starting from x₁ = x₂ and deriving f(x₁) = f(x₂), which is true for every function and proves nothing.",
+          "Saying it is one one because the graph is a straight line, with no algebra."
+        ]
+      },
+      {
+        "id": "s2_onto",
+        "kind": "equation",
+        "label": "Prove f is onto",
+        "marks": 1,
+        "mark_note": "Onto",
+        "margin_note": "Second mark. Start from an arbitrary y in the codomain R, produce an x in the domain, and check that this x really maps to y.",
+        "memory_tip": "For onto, start at y in the codomain and work back to an x. Starting at x proves nothing.",
+        "lines": [
+          "Let y ∈ R, the codomain.",
+          "Put (2x + 1)/3 = y ⇒ x = (3y − 1)/2",
+          "This x is real for every real y, so x ∈ R,",
+          "and f(x) = (2·(3y − 1)/2 + 1)/3 = y.",
+          "∴ every y ∈ R has a pre-image; f is onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an arbitrary y in R the number x = (3y − 1)/2 lies in R and satisfies f(x) = y, so every element of the codomain is reached.",
+          "accept": [
+            "take any y in R and solve two x plus one by three equals y to get x equals three y minus one by two which is real",
+            "for every y in the codomain there is a real x with f of x equals y so it is onto",
+            "start from y in R work back to x equals three y minus one over two and check f of x is y",
+            "any y in R teeskoni x equals three y minus one by two vastundi so onto",
+            "every real number has a pre-image so f is surjective"
+          ],
+          "reject": [
+            "f is onto because the range is R",
+            "I prove it is a surjection",
+            "every x gives a y"
+          ],
+          "heard_as": [
+            "onto",
+            "surjection",
+            "surjective",
+            "pre image",
+            "codomain",
+            "three y minus one by two"
+          ]
+        },
+        "why": "Onto means nothing in the codomain is left out. So you must be able to start at ANY y and produce an x that reaches it, which is why the argument runs backwards from y to x.",
+        "common_mistakes": [
+          "Writing only 'the range is R' with no x produced for a general y.",
+          "Producing x but never checking that f(x) really equals y."
+        ]
+      },
+      {
+        "id": "s3_verdict",
+        "kind": "boxed_final",
+        "label": "State the verdict",
+        "marks": 0,
+        "margin_note": "No separate mark, but write it. The question named three words, so the last line must pick one of them and say why.",
+        "memory_tip": "One one and onto together is the definition of a bijection, so name both before the verdict.",
+        "lines": [
+          "f is one one and onto.",
+          {
+            "text": "∴ f: R→R is a bijection.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a bijection BECAUSE it was shown to be both one one and onto.",
+          "accept": [
+            "since f is one one and onto it is a bijection",
+            "both parts hold so f is bijective",
+            "it is an injection and a surjection so it is a bijection",
+            "one one and onto rendu unnai so f bijection",
+            "f from R to R is a bijection"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a bijection",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "bijection",
+            "bijective",
+            "by jection",
+            "one one and onto"
+          ]
+        },
+        "why": "The question offered three words, so the answer must choose one and tie it to the two proofs above. An examiner reading only the last line should see the question answered.",
+        "common_mistakes": [
+          "Stopping after the onto proof and never naming the verdict.",
+          "Writing 'injection' when both properties were proved; a bijection is the stronger and correct word here."
+        ]
+      }
+    ]
+  }
+}

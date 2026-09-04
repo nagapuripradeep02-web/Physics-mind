@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_dy_delta_y_one_over_x_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy and Δy for y = 1/(x + 2) when x = 8 and Δx = 0.02.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find dy from the derivative",
+      "marks": 1
+    },
+    {
+      "label": "Find Δy from the exact change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(v), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(v)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dy",
+        "kind": "equation",
+        "label": "Find dy from the derivative",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The derivative is negative, so dy is negative too. Keep the minus sign — dropping it is the commonest way this mark is lost.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = 1/(x + 2),  x = 8,  Δx = 0.02",
+          "dy/dx = −1/(x + 2)²",
+          "At x = 8:  dy/dx = −1/(8 + 2)² = −1/100",
+          "dy = (dy/dx)·Δx = (−1/100)(0.02)",
+          "∴ dy = −0.0002"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = −1/(x + 2)², which is −1/100 at x = 8, so dy = −0.0002.",
+          "accept": [
+            "differentiate one over x plus two to get minus one over x plus two squared",
+            "at x equals eight the derivative is minus one by hundred",
+            "d y is minus zero point zero zero zero two",
+            "derivative minus one by hundred vasthundi, delta x tho multiply cheyyali",
+            "the answer is negative because y decreases as x increases"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by hundred",
+            "x plus two squared",
+            "delta x",
+            "minus zero point zero zero zero two"
+          ]
+        },
+        "why": "1/(x + 2) is (x + 2)⁻¹, and the power rule gives −(x + 2)⁻², so the derivative is negative everywhere the function is defined. That sign is part of the answer, not a slip.",
+        "common_mistakes": [
+          "Writing dy/dx = 1/(x + 2)² without the minus sign.",
+          "Squaring only x instead of the whole bracket (x + 2)."
+        ],
+        "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
+      },
+      {
+        "id": "s2_delta_y",
+        "kind": "boxed_final",
+        "label": "Find Δy from the exact change",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Subtracting the two fractions over a common denominator, 10.02 × 10 = 100.2, is faster and safer than converting each one to a decimal first.",
+        "lines": [
+          "Δy = f(x + Δx) − f(x) = f(8.02) − f(8)",
+          "= 1/(8.02 + 2) − 1/(8 + 2) = 1/10.02 − 1/10",
+          "= (10 − 10.02)/(10.02 × 10) = −0.02/100.2",
+          "Δy = −0.0001996  (to 7 decimal places)",
+          {
+            "text": "∴ dy = −0.0002  and  Δy = −0.0001996",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δy = 1/10.02 − 1/10 = −0.02/100.2 = −0.0001996, the exact change.",
+          "accept": [
+            "delta y is one by ten point zero two minus one by ten",
+            "take the common denominator hundred point two",
+            "the exact change is minus zero point zero zero zero one nine nine six",
+            "common denominator teesukoni subtract cheyyali",
+            "both d y and delta y are negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by ten point zero two",
+            "minus one by ten",
+            "hundred point two",
+            "minus zero point zero zero zero one nine nine six"
+          ]
+        },
+        "why": "Δy is the real change in y, so the function is worked out at both points. Both numbers are negative because y falls as x rises here, and they agree to six decimal places, which is why dy is a usable stand-in for Δy.",
+        "common_mistakes": [
+          "Rounding 1/10.02 to 0.0998 and getting Δy = −0.0002 exactly, which hides the difference the question asks about.",
+          "Reporting Δy as positive after subtracting in the wrong order."
+        ],
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+      }
+    ]
+  },
+  "insider_note": "The derivative is NEGATIVE, so both dy and Δy come out negative — the function is decreasing. Losing that sign is the standard error here."
+}

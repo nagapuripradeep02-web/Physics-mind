@@ -74,6 +74,7 @@
         "label": "Write the determinant",
         "marks": 0,
         "margin_note": "No mark of its own. Note that column 1 is all 1s — that is the clue telling you to use ROW operations here, not column operations.",
+        "memory_tip": "Column 1 is all 1s — that is the clue to use ROW operations here, not column ones.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,7 +110,7 @@
         },
         "why": "The first column being 1, 1, 1 is what makes row subtraction free of fractions. Spotting that decides the whole method before you write a second line.",
         "common_mistakes": [
-          "Reaching for column operations because the last question used them.",
+          "Reaching for column operations out of habit, when the all-1s first column is what makes ROW operations free of fractions here.",
           "Expanding the determinant directly and producing six messy terms."
         ]
       },
@@ -120,6 +121,7 @@
         "marks": 1,
         "mark_note": "Row operations",
         "margin_note": "First mark. Subtracting row 1 from the other two puts zeros down the first column, because every entry there is 1.",
+        "memory_tip": "Subtracting row 1 from the other two puts zeros down column 1, because every entry there is 1.",
         "lines": [
           "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
           {
@@ -151,7 +153,7 @@
             "first column"
           ]
         },
-        "why": "Subtracting one row from another never changes a determinant's value. Because column 1 is all 1s, this single move buys two zeros at no cost.",
+        "why": "Subtracting one row from another never changes a determinant's value. Because column 1 is all 1s, this single move creates two zeros at no cost.",
         "common_mistakes": [
           "Doing R₁ − R₂ instead of R₂ − R₁, which flips the sign of the final answer.",
           "Changing row 1 as well; the row you subtract BY must stay as it is."
@@ -164,6 +166,7 @@
         "marks": 1,
         "mark_note": "Standard factorisations",
         "margin_note": "Second mark. Two standard results do all the work here. Both leave the SAME bracket, (b−a), and that shared bracket is what comes out on the next line.",
+        "memory_tip": "Both differences leave the SAME bracket, and that shared bracket comes out next.",
         "lines": [
           "b² − a² = (b−a)(a+b)",
           "b³ − a³ = (b−a)(a² + ab + b²)",
@@ -193,7 +196,7 @@
             "b minus a"
           ]
         },
-        "why": "The difference of cubes is the one factorisation this question is really testing. Everything after it is bookkeeping.",
+        "why": "The difference of cubes is the one factorisation this question is really testing. Everything after it is routine simplification.",
         "common_mistakes": [
           "Writing b³ − a³ = (b−a)³, which is wrong.",
           "Getting the middle sign wrong: the second bracket is a² + ab + b², all plus.",
@@ -207,6 +210,7 @@
         "marks": 1,
         "mark_note": "Common factors",
         "margin_note": "Third mark. (b−a) leaves row 2 and (c−a) leaves row 3, and what stays behind is small enough to read.",
+        "memory_tip": "(b−a) leaves row 2 and (c−a) leaves row 3, and what stays behind is small enough to read.",
         "lines": [
           "Taking (b−a) from R₂ and (c−a) from R₃:",
           {
@@ -251,6 +255,7 @@
         "marks": 1,
         "mark_note": "Row operation",
         "margin_note": "Fourth mark. Rows 2 and 3 now look alike, so subtracting one from the other is what makes the third bracket (c−b) appear. This is the step students most often cannot see.",
+        "memory_tip": "Rows 2 and 3 now look alike, so R₃−R₂ is what makes (c−b) appear. This is the step most often missed.",
         "lines": [
           "R₃ → R₃ − R₂:",
           "Middle entry:  (a+c) − (a+b) = c − b",
@@ -293,6 +298,7 @@
         "marks": 1,
         "mark_note": "Third bracket",
         "margin_note": "Fifth mark. The third bracket now leaves the determinant, so all three brackets of the answer are outside and only the (ab+bc+ca) is still to come.",
+        "memory_tip": "All three brackets are now outside; only the (ab+bc+ca) is still to come.",
         "lines": [
           "Taking (c−b) common from R₃:",
           {
@@ -336,6 +342,7 @@
         "marks": 3,
         "mark_note": "Expansion and final form",
         "margin_note": "The last three marks together. Expand along column 1 — only the 1 at the top contributes — then multiply out carefully: a² and b² both cancel, and what survives is exactly ab+bc+ca.",
+        "memory_tip": "Expand along column 1 — only the top 1 contributes — then a² and b² cancel.",
         "lines": [
           "Expanding along C₁:",
           "Δ = (b−a)(c−a)(c−b)[(a+b)(a+b+c) − (a²+ab+b²)]",
@@ -380,5 +387,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do R₂ − R₁ and R₃ − R₁ first so that a whole column becomes zeros. Then b² − a² and b³ − a³ both carry (b − a), which is what comes out as the common factor."
 }

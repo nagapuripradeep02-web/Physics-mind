@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_reduction_secn_hence_sec5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Obtain the reduction formula for I_n = ∫ secⁿx dx. Hence find ∫ sec⁵x dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up integration by parts",
+      "marks": 1
+    },
+    {
+      "label": "Apply by parts and use tan²x = sec²x − 1",
+      "marks": 2
+    },
+    {
+      "label": "Solve for the reduction formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitute n = 5, 3, 1 for the final answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.28 (PDF page 27) — LAQ chapter 3 ‘Integration’, answer 18.1, on a ★★★ SSP 28 page (banner printed on this page). Printed appearance: AP 17 (a single black tag, partly obscured by a sticker in the scan; only AP 17 is legible). Chapter star rank ★★★. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter (book pp.26-37) — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here (unlike its twin 18.2 on the facing column, which drops a sign — see that card's note). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Every term in this reduction and its final answer is positive — if a minus sign appears anywhere while working secⁿx, it has leaked in from the cscⁿx version worked alongside it, and is a sign something was copied from the wrong column.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up integration by parts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given I_n = ∫ secⁿx dx = ∫ secⁿ⁻²x · sec²x dx",
+          "Take first function u = secⁿ⁻²x,",
+          "second v = sec²x",
+          "Then ∫v dx = ∫sec²x dx = tanx"
+        ],
+        "why": "Peeling off sec²x (whose antiderivative tanx is already known) leaves secⁿ⁻²x to differentiate — the same by-parts pattern as sinⁿx and cosⁿx, now with sec²x as the piece integrated.",
+        "common_mistakes": [
+          "Peeling off only one secx instead of sec²x, which leaves an antiderivative that is not directly known.",
+          "Taking u = sec²x and v = secⁿ⁻²x the wrong way round."
+        ],
+        "memory_tip": "Always integrate the sec²x piece (v = tanx is a known standard result); differentiate the rest."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "equation",
+        "label": "Apply by parts and use tan²x = sec²x − 1",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "By the by-parts rule, I_n",
+          "= secⁿ⁻²x tanx − ∫(n−2)secⁿ⁻³x secx tanx",
+          "· tanx dx",
+          "= secⁿ⁻²x tanx − (n−2)∫secⁿ⁻²x tan²x dx",
+          "= secⁿ⁻²x tanx − (n−2)∫secⁿ⁻²x(sec²x − 1)dx",
+          {
+            "text": "I_n = \\sec^{n-2}x\\tan x - (n-2)\\left(I_n - I_{n-2}\\right)",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "tan²x = sec²x − 1 turns the new integral back into powers of secx alone, closing the loop back to I_n and I_{n−2} — the secant partner of the sin²x = 1 − cos²x step used for sinⁿx.",
+        "common_mistakes": [
+          "Leaving tan²x un-replaced, which never returns to I_n or I_{n−2}.",
+          "Writing tan²x = 1 − sec²x with the sign reversed."
+        ],
+        "memory_tip": "tan²x = sec²x − 1, always positive on the sec²x side — the reverse of the cos²x identity's sign."
+      },
+      {
+        "id": "s3_reduction",
+        "kind": "boxed_final",
+        "label": "Solve for the reduction formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Result",
+        "lines": [
+          "I_n = secⁿ⁻²x tanx − (n−2)I_n + (n−2)I_{n−2}",
+          "(n−1)I_n = secⁿ⁻²x tanx + (n−2)I_{n−2}",
+          {
+            "text": "\\therefore\\ I_n = \\frac{\\sec^{n-2}x\\tan x}{n-1} + \\frac{n-2}{n-1}I_{n-2}\\ \\dots(1)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "why": "Collecting the I_n terms on one side gives (n−1)I_n, not nI_n, because this by-parts split produced a −(n−2)I_n term rather than a −(n−1)I_n term — dividing by (n−1) is what makes this reduction's denominator different from the sinⁿx and cosⁿx ones.",
+        "common_mistakes": [
+          "Dividing by n out of habit, copying the sinⁿx/cosⁿx pattern instead of the (n−1) that this derivation actually gives.",
+          "Losing the (n−2) coefficient on the second term."
+        ],
+        "memory_tip": "sinⁿx and cosⁿx divide by n; secⁿx and cscⁿx divide by (n−1) — a genuinely different denominator."
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "boxed_final",
+        "label": "Substitute n = 5, 3, 1 for the final answer",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "Put n = 5, 3, 1 successively in (1):",
+          "I₅ = sec³x tanx/4 + (3/4)I₃",
+          "I₃ = secx tanx/2 + (1/2)I₁,",
+          "and I₁ = ∫secx dx = log|secx + tanx| + c",
+          "So I₃ = secx tanx/2 + (1/2)log|secx + tanx| + c",
+          "∴ I = sec³x tanx/4 + (3/8)secx tanx",
+          {
+            "text": "+ (3/8)log|secx + tanx| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Odd n stops at I₁ = ∫secx dx, the standard log|secx + tanx| result — the same odd-n stopping rule as tanⁿx, but landing on a different standard integral.",
+        "common_mistakes": [
+          "Stopping the chain at I₃ without substituting the value of I₁ into it.",
+          "Writing log|secx + tanx| as log|secx − tanx| by sign slip."
+        ],
+        "memory_tip": "secⁿx (odd n) stops at I₁ = log|secx+tanx|; cscⁿx (odd n) stops at I₁ = log|tan(x/2)| — different constants, same shape."
+      }
+    ]
+  }
+}

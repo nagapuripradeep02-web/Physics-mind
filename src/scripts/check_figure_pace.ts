@@ -3,7 +3,8 @@
  *
  *   npx tsx src/scripts/check_figure_pace.ts                     # report everything (warnings)
  *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1  # hard-fail on that prefix
- *   npm run check:figure-pace                                    # = the zoology strict run
+ *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1,ts_ipe_c2,ts_ipe_m2b   # several
+ *   npm run check:figure-pace                                    # = every retimed subject, strict
  *
  * A figure's drawing speed is authored per element (`ms`) and the player is
  * purely time-based, so a long stroke given a short `ms` visibly RACES — and no
@@ -33,9 +34,26 @@ const opt = (name: string, dflt: string): string => {
     const i = args.indexOf(name);
     return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
+/**
+ * `--strict` with nothing after it degrades SILENTLY to report-only: `opt` returns
+ * '' when the next token is missing, ''.split(',').filter(Boolean) is [], and
+ * [].some() is false for every file — so every finding lands in the warnings
+ * bucket and the run still exits 0 saying "report only". A gate an argument slip
+ * can switch off without saying so is not a gate: a package.json script ending in
+ * a bare `--strict` shipped exactly that on 2026-08-29, and it was caught by a
+ * sibling session rather than by this script. Passing the flag means asking for
+ * the gate, so a missing value is now a hard error.
+ */
+if (args.includes('--strict') && !opt('--strict', '')) {
+    console.error('✗ --strict needs a prefix (or a comma-separated list): --strict ts_ipe_c2,ts_ipe_m2a');
+    console.error('  omit --strict entirely for the report-only run.');
+    process.exit(2);
+}
 // --strict takes a COMMA-SEPARATED list of prefixes: every subject built under the
-// phased-figure contract is strict, and they accumulate (ts_ipe_z1, then ts_ipe_b2).
-// The 96 pre-contract figures stay outside it and are reported as warnings only.
+// phased-figure contract is strict, and they accumulate (ts_ipe_z1, then ts_ipe_b2,
+// then ts_ipe_m2a). The pre-contract figures stay outside it and are reported as
+// warnings only. Three sessions built this list independently inside one week; this
+// is the Botany-II implementation, kept because it landed first (Rule 40a).
 const STRICT = opt('--strict', '');
 const STRICT_LIST = STRICT.split(',').map((s) => s.trim()).filter(Boolean);
 const isStrict = (f: string): boolean => STRICT_LIST.some((p) => f.startsWith(p));

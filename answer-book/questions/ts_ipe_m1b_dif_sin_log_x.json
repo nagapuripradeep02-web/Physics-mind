@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If f(x) = sin(log x), x > 0, find f′(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the outer sine",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate log x and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 6. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.38461945 at x = 2 against cos(log x)/x = 0.38461945, and 0.07012445 at x = 3.7 against 0.07012445."
+  },
+  "recall_prompt": "Say how you would do this one — say which function is outside, which is inside, and why x > 0 is stated.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer_sine",
+        "kind": "equation",
+        "label": "Differentiate the outer sine",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sine is outside and log x is inside. The cosine keeps the same inside part, log x — it does not become cos x.",
+        "memory_tip": "Whatever is inside the sine stays inside the cosine, unchanged. Only the extra du/dx factor is new.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = sin(log x),  x > 0, where log is the natural logarithm.",
+          "The condition x > 0 is given because log x is defined only for positive x.",
+          "Take u = log x. Then f(x) = sin u and d/dx(sin u) = cos u · du/dx",
+          "∴ f′(x) = cos(log x) · d/dx(log x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sine is the outer function, so f′(x) = cos(log x) times the derivative of log x.",
+          "accept": [
+            "sin u differentiates to cos u times du by dx",
+            "the outside is sine and the inside is log x",
+            "cos log x stays with log x inside",
+            "sin bayata undi, log x lopala undi",
+            "differentiate the sine first and keep log x inside the cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos log x",
+            "sin u",
+            "du by dx",
+            "inside stays"
+          ]
+        },
+        "why": "The mark is for identifying the layers correctly. Writing cos x instead of cos(log x) is a different function altogether, so this line is where the method is judged.",
+        "common_mistakes": [
+          "Writing f′(x) = cos x instead of cos(log x).",
+          "Writing cos(log x) alone, with no inner derivative attached."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate log x and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. d/dx(log x) = 1/x, so the cosine is divided by x. Since x > 0, dividing by x is always allowed here.",
+        "memory_tip": "A log inside always produces a factor 1/x, so an x appears under the line in the final answer.",
+        "lines": [
+          "d/dx(log x) = 1/x",
+          "∴ f′(x) = cos(log x) · (1/x)",
+          {
+            "text": "∴ f′(x) = cos(log x)/x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(log x) = 1/x, giving f′(x) = cos(log x)/x.",
+          "accept": [
+            "log x differentiates to one by x",
+            "the answer is cos log x divided by x",
+            "an x comes into the denominator",
+            "log x ki one by x, kaabatti x kinda vasthundi",
+            "multiply by one over x at the end"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by x",
+            "cos log x by x",
+            "denominator x",
+            "log derivative"
+          ]
+        },
+        "why": "The 1/x is the whole of this mark. Leaving it out gives cos(log x), which is the derivative with respect to log x, not with respect to x.",
+        "common_mistakes": [
+          "Leaving out the 1/x factor.",
+          "Writing the answer as cos(log x)·log x by differentiating log x wrongly."
+        ]
+      }
+    ]
+  },
+  "insider_note": "One chain rule: cos of the inside, times the derivative of the inside. The condition x > 0 is stated because log x needs it, so keep it with the answer."
+}

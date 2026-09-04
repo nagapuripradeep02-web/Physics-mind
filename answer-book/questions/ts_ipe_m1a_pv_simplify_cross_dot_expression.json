@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_simplify_cross_dot_expression",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Simplify (i − 2j + 3k) × (2i + j − k)·(j + k).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read it as a scalar triple product",
+      "marks": 1
+    },
+    {
+      "label": "Expand the 3 × 3 determinant",
+      "marks": 2
+    },
+    {
+      "label": "State the value and what it means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split gives the first mark to reading the expression correctly — the cross product binds before the dot, so this is the scalar triple product [a b c] — half the marks to the determinant, and the last mark to stating a number rather than a vector. CHECKED TWO WAYS: expanding the single 3 × 3 determinant with rows (1, −2, 3), (2, 1, −1) and (0, 1, 1) gives 1(1 + 1) + 2(2) + 3(2) = 12; and computing the cross product first gives a × b = −i + 7j + 5k, which dotted with a = (1, −2, 3) gives −1 − 14 + 15 = 0 and dotted with b = (2, 1, −1) gives −2 + 7 − 5 = 0, so it is perpendicular to both, and dotting it with c = (0, 1, 1) gives 0 + 7 + 5 = 12, the same value. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would simplify this — say which product is done first and whether the answer is a number or a vector.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_the_expression",
+        "kind": "equation",
+        "label": "Read it as a scalar triple product",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The cross product must come first, because a dot product gives a number and a number cannot be crossed with a vector. So the expression is [a b c].",
+        "memory_tip": "Cross before dot — the other order is not even defined, since a number cannot be crossed with a vector.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i − 2j + 3k, b = 2i + j − k",
+          "and c = j + k.",
+          "The cross product is taken first, so",
+          "the expression is (a × b)·c = [a b c]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product is done first, so the expression is the scalar triple product [a b c].",
+          "accept": [
+            "the cross comes first so this is the scalar triple product",
+            "it is a cross b dotted with c which is the box product",
+            "a dot product gives a number so the cross must come first",
+            "cross product modata, adi scalar triple product avutundi",
+            "read it as the box product a b c"
+          ],
+          "reject": [
+            "the answer is twelve",
+            "expand the determinant",
+            "hence proved"
+          ],
+          "heard_as": [
+            "scalar triple product",
+            "box product",
+            "cross first",
+            "a b c"
+          ]
+        },
+        "why": "A dot product returns a number, and a number cannot be crossed with a vector, so only one reading of the expression makes sense. That reading is the scalar triple product, which is a single 3 × 3 determinant.",
+        "common_mistakes": [
+          "Doing the dot product first, which leaves a number crossed with a vector.",
+          "Expecting a vector answer from a scalar triple product."
+        ]
+      },
+      {
+        "id": "s2_expand_determinant",
+        "kind": "equation",
+        "label": "Expand the 3 × 3 determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The rows are the components of a, b and c in the order the product names them. Write the zero component of c before starting.",
+        "memory_tip": "Rows go in the order the product names them: a, then b, then c. Swapping any two rows changes the sign.",
+        "lines": [
+          "c = j + k has components (0, 1, 1).",
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & -2 & 3 \\\\ 2 & 1 & -1 \\\\ 0 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(1 + 1) − (−2)(2 − 0) + 3(2 − 0)",
+          "= 2 + 4 + 6",
+          "= 12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant with rows (1, −2, 3), (2, 1, −1), (0, 1, 1) expands to 2 + 4 + 6 = 12.",
+          "accept": [
+            "expand the determinant to get two plus four plus six",
+            "the three by three determinant works out to twelve",
+            "rows are the components of a then b then c",
+            "determinant expand cheste two plus four plus six equals twelve",
+            "one into two plus two into two plus three into two"
+          ],
+          "reject": [
+            "the cross comes first",
+            "so the vectors are not coplanar",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two plus four plus six",
+            "twelve",
+            "determinant",
+            "rows"
+          ]
+        },
+        "why": "The scalar triple product is the determinant of the nine components, taken in the order the product names the vectors. Row order is not free: swapping any two rows reverses the sign of the answer.",
+        "common_mistakes": [
+          "Leaving out the zero i component of j + k.",
+          "Dropping the minus in front of the second term of the expansion."
+        ]
+      },
+      {
+        "id": "s3_state_the_value",
+        "kind": "boxed_final",
+        "label": "State the value",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Last mark. The answer is a plain number, not a vector. It is non-zero, so the three vectors do not lie in one plane.",
+        "memory_tip": "A scalar triple product is a number, and a non-zero value means the three vectors are not coplanar.",
+        "lines": [
+          "The value is a number, not a vector.",
+          "It is not zero, so a, b and c are not",
+          "coplanar; 12 is the volume, in cubic",
+          "units, of the box they span.",
+          {
+            "text": "∴ (a × b)·c = 12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the value is 12, a number, and that being non-zero means a, b and c are not coplanar.",
+          "accept": [
+            "the answer is twelve, a number not a vector",
+            "since it is not zero the three vectors are not coplanar",
+            "twelve is the volume of the parallelepiped they span",
+            "twelve, adi number, vector kaadu",
+            "the simplified value is twelve"
+          ],
+          "reject": [
+            "expand the determinant",
+            "the cross comes first",
+            "two plus four plus six"
+          ],
+          "heard_as": [
+            "twelve",
+            "not coplanar",
+            "volume",
+            "a number"
+          ]
+        },
+        "why": "A scalar triple product is the signed volume of the box with a, b and c as edges. A value of 12 therefore says the volume is 12 cubic units and the three vectors do not lie in one plane.",
+        "common_mistakes": [
+          "Writing the answer as 12i or as some other vector.",
+          "Reporting −12 by taking the rows in a different order."
+        ]
+      }
+    ]
+  }
+}

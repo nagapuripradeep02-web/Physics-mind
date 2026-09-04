@@ -85,7 +85,7 @@
           "tRNA brings each amino acid to the ribosome",
           "in the order the code calls for."
         ],
-        "why": "The three names are far easier to keep apart once each is tied to its job, and the jobs run in a clear order: the message is copied, the ribosome is assembled, the amino acids are delivered. This also answers the follow-up question about how a protein is made.",
+        "why": "The three names are far easier to keep apart once each is tied to its job, and the jobs run in a clear order: the message is copied, the ribosome provides the site, and the amino acids are delivered to it in order. Those three jobs together are how a protein is made.",
         "common_mistakes": [
           "Swapping mRNA and tRNA. mRNA carries the code; tRNA carries the amino acid.",
           "Writing that rRNA carries amino acids. rRNA is part of the structure of the ribosome."

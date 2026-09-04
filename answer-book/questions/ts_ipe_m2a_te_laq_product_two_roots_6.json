@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_product_two_roots_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve x⁴ + x³ − 16x² − 4x + 48 = 0, given that the product of two of the roots is 6.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the roots; αβ = 6 gives γδ = 8",
+      "marks": 1
+    },
+    {
+      "label": "Write the quartic as two quadratic factors with sums p, q",
+      "marks": 2
+    },
+    {
+      "label": "Expand, compare coefficients, find p and q",
+      "marks": 2
+    },
+    {
+      "label": "Solve both quadratics and list the roots",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.92 — Star Questions Plus, Theory of Equations banner, answer 195. Printed appearances: TS 19. THE SECTION IS OURS: Star Questions Plus prints no mark cut, so this card is classed by shape — a full quartic solved from a root relation, the same length and kind as the chapter's Section-C answers 10–19 — as an LAQ at 7 marks (this unit has no SAQ chapter, so the only in-between class would be a 4-mark SAQ, which a four-root solve is not). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — 1+2+2+2, patterned on the weight the book's Section-C pages give to one identifying statement and three blocks of computation (as on p.20 and p.24). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: (x² − 5x + 6)(x² + 6x + 8) expands to x⁴ + x³ − 16x² − 4x + 48; the roots 2, 3, −2, −4 add to −1 = −a₁/a₀ and multiply to 48 = a₄/a₀, and 2 · 3 = 6 as given. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.92, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+  },
+  "recall_prompt": "Say how you would solve this — what the product 6 tells you about the other pair, how the two pairs become two quadratic factors, and how you find the pair-sums.",
+  "insider_note": "Only the x³ and x coefficients are needed to find p and q; the x² coefficient is a free check that most students never write.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relations",
+        "kind": "text",
+        "label": "Name the roots",
+        "marks": 1,
+        "mark_note": "αβ = 6, γδ = 8",
+        "margin_note": "First mark. Call the roots α, β, γ, δ with αβ = 6. The product of all four is the constant term 48 (a₀ = 1, even degree so the sign is +), which forces γδ = 8.",
+        "memory_tip": "The product of all four is the constant 48 with a PLUS sign (even degree), so the other pair is 8.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the roots be α, β, γ, δ with αβ = 6.",
+          "Product of all four: αβγδ = a₄/a₀ = 48,",
+          "so γδ = 48/6 = 8."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the roots are named with αβ = 6, and that since αβγδ = 48 the other pair has product γδ = 8.",
+          "accept": [
+            "call the roots alpha beta gamma delta with alpha beta equal to six, the product of all four is forty eight so gamma delta is eight",
+            "the two given roots multiply to six and all four multiply to forty eight so the other two multiply to eight",
+            "split the product forty eight as six times eight",
+            "alpha beta six, anni four roots product forty eight, kabatti gamma delta eight",
+            "the other pair of roots has product eight"
+          ],
+          "reject": [
+            "name the roots",
+            "the product is forty eight"
+          ],
+          "heard_as": [
+            "alpha beta",
+            "gamma delta",
+            "six",
+            "eight",
+            "forty eight",
+            "product"
+          ]
+        },
+        "why": "The product of all the roots of a monic quartic is its constant term (with a + sign, because the degree is even). Knowing one pair's product therefore fixes the other pair's product at once — that is the whole reason the question gives you 6.",
+        "common_mistakes": [
+          "Writing αβγδ = −48 (the sign is + for even degree: (−1)⁴ a₄/a₀).",
+          "Not naming which two roots have product 6, so nothing can be paired later."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Two quadratic factors",
+        "marks": 2,
+        "mark_note": "Pair the roots",
+        "margin_note": "Two marks. Let the two pair-sums be p and q. Each pair is the root set of a quadratic x² − (sum)x + product, so the quartic is the product of x² − px + 6 and x² − qx + 8.",
+        "memory_tip": "Name the two pair-sums p and q. Each pair gives x² − (sum)x + product, and the quartic is their product.",
+        "lines": [
+          "Let α + β = p and γ + δ = q.",
+          "The quadratic with roots α, β: x² − px + 6",
+          "The quadratic with roots γ, δ: x² − qx + 8",
+          "So x⁴ + x³ − 16x² − 4x + 48",
+          "= (x² − px + 6)(x² − qx + 8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with α + β = p and γ + δ = q, the quartic factorises as (x² − px + 6)(x² − qx + 8).",
+          "accept": [
+            "let alpha plus beta be p and gamma plus delta be q, then the quartic is x squared minus p x plus six times x squared minus q x plus eight",
+            "each pair gives a quadratic with its sum and product, and the quartic is the product of the two",
+            "write the quartic as two quadratic factors with unknown sums p and q",
+            "pair sums p, q ga pettali, quartic ante x square minus p x plus six into x square minus q x plus eight",
+            "the two quadratics have products six and eight and sums p and q"
+          ],
+          "reject": [
+            "factorise it",
+            "make two quadratics"
+          ],
+          "heard_as": [
+            "p",
+            "q",
+            "x squared minus p x plus six",
+            "x squared minus q x plus eight",
+            "two quadratic factors"
+          ]
+        },
+        "why": "A root pair with known product needs only its sum to become a quadratic factor. Naming those two sums p and q turns a four-unknown problem into a two-unknown one, and the quartic must equal the product of the two factors.",
+        "common_mistakes": [
+          "Putting the products in the wrong factors (6 goes with p, 8 with q).",
+          "Writing x² + px + 6 (the middle sign is minus the sum)."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare coefficients",
+        "marks": 2,
+        "mark_note": "p = 5, q = −6",
+        "margin_note": "Two marks. Expand, then match x³ (p + q = −1) and x (8p + 6q = 4). Solve the pair: p = 5, q = −6. Check on the x² coefficient: pq + 14 = −16.",
+        "memory_tip": "Match x³ (p + q = −1) and x (8p + 6q = 4). The x² coefficient is a free check: pq + 14 = −16.",
+        "lines": [
+          "Expand the right side:",
+          "x⁴ − (p + q)x³ + (pq + 14)x² − (8p + 6q)x + 48",
+          "x³: p + q = −1 … (1)",
+          "x: 8p + 6q = 4, so 4p + 3q = 2 … (2)",
+          "(1) gives q = −1 − p; put in (2):",
+          "4p − 3 − 3p = 2, so p = 5 and q = −6",
+          "Check x²: pq + 14 = −30 + 14 = −16"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and comparing the x³ and x coefficients gives p + q = −1 and 8p + 6q = 4, solved to p = 5 and q = −6, with the x² coefficient as a check.",
+          "accept": [
+            "expand and compare, p plus q is minus one and eight p plus six q is four, so p is five and q is minus six",
+            "match the x cubed and x coefficients to get two equations in p and q and solve them",
+            "comparing coefficients gives p equals five and q equals minus six, and the x squared term checks",
+            "coefficients compare chesthe p plus q minus one, eight p plus six q four, p five q minus six",
+            "two linear equations in p and q from the expansion"
+          ],
+          "reject": [
+            "compare",
+            "expand it",
+            "solve for p and q"
+          ],
+          "heard_as": [
+            "p plus q",
+            "eight p plus six q",
+            "p equals five",
+            "q equals minus six",
+            "compare coefficients"
+          ]
+        },
+        "why": "Two unknowns need two equations; the x³ and x coefficients give the two simplest ones. The x² coefficient is a third equation that costs nothing to check and catches any slip in p and q.",
+        "common_mistakes": [
+          "A sign slip: the x³ coefficient of the product is −(p + q), so p + q = −1, not +1.",
+          "The x coefficient is −(8p + 6q) (each sum times the OTHER pair's product).",
+          "Solving for p and never checking with the x² coefficient."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Solve both quadratics",
+        "marks": 2,
+        "mark_note": "Roots",
+        "margin_note": "Last two marks. x² − 5x + 6 factorises as (x − 2)(x − 3) and x² + 6x + 8 as (x + 2)(x + 4). The pair 2, 3 has product 6 as required; all four add to −1.",
+        "memory_tip": "x² − 5x + 6 = (x − 2)(x − 3) and x² + 6x + 8 = (x + 2)(x + 4). Check 2 × 3 = 6, the given product.",
+        "lines": [
+          "x² − 5x + 6 = 0 ⇒ (x − 2)(x − 3) = 0 ⇒ x = 2, 3",
+          "x² + 6x + 8 = 0 ⇒ (x + 2)(x + 4) = 0 ⇒ x = −2, −4",
+          {
+            "text": "∴ roots: 2, 3, −2, −4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two quadratics x² − 5x + 6 and x² + 6x + 8 are solved to give the four roots 2, 3, −2, −4.",
+          "accept": [
+            "solve x squared minus five x plus six and x squared plus six x plus eight, the roots are two three minus two minus four",
+            "the two quadratics factorise to give two and three, and minus two and minus four",
+            "the four roots are two, three, minus two and minus four",
+            "rendu quadratics solve chesthe roots two, three, minus two, minus four",
+            "factorise both quadratics and list all four roots"
+          ],
+          "reject": [
+            "solve them",
+            "the roots are",
+            "factorise"
+          ],
+          "heard_as": [
+            "two",
+            "three",
+            "minus two",
+            "minus four",
+            "four roots"
+          ]
+        },
+        "why": "Once p and q are known both factors are ordinary quadratics. The root pair 2, 3 has product 6, which is the condition the question gave — writing that check is what shows the pairing was right.",
+        "common_mistakes": [
+          "Solving only one of the two quadratics.",
+          "Not checking that one pair really multiplies to 6.",
+          "Not checking the sum: 2 + 3 − 2 − 4 = −1 = −a₁/a₀."
+        ]
+      }
+    ]
+  }
+}

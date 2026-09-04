@@ -1,0 +1,282 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_three_tan_inverse_sum_derivative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If y = tan⁻¹(2x/(1 − x²)) + tan⁻¹((3x − x³)/(1 − 3x²)) − tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)), show that dy/dx = 1/(1 + x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Put x = tan θ",
+      "marks": 1
+    },
+    {
+      "label": "First term is the double angle form",
+      "marks": 2
+    },
+    {
+      "label": "Second term is the triple angle form",
+      "marks": 2
+    },
+    {
+      "label": "Third term is the four times angle form",
+      "marks": 2
+    },
+    {
+      "label": "Add the angles and differentiate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.207, chapter 9 DIFFERENTIATION, Long Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, in two parts. First the three identities: with θ = 0.2, 0.5 and 0.9 the printed expressions in x reproduced tan 2θ, tan 3θ and tan 4θ to six decimal places in all nine cases, including θ = 0.5 where tan 4θ is negative. Then the derivative: the full expression for y was differentiated as a central difference quotient at x = 0.1, 0.2, 0.3, 0.5 and −0.4, and every value matched 1/(1 + x²) to eight decimal places — for example x = 0.5 gives 0.800000000 both ways, and x = −0.4 gives 0.862068965 against 0.862068966. The branch remark in the last step was checked at the same time: x = 0.5 lies outside |x| < √2 − 1, where the three inverse tangents no longer return 2θ, 3θ and 4θ themselves, and the derivative was still 1/(1 + x²)."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute, and what each of the three brackets turns into.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "text",
+        "label": "Put x = tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Nothing else in this question is difficult once the substitution is written. Do not differentiate any bracket as it stands — each one is a standard multiple angle form in disguise.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y = Tan⁻¹(2x/(1 − x²)) + Tan⁻¹((3x − x³)/(1 − 3x²)) − Tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)).",
+          "Every bracket is a ratio of a polynomial in x to another polynomial in x with only even powers in the denominator, which is the shape of a multiple angle tangent.",
+          "Put x = tan θ, so θ = Tan⁻¹x."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = tan θ is substituted, so θ = Tan⁻¹x.",
+          "accept": [
+            "put x equal to tan theta",
+            "take theta as tan inverse x",
+            "substitute tangent because every bracket is a tangent formula",
+            "x ni tan theta ga substitute cheyyali",
+            "the brackets are multiple angle tangent forms",
+            "start with the tan substitution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals tan theta",
+            "tan inverse x",
+            "substitute",
+            "multiple angle"
+          ]
+        },
+        "why": "Differentiating the three brackets directly needs the quotient rule three times on cubics and quartics, and the answer then has to be simplified back to a single fraction. One substitution replaces all of that, because each bracket is a known tangent formula.",
+        "common_mistakes": [
+          "Applying the quotient rule to each bracket, which is correct but very long and is often abandoned partway.",
+          "Substituting x = sin θ, which does not match any of the three forms."
+        ],
+        "memory_tip": "The denominator 1 − x² in the first bracket is the marker. Only the tangent multiple angle formulas have a 1 minus something in the denominator."
+      },
+      {
+        "id": "s2_double",
+        "kind": "equation",
+        "label": "First term is the double angle form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Quote the formula, substitute, and state the result as an angle. The examiner is looking for the named identity, not just the line 2θ.",
+        "lines": [
+          "The double angle formula for tangent is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          "With x = tan θ:",
+          "2x/(1 − x²) = 2 tan θ/(1 − tan²θ) = tan 2θ",
+          "∴ Tan⁻¹(2x/(1 − x²)) = Tan⁻¹(tan 2θ) = 2θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2x/(1 − x²) = tan 2θ, so the first term is 2θ.",
+          "accept": [
+            "two x over one minus x squared is tan two theta",
+            "the first term becomes two theta",
+            "use the double angle formula for tangent",
+            "modati term tan two theta, ante two theta",
+            "tan inverse of tan two theta gives two theta",
+            "that bracket is the tan of twice the angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan two theta",
+            "double angle",
+            "two theta",
+            "one minus x squared"
+          ]
+        },
+        "why": "2 tan θ/(1 − tan²θ) is the tangent of twice the angle, so the inverse tangent of it returns twice the angle. This is the shortest of the three and it is also the one that builds the third.",
+        "common_mistakes": [
+          "Writing 2x/(1 − x²) as 2 Tan⁻¹x without saying which formula was used, so the method mark is not earned.",
+          "Reading the bracket as tan θ/2 rather than tan 2θ."
+        ],
+        "memory_tip": "Two of the angle on top, two of tan θ on top. The count in the numerator matches the multiple of the angle in every one of these three formulas."
+      },
+      {
+        "id": "s3_triple",
+        "kind": "equation",
+        "label": "Second term is the triple angle form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The 3 and the 1 sit on opposite sides of the fraction: three on the top with the cube, three on the bottom with the square. Getting them the wrong way round is the common loss here.",
+        "lines": [
+          "The triple angle formula for tangent is  tan 3θ = (3 tan θ − tan³θ)/(1 − 3 tan²θ).",
+          "With x = tan θ:",
+          "(3x − x³)/(1 − 3x²) = (3 tan θ − tan³θ)/(1 − 3 tan²θ) = tan 3θ",
+          "∴ Tan⁻¹((3x − x³)/(1 − 3x²)) = Tan⁻¹(tan 3θ) = 3θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (3x − x³)/(1 − 3x²) = tan 3θ, so the second term is 3θ.",
+          "accept": [
+            "three x minus x cubed over one minus three x squared is tan three theta",
+            "the second term becomes three theta",
+            "use the triple angle formula for tangent",
+            "rendo term tan three theta avuthundi",
+            "tan inverse of tan three theta gives three theta",
+            "that bracket is the tan of three times the angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan three theta",
+            "triple angle",
+            "three theta",
+            "one minus three x squared"
+          ]
+        },
+        "why": "The numerator 3x − x³ and the denominator 1 − 3x² are the two halves of the tangent triple angle formula, and no other standard formula has that pair. Recognising it replaces a quotient rule on a cubic over a quadratic.",
+        "common_mistakes": [
+          "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ). Both signs are wrong: tan 3θ has 3 tan θ − tan³θ on top and 1 − 3 tan²θ underneath.",
+          "Swapping the two threes, giving (3x − x³)/(1 − x²) or (x − 3x³)/(1 − 3x²)."
+        ],
+        "memory_tip": "In tan 3θ the odd power sits on top and the even power sits underneath, and the 3 appears once in each. The minus sign appears in both places too."
+      },
+      {
+        "id": "s4_quadruple",
+        "kind": "equation",
+        "label": "Third term is the four times angle form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. There is no standard tan 4θ formula to quote, so it is built by applying the double angle formula to the angle 2θ. Show that working — it is what the marks are for.",
+        "lines": [
+          "There is no separate formula for tan 4θ, so build it from the double angle formula applied to 2θ:",
+          "tan 4θ = tan(2·2θ) = 2 tan 2θ/(1 − tan²2θ),  with  tan 2θ = 2x/(1 − x²)",
+          "Numerator: 2 tan 2θ = 4x/(1 − x²)",
+          "Denominator: 1 − tan²2θ = 1 − 4x²/(1 − x²)² = [(1 − x²)² − 4x²]/(1 − x²)² = (1 − 6x² + x⁴)/(1 − x²)²",
+          "tan 4θ = [4x/(1 − x²)] · [(1 − x²)²/(1 − 6x² + x⁴)] = 4x(1 − x²)/(1 − 6x² + x⁴)",
+          "∴ (4x − 4x³)/(1 − 6x² + x⁴) = tan 4θ,  so  Tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)) = 4θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the third bracket is tan 4θ, built by applying the double angle formula to 2θ, so the third term is 4θ.",
+          "accept": [
+            "apply the double angle formula to two theta to get tan four theta",
+            "four x minus four x cubed over one minus six x squared plus x to the fourth is tan four theta",
+            "the third term becomes four theta",
+            "double angle formula ni two theta ki apply cheste tan four theta vasthundi",
+            "expand one minus x squared whole squared minus four x squared",
+            "that bracket is the tan of four times the angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan four theta",
+            "double angle twice",
+            "four theta",
+            "one minus six x squared plus x to the four"
+          ]
+        },
+        "why": "Four times an angle is twice a doubled angle, so the double angle formula does the whole job when it is applied to 2θ instead of θ. The quartic 1 − 6x² + x⁴ comes out of (1 − x²)² − 4x², which is why it looks unfamiliar while nothing new is being used.",
+        "common_mistakes": [
+          "Expanding (1 − x²)² as 1 − x⁴, which turns the denominator into 1 − 4x² − x⁴ instead of 1 − 6x² + x⁴.",
+          "Forgetting that this term is subtracted, and adding 4θ in the next step."
+        ],
+        "memory_tip": "Doubling twice gives four times, so tan 4θ needs the double angle formula used on 2θ. Only the middle term of (1 − x²)² matters: it is −2x², and −2x² − 4x² is the −6x²."
+      },
+      {
+        "id": "s5_add_and_differentiate",
+        "kind": "boxed_final",
+        "label": "Add the angles and differentiate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 2 + 3 − 4 = 1, so the whole expression is one θ. Write y = Tan⁻¹x before differentiating, so the final line is a standard derivative and not a rearrangement.",
+        "lines": [
+          "Take |x| < √2 − 1, so that |θ| < π/8 and 2θ, 3θ, 4θ all lie in (−π/2, π/2), the principal range of Tan⁻¹.",
+          "y = 2θ + 3θ − 4θ = θ",
+          "∴ y = Tan⁻¹x",
+          "dy/dx = 1/(1 + x²)",
+          "For any other x each Tan⁻¹(tan nθ) differs from nθ only by a fixed multiple of π, whose derivative is 0, so the result is unchanged.",
+          {
+            "text": "∴ dy/dx = 1/(1 + x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 2θ + 3θ − 4θ = θ = Tan⁻¹x, so dy/dx = 1/(1 + x²).",
+          "accept": [
+            "two theta plus three theta minus four theta is theta",
+            "y equals tan inverse x so the derivative is one over one plus x squared",
+            "the three angles add to a single theta",
+            "two plus three minus four ante one theta migulutundi",
+            "differentiate tan inverse x at the end",
+            "the answer is one by one plus x squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two plus three minus four",
+            "tan inverse x",
+            "one over one plus x squared",
+            "single theta"
+          ]
+        },
+        "why": "The three multiples 2, 3 and 4 are chosen by the question so that 2 + 3 − 4 = 1, which is why an expression of this size has such a short derivative. The line about the principal range matters because Tan⁻¹(tan A) returns A only inside (−π/2, π/2), and outside it the terms shift by constants that do not affect the derivative.",
+        "common_mistakes": [
+          "Adding the third term instead of subtracting it, which gives 9θ and a derivative of 9/(1 + x²).",
+          "Differentiating 2θ, 3θ and 4θ separately as 2/(1 + x²), 3/(1 + x²) and 4/(1 + x²) and then making a sign slip when combining them."
+        ],
+        "memory_tip": "Count the multiples before writing anything else: 2 + 3 − 4 = 1. The whole eight marks come down to that one sum."
+      }
+    ]
+  },
+  "insider_note": "Every bracket is a multiple-angle tangent, so x = tan θ turns y into 2θ + 3θ − 4θ = θ. The three derivatives collapse to a single 1/(1 + x²)."
+}

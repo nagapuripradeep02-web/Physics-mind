@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_bacteria_t_cubed_rate_300",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A kind of bacteria grows as t³ (t in seconds). At what time is the rate of growth of the bacteria 300 bacteria per second?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and set the rate to 300",
+      "marks": 1
+    },
+    {
+      "label": "Solve for t",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.214, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 11(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which way round this question runs, and what you do with the 300.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_rate_equal",
+        "kind": "equation",
+        "label": "Differentiate and set the rate to 300",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rate of growth question, but it runs the opposite way to the usual one: the rate is given and the time is asked. So the derivative goes on the left of an equals sign instead of being evaluated.",
+        "memory_tip": "Given the rate, asked the time: differentiate first, then write an equation, then solve.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rate of growth question. Here the rate is given and the time is asked,",
+          "so the derivative is set equal to the given rate.",
+          "Let N = t³ be the number of bacteria at time t seconds.",
+          "dN/dt = 3t²",
+          "Rate of growth = 300  ⇒  3t² = 300"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dN/dt = 3t² and that this derivative is set equal to 300.",
+          "accept": [
+            "differentiate t cubed to get three t squared and set it equal to three hundred",
+            "the rate is given so equate the derivative to three hundred",
+            "here we are given the rate and asked the time",
+            "derivative ni three hundred ki equal cheyyali",
+            "three t squared equals three hundred"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three t squared",
+            "three hundred",
+            "equate",
+            "d N by d t"
+          ]
+        },
+        "why": "Most rate questions give the instant and ask for the rate. This one gives the rate and asks for the instant, so the derivative goes on the left of an equals sign and the equation is solved for t.",
+        "common_mistakes": [
+          "Setting t³ = 300, which answers a different question.",
+          "Substituting t = 300 into the derivative.",
+          "Dividing 300 by 3 before differentiating."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for t",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write t = ±10 and then say in words why −10 is rejected — an examiner looks for the rejection, not only the 10.",
+        "memory_tip": "Two roots come out, but time is measured forward from zero, so a negative root is not a time.",
+        "lines": [
+          "3t² = 300",
+          "t² = 100",
+          "t = ±10",
+          "Time cannot be negative, so t = −10 is rejected.",
+          {
+            "text": "∴ the rate of growth is 300 bacteria per second at t = 10 sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t² = 100 gives t = ±10 and that only t = 10 seconds is accepted.",
+          "accept": [
+            "t squared is one hundred so t is plus or minus ten",
+            "time cannot be negative so t is ten seconds",
+            "reject minus ten because time is never negative",
+            "minus ten reject cheyyali, t equals ten seconds",
+            "the answer is ten seconds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus ten",
+            "ten seconds",
+            "one hundred",
+            "negative rejected"
+          ]
+        },
+        "why": "t² = 100 has two roots, but t is a time measured from the start of the growth, so only the positive root is a possible answer.",
+        "common_mistakes": [
+          "Giving t = ±10 as the final answer without rejecting the negative root.",
+          "Taking the square root of 300 instead of dividing by 3 first.",
+          "Writing t = 10 with no unit."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The rate is GIVEN and the time is asked, so set dN/dt = 300 and solve. That is the reverse of the usual direction, and reading it the other way makes the question impossible."
+}

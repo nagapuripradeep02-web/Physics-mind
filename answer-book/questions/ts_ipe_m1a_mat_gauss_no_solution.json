@@ -57,7 +57,8 @@
         "label": "Write the augmented matrix",
         "marks": 1,
         "mark_note": "Augmented matrix",
-        "margin_note": "First mark. Look at the x and y coefficients: 2 and 4, then 1 and 2, then 3 and 6 — every row has y twice x. Columns 1 and 2 are proportional, which is the first hint that this system will not behave.",
+        "margin_note": "First mark. Look at the x and y coefficients: 2 and 4, then 1 and 2, then 3 and 6 — every row has y twice x. Columns 1 and 2 are proportional, which is the first sign that this system has no unique solution.",
+        "memory_tip": "Look at the x and y coefficients — every row has y twice x. Proportional columns are the warning sign.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 2,
         "mark_note": "Forward elimination",
         "margin_note": "Two marks. Row 2 already starts with a 1, so swap it to the top first. Then clear column 1 as usual — and watch column 2 go to zero along with it.",
+        "memory_tip": "Row 2 already starts with a 1, so swap it to the top. Then watch column 2 go to zero along with column 1.",
         "lines": [
           "R₁ ↔ R₂  (to get a leading 1)",
           {
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Normalise",
         "margin_note": "Fourth mark. Divide each of the bottom two rows by its own leading number. Now both rows claim to fix z — and they claim different values, which is the contradiction about to surface.",
+        "memory_tip": "Divide each lower row by its own leading number. Both now claim to fix z — at DIFFERENT values.",
         "lines": [
           "R₂ → R₂ ÷ (−5),  R₃ → R₃ ÷ (−13)",
           {
@@ -206,7 +209,8 @@
         "label": "Reach the impossible row",
         "marks": 2,
         "mark_note": "Contradiction",
-        "margin_note": "Two marks. Subtracting the identical rows leaves zeros on the left of the rule but −1 on the right. Read that row back as an equation and it says 0 = −1, which nothing can satisfy.",
+        "margin_note": "Two marks. The two rows are identical on the LEFT of the rule but not on the right, so subtracting leaves zeros on the left and −1 on the right. Read that row back as an equation and it says 0 = −1, which nothing can satisfy.",
+        "memory_tip": "The two rows match on the left of the rule but not on the right, so subtracting leaves 0 = −1.",
         "lines": [
           "R₃ → R₃ − R₂",
           {
@@ -255,6 +259,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Say it plainly and say why. 'No solution' with the impossible equation quoted beside it is the complete answer — there is nothing else to write.",
+        "memory_tip": "Say 'no solution' AND quote the impossible equation beside it. That is the complete answer.",
         "lines": [
           "Since one equation of the equivalent system",
           "cannot be satisfied by any x, y, z:",
@@ -293,5 +298,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The last row reduces to 0 = −1, which is impossible — and that IS the answer, not an error to go back and correct. Two earlier rows already said z = 2 and z = 1, the same contradiction."
 }

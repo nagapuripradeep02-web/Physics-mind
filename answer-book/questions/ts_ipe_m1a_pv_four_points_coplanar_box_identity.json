@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_four_points_coplanar_box_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that four points with position vectors a, b, c, d are coplanar if and only if [b c d] + [c a d] + [a b d] = [a b c].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the coplanarity condition",
+      "marks": 1
+    },
+    {
+      "label": "Expand the box product",
+      "marks": 2
+    },
+    {
+      "label": "Rearrange to the required form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.69, chapter 7 PRODUCT OF VECTORS, Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the multilinear expansion, which is the only real work, and single marks to stating the condition and to the sign bookkeeping that finishes it. The identity was checked numerically on a, b, c, d = (1, 2, 3), (2, 0, 1), (0, 1, 4), (3, 3, 3): the left side [b−a c−a d−a] = −7, and [b c d] + [c a d] + [a b d] − [a b c] = −21 − 6 + 9 + 11 = −7, the same number. It was checked a second time on the tetrahedron a = 0, b = i, c = j, d = k, where both sides give 1 and the four points are correctly reported as NOT coplanar. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — the condition you start from, how you expand it, and the two sign rules you use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. Everything rests on choosing one point as the corner and building three edges from it.",
+        "memory_tip": "Four points, three edges: subtract the first point's position vector from the other three.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A, B, C, D have position vectors",
+          "a, b, c, d.",
+          "AB = b − a, AC = c − a, AD = d − a",
+          "A, B, C, D lie in one plane",
+          "⇔ AB, AC and AD are coplanar",
+          "⇔ [b − a  c − a  d − a] = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four points are coplanar exactly when [b−a c−a d−a] = 0.",
+          "accept": [
+            "take the three vectors from A and set their box product to zero",
+            "four points coplanar means AB AC AD are coplanar",
+            "the condition is the box product of b minus a, c minus a, d minus a is zero",
+            "A nunchi moodu vectors teeskuni box product zero ani pettali",
+            "subtract a from the other three and set the triple product to zero"
+          ],
+          "reject": [
+            "expand the box product",
+            "cyclic order keeps the sign",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b minus a",
+            "coplanar",
+            "box product zero",
+            "position vectors"
+          ]
+        },
+        "why": "Three vectors drawn from one of the four points are coplanar exactly when the four points lie in one plane, and coplanar vectors have box product zero.",
+        "common_mistakes": [
+          "Writing [a b c d], which has no meaning; a box product takes three vectors.",
+          "Using the position vectors themselves instead of the differences."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand the box product",
+        "marks": 2,
+        "mark_note": "Expansion",
+        "margin_note": "Half the marks. Split one slot at a time and cross out every bracket that repeats a vector.",
+        "memory_tip": "Eight terms come out, four of them repeat a vector and are zero. Four are left.",
+        "lines": [
+          "The box product is linear in each slot,",
+          "and a bracket with a repeated vector is 0.",
+          "[b − a  c − a  d − a]",
+          "= [b  c − a  d − a] − [a  c − a  d − a]",
+          "= [b c d] − [b c a] − [b a d] − [a c d]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That splitting each slot gives [b c d] − [b c a] − [b a d] − [a c d], the other terms being zero.",
+          "accept": [
+            "expand slot by slot and drop every bracket with a repeated vector",
+            "eight terms come out and four of them are zero",
+            "what is left is b c d minus b c a minus b a d minus a c d",
+            "repeat aina vector unte aa bracket zero avthundi",
+            "use linearity in each slot and cancel the repeats"
+          ],
+          "reject": [
+            "set the box product to zero",
+            "cyclic order keeps the sign",
+            "hence proved"
+          ],
+          "heard_as": [
+            "linear in each slot",
+            "repeated vector",
+            "eight terms",
+            "b c d"
+          ]
+        },
+        "why": "Each slot can be split one at a time. Every term produced with a vector appearing twice is zero, so only four terms survive out of eight.",
+        "common_mistakes": [
+          "Keeping terms such as [b a a], which are zero.",
+          "Losing a minus sign when the second or third slot is split."
+        ]
+      },
+      {
+        "id": "s3_rearrange",
+        "kind": "boxed_final",
+        "label": "Rearrange to the required form",
+        "marks": 1,
+        "mark_note": "Rearrange",
+        "margin_note": "Last mark. The whole identity is the sign bookkeeping: one cyclic move and two swaps.",
+        "memory_tip": "Cyclic keeps the sign, a swap flips it. [b c a] is cyclic; [b a d] is a swap.",
+        "lines": [
+          "[b c a] = [a b c] (cyclic order).",
+          "[b a d] = −[a b d] and [a c d] = −[c a d],",
+          "because one swap flips the sign.",
+          "So the bracket equals",
+          "[b c d] + [c a d] + [a b d] − [a b c].",
+          "This is zero exactly when",
+          {
+            "text": "[b c d] + [c a d] + [a b d] = [a b c]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cyclic rule and two sign swaps turn the expansion into the required identity.",
+          "accept": [
+            "b c a is cyclic so it equals a b c, and the other two are swaps so they flip sign",
+            "after fixing the signs the bracket is b c d plus c a d plus a b d minus a b c",
+            "setting that to zero gives the required identity",
+            "cyclic aithe sign same, swap aithe sign marutundi",
+            "use the cyclic rule once and the swap rule twice"
+          ],
+          "reject": [
+            "expand slot by slot",
+            "set the box product to zero",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cyclic",
+            "swap",
+            "flips the sign",
+            "a b c"
+          ]
+        },
+        "why": "Cyclic order leaves a box product unchanged, but swapping any two vectors flips its sign. Both rules are needed here, and mixing them up reverses the whole result.",
+        "common_mistakes": [
+          "Treating [b a d] as equal to [a b d].",
+          "Stopping at the expansion without naming the two rules used."
+        ]
+      }
+    ]
+  }
+}

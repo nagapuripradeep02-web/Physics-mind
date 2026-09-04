@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Both vectors lie flat in the xy-plane, so the cross product points purely along k — the i and j components vanish.",
+        "memory_tip": "Both vectors lie flat in the xy-plane, so the cross product points purely along k.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Triangle, so halve. |41k| is just 41 — a vector along one axis has magnitude equal to its coefficient.",
+        "memory_tip": "Triangle, so halve. |41k| is just 41 — a vector along one axis has that magnitude.",
         "lines": [
           "Area = ½ |a × b| = ½ |41k|",
           "= ½ (41) = 41/2",
@@ -132,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both vectors lie in the xy-plane, so only the k component of the cross product survives and the i and j entries are 0. It is a triangle, so halve it: 41/2."
 }

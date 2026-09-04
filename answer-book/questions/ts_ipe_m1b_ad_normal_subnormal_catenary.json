@@ -1,0 +1,244 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_normal_subnormal_catenary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the lengths of the normal and the subnormal at a point on the curve y = (a/2)(e^(x/a) + e^(−x/a)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the curve",
+      "marks": 1
+    },
+    {
+      "label": "Show that 1 + m² = y²/a²",
+      "marks": 1
+    },
+    {
+      "label": "Length of the normal",
+      "marks": 1
+    },
+    {
+      "label": "Length of the subnormal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.223, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 14. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two notes on the stem. Notation: it is reproduced with the book's ASCII exponents, e^(x/a) and e^(−x/a); the working writes the same function in real Unicode as eˣ⁄ᵃ and e⁻ˣ⁄ᵃ. Condition: the printed stem does not state a > 0, and the working assumes it, because √(y²/a²) = y/a needs a positive a (y itself is positive at every point of this curve). Nothing was changed in the question itself."
+  },
+  "recall_prompt": "Say how you would do this one — say what dy/dx is, what 1 + (dy/dx)² simplifies to on this curve, and the formulas for the length of the normal and the subnormal.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the curve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The chain rule gives +1/a from the first exponential and −1/a from the second, so the sum in y becomes a difference in dy/dx. The a outside cancels with the 1/a inside.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y = (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ),   a > 0",
+          "Differentiate with respect to x. The exponents x/a and −x/a differentiate to 1/a and −1/a:",
+          "dy/dx = (a/2)[(1/a)eˣ⁄ᵃ − (1/a)e⁻ˣ⁄ᵃ]",
+          "= (a/2)(1/a)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "∴ m = dy/dx = (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ), the plus in y becoming a minus.",
+          "accept": [
+            "differentiate both exponentials with the chain rule",
+            "one over a comes out of the first and minus one over a out of the second",
+            "the a outside cancels with the one by a inside",
+            "chain rule tho rendu exponentials ni differentiate cheyyali",
+            "dy by dx is half of e power x by a minus e power minus x by a",
+            "the sum turns into a difference after differentiating"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by a",
+            "minus one by a",
+            "half",
+            "e power x by a",
+            "difference"
+          ]
+        },
+        "why": "Both lengths asked for are built from y and dy/dx, so the derivative comes first. The a/2 outside and the 1/a from the chain rule cancel to 1/2, which is why the derivative is simpler than the curve.",
+        "common_mistakes": [
+          "Differentiating e⁻ˣ⁄ᵃ to +(1/a)e⁻ˣ⁄ᵃ and keeping a plus sign between the two terms.",
+          "Leaving the factor a/2 in dy/dx instead of cancelling it to 1/2.",
+          "Treating a as a variable and differentiating it as well."
+        ],
+        "memory_tip": "The curve has a plus between the exponentials, the derivative has a minus. One differentiation swaps the sign."
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Show that 1 + m² = y²/a²",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both lengths carry a √(1 + m²), so simplifying it once here does the work for both. The +1 is what turns the −2 inside the square into +2 and completes the perfect square.",
+        "lines": [
+          "1 + m² = 1 + (1/4)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)²",
+          "= 1 + (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ)",
+          "= (1/4)(e²ˣ⁄ᵃ − 2 + e⁻²ˣ⁄ᵃ + 4)",
+          "= (1/4)(e²ˣ⁄ᵃ + 2 + e⁻²ˣ⁄ᵃ)",
+          "= (1/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²",
+          "From the curve,  eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = 2y/a, so",
+          "∴ 1 + m² = (1/4)(2y/a)² = y²/a²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + m² collapses to (1/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)², which is y²/a².",
+          "accept": [
+            "square the derivative and add one",
+            "the minus two becomes plus two so it is a perfect square",
+            "one plus m squared is y squared by a squared",
+            "one plus m square chesthe y square by a square vasthundi",
+            "the bracket is the same one that appears in y",
+            "e power x by a plus e power minus x by a is two y by a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus m squared",
+            "perfect square",
+            "y squared by a squared",
+            "two y by a"
+          ]
+        },
+        "why": "The formulas for both the normal and the subnormal contain √(1 + m²), and on this curve that root has an exact simple value. Doing the simplification once, before either formula is used, keeps the last two steps to one line each.",
+        "common_mistakes": [
+          "Expanding (eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)² without the middle term −2.",
+          "Forgetting to write 1 as 4/4 before adding, and losing the +2.",
+          "Writing eˣ⁄ᵃ + e⁻ˣ⁄ᵃ = y/a instead of 2y/a."
+        ],
+        "memory_tip": "The square of a difference has −2 in the middle; adding 1 changes it to +2, which is the square of the sum. That is the whole simplification."
+      },
+      {
+        "id": "s3_normal_length",
+        "kind": "equation",
+        "label": "Length of the normal",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. State the formula before substituting. y is positive everywhere on this curve and a > 0, so the square root is y/a with no sign to worry about.",
+        "lines": [
+          "At a point (x, y) with m = dy/dx:",
+          "length of the normal = |y √(1 + m²)|",
+          "Here √(1 + m²) = √(y²/a²) = y/a,  since y > 0 and a > 0.",
+          "Length of the normal = y · (y/a)",
+          "∴ length of the normal = y²/a",
+          "In terms of x this is  (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That length of the normal = y√(1 + m²) = y(y/a) = y²/a.",
+          "accept": [
+            "the length of the normal is y into root one plus m squared",
+            "root of y squared by a squared is y by a",
+            "the length of the normal is y squared by a",
+            "normal length ki y root one plus m square formula",
+            "y times y by a gives y squared by a",
+            "the answer is y square over a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root one plus m squared",
+            "y squared by a",
+            "y by a",
+            "length of the normal"
+          ]
+        },
+        "why": "The length of the normal is the distance from the point to the x-axis measured along the normal, and the factor √(1 + m²) is what stretches y along that slanted line. On this curve that factor is y/a exactly.",
+        "common_mistakes": [
+          "Using the length of the tangent formula, which divides by m as well.",
+          "Writing √(y²/a²) as y²/a² — the root removes the squares, so the factor is y/a; only multiplying by y afterwards gives y²/a.",
+          "Giving the subnormal ym here instead of the length of the normal y√(1 + m²)."
+        ],
+        "memory_tip": "Length of the normal = y√(1 + m²); the length of the tangent is the same thing divided by m. The normal has no m in the denominator."
+      },
+      {
+        "id": "s4_subnormal",
+        "kind": "boxed_final",
+        "label": "Length of the subnormal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The subnormal is the product y·m, and here that product is a difference of squares: (P + Q)(P − Q) with P = eˣ⁄ᵃ and Q = e⁻ˣ⁄ᵃ.",
+        "lines": [
+          "Length of the subnormal = y · m",
+          "= (a/2)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ) · (1/2)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "= (a/4)(eˣ⁄ᵃ + e⁻ˣ⁄ᵃ)(eˣ⁄ᵃ − e⁻ˣ⁄ᵃ)",
+          "= (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+          {
+            "text": "∴ Length of the normal = y²/a     Length of the subnormal = (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subnormal is ym, and the product of the sum and the difference gives (a/4)(e²ˣ⁄ᵃ − e⁻²ˣ⁄ᵃ).",
+          "accept": [
+            "the subnormal is y times dy by dx",
+            "sum times difference gives a difference of squares",
+            "the subnormal is a by four into e power two x by a minus e power minus two x by a",
+            "subnormal ante y into m",
+            "the two brackets multiply to give the squared exponents",
+            "a by two times half is a by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y into m",
+            "a by four",
+            "two x by a",
+            "difference of squares"
+          ]
+        },
+        "why": "The subnormal is the horizontal distance from the foot of the ordinate to the point where the normal cuts the x-axis, and it equals y·dy/dx. The two brackets are a sum and a difference of the same pair, so their product removes the cross terms.",
+        "common_mistakes": [
+          "Dividing instead of multiplying, which gives the subtangent y/m.",
+          "Expanding the product term by term and keeping the two cross terms that cancel.",
+          "Writing the coefficient as a/2 instead of a/4."
+        ],
+        "memory_tip": "Subtangent divides, subnormal multiplies: y/m and ym. The word with more letters, subtangent, is the one that DIVIDES."
+      }
+    ]
+  },
+  "insider_note": "The derivative is the difference of the two exponentials over 2, and 1 + m² then becomes a perfect square. That is what lets the root be taken cleanly."
+}

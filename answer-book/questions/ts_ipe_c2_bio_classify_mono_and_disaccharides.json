@@ -52,7 +52,7 @@
           "Ribose and 2-deoxyribose have five carbon",
           "atoms; galactose and fructose have six."
         ],
-        "why": "Four of the six are single units, so the sorting rule is simply whether hydrolysis gives anything smaller. Adding the carbon count separates the two pentoses from the two hexoses, which is the next question an examiner is likely to put on the same list.",
+        "why": "Four of the six are single units, so the sorting rule is simply whether hydrolysis gives anything smaller. Adding the carbon count separates the two pentoses from the two hexoses, which is what an examiner is likely to ask next about the same list.",
         "common_mistakes": [
           "Putting galactose with the disaccharides because lactose contains it. Galactose is itself a single unit.",
           "Splitting the list by aldose and ketose. The question asks for the number of units, not the carbonyl group."
@@ -77,7 +77,7 @@
           "glucose unit.",
           "Both are reducing sugars."
         ],
-        "why": "Naming what each disaccharide breaks into proves the classification rather than asserting it, and it sets up the hydrolysis question that follows in the same chapter. Both are reducing sugars, which separates them from sucrose, the standard non-reducing disaccharide.",
+        "why": "Naming what each disaccharide breaks into proves the classification rather than asserting it, and it is the hydrolysis an examiner asks for next. Both are reducing sugars, which separates them from sucrose, the standard non-reducing disaccharide.",
         "common_mistakes": [
           "Writing that lactose gives two glucose units. That is maltose; lactose gives galactose and glucose.",
           "Calling maltose or lactose non-reducing. Both are reducing; sucrose is the non-reducing one."

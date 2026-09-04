@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x3_plus_y3_minus_3axy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy/dx if x³ + y³ − 3axy = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate every term with respect to x",
+      "marks": 1
+    },
+    {
+      "label": "Collect the dy/dx terms and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 23(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer (ay − x²)/(y² − ax) was checked numerically before it was written: with a = 1 the curve through x = 1 has y = 1.532088886, where the numerical difference quotient reads 0.3949308436 against the formula's 0.3949308436; with a = 2 and x = 1.3, y = 2.639638027, both read 0.821779235; and on the other branch, a = 1, x = 2, y = −2.951373036, both read −1.035879078."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate with respect to, and what the xy term needs.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_implicitly",
+        "kind": "equation",
+        "label": "Differentiate every term with respect to x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Every y that is differentiated leaves a dy/dx behind it. Write the product rule on 3axy out in full before simplifying anything.",
+        "memory_tip": "Count the y terms you differentiate, then count the dy/dx terms you have written. The two counts must match.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y is not given in terms of x on its own, so differentiate implicitly: every term with respect to x, treating y as a function of x.",
+          "The term 3axy is a product of x and y, so it needs the product rule.",
+          "d/dx(x³) + d/dx(y³) − 3a · d/dx(xy) = 0",
+          "3x² + 3y²(dy/dx) − 3a[ y · 1 + x · (dy/dx) ] = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every term is differentiated with respect to x, that d/dx(y³) = 3y²(dy/dx), and that 3axy needs the product rule.",
+          "accept": [
+            "differentiate each term with respect to x and treat y as a function of x",
+            "the x y term needs the product rule",
+            "d by d x of y cubed is three y squared d y by d x",
+            "prati term ni x tho differentiate cheyyali, x y ki product rule",
+            "implicit differentiation with a d y by d x on every y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "implicit",
+            "product rule",
+            "three y squared",
+            "d y by d x"
+          ]
+        },
+        "why": "The equation is a cubic in y, so writing y in terms of x is not useful here. Implicit differentiation is the only practical route, and the product rule on 3axy is the part of it this question tests.",
+        "common_mistakes": [
+          "Writing d/dx(3axy) as 3ay, which drops the x · dy/dx half of the product rule.",
+          "Writing d/dx(y³) as 3y² and forgetting the dy/dx factor."
+        ]
+      },
+      {
+        "id": "s2_collect_and_solve",
+        "kind": "boxed_final",
+        "label": "Collect the dy/dx terms and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, where the tangent is vertical.",
+        "memory_tip": "The denominator is the numerator with x and y exchanged and then the sign reversed: ay − x² on top, y² − ax below. Check the sign, not only the letters.",
+        "lines": [
+          "Divide throughout by 3:  x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
+          "Take the dy/dx terms to one side:  (y² − ax)(dy/dx) = ay − x²",
+          {
+            "text": "∴ dy/dx = (ay − x²)/(y² − ax),  y² ≠ ax",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two dy/dx terms are collected on one side, giving dy/dx = (ay − x²)/(y² − ax).",
+          "accept": [
+            "collect the d y by d x terms on one side and divide",
+            "d y by d x is a y minus x squared over y squared minus a x",
+            "take y squared minus a x common from the d y by d x terms",
+            "d y by d x terms ni oka side ki teesukoni divide cheyyali",
+            "the answer still has y in it, which is normal for an implicit curve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "collect",
+            "a y minus x squared",
+            "y squared minus a x",
+            "divide"
+          ]
+        },
+        "why": "dy/dx appears in two separate terms, so the answer only comes out after those two are taken together. The answer carries both x and y, which is normal for a curve given implicitly.",
+        "common_mistakes": [
+          "Leaving dy/dx on both sides and calling that the answer.",
+          "A sign slip when moving 3x² and 3ay across the equals sign."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The 3axy term needs the product rule on xy. Divide through by 3 early to keep the numbers small, then collect the dy/dx terms on one side."
+}

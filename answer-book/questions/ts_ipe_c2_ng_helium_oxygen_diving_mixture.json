@@ -80,7 +80,7 @@
           "Nitrogen dissolves far more, and its bubbles",
           "in the blood cause the bends."
         ],
-        "why": "The amount of a gas that dissolves is proportional to its partial pressure, so at depth a diver's blood takes up a large amount of whatever diluent is breathed. Helium is much less soluble in blood, and less soluble again in fatty tissue, than nitrogen, so far less is taken up and far less is released as bubbles during the climb back up. Helium does dissolve; the book's \"does not dissolve\" overstates the difference.",
+        "why": "The amount of a gas that dissolves is proportional to its partial pressure, so at depth a diver's blood takes up a large amount of whatever diluent is breathed. Helium is much less soluble in blood, and less soluble again in fatty tissue, than nitrogen, so far less is taken up and far less is released as bubbles during the climb back up.",
         "common_mistakes": [
           "Writing that helium does not dissolve in blood at all. It does dissolve, but far less than nitrogen at the same pressure.",
           "Naming the wrong cause of the bends. The bubbles form because dissolved gas comes out of solution when the pressure falls, not because the gas reacts."

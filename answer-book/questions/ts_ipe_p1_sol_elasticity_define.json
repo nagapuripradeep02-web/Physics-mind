@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_elasticity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define elasticity. Distinguish between elastic and plastic bodies with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of elasticity",
+      "marks": 1
+    },
+    {
+      "label": "Plastic body defined and contrasted",
+      "marks": 1
+    },
+    {
+      "label": "One example of each",
+      "marks": 1
+    },
+    {
+      "label": "The elastic limit as the boundary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 3 (printed p.100). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: elasticity is the property of regaining original shape and size once the deforming force is removed; plasticity is the body keeping its new shape; the wire example returns fully only within the elastic limit, and beyond it the recovery is incomplete."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Elasticity — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A deforming force changes the shape or",
+          "size of a body. Elasticity is the",
+          "property by which a body regains its",
+          "original shape and size once the",
+          "deforming force is removed."
+        ],
+        "margin_note": "The phrase \"regains its original shape and size\" is what this mark turns on.",
+        "why": "A body is called elastic only if the return to its original form happens after the force is taken away, which is why the definition names the removal of the force explicitly.",
+        "common_mistakes": [
+          "Confusing elasticity with stiffness. Elasticity is about regaining shape after the force is removed, not how much the body deforms under it.",
+          "Leaving out \"once the force is removed\"."
+        ],
+        "memory_tip": "Elastic means it goes back to its original shape once the force is gone."
+      },
+      {
+        "id": "s2_plasticity",
+        "kind": "text",
+        "label": "Contrast with plasticity",
+        "marks": 1,
+        "mark_note": "Plasticity",
+        "lines": [
+          "Plasticity is the opposite property. A",
+          "body that does not regain its original",
+          "shape and size, and keeps the new",
+          "shape, is called plastic."
+        ],
+        "margin_note": "Name plasticity directly as the body keeping its new shape, in contrast to elasticity.",
+        "why": "Naming the opposite property gives a direct contrast to elasticity, stating plainly that the body keeps its new shape rather than returning to the old one.",
+        "common_mistakes": [
+          "Describing plasticity only as \"not elastic\" without saying the shape stays changed.",
+          "Calling a plastic body one that resists deformation. A plastic body deforms easily and permanently; it does not resist the change, it keeps it."
+        ],
+        "memory_tip": "Plastic bodies keep the new shape; elastic bodies return to the old one."
+      },
+      {
+        "id": "s3_examples",
+        "kind": "text",
+        "label": "Example: elastic and plastic",
+        "marks": 1,
+        "mark_note": "Example of each",
+        "lines": [
+          "A stretched steel wire is an elastic",
+          "body — it returns to its original",
+          "length once the load is removed.",
+          "Putty is a plastic body — it keeps",
+          "the new shape given to it and does",
+          "not return to its original shape."
+        ],
+        "margin_note": "Name one elastic body (a steel wire or a rubber band) and one plastic body (putty or wet clay).",
+        "why": "Naming a real elastic body and a real plastic body turns the two definitions into examples an examiner can check, and steel wire and putty are the standard contrasting pair for this question.",
+        "common_mistakes": [
+          "Naming only a plastic body, such as putty or wet clay, and never naming an elastic body such as a steel wire or a rubber band.",
+          "Giving an example without saying which property, elastic or plastic, it shows."
+        ],
+        "memory_tip": "Steel wire springs back; putty stays in the new shape it is given."
+      },
+      {
+        "id": "s4_elastic_limit",
+        "kind": "boxed_final",
+        "label": "The elastic limit",
+        "marks": 1,
+        "mark_note": "Elastic limit",
+        "lines": [
+          "A body behaves elastically only up to",
+          "a certain load, called the elastic",
+          "limit. Beyond the elastic limit the",
+          "body no longer returns fully to its",
+          "original shape when the load is",
+          "removed; some deformation remains.",
+          {
+            "text": "Elastic limit: boundary of elastic behaviour",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Name the elastic limit as the boundary between elastic and plastic behaviour.",
+        "why": "The elastic limit is the boundary that separates elastic behaviour from plastic behaviour, and naming it closes the definition-contrast-example arc of the answer.",
+        "common_mistakes": [
+          "Saying the body breaks beyond the elastic limit. It deforms permanently; breaking is a separate, later limit.",
+          "Leaving the elastic limit unnamed and only saying the body behaves differently after some point."
+        ],
+        "memory_tip": "Past the elastic limit, some deformation stays even after the load is removed."
+      }
+    ]
+  },
+  "insider_note": "The example step needs one elastic body and one plastic body named — a steel wire or a rubber band on the elastic side, not only putty or wet clay — and the elastic limit is its own separate, fourth mark."
+}

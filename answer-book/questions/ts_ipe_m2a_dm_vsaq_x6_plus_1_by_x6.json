@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_x6_plus_1_by_x6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x = cos θ + i sin θ, then find x⁶ + 1/x⁶.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "x⁶ and 1/x⁶ by De Moivre's theorem",
+      "marks": 1
+    },
+    {
+      "label": "Add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 117. Printed appearances: TS 16 · AP 17,19,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: x⁶ = cis 6θ, 1/x⁶ = cis(−6θ), sum 2cos 6θ; the book's answer is correct. Asked as Model Paper 2, Q3 (book p.113); re-solved in the Bullet Model Paper Q3 (book p.96)."
+  },
+  "recall_prompt": "Say how you would find this — what De Moivre gives for x⁶, what its reciprocal is, and what their sum is.",
+  "insider_note": "The second mark depends on |x| = 1: only then is 1/x⁶ the conjugate of x⁶, so the sines cancel. The answer is 2cos 6θ — a stray i means the two were subtracted, and 2cos⁶ θ means the power was left on the cosine instead of the angle.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_de_moivre",
+        "kind": "equation",
+        "label": "x⁶ and 1/x⁶ by De Moivre",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. x⁶ = cos 6θ + i sin 6θ by De Moivre. Since |x| = 1, the reciprocal is the conjugate, so 1/x⁶ = cos 6θ − i sin 6θ.",
+        "memory_tip": "The 6 goes onto the angle. Since |x| = 1, the reciprocal is the conjugate: cos 6θ − i sin 6θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x⁶ = (cos θ + i sin θ)⁶ = cos 6θ + i sin 6θ",
+          "1/x⁶ = cos 6θ − i sin 6θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x⁶ = cos 6θ + i sin 6θ by De Moivre's theorem and 1/x⁶ is the conjugate cos 6θ − i sin 6θ.",
+          "accept": [
+            "x to the six is cos six theta plus i sin six theta by De Moivre and one by x to the six is cos six theta minus i sin six theta",
+            "raise to six so the angle becomes six theta, and the reciprocal has minus i sin",
+            "De Moivre gives cis six theta and the reciprocal is cis minus six theta",
+            "De Moivre tho x power six cis six theta, reciprocal lo sin sign minus",
+            "the sixth power multiplies the angle by six and the reciprocal is its conjugate"
+          ],
+          "reject": [
+            "raise it",
+            "use the theorem",
+            "find x six"
+          ],
+          "heard_as": [
+            "six theta",
+            "De Moivre",
+            "reciprocal",
+            "cos six theta",
+            "minus i sin"
+          ]
+        },
+        "why": "De Moivre puts the 6 onto the angle. Since |x| = 1, the reciprocal of x⁶ is its conjugate, so the two terms differ only in the sign of the sine.",
+        "common_mistakes": [
+          "Writing x⁶ = cos⁶ θ + i sin⁶ θ.",
+          "Writing 1/x⁶ = cos 6θ + i sin 6θ with no sign change.",
+          "Trying to find 1/x⁶ by rationalising a six-fold product."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Add",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Adding the two cancels the sines and doubles the cosine: x⁶ + 1/x⁶ = 2cos 6θ. No i is left, and the angle stays 6θ.",
+        "memory_tip": "Adding cancels the sines and doubles the cosine: 2cos 6θ. Not 2cos⁶θ, and no i left.",
+        "lines": [
+          {
+            "text": "x⁶ + 1/x⁶ = 2cos 6θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to 2cos 6θ.",
+          "accept": [
+            "evaluate the reduced form and get 2cos 6θ",
+            "the answer comes to 2cos 6θ",
+            "simplify the powers of omega and the value is 2cos 6θ",
+            "reduce chesaka value 2cos 6θ vasthundi",
+            "finally it equals 2cos 6θ"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "2cos 6θ"
+          ]
+        },
+        "why": "A number of modulus 1 plus its conjugate is twice the real part. The sines cancel and the cosines double.",
+        "common_mistakes": [
+          "Writing 2i sin 6θ, the difference instead of the sum.",
+          "Writing 2cos⁶ θ.",
+          "Leaving a stray i in the answer."
+        ]
+      }
+    ]
+  }
+}

@@ -102,7 +102,7 @@
           }
         ],
         "margin_note": "Second mark. One line of averaging: the mean of cos² over a cycle is 1/2.",
-        "why": "The conservation question is settled by the average, not by any single point. Averaging cos²(φ/2) over a full cycle of φ gives 1/2, so the screen as a whole receives 2I₀ — this number is what gets compared in the next step.",
+        "why": "Conservation is settled by the average over the whole screen, not by any single point. Averaging cos²(φ/2) over a full cycle of φ gives 1/2, so the screen as a whole receives 2I₀ — this number is what gets compared in the next step.",
         "common_mistakes": [
           "Averaging cos(φ/2) instead of cos²(φ/2). The average of the cosine itself is zero; the average of its square is 1/2."
         ],

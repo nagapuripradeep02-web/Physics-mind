@@ -1,0 +1,249 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_check_ab_commute",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (1, −2, 3), (2, 3, −1) and (−3, 1, 2), and B is the matrix with rows (1, 0, 2), (0, 1, 2) and (1, 2, 0), then check whether A and B commute under matrix multiplication.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find AB",
+      "marks": 1
+    },
+    {
+      "label": "Find BA",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two products entry by entry",
+      "marks": 1
+    },
+    {
+      "label": "State the conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.45, chapter 5 MATRICES, Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape treats the two products as equal work and keeps a whole mark for the comparison and a whole mark for the verdict, because this question is decided by the comparison, not by the multiplication — a student who computes both products correctly and then writes \"so they commute\" has answered it wrongly. STEM WORDING: the source index words this as \"verify that A and B commute\". They do not. Computed independently before authoring: AB has rows (4, 4, −2), (1, 1, 10) and (−1, 5, −4); BA has rows (−5, 0, 7), (−4, 5, 3) and (5, 4, 1). All nine entries differ, so AB ≠ BA. The source's own printed conclusion is also AB ≠ BA, so the book's instruction contradicts the book's answer. The question is authored here as a CHECK, which is the only reading under which the stem and the mathematics agree; nothing was silently repaired and the disagreement is recorded here and reported. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — say what has to be worked out, what you compare, and what the answer turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ab",
+        "kind": "equation",
+        "label": "Find AB",
+        "marks": 1,
+        "mark_note": "First product",
+        "margin_note": "First mark. A and B commute only if AB = BA, so both products are needed. Multiply row by column: row 1 of A against column 1 of B is 1(1) + (−2)(0) + 3(1) = 4.",
+        "memory_tip": "Commuting means AB = BA, so one product proves nothing. Work out both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A and B commute only if AB = BA, so both",
+          "products have to be worked out.",
+          {
+            "text": "AB = \\begin{bmatrix} 1 & -2 & 3 \\\\ 2 & 3 & -1 \\\\ -3 & 1 & 2 \\end{bmatrix}\\begin{bmatrix} 1 & 0 & 2 \\\\ 0 & 1 & 2 \\\\ 1 & 2 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1: 1 + 0 + 3 = 4",
+          "Row 1 × column 2: 0 − 2 + 6 = 4",
+          "Row 1 × column 3: 2 − 4 + 0 = −2",
+          {
+            "text": "AB = \\begin{bmatrix} 4 & 4 & -2 \\\\ 1 & 1 & 10 \\\\ -1 & 5 & -4 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That commuting means AB = BA, so both products are needed, and that AB is worked out first by row-into-column multiplication.",
+          "accept": [
+            "commuting means AB equals BA so first work out AB by row into column",
+            "find the product A into B multiplying rows of A by columns of B",
+            "both products are needed so start with AB",
+            "commute ante AB equals BA, so modata AB compute cheyyali",
+            "multiply A by B row into column to get the first product"
+          ],
+          "reject": [
+            "multiply the matrices",
+            "find the product",
+            "they commute"
+          ],
+          "heard_as": [
+            "A B",
+            "row into column",
+            "commute",
+            "first product"
+          ]
+        },
+        "why": "The whole question is a comparison, so the answer is decided by two matrices, not one. Computing AB alone cannot settle anything either way.",
+        "common_mistakes": [
+          "Multiplying entry by entry instead of row by column.",
+          "Working out only AB and assuming BA must match."
+        ]
+      },
+      {
+        "id": "s2_ba",
+        "kind": "equation",
+        "label": "Find BA",
+        "marks": 1,
+        "mark_note": "Second product",
+        "margin_note": "Second mark. Now B is on the left, so its rows meet A's columns. Row 1 of B against column 1 of A is 1(1) + 0(2) + 2(−3) = −5.",
+        "memory_tip": "In BA the rows of B meet the columns of A — the order of the two matrices decides everything.",
+        "lines": [
+          {
+            "text": "BA = \\begin{bmatrix} 1 & 0 & 2 \\\\ 0 & 1 & 2 \\\\ 1 & 2 & 0 \\end{bmatrix}\\begin{bmatrix} 1 & -2 & 3 \\\\ 2 & 3 & -1 \\\\ -3 & 1 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1: 1 + 0 − 6 = −5",
+          "Row 1 × column 2: −2 + 0 + 2 = 0",
+          "Row 1 × column 3: 3 + 0 + 4 = 7",
+          {
+            "text": "BA = \\begin{bmatrix} -5 & 0 & 7 \\\\ -4 & 5 & 3 \\\\ 5 & 4 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That BA is worked out with B on the left, so the rows of B are multiplied by the columns of A.",
+          "accept": [
+            "now find BA with B on the left so rows of B meet columns of A",
+            "multiply B into A the other way round",
+            "work out the second product BA by row into column",
+            "ippati B ni A tho multiply cheyyali, B rows and A columns",
+            "compute the product in the reverse order"
+          ],
+          "reject": [
+            "multiply them again",
+            "find the second product",
+            "do the same thing"
+          ],
+          "heard_as": [
+            "B A",
+            "reverse order",
+            "rows of B",
+            "second product"
+          ]
+        },
+        "why": "Swapping the order changes which rows meet which columns, so BA is a genuinely different calculation and not a rearrangement of the first answer.",
+        "common_mistakes": [
+          "Copying AB and rearranging its entries instead of multiplying again.",
+          "Using the rows of A against the columns of B a second time."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare the two",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "margin_note": "Third mark. Two matrices are equal only when EVERY matching pair of entries is equal. One unequal pair settles it, and here the very first pair, 4 against −5, already does.",
+        "memory_tip": "Two matrices are equal only if every matching pair of entries is equal, so one difference settles it.",
+        "lines": [
+          "Compare the two matrices entry by entry.",
+          "Row 1: AB has (4, 4, −2), BA has (−5, 0, 7).",
+          "The first entries already differ:",
+          "4 in AB against −5 in BA.",
+          "In fact all nine matching entries differ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two products are compared position by position and at least one matching pair is found to be different, for example 4 against −5 in the top-left.",
+          "accept": [
+            "compare the matrices entry by entry and the top left is four in AB but minus five in BA",
+            "the matching entries are not the same so the matrices are different",
+            "even one unequal pair is enough and here every entry differs",
+            "entry by entry compare cheste anni different ga unnayi",
+            "position by position the two products do not agree"
+          ],
+          "reject": [
+            "compare them",
+            "they are not the same",
+            "check the answer"
+          ],
+          "heard_as": [
+            "entry by entry",
+            "top left",
+            "four",
+            "minus five",
+            "not equal"
+          ]
+        },
+        "why": "Matrix equality is defined entry by entry, so a comparison has to name at least one pair that disagrees. \"They look different\" is not an argument an examiner can mark.",
+        "common_mistakes": [
+          "Saying the matrices are different without naming a single differing entry.",
+          "Comparing an entry of AB with the wrong position of BA."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "State the conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The honest answer here is NO. Write it plainly: AB ≠ BA, so these two matrices do not commute. Matrix multiplication is not commutative in general, and this pair is an example.",
+        "memory_tip": "The honest answer is no. Write AB ≠ BA plainly rather than forcing the two products to agree.",
+        "lines": [
+          "AB and BA are different matrices, so A and B",
+          "do not commute. Matrix multiplication is not",
+          "commutative in general, and this pair shows it.",
+          {
+            "text": "∴ AB ≠ BA — A and B do not commute",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the verdict is stated: AB is not equal to BA, so A and B do not commute, and that matrix multiplication is not commutative in general.",
+          "accept": [
+            "since AB is not equal to BA the two matrices do not commute",
+            "the answer is no they do not commute because the products differ",
+            "matrix multiplication is not commutative in general and this pair proves it",
+            "AB and BA same kaadu kabatti avi commute avvavu",
+            "state that A and B fail to commute"
+          ],
+          "reject": [
+            "hence proved",
+            "they commute",
+            "the products are found"
+          ],
+          "heard_as": [
+            "do not commute",
+            "not equal",
+            "not commutative",
+            "AB is not BA"
+          ]
+        },
+        "why": "A check question can end in no. Changing an entry to force AB = BA, or writing \"hence they commute\" after finding different matrices, throws away the mark the comparison just earned.",
+        "common_mistakes": [
+          "Writing \"hence they commute\" out of habit after finding different products.",
+          "Recomputing until the two products agree instead of reporting the difference."
+        ]
+      }
+    ]
+  }
+}

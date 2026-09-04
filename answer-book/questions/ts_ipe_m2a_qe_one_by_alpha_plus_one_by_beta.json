@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_one_by_alpha_plus_one_by_beta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If α, β are the roots of the equation ax² + bx + c = 0, find the value of 1/α + 1/β.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sum and product of roots",
+      "marks": 1
+    },
+    {
+      "label": "Substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 122.1. Printed appearances: TS 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find this — say what two facts you write about α and β first, and how you rewrite the asked expression in terms of them.",
+  "insider_note": "Combine to (α + β)/(αβ) and the a's cancel — the answer keeps its minus sign. Writing 1/(α + β) for the sum of reciprocals is the error this question is built to catch.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_product",
+        "kind": "equation",
+        "label": "Sum and product of roots",
+        "marks": 1,
+        "mark_note": "α + β and αβ",
+        "margin_note": "First mark. Two relations, written before anything else: α + β = −b/a and αβ = c/a. The minus sign belongs to the SUM only.",
+        "memory_tip": "α + β = −b/a and αβ = c/a, written before anything else. The minus belongs to the sum.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "α, β are the roots of ax² + bx + c = 0",
+          "⇒ α + β = −b/a, αβ = c/a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for the roots of ax² + bx + c = 0, the sum α + β = −b/a and the product αβ = c/a.",
+          "accept": [
+            "sum of the roots is minus b by a and product is c by a",
+            "alpha plus beta equals minus b over a and alpha beta equals c over a",
+            "write the two relations between roots and coefficients",
+            "alpha plus beta minus b by a, alpha beta c by a rayali",
+            "the sum is minus b upon a and the product is c upon a"
+          ],
+          "reject": [
+            "find the roots",
+            "solve the equation",
+            "substitute"
+          ],
+          "heard_as": [
+            "minus b by a",
+            "c by a",
+            "sum of roots",
+            "product of roots",
+            "alpha plus beta",
+            "alpha beta"
+          ]
+        },
+        "why": "Any symmetric expression in the roots can be built from the sum and the product, and these two are read straight off the coefficients — no solving needed.",
+        "common_mistakes": [
+          "Writing α + β = b/a without the minus.",
+          "Writing αβ = −c/a.",
+          "Trying to solve for α and β with the quadratic formula."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Combine the fractions: 1/α + 1/β = (β + α)/(αβ). Then (−b/a) ÷ (c/a) — the a's cancel — gives −b/c.",
+        "memory_tip": "1/α + 1/β = (α + β)/(αβ), never 1/(α + β). The a's cancel, leaving −b/c.",
+        "lines": [
+          "1/α + 1/β = (α + β)/(αβ)",
+          "= (−b/a)/(c/a)",
+          {
+            "text": "∴ 1/α + 1/β = −b/c",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/α + 1/β equals (α + β)/(αβ), and substituting −b/a over c/a gives −b/c.",
+          "accept": [
+            "one by alpha plus one by beta is alpha plus beta over alpha beta which is minus b by a over c by a equals minus b by c",
+            "combine the fractions to sum over product and substitute to get minus b by c",
+            "the a cancels and the answer is minus b over c",
+            "one by alpha plus one by beta ante sum by product, substitute cheste minus b by c",
+            "minus b by c"
+          ],
+          "reject": [
+            "substitute",
+            "simplify",
+            "find the value"
+          ],
+          "heard_as": [
+            "sum over product",
+            "minus b by c",
+            "alpha plus beta over alpha beta",
+            "a cancels"
+          ]
+        },
+        "why": "Adding the two reciprocals puts the sum on top and the product underneath, which is why the two relations from the first step are exactly what is needed.",
+        "common_mistakes": [
+          "Writing 1/α + 1/β = 1/(α + β).",
+          "Dividing (−b/a) by (c/a) and getting −b/(ac) — the a's cancel.",
+          "Losing the minus sign: the answer is −b/c, not b/c."
+        ]
+      }
+    ]
+  }
+}

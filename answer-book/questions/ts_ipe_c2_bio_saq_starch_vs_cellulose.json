@@ -57,16 +57,16 @@
           "polysaccharides.",
           "Both are built from a large number of",
           "D(+)-glucose units.",
-          "In both, one unit is joined to the next by",
-          "a glycosidic linkage between C₁ of one and",
-          "C₄ of the next."
+          "In both, the main chain is joined by a",
+          "glycosidic linkage between C₁ of one unit",
+          "and C₄ of the next."
         ],
-        "why": "The two materials are made of the same monomer and joined at the same two carbon atoms, so almost everything about them is shared. Setting the common ground down first makes the answer sharp, because the difference then has only two places left: the form of the glucose and the type of linkage.",
+        "why": "The two materials are made of the same monomer, and in both the main chain is joined at the same two carbon atoms, so much of the structure is shared. Setting the common ground down first makes the answer sharp, because the difference is then left in a short list: the form of the glucose unit, the type of glycosidic linkage, and whether the polymer branches.",
         "common_mistakes": [
           "Writing that cellulose is made of fructose or of some other sugar. Both are glucose polymers.",
-          "Saying they are joined at different carbon atoms. Both use the C₁ to C₄ linkage."
+          "Saying the two main chains are joined at different carbon atoms. Both main chains use the C₁ to C₄ linkage. Only amylopectin also has C₁ to C₆ linkages, and those are its branch points."
         ],
-        "memory_tip": "Same monomer, same two carbon atoms. Only the α or β differs.",
+        "memory_tip": "Same monomer, and both main chains run C₁ to C₄. Two things differ: α or β, and whether the polymer branches.",
         "margin_note": "Start with what is the same. It costs two lines and makes the difference obvious."
       },
       {
@@ -89,10 +89,12 @@
             "text": "    same α-D-glucose unit",
             "style": "indent"
           },
-          "In both parts the units are joined by",
-          "α-glycosidic linkages."
+          "Along both chains the units are joined by",
+          "α-glycosidic linkages between C₁ and C₄.",
+          "In amylopectin the branches are joined by",
+          "α-C₁–C₆ glycosidic linkages."
         ],
-        "why": "Starch is not one substance but two polymers stored together, and they differ in shape rather than in composition: amylose is a single unbranched chain, amylopectin is a chain with branches. Both are made of α-D-glucose, which is what puts starch on one side of the comparison.",
+        "why": "Starch is not one substance but two polymers stored together, and they differ in shape rather than in composition: amylose is a single unbranched chain, amylopectin is a chain with branches. Both are made of α-D-glucose, which is what puts starch on one side of the comparison. The branch points are the one place where the linkage is not C₁ to C₄: amylopectin joins a branch through C₆.",
         "common_mistakes": [
           "Writing that starch is a single linear polymer. It has two components, amylose and amylopectin.",
           "Giving the linkage as β. Starch is held by α-glycosidic linkages."
@@ -144,7 +146,7 @@
           "Ending with the two descriptions and never stating the difference. The question asks for the difference itself.",
           "Giving the difference as \"one is food and one is not\". That is the consequence, not the structural difference."
         ],
-        "memory_tip": "One letter, α or β, is the whole answer.",
+        "memory_tip": "One letter, α or β, is what the question is asking for.",
         "margin_note": "Finish with a single sentence naming the difference. That sentence is this mark."
       }
     ]

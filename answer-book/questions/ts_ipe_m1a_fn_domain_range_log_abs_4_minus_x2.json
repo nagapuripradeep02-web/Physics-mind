@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_range_log_abs_4_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain and the range of the real valued function f(x) = log|4 − x²|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The domain",
+      "marks": 1
+    },
+    {
+      "label": "The range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 20(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The question asks for two things, so the 1+1 shape gives one mark to the domain and one to the range, and the range mark is for the values of |4 − x²| being found, not for the word R on its own. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find both the domain and the range here — what the log needs, and how you get at the range.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_domain",
+        "kind": "equation",
+        "label": "Find the domain",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is R − {−2, 2}. Both points must go, and the reason must be that the input of a log has to be positive.",
+        "memory_tip": "With a modulus inside a log, the modulus fixes the sign, so only the zeros are removed. Solve 4 − x² = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = log|4 − x²|",
+          "log t is real only when t > 0.",
+          "So we need |4 − x²| > 0,",
+          "which means 4 − x² ≠ 0.",
+          "4 − x² = 0 ⇒ x² = 4 ⇒ x = ±2",
+          "∴ Domain = R − {−2, 2}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the log needs a positive input, so |4 − x²| > 0, which removes only x = 2 and x = −2.",
+          "accept": [
+            "log needs a positive input so the modulus must not be zero",
+            "four minus x squared must not be zero so x is not plus or minus two",
+            "the modulus is never negative so only the zeros are removed",
+            "log lo positive value undali kabatti x plus or minus two kaakudadu",
+            "the domain is all real numbers except two and minus two"
+          ],
+          "reject": [
+            "the domain is R",
+            "solve four minus x squared greater than zero",
+            "find where it is defined"
+          ],
+          "heard_as": [
+            "log",
+            "modulus",
+            "greater than zero",
+            "plus or minus two",
+            "R minus two"
+          ]
+        },
+        "why": "A logarithm is real only for a positive input. The modulus already makes 4 − x² positive whenever it is not zero, so the inequality |4 − x²| > 0 removes nothing except the two roots of 4 − x² = 0. Solving 4 − x² > 0 instead would wrongly throw away everything outside (−2, 2).",
+        "common_mistakes": [
+          "Solving 4 − x² > 0 and giving (−2, 2); the modulus has already fixed the sign.",
+          "Removing only x = 2 and forgetting x = −2.",
+          "Writing the domain as R, as if a log accepted 0."
+        ]
+      },
+      {
+        "id": "s2_range",
+        "kind": "boxed_final",
+        "label": "Find the range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the range R, with the values of |4 − x²| shown first. A bare 'Range = R' with no working is where this mark is lost.",
+        "memory_tip": "Find the values the inside takes, then read the log of them. The inside covers (0, ∞), so the log covers R.",
+        "lines": [
+          "Put t = |4 − x²|, so f(x) = log t.",
+          "|x| < 2 ⇒ 4 − x² ∈ (0, 4] ⇒ t ∈ (0, 4]",
+          "|x| > 2 ⇒ x² − 4 > 0 ⇒ t ∈ (0, ∞)",
+          "So t takes every positive value.",
+          "As t runs over (0, ∞), log t runs over R.",
+          {
+            "text": "Domain = R − {−2, 2},  Range = R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |4 − x²| takes every positive value on the domain, so log of it takes every real value, giving range R.",
+          "accept": [
+            "the modulus takes every positive value so the log takes every real value",
+            "inside two the value is up to four and outside two it grows without limit",
+            "t covers zero to infinity so log t covers all real numbers",
+            "lopala value covers all positive numbers kabatti range R",
+            "the range is all of R"
+          ],
+          "reject": [
+            "the range is zero to infinity",
+            "the range is R",
+            "log gives all values"
+          ],
+          "heard_as": [
+            "range",
+            "zero to infinity",
+            "all real numbers",
+            "log t",
+            "modulus"
+          ]
+        },
+        "why": "The range needs its own work; it does not follow from the domain. Inside the domain |4 − x²| gets as close to 0 as we like near x = ±2, equals 4 at x = 0, and grows without limit as |x| grows, so it reaches every positive number. The logarithm of every positive number covers all of R, so the range is R.",
+        "common_mistakes": [
+          "Giving the range as (0, ∞), which is the range of |4 − x²|, not of its logarithm.",
+          "Writing 'Range = R' with no working; the values of the inside have to be found first.",
+          "Stopping at t ∈ (0, 4] and missing the values from |x| > 2."
+        ]
+      }
+    ]
+  }
+}

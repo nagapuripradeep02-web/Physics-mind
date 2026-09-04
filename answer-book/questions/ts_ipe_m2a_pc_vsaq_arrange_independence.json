@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_arrange_independence",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of ways of arranging the letters of the word INDEPENDENCE.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Count the letters and the repeats",
+      "marks": 1
+    },
+    {
+      "label": "Apply n!/(p!·q!·r!)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 147.2. Printed appearances: TS 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as 12!/(4!3!2!); the card also evaluates it (479001600/288 = 16,63,200)."
+  },
+  "recall_prompt": "Say how you would count the arrangements of the word INDEPENDENCE — what you count first and which formula you use.",
+  "insider_note": "Write INDEPENDENCE out and number the letters: 12 in all, with E four times, N three times and D twice. The D pair is the repeat most often missed, and one missed pair doubles the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count_letters",
+        "kind": "text",
+        "label": "Count the letters and the repeats",
+        "marks": 1,
+        "mark_note": "Counting",
+        "margin_note": "First mark. I-N-D-E-P-E-N-D-E-N-C-E: 12 letters. E appears 4 times, N 3 times, D twice; I, P, C once.",
+        "memory_tip": "Write it out and number: I-N-D-E-P-E-N-D-E-N-C-E. E four times, N three times, D twice.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "INDEPENDENCE has 12 letters:",
+          "E four times, N three times, D twice."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That INDEPENDENCE has 12 letters with E four times, N three times and D twice.",
+          "accept": [
+            "twelve letters, E four times, N three times, D twice",
+            "count the letters, twelve, with four E, three N and two D",
+            "the repeats are E four, N three, D two",
+            "twelve letters, E nalugu sarlu, N moodu, D rendu",
+            "find the repeated letters first, E N and D"
+          ],
+          "reject": [
+            "count the letters",
+            "use the formula"
+          ],
+          "heard_as": [
+            "twelve letters",
+            "four E",
+            "three N",
+            "two D",
+            "repeated"
+          ]
+        },
+        "why": "Alike letters cannot be told apart, so swapping them does not give a new arrangement. The count of each repeated letter is what the formula divides by, so it must be found before anything else.",
+        "common_mistakes": [
+          "Counting E three times instead of four.",
+          "Missing that N appears three times (positions 2, 7, 10)."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Apply n!/(p!·q!·r!)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 12!/(4!·3!·2!) = 479001600/288 = 16,63,200.",
+        "memory_tip": "12!/(4!·3!·2!) = 16,63,200. Missing the D pair doubles the answer.",
+        "lines": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(4!·3!·2!) = 16,63,200",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the count is 12 factorial over 4 factorial times 3 factorial times 2 factorial.",
+          "accept": [
+            "twelve factorial over four factorial three factorial two factorial",
+            "n factorial by p factorial q factorial r factorial, twelve factorial by four factorial three factorial two factorial",
+            "divide twelve factorial by two hundred eighty eight",
+            "twelve factorial by four factorial into three factorial into two factorial",
+            "the answer is twelve factorial over four factorial three factorial two factorial which is sixteen lakh sixty three thousand two hundred"
+          ],
+          "reject": [
+            "apply the formula",
+            "divide"
+          ],
+          "heard_as": [
+            "twelve factorial",
+            "four factorial",
+            "three factorial",
+            "sixteen lakh"
+          ]
+        },
+        "why": "n! counts the arrangements as if every letter were different; each group of p alike letters has been counted p! times over, so dividing by p! for each group leaves the true count.",
+        "common_mistakes": [
+          "Dividing by 4!·3! only and forgetting the D pair.",
+          "Dividing by 9! (the sum 4 + 3 + 2) instead of the product of factorials."
+        ]
+      }
+    ]
+  }
+}

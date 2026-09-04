@@ -21,13 +21,17 @@
  *
  * Raw IPs are never stored — only a salted SHA-256 hash, for rate limiting.
  *
- * Telemetry: the page also POSTs {type:'events'} batches (chip taps, check
- * scores, renames, exam-eve opens). They need no model call, cost nothing,
- * and land in simulation_feedback — handled before the key check, so
- * telemetry works even on a day the tutor is resting.
+ * Telemetry: the page also POSTs {type:'events'} batches (opens, reading depth,
+ * chip taps, paywall hits). They need no model call, cost nothing, and land in
+ * ab_events ONE ROW PER EVENT via ab_log_events — handled before the key check,
+ * so telemetry works even on a day the tutor is resting. Each batch carries the
+ * device, the visit and the team flag, which is how the usage dashboard tells a
+ * student apart from us. (Until 2026-09-02 this wrote one opaque blob per batch
+ * into simulation_feedback; those 57 rows stay untouched — sacred table.)
  *
  *   supabase secrets set DEEPSEEK_API_KEY=...
  *   optional: AB_ALLOWED_ORIGINS, AB_DAILY_USD_CAP, AB_IP_PER_MIN,
+ *             AB_PROBE_TOKEN (labels automated probes; never exempts them),
  *             AB_IP_PER_DAY, AB_IP_SALT, AB_CHAT_MODEL, AB_USD_INR
  *
  * SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are injected by the platform.
@@ -53,6 +57,30 @@ const ALLOWED_ORIGINS = (Deno.env.get('AB_ALLOWED_ORIGINS') ??
     .split(',').map((s) => s.trim()).filter(Boolean);
 
 const TASK_TYPE = 'answerbook_vidi_chat';
+
+// ── WHO ASKED (2026-09-02) ──────────────────────────────────────────────────
+// Every ledger row carries an `actor`:
+//   answerbook_student — a real ask, no team signal anywhere (the default)
+//   answerbook_team    — the device, or its Google account, is marked team
+//   answerbook_probe   — an automated script carrying AB_PROBE_TOKEN
+//   answerbook_local   — served from localhost (someone testing a hosted build)
+// metadata.actor_reason records WHICH signal decided it, because three of the
+// four are client-supplied and therefore forgeable.
+//
+// THIS IS A LABEL, NEVER A GUARD. The four limits below still read the WHOLE
+// ledger, every actor included, so nothing can spend money invisibly by
+// claiming to be the team. Do not "optimise" an actor filter into
+// readTodayLedger(): that would quietly raise our own rate limits and hand a
+// spoofer a free budget.
+const PROBE_TOKEN = Deno.env.get('AB_PROBE_TOKEN') ?? '';
+// A deliberate subset of ALLOWED_ORIGINS, kept LITERAL so that widening the
+// allowlist can never silently reclassify a real domain as "local".
+const LOCAL_ORIGINS = new Set([
+    'http://localhost:8100', 'http://127.0.0.1:8100',
+    'http://localhost:8101', 'http://127.0.0.1:8101',
+    'http://localhost:8102', 'http://127.0.0.1:8102',
+]);
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // The Answer Book persona. The Quick Learn persona is sim-grounded ("what the
 // student is looking at"); this one is MARK-SCHEME-grounded. The load-bearing
@@ -181,42 +209,71 @@ async function writeUsage(row: Record<string, unknown>): Promise<void> {
 }
 
 /**
- * Telemetry batch → simulation_feedback (sacred table, already shaped for
- * this: session_id / concept_id / interaction_data jsonb). One row per batch.
+ * Telemetry batch → ab_events, ONE ROW PER EVENT via ab_log_events (2026-09-02).
+ * It used to be one blob per batch in simulation_feedback, which no query could
+ * group, count or exclude; the 57 historical rows there stay untouched (sacred).
  * Never throws — a failed write must not break the page.
  */
-async function writeEvents(body: Record<string, any>): Promise<void> {
+async function writeEvents(body: Record<string, any>, origin: string): Promise<void> {
     const events = Array.isArray(body.events) ? body.events.slice(0, 50) : [];
     if (!events.length) return;
-    const row = {
-        session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
-        concept_id: 'answer_book',
-        student_rating: 'telemetry',
-        interaction_data: {
-            surface: 'answer_book',
-            events: events.map((e: Record<string, unknown>) => {
-                const out: Record<string, unknown> = {};
-                for (const k of Object.keys(e).slice(0, 12)) {
-                    const v = e[k];
-                    out[k] = typeof v === 'string' ? v.slice(0, 200) : v;
-                }
-                return out;
-            }),
-        },
+    const deviceId = typeof body.device_id === 'string' && UUID_RE.test(body.device_id) ? body.device_id : null;
+    const payload = {
+        p_device: deviceId,
+        p_session: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
+        p_visit: typeof body.visit_id === 'string' ? body.visit_id.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 32) || null : null,
+        // Only a literal true is a claim; a device already flagged server-side
+        // stays flagged regardless of what the page sends. A localhost origin
+        // is someone serving a build on their own machine — never a student.
+        p_internal: body.internal === true || LOCAL_ORIGINS.has(origin),
+        p_events: events.map((e: Record<string, unknown>) => {
+            const out: Record<string, unknown> = {};
+            for (const k of Object.keys(e).slice(0, 12)) {
+                const v = e[k];
+                out[k] = typeof v === 'string' ? v.slice(0, 200) : v;
+            }
+            return out;
+        }),
     };
     try {
-        await fetch(SUPABASE_URL + '/rest/v1/simulation_feedback', {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/ab_log_events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 apikey: SERVICE_KEY,
                 Authorization: 'Bearer ' + SERVICE_KEY,
-                Prefer: 'return=minimal',
             },
-            body: JSON.stringify([row]),
+            body: JSON.stringify(payload),
         });
+        if (!res.ok) {
+            console.error('[answerbook-vidi-chat] events rpc failed', res.status, (await res.text()).slice(0, 200));
+        }
     } catch (e) {
         console.error('[answerbook-vidi-chat] events write failed', e);
+    }
+}
+
+/**
+ * The ONE definition of "team", shared with the dashboard: the device's own
+ * flag OR a Google account listed in ab_accounts_internal. Never throws — an
+ * unreadable answer means "student", which is the honest, expensive default.
+ */
+async function deviceIsInternal(device: string | null): Promise<boolean> {
+    if (!device) return false;
+    try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/ab_device_is_internal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SERVICE_KEY,
+                Authorization: 'Bearer ' + SERVICE_KEY,
+            },
+            body: JSON.stringify({ p_device: device }),
+        });
+        if (!res.ok) return false;
+        return (await res.json()) === true;
+    } catch {
+        return false;
     }
 }
 
@@ -240,7 +297,7 @@ Deno.serve(async (req: Request) => {
     // Telemetry needs no model call — handled before the key check and the
     // spend guards, so it works even on a day the tutor is resting.
     if (body.type === 'events') {
-        await writeEvents(body);
+        await writeEvents(body, origin);
         return reply(origin, 200, { ok: true });
     }
 
@@ -249,12 +306,28 @@ Deno.serve(async (req: Request) => {
     const question = String(body.question ?? '').trim().slice(0, 1000);
     if (!question) return reply(origin, 400, { error: 'empty question' });
 
+    // WHO is asking. An unset AB_PROBE_TOKEN must SHUT the door, not open it —
+    // without the length test, a body sending `probe_token: ""` would classify
+    // every ask as an automated probe.
+    const deviceId = typeof body.device_id === 'string' && UUID_RE.test(body.device_id) ? body.device_id : null;
+    const isProbe = PROBE_TOKEN.length >= 16 && body.probe_token === PROBE_TOKEN;
+    const isLocal = LOCAL_ORIGINS.has(origin);
+    const claimsTeam = body.internal === true;
+    // Started HERE, awaited just before the ledger write, so it overlaps the
+    // ledger read AND the DeepSeek call — the lookup costs a student no time.
+    // Skipped entirely when a cheaper signal has already decided the answer.
+    const internalP = (isProbe || isLocal || claimsTeam)
+        ? Promise.resolve(false)
+        : deviceIsInternal(deviceId);
+
     const rawIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() ||
         req.headers.get('cf-connecting-ip') || 'unknown';
     const ipHash = await sha256Hex(IP_SALT + '|' + rawIp);
 
     // Guards 2–4 — all computed from one ledger read. An unreadable ledger
     // means we cannot prove we are under budget, so we refuse (fail closed).
+    // EVERY actor counts here: a team ask costs the same dollar a student's
+    // does, so team and probe rows are labelled differently but never exempt.
     const ledger = await readTodayLedger();
     if (ledger === null) {
         console.error('[answerbook-vidi-chat] ledger unreadable — refusing (fail closed)');
@@ -280,18 +353,21 @@ Deno.serve(async (req: Request) => {
 
     // Stable prefix first (persona + answer facts) so DeepSeek's automatic
     // prompt cache hits — a cached prefix costs ~1/30th of a miss. The slice is
-    // 10,000 (not Quick Learn's 6,000): the largest LAQ context measures ~6-8K
+    // 14,000 (not Quick Learn's 6,000): the largest LAQ context measures ~10.4K
     // and a silent truncation of the tail steps would un-ground the model.
     const rawFacts = String(body.tutor_context ?? '');
-    // The slice below is silent by construction, so say it out loud. Measured max
-    // across the whole bank is 7,687 chars; a context that crosses 10,000 would lose
-    // its TAIL STEPS and un-ground the model with no visible symptom.
-    if (rawFacts.length > 9_000) {
+    // The slice below is silent by construction, so say it out loud. The widest
+    // context in the bank measures 10,421 chars (Physics-II, torque on a loop) — it
+    // was 7,687 when this cap was first set at 10,000, and four cards had quietly
+    // crossed it by 2026-08-30, losing their last step's supporting text on the live
+    // site with no visible symptom. The cap is a ceiling, not a pad: raising it costs
+    // nothing on the contexts already below it. Re-measure before adding a paper.
+    if (rawFacts.length > 12_000) {
         console.warn('answerbook_vidi_chat: tutor_context ' + rawFacts.length +
-            ' chars for ' + String(body.question_id ?? '?') + ' — near the 10,000 slice');
+            ' chars for ' + String(body.question_id ?? '?') + ' — near the 14,000 slice');
     }
     const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
-        rawFacts.slice(0, 10_000);
+        rawFacts.slice(0, 14_000);
 
     // Per-request steering sits NEXT TO the question, where the model actually
     // obeys it: the persona's own 5-sentence cap was ignored on 71% of "explain
@@ -315,15 +391,19 @@ Deno.serve(async (req: Request) => {
         : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
             : qid.startsWith('ts_ipe_c1_') ? 'chemistry'
                 : qid.startsWith('ts_ipe_p2_') ? 'physics_2'
-                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2' : 'physics';
+                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2'
+                        : qid.startsWith('ts_ipe_m2a_') ? 'mathematics_2a'
+                            : qid.startsWith('ts_ipe_m2b_') ? 'mathematics_2b' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
         physics: 'physics', chemistry: 'chemistry', chemistry_2: 'chemistry',
-        mathematics: 'mathematics', mathematics_1b: 'mathematics',
+        mathematics: 'mathematics', mathematics_1b: 'mathematics', mathematics_2a: 'mathematics',
+        mathematics_2b: 'mathematics',
         physics_2: 'physics',
     };
     const SUBJECT_LABEL: Record<string, string> = {
         physics: 'Physics', chemistry: 'Chemistry', chemistry_2: 'Chemistry-II',
-        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B', mathematics_2a: 'Maths-2A',
+        mathematics_2b: 'Maths-2B',
         physics_2: 'Physics II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
@@ -332,10 +412,29 @@ Deno.serve(async (req: Request) => {
         chemistry_2: 'solid state, unit cell, molarity, colligative, electrode potential, cell, rate of reaction, order, adsorption, colloid, ore, halogen, transition metal, ligand, polymer, monomer, carbohydrate, protein, amine, alcohol, phenol, aldehyde, ketone',
         mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
         mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+        mathematics_2b: 'circle, centre, radius, chord, tangent, normal, radical axis, parabola, focus, directrix, ellipse, hyperbola, eccentricity, latus rectum, integral, integration, reduction formula, definite integral, area, differential equation, order, degree, homogeneous, integrating factor',
         physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
+        mathematics_2a: 'complex number, modulus, argument, conjugate, cis, cube roots of unity, quadratic expression, discriminant, roots, permutation, combination, binomial coefficient, general term, partial fraction, mean deviation, variance, probability, conditional probability, random variable, binomial distribution, Poisson distribution',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];
+
+    // The ANSWER FACTS list steps as `N. [step_id] Label — NM`. The situation used to
+    // hand the model the raw step_id, and the model echoed it: replies told students to
+    // "skip the last step (s2_compute)". Round 2 (2026-08-30) measured a persona rule
+    // forbidding that and the leak did NOT fall — 4 per 5,280 replies became 9 — so the
+    // rule was withdrawn and the id is simply no longer offered here. A step is named
+    // the way the student sees it: its number and its label.
+    const stepHuman = (facts: string, id: string): string => {
+        for (const line of facts.split('\n')) {
+            const m = line.match(/^\s*(\d+)\.\s*\[([^\]]+)\]\s*([^—-]*)/);
+            if (m && m[2].trim() === id) {
+                const label = m[3].trim();
+                return label ? 'step ' + m[1] + ', "' + label + '"' : 'step ' + m[1];
+            }
+        }
+        return 'the step they are on';
+    };
 
     const situation = [
         'Where the student is right now:',
@@ -343,8 +442,8 @@ Deno.serve(async (req: Request) => {
         '- unit: ' + String(body.unit ?? 'unknown'),
         '- answer length on screen: ' + String(body.cut_key ?? 'full'),
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
-        body.step_id ? '- the step they last revealed: ' + String(body.step_id) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
-        '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply. You may then offer the question that IS open.',
+        body.step_id ? '- the step they last revealed: ' + stepHuman(rawFacts, String(body.step_id)) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
+        '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply, and then you stop: do not go on to talk about the question that IS open, do not summarise it, and do not offer anything about it. The student can see it in front of them and will ask if they want it.',
         walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
         subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
@@ -397,6 +496,21 @@ Deno.serve(async (req: Request) => {
     const cost = computeCost(usage, when);
     const inputChars = messages.reduce((n, m) => n + m.content.length, 0);
 
+    // Resolved now: the lookup started before the ledger read and has been
+    // running throughout the model call, so this await is already settled.
+    // Precedence is cheapest-and-most-trustworthy first — a device flag is
+    // server-side state, a client claim is not.
+    const deviceInternal = await internalP;
+    const actor = isProbe ? 'answerbook_probe'
+        : isLocal ? 'answerbook_local'
+            : (deviceInternal || claimsTeam) ? 'answerbook_team'
+                : 'answerbook_student';
+    const actorReason = isProbe ? 'probe_token'
+        : isLocal ? 'origin_localhost'
+            : deviceInternal ? 'device_flag'
+                : claimsTeam ? 'client_claim'
+                    : 'none';
+
     await writeUsage({
         session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
         task_type: TASK_TYPE,
@@ -409,9 +523,14 @@ Deno.serve(async (req: Request) => {
         fingerprint_key: body.question_id ? String(body.question_id) + '|answer_book|student_question' : null,
         was_cache_hit: cost.hit > 0,
         question_date: when.toISOString().split('T')[0],
-        actor: 'answerbook_student',
+        actor,
         metadata: {
             surface: 'answer_book',
+            // WHICH signal decided the actor. Kept because three of the four
+            // are forgeable: a wrong call can be re-derived and re-labelled
+            // later, which a bare boolean would make impossible.
+            actor_reason: actorReason,
+            device_internal: deviceInternal,
             question_id: body.question_id ?? null,
             unit: body.unit ?? null,
             cut_key: body.cut_key ?? null,

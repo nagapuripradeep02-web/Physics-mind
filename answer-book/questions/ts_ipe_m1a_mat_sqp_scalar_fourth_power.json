@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Scalar multiple",
         "margin_note": "First mark, and the whole question. A is 3 times the identity, so powers of A are powers of 3 times the identity — no matrix multiplication needed at all.",
+        "memory_tip": "A is 3 times the identity, so powers of A are powers of 3 times I — no matrix multiplication needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. (3I)⁴ = 3⁴I⁴, and I to any power is I — so the answer is 81I.",
+        "memory_tip": "(3I)⁴ = 3⁴I⁴, and I to any power is I, so the answer is 81I.",
         "lines": [
           "A⁴ = (3I)⁴ = 3⁴ I⁴ = 81 I   [∵ I⁴ = I]",
           {
@@ -136,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write A as 3I first, and then A⁴ = 3⁴I = 81I. Multiplying the matrix out four separate times reaches the same place after far more work."
 }

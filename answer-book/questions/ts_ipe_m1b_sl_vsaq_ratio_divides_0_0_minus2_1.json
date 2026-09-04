@@ -45,6 +45,7 @@
         "label": "Evaluate L at both points",
         "marks": 1,
         "margin_note": "First mark. Write L for the left-hand side of the line, then put each of the two points into it. L₁₁ and L₂₂ are the two values obtained.",
+        "memory_tip": "Write L for the line's left side, then put each point into it.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "label": "Write the ratio",
         "marks": 1,
         "margin_note": "Second mark. The required ratio is −L₁₁ : L₂₂. A NEGATIVE ratio means the line divides the segment externally, which is a real answer rather than an error.",
+        "memory_tip": "The ratio is −L₁₁ : L₂₂. A NEGATIVE ratio means external division — a real answer.",
         "lines": [
           "Required ratio is  −L₁₁ : L₂₂",
           {
@@ -126,5 +128,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Substitute both points into L and take −L₁₁ : L₂₂. Both values are negative here, so the ratio comes out −5 : 6 — a negative ratio means the line misses the segment, and it is not an error."
 }

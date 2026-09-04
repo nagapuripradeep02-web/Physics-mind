@@ -1,0 +1,202 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_union_0_65_intersection_0_15_complements_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If A, B are two events with P(A ∪ B) = 0.65 and P(A ∩ B) = 0.15, then find the value of P(Aᶜ) + P(Bᶜ).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the addition theorem",
+      "marks": 1
+    },
+    {
+      "label": "Find P(A) + P(B)",
+      "marks": 1
+    },
+    {
+      "label": "Complements: 2 − [P(A) + P(B)] and the answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 10 Probability, answer 79 (PDF p.60: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: AP 15,18 · TS 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q16 of Model Paper 3 (book p.115) and is re-solved in the Bullet Model Paper Q16 & 17 block (book p.103) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: P(A) + P(B) = 0.65 + 0.15 = 0.8; P(Aᶜ) + P(Bᶜ) = 2 − 0.8 = 1.2 — agrees with the book. Note 1.2 is a SUM of two probabilities, not a probability, so exceeding 1 is correct."
+  },
+  "recall_prompt": "Say how you would find P(A complement) plus P(B complement) from the union and intersection — the theorem, what it gives, and the last step.",
+  "insider_note": "The answer 1.2 is bigger than 1 and that is correct: it is a sum of two probabilities. Students \"correct\" it to 0.2 and lose the mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_addition_theorem",
+        "kind": "equation",
+        "label": "Addition theorem",
+        "marks": 1,
+        "mark_note": "Theorem",
+        "margin_note": "First mark. The two given numbers are the union and the intersection, so the addition theorem is the link to P(A) and P(B).",
+        "memory_tip": "The given values are the union and the intersection, so the addition theorem is the link.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "By the addition theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∪ B) = P(A) + P(B) − P(A ∩ B) is written as the starting point.",
+          "accept": [
+            "write the addition theorem P of A union B equals P A plus P B minus P A intersection B",
+            "start from the union formula",
+            "the addition theorem links the union and the intersection to P A plus P B",
+            "addition theorem rayali, union ante sum minus intersection"
+          ],
+          "reject": [
+            "use the theorem",
+            "addition theorem"
+          ],
+          "heard_as": [
+            "addition theorem",
+            "union",
+            "intersection"
+          ]
+        },
+        "why": "P(A) and P(B) are not given separately, but their sum is what the complements need, and the theorem gives exactly that sum.",
+        "common_mistakes": [
+          "Trying to find P(A) and P(B) separately — the data cannot give them, only their sum."
+        ]
+      },
+      {
+        "id": "s2_sum",
+        "kind": "equation",
+        "label": "Find P(A) + P(B)",
+        "marks": 1,
+        "mark_note": "P(A) + P(B)",
+        "margin_note": "Second mark. Move the intersection across: P(A) + P(B) = 0.65 + 0.15 = 0.8.",
+        "memory_tip": "Move the intersection across: P(A) + P(B) = 0.65 + 0.15 = 0.8.",
+        "lines": [
+          {
+            "text": "⇒ P(A) + P(B) = P(A ∪ B) + P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.65 + 0.15 = 0.8",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A) + P(B) = P(A ∪ B) + P(A ∩ B) = 0.65 + 0.15 = 0.8.",
+          "accept": [
+            "P A plus P B is the union plus the intersection which is point eight",
+            "add 0.65 and 0.15 to get 0.8",
+            "the sum of the two probabilities is point eight",
+            "union plus intersection ante P A plus P B, 0.8"
+          ],
+          "reject": [
+            "add them",
+            "find the sum"
+          ],
+          "heard_as": [
+            "point eight",
+            "P A plus P B",
+            "union plus intersection"
+          ]
+        },
+        "why": "Rearranging the theorem gives the sum directly; no individual value is needed.",
+        "common_mistakes": [
+          "Subtracting: 0.65 − 0.15 = 0.5."
+        ]
+      },
+      {
+        "id": "s3_complements",
+        "kind": "boxed_final",
+        "label": "Complements and answer",
+        "marks": 2,
+        "mark_note": "Complements",
+        "margin_note": "Two marks. P(Aᶜ) = 1 − P(A) and P(Bᶜ) = 1 − P(B); adding gives 2 − [P(A) + P(B)] = 2 − 0.8 = 1.2.",
+        "memory_tip": "2 − 0.8 = 1.2. An answer above 1 is correct here — it is a SUM of two probabilities, not one.",
+        "lines": [
+          {
+            "text": "P(Aᶜ) + P(Bᶜ) = [1 − P(A)] + [1 − P(B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= 2 − [P(A) + P(B)] = 2 − 0.8",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ) + P(Bᶜ) = 1.2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(Aᶜ) + P(Bᶜ) = (1 − P(A)) + (1 − P(B)) = 2 − 0.8 = 1.2.",
+          "accept": [
+            "P A complement plus P B complement is one minus P A plus one minus P B which is two minus point eight equals one point two",
+            "the complements add to two minus the sum, 1.2",
+            "two minus point eight is one point two",
+            "complements sum ante 2 minus 0.8, 1.2"
+          ],
+          "reject": [
+            "find the complements",
+            "subtract from one"
+          ],
+          "heard_as": [
+            "one point two",
+            "two minus point eight",
+            "A complement",
+            "B complement"
+          ]
+        },
+        "why": "Each complement is 1 minus its event; two of them give 2 minus the sum. The answer exceeds 1 because it is a sum, not a single probability.",
+        "common_mistakes": [
+          "Writing 1 − 0.8 = 0.2 (one complement, not two).",
+          "Rejecting 1.2 as impossible and changing it."
+        ]
+      }
+    ]
+  }
+}

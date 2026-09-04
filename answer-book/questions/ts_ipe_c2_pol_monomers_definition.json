@@ -48,12 +48,13 @@
           "A monomer is a small molecule that joins",
           "with many molecules of its own kind, or",
           "of another kind, to form a polymer.",
-          "A monomer must carry either a double or a",
-          "triple bond, or at least two reactive",
-          "functional groups, so that it can join on",
-          "both sides."
+          "A monomer must carry a double or a triple",
+          "bond, or at least two reactive functional",
+          "groups, or be a ring that opens to give",
+          "two reactive ends, as caprolactam does,",
+          "so that it can join on both sides."
         ],
-        "why": "A molecule with only one reactive site can join once and then stop, which ends the chain. Two sites, or a multiple bond that becomes two sites when it opens, are what let the joining repeat, and that is what the word monomer requires.",
+        "why": "A molecule with only one reactive site can join once and then stop, which ends the chain. Two sites, or a multiple bond that becomes two sites when it opens, or a ring that breaks open to give a reactive end on each side, are what let the joining repeat, and that is what the word monomer requires.",
         "common_mistakes": [
           "Writing that a monomer is the repeating unit of the chain. The monomer is the starting molecule; the repeating unit is what is left of it inside the chain.",
           "Writing that a monomer is a small polymer. It is not a polymer at all."

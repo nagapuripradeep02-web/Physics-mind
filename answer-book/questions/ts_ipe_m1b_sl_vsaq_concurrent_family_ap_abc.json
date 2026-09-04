@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_concurrent_family_ap_abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If a, b, c are in arithmetic progression, show that ax + by + c = 0 represents a family of concurrent lines, and find the point of concurrency.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the arithmetic progression condition",
+      "marks": 1
+    },
+    {
+      "label": "Read the fixed point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 16, book p.142. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for turning the arithmetic progression into a − 2b + c = 0, and the second for matching that against ax + by + c = 0 and naming the point; the question asks for two things, so the split follows them. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substitution: putting x = 1, y = −2 into ax + by + c gives a − 2b + c, which the arithmetic progression makes 0 for every such a, b, c. Tested on one member of the family, a = 1, b = 2, c = 3: the line x + 2y + 3 = 0 gives 1 − 4 + 3 = 0 at (1, −2). Tested on a second, a = 5, b = 3, c = 1: the line 5x + 3y + 1 = 0 gives 5 − 6 + 1 = 0 at the same point."
+  },
+  "recall_prompt": "Say how you would solve this — say what arithmetic progression gives you, and how you read the fixed point off it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_ap_condition",
+        "kind": "equation",
+        "label": "Write the arithmetic progression condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Arithmetic progression means equal gaps, so b − a = c − b. Rearranged as a − 2b + c = 0, the condition already looks like a line equation with a, b, c as the variables.",
+        "memory_tip": "Arithmetic progression means equal gaps: b − a = c − b, so 2b = a + c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a, b, c are in A.P.",
+          "∴ b − a = c − b",
+          "⇒ 2b = a + c",
+          "⇒ a − 2b + c = 0   ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a, b, c in arithmetic progression gives b − a = c − b, that is a − 2b + c = 0.",
+          "accept": [
+            "b minus a equals c minus b",
+            "two b equals a plus c",
+            "a minus two b plus c equals zero",
+            "a p ante equal gaps so two b equals a plus c",
+            "the common difference is the same on both sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the point of concurrency is one comma minus two"
+          ],
+          "heard_as": [
+            "arithmetic progression",
+            "two b equals a plus c",
+            "a minus two b plus c",
+            "common difference"
+          ]
+        },
+        "why": "The given line has a, b, c as its coefficients, so a relation among a, b, c is the only usable information, and it must be written in the same shape as the line before it can be compared.",
+        "common_mistakes": [
+          "Writing 2b = a − c instead of 2b = a + c.",
+          "Using b/a = c/b, which is the geometric progression condition."
+        ]
+      },
+      {
+        "id": "s2_read_the_fixed_point",
+        "kind": "boxed_final",
+        "label": "Read the fixed point",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write (1) with the coefficients in the same order as the line. The numbers standing beside a and b are then the coordinates of the fixed point.",
+        "memory_tip": "Write the condition as a(x) + b(y) + c = 0. The numbers beside a and b are the fixed point.",
+        "lines": [
+          "Given line is ax + by + c = 0   ……(2)",
+          "Write (1) as  a(1) + b(−2) + c = 0",
+          "So x = 1, y = −2 satisfies (2)",
+          "for every a, b, c in A.P.  (a, b not both 0)",
+          "∴ all the lines pass through one fixed point",
+          {
+            "text": "∴ Point of concurrency is (1, −2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a − 2b + c = 0 is a(1) + b(−2) + c = 0, so every line of the family passes through (1, −2).",
+          "accept": [
+            "write it as a into one plus b into minus two plus c",
+            "compare the condition with a x plus b y plus c",
+            "x is one and y is minus two",
+            "condition ni line tho compare cheyyali",
+            "the point of concurrency is one comma minus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "b minus a equals c minus b"
+          ],
+          "heard_as": [
+            "one comma minus two",
+            "compare",
+            "point of concurrency",
+            "fixed point"
+          ]
+        },
+        "why": "Concurrent means all the lines pass through one common point. Since (1, −2) satisfies the line for every choice of a, b, c allowed by the condition, that single point is common to the whole family.",
+        "common_mistakes": [
+          "Giving the point as (1, 2) and losing the minus sign that came from −2b.",
+          "Solving two particular lines instead of matching the condition, which takes far longer than two marks allow."
+        ]
+      }
+    ]
+  }
+}

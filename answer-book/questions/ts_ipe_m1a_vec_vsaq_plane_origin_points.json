@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Convert the coordinate triples into vectors. The first point is the ORIGIN, so its position vector is the zero vector — which is what shortens the answer.",
+        "memory_tip": "The first point is the ORIGIN, so its position vector is zero — that is what shortens the answer.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Substitute into the two-parameter form. Because a is the zero vector, the (1−s−t) term disappears entirely and the answer is short.",
+        "memory_tip": "With a = 0 the (1 − s − t) term disappears entirely, leaving just s and t times the other two.",
         "lines": [
           "Vector equation of the plane is",
           "r = (1−s−t)a + sb + tc,  s, t ∈ R",
@@ -140,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "One of the points is the origin, so a = 0 and the first term vanishes — that is what makes this shorter than the general case. The weights must still sum to 1 in the form quoted."
 }

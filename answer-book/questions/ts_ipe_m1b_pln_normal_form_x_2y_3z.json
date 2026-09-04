@@ -57,6 +57,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Normal form is lx + my + nz = p, so the constant goes to the right and the coefficients are left alone for the moment.",
+        "memory_tip": "Normal form is lx + my + nz = p, so move the constant right and leave the coefficients alone for now.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Divide every term by √(a²+b²+c²). The three coefficients then square-and-add to 1, which is what makes them direction cosines of the normal.",
+        "memory_tip": "Divide EVERY term by √(a²+b²+c²). The three coefficients then square-and-add to 1.",
         "lines": [
           "Dividing the above equation by √(1² + 2² + (−3)²) = √(1 + 4 + 9) = √14, we have",
           {
@@ -135,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Normal form divides by √(1 + 4 + 9) = √14 — not by 14, and not by the constant 6, which would give intercept form instead. The right-hand side gets divided too."
 }

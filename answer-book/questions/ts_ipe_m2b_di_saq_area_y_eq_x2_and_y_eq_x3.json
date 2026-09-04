@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x2_and_y_eq_x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the area enclosed by the curves y = x² and y = x³.",
+  "appearances": [
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Solve for the points of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Identify the upper and lower curves",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and evaluate",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.71 — SAQ chapter 10 'Definite Integrals', under the sub-heading 'AREAS' that opens this page, answer 89, the first of three area questions in this chapter. Printed appearance: TS 19. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the standard find-intersection / identify-boundary / integrate shape used for the two neighbouring area answers (90, 91) on this same page. No figure is drawn in the book for this question (a single-interval area between two curves near the origin, easily argued in words), and none is authored here either — the algebra alone carries the argument. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Always test one point strictly between the two intersection values to decide which curve is on top — guessing from the equations alone is where students most often set the integral up backwards.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersect",
+        "kind": "equation",
+        "label": "Solve for the points of intersection",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One mark. Factor out x² carefully — do not divide by it, or the root x=0 is lost.",
+        "memory_tip": "Factor, never divide, when one side of an equation could be zero — dividing by x² would silently throw away the root x = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given curves are y = x² …(1), y = x³ …(2)",
+          "Solving (1) and (2): x² = x³ ⇒ x³ − x² = 0",
+          "⇒ x²(x − 1) = 0 ⇒ x = 0 or x = 1"
+        ],
+        "why": "Setting the two curve equations equal finds where they cross; factoring out x² (rather than dividing) keeps both roots visible — x = 0 and x = 1.",
+        "common_mistakes": [
+          "Dividing both sides by x² and losing the root x = 0.",
+          "Solving x³ = x² as x = 1 only, missing the second intersection."
+        ]
+      },
+      {
+        "id": "s2_boundary",
+        "kind": "text",
+        "label": "Identify the upper and lower curves",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One more mark. Test a point strictly between 0 and 1, never at an endpoint.",
+        "memory_tip": "At x = 1/2: x² = 1/4 and x³ = 1/8 — the larger value names the upper curve.",
+        "lines": [
+          "For 0 < x < 1, test x = 1/2:",
+          "x² = 1/4 and x³ = 1/8, so x² > x³ on this interval",
+          "∴ the upper boundary curve is y",
+          "= x²; the lower boundary curve is y = x³"
+        ],
+        "why": "Testing a point strictly between the two intersections shows which curve lies above the other over the whole interval — the area is always found as upper curve minus lower curve.",
+        "common_mistakes": [
+          "Assuming without testing that y = x³ is the upper curve, since x³ eventually overtakes x² for x > 1.",
+          "Testing a point outside the interval (0, 1), where the relationship reverses."
+        ]
+      },
+      {
+        "id": "s3_final",
+        "kind": "boxed_final",
+        "label": "Integrate and evaluate",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Upper minus lower, always in that order.",
+        "memory_tip": "Area = ∫(upper − lower) dx — write the upper curve first every time.",
+        "lines": [
+          "Required area A = ∫₀^1 (x² − x³) dx",
+          "= [x³/3 − x⁴/4]₀^1 = 1/3 − 1/4 = (4 − 3)/12",
+          {
+            "text": "∴ Area = 1/12 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating the upper curve minus the lower curve over the interval and evaluating at the two limits (the lower limit x = 0 gives 0) leaves 1/3 − 1/4, a clean fraction over 12.",
+        "common_mistakes": [
+          "Setting up the integral as x³ − x² (lower minus upper), which gives a negative value.",
+          "Finding the common denominator of 3 and 4 incorrectly."
+        ]
+      }
+    ]
+  }
+}

@@ -53,6 +53,7 @@
         "label": "Find vertex A",
         "marks": 1,
         "margin_note": "First mark. The triangle is handed over as three SIDES, not three corners, so a vertex has to be manufactured first: two sides meeting is one vertex.",
+        "memory_tip": "Three sides given, so a vertex has to be built: solve two of the lines together.",
         "lines": [
           {
             "text": "Sol:",
@@ -86,7 +87,7 @@
             "point of intersection"
           ]
         },
-        "why": "When sides are given rather than vertices, every method in this chapter needs the vertices first — that extra stage is the only difference from the vertices-given questions.",
+        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the only difference from a triangle whose corners are given outright.",
         "common_mistakes": [
           "Trying to use the line coefficients as if they were coordinates.",
           "Solving the wrong pair for the vertex the altitude will pass through."
@@ -99,6 +100,7 @@
         "label": "Draw the three lines",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. When the SIDES are given, the sketch is what shows which pair of lines meets at which vertex — and therefore which line is opposite each one.",
+        "memory_tip": "Drawing it is what shows which line is opposite each vertex.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That the three given lines are sketched and their intersection points identified as the vertices. Naming the drawing is full credit — it cannot be spoken.",
@@ -134,25 +136,25 @@
             {
               "type": "stroke",
               "id": "line1",
-              "d": "M 24 66 L 258 66",
+              "d": "M 23 178 L 267 157",
               "ms": 640
             },
             {
               "type": "stroke",
               "id": "line2",
-              "d": "M 62 20 L 208 210",
+              "d": "M 158 23 L 42 203",
               "ms": 640
             },
             {
               "type": "stroke",
               "id": "line3",
-              "d": "M 250 30 L 40 208",
+              "d": "M 120 26 L 250 184",
               "ms": 640
             },
             {
               "type": "stroke",
               "id": "alt_a",
-              "d": "M 112 66 L 158 156",
+              "d": "M 140 50 L 150 167",
               "ms": 520,
               "pen": "pencil",
               "wipe": "y"
@@ -160,7 +162,7 @@
             {
               "type": "stroke",
               "id": "alt_b",
-              "d": "M 196 66 L 96 134",
+              "d": "M 60 175 L 169 86",
               "ms": 520,
               "pen": "pencil",
               "wipe": "x"
@@ -168,7 +170,7 @@
             {
               "type": "stroke",
               "id": "dot_o",
-              "d": "M 141 122 A 3 3 0 1 0 147 122 A 3 3 0 1 0 141 122",
+              "d": "M 142 106 A 3 3 0 1 0 148 106 A 3 3 0 1 0 142 106",
               "ms": 200,
               "w": 3
             },
@@ -202,8 +204,8 @@
             {
               "type": "label",
               "id": "lbl_a",
-              "x": 106,
-              "y": 54,
+              "x": 135,
+              "y": 40,
               "text": "A",
               "ms": 200,
               "em": true
@@ -211,8 +213,8 @@
             {
               "type": "label",
               "id": "lbl_b",
-              "x": 200,
-              "y": 54,
+              "x": 46,
+              "y": 189,
               "text": "B",
               "ms": 200,
               "em": true
@@ -220,8 +222,8 @@
             {
               "type": "label",
               "id": "lbl_o",
-              "x": 152,
-              "y": 118,
+              "x": 153,
+              "y": 102,
               "text": "O",
               "ms": 200,
               "em": true
@@ -235,6 +237,7 @@
         "label": "Altitude through A",
         "marks": 2,
         "margin_note": "Two marks. The altitude from A is perpendicular to the side OPPOSITE A — that is the third line, the one not used to find A. Its slope comes straight off the coefficients as −a/b.",
+        "memory_tip": "Perpendicular to the side opposite A — the third line, the one not used for A.",
         "lines": [
           "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
           "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
@@ -264,7 +267,7 @@
             "altitude through A"
           ]
         },
-        "why": "Reading a slope off ax + by + c = 0 as −a/b saves rearranging into y = mx + c every time, and the book uses it throughout this chapter.",
+        "why": "Reading a slope off ax + by + c = 0 as −a/b saves rearranging into y = mx + c every time.",
         "common_mistakes": [
           "Using one of the two lines that MEET at A as the opposite side.",
           "Reading the slope as −b/a."
@@ -277,6 +280,7 @@
         "label": "Vertex B and its altitude",
         "marks": 2,
         "margin_note": "Two marks. The same pair of moves from a second vertex. Note which line is now the opposite side — it changes with the vertex.",
+        "memory_tip": "Same two moves from a second vertex, with a different opposite side.",
         "lines": [
           "Step-2: Finding altitude through B:",
           "Solving (1) and (3), we get B;",
@@ -322,6 +326,7 @@
         "label": "Solve the pair",
         "marks": 3,
         "margin_note": "The last three marks. Two altitudes, one point.",
+        "memory_tip": "Solve the two altitudes for the orthocentre.",
         "lines": [
           "Step-3: Solving (4) and (5), we get O;",
           "(4) ⇒ x − 2y − 8 = 0;   (5) ⇒ x + y + 10 = 0",
@@ -361,5 +366,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two of these sides have slopes −1 and 1, so the triangle is right-angled and the orthocentre is that vertex. The working shows it: the second altitude reduces to line (1) itself, giving (−4, −6), which is vertex A."
 }

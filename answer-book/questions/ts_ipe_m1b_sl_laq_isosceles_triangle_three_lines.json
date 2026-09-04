@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_isosceles_triangle_three_lines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the straight lines x + y = 0, 3x + y − 4 = 0 and x + 3y − 4 = 0 form an isosceles triangle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three slopes",
+      "marks": 1
+    },
+    {
+      "label": "Angle A between (1) and (2)",
+      "marks": 2
+    },
+    {
+      "label": "Angle B between (1) and (3)",
+      "marks": 2
+    },
+    {
+      "label": "Compare the two angles",
+      "marks": 1
+    },
+    {
+      "label": "Conclude and check",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.156, chapter 3 THE STRAIGHT LINE, Long Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle route, which is what the word show is asking for: two marks for each of the two angles, one for reading the three slopes, one for comparing the angles and two for the conclusion with its check. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The vertices were found and the sides measured as an independent check: A(2, −2), B(−2, 2) and C(1, 1) give AB = 4√2, BC = √10 and CA = √10, so the two sides opposite the equal angles really are equal. Each vertex was substituted into both of the lines that meet there."
+  },
+  "recall_prompt": "Say how you would show this — name the two angles you compare, and say what equal angles tell you about the sides.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slopes",
+        "kind": "equation",
+        "label": "Write the three slopes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Number the three lines, read each slope as −a/b, and say which two lines meet at each vertex.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let  x + y = 0  ……(1)",
+          "3x + y − 4 = 0  ……(2)",
+          "x + 3y − 4 = 0  ……(3)",
+          "Slopes:  m₁ = −1,  m₂ = −3,  m₃ = −1/3",
+          "A is where (1) meets (2),",
+          "B is where (1) meets (3),",
+          "and C is where (2) meets (3)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three slopes are −1, −3 and −1/3, with each vertex named by the two lines meeting there.",
+          "accept": [
+            "the slopes are minus one minus three and minus one third",
+            "read each slope as minus a over b",
+            "name each vertex by the two lines that meet there",
+            "moodu slopes minus a by b tho teesukovali",
+            "m one is minus one and m three is minus one by three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one",
+            "minus three",
+            "minus one third",
+            "slopes"
+          ]
+        },
+        "why": "Naming the vertices before any working starts is what makes the two angles compared later belong to named corners of one triangle.",
+        "common_mistakes": [
+          "Reading m₃ as −3 instead of −1/3.",
+          "Naming the vertices in an order that does not match the lines used."
+        ],
+        "memory_tip": "Number the lines first, then name each vertex by the two lines that meet there. Slope is always −a/b."
+      },
+      {
+        "id": "s2_angle_a",
+        "kind": "equation",
+        "label": "Angle A between (1) and (2)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Use the angle formula on the two lines that meet at A, and keep the modulus so the angle comes out as the acute one.",
+        "lines": [
+          "At A the sides are (1) and (2), so",
+          "tan A = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(−1 + 3)/(1 + (−1)(−3))|",
+          "= |2/4| = 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle at A between lines (1) and (2) has tan A = 1/2.",
+          "accept": [
+            "tan A is one half",
+            "use the angle formula on lines one and two",
+            "mod two over four gives one half",
+            "first rendu lines madhya angle theesthe half vasthundi",
+            "the angle at A comes from the two lines meeting there"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan A",
+            "one half",
+            "angle formula",
+            "lines one and two"
+          ]
+        },
+        "why": "The angle at a vertex is the angle between the two lines that meet there, and that is the only quantity in this question that can be compared directly.",
+        "common_mistakes": [
+          "Using the wrong pair of lines for the angle at A.",
+          "Writing the denominator as 1 − m₁m₂."
+        ],
+        "memory_tip": "The angle at a vertex is the angle between the two lines that MEET there. Pick the pair by name, not by position."
+      },
+      {
+        "id": "s3_angle_b",
+        "kind": "equation",
+        "label": "Angle B between (1) and (3)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Same formula, second pair of lines. Divide the two fractions by cancelling the common 1/3.",
+        "lines": [
+          "At B the sides are (1) and (3), so",
+          "tan B = |(m₁ − m₃)/(1 + m₁m₃)|",
+          "= |(−1 + 1/3)/(1 + (−1)(−1/3))|",
+          "= |(−2/3)/(4/3)|",
+          "= 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle at B between lines (1) and (3) also has tan B = 1/2.",
+          "accept": [
+            "tan B is also one half",
+            "use the angle formula on lines one and three",
+            "minus two thirds over four thirds is minus one half",
+            "rendava angle kuda half ye vasthundi",
+            "the second angle comes out the same"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan B",
+            "one half",
+            "lines one and three",
+            "same value"
+          ]
+        },
+        "why": "The same formula is used on the second pair of lines so that the two results can be set side by side without any further work.",
+        "common_mistakes": [
+          "Arithmetic slip when the thirds are cancelled in (−2/3)/(4/3).",
+          "Using lines (2) and (3) instead of (1) and (3)."
+        ],
+        "memory_tip": "Divide the fractions by cancelling the common third: (−2/3)/(4/3) is just −2/4."
+      },
+      {
+        "id": "s4_compare",
+        "kind": "text",
+        "label": "Compare the two angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Say why equal tangents give equal angles here: the modulus in the angle formula returns the acute angle at each vertex, so ∠A and ∠B are both acute and equal tangents force them equal.",
+        "lines": [
+          "tan A = tan B = 1/2",
+          "A and B are angles of a triangle, and both",
+          "tangents are positive, so both are acute.",
+          "Two acute angles with the same tangent are",
+          "equal, so ∠A = ∠B."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan A = tan B with both angles acute gives ∠A = ∠B.",
+          "accept": [
+            "tan A equals tan B so the angles are equal",
+            "both angles are acute so equal tangents means equal angles",
+            "the tangents are positive and the angles are in a triangle",
+            "rendu angles acute so equal tangent ante equal angle",
+            "angle A equals angle B"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equal tangents",
+            "acute",
+            "angle A equals angle B",
+            "same angle"
+          ]
+        },
+        "why": "Equal tangents alone do not force equal angles, so the range has to be pinned down first. The modulus in the angle formula returns the acute angle at each vertex, and only one acute angle has tangent 1/2.",
+        "common_mistakes": [
+          "Writing ∠A = ∠B from tan A = tan B without saying both are acute.",
+          "Claiming the triangle is equilateral because two angles agree."
+        ],
+        "memory_tip": "Equal tangents give equal angles only once the range is fixed. The modulus makes each angle the acute one, and that fixes it."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude and check",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Name the two equal sides, then confirm by finding the vertices and measuring — two routes to the same conclusion.",
+        "lines": [
+          "In a triangle the sides opposite equal angles",
+          "are equal, so CA = CB.",
+          "Check with the vertices:",
+          "A(2, −2),  B(−2, 2),  C(1, 1)",
+          "CA = √(1² + 3²) = √10",
+          "CB = √(3² + 1²) = √10",
+          {
+            "text": "∴ The triangle formed is isosceles.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal angles give equal opposite sides, so the triangle is isosceles.",
+          "accept": [
+            "sides opposite equal angles are equal so the triangle is isosceles",
+            "CA equals CB equals root ten",
+            "the two equal sides are the ones opposite the equal angles",
+            "equal angles ki opposite sides equal, so isosceles",
+            "check with the vertices gives root ten both times"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "isosceles",
+            "root ten",
+            "opposite sides",
+            "equal sides"
+          ]
+        },
+        "why": "The angle argument alone proves the result, and the side lengths are added as an independent check so the two routes can be seen to agree.",
+        "common_mistakes": [
+          "Stopping at ∠A = ∠B without naming the two equal sides.",
+          "Naming AB as one of the equal sides."
+        ],
+        "memory_tip": "Equal ANGLES give equal opposite SIDES. The side opposite ∠A is CB and the side opposite ∠B is CA."
+      }
+    ]
+  }
+}

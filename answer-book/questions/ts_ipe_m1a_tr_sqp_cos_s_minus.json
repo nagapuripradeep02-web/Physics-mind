@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "Two pairs",
         "margin_note": "Two of the eight marks. Bracket the first two and the last two, then apply cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2) to each.",
+        "memory_tip": "FOUR terms: bracket the first two and the last two, then apply the cosine sum formula to each.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "First pair",
         "margin_note": "Two marks. From A + B + C = 2S, 2S − A − B = C, so the first cosine is cos(C/2). The other is cos((B−A)/2), which equals cos((A−B)/2).",
+        "memory_tip": "2S − A − B = C, so the first cosine is cos(C/2). And cos(−θ) = cos θ.",
         "lines": [
           "A + B + C = 2S ⇒ 2S − A − B = C",
           "⇒ cos((2S − A − B)/2) = cos(C/2)",
@@ -148,6 +150,7 @@
         "marks": 2,
         "mark_note": "Second pair",
         "margin_note": "Two marks (fifth and sixth). (2S − C)/2 = (A + B)/2, and cos(−C/2) = cos(C/2). Both pairs now carry cos(C/2).",
+        "memory_tip": "(2S − C)/2 = (A + B)/2, and cos(−C/2) = cos(C/2). Both pairs now carry cos(C/2).",
         "lines": [
           "2S − C = A + B ⇒ cos((2S − C)/2) = cos((A+B)/2)",
           "and cos(−C/2) = cos(C/2)",
@@ -174,7 +177,7 @@
             "both pairs"
           ]
         },
-        "why": "Both pairs ending with cos(C/2) is not luck — it is why this pairing was chosen, and it is what allows the next factoring.",
+        "why": "Both pairs ending with cos(C/2) is the reason this pairing was chosen, and it is what allows the next factoring.",
         "common_mistakes": [
           "Missing that cos(−C/2) = cos(C/2).",
           "Writing 2S − C as A + B + C."
@@ -186,7 +189,8 @@
         "label": "Take 2 cos(C/2) common",
         "marks": 1,
         "mark_note": "Factor",
-        "margin_note": "Sixth mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
+        "margin_note": "Seventh mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
+        "memory_tip": "Both pairs share 2 cos(C/2) — pull it out, leaving a SUM of two cosines inside.",
         "lines": [
           "L.H.S = 2 cos(C/2) cos((A−B)/2)",
           "      + 2 cos((A+B)/2) cos(C/2)",
@@ -226,6 +230,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. cos X + cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 cos(A/2) cos(B/2) — the same formula used in step 1.",
+        "memory_tip": "The same formula as step 1, now with X = (A−B)/2 and Y = (A+B)/2.",
         "lines": [
           "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2)",
           "L.H.S = 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
@@ -262,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four terms, so pair them as the first two and the last two — cos S pairs with cos(S−C). Both pairs reduce using 2S − A − B = C, and one more application finishes it."
 }

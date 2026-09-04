@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_chess_games_30_students",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In a class there are 30 students. If each student plays a chess game with each of the other students, then find the total number of chess games played by them.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "One game = one pair of students",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate ³⁰C₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 16 Permutations & Combinations, answer 155.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would count the chess games among thirty students — why a game is a selection of two, and the number.",
+  "insider_note": "One game is one pair of students, so the count is ³⁰C₂ = 435. Any working that reaches 870 has counted each game twice, once from each player’s side.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "One game = one pair of students",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A game needs 2 of the 30 students, and A playing B is the same game as B playing A — order does not matter: ³⁰C₂.",
+        "memory_tip": "One game is one PAIR. A playing B is the same game as B playing A, so use ³⁰C₂.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "One game needs 2 of the 30 students;",
+          "A with B is the same game as B with A,",
+          "so order does not matter: ³⁰C₂"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each game is an unordered pair of students, so the count is 30 C 2.",
+          "accept": [
+            "each game is a pair of students and order does not matter so it is thirty C two",
+            "thirty C two games",
+            "choose two students out of thirty for a game, a combination",
+            "oka game ki iddaru students, order lekunda, thirty C two",
+            "A with B and B with A is the same game so combination"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "thirty C two",
+            "pair",
+            "order does not matter",
+            "combination"
+          ]
+        },
+        "why": "The question is really asking how many pairs of students there are. Using ³⁰P₂ would count each game twice, once from each player's side.",
+        "common_mistakes": [
+          "Using ³⁰P₂ = 870, double-counting every game.",
+          "Answering 29 — that is how many games one student plays, not the total for the class."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Evaluate ³⁰C₂",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ³⁰C₂ = 30 × 29/2 = 15 × 29 = 435.",
+        "memory_tip": "³⁰C₂ = 30 × 29/2 = 15 × 29 = 435. An answer of 870 counted every game twice.",
+        "lines": [
+          "³⁰C₂ = (30 · 29)/2 = 15 · 29",
+          {
+            "text": "= 435",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 30 C 2 is 30 times 29 over 2 = 435.",
+          "accept": [
+            "thirty into twenty nine by two is four hundred thirty five",
+            "four thirty five",
+            "fifteen times twenty nine is four hundred and thirty five",
+            "thirty C two four thirty five",
+            "the answer is four hundred thirty five games"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "four thirty five",
+            "four hundred thirty five",
+            "thirty into twenty nine"
+          ]
+        },
+        "why": "Halving 30 × 29 removes the double count; 15 × 29 is the easy way to do the arithmetic.",
+        "common_mistakes": [
+          "Answering 870 (no halving).",
+          "Computing 15 × 29 as 425."
+        ]
+      }
+    ]
+  }
+}

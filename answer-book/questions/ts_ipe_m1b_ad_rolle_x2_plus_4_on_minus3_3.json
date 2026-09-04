@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_x2_plus_4_on_minus3_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for the function f(x) = x² + 4 in [−3, 3].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the three conditions on [−3, 3]",
+      "marks": 1
+    },
+    {
+      "label": "Find c from f′(c) = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you check first, and how you reach the value of c.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Check the three conditions on [−3, 3]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both end values come to 13. Show the arithmetic — 'f(−3) = f(3)' asserted without the two numbers does not earn the condition.",
+        "memory_tip": "x² + 4 gives the same value at x and at −x, so a symmetric interval must have equal end values. Checking it is still part of the answer.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² + 4 is a polynomial function, so",
+          "(i) f is continuous on the closed interval [−3, 3]",
+          "(ii) f is differentiable on the open interval (−3, 3)",
+          "(iii) f(−3) = (−3)² + 4 = 9 + 4 = 13  and  f(3) = 3² + 4 = 9 + 4 = 13",
+          "∴ f(−3) = f(3), so all three conditions of Rolle's theorem hold on [−3, 3]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a polynomial, so continuous on [−3, 3] and differentiable on (−3, 3), and that f(−3) = f(3) = 13.",
+          "accept": [
+            "it is a polynomial so it is continuous and differentiable, and both ends give thirteen",
+            "f of minus three is thirteen and f of three is thirteen",
+            "check continuity, differentiability and the equal end values first",
+            "polynomial kabatti continuous, rendu ends thirteen vasthundi",
+            "nine plus four is thirteen at both ends"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "polynomial",
+            "thirteen",
+            "nine plus four",
+            "both ends equal",
+            "continuous"
+          ]
+        },
+        "why": "This mark is for the three conditions, taken together. A value of c written down without them answers a different question — Rolle's theorem gives a c only when all three conditions hold.",
+        "common_mistakes": [
+          "Squaring −3 as −9, which makes f(−3) = −5 and the third condition fail.",
+          "Writing 'f is continuous and differentiable' without naming the closed interval for one and the open interval for the other."
+        ]
+      },
+      {
+        "id": "s2_find_c",
+        "kind": "boxed_final",
+        "label": "Find c from f′(c) = 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The constant 4 differentiates to 0, so only 2x is left. Say in words that c = 0 lies inside the interval.",
+        "memory_tip": "The lowest point of x² + 4 is at x = 0, and the tangent at the lowest point of a parabola is horizontal.",
+        "lines": [
+          "f′(x) = 2x",
+          "By Rolle's theorem there is a c ∈ (−3, 3) with f′(c) = 0",
+          "2c = 0  ⇒  c = 0",
+          "−3 < 0 < 3, so c = 0 lies in the open interval (−3, 3)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = 0 ∈ (−3, 3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 2x, so f′(c) = 0 gives c = 0, and that 0 lies inside (−3, 3).",
+          "accept": [
+            "differentiate to get two x, set it to zero, so c is zero",
+            "c equals zero and zero is between minus three and three",
+            "two c equals zero so c is zero, which is inside the interval",
+            "derivative two x zero pettina c zero vasthundi",
+            "the answer is c equal to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x",
+            "c is zero",
+            "inside the interval",
+            "derivative zero"
+          ]
+        },
+        "why": "The root of f′ has to be tested against the open interval before it can be quoted. Here 0 is inside (−3, 3), so the theorem is verified; a root outside the interval would have to be rejected.",
+        "common_mistakes": [
+          "Differentiating x² + 4 as 2x + 4, by carrying the constant through instead of differentiating it to 0.",
+          "Stopping at c = 0 without saying that 0 lies in (−3, 3)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "f(−3) = f(3) = 13, so condition (iii) holds even though neither value is zero — Rolle does not require the endpoints to be zero. c = 0 follows at once."
+}

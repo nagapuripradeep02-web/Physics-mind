@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_tan_e_minus_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If x = tan(e⁻ʸ), prove that dy/dx = −eʸ/(1 + x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate x with respect to y",
+      "marks": 1
+    },
+    {
+      "label": "Replace sec² by 1 + x² and invert",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Very Short Answer question 31. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. Notation only: the exponents are set as Unicode superscripts (e⁻ʸ, eʸ) to match the rest of this bank; the stem's mathematics is unchanged. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked numerically before it was written, by differentiating x with respect to y and taking the reciprocal: at y = 0.5, where x = 0.6937672632, the numerical dy/dx reads −1.113013423 against −eʸ/(1 + x²) = −1.113013424; at y = 1, x = 0.3854255918, both read −2.366701490; at y = −0.3, x = 4.452279889, both read −0.03557726893."
+  },
+  "recall_prompt": "Say how you would do this one — say which variable you differentiate with respect to, and what you do with sec² at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dx_by_dy",
+        "kind": "equation",
+        "label": "Differentiate x with respect to y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The chain rule runs twice here: the tangent on the outside, then the exponent −y inside e⁻ʸ. That inner −1 is where the minus sign in the answer comes from.",
+        "memory_tip": "Differentiating e to a power always leaves the derivative of that power behind. Here that power is −y, so a minus sign comes out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x is given in terms of y, so differentiate with respect to y first and invert at the end.",
+          "x = tan(e⁻ʸ)",
+          "dx/dy = sec²(e⁻ʸ) · d/dy(e⁻ʸ) = sec²(e⁻ʸ) · (−e⁻ʸ)",
+          "∴ dx/dy = −e⁻ʸ sec²(e⁻ʸ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x is differentiated with respect to y, giving dx/dy = −e⁻ʸ sec²(e⁻ʸ).",
+          "accept": [
+            "differentiate x with respect to y first",
+            "the tangent gives sec squared and the exponent gives minus e to the minus y",
+            "d x by d y is minus e power minus y into sec squared e power minus y",
+            "x ni y tho differentiate chesi tarvata invert cheyyali",
+            "chain rule twice, tan outside and minus y inside"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d x by d y",
+            "sec squared",
+            "minus e power minus y",
+            "chain rule"
+          ]
+        },
+        "why": "Making y the subject would need an inverse tangent and then a logarithm, and none of that is required. Differentiating the relation as it stands, with respect to y, takes one line.",
+        "common_mistakes": [
+          "Losing the minus sign, since d/dy(e⁻ʸ) = −e⁻ʸ, not e⁻ʸ.",
+          "Writing d/dy(tan u) as sec u tan u instead of sec²u."
+        ]
+      },
+      {
+        "id": "s2_invert",
+        "kind": "boxed_final",
+        "label": "Replace sec² by 1 + x² and invert",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. dy/dx = 1/(dx/dy) is valid because dx/dy is never zero here. Both the minus sign and the reciprocal must appear in the last line.",
+        "memory_tip": "sec² = 1 + tan², and the tangent here is x itself, so sec²(e⁻ʸ) becomes 1 + x² with no working at all.",
+        "lines": [
+          "sec²θ = 1 + tan²θ, and tan(e⁻ʸ) = x, so sec²(e⁻ʸ) = 1 + x²",
+          "∴ dx/dy = −e⁻ʸ(1 + x²)",
+          "dy/dx = 1/(dx/dy) = −1/[ e⁻ʸ(1 + x²) ]",
+          "1/e⁻ʸ = eʸ, so",
+          {
+            "text": "∴ dy/dx = −eʸ/(1 + x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec²(e⁻ʸ) = 1 + x², and taking the reciprocal with 1/e⁻ʸ = eʸ gives dy/dx = −eʸ/(1 + x²).",
+          "accept": [
+            "sec squared is one plus tan squared and tan is x so it becomes one plus x squared",
+            "take the reciprocal to get d y by d x",
+            "one by e power minus y is e power y",
+            "sec squared ni one plus x squared ga rasi reciprocal teesukovali",
+            "the answer is minus e power y over one plus x squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus x squared",
+            "reciprocal",
+            "e power y",
+            "minus e power y over one plus x squared"
+          ]
+        },
+        "why": "The required answer is written in x, not in e⁻ʸ, so sec²(e⁻ʸ) has to be converted. The identity sec² = 1 + tan² does that in one step because the tangent is x itself.",
+        "common_mistakes": [
+          "Leaving the answer as −1/[e⁻ʸ(1 + x²)] instead of writing 1/e⁻ʸ as eʸ.",
+          "Using sec² = 1 − tan² and getting 1 − x² in the denominator."
+        ]
+      }
+    ]
+  },
+  "insider_note": "x is given in terms of y, so find dx/dy and invert at the end. sec²(e⁻ʸ) = 1 + tan²(e⁻ʸ) = 1 + x² is the substitution that puts the answer in terms of x."
+}

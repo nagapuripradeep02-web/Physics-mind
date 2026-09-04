@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_ai_ml_in_astrophysics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do AI and machine learning help scientists in astrophysics?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The method",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 1 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the gravitational-wave detection and galaxy-shape classification examples are real, published applications of machine learning in astrophysics."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "text",
+        "label": "The method",
+        "marks": 1,
+        "mark_note": "Method",
+        "lines": [
+          "AI and machine learning search very large",
+          "telescope and detector data sets, faster",
+          "than a person can search by eye.",
+          "They pick out weak signals hidden in noise."
+        ],
+        "why": "Telescope and detector surveys record data sets far too large for a person to search by eye, so a trained model finds the patterns instead.",
+        "common_mistakes": [
+          "Writing only that AI is used, without saying it searches large data sets faster than a person.",
+          "Naming a completely unrelated task instead of searching data for weak signals."
+        ],
+        "memory_tip": "AI searches faster: large data sets, weak signals, found by a trained model.",
+        "margin_note": "Both the speed point and the weak-signal point help earn this mark in full."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: identifying gravitational-wave",
+          "signals from merging black holes.",
+          "Also used to sort galaxies by shape."
+        ],
+        "why": "Gravitational-wave detection and galaxy-shape sorting are real, published examples of machine learning used in astrophysics.",
+        "common_mistakes": [
+          "Giving a vague example such as 'space research' without naming a specific use.",
+          "Naming an example from a different field, such as medicine."
+        ],
+        "memory_tip": "Remember one concrete example: gravitational waves from merging black holes.",
+        "margin_note": "Any one correctly described example earns this mark."
+      }
+    ]
+  }
+}

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Determinant + adjoint",
         "margin_note": "First mark. The 2×2 shortcut: swap the diagonal, flip the signs of the other two. The determinant comes out as the Pythagorean identity.",
+        "memory_tip": "The 2×2 shortcut: swap the diagonal, flip the signs of the other two. The determinant is the Pythagorean identity.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Inverse",
         "margin_note": "Second mark. Dividing by 1 changes nothing, so the inverse IS the adjoint — and it is also A transposed, which is worth noticing.",
+        "memory_tip": "Dividing by 1 changes nothing, so the inverse IS the adjoint — and it is also A transposed.",
         "lines": [
           "A⁻¹ = (1/|A|)(Adj A) = (1/1)(Adj A)",
           {
@@ -135,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "|A| = 1 by the Pythagorean identity, so the inverse IS the adjoint and no division is needed. The answer also equals Aᵀ, which is worth stating."
 }

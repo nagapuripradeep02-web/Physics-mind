@@ -1,0 +1,55 @@
+# OUR BANK — mathematics unit 1: Sets and Relations (Maths-1A)  (26 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch01_sets_relations.json
+
+[VSAQ] ts_ipe_m1a_sr_set_builder_form
+    Write A = {−3, −2, −1, 0, 1, 2, 3} in set-builder form.
+[VSAQ] ts_ipe_m1a_sr_power_set_minus3_0_3
+    Find the power set of A = {−3, 0, 3}.
+[VSAQ] ts_ipe_m1a_sr_intersections_three_sets
+    If A = {1, 2, 3, 4, 5, 6, 7}, B = {2, 4, 6, 7, 8, 11} and C = {1, 3, 5, 7, 9}, find (i) A ∩ B, (ii) A ∩ C, (iii) B ∩ C and (iv) A ∩ B ∩ C.
+[VSAQ] ts_ipe_m1a_sr_cartesian_product_intersection
+    If A = {1, 2, 3}, B = {2, 3} and C = {3, 4, 7}, find (A × B) ∩ (A × C).
+[VSAQ] ts_ipe_m1a_sr_distributive_union_over_intersection
+    If A = {0, 1, 3, 5}, B = {1, 2, 4, 7} and C = {1, 2, 3, 5, 8}, show that (A ∩ C) ∪ B = (A ∪ B) ∩ (C ∪ B).
+[VSAQ] ts_ipe_m1a_sr_a_minus_b_minus_c
+    If A = {1, 2, 3}, B = {2, 3, 4} and C = {3, 4, 5, 6}, find A − (B − C).
+[VSAQ] ts_ipe_m1a_sr_de_morgan_universal_1_to_7
+    If U = {1, 2, 3, 4, 5, 6, 7}, A = {1, 2, 3} and B = {3, 5, 6}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.
+[VSAQ] ts_ipe_m1a_sr_relation_x_equals_y_domain_range
+    Let A = {1, 2, 5, 7, 9} and let R be the relation defined on A by x R y if and only if x = y. Find the ordered pairs that belong to R, and find (i) the domain of R and (ii) the range of R.
+[VSAQ] ts_ipe_m1a_sr_relation_x_plus_y_5_domain_range_codomain
+    If A = {0, 1, 2, 3, 4, 5}, B = {0, 1, 2, 3, 4} and R is the relation from A to B given by x + y = 5, x ∈ A, y ∈ B, list the ordered pairs that belong to R, and find (i) the domain of R, (ii) the range of R and (iii) the codomain of R.
+[VSAQ] ts_ipe_m1a_sr_parallel_lines_equivalence
+    Show that the relation "parallel", defined on the set of all straight lines in a plane, is an equivalence relation.
+[VSAQ] ts_ipe_m1a_sr_relation_2x_plus_y_41_properties
+    Let R be the relation defined on the set of all natural numbers N by R = {(x, y) : x, y ∈ N, 2x + y = 41}. Find R and check whether it is (i) reflexive, (ii) symmetric and (iii) transitive.
+[VSAQ] ts_ipe_m1a_sr_define_set_and_cardinality
+    Define a set. Define the cardinality of a finite set.
+[VSAQ] ts_ipe_m1a_sr_define_power_set
+    Define the power set of a set.
+[VSAQ] ts_ipe_m1a_sr_define_symmetric_difference
+    Define the symmetric difference of two sets.
+[VSAQ] ts_ipe_m1a_sr_subsets_and_power_set_of_1_2_3
+    Let A = {1, 2, 3}. Find (i) |A|, (ii) |P(A)|, (iii) all the subsets of A and (iv) the power set of A.
+[VSAQ] ts_ipe_m1a_sr_power_set_512_elements
+    If P(A) has 512 elements, find the number of elements in A.
+[VSAQ] ts_ipe_m1a_sr_symmetric_difference_abcde_acfgh
+    If A = {a, b, c, d, e} and B = {a, c, f, g, h}, find the symmetric difference of A and B.
+[VSAQ] ts_ipe_m1a_sr_de_morgan_universal_1_to_9
+    If U = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {2, 4, 6} and B = {3, 5, 7}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.
+[VSAQ] ts_ipe_m1a_sr_define_cartesian_product
+    Define the Cartesian product of two sets.
+[VSAQ] ts_ipe_m1a_sr_cartesian_product_over_union_intersection
+    If A = {2, 3, 4}, B = {4, 5} and C = {5, 6, 7}, find (i) A × (B ∪ C), (ii) A × (B ∩ C) and (iii) (A × B) ∪ (A × C).
+[VSAQ] ts_ipe_m1a_sr_define_relation
+    Define a relation from one set to another.
+[VSAQ] ts_ipe_m1a_sr_define_reflexive_relation
+    Define a reflexive relation.
+[VSAQ] ts_ipe_m1a_sr_define_symmetric_relation
+    Define a symmetric relation.
+[VSAQ] ts_ipe_m1a_sr_define_transitive_relation
+    Define a transitive relation.
+[VSAQ] ts_ipe_m1a_sr_define_equivalence_relation
+    Define an equivalence relation.
+[VSAQ] ts_ipe_m1a_sr_relation_x_less_than_y
+    If the relation R : A → B, where A = {1, 2, 3} and B = {1, 3, 6}, is defined by R = {(x, y) : x < y, x ∈ A and y ∈ B}, find R.

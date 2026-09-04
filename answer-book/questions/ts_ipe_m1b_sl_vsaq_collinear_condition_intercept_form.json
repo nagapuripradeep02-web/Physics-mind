@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_collinear_condition_intercept_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the condition for the points (a,0), (h,k) and (0,b) to be collinear, where ab≠0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the line through the two axis points",
+      "marks": 1
+    },
+    {
+      "label": "State the condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 29, book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for recognising that two of the points are the axis points, which hands the intercept form free, and one for imposing the third point and stating the condition. The given ab ≠ 0 is what allows the division, and it is stated on the page where the student reads it. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what is special about the first and third points, and which form of the line that gives you.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_line_through_axis_points",
+        "kind": "equation",
+        "label": "Write the line through the two axis points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. (a, 0) sits on the X-axis and (0, b) on the Y-axis, so the intercepts are already given and the intercept form can be written with no work.",
+        "memory_tip": "An axis point IS an intercept: (a, 0) gives the x-intercept a, (0, b) gives the y-intercept b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(a, 0) lies on the X-axis and (0, b) lies",
+          "on the Y-axis, with ab ≠ 0.",
+          "So the line through them has x-intercept a",
+          "and y-intercept b.",
+          "Intercept form:  x/a + y/b = 1  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a, 0) and (0, b) are the axis points, so the line joining them is x/a + y/b = 1.",
+          "accept": [
+            "the first point is on the x axis and the third on the y axis",
+            "so a and b are the intercepts",
+            "the line is x by a plus y by b equals one",
+            "intercept form direct ga vachestundi",
+            "use the intercept form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x by a plus y by b",
+            "equals one",
+            "intercept form",
+            "x axis"
+          ]
+        },
+        "why": "Two of the three points already name the intercepts, so the line through them needs no two-point formula at all; ab ≠ 0 is exactly what stops either intercept being zero.",
+        "common_mistakes": [
+          "Using the two-point formula on (a, 0) and (0, b) and doing extra work.",
+          "Writing x/b + y/a = 1, with a and b swapped."
+        ]
+      },
+      {
+        "id": "s2_state_condition",
+        "kind": "boxed_final",
+        "label": "State the condition",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Collinear means the third point is on that same line, so substitute (h, k) into the intercept form and stop.",
+        "memory_tip": "Collinear with a known line means the remaining point satisfies its equation. Substitute and stop.",
+        "lines": [
+          "The three points are collinear when (h, k)",
+          "also lies on (1).",
+          "⇒ h/a + k/b = 1",
+          {
+            "text": "∴ Condition is  h/a + k/b = 1",
+            "style": "boxed"
+          },
+          "Clearing the fractions: bh + ak = ab",
+          "Check: a = 2, b = 3 gives 3x + 2y = 6; the",
+          "point (1, 3/2) gives 1/2 + 1/2 = 1 and does",
+          "satisfy 3(1) + 2(3/2) = 6."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is h/a + k/b = 1, equivalently bh + ak = ab.",
+          "accept": [
+            "h by a plus k by b equals one",
+            "substitute the middle point into the intercept form",
+            "b h plus a k equals a b",
+            "middle point ni substitute cheyyali",
+            "the third point satisfies the same equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "h by a plus k by b",
+            "equals one",
+            "b h plus a k",
+            "a b"
+          ]
+        },
+        "why": "Collinearity of three points means all three satisfy one equation; two of them were used to build it, so only the third produces a new statement, and that statement is the condition asked for.",
+        "common_mistakes": [
+          "Writing h/b + k/a = 1, with a and b swapped.",
+          "Setting the expression to 0 instead of 1."
+        ]
+      }
+    ]
+  }
+}

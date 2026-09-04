@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark, and the key observation: the two shifted angles ADD to C. Work that out before starting or none of the substitutions below will be visible.",
+        "memory_tip": "The key observation: the two shifted angles ADD to C. Nothing below is visible without it.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,7 +93,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -105,6 +106,7 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Pair the two S-terms together, not one of them with sin C. The half-difference is (B−A)/2.",
         "lines": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
@@ -145,7 +147,8 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "Expand sin C too, and note 2S − (A+B) is exactly C.",
         "lines": [
           "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
           "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
@@ -184,7 +187,8 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "memory_tip": "The common factor comes out, and the condition is used again inside the bracket.",
         "lines": [
           "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
           "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
@@ -224,7 +228,8 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
+        "memory_tip": "One more formula turns the bracket into a product, giving the 4 in the answer.",
         "lines": [
           "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
           "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
@@ -255,12 +260,13 @@
             "sum formula"
           ]
         },
-        "why": "The 2 outside and the 2 from the formula multiply to the 4 in the answer, exactly as in answer 29.",
+        "why": "The 2 outside and the 2 from the formula multiply to the 4 in the answer.",
         "common_mistakes": [
           "Finishing with 2 instead of 4.",
           "Getting the arguments of the two cosines swapped."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition gives (S−A) + (S−B) = C, replacing the usual 180° step. There is no −1 in this answer, because sinC = 2sin(C/2)cos(C/2) needs no constant term."
 }

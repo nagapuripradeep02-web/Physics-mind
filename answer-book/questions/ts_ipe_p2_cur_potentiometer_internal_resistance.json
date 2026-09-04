@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription (book p30, LAQ 3): the wording is kept as printed, including the comma in 'used, to determine'; the book's 'manganine', 'inseries', 'opend' and 'choosen' spellings are corrected on the card. NOTE ON ρ: as in LAQ 2 the book uses ρ for the RESISTANCE PER UNIT LENGTH of the wire (ρ = R/L), not for resistivity, and the card says so in words. NOTE ON 'primary cell': the question calls the cell under test the primary cell, meaning a non-rechargeable cell; in the circuit it sits in the SECONDARY circuit of the potentiometer. Hand-checked: ε = Iρl₁ and V = Iρl₂ give ε/V = l₁/l₂; with V = IR and ε = I(R + r) this is (R + r)/R = l₁/l₂, so r/R = (l₁ − l₂)/l₂ and r = R(l₁ − l₂)/l₂."
+    "note": "The 2+2+2+2 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Transcription (book p30, LAQ 3): the wording is kept as printed, including the comma in 'used, to determine'; the book's 'manganine', 'inseries', 'opend' and 'choosen' spellings are corrected on the card. NOTE ON ρ: as in LAQ 2 the book uses ρ for the RESISTANCE PER UNIT LENGTH of the wire (ρ = R/L), not for resistivity, and the card says so in words. NOTE ON 'primary cell': the question calls the cell under test the primary cell, meaning a non-rechargeable cell; in the circuit it sits in the SECONDARY circuit of the potentiometer. Hand-checked: ε = Iρl₁ and V = Iρl₂ give ε/V = l₁/l₂, where I is the potentiometer-wire current; with V = i R and ε = i(R + r), where i is the SEPARATE current the cell drives through the resistance box, this is (R + r)/R = l₁/l₂, so r/R = (l₁ − l₂)/l₂ and r = R(l₁ − l₂)/l₂. The card uses I and i as two distinct symbols so the two currents are never read as one."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -122,8 +122,14 @@
             {
               "type": "stroke",
               "id": "prim_left",
-              "d": "M 40 110 L 40 40 L 140 40",
-              "ms": 2430
+              "d": "M 40 110 L 40 40 L 84 40 M 114 40 L 140 40",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "key_lever",
+              "d": "M 114 40 L 92 26",
+              "ms": 370
             },
             {
               "type": "stroke",
@@ -148,6 +154,14 @@
               "id": "i_ah",
               "d": "M 282 34 L 272 40 L 282 46",
               "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_k",
+              "x": 96,
+              "y": 18,
+              "text": "K",
+              "ms": 450
             },
             {
               "type": "label",
@@ -225,6 +239,11 @@
           "height": 240,
           "elements": [
             {
+              "type": "pause",
+              "id": "ph_cell",
+              "caption": "The cell under test"
+            },
+            {
               "type": "stroke",
               "id": "wire_ab",
               "d": "M 40 60 L 320 60",
@@ -240,20 +259,20 @@
             {
               "type": "stroke",
               "id": "cell_left",
-              "d": "M 40 140 L 88 140",
+              "d": "M 40 140 L 98 140",
+              "ms": 830
+            },
+            {
+              "type": "stroke",
+              "id": "cell",
+              "d": "M 98 124 L 98 156 M 110 132 L 110 148",
               "ms": 690
             },
             {
               "type": "stroke",
-              "id": "cell_box",
-              "d": "M 88 126 L 128 126 L 128 154 L 88 154 Z",
-              "ms": 1940
-            },
-            {
-              "type": "stroke",
               "id": "cell_right",
-              "d": "M 128 140 L 200 140",
-              "ms": 1030
+              "d": "M 110 140 L 200 140",
+              "ms": 1290
             },
             {
               "type": "stroke",
@@ -268,6 +287,11 @@
               "ms": 1630
             },
             {
+              "type": "pause",
+              "id": "ph_shunt",
+              "caption": "The resistance box across the cell"
+            },
+            {
               "type": "stroke",
               "id": "r_box",
               "d": "M 88 191 L 128 191 L 128 219 L 88 219 Z",
@@ -276,8 +300,14 @@
             {
               "type": "stroke",
               "id": "shunt",
-              "d": "M 128 205 L 180 205 L 180 140",
-              "ms": 1670
+              "d": "M 128 205 L 140 205 M 166 205 L 180 205 L 180 140",
+              "ms": 1300
+            },
+            {
+              "type": "stroke",
+              "id": "key_lever",
+              "d": "M 166 205 L 146 191",
+              "ms": 350
             },
             {
               "type": "label",
@@ -298,7 +328,7 @@
             {
               "type": "label",
               "id": "lbl_cell",
-              "x": 92,
+              "x": 87,
               "y": 118,
               "text": "ε, r",
               "ms": 450
@@ -314,8 +344,8 @@
             {
               "type": "label",
               "id": "lbl_k1",
-              "x": 142,
-              "y": 196,
+              "x": 146,
+              "y": 186,
               "text": "K₁",
               "ms": 450
             },
@@ -418,17 +448,18 @@
             "text": "ε / V = l₁ / l₂    ... (3)",
             "style": "eq"
           },
-          "But V = IR across the box and ε = I(R + r)",
-          "round the cell circuit, so",
+          "The cell also drives its own current i through",
+          "the box — not the wire current I. So V = i R",
+          "and ε = i(R + r) round the cell circuit, so",
           {
-            "text": "ε / V = I(R + r) / IR = (R + r)/R    ... (4)",
+            "text": "ε / V = i(R + r) / iR = (R + r)/R    ... (4)",
             "style": "eq"
           }
         ],
         "margin_note": "Two marks. K₁ closed gives V, not ε; then equations (3) and (4) for the same ratio.",
-        "why": "The same ratio ε/V is written twice: once from the two lengths and once from the circuit. Setting the two expressions equal is what brings r into the working.",
+        "why": "The same ratio ε/V is written twice: once from the two lengths and once from the circuit. Setting the two expressions equal is what brings r into the working. Two different currents appear here: I is the steady current in the potentiometer wire, and i is the current the cell drives through the resistance box. Use separate symbols; i cancels in the ratio, so the result does not depend on it.",
         "common_mistakes": [
-          "Writing ε = IR. The emf drives the current through R and through r together.",
+          "Writing ε = i R. The emf drives the current through R and through r together.",
           "Changing the primary current between the two readings, which makes the lengths incomparable."
         ],
         "recall": {

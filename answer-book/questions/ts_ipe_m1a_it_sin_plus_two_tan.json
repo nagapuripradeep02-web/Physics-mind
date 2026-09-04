@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the book prints [1 Mark] for writing the formula alone. 2Tan⁻¹x has three standard conversions; the Cos⁻¹ one is chosen because the other term is a Sin⁻¹.",
+        "memory_tip": "2Tan⁻¹x = Cos⁻¹((1 − x²)/(1 + x²)). The Cos⁻¹ form is chosen because the other term is a Sin⁻¹.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,9 +93,9 @@
             "one plus x squared"
           ]
         },
-        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. Choosing the Cos⁻¹ form is what sets up the final identity — the other two would not close.",
+        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. The Cos⁻¹ form is chosen because it matches the Sin⁻¹(4/5) already on the page and closes in one line with Sin⁻¹x + Cos⁻¹x = π/2. The Sin⁻¹ and Tan⁻¹ forms also reach π/2, but each needs one more identity.",
         "common_mistakes": [
-          "Using the Sin⁻¹ or Tan⁻¹ form and being unable to finish.",
+          "Pairing the wrong argument with the wrong inverse: (1 − x²)/(1 + x²) goes with Cos⁻¹, while 2x/(1 + x²) is the Sin⁻¹ form.",
           "Writing (1+x²)/(1−x²) upside down."
         ]
       },
@@ -105,6 +106,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Substitute and simplify the compound fraction: (1 − 1/9) over (1 + 1/9) is (8/9) over (10/9).",
+        "memory_tip": "(1/3)² is 1/9, not 1/6. The fraction becomes (8/9) over (10/9).",
         "lines": [
           "∴ 2Tan⁻¹(1/3) = Cos⁻¹((1 − (1/3)²)/(1 + (1/3)²))",
           "= Cos⁻¹((1 − 1/9)/(1 + 1/9))"
@@ -143,6 +145,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The ninths cancel: (8/9) ÷ (10/9) is 8/10, which reduces to 4/5. That 4/5 matching the other term is the whole design of the question.",
+        "memory_tip": "The ninths cancel: 8/10 reduces to 4/5, matching the other term — that is the design of the question.",
         "lines": [
           "= Cos⁻¹((8/9)/(10/9))",
           "= Cos⁻¹(8/10) = Cos⁻¹(4/5)"
@@ -182,6 +185,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Both terms are now inverses of the SAME value, 4/5 — and Sin⁻¹x + Cos⁻¹x is always π/2, whatever x is.",
+        "memory_tip": "Both terms are now inverses of the SAME value, and Sin⁻¹x + Cos⁻¹x is always π/2.",
         "lines": [
           "∴ L.H.S = Sin⁻¹(4/5) + Cos⁻¹(4/5)",
           "= π/2   [∵ Sin⁻¹x + Cos⁻¹x = π/2]",
@@ -219,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert 2Tan⁻¹(1/3) into Cos⁻¹((1 − x²)/(1 + x²)) = Cos⁻¹(4/5), which is chosen to match the 4/5 already present. Then Sin⁻¹x + Cos⁻¹x = π/2 finishes it in a single line."
 }

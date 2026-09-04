@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_centroid_tetrahedron_2_3_minus4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the centroid of the tetrahedron whose vertices are (2, 3, −4), (−3, 3, 2), (−1, 4, 2) and (3, 5, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the centroid formula",
+      "marks": 1
+    },
+    {
+      "label": "Work out the three averages",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 5 THREE DIMENSIONAL COORDINATES, Very Short Answer question 4, book p.175. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards writing the four-vertex centroid formula first, and working the three averages second — the same shape as the triangle-centroid card in this unit, so a student meets one cut, not two. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what the centroid of a tetrahedron is in terms of its vertices, and what number you divide by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_centroid_formula",
+        "kind": "equation",
+        "label": "Write the centroid formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A tetrahedron has four vertices, so its centroid is the average of four points. The formula is the triangle one with a fourth term and a 4 underneath.",
+        "memory_tip": "A tetrahedron has FOUR vertices, so the centroid divides by 4, not 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (2, 3, −4), B = (−3, 3, 2),",
+          "C = (−1, 4, 2), D = (3, 5, 1)",
+          "Centroid of tetrahedron ABCD is",
+          "G = ((x₁+x₂+x₃+x₄)/4, (y₁+y₂+y₃+y₄)/4,",
+          "        (z₁+z₂+z₃+z₄)/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centroid of a tetrahedron is the average of its four vertices, one coordinate at a time.",
+          "accept": [
+            "the centroid of a tetrahedron is the average of the four vertices",
+            "add the four x values and divide by four, same for y and z",
+            "it is the triangle formula with a fourth term and four underneath",
+            "tetrahedron ki naalugu vertices, kabatti four tho divide cheyyali",
+            "write the four vertex centroid formula"
+          ],
+          "reject": [
+            "divide by three because it is a centroid",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tetrahedron",
+            "centroid",
+            "divide by four",
+            "four vertices"
+          ]
+        },
+        "why": "The divisor is the number of vertices being averaged, so it changes from 3 to 4 when the figure changes from a triangle to a tetrahedron. Nothing else in the formula changes.",
+        "common_mistakes": [
+          "Dividing by 3, which is the triangle formula.",
+          "Leaving out one of the four vertices while adding a column."
+        ]
+      },
+      {
+        "id": "s2_work_out_the_averages",
+        "kind": "boxed_final",
+        "label": "Work out the three averages",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Take one column at a time. Two of the four x values and one of the z values are negative, so add the signed numbers carefully.",
+        "memory_tip": "Do one column at a time. The x and z columns both come to 1, so both give 1/4.",
+        "lines": [
+          "x-coordinate = (2 − 3 − 1 + 3)/4 = 1/4",
+          "y-coordinate = (3 + 3 + 4 + 5)/4 = 15/4",
+          "z-coordinate = (−4 + 2 + 2 + 1)/4 = 1/4",
+          {
+            "text": "∴ Centroid G = (1/4, 15/4, 1/4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three column averages give the centroid (1/4, 15/4, 1/4).",
+          "accept": [
+            "the x column adds to one so the x coordinate is one by four",
+            "the y column adds to fifteen so it is fifteen by four",
+            "the centroid is one by four, fifteen by four, one by four",
+            "prathi column separate ga add chesi four tho divide cheyyali",
+            "all three answers are quarters"
+          ],
+          "reject": [
+            "the centroid of a tetrahedron is the average of the four vertices",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one by four",
+            "fifteen by four",
+            "column",
+            "centroid is"
+          ]
+        },
+        "why": "Each coordinate of the centroid depends only on the matching coordinates of the vertices, so the three columns are three separate additions and a slip in one does not spread to the others.",
+        "common_mistakes": [
+          "Reading −3 as +3 in the x column.",
+          "Dividing the coordinate sums by 3 instead of 4; a tetrahedron has four vertices."
+        ]
+      }
+    ]
+  }
+}

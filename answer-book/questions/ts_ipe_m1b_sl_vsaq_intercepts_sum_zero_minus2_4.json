@@ -53,7 +53,8 @@
         "kind": "equation",
         "label": "Set up the intercepts",
         "marks": 1,
-        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1 and let the condition choose a and b for you: sum of intercepts is zero.",
+        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1, where the condition becomes a direct relation between a and b: the sum of the intercepts is zero.",
+        "memory_tip": "Intercept form with b = −a, because the intercepts sum to zero.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "label": "Substitute the point and finish",
         "marks": 1,
         "margin_note": "Second mark. The line passes through the given point, so that point satisfies the equation — substitute it, find the one remaining unknown, and write the line.",
+        "memory_tip": "The point lies on the line, so substituting fixes a.",
         "lines": [
           "But (−2, 4) lies on (1)",
           "⇒ −2 − 4 = a  ⇒  a = −6",
@@ -131,7 +133,7 @@
             "the line is"
           ]
         },
-        "why": "One unknown is left after the condition is used, and one point is exactly enough to pin it.",
+        "why": "One unknown is left after the condition is used, and one point is exactly enough to find it.",
         "common_mistakes": [
           "Substituting the coordinates the wrong way round.",
           "Stopping at the value of a without writing the line."
@@ -139,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Intercepts of a and −a always give the line x − y = a. Here the point gives a = −6, so the line is x − y + 6 = 0, and the sign flip on moving a across is where it is lost."
 }

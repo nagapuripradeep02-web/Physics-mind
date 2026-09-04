@@ -1,0 +1,172 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_homogeneous_x2y2_dx_2xydy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Solve (x² + y²)dx = 2xy dy.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 5 Differential Equations, answer 39.1, the first answer of the chapter, under the sub-heading 'HOMOGENEOUS D.E'. Not on an SSP page (this chapter carries no Super Scoring Pages at all, per the LAQ chapter table on book p.13). Printed appearance tag: AP 16,17,20 — no TS tag. The mark split is OURS, not the book's: book pp.44-48 print no margin mark tags anywhere in this Differential Equations LAQ chapter. It is patterned on the general five-checkpoint shape this book uses for a homogeneous-equation derivation — recognise the form and substitute y = vx, separate the new variable v from x, integrate, undo the substitution, and state the final relation — the same checkpoint order the book's own solution follows line by line. Star rank: the book gives the Differential Equations LAQ chapter ★★ in its LAQ chapter table (book p.13), so every Differential Equations LAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Differential Equations holds Q24. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Writing the equation as dy/dx first and checking that the right side is unchanged when x and y are both scaled by the same number is the fast way to confirm a differential equation is homogeneous before committing to the y = vx substitution.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup_substitute",
+        "kind": "equation",
+        "label": "Recognise homogeneous form and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Every term of the right side has the same total power in x and y (degree 2 over degree 2), so the equation is homogeneous.",
+        "memory_tip": "Homogeneous means the same total degree on top and bottom — that is the signal to put y = vx.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is (x² + y²)dx = 2xy dy",
+          "⇒ dy/dx = (x² + y²)/(2xy) … (1)",
+          "(1) is a homogeneous D.E",
+          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx = (x² + v²x²)/(2x²v)",
+          "= (1 + v²)/(2v)"
+        ],
+        "why": "In a homogeneous equation, every occurrence of x and y can be replaced by the single ratio v = y/x, which turns two unknowns into one and makes the equation separable.",
+        "common_mistakes": [
+          "Forgetting the product rule form dy/dx = v + x·dv/dx and writing dy/dx = v instead.",
+          "Cancelling x² incorrectly when simplifying (x² + v²x²)/(2x²v)."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Move the plain v to the other side before separating x from v.",
+        "memory_tip": "Isolate x·dv/dx alone on one side, then divide by whatever multiplies it.",
+        "lines": [
+          "x·dv/dx = (1 + v²)/(2v) − v",
+          "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
+          "⇒ 2v/(1 − v²) dv = dx/x"
+        ],
+        "why": "Once x·dv/dx equals a function of v alone, cross-multiplying puts every v term with dv and every x term with dx, which is the separable form the equation needs before it can be integrated.",
+        "common_mistakes": [
+          "Sign slip when combining 1 + v² − 2v² into 1 − v².",
+          "Leaving the equation as x dv = (1 − v²)/(2v) dx instead of separating v to its own side."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The left integral is a direct log form once the sign is fixed.",
+        "memory_tip": "2v/(1−v²) is minus the derivative of log(1−v²), over its own denominator — a standard log-integral shape.",
+        "lines": [
+          "∫ 2v/(1 − v²) dv = ∫ dx/x",
+          "⇒ −log(1 − v²) = log x + log c",
+          "⇒ log x + log(1 − v²) = log c"
+        ],
+        "why": "The left side is the derivative of −log(1 − v²) with respect to v, since the derivative of the bracket is −2v; the right side is the standard ∫dx/x = log x.",
+        "common_mistakes": [
+          "Missing the minus sign that comes from differentiating (1 − v²).",
+          "Writing the constant of integration as a bare c instead of log c, which makes the next line harder to simplify."
+        ]
+      },
+      {
+        "id": "s4_back_substitute",
+        "kind": "equation",
+        "label": "Return to x and y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Combine the two logs first, then replace v by y/x.",
+        "memory_tip": "log x + log(1 − v²) = log(x(1 − v²)) — combine before substituting back.",
+        "lines": [
+          "⇒ log(x(1 − v²)) = log c ⇒ x(1 − v²) = c",
+          "Put v = y/x: x(1 − y²/x²) = c"
+        ],
+        "why": "Combining the two logs into a single log of a product removes the logs in one step, and only then is it worth substituting v = y/x back in, since the fraction would otherwise need to be carried through the log rule twice.",
+        "common_mistakes": [
+          "Substituting v = y/x too early, before combining the logs, which leads to a messier expression.",
+          "Writing v = x/y instead of v = y/x."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Clear the fraction 1/x by multiplying through by x.",
+        "memory_tip": "x(1 − y²/x²) = x − y²/x — multiply by x once more to clear the denominator.",
+        "lines": [
+          "x(1 − y²/x²) = x − y²/x = c",
+          {
+            "text": "x² − y² = cx",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying x − y²/x = c through by x clears the remaining fraction and gives the final relation in whole terms of x and y, which is the form examiners expect as the solution of the differential equation.",
+        "common_mistakes": [
+          "Leaving the answer as x − y²/x = c instead of clearing the denominator.",
+          "Writing the final line as y² − x² = cx, with the sign of the squared terms swapped."
+        ]
+      }
+    ]
+  }
+}

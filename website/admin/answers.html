@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Viditra — Answer Book usage</title>
+<!--
+  The usage dashboard for answers.viditra.co (2026-08-28).
+
+  Every number is DEVICES, not students: one student on a phone and a laptop is
+  two devices until they sign in. The team's own devices are excluded from every
+  count by default (marked via #/notastudent/<word>, a listed Google account, or
+  the toggle in the device table below); the count of what was excluded is
+  always on screen, so the headline number can never quietly include us.
+
+  Ships NO Supabase key. Everything goes through the answerbook-stats Edge
+  Function with the dashboard token in the body; the token lives in
+  ab_admin_config (RLS on, zero policies) in the answer book's own project.
+-->
+<style>
+  :root{
+    --bg:#1C1B19; --surface:#242220; --surface2:#2b2825; --line:rgba(245,240,230,.10);
+    --clay:#CB6843; --clay-soft:#E3A07F; --clay-dim:#7a4a35; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+    --good:#6FBF8A; --warn:#E0B65A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    padding:24px 16px 60px;line-height:1.45;}
+  .wrap{max-width:980px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .mark{width:30px;height:30px;border-radius:8px;background:var(--clay);flex:none;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:6px 0 18px;}
+  .sub a{color:var(--clay-soft);}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  input,button,select{font:inherit;color:var(--ink);}
+  input[type=text],input[type=date]{background:var(--surface);border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font-size:14px;}
+  input[type=text]{width:300px;max-width:100%;letter-spacing:.05em;}
+  button{background:var(--clay);border:0;border-radius:9px;padding:8px 14px;font-weight:600;
+    font-size:13.5px;cursor:pointer;}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim);}
+  button.ghost.on{border-color:var(--clay);color:var(--ink);background:rgba(203,104,67,.12);}
+  button.tiny{padding:4px 9px;font-size:12px;border-radius:7px;}
+  button:hover{filter:brightness(1.06);}
+  .presets{display:flex;gap:6px;flex-wrap:wrap;}
+  .msg{font-size:13px;color:var(--ink-dim);min-height:18px;margin-bottom:12px;}
+  .msg.err{color:#E58B72;}
+  .tokenbar{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px;}
+  /* the excluded chip — always visible once loaded */
+  .excl{display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px 8px;background:rgba(224,182,90,.10);border:1px solid rgba(224,182,90,.35);
+    color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;}
+  .excl b{font-variant-numeric:tabular-nums;}
+  .excl .dot{width:8px;height:8px;border-radius:50%;background:var(--warn);}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);cursor:pointer;user-select:none;}
+  .toggle input{accent-color:var(--clay);}
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 22px;}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 15px;}
+  .tile .lab{font-size:12px;color:var(--ink-dim);letter-spacing:.02em;}
+  .tile .num{font-size:32px;font-weight:600;margin-top:4px;line-height:1.1;}
+  .tile .note{font-size:12px;color:var(--ink-faint);margin-top:4px;min-height:16px;}
+  .tile.hero .num{font-size:48px;color:var(--good);}
+  h2{font-size:13px;font-weight:600;color:var(--ink-dim);margin:26px 0 10px;text-transform:uppercase;letter-spacing:.05em;
+    display:flex;align-items:baseline;gap:10px;}
+  h2 small{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-faint);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--ink-faint);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  td.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--ink-dim);}
+  tr.internal td{color:var(--ink-faint);}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim);margin-left:6px;}
+  .tag.team{border-color:rgba(224,182,90,.5);color:var(--warn);}
+  .tag.paid{border-color:rgba(111,191,138,.5);color:var(--good);}
+  .empty{color:var(--ink-faint);font-size:13px;padding:10px 0;}
+  /* a wide table scrolls inside its own box; the page itself never scrolls sideways */
+  .tw{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;}
+  .grid2>div{min-width:0;}
+  /* charts */
+  .chart{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 8px;position:relative;}
+  .chart svg{width:100%;height:auto;display:block;overflow:visible;}
+  .chart .bar{fill:var(--clay);}
+  .chart .bar:hover{fill:var(--clay-soft);}
+  .chart .grid{stroke:var(--line);stroke-width:1;}
+  .chart .tick{fill:var(--ink-faint);font-size:11px;}
+  .chart .val{fill:var(--ink-dim);font-size:11px;}
+  .tip{position:absolute;pointer-events:none;background:var(--surface2);border:1px solid var(--line);border-radius:8px;
+    padding:6px 9px;font-size:12px;color:var(--ink);display:none;white-space:nowrap;z-index:2;}
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:6px;}
+  .fstep{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;font-size:13px;}
+  .fstep .lab{color:var(--ink-dim);}
+  .fstep .track{height:18px;background:var(--surface2);border-radius:0 4px 4px 0;position:relative;}
+  .fstep .fill{height:100%;background:var(--clay);border-radius:0 4px 4px 0;min-width:2px;}
+  .fstep .fill.zero{background:transparent;}
+  .fstep .val{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);}
+  .fstep .val small{color:var(--ink-faint);}
+  .foot{margin-top:26px;color:var(--ink-faint);font-size:12px;line-height:1.5;}
+  @media(max-width:720px){
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .grid2{grid-template-columns:1fr}
+    .fstep{grid-template-columns:110px 1fr 80px}
+    .tile.hero .num{font-size:40px}
+    td.mono{display:none}th.mono{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="mark"></span> Answer Book usage</h1>
+  <p class="sub">answers.viditra.co — who opened it, what they read, what they asked. Counts are <b>devices</b>, not students.
+    <a href="/admin/">Teacher funnel &rarr;</a></p>
+
+  <div class="tokenbar" id="tokenbar" style="display:none">
+    <div class="row" style="margin-bottom:0">
+      <input id="token" type="text" placeholder="Paste the dashboard token" autocomplete="off">
+      <button id="saveTok">Unlock</button>
+    </div>
+  </div>
+
+  <div class="row" id="controls" style="display:none">
+    <label style="font-size:13px;color:var(--ink-dim)">Since <input id="since" type="date"></label>
+    <div class="presets">
+      <button class="ghost" data-days="0">Today</button>
+      <button class="ghost on" data-days="7">7 days</button>
+      <button class="ghost" data-days="30">30 days</button>
+      <button class="ghost" data-since="2026-09-02">Since launch</button>
+      <button id="refresh">Refresh</button>
+    </div>
+    <label class="toggle" title="Include the team's own devices in every number"><input type="checkbox" id="showInternal"> show team devices too</label>
+  </div>
+
+  <div class="msg" id="msg"></div>
+
+  <div id="report" style="display:none">
+    <div class="row">
+      <span class="excl"><span class="dot"></span><span style="white-space:nowrap">Excluded: <b id="x_excl">—</b> team devices</span> <span id="x_mode" style="color:var(--ink-faint)"></span></span>
+    </div>
+
+    <div class="tiles">
+      <div class="tile hero"><div class="lab">Devices that opened it</div><div class="num" id="t_active">—</div><div class="note" id="t_active_note"></div></div>
+      <div class="tile"><div class="lab">New devices</div><div class="num" id="t_new">—</div><div class="note">first seen in this period</div></div>
+      <div class="tile"><div class="lab">Came back</div><div class="num" id="t_ret">—</div><div class="note">used it on 2+ different days</div></div>
+      <div class="tile"><div class="lab">Visits</div><div class="num" id="t_visits">—</div><div class="note" id="t_visits_note"></div></div>
+      <div class="tile"><div class="lab">Questions opened</div><div class="num" id="t_qopen">—</div><div class="note" id="t_qopen_note"></div></div>
+      <div class="tile"><div class="lab">Read to the end</div><div class="num" id="t_fin">—</div><div class="note" id="t_fin_note"></div></div>
+      <div class="tile"><div class="lab">Signed in</div><div class="num" id="t_signed">—</div><div class="note">devices with a Google account</div></div>
+      <div class="tile"><div class="lab">Paid</div><div class="num" id="t_paid">—</div><div class="note">devices holding a full pass</div></div>
+    </div>
+
+    <h2>Opens by day <small>devices that opened the book, IST</small></h2>
+    <div class="chart" id="dayChart"><div class="tip" id="dayTip"></div></div>
+
+    <h2>How far they got <small>each step = devices that did it at least once</small></h2>
+    <div class="funnel" id="funnel"></div>
+
+    <div class="grid2">
+      <div>
+        <h2>What they used <small>every event, this period</small></h2>
+        <div class="tw"><table><thead><tr><th>Action</th><th class="n">Times</th><th class="n">Devices</th></tr></thead><tbody id="evBody"></tbody></table></div>
+      </div>
+      <div>
+        <h2>Vidi <small>the helper</small></h2>
+        <div class="tw"><table><thead><tr><th>What</th><th class="n">Times</th></tr></thead><tbody id="vidiBody"></tbody></table></div>
+        <p class="empty" id="vidiCost"></p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h2>Subjects <small>question opens</small></h2>
+        <div class="tw"><table><thead><tr><th>Subject</th><th class="n">Opens</th><th class="n">Devices</th></tr></thead><tbody id="subjBody"></tbody></table></div>
+        <h2>Chapters <small>question opens</small></h2>
+        <div class="tw"><table><thead><tr><th>Chapter</th><th class="n">Opens</th><th class="n">Devices</th></tr></thead><tbody id="unitBody"></tbody></table></div>
+      </div>
+      <div>
+        <h2>Most opened questions</h2>
+        <div class="tw"><table><thead><tr><th>Question</th><th class="n">Opens</th><th class="n">Devices</th></tr></thead><tbody id="qBody"></tbody></table></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h2>Taps on unwritten cards <small>what to author next</small></h2>
+        <div class="tw"><table><thead><tr><th>Chapter</th><th>Card</th><th class="n">Taps</th></tr></thead><tbody id="soonBody"></tbody></table></div>
+        <h2>Asked for other groups <small>the door</small></h2>
+        <div class="tw"><table><thead><tr><th>Track</th><th class="n">Asks</th></tr></thead><tbody id="trackBody"></tbody></table></div>
+      </div>
+      <div>
+        <h2>Searches</h2>
+        <div class="tw"><table><thead><tr><th>Typed</th><th class="n">Times</th></tr></thead><tbody id="searchBody"></tbody></table></div>
+        <h2>Errors on student phones</h2>
+        <div class="tw"><table><thead><tr><th>Message</th><th class="n">Times</th><th class="n">Devices</th></tr></thead><tbody id="errBody"></tbody></table></div>
+      </div>
+    </div>
+
+    <h2>Devices <small>most recent first · tick "team" on any that is yours</small></h2>
+    <div class="tw"><table>
+      <thead><tr><th>Device</th><th class="mono">id</th><th>First seen</th><th>Last active</th><th class="n">Events</th><th class="n">Questions</th><th></th></tr></thead>
+      <tbody id="devBody"></tbody>
+    </table></div>
+
+    <p class="foot" id="foot"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var FN = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-stats';
+  // The day the INSTRUMENTED page went live — not the day the tables were
+  // created. Between 2026-08-28 and this date the bundle carried no event code,
+  // so devices minted in that window have zero events and can never be
+  // attributed to anyone; ab_stats now bounds devices.total by this date so
+  // they stop being counted as students. If the deploy slips, move this to the
+  // real deploy day (and the button below with it).
+  var LAUNCH = '2026-09-02';
+  var $ = function(id){ return document.getElementById(id); };
+  var token = '';
+  try { token = localStorage.getItem('pm_ab_stats_token') || ''; } catch(e){}
+  var last = null;
+
+  function pad(n){ return (n<10?'0':'')+n; }
+  function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function fmt(n){ return (n==null?'—':Number(n).toLocaleString('en-IN')); }
+  function pct(a,b){ return (b>0) ? Math.round(a/b*100) + '%' : '—'; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]); }); }
+  function when(s){ if(!s) return '—'; var d=new Date(s); return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); }
+  function rows(id, html, cols){ $(id).innerHTML = html || '<tr><td colspan="'+cols+'" class="empty">Nothing yet.</td></tr>'; }
+
+  (function(){ var d=new Date(); d.setDate(d.getDate()-7); $('since').value = iso(d); })();
+  function currentSince(){ var v = $('since').value; return (v || LAUNCH) + 'T00:00:00+05:30'; }
+  function setMsg(t, err){ var m=$('msg'); m.textContent=t||''; m.className='msg'+(err?' err':''); }
+  function showAuthed(on){
+    $('tokenbar').style.display = on ? 'none' : 'block';
+    $('controls').style.display = on ? 'flex' : 'none';
+    $('report').style.display   = on ? 'block' : 'none';
+  }
+
+  function call(body){
+    body.token = token;
+    return fetch(FN, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){
+        if(r.status===401) throw new Error('Invalid token');
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        return r.json();
+      });
+  }
+
+  function load(){
+    if(!token){ showAuthed(false); return; }
+    setMsg('Loading…');
+    call({ since: currentSince(), include_internal: $('showInternal').checked })
+      .then(function(d){ last = d; render(d); showAuthed(true); setMsg(''); })
+      .catch(function(e){
+        if(/Invalid token/.test(e.message)){
+          token=''; try{localStorage.removeItem('pm_ab_stats_token');}catch(x){}
+          showAuthed(false); setMsg('That token was not accepted. Paste the correct one.', true);
+        } else { setMsg('Could not load: '+e.message, true); }
+      });
+  }
+
+  // ── the day chart: one series, one hue, value on the cap, hover tooltip ──
+  function dayChart(days){
+    var host = $('dayChart'), tip = $('dayTip');
+    var old = host.querySelector('svg'); if(old) old.remove();
+    if(!days.length){ host.insertAdjacentHTML('beforeend','<p class="empty">No opens in this period.</p>'); return; }
+    var W = 900, H = 200, padL = 34, padB = 26, padT = 14;
+    var max = Math.max(1, Math.max.apply(null, days.map(function(d){ return Number(d.devices)||0; })));
+    // clean ticks
+    var step = max<=5 ? 1 : max<=10 ? 2 : max<=25 ? 5 : max<=50 ? 10 : Math.pow(10, Math.floor(Math.log10(max)));
+    var top = Math.ceil(max/step)*step;
+    var slot = (W-padL)/days.length, bw = Math.min(24, slot*0.7);
+    var y = function(v){ return padT + (H-padB-padT) * (1 - v/top); };
+    var s = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Devices that opened the book, by day">';
+    for(var t=0;t<=top;t+=step){
+      s += '<line class="grid" x1="'+padL+'" x2="'+W+'" y1="'+y(t)+'" y2="'+y(t)+'"/>';
+      s += '<text class="tick" x="'+(padL-6)+'" y="'+(y(t)+4)+'" text-anchor="end">'+t+'</text>';
+    }
+    days.forEach(function(d,i){
+      var v = Number(d.devices)||0, x = padL + slot*i + (slot-bw)/2, yy = y(v), h = (H-padB) - yy;
+      var lab = new Date(d.d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+      s += '<rect class="bar" x="'+x+'" y="'+yy+'" width="'+bw+'" height="'+Math.max(0,h)+'" rx="4" ry="4" '+
+           'data-i="'+i+'"><title>'+esc(lab)+': '+v+' devices, '+esc(d.opens)+' opens, '+esc(d.questions)+' questions</title></rect>';
+      // square the baseline end (the rounded corners are for the data end only)
+      if(h>4) s += '<rect class="bar" x="'+x+'" y="'+(H-padB-4)+'" width="'+bw+'" height="4" data-i="'+i+'"/>';
+      if(v>0) s += '<text class="val" x="'+(x+bw/2)+'" y="'+(yy-4)+'" text-anchor="middle">'+v+'</text>';
+      if(days.length<=16 || i%Math.ceil(days.length/12)===0)
+        s += '<text class="tick" x="'+(x+bw/2)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(lab)+'</text>';
+    });
+    s += '</svg>';
+    host.insertAdjacentHTML('beforeend', s);
+    host.querySelector('svg').addEventListener('mousemove', function(ev){
+      var r = ev.target.closest ? ev.target.closest('rect.bar') : null;
+      if(!r){ tip.style.display='none'; return; }
+      var d = days[Number(r.getAttribute('data-i'))];
+      tip.textContent = new Date(d.d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' · '+d.devices+' devices · '+d.opens+' opens · '+d.questions+' questions';
+      tip.style.display='block';
+      var b = host.getBoundingClientRect();
+      tip.style.left = Math.min(ev.clientX - b.left + 12, b.width - tip.offsetWidth - 8) + 'px';
+      tip.style.top  = (ev.clientY - b.top - 34) + 'px';
+    });
+    host.querySelector('svg').addEventListener('mouseleave', function(){ tip.style.display='none'; });
+  }
+
+  function funnel(f){
+    var steps = [
+      ['Opened the book', f.opened],
+      ['Chose a group', f.chose_track],
+      ['Browsed chapters', f.browsed],
+      ['Opened a question', f.opened_q],
+      ['Read 3+ steps', f.read_3],
+      ['Read one to the end', f.finished_q],
+      ['Used Vidi', f.used_vidi],
+      ['Marked one done', f.marked_done],
+      ['Hit the paywall', f.hit_wall],
+      ['Signed in', f.signed_in],
+      ['Tapped pay', f.pay_start],
+      ['Came back another day', f.came_back]
+    ];
+    var base = Number(f.opened)||0;
+    $('funnel').innerHTML = steps.map(function(s){
+      var v = Number(s[1])||0, w = base>0 ? Math.round(v/base*100) : 0;
+      return '<div class="fstep"><span class="lab">'+esc(s[0])+'</span>'+
+        '<div class="track"><div class="fill'+(v?'':' zero')+'" style="width:'+w+'%"></div></div>'+
+        '<span class="val">'+fmt(v)+' <small>'+(base>0?w+'%':'')+'</small></span></div>';
+    }).join('');
+  }
+
+  var NAMES = {
+    app_open:'Opened the book', door_choose:'Chose group + year', track_interest:'Asked for another group',
+    cat_subject:'Picked a subject', cat_unit:'Picked a chapter', cat_qtype:'Filtered by question type', cat_search:'Searched',
+    open_q:'Opened a question', advance:'Revealed a step', step_jump:'Jumped to a step', restart:'Restarted an answer',
+    soon_tap:'Tapped an unwritten card', stage:'Marked understood / revised', ask_answer:'Answered "Not yet"',
+    chip:'Tapped a Vidi chip', vidi_open:'Opened Vidi', vidi_close:'Closed Vidi', vidi_ask:'Asked Vidi (typed)', vidi_mic:'Used the mic',
+    plan_implemented:'Made a study plan', plan_rescoped:'Changed the plan', rename_offered:'Offered a rename', rename:'Renamed Vidi', rename_kept:'Kept the name Vidi',
+    exam_eve:'Opened an exam-eve list', lock_wall:'Saw the paywall', unlock_free:'Unlocked the free chapter', pay_start:'Tapped pay',
+    sign_in_start:'Started sign-in', sign_in_done:'Signed in', dwell:'Still reading (1-min heartbeat)', page_leave:'Left the page',
+    err:'Page error', team_mark:'Marked a team device', self_check:'Self check'
+  };
+  var CHIPS = { come:'Will this come?', why:'Why this step?', tip:'How to remember?', howmuch:'How much to write?' };
+  var SUBJ = { physics:'Physics', chemistry:'Chemistry', mathematics:'Maths-1A', mathematics_1b:'Maths-1B', botany:'Botany', zoology:'Zoology' };
+  function unitName(k){ if(!k) return '—'; var m = /^([a-z_0-9]+)-(\d+)$/.exec(k); return m ? (SUBJ[m[1]]||m[1])+' · Unit '+m[2] : k; }
+
+  function render(d){
+    var dv = d.devices||{}, vi = d.visits||{}, rd = d.reading||{}, f = d.funnel||{}, v = d.vidi||{};
+    $('x_excl').textContent = fmt(d.excluded_devices);
+    $('x_mode').textContent = d.include_internal ? '(shown in every number below)' : '(hidden from every number below)';
+    $('t_active').textContent = fmt(dv.active);
+    // `total` is bounded by the since date (devices minted before the page was
+    // instrumented carry no events and cannot be attributed to anyone), so the
+    // "known in total" phrasing belongs to total_ever. Both are shown: the
+    // period figure, then the all-time one it is drawn from.
+    $('t_active_note').textContent = fmt(dv.total)+' devices in this period · '
+      + fmt(dv.total_ever)+' known in total';
+    $('t_new').textContent = fmt(dv.new);
+    $('t_ret').textContent = fmt(dv.returning);
+    $('t_visits').textContent = fmt(vi.n);
+    $('t_visits_note').textContent = 'median '+fmt(vi.median_min)+' min · longest 10% over '+fmt(vi.p90_min)+' min';
+    $('t_qopen').textContent = fmt(rd.questions_opened);
+    $('t_qopen_note').textContent = fmt(rd.question_reads)+' reads · average depth '+fmt(rd.avg_depth_pct)+'%';
+    $('t_fin').textContent = fmt(rd.finished_reads);
+    $('t_fin_note').textContent = pct(rd.finished_reads, rd.question_reads)+' of reads reached the last step';
+    $('t_signed').textContent = fmt(dv.signed_in);
+    $('t_paid').textContent = fmt(dv.paid);
+
+    dayChart(d.by_day||[]);
+    funnel(f);
+
+    rows('evBody', (d.events||[]).map(function(e){
+      return '<tr><td>'+esc(NAMES[e.event_type]||e.event_type)+' <span class="tag">'+esc(e.event_type)+'</span></td><td class="n">'+fmt(e.n)+'</td><td class="n">'+fmt(e.devices)+'</td></tr>';
+    }).join(''), 3);
+
+    var vrows = (v.chips||[]).map(function(c){ return '<tr><td>Chip: '+esc(CHIPS[c.chip]||c.chip)+'</td><td class="n">'+fmt(c.n)+'</td></tr>'; });
+    vrows.push('<tr><td>Typed questions</td><td class="n">'+fmt(v.asks)+'</td></tr>');
+    vrows.push('<tr><td>Spoken questions (mic)</td><td class="n">'+fmt(v.mic)+'</td></tr>');
+    vrows.push('<tr><td>Opened the window</td><td class="n">'+fmt(v.opens)+'</td></tr>');
+    rows('vidiBody', vrows.join(''), 2);
+    // Every value below is a number through fmt(), so innerHTML carries no
+    // untrusted text. The all-actors total is printed ALWAYS and is never
+    // filtered: three of the four actor signals are client-supplied, so if
+    // team rows could vanish from this line, a forged claim would hide real
+    // spend from the only page that watches it.
+    $('vidiCost').innerHTML =
+      'Model ledger, this period: <b>'+fmt(v.ledger_asks)+'</b> student answers, $'+fmt(v.ledger_usd)+
+      ' &middot; team '+fmt(v.ledger_team_asks)+' ($'+fmt(v.ledger_team_usd)+')'+
+      ' &middot; automated tests '+fmt(v.ledger_probe_asks)+' ($'+fmt(v.ledger_probe_usd)+')'+
+      ' &middot; <b>everything: '+fmt(v.ledger_all_asks)+' ($'+fmt(v.ledger_all_usd)+')</b>.'+
+      '<br>Today: '+fmt(v.ledger_asks_today)+' student answers, $'+fmt(v.ledger_usd_today)+'.';
+
+    rows('subjBody', (d.subjects||[]).map(function(s){ return '<tr><td>'+esc(SUBJ[s.subject]||s.subject)+'</td><td class="n">'+fmt(s.opens)+'</td><td class="n">'+fmt(s.devices)+'</td></tr>'; }).join(''), 3);
+    rows('unitBody', (d.top_units||[]).map(function(u){ return '<tr><td>'+esc(unitName(u.unit))+'</td><td class="n">'+fmt(u.opens)+'</td><td class="n">'+fmt(u.devices)+'</td></tr>'; }).join(''), 3);
+    rows('qBody', (d.top_questions||[]).map(function(q){
+      return '<tr><td><a href="https://answers.viditra.co/#/q/'+encodeURIComponent(q.qid)+'" target="_blank" rel="noopener" style="color:var(--ink)">'+esc(q.qid)+'</a><br><span style="color:var(--ink-faint);font-size:12px">'+esc(unitName(q.unit))+'</span></td><td class="n">'+fmt(q.opens)+'</td><td class="n">'+fmt(q.devices)+'</td></tr>';
+    }).join(''), 3);
+    rows('soonBody', (d.soon_taps||[]).map(function(s){ return '<tr><td>'+esc(unitName(s.unit))+'</td><td>'+esc(s.ref)+'</td><td class="n">'+fmt(s.n)+'</td></tr>'; }).join(''), 3);
+    rows('trackBody', (d.track_interest||[]).map(function(t){ return '<tr><td>'+esc(t.track)+'</td><td class="n">'+fmt(t.n)+'</td></tr>'; }).join(''), 2);
+    rows('searchBody', (d.searches||[]).map(function(s){ return '<tr><td>'+esc(s.q)+'</td><td class="n">'+fmt(s.n)+'</td></tr>'; }).join(''), 2);
+    rows('errBody', (d.errors||[]).map(function(e){ return '<tr><td>'+esc(e.msg)+'</td><td class="n">'+fmt(e.n)+'</td><td class="n">'+fmt(e.devices)+'</td></tr>'; }).join(''), 3);
+
+    rows('devBody', (d.device_rows||[]).map(function(r){
+      var who = esc(r.platform||'?') + (r.track ? ' · '+esc(r.track) : '') + (r.email ? '<br><span style="font-size:12px;color:var(--ink-dim)">'+esc(r.email)+'</span>' : '');
+      var tags = (r.internal ? '<span class="tag team">team</span>' : '') + (r.paid ? '<span class="tag paid">paid</span>' : '');
+      return '<tr class="'+(r.internal?'internal':'')+'"><td>'+who+tags+'</td><td class="mono">'+esc(String(r.device_id).slice(0,8))+'</td>'+
+        '<td>'+when(r.created_at)+'</td><td>'+when(r.last_event||r.last_seen_at)+'</td><td class="n">'+fmt(r.events)+'</td><td class="n">'+fmt(r.questions)+'</td>'+
+        '<td><button class="ghost tiny" data-dev="'+esc(r.device_id)+'" data-on="'+(r.internal?'0':'1')+'">'+(r.internal?'not team':'mark team')+'</button></td></tr>';
+    }).join(''), 7);
+
+    var g = d.generated_at ? new Date(d.generated_at).toLocaleString('en-IN') : '';
+    $('foot').innerHTML = 'Counting started '+LAUNCH+' — every device seen before that day is marked team. '+
+      'A device is one browser: the same student on two phones is two devices until they sign in. '+
+      'To mark your own phone, open <b>answers.viditra.co/#/notastudent/&lt;word&gt;</b> on it once; devices that sign in as a listed team account are marked automatically. '+
+      'Updated '+esc(g)+'.';
+  }
+
+  // the per-device toggle
+  $('devBody').addEventListener('click', function(ev){
+    var b = ev.target.closest ? ev.target.closest('button[data-dev]') : null;
+    if(!b) return;
+    b.disabled = true; b.textContent = '…';
+    call({ action:'mark_internal', device_id: b.getAttribute('data-dev'), on: b.getAttribute('data-on')==='1' })
+      .then(function(){ load(); })
+      .catch(function(e){ setMsg('Could not change that device: '+e.message, true); b.disabled=false; });
+  });
+
+  $('saveTok').addEventListener('click', function(){
+    token = $('token').value.trim();
+    if(!token) return;
+    try{ localStorage.setItem('pm_ab_stats_token', token); }catch(e){}
+    load();
+  });
+  $('token').addEventListener('keydown', function(e){ if(e.key==='Enter') $('saveTok').click(); });
+  Array.prototype.forEach.call(document.querySelectorAll('.presets .ghost'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.presets .ghost').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      if(b.dataset.since){ $('since').value = b.dataset.since; }
+      else { var d=new Date(); d.setDate(d.getDate()-Number(b.dataset.days)); $('since').value = iso(d); }
+      load();
+    });
+  });
+  $('refresh').addEventListener('click', load);
+  $('since').addEventListener('change', load);
+  $('showInternal').addEventListener('change', load);
+
+  showAuthed(!!token);
+  if(token) load();
+})();
+</script>
+</body>
+</html>

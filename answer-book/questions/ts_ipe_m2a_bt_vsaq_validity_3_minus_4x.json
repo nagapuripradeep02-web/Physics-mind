@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_validity_3_minus_4x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the set E of x for which the binomial expansion of (3 − 4x)^(3/4) is valid.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take out the 3",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 17 Binomial Theorem, answer 167. Printed appearances: AP 17 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 5 (book p.119). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The fractional exponent 3/4 is typeset (KaTeX) on the one line that carries it; the question_text writes it as ^(3/4) because the field is plain text."
+  },
+  "recall_prompt": "Say how you would find the set — how you take 3 out of the bracket, and the condition on x that makes the expansion valid.",
+  "insider_note": "A fractional index expands only in the form (1 + y) with |y| < 1, so factor the 3 out first. The answer is an open interval — the end points are excluded.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Take out the 3",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A binomial with a fractional index expands only in the form (1 + y) with |y| < 1, so factor 3 out of the bracket.",
+        "memory_tip": "A fractional index expands only as (1 + y) with |y| < 1, so take the 3 out first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "(3 - 4x)^{3/4} = 3^{3/4}\\left(1 - \\dfrac{4x}{3}\\right)^{3/4}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "This is valid when |4x/3| < 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (3 − 4x) to the power 3/4 is 3 to the power 3/4 times (1 − 4x/3) to the power 3/4, valid when |4x/3| < 1.",
+          "accept": [
+            "take three out to get three to the three by four times one minus four x by three to the three by four, valid when mod four x by three is less than one",
+            "factor out the three so the bracket is one minus something",
+            "the expansion is valid when the modulus of four x by three is less than one",
+            "three bayataki teeste one minus four x by three, mod four x by three less than one",
+            "write it as a power of one minus four x by three"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "three by four",
+            "four x by three",
+            "less than one",
+            "modulus"
+          ]
+        },
+        "why": "The expansion of (1 + y)ᵖ for a fractional p is an infinite series that converges only for |y| < 1; the leading constant must be pulled out first.",
+        "common_mistakes": [
+          "Writing the condition as |3 − 4x| < 1.",
+          "Forgetting the 3 to the power 3/4 outside."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Solve for x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. |4x/3| < 1 gives |x| < 3/4, an open interval.",
+        "memory_tip": "|4x/3| < 1 gives |x| < 3/4. The end points are excluded.",
+        "lines": [
+          "|x| < 3/4",
+          {
+            "text": "∴ E = (−3/4, 3/4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |4x/3| < 1 gives |x| < 3/4, so E is the open interval (−3/4, 3/4).",
+          "accept": [
+            "mod x less than three by four so E is minus three by four to three by four",
+            "x lies between minus three by four and three by four",
+            "the set is the open interval minus three quarters to three quarters",
+            "mod x three by four kante takkuva, E minus three by four to three by four",
+            "open interval of length three by two centred at zero"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "three by four",
+            "minus three by four",
+            "open interval",
+            "three quarters"
+          ]
+        },
+        "why": "The theorem is stated with the hypothesis |y| < 1, so that open interval is the validity set the question asks for. What the series does at |y| = 1 is outside this syllabus and is not the reason for the open ends — do not claim it diverges there.",
+        "common_mistakes": [
+          "Writing a closed interval [−3/4, 3/4].",
+          "Getting (−4/3, 4/3) by inverting the fraction."
+        ]
+      }
+    ]
+  }
+}

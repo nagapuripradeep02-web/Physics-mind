@@ -51,6 +51,7 @@
         "marks": 2,
         "mark_note": "Inner bracket",
         "margin_note": "Half the marks. The bracket is on the right, so b×c is computed first — brackets before the outer product, exactly as in arithmetic.",
+        "memory_tip": "The bracket is on the right, so b×c first — brackets before the outer product, as in arithmetic.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "The other half. Put a on the first row and the bracket result on the second — the order in the question is a×(…), so a comes first.",
+        "memory_tip": "a on the first row and the bracket result on the second, matching the order in the question.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -1 & -6 \\\\ 11 & 5 & 1 \\end{vmatrix}",
@@ -142,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Work the INNER bracket first — a×(b×c) is not the same as (a×b)×c and the two give different answers. Compute b×c, then cross a into that result."
 }

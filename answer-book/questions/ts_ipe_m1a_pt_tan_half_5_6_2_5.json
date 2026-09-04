@@ -1,0 +1,221 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_tan_half_5_6_2_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If tan(A/2) = 5/6 and tan(C/2) = 2/5, determine the relation between a, b and c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute the given values",
+      "marks": 1
+    },
+    {
+      "label": "State the relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the two given tangents in the product rule and one to reading the relation a + c = 2b off the result; the derivation and the check are kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply_the_two_tangents",
+        "kind": "equation",
+        "label": "Multiply the two given tangents",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. The product of the two given tangents leaves the bracket of the MISSING angle: (s−b)/s.",
+        "memory_tip": "tan(A/2) tan(C/2) = (s−b)/s — the product keeps the letter of the angle that was NOT given.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
+          "tan(C/2) = √((s−a)(s−b)/(s(s−c)))",
+          "∴ tan(A/2) tan(C/2) = √((s−b)²/s²)",
+          "= (s−b)/s   [∵ s > b, both are positive]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(A/2) tan(C/2) = (s−b)/s, because (s−a) and (s−c) cancel between the two roots.",
+          "accept": [
+            "multiply the two half angle tangents and s minus a and s minus c cancel",
+            "the product is s minus b over s",
+            "the bracket left is the one for the angle not given",
+            "rendintini multiply cheste s minus b by s vasthundi",
+            "the product of tan half A and tan half C is s minus b over s"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus b over s",
+            "product",
+            "cancel",
+            "tan half A"
+          ]
+        },
+        "why": "Multiplying the two roots cancels (s−a) and (s−c) completely, leaving only the bracket of the angle that was NOT given. That is why the product picks out b.",
+        "common_mistakes": [
+          "Writing tan(A/2) tan(C/2) = (s−a)/s or (s−c)/s.",
+          "Adding the two tangents instead of multiplying them."
+        ]
+      },
+      {
+        "id": "s2_substitute_the_values",
+        "kind": "equation",
+        "label": "Substitute the given values",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One of the two marks. (5/6)(2/5) = 1/3, and clearing the fraction gives 3s − 3b = s, that is 2s = 3b.",
+        "memory_tip": "(5/6)(2/5) = 1/3, so 3(s − b) = s and therefore 2s = 3b.",
+        "lines": [
+          "(s−b)/s = (5/6)(2/5) = 10/30 = 1/3",
+          "⇒ 3(s − b) = s ⇒ 3s − 3b = s",
+          "⇒ 2s = 3b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (s−b)/s = 1/3, so 3(s−b) = s and 2s = 3b.",
+          "accept": [
+            "five sixths times two fifths is one third",
+            "so s minus b over s is one third and three s minus three b is s",
+            "that gives two s equals three b",
+            "one third vasthundi, so two s equals three b",
+            "clear the fraction to get two s equals three b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one third",
+            "two s equals three b",
+            "s minus b",
+            "clear the fraction"
+          ]
+        },
+        "why": "The two given numbers multiply to a single fraction, and that fraction is a statement about s and b alone. Clearing it gives one plain equation between the perimeter and b.",
+        "common_mistakes": [
+          "Turning the second fraction upside down, so the product reads 25/12 instead of 1/3.",
+          "Writing s − b = 1/3 instead of (s − b)/s = 1/3."
+        ]
+      },
+      {
+        "id": "s3_check_the_third_tangent",
+        "kind": "equation",
+        "label": "Check with the third half angle",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. Because the three half angles add to 90°, the sum of the three pairwise products is 1, which fixes tan(B/2) = 20/37.",
+        "memory_tip": "The three half angles add to 90°, so the sum of their pairwise tangent products is 1.",
+        "lines": [
+          "Check: A/2 + B/2 + C/2 = 90°, so",
+          "tan(A/2)tan(B/2) + tan(B/2)tan(C/2)",
+          {
+            "text": "+ tan(C/2)tan(A/2) = 1",
+            "style": "indent"
+          },
+          "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
+          "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
+          "These three fix a : b : c = 87 : 74 : 61,",
+          "and 87 + 61 = 2 × 74, which is an A.P."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pairwise product identity fixes tan(B/2) = 20/37 and the sides in the ratio 87 : 74 : 61.",
+          "accept": [
+            "the three half angles add to ninety so the pairwise products add to one",
+            "that fixes tan half B as twenty over thirty seven",
+            "the sides come out as eighty seven to seventy four to sixty one",
+            "moodu half angles ninety ki add authai, so pairwise products one",
+            "the third half angle is determined by the other two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty over thirty seven",
+            "pairwise products",
+            "ninety degrees",
+            "eighty seven"
+          ]
+        },
+        "why": "The two given tangents already fix the third, so the triangle is fixed up to size. Working it out gives the actual side ratio and confirms the relation found above.",
+        "common_mistakes": [
+          "Using tan(A/2) + tan(B/2) + tan(C/2) = 1, which is not a standard result.",
+          "Adding 5/6 and 2/5 as 7/11."
+        ]
+      },
+      {
+        "id": "s4_state_the_relation",
+        "kind": "boxed_final",
+        "label": "State the relation",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. 2s is the perimeter, so 2s = 3b reads a + b + c = 3b, and removing b gives a + c = 2b.",
+        "memory_tip": "2s is the perimeter, so 2s = 3b means a + b + c = 3b and therefore a + c = 2b.",
+        "lines": [
+          "2s = a + b + c, so a + b + c = 3b",
+          "⇒ a + c = 2b",
+          {
+            "text": "∴ a + c = 2b, so a, b, c are in A.P.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2s = a + b + c turns 2s = 3b into a + c = 2b, so a, b, c are in A.P.",
+          "accept": [
+            "two s is the perimeter so a plus b plus c equals three b",
+            "take b off both sides to get a plus c equals two b",
+            "that means a b and c are in arithmetic progression",
+            "two s ante perimeter, so a plus c equals two b",
+            "the relation is a plus c equals two b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perimeter",
+            "a plus c equals two b",
+            "arithmetic progression",
+            "three b"
+          ]
+        },
+        "why": "2s is the perimeter, so 2s = 3b says the perimeter is three times b. Taking b off both sides leaves a + c = 2b, which is exactly the condition for an arithmetic progression.",
+        "common_mistakes": [
+          "Leaving the answer as 2s = 3b without saying what it means for a, b and c.",
+          "Writing a + c = 3b by forgetting to remove b from the perimeter."
+        ]
+      }
+    ]
+  }
+}

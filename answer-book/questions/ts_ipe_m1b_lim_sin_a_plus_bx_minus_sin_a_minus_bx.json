@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_sin_a_plus_bx_minus_sin_a_minus_bx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (sin(a + bx) − sin(a − bx))/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the sum-to-product identity",
+      "marks": 1
+    },
+    {
+      "label": "Apply lim sin θ / θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 5. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which identity you use on the numerator and which standard limit finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_to_product",
+        "kind": "equation",
+        "label": "Use the sum-to-product identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The identity sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2) turns a difference of two sines into a product, and the half-sum here is simply a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0 the numerator is sin a − sin a = 0 and the denominator is 0, so the form is 0/0.",
+          "Use  sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)  with C = a + bx and D = a − bx.",
+          "(C + D)/2 = a   and   (C − D)/2 = bx",
+          "∴ sin(a + bx) − sin(a − bx) = 2 cos a · sin(bx)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin C − sin D = 2 cos((C+D)/2) sin((C−D)/2) is applied, giving 2 cos a · sin(bx).",
+          "accept": [
+            "use sin c minus sin d equals two cos half sum into sin half difference",
+            "the numerator becomes two cos a into sin b x",
+            "apply the sum to product formula first",
+            "sin c minus sin d formula vaadali, two cos a sin b x vasthundi",
+            "convert the difference of sines into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin c minus sin d",
+            "two cos a",
+            "sin b x",
+            "sum to product"
+          ]
+        },
+        "why": "A difference of two sines cannot be cancelled against x as it stands. Turning it into a product isolates a single sin(bx), which is the only part that depends on x and the only part the standard limit is needed for.",
+        "common_mistakes": [
+          "Expanding both sines with the compound-angle formula and then losing a term while subtracting.",
+          "Using the cos C − cos D identity, which carries a minus sign in front."
+        ],
+        "memory_tip": "For sin C − sin D the cosine takes the half-sum and the sine takes the half-difference. Here the half-sum is a, so cos a comes out as a constant."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Apply lim sin θ / θ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply and divide by b so the angle bx sits under its own sine. The b that comes out is where the factor b in the answer originates.",
+        "lines": [
+          "lim(x → 0) (sin(a + bx) − sin(a − bx))/x = lim(x → 0) 2 cos a · sin(bx)/x",
+          "= 2 cos a · lim(x → 0) [sin(bx)/(bx)] · b",
+          "As x → 0, bx → 0, so lim(x → 0) sin(bx)/(bx) = 1.",
+          "= 2 cos a · 1 · b",
+          {
+            "text": "∴ lim(x → 0) (sin(a + bx) − sin(a − bx))/x = 2b cos a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(bx)/x is written as b · sin(bx)/(bx), the standard limit gives 1, and the answer is 2b cos a.",
+          "accept": [
+            "multiply and divide by b so sin b x over b x is one",
+            "the answer is two b cos a",
+            "sin b x over x gives b",
+            "b tho multiply divide cheste sin b x by b x equals one",
+            "two cos a into b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two b cos a",
+            "sin b x by b x",
+            "multiply and divide by b",
+            "equals one"
+          ]
+        },
+        "why": "sin θ/θ → 1 only when the same angle appears above and below, so the bx has to be created in the denominator. The value checks numerically: with a = 1 and b = 3 the answer is 6 cos 1 = 3.24181, and at x = 0.00001 the expression is 3.24181.",
+        "common_mistakes": [
+          "Writing lim sin(bx)/x = 1 and losing the factor b.",
+          "Giving 2b sin a by swapping the cosine and the sine in the identity."
+        ],
+        "memory_tip": "sin(bx)/x is never 1; it is b. Whatever multiplies x inside the sine comes out in front."
+      }
+    ]
+  },
+  "insider_note": "sin C − sin D makes the half-sum a constant, cos a, and the half-difference the small angle bx. Only sin(bx)/x is left, which supplies the b."
+}

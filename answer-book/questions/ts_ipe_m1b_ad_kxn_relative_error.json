@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_kxn_relative_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = f(x) = k xⁿ, show that the approximate relative error in y is n times the relative error in x, where n and k are constants.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate y = kxⁿ",
+      "marks": 1
+    },
+    {
+      "label": "Divide dy by y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked on four instances before it was written — (k, n, x, dx) = (3, 2, 10, 0.1), (5, −1, 4, 0.02), (2, ½, 9, 0.09) and (7, 3, 2, 0.004). In every one dy/y equals n·(dx/x) exactly, and the exact relative change agrees with it to three or more significant figures."
+  },
+  "recall_prompt": "Say how you would prove this — say what you differentiate, and what you divide by to reach the relative error.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate y = kxⁿ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. k is a constant, so it stays in front through the differentiation. Write dy, not just dy/dx — the relative error is built from dy.",
+        "memory_tip": "Power rule with a constant in front: the power n comes down, and the index drops by one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given y = f(x) = k xⁿ, where k and n are constants.",
+          "Differentiating with respect to x,",
+          "dy/dx = k · n xⁿ⁻¹",
+          "∴ dy = k n xⁿ⁻¹ · dx"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating y = kxⁿ gives dy = k n xⁿ⁻¹ dx.",
+          "accept": [
+            "differentiate k x to the n to get k n x to the n minus one",
+            "the power comes down and the index drops by one",
+            "d y is k n x power n minus one into d x",
+            "power rule apply chesi d y raayali",
+            "k stays outside because it is a constant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "k n x",
+            "n minus one",
+            "d y",
+            "power rule"
+          ]
+        },
+        "why": "The relative error is dy/y, so dy has to be written first. The power rule is the only tool needed, and k is untouched by it because a constant multiplier passes straight through differentiation.",
+        "common_mistakes": [
+          "Differentiating k as well, and losing it from the answer.",
+          "Writing xⁿ⁻¹ as xⁿ, so the x does not cancel at the next step."
+        ]
+      },
+      {
+        "id": "s2_divide_by_y",
+        "kind": "boxed_final",
+        "label": "Divide dy by y",
+        "marks": 1,
+        "mark_note": "Proof",
+        "margin_note": "Second mark. The proof is finished by the division, not by the differentiation. Say out loud that k cancels — that is the sentence the examiner is looking for.",
+        "memory_tip": "For any power law, the relative error is multiplied by the power. k never appears in the answer.",
+        "lines": [
+          "The relative error in y is dy/y.",
+          "dy/y = (k n xⁿ⁻¹ · dx) / (k xⁿ)",
+          "k cancels, and xⁿ⁻¹/xⁿ = 1/x, so",
+          "dy/y = n · (dx/x)",
+          {
+            "text": "∴ dy/y = n · (dx/x): the relative error in y is n times the relative error in x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing dy by y = kxⁿ cancels k and one power of x, giving dy/y = n(dx/x).",
+          "accept": [
+            "divide d y by y and k cancels",
+            "d y over y is n times d x over x",
+            "x power n minus one over x power n is one by x",
+            "k cancel avuthundi, n into d x by x vasthundi",
+            "the relative error in y is n times the relative error in x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d y over y",
+            "n times",
+            "k cancels",
+            "d x over x"
+          ]
+        },
+        "why": "The relative error is a ratio, so every constant multiplier cancels: the answer cannot depend on k, only on the exponent n. This is also the general result behind the individual cases — a square gives 2 times the relative error, a square root gives ½ of it, and a reciprocal gives −1 times it.",
+        "common_mistakes": [
+          "Stopping at dy = k n xⁿ⁻¹ dx and calling that the relative error.",
+          "Keeping k in the final answer by dividing by xⁿ instead of by y = kxⁿ."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both k and the power of x cancel in dy/y, which is why the constant k never appears in the answer. The n comes down from the index and multiplies the relative error."
+}

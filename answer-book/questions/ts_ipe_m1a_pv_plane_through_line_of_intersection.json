@@ -1,0 +1,317 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_plane_through_line_of_intersection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Find the vector equation of the plane passing through the line of intersection of the planes r·(i + j + k) = 6 and r·(2i + 3j + 4k) = −5 and through the point (1, 1, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both planes in the '= 0' form",
+      "marks": 1
+    },
+    {
+      "label": "Write the family through the line of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Collect the normal and the constant",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point and find λ",
+      "marks": 2
+    },
+    {
+      "label": "Put λ back",
+      "marks": 1
+    },
+    {
+      "label": "Write the plane and check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.81, chapter 7 PRODUCT OF VECTORS, Long Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+2+1+1 split weights the family of planes and the substitution that fixes λ, because those two moves are what the question is testing; the arithmetic that follows is one mark each. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find a plane through the line where two given planes meet and through a given point.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Write both planes as = 0",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Move each constant to the left first. The family in the next step only works when both planes are written with zero on the right.",
+        "memory_tip": "Move both constants left first. The family needs zero on the right of each plane.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The two planes are",
+          "r·(i + j + k) − 6 = 0    …(1)",
+          "r·(2i + 3j + 4k) + 5 = 0    …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both planes are rewritten with zero on the right, as r·(i + j + k) − 6 = 0 and r·(2i + 3j + 4k) + 5 = 0.",
+          "accept": [
+            "write both planes with zero on the right hand side",
+            "move the six and the minus five across",
+            "the second becomes r dot two i plus three j plus four k plus five equals zero",
+            "rendu planes ni equals zero form lo rasta",
+            "put both equations in the equals zero form first"
+          ],
+          "reject": [
+            "write the family",
+            "substitute the point",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals zero",
+            "minus six",
+            "plus five",
+            "both planes"
+          ]
+        },
+        "why": "The combination used in the next step adds the two left-hand sides, so both have to be expressions that are zero on the plane.",
+        "common_mistakes": [
+          "Leaving the second plane as r·n = −5, so the sign of the 5 is lost.",
+          "Changing a sign inside the normal while moving the constant."
+        ]
+      },
+      {
+        "id": "s2_family",
+        "kind": "equation",
+        "label": "Write the family",
+        "marks": 2,
+        "mark_note": "Family",
+        "margin_note": "Two marks. Any point on the line of intersection makes both brackets zero, so it makes the combination zero for every λ. That is why this expression is a plane through the line.",
+        "memory_tip": "On the line both brackets are zero, so the combination is zero for every λ.",
+        "lines": [
+          "Any plane through the line where (1) and",
+          "(2) meet has the form (1) + λ(2) = 0 :",
+          "[r·(i + j + k) − 6]",
+          "   + λ[r·(2i + 3j + 4k) + 5] = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That any plane through the line of intersection has the form (1) + λ(2) = 0, because every point of the line makes both brackets zero.",
+          "accept": [
+            "write plane one plus lambda times plane two equals zero",
+            "every point of the line makes both brackets zero so the combination is zero",
+            "the family of planes through the line is one plus lambda two",
+            "line meeda unna prathi point rendu brackets ni zero chestundi",
+            "use the family with one unknown lambda"
+          ],
+          "reject": [
+            "collect the terms",
+            "substitute the point",
+            "hence proved"
+          ],
+          "heard_as": [
+            "lambda",
+            "family",
+            "both brackets zero",
+            "one plus lambda two"
+          ]
+        },
+        "why": "The planes through a fixed line form one family with a single unknown λ, and the extra point selects one member of that family.",
+        "common_mistakes": [
+          "Multiplying the two plane equations instead of adding them.",
+          "Putting λ on both brackets, which just scales the whole equation."
+        ]
+      },
+      {
+        "id": "s3_collect",
+        "kind": "equation",
+        "label": "Collect the terms",
+        "marks": 1,
+        "mark_note": "Collect",
+        "margin_note": "Fourth mark. Gather the r terms into one dot product and move the constants to the right. The normal now depends on λ.",
+        "memory_tip": "Gather the r terms into ONE dot product; the normal now depends on λ.",
+        "lines": [
+          "Collecting the r terms,",
+          "r·[(1 + 2λ)i + (1 + 3λ)j + (1 + 4λ)k]",
+          "= 6 − 5λ    …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collecting gives r·[(1 + 2λ)i + (1 + 3λ)j + (1 + 4λ)k] = 6 − 5λ.",
+          "accept": [
+            "collect the r terms into one dot product with the normal depending on lambda",
+            "the normal is one plus two lambda, one plus three lambda, one plus four lambda",
+            "the right hand side is six minus five lambda",
+            "r terms ni okate dot product ga collect chesta",
+            "write it as r dot something equals six minus five lambda"
+          ],
+          "reject": [
+            "write the family",
+            "find lambda",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "one plus two lambda",
+            "six minus five lambda",
+            "collect",
+            "normal"
+          ]
+        },
+        "why": "Writing the family in r·n = d form is what makes the next substitution a single line of arithmetic in λ.",
+        "common_mistakes": [
+          "Leaving +5λ on the right instead of −5λ.",
+          "Adding the two normals without the λ factor on the second."
+        ]
+      },
+      {
+        "id": "s4_lambda",
+        "kind": "equation",
+        "label": "Find λ",
+        "marks": 2,
+        "mark_note": "Find λ",
+        "margin_note": "Two marks. The point (1, 1, 1) has position vector i + j + k, and dotting it with the normal simply adds the three brackets.",
+        "memory_tip": "For the point (1, 1, 1) the dot product is just the SUM of the three brackets.",
+        "lines": [
+          "The plane passes through (1, 1, 1), so",
+          "put r = i + j + k in (3) :",
+          "(1 + 2λ) + (1 + 3λ) + (1 + 4λ) = 6 − 5λ",
+          "3 + 9λ = 6 − 5λ",
+          "14λ = 3, so λ = 3/14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting r = i + j + k gives 3 + 9λ = 6 − 5λ, so λ = 3/14.",
+          "accept": [
+            "put r as i plus j plus k and the three brackets just add",
+            "three plus nine lambda equals six minus five lambda",
+            "fourteen lambda is three so lambda is three by fourteen",
+            "lambda three by fourteen vasthundi",
+            "substitute the point and solve the linear equation for lambda"
+          ],
+          "reject": [
+            "collect the terms",
+            "put lambda back",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by fourteen",
+            "nine lambda",
+            "fourteen lambda",
+            "substitute"
+          ]
+        },
+        "why": "The point is the extra condition that selects one plane from the family, and it gives a linear equation in λ with a single solution.",
+        "common_mistakes": [
+          "Moving −5λ across as −5λ instead of +5λ.",
+          "Dotting the point with the wrong side of equation (3)."
+        ]
+      },
+      {
+        "id": "s5_back",
+        "kind": "equation",
+        "label": "Put λ back",
+        "marks": 1,
+        "mark_note": "Substitute back",
+        "margin_note": "Seventh mark. Keep everything over 14 rather than turning it into decimals — the fractions all clear in the next line.",
+        "memory_tip": "Keep everything over 14. The fourteens all clear in the next line.",
+        "lines": [
+          "Normal = (1 + 6/14)i + (1 + 9/14)j",
+          "   + (1 + 12/14)k",
+          "= (20i + 23j + 26k)/14",
+          "Constant = 6 − 15/14 = 69/14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting λ = 3/14 back gives the normal (20i + 23j + 26k)/14 and the constant 69/14.",
+          "accept": [
+            "put lambda back to get twenty, twenty three, twenty six all over fourteen",
+            "the constant is six minus fifteen over fourteen which is sixty nine over fourteen",
+            "keep everything over fourteen",
+            "annee fourteen meeda unchali, decimals vaddu",
+            "the normal components are twenty twenty three twenty six over fourteen"
+          ],
+          "reject": [
+            "find lambda",
+            "write the plane",
+            "hence proved"
+          ],
+          "heard_as": [
+            "twenty three",
+            "twenty six",
+            "sixty nine",
+            "over fourteen"
+          ]
+        },
+        "why": "Working in fourteenths keeps every number a whole number on top, and the common factor of 14 disappears when the equation is multiplied through.",
+        "common_mistakes": [
+          "Turning 3/14 into a decimal and losing exactness.",
+          "Forgetting the 1 that sits in front of each bracket."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Write the plane",
+        "marks": 1,
+        "mark_note": "Vector equation",
+        "margin_note": "Last mark. Multiplying by 14 clears every fraction. The point check is one addition and confirms the whole calculation.",
+        "memory_tip": "Multiply by 14 to clear the fractions, then check the point in one addition.",
+        "lines": [
+          "Multiply through by 14 :",
+          {
+            "text": "r·(20i + 23j + 26k) = 69",
+            "style": "boxed"
+          },
+          "Check (1, 1, 1): 20 + 23 + 26 = 69"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by 14 gives r·(20i + 23j + 26k) = 69, and that (1, 1, 1) satisfies it.",
+          "accept": [
+            "multiply by fourteen to get r dot twenty i plus twenty three j plus twenty six k equals sixty nine",
+            "the point gives twenty plus twenty three plus twenty six which is sixty nine",
+            "clear the fractions and check the point",
+            "fourteen tho multiply cheste fractions clear avthai",
+            "the final plane is r dot twenty twenty three twenty six equals sixty nine"
+          ],
+          "reject": [
+            "put lambda back",
+            "find lambda",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty nine",
+            "twenty three",
+            "twenty six",
+            "multiply by fourteen"
+          ]
+        },
+        "why": "Multiplying a plane equation by a non-zero number gives the same plane, so clearing the 14 changes nothing but makes the answer readable.",
+        "common_mistakes": [
+          "Leaving the answer with fourteenths in it.",
+          "Multiplying only the left-hand side by 14."
+        ]
+      }
+    ]
+  }
+}

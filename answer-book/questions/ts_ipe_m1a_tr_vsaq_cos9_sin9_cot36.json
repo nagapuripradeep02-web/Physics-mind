@@ -62,7 +62,8 @@
         "label": "Divide through by cos9°",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the move that unlocks it. Dividing top and bottom by cos9° turns every term into a tangent, and 1 is tan45°.",
+        "margin_note": "First mark, and the step the whole proof depends on. Dividing top and bottom by cos9° turns every term into a tangent, and 1 is tan45°.",
+        "memory_tip": "Divide top and bottom by cos9°: every term becomes a tangent, and the 1 is tan45°.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,7 +96,7 @@
             "one plus tan"
           ]
         },
-        "why": "Writing 1 as tan45° is not decoration — it is what makes the expression match the tan(A+B) formula exactly.",
+        "why": "Writing 1 as tan45° is necessary — it is what makes the expression match the tan(A+B) formula exactly.",
         "common_mistakes": [
           "Dividing by sin9° instead, which gives cotangents.",
           "Not recognising 1 as tan45°."
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The formula gives tan54°, and 54° is 90° − 36° — so tan54° is cot36°.",
+        "memory_tip": "The formula gives tan54°, and 54° = 90° − 36°, so tan54° is cot36°.",
         "lines": [
           "= tan(45° + 9°) = tan54°",
           "= tan(90° − 36°)",
@@ -145,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide top and bottom by cos9° so that tan45° = 1 appears and the tan(A+B) form emerges. tan54° = cot36° is the last step, using 54° = 90° − 36°."
 }

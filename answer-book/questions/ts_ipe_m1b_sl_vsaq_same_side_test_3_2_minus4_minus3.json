@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_same_side_test_3_2_minus4_minus3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "State whether (3, 2) and (−4, −3) lie on the same side or on opposite sides of the straight line 2x − 3y + 4 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute both points",
+      "marks": 1
+    },
+    {
+      "label": "Compare the signs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 20, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two substituted values written out with their signs, and the second for the comparison and the stated verdict; the two signed numbers are the working an examiner looks for, so a bare verdict earns only the second mark at best. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked a second way: the line 2x − 3y + 4 = 0 is y = (2x + 4)/3, which at x = 3 gives y = 10/3 and at x = −4 gives y = −4/3. The point (3, 2) has 2 < 10/3 and the point (−4, −3) has −3 < −4/3, so both points sit below the line, which agrees with the two positive values found in the answer."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute, and what the two answers have to be compared for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute_both_points",
+        "kind": "equation",
+        "label": "Substitute both points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the left side L(x, y) and evaluate it at each point. Keep both signed values on the page, because the comparison is made on them.",
+        "memory_tip": "Move everything to one side, then put each point into that one expression.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let L(x, y) = 2x − 3y + 4",
+          "At (3, 2):  L = 2(3) − 3(2) + 4",
+          "= 6 − 6 + 4 = 4",
+          "At (−4, −3):  L = 2(−4) − 3(−3) + 4",
+          "= −8 + 9 + 4 = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That L(x, y) = 2x − 3y + 4 is evaluated at both points, giving 4 and 5.",
+          "accept": [
+            "put both points into two x minus three y plus four",
+            "at three two the value is four",
+            "at minus four minus three the value is five",
+            "rendu points ni line expression lo substitute cheyyali",
+            "evaluate the left hand side at each point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "both signs are the same"
+          ],
+          "heard_as": [
+            "two x minus three y plus four",
+            "four",
+            "five",
+            "substitute"
+          ]
+        },
+        "why": "The expression 2x − 3y + 4 is zero exactly on the line, positive on one side of it and negative on the other. Its value at a point is therefore a direct reading of which side that point is on.",
+        "common_mistakes": [
+          "Substituting the two points into different forms of the line, so the two values cannot be compared.",
+          "Sign slip on −3(−3), writing −9 instead of +9."
+        ]
+      },
+      {
+        "id": "s2_compare_the_signs",
+        "kind": "boxed_final",
+        "label": "Compare the signs",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Only the signs matter, not the sizes. Same sign means the same side, opposite signs mean opposite sides, and a zero would mean that point is on the line.",
+        "memory_tip": "Same sign, same side. Opposite signs, opposite sides. A zero means the point is on the line.",
+        "lines": [
+          "L(3, 2) = 4 > 0",
+          "L(−4, −3) = 5 > 0",
+          "Both values are positive,",
+          "so they have the same sign.",
+          {
+            "text": "∴ The two points lie on the same side",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both values are positive, so the points lie on the same side of the line.",
+          "accept": [
+            "both values are positive",
+            "same sign means same side",
+            "the points lie on the same side of the line",
+            "rendu same sign so same side",
+            "four and five are both positive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "put both points into the expression"
+          ],
+          "heard_as": [
+            "same sign",
+            "same side",
+            "both positive",
+            "opposite sides"
+          ]
+        },
+        "why": "A point can only move from the positive side to the negative side by crossing the line, where the value is 0. Two values of the same sign therefore cannot be separated by the line.",
+        "common_mistakes": [
+          "Comparing 4 and 5 as sizes and concluding the points are at different distances, which the question does not ask.",
+          "Answering only same side with no values shown, which leaves the working mark unearned."
+        ]
+      }
+    ]
+  }
+}

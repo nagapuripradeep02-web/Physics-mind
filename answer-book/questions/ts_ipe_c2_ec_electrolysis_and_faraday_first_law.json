@@ -71,12 +71,12 @@
           "into chemical energy, which is the reverse of",
           "what a galvanic cell does."
         ],
-        "why": "The definition is easiest to hold on to as the mirror of the galvanic cell: one converts chemical energy to electrical from a spontaneous reaction, the other forces a non-spontaneous reaction using electrical energy. That contrast also explains why an outside source is needed here and not there.",
+        "why": "The definition is easiest to remember as the reverse of the galvanic cell: one converts chemical energy to electrical energy from a spontaneous reaction, the other uses electrical energy to force a non-spontaneous reaction. That contrast also explains why an outside source is needed here and not there.",
         "common_mistakes": [
           "Saying electrolysis splits the compound into its ions. The ions already exist in the melt or the solution; electrolysis discharges them.",
           "Saying alternating current can be used. It must be direct current, or the electrodes would swap roles every half cycle."
         ],
-        "memory_tip": "Electrolysis is a galvanic cell run backwards: electricity in, chemistry out.",
+        "memory_tip": "Electrolysis is the galvanic cell reversed: electrical energy is put in and chemical change comes out.",
         "margin_note": "The words direct current, non-spontaneous and electrical to chemical carry these two marks between them."
       },
       {

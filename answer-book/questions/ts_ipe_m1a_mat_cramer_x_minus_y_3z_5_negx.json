@@ -1,0 +1,350 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "By using Cramer's rule, solve x − y + 3z = 5, 4x + 2y − z = 0, −x + 3y + z = 5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the system as AX = D",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ = det A and check it is not zero",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₁",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₂",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₃",
+      "marks": 1
+    },
+    {
+      "label": "Apply Cramer's rule and state the solution",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), Cramer's-rule route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1+1+3 split gives one mark to each of the four determinants and three to the rule plus the stated solution, matching every other Cramer's-rule answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx, ts_ipe_m1a_mat_inverse_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_gauss_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: Δ was expanded along R₁ and again along C₁, both giving 50, and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this by Cramer's rule — say what four determinants you need, how you build each one, how you get x, y and z, and how you check them.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_matrix_form",
+        "kind": "equation",
+        "label": "Write it as AX = D",
+        "marks": 1,
+        "mark_note": "Matrix form",
+        "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Write the equations out in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Line the equations up in x, y, z order first, so A holds the coefficients in the right places.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ -1 & 3 & 1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 5 \\\\ 0 \\\\ 5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the system is written as AX = D, with A the coefficient matrix, X the column of unknowns and D the column of constants.",
+          "accept": [
+            "write the system as A X equals D where A is the coefficient matrix X is x y z and D is the constants",
+            "put it in matrix form with the coefficients in A the unknowns in X and the right hand sides in D",
+            "first write A X equals D taking the coefficients into A",
+            "modata AX equals D form lo rasta, A lo coefficients, D lo right side values",
+            "form the coefficient matrix the variable column and the constant column"
+          ],
+          "reject": [
+            "write the matrix",
+            "put it in matrix form",
+            "make the matrices"
+          ],
+          "heard_as": [
+            "AX equals D",
+            "coefficient matrix",
+            "A X D",
+            "constants"
+          ]
+        },
+        "why": "Cramer's rule is a recipe that reads off this matrix. Getting A right is the only place where the original equations are used, so every later step inherits any mistake made here.",
+        "common_mistakes": [
+          "Writing the coefficients in the order they appear rather than in x, y, z order.",
+          "Missing a coefficient of 1 or −1 because the letter is written with no number in front.",
+          "Putting the constants into A instead of D."
+        ]
+      },
+      {
+        "id": "s2_delta",
+        "kind": "equation",
+        "label": "Find Δ",
+        "marks": 1,
+        "mark_note": "Δ",
+        "margin_note": "Second mark. Δ is the determinant of A itself, and it must be non-zero or Cramer's rule cannot be used at all — so say so in writing. Expand it a second time along a different row or column: a wrong Δ spoils all three answers at once and still looks like an answer.",
+        "memory_tip": "Expand Δ twice, along a row and then along a column. A wrong Δ spoils all three unknowns at once.",
+        "lines": [
+          {
+            "text": "\\Delta = \\det A = \\begin{vmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ -1 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(2+3) + 1(4−1) + 3(12+2)",
+          "= 5 + 3 + 42 = 50",
+          "Along C₁: 1(5) − 4(−10) + (−1)(−5) = 50",
+          "Δ = 50 ≠ 0, so Cramer's rule applies."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ is the determinant of the coefficient matrix, that it works out to 50, and that being non-zero is what allows Cramer's rule to be used.",
+          "accept": [
+            "delta is the determinant of A which comes to fifty and since it is not zero cramer's rule can be used",
+            "find the determinant of the coefficient matrix it is fifty which is not zero",
+            "expand det A twice to get fifty which is non zero so the method works",
+            "delta equals det A fifty, zero kaadu kabatti cramer rule use cheyyochu",
+            "the determinant of A is fifty and it must be non zero for this rule"
+          ],
+          "reject": [
+            "find the determinant",
+            "calculate delta",
+            "expand the determinant"
+          ],
+          "heard_as": [
+            "delta",
+            "det A",
+            "fifty",
+            "not equal to zero",
+            "non zero"
+          ]
+        },
+        "why": "Cramer's rule divides by Δ. If Δ were zero the division would be impossible and the system would have either no solution or infinitely many — so the check is part of the method, not a formality.",
+        "common_mistakes": [
+          "Computing Δ but never writing that it is non-zero.",
+          "Getting the sign pattern wrong when expanding: it is plus, minus, plus along the top row.",
+          "Using the constants column somewhere inside Δ."
+        ]
+      },
+      {
+        "id": "s3_delta1",
+        "kind": "equation",
+        "label": "Find Δ₁",
+        "marks": 1,
+        "mark_note": "Δ₁",
+        "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants 5, 0, 5. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ REPLACES the first column with the constants. Columns 2 and 3 are untouched — replace, never insert.",
+        "lines": [
+          "Replace C₁ of Δ by the constants:",
+          {
+            "text": "\\Delta_1 = \\begin{vmatrix} 5 & -1 & 3 \\\\ 0 & 2 & -1 \\\\ 5 & 3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 5(2+3) + 1(0+5) + 3(0−10)",
+          "= 25 + 5 − 30 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₁ is formed by replacing the first column of Δ with the constants, and that it works out to 0.",
+          "accept": [
+            "delta one is delta with the first column replaced by the constants and it comes to zero",
+            "put the constants into the first column and expand to get zero",
+            "replace column one with the right hand side values giving delta one equal to zero",
+            "first column place lo constants pettithe delta one zero vasthundi",
+            "swap the first column for the constant column and the determinant is zero"
+          ],
+          "reject": [
+            "find delta one",
+            "calculate the next determinant",
+            "replace a column"
+          ],
+          "heard_as": [
+            "delta one",
+            "first column",
+            "constants",
+            "zero"
+          ]
+        },
+        "why": "Δ₁ pairs with x because x is the first unknown. The subscript is a position, not a name — which is why the constants go into column one and nowhere else.",
+        "common_mistakes": [
+          "Replacing a row instead of a column.",
+          "Replacing the second column and later dividing it into x.",
+          "Adding a fourth column instead of replacing one."
+        ]
+      },
+      {
+        "id": "s4_delta2",
+        "kind": "equation",
+        "label": "Find Δ₂",
+        "marks": 1,
+        "mark_note": "Δ₂",
+        "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now, and column 1 goes BACK to the x coefficients. Leaving the constants there is the usual slip.",
+        "lines": [
+          "Replace C₂ of Δ by the constants:",
+          {
+            "text": "\\Delta_2 = \\begin{vmatrix} 1 & 5 & 3 \\\\ 4 & 0 & -1 \\\\ -1 & 5 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(0+5) − 5(4−1) + 3(20−0)",
+          "= 5 − 15 + 60 = 50"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₂ is formed by replacing the second column of Δ with the constants, and that it works out to 50.",
+          "accept": [
+            "delta two is delta with the second column replaced by the constants and it equals fifty",
+            "put the constants into the middle column and expand to get fifty",
+            "replace column two with the constant column giving fifty",
+            "second column lo constants pettithe delta two fifty vasthundi",
+            "the middle column becomes the constants and the determinant is fifty"
+          ],
+          "reject": [
+            "find delta two",
+            "do the same again",
+            "replace the next column"
+          ],
+          "heard_as": [
+            "delta two",
+            "second column",
+            "middle column",
+            "fifty"
+          ]
+        },
+        "why": "Each unknown gets the determinant whose replaced column is that unknown's own column in A. y sits in column two, so Δ₂ is y's determinant.",
+        "common_mistakes": [
+          "Leaving the constants in column one from the previous step, so two columns are wrong at once.",
+          "Forgetting the minus in front of the middle term when expanding along the top row."
+        ]
+      },
+      {
+        "id": "s5_delta3",
+        "kind": "equation",
+        "label": "Find Δ₃",
+        "marks": 1,
+        "mark_note": "Δ₃",
+        "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two back to the coefficients.",
+        "lines": [
+          "Replace C₃ of Δ by the constants:",
+          {
+            "text": "\\Delta_3 = \\begin{vmatrix} 1 & -1 & 5 \\\\ 4 & 2 & 0 \\\\ -1 & 3 & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(10−0) + 1(20−0) + 5(12+2)",
+          "= 10 + 20 + 70 = 100"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₃ is formed by replacing the third column of Δ with the constants, and that it works out to 100.",
+          "accept": [
+            "delta three is delta with the third column replaced by the constants and it comes to one hundred",
+            "put the constants into the last column and expand to get one hundred",
+            "replace column three with the constant column giving one hundred",
+            "third column lo constants pettithe delta three one hundred vasthundi",
+            "the last column becomes the constants and the determinant is one hundred"
+          ],
+          "reject": [
+            "find delta three",
+            "do the last determinant",
+            "replace the third column"
+          ],
+          "heard_as": [
+            "delta three",
+            "third column",
+            "last column",
+            "one hundred"
+          ]
+        },
+        "why": "Three unknowns need three replaced determinants, plus Δ itself. Four determinants is always the cost of Cramer's rule on a 3×3 system, and knowing that in advance is how you budget the time.",
+        "common_mistakes": [
+          "Stopping after Δ₂ and trying to find z by substitution.",
+          "Leaving an earlier replacement in place."
+        ]
+      },
+      {
+        "id": "s6_solve",
+        "kind": "boxed_final",
+        "label": "Apply Cramer's rule",
+        "marks": 3,
+        "mark_note": "Solution",
+        "margin_note": "The last three marks. Δ₁ comes out 0, so x = 0. A zero on TOP is a perfectly good answer; only Δ itself is forbidden to be zero. Put all three values back into the three original equations before stopping.",
+        "memory_tip": "Each unknown is its own determinant over Δ. Then put the three values back into all three original equations before you stop.",
+        "lines": [
+          "By Cramer's rule:",
+          "x = Δ₁/Δ = 0/50 = 0",
+          "y = Δ₂/Δ = 50/50 = 1",
+          "z = Δ₃/Δ = 100/50 = 2",
+          "Substitute back into the three equations:",
+          "0 − 1 + 3(2) = 5  ✓",
+          "4(0) + 2(1) − 2 = 0  ✓",
+          "−0 + 3(1) + 2 = 5  ✓",
+          {
+            "text": "∴ x = 0, y = 1, z = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each unknown is its own determinant divided by Δ, giving x = 0, y = 1, z = 2, and that the values are checked in all three original equations.",
+          "accept": [
+            "x is delta one by delta y is delta two by delta and z is delta three by delta giving x equals zero y equals one z equals two",
+            "divide each of the three determinants by delta to get x equals zero y equals one z equals two",
+            "by cramer's rule each unknown is its own determinant over delta so the solution is x equals zero y equals one z equals two",
+            "prathi determinant ni delta tho divide cheste x equals zero y equals one z equals two vasthundi",
+            "delta one over delta gives x and similarly y and z then substitute back to check"
+          ],
+          "reject": [
+            "then I get the answer",
+            "divide by delta",
+            "x equals zero y equals one z equals two"
+          ],
+          "heard_as": [
+            "delta one by delta",
+            "cramer's rule",
+            "substitute back",
+            "x equals zero",
+            "y equals one",
+            "z equals two"
+          ]
+        },
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. Substituting back is the only check that catches a slip inside Δ₁, Δ₂ or Δ₃, because an error there spoils one unknown and leaves the other two looking right.",
+        "common_mistakes": [
+          "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
+          "Calling x = 0/50 undefined; a zero on top gives x = 0.",
+          "Stopping without substituting the three values back into all three equations."
+        ]
+      }
+    ]
+  }
+}

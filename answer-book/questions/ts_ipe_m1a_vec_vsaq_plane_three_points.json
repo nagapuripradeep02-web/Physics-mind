@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Three points fix a plane. Watch the gaps: the second has no i term and the third has no k term — write those components as 0 rather than leaving them out.",
+        "memory_tip": "Mind the gaps: the second point has no i and the third has no k. Write those components as 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. A plane needs TWO parameters, s and t, because it is two-dimensional. The three coefficients (1−s−t), s and t always add to 1.",
+        "memory_tip": "A plane needs TWO parameters because it is two-dimensional, and the three coefficients always add to 1.",
         "lines": [
           "Vector equation of the plane is",
           "r = (1−s−t)a + sb + tc,  s, t ∈ R",
@@ -137,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A plane needs TWO parameters, s and t; it is the three coefficients (1 − s − t), s and t that sum to one: r = (1 − s − t)a + sb + tc. Nothing needs expanding — writing the form with the three vectors substituted is the complete answer."
 }

@@ -1,0 +1,251 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x2_minus_3_over_x_plus_2_x2_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve (x² − 3)/((x + 2)(x² + 1)) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 11 Partial Fractions, answer 100. Printed appearances: AP 16, 17, 18, 20, 22 — the most-asked question in the chapter. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 3 (book p.115) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 1 in the identity gives −2 = A(2) + (B + C)(3) = 2/5 + (4/5 − 8/5)(3) = 2/5 − 12/5 = −2 with A = 1/5, B = 4/5, C = −8/5."
+  },
+  "recall_prompt": "Say how you would resolve (x² − 3)/((x + 2)(x² + 1)) into partial fractions — name each move in order.",
+  "insider_note": "x² + 1 does not factorise, so it takes Bx + C on top, not a constant; all three constants come out as fifths — A = 1/5, B = 4/5, C = −8/5 — and they stay as fractions to the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Set up the form",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "First mark. x² + 1 has no real factors, so it gets Bx + C. The linear factor (x + 2) gets A. Do not confuse x² + 1 with x² − 1, which does factorise.",
+        "memory_tip": "x² + 1 has no real factors — do not confuse it with x² − 1, which does split. It takes Bx + C.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² + 1 has no real factors.",
+          "Let (x² − 3)/((x + 2)(x² + 1))",
+          "= A/(x + 2) + (Bx + C)/(x² + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² + 1 is irreducible and the form is A/(x + 2) + (Bx + C)/(x² + 1).",
+          "accept": [
+            "x squared plus one cannot be factorised so write A over x plus two plus Bx plus C over x squared plus one",
+            "linear factor gets A and the quadratic gets Bx plus C",
+            "A by x plus 2 plus Bx plus C by x square plus 1",
+            "x square plus one ki real factors levu, kabatti A by x plus two plus Bx plus C by x square plus one ani rasali",
+            "the irreducible quadratic needs a linear numerator"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "x squared plus one",
+            "irreducible",
+            "no real factors",
+            "Bx plus C",
+            "A over x plus two"
+          ]
+        },
+        "why": "Over an irreducible quadratic the numerator must be linear, Bx + C, so the identity has enough unknowns to match the x², x and constant terms. This is the same form as (2x² + 3x + 4)/((x − 1)(x² + 2)) with different numbers.",
+        "common_mistakes": [
+          "Writing a constant over x² + 1.",
+          "Factorising x² + 1 as (x + 1)(x − 1); that is x² − 1.",
+          "Writing the numerator x² − 3 as (x + √3)(x − √3) and trying to cancel; nothing cancels."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (x + 2)(x² + 1). A keeps (x² + 1), (Bx + C) keeps (x + 2).",
+        "memory_tip": "A keeps (x² + 1), (Bx + C) keeps (x + 2). Keep the bracket around Bx + C.",
+        "lines": [
+          "Multiply by (x + 2)(x² + 1):",
+          "x² − 3 = A(x² + 1) + (Bx + C)(x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x² − 3 = A(x² + 1) + (Bx + C)(x + 2).",
+          "accept": [
+            "multiply both sides by x plus two into x squared plus one to get x squared minus three equals A into x squared plus one plus Bx plus C into x plus two",
+            "clear the denominators so A keeps x squared plus one and Bx plus C keeps x plus two",
+            "multiply through by the whole denominator to get an identity in x",
+            "denominator tho multiply cheste A into x square plus one plus Bx plus C into x plus two vastundi",
+            "remove the fractions by multiplying with x plus two times x squared plus one"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "A into x squared plus one",
+            "Bx plus C into x plus two",
+            "identity"
+          ]
+        },
+        "why": "The polynomial identity is where the constants are found. Both sides are quadratics, so one root and two coefficient comparisons determine A, B and C.",
+        "common_mistakes": [
+          "Writing Bx + C(x + 2) without the bracket.",
+          "Giving A the factor (x + 2) instead of (x² + 1).",
+          "Dropping the left side x² − 3."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A, B and C",
+        "margin_note": "Third mark. x = −2 gives A = 1/5. x = 0 gives A + 2C = −3, so C = −8/5. Compare x² for B = 4/5. Fractions with 5 all the way; keep them as fractions.",
+        "memory_tip": "x = −2 gives (−2)² − 3 = 1, so A = 1/5. Then x = 0 gives A + 2C = −3, so C = −8/5.",
+        "lines": [
+          "Put x = −2: 1 = A(5) ⇒ A = 1/5",
+          "Put x = 0: −3 = A + 2C ⇒ 2C = −16/5",
+          "⇒ C = −8/5",
+          "Compare x²: A + B = 1 ⇒ B = 4/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −2 gives A = 1/5, x = 0 gives A + 2C = −3 so C = −8/5, and comparing x² gives A + B = 1 so B = 4/5.",
+          "accept": [
+            "put x equals minus two to get A equals one by five, x equals zero to get A plus two C equals minus three so C is minus eight by five, compare x squared to get B equals four by five",
+            "A is one fifth from the root, C is minus eight fifths from x equals zero and B is four fifths from the x squared coefficient",
+            "A one by five, C minus eight by five, B four by five",
+            "x equals minus two pedithe A one by five, x equals zero pedithe C minus eight by five, x square compare cheste B four by five",
+            "one root, x equals zero and the x squared coefficient give the three constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals minus two",
+            "x equals zero",
+            "one by five",
+            "minus eight by five",
+            "four by five",
+            "compare x squared"
+          ]
+        },
+        "why": "The root of the linear factor gives A. x = 0 is the easiest non-root value because Bx vanishes and only A and C remain. B then follows from the x² coefficient A + B = 1.",
+        "common_mistakes": [
+          "Putting x = −2 and writing (−2)² − 3 as −7 instead of 1.",
+          "Solving A + 2C = −3 as C = (−3 − A)/2 with A = 1/5 and getting −7/5; −3 − 1/5 = −16/5, half of that is −8/5.",
+          "Writing B = 1 by forgetting A in the x² coefficient."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Bx + C = (4/5)x − 8/5 = (4x − 8)/5, so the second fraction is (4x − 8)/(5(x² + 1)). The first is 1/(5(x + 2)).",
+        "memory_tip": "Every constant is a fifth: (4/5)x − 8/5 becomes (4x − 8)/5. Check x = 1: −2 = 2/5 − 12/5.",
+        "lines": [
+          "∴ (x² − 3)/((x + 2)(x² + 1))",
+          {
+            "text": "= 1/(5(x + 2)) + (4x − 8)/(5(x² + 1))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1/(5(x + 2)) + (4x − 8)/(5(x² + 1)).",
+          "accept": [
+            "the answer is one over five x plus two plus four x minus eight over five x squared plus one",
+            "one by five into x plus two plus four x minus eight by five into x square plus one",
+            "the numerator four by five x minus eight by five becomes four x minus eight over five",
+            "final answer one by five x plus two plus four x minus eight by five x square plus one ani rasali",
+            "put A B C back and take the five into the denominators"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "one over five",
+            "four x minus eight",
+            "five x squared plus one",
+            "final answer"
+          ]
+        },
+        "why": "Fractional constants are presented with the denominator 5 moved under the bracket. This keeps each term on one line and is the form the book and the examiner expect.",
+        "common_mistakes": [
+          "Writing (4x + 8) after finding C = −8/5.",
+          "Writing (4x − 8)/(x² + 1) and losing the 5.",
+          "Not checking: put x = 1 in the identity, −2 = 2/5 − 12/5. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

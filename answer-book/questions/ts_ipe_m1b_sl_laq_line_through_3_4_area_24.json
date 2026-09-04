@@ -1,0 +1,271 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_line_through_3_4_area_24",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A straight line through (3, 4) forms with the coordinate axes a triangle of area 24 square units lying in the first quadrant. Find the equation of the straight line.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the intercept form",
+      "marks": 1
+    },
+    {
+      "label": "Use the point on the line",
+      "marks": 1
+    },
+    {
+      "label": "Use the area condition",
+      "marks": 2
+    },
+    {
+      "label": "Form and solve the quadratic",
+      "marks": 2
+    },
+    {
+      "label": "Write the line and check",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 22, book p.161. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the two conditions the question sets, at one and two marks, then the algebra that combines them — two marks for forming and solving the quadratic, which is the only real work here, and two for writing the line and checking both conditions on it. The setting-up line takes one mark because it is one line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. AUTHOR NOTE on the number of answers: a line cutting a triangle of GIVEN area from the axes usually gives a quadratic with two roots and two admissible lines. Here the quadratic is (p − 6)² = 0, a perfect square, so exactly ONE line qualifies. That is not a slip: 24 square units is the SMALLEST area a first-quadrant line through (3, 4) can cut off, reached only when (3, 4) is the midpoint of the intercept segment, so the two roots coincide. Dropping the first-quadrant restriction would admit two further lines, x-intercept −6 ± 6√2, whose triangles lie in the second and fourth quadrants; the stem excludes them, and the card says so."
+  },
+  "recall_prompt": "Say how you would solve this — say which two conditions you use, and why there is only one answer here.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intercept_form",
+        "kind": "equation",
+        "label": "Set up the intercept form",
+        "marks": 1,
+        "margin_note": "First mark. The question is about intercepts and an area, so start from the intercept form. The triangle lies in the first quadrant, so both intercepts are positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the line be x/p + y/q = 1",
+          "p = x-intercept, q = y-intercept",
+          "Triangle is in the first quadrant",
+          "⇒ p > 0 and q > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line is taken as x/p + y/q = 1 with p > 0 and q > 0.",
+          "accept": [
+            "take the line in intercept form x by p plus y by q equals one",
+            "p and q are the two intercepts",
+            "the first quadrant means both intercepts are positive",
+            "intercept form lo line teesukovali",
+            "let the intercepts be p and q, both positive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "x by p plus y by q",
+            "first quadrant",
+            "positive"
+          ]
+        },
+        "why": "The intercept form carries both unknowns the question talks about, so both conditions can be written down straight away without any change of variable.",
+        "common_mistakes": [
+          "Starting from y = mx + c, which does not show the intercepts.",
+          "Allowing p or q to be negative, which leaves the first quadrant."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The question talks about intercepts and an area, so start from x/p + y/q = 1."
+      },
+      {
+        "id": "s2_point_condition",
+        "kind": "equation",
+        "label": "Use the point on the line",
+        "marks": 1,
+        "margin_note": "One mark. The line passes through (3, 4), so those coordinates satisfy the intercept form. This is the first of the two conditions.",
+        "lines": [
+          "The line passes through (3, 4), so",
+          "3/p + 4/q = 1 ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting (3, 4) into the intercept form gives 3/p + 4/q = 1.",
+          "accept": [
+            "put three comma four into the intercept form",
+            "three by p plus four by q equals one",
+            "the point lies on the line so it satisfies the equation",
+            "point ni intercept form lo substitute cheyyali",
+            "this is the first condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by p",
+            "four by q",
+            "passes through",
+            "first condition"
+          ]
+        },
+        "why": "Two unknowns need two conditions, and this is the one the given point supplies.",
+        "common_mistakes": [
+          "Writing 3p + 4q = 1 by substituting into the wrong form.",
+          "Swapping 3 and 4 between the two terms."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Two unknowns need two conditions: the POINT gives the first."
+      },
+      {
+        "id": "s3_area_condition",
+        "kind": "equation",
+        "label": "Use the area condition",
+        "marks": 2,
+        "margin_note": "The next two marks. The triangle has legs p and q along the axes, so its area is half their product. Setting that to 24 gives the second condition.",
+        "lines": [
+          "Area of the triangle = (1/2) p q",
+          "⇒ (1/2) p q = 24  ⇒  pq = 48",
+          "∴ q = 48/p ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area of the triangle is (1/2)pq, giving pq = 48 and q = 48/p.",
+          "accept": [
+            "the area is half the product of the intercepts",
+            "half p q equals twenty four so p q is forty eight",
+            "q is forty eight by p",
+            "area half into p into q ani rayali",
+            "this is the second condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half p q",
+            "forty eight",
+            "area",
+            "second condition"
+          ]
+        },
+        "why": "The two intercepts and the origin form a right-angled triangle whose legs ARE p and q, so the area is half their product with no extra work.",
+        "common_mistakes": [
+          "Using pq = 24 instead of (1/2)pq = 24.",
+          "Writing the area with a modulus and then losing the positive sign."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The legs of the triangle ARE the two intercepts, so area = (1/2)pq."
+      },
+      {
+        "id": "s4_quadratic",
+        "kind": "equation",
+        "label": "Form and solve the quadratic",
+        "marks": 2,
+        "margin_note": "Two more marks. Put (2) into (1), clear the fractions by multiplying by 12p, and the quadratic turns out to be a perfect square — one repeated root, so one line.",
+        "lines": [
+          "Put (2) in (1):  3/p + 4p/48 = 1",
+          "⇒ 3/p + p/12 = 1",
+          "Multiply by 12p:  36 + p² = 12p",
+          "⇒ p² − 12p + 36 = 0  ⇒  (p − 6)² = 0",
+          "∴ p = 6 (repeated), and q = 48/6 = 8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting and clearing fractions gives (p − 6)² = 0, so p = 6 and q = 8.",
+          "accept": [
+            "substitute q equals forty eight by p and clear the fractions",
+            "the quadratic is p squared minus twelve p plus thirty six",
+            "it is a perfect square so p is six twice",
+            "quadratic perfect square kabatti oke root",
+            "p is six and q is eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perfect square",
+            "p minus six",
+            "repeated root",
+            "p is six"
+          ]
+        },
+        "why": "The repeated root is real, not a slip: 24 square units is the SMALLEST area a first-quadrant line through (3, 4) can cut off, and the smallest area is reached by exactly one line, so the two roots coincide.",
+        "common_mistakes": [
+          "Multiplying by 12p but not by every term.",
+          "Reporting two different values of p from a perfect square."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "A perfect square means ONE line, not none — 24 is the smallest area possible here."
+      },
+      {
+        "id": "s5_write_and_check",
+        "kind": "boxed_final",
+        "label": "Write the line and check",
+        "marks": 2,
+        "margin_note": "The last two marks. Put p and q back into the intercept form, clear it, then test both given conditions on the answer — the point and the area.",
+        "lines": [
+          "Line: x/6 + y/8 = 1  ⇒  4x + 3y = 24",
+          "Check (3, 4):  4(3) + 3(4) = 24, correct.",
+          "Check area:  (1/2)(6)(8) = 24 sq. units",
+          {
+            "text": "∴ Required line is 4x + 3y − 24 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line is 4x + 3y − 24 = 0 and both the point and the area check out.",
+          "accept": [
+            "put p and q back to get x by six plus y by eight equals one",
+            "the line is four x plus three y minus twenty four equals zero",
+            "check the point and the area on the answer",
+            "p q values pettesi line rayali",
+            "four x plus three y equals twenty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four x plus three y",
+            "twenty four",
+            "check the area",
+            "required line"
+          ]
+        },
+        "why": "Both conditions the question set can be tested on the finished line in one line each, so a slip anywhere above shows up before the answer is boxed.",
+        "common_mistakes": [
+          "Leaving the answer in intercept form when a line equation is asked for.",
+          "Checking the point but not the area."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Test BOTH given conditions on the finished line: the point and the area."
+      }
+    ]
+  }
+}

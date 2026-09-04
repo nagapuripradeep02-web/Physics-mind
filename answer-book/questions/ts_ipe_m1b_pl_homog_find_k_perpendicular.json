@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Find the value of k, if the lines joining the origin with the points of intersection of the curve 2x²−2xy+3y²+2x−y−1=0 and the line x+2y=k are mutually perpendicular.",
   "appearances": [
     {
@@ -38,40 +38,36 @@
   ],
   "mark_split": [
     {
-      "label": "Clear the line to = 1",
-      "marks": 1
-    },
-    {
       "label": "Write the homogenised equation",
       "marks": 1
     },
     {
       "label": "Simplify to ax² + 2hxy + by² = 0",
-      "marks": 3
+      "marks": 1
     },
     {
       "label": "Solve the perpendicular condition",
-      "marks": 3
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 14, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17,19,22 · TS 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the perpendicular condition."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 14, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17,19,22 · TS 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Solve the perpendicular condition. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+3+3 — rewriting the given line as (something)/(constant) = 1 earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — say what condition you impose, and why there are two answers.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_clear_the_line_to_one",
         "kind": "equation",
         "label": "Clear the line to = 1",
-        "marks": 1,
-        "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "marks": 0,
+        "margin_note": "No mark of its own. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,14 +102,14 @@
           "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
           "Dividing by the wrong constant and losing a sign."
         ],
-        "mark_note": "Method"
+        "memory_tip": "Divide by k so the line reads = 1 before anything else."
       },
       {
         "id": "s2_homogenise",
         "kind": "equation",
         "label": "Write the homogenised equation",
         "marks": 1,
-        "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "margin_note": "First mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
         "lines": [
           "Given curve is 2x² − 2xy + 3y² + 2x − y − 1 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
@@ -147,14 +143,15 @@
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Linear terms multiplied by the 1 once, the constant twice; second-degree terms left alone."
       },
       {
         "id": "s3_simplify",
         "kind": "equation",
         "label": "Simplify to ax² + 2hxy + by² = 0",
-        "marks": 3,
-        "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "marks": 1,
+        "margin_note": "One mark. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
         "lines": [
           "⇒ [k²(2x² − 2xy + 3y²) + k(2x² + 4xy) − k(xy + 2y²) − (x² + 4y² + 4xy)] / k² = 0",
           "⇒ k²(2x² − 2xy + 3y²) + k(2x² + 4xy) − k(xy + 2y²) − (x² + 4y² + 4xy) = 0",
@@ -187,14 +184,15 @@
           "A constant term surviving, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No constant and no linear term may survive the collection."
       },
       {
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Solve the perpendicular condition",
-        "marks": 3,
-        "margin_note": "The last three marks. Adding the two squared coefficients kills every k-term except the squares, which is why a messy expansion still ends in a two-line solve. The xy coefficient is never used.",
+        "marks": 2,
+        "margin_note": "The last two marks. Adding the two squared coefficients kills every k-term except the squares, which is why a messy expansion still ends in a two-line solve. The xy coefficient is never used.",
         "lines": [
           "If this pair of lines are perpendicular then",
           "Coeff. x² + Coeff. y² = 0",
@@ -232,8 +230,10 @@
           "Reporting only k = 1.",
           "Including the xy coefficient in the condition."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Adding the two squared coefficients kills every k-term except the squares. The xy coefficient is never used."
       }
     ]
-  }
+  },
+  "insider_note": "k is unknown, so multiply through by k² and keep everything symbolic — the x² and y² coefficients come out as 2k² + 2k − 1 and 3k² − 2k − 4. Their sum is 5k² − 5, so k = ±1 and both signs are answers."
 }

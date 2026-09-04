@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_power_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of xˣ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take logarithms on both sides",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and put y back",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 24. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer xˣ(1 + log x) was checked numerically before it was written: at x = 2 the difference quotient reads 6.772588723 against the formula's 6.772588722; at x = 0.5 it reads 0.2169777094 against 0.2169777095; at x = 3.4 it reads 142.5999082 against 142.5999081; and at x = 1 both read exactly 1. `log` means the natural logarithm throughout, the convention this paper uses."
+  },
+  "recall_prompt": "Say how you would do this one — say why the ordinary power rule and the ordinary exponential rule both fail, and what you do instead.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_logarithms",
+        "kind": "equation",
+        "label": "Take logarithms on both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Say why the two familiar rules do not apply before taking logarithms — that sentence is the method the examiner is looking for, and it is what separates this from an ordinary power.",
+        "memory_tip": "A variable base and a variable exponent at the same time means you should take logarithms. Logarithms turn the power into a product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = xˣ,  x > 0",
+          "The base x and the exponent x are both variables. The power rule d/dx(xⁿ) = n xⁿ⁻¹ needs a constant exponent, and the exponential rule d/dx(aˣ) = aˣ log a needs a constant base. Neither one applies, so take logarithms first.",
+          "log y = log(xˣ)",
+          "∴ log y = x log x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That neither the power rule nor the exponential rule applies because base and exponent are both variable, so logarithms are taken, giving log y = x log x.",
+          "accept": [
+            "base and power are both x so neither standard rule works",
+            "take log on both sides to get log y equals x log x",
+            "use logarithmic differentiation here",
+            "base kooda x, power kooda x, so log teesukovali",
+            "the log turns the power into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log both sides",
+            "variable base",
+            "x log x",
+            "logarithmic differentiation"
+          ]
+        },
+        "why": "Taking logarithms turns the power into a product, and a product is something the product rule can handle. That is the whole reason this method is called logarithmic differentiation.",
+        "common_mistakes": [
+          "Writing the derivative as x · xˣ⁻¹ by using the power rule with a variable exponent.",
+          "Writing the derivative as xˣ log x by using the exponential rule with a variable base."
+        ]
+      },
+      {
+        "id": "s2_differentiate_and_restore",
+        "kind": "boxed_final",
+        "label": "Differentiate and put y back",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply back by y and then replace y with xˣ — the answer must be written in x alone. Check at x = 1: xˣ = 1 and 1 + log 1 = 1, so the derivative is 1.",
+        "memory_tip": "The left side always gives one over y times dy/dx, so y always has to be multiplied back at the end.",
+        "lines": [
+          "Differentiate both sides with respect to x. The left side needs the chain rule, the right side the product rule.",
+          "(1/y)(dy/dx) = x · (1/x) + (log x) · 1",
+          "(1/y)(dy/dx) = 1 + log x",
+          "dy/dx = y(1 + log x)",
+          {
+            "text": "∴ d/dx(xˣ) = xˣ(1 + log x)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating gives (1/y)(dy/dx) = 1 + log x, so dy/dx = xˣ(1 + log x).",
+          "accept": [
+            "differentiate to get one by y times d y by d x equals one plus log x",
+            "multiply back by y and replace y with x power x",
+            "the answer is x power x into one plus log x",
+            "y tho multiply chesi x power x rayali",
+            "product rule on x log x gives one plus log x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus log x",
+            "x power x",
+            "multiply by y",
+            "product rule"
+          ]
+        },
+        "why": "Differentiating log y gives (1/y)(dy/dx), so y has to be put back before the answer is complete. Stopping at 1 + log x is the most common way this mark is lost.",
+        "common_mistakes": [
+          "Stopping at (1/y)(dy/dx) = 1 + log x without multiplying by y.",
+          "Differentiating x log x as log x only, losing the 1 that comes from x · (1/x)."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Base and exponent are BOTH variable, so neither the power rule nor the exponential rule applies — take logarithms first. The left side then needs the chain rule and the right the product rule."
+}

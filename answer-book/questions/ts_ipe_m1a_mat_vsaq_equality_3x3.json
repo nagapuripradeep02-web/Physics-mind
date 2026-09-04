@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Only four of the nine positions carry an unknown — find those four and ignore the rest, which already agree.",
+        "memory_tip": "Only four of the nine positions carry an unknown — find those and ignore the rest.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Watch 5 − y = 3: the unknown is being SUBTRACTED, so y = 5 − 3 = 2, not 3 − 5.",
+        "memory_tip": "Watch 5 − y = 3: the unknown is SUBTRACTED, so y = 5 − 3 = 2, not 3 − 5.",
         "lines": [
           "x = 1 + 1 = 2",
           "5 − y = 3  ⇒  y = 5 − 3 = 2",
@@ -133,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Only four of the nine positions carry an unknown; the rest simply confirm the matrices match. Watch 5 − y = 3, where the unknown is subtracted, giving y = 2."
 }

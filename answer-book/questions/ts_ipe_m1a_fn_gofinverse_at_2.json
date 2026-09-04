@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gofinverse_at_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R and g: R→R are defined by f(x) = 3x − 2 and g(x) = x² + 1, find (gof⁻¹)(2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Value of f⁻¹(2)",
+      "marks": 1
+    },
+    {
+      "label": "Value of g at that number",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to finding f⁻¹(2) and one to evaluating g at that number, because those are the two places a student can go wrong. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (gof⁻¹)(2) — what f⁻¹(2) means, and what you do with it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inverse",
+        "kind": "equation",
+        "label": "Find f⁻¹(2)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner wants f⁻¹(2) = 4/3 on the page. Solving f(a) = 2 earns it; writing the full inverse f⁻¹(x) = (x + 2)/3 and then substituting earns it too.",
+        "memory_tip": "f⁻¹(2) is the number that f turns into 2. So solve f(a) = 2 for a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(gof⁻¹)(2) = g[f⁻¹(2)]",
+          "Let f⁻¹(2) = a. Then f(a) = 2.",
+          "3a − 2 = 2 ⇒ 3a = 4 ⇒ a = 4/3",
+          "∴ f⁻¹(2) = 4/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(2) is the value a with f(a) = 2, and solving 3a − 2 = 2 gives a = 4/3.",
+          "accept": [
+            "f inverse of two is the number that f sends to two so solve three a minus two equals two",
+            "let f inverse of two be a then f of a is two and a is four by three",
+            "three a minus two equals two gives a equals four thirds",
+            "f inverse of two ante f of a equals two solve chesthe four by three vastundi",
+            "the inverse value at two is four over three"
+          ],
+          "reject": [
+            "I find f inverse",
+            "substitute two into f",
+            "then apply g"
+          ],
+          "heard_as": [
+            "f inverse",
+            "f inverse of two",
+            "four by three",
+            "four thirds",
+            "three a minus two"
+          ]
+        },
+        "why": "f⁻¹(2) is the input that f sends to 2, so it is found by solving f(a) = 2. That is shorter than building the whole inverse function and it uses the definition directly.",
+        "common_mistakes": [
+          "Reading (gof⁻¹)(2) as g(f(2)) and computing f(2) = 4 instead.",
+          "Solving 3a − 2 = 2 as 3a = 0, which gives a = 0."
+        ]
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Apply g to 4/3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the single number. Write 1 as 9/9 before adding, so the two fractions are added over the same denominator.",
+        "memory_tip": "Square the top and the bottom: (4/3)² = 16/9. Then add 1 as 9/9.",
+        "lines": [
+          "Now apply g to 4/3:",
+          "g(4/3) = (4/3)² + 1 = 16/9 + 1",
+          "= 16/9 + 9/9 = 25/9",
+          {
+            "text": "∴ (gof⁻¹)(2) = 25/9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g is applied to 4/3, giving (4/3)² + 1 = 16/9 + 1 = 25/9.",
+          "accept": [
+            "g of four by three is sixteen by nine plus one which is twenty five by nine",
+            "square four thirds to get sixteen ninths then add one",
+            "sixteen by nine plus nine by nine is twenty five by nine",
+            "g lo four by three pette sixteen by nine plus one vastundi",
+            "the answer is twenty five over nine"
+          ],
+          "reject": [
+            "then I get the answer",
+            "substitute and simplify",
+            "apply the second function"
+          ],
+          "heard_as": [
+            "g of four by three",
+            "sixteen by nine",
+            "twenty five by nine",
+            "twenty five ninths"
+          ]
+        },
+        "why": "g acts on the output of f⁻¹, which is 4/3, not on the original 2. Writing g(4/3) makes that visible, and squaring a fraction squares both the numerator and the denominator.",
+        "common_mistakes": [
+          "Squaring only the numerator, writing 16/3 in place of 16/9.",
+          "Stopping at 16/9 and forgetting the + 1 that belongs to g."
+        ]
+      }
+    ]
+  }
+}

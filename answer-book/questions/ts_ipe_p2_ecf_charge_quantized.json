@@ -78,7 +78,7 @@
             "electron charge"
           ]
         },
-        "memory_tip": "Charge is counted, not poured — it comes in whole steps of e."
+        "memory_tip": "Charge is discrete, not continuous — it comes in whole steps of e."
       },
       {
         "id": "s2_equation",

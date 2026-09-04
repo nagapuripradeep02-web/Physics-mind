@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_ratio_a_plus_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sin(α + β)/sin(α − β) = (a + b)/(a − b), prove that a tan β = b tan α.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cross-multiply and expand",
+      "marks": 1
+    },
+    {
+      "label": "Divide by cos α cos β",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 46, book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the cross-multiplication with both sine expansions first and the division by cos α cos β second, since that division is what turns the relation into tangents. The direct expansion was chosen over componendo and dividendo on purpose: componendo and dividendo would additionally need b ≠ 0, and this route needs only the conditions the question already carries. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: with α = 50° and β = 20° the given ratio is 1.8793852416, so a = 1.4396926208 and b = 0.4396926208 for a − b = 1, and then a tan β and b tan α are both 0.5240052605. A second case, α = 115° and β = −35°, gives both sides as −1.0396735815."
+  },
+  "recall_prompt": "Say your first move on the given ratio, and say what you divide by at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Cross-multiply and expand",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both sides are written as fractions, so their denominators are not 0. Cross-multiplying first keeps the work to one line of expansion on each side.",
+        "memory_tip": "Cross-multiply first, then open both sin(α ± β). Only sin α cos β and cos α sin β appear, so the terms collect in pairs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Both sides are fractions, so sin(α − β) ≠ 0",
+          "and a ≠ b.",
+          "Cross-multiplying:",
+          "(a − b) sin(α + β) = (a + b) sin(α − β)",
+          "(a − b)(sin α cos β + cos α sin β)",
+          "= (a + b)(sin α cos β − cos α sin β)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given ratio is cross-multiplied and both sin(α + β) and sin(α − β) are expanded.",
+          "accept": [
+            "cross multiply and expand sin alpha plus beta and sin alpha minus beta",
+            "a minus b into sin alpha plus beta equals a plus b into sin alpha minus beta",
+            "open both compound angle sines after cross multiplying",
+            "cross multiply chesi rendu sine formulas expand chestam",
+            "use sin A plus B and sin A minus B on the two sides"
+          ],
+          "reject": [
+            "divide by cos alpha cos beta",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "sin alpha plus beta",
+            "sin alpha minus beta",
+            "expand"
+          ]
+        },
+        "why": "Cross-multiplying first, and only then expanding both sines, keeps everything in the two products sin α cos β and cos α sin β. Both denominators are known to be non-zero because the question writes them as fractions.",
+        "common_mistakes": [
+          "Expanding sin(α + β) as sin α + sin β.",
+          "Losing a sign when opening sin(α − β)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by cos α cos β",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The sin α cos β terms collect on one side and the cos α sin β terms on the other. Dividing by cos α cos β is what turns each side into a tangent.",
+        "memory_tip": "Divide by cos α cos β. That is the step that turns each side into a tangent.",
+        "lines": [
+          "Collecting the like terms:",
+          "2a cos α sin β = 2b sin α cos β",
+          "⇒ a cos α sin β = b sin α cos β",
+          "tan α and tan β exist, so cos α ≠ 0 and",
+          "cos β ≠ 0. Divide both sides by cos α cos β:",
+          {
+            "text": "∴ a tan β = b tan α",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms collect to a cos α sin β = b sin α cos β, and dividing by cos α cos β gives a tan β = b tan α.",
+          "accept": [
+            "collect the terms to get a cos alpha sin beta equals b sin alpha cos beta then divide by cos alpha cos beta",
+            "dividing by cos alpha cos beta gives a tan beta equals b tan alpha",
+            "the twos cancel and then divide by the two cosines",
+            "cos alpha cos beta tho divide cheste a tan beta equals b tan alpha",
+            "a tan beta is b tan alpha"
+          ],
+          "reject": [
+            "cross multiply and expand",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos alpha cos beta",
+            "a tan beta",
+            "b tan alpha",
+            "divide both sides"
+          ]
+        },
+        "why": "Dividing by cos α cos β turns sin β/cos β into tan β on one side and sin α/cos α into tan α on the other. The division is allowed because the statement to be proved already needs both tangents to exist.",
+        "common_mistakes": [
+          "Dividing by sin α sin β, which produces cotangents.",
+          "Cancelling the 2 on one side only."
+        ]
+      }
+    ]
+  }
+}

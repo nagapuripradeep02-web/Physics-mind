@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Value of g(2)",
         "margin_note": "One mark for getting inside first. g is the inner function in fog, so g(2) is computed before f touches anything.",
+        "memory_tip": "In fog, g is the INNER function, so g(2) is worked out before f touches anything.",
         "lines": [
           "(fog)(2) = f[g(2)]",
           "g(2) = 2² + 1 = 4 + 1 = 5"
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Value of (fog)(2)",
         "margin_note": "The second mark is the number. Put g(2) into f and simplify to a single value.",
+        "memory_tip": "Put g(2) = 5 into f: 3(5) − 1 = 14. The answer is one number.",
         "lines": [
           "∴ (fog)(2) = f(5) = 3(5) − 1",
           "= 15 − 1 = 14"
@@ -128,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "fog means g acts FIRST — find g(2) = 5, then f(5). Reading the composition left to right instead gives f(2) = 5 and then g(5) = 26, a completely different answer."
 }

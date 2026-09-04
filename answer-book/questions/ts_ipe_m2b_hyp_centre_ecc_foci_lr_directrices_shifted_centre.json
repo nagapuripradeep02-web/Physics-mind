@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_hyp_centre_ecc_foci_lr_directrices_shifted_centre",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Hyperbola (Maths-2B)"
+  },
+  "chapter": "Hyperbola",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola 4(y + 3)² − 9(x − 2)² = 1.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.100 — Star Questions Plus, answer 211, under the page's own 'HYPERBOLA' banner (the ONLY Hyperbola entry in Star Q+; the run is bounded by answer 210 Ellipse on the p.99 tail and answer 212 Definite Integrals-VSAQ opening p.101). Printed appearance: AP 19. Star Q+ pages carry no chapter-section star rating of their own (that lives on the SAQ/VSAQ chapter tables, pp.49/76), so this card is not assigned a stars value from a Star Q+ table. This card is classed as an SAQ EXTRA, not a VSAQ: the Star Q+ page prints no section label for it, so the section is OURS — chosen because the question asks for the same five-part centre/eccentricity/foci/latus-rectum/directrices result as SAQ answers 78.1 and 78.2 (a 4-mark, Section B shape), just with a shifted centre (2, −3) and a vertical transverse axis, a skill neither numbered SAQ chapter answer exercises (78.1/78.2 are both centred at the origin). The 1+1+1+1 split mirrors 78.1/78.2's OURS split, following the book's own (i)-(v) style even though this page does not print numbered sub-labels. No error found in the book's printed working for answer 211 — every intermediate value (a²=1/9, b²=1/4, e=√13/3, foci (2, −3±√13/6), directrices y=−3±3/(2√13), latus rectum 4/9) was re-derived independently and matches. Hyperbola is a SAQ+VSAQ-only unit on the book's IPE Blue Print (book p.5) — 4 marks in Section B (paper slot Q15) and 2 marks in Section A (paper slot Q5); it has NO LAQ chapter and no Section-C slot, so no 7-mark form is authored for this unit. The Bullet Model Paper's Q5 (Hyperbola VSAQ, book p.104) and Q15 (Hyperbola SAQ, book p.109) were diffed against this unit's numbered chapters: all 5 Q5 sub-items reprint answers 130, 131, 132, 137 and 136 verbatim, and all 3 Q15 sub-items reprint answers 78.1, 79.2 and 80 verbatim; answer 211 does not appear in the Bullet Model Paper. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The shift only ever moves the centre, foci and directrices — the eccentricity and the latus-rectum length depend purely on a² and b², so compute those two numbers first and they never need adjusting for (h, k).",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Hyperbola · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Write in standard form",
+        "marks": 0,
+        "margin_note": "No mark of its own — every result below reads a, b and the shifted centre off this line.",
+        "memory_tip": "Match (y+3)² with (y−k)² to read k = −3, and (x−2)² with (x−h)² to read h = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given hyperbola is 4(y+3)² − 9(x−2)² = 1",
+          "Divide by 1: (y+3)²/(1/4) − (x−2)²/(1/9) = 1",
+          "Here a² = 1/9 (the x-term denominator),",
+          "b² = 1/4 (the y-term denominator).",
+          "The y-term is positive,",
+          "so the transverse axis is vertical.",
+          "Centre C = (2, −3)."
+        ],
+        "why": "This is the same standard form as before, but shifted: replace x by (x − 2) and y by (y + 3) throughout, so the centre moves from the origin to (2, −3) and every other formula below uses these shifted coordinates.",
+        "common_mistakes": [
+          "Reading the centre as (2, 3) or (−2, −3) — matching (y−k)² with (y+3)² gives k = −3, and (x−h)² with (x−2)² gives h = 2.",
+          "Dividing the whole equation by the wrong number, or not dividing at all, so the right side does not read 1."
+        ]
+      },
+      {
+        "id": "s2_eccentricity",
+        "kind": "equation",
+        "label": "Eccentricity",
+        "marks": 1,
+        "mark_note": "Eccentricity",
+        "margin_note": "First mark. The shift makes no difference to this formula.",
+        "memory_tip": "y-term positive ⇒ divide by b, not a — exactly as in the un-shifted vertical case.",
+        "lines": [
+          "e = √(a² + b²) / b",
+          "= √(1/9 + 1/4) / (1/2) = √(13/36) / (1/2)",
+          {
+            "text": "e = √13 / 3",
+            "style": "boxed"
+          }
+        ],
+        "why": "As in the un-shifted case, when the y-term is positive the eccentricity divides by b, not a — shifting the centre changes nothing about this formula.",
+        "common_mistakes": [
+          "Dividing by a instead of b inside the calculation.",
+          "Arithmetic slip adding 1/9 + 1/4 — the common denominator is 36, giving 4/36 + 9/36 = 13/36."
+        ]
+      },
+      {
+        "id": "s3_foci",
+        "kind": "equation",
+        "label": "Foci",
+        "marks": 1,
+        "mark_note": "Foci",
+        "margin_note": "Second mark. Add the shift (h, k) to the un-shifted focus formula.",
+        "memory_tip": "Foci sit directly above and below the shifted centre (2, −3), not the origin.",
+        "lines": [
+          "Foci = (h, k ± be)",
+          "= (2, −3 ± (1/2)(√13/3))",
+          {
+            "text": "Foci = (2, −3 ± √13/6)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The foci sit on the transverse axis through the shifted centre (h, k) = (2, −3), at distance be above and below it, since the transverse axis is vertical here.",
+        "common_mistakes": [
+          "Forgetting to add the shift (h, k) and writing the foci as if the centre were still the origin.",
+          "Placing the foci to the left/right of the centre instead of above/below — the transverse axis is vertical here."
+        ]
+      },
+      {
+        "id": "s4_directrices",
+        "kind": "equation",
+        "label": "Equations of the directrices",
+        "marks": 1,
+        "mark_note": "Directrices",
+        "margin_note": "Third mark. Horizontal lines through k ± b/e, shifted the same way as the foci.",
+        "memory_tip": "Directrices shift by the same (h, k) as the foci — same centre, same axis.",
+        "lines": [
+          "Equations of the directrices: y = k ± b/e",
+          "= −3 ± (1/2)/(√13/3) = −3 ± 3/(2√13)",
+          {
+            "text": "y = −3 + 3/(2√13) and y = −3 − 3/(2√13)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The directrices are horizontal lines through k ± b/e, shifted the same way as the foci.",
+        "common_mistakes": [
+          "Writing the directrices as vertical lines — the transverse axis is vertical here, so the directrices are horizontal.",
+          "Dropping the −3 shift and giving only ±3/(2√13)."
+        ]
+      },
+      {
+        "id": "s5_latus_rectum",
+        "kind": "equation",
+        "label": "Length of the latus rectum",
+        "marks": 1,
+        "mark_note": "Latus rectum",
+        "margin_note": "Fourth mark. The shift never affects this length.",
+        "memory_tip": "Latus rectum uses only a² and b² — never the centre — so this step is identical to the un-shifted case.",
+        "lines": [
+          "Length of the latus rectum = 2a² / b",
+          "= 2(1/9) / (1/2)",
+          {
+            "text": "= 4/9",
+            "style": "boxed"
+          }
+        ],
+        "why": "The latus rectum length depends only on a² and b², never on the centre's shift.",
+        "common_mistakes": [
+          "Using 2b²/a from the horizontal-axis formula instead of 2a²/b.",
+          "Second-guessing the result because of the shift, when the shift makes no difference here."
+        ]
+      }
+    ]
+  }
+}

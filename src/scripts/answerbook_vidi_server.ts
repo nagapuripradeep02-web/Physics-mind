@@ -132,15 +132,18 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     if (!question) { res.writeHead(400, CORS); res.end(JSON.stringify({ error: 'empty question' })); return; }
 
     const rawFacts = String(body.tutor_context ?? '');
-    // The slice below is silent by construction, so say it out loud. Measured max
-    // across the whole bank is 7,687 chars; a context that crosses 10,000 would lose
-    // its TAIL STEPS and un-ground the model with no visible symptom.
-    if (rawFacts.length > 9_000) {
+    // The slice below is silent by construction, so say it out loud. The widest
+    // context in the bank measures 10,421 chars (Physics-II, torque on a loop) — it
+    // was 7,687 when this cap was first set at 10,000, and four cards had quietly
+    // crossed it by 2026-08-30, losing their last step's supporting text on the live
+    // site with no visible symptom. The cap is a ceiling, not a pad: raising it costs
+    // nothing on the contexts already below it. Re-measure before adding a paper.
+    if (rawFacts.length > 12_000) {
         console.warn('answerbook_vidi_chat: tutor_context ' + rawFacts.length +
-            ' chars for ' + String(body.question_id ?? '?') + ' — near the 10,000 slice');
+            ' chars for ' + String(body.question_id ?? '?') + ' — near the 14,000 slice');
     }
     const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
-        rawFacts.slice(0, 10_000);
+        rawFacts.slice(0, 14_000);
     // Per-request steering sits NEXT TO the question, where the model actually
     // obeys it: the persona's own 5-sentence cap was ignored on 71% of "explain
     // the physics" asks and the Telugu term rule on ~half of Telugu asks (audit
@@ -163,15 +166,19 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
             : qid.startsWith('ts_ipe_c1_') ? 'chemistry'
                 : qid.startsWith('ts_ipe_p2_') ? 'physics_2'
-                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2' : 'physics';
+                    : qid.startsWith('ts_ipe_c2_') ? 'chemistry_2'
+                        : qid.startsWith('ts_ipe_m2a_') ? 'mathematics_2a'
+                            : qid.startsWith('ts_ipe_m2b_') ? 'mathematics_2b' : 'physics';
     const SUBJECT_WORD: Record<string, string> = {
         physics: 'physics', chemistry: 'chemistry', chemistry_2: 'chemistry',
-        mathematics: 'mathematics', mathematics_1b: 'mathematics',
+        mathematics: 'mathematics', mathematics_1b: 'mathematics', mathematics_2a: 'mathematics',
+        mathematics_2b: 'mathematics',
         physics_2: 'physics',
     };
     const SUBJECT_LABEL: Record<string, string> = {
         physics: 'Physics', chemistry: 'Chemistry', chemistry_2: 'Chemistry-II',
-        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B', mathematics_2a: 'Maths-2A',
+        mathematics_2b: 'Maths-2B',
         physics_2: 'Physics II',
     };
     const SUBJECT_TERMS: Record<string, string> = {
@@ -180,10 +187,29 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         chemistry_2: 'solid state, unit cell, molarity, colligative, electrode potential, cell, rate of reaction, order, adsorption, colloid, ore, halogen, transition metal, ligand, polymer, monomer, carbohydrate, protein, amine, alcohol, phenol, aldehyde, ketone',
         mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
         mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+        mathematics_2b: 'circle, centre, radius, chord, tangent, normal, radical axis, parabola, focus, directrix, ellipse, hyperbola, eccentricity, latus rectum, integral, integration, reduction formula, definite integral, area, differential equation, order, degree, homogeneous, integrating factor',
         physics_2: 'wavelength, frequency, refraction, lens, interference, charge, potential, capacitance, current, resistance, magnetic field, induction, photon, nucleus, semiconductor, diode, transistor',
+        mathematics_2a: 'complex number, modulus, argument, conjugate, cis, cube roots of unity, quadratic expression, discriminant, roots, permutation, combination, binomial coefficient, general term, partial fraction, mean deviation, variance, probability, conditional probability, random variable, binomial distribution, Poisson distribution',
     };
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];
+
+    // The ANSWER FACTS list steps as `N. [step_id] Label — NM`. The situation used to
+    // hand the model the raw step_id, and the model echoed it: replies told students to
+    // "skip the last step (s2_compute)". Round 2 (2026-08-30) measured a persona rule
+    // forbidding that and the leak did NOT fall — 4 per 5,280 replies became 9 — so the
+    // rule was withdrawn and the id is simply no longer offered here. A step is named
+    // the way the student sees it: its number and its label.
+    const stepHuman = (facts: string, id: string): string => {
+        for (const line of facts.split('\n')) {
+            const m = line.match(/^\s*(\d+)\.\s*\[([^\]]+)\]\s*([^—-]*)/);
+            if (m && m[2].trim() === id) {
+                const label = m[3].trim();
+                return label ? 'step ' + m[1] + ', "' + label + '"' : 'step ' + m[1];
+            }
+        }
+        return 'the step they are on';
+    };
 
     const situation = [
         'Where the student is right now:',
@@ -191,8 +217,8 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         '- unit: ' + String(body.unit ?? 'unknown'),
         '- answer length on screen: ' + String(body.cut_key ?? 'full'),
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
-        body.step_id ? '- the step they last revealed: ' + String(body.step_id) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
-        '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply. You may then offer the question that IS open.',
+        body.step_id ? '- the step they last revealed: ' + stepHuman(rawFacts, String(body.step_id)) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
+        '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply, and then you stop: do not go on to talk about the question that IS open, do not summarise it, and do not offer anything about it. The student can see it in front of them and will ask if they want it.',
         walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
         subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',

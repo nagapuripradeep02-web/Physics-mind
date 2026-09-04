@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same method as the general case: call the wanted value x and square and add.",
+        "memory_tip": "Call the wanted value x, then SQUARE AND ADD the two expressions.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The 24 sinθ cosθ terms cancel, leaving 25(sin²θ + cos²θ) = 25 — so x² = 0 and x can only be 0.",
+        "memory_tip": "The 24 sinθcosθ terms cancel, leaving 25 — so x² = 0 and x can only be 0.",
         "lines": [
           "= 16sin²θ − 24 sinθcosθ + 9cos²θ",
           "  + 9sin²θ + 24 sinθcosθ + 16cos²θ",
@@ -129,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Name the wanted expression x, then SQUARE AND ADD — the cross terms cancel and everything collapses to 25. x² = 0 means the answer is exactly 0, not ± something."
 }

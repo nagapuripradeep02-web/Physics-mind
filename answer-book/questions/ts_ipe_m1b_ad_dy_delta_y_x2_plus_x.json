@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_dy_delta_y_x2_plus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy and Δy for y = x² + x when x = 10 and Δx = 0.1.",
+  "appearances": [
+    {
+      "year": 2015
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find dy from the derivative",
+      "marks": 1
+    },
+    {
+      "label": "Find Δy from the exact change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(ii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(ii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. APPEARANCE YEARS: unlike almost every other question in this chapter, this part carries a printed year list — the book prints (Mar-2017(TS), 2016, 2015, May-2017(AP), 2015). Those five printings are recorded in appearances[] as the years the SOURCE BOOK prints, not as years we have checked against a TSBIE paper. Two of them are recorded without a board because the book names none for them. The book prints 2015 TWICE in that list, once tagged and once untagged; both entries are kept and the duplication is recorded here rather than one of them being silently dropped, since we cannot tell which printing is the repeat. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split and the years stay unverified until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dy",
+        "kind": "equation",
+        "label": "Find dy from the derivative",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Differentiate first, then multiply by Δx. Writing dy = (dy/dx)·Δx before any number goes in keeps this mark even if the arithmetic slips later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = x² + x,  x = 10,  Δx = 0.1",
+          "dy/dx = 2x + 1",
+          "dy = (dy/dx)·Δx = (2x + 1)Δx",
+          "= (2(10) + 1)(0.1) = 21 × 0.1",
+          "∴ dy = 2.1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy = (dy/dx)·Δx, with the derivative 2x + 1 found first and then multiplied by Δx.",
+          "accept": [
+            "differentiate to get two x plus one and multiply by delta x",
+            "d y equals d y by d x times delta x",
+            "the derivative at ten is twenty one so d y is two point one",
+            "derivative teesi delta x tho multiply cheyyali",
+            "find d y by d x first then put x equals ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d y by d x",
+            "two x plus one",
+            "delta x",
+            "twenty one"
+          ]
+        },
+        "why": "dy is not the change in y. It is the derivative multiplied by Δx — the straight-line estimate of that change — so the mark is for differentiating and then multiplying, in that order.",
+        "common_mistakes": [
+          "Writing dy = 2x + 1 and leaving out the ·Δx.",
+          "Substituting Δx = 0.1 in place of x in the derivative."
+        ],
+        "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
+      },
+      {
+        "id": "s2_delta_y",
+        "kind": "boxed_final",
+        "label": "Find Δy from the exact change",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Δy needs the function evaluated at both 10.1 and 10. Δx = 0.1 is large for this kind of question, so dy and Δy sit further apart here — 2.1 against 2.11.",
+        "lines": [
+          "Δy = f(x + Δx) − f(x) = f(10.1) − f(10)",
+          "f(10.1) = (10.1)² + 10.1 = 102.01 + 10.1 = 112.11",
+          "f(10) = 100 + 10 = 110",
+          "Δy = 112.11 − 110 = 2.11",
+          {
+            "text": "∴ dy = 2.1  and  Δy = 2.11",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δy = f(x + Δx) − f(x) = f(10.1) − f(10) = 2.11, the exact change.",
+          "accept": [
+            "delta y is f of ten point one minus f of ten",
+            "the exact change is two point one one",
+            "substitute both values and subtract",
+            "rendu values lo substitute chesi subtract cheyyali",
+            "delta y is the real change and d y is only the estimate"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f of ten point one",
+            "minus f of ten",
+            "exact change",
+            "two point one one"
+          ]
+        },
+        "why": "Δy is the real change in y, so the function has to be worked out at both points. The gap between dy and Δy is 0.01 here, and it grows as Δx grows — which is why the approximation is only used for small Δx.",
+        "common_mistakes": [
+          "Stopping at dy when the question asks for both numbers.",
+          "Writing (10.1)² as 100.1 instead of 102.01."
+        ],
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+      }
+    ]
+  },
+  "insider_note": "Δx = 0.1 is comparatively large here, so dy and Δy differ visibly — 2.1 against 2.11. That visible gap is the point of the question."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh_sum_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For x, y ∈ R, prove that cosh(x + y) = cosh x cosh y + sinh x sinh y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute the definitions",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and read off cosh(x + y)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves cosh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Substitute the definitions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both products are like signs this time: cosh with cosh, sinh with sinh. Note that the hyperbolic sum formula has a PLUS here, unlike the trigonometric one.",
+        "memory_tip": "For cosh the two products are cosh·cosh and sinh·sinh, joined by a PLUS. The trigonometric cos formula has a minus there.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "R.H.S = cosh x cosh y + sinh x sinh y",
+          "Each definition has a 2 below, so take 4·R.H.S",
+          "4·R.H.S = (eˣ + e⁻ˣ)(eʸ + e⁻ʸ)",
+          {
+            "text": "+ (eˣ − e⁻ˣ)(eʸ − e⁻ʸ)",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh x cosh y and sinh x sinh y are replaced by their exponential definitions, giving two products over a common denominator of 4.",
+          "accept": [
+            "substitute the exponential definitions for both cosh terms and both sinh terms",
+            "each definition has a two below so the product has four below",
+            "write four times the right side as the two bracket products",
+            "definitions substitute chesi four times right side rasta",
+            "cosh times cosh plus sinh times sinh in exponential form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "definitions",
+            "four times",
+            "brackets",
+            "e to the minus x"
+          ]
+        },
+        "why": "The two brackets differ only in their inner signs, so the expansion is the same work twice with one sign changed. That is what makes the cancellation predictable.",
+        "common_mistakes": [
+          "Writing a minus between the two products, copying the cos formula from trigonometry.",
+          "Using a denominator of 2 instead of 4 for a product of two definitions."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel and read off cosh(x + y)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The two mixed terms cancel again, but this time the surviving terms ADD, so the numerator is 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾.",
+        "memory_tip": "Both x + y terms survive with a plus here, so the answer is a cosh and not a sinh.",
+        "lines": [
+          "= (eˣ⁺ʸ + eˣ⁻ʸ + eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
+          {
+            "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ − eʸ⁻ˣ + e⁻⁽ˣ⁺ʸ⁾)",
+            "style": "indent"
+          },
+          "= 2eˣ⁺ʸ + 2e⁻⁽ˣ⁺ʸ⁾",
+          "∴ R.H.S = (eˣ⁺ʸ + e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "= cosh(x + y) = L.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mixed terms cancel, leaving (eˣ⁺ʸ + e⁻⁽ˣ⁺ʸ⁾)/2, which is cosh(x + y).",
+          "accept": [
+            "the mixed terms cancel and the two x plus y terms add",
+            "two e to the x plus y plus two e to the minus x plus y over four",
+            "what remains is e to the x plus y plus e to the minus x plus y over two which is cosh x plus y",
+            "middle terms cancel ayi cosh x plus y vasthundi",
+            "the result is cosh of x plus y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "x plus y",
+            "cosh x plus y",
+            "over two"
+          ]
+        },
+        "why": "A plus between the two surviving exponentials is exactly the cosh definition; a minus would be sinh. The sign is what names the answer.",
+        "common_mistakes": [
+          "Getting a minus between the surviving terms and calling the answer sinh(x + y).",
+          "Losing a sign on eˣ⁻ʸ, so the mixed terms fail to cancel."
+        ]
+      }
+    ]
+  }
+}

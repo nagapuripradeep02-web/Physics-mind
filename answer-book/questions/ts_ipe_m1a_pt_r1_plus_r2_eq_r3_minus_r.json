@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_r1_plus_r2_eq_r3_minus_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, if r₁ + r₂ = r₃ − r, show that C = 90°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write each radius",
+      "marks": 1
+    },
+    {
+      "label": "Combine both sides",
+      "marks": 1
+    },
+    {
+      "label": "Equate and clear",
+      "marks": 1
+    },
+    {
+      "label": "Finish with the half angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.130, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 9(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — writing the four radii, combining each side, cancelling Δc, and the half-angle finish. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring, in the direction the question asks and against a control: for a = 3, b = 4, c = 5 the condition holds (r₁ + r₂ = 5 = r₃ − r) and C is 90°, and for a = 5, b = 12, c = 13 it holds (13 = 13) with C again 90°; for the non-right a = 4, b = 5, c = 6 the two sides are 6.803 and 5.292, and for a = 2, b = 3, c = 4 they are 3.098 and 5.164, so the condition fails exactly when the angle is not 90°. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_radius",
+        "kind": "equation",
+        "label": "Write each radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark for the four correct formulas. The subscript names the side that is subtracted: r₁ goes with (s−a), r₂ with (s−b), r₃ with (s−c).",
+        "memory_tip": "r is Δ over s; each ex-radius is Δ over s minus ITS OWN side — r₁ with (s−a), r₂ with (s−b), r₃ with (s−c).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "r = Δ/s, r₁ = Δ/(s−a),",
+          "r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
+          "where s = (a + b + c)/2 and Δ is the area"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = Δ/s and r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c), with s the half perimeter and Δ the area.",
+          "accept": [
+            "r is delta over s and each ex radius is delta over s minus its own side",
+            "r one is delta over s minus a, r two over s minus b, r three over s minus c",
+            "write the in radius and the three ex radii in the s delta form",
+            "prathi ex radius delta by s minus its own side",
+            "the subscript tells you which side is subtracted"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "write the formulas"
+          ],
+          "heard_as": [
+            "delta over s",
+            "s minus a",
+            "ex radius",
+            "in radius",
+            "half perimeter"
+          ]
+        },
+        "why": "Every ex-radius carries the bracket of its own vertex underneath. Getting that pairing right is the whole risk in this question, so the four formulas are written out before anything is combined.",
+        "common_mistakes": [
+          "Writing r₁ = Δ/(s−b) — r₁ belongs with (s−a).",
+          "Writing r = s/Δ upside down."
+        ]
+      },
+      {
+        "id": "s2_combine_both_sides",
+        "kind": "equation",
+        "label": "Combine both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Add over the common denominator on the left and subtract over the common denominator on the right. Both numerators come out as Δc.",
+        "memory_tip": "2s − a − b = c and s − (s−c) = c, so both sides carry the same numerator Δc.",
+        "lines": [
+          "r₁ + r₂ = Δ/(s−a) + Δ/(s−b)",
+          "= Δ(2s − a − b)/[(s−a)(s−b)]",
+          "= Δc/[(s−a)(s−b)]   [∵ 2s − a − b = c]",
+          "r₃ − r = Δ/(s−c) − Δ/s",
+          "= Δ[s − (s−c)]/[s(s−c)] = Δc/[s(s−c)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₁ + r₂ = Δc/[(s−a)(s−b)] and r₃ − r = Δc/[s(s−c)], because 2s − a − b = c and s − (s−c) = c.",
+          "accept": [
+            "combine the left over s minus a into s minus b and the numerator is delta c",
+            "two s minus a minus b is c because two s is a plus b plus c",
+            "the right side gives delta c over s into s minus c",
+            "rendu sides ki delta c numerator vasthundi",
+            "both sides come out as delta c over a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I add them"
+          ],
+          "heard_as": [
+            "delta c",
+            "s minus a",
+            "s minus c",
+            "common denominator",
+            "two s"
+          ]
+        },
+        "why": "2s is a + b + c, so 2s − a − b is just c, and s − (s−c) is also c. Both sides therefore carry the same factor Δc, which is what lets it be cancelled next.",
+        "common_mistakes": [
+          "Adding the fractions without a common denominator.",
+          "Writing 2s − a − b = c − s."
+        ]
+      },
+      {
+        "id": "s3_equate_and_clear",
+        "kind": "equation",
+        "label": "Equate and clear",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Δ and c are both positive, so Δc cancels. Expanding leaves ab = (a + b − c)s, and a + b − c = 2(s − c).",
+        "memory_tip": "Both sides carry Δc, so cancel it and compare (s−a)(s−b) with s(s−c).",
+        "lines": [
+          "Given r₁ + r₂ = r₃ − r, so",
+          "Δc/[(s−a)(s−b)] = Δc/[s(s−c)]",
+          "Δ > 0 and c > 0, so Δc cancels:",
+          "(s−a)(s−b) = s(s−c)",
+          "⇒ s² − (a+b)s + ab = s² − cs",
+          "⇒ ab = (a + b − c)s = 2s(s−c)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given condition makes the two expressions equal, Δc cancels, and (s−a)(s−b) = s(s−c) expands to ab = 2s(s−c).",
+          "accept": [
+            "delta c cancels from both sides so s minus a into s minus b equals s into s minus c",
+            "expand both sides and the s squared goes, leaving a b equals a plus b minus c times s",
+            "a plus b minus c is two times s minus c so a b is two s into s minus c",
+            "delta c cancel chesi expand cheste a b equals two s into s minus c",
+            "the condition becomes a pure side equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "equate them"
+          ],
+          "heard_as": [
+            "cancel",
+            "s minus a into s minus b",
+            "a b",
+            "two s into s minus c"
+          ]
+        },
+        "why": "Both sides now read Δc over a product, so Δ and c cancel and a pure side equation is left with no area in it. Expanding it turns the condition into ab = 2s(s−c).",
+        "common_mistakes": [
+          "Cancelling Δc without saying that Δ and c are not zero.",
+          "Expanding (s−a)(s−b) wrongly and losing the ab term."
+        ]
+      },
+      {
+        "id": "s4_finish_with_the_half_angle",
+        "kind": "boxed_final",
+        "label": "Finish with the half angle",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark. cos²(C/2) = s(s−c)/(ab), and the condition has fixed that ratio at ½, so cos C = 2cos²(C/2) − 1 = 0 and C = 90°.",
+        "memory_tip": "cos²(C/2) uses s(s−c)/(ab); sin²(C/2) uses (s−a)(s−b)/(ab). Here cos²(C/2) = ½, so C/2 = 45° and C = 90°.",
+        "lines": [
+          "⇒ s(s−c)/(ab) = 1/2",
+          "But cos²(C/2) = s(s−c)/(ab)",
+          "⇒ cos²(C/2) = 1/2",
+          "⇒ cos C = 2cos²(C/2) − 1 = 1 − 1 = 0",
+          "C lies between 0° and 180°, so",
+          {
+            "text": "∴ C = 90°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²(C/2) = s(s−c)/(ab) equals ½, so cos C = 2cos²(C/2) − 1 = 0 and therefore C = 90°.",
+          "accept": [
+            "s into s minus c over a b is cos squared half C and it equals one half",
+            "so cos C is two times a half minus one which is zero",
+            "a zero cosine inside a triangle means the angle is ninety degrees",
+            "cos square half C equals half kabatti C equals ninety",
+            "use the half angle cosine formula and the double angle to finish"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "so it is a right angle somewhere"
+          ],
+          "heard_as": [
+            "cos squared half C",
+            "s into s minus c",
+            "a b",
+            "ninety degrees",
+            "double angle"
+          ]
+        },
+        "why": "cos²(C/2) = s(s−c)/(ab) is the standard half-angle formula, and the condition has just fixed that ratio at one half — which forces cos C to be zero, and inside a triangle only 90° has a zero cosine.",
+        "common_mistakes": [
+          "Mixing the two half-angle formulas up: cos²(C/2) uses s(s−c), sin²(C/2) uses (s−a)(s−b).",
+          "Reading cos²(C/2) = ½ as C = 45° — the HALF angle is 45°, so C is 90°."
+        ]
+      }
+    ]
+  }
+}

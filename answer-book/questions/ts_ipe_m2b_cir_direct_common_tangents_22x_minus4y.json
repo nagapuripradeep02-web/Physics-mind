@@ -1,0 +1,309 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_direct_common_tangents_22x_minus4y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of direct common tangents to the circles x² + y² + 22x − 4y − 100 = 0 and x² + y² − 22x + 4y + 100 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centres and radii",
+      "marks": 1
+    },
+    {
+      "label": "External centre of similitude",
+      "marks": 2
+    },
+    {
+      "label": "Distance condition on the tangent",
+      "marks": 2
+    },
+    {
+      "label": "Solve for the slopes",
+      "marks": 1
+    },
+    {
+      "label": "The two tangents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 1 Circle, answer 6. The printed appearance tag reads \"TS 15,15\" — the same year twice, which is a misprint or a scan artefact; only TS 2015 is recorded, and a partly cut-off \"AP\" tag sits below it on the trimmed right edge of the scan, so a reviewer with the physical book should read that one. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. WHERE THE BOOK IS WRONG: at the end of its Method II the book prints the pair of tangents as 21x² − 96y² − 44xy + 1100x + 200y + 12500 = 0. The x term has the wrong sign. Its own previous line has 1100x on the left and 2200x on the right, and 1100 − 2200 = −1100, so the pair is 21x² − 96y² − 44xy − 1100x + 200y + 12500 = 0. Multiplying its own Method I answers confirms it: (7x − 24y − 250)(3x + 4y − 50) = 21x² − 44xy − 96y² − 1100x + 200y + 12500. The corrected form is written on this card and the book’s printed value is recorded in that step. Everything else in the answer was re-derived and is correct. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book itself prints a small sketch here. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Both tangents pass through one point, the external centre of similitude, so the whole question reduces to finding that point and then two slopes — write E first and the rest is one perpendicular-distance equation.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centres_and_radii",
+        "kind": "equation",
+        "label": "Centres and radii",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The two equations are near mirror images, so the centres are opposite in sign but the radii are very different.",
+        "memory_tip": "Read g, f, c off each equation and write the two centres one under the other.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For x² + y² + 22x − 4y − 100 = 0:",
+          "C₁ = (−11, 2), r₁ = √(121 + 4 + 100) = √225 = 15",
+          "For x² + y² − 22x + 4y + 100 = 0:",
+          "C₂ = (11, −2), r₂ = √(121 + 4 − 100) = √25 = 5"
+        ],
+        "why": "Direct common tangents exist only when neither circle lies inside the other, so the centres and radii are needed first. The two circles differ only in the sign of the linear terms and the constant, which is why the centres are opposite.",
+        "common_mistakes": [
+          "Copying the same radius for both circles because the equations look alike.",
+          "Taking c = 100 for the first circle instead of −100."
+        ]
+      },
+      {
+        "id": "s2_external_centre",
+        "kind": "equation",
+        "label": "External centre of similitude",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Check first that C₁C₂ > r₁ + r₂, otherwise direct common tangents would not exist.",
+        "memory_tip": "Direct tangents meet at the EXTERNAL centre of similitude E, which divides C₁C₂ externally in the ratio r₁ : r₂.",
+        "lines": [
+          "C₁C₂ = √((−11−11)² + (2+2)²) = √(484 + 16)",
+          "= √500 = 10√5",
+          "r₁ + r₂ = 20, and 10√5 > 20,",
+          "so the circles lie apart.",
+          "r₁ : r₂ = 15 : 5 = 3 : 1",
+          "E divides C₁C₂ externally in the ratio 3 : 1",
+          "E = ((3(11) − 1(−11))/(3−1), (3(−2) − 1(2))/(3−1))",
+          "= (44/2, −8/2) = (22, −4)"
+        ],
+        "why": "The two direct common tangents are not parallel unless the radii are equal, so they meet at one point. That point is the external centre of similitude, and it divides the line of centres externally in the ratio of the radii.",
+        "common_mistakes": [
+          "Using internal division, which gives the transverse tangents instead.",
+          "Writing the ratio as 1 : 3 and getting a point between the centres."
+        ]
+      },
+      {
+        "id": "s3_distance_condition",
+        "kind": "equation",
+        "label": "Distance condition on the tangent",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Use the SMALLER circle for the distance — the arithmetic is simpler and the answer is the same.",
+        "memory_tip": "A line touches a circle when the perpendicular distance from the centre equals the radius.",
+        "lines": [
+          "Let the tangent through E(22, −4) have",
+          "slope m.",
+          "y + 4 = m(x − 22) ⇒ mx − y − 22m − 4 = 0 … (1)",
+          "It touches the second circle, so the",
+          "distance from C₂(11, −2) to (1)",
+          "equals the radius r₂ = 5",
+          "⇒ |11m + 2 − 22m − 4| / √(m² + 1) = 5",
+          "⇒ |11m + 2| = 5√(m² + 1)",
+          "⇒ (11m + 2)² = 25(m² + 1)"
+        ],
+        "why": "Every line through E is a candidate; only two of them touch the circles. The touching condition is that the perpendicular distance from the centre equals the radius, and squaring both sides removes the modulus and the root together.",
+        "common_mistakes": [
+          "Forgetting the modulus and losing one of the two slopes.",
+          "Writing the distance formula with √(m² − 1) in the denominator."
+        ]
+      },
+      {
+        "id": "s4_solve_slopes",
+        "kind": "equation",
+        "label": "Solve for the slopes",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "One mark. A quadratic in m, so two slopes — both are needed.",
+        "memory_tip": "Split 44m as 72m − 28m to factorise 96m² + 44m − 21 by grouping.",
+        "lines": [
+          "⇒ 121m² + 44m + 4 = 25m² + 25",
+          "⇒ 96m² + 44m − 21 = 0",
+          "⇒ 96m² + 72m − 28m − 21 = 0",
+          "⇒ 24m(4m + 3) − 7(4m + 3) = 0",
+          "⇒ (24m − 7)(4m + 3) = 0",
+          "⇒ m = 7/24 or m = −3/4"
+        ],
+        "why": "The touching condition is a quadratic in m, and its two roots are the slopes of the two direct common tangents. Grouping is quicker here than the quadratic formula because 96 × 21 = 2016 = 72 × 28.",
+        "common_mistakes": [
+          "Cancelling 25 from both sides before collecting, which loses the constant.",
+          "Reporting only one slope."
+        ]
+      },
+      {
+        "id": "s5_the_tangents",
+        "kind": "boxed_final",
+        "label": "The two tangents",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Both lines pass through E(22, −4); clear the fractions before writing the final form.",
+        "memory_tip": "Put each slope back into y + 4 = m(x − 22) and multiply out the denominator.",
+        "lines": [
+          "With m = 7/24: y + 4 = (7/24)(x − 22)",
+          "⇒ 24y + 96 = 7x − 154",
+          "⇒ 7x − 24y − 250 = 0",
+          "With m = −3/4: y + 4 = (−3/4)(x − 22)",
+          "⇒ 4y + 16 = −3x + 66",
+          {
+            "text": "∴ 7x − 24y − 250 = 0 and 3x + 4y − 50 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each slope gives one tangent through E. A check on the first: the distance from C₁(−11, 2) to 7x − 24y − 250 = 0 is |−77 − 48 − 250|/25 = 375/25 = 15 = r₁, as required.",
+        "common_mistakes": [
+          "Leaving the answers with fractions in them.",
+          "Sign slip when multiplying −4 across, giving 7x − 24y + 250 = 0."
+        ]
+      },
+      {
+        "id": "s6_pair_form",
+        "kind": "equation",
+        "label": "The pair form, as an alternative",
+        "marks": 0,
+        "margin_note": "No marks of its own — this is the book’s second method, shown because some papers ask for the PAIR of tangents rather than the two separate lines.",
+        "memory_tip": "The pair of tangents from an outside point is S₁² = S₁₁ · S, using the same S in both places.",
+        "lines": [
+          "The pair of direct common tangents through",
+          "A(22, −4) to S ≡ x²+y²+22x−4y−100 = 0 is",
+          "S₁² = S₁₁ · S",
+          "S₁ = 22x − 4y + 11(x + 22) − 2(y − 4) − 100",
+          "= 33x − 6y + 150",
+          "S₁₁ = 484 + 16 + 484 + 16 − 100 = 900",
+          "⇒ (33x − 6y + 150)² = 900 S",
+          "⇒ (11x − 2y + 50)² = 100 S",
+          "⇒ 21x² − 44xy − 96y² − 1100x",
+          "  + 200y + 12500 = 0"
+        ],
+        "why": "The book prints this last line as 21x² − 96y² − 44xy + 1100x + 200y + 12500 = 0, with +1100x. That sign is wrong: its own preceding line has 1100x on the left and 2200x on the right, and 1100 − 2200 = −1100. Multiplying the two answers found in the first method confirms the corrected form, since (7x − 24y − 250)(3x + 4y − 50) = 21x² − 44xy − 96y² − 1100x + 200y + 12500.",
+        "common_mistakes": [
+          "Copying the book’s printed +1100x.",
+          "Using the second circle for S here and the first for S₁₁."
+        ]
+      },
+      {
+        "id": "s7_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. The book prints a small sketch beside its answer, and it is worth copying in rough.",
+        "memory_tip": "Direct tangents do not cross between the circles. They meet outside, past the smaller circle.",
+        "figure": {
+          "id": "cir_direct_tangents_1",
+          "width": 470,
+          "height": 270,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_c1",
+              "d": "M 45 130 A 75 75 0 1 0 195 130 A 75 75 0 1 0 45 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_c2",
+              "d": "M 250 130 A 25 25 0 1 0 300 130 A 25 25 0 1 0 250 130",
+              "ms": 2240
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_axis",
+              "d": "M 37 130 L 360 130",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_t1",
+              "d": "M 352 130 L 60 30",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_t2",
+              "d": "M 352 130 L 60 230",
+              "ms": 4410
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_d1",
+              "d": "M 116.5 130 A 3.5 3.5 0 1 0 123.5 130 A 3.5 3.5 0 1 0 116.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_d2",
+              "d": "M 271.5 130 A 3.5 3.5 0 1 0 278.5 130 A 3.5 3.5 0 1 0 271.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_direct_tangents_1_ds",
+              "d": "M 348.5 130 A 3.5 3.5 0 1 0 355.5 130 A 3.5 3.5 0 1 0 348.5 130",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_direct_tangents_1_l1",
+              "x": 112,
+              "y": 154,
+              "text": "C₁",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_direct_tangents_1_l2",
+              "x": 267,
+              "y": 154,
+              "text": "C₂",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_direct_tangents_1_ls",
+              "x": 348,
+              "y": 154,
+              "text": "E",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_direct_tangents_1_cap",
+              "x": 26,
+              "y": 258,
+              "text": "direct common tangents meet at E",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two direct common tangents keep both circles on the same side of each line, so they cannot cross between the circles — they meet beyond the smaller one, at E. That is the whole reason the division is external.",
+        "common_mistakes": [
+          "Drawing the tangents crossing between the circles, which is the transverse case.",
+          "Placing E between the two centres."
+        ]
+      }
+    ]
+  }
+}

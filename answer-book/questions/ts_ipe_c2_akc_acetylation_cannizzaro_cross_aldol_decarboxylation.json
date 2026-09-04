@@ -155,9 +155,10 @@
           "cross aldol condensation.",
           "At least one of them must have an",
           "α-hydrogen.",
-          "Acetaldehyde and propanal both have one, so",
-          "each can supply the α-carbon and each can",
-          "take it, and four products are formed:",
+          "Acetaldehyde and propanal both have",
+          "α-hydrogens, so each can supply the",
+          "α-carbon and each can take it, and four",
+          "products are formed:",
           {
             "text": "CH₃CHO + CH₃CH₂CHO →",
             "style": "eq"
@@ -214,10 +215,13 @@
         "marks": 2,
         "mark_note": "Decarboxylation",
         "lines": [
-          "d) Decarboxylation is the removal of CO₂",
-          "from the sodium salt of a carboxylic acid,",
-          "heated with soda lime, a mixture of NaOH",
-          "and CaO.",
+          "d) Decarboxylation is the removal of the",
+          "carboxyl group as carbon dioxide from the",
+          "sodium salt of a carboxylic acid, heated",
+          "with soda lime, a mixture of NaOH and CaO.",
+          "With soda lime the alkali takes up that",
+          "carbon, so the equation shows Na₂CO₃ and",
+          "not free CO₂.",
           "The product is a hydrocarbon with ONE",
           "carbon atom fewer than the salt.",
           {

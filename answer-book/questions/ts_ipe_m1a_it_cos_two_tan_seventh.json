@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Name the inner inverse as α, so the left side is cos2α — then use the tangent form of cos2α, which is the one that takes tanα directly.",
+        "memory_tip": "Name the inner inverse α, then use the TANGENT form of cos 2α — it needs no cosα.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The right side is sin2β, so use the tangent form of sin2β — 2tanβ/(1+tan²β).",
+        "memory_tip": "sin 2β = 2tanβ/(1 + tan²β), the tangent form again — no need for sinβ and cosβ.",
         "lines": [
           "R.H.S = sin(2Tan⁻¹(3/4)) = sin2β = 2tanβ/(1 + tan²β)",
           "= 2(3/4)/(1 + 9/16) = (3/2)/(25/16)",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Both sides came to 24/25 independently, so they are equal. Say so — a proof by evaluation is not finished until the comparison is stated.",
+        "memory_tip": "Both sides come to 24/25 independently. A proof by evaluation is not finished until you say so.",
         "lines": [
           "From (1) and (2), both sides equal 24/25.",
           {
@@ -177,5 +180,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both sides are double angles, so use cos2A = (1 − tan²A)/(1 + tan²A) and sin2A = 2tanA/(1 + tan²A) — no square roots are needed anywhere. Both sides come to 24/25."
 }

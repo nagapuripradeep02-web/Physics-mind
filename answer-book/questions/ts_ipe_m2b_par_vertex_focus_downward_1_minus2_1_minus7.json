@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_vertex_focus_downward_1_minus2_1_minus7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the parabola whose vertex is (1, −2), focus is (1, −7).",
+  "appearances": [
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the direction of the axis and the value of a",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.83 — VSAQ chapter 14 Parabola, answer 126.2, the second of the printed twin pair with answer 126.1. Printed appearance: TS 2015. THE MARK SPLIT IS OURS, same page-format reasoning as the rest of this chapter. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_direction_and_a",
+        "kind": "equation",
+        "label": "Find the axis direction and a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for the direction of the axis and a = 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given vertex A = (1, −2), focus S = (1, −7).",
+          "The x-coordinates of A and S are equal,",
+          "so the axis is parallel to the y-axis.",
+          "Since S lies below A,",
+          "the parabola opens vertically downward.",
+          "a = AS = √((1−1)² + (−7−(−2))²) = √25 = 5"
+        ],
+        "why": "Two points with the same x-coordinate lie on a vertical line, so the axis must be parallel to the y-axis; which way the parabola opens follows from which of the two points, vertex or focus, is lower down.",
+        "common_mistakes": [
+          "Comparing the y-coordinates instead of the x-coordinates to decide the axis direction.",
+          "Writing a = 25 instead of a = 5 by forgetting to take the square root."
+        ],
+        "memory_tip": "Equal x-coordinates mean a vertical axis; the focus sitting below the vertex means the parabola opens downward."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for the correct equation with the minus sign that marks a downward parabola.",
+        "lines": [
+          "A downward parabola",
+          "with vertex (h,k) is (x−h)² = −4a(y−k).",
+          "(x−1)² = −4(5)(y−(−2))",
+          {
+            "text": "∴ (x−1)² = −20(y+2)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Once the direction and a are known, the vertex form (x−h)² = −4a(y−k) is a direct substitution, with the minus sign marking the downward opening.",
+        "common_mistakes": [
+          "Using the upward form (x−h)² = 4a(y−k) here instead of the downward form with the minus sign.",
+          "Writing −4a as −20 correctly but then dropping the minus sign in the next line."
+        ],
+        "memory_tip": "Upward parabola: (x−h)² = 4a(y−k). Downward: the same with a minus sign in front of 4a."
+      }
+    ]
+  },
+  "insider_note": "126.1 and 126.2 are a deliberate contrast pair — one upward, one downward — printed side by side so the only real difference to notice is the sign in front of 4a."
+}

@@ -89,7 +89,7 @@
             "style": "eq"
           }
         ],
-        "why": "Chlorine is a weaker oxidising agent than fluorine, so it does not set oxygen free from water at once. It disproportionates: one chlorine atom goes to −1 in HCl and the other to +1 in HOCl. Only when the HOCl decomposes in sunlight is oxygen released. The oxidising order F₂ > Cl₂ > Br₂ > I₂ has no exception, and it is why the two halogens behave differently here.",
+        "why": "Chlorine is a weaker oxidising agent than fluorine, so it does not set oxygen free from water at once. It disproportionates: one chlorine atom goes to −1 in HCl and the other to +1 in HOCl. Only when the HOCl decomposes in sunlight is oxygen released. The two sunlight equations are printed as the overall change from Cl₂ and water, not as the decomposition of HOCl on its own: adding HOCl → HCl + [O] to the reversible line gives Cl₂ + H₂O → 2HCl + [O], and doubling that, with the two oxygen atoms joining as O₂, gives 2Cl₂ + 2H₂O → 4HCl + O₂. The oxidising order F₂ > Cl₂ > Br₂ > I₂ has no exception, and it is why the two halogens behave differently here.",
         "common_mistakes": [
           "Writing Cl₂ + H₂O → HCl + HOCl with a single arrow. That reaction is reversible, so the sign is ⇌; the sunlight decomposition after it is not reversible.",
           "Writing that chlorine releases O₂ from water directly, as fluorine does. Chlorine gives HCl and HOCl first."

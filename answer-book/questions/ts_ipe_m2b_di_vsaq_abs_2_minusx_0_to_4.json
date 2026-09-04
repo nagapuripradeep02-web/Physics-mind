@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_abs_2_minusx_0_to_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀⁴ |2 − x| dx.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the modulus using its definition",
+      "marks": 1
+    },
+    {
+      "label": "Integrate each piece and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 173.2, the right-hand twin of answer 173.1 (not marked as a Super Scoring Page). Printed appearance: AP 17. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The modulus |2−x| changes sign at x = 2, so split the integral at that point and drop the modulus with the correct sign on each piece. Every |a−x| question works the same way, only the split point changes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split the modulus using its definition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. |2−x| changes sign at x=2 — the midpoint of the given interval [0,4].",
+        "memory_tip": "The split point for |a−x| is always x=a — here a=2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "|2−x| = 2−x for 2−x ≥ 0, i.e. x ≤ 2",
+          "|2−x| = x−2 for 2−x < 0, i.e. x > 2",
+          "∴ ∫₀⁴ |2−x| dx = ∫₀² (2−x) dx + ∫₂⁴ (x−2) dx"
+        ],
+        "why": "|2−x| changes sign at x=2, where 2−x=0, so the integral over 0 to 4 must be split into the piece before x=2 and the piece after it.",
+        "common_mistakes": [
+          "Splitting at x=0 or x=4 instead of the correct point x=2.",
+          "Using the wrong sign on one of the two pieces."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate each piece and add",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The two pieces contribute 2 each by the symmetry of the V-shape about x=2.",
+        "memory_tip": "Since 2 is exactly the midpoint of [0,4], the two triangular areas either side of x=2 are equal.",
+        "lines": [
+          "= [2x − x²/2]₀² + [x²/2 − 2x]₂⁴ = (4 − 2) +",
+          "[(8−8) − (2−4)]",
+          {
+            "text": "∴ I = 2 + 0 + 2 = 4",
+            "style": "boxed"
+          }
+        ],
+        "why": "Evaluating each bracket at its limits and adding the two results gives the total area of the V-shape formed by |2−x| between x=0 and x=4.",
+        "common_mistakes": [
+          "An arithmetic slip in (8−8)−(2−4), e.g. reading it as 0−(−2)=−2 instead of +2.",
+          "Forgetting to add the two separate integrals together."
+        ]
+      }
+    ]
+  }
+}

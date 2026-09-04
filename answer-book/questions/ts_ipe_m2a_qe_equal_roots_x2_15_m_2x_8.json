@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_equal_roots_x2_15_m_2x_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the values of m, if the equation x² − 15 − m(2x − 8) = 0 has equal roots.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write Δ = 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for m",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.75 (PDF p.76 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 124.1. Printed appearances: AP 19 · TS 17 · AP 17,17 — the last chip prints 2017 twice (two AP papers that year); both are kept. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q4 of the book's Model Paper 3 (book p.115), and is re-solved as the third Q4 item of the Bullet Model Paper (book p.97) with the same result m = 3, 5. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find m — say what form you put the equation in, what condition equal roots gives, and how you solve it.",
+  "insider_note": "Collect to standard form before touching Δ — the constant is 8m − 15, not −15. The question says 'values': there are two, and one alone is a half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form_delta",
+        "kind": "equation",
+        "label": "Write Δ = 0",
+        "marks": 1,
+        "mark_note": "Δ = 0",
+        "margin_note": "First mark. Expand −m(2x − 8) = −2mx + 8m and collect: x² − 2mx + (8m − 15) = 0. Then a = 1, b = −2m, c = 8m − 15, and equal roots means Δ = b² − 4ac = 0.",
+        "memory_tip": "Expand −m(2x − 8) = −2mx + 8m first: the constant is 8m − 15, not −15.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² − 15 − m(2x − 8) = 0",
+          "⇒ x² − 2mx + (8m − 15) = 0",
+          "a = 1, b = −2m, c = 8m − 15",
+          "Equal roots ⇒ Δ = b² − 4ac = 0",
+          "⇒ 4m² − 4(8m − 15) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is expanded to x² − 2mx + (8m − 15) = 0, a, b, c are read off, and equal roots gives b² − 4ac = 0: 4m² − 4(8m − 15) = 0.",
+          "accept": [
+            "expand and collect to x squared minus two m x plus eight m minus fifteen then put the discriminant equal to zero",
+            "equal roots means b squared minus four a c is zero, with b minus two m and c eight m minus fifteen",
+            "write it in standard form, read off a b c and set delta to zero",
+            "equation ni standard form lo rasi, equal roots kabatti discriminant zero pettali",
+            "four m squared minus four into eight m minus fifteen equals zero"
+          ],
+          "reject": [
+            "find delta",
+            "solve for m",
+            "factorise"
+          ],
+          "heard_as": [
+            "standard form",
+            "equal roots",
+            "discriminant",
+            "equal to zero",
+            "eight m minus fifteen",
+            "minus two m"
+          ]
+        },
+        "why": "The condition for equal roots is Δ = 0, and Δ can only be read off once the equation is in the form ax² + bx + c = 0 with m inside the coefficients.",
+        "common_mistakes": [
+          "Reading c = −15 and forgetting the +8m.",
+          "Writing b = 2m and then b² = 4m² anyway — harmless here, but a sign habit that costs marks elsewhere.",
+          "Using Δ > 0 or Δ ≥ 0 — equal roots is exactly zero."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for m",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide by 4: m² − 8m + 15 = 0, which factorises as (m − 3)(m − 5) = 0. Both values are answers — the question says 'values'.",
+        "memory_tip": "Divide by 4: m² − 8m + 15 = (m − 3)(m − 5). The question says 'values' — give both.",
+        "lines": [
+          "⇒ m² − 8m + 15 = 0",
+          "⇒ (m − 3)(m − 5) = 0",
+          {
+            "text": "∴ m = 3 or m = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 4 gives m² − 8m + 15 = 0, which factorises as (m − 3)(m − 5) = 0, so m = 3 or 5.",
+          "accept": [
+            "divide by four to get m squared minus eight m plus fifteen and factorise as m minus three into m minus five so m is three or five",
+            "m squared minus eight m plus fifteen factorises to give m equals three or five",
+            "the two values of m are three and five",
+            "four tho divide chesi factorise cheste m three leda five",
+            "m equals three or m equals five"
+          ],
+          "reject": [
+            "solve it",
+            "find m",
+            "factorise"
+          ],
+          "heard_as": [
+            "m minus three",
+            "m minus five",
+            "three or five",
+            "m squared minus eight m"
+          ]
+        },
+        "why": "Δ = 0 is a quadratic in m, so there are two values of m for which the original equation has a repeated root. Both are genuine answers.",
+        "common_mistakes": [
+          "Giving only m = 3 or only m = 5.",
+          "Factorising as (m + 3)(m + 5).",
+          "Forgetting to divide by 4 and mis-factorising 4m² − 32m + 60."
+        ]
+      }
+    ]
+  }
+}

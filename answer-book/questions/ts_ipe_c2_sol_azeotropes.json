@@ -82,7 +82,7 @@
           "Example: nitric acid and water, at about",
           "68% nitric acid."
         ],
-        "why": "A large positive deviation raises the vapour pressure of the mixture above that of either pure liquid, and a high vapour pressure means a low boiling point, so the mixture boils at a minimum. A large negative deviation lowers the vapour pressure and so raises the boiling point to a maximum. The two types are the two deviation cases taken far enough to form an azeotrope.",
+        "why": "A large positive deviation raises the vapour pressure of the mixture above that of either pure liquid, and a high vapour pressure means a low boiling point, so the mixture boils at a minimum. A large negative deviation lowers the vapour pressure and so raises the boiling point to a maximum. The two types are the two deviation cases taken far enough to form an azeotrope. The two standard compositions are quoted on different bases: about 95% ethanol by volume for the ethanol and water azeotrope, and 68% nitric acid by mass for the nitric acid and water one, so the basis is worth writing beside the number.",
         "common_mistakes": [
           "Pairing positive deviation with a maximum boiling azeotrope. Positive deviation raises the vapour pressure, so the boiling point is a MINIMUM.",
           "Giving chloroform and acetone as a minimum boiling example. That pair shows negative deviation, so it forms a maximum boiling azeotrope."

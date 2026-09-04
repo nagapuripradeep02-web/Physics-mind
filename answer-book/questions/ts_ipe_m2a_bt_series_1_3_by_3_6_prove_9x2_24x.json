@@ -1,0 +1,295 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_series_1_3_by_3_6_prove_9x2_24x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If x = (1·3)/(3·6) + (1·3·5)/(3·6·9) + (1·3·5·7)/(3·6·9·12) + …, then prove that 9x² + 24x = 11.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite with factorials",
+      "marks": 2
+    },
+    {
+      "label": "Compare with the standard expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find p, q and y",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the power",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange and square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Binomial Theorem, answer 28. Printed appearances: AP 15, 16, 17, 19 · TS 16, 18. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. Answer 28 on the same page (book p.33) prints no tags of its own, so here the split is patterned on answer 27 above it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 2 (book p.114) and is re-solved in the Bullet Model Paper block (book p.107) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove 9x² + 24x = 11 — what you add to both sides and why, what you compare with, how you find p, q and y, and how the value of 4/3 + x gives the result.",
+  "insider_note": "The series starts at the (1/3)² term, so 1 + 1/3 must be added on both sides before any comparison. At the end square 3x + 4 = 3√3, not x = √3 − 4/3 — that choice keeps the numbers whole.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite with factorials",
+        "marks": 2,
+        "mark_note": "Series in standard shape",
+        "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/3)ᵏ. The first term (1·3)/(3·6) is the (1/3)² term, so BOTH the 1 and the (1/3) term are missing: add 1 + 1/3 on both sides.",
+        "memory_tip": "3·6·9 = 3³·3!, so every term is (a product)/k! times (1/3)ᵏ. The series starts at k = 2, so add 1 + 1/3 to both sides.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x = (1·3)/(3·6) + (1·3·5)/(3·6·9) + …",
+          "= (1·3/2!)(1/3)² + (1·3·5/3!)(1/3)³ + …",
+          "The 1 and the (1/3) terms are missing,",
+          "so add 1 + 1/3 on both sides:",
+          "1 + 1/3 + x = 1 + (1/1!)(1/3) + (1·3/2!)(1/3)²",
+          "  + (1·3·5/3!)(1/3)³ + …"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is rewritten so the k-th term is a product over k! times (1/3) to the power k, after adding 1 + 1/3 on both sides so the missing early terms are present.",
+          "accept": [
+            "write each term as a product over k factorial times one by three to the power k and add 1 + 1/3 on both sides",
+            "split each denominator into three to the power k times k factorial",
+            "add 1 + 1/3 to both sides and bring the series to the shape one plus p by one factorial into x by q and so on",
+            "prathi term ni k factorial tho, one by three power k tho rayali, rendu sides ki 1 + 1/3 add cheyali",
+            "rewrite the denominators as powers of three times factorials"
+          ],
+          "reject": [
+            "write the series",
+            "compare with the formula"
+          ],
+          "heard_as": [
+            "factorial",
+            "one by three",
+            "power k",
+            "both sides"
+          ]
+        },
+        "why": "The standard expansion of (1 − y)^(−p/q) has a k! in every denominator and a fixed ratio y/q raised to k. Until the given series is written in that exact shape, p, q and y cannot be read off.",
+        "common_mistakes": [
+          "Forgetting to add 1 + 1/3 on both sides when the series starts late, so the comparison has no 1 to match.",
+          "Writing 3·6·9 as 3·3! instead of 3³·3! — every factor carries a 3."
+        ]
+      },
+      {
+        "id": "s2_compare",
+        "kind": "equation",
+        "label": "Compare with the standard expansion",
+        "marks": 1,
+        "mark_note": "Standard form",
+        "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − y) form.",
+        "memory_tip": "All plus signs mean the (1 − y) form. The coefficients grow p, p(p + q), p(p + q)(p + 2q).",
+        "lines": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - y)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{y}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{y}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is compared with the expansion of (1 − y) to the power minus p by q, whose coefficients are p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!.",
+          "accept": [
+            "compare with the expansion of (1 − y) to the power minus p by q",
+            "match it with one plus p by one factorial into y by q plus p into p plus q by two factorial into y by q squared and so on",
+            "use the standard binomial series with negative fractional index (1 − y) to the power minus p by q",
+            "(1 − y)^(−p/q) formula tho compare cheyali",
+            "the pattern p then p into p plus q over the factorials is the standard series"
+          ],
+          "reject": [
+            "compare it",
+            "use the formula"
+          ],
+          "heard_as": [
+            "minus p by q",
+            "p plus q",
+            "standard expansion",
+            "y by q"
+          ]
+        },
+        "why": "This is the only binomial expansion whose coefficients grow as p, p(p + q), p(p + q)(p + 2q). Naming it turns the rest of the question into reading off three numbers.",
+        "common_mistakes": [
+          "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
+          "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ]
+      },
+      {
+        "id": "s3_p_q_x",
+        "kind": "equation",
+        "label": "Find p, q and y",
+        "marks": 2,
+        "mark_note": "p, q, y",
+        "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and y/q equals the common ratio 1/3 so y = q/3 = 2/3.",
+        "memory_tip": "p = 1 from the first factor, p + q = 3 so q = 2, and the bracket holds y/q so y = 2/3.",
+        "lines": [
+          "p = 1, p + q = 3 ⇒ q = 2",
+          "y/q = 1/3 ⇒ y = q/3 = 2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 1 and p + q = 3 give q = 2, and y/q = 1/3 gives y = two by three.",
+          "accept": [
+            "p is one, p plus q is three so q is two, and y by q is one by three so y is two by three",
+            "the first factor gives p equal to one and the second gives q equal to two",
+            "y by q equals one by three so y equals two by three",
+            "p one, q two vasthai, y by q one by three kabatti y two by three",
+            "read off p from the first numerator and q from the gap between the factors"
+          ],
+          "reject": [
+            "find p and q",
+            "find the values"
+          ],
+          "heard_as": [
+            "p equals",
+            "q equals",
+            "y equals",
+            "two by three"
+          ]
+        },
+        "why": "Three unknowns need three matches: the first numerator fixes p, the second fixes p + q, and the ratio inside the bracket fixes y/q. Nothing else in the series is free.",
+        "common_mistakes": [
+          "Taking y = 1/3 directly — the bracket holds y/q, so y = q × 1/3.",
+          "Reading q from the second factor as a whole instead of as p + q."
+        ]
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "equation",
+        "label": "Evaluate the power",
+        "marks": 1,
+        "mark_note": "Value of the power",
+        "margin_note": "Sixth mark. Substitute p, q, y into (1 − y)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "(1/3) to the power −1/2 — invert the fraction first, then take the root: √3.",
+        "lines": [
+          {
+            "text": "1 + \\tfrac{1}{3} + x = \\left(1 - \\tfrac{2}{3}\\right)^{-1/2} = \\left(\\tfrac{1}{3}\\right)^{-1/2} = \\sqrt{3}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives four by three plus x equals root three.",
+          "accept": [
+            "substituting gives four by three plus x equals root three",
+            "put the values into (1 − y)^(−p/q) and simplify to get four by three plus x equals root three",
+            "the bracket becomes one by three and the power gives four by three plus x equals root three",
+            "values substitute cheste four by three plus x equals root three vasthundi",
+            "simplify the bracket first then apply the negative index"
+          ],
+          "reject": [
+            "substitute",
+            "simplify it"
+          ],
+          "heard_as": [
+            "power",
+            "root",
+            "four by three plus x equals root three"
+          ]
+        },
+        "why": "A negative index inverts the fraction and a fractional index takes a root. Doing the inversion first keeps the root over a simple fraction.",
+        "common_mistakes": [
+          "Inverting the exponent instead of the fraction when the index is negative.",
+          "Leaving a root in the denominator without a clear final value."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Rearrange and square",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. Clear the fraction first: 3x + 4 = 3√3. Squaring THAT keeps the numbers whole; squaring x = √3 − 4/3 does not.",
+        "memory_tip": "Clear the fraction BEFORE squaring: 3x + 4 = 3√3 keeps every number whole.",
+        "lines": [
+          "4/3 + x = √3 ⇒ 3x + 4 = 3√3",
+          "Squaring: 9x² + 24x + 16 = 27",
+          {
+            "text": "∴ 9x² + 24x = 11",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4/3 + x = √3 gives 3x + 4 = 3√3, and squaring gives 9x² + 24x + 16 = 27, so 9x² + 24x = 11.",
+          "accept": [
+            "four by three plus x is root three so three x plus four is three root three and squaring gives nine x squared plus twenty four x plus sixteen is twenty seven",
+            "multiply by three then square to get nine x squared plus twenty four x equals eleven",
+            "three x plus four equals three root three, square it, sixteen goes across and eleven is left",
+            "three x plus four ni square cheste twenty seven vasthundi, sixteen subtract cheste eleven",
+            "squaring three x plus four gives the result eleven"
+          ],
+          "reject": [
+            "that gives the answer",
+            "finish it"
+          ],
+          "heard_as": [
+            "three root three",
+            "twenty seven",
+            "eleven",
+            "three x plus four"
+          ]
+        },
+        "why": "Multiplying by 3 before squaring turns every coefficient into a whole number, which is exactly the 9x² + 24x the question names.",
+        "common_mistakes": [
+          "Squaring x = √3 − 4/3 term by term, which makes the fractions much harder.",
+          "Forgetting that 1 + 1/3 = 4/3 was added, and writing x = √3."
+        ]
+      }
+    ]
+  }
+}

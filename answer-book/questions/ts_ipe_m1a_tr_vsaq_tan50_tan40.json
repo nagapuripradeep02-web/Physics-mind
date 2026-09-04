@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Work BACKWARDS from the answer: 50° − 40° is 10°, so write tan(50° − 40°) = tan10° and expand the left side.",
+        "memory_tip": "Work BACKWARDS from the answer: 50° − 40° = 10°, so start from tan(50° − 40°) = tan10°.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 40° is 90° − 50°, so tan40° is cot50° — and tan50° × cot50° is exactly 1, making the denominator 2.",
+        "memory_tip": "40° = 90° − 50°, so tan40° = cot50°, and tan50° × cot50° = 1 makes the denominator 2.",
         "lines": [
           "tan40° = tan(90° − 50°) = cot50°",
           "⇒ (tan50° − tan40°)/(1 + tan50° cot50°) = tan10°",
@@ -129,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Start from tan(50° − 40°) = tan10° and work backwards. tan40° = cot50° makes the denominator 1 + 1 = 2, and that 2 is the whole answer."
 }

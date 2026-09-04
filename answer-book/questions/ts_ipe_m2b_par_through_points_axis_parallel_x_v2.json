@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_through_points_axis_parallel_x_v2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of the parabola passing through the points (−2, 1), (1, 2), (−1, 3) and having its axis parallel to the x-axis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the general equation and substitute the three points",
+      "marks": 2
+    },
+    {
+      "label": "Eliminate n to get two equations in l and m",
+      "marks": 2
+    },
+    {
+      "label": "Solve for m and l",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back for n and write the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: PRESUMED to be the book's own answer 11 — reproduced from the Bullet Model Paper, book p.113, 'Q20: PARABOLA', the second bullet item. REASONING: printed p.23 is missing from this scan (the numbering jumps from printed p.22 straight to printed p.24; see the ts_ipe_m2b_par_through_points_axis_parallel_x_v1 card for answer 10) and, since printed p.24 opens directly with answer 12, printed p.23 held BOTH answers 10 and 11. The other three items on this same Bullet MP Q20 page reproduce chapter answers VERBATIM — the standard-form derivation (=answer 9), the common tangents proof (=answer 13) and the inscribed-triangle area (=answer 14) were each checked digit for digit against their chapter originals and are identical. This item's point set, (−2,1),(1,2),(−1,3), does not match answer 10's own points (−1,2),(1,−1),(2,1) from the hit list, and does not match any other numbered chapter answer, VSAQ entry or Star Q+ entry — it has no other home anywhere in this book. Given the Bullet Model Paper's consistent pattern here of reproducing existing answers rather than inventing new ones, this item is presumed to be a verbatim reproduction of the missing answer 11 — but this is a reasoned presumption, not a certainty, since printed p.23 itself could not be read to confirm it directly, and that uncertainty is why it is flagged rather than silently merged into a plain 'answer 11' citation. THE MARK SPLIT IS OURS — the Bullet Model Paper carries no margin mark tags anywhere; the split follows the same shape as answer 10, the sibling axis-parallel-to-x-axis question. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the general equation",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks, for the correct general form and all three substitutions.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The equation of a parabola",
+          "with axis parallel to the x-axis is x",
+          "= ly² + my + n.",
+          "Through (−2, 1): −2 = l + m + n   ……(1)",
+          "Through (1, 2): 1 = 4l + 2m + n   ……(2)",
+          "Through (−1, 3): −1 = 9l + 3m + n   ……(3)"
+        ],
+        "why": "An axis parallel to the x-axis means y is the free variable and x is written in terms of y², so the general equation has y² and y in place of the usual x² and x — three unknowns l, m, n need three points, which is exactly what is given.",
+        "common_mistakes": [
+          "Writing the general form as y = lx² + mx + n, the axis-parallel-to-y-axis case instead.",
+          "Substituting a point's x and y into the wrong side of the equation."
+        ],
+        "memory_tip": "Axis along x means x is written in terms of y — x = ly² + my + n, the mirror image of the more familiar y = lx² + mx + n."
+      },
+      {
+        "id": "s2_eliminate_n",
+        "kind": "equation",
+        "label": "Eliminate n",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Watch the signs carefully — every right-hand side has a −(−2) to simplify first.",
+        "lines": [
+          "(2) − (1): 1 − (−2) = 4l + 2m + n − (l + m + n)",
+          "⇒ 3 = 3l + m   ……(4)",
+          "(3) − (1): −1 − (−2) = 9l + 3m + n − (l + m + n)",
+          "⇒ 1 = 8l + 2m   ……(5)"
+        ],
+        "why": "Subtracting equation (1) from the other two removes n immediately, and leaves a pair of equations in only l and m.",
+        "common_mistakes": [
+          "Losing the negative sign inside −(−2) while simplifying the right-hand side.",
+          "Forgetting that (1) has to be subtracted from BOTH (2) and (3), not just one of them."
+        ],
+        "memory_tip": "Subtract equation (1) from the other two and n cancels every time, since every equation has the same +n."
+      },
+      {
+        "id": "s3_solve_l",
+        "kind": "equation",
+        "label": "Solve for l and m",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for both l and m — check them by putting both back into (4): 3(−5/2) + 21/2 should give 3.",
+        "lines": [
+          "From (4): m = 3 − 3l",
+          "Substitute in (5):",
+          "1 = 8l + 2(3 − 3l) = 8l + 6 − 6l = 2l + 6",
+          "⇒ 2l = −5 ⇒ l = −5/2,",
+          "and m = 3 − 3(−5/2) = 3 + 15/2 = 21/2"
+        ],
+        "why": "With m written in terms of l from (4), substituting into (5) leaves one equation in the single unknown l.",
+        "common_mistakes": [
+          "Substituting m = 3 − 3l into (4) instead of (5), which just restates (4) and gives no new information.",
+          "Losing the negative sign on l = −5/2 partway through."
+        ],
+        "memory_tip": "Write m in terms of l from the shorter equation, then substitute into the other one."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Write the final equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Check the boxed equation with one of the three given points — it should give 0.",
+        "lines": [
+          "From (1): l + m + n = −2",
+          "⇒ n = −2 − (−5/2) − 21/2 = −2 + 5/2 − 21/2 = −10",
+          "Substitute l = −5/2, m = 21/2,",
+          "n = −10 in x = ly² + my + n:",
+          "x = −(5/2)y² + (21/2)y − 10",
+          "Multiply by 2: 2x = −5y² + 21y − 20",
+          {
+            "text": "∴ 5y² + 2x − 21y + 20 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying through by 2, the shared denominator of every fraction here, clears them all in one move and leaves a whole-number equation.",
+        "common_mistakes": [
+          "Multiplying only some of the terms by 2 and leaving a mixed equation.",
+          "Writing the boxed equation with a wrong sign on the y term."
+        ],
+        "memory_tip": "Multiply through by 2, the shared denominator of every fraction here, to reach one whole-number equation."
+      }
+    ]
+  },
+  "insider_note": "Every coefficient here was checked by substituting all three given points back into the boxed equation — each gives exactly 0, which is the fastest way to catch an arithmetic slip in this kind of question."
+}

@@ -50,7 +50,8 @@
         "label": "Set the period equal to 7",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This is the period question run BACKWARDS: the period is given and the function is wanted, so the formula becomes an equation in k.",
+        "margin_note": "First mark. The period is given and the function is wanted, so the period formula becomes an equation in k.",
+        "memory_tip": "The period is given, not wanted, so 2π/k = 7 is an equation in k.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Rearranging gives k = 2π/7, and the answer is the function itself — not the value of k.",
+        "memory_tip": "k = 2π/7, and the answer is the FUNCTION cos(2πx/7), not the value of k.",
         "lines": [
           "⇒ k = 2π/7",
           {
@@ -130,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The period is 2π/k, so k = 2π/7 and the answer is cos(2πx/7), not cos7x. Working backwards from the period is the whole question."
 }

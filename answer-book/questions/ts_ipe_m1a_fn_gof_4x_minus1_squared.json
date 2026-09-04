@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gof_4x_minus1_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R and g: R→R are defined by f(x) = 4x − 1 and g(x) = x² + 2, find (gof)(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute f(x) into g",
+      "marks": 1
+    },
+    {
+      "label": "Expanded form of (gof)(x)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 12(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to substituting f(x) into g in the right order and one to the expansion, because the order of composition and the squaring of a bracket are the two separate skills being tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (gof)(x) — which function acts first, and how you expand what is left.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put f(x) into g",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Keep 4x − 1 inside a bracket when it enters g, so the squaring applies to the whole of it.",
+        "memory_tip": "In gof, f is inside. Substitute the whole of f(x) wherever g has an x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(gof)(x) = g[f(x)]",
+          "f acts first: f(x) = 4x − 1",
+          "So g receives 4x − 1:",
+          "g(4x − 1) = (4x − 1)² + 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in gof the inner function is f, so 4x − 1 is substituted into g, giving (4x − 1)² + 2.",
+          "accept": [
+            "in g o f the inner function is f so four x minus one goes into g",
+            "g of four x minus one is four x minus one whole squared plus two",
+            "f acts first because it is written second",
+            "modata f apply chestham so four x minus one ni g lo pedatham",
+            "substitute four x minus one for x in g"
+          ],
+          "reject": [
+            "I substitute x",
+            "first I find the composition",
+            "expand the bracket"
+          ],
+          "heard_as": [
+            "g o f",
+            "gof",
+            "four x minus one",
+            "whole squared",
+            "inner"
+          ]
+        },
+        "why": "In gof the function written on the right acts first, so f's output becomes g's input. Writing g(4x − 1) with the bracket kept whole is what makes the next line correct.",
+        "common_mistakes": [
+          "Applying g first, which computes (fog)(x) = 4x² + 7 instead.",
+          "Writing g(4x − 1) as 4x − 1 + 2, forgetting that g squares its input."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "boxed_final",
+        "label": "Expand and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand the square into three terms, then add the 2 that belongs to g. The constant 3 is 1 + 2.",
+        "memory_tip": "(4x − 1)² = 16x² − 2(4x)(1) + 1. The middle term −8x is the one students drop.",
+        "lines": [
+          "(4x − 1)² = 16x² − 8x + 1",
+          "So (gof)(x) = 16x² − 8x + 1 + 2",
+          {
+            "text": "∴ (gof)(x) = 16x² − 8x + 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (4x − 1)² expands to 16x² − 8x + 1, and adding 2 gives 16x² − 8x + 3.",
+          "accept": [
+            "four x minus one squared is sixteen x squared minus eight x plus one",
+            "add two to get sixteen x squared minus eight x plus three",
+            "the answer is sixteen x squared minus eight x plus three",
+            "expand chesi two add chesthe sixteen x squared minus eight x plus three",
+            "the constant is one plus two which is three"
+          ],
+          "reject": [
+            "then I simplify",
+            "expand and get the answer",
+            "it comes out"
+          ],
+          "heard_as": [
+            "sixteen x squared",
+            "minus eight x",
+            "plus three",
+            "whole squared"
+          ]
+        },
+        "why": "(4x − 1)² is one bracket squared, so it has three terms, and the middle term comes from twice the product of 4x and 1. The 2 that g adds is added after the expansion, giving the constant 3.",
+        "common_mistakes": [
+          "Writing (4x − 1)² as 16x² − 1 or as 16x² + 1, losing the middle term.",
+          "Adding the 2 inside the square and writing (4x + 1)²."
+        ]
+      }
+    ]
+  }
+}

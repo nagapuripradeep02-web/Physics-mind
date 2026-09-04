@@ -480,7 +480,7 @@
             "eta"
           ]
         },
-        "memory_tip": "Half the cycle is thrown away, so the ceiling is 40.6%, not 50%."
+        "memory_tip": "Half the cycle is not used, so the maximum is 40.6%, not 50%."
       }
     ]
   },

@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_poisson_p1_eq_p2_find_p5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A Poisson variable satisfies P(X = 1) = P(X = 2). Find P(X = 5).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find λ",
+      "marks": 1
+    },
+    {
+      "label": "Find P(X = 5)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 19 Random Variables, answer 173. (In this part of the scan book page = PDF page − 1: book p.87 was read at PDF p.88, not p.89 as the −2 rule predicts.) Printed appearances: AP 16 · TS 16, 18, 22 (the TS chip prints '16,18,18,22' — 18 appears twice, presumably two sittings of 2018; recorded once here). ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.87–88) prints no [N Marks] tags. It is the split this publisher's Maths-1A book prints for a 2-mark VSAQ (1A book p.82, answers 100 and 101: 1 + 1), applied to the two moves of this question. The VSAQ chapter header (book p.87) carries ★★ and reads '2 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q10 is the Random Variables slot, and this question IS Q10 of the book's Model Paper 3 (book p.115); the Bullet Model Paper re-solves it under Q10 on book p.99. The book stops at P(X = 5) = e⁻²·2⁵/5!; the card simplifies to 4e⁻²/15 (32/120 = 4/15) — both are correct. The Poisson formula is the one KaTeX line in this unit, because no superscript λ exists in Unicode. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find P(X = 5) for this Poisson variable — what equation gives λ and what you substitute.",
+  "insider_note": "Cancelling the common factor e⁻λ is the whole first mark: λ/1! = λ²/2! gives λ = 2, with λ = 0 rejected because a Poisson parameter is positive; leave e⁻² as it is in the answer — no decimals.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Random Variables · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lambda",
+        "kind": "equation",
+        "label": "Find λ",
+        "marks": 1,
+        "mark_note": "λ",
+        "margin_note": "First mark. Write the Poisson formula, set P(X = 1) = P(X = 2), and cancel the common factor e⁻λ: λ/1! = λ²/2! gives λ² = 2λ, so λ = 2 (λ = 0 is not allowed — a Poisson parameter is positive).",
+        "memory_tip": "Cancel the common e⁻λ: λ/1! = λ²/2! gives λ = 2. Reject λ = 0 — a Poisson parameter is positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "P(X = r) = \\dfrac{e^{-\\lambda}\\lambda^{r}}{r!},\\ \\lambda > 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Given P(X = 1) = P(X = 2).",
+          "Cancel the common factor:",
+          "⇒ λ/1! = λ²/2! ⇒ λ = λ²/2",
+          "⇒ λ² = 2λ ⇒ λ(λ − 2) = 0 ⇒ λ = 2 (since λ > 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(X = 1) = P(X = 2) in the Poisson formula gives λ = λ²/2, so λ = 2.",
+          "accept": [
+            "put r equal to one and two in the poisson formula, cancel e to the minus lambda, lambda equals lambda squared by two so lambda is two",
+            "P one equals P two gives lambda squared equals two lambda so lambda is two",
+            "cancel the common factor and solve, lambda comes to two",
+            "P one equals P two pedithe lambda square equals two lambda, lambda two",
+            "lambda is two because lambda cannot be zero"
+          ],
+          "reject": [
+            "find lambda",
+            "use the formula"
+          ],
+          "heard_as": [
+            "lambda",
+            "e to the minus lambda",
+            "lambda squared",
+            "two lambda",
+            "equals two"
+          ]
+        },
+        "why": "A Poisson distribution has one parameter, λ, and the given equation fixes it. The factor e⁻λ appears on both sides and cancels, leaving a quadratic whose only positive root is 2.",
+        "common_mistakes": [
+          "Keeping λ = 0 as an answer.",
+          "Writing 2! as 2 on one side and 1 on the other.",
+          "Dividing by λ without saying that λ = 0 is being discarded."
+        ]
+      },
+      {
+        "id": "s2_p5",
+        "kind": "boxed_final",
+        "label": "Find P(X = 5)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Put λ = 2 and r = 5: e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leaving e⁻²·2⁵/5! unsimplified is accepted; do not replace e⁻² by a decimal.",
+        "memory_tip": "e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leave e⁻² as it is; do not use a decimal.",
+        "lines": [
+          "P(X = 5) = e⁻² · 2⁵/5! = 32e⁻²/120",
+          {
+            "text": "∴ P(X = 5) = 4e⁻²/15",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(X = 5) = e⁻²·2⁵/5!, which simplifies to 4e⁻²/15.",
+          "accept": [
+            "P of five is e to the minus two into two to the five by five factorial which is four e to the minus two by fifteen",
+            "put lambda two and r five in the formula, thirty two e to the minus two over one twenty",
+            "the answer is four e power minus two by fifteen",
+            "lambda two, r five pedithe e power minus two into thirty two by one twenty, four e power minus two by fifteen",
+            "e to the minus two times two to the fifth over five factorial"
+          ],
+          "reject": [
+            "find P of five",
+            "substitute"
+          ],
+          "heard_as": [
+            "e to the minus two",
+            "two to the five",
+            "five factorial",
+            "four by fifteen",
+            "thirty two"
+          ]
+        },
+        "why": "Once λ is known the distribution is fully known, and any P(X = r) is one substitution. 2⁵ = 32 and 5! = 120 reduce to 4/15.",
+        "common_mistakes": [
+          "Writing 5! as 20 or 25.",
+          "Using λ = 1 or r = 2 by mixing up the given data with the question.",
+          "Reducing 32/120 to 8/30 and stopping."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_laq_det_condition_abc_neg1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If the determinant with rows (a, a², 1+a³), (b, b², 1+b³) and (c, c², 1+c³) is 0, and the determinant with rows (a, a², 1), (b, b², 1) and (c, c², 1) is not 0, show that abc = −1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the third column into two determinants",
+      "marks": 2
+    },
+    {
+      "label": "Take a, b, c common from the rows",
+      "marks": 2
+    },
+    {
+      "label": "Restore the column order with two interchanges",
+      "marks": 2
+    },
+    {
+      "label": "Take D common and factorise",
+      "marks": 1
+    },
+    {
+      "label": "Use the two given conditions and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.47, chapter 5 MATRICES, Long Answer question 3, determinant-condition route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+2+2+1+1 split pays two marks for each of the three moves that carry the proof — splitting the third column, taking a, b, c out of the rows, and restoring the column order — and one mark each for the factorisation and the conclusion. The opening line carries no mark because it only copies the question down. Working checked: the identity Δ = (1 + abc)D was verified on a = 1, b = 2, c = 3, where Δ = 14, D = 2 and (1 + 6)(2) = 14. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say how you break the third column up, what comes out common from the rows, and how the two given facts finish it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the two determinants",
+        "marks": 0,
+        "margin_note": "No mark of its own. Give the second determinant a name before you start — the whole proof is about showing that Δ is a multiple of it, and a named quantity is easier to carry through four steps.",
+        "memory_tip": "Name the second determinant D before you start. The proof shows that Δ is a multiple of D.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} a & a^2 & 1+a^3 \\\\ b & b^2 & 1+b^3 \\\\ c & c^2 & 1+c^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Write D for the second determinant:",
+          {
+            "text": "D = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "We are given Δ = 0 and D ≠ 0."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That both determinants are written down and the second is given a name, with Δ = 0 and D ≠ 0 recorded.",
+          "accept": [
+            "write both determinants and call the second one D, with delta zero and D not zero",
+            "start from the given determinant and name the second one",
+            "copy the two determinants down and note the two given conditions",
+            "rendu determinants rasi, rendo daanini D ani peru pettali",
+            "write the LHS determinant and label the other one"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "D",
+            "given"
+          ]
+        },
+        "why": "Only the third column of Δ differs from D, and it differs by adding a³, b³, c³. Noticing that one column carries the whole difference is what decides the first move.",
+        "common_mistakes": [
+          "Expanding Δ in full, which produces a page of terms.",
+          "Treating the two given facts as one; Δ = 0 and D ≠ 0 are used at different points."
+        ]
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Split the third column",
+        "marks": 2,
+        "mark_note": "Column split",
+        "margin_note": "Two marks, and the move the whole proof rests on. A determinant whose ONE column is a sum splits into two determinants; the other two columns are copied into both. Only one column may be split at a time.",
+        "memory_tip": "A determinant with ONE column made of sums splits into two determinants; the other two columns are copied into both.",
+        "lines": [
+          "Every entry of C₃ in Δ is a sum, so Δ splits",
+          "into two determinants sharing C₁ and C₂:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} + \\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The first of these is D."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the third column is a sum, so Δ splits into two determinants sharing the same first two columns, the first of which is D.",
+          "accept": [
+            "the third column is a sum so the determinant splits into two with the same first two columns",
+            "use the column splitting property on C three to get D plus another determinant",
+            "break the third column into one and a cubed so delta is a sum of two determinants",
+            "third column sum kabatti determinant rendu determinants ga split avthundi",
+            "split the last column and the first piece is D itself"
+          ],
+          "reject": [
+            "split the determinant",
+            "break it up",
+            "use the property"
+          ],
+          "heard_as": [
+            "split",
+            "third column",
+            "sum of two determinants",
+            "D"
+          ]
+        },
+        "why": "This is the only property that turns 1 + a³ into two separate pieces. Splitting two columns at once is not allowed, which is why C₁ and C₂ are copied unchanged into both determinants.",
+        "common_mistakes": [
+          "Splitting more than one column at a time.",
+          "Writing the two determinants with different first or second columns.",
+          "Subtracting the second determinant instead of adding it."
+        ]
+      },
+      {
+        "id": "s3_common",
+        "kind": "equation",
+        "label": "Take a, b, c common",
+        "marks": 2,
+        "mark_note": "Common factors",
+        "margin_note": "Two marks. Each ROW is a geometric run — a, a², a³ — so one factor comes out of each row, and the three factors multiply to abc. This is where the abc of the answer is born.",
+        "memory_tip": "Each ROW is a, a², a³, so one factor comes out of each row and the three multiply to abc.",
+        "lines": [
+          "In the second determinant, R₁ has a common a,",
+          "R₂ has a common b and R₃ has a common c:",
+          {
+            "text": "\\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix} = abc \\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a, b and c come out of rows 1, 2 and 3 of the second determinant, leaving abc times the determinant with rows 1, a, a².",
+          "accept": [
+            "take a out of the first row b out of the second and c out of the third giving abc outside",
+            "each row has a common factor so abc comes outside the determinant",
+            "pull a b and c out row by row and the rows become one a a squared",
+            "prathi row nunchi common factor teeste abc bayata vasthundi",
+            "one factor from each row multiplies to abc"
+          ],
+          "reject": [
+            "take common",
+            "take out abc",
+            "simplify the rows"
+          ],
+          "heard_as": [
+            "common factor",
+            "abc",
+            "row",
+            "one a a squared"
+          ]
+        },
+        "why": "A common factor of a whole row comes outside the determinant. Three rows give three factors, and their product abc is exactly the quantity the question asks about.",
+        "common_mistakes": [
+          "Taking abc out only once instead of one factor per row.",
+          "Taking the factors out of the columns, where they are not common.",
+          "Leaving the powers as a, a², a³ inside after the factor is removed."
+        ]
+      },
+      {
+        "id": "s4_interchange",
+        "kind": "equation",
+        "label": "Restore the column order",
+        "marks": 2,
+        "mark_note": "Column interchanges",
+        "margin_note": "Two marks. Interchanging two columns changes the sign of a determinant. Two interchanges change it twice, so the value is back where it started — that is why this determinant equals D and not −D.",
+        "memory_tip": "One column interchange changes the sign; TWO change it twice, so the value is unchanged.",
+        "lines": [
+          "Move C₁ to the last place by two interchanges,",
+          "C₁ ↔ C₂ and then C₂ ↔ C₃. Each interchange",
+          "changes the sign, so two leave the value alone:",
+          {
+            "text": "\\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix} = \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} = D",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two column interchanges turn the determinant with rows 1, a, a² into D, and that two sign changes cancel so the value is unchanged.",
+          "accept": [
+            "two column interchanges bring the first column to the end and two sign changes cancel so it equals D",
+            "swap the columns twice and the determinant is D itself",
+            "each interchange changes the sign so doing it twice leaves the value the same",
+            "rendu column interchanges cheste sign rendu sarlu maari value same untundi",
+            "move column one to the last place with two swaps to get D"
+          ],
+          "reject": [
+            "interchange the columns",
+            "swap them",
+            "it is the same"
+          ],
+          "heard_as": [
+            "interchange",
+            "two swaps",
+            "sign changes",
+            "equals D"
+          ]
+        },
+        "why": "Without this step the second determinant is only similar to D, not equal to it. Counting the interchanges is what makes the two determinants the same object, and an odd count would have made it −D.",
+        "common_mistakes": [
+          "Assuming the two determinants are equal without counting the interchanges.",
+          "Counting one interchange instead of two and finishing with abc = 1.",
+          "Interchanging rows instead of columns."
+        ]
+      },
+      {
+        "id": "s5_factor",
+        "kind": "equation",
+        "label": "Take D common",
+        "marks": 1,
+        "mark_note": "Factorisation",
+        "margin_note": "Seventh mark. Both pieces of Δ are multiples of D, so D comes out as a factor and Δ is written as a product of two things.",
+        "memory_tip": "Both pieces of Δ are multiples of D, so D comes out and Δ = (1 + abc)D.",
+        "lines": [
+          "Putting the two pieces together:",
+          "Δ = D + abc·D",
+          "Δ = (1 + abc)D"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two pieces add to D + abc·D, so Δ = (1 + abc)D.",
+          "accept": [
+            "add the two pieces to get D plus abc D which is one plus abc times D",
+            "take D common from both parts so delta is one plus abc into D",
+            "delta equals bracket one plus abc bracket times D",
+            "rendu pieces kalipithe delta equals one plus abc into D",
+            "factor D out of the sum"
+          ],
+          "reject": [
+            "add them",
+            "take D common",
+            "simplify"
+          ],
+          "heard_as": [
+            "one plus abc",
+            "times D",
+            "factor"
+          ]
+        },
+        "why": "A product is zero only when one of its factors is zero. Writing Δ as a product is what lets the two given conditions be used against each other in the next line.",
+        "common_mistakes": [
+          "Writing Δ = abc·D and losing the first piece.",
+          "Writing Δ = (1 + abc) and dropping D altogether."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Use the two conditions",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Both given facts are used here, and each does a different job: Δ = 0 makes the product zero, and D ≠ 0 is what rules out the other way a product can be zero.",
+        "memory_tip": "Both given facts are used here: Δ = 0 makes the product zero, D ≠ 0 rules out the other factor.",
+        "lines": [
+          "Δ = 0 is given, so (1 + abc)D = 0.",
+          "D ≠ 0 is also given, so the other factor is 0:",
+          "1 + abc = 0",
+          {
+            "text": "∴ abc = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1 + abc)D = 0 with D ≠ 0 forces 1 + abc = 0, hence abc = −1.",
+          "accept": [
+            "since delta is zero and D is not zero the factor one plus abc must be zero so abc is minus one",
+            "a product is zero only if a factor is zero and D is not zero so abc equals minus one",
+            "divide by D which is non zero to get one plus abc equals zero",
+            "D zero kaadu kabatti one plus abc zero kaavali, so abc minus one",
+            "the other factor has to vanish giving abc equal to minus one"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so abc is minus one"
+          ],
+          "heard_as": [
+            "one plus abc",
+            "D not zero",
+            "abc equals minus one"
+          ]
+        },
+        "why": "A product is zero only if a factor is zero. D is not the zero one, so 1 + abc must be. Without the condition D ≠ 0 the question would have no answer at all.",
+        "common_mistakes": [
+          "Dividing by D without saying that D is not zero.",
+          "Concluding abc = 1 by dropping a sign.",
+          "Using only Δ = 0 and never using D ≠ 0."
+        ]
+      }
+    ]
+  }
+}

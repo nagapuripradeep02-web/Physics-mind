@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "A plain square root allows zero: ≥ 0. Rearranging to x² − 16 ≤ 0 REVERSES the sign.",
         "lines": [
           "f(x) is defined when 16 − x² ≥ 0",
           "⇒ x² − 16 ≤ 0",
@@ -87,6 +88,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "A product ≤ 0 lies BETWEEN the roots, and zero is allowed: [−4, 4] with square brackets.",
         "lines": [
           "⇒ x ∈ [−4, 4]",
           "∴ Domain = [−4, 4]"
@@ -126,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A plain square root allows zero, so the brackets are CLOSED and [−4, 4] includes both ends. The negative product puts x between the roots rather than outside them."
 }

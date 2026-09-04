@@ -11,10 +11,10 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
   "question_text": "If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.",
   "appearances": [
     {
@@ -28,14 +28,6 @@
       "marks": 1
     },
     {
-      "label": "Write the point of intersection",
-      "marks": 1
-    },
-    {
-      "label": "Substitute into the third",
-      "marks": 1
-    },
-    {
       "label": "Simplify to the result",
       "marks": 1
     }
@@ -43,13 +35,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 60. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 60. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 33 i, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 0 + 1: the mark for method sits on solving two of the lines in the letters, and the mark for the answer on the identity itself. Reading off the point and substituting it into the third line are carried unmarked, as the middle of one continuous substitution. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say what concurrency lets you substitute, and what the three mixed terms combine into.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
     ],
     "steps": [
       {
@@ -95,14 +87,15 @@
           "Mismatching which coefficient pairs with which in the cross-multiplication.",
           "Losing a sign in one of the three denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No numbers, but the method is unchanged: solve two lines by cross-multiplication, carrying the letters."
       },
       {
         "id": "s2_point_of_intersection",
         "kind": "equation",
         "label": "Write the point of intersection",
-        "marks": 1,
-        "margin_note": "Second mark. Read off the point. Both coordinates share the denominator ca − b², which will clear when the point is substituted.",
+        "marks": 0,
+        "margin_note": "Read off the point. Both coordinates share the denominator ca − b², which will clear when the point is substituted.",
         "lines": [
           "⇒ x = (ab − c²)/(ca − b²)  and  y = (bc − a²)/(ca − b²)",
           "∴ Point of intersection  P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
@@ -133,14 +126,14 @@
           "Assigning the numerators to the wrong coordinates.",
           "Cancelling the denominator too early."
         ],
-        "mark_note": "Method"
+        "memory_tip": "Both coordinates share the denominator ca − b², which clears on substitution."
       },
       {
         "id": "s3_substitute_third",
         "kind": "equation",
         "label": "Substitute into the third",
-        "marks": 1,
-        "margin_note": "Third mark. Concurrent means P lies on the third line as well, so substituting must give zero — and multiplying through by the denominator clears every fraction at once.",
+        "marks": 0,
+        "margin_note": "Concurrent means P lies on the third line as well, so substituting must give zero — and multiplying through by the denominator clears every fraction at once.",
         "lines": [
           "Given lines are concurrent, so P lies on cx + ay + b = 0",
           "⇒ c[(ab − c²)/(ca − b²)] + a[(bc − a²)/(ca − b²)] + b = 0",
@@ -173,7 +166,7 @@
           "Substituting into (1) or (2), which gives 0 = 0 and proves nothing.",
           "Forgetting to multiply the standalone b by the denominator."
         ],
-        "mark_note": "Method"
+        "memory_tip": "Concurrent means P lies on the third line too, so substituting must give ZERO."
       },
       {
         "id": "s4_simplify",
@@ -216,8 +209,10 @@
           "Treating cab, abc and bca as different terms.",
           "Leaving the answer as 3abc − (a³+b³+c³) = 0 without stating the required form."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The three mixed terms are all abc, and the three cubes collect on the other side."
       }
     ]
-  }
+  },
+  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² cancels the moment it goes into the third line. What survives is 3abc − (a³ + b³ + c³) = 0, which is already the result."
 }

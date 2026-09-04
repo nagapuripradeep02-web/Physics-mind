@@ -45,13 +45,14 @@
         "label": "Find the required slope",
         "marks": 1,
         "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then keep it, because parallel lines share a slope.",
+        "memory_tip": "Read the given slope off as −a/b and KEEP it — parallel lines share a slope.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 2x + 3y + 7 = 0",
-          "It's slope  m = −a/b = −2/3",
+          "Its slope  m = −a/b = −2/3",
           "A parallel line has the same slope, so the required slope is −2/3"
         ],
         "recall": {
@@ -75,7 +76,7 @@
             "same slope"
           ]
         },
-        "why": "The slope is fixed entirely by the other line, so it can be written before the given point is touched at all.",
+        "why": "The slope is fixed entirely by the other line, so it can be written before the given point is used at all.",
         "common_mistakes": [
           "Taking the negative reciprocal when the lines are parallel.",
           "Reading the slope as −b/a."
@@ -87,7 +88,8 @@
         "kind": "boxed_final",
         "label": "Write the line through the point",
         "marks": 1,
-        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. The book also prints a one-line shortcut for this shape, given below.",
+        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. There is also a one-line shortcut for this shape, given below.",
+        "memory_tip": "Point-slope form, then clear the fraction and collect.",
         "lines": [
           "Parallel line through (5, 4) with slope −2/3 is  y − y₁ = m(x − x₁)",
           "⇒ y − 4 = (−2/3)(x − 5)",
@@ -126,7 +128,7 @@
             "required line"
           ]
         },
-        "why": "The book's shortcut works because a parallel line keeps the same coefficients in the same places, so only the constant has to be recomputed.",
+        "why": "The shortcut works because a parallel line keeps the same coefficients in the same places, so only the constant has to be recomputed.",
         "common_mistakes": [
           "Sign slip when the point has a negative coordinate.",
           "Leaving the answer with a fraction in it."
@@ -134,5 +136,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The short route skips the slope completely: a parallel line through (x₁, y₁) is a(x − x₁) + b(y − y₁) = 0, so 2(x − 5) + 3(y − 4) = 0 reaches the answer with no fractions at all."
 }

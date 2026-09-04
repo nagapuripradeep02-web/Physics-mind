@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_tangent_intercepts_cm_cn_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a tangent to the ellipse x²/a² + y²/b² = 1 (a > b) meets its major axis and minor axis at M and N respectively, then prove that a²/(CM)² + b²/(CN)² = 1, where C is the centre of the ellipse.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the tangent at the parametric point",
+      "marks": 1
+    },
+    {
+      "label": "Find the intercepts M and N",
+      "marks": 1
+    },
+    {
+      "label": "Express cos θ and sin θ in CM, CN",
+      "marks": 1
+    },
+    {
+      "label": "Apply the identity and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 8 Ellipse, answer 75. NOT on an SSP page. Printed appearances: AP 18 · TS 18. Book p.64 prints three empty tick boxes but no numeric mark tags, so the 1+1+1+1 split here is OURS, following the four natural stages of the proof. The book itself draws a small figure beside this answer — an ellipse with axes X, Y, centre C, tangent point P, and the intercepts M (on the major axis) and N (on the minor axis) — so this card reproduces that figure, per the rule that a figure is authored where the book draws one. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "M and N are the tangent's own x- and y-intercepts, found by the ordinary intercept method (set y = 0 for M, set x = 0 for N) — no separate formula for M and N needs to be memorised.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the tangent at the parametric point",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. Every point on the ellipse can be written as P(θ) = (a cos θ, b sin θ).",
+        "memory_tip": "Start any 'tangent meets the axes' proof from the parametric point P(θ).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Parametric point on the ellipse:",
+          "P(θ) = (a cos θ, b sin θ)",
+          "Equation of the tangent at P(θ):",
+          "(x cos θ)/a + (y sin θ)/b = 1",
+          "⇒ x / (a/cos θ) + y / (b/sin θ) = 1"
+        ],
+        "why": "Writing the tangent line in intercept form x/p + y/q = 1 makes its x- and y-intercepts p and q directly readable, which is exactly what M and N are.",
+        "common_mistakes": [
+          "Writing the parametric point with sin and cos swapped.",
+          "Not rearranging the tangent into intercept form before trying to read off M and N."
+        ]
+      },
+      {
+        "id": "s2_intercepts",
+        "kind": "equation",
+        "label": "Find the intercepts M and N",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. M is the tangent's x-intercept (on the major axis), N is its y-intercept (on the minor axis).",
+        "memory_tip": "In intercept form x/p + y/q = 1, p is the x-intercept and q is the y-intercept — read them off directly.",
+        "lines": [
+          "The tangent meets the major axis (X-axis)",
+          "at M and the minor axis (Y-axis) at N",
+          "⇒ X-intercept = CM",
+          "= a/cos θ  and  Y-intercept = CN = b/sin θ"
+        ],
+        "why": "Since C is the origin (the centre of the ellipse), the distances CM and CN are exactly the x- and y-intercepts of the tangent line found in step 1.",
+        "common_mistakes": [
+          "Swapping which intercept is CM and which is CN.",
+          "Forgetting that CM and CN are being measured from the centre C, not from the point P(θ)."
+        ]
+      },
+      {
+        "id": "s3_express",
+        "kind": "equation",
+        "label": "Express cos θ and sin θ in CM, CN",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Invert the two relations from step 2 to isolate cos θ and sin θ.",
+        "memory_tip": "Once CM = a/cos θ is known, cos θ = a/CM follows by simply inverting.",
+        "lines": [
+          "From CM = a/cos θ and CN = b/sin θ:",
+          "cos θ = a/CM  and  sin θ = b/CN"
+        ],
+        "why": "Isolating cos θ and sin θ in terms of the two measurable lengths CM and CN sets up the identity cos²θ + sin²θ = 1 as the final step.",
+        "common_mistakes": [
+          "Inverting only one of the two relations and leaving the other as CM = a/cos θ.",
+          "Mixing up a with CM or b with CN when inverting."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Apply the identity and conclude",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. cos²θ + sin²θ = 1 turns directly into the required identity.",
+        "memory_tip": "Whenever cos θ and sin θ are both isolated, squaring and adding using cos²θ + sin²θ = 1 finishes the proof.",
+        "lines": [
+          "cos²θ + sin²θ = 1",
+          {
+            "text": "a²/(CM)² + b²/(CN)² = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting cos θ = a/CM and sin θ = b/CN into cos²θ + sin²θ = 1 gives exactly the identity that was to be proved.",
+        "common_mistakes": [
+          "Squaring a/CM incorrectly, e.g. writing a/CM² instead of a²/(CM)².",
+          "Stopping one line early, at cos²θ + sin²θ = 1, without substituting back in terms of CM and CN."
+        ]
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "margin_note": "No marks — the question does not ask for a diagram. The book draws this figure alongside its own answer.",
+        "memory_tip": "M sits on the major axis, N sits on the minor axis — the tangent line joins them, touching the ellipse at P.",
+        "figure": {
+          "id": "ellipse_tangent_intercepts_mn",
+          "width": 300,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "mn_xaxis",
+              "d": "M 30 150 L 270 150",
+              "ms": 3430
+            },
+            {
+              "type": "stroke",
+              "id": "mn_yaxis",
+              "d": "M 150 40 L 150 260",
+              "ms": 3140
+            },
+            {
+              "type": "stroke",
+              "id": "mn_ellipse",
+              "d": "M 60 150 A 90 55 0 1 0 240 150 A 90 55 0 1 0 60 150",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "mn_tangent",
+              "d": "M 150 54.1 L 259.9 150",
+              "ms": 2080
+            },
+            {
+              "type": "stroke",
+              "id": "mn_dot_p",
+              "d": "M 220.2 118.5 A 3.5 3.5 0 1 0 227.2 118.5 A 3.5 3.5 0 1 0 220.2 118.5",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "mn_lbl_c",
+              "x": 132,
+              "y": 145,
+              "text": "C",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "mn_lbl_m",
+              "x": 262,
+              "y": 144,
+              "text": "M",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "mn_lbl_n",
+              "x": 155,
+              "y": 48,
+              "text": "N",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "mn_lbl_p",
+              "x": 228,
+              "y": 104,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            }
+          ]
+        },
+        "why": "The picture shows the tangent at P crossing the major axis at M and the minor axis at N, with C at the centre — the same layout the book itself draws beside this proof.",
+        "common_mistakes": [
+          "Drawing M on the minor axis and N on the major axis, the reverse of the question's naming.",
+          "Drawing the tangent passing through the centre C, which a tangent line never does."
+        ]
+      }
+    ]
+  }
+}

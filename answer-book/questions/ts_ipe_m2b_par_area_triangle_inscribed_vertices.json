@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_area_triangle_inscribed_vertices",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If y₁, y₂, y₃ are the y-coordinates of the vertices of the triangle inscribed in the parabola y² = 4ax then show that the area of the triangle is (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| square units.",
+  "appearances": [
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the vertices in parametric form",
+      "marks": 1
+    },
+    {
+      "label": "Set up the area determinant and factor it",
+      "marks": 3
+    },
+    {
+      "label": "Convert to y-differences",
+      "marks": 2
+    },
+    {
+      "label": "Write the boxed area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.25 — LAQ chapter 2 Parabola, answer 14, on a printed Super Scoring Page (SSP 25) with the printed aside 'WHAT AN EASY SOLUTION!'. Printed appearance: TS 2015. This is one of the chapter's Five STAR Q's (see the standard-form-derivation card's note). THE MARK SPLIT IS OURS — no margin mark tags are printed for this answer; the split below follows the proof's natural stages. NOTATION: the book's own working uses a 2×2 determinant of coordinate differences (not a 3×3 one) to reach the area — one line of that determinant is typeset here with render:katex, since a determinant's row/column layout has no honest single-line Unicode form; every other line stays plain Unicode. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Parabola · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_vertices",
+        "kind": "equation",
+        "label": "Take the vertices in parametric form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark, for stating the parametric form correctly.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take the vertices as P(x₁,y₁) = (at₁², 2at₁),",
+          "Q(x₂,y₂) = (at₂², 2at₂),",
+          "R(x₃,y₃) = (at₃², 2at₃)."
+        ],
+        "why": "Every point on y² = 4ax can be written as (at², 2at) for some parameter t, so writing all three vertices this way turns the geometry into pure algebra in t₁, t₂, t₃.",
+        "common_mistakes": [
+          "Writing the parametric point as (2at, at²) with the two coordinates swapped.",
+          "Using a different letter a for each vertex instead of one shared a with three different parameters t."
+        ],
+        "memory_tip": "One shared a, three different t's — (at², 2at) gives the coordinates of any point on y² = 4ax."
+      },
+      {
+        "id": "s2_area_determinant",
+        "kind": "equation",
+        "label": "Set up and factor the area determinant",
+        "marks": 3,
+        "mark_note": "Method",
+        "margin_note": "Three marks. This is the heart of the proof — the determinant, then the two factorings.",
+        "lines": [
+          {
+            "text": "\\text{Area of }\\triangle PQR = \\frac{1}{2}\\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "render": "katex"
+          },
+          "= (1/2)|at₁²−at₂²,",
+          "at₁²−at₃²; 2at₁−2at₂, 2at₁−2at₃|",
+          "= (a·2a/2)|t₁²−t₂², t₁²−t₃²; t₁−t₂, t₁−t₃|",
+          "= a²|(t₁−t₂)(t₁+t₂), (t₁−t₃)(t₁+t₃); t₁−t₂, t₁−t₃|",
+          "= a²(t₁−t₂)(t₁−t₃)[(t₁+t₂) − (t₁+t₃)]",
+          "= a²(t₁−t₂)(t₁−t₃)(t₂−t₃)"
+        ],
+        "why": "Each column of the determinant shares a factor — the first column shares (t₁−t₂), the second shares (t₁−t₃) — and pulling those factors out front leaves a much smaller expression, (t₁+t₂) − (t₁+t₃), which simplifies to t₂−t₃.",
+        "common_mistakes": [
+          "Not spotting the common factor in each column and trying to expand the determinant by brute force instead.",
+          "Losing a sign when pulling (t₁−t₂) or (t₁−t₃) out of its column."
+        ],
+        "memory_tip": "The top row holds differences of squares, t₁²−t₂² = (t₁−t₂)(t₁+t₂), and the bottom row holds the matching plain differences t₁−t₂ — so each column shares a factor that can be pulled out front, and that is what shrinks the determinant."
+      },
+      {
+        "id": "s3_convert_to_y",
+        "kind": "equation",
+        "label": "Convert t-differences to y-differences",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the substitution that brings y₁, y₂, y₃ back into the answer.",
+        "lines": [
+          "Since 2at₁ = y₁,",
+          "t₁ = y₁/(2a); similarly t₂ = y₂/(2a),",
+          "t₃ = y₃/(2a).",
+          "So (t₁−t₂) = (y₁−y₂)/(2a),",
+          "(t₁−t₃) = (y₁−y₃)/(2a), (t₂−t₃) = (y₂−y₃)/(2a)."
+        ],
+        "why": "The parameter t was only ever a convenient stand-in for y/(2a), so replacing every t-difference by its matching y-difference turns the result back into the coordinates the question actually asks for.",
+        "common_mistakes": [
+          "Forgetting the factor of 2 and writing t = y/a instead of t = y/(2a).",
+          "Mixing up which y-difference matches which t-difference."
+        ],
+        "memory_tip": "t is just y divided by 2a — swap every t-difference for its y-difference divided by 2a."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Write the boxed area",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark for the boxed area — check the denominator is 8a, not 4a or 16a.",
+        "lines": [
+          "Area",
+          "= a² × |(y₁−y₂)/(2a)| × |(y₁−y₃)/(2a)| ×",
+          "|(y₂−y₃)/(2a)|",
+          "= |(y₁−y₂)(y₂−y₃)(y₃−y₁)| / (8a)",
+          {
+            "text": "∴ (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "The three factors of 2a in the denominator combine to 8a³, and one power of a² from out front cancels two of those, leaving the single power of a in the boxed answer's denominator.",
+        "common_mistakes": [
+          "Losing track of how many factors of 2a appear and writing 4a or 16a in the denominator instead of 8a.",
+          "Dropping the absolute value bars, which matter here since an area cannot be negative."
+        ],
+        "memory_tip": "Three factors of 2a in the bottom make 8a³; the a² on top cancels two of those a's, leaving 8a in the final denominator."
+      }
+    ]
+  },
+  "insider_note": "Reaching a²(t₁−t₂)(t₁−t₃)(t₂−t₃) by factoring each column of the determinant is worth showing explicitly — jumping straight from the determinant to that product without the factoring step is where marks are lost."
+}

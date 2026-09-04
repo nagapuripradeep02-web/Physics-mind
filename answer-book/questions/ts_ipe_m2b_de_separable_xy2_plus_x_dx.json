@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_separable_xy2_plus_x_dx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve (xy² + x)dx + (yx² + y)dy = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Recognise the separable form",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 1
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 11 Differential Equations, answer 92, the first answer of the chapter. On a ★★★ SSP (Super Scoring Page): book p.72 carries the SSP 72 banner. Printed appearance tags: AP 15, TS 20. The mark split is OURS: book p.72 prints margin marks only for answer 94, not for this one. The 1+1+1+1 split here is patterned on the general four-checkpoint shape used for a variables-separable equation in this chapter — spot the factorable/separable form, separate x from y, integrate, state the final relation. Star rank: the book gives the Differential Equations SAQ chapter ★★ in its SAQ chapter table (book p.49), so every Differential Equations SAQ entry takes stars 2 — that rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Differential Equations holds Q17. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Both brackets share the common factor x and y respectively — pulling that factor out first is what turns this equation into a separable one, rather than trying to treat it as a homogeneous equation.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_recognise_separable",
+        "kind": "equation",
+        "label": "Recognise the separable form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Factor x out of the first bracket and y out of the second before rearranging.",
+        "memory_tip": "xy² + x = x(y² + 1); yx² + y = y(x² + 1) — both brackets factor the same way.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given D.E is (xy² + x)dx + (yx² + y)dy = 0",
+          "⇒ x(y² + 1)dx + y(x² + 1)dy = 0",
+          "This equation is in the variables-separable",
+          "form."
+        ],
+        "why": "Factoring x out of the first bracket and y out of the second reveals that each bracket only depends on one variable, which is the sign that x and y can be fully separated to opposite sides.",
+        "common_mistakes": [
+          "Not factoring out x and y first, and instead attempting the y = vx homogeneous substitution.",
+          "Factoring incorrectly as x(y² − 1) instead of x(y² + 1)."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Move the y-terms to the right side and divide by (x²+1)(y²+1).",
+        "memory_tip": "Divide the whole equation by (x²+1)(y²+1) to send x-terms and y-terms to opposite sides.",
+        "lines": [
+          "x(y² + 1)dx = −y(x² + 1)dy",
+          "⇒ x/(x² + 1) dx = −y/(y² + 1) dy"
+        ],
+        "why": "Dividing both sides by (x² + 1)(y² + 1) leaves x and its differential entirely on one side and y and its differential entirely on the other, which is exactly what separation of variables requires.",
+        "common_mistakes": [
+          "Dividing only one bracket instead of both, leaving a mixed x and y term.",
+          "Losing the minus sign when moving the y(x²+1)dy term across the equals sign."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both sides are the standard ∫x/(x²+1)dx = (1/2)log(x²+1) shape.",
+        "memory_tip": "The numerator on each side is exactly half the derivative of the denominator — a direct log-integral.",
+        "lines": [
+          "∫ x/(x² + 1) dx = −∫ y/(y² + 1) dy",
+          "⇒ (1/2)log(x² + 1) = −(1/2)log(y² + 1) + c₁",
+          "⇒ log(x² + 1) + log(y² + 1) = log c"
+        ],
+        "why": "Both integrals are the standard form ∫(a fraction whose numerator is half the derivative of its denominator), giving a log of the denominator directly; combining the two logs on the same side keeps the next step simple.",
+        "common_mistakes": [
+          "Missing the factor of 1/2 in front of each log.",
+          "Leaving the equation with logs on both sides instead of combining them onto one side before the next step."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Remove the log by exponentiating both sides.",
+        "memory_tip": "log(A) = log(B) means A = B directly — no further algebra is needed once the logs match.",
+        "lines": [
+          "⇒ log[(x² + 1)(y² + 1)] = log c",
+          {
+            "text": "(x² + 1)(y² + 1) = c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Once both sides are written as a single log, equal logs mean the quantities inside are equal, giving the final relation between x, y and the constant directly.",
+        "common_mistakes": [
+          "Writing the final answer as x² + y² = c, dropping the +1 terms and the product structure.",
+          "Leaving the log on the left side instead of exponentiating to remove it."
+        ]
+      }
+    ]
+  }
+}

@@ -130,7 +130,7 @@
             "style": "eq"
           }
         ],
-        "why": "The exact relation has n₁ + n₂ in the denominator, and an unknown M₂ then appears on both sides. Dropping n₂ is an approximation, valid only while the solution is dilute, and it is what makes M₂ come out in one step. Say that it is an approximation: the same step is why SAQ 4 of this unit answers 8 g instead of the exact 10 g.",
+        "why": "The exact relation has n₁ + n₂ in the denominator, so the unknown M₂ appears twice on the right-hand side. Dropping n₂ is an approximation, valid only while the solution is dilute, and it is what leaves the short form written in the next step. Say that it is an approximation: the same step is why SAQ 4 of this unit answers 8 g instead of the exact 10 g.",
         "common_mistakes": [
           "Dropping n₂ from the NUMERATOR as well. Only the n₂ in the denominator is neglected; the solute is the whole point of the numerator.",
           "Turning the moles upside down. n = mass / molar mass, so w₂/M₂ goes on top and w₁/M₁ below."
@@ -162,7 +162,7 @@
           "Putting M₁ in the denominator. The molar mass of the SOLVENT multiplies on top; the mass of the solvent w₁ is below.",
           "Answering only the first half of the question. The question asks two things, so the formula for M₂ must be reached, not just defined."
         ],
-        "memory_tip": "Solute mass and solvent molar mass on top, solvent mass and the lowering below.",
+        "memory_tip": "Solute mass, solvent molar mass and p⁰ on top; solvent mass and the lowering (p⁰ − pₛ) below.",
         "margin_note": "Box the formula and list every symbol under it. The symbol list is what shows the formula was derived and not recalled."
       }
     ]

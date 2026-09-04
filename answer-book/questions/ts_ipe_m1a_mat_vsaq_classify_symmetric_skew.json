@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_classify_symmetric_skew",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Is the matrix with rows (0, 1, 4), (−1, 0, 7) and (−4, −7, 0) symmetric or skew symmetric?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the transpose",
+      "marks": 1
+    },
+    {
+      "label": "Compare and name the type",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing the transpose separately from the comparison that names the type, because the transpose is the only real work and a one-word answer shows none of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you decide which of the two it is, and give the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transpose",
+        "kind": "equation",
+        "label": "Write the transpose",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Turn rows into columns. Row 1 of A becomes column 1 of Aᵀ, and so on.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} 0 & 1 & 4 \\\\ -1 & 0 & 7 \\\\ -4 & -7 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Turn the rows into columns to get Aᵀ:",
+          {
+            "text": "A^{T} = \\begin{bmatrix} 0 & -1 & -4 \\\\ 1 & 0 & -7 \\\\ 4 & 7 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the transpose is written by turning each row of A into the matching column.",
+          "accept": [
+            "write the transpose by turning rows into columns",
+            "row one becomes column one and so on",
+            "A transpose has rows zero minus one minus four, one zero minus seven, four seven zero",
+            "rows ni columns ga rasi A transpose teeyali",
+            "take the transpose first"
+          ],
+          "reject": [
+            "it is skew symmetric",
+            "compare them"
+          ],
+          "heard_as": [
+            "transpose",
+            "rows into columns",
+            "A transpose"
+          ]
+        },
+        "why": "Both tests, Aᵀ = A and Aᵀ = −A, are read off the same transpose, so writing Aᵀ once answers the whole question. Guessing from the look of the matrix is not a method a marker can credit.",
+        "common_mistakes": [
+          "Changing the signs while transposing.",
+          "Reversing the order of the rows instead of transposing.",
+          "Naming the type with no transpose written."
+        ],
+        "memory_tip": "Transpose means row 1 becomes column 1, row 2 becomes column 2, row 3 becomes column 3."
+      },
+      {
+        "id": "s2_compare",
+        "kind": "boxed_final",
+        "label": "Compare and name the type",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Aᵀ ≠ A because of the (1,2) entry, and Aᵀ = −A entry by entry. The diagonal 0, 0, 0 fits a skew matrix, but it is the comparison with −A that proves it.",
+        "lines": [
+          "Aᵀ ≠ A: the (1,2) entry is −1 in Aᵀ but 1 in A.",
+          "So A is not symmetric. Now write −A:",
+          {
+            "text": "-A = \\begin{bmatrix} 0 & -1 & -4 \\\\ 1 & 0 & -7 \\\\ 4 & 7 & 0 \\end{bmatrix} = A^{T}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Every entry of −A matches Aᵀ, and the",
+          "principal diagonal is 0, 0, 0.",
+          {
+            "text": "∴ A is a skew symmetric matrix.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Aᵀ is not equal to A but is equal to −A, so the matrix is skew symmetric.",
+          "accept": [
+            "A transpose is not A but it does equal minus A so it is skew symmetric",
+            "the one two entry is minus one in the transpose and one in A so it is not symmetric",
+            "minus A matches the transpose entry by entry so it is skew symmetric",
+            "A transpose equals minus A kabatti skew symmetric",
+            "the diagonal is all zeros which fits skew symmetric"
+          ],
+          "reject": [
+            "it is symmetric",
+            "compare the two matrices"
+          ],
+          "heard_as": [
+            "skew symmetric",
+            "minus A",
+            "not symmetric",
+            "diagonal zeros"
+          ]
+        },
+        "why": "The two tests are answered one after the other, so the answer is a decision and not a guess. The all-zero diagonal is a quick confirmation, because a symmetric matrix may have any diagonal while a skew symmetric one must have zeros.",
+        "common_mistakes": [
+          "Calling it symmetric because the numbers 1, 4 and 7 reappear.",
+          "Deciding from the zero diagonal alone, with no comparison.",
+          "Writing −A but comparing it with A instead of with Aᵀ."
+        ],
+        "memory_tip": "Mirrored entries equal means symmetric; mirrored entries opposite in sign means skew symmetric."
+      }
+    ]
+  }
+}

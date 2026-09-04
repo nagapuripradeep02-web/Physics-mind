@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Put one corner at the origin and three edges along the axes. A UNIT cube is enough: scaling a cube does not change the angle between its diagonals.",
+        "memory_tip": "A UNIT cube is enough — scaling a cube does not change the angle between its diagonals. A cube of side a works too, but every a² cancels — side 1 gets there faster.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +90,7 @@
         },
         "why": "The angle between diagonals is the same for every cube, so choosing side 1 loses no generality and makes every vector a sum of unit vectors.",
         "common_mistakes": [
-          "Using a cube of side a and carrying it through pointlessly.",
+          "Taking a unit cube without saying that the angle is the same for every cube, so the working reads as one special case rather than a proof.",
           "Placing the cube off the axes, which makes the vectors messy."
         ]
       },
@@ -99,6 +100,7 @@
         "label": "Draw the cube",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. Mark the two diagonals OP and CL — with them on the page you can read their components straight off instead of deriving them.",
+        "memory_tip": "With OP and CL drawn, their components can be read off instead of derived.",
         "figure": {
           "id": "unit_cube_diagonals",
           "width": 270,
@@ -262,6 +264,7 @@
         "marks": 1,
         "mark_note": "Diagonals",
         "margin_note": "Second mark. Walk each diagonal edge by edge and add the steps. OP goes along i, then j, then k; CL goes along i, then j, then BACK along k — hence the minus.",
+        "memory_tip": "Walk each diagonal edge by edge. OP goes i, j, k; CL goes i, j, then BACK along k — hence the minus.",
         "lines": [
           "Consider the diagonals OP and CL.",
           "OP = OA + AL + LP = i + j + k   …(1)",
@@ -303,6 +306,7 @@
         "marks": 2,
         "mark_note": "The angle",
         "margin_note": "Half the marks. The dot product gives 1 + 1 − 1 = 1, and each magnitude is √3, so the denominator is 3. Both diagonals have the same length, which is what makes it so clean.",
+        "memory_tip": "The dot gives 1 + 1 − 1 = 1 and each magnitude is √3, so the denominator is 3.",
         "lines": [
           {
             "text": "\\cos\\theta = \\frac{OP \\cdot CL}{|OP|\\,|CL|}",
@@ -347,5 +351,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Choose a UNIT cube with one corner at the origin so every component is 1 or −1. The two diagonals differ in a single sign, which is what leaves 1 + 1 − 1 = 1 over 3."
 }

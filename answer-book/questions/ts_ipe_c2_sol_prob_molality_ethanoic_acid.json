@@ -67,7 +67,7 @@
           "Dividing by 75 instead of 0.075. Molality is per KILOGRAM of solvent.",
           "Writing the unit as mol L⁻¹. That is molarity; molality is mol kg⁻¹."
         ],
-        "memory_tip": "MolaLity uses the Litre-free mass of solvent in kg. MolaRity uses the volume of solution.",
+        "memory_tip": "MolaLity divides by the MASS of solvent, in kg. MolaRity divides by the VOLUME of solution, in litres.",
         "margin_note": "Convert grams to kilograms on its own line, and write the unit mol kg⁻¹."
       }
     ]

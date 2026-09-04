@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_tan_half_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In △ABC, prove that tan(A/2) + tan(B/2) + tan(C/2) = (bc + ca + ab − s²)/Δ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write each tangent over Δ",
+      "marks": 1
+    },
+    {
+      "label": "Collect and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.122, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 5(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting all three tangents over Δ and one to the expansion that produces bc + ca + ab − s²; the middle expansion step is kept in full at zero marks. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_tangent_over_d",
+        "kind": "equation",
+        "label": "Write each tangent over Δ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. tan(A/2) = (s−b)(s−c)/Δ: the two factors are the ones that do NOT carry the letter a.",
+        "memory_tip": "For tan(A/2) the numerator is (s−b)(s−c) — the two factors that do not carry the letter a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Heron's formula: Δ = √(s(s−a)(s−b)(s−c))",
+          "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
+          "= (s−b)(s−c)/√(s(s−a)(s−b)(s−c))",
+          "= (s−b)(s−c)/Δ",
+          "Similarly tan(B/2) = (s−c)(s−a)/Δ",
+          "and tan(C/2) = (s−a)(s−b)/Δ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(A/2) = (s−b)(s−c)/Δ, and the same pattern gives the other two tangents.",
+          "accept": [
+            "tan half A is s minus b into s minus c over delta",
+            "rationalise the half angle root so the bottom becomes Heron's product which is delta",
+            "the numerator uses the two brackets that do not contain a",
+            "tan half A ki s minus b into s minus c by delta vasthundi",
+            "write all three tangents over the same delta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus b",
+            "s minus c",
+            "delta",
+            "tan half A",
+            "Heron"
+          ]
+        },
+        "why": "Multiplying the top and the bottom of the half-angle root by (s−b)(s−c) makes the denominator Heron's product, which is Δ. All three tangents then share one denominator.",
+        "common_mistakes": [
+          "Writing tan(A/2) = s(s−a)/Δ, which is cot(A/2).",
+          "Pairing (s−a) with the wrong angle."
+        ]
+      },
+      {
+        "id": "s2_expand_the_three_products",
+        "kind": "equation",
+        "label": "Expand the three products",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. Each bracket pair gives s², a term in s, and a product of two sides.",
+        "memory_tip": "Every product has the same shape: s² − s(sum of the two sides) + (their product).",
+        "lines": [
+          "∴ L.H.S = N/Δ, where",
+          "N = (s−b)(s−c) + (s−c)(s−a) + (s−a)(s−b)",
+          "(s−b)(s−c) = s² − s(b+c) + bc",
+          "(s−c)(s−a) = s² − s(c+a) + ca",
+          "(s−a)(s−b) = s² − s(a+b) + ab"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each product expands to s² − s(sum of two sides) + (product of those two sides).",
+          "accept": [
+            "expand each pair to s squared minus s times the sum plus the product",
+            "all three expansions have the same shape",
+            "write out s minus b into s minus c as s squared minus s b plus c plus b c",
+            "prathi jodi ni expand chesthe s square minus s into sum plus product vasthundi",
+            "expand the three brackets before adding"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s squared",
+            "expand",
+            "b c",
+            "sum of two sides"
+          ]
+        },
+        "why": "Each product expands to the same shape: an s², a term in s, and a product of two sides. Writing all three out makes the collection in the next step a single addition.",
+        "common_mistakes": [
+          "Expanding (s−b)(s−c) as s² − bc.",
+          "Dropping one of the three products."
+        ]
+      },
+      {
+        "id": "s3_collect_and_conclude",
+        "kind": "boxed_final",
+        "label": "Collect and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. a + b + c = 2s turns 3s² − 2s(2s) into −s², which is the sign the answer needs.",
+        "memory_tip": "a + b + c = 2s, so 3s² − 2s(2s) = 3s² − 4s² = −s².",
+        "lines": [
+          "N = 3s² − 2s(a+b+c) + (ab + bc + ca)",
+          "= 3s² − 4s² + (ab + bc + ca)   [∵ a+b+c = 2s]",
+          "= ab + bc + ca − s²",
+          {
+            "text": "∴ L.H.S = (bc + ca + ab − s²)/Δ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a+b+c = 2s makes the s-terms 4s², leaving ab + bc + ca − s² over Δ.",
+          "accept": [
+            "add the three expansions and use a plus b plus c equals two s",
+            "three s squared minus four s squared leaves minus s squared",
+            "the answer is a b plus b c plus c a minus s squared over delta",
+            "a plus b plus c ante two s, so three s square minus four s square",
+            "collect the terms and the s squared becomes negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two s",
+            "three s squared",
+            "minus s squared",
+            "delta"
+          ]
+        },
+        "why": "Each side appears in exactly two of the three products, so the terms in s add to 2s(a+b+c). Replacing a+b+c by 2s is what turns 3s² into −s².",
+        "common_mistakes": [
+          "Writing a + b + c = s instead of 2s.",
+          "Getting 3s² − 2s² and finishing with +s²."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, data exact, no solution content by policy. Sections: VSAQ 11, SAQ 5, LAQ 4, PROBLEM 15 numbered problems (22 entries after splitting the (i)/(ii)/(a)/(b) parts of problems 6, 9 and 15). The FORMULAE block on scan pp.71–72 (printed 73–74) is not indexed. The scan crops the outer margins: some question numerals and asterisks are partly cut (LAQ 1, 2, 4; problems 10, 11) and the right edge of problem 7's stem is lost — its data were confirmed from the values used in the printed working.",
+  "chapter": { "number": 7, "printed_title": "OSCILLATIONS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Give two examples of periodic motion that is not oscillatory.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "A girl sits on a swing and is swinging. What is the effect on the frequency of oscillation if she stands up?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "The bob of a simple pendulum is a hollow sphere filled with water. How does the period of oscillation change if the water begins to drain out of the hollow sphere?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Will a pendulum clock gain or lose time when it is taken to the top of a mountain?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "What happens to the energy of a simple harmonic oscillator if its amplitude is doubled?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Can a simple pendulum be used in an artificial satellite?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Can a simple pendulum oscillate at the centre of the earth? Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "What happens to the time period of a simple pendulum if its length is doubled?",
+      "appearance_years": [], "notes": "Printed typo: the book prints 'timer period' for 'time period'." },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "A block of mass m hangs from a spiral spring and stretches it by 20 cm. What is the period of oscillation of the block when it is pulled down and released?",
+      "appearance_years": [], "notes": "The value of g is not given in the question; a numerical answer needs a chosen g." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Write the expression for the total energy of a simple harmonic oscillator.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "What is the force constant of a spring? On what factors does it depend?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Define simple harmonic motion. Give two examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "Obtain an equation for the frequency of oscillation of a spring of force constant k to which a mass m is attached.",
+      "appearance_years": [], "notes": "The book prints a figure of a vertical spring hanging from a rigid support with a block m, shown at equilibrium and displaced by y." },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "Derive expressions for the kinetic energy and the potential energy of a simple harmonic oscillator.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 77, "scan_page": 75,
+      "stem": "Derive the expressions for the displacement, velocity and acceleration of a particle that executes simple harmonic motion.",
+      "appearance_years": [], "notes": "Printed grammar: 'a particle executes S.H.M.'; the printed answer uses the reference-circle (projection of uniform circular motion) method." },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 77, "scan_page": 75,
+      "stem": "How does the energy of a simple pendulum vary as it moves from one extreme position to the other during its oscillation?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Define simple harmonic motion. Show that the motion of the projection (point) of a particle performing uniform circular motion, on any diameter, is simple harmonic.",
+      "appearance_years": [], "notes": "The asterisk before the number is partly cut by the scan's left margin; read as one star." },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is a seconds pendulum?",
+      "appearance_years": [], "notes": "The asterisk before the number is partly cut by the scan's left margin; read as one star. The book prints a pendulum figure with length l, angle θ, and the components mg sin θ and mg cos θ." },
+
+    { "ref": "laq3", "section": "LAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "Derive the equations for the kinetic energy and the potential energy of a simple harmonic oscillator, and show that the total energy of a particle in simple harmonic motion is constant at every point on its path.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Show that the oscillations of a loaded spring are simple harmonic and derive an equation for its time period.",
+      "appearance_years": [], "notes": "The question numeral (and any asterisk) is cut off by the scan's left margin; numbered 4 by sequence, stars unknown and recorded as 0. The book prints a figure of a vertical spring with block m at equilibrium and displaced by y." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "The bob of a pendulum is a hollow brass sphere. What happens to the time period of the pendulum if the bob is completely filled with water? Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Two identical springs, each of force constant k, are joined one at the end of the other (in series). Find the effective force constant of the combination.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Which physical quantities have their maximum value at the mean position in simple harmonic motion?",
+      "appearance_years": [], "notes": "The book prints the answer in brackets directly after the question; it is omitted here." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "A particle executes simple harmonic motion such that the maximum velocity during the oscillation is numerically equal to half the maximum acceleration. What is the time period?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A mass of 2 kg attached to a spring of force constant 260 N m⁻¹ makes 100 oscillations. What is the time taken?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "i", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple pendulum in a stationary lift has time period T. What is the effect on the time period when the lift moves up with uniform velocity?",
+      "appearance_years": [], "notes": "Parts (i)–(v) share one stem. The book prints the five answers in brackets directly after the question; they are omitted here." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "ii", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple pendulum in a stationary lift has time period T. What is the effect on the time period when the lift moves down with uniform velocity?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "iii", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple pendulum in a stationary lift has time period T. What is the effect on the time period when the lift moves up with uniform acceleration a?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "iv", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple pendulum in a stationary lift has time period T. What is the effect on the time period when the lift moves down with uniform acceleration a?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "v", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple pendulum in a stationary lift has time period T. What is the effect on the time period when the lift begins to fall freely under gravity?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 1,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A particle executing simple harmonic motion has an amplitude of 4 cm, and its acceleration at a distance of 1 cm from the mean position is 3 cm s⁻². What is its velocity when it is at a distance of 2 cm from the mean position?",
+      "appearance_years": [], "notes": "The right edge of the printed stem is cut off by the scan. The data (amplitude 4 cm, acceleration 3 cm s⁻² at 1 cm, velocity asked at 2 cm) were confirmed from the values substituted in the printed working." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 1,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A simple harmonic oscillator has a time period of 2 s. What is the change in phase 0.25 s after it leaves the mean position?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "a", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A body describes simple harmonic motion with an amplitude of 5 cm and a period of 0.2 s. Find the acceleration and the velocity of the body when the displacement is 5 cm.",
+      "appearance_years": [], "notes": "Parts (a), (b), (c) share one stem: displacement 5 cm, 3 cm, 0 cm." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "b", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A body describes simple harmonic motion with an amplitude of 5 cm and a period of 0.2 s. Find the acceleration and the velocity of the body when the displacement is 3 cm.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "c", "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "A body describes simple harmonic motion with an amplitude of 5 cm and a period of 0.2 s. Find the acceleration and the velocity of the body when the displacement is 0 cm.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 1,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "The mass and the radius of a planet are both double those of the earth. If the time period of a simple pendulum on the earth is T, find its time period on the planet.",
+      "appearance_years": [], "notes": "The asterisk before the number is partly cut by the scan's left margin; read as one star." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 1,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "Calculate the change in the length of a simple pendulum of length 1 m when its period of oscillation changes from 2 s to 1.5 s.",
+      "appearance_years": [], "notes": "The asterisk before the number is partly cut by the scan's left margin; read as one star." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": null, "stars": 1,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "A freely falling body takes 2 seconds to reach the ground on a planet when it is dropped from a height of 8 m. If the period of a simple pendulum on the planet is π seconds, calculate the length of the pendulum.",
+      "appearance_years": [], "notes": "The book prints the answer in brackets directly after the question; it is omitted here." },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 1,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "The period of a simple pendulum is found to increase by 50% when the length of the pendulum is increased by 0.6 m. Calculate the initial length and the initial period of oscillation at a place where g = 9.8 m s⁻².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": null, "stars": 0,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "A clock regulated by a seconds pendulum keeps correct time. During summer the length of the pendulum increases to 1.02 m. How much will the clock gain or lose in one day?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": "i", "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "The time period of a body suspended from a spring is T. What is the new time period if the spring is cut into two equal parts and the mass is suspended from one part?",
+      "appearance_years": [], "notes": "Parts (i) and (ii) share one stem." },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": "ii", "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "The time period of a body suspended from a spring is T. What is the new time period if the spring is cut into two equal parts and the mass is suspended simultaneously from both parts?",
+      "appearance_years": [], "notes": null }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_am_x_two_gm_y_z_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let x be the arithmetic mean and let y, z be the two geometric means between any two positive numbers. Show that y³ + z³ = 2xyz.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write what the means say",
+      "marks": 1
+    },
+    {
+      "label": "Build y³ + z³",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.24, chapter 3 SEQUENCES & SERIES, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which progression a, y, z, b are in, and what each of y² and z² equals.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean_conditions",
+        "kind": "equation",
+        "label": "Write what the means say",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a + b = 2x, and the two neighbour relations y² = az and z² = yb. Naming a, y, z, b as a G.P. is the key line.",
+        "memory_tip": "In a G.P. every term squared equals the product of the two terms beside it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two positive numbers be a and b",
+          "x is the arithmetic mean, so x = (a + b)/2, that is  a + b = 2x",
+          "y and z are two geometric means, so a, y, z, b are in G.P.",
+          "In a G.P. each term squared is the product of its neighbours:  y² = az  and  z² = yb"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + b = 2x, that a, y, z, b are in G.P., and that y² = az and z² = yb.",
+          "accept": [
+            "a plus b equals two x from the arithmetic mean",
+            "a y z b are in geometric progression",
+            "y squared is a into z and z squared is y into b",
+            "rendu geometric means unte a y z b G P lo untay",
+            "each term squared is the product of the terms on either side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b is two x",
+            "a y z b",
+            "y squared is a z",
+            "z squared is y b"
+          ]
+        },
+        "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each term squared equals the product of its neighbours. Those two relations are all this identity needs.",
+        "common_mistakes": [
+          "Putting a, y, z, b in A.P. instead of G.P. A.P. is the condition for arithmetic means; y and z here are geometric means.",
+          "Writing y² = ab, which is the rule for a single geometric mean, not for two."
+        ]
+      },
+      {
+        "id": "s2_build_cubes",
+        "kind": "boxed_final",
+        "label": "Build y³ + z³",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The move is y³ = y × y²; after it the factor yz comes out and a + b = 2x finishes the proof.",
+        "memory_tip": "Multiply each square by its own term to make a cube, then take yz outside.",
+        "lines": [
+          "y³ = y × y² = y(az) = ayz",
+          "z³ = z × z² = z(yb) = byz",
+          "y³ + z³ = ayz + byz = yz(a + b) = yz(2x)",
+          {
+            "text": "∴ y³ + z³ = 2xyz",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y³ = ayz and z³ = byz, so y³ + z³ = yz(a + b) = yz(2x) = 2xyz.",
+          "accept": [
+            "multiply y squared by y to get a y z",
+            "multiply z squared by z to get b y z",
+            "take y z common and a plus b is two x",
+            "y z common teeste a plus b two x avuthundi",
+            "the sum of the cubes is two x y z"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a y z",
+            "b y z",
+            "y z common",
+            "two x y z"
+          ]
+        },
+        "why": "Multiplying each squared relation by its own term turns the squares into cubes and leaves yz as a common factor. The bracket that remains is a + b, which the arithmetic mean has already replaced by 2x.",
+        "common_mistakes": [
+          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but a dead end here, because neither mean condition fits that bracket.",
+          "Leaving the answer as yz(a + b) without putting a + b = 2x."
+        ]
+      }
+    ]
+  }
+}

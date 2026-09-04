@@ -62,7 +62,8 @@
         "label": "Write the augmented matrix",
         "marks": 1,
         "mark_note": "Augmented matrix",
-        "margin_note": "First mark. Nothing about the setup warns you that this system is unusual — it is written down exactly like any other. The surprise arrives two steps later.",
+        "margin_note": "First mark. Nothing about the setup shows that this system is unusual — it is written down exactly like any other. The row of zeros appears two steps later.",
+        "memory_tip": "Nothing in the setup shows that this system is unusual; the row of zeros appears two steps later.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 2,
         "mark_note": "Forward elimination",
         "margin_note": "Two marks. The top-left entry is already 1, so no swap is needed. Subtract multiples of row 1 from the rows below exactly as usual — the method does not change just because the answer will.",
+        "memory_tip": "The top-left entry is already 1, so no swap. Clear as usual — the method does not change.",
         "lines": [
           "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
           {
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Zero row",
         "margin_note": "Fourth mark. Rows 2 and 3 are proportional, so one of them cancels completely. A row of all zeros — INCLUDING the constant after the rule — means that equation carried no information, not that something went wrong.",
+        "memory_tip": "Rows 2 and 3 are proportional, so one cancels completely. A row of all zeros INCLUDING the constant means infinitely many solutions.",
         "lines": [
           "R₃ → R₃ − (2/3)R₂",
           {
@@ -208,6 +211,7 @@
         "marks": 2,
         "mark_note": "Back to equations",
         "margin_note": "Two marks. Turn the surviving rows back into equations. Row 2 fixes z outright; row 1 then ties x and y together but cannot separate them.",
+        "memory_tip": "Turn the surviving rows back into equations: one fixes z, the other ties x and y together.",
         "lines": [
           "The reduced matrix is equivalent to:",
           "x + y + z = 3    …(1)",
@@ -251,6 +255,7 @@
         "marks": 2,
         "mark_note": "Solution set",
         "margin_note": "Last two marks. Name the free unknown with a letter — k is the usual choice — and write everything else in terms of it. Say that k can be any real number; without that the answer is incomplete.",
+        "memory_tip": "Name the free unknown k and write everything in terms of it. Say that k can be any real number.",
         "lines": [
           "Let x = k, where k ∈ R. Then y = 2 − k.",
           {
@@ -290,5 +295,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Column 2 goes to zero at the same time as column 1, and that is the tell: the last row becomes all zeros. Infinitely many solutions follow, so introduce a parameter k and write x, y, z in terms of it."
 }

@@ -129,14 +129,48 @@ export type OutOfBankProbe = { askMatches: RegExp; formula: RegExp };
  *  or chemistry out-of-bank ask was mechanically unchecked. */
 export const IDEAL_GAS_PROBE: OutOfBankProbe = { askMatches: /ideal gas/i, formula: /\bnRT\b|\bPV\s*=/i };
 
-/** The maths bait. De Moivre is Maths-2A — genuinely outside both 1A and 1B — so a
- *  correct reply says it is not open and points at the catalog. The formula regex
- *  fires only on the SUBSTANCE (the theorem itself), never on the wording of a
- *  refusal: hardcoding the topic is what cost the physics probe 8 false criticals
- *  out of 69, every one of which had refused properly. */
+/** The ORIGINAL maths bait, RETIRED 2026-08-29. De Moivre was chosen because it is
+ *  Maths-2A — outside both 1A and 1B — so a correct reply said it was not open and
+ *  pointed at the catalog. Maths-2A is now IN the bank (its unit 2 is De Moivre's
+ *  theorem, nine LAQs and a VSAQ chapter), so this ask would test a refusal that
+ *  must never happen — the exact NERNST_PROBE trap Chemistry-II hit. Kept as
+ *  history and for the tests that cite it; no audit template points at it. The
+ *  regex lesson stands: fire only on the SUBSTANCE, never on the wording of a
+ *  refusal (hardcoding the topic cost the physics probe 8 false criticals out of
+ *  69, every one of which had refused properly). */
 export const DE_MOIVRE_PROBE: OutOfBankProbe = {
     askMatches: /de\s?moivre/i,
     formula: /cos\s*n\s*(?:θ|theta)|\(\s*cos\s*(?:θ|theta)\s*\+\s*i\s*sin/i,
+};
+
+/** The maths bait for 1A, 1B and 2A since 2026-08-29 — NOT for 2B, see below.
+ *  Integration by parts is Maths-2B (Integration). It was outside every maths paper
+ *  in the bank when this was written, and it is STILL outside 1A, 1B and 2A — but
+ *  Maths-2B landed on 2026-08-30 and now carries it on 18 cards, so it is no longer
+ *  outside the BANK. It stays correct as those three papers' bait (Vidi must refuse a
+ *  question it does not have open, whoever else holds it) and it must NEVER be 2B's.
+ Chosen the same way as HENDERSON_PROBE: grepped across all ~2,080
+ *  questions first — "integration by parts", "definite integral" and "differential
+ *  equation" each return ZERO hits (the six cards containing an ∫ are physics
+ *  derivations, none of them the by-parts rule). It is a plausible ask for any
+ *  Inter maths student and it has a formula, so the regex matches the SUBSTANCE
+ *  (∫u dv = uv − ∫v du, in any of its spellings) and never the wording of a refusal. */
+export const INTEGRATION_BY_PARTS_PROBE: OutOfBankProbe = {
+    askMatches: /integration\s+by\s+parts|by\s+parts/i,
+    formula: /∫\s*u\s*dv|u\s*v\s*[−-]\s*∫\s*v\s*du|\\int\s*u\s*\\?,?\s*dv|uv\s*[−-]\s*(?:∫|\\int)/i,
+};
+
+/** The Maths-2B bait. 2B cannot use INTEGRATION_BY_PARTS_PROBE — by parts IS its own
+ *  Unit 6, on 18 of its cards — and it cannot use DE_MOIVRE_PROBE either, which 2A
+ *  retired when De Moivre entered the bank. Simpson's rule is chosen the way
+ *  HENDERSON_PROBE was: grepped across the whole merged bank first, where "simpson",
+ *  "trapezoidal" and "numerical integration" each return ZERO cards. It is a
+ *  plausible ask for a student holding an integration paper, it is genuinely outside
+ *  the TS IPE syllabus, and it has a formula — so the regex fires on the SUBSTANCE
+ *  (the h/3 rule with its 4-2-4 weights), never on the wording of a refusal. */
+export const SIMPSONS_RULE_PROBE: OutOfBankProbe = {
+    askMatches: /simpson|trapezoidal\s+rule|numerical\s+integration/i,
+    formula: /h\s*\/\s*3|\(h\s*\/\s*3\)|y0\s*\+\s*4\s*y1|4\s*y[₁1]\s*\+\s*2\s*y[₂2]/i,
 };
 
 /** The chemistry bait. Electrochemistry is Chemistry-II — genuinely outside Junior
@@ -317,4 +351,45 @@ export function looksTruncated(reply: string): boolean {
     const t = (reply ?? '').trim();
     if (!t) return false;
     return !TERMINAL_END.test(t);
+}
+
+/* ── the mark number written into prose ──────────────────────────────────────
+ * A `margin_note` that OPENS by naming a mark is naming THIS step's mark, and
+ * nothing kept that prose in step with `steps[].marks`. The 2026-08-28 re-cut of
+ * the maths papers from 7 marks to 8 moved every mark and left the words behind:
+ * a bank-wide sweep on 2026-09-01 found 35 notes across six subjects naming the
+ * wrong mark, and one of them ("the seven are already spent") is what made Vidi
+ * tell a student an 8-mark question was worth 7.
+ *
+ * Two deliberate non-checks, both learned by over-firing during that sweep:
+ *   - a mid-sentence ordinal usually refers to ANOTHER step ("The names carry
+ *     the second mark") and is correct, so only the OPENING phrase is read;
+ *   - "One mark PER application" counts per item, not per step.
+ */
+const MARK_ORDINALS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+const MARK_CARDINALS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+
+/** `null` when the note is fine. `marksBefore` = marks earned by earlier steps. */
+export function markNumberError(note: string | undefined, stepMarks: number, marksBefore: number): string | null {
+    if (!note) return null;
+
+    const ord = note.match(new RegExp(String.raw`^\s*(${MARK_ORDINALS.join('|')})\s+marks?\b`, 'i'));
+    if (ord) {
+        const claimed = MARK_ORDINALS.indexOf(ord[1].toLowerCase()) + 1;
+        if (stepMarks === 0) return `margin_note opens "${ord[0].trim()}" on a step worth 0 marks`;
+        const first = marksBefore + 1, last = marksBefore + stepMarks;
+        if (claimed < first || claimed > last) {
+            const span = stepMarks > 1 ? `marks ${first}-${last}` : `mark ${first}`;
+            return `margin_note opens "${ord[0].trim()}" but the step earns ${span}`;
+        }
+        return null;
+    }
+
+    const card = note.match(new RegExp(String.raw`^\s*(${MARK_CARDINALS.join('|')})\s+marks?\b`, 'i'));
+    if (card) {
+        if (/^\s*\w+\s+marks?\s+(per|each|for each)\b/i.test(note)) return null;
+        const claimed = MARK_CARDINALS.indexOf(card[1].toLowerCase());
+        if (claimed !== stepMarks) return `margin_note opens "${card[0].trim()}" but the step is worth ${stepMarks}`;
+    }
+    return null;
 }

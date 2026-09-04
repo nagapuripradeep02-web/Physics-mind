@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_perpendicular_intercept_minus4_xaxis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the line perpendicular to the line 3x+4y+6=0 and making an intercept −4 on the x-axis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the perpendicular family",
+      "marks": 1
+    },
+    {
+      "label": "Use the x-intercept",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 42, book p.148. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for the perpendicular family bx − ay + k = 0 and one for fixing k from the x-intercept. Perpendicularity was confirmed numerically, not assumed: m₁m₂ = (−3/4)(4/3) = −1, and the normals (3, 4) and (4, −3) have dot product 12 − 12 = 0. The answer was then checked by setting y = 0, which returns x = −4. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say how you write a line perpendicular to a given one, and what an x-intercept of −4 means as a point.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_perpendicular_family",
+        "kind": "equation",
+        "label": "Write the perpendicular family",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Swap the coefficients and change exactly ONE sign. Then confirm m₁m₂ = −1 before going on — a swap with no sign change still passes through the point and looks right.",
+        "memory_tip": "Perpendicular: swap the coefficients and change exactly ONE sign. Then check m₁m₂ = −1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is  3x + 4y + 6 = 0",
+          "Any line perpendicular to ax + by + c = 0",
+          "has the form  bx − ay + k = 0",
+          "∴ Required line is  4x − 3y + k = 0  ……(1)",
+          "Slopes:  m₁ = −3/4  and  m₂ = 4/3",
+          "Check:  m₁m₂ = (−3/4)(4/3) = −1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the perpendicular line has the form 4x − 3y + k = 0, and that its slope times the given slope is −1.",
+          "accept": [
+            "swap the coefficients and change one sign",
+            "the perpendicular line is four x minus three y plus k",
+            "the product of the slopes must be minus one",
+            "perpendicular ki coefficients swap chesi oka sign marchali",
+            "b x minus a y plus k equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four x minus three y",
+            "minus one",
+            "swap the coefficients",
+            "perpendicular"
+          ]
+        },
+        "why": "Swapping the coefficients without changing a sign gives 4x + 3y + k = 0, which is a real line and can still be made to have the right intercept, so the error survives every later check. Computing m₁m₂ and seeing −1 is what rules it out.",
+        "common_mistakes": [
+          "Writing 4x + 3y + k = 0, which swaps the coefficients but changes no sign.",
+          "Keeping 3x + 4y + k = 0, which is parallel to the given line, not perpendicular."
+        ]
+      },
+      {
+        "id": "s2_use_intercept",
+        "kind": "boxed_final",
+        "label": "Use the x-intercept",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. An x-intercept of −4 is the point (−4, 0) on the line, so substitute the point and read off k.",
+        "memory_tip": "An x-intercept of −4 is the POINT (−4, 0). Substitute the point, not the number.",
+        "lines": [
+          "The x-intercept is −4, so (1) passes",
+          "through the point (−4, 0).",
+          "⇒ 4(−4) − 3(0) + k = 0",
+          "⇒ −16 + k = 0  ⇒  k = 16",
+          {
+            "text": "∴ 4x − 3y + 16 = 0",
+            "style": "boxed"
+          },
+          "Check: put y = 0 ⇒ 4x = −16 ⇒ x = −4."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (−4, 0) is substituted to give k = 16, so the line is 4x − 3y + 16 = 0.",
+          "accept": [
+            "the x intercept minus four means the point minus four comma zero",
+            "substitute to get k equals sixteen",
+            "the line is four x minus three y plus sixteen equals zero",
+            "minus four comma zero substitute cheyyali",
+            "k comes out as sixteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four comma zero",
+            "k equals sixteen",
+            "four x minus three y plus sixteen",
+            "x intercept"
+          ]
+        },
+        "why": "The perpendicular family leaves exactly one unknown, and one point on the line is exactly enough to fix it; the x-intercept is that point written as a number.",
+        "common_mistakes": [
+          "Substituting (0, −4), which is the y-intercept point.",
+          "Stopping at k = 16 without writing the equation of the line."
+        ]
+      }
+    ]
+  }
+}

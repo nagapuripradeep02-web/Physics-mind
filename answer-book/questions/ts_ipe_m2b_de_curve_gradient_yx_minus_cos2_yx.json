@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_curve_gradient_yx_minus_cos2_yx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation of a curve whose gradient is dy/dx = y/x − cos²(y/x), which passes through the point (1, π/4).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Apply the given point and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 5 Differential Equations, answer 40.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tags: TS 16, plus AP 16,19. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 39.1, with the last checkpoint changed from a bare final equation to applying the given initial point and stating the particular solution, since this question asks for the equation of ONE curve through (1, π/4), not the general family. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. The same question is re-answered in the Bullet Model Paper (book p.116, Q24), so it is authored once, here. The book's working was re-derived line by line and is correct throughout, including the cancellation of the two 'x' terms shown as struck-through marks in the printed solution. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The curve is given by its gradient, not by an equation in x and y, so the very first move is to treat dy/dx = y/x − cos²(y/x) as the differential equation to solve, and the point (1, π/4) is used only at the very last step to fix the constant.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup_substitute",
+        "kind": "equation",
+        "label": "Recognise homogeneous form and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The right side already depends only on the ratio y/x, so the equation is homogeneous by inspection.",
+        "memory_tip": "y/x − cos²(y/x) is written entirely in terms of v = y/x — no separate substitution work needed to see that.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is dy/dx = y/x − cos²(y/x) … (1)",
+          "(1) is a homogeneous D.E",
+          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx = vx/x − cos²(vx/x)",
+          "= v − cos²v"
+        ],
+        "why": "A gradient given purely in terms of y/x is already homogeneous, so substituting y = vx and dy/dx = v + x·dv/dx immediately turns the equation into one for v alone.",
+        "common_mistakes": [
+          "Trying to expand cos²(y/x) instead of directly replacing y/x by v.",
+          "Forgetting to replace dy/dx by v + x·dv/dx before substituting on the right."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The two copies of v cancel completely, leaving a clean equation in cos²v alone.",
+        "memory_tip": "v on both sides of the equation always cancels first, before anything else — look for that cancellation.",
+        "lines": [
+          "x·dv/dx = v − cos²v − v = −cos²v",
+          "⇒ sec²v dv = −dx/x"
+        ],
+        "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by −cos²v and taking the reciprocal gives sec²v dv on the left, separated from dx/x on the right.",
+        "common_mistakes": [
+          "Missing the cancellation of the two v terms and carrying an extra v through the rest of the working.",
+          "Writing 1/cos²v as cos²v instead of sec²v."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. ∫sec²v dv = tan v is a standard integral; the right side needs a sign flip.",
+        "memory_tip": "sec²v integrates to tan v directly — no substitution needed on the left.",
+        "lines": [
+          "∫ sec²v dv = −∫ dx/x",
+          "⇒ tan v = −log|x| + c"
+        ],
+        "why": "sec²v is the derivative of tan v, so the left side integrates directly; the minus sign carried from the separation step lands on the log|x| term on the right.",
+        "common_mistakes": [
+          "Dropping the minus sign in front of log|x|.",
+          "Writing the integral of sec²v as sec v tan v instead of tan v."
+        ]
+      },
+      {
+        "id": "s4_back_substitute",
+        "kind": "equation",
+        "label": "Return to x and y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Move the log term to the left before substituting v = y/x.",
+        "memory_tip": "tan v + log|x| = c is the general family — the given point fixes c next.",
+        "lines": [
+          "⇒ tan v + log|x| = c … (2)",
+          "Put v = y/x: tan(y/x) + log|x| = c"
+        ],
+        "why": "Rearranging tan v = −log|x| + c into tan v + log|x| = c gives the general family of curves in the ratio v, and substituting v = y/x writes it back in terms of the original x and y.",
+        "common_mistakes": [
+          "Forgetting to move the −log|x| across to the left, leaving the sign wrong in the general family.",
+          "Substituting v = y/x into the earlier, uncombined line instead of the rearranged one."
+        ]
+      },
+      {
+        "id": "s5_apply_point",
+        "kind": "boxed_final",
+        "label": "Apply the given point and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Substitute x = 1, y = π/4 to find c, then write the final particular solution.",
+        "memory_tip": "log|1| = 0 and tan(π/4) = 1 — both simplify away instantly at this point.",
+        "lines": [
+          "If the curve passes through (x, y) = (1, π/4), then",
+          "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
+          {
+            "text": "tan(y/x) + log|x| = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the given point into the general family fixes the arbitrary constant, and putting that value of c back into (2) gives the one curve through (1, π/4), which is what the question actually asks for.",
+        "common_mistakes": [
+          "Substituting the point into the original differential equation instead of into the integrated family (2).",
+          "Evaluating tan(π/4) as an approximate decimal instead of the exact value 1."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_param_3_cos_t_minus_2_cos3t",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x = 3 cos t − 2 cos³t and y = 3 sin t − 2 sin³t, find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the parametric rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate x with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate y with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Divide and cancel cos 2t",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the ratio of the two numerical derivatives matched cot t at t = 0.7 (1.18724183) and t = 1.3 (0.27761565), two values chosen on either side of π/4 so that cos 2t changes sign between them."
+  },
+  "recall_prompt": "Say how you would solve this — say what common factor comes out of each derivative, and what cancels when you divide.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parametric_rule",
+        "kind": "equation",
+        "label": "State the parametric rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the rule before differentiating. Both curves are given through the parameter t, so t is the variable everything is differentiated with respect to.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x = 3 cos t − 2 cos³t  and  y = 3 sin t − 2 sin³t",
+          "x and y are both given in terms of the parameter t, so",
+          "dy/dx = (dy/dt)/(dx/dt),  provided dx/dt ≠ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a parametric pair, dy/dx = (dy/dt)/(dx/dt).",
+          "accept": [
+            "dy by dx is dy by dt divided by dx by dt",
+            "differentiate both with respect to t and divide",
+            "state the parametric rule first",
+            "parametric form kabatti dy by dt by dx by dt teesukovali",
+            "t is the parameter so both derivatives are in t",
+            "find dx by dt and dy by dt separately"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dy by dt",
+            "dx by dt",
+            "parameter",
+            "divide"
+          ]
+        },
+        "why": "Neither equation gives y in terms of x, so dy/dx cannot be found directly. Dividing the two derivatives with respect to t removes the parameter and leaves the slope.",
+        "common_mistakes": [
+          "Writing dy/dx = (dx/dt)/(dy/dt), which is the reciprocal of the correct rule.",
+          "Trying to eliminate t between the two equations first, which is much longer here."
+        ],
+        "memory_tip": "Both parts have the same shape, 3 × (function) − 2 × (function cubed), so expect the two derivatives to have the same shape too."
+      },
+      {
+        "id": "s2_dx_dt",
+        "kind": "equation",
+        "label": "Differentiate x with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Take 3 sin t out as a common factor, then use 2cos²t − 1 = cos 2t. The examiner looks for the double angle form, because that is the factor which cancels later.",
+        "lines": [
+          "dx/dt = −3 sin t − 2(3cos²t)(−sin t)",
+          "= −3 sin t + 6 sin t cos²t",
+          "= 3 sin t(2cos²t − 1)",
+          "∴ dx/dt = 3 sin t cos 2t     [since cos 2t = 2cos²t − 1]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dt = 3 sin t cos 2t, using cos 2t = 2cos²t − 1.",
+          "accept": [
+            "differentiate cos cubed t by the chain rule to get minus three cos squared t sin t",
+            "take three sin t common",
+            "two cos squared t minus one is cos two t",
+            "three sin t common teesi cos two t rayali",
+            "dx by dt is three sin t cos two t",
+            "the bracket becomes the double angle cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three sin t",
+            "cos two t",
+            "two cos squared minus one",
+            "chain rule"
+          ]
+        },
+        "why": "Both terms carry a factor sin t, so taking it out leaves the bracket 2cos²t − 1, which is one of the standard forms of cos 2t. Writing it as cos 2t is what makes the cancellation in the last step visible.",
+        "common_mistakes": [
+          "Differentiating cos³t as 3cos²t and forgetting the inner derivative −sin t.",
+          "Losing the sign, so the bracket comes out as 1 − 2cos²t instead of 2cos²t − 1."
+        ],
+        "memory_tip": "cos 2t has three standard forms. The one with cosines only, 2cos²t − 1, is the one that appears when x is differentiated."
+      },
+      {
+        "id": "s3_dy_dt",
+        "kind": "equation",
+        "label": "Differentiate y with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Here the common factor is 3 cos t and the bracket is 1 − 2sin²t, which is the same cos 2t written the other way. Both derivatives must end with the SAME factor for the question to work out.",
+        "lines": [
+          "dy/dt = 3 cos t − 2(3sin²t)(cos t)",
+          "= 3 cos t − 6 sin²t cos t",
+          "= 3 cos t(1 − 2sin²t)",
+          "∴ dy/dt = 3 cos t cos 2t     [since cos 2t = 1 − 2sin²t]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dt = 3 cos t cos 2t, using cos 2t = 1 − 2sin²t.",
+          "accept": [
+            "differentiate sin cubed t to get three sin squared t cos t",
+            "take three cos t common",
+            "one minus two sin squared t is cos two t",
+            "three cos t common teesi cos two t vasthundi",
+            "dy by dt is three cos t cos two t",
+            "the same double angle factor appears again"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three cos t",
+            "cos two t",
+            "one minus two sin squared",
+            "sin cubed"
+          ]
+        },
+        "why": "The inner derivative of sin³t is cos t, so both terms carry cos t and it factors out. The bracket 1 − 2sin²t is cos 2t written in sines, the same quantity that came out of dx/dt.",
+        "common_mistakes": [
+          "Writing the bracket as 2sin²t − 1, which is −cos 2t and flips the sign of the answer.",
+          "Differentiating sin³t as 3sin²t without the inner cos t."
+        ],
+        "memory_tip": "Two of the three cos 2t forms are used in this question — the cosine one for x, the sine one for y. Both are the same number."
+      },
+      {
+        "id": "s4_divide",
+        "kind": "boxed_final",
+        "label": "Divide and cancel cos 2t",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. cos 2t is a common factor of both derivatives and cancels. Valid where dx/dt ≠ 0, that is where sin t ≠ 0 and cos 2t ≠ 0.",
+        "lines": [
+          "dy/dx = (dy/dt)/(dx/dt) = (3 cos t cos 2t)/(3 sin t cos 2t)",
+          "The 3 and the factor cos 2t cancel, leaving cos t/sin t",
+          {
+            "text": "∴ dy/dx = cot t",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2t cancels between the two derivatives, leaving dy/dx = cot t.",
+          "accept": [
+            "cos two t cancels top and bottom",
+            "the answer is cot t",
+            "cos t by sin t is cot t",
+            "cos two t cancel ayipoyi cot t migulutundi",
+            "divide three cos t cos two t by three sin t cos two t",
+            "only the ratio of cos t to sin t is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot t",
+            "cos two t cancels",
+            "cos by sin",
+            "divide"
+          ]
+        },
+        "why": "Both derivatives were deliberately written with cos 2t as a factor, so the division is one cancellation rather than a page of trigonometric simplification. Without that factoring the ratio does not reduce.",
+        "common_mistakes": [
+          "Expanding everything into powers of sin t and cos t instead of factoring, so nothing cancels.",
+          "Writing tan t by dividing dx/dt by dy/dt."
+        ],
+        "memory_tip": "Factor first, divide second. The cos 2t was put in front on purpose so that one cancellation finishes the question."
+      }
+    ]
+  },
+  "insider_note": "Both derivatives factorise to a multiple of cos 2t: dx/dt = 3 sin t cos 2t and dy/dt = 3 cos t cos 2t. The cos 2t cancels, leaving cot t."
+}

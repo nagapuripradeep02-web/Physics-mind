@@ -1,0 +1,185 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_distance_point_from_plane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the distance of the point (2, 5, −3) from the plane r·(6i − 3j + 2k) = 4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point and the normal",
+      "marks": 2
+    },
+    {
+      "label": "State the distance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.70, chapter 7 PRODUCT OF VECTORS, Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the substitution, which carries both the dot product and the length of the normal, and single marks to the formula and to the final modulus. Checked a second way: dividing the plane by |n| = 7 puts it in normal form, the point gives a·n/7 = −9/7 against the plane's 4/7, and the gap is |−9/7 − 4/7| = 13/7 — the same answer. Checked a third way: the foot of the perpendicular is (176/49, 206/49, −121/49), which satisfies 6x − 3y + 2z = 4 exactly, and its distance from (2, 5, −3) is (13/49)×7 = 13/7. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this distance — the formula, what goes on top, and what goes underneath.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. n is the vector read straight off the right of the dot, and d is the number on the other side.",
+        "memory_tip": "Same shape as the 2-D formula |ax₁ + by₁ + c|/√(a² + b²): dot on top, length of the normal below.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The plane is r·n = d with",
+          "n = 6i − 3j + 2k and d = 4.",
+          "The point has position vector",
+          "a = 2i + 5j − 3k.",
+          "Distance from the point to the plane is",
+          "|a·n − d| / |n|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distance is |a·n − d| divided by |n|, with n the normal of the plane.",
+          "accept": [
+            "the distance is mod of a dot n minus d, over mod n",
+            "read the normal off the plane equation and use the standard formula",
+            "numerator is a dot n minus d, denominator is the length of the normal",
+            "formula ante a dot n minus d modulus, divided by mod n",
+            "state the point to plane distance formula"
+          ],
+          "reject": [
+            "a dot n is minus nine",
+            "the answer is thirteen by seven",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a dot n",
+            "mod n",
+            "normal",
+            "distance formula"
+          ]
+        },
+        "why": "Dividing the plane equation by |n| puts it in normal form, and the distance is the gap between the point's projection on the normal and the plane's own.",
+        "common_mistakes": [
+          "Dropping the modulus and reporting a negative distance.",
+          "Dividing by |a| instead of |n|."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "equation",
+        "label": "Substitute the point and the normal",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Half the marks. Keep the sign of a·n all the way; the modulus is taken only at the very end.",
+        "memory_tip": "36 + 9 + 4 = 49, a perfect square, so this one divides by exactly 7.",
+        "lines": [
+          "a·n = 2(6) + 5(−3) + (−3)(2)",
+          "= 12 − 15 − 6 = −9",
+          "a·n − d = −9 − 4 = −13",
+          "|n| = √(36 + 9 + 4) = √49 = 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·n = −9, so a·n − d = −13, and |n| = 7.",
+          "accept": [
+            "a dot n is minus nine, minus four gives minus thirteen",
+            "the length of the normal is the square root of forty nine, which is seven",
+            "numerator minus thirteen, denominator seven",
+            "a dot n minus nine, mod n seven",
+            "substitute the point and the normal into the formula"
+          ],
+          "reject": [
+            "state the formula",
+            "the answer is thirteen by seven",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus nine",
+            "minus thirteen",
+            "root forty nine",
+            "seven"
+          ]
+        },
+        "why": "The numerator measures how far the point sits from the plane along the normal direction, before that direction is scaled to unit length.",
+        "common_mistakes": [
+          "Writing a·n − d as −9 + 4.",
+          "Taking |n| as 6 − 3 + 2 instead of the square root of the sum of squares."
+        ]
+      },
+      {
+        "id": "s3_distance",
+        "kind": "boxed_final",
+        "label": "State the distance",
+        "marks": 1,
+        "mark_note": "Distance",
+        "margin_note": "Last mark. A distance is never negative, so the modulus is what earns this mark.",
+        "memory_tip": "13 over 7: the 13 comes from −9 − 4, and the 7 is √49.",
+        "lines": [
+          "Distance = |−13| / 7 = 13/7",
+          "Check: divide the plane by |n| = 7.",
+          "Then r·(6i − 3j + 2k)/7 = 4/7 and",
+          "a·(6i − 3j + 2k)/7 = −9/7.",
+          "Gap = |−9/7 − 4/7| = 13/7  ✓",
+          {
+            "text": "Distance = 13/7 units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distance is 13/7 units, the modulus of −13 divided by 7.",
+          "accept": [
+            "mod of minus thirteen over seven is thirteen by seven",
+            "the distance is thirteen by seven units",
+            "take the modulus so the distance is positive",
+            "thirteen by seven units answer",
+            "the normal form check gives the same thirteen by seven"
+          ],
+          "reject": [
+            "a dot n is minus nine",
+            "state the formula",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirteen by seven",
+            "modulus",
+            "units",
+            "distance"
+          ]
+        },
+        "why": "Both routes give 13/7: the formula, and the direct normal-form calculation of how far the point sits from the plane along the unit normal.",
+        "common_mistakes": [
+          "Reporting the distance as −13/7.",
+          "Writing square units; a distance is in plain units."
+        ]
+      }
+    ]
+  }
+}

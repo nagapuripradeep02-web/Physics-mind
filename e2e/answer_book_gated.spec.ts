@@ -207,7 +207,16 @@ test('a locked chapter names the free four, offers the pass, and leaks nothing',
     }));
     // The copy tells the truth under the fixed-free-chapters model: it must NOT
     // say the student spent a free chapter they never had.
-    expect(r.text).toContain('Four chapters');
+    //
+    // PRE-EXISTING RED, fixed 2026-09-02 while running this suite for the practice
+    // section. The sheet stopped stating a COUNT on 2026-08-30 (notebook.js: "It
+    // was 'Four chapters are free', which was true only while the book was first
+    // year alone: a second-year student has three subjects and three free
+    // chapters, and would have been told a number they could not find"), and this
+    // assertion was left behind — it has been failing on master ever since. The
+    // per-subject promise is the part that is true in every year, so that is what
+    // the test now reads.
+    expect(r.text).toContain('One chapter in every subject is free');
     expect(r.text).not.toContain('already used your free chapter');
     expect(r.text).toContain('coming soon');              // price_inr null = unpriced
     expect(r.claimBtns).toBe(0);                          // nothing to claim
@@ -273,10 +282,13 @@ test('every unit has a bundle and every bundle question is the full projection',
     // Botany's absence from content/mpc is the point of the lens, not drift.
     const MPC = new Set(['physics', 'chemistry', 'mathematics', 'mathematics_1b']);
     const streamed = CONTENT_DIR.endsWith('mpc');
+    // A retired unit (status:"retired" — Chemistry-I States of Matter, 2026-09-02)
+    // is stripped by the build before bundles are written: no bundle, no ids.
+    const live = raw.units.filter((u: any) => u.status !== 'retired');
     const manifest = {
         units: streamed
-            ? raw.units.filter((u: any) => MPC.has(u.subject || 'physics'))
-            : raw.units,
+            ? live.filter((u: any) => MPC.has(u.subject || 'physics'))
+            : live,
     };
     const files = readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.json'));
     expect(files.length).toBe(manifest.units.length);
@@ -929,6 +941,10 @@ test('the offer is drawn once, immediately below the last chapter that opens', a
             before: txt(kids[i - 1]).slice(0, 80),
             after: txt(kids[i + 1]).slice(0, 80),
             title: (document.querySelector('.cat-wall-title') || { textContent: '' }).textContent,
+            // what the wall may claim: chapters with at least one written answer
+            // (notebook.js sellableUnits) — derived, because the bank grows and a
+            // literal here went stale twice (37 → 42 → 41 within a week).
+            sellable: ((window as any).PM_UNITS as any[]).filter((u) => u.questions.some((e: any) => e.question_id)).length,
         };
     });
     expect(shape.i).toBe(4);                       // the four free chapters, then the offer
@@ -936,10 +952,11 @@ test('the offer is drawn once, immediately below the last chapter that opens', a
     expect(shape.after).toContain('Locked');
     // The number is the server's (ab_price_for), never one the client invented.
     expect(shape.title).toContain('₹99');
-    // Chapters that HAVE answers. The catalog LISTS 40 since the 2026-27
-    // syllabus added three chapters nobody has written yet; the offer counts
-    // only what the pass can actually open.
-    expect(shape.title).toContain('37 chapters');
+    // Chapters that HAVE answers. The catalog lists more (the 2026-27 syllabus
+    // added chapters nobody has written yet); the offer counts only what the
+    // pass can actually open.
+    expect(shape.sellable).toBeGreaterThan(0);
+    expect(shape.title).toContain(shape.sellable + ' chapters');
 });
 
 test('with a pass the order is untouched and no lock cue is drawn', async ({ page }) => {
@@ -992,6 +1009,37 @@ test('an answer opens, and there is no way to print it', async ({ page }) => {
 });
 
 
+test('a forwarded link to a retired card shows the syllabus sheet and never asks the server', async ({ page }) => {
+    // Chemistry-I States of Matter left the 2026-27 syllabus (2026-09-02). Its cards
+    // still ship as gated skeletons so a forwarded #/q link resolves, but the unit
+    // has no bundle on the server and nothing to sell: the lock flow must never
+    // run for it, and the sheet must say why, plainly, with only the way back.
+    const asked: string[] = [];
+    await bootGated(page, (body: any) => {
+        if (body.list) return { ok: true, unlocked: FREE_UNITS, free_available: false, signed_in: false, devices: 1, sku: SKU_99 };
+        asked.push(body.unit_key);
+        return { ok: true, locked: true, free_available: false, sku: SKU_99 };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_c1_som_aqueous_tension'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+    const r = await page.evaluate(() => ({
+        text: document.getElementById('lockText')!.textContent || '',
+        buttons: [...document.querySelectorAll('#lockRow button')].map((b) => b.textContent || ''),
+        primary: document.querySelectorAll('#lockRow .vw-btn.primary').length,
+        listed: ((window as any).PM_UNITS as any[]).some((u) => u.name.includes('States of Matter')),
+    }));
+    expect(r.text).toContain('Not in the 2026-27 syllabus');
+    expect(r.text).toContain('States of Matter');
+    expect(r.text).not.toContain('Four chapters');        // not the lock copy
+    expect(r.primary).toBe(0);                            // nothing to buy or claim
+    expect(r.buttons).toEqual(['Back to all questions']);
+    expect(r.listed).toBe(false);                         // and the chapter is offered nowhere
+    expect(asked).not.toContain('chemistry-99');          // the server was never asked for it
+    expect(asked.filter((k) => k.startsWith('chemistry-')).length).toBe(0);
+});
+
 test('a chapter with nothing written yet is never sold as locked', async ({ page }) => {
     // Physics Unit 14 "Physics of Emerging Technologies" is listed for the
     // chapter's true shape (2026-08-28) but has no answers yet. Labelling it
@@ -1015,7 +1063,7 @@ test('a chapter with nothing written yet is never sold as locked', async ({ page
         return { u14, wall, sellable };
     });
 
-    expect(r.u14).toContain('0 of 5 ready');       // listed honestly
+    expect(r.u14).toMatch(/0 of \d+ ready/);        // listed honestly (15 rows since 2026-09-02)
     expect(r.u14).not.toContain('Locked');         // never sold
     expect(r.u14).not.toContain('Free');           // and never promised either
     const claimed = Number((r.wall.match(/^(\d+)/) || [])[1]);

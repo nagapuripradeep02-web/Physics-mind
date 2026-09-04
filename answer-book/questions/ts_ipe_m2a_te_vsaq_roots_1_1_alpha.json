@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_1_1_alpha",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, 1, α are the roots of x³ − 6x² + 9x − 4 = 0, then find α.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Product of roots S₃ = −a₃/a₀",
+      "marks": 1
+    },
+    {
+      "label": "Find α",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.76 — VSAQ chapter 15 Theory of Equations, answer 127. Printed appearances: AP 18 · TS 16, 18, 20 (the AP chip prints '18,18', a repeated year — recorded once). ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_relation, s2_answer) are used on answers 127, 128, 130 and 131, deliberately: one root relation (S₁ = −a₁/a₀ or S₃ = −a₃/a₀) read off the coefficients, then one line of arithmetic. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 1 Q5 (book p.111) is this question; the Bullet Model Paper re-solves it under Q5 on book p.97 — identical. Truth check: with α = 4 the sum is 6 = −a₁/a₀ and the pairwise products are 1 + 4 + 4 = 9 = a₂/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say which root relation you would use to find α, and what it gives.",
+  "insider_note": "Two roots are 1, so the product relation gives α in one line; the sum relation is the check.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "Product of roots",
+        "marks": 1,
+        "mark_note": "S₃ = −a₃/a₀",
+        "margin_note": "First mark. Two of the roots are known, so the relation that gives the third with the least work is the product: S₃ = −a₃/a₀ = −(−4)/1 = 4.",
+        "memory_tip": "Two roots are 1, so the product relation gives α in one line: S₃ = −(−4)/1 = 4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a₀ = 1, a₁ = −6, a₂ = 9, a₃ = −4.",
+          "Product of roots S₃ = −a₃/a₀ = 4/1 = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the three roots is −a₃/a₀ = 4.",
+          "accept": [
+            "the product of the roots is minus a three by a naught which is four",
+            "use the product of roots, minus the constant over the leading coefficient, four",
+            "S three equals four",
+            "roots product minus a three by a naught, ante four",
+            "product of the three roots is four"
+          ],
+          "reject": [
+            "use the sum",
+            "find alpha"
+          ],
+          "heard_as": [
+            "product of roots",
+            "S three",
+            "minus a three by a naught",
+            "four"
+          ]
+        },
+        "why": "With two roots equal to 1 the product 1 · 1 · α is just α, so the product relation gives the answer in one line. The sum would work too (1 + 1 + α = 6) and is the natural check.",
+        "common_mistakes": [
+          "Writing S₃ = a₃/a₀ = −4 and losing the minus.",
+          "Using the sum and product both, when one relation is enough for 2 marks."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find α",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
+        "memory_tip": "1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
+        "lines": [
+          "1 · 1 · α = 4",
+          {
+            "text": "∴ α = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 · 1 · α = 4 gives α = 4.",
+          "accept": [
+            "one times one times alpha is four so alpha is four",
+            "alpha equals four",
+            "the third root is four",
+            "one into one into alpha four, kabatti alpha four",
+            "alpha comes out as four, and the sum check gives six"
+          ],
+          "reject": [
+            "find alpha",
+            "solve it"
+          ],
+          "heard_as": [
+            "alpha equals four",
+            "alpha is four",
+            "four"
+          ]
+        },
+        "why": "The sum relation is the free check: 1 + 1 + 4 = 6 = −a₁/a₀. Two relations agreeing is how a two-line answer proves itself.",
+        "common_mistakes": [
+          "Writing α = −4 from a wrong sign in S₃.",
+          "Not checking with the sum (1 + 1 + α = 6 also gives 4)."
+        ]
+      }
+    ]
+  }
+}

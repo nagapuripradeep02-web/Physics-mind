@@ -54,7 +54,8 @@
         "label": "Set the dot product to zero",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same condition as the previous question, but λ appears in BOTH vectors — so the equation will be quadratic, not linear.",
+        "margin_note": "First mark. The condition is still a·b = 0, but λ appears in BOTH vectors — so the equation will be quadratic, not linear.",
+        "memory_tip": "Same condition, but λ appears in BOTH vectors — so the equation comes out quadratic, not linear.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Factorise rather than reaching for the formula. BOTH roots are valid answers — the question did not exclude either.",
+        "memory_tip": "Factorise rather than using the formula. BOTH roots are valid; nothing excludes either.",
         "lines": [
           "⇒ 2λ² + 3λ − 5 = 0",
           "⇒ (λ − 1)(2λ + 5) = 0",
@@ -139,5 +141,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "λ appears in BOTH vectors, so the dot product is a quadratic and not a linear equation. Two answers follow, 1 and −5/2, and giving only the whole one loses half the marks."
 }

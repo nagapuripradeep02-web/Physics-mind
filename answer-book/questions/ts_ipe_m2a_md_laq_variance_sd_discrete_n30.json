@@ -1,0 +1,319 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_laq_variance_sd_discrete_n30",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the variance and standard deviation of the following frequency distribution: xᵢ = 4, 8, 11, 17, 20, 24, 32; fᵢ = 3, 5, 9, 5, 4, 3, 1.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find N, Σfᵢxᵢ and the mean",
+      "marks": 2
+    },
+    {
+      "label": "Form the (xᵢ − x̄)² and fᵢ(xᵢ − x̄)² columns and their sum",
+      "marks": 2
+    },
+    {
+      "label": "Find the variance",
+      "marks": 2
+    },
+    {
+      "label": "Find the standard deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Measures of Dispersion, answer 53 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: TS 15,15,19 · AP 19,20 (the TS 15 chip is printed twice — March and May sittings; both are kept). ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30): 2 for the fᵢxᵢ table and the mean, 2 for the squared-deviation table and its sum, 2 for the variance, 1 for the standard deviation. Answer 52 (grouped data, step-deviation formula) is a different method and carries its own 3+3+1 split and step ids. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 5 (book p.120, index P46(53)). Every column and every sum was recomputed for this card: N = 30, Σfᵢxᵢ = 420, x̄ = 14, Σfᵢ(xᵢ − x̄)² = 300 + 180 + 81 + 45 + 144 + 300 + 324 = 1374, σ² = 1374/30 = 45.8, σ = √45.8 = 6.767…, printed 6.77 — the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the variance and standard deviation of a discrete frequency table directly — how you get the mean, what you square, and what you divide.",
+  "insider_note": "The mean x̄ = 14 must be found before any deviation can be squared, and the question asks for BOTH numbers: σ² = 45.8 and then its square root σ = 6.77 — the root is the last mark.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Measures of Dispersion · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean",
+        "kind": "equation",
+        "label": "N, Σfᵢxᵢ and the mean",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "First two marks. The mean is needed BEFORE any deviation can be written, so it comes first. Columns: xᵢ, fᵢ, product fᵢxᵢ. N = 30 and Σfᵢxᵢ = 420 give x̄ = 14, a whole number — which is why this question uses the direct formula and not step deviation.",
+        "memory_tip": "x̄ = Σfᵢxᵢ/N. Weight by fᵢ: 420/30 = 14, not the plain average of the seven xᵢ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "N = Σfᵢ = 3 + 5 + 9 + 5 + 4 + 3 + 1 = 30",
+          {
+            "text": "xᵢ     fᵢ     fᵢxᵢ",
+            "style": "indent"
+          },
+          {
+            "text": "4      3      12",
+            "style": "indent"
+          },
+          {
+            "text": "8      5      40",
+            "style": "indent"
+          },
+          {
+            "text": "11     9      99",
+            "style": "indent"
+          },
+          {
+            "text": "17     5      85",
+            "style": "indent"
+          },
+          {
+            "text": "20     4      80",
+            "style": "indent"
+          },
+          {
+            "text": "24     3      72",
+            "style": "indent"
+          },
+          {
+            "text": "32     1      32",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢxᵢ = 420",
+            "style": "indent"
+          },
+          "Mean x̄ = Σfᵢxᵢ/N = 420/30 = 14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That N = 30, the products fᵢxᵢ add to 420, and the mean is 420/30 = 14.",
+          "accept": [
+            "N is thirty, sigma f i x i is four hundred twenty, so the mean is fourteen",
+            "multiply each x i by its frequency, add to get four twenty, divide by thirty to get fourteen",
+            "the mean is sigma f i x i by N which is four twenty by thirty equals fourteen",
+            "f i x i column add cheste four twenty, thirty tho divide cheste mean fourteen",
+            "mean comes to fourteen"
+          ],
+          "reject": [
+            "find the mean",
+            "add them",
+            "use the formula"
+          ],
+          "heard_as": [
+            "sigma f i x i",
+            "four twenty",
+            "four hundred and twenty",
+            "thirty",
+            "fourteen",
+            "x bar"
+          ]
+        },
+        "why": "Variance measures spread around the mean, so the mean must exist before a single deviation can be written. With a frequency table the mean is the weighted total Σfᵢxᵢ over N.",
+        "common_mistakes": [
+          "Averaging the seven xᵢ values (116/7) and ignoring the frequencies.",
+          "Dividing Σfᵢxᵢ by 7 instead of by N = 30.",
+          "A product slip: 9 × 11 = 99, 5 × 17 = 85."
+        ]
+      },
+      {
+        "id": "s2_dev_table",
+        "kind": "equation",
+        "label": "Squared deviations",
+        "marks": 2,
+        "mark_note": "Deviations",
+        "margin_note": "Next two marks. Columns: xᵢ, fᵢ, deviation xᵢ − 14 (signed), its square, and fᵢ times the square. Signs disappear on squaring; 300 appears twice because −10 and 10 square to the same 100. The sum is 1374.",
+        "memory_tip": "The column is fᵢ × (xᵢ − x̄)², frequency times the square. Squaring drops the signs on its own.",
+        "lines": [
+          "With x̄ = 14:",
+          {
+            "text": "xᵢ     fᵢ     xᵢ − x̄     (xᵢ − x̄)²     fᵢ(xᵢ − x̄)²",
+            "style": "indent"
+          },
+          {
+            "text": "4      3      −10        100           300",
+            "style": "indent"
+          },
+          {
+            "text": "8      5      −6         36            180",
+            "style": "indent"
+          },
+          {
+            "text": "11     9      −3         9             81",
+            "style": "indent"
+          },
+          {
+            "text": "17     5      3          9             45",
+            "style": "indent"
+          },
+          {
+            "text": "20     4      6          36            144",
+            "style": "indent"
+          },
+          {
+            "text": "24     3      10         100           300",
+            "style": "indent"
+          },
+          {
+            "text": "32     1      18         324           324",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ(xᵢ − x̄)² = 1374",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each value's deviation from 14 is squared, multiplied by its frequency, and the products add to 1374.",
+          "accept": [
+            "subtract fourteen from each x i, square it, multiply by f i and add to get one thousand three hundred seventy four",
+            "the squared deviations are hundred thirty six nine nine thirty six hundred three twenty four and the weighted sum is thirteen seventy four",
+            "square each deviation from the mean, weight by frequency, total one three seven four",
+            "prathi x i nunchi fourteen teesi square chesi f i tho multiply cheste sum thirteen seventy four",
+            "sigma f i into x i minus x bar squared is one thousand three hundred and seventy four"
+          ],
+          "reject": [
+            "find the deviations",
+            "square them",
+            "fill the table"
+          ],
+          "heard_as": [
+            "squared",
+            "square",
+            "fourteen",
+            "thirteen seventy four",
+            "one thousand three hundred and seventy four"
+          ]
+        },
+        "why": "Variance averages SQUARED distances from the mean. Squaring, unlike the absolute value, keeps the algebra simple, and it weights a large deviation (18 → 324) far more than a small one (3 → 9).",
+        "common_mistakes": [
+          "Squaring fᵢ(xᵢ − x̄) instead of multiplying fᵢ by (xᵢ − x̄)².",
+          "Using |xᵢ − x̄| (mean deviation) instead of (xᵢ − x̄)².",
+          "An addition slip: 300 + 180 + 81 + 45 + 144 + 300 + 324 = 1374."
+        ]
+      },
+      {
+        "id": "s3_variance",
+        "kind": "equation",
+        "label": "Variance",
+        "marks": 2,
+        "mark_note": "Variance",
+        "margin_note": "Next two marks. Divide the weighted sum by N = 30: 1374/30 = 45.8 exactly.",
+        "memory_tip": "σ² = Σfᵢ(xᵢ − x̄)²/N. Divide by N = 30, not by N − 1 — this syllabus never uses N − 1.",
+        "lines": [
+          "Variance σ² = (1/N)·Σfᵢ(xᵢ − x̄)²",
+          "= 1374/30 = 45.8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variance is Σfᵢ(xᵢ − x̄)² divided by N: 1374/30 = 45.8.",
+          "accept": [
+            "variance is thirteen seventy four by thirty which is forty five point eight",
+            "divide the weighted sum of squares by N thirty to get forty five point eight",
+            "sigma squared equals one by N into sigma f i x i minus x bar squared equals forty five point eight",
+            "thirteen seventy four ni thirty tho divide cheste forty five point eight",
+            "the variance is forty five point eight"
+          ],
+          "reject": [
+            "find the variance",
+            "divide it",
+            "use the formula"
+          ],
+          "heard_as": [
+            "sigma squared",
+            "by thirty",
+            "forty five point eight",
+            "variance"
+          ]
+        },
+        "why": "Variance is the mean of the squared deviations, so the final division is by N = 30, the total number of observations counted with frequency.",
+        "common_mistakes": [
+          "Dividing by 7 (the number of rows) instead of 30.",
+          "Dividing by N − 1 = 29 — the sample formula is not the one this syllabus uses.",
+          "Stopping at 1374 and calling it the variance."
+        ]
+      },
+      {
+        "id": "s4_sd",
+        "kind": "boxed_final",
+        "label": "Standard deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. √45.8 = 6.767…, written 6.77 (6.77² = 45.83). Same unit as the data.",
+        "memory_tip": "σ² is the bigger number and σ is its square root: 45.8 then 6.77, never the other way round.",
+        "lines": [
+          "Standard deviation σ = √45.8 = 6.77",
+          {
+            "text": "∴ Variance σ² = 45.8, S.D. σ = 6.77",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard deviation is the square root of the variance: σ = √45.8 = 6.77.",
+          "accept": [
+            "standard deviation is root forty five point eight which is six point seven seven",
+            "take the square root of the variance to get six point seven seven",
+            "sigma equals root of forty five point eight equals six point seven seven",
+            "variance ki square root theesthe six point seven seven",
+            "S D is six point seven seven"
+          ],
+          "reject": [
+            "find the S D",
+            "square root",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "root forty five point eight",
+            "six point seven seven",
+            "standard deviation",
+            "S D"
+          ]
+        },
+        "why": "Variance is in squared units. The square root brings the spread back to the unit of xᵢ, so σ = 6.77 can be read against the values 4 to 32 directly.",
+        "common_mistakes": [
+          "Reporting only the variance when the question asks for both.",
+          "√45.8 taken as 6.8 — the book's two-decimal convention gives 6.77.",
+          "Writing σ = 45.8 and σ² = 6.77 the wrong way round."
+        ]
+      }
+    ]
+  }
+}

@@ -23,7 +23,7 @@
       "marks": 2
     },
     {
-      "label": "Aniline to the benzenesulphonamide",
+      "label": "Aniline to N-phenylbenzenesulphonamide",
       "marks": 2
     }
   ],
@@ -73,7 +73,7 @@
       {
         "id": "s2_sulphonamide",
         "kind": "boxed_final",
-        "label": "Aniline to the sulphonamide",
+        "label": "Aniline to N-phenylbenzenesulphonamide",
         "marks": 2,
         "mark_note": "Part (ii)",
         "lines": [
@@ -97,11 +97,11 @@
         ],
         "why": "Aniline is a primary amine, so one of its two N–H hydrogens is replaced by the sulphonyl group and one is left behind. That remaining hydrogen is made acidic by the strongly electron-withdrawing SO₂ group, which is why the product of a primary amine dissolves in alkali while the product of a secondary amine does not.",
         "common_mistakes": [
-          "Naming the product benzenesulphonamide. That name belongs to C₆H₅SO₂NH₂; the product from aniline carries a phenyl group on nitrogen.",
+          "Leaving the product as plain benzenesulphonamide. The question uses that short name, but on its own it belongs to C₆H₅SO₂NH₂, which comes from ammonia; write N-phenylbenzenesulphonamide for the product from aniline and the mark is safe.",
           "Writing both N–H hydrogens as replaced. Only one is replaced, and the one left over is what makes the product soluble in alkali."
         ],
         "memory_tip": "Sulphonyl chloride plus a 1° amine: one hydrogen is replaced, one stays, and the one that stays is acidic.",
-        "margin_note": "Naming benzenesulphonyl chloride as Hinsberg's reagent is worth writing. The solubility line links this to the Hinsberg test question."
+        "margin_note": "Naming benzenesulphonyl chloride as Hinsberg's reagent is worth writing. The solubility line is the basis of the Hinsberg test: the product from a 1° amine dissolves in alkali, the product from a 2° amine does not."
       }
     ]
   },

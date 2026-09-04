@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_lmvt_log_x_on_1_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify the Lagrange's mean value theorem for the function logₑ x on [1, 2].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the conditions and the chord slope",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = the chord slope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.230, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the function as \"log_e^x\", which is its typesetting of logₑ x, the natural logarithm — the e is the base, not an exponent, and the x is the argument. We authored the stem as logₑ x. Read as written, \"log e to the power x\" would be log(eˣ) = x, whose derivative is the constant 1 and whose mean value point would be every point of the interval, so the question would have no single answer; the natural-logarithm reading is the only one that makes it a question. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say why the conditions hold on this interval, and what equation gives c.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions_and_slope",
+        "kind": "equation",
+        "label": "Check the conditions and the chord slope",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. logₑ x is defined only for x > 0, and [1, 2] sits entirely inside x > 0 — say that, because it is the one condition that can genuinely fail for a logarithm.",
+        "memory_tip": "logₑ 1 = 0. That single value makes the chord slope here just logₑ 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Lagrange's mean value theorem: if f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with",
+          "f′(c) = (f(b) − f(a))/(b − a)",
+          "Here f(x) = logₑ x, a = 1, b = 2",
+          "logₑ x is defined, continuous and differentiable for every x > 0, and [1, 2] lies inside x > 0.",
+          "So f is continuous on [1, 2] and differentiable on (1, 2). Both conditions hold.",
+          "f(1) = logₑ 1 = 0,   f(2) = logₑ 2",
+          "(f(2) − f(1))/(2 − 1) = (logₑ 2 − 0)/1 = logₑ 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logₑ x is continuous and differentiable for x > 0, that [1, 2] lies inside that set, and that the chord slope is logₑ 2.",
+          "accept": [
+            "log x is defined only for positive x and one to two is inside that",
+            "it is continuous on one to two and differentiable on the open interval",
+            "log of one is zero so the chord slope is log two",
+            "the average slope is log two",
+            "log x positive x ki matrame undi, so one two lo conditions hold",
+            "check both conditions then find the chord slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log x",
+            "positive",
+            "log two",
+            "continuous",
+            "chord slope"
+          ]
+        },
+        "why": "A logarithm is the one common function in this chapter whose domain can rule the theorem out, so naming the domain is what earns the first mark. An answer that starts at 1/c = logₑ 2 has skipped it.",
+        "common_mistakes": [
+          "Writing logₑ 1 = 1 instead of 0.",
+          "Ignoring the domain and claiming the theorem holds on an interval that includes 0 or negative x."
+        ]
+      },
+      {
+        "id": "s2_solve_for_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = the chord slope",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. c = 1/logₑ 2 is the exact answer; the decimal 1.443 is only there to show it lies between 1 and 2. Keep the exact form in the box.",
+        "memory_tip": "logₑ 2 is a little under 0.7, so its reciprocal is a little over 1.4 — comfortably inside 1 to 2.",
+        "lines": [
+          "f′(x) = 1/x,   so f′(c) = 1/c",
+          "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
+          "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
+          "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",
+          {
+            "text": "∴ c = 1/logₑ 2 ≈ 1.443 ∈ (1, 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 1/x, that 1/c = logₑ 2 gives c = 1/logₑ 2, and that this value lies in (1, 2).",
+          "accept": [
+            "the derivative is one by x so one by c equals log two",
+            "c is one over log two",
+            "c is about one point four four which is inside one to two",
+            "the answer is one by log two",
+            "one by c ni log two ki equal chesthe c one by log two vasthundi",
+            "check that c lies between one and two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by x",
+            "one by log two",
+            "one point four four",
+            "inside the interval"
+          ]
+        },
+        "why": "The theorem states only that such a c exists; verifying it means producing the c and showing it is inside (1, 2). Writing c = logₑ 2 instead of its reciprocal is the usual slip, and 0.693 is outside the interval, so the check catches it.",
+        "common_mistakes": [
+          "Giving c = logₑ 2 rather than 1/logₑ 2.",
+          "Writing 1/logₑ 2 as logₑ(1/2), which is negative.",
+          "Rounding to 1.4 and losing the exact value in the final line."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Verify BOTH conditions before finding c — Lagrange asks only for continuity on [1, 2] and differentiability on (1, 2); the third condition f(a) = f(b) belongs to Rolle — a verification question is marked on the conditions as much as the value. c = 1/log 2 lands in (1, 2), which must be stated."
+}

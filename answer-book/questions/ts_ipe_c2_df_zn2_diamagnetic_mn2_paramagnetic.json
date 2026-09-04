@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the printed question writes the charges as Zn+2 and Mn+2; the standard form Zn²⁺ and Mn²⁺ is used here. The printed answer is correct as far as it goes. ADDED HERE: the spin-only moments are computed, μ = √(n(n+2)) BM, giving 0 BM for Zn²⁺ (n = 0) and √35 = 5.92 BM for Mn²⁺ (n = 5); and the trend is stated with its exception — Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are the two diamagnetic, colourless ions at the ends of the first transition series while every ion between them is paramagnetic and coloured."
+    "note": "Unit 11 (d and f Block Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 8 (\"8. d & f BLOCK ELEMENTS\"), book pp.91-94, which prints this question on book p.91 as VSAQ 1. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NOTATION: the printed question writes the charges as Zn+2 and Mn+2; the standard form Zn²⁺ and Mn²⁺ is used here. The printed answer is correct as far as it goes. ADDED HERE: the spin-only moments are computed, μ = √(n(n+2)) BM, giving 0 BM for Zn²⁺ (n = 0) and √35 = 5.92 BM for Mn²⁺ (n = 5); and the trend is stated with its exception — Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are the two diamagnetic, colourless ions at the ends of the first transition series while every ion with a partly filled d subshell, 3d¹ to 3d⁹, is paramagnetic and coloured."
   },
   "answer": {
     "page_header": [
@@ -57,7 +57,7 @@
           "With no unpaired electron, Zn²⁺ is",
           "diamagnetic."
         ],
-        "why": "The 4s electrons leave first when a d-block atom is ionised, so the ion is written 3d^x 4s⁰ and not 3d^(x-2) 4s². Zn²⁺ then has a completely filled 3d¹⁰ set in which every orbital holds a pair, so n = 0 and the spin-only moment is zero. Zn²⁺ is one of the two ends of the first transition series where this happens; the other is Sc³⁺, which is 3d⁰. Both are diamagnetic and colourless, while every ion between them is paramagnetic and coloured.",
+        "why": "The 4s electrons leave first when a d-block atom is ionised, so the ion is written 3d^x 4s⁰ and not 3d^(x-2) 4s². Zn²⁺ then has a completely filled 3d¹⁰ set in which every orbital holds a pair, so n = 0 and the spin-only moment is zero. Zn²⁺ is one of the two ends of the first transition series where this happens; the other is Sc³⁺, which is 3d⁰. Both are diamagnetic and colourless, while every ion with a partly filled d subshell, 3d¹ to 3d⁹, is paramagnetic and coloured.",
         "common_mistakes": [
           "Writing Zn²⁺ as [Ar] 3d⁸ 4s². The 4s electrons are removed first, so the ion is 3d¹⁰ 4s⁰.",
           "Calling a filled d¹⁰ set paramagnetic. Paramagnetism needs at least one unpaired electron, and d¹⁰ has none."
@@ -79,10 +79,13 @@
           "occupy five orbitals singly, so n = 5.",
           {
             "text": "μ = √(5 × 7) = √35 = 5.92 BM",
-            "style": "boxed"
+            "style": "eq"
           },
-          "With five unpaired electrons, Mn²⁺ is",
-          "paramagnetic."
+          "With five unpaired electrons,",
+          {
+            "text": "Mn²⁺ is paramagnetic.",
+            "style": "boxed"
+          }
         ],
         "why": "Hund's rule fills the five d orbitals one electron at a time before any pairing begins, so 3d⁵ is the half-filled set with five unpaired electrons — the largest number available in the first transition series. That is why Mn²⁺ has the largest spin-only moment of the series, 5.92 BM, and why Zn²⁺ at the other extreme has none.",
         "common_mistakes": [

@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_sin_ax_over_x_cos_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (sin ax)/(x cos x), for x ≠ 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Separate the sine factor from cos x",
+      "marks": 1
+    },
+    {
+      "label": "Apply lim sin θ / θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you split the expression and what each factor tends to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_separate",
+        "kind": "equation",
+        "label": "Separate the sine factor from cos x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Only sin(ax)/x is indeterminate; cos x is 1 at x = 0 and is simply substituted. Split them before doing anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0, sin ax = 0 and x cos x = 0, so the form is 0/0.",
+          "Split the expression into the indeterminate part and the ordinary part.",
+          "sin(ax)/(x cos x) = [sin(ax)/x] · [1/cos x]",
+          "Multiply and divide the first factor by a so the angle ax appears below the sine.",
+          "= a · [sin(ax)/(ax)] · [1/cos x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is split into sin(ax)/x and 1/cos x, and that sin(ax)/x is written as a · sin(ax)/(ax).",
+          "accept": [
+            "split it into sin a x over x and one over cos x",
+            "multiply and divide by a so the angle a x sits below the sine",
+            "cos x is not indeterminate so keep it separate",
+            "sin a x by x ni a tho multiply divide cheyyali",
+            "take the a outside as a coefficient"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin a x by a x",
+            "multiply and divide by a",
+            "one over cos x",
+            "split"
+          ]
+        },
+        "why": "Only the sine factor needs the standard limit; cos x is continuous and non-zero at 0, so separating them keeps the working short and shows which rule applies where.",
+        "common_mistakes": [
+          "Cancelling x against the x inside sin ax.",
+          "Writing lim sin(ax)/x = 1 and losing the factor a."
+        ],
+        "memory_tip": "sin θ / θ → 1 needs the same angle above and below. Here the angle is ax, so create ax below, and put an a outside so the value is unchanged."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Apply lim sin θ / θ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. Only the coefficient a survives.",
+        "lines": [
+          "As x → 0, ax → 0, so lim(x → 0) sin(ax)/(ax) = 1.",
+          "Also cos x → cos 0 = 1, so 1/cos x → 1.",
+          "= a · 1 · 1",
+          {
+            "text": "∴ lim(x → 0) (sin ax)/(x cos x) = a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(ax)/(ax) → 1 and 1/cos x → 1, so the answer is a.",
+          "accept": [
+            "both factors are one so the answer is a",
+            "the answer is a",
+            "cos zero is one so it does not change the value",
+            "answer a vasthundi",
+            "sin a x over a x tends to one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a",
+            "cos zero is one",
+            "tends to one",
+            "answer is a"
+          ]
+        },
+        "why": "cos x contributes nothing because cos 0 = 1, so the answer is the coefficient of x inside the sine. The value checks numerically: with a = 3 the expression is 3.0000 at x = 0.0001.",
+        "common_mistakes": [
+          "Answering 1 by ignoring the coefficient a.",
+          "Treating cos x as 0 at x = 0 and concluding that the limit does not exist."
+        ],
+        "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged."
+      }
+    ]
+  },
+  "insider_note": "Only sin(ax)/x is indeterminate; cos x is simply 1 at x = 0, so separate the two first. Multiply and divide by a so the angle matches below the sine, and that a is the answer."
+}

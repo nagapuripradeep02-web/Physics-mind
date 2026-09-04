@@ -11,10 +11,10 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 14,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Using the principle of finite Mathematical Induction prove that 1·2·3 + 2·3·4 + 3·4·5 + … upto n terms = n(n+1)(n+2)(n+3)/4, ∀ n ∈ N.",
   "appearances": [
     {
@@ -28,10 +28,6 @@
   ],
   "mark_split": [
     {
-      "label": "nth term and the statement S(n)",
-      "marks": 1
-    },
-    {
       "label": "Step 1 — S(1) is true",
       "marks": 1
     },
@@ -41,7 +37,7 @@
     },
     {
       "label": "Step 3 — S(k+1) follows",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclusion by P.M.I",
@@ -51,22 +47,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 2 Mathematical Induction, question 5, ★★★ chapter. The 1+1+1+3+1 split is PRINTED in that book's margin against the five moves. Publisher's claims until a Telangana IPE teacher confirms them. Products are written with · rather than the book's period, so 1·2·3 cannot be misread as a decimal. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 2 Mathematical Induction, question 5, ★★★ chapter. The 1+1+1+3+1 split is PRINTED in that book's margin against the five moves. Publisher's claims until a Telangana IPE teacher confirms them. Products are written with · rather than the book's period, so 1·2·3 cannot be misread as a decimal. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this by induction — the five moves, and what happens in the third step.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_statement",
         "kind": "equation",
         "label": "Find the nth term",
-        "marks": 1,
-        "mark_note": "Statement",
-        "margin_note": "One mark. Nothing can be proved until the nth term is named and S(n) is written out in full.",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — nothing can be proved until the nth term is named and S(n) is written out in full.",
         "lines": [
           "nth term = n(n+1)(n+2)",
           "Let S(n): 1·2·3 + 2·3·4 + …",
@@ -98,7 +93,8 @@
         "common_mistakes": [
           "Writing the nth term as n(n+1) and dropping the third factor.",
           "Starting the pattern at 1·2 instead of 1·2·3."
-        ]
+        ],
+        "memory_tip": "The nth term is n(n+1)(n+2) — three consecutive factors. Write S(n) out in full before proving anything."
       },
       {
         "id": "s2_base",
@@ -139,7 +135,8 @@
         "common_mistakes": [
           "Asserting S(1) is true without computing both sides.",
           "Substituting n = 1 into only one side."
-        ]
+        ],
+        "memory_tip": "Compute BOTH sides separately: 1·2·3 = 6 and 24/4 = 6. Do not just assert equality."
       },
       {
         "id": "s3_assume",
@@ -180,15 +177,16 @@
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
-        ]
+        ],
+        "memory_tip": "Assume for k and number the line (1) — Step 3 quotes it."
       },
       {
         "id": "s4_inductive",
         "kind": "equation",
         "label": "Show S(k+1) follows",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "Four of the eight marks — the whole inductive step. Add the (k+1)th term to BOTH sides of (1), then factorise until the right-hand side appears.",
+        "margin_note": "One mark, and the longest step on the page — the whole inductive step. Add the (k+1)th term to BOTH sides of (1), then factorise until the right-hand side appears.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "Add (k+1)(k+2)(k+3) to both sides of (1):",
@@ -225,7 +223,8 @@
           "Adding the wrong next term — it is (k+1)(k+2)(k+3), not (k+1)(k+2).",
           "Expanding everything instead of factorising, which leaves a cubic that will not simplify.",
           "Never writing = R.H.S, so the step stops short of what was to be shown."
-        ]
+        ],
+        "memory_tip": "Add (k+1)(k+2)(k+3) to both sides, then take it out as a common factor: k + 4 is what is left."
       },
       {
         "id": "s5_conclude",
@@ -264,8 +263,10 @@
         "common_mistakes": [
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
-        ]
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark."
       }
     ]
-  }
+  },
+  "insider_note": "Do not expand anything — take (k+1)(k+2)(k+3) out as a common factor and the bracket becomes k + 4 in one line. Expanding the quartic instead is where the time and the marks go."
 }

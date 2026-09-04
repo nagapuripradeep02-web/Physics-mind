@@ -49,7 +49,8 @@
         "label": "Find det A",
         "marks": 1,
         "mark_note": "Determinant",
-        "margin_note": "First mark. det A comes to 1. Any non-zero value would do, but a determinant of exactly 1 makes the last step painless, so it is worth computing carefully before starting the nine cofactors.",
+        "margin_note": "First mark. det A comes to 1. Any non-zero value would do, but a determinant of exactly 1 makes the last step a division by 1, so no fractions appear — it is worth computing carefully before starting the nine cofactors.",
+        "memory_tip": "det A = 1, so the last step divides by 1 and no fractions appear — worth computing carefully.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,7 +93,7 @@
             "inverse exists"
           ]
         },
-        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line is a gate, not a warm-up.",
+        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line has to be written before anything else.",
         "common_mistakes": [
           "Computing det A but never writing that it is non-zero.",
           "Getting the sign pattern wrong: plus, minus, plus along the top row.",
@@ -106,6 +107,7 @@
         "marks": 2,
         "mark_note": "Cofactors",
         "margin_note": "Half the marks, and nine small determinants. Delete the entry’s own row and column, take the 2×2 determinant of what is left, then apply the sign board + − + / − + − / + − +. Work along the rows in order so none is missed.",
+        "memory_tip": "Nine small determinants: delete the row and column, take the 2×2, apply the sign.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, then apply + − + / − + − / + − +:",
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "Adjoint and inverse",
         "margin_note": "Last mark. det A is 1, so dividing by it changes nothing and A⁻¹ is the adjoint itself. Write the division line anyway — the examiner is marking the method, and a question where det A happens to be 1 is not a question where the step disappears.",
+        "memory_tip": "det A is 1, so A⁻¹ IS the adjoint. Write the division line anyway — the method is marked.",
         "lines": [
           "Adj A is the TRANSPOSE of the cofactor matrix:",
           {
@@ -200,5 +203,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 1, so the inverse and the adjoint are the SAME matrix and no division is needed. The cofactor matrix still has to be transposed before that, though."
 }

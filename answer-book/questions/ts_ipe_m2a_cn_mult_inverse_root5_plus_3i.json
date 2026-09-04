@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_mult_inverse_root5_plus_3i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the multiplicative inverse of √5 + 3i.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write 1/(√5 + 3i) and multiply by the conjugate",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the form a + ib",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 108.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the multiplicative inverse — what the inverse is, and how you write it as a + ib.",
+  "insider_note": "The trap is answering with the conjugate √5 − 3i itself — the inverse is 1/z, and the conjugate is only the multiplier. (√5)² is 5, not 25, so the denominator is 5 + 9 = 14.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reciprocal",
+        "kind": "equation",
+        "label": "Write the reciprocal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The multiplicative inverse of z is 1/z. Multiply above and below by the conjugate √5 − 3i; the denominator becomes (√5)² + 3² = 5 + 9.",
+        "memory_tip": "Inverse means 1/z, not the conjugate. (√5)² is 5, so the denominator is 5 + 9.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Multiplicative inverse of √5 + 3i is 1/(√5 + 3i).",
+          {
+            "text": "1/(√5 + 3i) = (√5 − 3i) / ((√5 + 3i)(√5 − 3i))",
+            "style": "eq"
+          },
+          {
+            "text": "= (√5 − 3i) / (5 + 9)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the multiplicative inverse is 1/(√5 + 3i), and multiplying top and bottom by √5 − 3i makes the denominator 5 + 9.",
+          "accept": [
+            "the inverse is one over root five plus three i, multiply top and bottom by root five minus three i",
+            "write one by z and rationalise with the conjugate root five minus three i",
+            "the denominator becomes root five squared plus three squared which is five plus nine",
+            "inverse ante one by z, conjugate root five minus three i tho multiply cheyali",
+            "multiplicative inverse is the reciprocal, rationalise it"
+          ],
+          "reject": [
+            "find the inverse",
+            "rationalise"
+          ],
+          "heard_as": [
+            "one by",
+            "reciprocal",
+            "conjugate",
+            "root five minus three i",
+            "inverse"
+          ]
+        },
+        "why": "The inverse is 1/z because z · (1/z) = 1. The conjugate makes the denominator (√5)² + 3² = 14, a real number, and the square root disappears from the bottom.",
+        "common_mistakes": [
+          "Giving the conjugate √5 − 3i itself as the inverse.",
+          "Writing (√5)² as √25 or as 25 instead of 5."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 5 + 9 = 14. Separate the real and imaginary parts.",
+        "memory_tip": "5 + 9 = 14. The √5 stays in the numerator; it does not simplify further.",
+        "lines": [
+          "= (√5 − 3i)/14",
+          {
+            "text": "∴ inverse = √5/14 − (3/14)i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator is 14, so the inverse is √5/14 − (3/14)i.",
+          "accept": [
+            "five plus nine is fourteen so the inverse is root five by fourteen minus three by fourteen i",
+            "the answer is root five minus three i over fourteen",
+            "root five by fourteen minus three i by fourteen",
+            "denominator fourteen, inverse root five by fourteen minus three by fourteen i",
+            "divide root five minus three i by fourteen"
+          ],
+          "reject": [
+            "simplify",
+            "write the answer"
+          ],
+          "heard_as": [
+            "fourteen",
+            "root five by",
+            "three by fourteen",
+            "minus"
+          ]
+        },
+        "why": "The answer is in the form a + ib once the real part √5/14 and the imaginary part −3/14 are visible. The √5 stays in the numerator — it does not simplify further.",
+        "common_mistakes": [
+          "Adding 5 + 9 as 15.",
+          "Trying to 'rationalise' the √5 in the numerator — it is already in simplest form."
+        ]
+      }
+    ]
+  }
+}

@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and half the question — it says \"define\", so the definition must be written even though the number is easy.",
+        "memory_tip": "The question says 'define', so write it: the trace is the sum of the DIAGONAL entries.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The principal diagonal is 1, −1, 1 — top-left to bottom-right. Nothing off that line is used.",
+        "memory_tip": "Add only the diagonal — the off-diagonal entries play no part.",
         "lines": [
           "The principal diagonal is 1, −1, 1.",
           "Tr(A) = 1 + (−1) + 1 = 1",
@@ -142,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The trace uses the principal diagonal only — the other six entries are there as a distraction. 1 + (−1) + 1 = 1, and that middle minus sign is easily dropped."
 }

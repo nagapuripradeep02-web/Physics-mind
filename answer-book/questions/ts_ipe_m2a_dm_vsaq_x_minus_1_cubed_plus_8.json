@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_x_minus_1_cubed_plus_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the cube roots of unity are 1, ω, ω², then find the roots of the equation (x − 1)³ + 8 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write −8 as (−2)³ and take cube roots",
+      "marks": 1
+    },
+    {
+      "label": "Add 1 to each",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.90 — Star Questions Plus, De Moivre's Theorem banner, answer 188. Printed appearances: none — this answer carries no year tag. Section OURS: the book's Star Questions Plus pages carry no mark cut; this answer is a short reduction of the same shape as the chapter's 2-mark VSAQs, so it is classed VSAQ (2 marks). This unit has no SAQ chapter, so a 4-mark class was not available. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book p.90; 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses. The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. Chapter stars: the Star Questions Plus section prints none; the ★★★ carried in the manifest is the De Moivre VSAQ CHAPTER's rank (book p.73), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: (x − 1)³ = (−2)³, so x − 1 = −2, −2ω, −2ω²; the book's answer is correct. Notation: the book writes the step as x − 1 = (−2)(1)^{1/3}; the card says 'a cube root of 1' in words rather than typeset a fractional power for one short line."
+  },
+  "recall_prompt": "Say how you would find the roots — what the three cube roots of −8 are, and how you get x from x − 1.",
+  "insider_note": "The question asks for the roots, plural: a cubic has three, so all three cube roots of 1 are used. The second mark is adding the 1 back — stopping at x − 1 = −2, −2ω, −2ω² is the usual half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Write −8 as (−2)³ and take cube roots",
+        "marks": 1,
+        "mark_note": "Cube roots",
+        "margin_note": "First mark. (x − 1)³ = −8 = (−2)³, so x − 1 = −2 times a cube root of 1: x − 1 = −2, −2ω, −2ω². A cubic has three roots, so all three cube roots of 1 are used.",
+        "memory_tip": "−8 = (−2)³, so x − 1 = −2 times each cube root of 1: −2, −2ω, −2ω². A cubic has three roots.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x − 1)³ + 8 = 0 ⇒ (x − 1)³ = −8 = (−2)³",
+          "⇒ x − 1 = (−2) × (a cube root of 1)",
+          "⇒ x − 1 = −2, −2ω, −2ω²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − 1)³ = −8 = (−2)³ gives x − 1 = −2 times each cube root of unity: −2, −2ω, −2ω².",
+          "accept": [
+            "x minus one cubed is minus eight which is minus two cubed, so x minus one is minus two times one, omega, omega squared",
+            "take the cube root of minus eight and multiply by the three cube roots of unity",
+            "x minus one equals minus two, minus two omega, minus two omega squared",
+            "cube root teeste x minus one is minus two into one omega omega square",
+            "there are three cube roots, the real one and the two omega ones"
+          ],
+          "reject": [
+            "take the cube root",
+            "solve it",
+            "find x minus one"
+          ],
+          "heard_as": [
+            "minus two cubed",
+            "cube roots of unity",
+            "minus two omega",
+            "three roots"
+          ]
+        },
+        "why": "A cubic has three roots. Writing −8 as (−2)³ gives the real cube root; multiplying it by 1, ω, ω² gives all three, because those are exactly the numbers whose cube is 1.",
+        "common_mistakes": [
+          "Writing only x − 1 = −2 and giving one root.",
+          "Writing x − 1 = 2, 2ω, 2ω², the wrong sign.",
+          "Expanding (x − 1)³ + 8 and trying to factor a cubic."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Add 1 to each",
+        "marks": 1,
+        "mark_note": "Roots",
+        "margin_note": "Second mark. Add 1 to each value: x = −1, 1 − 2ω, 1 − 2ω². Three values of x − 1 give three roots.",
+        "memory_tip": "Add the 1 back to every value: x = −1, 1 − 2ω, 1 − 2ω².",
+        "lines": [
+          {
+            "text": "x = −1, 1 − 2ω, 1 − 2ω²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to x = −1, 1 − 2ω, 1 − 2ω².",
+          "accept": [
+            "evaluate the reduced form and get x = −1, 1 − 2ω, 1 − 2ω²",
+            "the answer comes to x = −1, 1 − 2ω, 1 − 2ω²",
+            "simplify the powers of omega and the value is x = −1, 1 − 2ω, 1 − 2ω²",
+            "reduce chesaka value x = −1, 1 − 2ω, 1 − 2ω² vasthundi",
+            "finally it equals x = −1, 1 − 2ω, 1 − 2ω²"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "x = −1, 1 − 2ω, 1 − 2ω²"
+          ]
+        },
+        "why": "Each value of x − 1 gives a root when 1 is added back. Three values, three roots.",
+        "common_mistakes": [
+          "Forgetting to add 1 and giving −2, −2ω, −2ω² as the roots.",
+          "Writing 1 + 2ω instead of 1 − 2ω.",
+          "Dropping one of the three roots."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_variance_sd_5_12_3_18_6_8_2_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the variance and standard deviation for the discrete data 5, 12, 3, 18, 6, 8, 2, 10.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the mean",
+      "marks": 1
+    },
+    {
+      "label": "Find the variance and the standard deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 18 Measures of Dispersion, answer 172.2. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: AP 15 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q9 of the book's Model Paper 5 (book p.119, index P86(172.2)). CORRECTION TO THE BOOK, recorded not silently fixed: the book prints 'Standard deviation σ = √24.25 ≅ 4.95'. √24.25 = 4.9244…, which is 4.92 to two places (4.92² = 24.21, 4.95² = 24.50); the card writes σ = 4.92 and the step's why records the printed 4.95. Recomputed: sum 64, x̄ = 8, deviations −3, 4, −5, 10, −2, 0, −6, 2, squares 9, 16, 25, 100, 4, 0, 36, 4, total 194, 194/8 = 24.25 — the variance is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the variance and standard deviation of eight numbers — what you find first, what you square, what you divide, and how you finish.",
+  "insider_note": "Variance and standard deviation differ by one square root and BOTH are asked: σ² = 194/8 = 24.25, then σ = 4.92; the book's printed 4.95 is a misprint — 4.95² is 24.50, not 24.25.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean",
+        "kind": "equation",
+        "label": "Mean",
+        "marks": 1,
+        "mark_note": "Mean",
+        "margin_note": "First mark. Eight values, sum 64, mean 8. n = 8 is the divisor in both steps.",
+        "memory_tip": "64/8 = 8. The data also contains an 8; that value simply has deviation 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 8",
+          "Mean x̄ = (5 + 12 + 3 + 18 + 6 + 8 + 2 + 10)/8",
+          "= 64/8 = 8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean of the eight values is 64/8 = 8.",
+          "accept": [
+            "add the eight numbers to get sixty four and divide by eight, the mean is eight",
+            "x bar is sixty four by eight equals eight",
+            "the mean of the data is eight",
+            "enimidi numbers add cheste sixty four, eight tho divide cheste mean eight",
+            "sum sixty four, n eight, mean eight"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "x bar",
+            "sixty four",
+            "eight",
+            "mean"
+          ]
+        },
+        "why": "Variance measures spread around the mean, so the mean has to exist before any deviation can be squared.",
+        "common_mistakes": [
+          "A slip in the sum: 5 + 12 + 3 + 18 + 6 + 8 + 2 + 10 = 64.",
+          "Confusing the mean 8 with the data value 8 — the value 8 simply has deviation 0."
+        ]
+      },
+      {
+        "id": "s2_variance",
+        "kind": "boxed_final",
+        "label": "Variance and S.D.",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Deviations from 8, squared: 9, 16, 25, 100, 4, 0, 36, 4. Sum 194, divide by n = 8: σ² = 24.25. Then σ = √24.25 = 4.92. The book prints 4.95 here, which is a misprint: 4.95² = 24.50, while 4.92² = 24.21.",
+        "memory_tip": "194/8 = 24.25, then √24.25 = 4.92. Square the root back to check: 4.92² = 24.21, but 4.95² = 24.50.",
+        "lines": [
+          "xᵢ − x̄ : −3, 4, −5, 10, −2, 0, −6, 2",
+          "(xᵢ − x̄)² : 9, 16, 25, 100, 4, 0, 36, 4",
+          "Variance σ² = Σ(xᵢ − x̄)²/n = 194/8 = 24.25",
+          "Standard deviation σ = √24.25 = 4.92",
+          {
+            "text": "∴ σ² = 24.25, σ = 4.92",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squared deviations from 8 add to 194, the variance is 194/8 = 24.25, and the standard deviation is √24.25 = 4.92.",
+          "accept": [
+            "subtract eight from each number, square, add to one ninety four, divide by eight to get twenty four point two five, root gives four point nine two",
+            "the squared deviations add to one hundred ninety four, variance twenty four point two five, S D four point nine two",
+            "variance is sigma x i minus x bar squared by n equals twenty four point two five and sigma is its square root four point nine two",
+            "eight nunchi deviations square chesi add cheste one ninety four, eight tho divide cheste twenty four point two five, root four point nine two",
+            "variance twenty four point two five and standard deviation four point nine two"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "squared",
+            "square",
+            "one ninety four",
+            "twenty four point two five",
+            "four point nine two",
+            "root",
+            "S D"
+          ]
+        },
+        "why": "Variance is the mean of the squared deviations; the standard deviation is its square root, back in the unit of the data. √24.25 = 4.9244…, so 4.92 — the book's printed 4.95 does not square to 24.25.",
+        "common_mistakes": [
+          "Adding the absolute deviations (32) instead of their squares (194).",
+          "Copying the book's 4.95: 4.95² = 24.50, not 24.25.",
+          "Stopping at the variance when the question asks for both."
+        ]
+      }
+    ]
+  }
+}

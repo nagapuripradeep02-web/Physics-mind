@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_dist_table_1_to_5_k_mean_variance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A random variable X has the following probability distribution: X = 1, 2, 3, 4, 5; P(X = xᵢ) = k, 2k, 3k, 4k, 5k. Find k and the mean and variance of X.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find k",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean",
+      "marks": 2
+    },
+    {
+      "label": "Find the variance",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.40 — LAQ chapter 5 Random Variables, answer 41.1. (In this part of the scan book page = PDF page − 1: book p.40 was read at PDF p.41, not p.42 as the −2 rule predicts.) Printed appearances: AP 17, 19 · TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the only printed split in this chapter, answer 45 on book p.42 (1 mark for the ΣP(X = xᵢ) = 1 equation, 1 for solving it, 1 for the accepted value; 2 marks for a two-term probability, 1 for a one-term probability), grouped into the three things this question asks for. The SAME split and the SAME step ids (s1_find_k, s2_mean, s3_variance / s3_prob) are used on the three distribution-table LAQs of this unit (41.1, 41.2, 42) deliberately: they are one method over different tables. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 1 (book p.112); the Bullet Model Paper re-solves it under Q24 on book p.110 with the same k = 1/15, μ = 11/3, σ² = 14/9 — the two printings agree and both recompute. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find k, the mean and the variance from a probability table — what equation gives k, and what you multiply and add for the mean and for the variance.",
+  "insider_note": "The first two marks are for the equation Σ P(X = xᵢ) = 1 written out, not for k = 1/15 alone; and the variance subtracts μ², so the mean 11/3 has to be found before it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_k",
+        "kind": "equation",
+        "label": "Find k",
+        "marks": 2,
+        "mark_note": "k",
+        "margin_note": "First two marks. Every probability distribution has one rule: the probabilities add to 1. Write the table, write ΣP(X = xᵢ) = 1, add the k's — 15k = 1 gives k = 1/15. Keep k as a fraction; the mean and variance are found in k first and 1/15 is put in at the end.",
+        "memory_tip": "Add the PROBABILITIES, not the values: 15k = 1. Write the ΣP = 1 line — the equation is the mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "X = xᵢ:       1     2     3     4     5",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ):    k    2k    3k    4k    5k",
+            "style": "indent"
+          },
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = xᵢ) = 1",
+            "style": "eq"
+          },
+          "⇒ k + 2k + 3k + 4k + 5k = 1 ⇒ 15k = 1",
+          "⇒ k = 1/15"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the probabilities add to 1, so k + 2k + 3k + 4k + 5k = 15k = 1 and k = 1/15.",
+          "accept": [
+            "the probabilities add up to one so fifteen k equals one and k is one by fifteen",
+            "sum of P of X equals one gives fifteen k equal to one",
+            "add all the k terms, set the sum to one, k comes to one over fifteen",
+            "anni probabilities kalipithe one, so fifteen k equals one, k is one by fifteen",
+            "use sigma P equals one to get k"
+          ],
+          "reject": [
+            "find k",
+            "add them"
+          ],
+          "heard_as": [
+            "fifteen k",
+            "one by fifteen",
+            "sum of probabilities",
+            "sigma P",
+            "equal to one"
+          ]
+        },
+        "why": "A random variable's probabilities must add to 1 because X takes exactly one of the listed values in every trial. That one equation is the only place the table gives you information about k.",
+        "common_mistakes": [
+          "Adding the x-values (1 + 2 + 3 + 4 + 5) instead of the probabilities.",
+          "Writing 15k = 1 and then k = 15.",
+          "Never writing ΣP(X = xᵢ) = 1 before solving — the examiner marks the equation, not only the value."
+        ]
+      },
+      {
+        "id": "s2_mean",
+        "kind": "equation",
+        "label": "Find the mean",
+        "marks": 2,
+        "mark_note": "Mean",
+        "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ): multiply each value by its probability and add. Factor the k out — k(1 + 4 + 9 + 16 + 25) = 55k — and only then put k = 1/15. 55/15 simplifies to 11/3; leave it as a fraction.",
+        "memory_tip": "Multiply each value by its probability and factor k out: k(1 + 4 + 9 + 16 + 25) = 55k = 11/3.",
+        "lines": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 1(k) + 2(2k) + 3(3k) + 4(4k) + 5(5k)",
+          "= k(1 + 4 + 9 + 16 + 25) = 55k",
+          "= 55/15 = 11/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is Σxᵢ·P(X = xᵢ) = 55k = 55/15 = 11/3.",
+          "accept": [
+            "mean is sigma x times P of x which is fifty five k so eleven by three",
+            "multiply each value by its probability and add to get eleven by three",
+            "mu equals sum of x i P x i, comes to fifty five by fifteen",
+            "prathi x ni daani probability tho multiply chesi add cheste mean eleven by three",
+            "the mean is fifty five k which is eleven by three"
+          ],
+          "reject": [
+            "find the mean",
+            "add them up"
+          ],
+          "heard_as": [
+            "mu",
+            "sigma x P",
+            "fifty five k",
+            "eleven by three",
+            "mean"
+          ]
+        },
+        "why": "The mean is a weighted average: each value counts as much as its probability. Factoring k out keeps the arithmetic in whole numbers until the last line, which is where most slips are avoided.",
+        "common_mistakes": [
+          "Adding the probabilities to the values instead of multiplying.",
+          "Putting k = 1/15 into every term first and then adding five fractions.",
+          "Leaving 55/15 unsimplified."
+        ]
+      },
+      {
+        "id": "s3_variance",
+        "kind": "boxed_final",
+        "label": "Find the variance",
+        "marks": 3,
+        "mark_note": "Variance",
+        "margin_note": "Three marks. Variance σ² = Σxᵢ²·P(X = xᵢ) − μ². Square each VALUE (not the probability), multiply by its probability, add — k(1 + 8 + 27 + 64 + 125) = 225k = 15 — then subtract μ² = 121/9. The answer 14/9 is positive, as a variance must be.",
+        "memory_tip": "Square the VALUES, not the probabilities: k(1 + 8 + 27 + 64 + 125) = 15, then subtract μ² = 121/9.",
+        "lines": [
+          {
+            "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+            "style": "eq"
+          },
+          "= 1(k) + 4(2k) + 9(3k) + 16(4k) + 25(5k) − (11/3)²",
+          "= k(1 + 8 + 27 + 64 + 125) − 121/9",
+          "= 225/15 − 121/9 = 15 − 121/9",
+          "= (135 − 121)/9 = 14/9",
+          {
+            "text": "∴ k = 1/15, μ = 11/3, σ² = 14/9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the variance is Σxᵢ²·P(X = xᵢ) − μ² = 225k − (11/3)² = 15 − 121/9 = 14/9.",
+          "accept": [
+            "variance is sigma x squared P of x minus mu squared which is fifteen minus one twenty one by nine equals fourteen by nine",
+            "square each value times its probability, add, subtract the mean squared",
+            "sigma squared equals two twenty five k minus eleven by three whole square",
+            "x square into probability add chesi mean square subtract cheste variance fourteen by nine",
+            "the variance comes to fourteen by nine"
+          ],
+          "reject": [
+            "find the variance",
+            "subtract the mean"
+          ],
+          "heard_as": [
+            "sigma squared",
+            "x squared",
+            "mu squared",
+            "fourteen by nine",
+            "variance"
+          ]
+        },
+        "why": "Variance measures how far the values sit from the mean on average, so it needs the squares of the values and the mean together. The formula Σxᵢ²P − μ² is the same as Σ(xᵢ − μ)²P but far quicker with a fraction for μ.",
+        "common_mistakes": [
+          "Squaring the probabilities instead of the values.",
+          "Subtracting μ instead of μ².",
+          "Getting a negative variance and not stopping — a negative variance always means an arithmetic slip."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_infinite_exponent_series",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find all values of x ≠ 0 in (−π, π) satisfying 8^(1 + cos x + cos²x + … ∞) = 4³.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sum the infinite series",
+      "marks": 1
+    },
+    {
+      "label": "Match the powers",
+      "marks": 1
+    },
+    {
+      "label": "Solve for cos x",
+      "marks": 1
+    },
+    {
+      "label": "List the values in the interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.108, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape puts a full mark on the SERIES, because the trigonometry in this question is easy and the marks are really lost at the sum: a student who writes 1/(1 − cos x) without stating |cos x| < 1 has assumed the series converges. The convergence condition is written into the LINES the student reads, not parked here — it is what excludes x = 0 and it is the reason the stem says x ≠ 0. Inside (−π, π) the only value with |cos x| = 1 is x = 0 (x = ±π are not in the open interval), so x = 0 is the only exclusion, and the two answers x = ±π/3 both have |cos x| = 1/2 < 1. Nothing is squared and no denominator is cleared after that point, so no extraneous root can enter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say what condition the infinite series needs before it can be summed.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_the_infinite_series",
+        "kind": "equation",
+        "label": "Sum the infinite series",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The exponent is a geometric series with first term 1 and common ratio cos x. It has a sum only when |cos x| < 1, and inside (−π, π) that rules out x = 0 — which is why the question excludes it.",
+        "memory_tip": "First term 1, common ratio cos x, so the sum is 1/(1 − cos x) — but only while |cos x| < 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The exponent 1 + cos x + cos²x + … is a",
+          "geometric series with first term a = 1 and",
+          "common ratio r = cos x.",
+          "It has a sum only if |cos x| < 1.",
+          "In (−π, π) that rules out x = 0 alone, and",
+          "the question already excludes x = 0.",
+          "∴ Sum S = a/(1 − r) = 1/(1 − cos x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the exponent is a geometric series with ratio cos x summing to 1/(1 − cos x), valid only when |cos x| < 1.",
+          "accept": [
+            "the exponent is a geometric series with first term one and ratio cos x so the sum is one over one minus cos x",
+            "it sums only when the modulus of cos x is less than one which excludes x equals zero",
+            "use a over one minus r with r equal to cos x",
+            "geometric series ratio cos x, sum one by one minus cos x",
+            "sum the infinite series in the power first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "geometric series",
+            "one minus cos x",
+            "common ratio",
+            "mod cos x less than one"
+          ]
+        },
+        "why": "An infinite geometric series has a sum only when its common ratio is smaller than 1 in size. Stating that condition is what makes the rest of the working legal.",
+        "common_mistakes": [
+          "Writing the sum as 1/(1 + cos x).",
+          "Summing the series without stating |cos x| < 1.",
+          "Using the finite-series formula a(1 − rⁿ)/(1 − r)."
+        ]
+      },
+      {
+        "id": "s2_match_the_powers",
+        "kind": "equation",
+        "label": "Match the powers",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. 4³ is 64 and 8² is also 64, so both sides can be written to the base 8. Equal bases mean equal powers.",
+        "memory_tip": "4³ = 64 = 8², so put both sides to base 8. Equal bases, equal powers.",
+        "lines": [
+          "Given 8^S = 4³",
+          "Now 4³ = 64 and 8² = 64",
+          "⇒ 8^S = 8²",
+          "⇒ S = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4³ = 64 = 8², so the exponents match and S = 2.",
+          "accept": [
+            "four cubed is sixty four which is eight squared so the power S equals two",
+            "write both sides to the same base and equate the powers",
+            "the sum of the series must be two",
+            "four cube sixty four ante eight square, so S equals two",
+            "equate the indices after matching the base"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four cubed",
+            "sixty four",
+            "eight squared",
+            "equate the powers"
+          ]
+        },
+        "why": "Two powers of the same base are equal only when the exponents are equal. Writing 4³ as 8² is the one move that turns an index equation into an ordinary one.",
+        "common_mistakes": [
+          "Reading 4³ as 12.",
+          "Equating the powers while the bases are still 8 and 4."
+        ]
+      },
+      {
+        "id": "s3_solve_for_cos_x",
+        "kind": "equation",
+        "label": "Solve for cos x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Put the sum equal to 2 and solve the small fraction equation. Cross-multiplying is safe here because 1 − cos x is not zero.",
+        "memory_tip": "1/(1 − cos x) = 2 means 1 − cos x = 1/2, so cos x = 1/2.",
+        "lines": [
+          "⇒ 1/(1 − cos x) = 2",
+          "Here 1 − cos x ≠ 0, so cross-multiply:",
+          "⇒ 1 = 2(1 − cos x)",
+          "⇒ 2cos x = 1",
+          "⇒ cos x = 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/(1 − cos x) = 2 gives cos x = 1/2.",
+          "accept": [
+            "one over one minus cos x equals two so one minus cos x is a half and cos x is a half",
+            "cross multiply and solve to get cos x equals a half",
+            "the trigonometric equation is cos x equals one half",
+            "one minus cos x half avuthundi, cos x half",
+            "solve the fraction to reach cos x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos x equals a half",
+            "one minus cos x",
+            "cross multiply",
+            "one half"
+          ]
+        },
+        "why": "The index work and the series sum are both finished, and only a single ordinary trigonometric equation is left. From here it is the standard cosine work.",
+        "common_mistakes": [
+          "Writing 1 − cos x = 2 instead of 1/2.",
+          "Sign slip giving cos x = −1/2."
+        ]
+      },
+      {
+        "id": "s4_list_the_values",
+        "kind": "boxed_final",
+        "label": "List the values in the interval",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The interval is given, so the general solution is working and the finite list is the answer. Only n = 0 lands inside (−π, π), and both values keep |cos x| < 1.",
+        "memory_tip": "An interval is given, so the answer is the LIST, not the general solution. Only n = 0 fits inside (−π, π).",
+        "lines": [
+          "Now cos x = 1/2 = cos(π/3), so α = π/3",
+          "For cos x = cosα, x = 2nπ ± α",
+          "⇒ x = 2nπ ± π/3,  n ∈ Z",
+          "In (−π, π) only n = 0 gives values in range:",
+          "x = π/3 and x = −π/3.",
+          "For both, |cos x| = 1/2 < 1, so the series",
+          "does have a sum and both are accepted.",
+          {
+            "text": "∴ x = π/3, −π/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos x = 1/2 gives x = 2nπ ± π/3, and inside (−π, π) the answers are x = π/3 and x = −π/3.",
+          "accept": [
+            "cos x is a half which is cos pi by three so x is two n pi plus or minus pi by three and inside the interval that is pi by three and minus pi by three",
+            "only n equals zero lands inside so the answers are plus and minus pi by three",
+            "list the values in the interval rather than the general solution",
+            "interval lo pi by three, minus pi by three matrame vasthundi",
+            "both keep mod cos x less than one so both are accepted"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by three",
+            "minus pi by three",
+            "two n pi plus or minus",
+            "interval"
+          ]
+        },
+        "why": "When an interval is given, the general solution is only working — the answer is the finite list inside it. Both values must also keep the series summable, so the condition from step 1 is checked once more.",
+        "common_mistakes": [
+          "Leaving x = 2nπ ± π/3 as the final answer.",
+          "Giving only x = π/3 and dropping the negative value.",
+          "Including x = 5π/3, which is outside (−π, π)."
+        ]
+      }
+    ]
+  }
+}

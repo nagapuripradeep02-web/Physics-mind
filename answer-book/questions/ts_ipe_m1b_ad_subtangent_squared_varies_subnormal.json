@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subtangent_squared_varies_subnormal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the square of the length of the subtangent at any point on the curve by² = (x + a)³ varies with the length of the subnormal at that point.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the slope at a general point",
+      "marks": 1
+    },
+    {
+      "label": "Find the subtangent",
+      "marks": 1
+    },
+    {
+      "label": "Find the subnormal",
+      "marks": 1
+    },
+    {
+      "label": "Show the ratio is a constant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.220, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 8. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. WORDING NOTE, RECORDED NOT SILENTLY CORRECTED: the printed stem says varies WITH the length of the subnormal. The standard meaning in this topic is varies AS, that is, the ratio of the two is a constant, and that is what the working establishes: (subtangent)² = (8b/27) × subnormal. The stem is kept as printed and the answer states the constant explicitly. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the two formulas you use, say where you substitute the curve itself, and say what you have to show at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope",
+        "kind": "equation",
+        "label": "Find the slope at a general point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Work at a general point P(x, y) on the curve, since the question says at ANY point. Implicit differentiation is one line here; making y the subject first brings in a three-halves power.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P(x, y) be any point on the curve  by² = (x + a)³,  where a and b are constants.",
+          "Differentiate both sides with respect to x:",
+          "b · 2y (dy/dx) = 3(x + a)²",
+          "∴ m = dy/dx = 3(x + a)²/(2by)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That implicit differentiation of by² = (x + a)³ gives dy/dx = 3(x + a)²/(2by).",
+          "accept": [
+            "differentiate both sides implicitly with respect to x",
+            "two b y dy by dx equals three into x plus a whole squared",
+            "the slope is three x plus a squared by two b y",
+            "implicit ga differentiate chesi m ni rayali",
+            "take a general point x comma y on the curve",
+            "b is a constant so it stays outside"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two b y",
+            "three x plus a squared",
+            "slope",
+            "implicit"
+          ]
+        },
+        "why": "The subtangent and the subnormal both need m at the same general point, so one derivative serves both. Keeping the point general is what makes the final statement true at any point rather than at one.",
+        "common_mistakes": [
+          "Differentiating (x + a)³ as 3(x + a)² without noticing that a is a constant, then adding an extra da/dx term.",
+          "Writing 2y instead of 2by on the left.",
+          "Taking a numbered point, which proves nothing about ANY point."
+        ],
+        "memory_tip": "One general point, one derivative — both the subtangent and the subnormal are built from the same m."
+      },
+      {
+        "id": "s2_subtangent",
+        "kind": "equation",
+        "label": "Find the subtangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution is what collapses the expression to a single bracket.",
+        "lines": [
+          "Subtangent = y/m = y · 2by/(3(x + a)²) = 2by²/(3(x + a)²)",
+          "But by² = (x + a)³ from the curve itself, so",
+          "Subtangent = 2(x + a)³/(3(x + a)²)",
+          "∴ Subtangent = 2(x + a)/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subtangent y/m becomes 2by²/(3(x+a)²), and using by² = (x+a)³ it simplifies to 2(x + a)/3.",
+          "accept": [
+            "subtangent is y by m",
+            "two b y squared by three into x plus a squared",
+            "use the curve to replace b y squared with x plus a cubed",
+            "curve equation ni substitute chesi simplify cheyyali",
+            "the subtangent is two into x plus a by three",
+            "one bracket cancels leaving x plus a to the first power"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y by m",
+            "subtangent",
+            "two by three",
+            "x plus a"
+          ]
+        },
+        "why": "The equation of the curve is itself a usable substitution. Replacing by² by (x + a)³ removes both y and b from the subtangent and leaves the simplest possible form.",
+        "common_mistakes": [
+          "Using ym for the subtangent, which is the subnormal.",
+          "Cancelling (x + a)³ against (x + a)² to give (x + a)² instead of (x + a).",
+          "Leaving the answer as 2by²/(3(x + a)²) without using the curve."
+        ],
+        "memory_tip": "Sub-TANGENT has m underneath. Once it is written, look back at the curve for a substitution that clears the y."
+      },
+      {
+        "id": "s3_subnormal",
+        "kind": "equation",
+        "label": "Find the subnormal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Here the y cancels on its own, so no substitution from the curve is needed. Notice that b stays in the answer — it is what makes the constant in the last step.",
+        "lines": [
+          "Subnormal = ym = y · 3(x + a)²/(2by)",
+          "The y cancels:",
+          "∴ Subnormal = 3(x + a)²/(2b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subnormal ym = 3(x + a)²/(2b), because the y cancels.",
+          "accept": [
+            "subnormal is y into m",
+            "the y cancels straight away",
+            "subnormal is three x plus a squared by two b",
+            "y cancel ayipoyi three into x plus a square by two b migulutundi",
+            "no substitution is needed for the subnormal",
+            "b stays in the subnormal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y into m",
+            "subnormal",
+            "two b",
+            "cancels"
+          ]
+        },
+        "why": "The slope has y in its denominator, so multiplying by y removes it at once. The subnormal therefore depends on x and the constants only, which is what the comparison in the next step needs.",
+        "common_mistakes": [
+          "Using y/m for the subnormal, which is the subtangent.",
+          "Cancelling the 2b as well as the y.",
+          "Squaring the subnormal instead of the subtangent."
+        ],
+        "memory_tip": "Sub-NORMAL multiplies by m, and multiplying by y is what cancels the y sitting under the slope."
+      },
+      {
+        "id": "s4_ratio_constant",
+        "kind": "boxed_final",
+        "label": "Show the ratio is a constant",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Varies as means the ratio is free of x and y. Divide the square of the subtangent by the subnormal and show the brackets cancel completely.",
+        "lines": [
+          "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
+          "Divide by the subnormal:",
+          "(Subtangent)²/Subnormal = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
+          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          "This is free of x and y, so it is the same at every point of the curve.",
+          {
+            "text": "∴ (Subtangent)² = (8b/27) × Subnormal, a constant multiple — so the square of the subtangent varies as the subnormal.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (subtangent)²/subnormal = 8b/27, which is free of x and y, so the square of the subtangent varies as the subnormal.",
+          "accept": [
+            "square the subtangent and divide by the subnormal",
+            "the x plus a squared brackets cancel completely",
+            "the ratio is eight b by twenty seven",
+            "ratio lo x undadu kabatti it is a constant",
+            "square of the subtangent is a constant times the subnormal",
+            "varies as means the ratio is a constant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight b by twenty seven",
+            "ratio",
+            "constant",
+            "brackets cancel"
+          ]
+        },
+        "why": "One quantity varies as another when their ratio is the same at every point. Showing the ratio is 8b/27, with no x and no y left in it, is exactly that statement and is what finishes the proof.",
+        "common_mistakes": [
+          "Comparing the subtangent with the subnormal instead of the SQUARE of the subtangent.",
+          "Stopping at the ratio without saying it contains no x or y, which is the point being proved.",
+          "Writing (2(x + a)/3)² as 2(x + a)²/9 and forgetting to square the 2."
+        ],
+        "memory_tip": "Varies as means one is a fixed number times the other, so divide and check that every letter except the constants disappears."
+      }
+    ]
+  },
+  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constants b and a survive as the factor."
+}

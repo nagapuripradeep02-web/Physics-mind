@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cube_surface_rate_volume_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The volume of a cube is increasing at the rate of 9 cubic cm/sec. How fast is the surface area increasing when the length of an edge is 10 cm?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find da/dt from the volume",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate S = 6a² and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the two formulas you would write, and say which rate you have to find on the way to the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_edge_rate_from_volume",
+        "kind": "equation",
+        "label": "Find da/dt from the volume",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The volume rate and the surface area rate are not linked directly — the edge rate da/dt is the link between them, so it has to be found first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: dV/dt = 9 cm³/sec.  Asked: dS/dt when a = 10 cm.",
+          "Let a be the length of an edge at time t. Then",
+          "V = a³   and   S = 6a²",
+          "Differentiate V = a³ with respect to time t:",
+          "dV/dt = 3a²(da/dt)",
+          "Put a = 10 and dV/dt = 9:   9 = 3(10²)(da/dt) = 300(da/dt)",
+          "∴ da/dt = 9/300 = 3/100 cm/sec"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V = a³ is differentiated with respect to t and solved to give da/dt = 3/100 cm/sec at a = 10.",
+          "accept": [
+            "differentiate v equals a cubed to get d a by d t first",
+            "the edge rate connects the volume rate to the area rate",
+            "nine equals three hundred times d a by d t",
+            "modata d a by d t kanukkovali",
+            "da by dt is three by hundred centimetres per second",
+            "find the rate of change of the edge from the volume"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a cubed",
+            "three a squared",
+            "d a by d t",
+            "three hundred",
+            "three by hundred"
+          ]
+        },
+        "why": "V and S share only one variable, the edge a. Finding da/dt turns the given volume rate into something the surface area formula can use.",
+        "common_mistakes": [
+          "Trying to divide dV/dt by dS/dt directly, with no edge rate in between.",
+          "Differentiating a³ as 3a instead of 3a².",
+          "Putting a = 10 into V = a³ before differentiating, which gives dV/dt = 0."
+        ],
+        "memory_tip": "Two formulas, one shared letter. Whatever is given goes in the first formula, whatever is asked comes out of the second, and da/dt is the bridge between them."
+      },
+      {
+        "id": "s2_surface_area_rate",
+        "kind": "boxed_final",
+        "label": "Differentiate S = 6a² and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. dS/dt = 12a(da/dt). Both a = 10 and the da/dt found above go in here. The unit is cm²/sec, because an area rate is area per second.",
+        "lines": [
+          "Differentiate S = 6a² with respect to time t:",
+          "dS/dt = 12a(da/dt)",
+          "Put a = 10 and da/dt = 3/100:",
+          "dS/dt = 12(10)(3/100) = 120 × 3/100 = 360/100",
+          {
+            "text": "∴ dS/dt = 3.6 cm²/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S = 6a² gives dS/dt = 12a(da/dt), and substituting a = 10 with da/dt = 3/100 gives 3.6 cm²/sec.",
+          "accept": [
+            "differentiate six a squared to get twelve a d a by d t",
+            "substitute a equal to ten and d a by d t equal to three by hundred",
+            "the surface area increases at three point six square centimetres per second",
+            "twelve a d a by d t substitute cheste three point six vasthundi",
+            "the answer is three point six centimetre square per second",
+            "d s by d t is twelve into ten into three by hundred"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "six a squared",
+            "twelve a",
+            "three point six",
+            "centimetre square per second",
+            "d s by d t"
+          ]
+        },
+        "why": "S = 6a² is a function of a alone, so one chain rule step turns it into a time rate. The number 3.6 is only correct with cm²/sec attached, since the same figure would mean something different as a length rate.",
+        "common_mistakes": [
+          "Differentiating 6a² as 6a instead of 12a.",
+          "Reusing 9 cm³/sec in place of da/dt in the second formula.",
+          "Writing the unit as cm³/sec instead of cm²/sec."
+        ],
+        "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a."
+      }
+    ]
+  },
+  "insider_note": "Same two-step route as its partner: da/dt from the volume rate, then the surface rate. With a = 10 the numbers stay whole, giving 3.6."
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_graph_sin2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw the graph of y = sin 2x on [−π/2, π/2].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Period and table of values",
+      "marks": 1
+    },
+    {
+      "label": "Draw the graph",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the period 2π/2 = π with the table of values and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would draw this one — name the period, the values you plot, and the shape you get.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_values",
+        "kind": "equation",
+        "label": "Period and table of values",
+        "marks": 1,
+        "mark_note": "Values",
+        "margin_note": "First mark. The period is π and the given interval has length π, so the picture is exactly one complete period — one dip and one hump.",
+        "memory_tip": "Period of sin kx is 2π/|k|, so sin 2x repeats every π — and the interval given is exactly π long.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Period of sin 2x = 2π/2 = π.",
+          "The interval [−π/2, π/2] has length π,",
+          "so it holds exactly one full period.",
+          "x = −π/2, −π/4, 0, π/4, π/2",
+          "y = 0, −1, 0, 1, 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the period of sin 2x is 2π/2 = π, so [−π/2, π/2] holds one full period, with values 0, −1, 0, 1, 0 at −π/2, −π/4, 0, π/4, π/2.",
+          "accept": [
+            "the period is two pi by two which is pi so the interval is one full period",
+            "at minus pi by four the value is minus one and at pi by four it is plus one",
+            "the values are zero, minus one, zero, one, zero",
+            "period pi kabatti interval lo okkate full period vasthundi",
+            "state the period and make the table of five values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "period",
+            "two pi by two",
+            "pi",
+            "minus one",
+            "one full period"
+          ]
+        },
+        "why": "The 2 inside the sine halves the period, so twice as much of the graph fits into the same width. Getting the period first is what fixes how many humps to draw.",
+        "common_mistakes": [
+          "Using 2π as the period, which would draw only half the shape.",
+          "Reading sin 2x as 2 sin x, which changes the height instead of the period."
+        ]
+      },
+      {
+        "id": "s2_graph",
+        "kind": "diagram",
+        "label": "Draw the graph",
+        "marks": 1,
+        "mark_note": "Graph",
+        "margin_note": "Second mark, and the point of the question. One full period: a dip to −1 at x = −π/4, up through the origin, a hump to +1 at x = π/4, and back to 0 at x = π/2.",
+        "memory_tip": "Zeros at −π/2, 0 and π/2; lowest point at −π/4 and highest at π/4. Dip first, then hump.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the axes are drawn and one full period of y = sin 2x is sketched: zeros at −π/2, 0 and π/2, a minimum of −1 at −π/4 and a maximum of +1 at π/4. Naming the drawing is full credit.",
+          "accept": [
+            "draw the axes then one full period with a dip at minus pi by four and a hump at pi by four",
+            "the curve cuts the x axis at minus pi by two, zero and pi by two",
+            "sketch the negative hump first and then the positive hump",
+            "modata kinda hump, taruvata paina hump, zeros moodu chotla",
+            "draw one complete period of sin two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "draw",
+            "graph",
+            "hump",
+            "zeros",
+            "minimum",
+            "maximum",
+            "one period"
+          ]
+        },
+        "why": "The order matters: on this interval the NEGATIVE half comes first, because sin 2x is negative for every x between −π/2 and 0. Drawing the positive hump first gives the graph of −sin 2x by mistake.",
+        "common_mistakes": [
+          "Drawing the positive hump on the left, which is the graph of −sin 2x.",
+          "Drawing only half a period, which is the graph of sin x on this interval.",
+          "Taking the height as 2 instead of 1."
+        ],
+        "figure": {
+          "id": "graph_sin_2x",
+          "width": 300,
+          "height": 192,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "phase1",
+              "caption": "Step 1 — the axes"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 22 96 L 282 96",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 150 180 L 150 16",
+              "ms": 1262
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_x",
+              "d": "M 274 91 L 282 96 L 274 101",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_y",
+              "d": "M 145 24 L 150 16 L 155 24",
+              "ms": 120
+            },
+            {
+              "type": "pause",
+              "id": "phase2",
+              "caption": "Step 2 — the curve, one full period"
+            },
+            {
+              "type": "stroke",
+              "id": "curve_sin_2x",
+              "d": "M 50.0 96.0 L 52.1 99.5 L 54.1 102.9 L 56.2 106.5 L 58.3 109.9 L 60.4 113.3 L 62.5 116.7 L 64.8 120.1 L 67.0 123.5 L 69.3 126.8 L 71.7 130.0 L 74.2 133.2 L 76.8 136.3 L 79.5 139.2 L 82.5 142.0 L 85.5 144.5 L 88.9 146.7 L 92.5 148.5 L 96.3 149.6 L 100.3 150.0 L 104.3 149.5 L 108.2 148.2 L 111.7 146.4 L 115.0 144.1 L 118.1 141.5 L 121.0 138.7 L 123.7 135.7 L 126.3 132.6 L 128.8 129.4 L 131.2 126.1 L 133.5 122.8 L 135.8 119.4 L 137.9 116.0 L 140.1 112.5 L 142.2 109.1 L 144.3 105.6 L 146.3 102.2 L 148.4 98.7 L 150.4 95.2 L 152.5 91.8 L 154.6 88.3 L 156.7 84.8 L 158.8 81.3 L 160.9 77.9 L 163.1 74.5 L 165.2 71.1 L 167.5 67.8 L 169.8 64.5 L 172.2 61.3 L 174.8 58.1 L 177.4 55.0 L 180.2 52.1 L 183.2 49.4 L 186.3 46.9 L 189.7 44.8 L 193.4 43.2 L 197.3 42.2 L 201.3 42.0 L 205.2 42.7 L 209.0 44.1 L 212.5 46.1 L 215.8 48.5 L 218.8 51.1 L 221.6 54.0 L 224.4 57.0 L 226.9 60.2 L 229.3 63.4 L 231.7 66.6 L 234.0 70.0 L 236.2 73.4 L 238.4 76.8 L 240.6 80.3 L 242.7 83.7 L 244.8 87.2 L 246.8 90.7 L 248.9 94.1 L 250.0 96.0",
+              "ms": 2346
+            },
+            {
+              "type": "pause",
+              "id": "phase3",
+              "caption": "Step 3 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 156,
+              "y": 116,
+              "text": "O",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_one",
+              "x": 130,
+              "y": 48,
+              "text": "1",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_neg_one",
+              "x": 124,
+              "y": 158,
+              "text": "−1",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_neg_half_pi",
+              "x": 36,
+              "y": 84,
+              "text": "−π/2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_neg_quarter_pi",
+              "x": 86,
+              "y": 84,
+              "text": "−π/4",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_quarter_pi",
+              "x": 188,
+              "y": 116,
+              "text": "π/4",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_half_pi",
+              "x": 240,
+              "y": 116,
+              "text": "π/2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 268,
+              "y": 86,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 158,
+              "y": 30,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

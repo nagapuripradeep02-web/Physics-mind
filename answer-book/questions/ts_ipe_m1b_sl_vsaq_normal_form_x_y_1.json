@@ -53,6 +53,7 @@
         "label": "Make the constant positive",
         "marks": 1,
         "margin_note": "First mark. Normal form is xcosα + ysinα = p with p POSITIVE, so before dividing, arrange the equation so the number on the right is greater than zero — multiply through by −1 if it is not.",
+        "memory_tip": "Arrange the equation so the number on the right is greater than zero before dividing.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,10 +98,11 @@
         "label": "Divide and read off",
         "marks": 1,
         "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
+        "memory_tip": "Divide by √(a²+b²); the coefficients are then the cosine and sine of the normal's angle.",
         "lines": [
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",
-          "= x(−1/√2) + y(−1/√2) = 1/√2",
+          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
           "Here cosα = −1/√2 and sinα = −1/√2, both negative ⇒ α is in the third quadrant",
           "⇒ α = 225°",
           {
@@ -139,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Make the right side positive first, so it reads −x − y = 1 before dividing by √2. Both ratios are −1/√2, giving α = 225°; naming a first-quadrant angle for two negative values is the usual error."
 }

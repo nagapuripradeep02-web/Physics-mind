@@ -65,7 +65,8 @@
         "kind": "text",
         "label": "Write what is given",
         "marks": 0,
-        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "margin_note": "No mark of its own. Copy the three vectors out once, in i, j, k order. Both cross products below are read straight off these rows, so a slip here is repeated twice.",
+        "memory_tip": "Copy the three vectors out once in i, j, k order before any determinant.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "First product",
         "margin_note": "Two of the eight marks. Write the determinant with i, j, k on top and the two vectors as the rows BELOW, in the order they appear in the product — a first, then b.",
+        "memory_tip": "i, j, k on top and the two vectors as rows BELOW, in the order the product names them.",
         "lines": [
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ -1 & 2 & -4 \\end{vmatrix}",
@@ -153,6 +155,7 @@
         "marks": 2,
         "mark_note": "Second product",
         "margin_note": "Two more marks. Same construction, but the rows are b then c. Note that b appears in BOTH products — copy the same row, do not recompute it differently.",
+        "memory_tip": "b appears in BOTH products — copy the same row rather than recomputing it differently.",
         "lines": [
           {
             "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ -1 & 2 & -4 \\\\ 1 & 1 & 1 \\end{vmatrix}",
@@ -197,6 +200,7 @@
         "marks": 3,
         "mark_note": "Combine",
         "margin_note": "Three marks. This is a DOT product of the two results — multiply matching components and add. The answer is a single number, not a vector.",
+        "memory_tip": "This is a DOT product of the two results: multiply matching components and add. The answer is a number.",
         "lines": [
           "From (1) and (2),",
           "(a×b)·(b×c) = (−2i + 9j + 5k)·(6i − 3j − 3k)",
@@ -238,6 +242,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Add the three terms. All three are negative here, so the total is negative — a positive answer means a sign was dropped.",
+        "memory_tip": "All three terms are negative here, so the total is negative. A positive answer means a dropped sign.",
         "lines": [
           {
             "text": "∴ (a×b)·(b×c) = −54",
@@ -272,5 +277,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "b appears in both brackets, but they are still two separate cross products. The last step is a DOT product, so the answer is the single number −54 and not a vector."
 }

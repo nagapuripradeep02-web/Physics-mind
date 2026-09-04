@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -125,5 +125,6 @@
         "margin_note": "Box the α formula; the sentence under it is the law in words."
       }
     ]
-  }
+  },
+  "insider_note": "Two of the four marks are the derivation itself, so the equilibrium table and the Ka algebra have to be on the page; quoting the final formula cannot earn them. The law in words, that dilution raises α, is a separate mark."
 }

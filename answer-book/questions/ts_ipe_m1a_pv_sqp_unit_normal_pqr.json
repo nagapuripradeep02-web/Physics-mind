@@ -15,7 +15,7 @@
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 9,
-  "question_text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, −1).",
+  "question_text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, 1).",
   "appearances": [],
   "mark_split": [
     {
@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Subtract the position vector of P from the other two to get PQ and PR — both lie in the plane.",
+        "memory_tip": "Subtract P's position from the other two; both PQ and PR then lie in the plane.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 2,
         "mark_note": "Normal vector",
         "margin_note": "Half the marks. The cross product of two vectors in the plane is perpendicular to the plane. Factor out the common 4 — it makes the next step much lighter.",
+        "memory_tip": "The cross of two in-plane vectors is perpendicular to the plane. Factor out the common 4.",
         "lines": [
           {
             "text": "\\begin{vmatrix} i & j & k \\\\ 1 & 1 & -3 \\\\ -1 & 3 & -1 \\end{vmatrix}",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. A unit vector is the vector over its own length, and BOTH signs are correct answers — write the ±.",
+        "memory_tip": "The vector over its own length, and BOTH signs are correct — write the ±.",
         "lines": [
           "|PQ × PR| = 4|2i + j + k| = 4√(4 + 1 + 1) = 4√6",
           "Required unit vector = ± (PQ × PR)/|PQ × PR|",
@@ -178,5 +181,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both edge vectors must start at P. The cross product carries a common factor 4, which cancels against |PQ × PR| = 4√6 and leaves a clean answer."
 }

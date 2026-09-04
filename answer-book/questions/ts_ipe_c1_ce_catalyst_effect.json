@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
   },
   "chapter": "Chemical Equilibrium, Acids and Bases",
@@ -83,5 +83,6 @@
         "margin_note": "Two sentences: what stays the same, and the one thing that changes."
       }
     ]
-  }
+  },
+  "insider_note": "The question sounds like one thing but is marked as two: what does not change, and the one thing that does. An answer that only says the equilibrium does not shift scores one of the two marks."
 }

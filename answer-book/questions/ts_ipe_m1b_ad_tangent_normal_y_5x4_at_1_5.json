@@ -1,0 +1,193 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_normal_y_5x4_at_1_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the tangent and the normal to the curve y = 5x⁴ at the point (1, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate y = 5x⁴",
+      "marks": 1
+    },
+    {
+      "label": "Slope at (1, 5) and the tangent",
+      "marks": 2
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(ii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what dy/dx is, what the slope is at x = 1, and what you do to that slope to get the normal.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate y = 5x⁴",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The constant 5 stays in front; only x⁴ is differentiated. The check y = 5 at x = 1 confirms the point is on the curve.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  y = 5x⁴",
+          "Check the point: at x = 1,  y = 5(1)⁴ = 5, so (1, 5) lies on the curve.",
+          "Differentiate with respect to x:",
+          "dy/dx = 5(4x³)",
+          "∴ dy/dx = 20x³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating y = 5x⁴ gives dy/dx = 20x³.",
+          "accept": [
+            "differentiate five x to the fourth to get twenty x cubed",
+            "the constant five stays outside and x to the fourth becomes four x cubed",
+            "dy by dx is twenty x cubed",
+            "five ni bayata unchi x power four ni differentiate cheyyali",
+            "bring the power four down and reduce the index to three",
+            "check first that x equal to one gives y equal to five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty x cubed",
+            "five x to the fourth",
+            "four x cubed",
+            "differentiate"
+          ]
+        },
+        "why": "The tangent and the normal both come from this one derivative, so it is written before either line is attempted. A constant multiplier is carried through the power rule unchanged.",
+        "common_mistakes": [
+          "Differentiating 5x⁴ to 5x³, dropping the factor 4 that the power rule produces.",
+          "Writing 20x⁴, reducing the coefficient but not the index.",
+          "Differentiating the number 5 as well and adding a stray term."
+        ],
+        "memory_tip": "Power rule on 5x⁴: multiply the 5 by the power 4 to get 20, then lower the power to 3."
+      },
+      {
+        "id": "s2_tangent",
+        "kind": "equation",
+        "label": "Slope at (1, 5) and the tangent",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for m = 20 with its substitution line, one for the tangent written in general form. Quote y − y₁ = m(x − x₁) before putting numbers in.",
+        "lines": [
+          "The slope of the tangent is dy/dx at the given point.",
+          "At x = 1:   m = 20(1)³ = 20",
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "y − 5 = 20(x − 1)",
+          "y − 5 = 20x − 20",
+          "∴ 20x − y − 15 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m = 20 at x = 1, and the tangent is 20x − y − 15 = 0.",
+          "accept": [
+            "put x equal to one into twenty x cubed to get twenty",
+            "the slope of the tangent is twenty",
+            "the tangent is twenty x minus y minus fifteen equals zero",
+            "x equal to one pettina slope twenty vasthundi",
+            "use the point slope form with the point one comma five",
+            "y minus five equals twenty into x minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty",
+            "x equal to one",
+            "twenty x minus y",
+            "minus fifteen"
+          ]
+        },
+        "why": "dy/dx gives a different slope at each point, so it has to be evaluated at x = 1 before it can be used. The point-slope form then needs nothing beyond the point and that number.",
+        "common_mistakes": [
+          "Substituting y = 5 into 20x³ instead of x = 1.",
+          "Expanding 20(x − 1) as 20x − 1.",
+          "Writing 20x − y + 15 = 0, losing the sign when moving −5 across."
+        ],
+        "memory_tip": "At x = 1 every power of x is 1, so the slope is just the coefficient. Here that coefficient is 20."
+      },
+      {
+        "id": "s3_normal",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The normal's slope is −1/m = −1/20, not −20. Multiply by 20 to clear the fraction, then check: 1 + 100 − 101 = 0 at (1, 5).",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so its slope is −1/m = −1/20.",
+          "y − 5 = (−1/20)(x − 1)",
+          "20(y − 5) = −(x − 1)",
+          "20y − 100 = −x + 1",
+          {
+            "text": "∴ Tangent: 20x − y − 15 = 0     Normal: x + 20y − 101 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −1/20, giving x + 20y − 101 = 0.",
+          "accept": [
+            "the normal slope is minus one by twenty",
+            "invert the slope twenty and put a minus sign",
+            "the normal is x plus twenty y minus one hundred and one equals zero",
+            "minus one by m teesukoni normal rasta",
+            "multiply by twenty to clear the fraction",
+            "the normal and the tangent are perpendicular at one comma five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by twenty",
+            "x plus twenty y",
+            "one hundred and one",
+            "perpendicular"
+          ]
+        },
+        "why": "A steep tangent gives a shallow normal: slope 20 becomes −1/20. The reciprocal alone is not enough — the sign has to change as well.",
+        "common_mistakes": [
+          "Using −20 as the normal's slope instead of −1/20.",
+          "Writing +1/20, doing the reciprocal but not the sign change.",
+          "Arithmetic slip on −100 + 1, giving −99 instead of the correct constant."
+        ],
+        "memory_tip": "Turn 20 into 1/20 and change the sign. A steep tangent always has a flat normal."
+      }
+    ]
+  },
+  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a very flat normal of slope −1/20. Both equations are asked for, so write both."
+}

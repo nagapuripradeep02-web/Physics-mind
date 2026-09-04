@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_reciprocal_roots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the polynomial equation whose roots are the reciprocals of the roots of x⁴ − 3x³ + 7x² + 5x − 2 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Replace x by 1/x",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by x⁴ and write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 15 Theory of Equations, answer 132. Printed appearances: TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_transform, s2_answer) are used on answers 132, 133, 134, 135 and Star Questions Plus 196, deliberately: one substitution (x → 1/x, x/k, −x or x + h) applied to f(x), then one clearing of fractions or brackets. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 5 Q5 (book p.119) is this question; the Bullet Model Paper re-solves it under Q5 on book p.97 — identical. Truth check: the coefficients (1, −3, 7, 5, −2) reversed are (−2, 5, 7, −3, 1); multiplied by −1 they are (2, −5, −7, 3, −1), the card's answer. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say what you replace x by, and how you turn the result back into a polynomial equation.",
+  "insider_note": "The answer is the coefficients in reverse order; writing f(1/x) and multiplying by x⁴ is what earns the first mark, not the memory rule.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transform",
+        "kind": "equation",
+        "label": "Replace x by 1/x",
+        "marks": 1,
+        "mark_note": "f(1/x) = 0",
+        "margin_note": "First mark. If α is a root of f(x) = 0 then 1/α is a root of f(1/x) = 0, so the required equation is f(1/x) = 0. Write it out with the powers of 1/x.",
+        "memory_tip": "If α is a root of f(x) = 0 then 1/α is a root of f(1/x) = 0. Write it out with powers of 1/x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x⁴ − 3x³ + 7x² + 5x − 2.",
+          "The required equation is f(1/x) = 0:",
+          "1/x⁴ − 3/x³ + 7/x² + 5/x − 2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation with reciprocal roots is f(1/x) = 0, obtained by replacing x by 1/x.",
+          "accept": [
+            "replace x by one over x in the equation because the new roots are the reciprocals",
+            "the required equation is f of one by x equals zero",
+            "put one by x in place of x",
+            "x place lo one by x pettali, f of one by x equals zero",
+            "reciprocal roots means substitute one over x"
+          ],
+          "reject": [
+            "reverse the coefficients",
+            "find the roots"
+          ],
+          "heard_as": [
+            "one by x",
+            "one over x",
+            "reciprocal",
+            "f of one by x",
+            "replace x"
+          ]
+        },
+        "why": "If f(α) = 0 then f(1/(1/α)) = 0, so 1/α is a root of f(1/x) = 0. The substitution is the reason; 'reverse the coefficients' is only its consequence.",
+        "common_mistakes": [
+          "Reversing the coefficients from memory and getting a sign wrong.",
+          "Writing 1/x in only some of the terms."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Multiply by x⁴",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Multiply through by x⁴ to clear the fractions, then write the equation with a positive leading coefficient (multiply by −1) and powers in descending order.",
+        "memory_tip": "Multiply by x⁴ — the coefficients come out reversed. Then make the leading term positive.",
+        "lines": [
+          "Multiply by x⁴:",
+          "1 − 3x + 7x² + 5x³ − 2x⁴ = 0",
+          {
+            "text": "∴ 2x⁴ − 5x³ − 7x² + 3x − 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by x⁴ clears the fractions and gives 2x⁴ − 5x³ − 7x² + 3x − 1 = 0.",
+          "accept": [
+            "multiply by x to the four and the equation is two x four minus five x cube minus seven x square plus three x minus one",
+            "clear the fractions with x to the fourth and reverse the signs so the leading coefficient is positive",
+            "the answer is two x four minus five x cube minus seven x squared plus three x minus one equals zero",
+            "x power four tho multiply chesthe two x four minus five x cube minus seven x square plus three x minus one",
+            "multiply through by x to the power four"
+          ],
+          "reject": [
+            "multiply it out",
+            "simplify"
+          ],
+          "heard_as": [
+            "x to the four",
+            "x power four",
+            "two x four",
+            "minus five x cube",
+            "multiply"
+          ]
+        },
+        "why": "Multiplying an equation by x⁴ (x ≠ 0, since 0 is not a root) does not change its roots, and it turns the powers of 1/x back into a polynomial — the coefficients of f in reverse order.",
+        "common_mistakes": [
+          "Leaving the answer as −2x⁴ + 5x³ + … (acceptable, but the book's form has a positive leading term).",
+          "Getting the reversed order wrong: the constant −2 becomes the x⁴ coefficient."
+        ]
+      }
+    ]
+  }
+}

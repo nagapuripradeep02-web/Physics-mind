@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_power_set_512_elements",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If P(A) has 512 elements, find the number of elements in A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up 2ⁿ = 512",
+      "marks": 1
+    },
+    {
+      "label": "Write 512 as a power of 2",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — name the rule that links the two counts, and say how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "Set up 2ⁿ = 512",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the unknown, then write |P(A)| = 2ⁿ. The equation 2ⁿ = 512 is the line being marked, even if the arithmetic afterwards slips.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let n be the number of elements in A.",
+          "A set with n elements has 2ⁿ subsets, so |P(A)| = 2ⁿ",
+          "Given |P(A)| = 512, so",
+          "2ⁿ = 512"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |P(A)| = 2ⁿ, so the equation to solve is 2ⁿ = 512.",
+          "accept": [
+            "the power set has two power n elements so two power n equals five hundred twelve",
+            "let n be the number of elements and use two to the n",
+            "write two power n equals five twelve",
+            "two power n equals five hundred twelve ani rayali",
+            "set up the equation with two to the power n"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two power n",
+            "five hundred twelve",
+            "power set",
+            "equation"
+          ]
+        },
+        "why": "The whole question is one rule used backwards. Writing 2ⁿ = 512 turns a set question into an index equation, which is the only step where the set theory is used.",
+        "memory_tip": "The count is always 2 raised to the number of elements, never the number of elements raised to 2.",
+        "common_mistakes": [
+          "Writing |P(A)| = n² and solving n² = 512.",
+          "Reading 512 as the number of elements in A rather than in P(A)."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Write 512 as a power of 2",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Show 512 as 2⁹ rather than stating it. Once the bases match, the powers can be equated and n is read off.",
+        "lines": [
+          "Write 512 as a power of 2:",
+          "512 = 2 × 256 = 2 × 2⁸ = 2⁹",
+          "So 2ⁿ = 2⁹",
+          "The bases are equal, so the powers are equal, and n = 9.",
+          {
+            "text": "∴ A has 9 elements.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 512 = 2⁹, so n = 9.",
+          "accept": [
+            "five hundred twelve is two to the ninth so n is nine",
+            "keep halving five twelve until you reach one and count nine steps",
+            "match the powers of two and get nine",
+            "five hundred twelve ante two power nine so n nine",
+            "the answer is nine elements"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two power nine",
+            "nine",
+            "five hundred twelve",
+            "equal powers"
+          ]
+        },
+        "why": "Two powers of the same base are equal only when the powers are equal, so writing 512 as 2⁹ is what allows n to be read off. Halving 512 nine times down to 1 is the same check done by counting.",
+        "memory_tip": "Powers of 2 worth remembering: 2⁶ = 64, 2⁷ = 128, 2⁸ = 256, 2⁹ = 512, 2¹⁰ = 1024.",
+        "common_mistakes": [
+          "Answering 512 or 256, which are counts of subsets, not of elements.",
+          "Dividing 512 by 2 once and giving 256 as n.",
+          "Writing 512 = 2⁸ by counting the halvings one short."
+        ]
+      }
+    ]
+  }
+}

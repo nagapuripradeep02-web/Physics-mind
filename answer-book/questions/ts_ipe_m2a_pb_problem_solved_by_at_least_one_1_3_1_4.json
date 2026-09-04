@@ -1,0 +1,212 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_problem_solved_by_at_least_one_1_3_1_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A problem in calculus is given to two students A and B whose chances of solving it are 1/3 and 1/4 respectively. Find the probability of the problem being solved if both of them try independently.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define the events and write P(A), P(B)",
+      "marks": 1
+    },
+    {
+      "label": "Complements: P(Aᶜ), P(Bᶜ)",
+      "marks": 1
+    },
+    {
+      "label": "Solved = not (both fail); multiply the independent complements",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 10 Probability, answer 81 (PDF p.61: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 20,22 · AP 15,15,18 (the AP chip prints 15 twice, presumably two 2015 sittings; recorded once in appearances). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). It is patterned on the only split this unit prints, answer 36 on book p.37 (1 set-up · 2 values · 4 computation), scaled to 4 marks: the set-up is light and the computation that reaches the answer carries the most. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q17 of Model Paper 1 (book p.111) and is re-solved in the Bullet Model Paper Q16 & 17 block (book p.103) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: 1 − (2/3)(3/4) = 1 − 1/2 = 1/2 — agrees with the book. The book writes the complements with bars; the card writes Aᶜ, Bᶜ per the notation ledger."
+  },
+  "recall_prompt": "Say how you would find the probability that the problem is solved — the events, the complements, and why the complements are multiplied.",
+  "insider_note": "\"Solved\" means at least one of them solves it. The short route is 1 − P(both fail); the long route P(A) + P(B) − P(A)P(B) gives the same 1/2 and is also accepted.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_events",
+        "kind": "text",
+        "label": "Events and given values",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Name the events with the letters the question uses; the problem is \"solved\" when A ∪ B occurs.",
+        "memory_tip": "'Solved' means at least one of them solves it — that is the union A ∪ B.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Let A, B be the events that the problem is",
+            "style": "normal"
+          },
+          {
+            "text": "solved by A and by B respectively. Then",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 1/3, P(B) = 1/4,",
+            "style": "eq"
+          },
+          {
+            "text": "and A, B are independent.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are the events of each student solving the problem, with P(A) = 1/3, P(B) = 1/4, independent.",
+          "accept": [
+            "let A and B be the events that each student solves it with probabilities one third and one fourth independent",
+            "A solves with a third, B with a quarter, independently",
+            "define the two solving events, 1 by 3 and 1 by 4",
+            "A solve chese event, B solve chese event, 1 by 3, 1 by 4, independent"
+          ],
+          "reject": [
+            "define the events",
+            "write the probabilities"
+          ],
+          "heard_as": [
+            "one by three",
+            "one by four",
+            "independent",
+            "solves"
+          ]
+        },
+        "why": "The problem is solved if at least one succeeds — the union. Naming the events lets that union be written.",
+        "common_mistakes": [
+          "Not stating that the events are independent, which the product step needs."
+        ]
+      },
+      {
+        "id": "s2_complements",
+        "kind": "equation",
+        "label": "Complements",
+        "marks": 1,
+        "mark_note": "Complements",
+        "margin_note": "Second mark. P(Aᶜ) = 1 − 1/3 = 2/3 and P(Bᶜ) = 1 − 1/4 = 3/4: the chances each one fails.",
+        "memory_tip": "The chance each one fails: 1 − 1/3 = 2/3 and 1 − 1/4 = 3/4.",
+        "lines": [
+          {
+            "text": "P(Aᶜ) = 1 − 1/3 = 2/3,  P(Bᶜ) = 1 − 1/4 = 3/4",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(Aᶜ) = 2/3 and P(Bᶜ) = 3/4.",
+          "accept": [
+            "A fails with two thirds and B fails with three quarters",
+            "P A complement is 2 by 3 and P B complement is 3 by 4",
+            "the complements are two by three and three by four",
+            "A fail ayye probability 2 by 3, B 3 by 4"
+          ],
+          "reject": [
+            "find the complements",
+            "one minus"
+          ],
+          "heard_as": [
+            "two by three",
+            "three by four",
+            "complement",
+            "fails"
+          ]
+        },
+        "why": "\"Not solved\" means both fail, and each failure is a complement.",
+        "common_mistakes": [
+          "Writing P(Aᶜ) = 1/3 (the same as P(A))."
+        ]
+      },
+      {
+        "id": "s3_solved",
+        "kind": "boxed_final",
+        "label": "P(solved) = 1 − P(both fail)",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. P(A ∪ B) = 1 − P(Aᶜ ∩ Bᶜ); the complements of independent events are independent, so P(Aᶜ ∩ Bᶜ) = (2/3)(3/4) = 1/2.",
+        "memory_tip": "1 − P(both fail) is the short route: 1 − (2/3)(3/4) = 1 − 1/2 = 1/2.",
+        "lines": [
+          {
+            "text": "The problem is solved if at least one solves it:",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∪ B) = 1 − P(Aᶜ ∩ Bᶜ) = 1 − P(Aᶜ)·P(Bᶜ)",
+            "style": "eq"
+          },
+          {
+            "text": "= 1 − (2/3)(3/4) = 1 − 1/2",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(problem is solved) = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(solved) = 1 − P(Aᶜ)·P(Bᶜ) = 1 − (2/3)(3/4) = 1/2.",
+          "accept": [
+            "solved is one minus both fail which is one minus two thirds times three quarters equals half",
+            "P of A union B is one minus P A complement times P B complement, one minus half, half",
+            "the answer is one by two",
+            "solved ante 1 minus both fail, 1 minus 2 by 3 into 3 by 4, half"
+          ],
+          "reject": [
+            "find the union",
+            "one minus"
+          ],
+          "heard_as": [
+            "one by two",
+            "half",
+            "both fail",
+            "one minus two by three into three by four"
+          ]
+        },
+        "why": "\"At least one\" is easier through its opposite \"none\". The complements are independent because A and B are, so \"none\" is a product.",
+        "common_mistakes": [
+          "Adding 1/3 + 1/4 = 7/12 and stopping — that double counts both solving.",
+          "Multiplying (1/3)(1/4) = 1/12, which is P(both solve), not P(solved)."
+        ]
+      }
+    ]
+  }
+}

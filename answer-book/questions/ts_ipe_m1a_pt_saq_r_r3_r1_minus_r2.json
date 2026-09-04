@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Group (r₃ + r₁) and (r − r₂), which share 4R cos(B/2) and 4R sin(B/2) — the B half-angle, since B is what the answer keeps.",
+        "memory_tip": "Group (r₃ + r₁) and (r − r₂) — they share the B half-angle, which is what the answer keeps.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,7 +91,7 @@
         },
         "why": "The answer keeps a cos B, so the grouping must leave B behind rather than cancel it — which is why the pairs are chosen around B and not C.",
         "common_mistakes": [
-          "Copying the twin and grouping around C.",
+          "Grouping around C, as in the r₁ + r₂ + r₃ − r question, instead of around B.",
           "Losing the minus in front of the second group."
         ]
       },
@@ -101,6 +102,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. The brackets become sin((A+C)/2) and cos((A+C)/2); then (A+C)/2 = 90° − B/2 turns both into B, and cos²−sin² gives cos B.",
+        "memory_tip": "(A + C)/2 = 90° − B/2 turns both brackets into B, and cos² − sin² gives cos B.",
         "lines": [
           "= 4R cos(B/2) sin((A+C)/2) − 4R sin(B/2) cos((A+C)/2)",
           "= 4R cos(B/2) cos(B/2) − 4R sin(B/2) sin(B/2)",
@@ -140,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that makes both brackets collapse."
 }

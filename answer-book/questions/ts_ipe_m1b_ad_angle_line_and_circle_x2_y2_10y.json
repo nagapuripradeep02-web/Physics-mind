@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_line_and_circle_x2_y2_10y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves x + y + 2 = 0 and x² + y² − 10y = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the points of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.219, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 7(iii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the points of intersection because a chord meets a circle at TWO points and both have to be found. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many points the line and the circle share, how you get both slopes, and what you expect the two angles to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the points of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The line gives y = −x − 2 directly, so substitution into the circle is one line of algebra. A line cutting a circle meets it at two points, so expect two, and find both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  x + y + 2 = 0   …(i)   and   x² + y² − 10y = 0   …(ii)",
+          "From (i):  y = −x − 2",
+          "Put this in (ii):  x² + (−x − 2)² − 10(−x − 2) = 0",
+          "x² + x² + 4x + 4 + 10x + 20 = 0",
+          "2x² + 14x + 24 = 0   ⇒   x² + 7x + 12 = 0",
+          "(x + 3)(x + 4) = 0   ⇒   x = −3 or x = −4",
+          "x = −3 ⇒ y = 1;   x = −4 ⇒ y = 2",
+          "∴ the curves meet at P(−3, 1) and Q(−4, 2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = −x − 2 substituted into the circle gives x² + 7x + 12 = 0, so the points are (−3, 1) and (−4, 2).",
+          "accept": [
+            "write y as minus x minus two and substitute into the circle",
+            "two x squared plus fourteen x plus twenty four equals zero",
+            "x squared plus seven x plus twelve equals zero",
+            "line nunchi y ni rasi circle lo substitute cheyyali",
+            "the points are minus three comma one and minus four comma two",
+            "a line meets a circle at two points"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus x minus two",
+            "x squared plus seven x plus twelve",
+            "minus three comma one",
+            "minus four comma two"
+          ]
+        },
+        "why": "The angle is measured at a shared point, and here there are two of them. Because a chord is symmetric about the line through the centre, the angle turns out to be the same at both, but that has to be shown, not assumed.",
+        "common_mistakes": [
+          "Expanding (−x − 2)² as x² + 4 and losing the middle term 4x.",
+          "Sign slip in −10(−x − 2), writing −10x − 20 instead of +10x + 20.",
+          "Finding only one of the two points."
+        ],
+        "memory_tip": "A straight line is the easiest curve to make the subject, so always substitute the line into the circle, never the circle into the line."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The line has one slope everywhere, so only the circle's slope changes from point to point. Note that x + y + 2 = 0 has slope −1.",
+        "lines": [
+          "From (i):  x + y + 2 = 0  ⇒  1 + dy/dx = 0  ⇒  m₁ = −1 at every point.",
+          "From (ii):  2x + 2y (dy/dx) − 10 (dy/dx) = 0",
+          "(2y − 10)(dy/dx) = −2x  ⇒  dy/dx = x/(5 − y)",
+          "At P(−3, 1):  m₂ = −3/(5 − 1) = −3/4",
+          "At Q(−4, 2):  m₂ = −4/(5 − 2) = −4/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line has slope −1 everywhere and the circle has slope x/(5 − y), giving −3/4 at (−3, 1) and −4/3 at (−4, 2).",
+          "accept": [
+            "the line has slope minus one at every point",
+            "differentiate the circle to get x by five minus y",
+            "m two is minus three fourths at the first point",
+            "line slope epudu minus one, circle slope point ni batti maarutundi",
+            "m two is minus four thirds at the second point",
+            "two y minus ten times dy by dx equals minus two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one",
+            "x by five minus y",
+            "minus three fourths",
+            "minus four thirds"
+          ]
+        },
+        "why": "A straight line is its own tangent, so its slope is the same at both points. Only the circle contributes a different slope at each point, which is why both have to be evaluated.",
+        "common_mistakes": [
+          "Reading the slope of x + y + 2 = 0 as 1 instead of −1.",
+          "Forgetting the −10y term when differentiating the circle.",
+          "Writing the circle slope as x/(y − 5) with the sign reversed."
+        ],
+        "memory_tip": "For ax + by + c = 0 the slope is −a/b, so x + y + 2 = 0 has slope −1."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both points give tanθ = 1/7, so one angle answers the question. Showing both is the honest way to say the angle does not depend on which end of the chord is used.",
+        "lines": [
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "At P(−3, 1):  tanθ = |(−1 − (−3/4))/(1 + (−1)(−3/4))| = |(−1/4)/(7/4)| = 1/7",
+          "At Q(−4, 2):  tanθ = |(−1 − (−4/3))/(1 + (−1)(−4/3))| = |(1/3)/(7/3)| = 1/7",
+          "The same value comes out at both ends of the chord.",
+          {
+            "text": "∴ θ = Tan⁻¹(1/7) ≈ 8°8′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = 1/7 at both points, so θ = Tan⁻¹(1/7).",
+          "accept": [
+            "tan theta is mod of m one minus m two by one plus m one m two",
+            "minus one fourth over seven fourths is one seventh",
+            "both points give the same value one by seven",
+            "rendu points daggara okate angle vasthundi",
+            "the angle is tan inverse one by seven",
+            "theta is about eight degrees eight minutes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by seven",
+            "tan inverse",
+            "eight degrees",
+            "both points"
+          ]
+        },
+        "why": "A chord cuts a circle at the same angle at both ends, because the two radii to the ends of a chord make equal angles with it. Getting 1/7 twice is the built-in check on the arithmetic.",
+        "common_mistakes": [
+          "Reporting two different angles because of a sign slip at one of the points.",
+          "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
+          "Leaving the answer as tanθ = 1/7 without stating the angle."
+        ],
+        "memory_tip": "Two ends of one chord, one angle — if the two values differ, there is an arithmetic slip to find."
+      }
+    ]
+  },
+  "insider_note": "Substitute the line into the circle to get the meeting points; there are two, so the working must be done at each. The line's slope is constant, only the circle's changes."
+}

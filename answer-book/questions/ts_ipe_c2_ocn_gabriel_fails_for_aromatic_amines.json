@@ -84,10 +84,10 @@
           "than in an alkyl halide and is hard to break.",
           "The ring carbon is also sp² and its π",
           "electrons repel the approaching nucleophile.",
-          "So only aliphatic 1° amines are made this",
-          "way; benzyl chloride is an exception,",
-          "because there the halogen is on an sp³",
-          "carbon outside the ring."
+          "So the halogen must be on an sp³ carbon.",
+          "Benzyl chloride works, because its halogen",
+          "is outside the ring on an sp³ CH₂ carbon.",
+          "Benzylamine can be made; aniline cannot."
         ],
         "why": "Delocalisation of the halogen lone pair into the ring gives the C–X bond some double bond character, which shortens and strengthens it. A stronger bond needs more energy to break, so the substitution that Gabriel synthesis depends on does not take place under these conditions.",
         "common_mistakes": [
@@ -99,5 +99,5 @@
       }
     ]
   },
-  "insider_note": "The examiner is looking for one phrase: the C–X bond in a halo arene has partial double bond character and does not undergo nucleophilic substitution. Adding that benzyl chloride is the exception shows the limit is about the sp² ring carbon, not about benzene rings in general."
+  "insider_note": "The examiner is looking for one phrase: the C–X bond in a halo arene has partial double bond character and does not undergo nucleophilic substitution. Adding that benzyl chloride does react shows the limit is about the sp² ring carbon, not about benzene rings in general."
 }

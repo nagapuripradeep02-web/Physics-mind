@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_nc5_nc6_find_13cn",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿC₅ = ⁿC₆, then find ¹³Cₙ.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate ¹³C₁₁",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 143.1. Printed appearances: TS 18, AP 19, TS 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_identity, s2_evaluate) are used on every 'ⁿCᵣ = ⁿCₛ' VSAQ in this unit (answers 143.1 to 144.2), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; this exact question is Q7 of the book's Model Paper 3 (book p.115) and is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find 13 C n when n C 5 equals n C 6.",
+  "insider_note": "State the identity line before using it: unequal lower numbers mean n = 5 + 6 = 11. Then finish what was asked — ¹³C₁₁ = ¹³C₂ = 78 — because n itself is not the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State the identity. 5 ≠ 6, so the second case applies: n = 5 + 6 = 11.",
+        "memory_tip": "5 ≠ 6, so n = 5 + 6 = 11. State the identity before using it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+          "Here 5 ≠ 6, so n = 5 + 6 = 11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n C r equals n C s means r equals s or r plus s equals n, and since 5 is not 6, n = 11.",
+          "accept": [
+            "n C r equals n C s means r is s or r plus s is n, five is not six so n is five plus six eleven",
+            "the two lower numbers add to n so n is eleven",
+            "n is five plus six which is eleven",
+            "n C r equal n C s ante r plus s equal n, so n eleven",
+            "use the rule that the lower numbers add up to n"
+          ],
+          "reject": [
+            "use the identity",
+            "find n"
+          ],
+          "heard_as": [
+            "r plus s",
+            "equals n",
+            "eleven",
+            "five plus six"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ because choosing r things is the same as leaving out n − r. So two different lower numbers give the same value only when they add to n.",
+        "common_mistakes": [
+          "Writing n = 5 + 6 without stating the identity that allows it.",
+          "Trying to solve ⁿC₅ = ⁿC₆ by expanding both — it works but takes far longer than two marks allow."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate ¹³C₁₁",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ = (13 · 12)/(1 · 2) = 78.",
+        "memory_tip": "Finish what was asked: ¹³C₁₁ = ¹³C₂ = (13 × 12)/2 = 78. n alone is not the answer.",
+        "lines": [
+          "¹³Cₙ = ¹³C₁₁ = ¹³C₂",
+          {
+            "text": "= (13 · 12)/(1 · 2) = 78",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 13 C 11 is 13 C 2, which is 13 times 12 over 2 = 78.",
+          "accept": [
+            "thirteen C eleven is thirteen C two which is thirteen into twelve by two equals seventy eight",
+            "seventy eight",
+            "thirteen C eleven equals thirteen C two equals seventy eight",
+            "thirteen C eleven ni thirteen C two ga rasi seventy eight",
+            "thirteen times twelve by two"
+          ],
+          "reject": [
+            "evaluate",
+            "thirteen C eleven"
+          ],
+          "heard_as": [
+            "seventy eight",
+            "thirteen C two",
+            "thirteen into twelve"
+          ]
+        },
+        "why": "The same identity ⁿCᵣ = ⁿCₙ₋ᵣ turns ¹³C₁₁ into ¹³C₂, two factors instead of eleven. The answer is a number, not a symbol.",
+        "common_mistakes": [
+          "Leaving the answer as ¹³C₁₁.",
+          "Computing 13 · 12 = 156 and forgetting to divide by 2."
+        ]
+      }
+    ]
+  }
+}

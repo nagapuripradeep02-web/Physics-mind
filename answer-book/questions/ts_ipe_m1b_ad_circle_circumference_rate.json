@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_circle_circumference_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The radius of a circle is increasing at the rate of 0.7 cm/sec. What is the rate of increase of its circumference?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate C = 2πr with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute dr/dt = 0.7",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write, and say why the question gives you no radius.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_circumference_formula",
+        "kind": "equation",
+        "label": "Differentiate C = 2πr with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. C = 2πr is linear in r, so differentiating leaves the constant 2π and no r at all. That is why the question gives no radius.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: dr/dt = 0.7 cm/sec.  Asked: dC/dt.",
+          "Circumference of a circle of radius r:  C = 2πr",
+          "Differentiate both sides with respect to time t:",
+          "dC/dt = 2π(dr/dt)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C = 2πr differentiated with respect to t gives dC/dt = 2π(dr/dt), with no r left in it.",
+          "accept": [
+            "circumference is two pi r so d c by d t is two pi d r by d t",
+            "differentiate the circumference formula with respect to time",
+            "two pi is a constant so no radius is left",
+            "circumference formula ni time tho differentiate cheyyali",
+            "d c by d t equals two pi into d r by d t",
+            "the radius disappears because the formula is linear in r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi r",
+            "d c by d t",
+            "d r by d t",
+            "circumference",
+            "constant"
+          ]
+        },
+        "why": "The circumference is a constant multiple of the radius, so its time rate is the same constant multiple of dr/dt. No instant has to be named, which is why no radius is given.",
+        "common_mistakes": [
+          "Using the area formula πr², which brings in a radius the question does not give.",
+          "Differentiating 2πr as 2π r² or as πr.",
+          "Deciding the question is incomplete because no radius is stated."
+        ],
+        "memory_tip": "C = 2πr is a straight-line relation between C and r, so their rates keep the same fixed ratio 2π at every size."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute dr/dt = 0.7",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 2π × 0.7 = 1.4π. State plainly that the answer holds for a circle of any radius — that observation is what the question is testing.",
+        "lines": [
+          "Put dr/dt = 0.7:",
+          "dC/dt = 2π(0.7) = 1.4π",
+          "This value contains no r, so the circumference increases at this same rate whatever the radius is.",
+          {
+            "text": "∴ dC/dt = 1.4π cm/sec ≈ 4.4 cm/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dC/dt = 2π(0.7) = 1.4π cm/sec, and that the answer does not depend on the radius.",
+          "accept": [
+            "two pi into zero point seven is one point four pi",
+            "the answer is one point four pi centimetres per second",
+            "it does not depend on the radius at all",
+            "radius meeda depend avvadu, answer one point four pi",
+            "the circumference grows at a constant rate for a constant d r by d t",
+            "about four point four centimetres per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one point four pi",
+            "zero point seven",
+            "centimetres per second",
+            "does not depend on the radius"
+          ]
+        },
+        "why": "A circumference is a length, so its rate is a length per second, cm/sec. Saying that the rate is the same at every radius shows the relation was understood and not just substituted into.",
+        "common_mistakes": [
+          "Multiplying 2 × 0.7 and writing 1.4 without the π.",
+          "Giving the unit as cm²/sec, which belongs to an area rate.",
+          "Adding a radius value that the question never supplied."
+        ],
+        "memory_tip": "Doubling 0.7 gives 1.4, so the answer is simply 1.4π — the π stays because 2π was the constant in the formula."
+      }
+    ]
+  },
+  "insider_note": "C = 2πr differentiates to dC/dt = 2π(dr/dt), which contains no r at all. So the answer 1.4π holds at every radius, and no value of r is needed."
+}

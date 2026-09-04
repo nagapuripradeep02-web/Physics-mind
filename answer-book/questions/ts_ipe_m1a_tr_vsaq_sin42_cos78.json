@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The identity needs two of the same function, so convert cos78° to sin12° using cos(90° − θ) = sin θ.",
+        "memory_tip": "The identity needs two of the SAME function, so convert cos78° to sin12° by cos(90° − θ) = sin θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. sin²A − sin²B = sin(A+B)sin(A−B) gives sin54°sin30°, and both of those are known exactly.",
+        "memory_tip": "sin²A − sin²B = sin(A+B)sin(A−B) gives sin54° sin30°, both known exactly.",
         "lines": [
           "= sin(42° + 12°) sin(42° − 12°)",
           "  [∵ sin²A − sin²B = sin(A+B) sin(A−B)]",
@@ -128,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Turn cos78° into sin12° using 78° = 90° − 12°, so both terms are sines and the identity applies. sin54° = (√5 + 1)/4 has to be quoted from memory."
 }

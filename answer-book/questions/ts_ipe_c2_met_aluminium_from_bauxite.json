@@ -59,12 +59,16 @@
             "style": "indent"
           },
           {
-            "text": "Al₂O₃ dissolves, impurities left",
+            "text": "Al₂O₃ and SiO₂ dissolve; Fe₂O₃, TiO₂ left",
             "style": "indent"
           },
           "Na[Al(OH)₄]  sodium aluminate",
           {
             "text": "↓  CO₂ bubbled through",
+            "style": "indent"
+          },
+          {
+            "text": "silicate stays in solution",
             "style": "indent"
           },
           "Al(OH)₃  precipitate",
@@ -74,7 +78,7 @@
           },
           "Pure alumina  Al₂O₃"
         ],
-        "why": "The purification is Bayer's process in short form: dissolve the alumina in alkali, precipitate it with carbon dioxide, then drive off the water. Writing each condition on its own arrow keeps the sequence and the temperatures visible together.",
+        "why": "The purification is Bayer's process in short form: dissolve the alumina in alkali, precipitate it with carbon dioxide, then drive off the water. The alkali dissolves the silica as well as the alumina, so the silica is not removed at the first arrow — it stays behind as sodium silicate in solution when the CO₂ brings the aluminium hydroxide down. Only Fe₂O₃ and TiO₂ are filtered off at the start. Writing each condition on its own arrow keeps the sequence and the temperatures visible together. The final heating is written here as 1473 K and elsewhere in this unit as about 1470 K; it is the same ignition step, written to different precision.",
         "common_mistakes": [
           "Electrolysing bauxite directly. The iron and the silica in bauxite have to be removed first, or they would be reduced along with the aluminium.",
           "Leaving the conditions off the arrows. The reagent and the temperature are what turn a list of names into an answer."

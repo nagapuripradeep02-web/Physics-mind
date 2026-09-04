@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "First mark. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) holds when xy < 1. Here xy = 1/91, so the condition is met.",
+        "memory_tip": "The formula holds only when xy < 1. Here xy = 1/91, so check it in writing.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "Second mark. Put x = 1/7 and y = 1/13 into the formula and write both parts over 91.",
+        "memory_tip": "Write both parts over 91: (13 + 7)/91 on top and (91 − 1)/91 below.",
         "lines": [
           "Tan⁻¹(1/7) + Tan⁻¹(1/13)",
           "= Tan⁻¹[(1/7 + 1/13) / (1 − (1/7)(1/13))]",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Simplify",
         "margin_note": "Third mark. The 91s cancel, leaving 20/90 — which reduces to 2/9.",
+        "memory_tip": "The 91s cancel, leaving 20/90, which reduces to 2/9 — not 2/10.",
         "lines": [
           "= Tan⁻¹(20/90)   [the 91s cancel]",
           "= Tan⁻¹(2/9)"
@@ -178,6 +181,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. The first two terms equal the third, so subtracting it leaves 0.",
+        "memory_tip": "The first two terms equal the third exactly, so subtracting it leaves 0. Show that line.",
         "lines": [
           "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) = Tan⁻¹(2/9)",
           "L.H.S = Tan⁻¹(2/9) − Tan⁻¹(2/9) = 0",
@@ -215,5 +219,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Check that xy < 1 before using the addition formula — here it is 1/91, and stating it earns credit. The 91s cancel to leave 20/90, which must be reduced to 2/9 for the subtraction to close."
 }

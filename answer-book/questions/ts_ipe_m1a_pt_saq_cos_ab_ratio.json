@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. In a triangle C = 180° − (A+B), so cos C = −cos(A+B). The same applies to cos B in the denominator.",
+        "memory_tip": "In a triangle C = 180° − (A + B), so cos C = −cos(A + B). The same for cos B below.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. cos(A+B)cos(A−B) = cos²A − sin²B — the standard product result, which turns each bracket into squares.",
+        "memory_tip": "cos(A + B)cos(A − B) = cos²A − sin²B turns each bracket into squares.",
         "lines": [
           "= [1 − (cos²A − sin²B)] / [1 − (cos²A − sin²C)]",
           "  [∵ cos(A+B)cos(A−B) = cos²A − sin²B]",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. a = 2R sinA, so sinA = a/(2R) — and the (2R)² cancels top and bottom, leaving the sides.",
+        "memory_tip": "sinA = a/(2R), and the (2R)² cancels top and bottom, leaving the sides.",
         "lines": [
           "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
           "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
@@ -178,5 +181,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use A + B + C = 180° to replace C by 180° − (A+B), which turns that cosine negative. Then cos(A+B)cos(A−B) = cos²A − sin²B is the identity that collapses everything."
 }

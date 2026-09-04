@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "First mark. A is diagonal, so each diagonal entry simply squares: i² and (−i)². Both come to −1.",
+        "memory_tip": "A is diagonal, so each diagonal entry simply squares: i² and (−i)².",
         "lines": [
           {
             "text": "Sol:",
@@ -86,7 +87,7 @@
         },
         "why": "A diagonal matrix squares entry by entry — but only because the off-diagonal zeros make every cross term zero, not as a general rule.",
         "common_mistakes": [
-          "Squaring the entries without doing the multiplication.",
+          "Squaring the entries of a matrix that is not diagonal — entry-by-entry squaring works here only because the off-diagonal zeros make every cross term zero.",
           "Forgetting that (−i)² is also −1."
         ]
       },
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. i² = −1 and (−i)² = i² = −1, so both diagonal entries are −1 — which is −I.",
+        "memory_tip": "i² = −1 and (−i)² = i² = −1, so both diagonal entries are −1 — which is −I.",
         "lines": [
           "Since i² = −1 and (−i)² = i² = −1:",
           {
@@ -131,12 +133,13 @@
             "identity"
           ]
         },
-        "why": "(−i)² = (−1)²i² = i² — the minus squares away. Both entries land on −1 for slightly different reasons.",
+        "why": "(−i)² = (−1)²i² = i² — the minus disappears when it is squared. Both entries land on −1 for slightly different reasons.",
         "common_mistakes": [
           "Writing (−i)² = +1.",
           "Leaving the answer as a grid of −1s without naming it −I."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is diagonal, so A² simply squares each diagonal entry. (−i)² = i² = −1 as well, which is why both entries agree and the result is −I rather than I."
 }

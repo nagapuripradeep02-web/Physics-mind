@@ -35,6 +35,39 @@ export type PaperSection = {
     answer: number;
     marks: number;
 };
+/**
+ * The PRACTICE section (founder, 2026-09-02) — a fourth question kind that the
+ * paper does not have.
+ *
+ * Every source book prints a PROBLEMS block (physics) or an NCERT "intext solved
+ * problems" block (chemistry): real questions a student is set, and which an
+ * examiner reuses, but which sit on NO paper section and carry no board mark
+ * scheme. That is exactly why they were DEFERRED on 2026-08-20 — holding one
+ * needed a fourth section across the build, the player and the gates. The 2026-27
+ * books print 328 of them, and the deferred ones kept turning up on real papers,
+ * so they get their own section rather than being forced into A/B/C.
+ *
+ * `marks` is a LIST, not a number, and that is the whole point: a practice problem
+ * BORROWS the paper's numeric shapes instead of owning a slot. A one-step
+ * numerical is the 2-mark shape; a derive-then-substitute is the 4-mark shape. It
+ * also keeps a problem promotable — the day a paper asks one, it becomes a cut of
+ * the same card at the same marks.
+ *
+ * A subject that omits `practice` FORBIDS problem cards, and the check FAILS
+ * CLOSED (see allowedMarks). That is deliberate: the paper-section check skips a
+ * subject it does not know, which is how a whole paper lost its marks gate by
+ * silence on 2026-08-29. Silence must not buy a free pass twice.
+ */
+export type PracticeSection = { key: 'PROBLEM'; label: string; marks: number[] };
+/** Every question kind a card may be. */
+export type QType = 'VSAQ' | 'SAQ' | 'LAQ' | 'PROBLEM';
+/**
+ * The kinds the PAPER examines. PROBLEM is deliberately absent, and every
+ * marks-weighted surface reads this list rather than hardcoding three strings:
+ * the study planner, the exam-eve list and the readiness meter all allocate by
+ * paper marks, and a question that is on no paper cannot be allocated.
+ */
+export const PAPER_QTYPES: readonly QType[] = ['VSAQ', 'SAQ', 'LAQ'];
 export type PaperPattern = {
     label: string;
     total: number;
@@ -52,6 +85,13 @@ export type PaperPattern = {
      */
     internal?: { marks: number; kind: string };
     sections: PaperSection[];
+    /**
+     * The practice-problem shapes this paper's source book prints. OMITTED means
+     * this subject may not carry problem cards at all — see PracticeSection.
+     * Registered only where a source book has actually been read and found to
+     * print a problems block, never by analogy with a neighbouring paper.
+     */
+    practice?: PracticeSection;
     wef: string;
 };
 const ABC_60: PaperSection[] = [
@@ -59,9 +99,35 @@ const ABC_60: PaperSection[] = [
     { key: 'SAQ', section: 'Section B', printed: 8, answer: 6, marks: 4 },
     { key: 'LAQ', section: 'Section C', printed: 3, answer: 2, marks: 8 },
 ];
+// The pre-reform maths paper - still the SECOND-YEAR shape in 2026-27. The
+// 60-mark re-cut of Maths-1A/1B is FIRST YEAR ONLY: TV9 Telugu, 17 May 2026 —
+// "these reforms apply only to first year this year; they will be implemented
+// for second year from 2027-28". So a Maths-2A/2B student sitting March 2027 is
+// still on A 10x2 all · B any 5 of 7 x4 · C any 5 of 7 x7 = 75, which is also
+// what the Baby Bullet-Q Sr. Maths-2B book prints in its IPE BLUE PRINT (book
+// p.5) and all five model papers (pp.118-127) — docs/IPE_MATHS_2B_SOURCE.md.
+// Reusing ABC_60 here would put every long answer at 8 marks instead of 7: the
+// exact defect the 1A/1B re-cut repaired, reversed. Re-cut to ABC_60 for the
+// 2027-28 cohort, not before.
+const ABC_75_MATHS_PRE_REFORM: PaperSection[] = [
+    { key: 'VSAQ', section: 'Section A', printed: 10, answer: 10, marks: 2 },
+    { key: 'SAQ', section: 'Section B', printed: 7, answer: 5, marks: 4 },
+    { key: 'LAQ', section: 'Section C', printed: 7, answer: 5, marks: 7 },
+];
+/**
+ * Practice problems at the paper's own numeric shapes. Registered on the two
+ * first-year papers whose 2026-27 books were read chapter by chapter on
+ * 2026-09-02 and found to print a problems block on every chapter
+ * (answer-book/sources/chaitanya_{p1,c1}_2027_*.json — 130 physics, 198
+ * chemistry). Every other paper omits `practice` until someone reads its book
+ * and can say the same: botany and zoology print no numericals at all, and the
+ * maths and second-year books have not been checked for one.
+ */
+const PRACTICE_2_OR_4: PracticeSection = { key: 'PROBLEM', label: 'Practice problem', marks: [2, 4] };
+
 export const PAPER_PATTERNS: Record<string, PaperPattern> = {
-    physics: { label: 'Physics', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
-    chemistry: { label: 'Chemistry', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
+    physics: { label: 'Physics', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, practice: PRACTICE_2_OR_4, wef: '2026-27' },
+    chemistry: { label: 'Chemistry', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, practice: PRACTICE_2_OR_4, wef: '2026-27' },
     mathematics: { label: 'Maths 1A', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     mathematics_1b: { label: 'Maths 1B', total: 60, internal: { marks: 15, kind: 'activity-based learning' }, sections: ABC_60, wef: '2026-27' },
     botany: { label: 'Botany', total: 60, internal: { marks: 15, kind: 'practical' }, sections: ABC_60, wef: '2026-27' },
@@ -80,6 +146,20 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // `internal` is deliberately omitted — see the type above.
     chemistry_2: { label: 'Chemistry II', total: 60, sections: ABC_60, wef: '2026-27' },
 
+    // Senior Inter Maths Paper-IIA (2026-08-29). NOT ABC_60. The 2026-27 reform
+    // that took Maths 1A/1B to 60 marks is FIRST YEAR ONLY (Telangana Today,
+    // 28 May 2026: the revision is to "the first-year intermediate public
+    // examinations question paper pattern"; Resonance Colleges, 15 May 2026:
+    // "the examination framework reforms shall apply to second-year students
+    // from 2027-28 onwards"), so a 2A student sitting March 2027 writes the
+    // unchanged 75-mark paper: A 10x2 all · B any 5 of 7 x4 · C any 5 of 7 x7.
+    // The source book (Baby Bullet-Q Senior Inter Maths-2A, blueprint p.3 —
+    // "prepared according to the Model Question Paper issued by B.I.E." — and
+    // all five of its model papers pp.111-120) prints exactly this shape.
+    // `internal` is deliberately omitted — see the type above. Founder decision
+    // 2026-08-29: "if same as old for the mathematics, continue for 75 marks".
+    mathematics_2a: { label: 'Maths 2A', total: 75, sections: ABC_75_MATHS_PRE_REFORM, wef: '2026-27' },
+
     // Senior Inter Botany Paper-II (2026-08-29). Same ABC_60 shape, confirmed against
     // the 2022 BIE blue print and all five of the book's model papers. `internal` is
     // deliberately omitted for the same reason as physics_2 and chemistry_2 above: the
@@ -93,11 +173,42 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // reason as the three rows above: the book prints a practical sheet but no mark
     // value for it, and copying the first-year 15 would be inventing a figure.
     zoology_2: { label: 'Zoology-II', total: 60, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Maths-2B (2026-08-29). The OLD 75-mark shape — see
+    // ABC_75_MATHS_PRE_REFORM above. `internal` is deliberately omitted: second year
+    // carries no activity-based-learning mark in 2026-27, and this number reaches a
+    // student. Maths-2A shares that table (one table, never a copy).
+    mathematics_2b: { label: 'Maths 2B', total: 75, sections: ABC_75_MATHS_PRE_REFORM, wef: '2026-27' },
 };
-/** The marks a question of this qtype carries on this subject's paper. */
-export function paperMarksFor(subject: string, qtype: 'VSAQ' | 'SAQ' | 'LAQ'): number | undefined {
+/**
+ * The marks a question of this qtype carries on this subject's PAPER.
+ * Returns undefined for PROBLEM, which is not on the paper — callers that must
+ * validate a problem use allowedMarks instead.
+ */
+export function paperMarksFor(subject: string, qtype: QType): number | undefined {
     const p = PAPER_PATTERNS[subject];
     return p?.sections.find((s) => s.key === qtype)?.marks;
+}
+
+/**
+ * Every marks value a question of this qtype may carry for this subject.
+ *
+ *   [8]      a paper section — exactly one legal value
+ *   [2, 4]   a practice problem on a paper that declares one
+ *   []       this subject forbids this qtype (a problem on a paper with no
+ *            practice section) — the caller MUST report it
+ *   undefined the subject is not in PAPER_PATTERNS at all
+ *
+ * The empty array is the fail-closed case and the reason this function exists:
+ * returning undefined there would have let a problem card through unchecked on
+ * any paper that never declared one.
+ */
+export function allowedMarks(subject: string, qtype: QType): number[] | undefined {
+    const p = PAPER_PATTERNS[subject];
+    if (!p) return undefined;
+    if (qtype === 'PROBLEM') return p.practice ? p.practice.marks.slice() : [];
+    const s = p.sections.find((x) => x.key === qtype);
+    return s ? [s.marks] : [];
 }
 
 // ── figure (progressive-stroke diagram) ─────────────────────────────────────
@@ -314,7 +425,7 @@ const cutSchema = z.object({
     key: z.string().regex(/^[a-z0-9_]+$/),
     /** Toggle button text, e.g. "8-mark answer". Rule 41: literal, not clever. */
     label: z.string().min(1),
-    qtype: z.enum(['VSAQ', 'SAQ', 'LAQ']),
+    qtype: z.enum(['VSAQ', 'SAQ', 'LAQ', 'PROBLEM']),
     marks_total: z.number().int().positive(),
     paper_section: z.string().min(1),
     expected_time_min: z.number().int().positive(),
@@ -350,12 +461,12 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'zoology_2']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),
         chapter: z.string().min(1),
-        qtype: z.enum(['VSAQ', 'SAQ', 'LAQ']),
+        qtype: z.enum(['VSAQ', 'SAQ', 'LAQ', 'PROBLEM']),
         marks_total: z.number().int().positive(),
         paper_section: z.string().min(1),
         expected_time_min: z.number().int().positive(),
@@ -422,21 +533,29 @@ export const answerBookQuestionSchema = z
         // The card must carry the marks its PAPER gives that section — a 7-mark
         // maths LAQ is the old pattern and would print the wrong number on every
         // surface (rail chip, red gutter, Vidi). Cuts are held to the same table.
-        const want = paperMarksFor(q.subject, q.qtype);
-        if (want !== undefined && q.marks_total !== want) {
-            ctx.addIssue({
-                code: 'custom',
-                message: `marks_total = ${q.marks_total} but a ${q.subject} ${q.qtype} is ${want} marks on the ${PAPER_PATTERNS[q.subject].wef} paper (PAPER_PATTERNS)`,
-            });
-        }
-        for (const c of q.cuts ?? []) {
-            const cw = paperMarksFor(q.subject, c.qtype);
-            if (cw !== undefined && c.marks_total !== cw) {
-                ctx.addIssue({
-                    code: 'custom',
-                    message: `cut "${c.key}": marks_total = ${c.marks_total} but a ${q.subject} ${c.qtype} is ${cw} marks on the ${PAPER_PATTERNS[q.subject].wef} paper (PAPER_PATTERNS)`,
-                });
+        // A PROBLEM is not on the paper, so it is held to its subject's practice
+        // shapes instead, and to NOTHING BEING DECLARED being an error rather
+        // than a free pass (allowedMarks returns [] for that, never undefined).
+        const marksProblem = (
+            qtype: QType, marks: number, where: string,
+        ): string | null => {
+            const allowed = allowedMarks(q.subject, qtype);
+            if (allowed === undefined || allowed.includes(marks)) return null;
+            const wef = PAPER_PATTERNS[q.subject].wef;
+            if (!allowed.length) {
+                return qtype === 'PROBLEM'
+                    ? `${where}the ${q.subject} paper declares no practice section, so it may not carry a PROBLEM card — register \`practice\` in PAPER_PATTERNS once its book is read, or file this question under the section the paper asks it in`
+                    : `${where}a ${q.subject} paper has no ${qtype} section on the ${wef} pattern`;
             }
+            return qtype === 'PROBLEM'
+                ? `${where}marks_total = ${marks} but a ${q.subject} practice problem is ${allowed.join(' or ')} marks (PAPER_PATTERNS.practice) — a problem borrows the paper's numeric shapes, it does not own a slot`
+                : `${where}marks_total = ${marks} but a ${q.subject} ${qtype} is ${allowed[0]} marks on the ${wef} paper (PAPER_PATTERNS)`;
+        };
+        const rootIssue = marksProblem(q.qtype, q.marks_total, '');
+        if (rootIssue) ctx.addIssue({ code: 'custom', message: rootIssue });
+        for (const c of q.cuts ?? []) {
+            const cutIssue = marksProblem(c.qtype, c.marks_total, `cut "${c.key}": `);
+            if (cutIssue) ctx.addIssue({ code: 'custom', message: cutIssue });
         }
         const ids = q.answer.steps.map((s) => s.id);
         const dupes = ids.filter((id, i) => ids.indexOf(id) !== i);

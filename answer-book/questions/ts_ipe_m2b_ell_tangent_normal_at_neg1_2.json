@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_tangent_normal_at_neg1_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of tangent and normal to the ellipse x² + 8y² − 33 = 0 at (−1, 2).",
+  "appearances": [
+    {
+      "year": 2020
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equation of the tangent",
+      "marks": 2
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 8 Ellipse, answer 70, the first question under the 'LEVEL-II' heading. NOT on an SSP page. Printed appearance: TS 20 only — no AP tag. Book p.62 prints no margin mark tags, so the 2+2 split here is OURS — a natural even split since the question asks for two separate results (tangent, then normal) of comparable length. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The tangent uses the S₁ = 0 rule directly on the given equation — there is no need to first divide into x²/a² + y²/b² = 1 form for this one.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent",
+        "kind": "equation",
+        "label": "Equation of the tangent",
+        "marks": 2,
+        "mark_note": "Tangent",
+        "margin_note": "First two marks. Replace x² by x·x₁ and y² by y·y₁ — the S₁ = 0 rule.",
+        "memory_tip": "S₁ = 0 means: replace each squared variable by (variable)×(its value at the given point).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Equation of the ellipse: S = x² + 8y² − 33 = 0",
+          "Equation of the tangent at (−1, 2) is S₁ = 0:",
+          "x·x₁ + 8y·y₁ − 33 = 0",
+          "⇒ (−1)x + 8(2)y − 33 = 0",
+          {
+            "text": "x − 16y + 33 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "For a conic S = 0, the tangent at a point (x₁, y₁) on it is found by the S₁ = 0 substitution rule — replacing x² with x·x₁ and y² with y·y₁ — without needing the ellipse in x²/a² + y²/b² = 1 form first.",
+        "common_mistakes": [
+          "Substituting x₁ = −1, y₁ = 2 into x² and y² instead of into x·x₁ and y·y₁.",
+          "Losing the negative sign from x₁ = −1 when multiplying it by x."
+        ]
+      },
+      {
+        "id": "s2_normal",
+        "kind": "equation",
+        "label": "Equation of the normal",
+        "marks": 2,
+        "mark_note": "Normal",
+        "margin_note": "Last two marks. The normal is perpendicular to the tangent at the same point.",
+        "memory_tip": "Find the tangent's slope first, then flip and negate it for the normal.",
+        "lines": [
+          "From x − 16y + 33 = 0:",
+          "16y = x + 33 ⇒ slope of tangent = 1/16",
+          "⇒ slope of normal = −16",
+          "Equation of the normal at (−1, 2)",
+          "with slope −16: y − 2 = −16(x + 1)",
+          "⇒ y = −16x − 14",
+          {
+            "text": "16x + y + 14 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The normal to a curve at a point is the line through that point perpendicular to the tangent there, so its slope is the negative reciprocal of the tangent's slope.",
+        "common_mistakes": [
+          "Using the same slope as the tangent instead of its negative reciprocal.",
+          "Sign errors when expanding −16(x + 1) — it becomes −16x − 16, not −16x + 16."
+        ]
+      }
+    ]
+  }
+}

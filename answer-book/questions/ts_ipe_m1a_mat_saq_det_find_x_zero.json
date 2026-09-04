@@ -1,0 +1,239 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_det_find_x_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the value of x if the determinant with rows (x−2, 2x−3, 3x−4), (x−4, 2x−9, 3x−16) and (x−8, 2x−27, 3x−64) is 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Subtract R₁ from R₂ and R₃",
+      "marks": 1
+    },
+    {
+      "label": "Take out the common factors",
+      "marks": 1
+    },
+    {
+      "label": "Expand to 12(x − 4)",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.40, chapter 5 MATRICES, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark each to the row subtractions, the common factors, the expansion, and solving for x. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find x here — name each row operation in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_row_ops",
+        "kind": "equation",
+        "label": "Subtract R₁ from R₂ and R₃",
+        "marks": 1,
+        "mark_note": "Row operations",
+        "margin_note": "First mark. Every entry carries an x, so subtracting one row from another cancels all of them. Two rows then hold plain numbers and the question becomes easy.",
+        "memory_tip": "Every entry carries an x, so row subtraction cancels the x from two whole rows.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} x-2 & 2x-3 & 3x-4 \\\\ x-4 & 2x-9 & 3x-16 \\\\ x-8 & 2x-27 & 3x-64 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Apply R₂ → R₂ − R₁ and R₃ → R₃ − R₁.",
+          "The x terms cancel in both rows:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} x-2 & 2x-3 & 3x-4 \\\\ -2 & -6 & -12 \\\\ -6 & -24 & -60 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R₂ → R₂ − R₁ and R₃ → R₃ − R₁ are applied, and that x cancels in those two rows.",
+          "accept": [
+            "subtract the first row from the second and from the third",
+            "apply R two minus R one and R three minus R one",
+            "the x terms cancel and the last two rows become plain numbers",
+            "R two minus R one, R three minus R one cheste x poddi",
+            "row subtraction clears x from the bottom two rows"
+          ],
+          "reject": [
+            "do row operations",
+            "subtract the rows"
+          ],
+          "heard_as": [
+            "R two minus R one",
+            "R three minus R one",
+            "x cancels",
+            "row operation"
+          ]
+        },
+        "why": "Subtracting one row from another does not change the value of a determinant, so this is free — and it removes x from six of the nine entries.",
+        "common_mistakes": [
+          "Expanding the determinant with x still in all nine entries.",
+          "Subtracting in the wrong direction, so the signs of both new rows come out reversed."
+        ]
+      },
+      {
+        "id": "s2_factors",
+        "kind": "equation",
+        "label": "Take out the common factors",
+        "marks": 1,
+        "mark_note": "Common factors",
+        "margin_note": "Second mark. −2 comes out of R₂ and −6 out of R₃, so a factor 12 sits outside. Then one more subtraction puts a zero in R₃.",
+        "memory_tip": "−2 out of R₂ and −6 out of R₃ leaves the clean factor 12 outside.",
+        "lines": [
+          "Take −2 out of R₂ and −6 out of R₃:",
+          {
+            "text": "\\Delta = 12\\begin{vmatrix} x-2 & 2x-3 & 3x-4 \\\\ 1 & 3 & 6 \\\\ 1 & 4 & 10 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Then apply R₃ → R₃ − R₂:",
+          {
+            "text": "\\Delta = 12\\begin{vmatrix} x-2 & 2x-3 & 3x-4 \\\\ 1 & 3 & 6 \\\\ 0 & 1 & 4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −2 and −6 are taken out, giving 12 outside, and that R₃ → R₃ − R₂ creates a zero.",
+          "accept": [
+            "take minus two out of the second row and minus six out of the third",
+            "minus two into minus six is twelve so twelve comes outside",
+            "then subtract the second row from the third to make a zero",
+            "minus two, minus six common teesthe twelve bayata vasthundi",
+            "pull the common factors out and reduce the last row"
+          ],
+          "reject": [
+            "take the factor out",
+            "simplify the rows"
+          ],
+          "heard_as": [
+            "minus two",
+            "minus six",
+            "twelve outside",
+            "R three minus R two"
+          ]
+        },
+        "why": "A factor taken out of a row multiplies the determinant outside. Two negative factors give (−2)(−6) = 12, a positive number, so no sign is lost.",
+        "common_mistakes": [
+          "Taking −2 and −6 out and writing −12 instead of 12.",
+          "Taking the factor out of one entry of the row instead of the whole row."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand to 12(x − 4)",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Third mark. Expand along R₁ with the + − + sign pattern. The constant terms −12, +12 and −4 leave −4, and the x terms leave a single x.",
+        "memory_tip": "The three minors are 6, 4 and 1, so the whole determinant collapses to 12(x − 4).",
+        "lines": [
+          "Expanding along R₁:",
+          "Δ = 12[(x−2)(12−6) − (2x−3)(4−0)",
+          "        + (3x−4)(1−0)]",
+          "= 12[6x − 12 − 8x + 12 + 3x − 4]",
+          "= 12(x − 4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding along R₁ with the + − + signs gives Δ = 12(x − 4).",
+          "accept": [
+            "expand along the first row using plus minus plus",
+            "the minors are six, four and one so it becomes twelve into x minus four",
+            "six x minus twelve minus eight x plus twelve plus three x minus four is x minus four",
+            "first row expand cheste twelve into x minus four vasthundi",
+            "delta equals twelve times x minus four"
+          ],
+          "reject": [
+            "expand it",
+            "simplify"
+          ],
+          "heard_as": [
+            "expand along R one",
+            "twelve into x minus four",
+            "plus minus plus",
+            "minors"
+          ]
+        },
+        "why": "Every entry outside R₁ is now a small whole number, so the three minors are easy and the answer comes out as one bracket in x.",
+        "common_mistakes": [
+          "Using + + + instead of the + − + sign pattern along the row.",
+          "Dropping the factor 12 while expanding."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Solve for x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 12 is never zero, so only the bracket can vanish. Substituting x = 4 gives the rows (2, 5, 8), (0, −1, −4) and (−4, −19, −52), whose determinant is 0 — the answer checks.",
+        "memory_tip": "12 can never be zero, so only the bracket x − 4 can make the determinant vanish.",
+        "lines": [
+          "Δ = 0 gives 12(x − 4) = 0.",
+          "12 ≠ 0, so x − 4 = 0.",
+          {
+            "text": "∴ x = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 12(x − 4) = 0 forces x = 4, because 12 is not zero.",
+          "accept": [
+            "twelve is not zero so x minus four must be zero",
+            "x equals four",
+            "set the bracket to zero and get x is four",
+            "twelve zero kaadu kabatti x minus four zero avvali",
+            "the determinant is zero only when x is four"
+          ],
+          "reject": [
+            "solve for x",
+            "so we get x"
+          ],
+          "heard_as": [
+            "x equals four",
+            "twelve is not zero",
+            "bracket",
+            "x minus four"
+          ]
+        },
+        "why": "A product is zero only when one of its factors is zero. The constant factor 12 cannot be zero, so the bracket carries the whole equation.",
+        "common_mistakes": [
+          "Dividing by (x − 4) and losing the solution.",
+          "Reporting x = 12 or x = −4 by reading the wrong number out of the bracket."
+        ]
+      }
+    ]
+  }
+}

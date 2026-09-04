@@ -1,0 +1,249 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_range_x_plus_2_over_2x2_3x_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the range of (x + 2)/(2x² + 3x + 6) for x ∈ R.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for y",
+      "marks": 1
+    },
+    {
+      "label": "Range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.52 (PDF p.53 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 63.1. Printed appearances: AP 16 · TS 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. It follows the four moves an examiner ticks in this method: form the quadratic in x · write Δ ≥ 0 · solve the inequality in y · state the range. The SAME split and the SAME step ids (s1_quadratic_in_x, s2_discriminant, s3_solve_in_y, s4_range) are used on all five range / maximum / lies-between SAQs in this unit (answers 63.1, 63.2, 64, 65, 66), deliberately: they are one method — cross-multiply, quadratic in x, discriminant ≥ 0, solve the inequality in y — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q12 of the book's Model Paper 1 (book p.111). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the range of this expression — say what you call y, what equation you form, what condition you use because x is real, and how you get the answer for y at the end.",
+  "insider_note": "The whole method is Δ ≥ 0 with y treated as a constant. Multiplying by −1 reverses the inequality, and both end values are reached at real x, so the brackets are square — round brackets lose the last mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark. Collect by powers of x, not by y: the x² coefficient is 2y, the x coefficient is 3y − 1, the constant is 6y − 2. The denominator 2x² + 3x + 6 is never zero (its own Δ = 9 − 48 < 0), so every real x gives a value of y.",
+        "memory_tip": "Collect by powers of x, not by y: the coefficients are 2y, then 3y − 1, then 6y − 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = (x + 2)/(2x² + 3x + 6)",
+          "⇒ y(2x² + 3x + 6) = x + 2",
+          "⇒ 2yx² + 3yx + 6y − x − 2 = 0",
+          "⇒ 2yx² + (3y − 1)x + (6y − 2) = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is set equal to y, cross-multiplied, and collected into a quadratic in x: 2yx² + (3y − 1)x + (6y − 2) = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "two y x squared",
+            "three y minus one"
+          ]
+        },
+        "why": "Every value y in the range comes from some real x. Rewriting the fraction as a quadratic in x turns 'is there a real x for this y?' into a question about the discriminant, which is the only tool needed.",
+        "common_mistakes": [
+          "Grouping by y instead of by x, which hides the coefficients a, b, c.",
+          "Dropping the −x and −2 when moving the right side across.",
+          "Forgetting to write that (1) is a quadratic in x — the whole method rests on that sentence."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. a = 2y, b = 3y − 1, c = 6y − 2. The product 4(2y)(6y − 2) = 48y² − 16y, and it is SUBTRACTED, so the signs flip to −48y² + 16y.",
+        "memory_tip": "4(2y)(6y − 2) = 48y² − 16y, and it is SUBTRACTED, so the signs flip to −48y² + 16y.",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (3y − 1)² − 4(2y)(6y − 2) ≥ 0",
+          "⇒ 9y² − 6y + 1 − 48y² + 16y ≥ 0",
+          "⇒ −39y² + 10y + 1 ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because x is real, the discriminant of (1) is ≥ 0, giving (3y − 1)² − 4(2y)(6y − 2) ≥ 0, which simplifies to −39y² + 10y + 1 ≥ 0.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "minus thirty nine y squared"
+          ]
+        },
+        "why": "A quadratic with real coefficients has real roots exactly when b² − 4ac ≥ 0. Since x is real, (1) must have a real root, so its discriminant cannot be negative. That single inequality is what limits y.",
+        "common_mistakes": [
+          "Writing Δ > 0 instead of Δ ≥ 0, which wrongly drops the two end values of the range.",
+          "Expanding (3y − 1)² as 9y² − 1.",
+          "Losing the sign on −48y² + 16y when subtracting 4ac."
+        ]
+      },
+      {
+        "id": "s3_solve_in_y",
+        "kind": "equation",
+        "label": "Solve for y",
+        "marks": 1,
+        "mark_note": "Inequality in y",
+        "margin_note": "Third mark. Multiplying by −1 REVERSES the inequality: ≥ becomes ≤. Split −10y as −13y + 3y so the pairs factorise. A product of two factors is ≤ 0 between its roots, so y lies between −1/13 and 1/3, both included.",
+        "memory_tip": "Multiplying by −1 reverses the inequality. Split −10y as −13y + 3y so the pairs factorise.",
+        "lines": [
+          "⇒ 39y² − 10y − 1 ≤ 0",
+          "⇒ 39y² − 13y + 3y − 1 ≤ 0",
+          "⇒ 13y(3y − 1) + 1(3y − 1) ≤ 0",
+          "⇒ (13y + 1)(3y − 1) ≤ 0",
+          "⇒ −1/13 ≤ y ≤ 1/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inequality is multiplied by −1 (which reverses it to ≤), factorised as (13y + 1)(3y − 1) ≤ 0, and solved to −1/13 ≤ y ≤ 1/3.",
+          "accept": [
+            "multiply by minus one to make the leading coefficient positive, factorise and read off the interval for y",
+            "factorise the quadratic in y and find where the product is less than or equal to zero",
+            "solve the quadratic inequality in y by factoring",
+            "y lo quadratic inequality ni factorise chesi y ki interval teeyali"
+          ],
+          "reject": [
+            "solve it",
+            "find y",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "less than or equal to",
+            "between",
+            "interval",
+            "y lies",
+            "thirteen y plus one",
+            "three y minus one",
+            "minus one by thirteen",
+            "one by three"
+          ]
+        },
+        "why": "The range is the set of y for which the discriminant condition holds. Factorising shows the two boundary values, and 'product ≤ 0' means y is between them, not outside.",
+        "common_mistakes": [
+          "Keeping ≥ after multiplying by −1 and answering with the outside intervals.",
+          "Factorising 39y² − 10y − 1 with the wrong pair; check 13·3 = 39 and 13(−1) + 1·3 = −10.",
+          "Writing the answer as y ≤ −1/13 or y ≥ 1/3."
+        ]
+      },
+      {
+        "id": "s4_range",
+        "kind": "boxed_final",
+        "label": "Range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Square brackets, because Δ = 0 at each end: y = 1/3 happens at x = 0 and y = −1/13 at x = −4, so both end values are actually reached.",
+        "memory_tip": "Δ = 0 at each end, so both are reached: square brackets, [−1/13, 1/3].",
+        "lines": [
+          "At y = 0 the equation is linear, not quadratic:",
+          "x + 2 = 0 gives x = −2, so y = 0 is reached.",
+          "y takes every value from −1/13 to 1/3.",
+          {
+            "text": "∴ range = [−1/13, 1/3]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is the closed interval from −1/13 to 1/3, both ends included.",
+          "accept": [
+            "the range is the closed interval from minus one by thirteen to one by three",
+            "y lies between minus one thirteenth and one third including both ends",
+            "range is minus one by thirteen to one by three with square brackets",
+            "range minus one by thirteen nunchi one by three varaku, rendu ends include",
+            "the expression takes all values from minus one thirteenth up to one third"
+          ],
+          "reject": [
+            "that is the range",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "minus one by thirteen",
+            "one by three",
+            "closed interval",
+            "square bracket",
+            "range"
+          ]
+        },
+        "why": "The end values are reached (Δ = 0 there gives a real x), so the interval is closed. Writing round brackets would claim the ends are missed, which is false. At y = 0 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — it has to be checked on its own: x + 2 = 0 gives x = −2, where the denominator is 8, so y = 0 really is attained and the interval is unbroken.",
+        "common_mistakes": [
+          "Writing (−1/13, 1/3) with round brackets.",
+          "Giving the interval the wrong way round, 1/3 first.",
+          "Stopping at the inequality and never writing the word range or the interval."
+        ]
+      }
+    ]
+  }
+}

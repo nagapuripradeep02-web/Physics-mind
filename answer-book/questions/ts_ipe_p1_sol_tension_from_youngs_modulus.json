@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_tension_from_youngs_modulus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "PROBLEM",
+  "marks_total": 4,
+  "paper_section": "Practice",
+  "expected_time_min": 8,
+  "question_text": "A metal wire of length 2.5 m and area of cross-section 1.5 × 10⁻⁶ m² is stretched by 2 mm. If its Young's modulus is 1.25 × 10¹¹ N m⁻², find the tension in the wire.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Young's modulus, rearranged for F",
+      "marks": 1
+    },
+    {
+      "label": "The data in SI units",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PRACTICE PROBLEM, not a paper question. The Telangana paper has no problems section, so this carries no board mark scheme and the mark split is OURS, not the book's — it uses the paper's own numeric shape so a teacher can still mark it. The question is Problem 6 of Mechanical Properties of Solids in the Sri Chaitanya \"IPE STUDY MATERIAL for Jr. Students\" (2026-27 edition): Only the question was taken; the working, the steps and the split are our own (docs/ORIGINALITY_MATHS.md). Physics hand-checked: Y = FL/(AΔL) gives F = YAΔL/L = (1.25 × 10¹¹)(1.5 × 10⁻⁶)(2 × 10⁻³)/2.5 = 150 N, which is the book's own answer."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Practice — Problem",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Young's modulus, rearranged",
+        "marks": 1,
+        "mark_note": "F = YAΔL/L",
+        "lines": [
+          "Young's modulus of the wire is",
+          "Y = F L / (A ΔL)",
+          "Rearranging for the tension F,",
+          "F = Y A ΔL / L"
+        ],
+        "why": "The tension is the only unknown in the definition of Young's modulus, so the whole problem is one rearrangement.",
+        "common_mistakes": [
+          "Rearranging to F = YAL/ΔL, with the length and the stretch the wrong way round."
+        ],
+        "memory_tip": "Y is stress over strain, so F = Y × A × strain, and the strain here is ΔL/L.",
+        "margin_note": "First mark. Write Y = FL/(AΔL) and then the rearranged form."
+      },
+      {
+        "id": "s2_data",
+        "kind": "text",
+        "label": "The data in SI units",
+        "marks": 1,
+        "mark_note": "2 mm = 2 × 10⁻³ m",
+        "lines": [
+          "L = 2.5 m",
+          "A = 1.5 × 10⁻⁶ m²",
+          "ΔL = 2 mm = 2 × 10⁻³ m",
+          "Y = 1.25 × 10¹¹ N m⁻²"
+        ],
+        "why": "Young's modulus is quoted in newtons per square metre, so every length in the formula has to be in metres before the numbers are put in.",
+        "common_mistakes": [
+          "Leaving the stretch as 2 and getting a tension a thousand times too large."
+        ],
+        "memory_tip": "One millimetre is 10⁻³ metres, so 2 mm is 2 × 10⁻³ m.",
+        "margin_note": "Second mark. Convert the 2 mm here, not later inside the substitution."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 1,
+        "mark_note": "the numbers in place",
+        "lines": [
+          "F = Y A ΔL / L",
+          "F = (1.25 × 10¹¹)(1.5 × 10⁻⁶)(2 × 10⁻³)",
+          "        ÷ 2.5"
+        ],
+        "why": "Writing the substitution as its own line keeps this mark even if the arithmetic that follows goes wrong.",
+        "common_mistakes": [
+          "Doing the arithmetic on a calculator and writing only the final number."
+        ],
+        "memory_tip": "The three powers of ten add up first: 10¹¹ × 10⁻⁶ × 10⁻³ = 10².",
+        "margin_note": "Third mark. Show the numbers in the formula before working them out."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The tension",
+        "marks": 1,
+        "mark_note": "F = 150 N",
+        "lines": [
+          "(1.25)(1.5)(2) = 3.75, and 10¹¹⁻⁶⁻³ = 10²",
+          "F = 3.75 × 10² / 2.5 = 375 / 2.5",
+          {
+            "text": "F = 150 N",
+            "style": "boxed"
+          }
+        ],
+        "why": "Tension is a force, so the answer is in newtons; a bare 150 is not a complete answer.",
+        "common_mistakes": [
+          "Writing 150 with no unit.",
+          "Giving the answer in N m⁻², the unit of Young's modulus."
+        ],
+        "memory_tip": "375 divided by 2.5 is the same as 750 divided by 5, which is 150.",
+        "margin_note": "Fourth mark. Box the number and write N after it."
+      }
+    ]
+  },
+  "insider_note": "Four marks, one for each written line: the rearranged formula, the data in SI units, the substitution and the boxed answer. The stretch is given in millimetres, and the mark for the data is the one most often lost by leaving it there."
+}

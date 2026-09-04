@@ -33,7 +33,7 @@
     "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Physics-II paper the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Physics hand-checked: light is a transverse electromagnetic wave; in ordinary light the electric field vector vibrates in every direction perpendicular to the direction of travel; a polaroid transmits only the component along its transmission axis, so the emerging light vibrates in one direction only — plane polarised light. Only transverse waves can be polarised."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
-  "insider_note": "Only transverse waves can be polarised — the phrase vibrations restricted to one direction is what carries the mark, not the word polaroid.",
+  "insider_note": "Only transverse waves can be polarised — the first mark is carried by the phrase vibrations restricted to one direction, and the second by naming the polaroid and the plane polarised light it gives.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -92,7 +92,7 @@
           "comes out vibrates in one plane only. Such",
           "light is called plane polarised light.",
           {
-            "text": "Vibrations restricted to one direction",
+            "text": "Unpolarised → polaroid → plane polarised",
             "style": "boxed"
           }
         ],

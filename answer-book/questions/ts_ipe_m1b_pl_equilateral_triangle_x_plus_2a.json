@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_equilateral_triangle_x_plus_2a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the lines (x + 2a)² − 3y² = 0 and x = a form an equilateral triangle, and find the area of that triangle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the pair into two lines",
+      "marks": 1
+    },
+    {
+      "label": "Find the other two vertices",
+      "marks": 1
+    },
+    {
+      "label": "Show the three sides are equal",
+      "marks": 1
+    },
+    {
+      "label": "Find the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(ii), book p.171. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this question is answered by direct coordinates rather than by angles: split the pair, find the two vertices on x = a, compare the three side lengths, then compute the area. Each of the four is a separate result on the page. This card proves the shape by SIDE LENGTHS, not by angles, which is a different route from its companion question 15(i) and is the shorter one when the vertices are this easy to write down. The area was cross-checked a second way, as ½ × base × height with base BC = 2√3|a| and height 3|a|, which also gives 3√3a². Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say where the pair of lines meet, and how you show the three sides are equal.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_the_pair",
+        "kind": "equation",
+        "label": "Split the pair into two lines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The pair is a difference of two squares. It is NOT homogeneous, so the two lines do not pass through the origin — they meet at (−2a, 0), which is the third vertex.",
+        "memory_tip": "This pair is not homogeneous, so the two lines meet at (−2a, 0) and not at the origin.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(x + 2a)² − 3y² = 0   ……(1)",
+          "x = a   ……(2)",
+          "(1) is a difference of two squares:",
+          "(1) ⇒ (x + 2a − √3y)(x + 2a + √3y) = 0",
+          "Multiplying back: (x + 2a)² − (√3y)²",
+          "   = (x + 2a)² − 3y², which is (1).",
+          "Both lines pass through A = (−2a, 0)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair splits as (x + 2a − √3y)(x + 2a + √3y) = 0 and both lines meet at (−2a, 0).",
+          "accept": [
+            "it is A squared minus B squared so it factorises as A minus B into A plus B",
+            "the two lines are x plus two a minus root three y and x plus two a plus root three y",
+            "both lines meet at minus two a comma zero",
+            "difference of squares ga factorise cheyyali",
+            "multiply the factors back to check"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of two squares",
+            "root three y",
+            "minus two a comma zero",
+            "x plus two a"
+          ]
+        },
+        "why": "Setting both factors to zero at once gives y = 0 and x = −2a, so that point lies on both lines and is the vertex the pair contributes. Take a ≠ 0 here: if a were 0 the line x = a would pass through that same point and there would be no triangle at all.",
+        "common_mistakes": [
+          "Assuming the pair passes through the origin because it has no xy term.",
+          "Writing (x + 2a)² − 3y² as (x + 2a − 3y)(x + 2a + 3y)."
+        ]
+      },
+      {
+        "id": "s2_other_two_vertices",
+        "kind": "equation",
+        "label": "Find the other two vertices",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The third line is vertical, so put x = a straight into each factor. Both give 3a on the left, and only the sign in front of √3y differs.",
+        "memory_tip": "x = a makes x + 2a equal 3a in both lines, so only the sign of the y term changes.",
+        "lines": [
+          "L₁: x + 2a − √3y = 0. Put x = a:",
+          "3a = √3 y ⇒ y = √3 a, so B = (a, √3a)",
+          "L₂: x + 2a + √3y = 0. Put x = a:",
+          "3a = −√3 y ⇒ y = −√3a, so C = (a, −√3a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = a in the two factors gives B = (a, √3a) and C = (a, −√3a).",
+          "accept": [
+            "put x equals a into each of the two lines",
+            "x plus two a becomes three a in both",
+            "the two vertices are a comma root three a and a comma minus root three a",
+            "x equals a substitute chesthe rendu vertices vasthaayi",
+            "three a over root three is root three a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals a",
+            "root three a",
+            "minus root three a",
+            "three a"
+          ]
+        },
+        "why": "The two vertices sit at equal distances above and below the x-axis, so the triangle is symmetric about the x-axis before any length is measured.",
+        "common_mistakes": [
+          "Simplifying 3a/√3 to 3a instead of √3a.",
+          "Taking x = a as y = a and looking for a horizontal line."
+        ]
+      },
+      {
+        "id": "s3_sides_equal",
+        "kind": "equation",
+        "label": "Show the three sides are equal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. BC is vertical, so its length is just the gap between the two y values. AB and AC are equal by the symmetry about the x-axis, so only one of them needs the distance formula.",
+        "memory_tip": "BC is vertical, so its length is just the gap between the two y values.",
+        "lines": [
+          "BC = |√3a − (−√3a)| = 2√3 |a|",
+          "AB² = (a + 2a)² + (√3a − 0)²",
+          "   = 9a² + 3a² = 12a² ⇒ AB = 2√3 |a|",
+          "In the same way AC = 2√3 |a|.",
+          "∴ AB = BC = CA, so △ABC is equilateral."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three sides come out equal to 2√3|a|, so the triangle is equilateral.",
+          "accept": [
+            "B C is vertical so its length is the gap between the y values",
+            "A B squared is nine a squared plus three a squared which is twelve a squared",
+            "all three sides are two root three mod a",
+            "moodu sides equal ga vasthaayi so equilateral",
+            "A C equals A B by symmetry about the x axis"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two root three",
+            "twelve a squared",
+            "all three sides equal",
+            "equilateral"
+          ]
+        },
+        "why": "Equal sides is a complete proof on its own — no angle has to be measured once all three lengths agree.",
+        "common_mistakes": [
+          "Writing √(12a²) as 12|a| instead of 2√3|a|.",
+          "Measuring BC as √3a, which is only the distance from B to the x-axis."
+        ]
+      },
+      {
+        "id": "s4_area",
+        "kind": "boxed_final",
+        "label": "Find the area",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. With the side already known, the equilateral-triangle area formula finishes it. The same answer comes from ½ × base × height with base 2√3|a| and height 3|a|.",
+        "memory_tip": "Area of an equilateral triangle is (√3/4) × side squared, and here side squared is 12a².",
+        "lines": [
+          "Side s = 2√3 |a|, so s² = 12a²",
+          "Area = (√3/4)s² = (√3/4)(12a²)",
+          "= 3√3 a²",
+          {
+            "text": "∴ Area = 3√3 a² sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That s² = 12a² and (√3/4)s² gives the area 3√3a² sq.units.",
+          "accept": [
+            "area of an equilateral triangle is root three by four into side squared",
+            "side squared is twelve a squared",
+            "the area is three root three a squared square units",
+            "equilateral triangle area formula vaadali",
+            "root three by four into twelve a squared is three root three a squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three by four",
+            "twelve a squared",
+            "three root three",
+            "square units"
+          ]
+        },
+        "why": "The area carries a² and not |a|², because squaring the side removes the modulus: |a|² and a² are the same number for every real a.",
+        "common_mistakes": [
+          "Squaring 2√3|a| as 4·3·a = 12a instead of 12a².",
+          "Writing the area of an equilateral triangle as ½s² instead of (√3/4)s²."
+        ]
+      }
+    ]
+  }
+}

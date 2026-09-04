@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The equation you are handed is the ORIGINAL one, so it is the one written in small x and small y. Number it (1) — the last step refers back to it.",
+        "memory_tip": "This one is the ORIGINAL, in small x and y. Number it (1) — the last step refers back.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. A shift of origin to (−1, 2) means x = X + h and y = Y + k. Substituting the numbers gives the two lines to carry forward.",
+        "memory_tip": "A FORWARD shift means x = X + h and y = Y + k. With h = −1 that gives x = X − 1.",
         "lines": [
           "We take new origin (h, k) = (−1, 2), then",
           "x = X + h  ⇒  x = X − 1",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Put those two lines into equation (1). Every x and every y goes, including the ones inside brackets and squares.",
+        "memory_tip": "Every x and y goes, including the ones inside brackets and squares.",
         "lines": [
           "From (1), transformed equation is",
           "(X−1)² + (Y+2)² + 2(X−1) − 4(Y+2) + 1 = 0"
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Expand, collect and read off the transformed equation in capital X and capital Y. The answer must be written in the NEW letters, never mixed with the old ones.",
+        "memory_tip": "The linear terms cancel completely here — the shift was to the circle's own centre.",
         "lines": [
           "⇒ (X² − 2X + 1) + (Y² + 4Y + 4) + 2X − 2 − 4Y − 8 + 1 = 0",
           "⇒ X² + Y² + (−2X + 2X) + (4Y − 4Y) + (1 + 4 − 2 − 8 + 1) = 0",
@@ -218,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Here the original equation is given, so it is x = X + h with h = −1, giving x = X − 1 and y = Y + 2. Both linear terms cancel completely, and that is the check that the shift went the right way."
 }

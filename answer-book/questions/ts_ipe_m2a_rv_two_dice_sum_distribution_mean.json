@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_two_dice_sum_distribution_mean",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Two dice are rolled at random. Find the probability distribution of the sum of the numbers on them. Find the mean of the random variable.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sample space and X",
+      "marks": 1
+    },
+    {
+      "label": "Write the distribution",
+      "marks": 3
+    },
+    {
+      "label": "Find the mean",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 Random Variables, answer 44. (In this part of the scan book page = PDF page − 1: book p.42 was read at PDF p.43, not p.44 as the −2 rule predicts.) Printed appearances: AP 18 · TS 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The 1 + 3 + 3 weights the two things the question asks for (the eleven-entry distribution and the mean) equally and gives 1 for the sample space, patterned on the 1A house shape of set-up / bulk / finish. The eleven-column table is written as two halves (X = 2 to 7 and X = 8 to 12) because eleven fractions do not fit one ruled line. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot. The book's printed working recomputes: Σxᵢ·P = 252/36 = 7 (the printed 252/36 has the fraction struck through in the scan — the value 7 is correct). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would build the distribution of the sum of two dice and find its mean — how many outcomes there are, how you count each sum, and what you add at the end.",
+  "insider_note": "The table is worth three marks and carries its own check: the counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 must add to 36; keep every probability over 36, so the pattern stays visible when the mean step adds the products.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sample_space",
+        "kind": "text",
+        "label": "Sample space and X",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Two dice give 6 × 6 = 36 equally likely ordered pairs. Name X as the sum, and say that it runs from 2 (1 + 1) to 12 (6 + 6). Both facts are needed before any probability is written.",
+        "memory_tip": "6 × 6 = 36 ordered pairs, and the sum X runs from 2 to 12. Both facts before any probability.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "When two dice are rolled, the sample space is",
+          "S = {(1, 1), (1, 2), …, (1, 6), (2, 1), …, (6, 6)}",
+          "n(S) = 6 × 6 = 36",
+          "Let X = the sum of the numbers on the two dice.",
+          "Then X takes the values 2, 3, 4, …, 12."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That there are 36 equally likely outcomes, X is the sum, and X takes the values 2 to 12.",
+          "accept": [
+            "thirty six outcomes, X is the sum of the two numbers and it goes from two to twelve",
+            "the sample space has six into six equal thirty six pairs and the sum runs from two to twelve",
+            "let X be the sum, range two to twelve, total outcomes thirty six",
+            "rendu dice ki thirty six outcomes, X ante sum, two nunchi twelve varaku",
+            "write n of S equals thirty six and X equals the sum"
+          ],
+          "reject": [
+            "roll the dice",
+            "write the sample space"
+          ],
+          "heard_as": [
+            "thirty six",
+            "sum",
+            "two to twelve",
+            "sample space",
+            "ordered pairs"
+          ]
+        },
+        "why": "Every probability in the table is a count of ordered pairs out of 36, so the size of the sample space and the range of X are the two facts everything else is built from.",
+        "common_mistakes": [
+          "Taking n(S) = 12 or 21 by treating (1, 2) and (2, 1) as one outcome.",
+          "Starting X at 1 or ending it at 11.",
+          "Never saying what X stands for."
+        ]
+      },
+      {
+        "id": "s2_distribution",
+        "kind": "equation",
+        "label": "Write the distribution",
+        "marks": 3,
+        "mark_note": "Distribution",
+        "margin_note": "Three marks — the bulk of the question. Count the pairs for each sum: 1 way for 2, 2 for 3, … 6 for 7, then down again to 1 for 12. The counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 add to 36, which is the check. Write every probability over 36; do not simplify, so the pattern stays visible.",
+        "memory_tip": "Counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 — they must add to 36, which is the check. Keep every fraction over 36.",
+        "lines": [
+          "Count the pairs giving each sum, out of 36.",
+          "For X = 7: (1, 6), (2, 5), (3, 4),",
+          "(4, 3), (5, 2), (6, 1) — 6 ways.",
+          {
+            "text": "X = xᵢ:      2     3     4     5     6     7",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ): 1/36  2/36  3/36  4/36  5/36  6/36",
+            "style": "indent"
+          },
+          {
+            "text": "X = xᵢ:      8     9    10    11    12",
+            "style": "indent"
+          },
+          {
+            "text": "P(X = xᵢ): 5/36  4/36  3/36  2/36  1/36",
+            "style": "indent"
+          },
+          "Check: the counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1",
+          "add to 36, so ΣP(X = xᵢ) = 36/36 = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each probability is the number of ordered pairs with that sum over 36, giving 1/36, 2/36, …, 6/36 for X = 2 to 7 and then 5/36 down to 1/36 for X = 8 to 12.",
+          "accept": [
+            "count the pairs for each sum, one for two up to six for seven and back down to one for twelve, all over thirty six",
+            "the probabilities are one by thirty six two by thirty six up to six by thirty six and then down again",
+            "the counts go one two three four five six five four three two one over thirty six",
+            "prathi sum ki enni pairs unnayo lekkinchi thirty six tho divide cheyali, seven ki six ways",
+            "write the table with the counts over thirty six and check they add to thirty six"
+          ],
+          "reject": [
+            "write the table",
+            "count them"
+          ],
+          "heard_as": [
+            "over thirty six",
+            "six by thirty six",
+            "one by thirty six",
+            "count the pairs",
+            "symmetric"
+          ]
+        },
+        "why": "The sum has more ways to be 7 than to be 2, so the probabilities are not equal — the table IS the answer to the first part of the question. The rise-and-fall pattern is the check that no pair was missed.",
+        "common_mistakes": [
+          "Giving every sum the probability 1/11.",
+          "Miscounting 7 as 3 ways by ignoring order.",
+          "Simplifying 2/36 to 1/18 in the table and then losing the pattern when adding."
+        ]
+      },
+      {
+        "id": "s3_mean",
+        "kind": "boxed_final",
+        "label": "Find the mean",
+        "marks": 3,
+        "mark_note": "Mean",
+        "margin_note": "Three marks. Mean μ = Σxᵢ·P(X = xᵢ). Factor the 1/36 out and add the eleven products 2·1, 3·2, 4·3, 5·4, 6·5, 7·6, 8·5, 9·4, 10·3, 11·2, 12·1 = 252. 252/36 = 7 — the mean of two dice is twice the mean of one (7/2).",
+        "memory_tip": "Factor the 1/36 out; the eleven products add to 252, so μ = 7 — twice the mean of one die.",
+        "lines": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 2(1/36) + 3(2/36) + 4(3/36) + 5(4/36)",
+          "   + 6(5/36) + 7(6/36) + 8(5/36) + 9(4/36)",
+          "   + 10(3/36) + 11(2/36) + 12(1/36)",
+          "= (1/36)(2 + 6 + 12 + 20 + 30 + 42",
+          "   + 40 + 36 + 30 + 22 + 12)",
+          "= 252/36 = 7",
+          {
+            "text": "∴ Mean μ = 7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean is Σxᵢ·P(X = xᵢ) = (1/36)(2 + 6 + 12 + … + 12) = 252/36 = 7.",
+          "accept": [
+            "mean is sigma x P of x, take one by thirty six out, the products add to two fifty two, so mu is seven",
+            "multiply each sum by its probability and add to get two fifty two by thirty six equals seven",
+            "mu equals two hundred fifty two over thirty six which is seven",
+            "prathi sum ni daani probability tho multiply chesi add cheste two fifty two by thirty six, mean seven",
+            "the mean of the sum is seven, twice the mean of one die"
+          ],
+          "reject": [
+            "find the mean",
+            "add them"
+          ],
+          "heard_as": [
+            "mu",
+            "two fifty two",
+            "thirty six",
+            "seven",
+            "mean"
+          ]
+        },
+        "why": "The mean of a sum is the sum of the means: 7/2 + 7/2 = 7. Computing it from the table proves that, and 7 is also the check on the table — a miscounted pair moves 252 away from 7 × 36.",
+        "common_mistakes": [
+          "Adding the eleven probabilities instead of the products xᵢ·P.",
+          "Writing 252/36 = 6 or 8 by an arithmetic slip in the sum of products.",
+          "Reporting 7/2, the mean of one die."
+        ]
+      }
+    ]
+  }
+}

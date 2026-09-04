@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Tangent repeats twice as often as sine and cosine, so its formula has π on top, not 2π. Writing the right one is the mark.",
+        "memory_tip": "Tangent repeats twice as often as sine, so its formula has π on top, not 2π.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. One substitution.",
+        "memory_tip": "One substitution: π/|5| = π/5.",
         "lines": [
           "Here k = 5",
           {
@@ -128,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Tangent has period π, not 2π — writing 2π/5 is the standard error here. The answer is π/5."
 }

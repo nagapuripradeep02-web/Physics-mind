@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_param_a_cos_t_plus_t_sin_t",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find dy/dx for the function x = a(cos t + t sin t), y = a(sin t − t cos t).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the parametric rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate x with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate y with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Divide to get dy/dx",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: with a = 1.7 the ratio of the two numerical derivatives (dy/dt)/(dx/dt) matched tan t at t = 0.6 (0.68413681) and t = 1.1 (1.96475966)."
+  },
+  "recall_prompt": "Say how you would solve this — say which derivatives you find first, and what cancels when you differentiate x.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parametric_rule",
+        "kind": "equation",
+        "label": "State the parametric rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the rule before any differentiating. a is a constant and t is the parameter, so both x and y are differentiated with respect to t, never with respect to each other.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x = a(cos t + t sin t)  and  y = a(sin t − t cos t)",
+          "x and y are both given in terms of the parameter t, so",
+          "dy/dx = (dy/dt)/(dx/dt),  provided dx/dt ≠ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a parametric pair, dy/dx = (dy/dt)/(dx/dt).",
+          "accept": [
+            "dy by dx is dy by dt divided by dx by dt",
+            "differentiate both with respect to the parameter t",
+            "state the parametric differentiation rule first",
+            "parametric form kabatti dy by dt by dx by dt teesukovali",
+            "find both derivatives in terms of t and divide",
+            "t is the parameter so everything is differentiated with respect to t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dy by dt",
+            "dx by dt",
+            "parameter",
+            "divide"
+          ]
+        },
+        "why": "x is not written in terms of y anywhere, so dy/dx cannot be found directly. The parameter t is the one variable both depend on, and dividing the two t-derivatives removes it.",
+        "common_mistakes": [
+          "Writing dy/dx = (dx/dt)/(dy/dt), which is the reciprocal of the correct rule.",
+          "Treating a as a variable and differentiating it."
+        ],
+        "memory_tip": "The parameter cancels when you divide: dy/dt over dx/dt leaves dy/dx. Write the rule first so the division is not forgotten at the end."
+      },
+      {
+        "id": "s2_dx_dt",
+        "kind": "equation",
+        "label": "Differentiate x with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Use the product rule on t sin t and write both of its terms out. The −sin t from cos t and the +sin t from the product cancel — that cancellation is what the question is built around.",
+        "lines": [
+          "x = a(cos t + t sin t). Use the product rule on t sin t:",
+          "d/dt (t sin t) = t·cos t + sin t·1",
+          "dx/dt = a[−sin t + t cos t + sin t]",
+          "∴ dx/dt = a t cos t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dt = a t cos t, because the two sin t terms cancel.",
+          "accept": [
+            "product rule on t sin t gives t cos t plus sin t",
+            "minus sin t and plus sin t cancel",
+            "dx by dt is a t cos t",
+            "rendu sin t terms cancel avuthayi, a t cos t migulutundi",
+            "only the t cos t term survives",
+            "differentiate x and simplify to a t cos t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "sin t cancels",
+            "a t cos t",
+            "t sin t"
+          ]
+        },
+        "why": "The product rule must be written out in full for the cancellation to be visible. A student who differentiates t sin t as t cos t alone keeps a stray −sin t and never reaches the short form.",
+        "common_mistakes": [
+          "Differentiating t sin t as t cos t and losing the sin t term.",
+          "Forgetting that d/dt (cos t) = −sin t and keeping a positive sin t, so nothing cancels."
+        ],
+        "memory_tip": "Two sin t terms appear here, one from cos t and one from the product rule, with opposite signs. Expect them to cancel and check that they do."
+      },
+      {
+        "id": "s3_dy_dt",
+        "kind": "equation",
+        "label": "Differentiate y with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The same shape as the previous step, with the signs the other way round. Keep the bracket around the product-rule result — the minus sign in front of t cos t applies to both of its terms.",
+        "lines": [
+          "y = a(sin t − t cos t). Use the product rule on t cos t:",
+          "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
+          "dy/dt = a[cos t − (−t sin t + cos t)] = a[cos t + t sin t − cos t]",
+          "∴ dy/dt = a t sin t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dt = a t sin t, because the two cos t terms cancel.",
+          "accept": [
+            "product rule on t cos t gives minus t sin t plus cos t",
+            "the two cos t terms cancel",
+            "dy by dt is a t sin t",
+            "cos t terms cancel ayi a t sin t vasthundi",
+            "distribute the minus sign over both terms",
+            "differentiate y and simplify to a t sin t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a t sin t",
+            "cos t cancels",
+            "minus sign",
+            "product rule"
+          ]
+        },
+        "why": "The minus sign sits in front of the whole product t cos t, so both terms of its derivative change sign. Missing that is the usual reason a student gets cot t or a stray cos t here.",
+        "common_mistakes": [
+          "Applying the minus sign to only the first term of the product-rule result.",
+          "Writing d/dt (t cos t) as −t sin t and dropping the cos t term."
+        ],
+        "memory_tip": "This step mirrors the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it."
+      },
+      {
+        "id": "s4_divide",
+        "kind": "boxed_final",
+        "label": "Divide to get dy/dx",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both a and t cancel, so the answer depends on t only through tan t. Valid where dx/dt ≠ 0, that is for t ≠ 0 and cos t ≠ 0.",
+        "lines": [
+          "dy/dx = (dy/dt)/(dx/dt) = (a t sin t)/(a t cos t)",
+          "The a and the t cancel, leaving sin t/cos t",
+          {
+            "text": "∴ dy/dx = tan t",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing a t sin t by a t cos t cancels a and t, leaving dy/dx = tan t.",
+          "accept": [
+            "a and t cancel leaving sin t by cos t",
+            "the answer is tan t",
+            "divide a t sin t by a t cos t",
+            "a matriyu t cancel ayi tan t vasthundi",
+            "sin over cos is tan",
+            "the constant a does not appear in the answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan t",
+            "a and t cancel",
+            "sin by cos",
+            "divide"
+          ]
+        },
+        "why": "a cancels because it multiplies both curves equally, and t cancels because both derivatives carry one factor of t. A final answer still containing a would mean an error earlier, since scaling the whole curve cannot change its slope at a given t.",
+        "common_mistakes": [
+          "Leaving a or t in the final answer instead of cancelling them.",
+          "Writing cot t by dividing the derivatives the wrong way round."
+        ],
+        "memory_tip": "If a survives to the last line, go back — a scales both x and y equally, so it can never appear in dy/dx."
+      }
+    ]
+  },
+  "insider_note": "The product rule on t sin t and t cos t makes most terms cancel in pairs, leaving dx/dt = at cos t and dy/dt = at sin t. The at then cancels, giving tan t."
+}

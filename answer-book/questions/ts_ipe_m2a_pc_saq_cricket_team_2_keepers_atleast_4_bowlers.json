@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_cricket_team_2_keepers_atleast_4_bowlers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the number of ways of selecting an 11-member cricket team from 7 batsmen, 6 bowlers and 2 wicket keepers so that the team contains 2 wicket keepers and at least 4 bowlers.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "List the allowed compositions",
+      "marks": 1
+    },
+    {
+      "label": "Count each composition",
+      "marks": 2
+    },
+    {
+      "label": "Add the cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 9 Permutations & Combinations, answer 71. Printed appearances: AP 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_cases, s2_count_cases, s3_total) are used on all three selection-with-conditions SAQs in this unit (answers 70, 71, 72), deliberately: they are one method — list the allowed compositions, count each, add — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 4 (book p.117). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would count the teams — which compositions are allowed, how each is counted, and how you finish.",
+  "insider_note": "Both keepers are in the team from the start, so only 9 places remain and the batsmen count is 9 − bowlers, never 11 − bowlers. Write the bowler cases 4, 5, 6 as a table first — the list of compositions is a mark on its own.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cases",
+        "kind": "text",
+        "label": "List the allowed compositions",
+        "marks": 1,
+        "mark_note": "Cases",
+        "margin_note": "First mark. Both keepers are in every team (²C₂ = 1), so 9 places remain for bowlers and batsmen. Bowlers can be 4, 5 or 6; the batsmen make up 9.",
+        "memory_tip": "Both keepers are in every team, so only 9 places remain. Batsmen = 9 − bowlers, never 11 − bowlers.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Both wicket keepers are in the team: ²C₂ = 1.",
+          "The other 9 places: at least 4 bowlers,",
+          "so bowlers 4, 5 or 6 with batsmen 5, 4 or 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two keepers are fixed, and the remaining nine places split as 4, 5 or 6 bowlers with 5, 4 or 3 batsmen.",
+          "accept": [
+            "both keepers are taken, then nine places with four five or six bowlers and five four or three batsmen",
+            "three cases, four bowlers five batsmen, five and four, six and three, plus the two keepers",
+            "two C two is one for the keepers and then the bowlers are at least four so three cases",
+            "keepers iddaru fix, migatha nine lo bowlers four five or six, batsmen five four three",
+            "list the cases by number of bowlers, four five and six"
+          ],
+          "reject": [
+            "make cases",
+            "choose the keepers"
+          ],
+          "heard_as": [
+            "keepers",
+            "two C two",
+            "three cases",
+            "at least four",
+            "nine places"
+          ]
+        },
+        "why": "Fixing the keepers first turns an 11-place problem into a 9-place one. The bowler count then runs from the minimum 4 up to all 6, and each value is a separate, non-overlapping case.",
+        "common_mistakes": [
+          "Treating the keepers as a choice of 1 or 2 — the question says the team contains 2.",
+          "Stopping at 5 bowlers and missing the 6-bowler case.",
+          "Counting 11 − 4 = 7 batsmen instead of 9 − 4 = 5."
+        ]
+      },
+      {
+        "id": "s2_count_cases",
+        "kind": "equation",
+        "label": "Count each composition",
+        "marks": 2,
+        "mark_note": "Counting",
+        "margin_note": "Two marks. ⁶C₄ = ⁶C₂ = 15, ⁷C₅ = ⁷C₂ = 21, ⁷C₄ = ⁷C₃ = 35. Multiply within each case.",
+        "memory_tip": "Multiply the three groups within a case. Use ⁿCᵣ = ⁿCₙ₋ᵣ: ⁷C₅ = ⁷C₂ = 21, not 35.",
+        "lines": [
+          "Case 1: ²C₂ · ⁶C₄ · ⁷C₅ = 1 · 15 · 21 = 315",
+          "Case 2: ²C₂ · ⁶C₅ · ⁷C₄ = 1 · 6 · 35 = 210",
+          "Case 3: ²C₂ · ⁶C₆ · ⁷C₃ = 1 · 1 · 35 = 35"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each case multiplies keepers, bowlers and batsmen — 315, 210 and 35.",
+          "accept": [
+            "six C four times seven C five is three hundred fifteen, six C five times seven C four is two hundred ten, six C six times seven C three is thirty five",
+            "multiply the three selections in each case to get three fifteen, two ten and thirty five",
+            "the cases give three hundred and fifteen, two hundred and ten and thirty five",
+            "prathi case lo keepers bowlers batsmen multiply cheste three fifteen, two ten, thirty five",
+            "fifteen times twenty one, six times thirty five, one times thirty five"
+          ],
+          "reject": [
+            "use combinations",
+            "count each case"
+          ],
+          "heard_as": [
+            "three hundred fifteen",
+            "two hundred ten",
+            "thirty five",
+            "six C four",
+            "seven C five"
+          ]
+        },
+        "why": "Within a case the three groups are chosen together, so their counts multiply. ⁿCᵣ = ⁿCₙ₋ᵣ keeps the arithmetic small: ⁷C₅ is ⁷C₂, not a product of five numbers.",
+        "common_mistakes": [
+          "Adding the selections inside a case instead of multiplying.",
+          "Using ⁷C₅ = 35 — that is ⁷C₃; ⁷C₅ = 21.",
+          "Leaving out the batsmen factor in the 6-bowler case; ⁷C₃ = 35 is still needed."
+        ]
+      },
+      {
+        "id": "s3_total",
+        "kind": "boxed_final",
+        "label": "Add the cases",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 315 + 210 + 35 = 560.",
+        "memory_tip": "Different bowler counts are different teams, so add: 315 + 210 + 35 = 560.",
+        "lines": [
+          {
+            "text": "∴ number of ways = 315 + 210 + 35 = 560",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three case counts are added to give 560.",
+          "accept": [
+            "add three fifteen, two ten and thirty five to get five hundred sixty",
+            "the total is five hundred and sixty",
+            "adding the three cases gives five sixty",
+            "moodu cases add cheste five hundred sixty",
+            "three hundred fifteen plus two hundred ten plus thirty five is five sixty"
+          ],
+          "reject": [
+            "add them",
+            "five hundred"
+          ],
+          "heard_as": [
+            "five hundred sixty",
+            "five sixty",
+            "add",
+            "total"
+          ]
+        },
+        "why": "Teams with different numbers of bowlers are different teams, so the cases are disjoint and adding them counts every team exactly once.",
+        "common_mistakes": [
+          "Multiplying the cases instead of adding.",
+          "Adding only two of the three cases."
+        ]
+      }
+    ]
+  }
+}

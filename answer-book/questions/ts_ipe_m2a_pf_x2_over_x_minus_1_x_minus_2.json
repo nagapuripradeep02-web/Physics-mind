@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x2_over_x_minus_1_x_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x²/((x − 1)(x − 2)) into partial fractions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, the 'PQ' practice question printed after answer 104 at the foot of the chapter, which the book gives with its final answer only ([Ans: 1 − 1/(x − 1) + 4/(x − 2)]) and no working — the full solution on this card is OURS, and it reaches the book's printed answer. Printed appearances: none — the practice question carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 0 in the identity gives 0 = (−1)(−2) + A(−2) + B(−1) = 2 + 2 − 4 = 0 with A = −1, B = 4, so the book's printed answer is confirmed."
+  },
+  "recall_prompt": "Say how you would resolve x²/((x − 1)(x − 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "Degree 2 over degree 2 is improper, so the answer starts with the constant 1, read straight from the leading coefficients; without that 1 in the form, no A and B can make the identity hold.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. Degree 2 over degree 2: improper, and both leading coefficients are 1, so the quotient is the constant 1. Then A over (x − 1) and B over (x − 2).",
+        "memory_tip": "Degree 2 over degree 2 is IMPROPER. Both leading coefficients are 1, so the quotient is just 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 2 = degree 2: improper.",
+          "Leading coefficients 1 and 1, so the",
+          "quotient is the constant 1.",
+          "Let x²/((x − 1)(x − 2))",
+          "= 1 + A/(x − 1) + B/(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal degrees make the quotient the constant 1, and the form is 1 + A/(x − 1) + B/(x − 2).",
+          "accept": [
+            "the degrees are equal so the quotient is one, then write one plus A over x minus one plus B over x minus two",
+            "improper with equal degrees so a constant one comes first and then one constant over each factor",
+            "one plus A by x minus 1 plus B by x minus 2",
+            "degrees same kabatti quotient one, tarvata A by x minus one plus B by x minus two rasali",
+            "write the constant one and then two fractions for the two linear factors"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "equal degrees",
+            "quotient one",
+            "one plus",
+            "A over x minus one",
+            "B over x minus two"
+          ]
+        },
+        "why": "x² over x² − 3x + 2 is 1 plus a proper fraction, because the degrees match and the leading coefficients are both 1. Without the 1 the identity x² = A(x − 2) + B(x − 1) has no solution, since the right side has no x² term.",
+        "common_mistakes": [
+          "Writing A/(x − 1) + B/(x − 2) with no 1 in front.",
+          "Doing a full long division when the quotient can be read off the leading coefficients.",
+          "Writing the quotient as x."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply by (x − 1)(x − 2). The 1 keeps the whole product; A keeps (x − 2), B keeps (x − 1).",
+        "memory_tip": "The 1 keeps the whole product (x − 1)(x − 2); A keeps (x − 2) and B keeps (x − 1).",
+        "lines": [
+          "Multiply by (x − 1)(x − 2):",
+          "x² = (x − 1)(x − 2) + A(x − 2) + B(x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying through gives x² = (x − 1)(x − 2) + A(x − 2) + B(x − 1).",
+          "accept": [
+            "multiply both sides by x minus one into x minus two to get x squared equals x minus one into x minus two plus A into x minus two plus B into x minus one",
+            "clear the denominators and the one keeps the whole product",
+            "x squared equals the product plus A into x minus two plus B into x minus one",
+            "denominator tho multiply cheste x square equals x minus one x minus two plus A into x minus two plus B into x minus one",
+            "remove the fractions and keep the one term as the full product"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "x squared equals",
+            "A into x minus two",
+            "B into x minus one",
+            "identity"
+          ]
+        },
+        "why": "The quotient 1 multiplied by the denominator gives the product term, which supplies the x² that the A and B terms cannot. That is why the identity now balances.",
+        "common_mistakes": [
+          "Dropping the (x − 1)(x − 2) term.",
+          "Pairing A with (x − 1) instead of (x − 2).",
+          "Writing x on the left instead of x²."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A and B",
+        "margin_note": "Third mark. x = 1 makes the product and the B term zero: 1 = −A. x = 2 makes the product and the A term zero: 4 = B.",
+        "memory_tip": "At each root the product vanishes too: x = 1 gives 1 = −A, and x = 2 gives 4 = B.",
+        "lines": [
+          "Put x = 1: 1 = A(−1) ⇒ A = −1",
+          "Put x = 2: 4 = B(1) ⇒ B = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1 gives A = −1 and x = 2 gives B = 4.",
+          "accept": [
+            "put x equals one to get A equals minus one and x equals two to get B equals four",
+            "the roots one and two give A minus one and B four",
+            "A minus one, B four",
+            "x equals one pedithe A minus one, x equals two pedithe B four",
+            "two substitutions at the roots give the two constants"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals one",
+            "x equals two",
+            "A is minus one",
+            "B is four",
+            "four"
+          ]
+        },
+        "why": "At a root of the denominator the product term vanishes as well as one constant term, so each substitution still isolates a single constant even with the quotient present.",
+        "common_mistakes": [
+          "Putting x = 1 and writing A(1 − 2) = A instead of −A, giving A = 1.",
+          "Keeping the product (x − 1)(x − 2) on the right at x = 1; it is zero there.",
+          "Putting x = 2 and writing 2 instead of 2² = 4 on the left."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 1 comes first, then −1/(x − 1) + 4/(x − 2). This matches the answer the book prints for its practice question. Write the original fraction on the left.",
+        "memory_tip": "The 1 comes first: 1 − 1/(x − 1) + 4/(x − 2). Check x = 0: 0 = 2 + 2 − 4.",
+        "lines": [
+          "∴ x²/((x − 1)(x − 2))",
+          {
+            "text": "= 1 − 1/(x − 1) + 4/(x − 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals 1 − 1/(x − 1) + 4/(x − 2), with the constant 1 in front.",
+          "accept": [
+            "the answer is one minus one over x minus one plus four over x minus two",
+            "one first then minus one by x minus one plus four by x minus two",
+            "the constant one comes first and then the two fractions",
+            "final answer one minus one by x minus one plus four by x minus two ani rasali",
+            "put A minus one and B four back into the form with the one in front"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "one minus",
+            "one over x minus one",
+            "four over x minus two",
+            "final answer"
+          ]
+        },
+        "why": "The constant quotient is part of the answer. All three terms with their signs make the resolved form the examiner marks.",
+        "common_mistakes": [
+          "Leaving out the 1 in the final line.",
+          "Writing +1/(x − 1) after finding A = −1.",
+          "Not checking: put x = 0 in the identity, 0 = 2 + 2 − 4. If the two sides differ, a constant is wrong."
+        ]
+      }
+    ]
+  }
+}

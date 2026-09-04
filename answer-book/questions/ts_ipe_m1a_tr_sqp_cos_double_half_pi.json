@@ -67,6 +67,7 @@
         "marks": 2,
         "mark_note": "Sum to product",
         "margin_note": "Two of the eight marks. cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2), applied to cos 2A + cos 2B.",
+        "memory_tip": "cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2), applied to cos2A + cos2B.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Angle sum",
         "margin_note": "Third mark. From A + B + C = π/2, A + B = π/2 − C, and cos(π/2 − C) = sin C.",
+        "memory_tip": "A + B = π/2 − C, and cos(π/2 − C) = sin C.",
         "lines": [
           "A + B = π/2 − C",
           "⇒ cos(A + B) = cos(π/2 − C) = sin C",
@@ -150,6 +152,7 @@
         "marks": 2,
         "mark_note": "Double angle",
         "margin_note": "Two marks (fourth and fifth). cos 2θ = 1 − 2 sin²θ. This choice, out of the three forms of cos 2θ, is what produces the 1 on the right-hand side.",
+        "memory_tip": "Choose cos2C = 1 − 2sin²C out of the three forms — it is the one that produces the 1 on the right.",
         "lines": [
           "cos 2C = 1 − 2 sin²C",
           "L.H.S = 2 sin C cos(A − B) + 1 − 2 sin²C",
@@ -190,6 +193,7 @@
         "marks": 2,
         "mark_note": "Second substitution",
         "margin_note": "Two marks. Inside the bracket, write sin C as cos(A+B) — the reverse of step 2 — so both terms become cosines.",
+        "memory_tip": "Inside the bracket write sin C back as cos(A+B) — the reverse of step 2 — so both terms are cosines.",
         "lines": [
           "Inside the bracket, sin C = cos(π/2 − C) = cos(A + B)",
           "Bracket = cos(A − B) − cos(A + B)"
@@ -228,6 +232,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. cos(X−Y) − cos(X+Y) = 2 sin X sin Y with X = A, Y = B gives 2 sin A sin B.",
+        "memory_tip": "cos(X−Y) − cos(X+Y) = 2 sinX sinY with X = A, Y = B.",
         "lines": [
           "cos(A − B) − cos(A + B) = 2 sin A sin B",
           "L.H.S = 1 + 2 sin C · 2 sin A sin B",
@@ -264,5 +269,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition is π/2, not π, so cos(A+B) = sinC rather than −cosC. That sign is why the answer is 1 + 4 sinA sinB sinC and not the −1 of the triangle version."
 }

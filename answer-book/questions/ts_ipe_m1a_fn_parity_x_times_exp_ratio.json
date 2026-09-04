@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_parity_x_times_exp_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Determine whether f(x) = x((eˣ − 1)/(eˣ + 1)) is even or odd.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write and simplify f(−x)",
+      "marks": 1
+    },
+    {
+      "label": "Compare with f(x) and name the parity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 26(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to writing f(−x) and clearing e⁻ˣ and one to the comparison that names the parity, because the question asks for a decision and a student who simplifies correctly but names the wrong parity has still earned the first mark. The domain is R, since eˣ + 1 is never zero, and the card states that in its written lines rather than only here. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — what you write for f(−x), and what you compare it with.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_f_of_minus_x",
+        "kind": "equation",
+        "label": "Write f(−x) and clear e⁻ˣ",
+        "marks": 1,
+        "mark_note": "f(−x) simplified",
+        "margin_note": "One mark for f(−x) with e⁻ˣ cleared. State the domain first: eˣ + 1 > 0 for every x, so the domain is R and −x is always in it.",
+        "memory_tip": "Replace e⁻ˣ by 1/eˣ, then multiply the top and the bottom of the fraction by eˣ. Both negative powers go in one move.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x(eˣ − 1)/(eˣ + 1)",
+          "eˣ + 1 > 0 for every x, so the domain is R,",
+          "and −x is in the domain whenever x is.",
+          "f(−x) = −x(e⁻ˣ − 1)/(e⁻ˣ + 1)",
+          "e⁻ˣ = 1/eˣ. Multiply top and bottom by eˣ:",
+          "f(−x) = −x(1 − eˣ)/(1 + eˣ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(−x) = −x(e⁻ˣ − 1)/(e⁻ˣ + 1), and that multiplying the top and bottom by eˣ turns it into −x(1 − eˣ)/(1 + eˣ).",
+          "accept": [
+            "put minus x in place of x everywhere",
+            "e to the minus x is one over e to the x",
+            "multiply the numerator and the denominator by e to the x",
+            "f of minus x becomes minus x times one minus e to the x over one plus e to the x",
+            "e power minus x ni clear cheyyadaniki eˣ tho multiply cheyyali"
+          ],
+          "reject": [
+            "the two minus signs cancel",
+            "so the function is even",
+            "one minus e to the x is minus of e to the x minus one"
+          ],
+          "heard_as": [
+            "f of minus x",
+            "e to the minus x",
+            "e to the x plus one",
+            "multiply top and bottom",
+            "domain is R"
+          ]
+        },
+        "why": "Parity is decided by comparing f(−x) with f(x), so f(−x) has to be written in the same letters as f(x). The negative powers e⁻ˣ are what block the comparison, and clearing them is the whole of this step.",
+        "common_mistakes": [
+          "Losing the outside factor −x and writing f(−x) with a leading +x.",
+          "Treating e⁻ˣ as −eˣ, which is not the same thing.",
+          "Multiplying only the numerator by eˣ and leaving the denominator unchanged."
+        ]
+      },
+      {
+        "id": "s2_compare_and_name",
+        "kind": "boxed_final",
+        "label": "Compare and name the parity",
+        "marks": 1,
+        "mark_note": "f(−x) = f(x)",
+        "margin_note": "The second mark is the comparison and the word. Show the two minus signs cancelling, write f(−x) = f(x), then name the function even.",
+        "memory_tip": "Two sign changes make no sign change: the outside −x and the flipped fraction 1 − eˣ cancel each other, so the function is even.",
+        "lines": [
+          "1 − eˣ = −(eˣ − 1), so",
+          "f(−x) = (−x)·[−(eˣ − 1)/(eˣ + 1)]",
+          "= x(eˣ − 1)/(eˣ + 1)",
+          "= f(x) for every x ∈ R",
+          {
+            "text": "∴ f is an even function on R.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − eˣ = −(eˣ − 1), so the two minus signs cancel and f(−x) = f(x), which makes f an even function.",
+          "accept": [
+            "one minus e to the x is minus of e to the x minus one",
+            "the minus outside and the minus from the fraction cancel",
+            "so f of minus x equals f of x",
+            "the function is even",
+            "rendu minus signs cancel ayipoyi f of minus x equals f of x, even function"
+          ],
+          "reject": [
+            "put minus x in place of x",
+            "multiply top and bottom by e to the x",
+            "so f of minus x equals minus f of x"
+          ],
+          "heard_as": [
+            "even function",
+            "f of minus x equals f of x",
+            "minus signs cancel",
+            "odd function"
+          ]
+        },
+        "why": "There are two sign changes here, not one: the outside factor becomes −x and the fraction flips to −(eˣ − 1)/(eˣ + 1). Two sign changes leave the value unchanged, so the function is even. A numerical check agrees — f(0.6) and f(−0.6) are both 0.1748, and f(1.7) and f(−1.7) are both 1.1748.",
+        "common_mistakes": [
+          "Counting only one sign change and calling the function odd.",
+          "Writing 1 − eˣ = eˣ − 1, which loses a minus sign.",
+          "Naming a parity without ever writing the line f(−x) = f(x)."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_ay4_equals_x_plus_b_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If ay⁴ = (x + b)⁵, show that 5yy″ = (y′)².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take logarithms of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate once",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 1
+    },
+    {
+      "label": "Replace 1/(x + b) and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states a > 0, y > 0 and x + b > 0, which the logarithms it takes require. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which method you use on ay⁴ = (x + b)⁵ and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_logs",
+        "kind": "equation",
+        "label": "Take logarithms of both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both sides are powers, so logarithms turn the indices into multipliers and remove the need to make y the subject.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take a > 0, y > 0 and x + b > 0, so both sides are positive.",
+          "ay⁴ = (x + b)⁵",
+          "logₑa + 4 logₑy = 5 logₑ(x + b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logarithms are taken of both sides, giving logₑa + 4 logₑy = 5 logₑ(x + b).",
+          "accept": [
+            "take logarithms on both sides",
+            "log a plus four log y equals five log of x plus b",
+            "use logarithmic differentiation because both sides are powers",
+            "rendu vaipulaki log teesukovali",
+            "the indices four and five come down as multipliers"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log",
+            "logarithmic differentiation",
+            "four log y",
+            "five log"
+          ]
+        },
+        "why": "Making y the subject means a fourth root and two awkward differentiations. Logarithms bring the indices down and keep every line linear in the logarithms.",
+        "common_mistakes": [
+          "Writing logₑ(ay⁴) as logₑa · 4 logₑy instead of logₑa + 4 logₑy.",
+          "Taking logarithms of only one side."
+        ],
+        "memory_tip": "A product becomes a sum and an index becomes a multiplier — that is the whole reason for taking logarithms here."
+      },
+      {
+        "id": "s2_first_differentiation",
+        "kind": "equation",
+        "label": "Differentiate once",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Keep the result in the form y′/y rather than solving for y′ — the next step differentiates this quotient as it stands.",
+        "lines": [
+          "Differentiate both sides with respect to x:",
+          "0 + 4(y′/y) = 5/(x + b)",
+          "y′/y = 5 / [4(x + b)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating gives 4y′/y = 5/(x + b), that is, y′/y = 5/[4(x + b)].",
+          "accept": [
+            "differentiate both sides with respect to x",
+            "four y dash over y equals five over x plus b",
+            "log a is a constant so it differentiates to zero",
+            "log a constant kabatti zero avuthundi",
+            "keep it as y dash over y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y dash over y",
+            "five over x plus b",
+            "log a is constant"
+          ]
+        },
+        "why": "d/dx(logₑy) = y′/y, so the left side arrives already in the quotient form the second differentiation needs.",
+        "common_mistakes": [
+          "Writing d/dx(logₑy) as 1/y and forgetting the chain-rule factor y′.",
+          "Differentiating logₑa as 1/a instead of 0."
+        ],
+        "memory_tip": "logₑy differentiates to y′/y — the derivative of the inside always sits on top."
+      },
+      {
+        "id": "s3_second_differentiation",
+        "kind": "equation",
+        "label": "Differentiate a second time",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The left side is a quotient of y′ by y, so use the quotient rule — that is where both yy″ and (y′)² come from.",
+        "lines": [
+          "d/dx (y′/y) = [y″·y − y′·y′] / y² = [yy″ − (y′)²] / y²",
+          "d/dx {5 / [4(x + b)]} = −5 / [4(x + b)²]",
+          "∴ [yy″ − (y′)²] / y² = −5 / [4(x + b)²]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quotient rule on y′/y gives [yy″ − (y′)²]/y², set equal to −5/[4(x + b)²].",
+          "accept": [
+            "use the quotient rule on y dash over y",
+            "that gives y y double dash minus y dash squared over y squared",
+            "the right side differentiates to minus five over four x plus b squared",
+            "quotient rule vaadithe y y double dash minus y dash square vasthundi",
+            "both terms of the required result appear here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quotient rule",
+            "y y double dash",
+            "y dash squared",
+            "minus five"
+          ]
+        },
+        "why": "The two terms the question asks about, yy″ and (y′)², are exactly the numerator of the quotient rule applied to y′/y. That is why this route is short.",
+        "common_mistakes": [
+          "Differentiating y′/y term by term instead of using the quotient rule.",
+          "Losing the minus sign when differentiating 1/(x + b)."
+        ],
+        "memory_tip": "The quotient rule on y′/y produces yy″ − (y′)² on top — both pieces of the required result in one move."
+      },
+      {
+        "id": "s4_substitute_and_finish",
+        "kind": "boxed_final",
+        "label": "Replace 1/(x + b) and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. x and b must not appear in the required result, so 1/(x + b) is replaced using step 2 before the final line.",
+        "lines": [
+          "From step 2,  1/(x + b) = 4y′/(5y),  so  1/(x + b)² = 16(y′)² / (25y²)",
+          "[yy″ − (y′)²] / y² = −(5/4) · 16(y′)²/(25y²) = −(4/5)(y′)²/y²",
+          "yy″ − (y′)² = −(4/5)(y′)²   ⇒   yy″ = (1/5)(y′)²",
+          {
+            "text": "∴ 5yy″ = (y′)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/(x + b) is replaced by 4y′/(5y), giving yy″ = (1/5)(y′)², that is, 5yy″ = (y′)².",
+          "accept": [
+            "replace one over x plus b using the first differentiation",
+            "one over x plus b is four y dash over five y",
+            "that leaves y y double dash equal to one fifth of y dash squared",
+            "x plus b ni y dash tho replace cheyyali",
+            "multiply by five to get five y y double dash equals y dash squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "replace x plus b",
+            "four y dash over five y",
+            "one fifth",
+            "five y y double dash"
+          ]
+        },
+        "why": "The required identity has no x and no b in it, so every trace of x + b must be written back in terms of y and y′ before the last line.",
+        "common_mistakes": [
+          "Leaving x + b in the final answer.",
+          "Squaring 4y′/(5y) as 4(y′)²/(5y²) instead of 16(y′)²/(25y²)."
+        ],
+        "memory_tip": "The two indices decide the answer: with 4 logₑy = 5 logₑ(x + b), the coefficient is (5 − 4)/5 = 1/5, so the 5 in 5yy″ is the index of (x + b)."
+      }
+    ]
+  },
+  "insider_note": "Take logarithms FIRST — differentiating (x + b)⁵ and y⁴ directly makes the second derivative unmanageable. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top."
+}

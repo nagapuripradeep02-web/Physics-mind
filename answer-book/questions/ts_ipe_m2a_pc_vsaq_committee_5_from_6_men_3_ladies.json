@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_committee_5_from_6_men_3_ladies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the number of ways of forming a committee of 5 members from 6 men and 3 ladies.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "No condition, so choose 5 from all 9",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate ⁹C₅",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 151. Printed appearances: AP 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_setup, s2_compute) are used on every direct-count VSAQ in this unit (answers 149.1 to 155.2 and Star Questions Plus 199, 200), deliberately: one mark to name the count (which ⁿPᵣ, ⁿCᵣ, nʳ or formula, and why), one to evaluate it. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would count the committees of five from six men and three ladies when there is no condition — the total to choose from, and the number.",
+  "insider_note": "The split into 6 men and 3 ladies carries no condition — the committee is any 5 of the 9 people, ⁹C₅ = 126 in one line. Case work by number of ladies reaches the same 126 in four times the space.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "No condition, so choose 5 from all 9",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The question puts no condition on men or ladies, so it is simply 5 people from 6 + 3 = 9: ⁹C₅.",
+        "memory_tip": "There is NO condition on the mix, so it is simply 5 from 6 + 3 = 9 people: ⁹C₅.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Total persons = 6 + 3 = 9.",
+          "No condition on men or ladies, so choose",
+          "any 5 of the 9: ⁹C₅"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with no condition the committee is any 5 of the 9 people, counted by 9 C 5.",
+          "accept": [
+            "no condition so it is nine C five, five out of all nine people",
+            "add the men and ladies to nine and choose five",
+            "nine C five",
+            "condition ledu kabatti nine lo five, nine C five",
+            "a committee is a selection so it is a combination of nine taken five"
+          ],
+          "reject": [
+            "set it up",
+            "use the formula"
+          ],
+          "heard_as": [
+            "nine C five",
+            "nine people",
+            "no condition",
+            "five out of nine"
+          ]
+        },
+        "why": "The men-and-ladies split only suggests a case split; it is not needed. With no condition on the mix, every 5-person subset of the 9 is a valid committee, and a committee is a selection, so ⁹C₅.",
+        "common_mistakes": [
+          "Splitting into cases by number of ladies — correct but four times the work for the same 126.",
+          "Using ⁹P₅ — a committee has no order."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Evaluate ⁹C₅",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
+        "memory_tip": "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
+        "lines": [
+          "⁹C₅ = ⁹C₄ = (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
+          {
+            "text": "= 126",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 9 C 5 equals 9 C 4, which is 9 times 8 times 7 times 6 over 24 = 126.",
+          "accept": [
+            "nine C five is nine C four which is nine eight seven six by twenty four equals one hundred twenty six",
+            "one twenty six",
+            "nine C five equals one hundred and twenty six",
+            "nine C five one twenty six",
+            "three thousand twenty four by twenty four"
+          ],
+          "reject": [
+            "evaluate",
+            "compute"
+          ],
+          "heard_as": [
+            "nine C five",
+            "one twenty six",
+            "one hundred twenty six"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ shortens five factors to four; the value 126 is the answer.",
+        "common_mistakes": [
+          "Computing 9·8·7·6·5 = 15120 and dividing by 24 instead of 120.",
+          "Leaving the answer as ⁹C₅."
+        ]
+      }
+    ]
+  }
+}

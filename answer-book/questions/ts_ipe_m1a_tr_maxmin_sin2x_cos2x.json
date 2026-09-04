@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_maxmin_sin2x_cos2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum and minimum values of f(x) = sin 2x − cos 2x over ℝ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identify a and b and find √(a² + b²)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the maximum and minimum formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 4(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reading off a and b with √(a² + b²) and one to applying the two formulas. PRINTED NUMBERING BREAK, recorded and not renumbered: the book's question 4 has no part (i) — its sub-part list starts at (ii). The stem itself is mathematically sound, so the card is authored on it exactly as printed. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Identify a and b and find √(a² + b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the coefficient of cos 2x with its own sign, b = −1. The angle is 2x and not x, and that makes no difference to the answer.",
+        "memory_tip": "a and b are the numbers in front of sin and cos, signs included: a = 1, b = −1, and √(1 + 1) = √2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = sin 2x − cos 2x",
+          "Compare with a sin θ + b cos θ, where θ = 2x:",
+          "a = 1, b = −1",
+          "√(a² + b²) = √(1 + 1) = √2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 1 and b = −1, so √(a² + b²) = √2.",
+          "accept": [
+            "a is one and b is minus one so the root of one plus one is root two",
+            "identify the coefficients and take root a squared plus b squared",
+            "root two comes from one plus one",
+            "a one, b minus one, root two vasthundi",
+            "the amplitude is root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root two",
+            "a squared plus b squared",
+            "minus one",
+            "amplitude"
+          ]
+        },
+        "why": "Every value of a sin θ + b cos θ lies between −√(a² + b²) and √(a² + b²), so this one square root already fixes both answers.",
+        "common_mistakes": [
+          "Adding the separate maxima to get 1 − (−1) = 2.",
+          "Using √(a + b) instead of √(a² + b²)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "equation",
+        "label": "Apply the maximum and minimum formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. There is no constant term here, so c = 0 and the two answers are just ±√2, about ±1.41. Both are reached, because 2x takes every real value when x does.",
+        "memory_tip": "With no constant, the answers are ±√(a² + b²). Here that is +√2 and −√2.",
+        "lines": [
+          "There is no constant term, so c = 0.",
+          "Maximum = c + √(a² + b²) = 0 + √2 = √2",
+          "Minimum = c − √(a² + b²) = 0 − √2 = −√2",
+          {
+            "text": "∴ Maximum = √2, Minimum = −√2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum is √2 and the minimum is −√2.",
+          "accept": [
+            "the maximum is root two and the minimum is minus root two",
+            "there is no constant so the answers are plus and minus root two",
+            "maximum root two, minimum minus root two",
+            "constant ledhu kabatti plus root two, minus root two",
+            "the two answers are root two and negative root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root two",
+            "minus root two",
+            "maximum",
+            "minimum"
+          ]
+        },
+        "why": "sin 2x − cos 2x can be written as √2 sin(2x − π/4), and a sine reaches +1 and −1, so the largest and smallest values are +√2 and −√2.",
+        "common_mistakes": [
+          "Giving 2 and −2 by adding the separate maxima.",
+          "Giving only the maximum and leaving the minimum out."
+        ]
+      }
+    ]
+  }
+}

@@ -27,15 +27,29 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
-    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, HENDERSON_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, SIMPSONS_RULE_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
-const CONTEXTS = ROOT + '/.answerbook_logs/vidi_contexts.json';
 const arg = (k: string, d: string) => process.argv.find((a) => a.startsWith('--' + k + '='))?.split('=')[1] ?? d;
+/** Where the context dump lives. Overridable so a STRATIFIED subset can be audited: --limit
+ *  takes the FIRST N contexts in file order, which silently concentrates a sample in whichever
+ *  chapter sorts first and measures nothing about the rest. Write a filtered dump, point at it. */
+const CONTEXTS = arg('contexts', ROOT + '/.answerbook_logs/vidi_contexts.json');
 const PREFIX = arg('prefix', 'ts_ipe_p1');
 const OUT = arg('out', ROOT + '/.answerbook_logs/audit_' + PREFIX + '.jsonl');
 const ENDPOINT = arg('endpoint', 'http://localhost:8110/api/chat');
+// An automated run is real spend but it is NOT a student. The token labels the
+// ledger row `answerbook_probe`; it changes no limit. Make the DEFAULT safe: a
+// run that forgets the token against the live function is refused rather than
+// filed as student demand. (This script sends no Origin, so the live function
+// 403s it today anyway — the guard is for the day someone adds one.)
+const PROBE_TOKEN = process.env.AB_PROBE_TOKEN ?? '';
+if (!PROBE_TOKEN && /supabase\.co/.test(ENDPOINT)) {
+    console.error('refusing: AB_PROBE_TOKEN is unset and --endpoint is the LIVE function.');
+    console.error('  This run would be counted as real students in ai_usage_log.');
+    process.exit(1);
+}
 const CONC = Number(arg('conc', '8'));
 const LIMIT = Number(arg('limit', '0'));
 const ONLY = arg('only', '');
@@ -52,6 +66,9 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_m1b_')) return 'mathematics_1b';
     if (id.startsWith('ts_ipe_c1_')) return 'chemistry';
     if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
+    if (id.startsWith('ts_ipe_m2a_')) return 'mathematics_2a';
+    if (id.startsWith('ts_ipe_m2b_')) return 'mathematics_2b';
+    if (id.startsWith('ts_ipe_p2_')) return 'physics_2';
     return 'physics';
 }
 
@@ -85,6 +102,27 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         probe: NERNST_PROBE,
         bareMarkAmbiguous: false,
     },
+    // Physics-II fell through to the physics config until 2026-08-30. That was
+    // nearly harmless — the bait happened to be right — but the run printed
+    // "Physics-I" over Physics-II results, and a fall-through is not a decision.
+    //
+    // The ideal gas is Physics-I (kinetic theory), so it is genuinely outside THIS
+    // paper and a correct reply declines and points at the catalog — the same
+    // doctrine that lets NERNST_PROBE bait Chemistry-I while living in
+    // Chemistry-II. Chosen the way HENDERSON_PROBE was, by grepping first:
+    // "ideal gas" returns 16 cards across the bank and ZERO in ts_ipe_p2, and the
+    // probe's own formula regex (/\bnRT\b|\bPV\s*=/) returns ZERO against every
+    // Physics-II card — which had to be checked, because this paper is full of
+    // potential V and power P and the regex wants PV. Doppler was rejected as a
+    // candidate: 5 hits, all of them in Physics-II, so it would have tested a
+    // refusal that must never happen.
+    physics_2: {
+        label: 'Physics-II',
+        whyAsk: 'but WHY is this true physically? explain the physics behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the derivation of the ideal gas equation? it is in my exam tomorrow',
+        probe: IDEAL_GAS_PROBE,
+        bareMarkAmbiguous: false,
+    },
     chemistry_2: {
         label: 'Chemistry-II',
         whyAsk: 'but WHY does this happen chemically? explain the reason behind it, not just the steps',
@@ -94,18 +132,44 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         probe: HENDERSON_PROBE,
         bareMarkAmbiguous: false,
     },
+    // NOT De Moivre for any maths paper since 2026-08-29 — that is Maths-2A's
+    // unit 2, now IN the bank, so the ask would test a refusal that must never
+    // happen (the NERNST trap). See INTEGRATION_BY_PARTS_PROBE for the grep that
+    // chose the replacement.
     mathematics: {
         label: 'Maths-1A',
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
-        outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
-        probe: DE_MOIVRE_PROBE,
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
         bareMarkAmbiguous: true,
     },
     mathematics_1b: {
         label: 'Maths-1B',
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
-        outOfBankAsk: 'can you give me the answer for de moivre theorem? it is in my exam tomorrow',
-        probe: DE_MOIVRE_PROBE,
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
+        bareMarkAmbiguous: true,
+    },
+    mathematics_2a: {
+        label: 'Maths-2A',
+        whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
+        probe: INTEGRATION_BY_PARTS_PROBE,
+        bareMarkAmbiguous: true,
+    },
+    mathematics_2b: {
+        label: 'Maths-2B',
+        whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
+        // NOT De Moivre: 2A retired that bait when De Moivre entered the bank, and it
+        // now sits on 39 cards. NOT integration by parts either — that is 2B's own
+        // Unit 6, on 18 of these cards, so it would test a refusal that must never
+        // happen (the NERNST trap). Simpson's rule returns ZERO cards across the whole
+        // merged bank and is a plausible ask for a student holding an integration
+        // paper. See SIMPSONS_RULE_PROBE.
+        outOfBankAsk: 'can you give me the answer for simpsons rule? it is in my exam tomorrow',
+        probe: SIMPSONS_RULE_PROBE,
+        // M is not a matrix name in 2B, but "2M" still reads as a mark claim to a
+        // student writing "let the tangent be y = 2M x" — keep the human bucket.
         bareMarkAmbiguous: true,
     },
 };
@@ -227,12 +291,14 @@ function flagsFor(t: T, ctx: Ctx, reply: string, stepId: string | null): { text:
     return f;
 }
 
-async function post(body: unknown): Promise<{ reply: string; cost: number; ms: number }> {
+// A record, not `unknown`, so the probe token can be merged in below.
+async function post(body: Record<string, unknown>): Promise<{ reply: string; cost: number; ms: number }> {
     const t0 = Date.now();
     for (let attempt = 0; attempt < 3; attempt++) {
         try {
             const r = await fetch(ENDPOINT, {
-                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(PROBE_TOKEN ? { ...body, probe_token: PROBE_TOKEN } : body),
             });
             const j = await r.json() as { reply?: string; _cost_usd?: number; error?: string };
             if (j.reply) return { reply: j.reply, cost: j._cost_usd ?? 0, ms: Date.now() - t0 };

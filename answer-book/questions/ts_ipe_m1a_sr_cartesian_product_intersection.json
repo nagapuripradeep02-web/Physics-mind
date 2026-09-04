@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_cartesian_product_intersection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {1, 2, 3}, B = {2, 3} and C = {3, 4, 7}, find (A × B) ∩ (A × C).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the rule (A × B) ∩ (A × C) = A × (B ∩ C)",
+      "marks": 1
+    },
+    {
+      "label": "Write out the ordered pairs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule shortens the work, and what the ordered pairs look like at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "Use the rule (A × B) ∩ (A × C) = A × (B ∩ C)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the rule, then the one small intersection it leaves you with.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For any three sets, (A × B) ∩ (A × C) = A × (B ∩ C).",
+          "B ∩ C = {2, 3} ∩ {3, 4, 7} = {3}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (A × B) ∩ (A × C) = A × (B ∩ C) and that B ∩ C = {3}.",
+          "accept": [
+            "the first set is common so it becomes A times B intersection C",
+            "use the rule A cross B cap A cross C equals A cross B cap C",
+            "B intersection C is just three",
+            "A common ga undi kabatti B cap C matrame teesukovali",
+            "intersect B and C first, that gives the set three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A cross B",
+            "B cap C",
+            "same first set",
+            "three"
+          ]
+        },
+        "why": "A × B has 6 pairs and A × C has 9, so listing both and comparing them is slow. The rule replaces that with one intersection of two small sets, because the first set A is shared by both products.",
+        "common_mistakes": [
+          "Using B ∪ C in place of B ∩ C, which gives far too many pairs.",
+          "Listing A × B and A × C and then writing their union instead of the pairs common to both."
+        ],
+        "memory_tip": "A is the first set in both products, so only the second sets are intersected: keep A, intersect B and C."
+      },
+      {
+        "id": "s2_pairs",
+        "kind": "boxed_final",
+        "label": "Write out the ordered pairs",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The answer is a set of ordered pairs, so every member is written with brackets and a comma.",
+        "lines": [
+          "(A × B) ∩ (A × C) = A × {3} = {1, 2, 3} × {3}",
+          "The first member of each pair comes from A and the second is 3.",
+          {
+            "text": "∴ (A × B) ∩ (A × C) = {(1, 3), (2, 3), (3, 3)}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A × {3} gives the three pairs (1, 3), (2, 3) and (3, 3).",
+          "accept": [
+            "A cross the set three gives one three two three and three three",
+            "the first coordinate runs over A and the second is always three",
+            "there are three ordered pairs",
+            "A lo prathi member tho three ni jodinchali",
+            "the answer is the set of pairs one three two three three three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ordered pairs",
+            "one three",
+            "two three",
+            "three three"
+          ]
+        },
+        "why": "In A × X the first coordinate always comes from A and the second from X, so with X = {3} there are n(A) × 1 = 3 pairs. Checking the two products directly gives the same three pairs.",
+        "common_mistakes": [
+          "Writing the pairs the other way round, as (3, 1), (3, 2), (3, 3).",
+          "Giving the answer as the set of numbers {1, 2, 3} instead of a set of ordered pairs.",
+          "Writing A × {3} as {1, 2, 3, 3} and treating it as an ordinary set."
+        ],
+        "memory_tip": "In a cross product the first coordinate comes from the left set and the second from the right set, always in that order."
+      }
+    ]
+  }
+}

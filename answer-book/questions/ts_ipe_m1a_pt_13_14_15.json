@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 13,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
   "appearances": [
     {
@@ -45,39 +45,23 @@
     },
     {
       "label": "Find Δ by Heron",
-      "marks": 2
-    },
-    {
-      "label": "Find R",
-      "marks": 1
-    },
-    {
-      "label": "Find r",
-      "marks": 1
-    },
-    {
-      "label": "Find r₁",
-      "marks": 1
-    },
-    {
-      "label": "Find r₂",
       "marks": 1
     },
     {
       "label": "Find r₃ and conclude",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 32, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,16,17,19 — five printed tags, the most-asked LAQ in this unit. The reverse of answers 31.x: the SIDES are given and the five radii are wanted. The book calls it \"Roc'king... Q! Superrrr...Q!\" and its split is printed in full. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of seven working lines — a fully sourced 1+1+1+1+1+1+1, and the only printed split in this chapter. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find Δ by Heron\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 32, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,16,17,19 — five printed tags, the most-asked LAQ in this unit. The reverse of answers 31.x: the SIDES are given and the five radii are wanted. The book calls it \"Roc'king... Q! Superrrr...Q!\" and its split is printed in full. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of seven working lines — a fully sourced 1+1+1+1+1+1+1, and the only printed split in this chapter. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find Δ by Heron\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 1), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. The printed 1+1+1+1+1+1+1 split in the Baby Bullet-Q belongs to the superseded 7-mark form and cannot survive a 4-mark cut: s and the area keep a mark each, and the five radii are marked together at the final step rather than one apiece. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Properties of Triangles · 8 marks"
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
     ],
     "steps": [
       {
@@ -86,7 +70,7 @@
         "label": "Find s",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the book prints [1 Mark] for it. Everything downstream needs s, so it is computed and displayed on its own line.",
+        "margin_note": "First mark, and the book prints [1 Mark] for it as well. Everything downstream needs s, so it is computed and displayed on its own line.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,15 +106,16 @@
         "common_mistakes": [
           "Taking s = 42 without halving.",
           "Adding two sides only."
-        ]
+        ],
+        "memory_tip": "2s = a + b + c, so s = 21. Everything downstream needs s — give it its own line."
       },
       {
         "id": "s2_find_by_heron",
         "kind": "equation",
         "label": "Find Δ by Heron",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
+        "margin_note": "Second mark. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
         "lines": [
           "Δ = √(s(s−a)(s−b)(s−c))",
           "= √(21(21−13)(21−14)(21−15)) = √(21 × 8 × 7 × 6)",
@@ -163,15 +148,15 @@
         "common_mistakes": [
           "Multiplying to 7056 and then struggling with the root.",
           "Using s−a = 13 instead of 21−13."
-        ]
+        ],
+        "memory_tip": "Group the factors into perfect squares, 3² × 4² × 7², rather than multiplying out to 7056."
       },
       {
         "id": "s3_find_r",
         "kind": "equation",
         "label": "Find R",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Third mark. R = abc/(4Δ) — the circumradius. The 65/8 does not simplify further.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length — the five radii are marked together at the end. R = abc/(4Δ) — the circumradius. The 65/8 does not simplify further.",
         "lines": [
           "(i) R = abc/(4Δ) = (13 × 14 × 15)/(4 × 84)",
           "= 2730/336 = 65/8"
@@ -201,15 +186,15 @@
         "common_mistakes": [
           "Using 2Δ instead of 4Δ.",
           "Cancelling wrongly and getting 65/4."
-        ]
+        ],
+        "memory_tip": "R = abc/(4Δ), the circumradius. 65/8 does not simplify further."
       },
       {
         "id": "s4_find_r",
         "kind": "equation",
         "label": "Find r",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Fourth mark. r = Δ/s — the in-radius, and the simplest of the five.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. r = Δ/s — the in-radius, and the simplest of the five.",
         "lines": [
           "(ii) r = Δ/s = 84/21 = 4"
         ],
@@ -238,15 +223,15 @@
         "common_mistakes": [
           "Using s/Δ upside down.",
           "Reusing R's formula."
-        ]
+        ],
+        "memory_tip": "r = Δ/s, the in-radius and the simplest of the five."
       },
       {
         "id": "s5_find_r",
         "kind": "equation",
         "label": "Find r₁",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Fifth mark. r₁ = Δ/(s−a) — the same shape as r, with s−a underneath.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. r₁ = Δ/(s−a) — the same shape as r, with s−a underneath.",
         "lines": [
           "(iii) r₁ = Δ/(s−a) = 84/(21−13) = 84/8 = 21/2"
         ],
@@ -275,15 +260,15 @@
         "common_mistakes": [
           "Using s − b under r₁.",
           "Leaving 84/8 uncancelled."
-        ]
+        ],
+        "memory_tip": "r₁ = Δ/(s − a) — same shape as r, with s − a underneath."
       },
       {
         "id": "s6_find_r",
         "kind": "equation",
         "label": "Find r₂",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Sixth mark. Same again with s−b.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. Same again with s−b.",
         "lines": [
           "(iv) r₂ = Δ/(s−b) = 84/(21−14) = 84/7 = 12"
         ],
@@ -312,15 +297,16 @@
         "common_mistakes": [
           "Using s − a again.",
           "Arithmetic slip on 21 − 14."
-        ]
+        ],
+        "memory_tip": "Same again with s − b: r₂ = Δ/(s − b)."
       },
       {
         "id": "s7_find_r_and_conclude",
         "kind": "boxed_final",
         "label": "Find r₃ and conclude",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Same with s−c, then state all five together as the question asked.",
+        "margin_note": "The last two marks, and they cover all five radii together. Same with s−c, then state all five together as the question asked.",
         "lines": [
           "(v) r₃ = Δ/(s−c) = 84/(21−15) = 84/6 = 14",
           {
@@ -354,8 +340,10 @@
         "common_mistakes": [
           "Reporting only r₃ at the end.",
           "Arithmetic slip on 21 − 15."
-        ]
+        ],
+        "memory_tip": "Same with s − c, then state all FIVE together as the question asked."
       }
     ]
-  }
+  },
+  "insider_note": "Find s and then Δ before anything else — all five answers are built from those two. Heron's product 21 × 8 × 7 × 6 is a perfect square, so no surd survives."
 }

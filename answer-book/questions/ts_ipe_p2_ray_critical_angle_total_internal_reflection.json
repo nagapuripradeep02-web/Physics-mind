@@ -150,19 +150,19 @@
             {
               "type": "stroke",
               "id": "incident_b_head",
-              "d": "M 185 145 L 191 135 L 179 138",
+              "d": "M 184 136 L 191 127 L 179 129",
               "ms": 340
             },
             {
               "type": "stroke",
               "id": "reflected_b",
-              "d": "M 240 100 L 310 150",
+              "d": "M 240 100 L 321 145",
               "ms": 1230
             },
             {
               "type": "stroke",
               "id": "reflected_b_head",
-              "d": "M 270 127 L 282 130 L 276 120",
+              "d": "M 275 125 L 287 126 L 280 117",
               "ms": 340
             },
             {
@@ -178,7 +178,7 @@
               "type": "label",
               "id": "lbl_denser",
               "x": 24,
-              "y": 184,
+              "y": 189,
               "text": "Denser (glass)",
               "ms": 450,
               "sm": true
@@ -195,8 +195,8 @@
             {
               "type": "label",
               "id": "lbl_i_eq_c",
-              "x": 58,
-              "y": 148,
+              "x": 66,
+              "y": 157,
               "text": "i = C",
               "ms": 450,
               "sm": true

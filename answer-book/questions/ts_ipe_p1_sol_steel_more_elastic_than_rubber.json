@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_steel_more_elastic_than_rubber",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that steel is more elastic than rubber.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Compare the extensions",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 12 (printed p.99). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Y = stress/strain; for equal stress, the material with the smaller strain has the larger Y; steel's Young's modulus (about 2 × 10¹¹ N/m²) is roughly four orders of magnitude above rubber's, which is the standard NCERT comparison."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_compare",
+        "kind": "text",
+        "label": "Compare the extensions",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "Take a steel wire and a rubber wire",
+          "of the same length and area. Apply",
+          "the same stretching force to each.",
+          "The rubber wire extends far more",
+          "than the steel wire."
+        ],
+        "why": "Comparing the extension for the same force and the same dimensions is comparing the strain for the same stress — exactly the ratio that Young's modulus measures.",
+        "common_mistakes": [
+          "Comparing wires of different length or area. The comparison only works when the force, length and area are the same for both.",
+          "Describing the extensions without saying the force applied is the same for both wires."
+        ],
+        "memory_tip": "Same force, same size, different stretch: that stretch is the strain to compare.",
+        "margin_note": "Marked for stating equal force and equal dimensions, then the larger extension in rubber."
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "Since Y = stress / strain, the larger",
+          "strain in rubber for the same stress",
+          "means a smaller Young's modulus.",
+          {
+            "text": "Y = stress/strain, so Y(steel) > Y(rubber)",
+            "style": "eq"
+          },
+          {
+            "text": "Steel is more elastic than rubber",
+            "style": "boxed"
+          }
+        ],
+        "why": "A material is called more elastic when it deforms less for the same stress and returns fully to its original shape; a larger Young's modulus means less strain for the same stress, so a higher Y is the sign of the more elastic material.",
+        "common_mistakes": [
+          "Calling rubber more elastic because it stretches more. Elastic means less deformation for the same stress, so a bigger stretch means LESS elastic, not more.",
+          "Confusing elastic with flexible. Rubber is more flexible, but steel is more elastic."
+        ],
+        "memory_tip": "The material with the smaller strain for the same stress has the larger Young's modulus, so steel is more elastic than rubber.",
+        "margin_note": "Marked for naming Y(steel) greater than Y(rubber) and stating that the larger Y is the more elastic material."
+      }
+    ]
+  },
+  "insider_note": "The mark is lost by calling rubber 'more elastic' because it stretches more — elastic means less deformation for the same stress, not more."
+}

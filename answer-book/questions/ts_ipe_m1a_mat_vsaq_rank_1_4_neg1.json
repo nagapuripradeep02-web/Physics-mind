@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rank_1_4_neg1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the rank of the matrix with rows (1, 4, −1), (2, 3, 0) and (0, 1, 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Test the 3×3 determinant",
+      "marks": 1
+    },
+    {
+      "label": "State the rank",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the test that decides the rank and one on stating it. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the rank of this matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_det",
+        "kind": "equation",
+        "label": "Test the 3×3 determinant",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The matrix is 3×3, so the rank cannot be more than 3. Start at that top size and expand the whole determinant.",
+        "memory_tip": "Rank is at most the smaller of the row count and the column count — here that is 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A is 3×3, so Rank A ≤ 3.",
+          {
+            "text": "|A| = \\begin{vmatrix} 1 & 4 & -1 \\\\ 2 & 3 & 0 \\\\ 0 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(6 − 0) − 4(4 − 0) + (−1)(2 − 0)",
+          "= 6 − 16 − 2 = −12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the whole 3×3 determinant is the largest minor, and that expanding it gives −12.",
+          "accept": [
+            "the matrix is three by three so expand the full determinant first",
+            "take the determinant of the whole matrix, it comes to minus twelve",
+            "the largest minor is the three by three determinant and it is minus twelve",
+            "moda full determinant expand cheste minus twelve vasthundi",
+            "expand along the first row and get six minus sixteen minus two"
+          ],
+          "reject": [
+            "find the determinant",
+            "take the rank"
+          ],
+          "heard_as": [
+            "determinant",
+            "minus twelve",
+            "three by three",
+            "rank"
+          ]
+        },
+        "why": "Rank is the order of the largest non-zero minor. The largest minor a 3×3 matrix has is the whole determinant, so that is the first thing to test.",
+        "common_mistakes": [
+          "Expanding along a row and losing the + − + sign pattern.",
+          "Reading a rank off the original matrix with no test at all."
+        ]
+      },
+      {
+        "id": "s2_rank",
+        "kind": "boxed_final",
+        "label": "State the rank",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A non-zero minor of order 3 exists, and a 3×3 matrix has no minor of order 4, so 3 is the largest order possible.",
+        "memory_tip": "A non-zero 3×3 determinant settles it at once — the rank is the full 3.",
+        "lines": [
+          "|A| = −12 ≠ 0, so a minor of order 3 is",
+          "non-zero. A 3×3 matrix has no minor of",
+          "order 4, so 3 is the largest order.",
+          {
+            "text": "∴ Rank A = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a non-zero determinant of order 3 fixes the rank at 3, with no larger minor available.",
+          "accept": [
+            "the determinant is not zero so the rank is three",
+            "minus twelve is not zero, so a three order minor is non zero and the rank is three",
+            "there is no order four minor here so three is the largest and the rank is three",
+            "determinant zero kaadu kabatti rank three",
+            "rank A equals three"
+          ],
+          "reject": [
+            "the rank is",
+            "check the minors"
+          ],
+          "heard_as": [
+            "rank three",
+            "not zero",
+            "minor",
+            "order three"
+          ]
+        },
+        "why": "One non-zero minor of order 3 is enough. Nothing larger exists inside a 3×3 matrix, so no further checking is possible or needed.",
+        "common_mistakes": [
+          "Going on to test 2×2 minors when the 3×3 one is already non-zero.",
+          "Writing the value −12 as the rank."
+        ]
+      }
+    ]
+  }
+}

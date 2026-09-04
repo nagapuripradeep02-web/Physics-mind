@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_f_wrt_g_tan_inverse_pair",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If f(x) = tan⁻¹((√(1 + x²) − 1)/x) and g(x) = tan⁻¹x, differentiate f(x) with respect to g(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State what df/dg means",
+      "marks": 1
+    },
+    {
+      "label": "Simplify f(x) with x = tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate f and g",
+      "marks": 1
+    },
+    {
+      "label": "Divide the two derivatives",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no domain; the answer states x ≠ 0, which the expression (√(1 + x²) − 1)/x itself requires. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what differentiating f with respect to g means, and what substitution you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_df_dg_means",
+        "kind": "equation",
+        "label": "State what df/dg means",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This one line decides the question. A student who differentiates f alone and stops loses every mark after this.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "To differentiate one function with respect to another,",
+          "df/dg = (df/dx) / (dg/dx)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That df/dg = (df/dx)/(dg/dx), not df/dx.",
+          "accept": [
+            "differentiate f with respect to g means f dash over g dash",
+            "divide the derivative of f by the derivative of g",
+            "it is not d f by d x, it is d f by d g",
+            "f dash ni g dash tho divide cheyyali",
+            "both are differentiated with respect to x first and then divided"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d f by d g",
+            "f dash over g dash",
+            "with respect to g"
+          ]
+        },
+        "why": "The question does not ask for df/dx. Writing the rule first fixes exactly what has to be computed and earns the method mark.",
+        "common_mistakes": [
+          "Giving df/dx as the final answer.",
+          "Writing df/dg = (dg/dx)/(df/dx), the two the wrong way round."
+        ],
+        "memory_tip": "Read df/dg as (df/dx) ÷ (dg/dx) — the dx cancels, which shows the fraction is the right way up."
+      },
+      {
+        "id": "s2_simplify_f",
+        "kind": "equation",
+        "label": "Simplify f(x) with x = tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. θ = Tan⁻¹x lies in (−π/2, π/2), so θ/2 lies in (−π/4, π/4) and Tan⁻¹(tan(θ/2)) is exactly θ/2.",
+        "lines": [
+          "Put x = tan θ, so θ = Tan⁻¹x and √(1 + x²) = sec θ",
+          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ = (1 − cos θ)/sin θ",
+          "= 2sin²(θ/2) / (2 sin(θ/2) cos(θ/2)) = tan(θ/2)",
+          "∴ f(x) = Tan⁻¹(tan(θ/2)) = θ/2 = ½ Tan⁻¹x   (x ≠ 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = tan θ collapses f(x) to θ/2, that is, f(x) = ½ Tan⁻¹x.",
+          "accept": [
+            "put x equal to tan theta and f becomes theta by two",
+            "f of x is half of tan inverse x",
+            "sec theta minus one over tan theta is tan of theta by two",
+            "x ni tan theta ga pettite f theta by two avuthundi",
+            "the bracket simplifies to tan of half the angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "theta by two",
+            "sec theta",
+            "half of tan inverse x"
+          ]
+        },
+        "why": "The bracket is not a standard derivative, so it is simplified first. Under x = tan θ it becomes tan(θ/2), and the inverse tangent then cancels the tangent.",
+        "common_mistakes": [
+          "Writing √(1 + x²) as sec²θ instead of sec θ.",
+          "Cancelling the 1 in (√(1 + x²) − 1)/x term by term."
+        ],
+        "memory_tip": "(1 − cos θ)/sin θ = tan(θ/2), because 1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2)."
+      },
+      {
+        "id": "s3_two_derivatives",
+        "kind": "equation",
+        "label": "Differentiate f and g",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. Both derivatives use d/dx(Tan⁻¹x) = 1/(1 + x²); only the constant ½ separates them.",
+        "lines": [
+          "f(x) = ½ Tan⁻¹x   ⇒   f′(x) = 1 / (2(1 + x²))",
+          "g(x) = Tan⁻¹x   ⇒   g′(x) = 1 / (1 + x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 1/(2(1 + x²)) and g′(x) = 1/(1 + x²).",
+          "accept": [
+            "f dash is one over two into one plus x squared",
+            "g dash is one over one plus x squared",
+            "the derivative of tan inverse x is one over one plus x squared",
+            "tan inverse x derivative one by one plus x square",
+            "f dash is half of g dash"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus x squared",
+            "tan inverse",
+            "f dash",
+            "g dash"
+          ]
+        },
+        "why": "Once f is written as ½ Tan⁻¹x, both derivatives come from the same standard result, so there is nothing left to simplify.",
+        "common_mistakes": [
+          "Writing d/dx(Tan⁻¹x) as 1/(1 − x²).",
+          "Dropping the ½ from f and getting 1 instead of ½ at the end."
+        ],
+        "memory_tip": "f is exactly half of g, so f′ must be exactly half of g′ — check the ½ survives."
+      },
+      {
+        "id": "s4_divide",
+        "kind": "boxed_final",
+        "label": "Divide the two derivatives",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. A constant answer is the check that the substitution was right: f is half of g everywhere, so their rates stay in the fixed ratio 1 : 2.",
+        "lines": [
+          "df/dg = f′(x) / g′(x) = [1 / (2(1 + x²))] / [1 / (1 + x²)]",
+          "= (1 + x²) / (2(1 + x²))",
+          {
+            "text": "∴ df/dg = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the (1 + x²) factors cancel and df/dg = 1/2, a constant.",
+          "accept": [
+            "one plus x squared cancels and the answer is one half",
+            "the answer is a constant one by two",
+            "divide f dash by g dash to get half",
+            "answer constant, one by two vasthundi",
+            "getting a constant shows the substitution was correct"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one half",
+            "one by two",
+            "cancels",
+            "constant"
+          ]
+        },
+        "why": "The answer is independent of x, and that is the check on the working: f and g differ only by the factor ½, so no x can survive.",
+        "common_mistakes": [
+          "Leaving x in the final answer, which means the simplification in step 2 was not completed.",
+          "Giving 2 instead of 1/2 by dividing the wrong way round."
+        ],
+        "memory_tip": "Test it at x = 1: f(1) = π/8 and g(1) = π/4, and π/8 is half of π/4."
+      }
+    ]
+  },
+  "insider_note": "f simplifies to ½Tan⁻¹x under x = tan θ, so f′ is exactly half of g′. The ratio df/dg is the constant ½, and simplifying f before differentiating is what makes that visible."
+}

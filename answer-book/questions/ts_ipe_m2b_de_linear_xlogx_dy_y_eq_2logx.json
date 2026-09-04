@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_xlogx_dy_y_eq_2logx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve x·logx·dy/dx + y = 2logx.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite in standard form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 11 Differential Equations, answer 102, the last answer in the chapter. Not on an SSP page (this book's SAQ SSP pages for this chapter are only 72 and 73). Printed appearance tag: AP 20. The mark split is OURS: this answer carries no printed margin marks. It is patterned on answer 99's shape (also linear in y, finishing with a power-rule integration), extended by one checkpoint for the logx substitution this equation needs: rewrite and identify P, find the I.F. (using the ∫f'/f = log f rule), set up the integral and substitute t = logx, then integrate and finish. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-D.E. skill. The book's working was re-derived line by line and is correct throughout, including the integrating factor simplifying all the way down to the plain logx. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The equation is linear in y with P = 1/(xlogx); recognising ∫1/(xlogx)dx as the standard ∫f'(x)/f(x)dx form with f(x) = logx is what lets the integrating factor collapse all the way down to the plain logx instead of staying as e^(log(logx)).",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite in standard form and identify P",
+        "marks": 1,
+        "mark_note": "P and ∫P dx",
+        "margin_note": "One mark. Divide throughout by xlogx to reach the standard linear form.",
+        "memory_tip": "logx/logx cancels to 1 whenever the same logx appears top and bottom — always simplify before moving on.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is x·logx·dy/dx + y = 2logx",
+          "⇒ dy/dx + y·(1/(x·logx)) = 2logx/(x·logx)",
+          "= 2/x [dividing throughout by x·logx]",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = 1/(x·logx) and Q = 2/x"
+        ],
+        "why": "Dividing every term by xlogx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it also cancels one logx from the right side, leaving the clean Q = 2/x.",
+        "common_mistakes": [
+          "Dividing only the y term by xlogx and forgetting to divide the right side 2logx as well.",
+          "Leaving Q as 2logx/(xlogx) without cancelling the common logx factor."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dx); recognise ∫1/(xlogx)dx as the f'/f form with f(x) = logx.",
+        "memory_tip": "∫f'(x)/f(x) dx = log f(x) is the fastest route whenever the numerator is exactly the derivative of the denominator's inner function.",
+        "lines": [
+          "Here P = 1/(x·logx)",
+          "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
+          "since ∫f'(x)/f(x) dx = log f(x)",
+          "with f(x) = logx, f'(x) = 1/x",
+          "∴ I.F. = e^(∫P dx) = e^(log(logx)) = logx"
+        ],
+        "why": "The integrand 1/(xlogx) is exactly f'(x)/f(x) with f(x) = logx, so it integrates directly to log(logx) by the standard log-derivative rule; e raised to a log then cancels back to the plain expression.",
+        "common_mistakes": [
+          "Trying to integrate 1/(xlogx) as a plain 1/x integral and missing the extra logx factor.",
+          "Leaving the I.F. as log(logx) instead of simplifying e^(log(logx)) back to logx."
+        ]
+      },
+      {
+        "id": "s3_setup_substitute",
+        "kind": "equation",
+        "label": "Set up the integral and substitute",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One mark. y·(I.F.) = ∫(I.F.)Q dx; the substitution t = logx removes the awkward logx/x term.",
+        "memory_tip": "logx/x always substitutes cleanly with t = logx, since d(logx) = dx/x is exactly the leftover factor.",
+        "lines": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
+          "Put logx = t ⇒ (1/x)dx = dt,",
+          "so the integral becomes 2∫t dt"
+        ],
+        "why": "Multiplying Q by the integrating factor logx gives an integral in logx/x, and the substitution t = logx turns it into a plain polynomial integral, since dt is exactly the leftover 1/x dx factor already present.",
+        "common_mistakes": [
+          "Forgetting the factor of 2 carried from Q = 2/x.",
+          "Missing that dt = dx/x is already present in the integral, and attempting a different substitution."
+        ]
+      },
+      {
+        "id": "s4_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. 2∫tdt = t² + c, then substitute t = logx back in.",
+        "memory_tip": "2∫t dt = t² directly — the 2 and the 1/2 from the power rule cancel exactly.",
+        "lines": [
+          "2∫t dt = 2(t²/2) + c = t² + c",
+          "So y·logx = t² + c, and putting t = logx back in:",
+          {
+            "text": "y·logx = (logx)² + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "The standard power-rule integral of t gives t², and substituting t = logx back in returns the final relation entirely in terms of x.",
+        "common_mistakes": [
+          "Forgetting to substitute logx back in and leaving the answer in terms of t.",
+          "Missing the factor of 2 cancelling against the 1/2 from integrating t, and writing an extra 2 in the final answer."
+        ]
+      }
+    ]
+  }
+}

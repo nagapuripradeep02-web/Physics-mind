@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_an_induction_rotation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (cos θ, sin θ) and (−sin θ, cos θ), then show that for every positive integer n, Aⁿ is the matrix with rows (cos nθ, sin nθ) and (−sin nθ, cos nθ).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the result for n = 1",
+      "marks": 1
+    },
+    {
+      "label": "Multiply Aᵏ by A and use the addition formulas",
+      "marks": 2
+    },
+    {
+      "label": "Conclude by the principle of induction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication because that is where the two compound-angle formulas are used and where every entry has to be recognised as cos or sin of (k+1)θ; the base case and the appeal to the principle of induction are short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3, giving rows (cos θ, sin θ)/(−sin θ, cos θ), (cos 2θ, sin 2θ)/(−sin 2θ, cos 2θ) and (cos 3θ, sin 3θ)/(−sin 3θ, cos 3θ) — the formula exactly, with no leftover terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you check first, what you assume, what two trigonometry formulas the multiplication needs, and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_base",
+        "kind": "equation",
+        "label": "Check n = 1",
+        "marks": 1,
+        "mark_note": "Base case",
+        "margin_note": "First mark. Put n = 1 into the claimed form. Since 1θ is just θ, the claimed matrix becomes A itself, so P(1) is true.",
+        "memory_tip": "Base case first: n = 1 turns nθ into θ, so the claimed matrix is A itself.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P(n) be the given statement about Aⁿ.",
+          {
+            "text": "A^{1} = A = \\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Putting n = 1 in the given form gives",
+          "cos 1θ = cos θ and sin 1θ = sin θ,",
+          "so it becomes A itself. P(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 1 is substituted into the claimed form, that one theta is just theta, and that the claimed matrix is then A itself.",
+          "accept": [
+            "put n equals one and cos one theta is cos theta so the matrix is A itself",
+            "for n equals one the formula gives back the original matrix A",
+            "check the base case by substituting n equals one",
+            "n equals one pettina cos theta sin theta ne vasthundi, so A ne",
+            "the statement is true at n equals one because n theta becomes theta"
+          ],
+          "reject": [
+            "prove it by induction",
+            "check the formula",
+            "assume it is true"
+          ],
+          "heard_as": [
+            "n equals one",
+            "base case",
+            "cos theta",
+            "P of one",
+            "A itself"
+          ]
+        },
+        "why": "Induction needs a first true case to stand on. Here it is almost free, but leaving it out means the chain of implications starts from nothing.",
+        "common_mistakes": [
+          "Skipping n = 1 because it looks obvious.",
+          "Writing the n = 1 matrix without saying it is the same as A."
+        ]
+      },
+      {
+        "id": "s2_hypothesis",
+        "kind": "equation",
+        "label": "Assume for n = k",
+        "marks": 0,
+        "margin_note": "No mark of its own, but the next step multiplies this exact matrix by A, so write it out with kθ in every entry.",
+        "memory_tip": "Write the assumed matrix out with kθ in every entry — the next step multiplies that matrix by A.",
+        "lines": [
+          "Assume P(k) is true for some k ≥ 1:",
+          {
+            "text": "A^{k} = \\begin{bmatrix} \\cos k\\theta & \\sin k\\theta \\\\ -\\sin k\\theta & \\cos k\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is ASSUMED true for one integer n = k, with the assumed matrix written out in terms of k theta.",
+          "accept": [
+            "assume it is true for n equals k with cos k theta and sin k theta in the entries",
+            "suppose A to the power k has the same shape with k theta",
+            "take the statement as true for some value k",
+            "n equals k ki result nijam ani anukuntam",
+            "let the formula hold for a general k"
+          ],
+          "reject": [
+            "assume it is true for all n",
+            "it is true for k plus one",
+            "prove it for k"
+          ],
+          "heard_as": [
+            "assume",
+            "for n equals k",
+            "k theta",
+            "induction hypothesis"
+          ]
+        },
+        "why": "The assumption is about ONE value k. Assuming it for every n would assume the whole result, which is what the question asks you to prove.",
+        "common_mistakes": [
+          "Saying \"assume it is true for all n\", which assumes what is being proved.",
+          "Writing nθ instead of kθ, so the next step has nothing new to prove."
+        ]
+      },
+      {
+        "id": "s3_step",
+        "kind": "equation",
+        "label": "Multiply and use cos(A+B)",
+        "marks": 2,
+        "mark_note": "Inductive step",
+        "margin_note": "Half the marks. Each of the four entries is a compound angle: cos kθ cos θ − sin kθ sin θ is cos(kθ + θ), and sin kθ cos θ + cos kθ sin θ is sin(kθ + θ). Then kθ + θ = (k+1)θ.",
+        "memory_tip": "Every entry is a compound angle: cos A cos B − sin A sin B is cos(A + B), and kθ + θ is (k+1)θ.",
+        "lines": [
+          {
+            "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} \\cos k\\theta & \\sin k\\theta \\\\ -\\sin k\\theta & \\cos k\\theta \\end{bmatrix}\\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Use cos A cos B − sin A sin B = cos(A + B)",
+          "and sin A cos B + cos A sin B = sin(A + B).",
+          "Row 1 × column 1 = cos(kθ + θ) = cos(k+1)θ",
+          "Row 1 × column 2 = sin(kθ + θ) = sin(k+1)θ",
+          "Row 2 × column 1 = −sin(kθ + θ)",
+          "Row 2 × column 2 = cos(kθ + θ)",
+          {
+            "text": "A^{k+1} = \\begin{bmatrix} \\cos (k+1)\\theta & \\sin (k+1)\\theta \\\\ -\\sin (k+1)\\theta & \\cos (k+1)\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "That is P(k+1). So P(k) ⇒ P(k+1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Aᵏ is multiplied by A, and that the four resulting entries are recognised as cos and sin of k theta plus theta by the compound-angle formulas, which is (k+1) theta.",
+          "accept": [
+            "multiply A to the k by A and each entry becomes cos or sin of k theta plus theta",
+            "use cos A cos B minus sin A sin B equals cos A plus B on the entries",
+            "the products give cos k plus one theta and sin k plus one theta",
+            "compound angle formulas vaadithe k plus one theta vasthundi",
+            "row into column gives the addition formulas so the angle becomes k plus one theta"
+          ],
+          "reject": [
+            "multiply the matrices",
+            "find A to the k plus one",
+            "it is true for k plus one"
+          ],
+          "heard_as": [
+            "A to the k plus one",
+            "compound angle",
+            "cos A plus B",
+            "k plus one theta",
+            "addition formula"
+          ]
+        },
+        "why": "The proof works only because the compound-angle formulas turn a product of two angles' ratios into a single angle kθ + θ. Without naming them the four entries are just unsimplified products.",
+        "common_mistakes": [
+          "Writing cos kθ cos θ + sin kθ sin θ, which is cos(kθ − θ), not cos(kθ + θ).",
+          "Leaving the entries as products and never reaching (k+1)θ.",
+          "Losing the minus sign in the bottom-left entry."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by induction",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Name the principle of mathematical induction. P(1) true plus P(k) leading to P(k+1) is exactly what the principle needs, and saying so is what makes this a proof rather than two calculations.",
+        "memory_tip": "Two facts earn the conclusion: P(1) is true, and P(k) leads to P(k+1). Name the principle.",
+        "lines": [
+          "P(1) is true, and P(k) ⇒ P(k+1) for every k ≥ 1.",
+          "By the principle of mathematical induction, P(n)",
+          "is true for every positive integer n.",
+          {
+            "text": "A^{n} = \\begin{bmatrix} \\cos n\\theta & \\sin n\\theta \\\\ -\\sin n\\theta & \\cos n\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both induction conditions hold and the principle of mathematical induction is named to give the result for every positive integer n.",
+          "accept": [
+            "true for one and true for k plus one whenever true for k so by induction it holds for all positive integers",
+            "by the principle of mathematical induction the formula is true for every positive integer n",
+            "both conditions are satisfied so induction completes the proof",
+            "rendu conditions unnayi kabatti induction valla anni n ki nijam",
+            "the principle of induction gives the result for all n"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "the formula works"
+          ],
+          "heard_as": [
+            "principle of mathematical induction",
+            "for all n",
+            "hence proved",
+            "positive integer"
+          ]
+        },
+        "why": "The earlier steps cover n = 1 and one implication only. The principle of induction is the theorem that turns those two facts into a statement about every positive integer, so it must be named.",
+        "common_mistakes": [
+          "Writing only \"hence proved\" without naming the principle of induction.",
+          "Claiming the result for all real n; the proof covers positive integers only."
+        ]
+      }
+    ]
+  }
+}

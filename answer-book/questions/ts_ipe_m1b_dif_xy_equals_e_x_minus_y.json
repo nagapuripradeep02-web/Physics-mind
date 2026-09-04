@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_xy_equals_e_x_minus_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If xʸ = e^(x−y), show that dy/dx = log x/(1 + log x)².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take logarithms of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Make y the subject",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate by the quotient rule",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the required form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.199, chapter 9 DIFFERENTIATION, Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: y = x/(1 + log x) satisfies xʸ = e^(x−y) numerically, and dy/dx = log x/(1 + log x)² agrees with a central difference quotient at x = 2 (0.24178872) and x = 5 (0.23636343)."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do to xʸ first, and what you do with y after that.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_logs",
+        "kind": "equation",
+        "label": "Take logarithms of both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The mark is for the logarithm step itself. Write log(e^(x−y)) = x − y in one move — log and e are inverse functions, so the right side needs no further work.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given xʸ = e^(x−y)",
+          "Take logarithms on both sides (log means logₑ throughout):",
+          "log(xʸ) = log(e^(x−y))",
+          "⇒ y log x = x − y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logarithms are taken on both sides, giving y log x = x − y.",
+          "accept": [
+            "take log on both sides",
+            "logarithm both sides so the power comes down",
+            "log x to the y becomes y log x and log of e to the x minus y is x minus y",
+            "rendu vaipula log teesukovali",
+            "start with logarithms because y is in the exponent",
+            "apply log so the index comes in front"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take log",
+            "both sides",
+            "y log x",
+            "x minus y"
+          ]
+        },
+        "why": "A variable index cannot be differentiated by the power rule or by the exponential rule on its own. Taking logarithms brings the index down as a multiplier, and both sides then become expressions the product and quotient rules can handle.",
+        "common_mistakes": [
+          "Writing log(xʸ) as (log x)ʸ instead of y log x.",
+          "Leaving the right side as log(e^(x−y)) without simplifying it to x − y."
+        ],
+        "memory_tip": "When the unknown sits in the index, the first line is always \"take logarithms\". The same opening move works for y = xʸ and for every xˣ question in this chapter."
+      },
+      {
+        "id": "s2_make_y_subject",
+        "kind": "equation",
+        "label": "Make y the subject",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. This is where the bracket (1 + log x) first appears, and it is the same bracket that must be squared in the final answer.",
+        "lines": [
+          "Collect the y terms on one side:",
+          "y log x + y = x",
+          "⇒ y(1 + log x) = x",
+          "∴ y = x/(1 + log x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the y terms are collected and factored to give y = x/(1 + log x).",
+          "accept": [
+            "take y common and get y into one plus log x equals x",
+            "make y the subject",
+            "y equals x by one plus log x",
+            "y ni common teesi x by one plus log x ravali",
+            "shift the y from the right side and factor it out",
+            "write y explicitly in terms of x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take y common",
+            "one plus log x",
+            "x by one plus log x",
+            "make y the subject"
+          ]
+        },
+        "why": "Once y is written explicitly in terms of x, one use of the quotient rule finishes the question. Differentiating the relation implicitly also works, but it leaves y in the derivative and needs this same substitution afterwards, so making y the subject now is fewer steps.",
+        "common_mistakes": [
+          "Writing y log x + y as y(log x) + y and failing to factor it as y(1 + log x).",
+          "Dividing by log x instead of by the whole bracket (1 + log x)."
+        ],
+        "memory_tip": "The bracket (1 + log x) appears here for the first time and then again, squared, in the answer — one bracket carried through the whole question."
+      },
+      {
+        "id": "s3_quotient_rule",
+        "kind": "equation",
+        "label": "Differentiate by the quotient rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Name u and v before differentiating. The examiner looks for dv/dx = 1/x — the derivative of the constant 1 is zero, so only log x contributes.",
+        "lines": [
+          "Differentiate both sides with respect to x by the quotient rule",
+          "d/dx (u/v) = (v·du/dx − u·dv/dx)/v²,  with u = x and v = 1 + log x",
+          "du/dx = 1  and  dv/dx = 1/x",
+          "dy/dx = [(1 + log x)(1) − x(1/x)]/(1 + log x)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quotient rule is applied with u = x and v = 1 + log x, and that dv/dx = 1/x.",
+          "accept": [
+            "apply the quotient rule with u equal to x and v equal to one plus log x",
+            "v du minus u dv all over v squared",
+            "derivative of one plus log x is one by x",
+            "quotient rule use cheyyali u equals x v equals one plus log x",
+            "differentiate the fraction using the quotient rule",
+            "bottom times derivative of top minus top times derivative of bottom"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quotient rule",
+            "u by v",
+            "one by x",
+            "v squared"
+          ]
+        },
+        "why": "The derivative of 1 + log x is 1/x, and the numerator x cancels that 1/x exactly. That cancellation is what produces the printed form, so the quotient rule has to be written out in full before any simplifying.",
+        "common_mistakes": [
+          "Writing the numerator as u·dv/dx − v·du/dx, which reverses the sign of the answer.",
+          "Differentiating 1 + log x as 1 + 1/x."
+        ],
+        "memory_tip": "Order matters in the quotient rule: bottom times derivative of top comes FIRST, then subtract top times derivative of bottom."
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the required form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The denominator stays squared. A common loss is cancelling one factor of (1 + log x) between top and bottom, which is not allowed because log x is not a factor of (1 + log x).",
+        "lines": [
+          "x(1/x) = 1, so the numerator is (1 + log x) − 1 = log x",
+          {
+            "text": "∴ dy/dx = log x/(1 + log x)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator simplifies to log x and the answer is log x/(1 + log x)².",
+          "accept": [
+            "the one cancels and only log x is left on top",
+            "answer is log x by one plus log x whole squared",
+            "numerator becomes log x, denominator stays squared",
+            "pina log x, kinda one plus log x square",
+            "x into one by x is one so the one goes",
+            "we reach exactly the required form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log x",
+            "whole squared",
+            "one cancels",
+            "required form"
+          ]
+        },
+        "why": "The 1 inside the bracket cancels against the 1 produced by x(1/x), leaving log x alone in the numerator. Reaching exactly the printed expression is what a \"show that\" question asks for.",
+        "common_mistakes": [
+          "Cancelling (1 + log x) between numerator and denominator.",
+          "Stopping at (1 + log x − 1)/(1 + log x)² without simplifying the numerator."
+        ],
+        "memory_tip": "Top loses its 1, bottom keeps its square — that one sentence is the whole simplification."
+      }
+    ]
+  },
+  "insider_note": "Taking logarithms gives y log x = x − y, which SOLVES for y as x/(1 + log x). Differentiating that quotient is far easier than implicit differentiation of the original."
+}

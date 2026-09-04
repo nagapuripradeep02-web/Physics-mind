@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Augmented matrix",
         "margin_note": "First mark. Same opening as Gauss-Jordan — the coefficient matrix with the constants attached.",
+        "memory_tip": "Same opening as Gauss-Jordan: the coefficient matrix with the constants attached.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 1,
         "mark_note": "Echelon form",
         "margin_note": "Second mark. Row-reduce until the shape is triangular. The operations are the same as Gauss-Jordan, but the purpose is different — this is about counting, not solving.",
+        "memory_tip": "Same operations as Gauss-Jordan, but the PURPOSE is different — this is about counting ranks.",
         "lines": [
           "R₂ → R₂ − R₁,  R₃ → R₃ − 2R₁:",
           {
@@ -159,6 +161,7 @@
         "marks": 1,
         "mark_note": "Rank test",
         "margin_note": "Third mark, and the actual test. The coefficient part has a non-zero 3×3 determinant, so rank(A) = 3; the augmented matrix has no extra non-zero row, so rank[A D] = 3 too.",
+        "memory_tip": "The test itself: equal ranks means consistent, and rank = number of unknowns means one solution.",
         "lines": [
           "From (1), the coefficient part has",
           {
@@ -205,6 +208,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. The echelon form is already three equations — read z and y directly, then back-substitute for x.",
+        "memory_tip": "The echelon form is already three equations — read z and y, then back-substitute for x.",
         "lines": [
           "From (1): x + y + z = 6, y = 2, z = 3",
           "∴ x + 2 + 3 = 6 ⇒ x = 1",
@@ -242,5 +246,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Row-reduce the AUGMENTED matrix once and read both ranks off it — computing them separately doubles the work. Equal ranks matching the number of unknowns is what consistent-and-unique means."
 }

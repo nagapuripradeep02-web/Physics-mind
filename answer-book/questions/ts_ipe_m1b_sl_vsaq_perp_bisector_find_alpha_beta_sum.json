@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_perp_bisector_find_alpha_beta_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "2x − 3y − 5 = 0 is the perpendicular bisector of the line segment joining (3, −4) and (α, β). Find α + β.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the image formula",
+      "marks": 1
+    },
+    {
+      "label": "Find α, β and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 24, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for recognising that (α, β) is the image of the given point in the line and writing the image relation, and the second for the arithmetic and the required sum. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked against both defining properties of a perpendicular bisector. Midpoint of (3, −4) and (−1, 2) is (1, −1), and 2(1) − 3(−1) − 5 = 2 + 3 − 5 = 0, so the midpoint lies on the line. Slope of the segment is (2 + 4)/(−1 − 3) = −3/2 and the slope of the line is 2/3, and (−3/2)(2/3) = −1, so the segment meets the line at right angles. Hence (α, β) = (−1, 2) and α + β = 1. The image relation used here is the one proved in ts_ipe_m1b_sl_image_of_point_proof, which is the same unit's standard result."
+  },
+  "recall_prompt": "Say how you would solve this — say what (α, β) is with respect to the line, and the relation you then use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use_the_image_formula",
+        "kind": "equation",
+        "label": "Use the image formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A perpendicular bisector is exactly the mirror line of the two endpoints, so (α, β) is the image of (3, −4). Naming that is the whole method.",
+        "memory_tip": "Perpendicular bisector means mirror line, so the second point is the image of the first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The line bisects the segment at right angles,",
+          "so (α, β) is the image of (3, −4) in it.",
+          "For P(x₁, y₁) and ax + by + c = 0,",
+          "(α − x₁)/a = (β − y₁)/b = r,  where",
+          "r = −2(ax₁ + by₁ + c)/(a² + b²)",
+          "Here a = 2, b = −3, c = −5, P = (3, −4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (α, β) is the image of (3, −4) in the line, and the image relation (α − x₁)/a = (β − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²) is written.",
+          "accept": [
+            "the second point is the image of the first in the line",
+            "perpendicular bisector means it is the mirror line",
+            "alpha minus x one by a equals beta minus y one by b",
+            "image formula vaadali",
+            "r is minus two into a x one plus b y one plus c by a squared plus b squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "alpha plus beta is one"
+          ],
+          "heard_as": [
+            "image of the point",
+            "perpendicular bisector",
+            "a squared plus b squared",
+            "minus two times"
+          ]
+        },
+        "why": "Every point of a perpendicular bisector is equally far from the two ends, and the segment crosses it at right angles. Those are the two properties that define a reflection, so the image relation applies directly.",
+        "common_mistakes": [
+          "Using the foot-of-perpendicular relation, which has −1 in place of −2 and gives the midpoint instead of the far end.",
+          "Reading b as 3 instead of −3."
+        ]
+      },
+      {
+        "id": "s2_find_alpha_beta_and_add",
+        "kind": "boxed_final",
+        "label": "Find α, β and add",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Here ax₁ + by₁ + c and a² + b² are both 13, so r is a clean −2 and the two coordinates fall out at once.",
+        "memory_tip": "Work out the numerator and a² + b² separately, then divide once. Only one division is needed.",
+        "lines": [
+          "ax₁ + by₁ + c = 2(3) − 3(−4) − 5",
+          "= 6 + 12 − 5 = 13",
+          "a² + b² = 4 + 9 = 13",
+          "∴ r = −2(13)/13 = −2",
+          "α = x₁ + ar = 3 + 2(−2) = −1",
+          "β = y₁ + br = −4 + (−3)(−2) = 2",
+          {
+            "text": "∴ α + β = −1 + 2 = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = −2, giving α = −1 and β = 2, so α + β = 1.",
+          "accept": [
+            "the numerator is thirteen and a squared plus b squared is thirteen",
+            "r comes out minus two",
+            "alpha is minus one and beta is two",
+            "alpha minus one beta two so sum one",
+            "alpha plus beta is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the second point is the image of the first"
+          ],
+          "heard_as": [
+            "thirteen",
+            "minus two",
+            "minus one and two",
+            "alpha plus beta is one"
+          ]
+        },
+        "why": "The question asks only for α + β, but both coordinates have to be found first, because the two are not tied together by any shorter relation.",
+        "common_mistakes": [
+          "Dropping the minus sign in r and getting (7, −10).",
+          "Sign slip in β, writing −4 − 6 = −10 instead of −4 + 6 = 2."
+        ]
+      }
+    ]
+  }
+}

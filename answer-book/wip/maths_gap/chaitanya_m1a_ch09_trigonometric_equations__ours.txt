@@ -1,0 +1,23 @@
+# OUR BANK — mathematics unit 9: Trigonometric Equations (Maths-1A)  (10 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch09_trigonometric_equations.json
+
+[SAQ] ts_ipe_m1a_te_root3_sin_minus_cos
+    Solve √3 sinθ − cosθ = √2.
+[SAQ] ts_ipe_m1a_te_root2_sin_plus_cos
+    Solve √2(sinx + cosx) = √3.
+[SAQ] ts_ipe_m1a_te_two_cos_sq_minus_root3
+    Solve 2cos²θ − √3 sinθ + 1 = 0.
+[SAQ] ts_ipe_m1a_te_one_plus_sin_sq
+    Solve 1 + sin²θ = 3 sinθ cosθ.
+[SAQ] ts_ipe_m1a_te_cos2t_cos8t_cos5t
+    Solve cos2θ + cos8θ = cos5θ.
+[SAQ] ts_ipe_m1a_te_sin_sin5_sin3
+    Solve sinθ + sin5θ = sin3θ, given 0 < θ < π.
+[SAQ] ts_ipe_m1a_te_roots_tan_theta
+    If a cos2θ + b sin2θ = c has θ₁, θ₂ as its solutions, then show that (i) tanθ₁ + tanθ₂ = 2b/(c+a), (ii) tanθ₁ · tanθ₂ = (c−a)/(c+a), and hence show that tan(θ₁+θ₂) = b/a.
+[SAQ] ts_ipe_m1a_te_roots_sin_alpha_beta
+    If α, β are the solutions of the equation a cosθ + b sinθ = c, where a, b, c ∈ R, then show that (i) sinα + sinβ = 2bc/(a²+b²), (ii) sinα · sinβ = (c²−a²)/(a²+b²).
+[SAQ] ts_ipe_m1a_te_sqp_sin_plus_root3_cos
+    Solve sin x + √3 cos x = √2.
+[SAQ] ts_ipe_m1a_te_sqp_cot_quadratic
+    If 0 < x < π/2, then solve cot²x − (√3 + 1) cot x + √3 = 0.
