@@ -1,5 +1,95 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful findings, all repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
+
+**Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer
+book had been authored, never rigorously checked — now match the MPC papers' standard.** Every one
+of 314 cards was re-derived from NCERT and read for self-contradiction; every one was driven
+through the Vidi chatbot's 10-ask battery; every HARMFUL finding from both instruments is fixed
+and re-verified. Full reports: `docs/reports/bipc2_audit/SUMMARY.md`.
+
+### The gap this closed
+
+Botany-II (167 cards) and Zoology-II (147 cards) had never been examiner-audited or Vidi-audited —
+the only prior work was authoring itself. Worse, a platform bug meant neither paper's chatbot
+questions would even have been graded correctly: the Vidi subject ladder (Edge Function + mirror +
+`vidi_audit.ts`) had no rung for botany or zoology, so all four biology papers fell through to
+`physics` — a student's Telugu reply was steered by the physics term whitelist, and a biology audit
+would have run the ideal-gas out-of-bank bait. Fixed first, as its own platform PR (#200, merged
+into this desk before the audit ran), per Rule 40.
+
+### What was found, examiner pass (314 cards, both papers)
+
+| Paper | Cards | HARMFUL | WRONG | WEAK | Figures defective |
+|---|---|---|---|---|---|
+| Botany-II | 167 | 11 | 120 | 254 | 8 of 17 |
+| Zoology-II | 147 | 13 | 124 | 182 | 13 of 14 |
+
+Zoology-II's figures were the worst measured on either audited fleet: a heart whose great vessels
+sprang from the atria instead of the ventricles, contradicting the card's own text; a kidney still
+drawn as a crescent with no hilum notch — the exact defect class the original Zoology-I handover
+recorded as caught once already; a genetics cross drawing a Y-bearing sperm reaching a labelled
+daughter, a genetically impossible diagram.
+
+Every HARMFUL finding shares one shape: a card contradicting itself, or a leader line pointing at
+the wrong structure. Water potential said "always positive" and gave the ascent of sap — the
+textbook case of *negative* pressure potential — as its example. Gibberellins were credited with
+"promoting fruit ripening" four lines above the same card's own "gibberellins DELAY senescence."
+Asthma was called a form of COPD one line after the same card defines COPD as chronic bronchitis
+and emphysema alone. A boxed cry-gene answer used one token, "Ab," to mean two different genes on
+either side of a semicolon. Anti-D was given "when she is pregnant" instead of right after the
+first delivery, against the card's own sensitisation account two steps earlier.
+
+### The chatbot audit (3,140 calls, ₹128, both papers)
+
+| Paper | Replies | Mean/3 | Out of 10 |
+|---|---|---|---|
+| Botany-II | 1,670 | 2.908 | 9.69 |
+| Zoology-II | 1,470 | 2.918 | 9.73 |
+
+Inside the fleet's 9.6–9.9 band. Zero WRONG-STEP replies, zero out-of-bank questions actually
+answered, one invented mark across the whole battery — and the automated `MARK_SUM` gate missed
+that one, flagging an unrelated correct card instead. Six grading defects independently
+**confirmed** examiner HARMFUL findings by measuring the model's real replies rather than reading
+the card in isolation — cross-instrument confirmation, the strongest evidence a finding can get.
+
+### Repair, verified
+
+18 text fixes applied directly (`c46edaf9`); 20 figure defects repaired by two dispatched agents
+(`690547f3`), each visually re-rendered rather than trusted on coordinate math alone — two needed a
+full geometry rebuild (the nucleosome's wrap angle, TMV's aspect ratio and RNA placement), five more
+needed a second or third render pass once the first "fix" turned out to still be wrong on screen
+(most notably the heart, where fixing the vessel roots first exposed the interatrial septum sitting
+on the pulmonary trunk, then a second render found two pulmonary-vein lines striking through the
+"Left atrium" label that the read-only audit had missed entirely).
+
+Whole-book gates after repair, all green: `tsc` 0 · `vitest` 459/459 · `check_cards` 167+147 ·
+`check_figure_pace --strict` on all seven prefixes · both back-tests · `check:papers`/`xrefs`/
+`originality` · `build:answers` 3,290 cards · `find_label_clashes` whole-book 4→1 (the remainder a
+pre-existing Maths-2A card outside this audit) · `measure_wrap` zero regressions.
+
+### One correction the chatbot grading kept raising, verified as NOT a bug
+
+Botany-II's `stars: 0` on all 167 cards looked suspicious to six independent grading passes (a card
+asked six times still reads "not frequently asked"). Checked directly against `units.json`: this is
+the book's own limitation — it ranks importance only at chapter level, never per question, unlike
+the Zoology books. **Do not populate `stars` for Botany-II.** Recorded in `BOTANY_2_START_HERE.md`
+§11 so a future session doesn't spend an authoring pass inventing ranks the source book never gave.
+
+### Also landed
+
+`bipc_2` stream in `build_answer_book.ts` — `--stream=bipc_2` now builds a standalone Senior Inter
+BiPC artifact. A combined door build (`mpc,mpc_2,bipc_2`) needs a founder decision: physics_2 and
+chemistry_2 would be claimed by two streams in one artifact, which the build's own guard correctly
+refuses today — flagged, not solved.
+
+### Not done, deliberately
+
+No deploy of any kind (Edge Function redeploy, `content:push`, `deploy:answers`) — founder's gate.
+No teacher has verified any of the 314 cards; the ~90 teacher-gate questions raised across both
+reports are the concrete list for whoever does. No `recall` rubrics (blocked bank-wide on the
+grader endpoint, same as Chemistry-II/Maths-2B). The combined-door stream engine change.
+
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
 **Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.
