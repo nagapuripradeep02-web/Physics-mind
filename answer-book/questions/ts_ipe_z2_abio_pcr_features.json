@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_pcr_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention any two features of PCR.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Full form",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 145. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What PCR is",
+        "marks": 1,
+        "mark_note": "Full form",
+        "why": "Copying a tiny amount of DNA many times over makes it enough to detect.",
+        "common_mistakes": [
+          "Leaving PCR as an abbreviation.",
+          "Confusing PCR with ELISA."
+        ],
+        "memory_tip": "Polymerase Chain Reaction: it copies DNA.",
+        "margin_note": "Full form, then the features.",
+        "lines": [
+          "PCR is the polymerase chain reaction. It",
+          "helps in the early diagnosis of disease."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "What it can do",
+        "marks": 1,
+        "mark_note": "Its uses",
+        "why": "Because it multiplies the DNA present, even a trace of a virus can be found.",
+        "common_mistakes": [
+          "Giving only one feature when two are asked.",
+          "Leaving out amplification."
+        ],
+        "memory_tip": "It finds very small amounts of DNA by amplifying them.",
+        "margin_note": "Two named uses close the answer.",
+        "lines": [
+          "PCR detects very low amounts of DNA by",
+          "amplification.",
+          {
+            "text": "It is now used to detect HIV in suspected cases",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Expand PCR in the first line. Amplification is the marked word — it is what makes early diagnosis possible."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_glomerular_filtration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define glomerular filtration.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What is filtered and where",
+      "marks": 1
+    },
+    {
+      "label": "It uses no energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 69. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What is filtered",
+        "marks": 1,
+        "mark_note": "The first step",
+        "why": "Blood pressure in the glomerulus does the pushing, so the filtrate is squeezed out through the sieve of the capsule.",
+        "common_mistakes": [
+          "Writing that urine is formed here. Only the filtrate is.",
+          "Naming the wrong direction. Blood goes from glomerulus into the capsule."
+        ],
+        "memory_tip": "First step of urine making: blood is pushed through a sieve.",
+        "margin_note": "Say it is the FIRST step. That word is often marked.",
+        "lines": [
+          "The first step in the formation of urine is",
+          "the filtration of blood from the glomerulus",
+          "into the lumen of Bowman's capsule."
+        ]
+      },
+      {
+        "id": "s2_passive",
+        "kind": "boxed_final",
+        "label": "It uses no energy",
+        "marks": 1,
+        "mark_note": "Non-energy consuming",
+        "why": "The heart has already supplied the pressure, so the kidney spends nothing of its own at this step.",
+        "common_mistakes": [
+          "Calling it active transport. It consumes no energy.",
+          "Leaving the second line out."
+        ],
+        "memory_tip": "Blood pressure does the work, not the kidney.",
+        "margin_note": "One line, but it is a whole mark.",
+        "lines": [
+          {
+            "text": "This needs no energy: it is glomerular filtration",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The second mark is for 'non-energy consuming'. Most answers describe the filtering and stop."
+}

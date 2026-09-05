@@ -51,9 +51,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 10. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.22, printed question 10. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note and the s2 mistakes line no longer state what a printed answer scores or loses."
   },
-  "insider_note": "Two halves, two marks each. An answer that lists five advantages and no disadvantage scores half. Split the page down the middle before you start writing.",
+  "insider_note": "Two halves, two marks each. The complete answer needs both — four or five advantages AND at least three disadvantages. Split the page down the middle before you start writing.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -111,7 +111,7 @@
         ],
         "why": "The harm is not transpiration itself but its excess, and saying so is what turns two lists into the single sentence the question actually asks for.",
         "common_mistakes": [
-          "Giving no disadvantages at all. That is two marks lost.",
+          "Giving no disadvantages at all. Half the answer is the harm, so the second list has to be there.",
           "Writing that transpiration is useless. The question calls it NECESSARY as well as evil."
         ],
         "memory_tip": "Evil only in excess: a little is transport, too much is drought."

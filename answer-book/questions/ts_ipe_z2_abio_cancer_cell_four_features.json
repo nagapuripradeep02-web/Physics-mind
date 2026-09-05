@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_cancer_cell_four_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List out any four features of cancer cells.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Growth and spread",
+      "marks": 1
+    },
+    {
+      "label": "Lost controls",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 137. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 2's memory tip taught blood vessels while its second mistake condemned them, and neither matches the four features this card prints, so both now follow the printed features."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Growth and spread",
+        "marks": 1,
+        "mark_note": "Growth and spread",
+        "why": "A cancer cell ignores the signals that would normally stop it dividing or hold it in place.",
+        "common_mistakes": [
+          "Describing a normal cell instead.",
+          "Giving fewer than four features."
+        ],
+        "memory_tip": "Grow without stopping, then break away.",
+        "margin_note": "Number them. Four short lines.",
+        "lines": [
+          "1. Cancer cells actively grow and divide",
+          "continuously.",
+          "2. They can easily detach themselves and",
+          "migrate, that is, metastasis."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Lost controls",
+        "marks": 1,
+        "mark_note": "Lost controls",
+        "why": "The two safety systems that should stop them — contact inhibition and apoptosis — have both failed.",
+        "common_mistakes": [
+          "Leaving out apoptosis.",
+          "Confusing apoptosis with necrosis. Apoptosis is programmed cell death."
+        ],
+        "memory_tip": "No contact inhibition, and no apoptosis.",
+        "margin_note": "Finish the list of four.",
+        "lines": [
+          "3. They lose the property of contact",
+          "inhibition.",
+          {
+            "text": "4. They do not undergo apoptosis",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four features for two marks, so two per mark. Keep each to one short line."
+}

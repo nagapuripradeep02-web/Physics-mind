@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_all_or_none_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is all-or-none principle?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Threshold stimulus",
+      "marks": 1
+    },
+    {
+      "label": "It cannot be stopped part way",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 86. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 1's why and memory tip no longer say a sub-threshold stimulus changes nothing, and the insider note's mark verdict on a hypothetical answer was replaced with the two marked points."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Neural Control and Coordination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_threshold",
+        "kind": "text",
+        "label": "Threshold stimulus",
+        "marks": 1,
+        "mark_note": "Threshold",
+        "why": "A sub-threshold stimulus produces only a small local change in the membrane potential that fades without spreading, so no action potential forms; at or above the threshold the impulse formed is always full size, whatever the strength of the stimulus.",
+        "common_mistakes": [
+          "Writing that a bigger stimulus gives a bigger impulse. It does not.",
+          "Leaving out the word threshold."
+        ],
+        "memory_tip": "Below the threshold no impulse forms; at or above it, the full impulse forms.",
+        "margin_note": "Name the threshold first.",
+        "lines": [
+          "An action potential occurs in response to",
+          "a threshold or above-threshold stimulus,",
+          "but not to a sub-threshold stimulus."
+        ]
+      },
+      {
+        "id": "s2_complete",
+        "kind": "boxed_final",
+        "label": "It goes all the way",
+        "marks": 1,
+        "mark_note": "All the way",
+        "why": "Once started, the impulse regenerates itself along the fibre, so it cannot fade out half way.",
+        "common_mistakes": [
+          "Saying the impulse weakens along the fibre. It does not.",
+          "Leaving out the conclusion that gives the principle its name."
+        ],
+        "memory_tip": "Either the whole impulse or none of it.",
+        "margin_note": "End by naming the principle.",
+        "lines": [
+          "Once generated it cannot be stopped part",
+          "way. It travels completely to its",
+          "destination.",
+          {
+            "text": "So it is called the all-or-none principle",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two things are marked: the threshold or above-threshold stimulus in the first line, and that once started the impulse travels completely. Write both, then name the principle."
+}

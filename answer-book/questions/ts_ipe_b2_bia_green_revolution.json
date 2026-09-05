@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 124. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 124. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s2_who's first common mistake called a single name an error, although Norman Borlaug alone answers the question and the insider note says so, so the entry now warns about writing both names without labelling them."
   },
   "insider_note": "A definition and a name. Norman Borlaug is the world answer; if you add M. S. Swaminathan as the Indian one, say which is which.",
   "answer": {
@@ -93,7 +93,7 @@
         ],
         "why": "Two names are correct at two different scales, so saying which is which shows the distinction was understood.",
         "common_mistakes": [
-          "Giving only one name with no scale. Say whether you mean worldwide or in India.",
+          "Writing both names with no label. Norman Borlaug is the worldwide answer; label M. S. Swaminathan as the Father of the green revolution in India.",
           "Naming a different scientist. Borlaug worldwide, Swaminathan in India."
         ],
         "memory_tip": "Borlaug for the world, Swaminathan for India."

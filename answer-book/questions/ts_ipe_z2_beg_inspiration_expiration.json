@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_inspiration_expiration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the process of inspiration and expiration under normal conditions.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What inspiration is",
+      "marks": 1
+    },
+    {
+      "label": "How the thoracic volume rises",
+      "marks": 1
+    },
+    {
+      "label": "What expiration is",
+      "marks": 1
+    },
+    {
+      "label": "How the air is forced out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.30, SAQ 15. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s4_exp_volume's second common mistake condemned the card's own line that the lungs recoil, so it now warns against saying muscles push the air out, and the insider note no longer states how many marks a partial answer loses."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Breathing and Exchange of Gases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_insp_what",
+        "kind": "text",
+        "label": "Inspiration is active",
+        "marks": 1,
+        "mark_note": "What inspiration is",
+        "why": "Air moves only when the pressure inside the lungs is lower than outside, and muscles are needed to make that happen.",
+        "common_mistakes": [
+          "Calling inspiration a passive process. It is active.",
+          "Writing that the diaphragm domes upward. On contraction it flattens."
+        ],
+        "memory_tip": "In is active: the diaphragm pulls flat and makes room.",
+        "margin_note": "Write inspiration and expiration under two headings.",
+        "lines": [
+          {
+            "text": "Inspiration",
+            "style": "heading"
+          },
+          "The intake of atmospheric air into the",
+          "lungs is called inspiration.",
+          "It is an active process. It takes place by",
+          "the contraction of the diaphragm muscles,",
+          "which makes the diaphragm flat."
+        ]
+      },
+      {
+        "id": "s2_insp_volume",
+        "kind": "text",
+        "label": "Thoracic volume rises",
+        "marks": 1,
+        "mark_note": "Volume and pressure",
+        "why": "The lungs have no muscles of their own, so they follow the chest wall through the pleural membrane.",
+        "common_mistakes": [
+          "Saying the lungs expand by themselves. They are pulled open by the chest wall.",
+          "Leaving out the pressure. Air moves because the pressure falls."
+        ],
+        "memory_tip": "Volume up, pressure down, air rushes in.",
+        "margin_note": "The pressure sentence is the one that earns this mark.",
+        "lines": [
+          "The external intercostal muscles contract",
+          "and lift up the ribs and the sternum. This",
+          "increases the thoracic volume in the",
+          "dorso-ventral axis.",
+          "The ribs and diaphragm pull the pleural",
+          "membrane attached to the lungs.",
+          "The pressure inside the lungs then falls",
+          "below atmospheric pressure and air enters."
+        ]
+      },
+      {
+        "id": "s3_exp_what",
+        "kind": "text",
+        "label": "Expiration is passive",
+        "marks": 1,
+        "mark_note": "What expiration is",
+        "why": "Nothing has to pull the chest back in: the stretched tissue recoils on its own once the muscles stop working.",
+        "common_mistakes": [
+          "Calling quiet expiration an active process. It is passive.",
+          "Writing that other muscles contract. In quiet breathing they relax."
+        ],
+        "memory_tip": "Out is passive: the muscles let go and the chest springs back.",
+        "margin_note": "Keep the contrast with inspiration visible.",
+        "lines": [
+          {
+            "text": "Expiration",
+            "style": "heading"
+          },
+          "Sending out air from the lungs is called",
+          "expiration.",
+          "It is a passive process. The external",
+          "intercostal muscles and the diaphragm",
+          "muscles relax."
+        ]
+      },
+      {
+        "id": "s4_exp_volume",
+        "kind": "boxed_final",
+        "label": "Air is forced out",
+        "marks": 1,
+        "mark_note": "Volume and pressure",
+        "why": "The same pressure rule runs backwards, which is why the two halves of the answer mirror each other.",
+        "common_mistakes": [
+          "Leaving the pressure out again. The mark is for the pressure rising.",
+          "Writing that muscles push the air out. In quiet expiration the muscles relax and the stretched lungs recoil."
+        ],
+        "memory_tip": "Volume down, pressure up, air is pushed out.",
+        "margin_note": "One boxed line closes the answer neatly.",
+        "lines": [
+          "The volume of the thoracic cavity is",
+          "reduced and the lungs recoil.",
+          "The pressure inside the lungs rises above",
+          "atmospheric pressure.",
+          "The air is forced out through the air",
+          "passages.",
+          {
+            "text": "Air always moves from high to low pressure",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both halves must say which way the pressure moves. The complete answer names the muscles and the pressure change for inspiration, and again for expiration."
+}

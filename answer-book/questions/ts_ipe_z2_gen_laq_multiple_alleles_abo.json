@@ -1,0 +1,284 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_laq_multiple_alleles_abo",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are multiple alleles? Describe multiple alleles with the help of ABO blood groups in man.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What multiple alleles are",
+      "marks": 1
+    },
+    {
+      "label": "The number of genotypes",
+      "marks": 1
+    },
+    {
+      "label": "The four blood groups",
+      "marks": 1
+    },
+    {
+      "label": "Antigens and antibodies",
+      "marks": 1
+    },
+    {
+      "label": "The three alleles",
+      "marks": 1
+    },
+    {
+      "label": "Dominance between them",
+      "marks": 1
+    },
+    {
+      "label": "Six genotypes, four phenotypes",
+      "marks": 1
+    },
+    {
+      "label": "Universal donor and recipient",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.20, LAQ 6. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the compatibility common-mistake no longer treats the standard universal donor and recipient wording as an error, and the insider note now says what a complete answer contains instead of claiming a mark is lost."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Genetics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What multiple alleles are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "A gene normally comes in two forms; when a population carries more than two forms of the same gene they are called multiple alleles.",
+        "common_mistakes": [
+          "Saying one person carries three alleles. Each person carries two.",
+          "Confusing multiple alleles with multiple genes."
+        ],
+        "memory_tip": "More than two alleles of ONE gene in the population.",
+        "margin_note": "Definition, then the example, then the formula.",
+        "lines": [
+          "Generally a gene has two alleles, one",
+          "dominant and the other recessive.",
+          "Sometimes a gene may have more than two",
+          "alleles. These are called multiple alleles.",
+          "Example: the ABO blood groups."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "The number of genotypes",
+        "marks": 1,
+        "mark_note": "The formula",
+        "why": "Each person carries two of the available alleles, and the formula simply counts every pair that can be made from n alleles.",
+        "common_mistakes": [
+          "Writing the formula without substituting n = 3.",
+          "Using n² instead of n(n+1)/2."
+        ],
+        "memory_tip": "n(n+1)/2 — with three alleles that is 3 × 4 ÷ 2 = 6.",
+        "margin_note": "Substitute the numbers. The working carries the mark.",
+        "lines": [
+          "The number of genotypes for multiple",
+          "alleles is given by:",
+          {
+            "text": "Number of genotypes = n(n+1)/2",
+            "style": "eq"
+          },
+          "where n is the number of alleles.",
+          "For ABO blood groups there are 3 alleles.",
+          {
+            "text": "= 3(3+1)/2 = 3(4)/2 = 6 genotypes",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s3_four_groups",
+        "kind": "text",
+        "label": "The four blood groups",
+        "marks": 1,
+        "mark_note": "Four groups",
+        "why": "The group is decided by which sugar antigens sit on the red cell surface, so naming the antigen names the group.",
+        "common_mistakes": [
+          "Saying the antigens are proteins. They are sugar polymers.",
+          "Placing the antigens in the plasma. They are on the red cells."
+        ],
+        "memory_tip": "Antigens on the cell, antibodies in the plasma.",
+        "margin_note": "Name the four groups before describing them.",
+        "lines": [
+          "The four blood groups A, B, AB and O are",
+          "decided by the presence or absence of",
+          "antigens on the plasma membrane of the red",
+          "blood cells.",
+          "The antigens are sugar polymers bound to",
+          "lipid molecules."
+        ]
+      },
+      {
+        "id": "s4_antigens",
+        "kind": "text",
+        "label": "Antigens and antibodies",
+        "marks": 1,
+        "mark_note": "Antigens and antibodies",
+        "why": "A person never carries the antibody against their own antigen, or their own blood would be destroyed.",
+        "common_mistakes": [
+          "Giving group AB both antibodies. It has none.",
+          "Giving group O antigens. It has none."
+        ],
+        "memory_tip": "AB has both antigens and no antibodies; O has no antigens and both antibodies.",
+        "margin_note": "Four lines, one per group. Keep the pattern visible.",
+        "lines": [
+          "Group A has antigen A on the red cells and",
+          "anti-B antibodies in the plasma.",
+          "Group B has antigen B and anti-A",
+          "antibodies.",
+          "Group AB has antigens A and B, and no",
+          "anti-A or anti-B antibodies.",
+          "Group O has no antigens, and both anti-A",
+          "and anti-B antibodies."
+        ]
+      },
+      {
+        "id": "s5_alleles",
+        "kind": "text",
+        "label": "The three alleles",
+        "marks": 1,
+        "mark_note": "The alleles",
+        "why": "All three alleles sit at the same place on chromosome 9, which is what makes them alleles of one gene rather than three genes.",
+        "common_mistakes": [
+          "Placing the gene on the wrong chromosome. It is chromosome 9.",
+          "Giving Iᴼ an antigen. It produces none."
+        ],
+        "memory_tip": "Iᴬ, Iᴮ and Iᴼ — one gene, chromosome 9.",
+        "margin_note": "Name the proposer and the chromosome. Both are marked.",
+        "lines": [
+          "Karl Landsteiner proposed the ABO system",
+          "of blood groups.",
+          "The genetic basis depends on three alleles",
+          "of the gene I on chromosome 9.",
+          {
+            "text": "The alleles are Iᴬ, Iᴮ and Iᴼ (or i)",
+            "style": "eq"
+          },
+          "Iᴬ produces antigen A and Iᴮ produces",
+          "antigen B. Iᴼ produces no antigen."
+        ]
+      },
+      {
+        "id": "s6_dominance",
+        "kind": "text",
+        "label": "Dominance between them",
+        "marks": 1,
+        "mark_note": "Dominance",
+        "why": "Iᴬ and Iᴮ are codominant, so a person carrying both shows both antigens instead of only one.",
+        "common_mistakes": [
+          "Calling Iᴬ dominant over Iᴮ. They are codominant.",
+          "Leaving out that both are dominant over Iᴼ."
+        ],
+        "memory_tip": "Both beat Iᴼ, but neither beats the other.",
+        "margin_note": "One line, but it explains the AB group.",
+        "lines": [
+          "Iᴬ and Iᴮ are dominant over Iᴼ, but they",
+          "are codominant to each other.",
+          "A child receives one of the three alleles",
+          "from each parent."
+        ]
+      },
+      {
+        "id": "s7_genotypes",
+        "kind": "text",
+        "label": "Six genotypes, four phenotypes",
+        "marks": 1,
+        "mark_note": "Genotypes",
+        "why": "Six pairs are possible but two pairs give the same visible group, so six genotypes collapse into four phenotypes.",
+        "common_mistakes": [
+          "Giving six phenotypes. There are four.",
+          "Missing IᴬIᴼ or IᴮIᴼ from the list."
+        ],
+        "memory_tip": "Six pairs, four groups: the two Iᴼ pairs hide inside A and B.",
+        "margin_note": "List all six, then group them into four.",
+        "lines": [
+          "The 6 genotypes are:",
+          {
+            "text": "IᴬIᴬ, IᴬIᴼ, IᴮIᴮ, IᴮIᴼ, IᴬIᴮ, IᴼIᴼ",
+            "style": "eq"
+          },
+          "The 4 phenotypes are:",
+          "IᴬIᴬ and IᴬIᴼ give group A.",
+          "IᴮIᴮ and IᴮIᴼ give group B.",
+          "IᴬIᴮ gives group AB.",
+          "IᴼIᴼ gives group O."
+        ]
+      },
+      {
+        "id": "s8_compatibility",
+        "kind": "boxed_final",
+        "label": "Donor and recipient",
+        "marks": 1,
+        "mark_note": "Compatibility",
+        "why": "A group with no antigens cannot be attacked by any antibody, and a group with no antibodies cannot attack any donor cell.",
+        "common_mistakes": [
+          "Swapping the two. O negative donates to all; AB positive receives from all.",
+          "Saying the O group person can receive any blood. O can be given to all groups, but can receive only from O. Adding the Rh sign, O⁻ and AB⁺, makes the statement exact."
+        ],
+        "memory_tip": "O⁻ gives to everyone; AB⁺ takes from everyone.",
+        "margin_note": "Close with the two special groups.",
+        "lines": [
+          "AB⁺ can receive blood from all the other",
+          "groups, so it is the universal recipient.",
+          "O⁻ can be given to any other group, but can",
+          "receive only from O⁻.",
+          {
+            "text": "So O⁻ is called the universal donor",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Show the n(n+1)/2 working with the numbers substituted: 3(3+1)/2 = 6. The complete answer gives the formula, the substitution and the six genotypes."
+}

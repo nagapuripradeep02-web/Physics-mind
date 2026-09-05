@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 26. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide prints \"Genes: Lentivirus\" in its worked example, where the hierarchy level is GENUS. Corrected on the card."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 26. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide prints \"Genes: Lentivirus\" in its worked example, where the hierarchy level is GENUS. Corrected on the card. Revision (examiner audit, 2026-09-05): the insider note called the suffixes \"the marks\", which the card's own four-way mark split contradicts, so it now calls them the naming rule; the s2_levels `why` explained three levels by low viral diversity, which is untrue, and now names the small set of properties ICTV classifies on; and `common_mistakes[1]` called naming the rank ORDER an error, which ICTV itself defines (names ending in -virales), so it now names a real slip."
   },
-  "insider_note": "The suffixes are the marks: -viridae for a family, -virus for a genus. Write both in capitals or underline them so the examiner cannot miss them.",
+  "insider_note": "The suffixes carry the naming rule: -viridae for a family, -virus for a genus. Write both in capitals or underline them so they cannot be misread.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -85,10 +85,10 @@
           "This is shorter than the seven levels used for",
           "plants and animals."
         ],
-        "why": "Three levels rather than seven is enough because viruses are far less diverse in structure than cellular organisms.",
+        "why": "ICTV places a virus by a small set of properties — the type of nucleic acid, the shape of the capsid and the presence of an envelope — so family, genus and species are enough to name it.",
         "common_mistakes": [
           "Giving seven levels. Viral classification uses THREE.",
-          "Naming order or class. ICTV works with family, genus and species."
+          "Naming only two of the three levels. Family, genus and species are all three wanted here."
         ],
         "memory_tip": "Family, genus, species: three levels and no more."
       },

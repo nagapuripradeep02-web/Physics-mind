@@ -51,9 +51,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 33. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 33. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the s5_diagram margin note said the square earns the ratio marks by itself, which contradicts its own 0-mark header; it now says the square sets out the ratios that steps 2 and 4 have to state."
   },
-  "insider_note": "The law has FOUR statements and the examiner is counting them. Number them, then finish with the 3:1 ratio.",
+  "insider_note": "The law has THREE statements — factors, factors in pairs, one member dominating. Number them, then add what the law explains and finish with the 3:1 ratio.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -156,7 +156,7 @@
         "kind": "diagram",
         "label": "Diagram — monohybrid cross",
         "marks": 0,
-        "margin_note": "No diagram mark — the question says 'explain'. Draw the square anyway: it is faster than writing the F2 out and it earns the ratio marks by itself.",
+        "margin_note": "No diagram mark — the question says 'explain'. Draw the square anyway: it is faster than writing the F2 out, and it sets out the two ratios that steps 2 and 4 have to state.",
         "figure": {
           "id": "b2_piv_monohybrid_cross",
           "width": 520,

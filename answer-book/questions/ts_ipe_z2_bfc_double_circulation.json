@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_bfc_double_circulation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Body Fluids and Circulation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by double circulation? What is the significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Its significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 66. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Body Fluids and Circulation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Blood coming back from the lungs has to be pumped again to reach the body, and that second pump is why it passes through the heart twice.",
+        "common_mistakes": [
+          "Saying blood goes round the body twice. It passes through the HEART twice.",
+          "Naming only one of the two circulations."
+        ],
+        "memory_tip": "Two trips through the heart in one full round.",
+        "margin_note": "Definition first, then the two named parts.",
+        "lines": [
+          "Double circulation is circulation in which",
+          "blood passes through the heart twice in one",
+          "complete round.",
+          "It has two parts: pulmonary circulation and",
+          "systemic circulation."
+        ]
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Its significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "why": "Keeping the two streams apart means the body always receives fully oxygenated blood.",
+        "common_mistakes": [
+          "Writing that it makes the heart beat faster.",
+          "Leaving the significance out altogether."
+        ],
+        "memory_tip": "Two separate paths, so the two kinds of blood never mix.",
+        "margin_note": "One line for the significance.",
+        "lines": [
+          {
+            "text": "It stops oxygenated and deoxygenated blood mixing",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The second mark is for the significance, not for naming the two circulations. Say that the two kinds of blood never mix."
+}

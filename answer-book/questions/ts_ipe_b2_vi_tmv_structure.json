@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 28. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 28. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the rod is redrawn long and narrow instead of drum shaped, carries a not to scale note, and the RNA is now drawn coiled inside the capsid along the hollow core instead of above the top face."
   },
   "insider_note": "This answer is a list of numbers: 300 nm, 18 nm, 2130 capsomeres, 158 amino acids, 6500 nucleotides, 4 nm core. Write every one you remember — each is worth credit.",
   "answer": {
@@ -176,71 +176,106 @@
             {
               "type": "stroke",
               "id": "tv_disc0",
-              "d": "M 200 100 A 60 11 0 1 0 320 100 A 60 11 0 1 0 200 100",
-              "ms": 3580,
+              "d": "M 236 76 A 24 5 0 1 0 284 76 A 24 5 0 1 0 236 76",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc1",
-              "d": "M 200 122 A 60 11 0 1 0 320 122 A 60 11 0 1 0 200 122",
-              "ms": 3580,
+              "d": "M 236 92 A 24 5 0 1 0 284 92 A 24 5 0 1 0 236 92",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc2",
-              "d": "M 200 144 A 60 11 0 1 0 320 144 A 60 11 0 1 0 200 144",
-              "ms": 3580,
+              "d": "M 236 108 A 24 5 0 1 0 284 108 A 24 5 0 1 0 236 108",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc3",
-              "d": "M 200 166 A 60 11 0 1 0 320 166 A 60 11 0 1 0 200 166",
-              "ms": 3580,
+              "d": "M 236 124 A 24 5 0 1 0 284 124 A 24 5 0 1 0 236 124",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc4",
-              "d": "M 200 188 A 60 11 0 1 0 320 188 A 60 11 0 1 0 200 188",
-              "ms": 3580,
+              "d": "M 236 140 A 24 5 0 1 0 284 140 A 24 5 0 1 0 236 140",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc5",
-              "d": "M 200 210 A 60 11 0 1 0 320 210 A 60 11 0 1 0 200 210",
-              "ms": 3580,
+              "d": "M 236 156 A 24 5 0 1 0 284 156 A 24 5 0 1 0 236 156",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc6",
-              "d": "M 200 232 A 60 11 0 1 0 320 232 A 60 11 0 1 0 200 232",
-              "ms": 3580,
+              "d": "M 236 172 A 24 5 0 1 0 284 172 A 24 5 0 1 0 236 172",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_disc7",
-              "d": "M 200 254 A 60 11 0 1 0 320 254 A 60 11 0 1 0 200 254",
-              "ms": 3580,
+              "d": "M 236 188 A 24 5 0 1 0 284 188 A 24 5 0 1 0 236 188",
+              "ms": 1450,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tv_disc8",
+              "d": "M 236 204 A 24 5 0 1 0 284 204 A 24 5 0 1 0 236 204",
+              "ms": 1450,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tv_disc9",
+              "d": "M 236 220 A 24 5 0 1 0 284 220 A 24 5 0 1 0 236 220",
+              "ms": 1450,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tv_disc10",
+              "d": "M 236 236 A 24 5 0 1 0 284 236 A 24 5 0 1 0 236 236",
+              "ms": 1450,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tv_disc11",
+              "d": "M 236 252 A 24 5 0 1 0 284 252 A 24 5 0 1 0 236 252",
+              "ms": 1450,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "tv_disc12",
+              "d": "M 236 268 A 24 5 0 1 0 284 268 A 24 5 0 1 0 236 268",
+              "ms": 1450,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_side_l",
-              "d": "M 200 100 L 200 254",
-              "ms": 2200,
+              "d": "M 236 76 L 236 268",
+              "ms": 2740,
               "w": 1.8
             },
             {
               "type": "stroke",
               "id": "tv_side_r",
-              "d": "M 320 100 L 320 254",
-              "ms": 2200,
+              "d": "M 284 76 L 284 268",
+              "ms": 2740,
               "w": 1.8
             },
             {
@@ -251,19 +286,27 @@
             {
               "type": "stroke",
               "id": "tv_core",
-              "d": "M 250 100 A 10 4 0 1 0 270 100 A 10 4 0 1 0 250 100",
-              "ms": 660
+              "d": "M 255 76 A 5 2 0 1 0 265 76 A 5 2 0 1 0 255 76",
+              "ms": 330
             },
             {
               "type": "pause",
               "id": "t_p3",
-              "caption": "Step 3 — the single RNA strand coiled inside"
+              "caption": "Step 3 — the RNA coiled down the core"
             },
             {
               "type": "stroke",
               "id": "tv_rna",
-              "d": "M 260 96 C 242 86 278 76 260 66 C 242 56 278 46 260 36",
-              "ms": 1080
+              "d": "M 260 82 C 264 84 270 86 270 91 C 270 100 250 100 250 109 C 250 118 270 118 270 127 C 270 136 250 136 250 145 C 250 154 270 154 270 163",
+              "ms": 1830,
+              "pen": "pencil"
+            },
+            {
+              "type": "stroke",
+              "id": "tv_rna_b",
+              "d": "M 270 163 C 270 172 250 172 250 181 C 250 190 270 190 270 199 C 270 208 250 208 250 217 C 250 226 270 226 270 235 C 270 240 266 244 260 246",
+              "ms": 1850,
+              "pen": "pencil"
             },
             {
               "type": "pause",
@@ -273,39 +316,39 @@
             {
               "type": "stroke",
               "id": "tv_dim_v",
-              "d": "M 160 96 L 160 258",
-              "ms": 2310,
+              "d": "M 190 72 L 190 272",
+              "ms": 2860,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "tv_dim_v_t",
-              "d": "M 163.5 102.1 L 160 96 L 156.5 102.1",
+              "d": "M 193.5 78.1 L 190 72 L 186.5 78.1",
               "ms": 300
             },
             {
               "type": "stroke",
               "id": "tv_dim_v_b",
-              "d": "M 156.5 251.9 L 160 258 L 163.5 251.9",
+              "d": "M 186.5 265.9 L 190 272 L 193.5 265.9",
               "ms": 300
             },
             {
               "type": "stroke",
               "id": "tv_dim_h",
-              "d": "M 200 288 L 320 288",
-              "ms": 1710,
+              "d": "M 236 290 L 284 290",
+              "ms": 690,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "tv_dim_h_l",
-              "d": "M 206.1 284.5 L 200 288 L 206.1 291.5",
+              "d": "M 242.1 286.5 L 236 290 L 242.1 293.5",
               "ms": 300
             },
             {
               "type": "stroke",
               "id": "tv_dim_h_r",
-              "d": "M 313.9 291.5 L 320 288 L 313.9 284.5",
+              "d": "M 277.9 293.5 L 284 290 L 277.9 286.5",
               "ms": 300
             },
             {
@@ -315,40 +358,40 @@
             },
             {
               "type": "stroke",
-              "id": "tl_rna",
-              "d": "M 326 46 L 274 54",
-              "ms": 750,
+              "id": "tl_core",
+              "d": "M 332 84 L 265 77",
+              "ms": 960,
               "w": 1.4
             },
             {
               "type": "stroke",
-              "id": "tl_core",
-              "d": "M 332 98 L 272 100",
-              "ms": 860,
+              "id": "tl_rna",
+              "d": "M 332 152 L 252 150",
+              "ms": 1140,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "tl_prot",
-              "d": "M 332 168 L 320 166",
-              "ms": 300,
+              "d": "M 332 206 L 285 204",
+              "ms": 670,
               "w": 1.4
-            },
-            {
-              "type": "label",
-              "id": "tb_rna",
-              "x": 330,
-              "y": 44,
-              "text": "RNA",
-              "ms": 450,
-              "sm": true
             },
             {
               "type": "label",
               "id": "tb_core",
               "x": 336,
-              "y": 100,
+              "y": 80,
               "text": "Hollow core",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tb_rna",
+              "x": 336,
+              "y": 154,
+              "text": "RNA",
               "ms": 450,
               "sm": true
             },
@@ -356,7 +399,7 @@
               "type": "label",
               "id": "tb_prot",
               "x": 336,
-              "y": 170,
+              "y": 208,
               "text": "Protein subunits",
               "ms": 450,
               "sm": true
@@ -364,7 +407,7 @@
             {
               "type": "label",
               "id": "tb_len",
-              "x": 86,
+              "x": 120,
               "y": 180,
               "text": "300 nm",
               "ms": 450,
@@ -373,9 +416,18 @@
             {
               "type": "label",
               "id": "tb_dia",
-              "x": 232,
-              "y": 306,
+              "x": 244,
+              "y": 312,
               "text": "18 nm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tv_scale",
+              "x": 60,
+              "y": 300,
+              "text": "not to scale",
               "ms": 450,
               "sm": true
             }

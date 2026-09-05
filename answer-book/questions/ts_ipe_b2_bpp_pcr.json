@@ -39,9 +39,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 114. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 114. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note and s2_uses common_mistakes[0] said three uses were printed in the source book, which both contradicted the four uses the card itself prints and pointed the student at a book they do not hold, so both now name the three main uses in full."
   },
-  "insider_note": "Three uses are printed in the book. Give all three — the list is the second mark.",
+  "insider_note": "Two halves: the expansion, then the uses. Name the three main ones — DNA cloning, gene amplification and DNA fingerprinting — and add early disease detection if you have room.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -92,7 +92,7 @@
         ],
         "why": "All four uses need many copies of one small piece of DNA, which is exactly what PCR supplies.",
         "common_mistakes": [
-          "Giving one use. Three are printed in the book.",
+          "Giving only one use. Name all three — DNA cloning, gene amplification and DNA fingerprinting.",
           "Confusing PCR with ELISA. PCR amplifies DNA; ELISA detects antigen-antibody binding."
         ],
         "memory_tip": "Anything that needs more DNA than you have."

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_biogenetic_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Biogenetic Law, giving an example.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "An example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 119. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "The law",
+        "why": "An embryo passes through stages resembling its ancestors, which is why development is treated as evidence of evolution.",
+        "common_mistakes": [
+          "Reversing the phrase. It is ontogeny repeats phylogeny.",
+          "Leaving out the other name, the theory of recapitulation."
+        ],
+        "memory_tip": "Ontogeny is development; phylogeny is ancestry.",
+        "margin_note": "Give both names of the law.",
+        "lines": [
+          "The biogenetic law, also called the theory",
+          "of recapitulation, states:",
+          {
+            "text": "Ontogeny repeats phylogeny",
+            "style": "eq"
+          },
+          "That is, the developmental history of an",
+          "organism repeats the evolutionary history",
+          "of its ancestors."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "An example",
+        "marks": 1,
+        "mark_note": "Example",
+        "why": "A tadpole has gills and a two-chambered heart like a fish, and only later develops the adult frog's features.",
+        "common_mistakes": [
+          "Giving an adult resemblance instead of a developmental one.",
+          "Leaving out what the larva resembles."
+        ],
+        "memory_tip": "The tadpole passes through a fish-like stage.",
+        "margin_note": "One or two examples are enough.",
+        "lines": [
+          "The caterpillar of a butterfly resembles an",
+          "annelid.",
+          {
+            "text": "The tadpole of a frog resembles a fish",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Quote the phrase 'ontogeny repeats phylogeny' exactly, then explain it in your own words. The phrase itself is a marked point."
+}

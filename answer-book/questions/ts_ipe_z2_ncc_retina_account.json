@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_retina_account",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of the retina of the human eye.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Position and its two portions",
+      "marks": 1
+    },
+    {
+      "label": "The three layers of neurons",
+      "marks": 1
+    },
+    {
+      "label": "Rods and cones",
+      "marks": 1
+    },
+    {
+      "label": "Yellow spot and blind spot",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.33, SAQ 22. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Neural Control and Coordination · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "text",
+        "label": "Position and portions",
+        "marks": 1,
+        "mark_note": "Position",
+        "why": "The retina is the innermost coat because it is where light finally lands after passing through everything else.",
+        "common_mistakes": [
+          "Calling the retina the outer coat. It is the third, innermost coat.",
+          "Leaving out the pigmented portion."
+        ],
+        "memory_tip": "Sclera outside, choroid middle, retina inside.",
+        "margin_note": "Say which coat, then its two portions.",
+        "lines": [
+          "The retina is the third, innermost coat of",
+          "the eyeball.",
+          "It has a pigmented portion and a neural",
+          "portion.",
+          "The pigmented portion is an epithelial",
+          "layer containing melanin. It lies between",
+          "the choroid coat and the neural layer."
+        ]
+      },
+      {
+        "id": "s2_layers",
+        "kind": "text",
+        "label": "The three layers",
+        "marks": 1,
+        "mark_note": "Three layers",
+        "why": "Light has to pass the ganglion and bipolar layers before it reaches the cells that detect it, which is why the retina is called inverted.",
+        "common_mistakes": [
+          "Putting the photoreceptors on top. They are the outermost layer of the three.",
+          "Leaving out the word inverted."
+        ],
+        "memory_tip": "Light passes the ganglion cells first and the rods last: an inverted retina.",
+        "margin_note": "Name all three layers, then the word inverted.",
+        "lines": [
+          "The neural portion has three layers of",
+          "neurons:",
+          "1. Outer photoreceptor layer",
+          "2. Middle bipolar cell layer",
+          "3. Inner ganglion cell layer",
+          "Light passes through the ganglion layer",
+          "first, so the retina is called an inverted",
+          "retina."
+        ]
+      },
+      {
+        "id": "s3_rods_cones",
+        "kind": "text",
+        "label": "Rods and cones",
+        "marks": 1,
+        "mark_note": "Rods and cones",
+        "why": "Two different pigments are needed because dim light and colour are two different jobs.",
+        "common_mistakes": [
+          "Swapping the pigments. Rods have rhodopsin, cones have iodopsin.",
+          "Giving cones the dim light job. Cones work in bright light."
+        ],
+        "memory_tip": "Rods for the dark and rhodopsin; cones for colour and iodopsin.",
+        "margin_note": "One line each. Add vitamin A for the extra point.",
+        "lines": [
+          "The photoreceptor layer has two kinds of",
+          "cells.",
+          "Rods contain rhodopsin and are needed for",
+          "dim light vision. Vitamin A is needed to",
+          "make rhodopsin.",
+          "Cones contain iodopsin and are needed for",
+          "daylight vision and colour vision."
+        ]
+      },
+      {
+        "id": "s4_spots",
+        "kind": "boxed_final",
+        "label": "Yellow spot and blind spot",
+        "marks": 1,
+        "mark_note": "The two spots",
+        "why": "One spot has the most cones and gives the sharpest sight; the other has none at all and gives no sight.",
+        "common_mistakes": [
+          "Confusing the two spots. The yellow spot sees best, the blind spot not at all.",
+          "Leaving out fovea centralis."
+        ],
+        "memory_tip": "Yellow spot is the sharpest point; blind spot is where the nerve leaves.",
+        "margin_note": "Both spots, then why the blind spot forms no image.",
+        "lines": [
+          "The posterior part of the retina is the",
+          "macula lutea or yellow spot.",
+          "At its centre the cones are packed into a",
+          "depression called the fovea centralis,",
+          "which gives sharp clear vision.",
+          "Optic nerve fibres leave the eyeball at the",
+          "optic disc or blind spot.",
+          {
+            "text": "No photoreceptors here, so no image is formed",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Rhodopsin and iodopsin are one letter apart in the exam script. Write rods with rhodopsin on one line and cones with iodopsin on the next so the examiner cannot misread them."
+}

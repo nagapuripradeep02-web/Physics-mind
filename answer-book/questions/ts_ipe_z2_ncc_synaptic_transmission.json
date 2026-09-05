@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_synaptic_transmission",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of synaptic transmission.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a synapse is and its two types",
+      "marks": 1
+    },
+    {
+      "label": "The chemical synapse",
+      "marks": 1
+    },
+    {
+      "label": "Calcium and exocytosis",
+      "marks": 1
+    },
+    {
+      "label": "Receptors and the new potential",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.33, SAQ 21. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the insider note's claim that an out-of-order answer loses marks was replaced with the reason for writing the steps in order."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Neural Control and Coordination · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_synapse",
+        "kind": "text",
+        "label": "What a synapse is",
+        "marks": 1,
+        "mark_note": "Synapse and its types",
+        "why": "Two neurons never touch, so the signal has to cross a junction, and how it crosses depends on how wide that junction is.",
+        "common_mistakes": [
+          "Calling a synapse a kind of neuron. It is the junction between two.",
+          "Naming only the chemical type. Two types are expected."
+        ],
+        "memory_tip": "Electrical synapse: almost touching. Chemical synapse: a gap with a messenger.",
+        "margin_note": "Definition, then both types on separate lines.",
+        "lines": [
+          "A synapse is the junction between two",
+          "successive neurons. It transmits nerve",
+          "impulses from one neuron to the next.",
+          "There are two types of synapses.",
+          "In an electrical synapse the membranes of",
+          "the two neurons lie very close and are",
+          "electrically conductive links."
+        ]
+      },
+      {
+        "id": "s2_chemical",
+        "kind": "text",
+        "label": "The chemical synapse",
+        "marks": 1,
+        "mark_note": "Chemical synapse",
+        "why": "A gap the signal cannot jump forces the neuron to send a chemical across instead of a current.",
+        "common_mistakes": [
+          "Writing that the impulse jumps the cleft. A chemical carries it across.",
+          "Leaving out the synaptic cleft."
+        ],
+        "memory_tip": "Cleft, vesicles, neurotransmitter — the three names of the chemical synapse.",
+        "margin_note": "Name the cleft and the vesicles. Both are marked.",
+        "lines": [
+          "In a chemical synapse the two membranes",
+          "are separated by a fluid filled space",
+          "called the synaptic cleft.",
+          "Chemical messengers called",
+          "neurotransmitters carry the impulse across.",
+          "They are released from the synaptic",
+          "vesicles of the axon terminals."
+        ]
+      },
+      {
+        "id": "s3_calcium",
+        "kind": "text",
+        "label": "Calcium and exocytosis",
+        "marks": 1,
+        "mark_note": "Calcium and release",
+        "why": "Calcium entering the terminal is the switch that turns an electrical signal into a chemical one.",
+        "common_mistakes": [
+          "Naming sodium instead of calcium. Calcium channels open at the terminal.",
+          "Leaving out exocytosis. It is the marked word for the release."
+        ],
+        "memory_tip": "Impulse arrives, calcium in, vesicles fuse, transmitter out.",
+        "margin_note": "Four steps in order. Keep them as separate lines.",
+        "lines": [
+          "When an impulse reaches the axon terminal,",
+          "the membrane gets depolarised and voltage",
+          "gated calcium channels open.",
+          "Calcium ions move the synaptic vesicles to",
+          "the membrane.",
+          "The vesicles fuse with the plasma membrane",
+          "and release their neurotransmitters into",
+          "the cleft by exocytosis."
+        ]
+      },
+      {
+        "id": "s4_receptors",
+        "kind": "boxed_final",
+        "label": "Receptors and new potential",
+        "marks": 1,
+        "mark_note": "Receptors",
+        "why": "The transmitter opens gates on the next neuron, so a chemical signal becomes an electrical one again and the impulse continues.",
+        "common_mistakes": [
+          "Stopping at the release. The answer must reach the next neuron.",
+          "Leaving out acetylcholine as the usual transmitter."
+        ],
+        "memory_tip": "Bind, gates open, ions in, new potential.",
+        "margin_note": "End at the new potential. That is where the impulse continues.",
+        "lines": [
+          "The released neurotransmitters, mostly",
+          "acetylcholine, bind to their own receptors",
+          "on the post-synaptic membrane.",
+          "That membrane has ligand gated channels.",
+          {
+            "text": "Ions enter and make a new potential",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Follow the impulse in order: arrive, calcium in, vesicles fuse, transmitter out, receptor binds, new potential. Written in that order, each line follows from the one before it."
+}

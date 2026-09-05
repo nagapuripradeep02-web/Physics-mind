@@ -166,6 +166,13 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // book prints a Botany practical sheet but no mark value for it, and copying the
     // first-year 15 would be inventing a figure.
     botany_2: { label: 'Botany-II', total: 60, sections: ABC_60, wef: '2026-27' },
+    // Senior Inter Zoology Paper-II (2026-08-29). Same ABC_60 shape, read off the
+    // book's own Model Paper-1 (p.75): Section A 'Answer ALL' 10 x 2 = 20, Section B
+    // 'any SIX' of the eight printed x 4 = 24, Section C 'any TWO' of the three
+    // printed x 8 = 16, total 60. `internal` is deliberately omitted for the same
+    // reason as the three rows above: the book prints a practical sheet but no mark
+    // value for it, and copying the first-year 15 would be inventing a figure.
+    zoology_2: { label: 'Zoology-II', total: 60, sections: ABC_60, wef: '2026-27' },
 
     // Senior Inter Maths-2B (2026-08-29). The OLD 75-mark shape — see
     // ABC_75_MATHS_PRE_REFORM above. `internal` is deliberately omitted: second year
@@ -454,7 +461,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

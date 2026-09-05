@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_triad_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is triad system?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What flanks the T tubule",
+      "marks": 1
+    },
+    {
+      "label": "The three parts together",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 75. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_flank",
+        "kind": "text",
+        "label": "What flanks the T tubule",
+        "marks": 1,
+        "mark_note": "The arrangement",
+        "why": "The T tubule carries the electrical signal deep into the fibre, and the cisternae beside it hold the calcium that signal releases.",
+        "common_mistakes": [
+          "Naming three T tubules. There is one tubule and two cisternae.",
+          "Placing the cisternae in the mitochondria."
+        ],
+        "memory_tip": "One tubule between two cisternae: three parts, so triad.",
+        "margin_note": "Say what lies on either side of the tubule.",
+        "lines": [
+          "Each T tubule is flanked on either side by",
+          "terminal cisternae of the sarcoplasmic",
+          "reticulum."
+        ]
+      },
+      {
+        "id": "s2_triad",
+        "kind": "boxed_final",
+        "label": "The three together",
+        "marks": 1,
+        "mark_note": "The triad",
+        "why": "Naming the group of three is the answer: the word triad is a count.",
+        "common_mistakes": [
+          "Leaving out the word triad in the answer.",
+          "Naming only the sarcoplasmic reticulum."
+        ],
+        "memory_tip": "Tubule plus two cisternae equals one triad.",
+        "margin_note": "One line names the group.",
+        "lines": [
+          {
+            "text": "T tubule + two terminal cisternae = triad",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "This question is asked more often than any other two-mark question in this chapter. The word triad means three, so the answer must name three structures."
+}

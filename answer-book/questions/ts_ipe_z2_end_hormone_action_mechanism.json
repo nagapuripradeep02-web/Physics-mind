@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_end_hormone_action_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Endocrine System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on the mechanism of action of hormones.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What hormones do",
+      "marks": 1
+    },
+    {
+      "label": "Lipid insoluble hormones",
+      "marks": 1
+    },
+    {
+      "label": "The second messenger",
+      "marks": 1
+    },
+    {
+      "label": "Lipid soluble hormones",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.34-35, SAQ 25 — the book's answer for the lipid soluble mechanism stops at the hormone-receptor complex, where its page ends; the closing step (the complex acting on the genes) is authored here and is NOT in the source. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Endocrine System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What hormones do",
+        "marks": 1,
+        "mark_note": "Target cells",
+        "why": "A hormone reaches every cell in the blood but only changes the ones carrying its receptor, and that is what makes it specific.",
+        "common_mistakes": [
+          "Writing that hormones act on all cells. They act only on target cells.",
+          "Splitting hormones by gland instead of by solubility."
+        ],
+        "memory_tip": "The receptor decides the target, not the blood supply.",
+        "margin_note": "Set up the two-type split in the first three lines.",
+        "lines": [
+          "Hormones regulate various functions of the",
+          "body. They are chemical messengers and act",
+          "on target cells.",
+          "Based on solubility, hormones are of two",
+          "types: lipid insoluble and lipid soluble."
+        ]
+      },
+      {
+        "id": "s2_insoluble",
+        "kind": "text",
+        "label": "Lipid insoluble hormones",
+        "marks": 1,
+        "mark_note": "Membrane receptors",
+        "why": "A hormone that cannot cross the membrane must deliver its message at the surface and let something else carry it inward.",
+        "common_mistakes": [
+          "Letting these hormones enter the cell. They cannot cross the membrane.",
+          "Leaving out the G protein."
+        ],
+        "memory_tip": "It cannot get in, so it knocks at the door: a membrane receptor.",
+        "margin_note": "Membrane receptor, then G protein.",
+        "lines": [
+          {
+            "text": "Lipid insoluble hormones",
+            "style": "heading"
+          },
+          "They bind to membrane bound receptors on",
+          "the surface of the target cell.",
+          "The receptor stimulates a G protein."
+        ]
+      },
+      {
+        "id": "s3_second_messenger",
+        "kind": "text",
+        "label": "The second messenger",
+        "marks": 1,
+        "mark_note": "Second messenger",
+        "why": "One hormone molecule makes many cAMP molecules and each of those starts more reactions, so a faint outside signal becomes a strong inside one.",
+        "common_mistakes": [
+          "Calling cAMP the first messenger. The hormone is first, cAMP is second.",
+          "Leaving out adenylate cyclase."
+        ],
+        "memory_tip": "Hormone outside, cAMP inside: the second messenger.",
+        "margin_note": "Name the enzyme, the messenger and an example.",
+        "lines": [
+          "The G protein activates adenylate cyclase.",
+          "This forms a secondary messenger such as",
+          "cyclic AMP.",
+          "The secondary messenger drives further",
+          "reactions in a cascade.",
+          "Example: epinephrine."
+        ]
+      },
+      {
+        "id": "s4_soluble",
+        "kind": "boxed_final",
+        "label": "Lipid soluble hormones",
+        "marks": 1,
+        "mark_note": "Lipid soluble",
+        "why": "A hormone that can pass straight through the membrane needs no messenger: it acts on the genes itself.",
+        "common_mistakes": [
+          "Giving these hormones membrane receptors. Their receptors are inside the cell.",
+          "Leaving out the hormone-receptor complex."
+        ],
+        "memory_tip": "It walks in and goes to the genes.",
+        "margin_note": "Diffuse in, bind inside, act on the genes.",
+        "lines": [
+          {
+            "text": "Lipid soluble hormones",
+            "style": "heading"
+          },
+          "They diffuse easily through the cell",
+          "membrane.",
+          "They bind receptors in the cytoplasm and",
+          "form a hormone-receptor complex.",
+          {
+            "text": "The complex acts on genes to change proteins",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The split is by solubility, so say which type each mechanism belongs to before describing it. An answer that describes cAMP without naming the lipid insoluble group is hard to mark."
+}

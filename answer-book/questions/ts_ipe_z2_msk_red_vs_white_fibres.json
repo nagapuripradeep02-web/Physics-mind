@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_red_vs_white_fibres",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between red muscle fibers and white muscle fibers.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Red muscle fibres",
+      "marks": 1
+    },
+    {
+      "label": "White muscle fibres",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 77. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the insider note's half-mark verdict on a hypothetical answer was replaced with the three points the complete answer names."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_red",
+        "kind": "text",
+        "label": "Red muscle fibres",
+        "marks": 1,
+        "mark_note": "Red fibres",
+        "why": "Myoglobin stores oxygen and mitochondria use it, so a fibre rich in both can keep working without tiring.",
+        "common_mistakes": [
+          "Calling red fibres anaerobic. They are aerobic.",
+          "Leaving out myoglobin, which is what makes them red."
+        ],
+        "memory_tip": "Red means more myoglobin, more mitochondria, aerobic work.",
+        "margin_note": "Three points each side.",
+        "lines": [
+          "Red muscle fibres have more myoglobin and",
+          "more mitochondria.",
+          "They are called aerobic muscles.",
+          "They use the oxygen stored in myoglobin,",
+          "which the mitochondria then consume."
+        ]
+      },
+      {
+        "id": "s2_white",
+        "kind": "boxed_final",
+        "label": "White muscle fibres",
+        "marks": 1,
+        "mark_note": "White fibres",
+        "why": "With little stored oxygen the fibre must release energy without it, which is fast but tires quickly.",
+        "common_mistakes": [
+          "Giving white fibres more mitochondria. They have very few.",
+          "Calling them aerobic."
+        ],
+        "memory_tip": "White means less myoglobin, few mitochondria, anaerobic work.",
+        "margin_note": "Mirror the three points exactly.",
+        "lines": [
+          "White muscle fibres have less myoglobin",
+          "and very few mitochondria.",
+          "They are called anaerobic muscles.",
+          {
+            "text": "They release energy without oxygen",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Myoglobin is what makes the fibre red, so name it first: more myoglobin and more mitochondria, then the word aerobic. Mirror the same three points for white fibres."
+}

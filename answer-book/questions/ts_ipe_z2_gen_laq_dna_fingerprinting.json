@@ -1,0 +1,276 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_gen_laq_dna_fingerprinting",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Genetics (Zoology-II)"
+  },
+  "chapter": "Genetics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is DNA fingerprinting? Mention its applications.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Why it works",
+      "marks": 1
+    },
+    {
+      "label": "Obtaining and cutting the DNA",
+      "marks": 1
+    },
+    {
+      "label": "Electrophoresis and denaturing",
+      "marks": 1
+    },
+    {
+      "label": "Blotting",
+      "marks": 1
+    },
+    {
+      "label": "Probes and hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "Exposure on film",
+      "marks": 1
+    },
+    {
+      "label": "Applications",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.26, LAQ 10. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note now says what a complete answer contains instead of claiming an answer without the named steps loses marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Genetics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Every person's DNA differs slightly, so the pattern of fragments it gives is as individual as a fingerprint.",
+        "common_mistakes": [
+          "Saying it reads the whole genome. It reads a pattern of repeats.",
+          "Leaving out the other name, DNA typing."
+        ],
+        "memory_tip": "DNA fingerprinting is also called DNA typing.",
+        "margin_note": "Definition, other name and uses first.",
+        "lines": [
+          "DNA fingerprinting, or genetic",
+          "fingerprinting, is a method of identifying",
+          "individuals by the particular structure of",
+          "their DNA. It is also called DNA typing.",
+          "It is used for maternity and paternity",
+          "testing and for forensic work.",
+          "DNA can be obtained from any tissue or",
+          "fluid of the body, and even from buried",
+          "tissues and bones."
+        ]
+      },
+      {
+        "id": "s2_why",
+        "kind": "text",
+        "label": "Why it works",
+        "marks": 1,
+        "mark_note": "VNTRs",
+        "why": "Almost all our DNA is shared, so only the few sequences that differ between people can identify anyone.",
+        "common_mistakes": [
+          "Saying everyone's DNA is completely different. Over 99% is identical.",
+          "Leaving out VNTRs."
+        ],
+        "memory_tip": "99% the same; the repeats, the VNTRs, are what differ.",
+        "margin_note": "Name VNTRs and Jeffreys. Both are marked.",
+        "lines": [
+          "More than 99% of the 3 billion base pairs",
+          "are identical in all individuals.",
+          "But no two people have the same DNA",
+          "sequence, other than identical twins.",
+          "The sequences peculiar to an individual are",
+          "called variable number tandem repeats,",
+          "or VNTRs.",
+          "The technique was developed by Jeffreys",
+          "from the myoglobin of muscle."
+        ]
+      },
+      {
+        "id": "s3_obtain_cut",
+        "kind": "text",
+        "label": "Obtaining and cutting",
+        "marks": 1,
+        "mark_note": "Steps 1 and 2",
+        "why": "The DNA must be cut at fixed sites, or the fragment pattern would differ from run to run and could not be compared.",
+        "common_mistakes": [
+          "Naming the wrong enzyme. Restriction endonucleases do the cutting.",
+          "Leaving out amplification."
+        ],
+        "memory_tip": "Obtain, then cut with restriction endonucleases.",
+        "margin_note": "Number the steps. There are six.",
+        "lines": [
+          {
+            "text": "Procedure",
+            "style": "heading"
+          },
+          "1. Obtaining DNA: DNA is taken from blood,",
+          "saliva, hair roots or semen. Copies can be",
+          "made by cloning and DNA amplification.",
+          "2. Fragmenting DNA: restriction",
+          "endonucleases cut the DNA into smaller",
+          "fragments at specific sites."
+        ]
+      },
+      {
+        "id": "s4_electrophoresis",
+        "kind": "text",
+        "label": "Separating and denaturing",
+        "marks": 1,
+        "mark_note": "Steps 3 and 4",
+        "why": "Smaller fragments move further through the gel, so the fragments sort themselves by size into a pattern of bands.",
+        "common_mistakes": [
+          "Saying larger pieces travel further. Smaller pieces do.",
+          "Leaving out that the strands must be separated before probing."
+        ],
+        "memory_tip": "Small pieces run far; alkali splits the two strands.",
+        "margin_note": "Say which way the fragments move.",
+        "lines": [
+          "3. Separation by electrophoresis: the",
+          "fragments are applied at one end of an",
+          "agarose gel plate and an electric current",
+          "is applied. The fragments travel across the",
+          "gel, and smaller pieces travel farther.",
+          "4. Denaturing DNA: alkaline chemicals",
+          "separate the two strands of DNA."
+        ]
+      },
+      {
+        "id": "s5_blotting",
+        "kind": "text",
+        "label": "Blotting",
+        "marks": 1,
+        "mark_note": "Step 5",
+        "why": "The gel is fragile, so the pattern is transferred to a tough nylon sheet before anything further is done to it.",
+        "common_mistakes": [
+          "Naming Northern or Western blotting. For DNA it is Southern blotting.",
+          "Leaving out the name of the process."
+        ],
+        "memory_tip": "Southern blotting is for DNA.",
+        "margin_note": "The name Southern blotting carries the mark.",
+        "lines": [
+          "5. Blotting: a thin nylon membrane is",
+          "placed over the DNA fragments on the plate",
+          "and covered by a paper towel. The towel",
+          "absorbs moisture and the DNA strands are",
+          "transferred to the nylon membrane.",
+          {
+            "text": "This process is called Southern blotting",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s6_probes",
+        "kind": "text",
+        "label": "Probes and hybridisation",
+        "marks": 1,
+        "mark_note": "Step 6",
+        "why": "The probe pairs only with the sequence it matches, so it marks exactly the fragments of interest and nothing else.",
+        "common_mistakes": [
+          "Making the probe double stranded. It is a single complementary strand.",
+          "Leaving out the washing step."
+        ],
+        "memory_tip": "A radioactive single strand finds its partner and sticks.",
+        "margin_note": "Say what holds the probe on: hydrogen bonds.",
+        "lines": [
+          "6. Using probes: radioactive probes are",
+          "used. A probe is a complementary single",
+          "strand of the sample under study. It",
+          "attaches to the sample strand by hydrogen",
+          "bonds.",
+          "After the probe hybridises, the excess",
+          "probe is washed off. A photographic film is",
+          "placed on the membrane holding the DNA",
+          "hybrids."
+        ]
+      },
+      {
+        "id": "s7_film",
+        "kind": "text",
+        "label": "Exposure on film",
+        "marks": 1,
+        "mark_note": "The print",
+        "why": "The radioactive label darkens the film wherever a fragment lies, so the invisible pattern becomes a picture.",
+        "common_mistakes": [
+          "Saying the bands are seen directly on the gel.",
+          "Leaving out that the pattern of bands IS the fingerprint."
+        ],
+        "memory_tip": "The film shows thick and thin bands: that pattern is the print.",
+        "margin_note": "One short paragraph closes the procedure.",
+        "lines": [
+          "The radioactive label exposes the film and",
+          "forms an image corresponding to specific",
+          "DNA bands.",
+          "The thick and thin bands form a pattern",
+          "which is called the DNA fingerprint."
+        ]
+      },
+      {
+        "id": "s8_applications",
+        "kind": "boxed_final",
+        "label": "Applications",
+        "marks": 1,
+        "mark_note": "Applications",
+        "why": "Every use is the same idea applied to a different question: whose DNA is this.",
+        "common_mistakes": [
+          "Giving fewer than four applications when the question asks for them.",
+          "Repeating forensic use twice in different words."
+        ],
+        "memory_tip": "Crime, parentage, pedigree, taxonomy, wildlife, migration.",
+        "margin_note": "Six numbered applications finish the essay.",
+        "lines": [
+          {
+            "text": "Applications",
+            "style": "heading"
+          },
+          "1. Forensic analysis: to identify a suspect",
+          "in a crime.",
+          "2. Medico-legal cases: to establish",
+          "paternity or maternity.",
+          "3. Pedigree analysis: to study the",
+          "inheritance pattern of a gene.",
+          "4. Taxonomy: for the study of phylogeny.",
+          "5. Conservation of wildlife: by keeping",
+          "DNA records.",
+          {
+            "text": "6. Anthropology: charting human migration",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The six steps must be in order and named — obtain, fragment, separate, denature, blot, probe. The complete answer names each step, not only the idea behind the technique."
+}

@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 146. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. DUPLICATE IN THE SOURCE: this exact question, with the same printed answer, appears TWICE in the book — as global 146 and again as global 150, both on book p.49. One card is authored, from the first occurrence. BOOK ERROR corrected here: the printed answer reads \"Escherichia coli: It is a plasmid used as a cloning vector\". E. coli is a BACTERIUM; its plasmids are the cloning vectors, and it is itself the host organism."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.49, printed question 146. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. DUPLICATE IN THE SOURCE: this exact question, with the same printed answer, appears TWICE in the book — as global 146 and again as global 150, both on book p.49. One card is authored, from the first occurrence. BOOK ERROR corrected here: the printed answer reads \"Escherichia coli: It is a plasmid used as a cloning vector\". E. coli is a BACTERIUM; its plasmids are the cloning vectors, and it is itself the host organism. Revised 2026-09-05: the insider note and s1_ecoli common_mistakes[1] both said the mark is for the use, although the question asks only for two microbes and the mark split allocates both marks to the names; s2_agro common_mistakes[0] forbade calling Agrobacterium a host, which contradicts this card's own line that the Ti PLASMID is the vector — all three now describe the two roles instead."
   },
-  "insider_note": "Two organisms and what each is used FOR. Do not just name them — the use is half the question.",
+  "insider_note": "Two organisms, one mark each. Name both exactly — Escherichia coli and Agrobacterium tumefaciens — and add one line on what each is used for.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -57,7 +57,7 @@
         "why": "A host that divides every twenty minutes turns one recombinant cell into millions overnight, which is what makes gene cloning practical.",
         "common_mistakes": [
           "Saying E. coli IS a plasmid. It is a BACTERIUM; its plasmids are the vectors. The guide's printed answer makes this mistake.",
-          "Giving the name with no use. The use is what the mark is for."
+          "Saying the gene is put straight into the bacterium's own DNA. The gene is joined to a PLASMID first, and E. coli then takes that plasmid up."
         ],
         "memory_tip": "The bacterium is the host; its plasmid is the vector."
       },
@@ -86,7 +86,7 @@
         ],
         "why": "Agrobacterium already had a natural mechanism for pushing its own DNA into plant cells, so genetic engineers borrowed it rather than inventing one.",
         "common_mistakes": [
-          "Saying Agrobacterium is used as a host. It is a VECTOR for plants; E. coli is the host.",
+          "Mixing up the two roles. The gene is first cloned in E. coli; then the disarmed Ti plasmid of Agrobacterium carries it into the plant cell.",
           "Saying the Ti plasmid still causes tumours. It is DISARMED before use."
         ],
         "memory_tip": "Ti stands for tumour inducing, and it is disarmed before use."

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_keystone_bone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the keystone bone of the cranium. Where is it located?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The bone",
+      "marks": 1
+    },
+    {
+      "label": "Where it lies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 81. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bone",
+        "kind": "text",
+        "label": "The bone",
+        "marks": 1,
+        "mark_note": "The bone",
+        "why": "It is called the keystone because it touches almost every other cranial bone and locks them together.",
+        "common_mistakes": [
+          "Naming the frontal or occipital bone.",
+          "Spelling it sphenoid but placing it in the face."
+        ],
+        "memory_tip": "The keystone in an arch is the one every other stone leans on.",
+        "margin_note": "Name it, then place it.",
+        "lines": [
+          "The sphenoid bone is the keystone bone of",
+          "the cranium."
+        ]
+      },
+      {
+        "id": "s2_location",
+        "kind": "boxed_final",
+        "label": "Where it lies",
+        "marks": 1,
+        "mark_note": "Location",
+        "why": "Lying at the base, it can reach every surrounding bone at once.",
+        "common_mistakes": [
+          "Placing it at the top of the skull. It lies at the base.",
+          "Leaving the location out."
+        ],
+        "memory_tip": "At the base of the cranium, touching most of the others.",
+        "margin_note": "One line for the location.",
+        "lines": [
+          "It lies in the base of the cranium.",
+          {
+            "text": "It touches most of the other cranial bones",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two questions in one line: the name and the place. Answer both or lose half the marks."
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_natural_selection_melanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Darwin's theory of Natural Selection with industrial melanism as an experimental proof.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What natural selection explains",
+      "marks": 1
+    },
+    {
+      "label": "What industrial melanism is",
+      "marks": 1
+    },
+    {
+      "label": "Before the industrial revolution",
+      "marks": 1
+    },
+    {
+      "label": "After the industrial revolution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.41, SAQ 38. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Evolution · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_theory",
+        "kind": "text",
+        "label": "What the theory explains",
+        "marks": 1,
+        "mark_note": "The theory",
+        "why": "Natural selection needs no plan: whichever form survives better simply leaves more offspring.",
+        "common_mistakes": [
+          "Saying the moths changed colour to match the trees. They did not; the proportions changed.",
+          "Confusing natural selection with Lamarck's use and disuse."
+        ],
+        "memory_tip": "Nature does not change the animal; it changes which animals survive.",
+        "margin_note": "One line on the theory before the example.",
+        "lines": [
+          "Darwin's theory of natural selection",
+          "explains how evolution might have occurred",
+          "in nature."
+        ]
+      },
+      {
+        "id": "s2_melanism",
+        "kind": "text",
+        "label": "What industrial melanism is",
+        "marks": 1,
+        "mark_note": "Industrial melanism",
+        "why": "The soot changed the background the moths rest against, so the same colour that once hid a moth now showed it up.",
+        "common_mistakes": [
+          "Leaving out the peppered moth by name.",
+          "Saying the pollution changed the moths' colour directly."
+        ],
+        "memory_tip": "Melanism means dark: the dark form is selected in polluted places.",
+        "margin_note": "Name the moth and the two colour forms.",
+        "lines": [
+          "The natural selection of darker forms in",
+          "response to industrial pollution is called",
+          "industrial melanism.",
+          "The peppered moth is the scientific example",
+          "used to explain it.",
+          "These moths occurred in two colours, grey",
+          "and black."
+        ]
+      },
+      {
+        "id": "s3_before",
+        "kind": "text",
+        "label": "Before the revolution",
+        "marks": 1,
+        "mark_note": "Before",
+        "why": "Against a pale lichen-covered bark, the grey moth was hidden and the black one stood out.",
+        "common_mistakes": [
+          "Getting the direction wrong. Grey moths were abundant BEFORE the revolution.",
+          "Leaving out the birds, which do the selecting."
+        ],
+        "memory_tip": "Pale bark, pale moth safe.",
+        "margin_note": "Say who does the selecting: the birds.",
+        "lines": [
+          "Grey moths were abundant before the",
+          "industrial revolution all over England.",
+          "On the pale bark they were hidden from",
+          "birds."
+        ]
+      },
+      {
+        "id": "s4_after",
+        "kind": "boxed_final",
+        "label": "After the revolution",
+        "marks": 1,
+        "mark_note": "After",
+        "why": "Nothing about either moth changed; only the background did, and that was enough to reverse which form survived.",
+        "common_mistakes": [
+          "Saying the grey moths died out completely. They decreased in number.",
+          "Leaving out the soot on the tree bark."
+        ],
+        "memory_tip": "Dark bark, dark moth safe.",
+        "margin_note": "End with the change in numbers. That is the proof.",
+        "lines": [
+          "Pollution from industries, in the form of",
+          "soot, turned the barks of trees black.",
+          "Grey moths were now easily seen and were",
+          "eaten more by birds.",
+          {
+            "text": "So grey moths decreased and black ones increased",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Tell it as a before-and-after story. The examiner is looking for the reason the SAME moth changed from an advantage to a disadvantage without the moth changing at all."
+}

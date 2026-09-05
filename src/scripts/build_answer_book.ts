@@ -84,6 +84,20 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
         short: 'MPC',
         year: 'Second year',
     },
+    // Senior Inter BiPC (2026-09-04). Botany-II and Zoology-II were audited card by
+    // card and through the chatbot the day this landed. The physics and chemistry
+    // papers are the SAME cards the MPC stream serves — a BiPC student sits those
+    // papers too — and that sharing is exactly what the two-streams guard below
+    // refuses inside ONE multi-stream artifact. So `--stream=bipc_2` builds
+    // standalone today, and the combined door build (mpc,mpc_2,bipc_2) waits on a
+    // founder decision about a subject living in two streams of one artifact.
+    bipc_2: {
+        subjects: ['botany_2', 'zoology_2', 'physics_2', 'chemistry_2'],
+        label: 'Senior Inter BiPC',
+        blurb: 'Botany-II, Zoology-II, Physics and Chemistry',
+        short: 'BiPC',
+        year: 'Second year',
+    },
 };
 // The DOOR (founder, 2026-08-27): the group-and-year chooser a student meets
 // before the catalog. It exists because answers.viditra.co dropped straight into
@@ -134,7 +148,10 @@ const TRACKS: {
                 id: 'first_year', label: 'First year', stream: null,
                 note: 'Botany and Zoology are written. We are checking them before we hand them to you.',
             },
-            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+            {
+                id: 'second_year', label: 'Second year', stream: 'bipc_2',
+                note: 'Botany-II and Zoology-II are written. We are checking them before we hand them to you.',
+            },
         ],
     },
     {
@@ -316,7 +333,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b'];
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2'];
 // STREAMS (top of file) names subjects too. If the two lists drift — a stream
 // naming a subject that no longer exists, or a renamed subject — the lens would
 // silently drop a whole paper from a student's book rather than erroring. Cheap

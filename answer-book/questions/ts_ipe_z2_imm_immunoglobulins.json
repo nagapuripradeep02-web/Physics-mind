@@ -1,0 +1,417 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_immunoglobulins",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on immunoglobulins.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What antibodies are",
+      "marks": 1
+    },
+    {
+      "label": "Free and surface antibodies",
+      "marks": 1
+    },
+    {
+      "label": "Structure and the five classes",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 29. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the disulfide bonds now carry a label, and the two paratope leaders land on the Fab caps instead of stopping in the gap beside them. Revised 2026-09-05 (examiner audit Z2-07): the insider note no longer says the drawing covers the structure row on its own, since the written structure and the five classes are asked for separately from the diagram."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Immune System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What antibodies are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "Each antibody fits one antigen only, which is why the body needs so many different ones.",
+        "common_mistakes": [
+          "Saying T cells make antibodies. B lymphocytes do.",
+          "Writing that one antibody works against any germ."
+        ],
+        "memory_tip": "Antibody and antigen fit like a lock and key.",
+        "margin_note": "Who makes them and how specific they are.",
+        "lines": [
+          "Antibodies, or immunoglobulins, are",
+          "produced by B lymphocytes when pathogens",
+          "enter the body.",
+          "Antibodies are antigen specific."
+        ]
+      },
+      {
+        "id": "s2_free_surface",
+        "kind": "text",
+        "label": "Free and surface antibodies",
+        "marks": 1,
+        "mark_note": "Two types",
+        "why": "An antibody floating in the blood can reach a germ anywhere, while one fixed to a cell turns that cell into a detector.",
+        "common_mistakes": [
+          "Naming five types here. The five classes come later; here there are two.",
+          "Leaving out where each is found."
+        ],
+        "memory_tip": "Free ones travel in blood; surface ones stay on the cell.",
+        "margin_note": "Two types, and where each is found.",
+        "lines": [
+          "By mobility there are two types of",
+          "antibodies: free antibodies and surface",
+          "antibodies.",
+          "Circulating or free antibodies are present",
+          "in blood and lymph.",
+          "Surface antibodies are present on the",
+          "surface of B cells and memory cells."
+        ]
+      },
+      {
+        "id": "s3_structure",
+        "kind": "text",
+        "label": "Structure and classes",
+        "marks": 1,
+        "mark_note": "Structure",
+        "why": "Two arms means one antibody can hold two antigens at once, which is how it clumps germs together.",
+        "common_mistakes": [
+          "Giving two chains. There are four: two heavy and two light.",
+          "Swapping the ends. The antigen binds at the Fab end."
+        ],
+        "memory_tip": "H₂L₂: two heavy, two light. Fab holds the antigen, Fc holds the cell.",
+        "margin_note": "Write H₂L₂ and name both ends.",
+        "lines": [
+          "An antibody is a Y shaped molecule with",
+          "four polypeptide chains: two long identical",
+          "heavy chains and two small light chains.",
+          {
+            "text": "It is written as H₂L₂",
+            "style": "eq"
+          },
+          "The chains are linked by disulfide bonds.",
+          "The antigen attaches at the Fab end. The",
+          "Fc end may attach to B cells.",
+          "By structure there are five classes: IgD,",
+          "IgE, IgG, IgA and IgM."
+        ]
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Diagram — an antibody",
+        "marks": 1,
+        "mark_note": "Labelled diagram",
+        "why": "The Y shape shows at once why an antibody has two binding sites and one tail.",
+        "common_mistakes": [
+          "Drawing the light chains as long as the heavy ones. They are shorter.",
+          "Leaving the Fab and Fc ends unlabelled."
+        ],
+        "memory_tip": "Two heavy chains make the Y; a light chain rides each arm.",
+        "margin_note": "Label both ends and both chains.",
+        "figure": {
+          "id": "imm_antibody_structure",
+          "width": 520,
+          "height": 404,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the two heavy chains make the Y"
+            },
+            {
+              "type": "stroke",
+              "id": "heavy_l_outer",
+              "d": "M 228 352 L 228 240 L 186 132",
+              "ms": 3260
+            },
+            {
+              "type": "stroke",
+              "id": "heavy_l_inner",
+              "d": "M 244 352 L 244 232 L 206 126",
+              "ms": 3320
+            },
+            {
+              "type": "stroke",
+              "id": "heavy_r_outer",
+              "d": "M 292 352 L 292 240 L 334 132",
+              "ms": 3260
+            },
+            {
+              "type": "stroke",
+              "id": "heavy_r_inner",
+              "d": "M 276 352 L 276 232 L 314 126",
+              "ms": 3320
+            },
+            {
+              "type": "stroke",
+              "id": "fc_end",
+              "d": "M 228 352 C 240 362 280 362 292 352",
+              "ms": 950
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — a light chain along each arm"
+            },
+            {
+              "type": "stroke",
+              "id": "light_l_outer",
+              "d": "M 172 138 L 202 214",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "light_l_inner",
+              "d": "M 188 132 L 218 208",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "light_l_cap",
+              "d": "M 172 138 C 176 128 184 126 188 132",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "light_r_outer",
+              "d": "M 348 138 L 318 214",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "light_r_inner",
+              "d": "M 332 132 L 302 208",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "light_r_cap",
+              "d": "M 348 138 C 344 128 336 126 332 132",
+              "ms": 310
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the antigen binding tips"
+            },
+            {
+              "type": "stroke",
+              "id": "fab_l",
+              "d": "M 186 132 C 190 122 202 120 206 126",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "fab_r",
+              "d": "M 334 132 C 330 122 318 120 314 126",
+              "ms": 360
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the disulfide bonds that hold it together"
+            },
+            {
+              "type": "stroke",
+              "id": "bond_hh",
+              "d": "M 244 248 L 276 248 M 244 264 L 276 264",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "bond_hl_l",
+              "d": "M 204 176 L 214 172 M 212 196 L 222 192",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "bond_hl_r",
+              "d": "M 316 176 L 306 172 M 308 196 L 298 192",
+              "ms": 310
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "stroke",
+              "id": "fab_bracket",
+              "d": "M 150 66 L 150 54 L 370 54 L 370 66",
+              "ms": 3490
+            },
+            {
+              "type": "label",
+              "id": "lb_fab",
+              "x": 152,
+              "y": 44,
+              "text": "Antigen binding sites (Fab ends)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_paratope_l",
+              "x": 6,
+              "y": 112,
+              "text": "Paratope",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_paratope_l",
+              "d": "M 72 106 L 192 125",
+              "ms": 1620,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_light_l",
+              "x": 6,
+              "y": 176,
+              "text": "Light chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_light_l",
+              "d": "M 92 170 L 184 172",
+              "ms": 1310,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_heavy_l",
+              "x": 6,
+              "y": 262,
+              "text": "Heavy chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_heavy_l",
+              "d": "M 96 256 L 226 264",
+              "ms": 1860,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_fc",
+              "x": 6,
+              "y": 356,
+              "text": "Fc end",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fc",
+              "d": "M 60 350 L 226 352",
+              "ms": 2370,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_paratope_r",
+              "x": 384,
+              "y": 112,
+              "text": "Paratope",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_paratope_r",
+              "d": "M 382 106 L 328 125",
+              "ms": 700,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_light_r",
+              "x": 384,
+              "y": 176,
+              "text": "Light chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_light_r",
+              "d": "M 382 170 L 334 172",
+              "ms": 690,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_heavy_r",
+              "x": 384,
+              "y": 262,
+              "text": "Heavy chain",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_heavy_r",
+              "d": "M 382 256 L 294 264",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_disulfide",
+              "x": 384,
+              "y": 310,
+              "text": "Disulfide bonds",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_disulfide",
+              "d": "M 382 304 L 272 264",
+              "ms": 1670,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "Draw the Y as well as describing it — the diagram is a separate part of the answer. Label the Fab and Fc ends and both chains on the drawing, and still write H₂L₂ and the five classes in the text."
+}

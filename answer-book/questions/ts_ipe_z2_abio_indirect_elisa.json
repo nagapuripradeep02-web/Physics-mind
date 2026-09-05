@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_indirect_elisa",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss briefly the process of indirect ELISA.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What ELISA is",
+      "marks": 1
+    },
+    {
+      "label": "Coating the well and adding serum",
+      "marks": 1
+    },
+    {
+      "label": "The enzyme linked antibody",
+      "marks": 1
+    },
+    {
+      "label": "The colour and its limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 48. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applied Biology · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What ELISA is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "A person who has met a germ carries antibodies against it, so finding those antibodies shows the infection happened.",
+        "common_mistakes": [
+          "Saying indirect ELISA detects antigens. It detects antibodies.",
+          "Leaving out the full form."
+        ],
+        "memory_tip": "Indirect ELISA looks for the patient's antibodies.",
+        "margin_note": "Full form and what the test finds.",
+        "lines": [
+          "ELISA means Enzyme Linked Immunosorbent",
+          "Assay. It is a fundamental tool of clinical",
+          "immunology.",
+          "Indirect ELISA is done to detect antibodies",
+          "in the serum of the patient.",
+          "The HIV test is an indirect ELISA."
+        ]
+      },
+      {
+        "id": "s2_coating",
+        "kind": "text",
+        "label": "Coating and serum",
+        "marks": 1,
+        "mark_note": "First two steps",
+        "why": "The known antigen is fixed to the well first, so any matching antibody in the patient's serum sticks to it.",
+        "common_mistakes": [
+          "Adding the serum before the antigen.",
+          "Leaving out that the antigen is a KNOWN one."
+        ],
+        "memory_tip": "Known antigen first, patient's serum second.",
+        "margin_note": "Number the steps in order.",
+        "lines": [
+          {
+            "text": "Protocol",
+            "style": "heading"
+          },
+          "1. It is used to detect anti-HIV",
+          "antibodies.",
+          "2. A known antigen, for example HIV",
+          "antigen, is added to the well.",
+          "3. The patient's antiserum is added.",
+          "4. Antibodies in the patient's antiserum",
+          "bind to the antigen coated on the surface",
+          "of the well."
+        ]
+      },
+      {
+        "id": "s3_enzyme_linked",
+        "kind": "text",
+        "label": "The enzyme linked antibody",
+        "marks": 1,
+        "mark_note": "Second antibody",
+        "why": "The patient's antibody carries no label of its own, so a second antibody with an enzyme attached is used to find it.",
+        "common_mistakes": [
+          "Attaching the enzyme to the first antibody.",
+          "Leaving out that the second antibody binds the first."
+        ],
+        "memory_tip": "The second antibody carries the enzyme and grabs the first.",
+        "margin_note": "This step is what makes the test 'indirect'.",
+        "lines": [
+          "5. Enzyme linked anti-human immune serum",
+          "globulins are added. They bind to the",
+          "antibodies that are already linked to the",
+          "antigens."
+        ]
+      },
+      {
+        "id": "s4_colour",
+        "kind": "boxed_final",
+        "label": "The colour and its limits",
+        "marks": 1,
+        "mark_note": "Result",
+        "why": "The enzyme turns its substrate a colour, so the amount of colour measures the amount of antibody present.",
+        "common_mistakes": [
+          "Saying ELISA confirms HIV. It is a screening test, not a confirmation.",
+          "Leaving out the spectrophotometer."
+        ],
+        "memory_tip": "Colour means antibody found, but it still needs confirming.",
+        "margin_note": "End with the limitation. It is a marked point.",
+        "lines": [
+          "6. The enzyme's substrate is added and the",
+          "reaction produces a visible colour, which",
+          "is measured by a spectrophotometer.",
+          "7. ELISA cannot be used as a confirmation",
+          "test for HIV.",
+          {
+            "text": "It can give false positives and negatives",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Indirect ELISA finds ANTIBODIES; direct ELISA finds antigens. Say which at the start, or the whole answer can be marked against the wrong test."
+}

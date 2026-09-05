@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 107. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 107. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the s1 mistake said brewing beer in a kitchen is not biotechnology, which NCERT XII Ch.11 contradicts when it calls curd, bread and wine a form of biotechnology, and the s2 memory tip said anything living things make and sell is biotechnology, which the card's own definition rules out."
   },
   "insider_note": "A long definition to write nearly word for word. The phrase to include is 'at the industrial level'.",
   "answer": {
@@ -59,7 +59,7 @@
         ],
         "why": "The words 'industrial level' are what separate biotechnology from ordinary biology: the same processes, run at scale for a product.",
         "common_mistakes": [
-          "Leaving out 'industrial level'. Brewing beer in a kitchen is not biotechnology.",
+          "Leaving out 'industrial level'. It is the phrase that ties the definition to production at scale, and the definition is built around it.",
           "Saying biotechnology means genetic engineering only. Genetic engineering is one part of it."
         ],
         "memory_tip": "Living things put to work, at industrial scale."
@@ -87,7 +87,7 @@
           "Giving no examples. The second mark is for what it actually makes.",
           "Naming only medicines. Crops and industrial enzymes are equally central."
         ],
-        "memory_tip": "If a living thing made it and it is sold, it is biotechnology."
+        "memory_tip": "Micro organisms or cells, used at industrial scale, to make a product."
       }
     ]
   }

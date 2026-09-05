@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.29, printed question 29. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.29, printed question 29. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): six tail pins are now drawn, matching the written answer, none of them on the tail axis, and the sheath and core leaders sit at different heights so they no longer form one unbroken line."
   },
   "insider_note": "Tadpole shaped. That one word sets the whole picture up, and examiners look for it in the first line.",
   "answer": {
@@ -324,27 +324,34 @@
             {
               "type": "stroke",
               "id": "bp_pin1",
-              "d": "M 238 266 L 238 280",
+              "d": "M 236 266 L 236 280",
               "ms": 300,
               "w": 1.6
             },
             {
               "type": "stroke",
               "id": "bp_pin2",
-              "d": "M 250 266 L 250 280",
+              "d": "M 246 266 L 246 280",
               "ms": 300,
               "w": 1.6
             },
             {
               "type": "stroke",
               "id": "bp_pin3",
-              "d": "M 262 266 L 262 280",
+              "d": "M 254 266 L 254 280",
               "ms": 300,
               "w": 1.6
             },
             {
               "type": "stroke",
               "id": "bp_pin4",
+              "d": "M 264 266 L 264 280",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bp_pin5",
               "d": "M 276 266 L 276 280",
               "ms": 300,
               "w": 1.6
@@ -413,7 +420,7 @@
             {
               "type": "stroke",
               "id": "pl_sheath",
-              "d": "M 128 208 L 232 208",
+              "d": "M 128 204 L 234 204",
               "ms": 1490,
               "w": 1.4
             },
@@ -434,7 +441,7 @@
             {
               "type": "stroke",
               "id": "pl_core",
-              "d": "M 326 208 L 254 208",
+              "d": "M 326 214 L 251 214",
               "ms": 1030,
               "w": 1.4
             },
@@ -474,7 +481,7 @@
               "type": "label",
               "id": "pb_sheath",
               "x": 60,
-              "y": 210,
+              "y": 206,
               "text": "Sheath",
               "ms": 450,
               "sm": true
@@ -501,7 +508,7 @@
               "type": "label",
               "id": "pb_core",
               "x": 330,
-              "y": 210,
+              "y": 216,
               "text": "Core",
               "ms": 450,
               "sm": true

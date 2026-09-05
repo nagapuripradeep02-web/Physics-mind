@@ -26,10 +26,6 @@
       "board": "ap_ipe"
     },
     {
-      "year": 2019,
-      "board": "ap_ipe"
-    },
-    {
       "year": 2016,
       "board": "ts_ipe"
     },
@@ -63,9 +59,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.23, printed question 13. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.23, printed question 13. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the mature nodule leader now starts clear of its own label instead of inside it. Examiner audit revision (2026-09-05): the insider note now counts the twelve numbered steps the card actually prints and groups them into the four mark rows, and the duplicated ap_ipe 2019 appearance was removed so the list shows the five distinct papers recorded."
   },
-  "insider_note": "Ten steps in the book, four marks on the paper. Group them: attract, attach, curl, thread, divide, differentiate, connect. Numbering the steps is what makes this answer readable.",
+  "insider_note": "Twelve numbered steps, four marks on the paper. Group them: attract and attach, curl and infection thread, divide and differentiate, vascular connection — one mark each. Numbering the steps is what makes this answer readable.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -104,8 +100,7 @@
         "margin_note": "Curl, thread, destination. The words 'infection thread' are the mark.",
         "lines": [
           "5. The root hair CURLS, forming a hook.",
-          "6. The bacteria spread into the cortex of the",
-          "root.",
+          "6. The bacteria invade the curled root hair.",
           "7. An INFECTION THREAD is produced.",
           "8. The thread carries the bacteria inward,",
           "into the cortex."
@@ -577,8 +572,8 @@
             {
               "type": "stroke",
               "id": "ld_nodule",
-              "d": "M 410 338 L 416 296",
-              "ms": 610,
+              "d": "M 492 330 L 437 288",
+              "ms": 990,
               "w": 1.4
             },
             {

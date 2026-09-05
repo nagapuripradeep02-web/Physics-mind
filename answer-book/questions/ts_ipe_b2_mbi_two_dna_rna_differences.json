@@ -39,9 +39,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 103. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 103. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note told the student to give exactly two differences although the card prints four, and the s1 why claimed the two hold for every DNA and every RNA, which single stranded DNA and double stranded RNA genomes disprove."
   },
-  "insider_note": "The question asks for TWO, so give exactly two and make them sharp. Sugar and strandedness are the safest pair.",
+  "insider_note": "The question asks for two, so give sugar and strandedness first. Two more differences follow below, and extra ones do no harm if there is room.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -61,7 +61,7 @@
           "2. DNA is DOUBLE stranded.",
           "   RNA is SINGLE stranded."
         ],
-        "why": "These two are structural facts that hold for every DNA and every RNA, so neither needs a qualification.",
+        "why": "Sugar and strandedness are structural differences, so they are quick to state and easy to remember, which is why a difference table usually opens with them.",
         "common_mistakes": [
           "Saying DNA has ribose. DNA has DEOXYribose — one oxygen less.",
           "Saying RNA is double stranded. RNA is SINGLE stranded."

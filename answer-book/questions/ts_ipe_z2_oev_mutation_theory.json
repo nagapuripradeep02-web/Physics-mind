@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_mutation_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on the theory of mutations.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What mutations are",
+      "marks": 1
+    },
+    {
+      "label": "De Vries and his plant",
+      "marks": 1
+    },
+    {
+      "label": "The four mutant forms",
+      "marks": 1
+    },
+    {
+      "label": "Salient features of the theory",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.40, SAQ 37. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Evolution · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What mutations are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "A mutation is inheritable, which is what separates it from an ordinary change an organism acquires in its lifetime.",
+        "common_mistakes": [
+          "Calling mutations gradual. They are sudden.",
+          "Leaving out that they are inheritable."
+        ],
+        "memory_tip": "Sudden, random and inherited — all three words matter.",
+        "margin_note": "Definition first, then the proposer.",
+        "lines": [
+          "Mutations are sudden, random, inheritable",
+          "changes that occur in organisms."
+        ]
+      },
+      {
+        "id": "s2_de_vries",
+        "kind": "text",
+        "label": "De Vries and his plant",
+        "marks": 1,
+        "mark_note": "The proposer",
+        "why": "De Vries saw new forms appear in one generation, which is why he argued that evolution moves in jumps rather than by slow steps.",
+        "common_mistakes": [
+          "Crediting Darwin with the mutation theory. Hugo de Vries proposed it.",
+          "Getting the plant wrong. It is the evening primrose."
+        ],
+        "memory_tip": "Hugo de Vries and the evening primrose, Oenothera lamarckiana.",
+        "margin_note": "Name the scientist and the plant together.",
+        "lines": [
+          "The mutation theory was proposed by Hugo",
+          "de Vries.",
+          "He worked on Oenothera lamarckiana,",
+          "commonly called the evening primrose."
+        ]
+      },
+      {
+        "id": "s3_four_forms",
+        "kind": "text",
+        "label": "The four mutant forms",
+        "marks": 1,
+        "mark_note": "The four forms",
+        "why": "Four clearly different plants appeared from one parent stock, and none of them was an intermediate.",
+        "common_mistakes": [
+          "Giving the common names without the species names.",
+          "Naming only two of the four forms."
+        ],
+        "memory_tip": "Brevistylis, levifolia, gigas, nanella — short style, smooth leaf, giant, dwarf.",
+        "margin_note": "Write the four as a list with names beside them.",
+        "lines": [
+          "He found four different forms of Oenothera",
+          "lamarckiana:",
+          "1. Small style form — O. brevistylis",
+          "2. Smooth leaves form — O. levifolia",
+          "3. Giant form — O. gigas",
+          "4. Dwarf form — O. nanella",
+          "All four are mutant forms.",
+          "Darwin called mutations sports of nature.",
+          "Bateson called them discontinuous",
+          "variations."
+        ]
+      },
+      {
+        "id": "s4_features",
+        "kind": "boxed_final",
+        "label": "Salient features",
+        "marks": 1,
+        "mark_note": "Features",
+        "why": "The theory says a new form arrives complete rather than being built up over generations, which is where it parts company with Darwin.",
+        "common_mistakes": [
+          "Saying mutations accumulate over generations. The theory says they do not.",
+          "Leaving out that mutations still face natural selection."
+        ],
+        "memory_tip": "Discontinuous, not accumulated, full-fledged, still selected.",
+        "margin_note": "Four numbered features close the answer.",
+        "lines": [
+          {
+            "text": "Salient features",
+            "style": "heading"
+          },
+          "1. Mutations occur from time to time in a",
+          "naturally breeding population.",
+          "2. They are discontinuous and are not",
+          "accumulated over generations.",
+          "3. They are full-fledged, with no",
+          "intermediate forms.",
+          {
+            "text": "4. They are subjected to natural selection",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the four Oenothera forms with their species names. They are the evidence the theory was built on, and each named pair is a tick."
+}

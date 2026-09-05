@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_chyme",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is chyme?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What chyme is",
+      "marks": 1
+    },
+    {
+      "label": "How it is formed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 51. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_what's margin note named two marking words, which the bank cannot know, so it now simply asks for both halves of the definition."
+  },
+  "insider_note": "Two marks, two lines: what chyme is and how the churning makes it. Do not confuse it with chyle.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Digestion and Absorption · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What chyme is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The word names the state of the food, so the definition must give both its texture and its acidity.",
+        "common_mistakes": [
+          "Calling chyme alkaline. It is acidic because of the gastric HCl.",
+          "Confusing chyme with chyle, the milky fat-rich lymph."
+        ],
+        "memory_tip": "Chyme is in the stoMach; chyle is fat in the lyMph.",
+        "margin_note": "Give both halves of the definition: acidic, and semi digested.",
+        "lines": [
+          "Chyme is the acidic, semi digested, semi",
+          "fluid food formed in the stomach."
+        ]
+      },
+      {
+        "id": "s2_how",
+        "kind": "boxed_final",
+        "label": "How it is formed",
+        "marks": 1,
+        "mark_note": "How it forms",
+        "why": "The stomach wall has three muscle layers, so it can churn in more than one direction and mix the juice right through the food.",
+        "common_mistakes": [
+          "Saying enzymes alone make chyme. The churning movements do the mixing.",
+          "Leaving out where it goes next."
+        ],
+        "memory_tip": "Churning plus gastric juice equals chyme.",
+        "margin_note": "One line on the churning, one on where it passes.",
+        "lines": [
+          "It is formed by the churning movements of",
+          "the stomach muscles, which mix the food",
+          "with gastric juice.",
+          {
+            "text": "Chyme passes on into the small intestine",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

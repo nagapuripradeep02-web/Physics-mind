@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_ear_ossicles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the ear ossicles and their evolutionary origin in human beings.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three ossicles",
+      "marks": 1
+    },
+    {
+      "label": "What each came from",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 79. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 1's margin note no longer asks for the origins that step 2 gives, and the insider note now matches the card's own two-step layout."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The three ossicles",
+        "marks": 1,
+        "mark_note": "The three names",
+        "why": "The three small bones pass the vibration from the ear drum to the inner ear in a chain.",
+        "common_mistakes": [
+          "Naming only two. There are three.",
+          "Naming the cochlea. That is not an ossicle."
+        ],
+        "memory_tip": "Hammer, anvil, stirrup — malleus, incus, stapes.",
+        "margin_note": "Just the three names here. Their origins come in the next line.",
+        "lines": [
+          "The three ear ossicles are the malleus,",
+          "the incus and the stapes."
+        ]
+      },
+      {
+        "id": "s2_origin",
+        "kind": "boxed_final",
+        "label": "Their origin",
+        "marks": 1,
+        "mark_note": "Origins",
+        "why": "The jaw bones of the reptile ancestor became the sound-carrying bones of the mammal ear.",
+        "common_mistakes": [
+          "Mixing the pairs up. Malleus from articular, incus from quadrate.",
+          "Leaving the origins out altogether."
+        ],
+        "memory_tip": "Articular becomes malleus, quadrate becomes incus, hyomandibular becomes stapes.",
+        "margin_note": "Three pairs on three lines.",
+        "lines": [
+          "Malleus — modified articular bone.",
+          "Incus — modified quadrate bone.",
+          {
+            "text": "Stapes — modified hyomandibular bone",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both halves are marked: the three names and the three origins. Name the three ossicles, then pair each one with the bone it came from."
+}

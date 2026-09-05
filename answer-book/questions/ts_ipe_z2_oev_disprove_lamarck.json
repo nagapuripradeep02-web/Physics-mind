@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_disprove_lamarck",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Cite two examples to disprove Lamarck's inheritance of acquired characters.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "First example",
+      "marks": 1
+    },
+    {
+      "label": "Second example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 121. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Evolution · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first",
+        "kind": "text",
+        "label": "First example",
+        "marks": 1,
+        "mark_note": "First example",
+        "why": "A muscle built by training changes only the body cells, not the reproductive cells, so nothing is passed on.",
+        "common_mistakes": [
+          "Giving an inherited character as the example. It must be an acquired one.",
+          "Leaving out that it is NOT inherited."
+        ],
+        "memory_tip": "Training changes the body, never the germ cells.",
+        "margin_note": "Each example needs the words 'not inherited'.",
+        "lines": [
+          "Example 1: the well developed muscles of",
+          "athletes are not inherited by their",
+          "children."
+        ]
+      },
+      {
+        "id": "s2_second",
+        "kind": "boxed_final",
+        "label": "Second example",
+        "marks": 1,
+        "mark_note": "Second example",
+        "why": "A change made to the body from outside cannot reach the DNA in the reproductive cells.",
+        "common_mistakes": [
+          "Giving only one example when two are asked.",
+          "Choosing an example that IS inherited."
+        ],
+        "memory_tip": "Pierced ears are made, not born, and are never passed on.",
+        "margin_note": "One line finishes the answer.",
+        "lines": [
+          "Example 2: ear pinnae have long been",
+          "pierced for ornaments in many communities,",
+          {
+            "text": "but that character is not inherited by a child",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both examples must be things a person acquires in their own lifetime and does NOT pass on. Say plainly that the child does not inherit it."
+}

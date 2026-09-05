@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_primary_vs_secondary_antibodies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between primary and secondary antibodies.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Primary",
+      "marks": 1
+    },
+    {
+      "label": "Secondary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 142. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 1's second mistake warned against confusing the primary antibody with the patient's own antibody, but in an indirect ELISA the patient's antibody is the primary antibody, so it was replaced with the confusion between these antibodies and the primary and secondary immune responses."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "Primary antibodies",
+        "marks": 1,
+        "mark_note": "Primary",
+        "why": "The primary antibody is the one chosen to recognise the substance being looked for.",
+        "common_mistakes": [
+          "Saying primary antibodies bind other antibodies.",
+          "Confusing these with the primary and secondary immune responses, which describe the body's first and second exposure to an antigen."
+        ],
+        "memory_tip": "Primary binds the antigen of interest.",
+        "margin_note": "Two rows, one line each.",
+        "lines": [
+          "Primary antibodies react with the antigens",
+          "of interest."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Secondary antibodies",
+        "marks": 1,
+        "mark_note": "Secondary",
+        "why": "The secondary antibody carries the label, so it makes the primary antibody visible.",
+        "common_mistakes": [
+          "Saying secondary antibodies bind the antigen.",
+          "Giving only one of the two."
+        ],
+        "memory_tip": "Secondary binds the primary.",
+        "margin_note": "Keep the contrast in the same words.",
+        "lines": [
+          {
+            "text": "Secondary antibodies react with the primary ones",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The difference is WHAT each one binds to. One binds the antigen, the other binds the first antibody."
+}

@@ -1,5 +1,135 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
+
+**Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer
+book had been authored, never rigorously checked — now match the MPC papers' standard.** Every one
+of 314 cards was re-derived from NCERT and read for self-contradiction; every one was driven
+through the Vidi chatbot's 10-ask battery; every HARMFUL finding from both instruments is fixed,
+and every WRONG finding was worked too — not just recorded — with 230 of 244 repaired and the rest
+correctly referred to a teacher. Full reports: `docs/reports/bipc2_audit/SUMMARY.md`.
+
+### The gap this closed
+
+Botany-II (167 cards) and Zoology-II (147 cards) had never been examiner-audited or Vidi-audited —
+the only prior work was authoring itself. Worse, a platform bug meant neither paper's chatbot
+questions would even have been graded correctly: the Vidi subject ladder (Edge Function + mirror +
+`vidi_audit.ts`) had no rung for botany or zoology, so all four biology papers fell through to
+`physics` — a student's Telugu reply was steered by the physics term whitelist, and a biology audit
+would have run the ideal-gas out-of-bank bait. Fixed first, as its own platform PR (#200, merged
+into this desk before the audit ran), per Rule 40.
+
+### What was found, examiner pass (314 cards, both papers)
+
+| Paper | Cards | HARMFUL | WRONG | WEAK | Figures defective |
+|---|---|---|---|---|---|
+| Botany-II | 167 | 11 | 120 | 254 | 8 of 17 |
+| Zoology-II | 147 | 13 | 124 | 182 | 13 of 14 |
+
+Zoology-II's figures were the worst measured on either audited fleet: a heart whose great vessels
+sprang from the atria instead of the ventricles, contradicting the card's own text; a kidney still
+drawn as a crescent with no hilum notch — the exact defect class the original Zoology-I handover
+recorded as caught once already; a genetics cross drawing a Y-bearing sperm reaching a labelled
+daughter, a genetically impossible diagram.
+
+Every HARMFUL finding shares one shape: a card contradicting itself, or a leader line pointing at
+the wrong structure. Water potential said "always positive" and gave the ascent of sap — the
+textbook case of *negative* pressure potential — as its example. Gibberellins were credited with
+"promoting fruit ripening" four lines above the same card's own "gibberellins DELAY senescence."
+Asthma was called a form of COPD one line after the same card defines COPD as chronic bronchitis
+and emphysema alone. A boxed cry-gene answer used one token, "Ab," to mean two different genes on
+either side of a semicolon. Anti-D was given "when she is pregnant" instead of right after the
+first delivery, against the card's own sensitisation account two steps earlier.
+
+### The chatbot audit (3,140 calls, ₹128, both papers)
+
+| Paper | Replies | Mean/3 | Out of 10 |
+|---|---|---|---|
+| Botany-II | 1,670 | 2.908 | 9.69 |
+| Zoology-II | 1,470 | 2.918 | 9.73 |
+
+Inside the fleet's 9.6–9.9 band. Zero WRONG-STEP replies, zero out-of-bank questions actually
+answered, one invented mark across the whole battery — and the automated `MARK_SUM` gate missed
+that one, flagging an unrelated correct card instead. Six grading defects independently
+**confirmed** examiner HARMFUL findings by measuring the model's real replies rather than reading
+the card in isolation — cross-instrument confirmation, the strongest evidence a finding can get.
+
+### Repair, verified
+
+18 text fixes applied directly (`c46edaf9`); 20 figure defects repaired by two dispatched agents
+(`690547f3`), each visually re-rendered rather than trusted on coordinate math alone — two needed a
+full geometry rebuild (the nucleosome's wrap angle, TMV's aspect ratio and RNA placement), five more
+needed a second or third render pass once the first "fix" turned out to still be wrong on screen
+(most notably the heart, where fixing the vessel roots first exposed the interatrial septum sitting
+on the pulmonary trunk, then a second render found two pulmonary-vein lines striking through the
+"Left atrium" label that the read-only audit had missed entirely).
+
+Whole-book gates after the HARMFUL repair, all green: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` on all seven prefixes · both back-tests · `check:papers`/
+`xrefs`/`originality` · `build:answers` 3,290 cards · `find_label_clashes` whole-book 4→1 (the
+remainder a pre-existing Maths-2A card outside this audit) · `measure_wrap` zero regressions.
+
+### Then the 244 WRONG findings — same discipline, fifteen dispatch batches
+
+Not stopping at HARMFUL: every WRONG-level finding (incorrect but not exam-costing) from both
+examiner audits was worked the same way — re-derive from NCERT, check the report's proposed fix
+against the card before applying it (about one proposal in eight needed rewording or a different
+fix, matching the rate the MPC audits measured), sweep sibling fields for the same repeated claim,
+decline anything that is a genuine teacher-gate convention rather than a repair. Dispatched as 15
+disjoint repair batches (8 Botany-II, 7 Zoology-II, each owning 2-3 examiner groups), verified with
+`check_cards` after every batch, committed in five waves (`30a984a7`, `12226ec4`, `d6daa6da`,
+`6540f7b4`, `b4556c84`).
+
+| Paper | WRONG found | Applied | Referred to a teacher |
+|---|---|---|---|
+| Botany-II | 120 | 117 | 6 |
+| Zoology-II | 124 | 113 | 10 |
+
+The dominant shape, both papers: an insider note asserting a mark-scoring rule the card's own split
+does not support ("loses two marks straight away," "the mark is halved," "each is a separate
+tick") — removed and replaced with what the complete answer contains. Second most common: a flat
+prohibition banning a real, NCERT-supported exception (chlorosis IS a potassium symptom, a vaccine
+DOES exist for hepatitis-B, the pulmonary artery DOES carry deoxygenated blood). One real defect
+surfaced only by a repair agent re-deriving a figure from scratch — not by either examiner audit or
+the chatbot: the urinary-system figure gave each kidney only one renal vessel instead of both,
+fixed and re-rendered in the session's last commit.
+
+Rate limits hit twice during this pass (once mid-examiner-audit on 2026-09-04, once mid-repair on
+2026-09-05); both times the affected batches were simply re-dispatched with a note about which
+edits, if any, had already landed, and picked up cleanly — the report files and card lists are the
+same source of truth regardless of which run applies a given fix.
+
+Whole-book gates after the WRONG repair, all green again: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` (both papers) · both back-tests · `check:xrefs`/`originality`/
+`papers` · `build:answers` 3,290 cards · `find_label_clashes` whole-book still 1 (same pre-existing
+Maths-2A card) · `measure_wrap` zero regressions on either paper. One xrefs regression was
+introduced and caught within the same session: a repair's reworded insider note tripped the
+self-description-shaped-like-a-pointer pattern; reworded again, gate passes.
+
+### One correction the chatbot grading kept raising, verified as NOT a bug
+
+Botany-II's `stars: 0` on all 167 cards looked suspicious to six independent grading passes (a card
+asked six times still reads "not frequently asked"). Checked directly against `units.json`: this is
+the book's own limitation — it ranks importance only at chapter level, never per question, unlike
+the Zoology books. **Do not populate `stars` for Botany-II.** Recorded in `BOTANY_2_START_HERE.md`
+§11 so a future session doesn't spend an authoring pass inventing ranks the source book never gave.
+
+### Also landed
+
+`bipc_2` stream in `build_answer_book.ts` — `--stream=bipc_2` now builds a standalone Senior Inter
+BiPC artifact. A combined door build (`mpc,mpc_2,bipc_2`) needs a founder decision: physics_2 and
+chemistry_2 would be claimed by two streams in one artifact, which the build's own guard correctly
+refuses today — flagged, not solved.
+
+### Not done, deliberately
+
+No deploy of any kind (Edge Function redeploy, `content:push`, `deploy:answers`) — founder's gate.
+No teacher has verified any of the 314 cards; the ~90 teacher-gate questions from the examiner
+reports plus the 16 more surfaced during repair are the concrete list for whoever does. WEAK-level
+findings (436 across both papers — register, duplicated prose, Rule 41 wording) are recorded but
+not repaired; they cost no marks. No `recall` rubrics (blocked bank-wide on the grader endpoint,
+same as Chemistry-II/Maths-2B). The combined-door stream engine change.
+
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
 **Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.
@@ -16127,6 +16257,44 @@ the live `engine_bug_queue` table (file-only discipline held). State recorded in
 
 ---
 
+## 2026-08-28/29 — **Zoology-II opens and completes: subject `zoology_2`, 8 units, 145 cards, 14 phased figures**
+
+**A second zoology PAPER, not more of the first.** Senior Inter Zoology (Class 12) is a different paper from the Junior Inter `zoology` book already in the catalog, and unit numbers namespace per subject, so it takes its own subject value `zoology_2` with its own units 1–8 and ids `ts_ipe_z2_*` — the same reasoning that gave Maths-1B `mathematics_1b`. Registered at the four sites that hardcode the subject list: the `subject` z.enum in `src/schemas/answerBook.ts`, `SUBJECTS` in `src/scripts/build_answer_book.ts`, and notebook.js's two label maps. The catalog chips now read **Zoology-I / Zoology-II** rather than a bare "Zoology" beside "Zoology-II", which named the first year by omission.
+
+**Desk:** `feat/ipe-answerbook-zoology-2`, branched off **`origin/feat/ipe-answerbook-zoology`, not master** — the phased "watch it drawn" figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`, the 70 u/s gate) exists only on that branch. Master's figures still run at 200–770 u/s. Branching off master would have silently lost the engine.
+
+**Source:** *My Baby Bullet-Q — Senior Inter Zoology* (Star-Q Pass Track Series, Sri Publishers, 2022), 81 scanned pages, **no OCR text layer** — the pages are DCTDecode JPEGs and poppler is not installed on this Mac, so they were extracted with a short Python loop over the PDF's image objects and read as images. Scan page = book page + 1.
+
+**`ref` is the book's own global answer numbering** (LAQ 1–10, SAQ 11–48, VSAQ 49–145), which is why a unit's refs are not contiguous: the book is ordered by section, the catalog by unit. **`stars` is derived from the exam years the book PRINTS beside each question** — 5+ appearances = 3 stars, 2–4 = 2, one = 1, none printed = 0 — not from its per-chapter star rating, which is a chapter-importance claim rather than a per-question one. The same evidence is carried per card in `appearances[]` with its board.
+
+| Unit | Chapter(s) | Cards |
+|---|---|---|
+| 1 | Digestion and Absorption · Breathing and Exchange of Gases | 20 |
+| 2 | Body Fluids and Circulation · Excretory Products | 17 |
+| 3 | Musculo-Skeletal System · Neural Control and Coordination | 18 |
+| 4 | Endocrine System · Immune System | 21 |
+| 5 | Human Reproductive System · Reproductive Health | 18 |
+| 6 | Genetics | 9 |
+| 7 | Organic Evolution | 11 |
+| 8 | Applied Biology | 31 |
+
+All 145 cards carry `memory_tip`, `margin_note` and `insider_note` at **100%**, matching the z1 fleet.
+
+**Fourteen phased figures**, every one built as the schematic a student can copy rather than a shaded anatomical plate: L.S. of a tooth · internal structure of the heart · the urinary system · a nephron · a synovial joint · the pelvic girdle · an antibody · female and male reproductive systems · a sperm · the human XX-XY cross · the normal ECG trace.
+
+**The render gallery earned its keep.** `answer-book/tools/render_figures.py` + `shot_gallery.mjs` caught what every automated gate passed: the tooth read first as a capsule and then as a lollipop before the crown was given near-vertical sides and two cusps; the heart read as an egg until the top was notched between the two atria; the kidneys read as crescents until the hilum notch was made shallower; the pelvic girdle's pubis and ischium read as a separate object below the hip bones until a strut joined each acetabulum to its obturator ring; the uterus was drawn far too narrow and read as a keyhole; and the male figure's "Bulbourethral gland" label ran off the 520-unit canvas. **Author, render, LOOK — the gates cannot see shape.**
+
+**One reusable scar, worth knowing before authoring any new figure:** `paceMs` (`src/lib/answerBook/pathLength.ts`) clamps a single stroke to **4500 ms**, so any stroke longer than about **315 units draws faster than the 160 u/s gate ceiling no matter what speed is authored**. The heart outline was one 788-unit path and came out at 175 u/s. The fix is to split the path into several pen strokes — which is also how a hand draws it. Nothing warns you at authoring time; the gate catches it after `pace_figures.ts --write` has already run.
+
+**A process failure to record.** `npm run check:figure-pace` was run inside a pipeline (`… | tail -1`), so its non-zero exit was masked by `tail` and unit 2 was committed and auto-pushed with the gate failing. Caught on the next run and fixed forward in `4e1471e4`; the commit message that made the false claim is corrected there in writing. **Never gate a commit on a command whose exit status a pipe has swallowed.** A second, smaller instance: unit 4's commit message claimed a verification note that had not been written; corrected in `1d50137a`.
+
+**Honesty of the content.** Every card's `verification.note` records that Zoology-II holds **one** source book in the corpus, so the two-book union check is structurally impossible and "not checked" does not mean "checked and clean"; the mark split is our reading and a claim until a TS IPE teacher confirms it. Two deliberate departures from the source are flagged rather than absorbed: the lipid-soluble hormone mechanism (the book's answer stops where its page ends; the closing step is authored here), and Lamarck's disproof (the book's "it has been a practise in India"; the card says "in many communities" — same fact, no country).
+
+**Also fixed:** `answer-book/tools/zoology_wip/valcheck_ad1.ts`, a leftover from the z1 desk, imported the schema by an absolute Windows path (`C:/Tutor/…`) and was the **only** `tsc --noEmit` error on this branch. Now relative. `check:figure-pace` runs strict on `ts_ipe_z` so it covers both zoology papers.
+
+**Verified at every unit commit:** `tsc --noEmit` 0 errors · `npm run build:answers` PASS · `npm run check:figure-pace` PASS for `ts_ipe_z` · `npx vitest run src/lib/answerBook` 42/42. Built page: 8.1 MB, all 145 z2 ids embedded, both Zoology chips present.
+
+**Next session's first task: the PR — but NOT before the botany-2 desk's.** Both desks edit `answer-book/units.json`, `src/schemas/answerBook.ts`, `src/scripts/build_answer_book.ts` and `answer-book/notebook.js`, and will conflict. **Merge ONE PR to master, then in the other desk `git merge origin/master`, resolve those four files additively (keep BOTH new subject values in the enum, the array and the maps), re-run `build:answers`, and only then open its PR.** Do not open both at once. **Blockers:** none for the content; the merge order is the only coordination needed.
 # Session — 2026-08-28/29 · Botany-II opens, and closes: the whole 167-question book
 
 **Desk:** `feat/ipe-answerbook-botany-2`, worktree `Physics-mind-ipe-answerbook-botany-2`.
@@ -16229,3 +16397,35 @@ and read at every phase.
 **Next session's first task:** the founder's call on the PR base (item 3), then Checkpoint-C style
 review of a sample of cards against the scan. Nothing is deployed — `PILOT_CONCEPTS` and
 `deploy:answers` are untouched (Rule 17).
+
+---
+
+## 2026-08-29 — Zoology-II synced to the nine-paper master, and the model-paper back-test finds two missing cards
+
+**The queue cleared.** PRs #167 (Senior Physics), #169 (Senior Chemistry), #170 (Junior Zoology + the phased-figure engine) and #171 (Senior Botany) all merged while this desk waited. Master is now nine papers; this desk makes it ten.
+
+**Sync, in two steps and deliberately in that order.** First merged **PR #170's branch** rather than `origin/master`: #170 is this desk's own base plus one master-sync commit, so the merge-base is our base commit and the Junior Zoology content arrives on a shared lineage. Merging master directly would have produced a second, parallel copy of it. Then merged `origin/master` for the rest. `units.json` was rebuilt from master's array **verbatim** (asserted byte-identical in the resolution) plus this desk's eight units, rather than hand-resolving eight conflict hunks in an 18k-line file.
+
+**Two registration sites this desk predated, both of which would have failed the build:**
+- **`PAPER_PATTERNS`** (PR #168) — the schema now REJECTS any question whose marks disagree with its paper's pattern, so without a row all 145 cards fail. `zoology_2` is registered as `ABC_60`, read off the book's own **Model Paper-1 (p.75)**: Section A "Answer ALL" 10 × 2 = 20, Section B "any SIX" of eight printed × 4 = 24, Section C "any TWO" of three printed × 8 = 16, total 60. Verified against the book, not copied from Botany.
+- **`STREAMS`** in `build_answer_book.ts`, which now carries a guard failing the build if a stream names an unknown subject. Deliberately **not** touched: adding a second-year paper there would make a second-year book a buildable artifact, which is a product decision.
+
+**Two corrections to earlier calls in this desk:**
+1. **The `Zoology-I` rename is reverted.** The settled convention keeps the first-year label and adds only the second (`botany: 'Botany'` beside `botany_2: 'Botany-II'`). It reads **Zoology / Zoology-II**.
+2. **`internal` is omitted from the zoology_2 row.** The first attempt asserted a 15-mark practical by following the first-year papers; `physics_2`, `chemistry_2` and `botany_2` all omit it because the books print a practical sheet with no mark value and copying the first-year 15 would be inventing a figure. Sr. Zoology is in the same position, so it now says nothing rather than guessing.
+
+### The back-test earned its keep: the paper was NOT complete
+
+`backtest:botany2` exists because the two-book union check and a real board back-test are structurally impossible for a one-source paper. Zoology-II had no equivalent — so `src/scripts/backtest_zoology2.ts` + `answer-book/tools/zoology2_wip/backtest_refs.json` now transcribe every "Ans-Page Index" citation the book's **five Model Guess Papers** print (105 citations, 89 distinct questions) and assert each resolves to an authored card.
+
+It immediately found **two questions the book sets and we did not answer**, both cited into the **Star Questions Plus** section (book pp.61-68) that the first authoring pass skipped entirely:
+- **global 172** — "Draw a labelled diagram of the T.S. of the spinal cord of man" [TS 19, 22] → `ts_ipe_z2_ncc_spinal_cord_ts_diagram`, Unit 3, with a 34-element 5-phase figure.
+- **global 175** — the colour-blind-daughters probability problem [TS MAY-17] → `ts_ipe_z2_gen_colour_blind_daughters_probability`, Unit 6, with a full four-child cross.
+
+**Resolving is not enough, and the first version of the gate was too weak.** The book miscites the AV-valves question as global 61 (its answer section, p.48, numbers it **63**; 61 there is the open/closed circulation question on the same page). A back-test that only asked "does this number exist?" passed — because 61 resolves, just to the wrong card. The gate now also requires the cited question's wording to agree with the card it lands on, and carries a `KNOWN_MISCITES` table that adjudicates this one openly rather than silencing it. Verified by construction: the strengthened gate reports the miscitation and still passes.
+
+**Correction to the previous session log:** it recorded "14 phased figures" when there were **12**. With the two new cards there are now genuinely 14. Card total is **147**, not 145.
+
+**Verified:** build:answers PASS · tsc 0 errors · check:figure-pace PASS for `ts_ipe_z1,ts_ipe_b2,ts_ipe_z2` · backtest:zoology2 PASS · backtest:botany2 PASS (unaffected) · check:papers PASS · vitest src/lib/answerBook 69/69. Ten papers, 117 units, 2103 authored cards.
+
+**Next: open the PR.** The queue that blocked it is clear.

@@ -195,7 +195,7 @@
         : question.subject === 'chemistry' ? 'chemistry'
         : question.subject === 'chemistry_2' ? 'chemistry'
         : (question.subject || '').indexOf('botany') === 0 ? 'botany'
-        : question.subject === 'zoology' ? 'zoology'
+        : (question.subject || '').indexOf('zoology') === 0 ? 'zoology'
         : question.subject === 'physics_2' ? 'physics' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
@@ -490,6 +490,7 @@
                      physics_2: 'Physics II',
                      chemistry_2: 'Chemistry II',
                      botany_2: 'Botany-II',
+                     zoology_2: 'Zoology-II',
                      mathematics_2a: 'Maths-2A',
                      mathematics_2b: 'Maths-2B' };
   function subjLabel(s) {

@@ -51,9 +51,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.23, printed question 14. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.23, printed question 14. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the insider note no longer claims an examiner can read the enzyme off the equation, because neither printed equation carries an enzyme name; it now names both enzymes directly."
   },
-  "insider_note": "Two named processes and two named enzymes. Write both equations — an examiner can award the enzyme mark from the equation even if the sentence around it is thin.",
+  "insider_note": "Two named processes and two named enzymes. Write both equations, and write the enzyme name beside each one: glutamate dehydrogenase for reductive amination, transaminase for transamination.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

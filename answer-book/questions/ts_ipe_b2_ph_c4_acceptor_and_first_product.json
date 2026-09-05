@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 68. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.40, printed question 68. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the s1_acceptor WHY was rewritten, because it said PEP carboxylase having no affinity for oxygen is the reason C4 plants avoid photorespiration; NCERT's reason is that the four-carbon acid releases CO2 in the bundle sheath cells, raising the CO2 concentration around RuBisCO."
   },
   "insider_note": "The exact mirror of the C3 pathway. Learn the two pairs together and neither can be confused for the other.",
   "answer": {
@@ -52,7 +52,7 @@
           "It is a 3-carbon compound.",
           "The enzyme is PEP carboxylase."
         ],
-        "why": "PEP carboxylase has no affinity for oxygen at all, which is why a C4 plant can fix carbon without any photorespiration.",
+        "why": "PEP carboxylase has no oxygenase activity, so the first fixation cannot be diverted by oxygen. Photorespiration is minimised because the four-carbon acid later releases CO2 in the bundle sheath cells, so the RuBisCO there works at a high CO2 concentration.",
         "common_mistakes": [
           "Naming RuBP. RuBP is the C3 acceptor.",
           "Saying the enzyme is RuBisCO. Primary carboxylation in C4 uses PEP CARBOXYLASE."

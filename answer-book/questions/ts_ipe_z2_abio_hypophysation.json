@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_abio_hypophysation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Applied Biology (Zoology-II)"
+  },
+  "chapter": "Applied Biology",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the term hypophysation.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Induced breeding",
+      "marks": 1
+    },
+    {
+      "label": "The injection",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 130. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applied Biology · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Induced breeding",
+        "why": "Some fish will not spawn in a pond, so the hormone that triggers spawning is given to them.",
+        "common_mistakes": [
+          "Confusing hypophysation with hypophysis, the pituitary gland itself.",
+          "Leaving out that it is artificial."
+        ],
+        "memory_tip": "Hypophysis is the pituitary, so hypophysation is a pituitary injection.",
+        "margin_note": "Both names in the first line.",
+        "lines": [
+          "Hypophysation, or induced breeding, is an",
+          "artificial breeding method."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "How it is done",
+        "marks": 1,
+        "mark_note": "The injection",
+        "why": "The pituitary extract carries the hormone that ripens the eggs and makes the fish release them.",
+        "common_mistakes": [
+          "Saying the hormone is fed to the fish.",
+          "Leaving out the brood fish."
+        ],
+        "memory_tip": "Pituitary extract or ovaprim, injected into brood fish.",
+        "margin_note": "Name what is injected and into what.",
+        "lines": [
+          "Pituitary extract or ovaprim is injected",
+          {
+            "text": "into mature brood fish to induce spawning",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The other name, induced breeding, is a marked point. Give both names and the injection."
+}

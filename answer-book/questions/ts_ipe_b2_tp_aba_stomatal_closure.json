@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 61. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 61. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer promises that one sentence answers the question, which contradicted the s2 step and the second mark."
   },
-  "insider_note": "One sentence answers this if it names the ion. \"Drives K+ out of the guard cells\" is the line the examiner is looking for.",
+  "insider_note": "Name the ion first — \"ABA drives K+ out of the guard cells\" — then follow it through: the water potential rises, water leaves, turgor is lost, and the pore closes.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

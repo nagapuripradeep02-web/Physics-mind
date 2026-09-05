@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_hrs_implantation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Human Reproduction (Zoology-II)"
+  },
+  "chapter": "Human Reproductive System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is implantation, with reference to embryo?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What happens",
+      "marks": 1
+    },
+    {
+      "label": "When it happens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 105. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the timing step's reason no longer says the six days are all spent travelling, since the embryo reaches the uterus in three or four days and then stays free for two or three more."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Human Reproductive System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What happens",
+        "marks": 1,
+        "mark_note": "What happens",
+        "why": "The embryo has no food supply of its own, so it must attach to the uterine wall to reach the mother's blood.",
+        "common_mistakes": [
+          "Writing that the embryo attaches to the fallopian tube. It attaches to the uterus.",
+          "Confusing implantation with fertilisation."
+        ],
+        "memory_tip": "The embryo plants itself in the uterine wall.",
+        "margin_note": "What attaches, and to what.",
+        "lines": [
+          "Implantation is an event early in human",
+          "pregnancy in which the embryo attaches to",
+          "the wall of the uterus."
+        ]
+      },
+      {
+        "id": "s2_when",
+        "kind": "boxed_final",
+        "label": "When it happens",
+        "marks": 1,
+        "mark_note": "When",
+        "why": "The embryo reaches the uterus after about three or four days, then stays free in the uterine cavity for two or three more days while it becomes a blastocyst. It attaches to the uterine wall at about the sixth day.",
+        "common_mistakes": [
+          "Saying it happens immediately after fertilisation.",
+          "Leaving the timing out."
+        ],
+        "memory_tip": "About the sixth day after fertilisation.",
+        "margin_note": "One line with the day.",
+        "lines": [
+          {
+            "text": "It occurs after the 6th day of fertilisation",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Say WHEN as well as what. The sixth day after fertilisation is the detail that separates a full answer from a bare definition."
+}

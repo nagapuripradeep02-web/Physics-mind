@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_homologous_vs_analogous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between homologous and analogous organs.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What homologous organs are",
+      "marks": 1
+    },
+    {
+      "label": "Examples of homologous organs",
+      "marks": 1
+    },
+    {
+      "label": "What analogous organs are",
+      "marks": 1
+    },
+    {
+      "label": "Examples of analogous organs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.40, SAQ 36. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer claims this is the most repeated four-mark question, and the notes no longer ask for two columns, which the printed answer does not use."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Evolution · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_homologous",
+        "kind": "text",
+        "label": "Homologous organs",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Same origin means the organs were inherited from a shared ancestor, whatever job they later took on.",
+        "common_mistakes": [
+          "Defining homologous organs by function. They are defined by structure and origin.",
+          "Leaving out divergent evolution."
+        ],
+        "memory_tip": "Homologous: same origin, different job — divergent.",
+        "margin_note": "Write the homologous block first, then the analogous block, using the same three points in the same order: definition, kind of evolution, example.",
+        "lines": [
+          "Homologous and analogous organs are",
+          "evidences of evolution from comparative",
+          "anatomy.",
+          {
+            "text": "Homologous organs",
+            "style": "heading"
+          },
+          "Organs that have a similar structure and",
+          "origin but not necessarily the same",
+          "function are homologous organs.",
+          "They suggest divergent evolution."
+        ]
+      },
+      {
+        "id": "s2_homologous_examples",
+        "kind": "text",
+        "label": "Their examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "The bones inside are arranged the same way in all of them, which is what shows the shared ancestor even though the uses differ.",
+        "common_mistakes": [
+          "Giving the wings of an insect as an example. Only vertebrate forelimbs are homologous here.",
+          "Leaving out that the bone arrangement is the same."
+        ],
+        "memory_tip": "Flipper, wing, hand — one bone plan, four different jobs.",
+        "margin_note": "Name three or four examples in one line.",
+        "lines": [
+          "Examples: the forelimbs of vertebrates —",
+          "the flipper of a whale, the wing of a bird,",
+          "the hand of man and the wing of a bat.",
+          "All these organs have the same arrangement",
+          "of bones, but their functions vary to suit",
+          "their mode of life."
+        ]
+      },
+      {
+        "id": "s3_analogous",
+        "kind": "text",
+        "label": "Analogous organs",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "When two unrelated animals face the same problem they often arrive at the same solution, and that is convergent evolution.",
+        "common_mistakes": [
+          "Swapping divergent and convergent. Analogous organs suggest convergent evolution.",
+          "Defining analogous organs by origin. They are defined by function."
+        ],
+        "memory_tip": "Analogous: different origin, same job — convergent.",
+        "margin_note": "Use the same wording pattern as the homologous block: definition first, then the kind of evolution it suggests.",
+        "lines": [
+          {
+            "text": "Analogous organs",
+            "style": "heading"
+          },
+          "Organs that have a different origin but",
+          "the same function are analogous organs.",
+          "They suggest convergent evolution."
+        ]
+      },
+      {
+        "id": "s4_analogous_examples",
+        "kind": "boxed_final",
+        "label": "Their examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "A butterfly's wing and a bird's wing are built from completely different tissues, yet both do the same job.",
+        "common_mistakes": [
+          "Naming the bat and the bird together. Those are homologous.",
+          "Giving no example at all."
+        ],
+        "memory_tip": "Butterfly wing and bird wing: same job, no shared origin.",
+        "margin_note": "One example and the closing rule.",
+        "lines": [
+          "Example: the wings of a butterfly and the",
+          "wings of a bird.",
+          {
+            "text": "Same habitat and mode of life give same form",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Asked eight times in the printed papers, more than any other four-mark question in this paper. Write the homologous block first, then the analogous block, and name divergent evolution and convergent evolution: those two words carry the two definitions."
+}

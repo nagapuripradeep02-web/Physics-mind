@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_exc_nephron_units_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "Human Anatomy and Physiology-II (Zoology-II)"
+  },
+  "chapter": "Excretory Products and their Elimination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the structural and functional units of kidney. What are the two main types of structural units in it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The unit",
+      "marks": 1
+    },
+    {
+      "label": "Its two types",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 73. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the insider note no longer states what the board awards for naming only the nephron, which the mark split above says is unconfirmed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Excretory Products and their Elimination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit",
+        "kind": "text",
+        "label": "The unit",
+        "marks": 1,
+        "mark_note": "The nephron",
+        "why": "Each nephron makes urine on its own from start to finish, which is what makes it both the structural and the functional unit.",
+        "common_mistakes": [
+          "Naming the kidney tubule only. The unit is the whole nephron.",
+          "Naming the glomerulus. That is one part of a nephron."
+        ],
+        "memory_tip": "One nephron does the whole job by itself.",
+        "margin_note": "Name the unit, then its two parts.",
+        "lines": [
+          "The nephron is the structural and",
+          "functional unit of the kidney.",
+          "Each nephron has two parts, the glomerulus",
+          "and the renal tubule."
+        ]
+      },
+      {
+        "id": "s2_types",
+        "kind": "boxed_final",
+        "label": "Its two types",
+        "marks": 1,
+        "mark_note": "Two types",
+        "why": "The two types differ in how far the loop of Henle dips into the medulla, which decides how concentrated the urine can be.",
+        "common_mistakes": [
+          "Naming only one type.",
+          "Inventing a third type."
+        ],
+        "memory_tip": "Cortical stays high; juxtamedullary reaches deep.",
+        "margin_note": "One line with both names.",
+        "lines": [
+          {
+            "text": "The two types are cortical and juxtamedullary",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two questions in one. Name the nephron, then name both types — an answer that stops at the nephron is incomplete."
+}

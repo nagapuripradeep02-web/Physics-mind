@@ -1,0 +1,375 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_spinal_cord_ts_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a labelled diagram of the T.S. of the spinal cord of man.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Outline, sulcus and fissure",
+      "marks": 1
+    },
+    {
+      "label": "Grey matter and central canal",
+      "marks": 1
+    },
+    {
+      "label": "Roots, ganglion and spinal nerve",
+      "marks": 1
+    },
+    {
+      "label": "Labels",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.65, SAQ 172 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the grey matter is redrawn as a butterfly with slender dorsal horns and short broad ventral horns instead of four identical lobes, the grey matter and central canal leaders were re-aimed, and the stacked dorsal root ganglion label was re-spaced. Text revision (examiner audit, 2026-09-05): the insider note's claim about what a poor drawing earns was replaced with what the drawing must show."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Neural Control and Coordination · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_regions",
+        "kind": "text",
+        "label": "What the section shows",
+        "marks": 0,
+        "why": "Grey matter is where the nerve cell bodies sit and white matter is the tracts running past them, so in section the grey lies inside and the white outside.",
+        "common_mistakes": [
+          "Putting white matter inside and grey outside. In the CORD the grey is inner; it is the brain that is the other way round.",
+          "Drawing the dorsal and ventral horns the same size. The ventral horns are broader."
+        ],
+        "memory_tip": "In the cord the butterfly of grey matter sits inside; in the brain the grey is outside.",
+        "margin_note": "A one-line orientation. The marks are all in the figure.",
+        "lines": [
+          "In transverse section the spinal cord shows",
+          "inner grey matter shaped like a butterfly,",
+          "surrounded by outer white matter.",
+          "A narrow central canal runs through the",
+          "middle of the grey matter."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Diagram — T.S. of the spinal cord",
+        "marks": 4,
+        "mark_note": "Neat labelled figure",
+        "why": "The dorsal root carries sensory fibres in and the ventral root carries motor fibres out, which is why only the dorsal root has a ganglion on it.",
+        "common_mistakes": [
+          "Putting the ganglion on the ventral root. It sits on the DORSAL root.",
+          "Leaving out the central canal.",
+          "Drawing it small. Use about a third of the page."
+        ],
+        "memory_tip": "Sulcus above is shallow, fissure below is deep; ganglion rides the dorsal root.",
+        "margin_note": "Label at least eight parts. Both roots join to form the spinal nerve.",
+        "figure": {
+          "id": "ncc_spinal_cord_ts",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the outline of the cord"
+            },
+            {
+              "type": "stroke",
+              "id": "cord_left",
+              "d": "M 215 123 C 163 123 120 160 120 205 C 120 250 163 287 215 287",
+              "ms": 3970
+            },
+            {
+              "type": "stroke",
+              "id": "cord_right",
+              "d": "M 215 287 C 267 287 310 250 310 205 C 310 160 267 123 215 123",
+              "ms": 3970
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the sulcus above and the fissure below"
+            },
+            {
+              "type": "stroke",
+              "id": "sulcus",
+              "d": "M 215 123 L 215 152",
+              "ms": 410
+            },
+            {
+              "type": "stroke",
+              "id": "fissure",
+              "d": "M 209 287 L 211 243 M 221 287 L 219 243",
+              "ms": 1260
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the grey matter, shaped like a butterfly"
+            },
+            {
+              "type": "stroke",
+              "id": "grey_left",
+              "d": "M 207 176 C 202 166 193 150 180 142 C 173 139 171 148 177 157 C 185 168 194 177 199 187 C 189 190 176 196 166 208 C 154 222 159 240 176 243 C 191 245 203 230 206 212 L 207 204",
+              "ms": 3470
+            },
+            {
+              "type": "stroke",
+              "id": "grey_right",
+              "d": "M 223 176 C 228 166 237 150 250 142 C 257 139 259 148 253 157 C 245 168 236 177 231 187 C 241 190 254 196 264 208 C 276 222 271 240 254 243 C 239 245 227 230 224 212 L 223 204",
+              "ms": 3470
+            },
+            {
+              "type": "stroke",
+              "id": "commissure",
+              "d": "M 207 176 L 223 176 M 207 204 L 223 204",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "central_canal",
+              "d": "M 211 190 A 4 4 0 1 0 219 190 A 4 4 0 1 0 211 190",
+              "ms": 360
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the roots, the ganglion and the spinal nerve"
+            },
+            {
+              "type": "stroke",
+              "id": "dorsal_root",
+              "d": "M 309 172 C 326 164 340 161 352 162 M 306 184 C 322 178 336 176 348 177",
+              "ms": 1250
+            },
+            {
+              "type": "stroke",
+              "id": "ganglion",
+              "d": "M 352 162 C 341 163 336 172 341 180 C 347 188 360 187 364 179 C 368 171 362 161 352 162",
+              "ms": 1120
+            },
+            {
+              "type": "stroke",
+              "id": "ventral_root",
+              "d": "M 306 232 C 322 240 336 244 348 244 M 309 244 C 325 251 339 254 351 253",
+              "ms": 1250
+            },
+            {
+              "type": "stroke",
+              "id": "nerve_join",
+              "d": "M 364 179 C 372 189 374 202 370 212 M 351 253 C 360 240 366 226 370 212",
+              "ms": 1150
+            },
+            {
+              "type": "stroke",
+              "id": "spinal_nerve",
+              "d": "M 370 212 L 392 220 M 372 202 L 394 210",
+              "ms": 670
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lb_sulcus",
+              "x": 96,
+              "y": 56,
+              "text": "Posterior median sulcus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sulcus",
+              "d": "M 190 62 L 214 121",
+              "ms": 910,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_dorsal_horn",
+              "x": 330,
+              "y": 56,
+              "text": "Dorsal horn",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dorsal_horn",
+              "d": "M 328 62 L 240 158",
+              "ms": 1830,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_white",
+              "x": 6,
+              "y": 150,
+              "text": "White matter",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_white",
+              "d": "M 104 144 L 146 172",
+              "ms": 720,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_grey",
+              "x": 6,
+              "y": 196,
+              "text": "Grey matter",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_grey",
+              "d": "M 96 190 L 195 181",
+              "ms": 1420,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_canal",
+              "x": 6,
+              "y": 240,
+              "text": "Central canal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_canal",
+              "d": "M 104 232 L 108 196 L 211 190",
+              "ms": 1990,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ventral_horn",
+              "x": 6,
+              "y": 284,
+              "text": "Ventral horn",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ventral_horn",
+              "d": "M 102 278 L 178 240",
+              "ms": 1210,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_fissure",
+              "x": 60,
+              "y": 348,
+              "text": "Anterior median fissure",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_fissure",
+              "d": "M 154 342 L 212 289",
+              "ms": 1120,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ganglion",
+              "x": 386,
+              "y": 146,
+              "text": "Dorsal root",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_ganglion2",
+              "x": 386,
+              "y": 176,
+              "text": "ganglion",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ganglion",
+              "d": "M 384 160 L 362 168",
+              "ms": 430,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_nerve",
+              "x": 400,
+              "y": 232,
+              "text": "Spinal nerve",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nerve",
+              "d": "M 398 226 L 388 218",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ventral_root",
+              "x": 386,
+              "y": 286,
+              "text": "Ventral root",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ventral_root",
+              "d": "M 384 280 L 340 248",
+              "ms": 780,
+              "w": 1.4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "insider_note": "All four marks are in the drawing. Draw the butterfly of grey matter INSIDE the white matter, with the central canal at its centre, and label at least eight parts."
+}

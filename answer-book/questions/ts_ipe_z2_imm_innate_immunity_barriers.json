@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_imm_innate_immunity_barriers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Human Anatomy and Physiology-IV (Zoology-II)"
+  },
+  "chapter": "Immune System",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe various types of barriers of innate immunity.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Physical barriers",
+      "marks": 1
+    },
+    {
+      "label": "Physiological barriers",
+      "marks": 1
+    },
+    {
+      "label": "Cellular barriers",
+      "marks": 1
+    },
+    {
+      "label": "Cytokine barriers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.37, SAQ 31. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Immune System · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_physical",
+        "kind": "text",
+        "label": "Physical barriers",
+        "marks": 1,
+        "mark_note": "Physical",
+        "why": "The cheapest defence is to keep the germ out altogether, which is what an unbroken surface does.",
+        "common_mistakes": [
+          "Naming antibodies. Innate immunity is not antibody based.",
+          "Leaving out mucus membranes."
+        ],
+        "memory_tip": "Skin keeps them out; mucus traps the ones that get in.",
+        "margin_note": "Name all four barriers first, then explain each.",
+        "lines": [
+          "Innate immunity is the inborn resistance",
+          "to disease. It works through four barriers:",
+          "physical, physiological, cellular and",
+          "cytokine barriers.",
+          {
+            "text": "Physical barriers",
+            "style": "heading"
+          },
+          "Skin prevents the entry of micro organisms.",
+          "Mucus membranes trap and kill micro",
+          "organisms that enter the body."
+        ]
+      },
+      {
+        "id": "s2_physiological",
+        "kind": "text",
+        "label": "Physiological barriers",
+        "marks": 1,
+        "mark_note": "Physiological",
+        "why": "Body fluids are made hostile to germs, so anything that gets past the surface meets acid or an enzyme.",
+        "common_mistakes": [
+          "Calling saliva a physical barrier. It is a secretion, so it is physiological.",
+          "Leaving out lysozyme."
+        ],
+        "memory_tip": "Acid in the stomach, lysozyme in tears and saliva.",
+        "margin_note": "Name the secretions and what is in them.",
+        "lines": [
+          {
+            "text": "Physiological barriers",
+            "style": "heading"
+          },
+          "Secretions such as HCl in the stomach,",
+          "saliva in the mouth and tears from the",
+          "eyes act against microbes.",
+          "Saliva and tears contain lysozyme, which",
+          "kills microbes."
+        ]
+      },
+      {
+        "id": "s3_cellular",
+        "kind": "text",
+        "label": "Cellular barriers",
+        "marks": 1,
+        "mark_note": "Cellular",
+        "why": "Some white cells patrol the body and swallow anything foreign, without waiting to be told which germ it is.",
+        "common_mistakes": [
+          "Naming B cells or T cells. Those belong to acquired immunity.",
+          "Leaving out what these cells do."
+        ],
+        "memory_tip": "These cells eat the germ instead of marking it.",
+        "margin_note": "Name the cells, then their action.",
+        "lines": [
+          {
+            "text": "Cellular barriers",
+            "style": "heading"
+          },
+          "Neutrophils, monocytes and killer cells of",
+          "the blood, and macrophages in the tissues,",
+          "are cellular barriers.",
+          "They engulf or kill microbes."
+        ]
+      },
+      {
+        "id": "s4_cytokine",
+        "kind": "boxed_final",
+        "label": "Cytokine barriers",
+        "marks": 1,
+        "mark_note": "Cytokine",
+        "why": "An infected cell warns its neighbours, so the cells around it are already defended before the virus reaches them.",
+        "common_mistakes": [
+          "Writing that cytokines kill the virus directly. They protect the cells not yet infected.",
+          "Leaving the fourth barrier out."
+        ],
+        "memory_tip": "The infected cell shouts a warning to the cells around it.",
+        "margin_note": "One line closes the fourth barrier.",
+        "lines": [
+          {
+            "text": "Cytokine barriers",
+            "style": "heading"
+          },
+          {
+            "text": "Cytokines protect the non-infected cells",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four barriers, four marks — one each. Name all four in the opening line so none is forgotten, then take them in order."
+}

@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.52, printed question 166. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Printed under STAR QUESTIONS PLUS (p.52), not in an SAQ chapter, but Guess Paper 4 sets it as a Section B question and cites P 52(166) — so it is authored at 4 marks."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.52, printed question 166. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Printed under STAR QUESTIONS PLUS (p.52), not in an SAQ chapter, but Guess Paper 4 sets it as a Section B question and cites P 52(166) — so it is authored at 4 marks. Examiner audit revision (2026-09-05): the insider note no longer states a share of the marks, and the symplast step no longer claims that spending energy is what makes that phase slow (NCERT states only that uptake into the symplast is slow and active)."
   },
-  "insider_note": "Passive against active is the whole answer. If you write only that ions enter the root, without saying which phase costs energy, half the marks are gone.",
+  "insider_note": "Passive against active is the whole answer. Name both phases and say which one needs energy: the apoplast phase is passive, the symplast phase is active.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -111,9 +111,9 @@
           "It requires metabolic energy.",
           "So it is an ACTIVE process."
         ],
-        "why": "Going against the gradient always costs energy, so the symplast phase must be active and is necessarily slower than the apoplast phase.",
+        "why": "Entry into the symplast means crossing the plasma membrane, so this phase needs metabolic energy and the uptake is slow.",
         "common_mistakes": [
-          "Saying the symplast is faster. It is SLOWER, because energy has to be spent.",
+          "Saying the symplast phase is faster. Ions are taken in SLOWLY in this phase.",
           "Leaving out 'metabolic energy'. It is what makes the process active."
         ],
         "memory_tip": "Uphill and inside the cells: it has to be paid for."

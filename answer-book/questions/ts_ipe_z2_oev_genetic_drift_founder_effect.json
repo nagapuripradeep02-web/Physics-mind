@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_oev_genetic_drift_founder_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Organic Evolution (Zoology-II)"
+  },
+  "chapter": "Organic Evolution",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by genetic drift? Explain genetic drift citing the example of Founder Effect.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What genetic drift is",
+      "marks": 1
+    },
+    {
+      "label": "Fixation or loss of an allele",
+      "marks": 1
+    },
+    {
+      "label": "Its effect on variation",
+      "marks": 1
+    },
+    {
+      "label": "The founder effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.41, SAQ 40. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer calls drift the opposite of natural selection and no longer says the chance phrase earns the first mark alone, which contradicted the first step's own margin note."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Evolution · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What genetic drift is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "In a small group, which individuals happen to breed can change gene frequencies without any advantage being involved.",
+        "common_mistakes": [
+          "Calling drift a form of natural selection. It works by chance, not by selection.",
+          "Leaving out that it matters in SMALL populations."
+        ],
+        "memory_tip": "Drift is chance; selection is advantage.",
+        "margin_note": "Say 'by chance' and 'small populations'. Both are marked.",
+        "lines": [
+          "Genetic drift is the change in the",
+          "frequency of a gene that occurs merely by",
+          "chance, and not by selection, in small",
+          "populations."
+        ]
+      },
+      {
+        "id": "s2_fixation",
+        "kind": "text",
+        "label": "Fixation or loss",
+        "marks": 1,
+        "mark_note": "Fixation or loss",
+        "why": "A rare allele can vanish simply because the few individuals carrying it did not happen to breed.",
+        "common_mistakes": [
+          "Saying a rare allele always survives.",
+          "Leaving out that the outcome depends on population size."
+        ],
+        "memory_tip": "A rare allele in a small group either takes over or disappears.",
+        "margin_note": "Give the 1 per cent example. It makes the point concrete.",
+        "lines": [
+          "A gene may have two alleles. If the",
+          "frequency of one allele is only 1%, the",
+          "chance of losing it from a small population",
+          "is high.",
+          "The end result is either fixation or loss",
+          "of that allele.",
+          "The chance of reaching either end point",
+          "depends on the size of the population."
+        ]
+      },
+      {
+        "id": "s3_variation",
+        "kind": "text",
+        "label": "Its effect on variation",
+        "marks": 1,
+        "mark_note": "Effect",
+        "why": "Every allele lost is variation the population can never get back except by a new mutation.",
+        "common_mistakes": [
+          "Saying drift increases variation. It reduces it.",
+          "Leaving out that it is the low-frequency alleles that go."
+        ],
+        "memory_tip": "Drift removes the rare alleles, so variation shrinks.",
+        "margin_note": "One line links drift to the founder effect.",
+        "lines": [
+          "Genetic drift tends to reduce the amount of",
+          "genetic variation within a population,",
+          "mainly by removing the alleles with low",
+          "frequencies.",
+          "Genetic drift can be exemplified by the",
+          "founder effect."
+        ]
+      },
+      {
+        "id": "s4_founder",
+        "kind": "boxed_final",
+        "label": "The founder effect",
+        "marks": 1,
+        "mark_note": "Founder effect",
+        "why": "The few individuals who start a new colony carry only a sample of the original variation, and their descendants inherit that sample.",
+        "common_mistakes": [
+          "Saying the new colony resembles the parent population. It resembles its founders.",
+          "Giving no example."
+        ],
+        "memory_tip": "The colony looks like its founders, not like the population they left.",
+        "margin_note": "Define it, then give the blood-group example.",
+        "lines": [
+          "If a small group of individuals from a",
+          "population starts a new colony in an",
+          "isolated region, those individuals are",
+          "called the founders of the new population.",
+          "The allelic frequency of their descendants",
+          "is similar to that of the founders rather",
+          "than of the ancestral parent population.",
+          {
+            "text": "Example: O⁺ blood group is near 100% in some tribes",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "The marking words are 'by chance and not by selection'. Drift changes gene frequencies by chance; natural selection changes them by advantage. Write both marking elements — 'by chance, not by selection' and 'in small populations'."
+}
