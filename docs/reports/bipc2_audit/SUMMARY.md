@@ -64,6 +64,40 @@ cross drawing four of eight gamete lines to the wrong child, an anatomically imp
 the male and female reproductive figures' vas-deferens-through-the-bladder-wall and
 myometrium/perimetrium-swap defects.
 
+## All 244 WRONG findings — checked, and repaired where real
+
+Beyond HARMFUL, every WRONG-level finding from both examiner audits was also worked: re-derived
+against NCERT, checked against the card (about one proposal in eight needed rewording or a
+different fix, matching the rate the MPC audits measured), applied where real, declined where the
+proposal was itself wrong, and referred to a teacher where the finding was a genuine convention
+dispute rather than a repair. Repaired in five commits (`30a984a7`, `12226ec4` — Botany-II;
+`d6daa6da`, `6540f7b4` — Zoology-II; `b4556c84` — one figure defect found only during this pass).
+
+| Paper | WRONG found | Applied | Referred to a teacher |
+|---|---|---|---|
+| Botany-II | 120 | 117 | 6 |
+| Zoology-II | 124 | 113 | 10 |
+
+The dominant shape, both papers: an insider note or margin note asserting a mark-scoring rule the
+card's own `mark_split` does not support — "loses two marks straight away," "marked as half an
+answer," "the mark is halved," "each is a separate tick." These were removed bank-wide and replaced
+with a statement of what the complete answer contains, never what a partial one scores. Second
+most common: a flat prohibition banning a real, NCERT-supported exception — chlorosis IS a symptom
+of potassium deficiency, a vaccine DOES exist for hepatitis-B, RNA viruses DO include a named
+bacteriophage, the pulmonary artery DOES carry deoxygenated blood.
+
+One real defect surfaced only by a repair agent re-deriving a figure from scratch, not by either
+examiner audit or the chatbot: the urinary-system figure gave each kidney only one renal vessel (a
+vein on one side, an artery on the other) instead of both. Fixed and re-rendered.
+
+Sixteen findings were referred to a Telangana biology teacher rather than resolved, on top of the
+teacher-gate questions below — each is a case where the examiner's own finding named a genuine
+convention dispute (karyotype notation used both ways in one paper, the seminiferous-tubule count,
+which naming convention a figure caption should use) rather than a correctable error.
+
+WEAK-level findings (436 across both papers — register, duplicated prose, Rule 41 wording) are
+recorded in the per-group reports but not repaired in this pass; they do not cost a student marks.
+
 ## Vidi chatbot score
 
 | paper | replies | mean/3 | out of 10 |
@@ -155,9 +189,11 @@ corrected text embedded correctly.
 
 **Content: yes, for what a careful re-derivation can certify.** Every HARMFUL finding — the kind a
 student would copy into an exam and lose marks for — is fixed and verified against NCERT, in both
-the text and the figures. The chatbot is faithful to the now-corrected bank at 9.7/10 on both
-papers, with zero critical flags (no invented mark reaching a student, no wrong-step pricing, no
-out-of-bank content ever actually answered) across the full battery.
+the text and the figures. Every WRONG finding was also worked, not just recorded: 230 of 244 fixed,
+the rest correctly referred to a teacher rather than resolved by guessing. The chatbot is faithful
+to the now-corrected bank at 9.7/10 on both papers, with zero critical flags (no invented mark
+reaching a student, no wrong-step pricing, no out-of-bank content ever actually answered) across
+the full battery.
 
 **Three gaps this audit does not close, matching the MPC precedent exactly:**
 1. **No teacher has verified a single card.** `needs_teacher_verification: true` stands on all 314.

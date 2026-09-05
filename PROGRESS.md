@@ -1,12 +1,13 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
-## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful findings, all repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
+## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
 **Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer
 book had been authored, never rigorously checked — now match the MPC papers' standard.** Every one
 of 314 cards was re-derived from NCERT and read for self-contradiction; every one was driven
-through the Vidi chatbot's 10-ask battery; every HARMFUL finding from both instruments is fixed
-and re-verified. Full reports: `docs/reports/bipc2_audit/SUMMARY.md`.
+through the Vidi chatbot's 10-ask battery; every HARMFUL finding from both instruments is fixed,
+and every WRONG finding was worked too — not just recorded — with 230 of 244 repaired and the rest
+correctly referred to a teacher. Full reports: `docs/reports/bipc2_audit/SUMMARY.md`.
 
 ### The gap this closed
 
@@ -63,10 +64,47 @@ needed a second or third render pass once the first "fix" turned out to still be
 on the pulmonary trunk, then a second render found two pulmonary-vein lines striking through the
 "Left atrium" label that the read-only audit had missed entirely).
 
-Whole-book gates after repair, all green: `tsc` 0 · `vitest` 459/459 · `check_cards` 167+147 ·
-`check_figure_pace --strict` on all seven prefixes · both back-tests · `check:papers`/`xrefs`/
-`originality` · `build:answers` 3,290 cards · `find_label_clashes` whole-book 4→1 (the remainder a
-pre-existing Maths-2A card outside this audit) · `measure_wrap` zero regressions.
+Whole-book gates after the HARMFUL repair, all green: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` on all seven prefixes · both back-tests · `check:papers`/
+`xrefs`/`originality` · `build:answers` 3,290 cards · `find_label_clashes` whole-book 4→1 (the
+remainder a pre-existing Maths-2A card outside this audit) · `measure_wrap` zero regressions.
+
+### Then the 244 WRONG findings — same discipline, fifteen dispatch batches
+
+Not stopping at HARMFUL: every WRONG-level finding (incorrect but not exam-costing) from both
+examiner audits was worked the same way — re-derive from NCERT, check the report's proposed fix
+against the card before applying it (about one proposal in eight needed rewording or a different
+fix, matching the rate the MPC audits measured), sweep sibling fields for the same repeated claim,
+decline anything that is a genuine teacher-gate convention rather than a repair. Dispatched as 15
+disjoint repair batches (8 Botany-II, 7 Zoology-II, each owning 2-3 examiner groups), verified with
+`check_cards` after every batch, committed in five waves (`30a984a7`, `12226ec4`, `d6daa6da`,
+`6540f7b4`, `b4556c84`).
+
+| Paper | WRONG found | Applied | Referred to a teacher |
+|---|---|---|---|
+| Botany-II | 120 | 117 | 6 |
+| Zoology-II | 124 | 113 | 10 |
+
+The dominant shape, both papers: an insider note asserting a mark-scoring rule the card's own split
+does not support ("loses two marks straight away," "the mark is halved," "each is a separate
+tick") — removed and replaced with what the complete answer contains. Second most common: a flat
+prohibition banning a real, NCERT-supported exception (chlorosis IS a potassium symptom, a vaccine
+DOES exist for hepatitis-B, the pulmonary artery DOES carry deoxygenated blood). One real defect
+surfaced only by a repair agent re-deriving a figure from scratch — not by either examiner audit or
+the chatbot: the urinary-system figure gave each kidney only one renal vessel instead of both,
+fixed and re-rendered in the session's last commit.
+
+Rate limits hit twice during this pass (once mid-examiner-audit on 2026-09-04, once mid-repair on
+2026-09-05); both times the affected batches were simply re-dispatched with a note about which
+edits, if any, had already landed, and picked up cleanly — the report files and card lists are the
+same source of truth regardless of which run applies a given fix.
+
+Whole-book gates after the WRONG repair, all green again: `tsc` 0 · `vitest` 459/459 · `check_cards`
+167+147 · `check_figure_pace --strict` (both papers) · both back-tests · `check:xrefs`/`originality`/
+`papers` · `build:answers` 3,290 cards · `find_label_clashes` whole-book still 1 (same pre-existing
+Maths-2A card) · `measure_wrap` zero regressions on either paper. One xrefs regression was
+introduced and caught within the same session: a repair's reworded insider note tripped the
+self-description-shaped-like-a-pointer pattern; reworded again, gate passes.
 
 ### One correction the chatbot grading kept raising, verified as NOT a bug
 
@@ -86,9 +124,11 @@ refuses today — flagged, not solved.
 ### Not done, deliberately
 
 No deploy of any kind (Edge Function redeploy, `content:push`, `deploy:answers`) — founder's gate.
-No teacher has verified any of the 314 cards; the ~90 teacher-gate questions raised across both
-reports are the concrete list for whoever does. No `recall` rubrics (blocked bank-wide on the
-grader endpoint, same as Chemistry-II/Maths-2B). The combined-door stream engine change.
+No teacher has verified any of the 314 cards; the ~90 teacher-gate questions from the examiner
+reports plus the 16 more surfaced during repair are the concrete list for whoever does. WEAK-level
+findings (436 across both papers — register, duplicated prose, Rule 41 wording) are recorded but
+not repaired; they cost no marks. No `recall` rubrics (blocked bank-wide on the grader endpoint,
+same as Chemistry-II/Maths-2B). The combined-door stream engine change.
 
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
