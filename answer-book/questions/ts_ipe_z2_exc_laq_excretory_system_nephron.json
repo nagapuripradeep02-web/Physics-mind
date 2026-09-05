@@ -67,7 +67,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.14-15, LAQ 3. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the kidneys are redrawn as beans with a hilum notch that the renal vessels enter, the vena cava and aorta labels moved to the clear band above the vessels so their leaders cross nothing, the phase caption no longer names the wrong side, and on the nephron figure the stacked PCT and DCT labels were re-spaced and the cortex and medulla regions labelled. Text revision (examiner audit, 2026-09-05): the insider note no longer says how many marks a student loses for drawing only the kidney, and names the two diagrams instead."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.14-15, LAQ 3. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the kidneys are redrawn as beans with a hilum notch that the renal vessels enter, the vena cava and aorta labels moved to the clear band above the vessels so their leaders cross nothing, the phase caption no longer names the wrong side, and on the nephron figure the stacked PCT and DCT labels were re-spaced and the cortex and medulla regions labelled. Text revision (examiner audit, 2026-09-05): the insider note no longer says how many marks a student loses for drawing only the kidney, and names the two diagrams instead. Figure revision (figure audit, 2026-09-05, second pass): each kidney now carries both of its renal vessels, so a renal artery from the aorta and a renal vein to the vena cava reach every hilum; the added artery on the left kidney crosses behind the vena cava and the added vein on the right kidney crosses in front of the aorta, drawn at different heights so the two crossings stay apart, and the single 'Renal vein' and 'Renal artery' labels each point at the clearer instance rather than adding two more label rows to a full canvas."
   },
   "answer": {
     "page_header": [
@@ -237,14 +237,26 @@
             {
               "type": "stroke",
               "id": "renal_vein",
-              "d": "M 262 136 L 226 138 M 262 150 L 226 152",
+              "d": "M 262 130 L 226 132 M 262 144 L 226 146",
               "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "renal_artery_l",
+              "d": "M 292 174 L 234 154 M 292 186 L 239 166",
+              "ms": 1690
             },
             {
               "type": "stroke",
               "id": "renal_artery",
               "d": "M 306 136 L 358 136 M 306 150 L 358 150",
               "ms": 1490
+            },
+            {
+              "type": "stroke",
+              "id": "renal_vein_r",
+              "d": "M 276 112 L 346 116 M 276 124 L 348 128",
+              "ms": 2030
             },
             {
               "type": "pause",
@@ -359,8 +371,8 @@
             {
               "type": "stroke",
               "id": "ld_vein",
-              "d": "M 96 162 L 240 146",
-              "ms": 2070,
+              "d": "M 96 162 L 240 138",
+              "ms": 2090,
               "w": 1.4
             },
             {
