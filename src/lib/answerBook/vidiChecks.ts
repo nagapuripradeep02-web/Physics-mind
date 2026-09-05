@@ -211,6 +211,39 @@ export const NERNST_PROBE: OutOfBankProbe = {
     formula: /0\.059\d*|RT\s*\/\s*\(?\s*nF|E\s*=\s*E\s*°/i,
 };
 
+/** The BIOLOGY baits (2026-09-04). Botany and zoology had no subject entry ANYWHERE —
+ *  the audit's subjectOf() and the persona ladder both fell through to physics, so a
+ *  biology audit would have asked the ideal gas and told the model it held a physics
+ *  card. Each probe is chosen the way the others were: grep the whole bank first and
+ *  pick a topic with ZERO hits in the paper being probed but a real home elsewhere in
+ *  the bank, so a correct reply declines and points at the catalog; then match the
+ *  SUBSTANCE — the named structures a real answer must contain — never the topic word
+ *  a refusal echoes back. Counts measured on the twelve-paper bank of 2026-09-04. */
+
+/** Botany-II bait. The stages of mitosis are Botany-I unit 11 (6 cards) and appear on
+ *  ZERO Botany-II cards. A refusal says "mitosis"; only an answer names the phases. */
+export const MITOSIS_PHASES_PROBE: OutOfBankProbe = {
+    askMatches: /mitosis|stages?\s+of\s+(cell\s+)?division/i,
+    formula: /\b(metaphase|anaphase|telophase)\b/i,
+};
+/** Zoology-II bait. The digestive system of the cockroach is Zoology-I unit 7 and
+ *  appears on ZERO Zoology-II cards. "cockroach" is what a refusal echoes; gizzard,
+ *  proventriculus and hepatic caeca are what an answer contains. */
+export const COCKROACH_DIGESTION_PROBE: OutOfBankProbe = {
+    askMatches: /cockroach|periplaneta/i,
+    formula: /\b(gizzard|proventriculus|hepatic\s+caec(?:a|um))\b/i,
+};
+/** Botany-I bait. The Calvin cycle is Botany-II unit 4 (6 cards), ZERO in Botany-I. */
+export const CALVIN_CYCLE_PROBE: OutOfBankProbe = {
+    askMatches: /calvin|dark\s+reaction|c3\s+(?:cycle|pathway)/i,
+    formula: /\b(?:rubisco|ribulose|phosphoglycer\w*|3-?PGA|RuBP)\b/i,
+};
+/** Zoology-I bait. The menstrual cycle is Zoology-II unit 5, ZERO in Zoology-I. */
+export const MENSTRUAL_CYCLE_PROBE: OutOfBankProbe = {
+    askMatches: /menstrua/i,
+    formula: /\b(?:ovulat\w*|corpus\s+luteum|luteal|follicular\s+phase|proliferative\s+phase)\b/i,
+};
+
 export function answeredOutOfBank(ask: string, reply: string, probe: OutOfBankProbe = IDEAL_GAS_PROBE): boolean {
     if (!probe.askMatches.test(ask)) return false;
     return probe.formula.test(reply);
