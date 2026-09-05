@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 136. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 136. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the insider note put the reason for the name in the second mark, but the card prints the name and the reason together in step 1 and gives the second mark to the G₁ arrest, so the note was corrected."
   },
   "answer": {
     "page_header": [
@@ -93,5 +93,5 @@
       }
     ]
   },
-  "insider_note": "Name the gene p53 AND say why it earns the name. The reason is the second mark."
+  "insider_note": "Name the gene p53 and say why it is called that — both belong to the first mark. The second mark is its action: it stops the cell cycle at the G₁ check point so the DNA can be repaired."
 }

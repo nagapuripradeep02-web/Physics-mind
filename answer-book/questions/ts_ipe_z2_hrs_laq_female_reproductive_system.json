@@ -83,7 +83,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.16-17, LAQ 4. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a middle wall line was added on each side of the uterus so endometrium, myometrium and perimetrium each have their own target, and the cervical canal leader now lands in the lumen."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.16-17, LAQ 4. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a middle wall line was added on each side of the uterus so endometrium, myometrium and perimetrium each have their own target, and the cervical canal leader now lands in the lumen. Content revision (examiner audit, 2026-09-05): the accessory glands step no longer says both glands are homologous to a lubricating gland of the male, because Skene's glands are homologous to the prostate."
   },
   "answer": {
     "page_header": [
@@ -254,7 +254,7 @@
         "label": "Bartholin's and Skene's glands",
         "marks": 1,
         "mark_note": "Two glands",
-        "why": "Both glands lubricate, which is why each is homologous to a lubricating gland of the male system.",
+        "why": "Bartholin's glands lubricate the vagina, which is why they are homologous to the bulbourethral glands of the male. Skene's glands lie beside the urethra and are homologous to the prostate.",
         "common_mistakes": [
           "Swapping the two positions. Bartholin's are beside the vaginal opening.",
           "Leaving out what each secretes."

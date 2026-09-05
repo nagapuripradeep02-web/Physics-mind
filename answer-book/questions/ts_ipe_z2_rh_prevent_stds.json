@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 112. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 112. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the insider note and margin note no longer state what the board's mark scheme awards, and the vaccine entry no longer treats naming a vaccine as an error, since hepatitis-B does have one."
   },
   "answer": {
     "page_header": [
@@ -60,10 +60,10 @@
         "why": "These diseases spread by contact, so the first defence is to prevent the contact itself.",
         "common_mistakes": [
           "Giving only one measure when several are asked.",
-          "Naming a vaccine. Most STDs have none."
+          "Answering with vaccination alone. A vaccine exists for hepatitis-B, but the measures asked for here are avoiding risky contact, using condoms, and early detection with complete treatment."
         ],
         "memory_tip": "Avoid the contact first, then protect the contact.",
-        "margin_note": "Number the measures. The examiner ticks each one.",
+        "margin_note": "Number the measures so each one is separate.",
         "lines": [
           "1. Avoid sex with an unknown partner or",
           "with multiple partners.",
@@ -94,5 +94,5 @@
       }
     ]
   },
-  "insider_note": "Four measures, two marks. Give at least three — a single line about condoms is marked as half an answer."
+  "insider_note": "Four measures, two marks. Give at least three: avoid sex with an unknown partner or multiple partners, always use condoms, see a qualified doctor early, and take the complete course of treatment."
 }

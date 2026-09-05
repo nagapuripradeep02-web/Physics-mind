@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 111. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the head is smaller and oval and the tail is longer and tapered, so the tail now reads as the longest part of the sperm."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 111. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the head is smaller and oval and the tail is longer and tapered, so the tail now reads as the longest part of the sperm. Content revision (examiner audit, 2026-09-05): the insider note no longer states what a printed answer scores, and instead lists the parts to label."
   },
   "answer": {
     "page_header": [
@@ -314,5 +314,5 @@
       }
     ]
   },
-  "insider_note": "Both marks are in the drawing. The acrosome must be a separate cap over the nucleus — one blob labelled 'head' earns half."
+  "insider_note": "Both marks are in the drawing. Draw the acrosome as a separate cap over the front of the nucleus, not one blob labelled 'head', and label the head, plasma membrane, acrosome, nucleus, neck, middle piece, mitochondria and tail."
 }

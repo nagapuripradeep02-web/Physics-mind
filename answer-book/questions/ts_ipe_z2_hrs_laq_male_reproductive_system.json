@@ -91,7 +91,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.18-19, LAQ 5. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the vas deferens now runs down the outside of the bladder wall into the seminal vesicle instead of ending inside the bladder, and a scrotal sac is drawn around each testis so the Scrotum label points at a drawn structure."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.18-19, LAQ 5. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the vas deferens now runs down the outside of the bladder wall into the seminal vesicle instead of ending inside the bladder, and a scrotal sac is drawn around each testis so the Scrotum label points at a drawn structure. Content revision (examiner audit, 2026-09-05): the figure step no longer says the drawing shows the vas deferens looping over the bladder, since the redrawn figure runs it up beside the bladder into the seminal vesicle, and the lobule mistake now names the real error (one tubule for the whole testis) instead of reading as a rule against the textbook lower bound."
   },
   "answer": {
     "page_header": [
@@ -138,7 +138,7 @@
         "mark_note": "Lobules and tubules",
         "why": "Packing 250 lobules of coiled tubules into one small organ is what gives the enormous surface needed to make sperm continuously.",
         "common_mistakes": [
-          "Giving one seminiferous tubule per testis. Each lobule holds two or three.",
+          "Giving one seminiferous tubule for the whole testis. Each lobule holds two or three, and there are about 250 lobules.",
           "Leaving out the spermatic cord."
         ],
         "memory_tip": "250 lobules, two or three coiled tubules in each.",
@@ -318,12 +318,12 @@
         "label": "Diagram — male reproductive system",
         "marks": 1,
         "mark_note": "Labelled diagram",
-        "why": "The diagram shows the one thing the description cannot: that the vas deferens loops up and over the bladder before reaching the urethra.",
+        "why": "The diagram shows the one thing the description cannot: how each vas deferens leaves the epididymis, runs up beside the urinary bladder and turns down to its seminal vesicle just above the prostate.",
         "common_mistakes": [
-          "Drawing the vas deferens straight to the urethra. It loops over the bladder.",
+          "Drawing the vas deferens straight into the urethra. It runs up beside the bladder and reaches the urethra through the prostate.",
           "Leaving out the three accessory glands."
         ],
-        "memory_tip": "Testis, epididymis, up and over the bladder, down the urethra.",
+        "memory_tip": "Testis, epididymis, up past the bladder, down through the prostate to the urethra.",
         "margin_note": "Label at least ten parts, including all three glands.",
         "figure": {
           "id": "hrs_male_system",

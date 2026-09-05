@@ -67,7 +67,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.21-22, LAQ 7. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.21-22, LAQ 7. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the opening line no longer says the sex pair is always X and Y, which the card's own ZO-ZZ and ZW-ZZ steps contradict, and the insider note now lists the four types instead of claiming a mark cap."
   },
   "answer": {
     "page_header": [
@@ -92,8 +92,8 @@
           "In most animals a pair of chromosomes",
           "decides the sex. They are called sex",
           "chromosomes, or allosomes.",
-          "The two chromosomes of the pair are the X",
-          "chromosome and the Y chromosome.",
+          "The sex chromosomes are called X and Y in",
+          "some animals, and Z and W in others.",
           "There are two types of sex chromosomal",
           "mechanism:",
           "1. Male heterogametic method",
@@ -453,5 +453,5 @@
       }
     ]
   },
-  "insider_note": "Four types, two under each method. A student who describes only XX-XY caps the answer at two marks — name all four with the animal each belongs to."
+  "insider_note": "Four types, two under each method. The complete answer names all four with the animal each belongs to: XX-XO grasshopper, XX-XY human, ZO-ZZ Fumea moth, ZW-ZZ bird."
 }

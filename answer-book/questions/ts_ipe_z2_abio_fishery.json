@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 128. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 128. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the card's notes ask for 'other aquatic animals', which the boxed line stops short of, so step 2's WHY now gives the fuller wording; the printed line is correct as far as it goes and was left alone, and whether the phrase is required is a question for a board teacher."
   },
   "answer": {
     "page_header": [
@@ -62,7 +62,7 @@
         "label": "What it covers",
         "marks": 1,
         "mark_note": "Scope",
-        "why": "Prawns, crabs and molluscs are all part of the industry, not only fin fish.",
+        "why": "Prawns, crabs and molluscs are the other aquatic animals the industry covers, so the fullest definition names fish, shell fish and other aquatic animals.",
         "common_mistakes": [
           "Naming only fin fish.",
           "Leaving out human consumption."

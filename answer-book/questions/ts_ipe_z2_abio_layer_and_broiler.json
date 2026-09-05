@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 126. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.58, VSAQ 126. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 2's margin note called the age an extra point while its second mistake called leaving the age out an error; the note now says the age is an extra detail and the mistake was replaced, since 'a bird raised only for meat' is already a complete definition."
   },
   "answer": {
     "page_header": [
@@ -90,10 +90,10 @@
         "why": "A bird kept for meat is grown fast and sold young, so it never reaches laying age.",
         "common_mistakes": [
           "Giving broilers the egg job.",
-          "Leaving out the 8 to 10 week figure."
+          "Defining a broiler only by its age. The definition is a bird raised for meat."
         ],
         "memory_tip": "Broilers are raised for meat and sold at 8 to 10 weeks.",
-        "margin_note": "Give the age. It is an easy extra point.",
+        "margin_note": "Give the meaning first. The age is a useful extra detail, not part of the definition.",
         "lines": [
           "Broilers are birds which are raised only for",
           "their meat.",

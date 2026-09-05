@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 142. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 142. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 1's second mistake warned against confusing the primary antibody with the patient's own antibody, but in an indirect ELISA the patient's antibody is the primary antibody, so it was replaced with the confusion between these antibodies and the primary and secondary immune responses."
   },
   "answer": {
     "page_header": [
@@ -47,7 +47,7 @@
         "why": "The primary antibody is the one chosen to recognise the substance being looked for.",
         "common_mistakes": [
           "Saying primary antibodies bind other antibodies.",
-          "Confusing primary with the patient's own antibodies."
+          "Confusing these with the primary and secondary immune responses, which describe the body's first and second exposure to an antigen."
         ],
         "memory_tip": "Primary binds the antigen of interest.",
         "margin_note": "Two rows, one line each.",

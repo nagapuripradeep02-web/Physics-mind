@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 103. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 103. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the insider note no longer states what the board's mark scheme awards, because that scheme is not held here."
   },
   "answer": {
     "page_header": [
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Three things are asked in one line: the structure, its hormone, and the function. Answer all three or the mark is halved."
+  "insider_note": "Three things are asked in one line: the structure, its hormone, and the function. The complete answer names the corpus luteum, says it secretes progesterone, and says progesterone maintains the pregnancy."
 }

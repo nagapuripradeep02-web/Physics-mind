@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 144. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 144. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the insider note said all three numbers are separately marked, which the card's two-row split does not support, so it now states the three numbers and the order to write them in."
   },
   "answer": {
     "page_header": [
@@ -84,5 +84,5 @@
       }
     ]
   },
-  "insider_note": "Three numbers, and all three are marked: 51 in total, 21 in chain A, 30 in chain B."
+  "insider_note": "Three numbers are needed: 51 in total, 21 in chain A, 30 in chain B. Write the total and the number of chains first, then the split."
 }

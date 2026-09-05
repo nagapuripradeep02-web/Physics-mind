@@ -71,7 +71,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.40, SAQ 36. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.40, SAQ 36. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer claims this is the most repeated four-mark question, and the notes no longer ask for two columns, which the printed answer does not use."
   },
   "answer": {
     "page_header": [
@@ -91,7 +91,7 @@
           "Leaving out divergent evolution."
         ],
         "memory_tip": "Homologous: same origin, different job — divergent.",
-        "margin_note": "Write the two kinds side by side as a comparison.",
+        "margin_note": "Write the homologous block first, then the analogous block, using the same three points in the same order: definition, kind of evolution, example.",
         "lines": [
           "Homologous and analogous organs are",
           "evidences of evolution from comparative",
@@ -140,7 +140,7 @@
           "Defining analogous organs by origin. They are defined by function."
         ],
         "memory_tip": "Analogous: different origin, same job — convergent.",
-        "margin_note": "Mirror the wording of the first column exactly.",
+        "margin_note": "Use the same wording pattern as the homologous block: definition first, then the kind of evolution it suggests.",
         "lines": [
           {
             "text": "Analogous organs",
@@ -175,5 +175,5 @@
       }
     ]
   },
-  "insider_note": "Asked eight times in printed papers, more than any other four-mark question. Write it as two columns and name divergent and convergent evolution; those two words are half the marks."
+  "insider_note": "Asked eight times in the printed papers, more than any other four-mark question in this paper. Write the homologous block first, then the analogous block, and name divergent evolution and convergent evolution: those two words carry the two definitions."
 }

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 107. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 107. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the insider note no longer says the two words differ by three letters, which is false; it now names the shared prefix and the two meanings."
   },
   "answer": {
     "page_header": [
@@ -83,5 +83,5 @@
       }
     ]
   },
-  "insider_note": "The two words differ by three letters and are one step apart. Genesis is the change of shape; -ation is the release."
+  "insider_note": "Both words begin with 'spermi' and then differ. Spermiogenesis is the change of shape, spermatid into spermatozoon. Spermiation is the release of those sperm from the seminiferous tubules, one step later."
 }

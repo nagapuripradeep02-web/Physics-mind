@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.38, SAQ 33. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.38, SAQ 33. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the last margin note no longer calls the prevention a full mark on its own, since the mark split gives the name and the prevention one mark between them."
   },
   "answer": {
     "page_header": [
@@ -149,7 +149,7 @@
           "Naming the wrong injection. It is anti-D."
         ],
         "memory_tip": "Erythroblasts in the blood give the disease its name; anti-D prevents it.",
-        "margin_note": "End with the prevention. It is a full mark on its own.",
+        "margin_note": "End with the prevention. The name and the prevention share this mark, so give both.",
         "lines": [
           "To make up the loss, the foetal",
           "haemopoietic system releases erythroblasts,",

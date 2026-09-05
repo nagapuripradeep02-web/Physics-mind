@@ -79,7 +79,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.20, LAQ 6. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.20, LAQ 6. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the compatibility common-mistake no longer treats the standard universal donor and recipient wording as an error, and the insider note now says what a complete answer contains instead of claiming a mark is lost."
   },
   "answer": {
     "page_header": [
@@ -263,7 +263,7 @@
         "why": "A group with no antigens cannot be attacked by any antibody, and a group with no antibodies cannot attack any donor cell.",
         "common_mistakes": [
           "Swapping the two. O negative donates to all; AB positive receives from all.",
-          "Leaving out the Rh sign."
+          "Saying the O group person can receive any blood. O can be given to all groups, but can receive only from O. Adding the Rh sign, O⁻ and AB⁺, makes the statement exact."
         ],
         "memory_tip": "O⁻ gives to everyone; AB⁺ takes from everyone.",
         "margin_note": "Close with the two special groups.",
@@ -280,5 +280,5 @@
       }
     ]
   },
-  "insider_note": "Show the n(n+1)/2 working with numbers substituted. Writing only '6 genotypes' loses the mark that the formula carries."
+  "insider_note": "Show the n(n+1)/2 working with the numbers substituted: 3(3+1)/2 = 6. The complete answer gives the formula, the substitution and the six genotypes."
 }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 105. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 105. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the timing step's reason no longer says the six days are all spent travelling, since the embryo reaches the uterus in three or four days and then stays free for two or three more."
   },
   "answer": {
     "page_header": [
@@ -63,7 +63,7 @@
         "label": "When it happens",
         "marks": 1,
         "mark_note": "When",
-        "why": "It takes about six days for the embryo to travel down the tube and reach the uterus.",
+        "why": "The embryo reaches the uterus after about three or four days, then stays free in the uterine cavity for two or three more days while it becomes a blastocyst. It attaches to the uterine wall at about the sixth day.",
         "common_mistakes": [
           "Saying it happens immediately after fertilisation.",
           "Leaving the timing out."

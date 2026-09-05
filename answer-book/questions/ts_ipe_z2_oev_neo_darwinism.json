@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.41, SAQ 39. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.41, SAQ 39. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the gene mutation line now says a change in DNA can alter the phenotype, because a change in DNA does not always alter it, and the matching common mistake was reworded."
   },
   "answer": {
     "page_header": [
@@ -64,7 +64,7 @@
         "why": "Darwin knew variation existed but not where it came from; Neo-Darwinism names mutation as the source.",
         "common_mistakes": [
           "Naming only one kind of mutation. Gene and chromosomal are separate factors.",
-          "Leaving out that mutations alter the phenotype."
+          "Leaving out that gene mutations are the source of new variations."
         ],
         "memory_tip": "Gene mutation changes a letter; chromosomal mutation moves a whole block.",
         "margin_note": "Name all five factors, then take them in turn.",
@@ -76,8 +76,8 @@
           "and reproductive isolation.",
           "1. Gene mutations: a change in the",
           "structure of DNA, also called point",
-          "mutation. Any change in DNA alters the",
-          "phenotype and produces variations.",
+          "mutation. Such a change can alter the",
+          "phenotype and so produce variations.",
           "2. Chromosomal mutations: addition,",
           "deletion, inversion and translocation of",
           "chromosomes. They alter the phenotype."

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 104. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.54, VSAQ 104. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the duration step no longer treats the textbook answer of about 9 months as a mistake, and the 9-month figure is now carried in the step's reason."
   },
   "answer": {
     "page_header": [
@@ -63,9 +63,9 @@
         "label": "Its duration",
         "marks": 1,
         "mark_note": "Duration",
-        "why": "A doctor counts from the last period because that date is known, while the date of fertilisation usually is not.",
+        "why": "The textbook figure of about 9 months is the same length stated in months: 38 weeks from fertilisation is about 9 months. A doctor counts from the last period because that date is known, while the date of fertilisation usually is not.",
         "common_mistakes": [
-          "Giving nine months without a number of weeks.",
+          "Giving only the number of months. Add the weeks and say what each count starts from — about 9 months, which is 38 weeks from fertilisation or 40 weeks from the last period.",
           "Quoting 40 weeks from fertilisation. That count starts at the last period."
         ],
         "memory_tip": "38 weeks from fertilisation, 40 from the last period.",

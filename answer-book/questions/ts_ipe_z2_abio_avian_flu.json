@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.42, SAQ 41. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.42, SAQ 41. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the insider note's claim about how the answer is marked was replaced with a completeness instruction, since the board's mark scheme is not held here."
   },
   "answer": {
     "page_header": [
@@ -143,5 +143,5 @@
       }
     ]
   },
-  "insider_note": "Name the virus H5N1 in the first line. A description of the illness without the causative organism is usually cut to half."
+  "insider_note": "Name the virus H5N1 in the first line. A complete answer gives the causative virus as well as the description of the illness."
 }

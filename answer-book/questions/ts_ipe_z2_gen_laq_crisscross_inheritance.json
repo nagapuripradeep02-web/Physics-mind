@@ -79,7 +79,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.23, LAQ 8. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.23, LAQ 8. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the margin note now counts the three statements the step actually prints, and the insider note says what a complete answer contains instead of claiming a words-only answer loses marks."
   },
   "answer": {
     "page_header": [
@@ -123,7 +123,7 @@
           "Leaving out why females are less affected."
         ],
         "memory_tip": "One X means nothing to hide behind.",
-        "margin_note": "Four numbered points cover this mark.",
+        "margin_note": "Three statements cover this mark: the male's single X, why he is more prone, why the female is less prone.",
         "lines": [
           "Males have only one X chromosome, with no",
           "partner to mask it.",
@@ -274,5 +274,5 @@
       }
     ]
   },
-  "insider_note": "Write the karyotypes in every cross — AAXᶜXᶜ, AAXᶜᵇY and so on. An answer in words alone rarely earns more than half, because the examiner cannot check the reasoning."
+  "insider_note": "Write the karyotype for every person in every cross — AAXᶜXᶜ, AAXᶜᵇY and so on. The complete answer shows the genotypes of both parents and of the children in each cross, not the outcome in words alone."
 }

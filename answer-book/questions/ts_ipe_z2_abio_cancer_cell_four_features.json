@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 137. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 137. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 2's memory tip taught blood vessels while its second mistake condemned them, and neither matches the four features this card prints, so both now follow the printed features."
   },
   "answer": {
     "page_header": [
@@ -72,9 +72,9 @@
         "why": "The two safety systems that should stop them — contact inhibition and apoptosis — have both failed.",
         "common_mistakes": [
           "Leaving out apoptosis.",
-          "Saying cancer cells make their own blood."
+          "Confusing apoptosis with necrosis. Apoptosis is programmed cell death."
         ],
-        "memory_tip": "No contact inhibition, no apoptosis, and they pull in blood vessels.",
+        "memory_tip": "No contact inhibition, and no apoptosis.",
         "margin_note": "Finish the list of four.",
         "lines": [
           "3. They lose the property of contact",

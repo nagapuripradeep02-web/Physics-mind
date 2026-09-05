@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 140. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 140. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the insider note said four components are asked for and not three, but the question names no number and the P wave, QRS complex and T wave listing is also standard, so the note now simply describes the four groups this card uses."
   },
   "answer": {
     "page_header": [
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "Four components are asked for, not three. Waves, intervals, segments and complexes — name an example inside each."
+  "insider_note": "Give the definition first, then the components grouped as waves, intervals, segments and complexes, with an example inside each group."
 }

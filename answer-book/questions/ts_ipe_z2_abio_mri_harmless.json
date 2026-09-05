@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 139. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.60, VSAQ 139. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): step 1's memory tip said 'no radiation' although radio waves are themselves non-ionising radiation, so it now reads 'no ionising radiation', matching the printed line in step 2."
   },
   "answer": {
     "page_header": [
@@ -58,7 +58,7 @@
           "Saying MRI uses a small amount of X-rays. It uses none.",
           "Leaving out the full form."
         ],
-        "memory_tip": "Magnets and radio waves, no radiation.",
+        "memory_tip": "Magnets and radio waves — no ionising radiation.",
         "margin_note": "Say what it uses before saying why it is safe.",
         "lines": [
           "MRI means Magnetic Resonance Imaging.",

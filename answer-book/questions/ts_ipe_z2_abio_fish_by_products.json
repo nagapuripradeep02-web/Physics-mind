@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 132. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 132. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the insider note and both margin notes claimed marks the card's own two-row split does not give, and step 2's margin note asked for a use that its isinglass line does not print, so all three now match the printed answer."
   },
   "answer": {
     "page_header": [
@@ -59,7 +59,7 @@
           "Giving fewer than four by-products."
         ],
         "memory_tip": "Liver oils and omega-3 fatty acids.",
-        "margin_note": "Number them. Each is a tick.",
+        "margin_note": "Number them. Two by-products in this step, two in the next.",
         "lines": [
           "1. Shark liver oil and cod liver oil.",
           "2. Omega 3 fatty acids from sardines and",
@@ -78,7 +78,7 @@
           "Naming only food products."
         ],
         "memory_tip": "Fish guano is fertiliser; isinglass clears wine.",
-        "margin_note": "Say what each is used for.",
+        "margin_note": "Two more by-products, with what each is made from.",
         "lines": [
           "3. Fish guano — fertiliser from waste fish.",
           {
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Four are asked, so give four, and say what each is used for — the use is what earns the mark."
+  "insider_note": "Four are asked, so give four and number them. Saying what each is used for makes the answer complete."
 }

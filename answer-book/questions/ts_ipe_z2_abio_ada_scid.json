@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 134. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.59, VSAQ 134. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revision (examiner audit, 2026-09-05): the margin note asks for the short form SCID, which no printed line carried, so the abbreviation was added to the step's WHY; the printed line itself is correct and was left alone."
   },
   "answer": {
     "page_header": [
@@ -63,7 +63,7 @@
         "label": "The disease",
         "marks": 1,
         "mark_note": "The disease",
-        "why": "Without the enzyme both kinds of lymphocyte fail, so the child has almost no immune defence at all.",
+        "why": "The full name Severe Combined Immuno Deficiency is shortened to SCID. Without the enzyme both kinds of lymphocyte fail, so the child has almost no immune defence at all.",
         "common_mistakes": [
           "Naming AIDS. SCID is inherited, AIDS is caused by a virus.",
           "Giving the short form without the full name."

@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 116. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.56, VSAQ 116. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Content revision (examiner audit, 2026-09-05): the memory tip now puts the causation the right way round (ovulation is suppressed first, and the absence of periods follows), and the method is named a natural method, which is where NCERT lists it, instead of a hormonal one."
   },
   "answer": {
     "page_header": [
@@ -55,10 +55,10 @@
         "mark_note": "Contraception",
         "why": "Breast feeding suppresses ovulation, so no ovum is released to be fertilised.",
         "common_mistakes": [
-          "Calling it a barrier method. It works through hormones.",
+          "Calling it a barrier method. It is a natural method — intense breast feeding suppresses ovulation, and no device or drug is used.",
           "Writing that it works after breast feeding stops. It works only while it continues."
         ],
-        "memory_tip": "No periods while breast feeding, so no ovulation.",
+        "memory_tip": "Intense breast feeding suppresses ovulation, so there are no periods and almost no chance of conception.",
         "margin_note": "The condition matters: only while breast feeding continues.",
         "lines": [
           "As long as the mother breast feeds her",

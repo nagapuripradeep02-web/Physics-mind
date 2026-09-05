@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 47. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a second heartbeat was added so the R-R interval named in the answer can be marked, and the P-R and Q-T brackets now start where the card defines them."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 47. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a second heartbeat was added so the R-R interval named in the answer can be marked, and the P-R and Q-T brackets now start where the card defines them. Revision (examiner audit, 2026-09-05): the insider note no longer says the durations are the marks, since the fourth mark is the labelled trace, and the T wave step's WHY now states that the T wave is ventricular repolarisation, which the printed line does not say."
   },
   "answer": {
     "page_header": [
@@ -92,7 +92,7 @@
         "label": "T wave",
         "marks": 1,
         "mark_note": "T wave",
-        "why": "The heart muscle must reset electrically before it can beat again, and the T wave is that reset.",
+        "why": "The T wave represents repolarisation, the electrical recovery of the ventricles after they contract, and the end of the T wave marks the end of ventricular systole.",
         "common_mistakes": [
           "Giving the T wave to atrial recovery.",
           "Leaving out its duration."
@@ -357,5 +357,5 @@
       }
     ]
   },
-  "insider_note": "Every wave and interval has a duration, and the durations are the marks. P is 0.1 s, QRS 0.08-0.1 s, T 0.2 s, PR 0.12-0.2 s, QT 0.4 s, RR 0.8 s."
+  "insider_note": "Give a duration with every wave and every interval — P 0.1 s, QRS 0.08-0.1 s, T 0.2 s, PR 0.12-0.2 s, QT 0.4 s, RR 0.8 s — and finish with the labelled trace."
 }

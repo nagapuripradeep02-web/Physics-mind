@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 118. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 118. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the question asks only for names, so the insider note and the first common mistake no longer treat a bare list of four correct names as an error."
   },
   "answer": {
     "page_header": [
@@ -51,7 +51,7 @@
         "mark_note": "First two",
         "why": "A connecting link shows features of two groups at once, so it is evidence that one group gave rise to the other.",
         "common_mistakes": [
-          "Naming the animal without the groups it links.",
+          "Naming an animal that is not a connecting link.",
           "Naming Archaeopteryx as a link between amphibians and reptiles."
         ],
         "memory_tip": "Fish→amphibian, amphibian→reptile, reptile→bird, reptile→mammal.",
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "Each name must be followed by the two groups it links. A bare list of four names is usually cut to one mark."
+  "insider_note": "The question asks for four names, and four correct names answer it. Write the two groups each one joins beside the name as well — it takes only a few extra words and shows that you know why the animal is a connecting link."
 }

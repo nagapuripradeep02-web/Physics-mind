@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 117. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.57, VSAQ 117. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer forbids the phrase 'panspermia theory', which the card's own printed line and mark split use."
   },
   "answer": {
     "page_header": [
@@ -85,5 +85,5 @@
       }
     ]
   },
-  "insider_note": "Panspermia is the SPORES, not the theory. Name both — the resistant spores and the idea that they arrived from space."
+  "insider_note": "Panspermia are the resistant spores themselves, and the panspermia theory is the idea that those spores came from elsewhere in the universe. Name both halves — the spores, and the claim that they reached the earth by accident."
 }

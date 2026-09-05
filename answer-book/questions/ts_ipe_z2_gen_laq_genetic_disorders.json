@@ -54,7 +54,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.24-25, LAQ 9. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.24-25, LAQ 9. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the sickle cell symptom line now gives the correct mechanism, blockage of small blood vessels by sickled cells rather than internal bleeding, and the insider note now asks only for the numbers this answer actually carries."
   },
   "answer": {
     "page_header": [
@@ -167,7 +167,8 @@
           "chromosome 11, expressed in the homozygous",
           "condition.",
           "Symptoms: physical weakness, pain, organ",
-          "damage from internal bleeding, paralysis.",
+          "damage caused by sickled cells blocking",
+          "small blood vessels, paralysis.",
           {
             "text": "Phenylketonuria",
             "style": "heading"
@@ -318,5 +319,5 @@
       }
     ]
   },
-  "insider_note": "Split the answer in two halves — Mendelian, then chromosomal — and give each disorder its own line with the chromosome number. The numbers are what the examiner ticks."
+  "insider_note": "Split the answer in two halves — Mendelian first, then chromosomal — and give each disorder its own line. Write the chromosome number where the answer has one (sickle cell anaemia 11, phenylketonuria 12, cystic fibrosis 7), and the karyotype for each chromosomal syndrome (47,XXY · 45,X · trisomy 21 · trisomy 18 · trisomy 13 · deletion on 5)."
 }
