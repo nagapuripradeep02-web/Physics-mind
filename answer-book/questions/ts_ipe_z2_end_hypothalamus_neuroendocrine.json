@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.35, SAQ 26. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.35, SAQ 26. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 (examiner audit Z2-07): the s2 lines and mistake note now give the two routes separately, since the releasing and inhibiting hormones reach the anterior pituitary through the portal vessels while only oxytocin and vasopressin travel to the neurohypophysis."
   },
   "answer": {
     "page_header": [
@@ -78,15 +78,18 @@
         "why": "These are nerve cells that release their product into the blood rather than onto another neuron, which is what makes the organ neuro-endocrine.",
         "common_mistakes": [
           "Calling the nuclei glands. They are groups of nerve cells.",
-          "Leaving out the neurohypophysis."
+          "Sending the releasing hormones to the posterior lobe. They reach the anterior pituitary through the portal vessels."
         ],
         "memory_tip": "Nerve cells that secrete hormones: neurosecretory.",
         "margin_note": "Name the nuclei and where their hormones go.",
         "lines": [
           "It contains groups of neurosecretory cells",
           "called nuclei, which produce neurohormones.",
-          "These hormones are carried to the",
-          "neurohypophysis, the posterior pituitary."
+          "Releasing and inhibiting hormones reach the",
+          "anterior pituitary through portal vessels.",
+          "Oxytocin and vasopressin pass along axons",
+          "to the neurohypophysis, the posterior",
+          "pituitary."
         ]
       },
       {

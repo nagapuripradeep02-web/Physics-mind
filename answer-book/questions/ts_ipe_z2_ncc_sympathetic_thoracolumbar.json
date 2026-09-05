@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 84. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 84. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 1's why now covers the parasympathetic cranio-sacral outflow instead of naming the spinal cord alone, and the insider note's prohibition was replaced with what the answer must name."
   },
   "answer": {
     "page_header": [
@@ -53,7 +53,7 @@
         "label": "Where the nerves arise",
         "marks": 1,
         "mark_note": "Origin",
-        "why": "Divisions of the autonomic system are named after the part of the cord their nerves leave from.",
+        "why": "Each division of the autonomic neural system is named after the region of the central nervous system its preganglionic fibres leave from: the thoracic and lumbar cord here, the brain stem and the sacral cord for the parasympathetic division.",
         "common_mistakes": [
           "Naming the brain as the origin. That is the parasympathetic division.",
           "Naming only one region."
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "The name comes from a place, so the answer must name the two regions of the spinal cord. Nothing else earns the mark."
+  "insider_note": "The name comes from a place, so the answer must name the two regions — thoracic and lumbar — and then say the name follows from them."
 }

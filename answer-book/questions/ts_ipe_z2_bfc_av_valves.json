@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 63. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.48, VSAQ 63. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): both step reasons dropped the claim that ventricular pressure decides the number of cusps, which no textbook makes and which inverted between the two steps, and now state the cusp counts and the one job of the valves."
   },
   "answer": {
     "page_header": [
@@ -49,7 +49,7 @@
         "label": "Left aperture",
         "marks": 1,
         "mark_note": "Left valve",
-        "why": "The left valve has two flaps because the thick left ventricle needs a smaller, stronger opening to hold against high pressure.",
+        "why": "The left atrioventricular valve has two cusps and the right has three. Both close when the ventricle contracts, so blood is driven into the artery instead of back into the atrium.",
         "common_mistakes": [
           "Putting the tricuspid on the left. Bicuspid is the left valve.",
           "Naming semilunar valves. Those guard the arteries, not the apertures."
@@ -68,7 +68,7 @@
         "label": "Right aperture",
         "marks": 1,
         "mark_note": "Right valve",
-        "why": "Three flaps close the wider right opening, where the pressure from the thinner right ventricle is lower.",
+        "why": "The three cusps of the tricuspid valve close the right atrioventricular aperture when the right ventricle contracts, so blood goes into the pulmonary artery and not back into the right atrium.",
         "common_mistakes": [
           "Naming only one valve when two are asked.",
           "Writing bicuspid for both sides."

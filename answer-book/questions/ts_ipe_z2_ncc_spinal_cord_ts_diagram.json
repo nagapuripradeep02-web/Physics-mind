@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.65, SAQ 172 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the grey matter is redrawn as a butterfly with slender dorsal horns and short broad ventral horns instead of four identical lobes, the grey matter and central canal leaders were re-aimed, and the stacked dorsal root ganglion label was re-spaced."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.65, SAQ 172 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the grey matter is redrawn as a butterfly with slender dorsal horns and short broad ventral horns instead of four identical lobes, the grey matter and central canal leaders were re-aimed, and the stacked dorsal root ganglion label was re-spaced. Text revision (examiner audit, 2026-09-05): the insider note's claim about what a poor drawing earns was replaced with what the drawing must show."
   },
   "answer": {
     "page_header": [
@@ -371,5 +371,5 @@
       }
     ]
   },
-  "insider_note": "All four marks are in the drawing. The grey matter must be the butterfly INSIDE the white matter — a student who draws one outline and labels it 'spinal cord' earns almost nothing."
+  "insider_note": "All four marks are in the drawing. Draw the butterfly of grey matter INSIDE the white matter, with the central canal at its centre, and label at least eight parts."
 }

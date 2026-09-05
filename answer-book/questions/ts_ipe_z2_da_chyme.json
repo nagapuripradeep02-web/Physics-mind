@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 51. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 51. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_what's margin note named two marking words, which the bank cannot know, so it now simply asks for both halves of the definition."
   },
   "insider_note": "Two marks, two lines: what chyme is and how the churning makes it. Do not confuse it with chyle.",
   "answer": {
@@ -68,7 +68,7 @@
           "Confusing chyme with chyle, the milky fat-rich lymph."
         ],
         "memory_tip": "Chyme is in the stoMach; chyle is fat in the lyMph.",
-        "margin_note": "Acidic and semi digested are the two marking words.",
+        "margin_note": "Give both halves of the definition: acidic, and semi digested.",
         "lines": [
           "Chyme is the acidic, semi digested, semi",
           "fluid food formed in the stomach."

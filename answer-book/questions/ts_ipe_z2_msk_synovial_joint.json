@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 19. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the outer membrane, inner membrane, ligament and articular capsule leaders were re-aimed so each one lands on its own line."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 19. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the outer membrane, inner membrane, ligament and articular capsule leaders were re-aimed so each one lands on its own line. Text revision (examiner audit, 2026-09-05): the insider note's mark cap on a diagram-free answer was replaced with the three written points and the diagram the card's own mark split names."
   },
   "answer": {
     "page_header": [
@@ -377,5 +377,5 @@
       }
     ]
   },
-  "insider_note": "One of the four marks is the diagram. A student who writes all eight points but draws nothing caps the answer at three."
+  "insider_note": "One of the four marks is the labelled diagram, so draw the section as well as writing the three points: what a synovial joint is, the outer layer, and the inner layer with its fluid."
 }

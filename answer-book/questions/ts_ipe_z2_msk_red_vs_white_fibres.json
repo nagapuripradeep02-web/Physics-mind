@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 77. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 77. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the insider note's half-mark verdict on a hypothetical answer was replaced with the three points the complete answer names."
   },
   "answer": {
     "page_header": [
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Myoglobin is what makes the fibre red, so name it first — a colour without its cause is usually marked as half a point."
+  "insider_note": "Myoglobin is what makes the fibre red, so name it first: more myoglobin and more mitochondria, then the word aerobic. Mirror the same three points for white fibres."
 }

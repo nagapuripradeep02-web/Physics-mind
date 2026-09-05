@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.33, SAQ 21. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.33, SAQ 21. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the insider note's claim that an out-of-order answer loses marks was replaced with the reason for writing the steps in order."
   },
   "answer": {
     "page_header": [
@@ -159,5 +159,5 @@
       }
     ]
   },
-  "insider_note": "Follow the impulse in order: arrive, calcium in, vesicles fuse, transmitter out, receptor binds, new potential. An answer that lists facts out of order loses marks even when every fact is right."
+  "insider_note": "Follow the impulse in order: arrive, calcium in, vesicles fuse, transmitter out, receptor binds, new potential. Written in that order, each line follows from the one before it."
 }

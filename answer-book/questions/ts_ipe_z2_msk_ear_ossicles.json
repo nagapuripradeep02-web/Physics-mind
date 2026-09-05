@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 79. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 79. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 1's margin note no longer asks for the origins that step 2 gives, and the insider note now matches the card's own two-step layout."
   },
   "answer": {
     "page_header": [
@@ -59,7 +59,7 @@
           "Naming the cochlea. That is not an ossicle."
         ],
         "memory_tip": "Hammer, anvil, stirrup — malleus, incus, stapes.",
-        "margin_note": "Write each name with its origin beside it.",
+        "margin_note": "Just the three names here. Their origins come in the next line.",
         "lines": [
           "The three ear ossicles are the malleus,",
           "the incus and the stapes."
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Both halves are marked: the three names and the three origins. Write them as three pairs, not as two lists."
+  "insider_note": "Both halves are marked: the three names and the three origins. Name the three ossicles, then pair each one with the bone it came from."
 }

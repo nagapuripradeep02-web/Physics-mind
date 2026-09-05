@@ -39,9 +39,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 52. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 52. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_three's why said all papillae carry taste buds, which the filiform do not, s2_locations' why claimed the zones are separate when the filiform cover the whole upper surface, and the insider note no longer calls the names alone a half answer; whether a question that asks only for the names carries marks for the locations still needs a teacher's ruling."
   },
-  "insider_note": "Half the marks are for the locations. Naming the three types alone is a half answer.",
+  "insider_note": "The question asks for the names, and a two-mark answer has room for more: name all three — fungiform, filiform, circumvallate — and give each one its place on the tongue.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -54,7 +54,7 @@
         "label": "The three types",
         "marks": 1,
         "mark_note": "The three names",
-        "why": "The papillae are the small projections that carry the taste buds, so naming them is naming the taste surface of the tongue.",
+        "why": "Papillae are the small projections on the upper surface of the tongue, and some of them bear the taste buds, so naming the papillae names the taste surface of the tongue.",
         "common_mistakes": [
           "Naming taste buds instead of papillae. Taste buds sit on the papillae.",
           "Giving only two types. Three are expected."
@@ -75,7 +75,7 @@
         "label": "Their locations",
         "marks": 1,
         "mark_note": "Locations",
-        "why": "Each type keeps to its own zone of the tongue, so the location is what tells them apart.",
+        "why": "Each type has its own shape and its own main region of the tongue, so the answer gives the location beside each name.",
         "common_mistakes": [
           "Placing circumvallate papillae at the tip. They lie at the base.",
           "Giving no locations at all. Half the marks are here."

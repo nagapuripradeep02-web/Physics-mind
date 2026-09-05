@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.31, SAQ 18. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.31, SAQ 18. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s4_receptors' second common mistake told the student to add oxygen, which contradicted the printed lines and s3, so it now warns against making the receptors set the rhythm; the insider note no longer caps a partial answer at one mark."
   },
-  "insider_note": "Name all four controls in the first two lines. A student who explains only the medulla caps the answer at one mark.",
+  "insider_note": "Name all four controls in the first two lines, then explain each: rhythm centre, pneumotaxic centre, chemosensitive area, aortic and carotid receptors.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -127,7 +127,7 @@
         "why": "These receptors sit in the arteries leaving the heart, so they sample the blood before it reaches the rest of the body.",
         "common_mistakes": [
           "Placing the receptors in the lungs. They lie in the aortic arch and carotid arteries.",
-          "Leaving out the role of oxygen here. These receptors also watch it."
+          "Writing that these receptors set the rhythm themselves. They only send signals to the respiratory rhythm centre."
         ],
         "memory_tip": "Aortic arch and carotid: the two check posts on the way out.",
         "margin_note": "One boxed line makes the summary clear.",

@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 90. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.52, VSAQ 90. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 (examiner audit Z2-08): the insider note now asks for the posterior lobe of the pituitary by name instead of ruling the pituitary out, since the neurohypophysis is a lobe of that gland, and the s2 margin note now matches the single name the step prints."
   },
   "answer": {
     "page_header": [
@@ -77,7 +77,7 @@
           "Naming the kidney, which is where it acts, not where it is made."
         ],
         "memory_tip": "Neurohypophysis is the back part of the pituitary.",
-        "margin_note": "Give both names of the gland.",
+        "margin_note": "Name the posterior lobe: the neurohypophysis.",
         "lines": [
           {
             "text": "It is secreted by the neurohypophysis",
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "One mark for the hormone, one for the gland. Both must appear, and the gland is the posterior lobe, not the pituitary in general."
+  "insider_note": "One mark for the hormone, one for the gland. Both must appear. Name the posterior lobe of the pituitary — the neurohypophysis — rather than the pituitary alone, so the marker sees which lobe you mean."
 }

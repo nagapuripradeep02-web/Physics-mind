@@ -43,9 +43,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.29, SAQ 13. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.29, SAQ 13. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1's first common mistake and memory tip called any fat digestion outside the small intestine an error, although the gastric glands do secrete a small amount of lipase, so both now say almost all of it happens in the small intestine; the insider note no longer says half the answer goes unmarked."
   },
-  "insider_note": "The question has two halves and equal marks for each. Answer digestion and absorption under two headings or half the answer goes unmarked.",
+  "insider_note": "The question has two halves and equal marks for each. Write digestion and absorption under two headings so both halves are on the page.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -60,10 +60,10 @@
         "mark_note": "Fat, small intestine",
         "why": "The question is a fat question in disguise, so the first line has to name butter as a lipid and place its digestion in the small intestine.",
         "common_mistakes": [
-          "Starting the digestion in the mouth or stomach. Fat is digested only in the small intestine.",
+          "Placing the main digestion of fat in the mouth or stomach. Almost all of it happens in the small intestine, with bile salts and pancreatic lipase.",
           "Treating butter as a protein because it comes from milk."
         ],
-        "memory_tip": "Butter is fat, so nothing happens to it until the small intestine.",
+        "memory_tip": "Butter is fat, so its digestion belongs to the small intestine.",
         "margin_note": "Two lines. Say what butter is and where it is digested.",
         "lines": [
           "Butter is a fat, that is, a lipid.",

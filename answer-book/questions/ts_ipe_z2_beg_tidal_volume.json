@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 57. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 57. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says the second mark is lost; it now sets out the working from 500 mL a breath to 360–480 litres an hour."
   },
-  "insider_note": "The question asks for an hour, not a minute. Show the multiplication by 60 or the second mark is lost.",
+  "insider_note": "The question asks for an hour, not a minute. Write the working in full: 500 mL × 12–16 breaths a minute = 6000–8000 mL a minute, then × 60 = 360–480 litres an hour.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

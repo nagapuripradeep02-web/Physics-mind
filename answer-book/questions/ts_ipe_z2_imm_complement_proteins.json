@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 98. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.53, VSAQ 98. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 (examiner audit Z2-08): the s2 why now names the microbe as the cell that bursts rather than the infected host cell, and the insider note now separates complement proteins from antibodies by their non-specific, always-present nature rather than by being inactive."
   },
   "answer": {
     "page_header": [
@@ -68,7 +68,7 @@
         "label": "What they do",
         "marks": 1,
         "mark_note": "Action",
-        "why": "A hole in the membrane lets fluid rush in, so the infected cell swells until it bursts.",
+        "why": "A hole in the membrane lets fluid enter, so the microbe swells until it bursts.",
         "common_mistakes": [
           "Saying they engulf microbes. They punch holes in them.",
           "Leaving out the membrane attack complex."
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "The marked chain is: inactive proteins, activated, membrane attack complex, pores, cell bursts. Say 'inactive' — that is what makes them complement proteins rather than antibodies."
+  "insider_note": "The marked chain is: inactive proteins, activated, membrane attack complex, pores, cell bursts. Say 'inactive' — it is the key word. Complement proteins are always present in the plasma and act against any microbe, while antibodies are made against one particular antigen."
 }

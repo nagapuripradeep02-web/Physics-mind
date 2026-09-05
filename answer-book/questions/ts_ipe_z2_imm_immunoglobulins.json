@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 29. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the disulfide bonds now carry a label, and the two paratope leaders land on the Fab caps instead of stopping in the gap beside them."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 29. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the disulfide bonds now carry a label, and the two paratope leaders land on the Fab caps instead of stopping in the gap beside them. Revised 2026-09-05 (examiner audit Z2-07): the insider note no longer says the drawing covers the structure row on its own, since the written structure and the five classes are asked for separately from the diagram."
   },
   "answer": {
     "page_header": [
@@ -413,5 +413,5 @@
       }
     ]
   },
-  "insider_note": "Draw the Y. The structure is far quicker to show than to describe, and H₂L₂ with the Fab and Fc ends labelled earns the structure mark on its own."
+  "insider_note": "Draw the Y as well as describing it — the diagram is a separate part of the answer. Label the Fab and Fc ends and both chains on the drawing, and still write H₂L₂ and the five classes in the text."
 }

@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 53. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 53. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_pairs' why said the glands are named by where their ducts open, which is not so — each is named for where the gland lies — and its margin note no longer claims the word pairs is checked."
   },
   "insider_note": "Say three PAIRS, not three glands, and give a location for each.",
   "answer": {
@@ -50,13 +50,13 @@
         "label": "The three pairs",
         "marks": 1,
         "mark_note": "The three names",
-        "why": "They are named by where they open into the mouth, so the name and the place belong together.",
+        "why": "Each gland is named after the place where the gland itself lies — beside the ear, under the lower jaw, under the tongue — so the name and the location belong together.",
         "common_mistakes": [
           "Writing three glands instead of three pairs. They are paired.",
           "Naming the pancreas. It is not a salivary gland."
         ],
         "memory_tip": "Near the ear, under the jaw, under the tongue.",
-        "margin_note": "Say pairs, not glands. That word is checked.",
+        "margin_note": "Say pairs, not glands. There are three pairs, six glands in all.",
         "lines": [
           "There are 3 pairs of salivary glands in man:",
           "1. Parotid glands",

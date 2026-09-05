@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 60. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 60. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says a bare name earns nothing; it now states that the question asks for the causes as well and pairs each disorder with its dust."
   },
-  "insider_note": "Each disorder must be paired with the dust that causes it. A bare name earns nothing.",
+  "insider_note": "The question asks for the causes as well as the names, so pair each disorder with its dust: asbestos dust gives asbestosis, coal dust gives black lung disease.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

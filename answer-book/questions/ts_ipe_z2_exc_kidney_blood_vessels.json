@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 67. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.49, VSAQ 67. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): the memory tip no longer says artery in and vein out holds for every organ, because the liver receives most of its blood through the hepatic portal vein."
   },
   "answer": {
     "page_header": [
@@ -49,7 +49,7 @@
           "Naming the ureter. That carries urine, not blood.",
           "Swapping artery and vein."
         ],
-        "memory_tip": "Artery in, vein out — as in every organ.",
+        "memory_tip": "Artery in, vein out for the kidney.",
         "margin_note": "One line each. Add the hilum for completeness.",
         "lines": [
           "The blood vessel that enters the kidney is",

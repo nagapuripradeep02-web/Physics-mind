@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.30, SAQ 15. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.30, SAQ 15. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s4_exp_volume's second common mistake condemned the card's own line that the lungs recoil, so it now warns against saying muscles push the air out, and the insider note no longer states how many marks a partial answer loses."
   },
   "answer": {
     "page_header": [
@@ -95,9 +95,9 @@
         "margin_note": "The pressure sentence is the one that earns this mark.",
         "lines": [
           "The external intercostal muscles contract",
-          "and raise the ribs sideways. This increases",
-          "the thoracic volume in the dorso-ventral",
-          "axis.",
+          "and lift up the ribs and the sternum. This",
+          "increases the thoracic volume in the",
+          "dorso-ventral axis.",
           "The ribs and diaphragm pull the pleural",
           "membrane attached to the lungs.",
           "The pressure inside the lungs then falls",
@@ -138,7 +138,7 @@
         "why": "The same pressure rule runs backwards, which is why the two halves of the answer mirror each other.",
         "common_mistakes": [
           "Leaving the pressure out again. The mark is for the pressure rising.",
-          "Writing that the lungs push the air out. The falling volume does it."
+          "Writing that muscles push the air out. In quiet expiration the muscles relax and the stretched lungs recoil."
         ],
         "memory_tip": "Volume down, pressure up, air is pushed out.",
         "margin_note": "One boxed line closes the answer neatly.",
@@ -157,5 +157,5 @@
       }
     ]
   },
-  "insider_note": "Both halves must say which way the pressure moves. A student who describes only the muscles usually loses two of the four marks."
+  "insider_note": "Both halves must say which way the pressure moves. The complete answer names the muscles and the pressure change for inspiration, and again for expiration."
 }

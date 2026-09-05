@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 20. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the ilium is now labelled by name, the break between each iliac blade and its acetabulum is closed, and the pubis leader lands on the pubis."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 20. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the ilium is now labelled by name, the break between each iliac blade and its acetabulum is closed, and the pubis leader lands on the pubis. Text revision (examiner audit, 2026-09-05): the insider note's claim about how an examiner reads a lopsided drawing was replaced with what the drawing must show."
   },
   "answer": {
     "page_header": [
@@ -421,5 +421,5 @@
       }
     ]
   },
-  "insider_note": "All four marks are in the drawing. Draw it symmetrical — an examiner reads a lopsided girdle as a wrong structure, not as untidy work."
+  "insider_note": "All four marks are in the drawing. Draw the two halves the same size and shape, with the sacrum between them, and label at least eight parts."
 }

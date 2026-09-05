@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 49. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 49. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note no longer says a single row of digits is read as half an answer; it now states the fraction and what must follow it."
   },
-  "insider_note": "Write the formula as a fraction, upper jaw over lower. A single row of digits is read as half an answer.",
+  "insider_note": "Write the formula as a fraction, upper jaw over lower: 2123/2123. Each row is one half of one jaw, so follow it with what the digits denote and the total of 32 teeth.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

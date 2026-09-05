@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 50. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 50. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note, s1_emulsify's margin note and its second common mistake all stated which word carries or loses a mark, so each now gives the reason instead — bile salts break the fat into small droplets rather than digesting it."
   },
-  "insider_note": "The word emulsify carries the first mark. Saying 'bile digests fat' loses it, because bile has no enzyme.",
+  "insider_note": "Emulsify is the word this answer turns on. Bile has no enzyme, so it does not digest fat: the bile salts break the fat into very small micelles, and bile then activates lipase.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -53,10 +53,10 @@
         "why": "Fat and water do not mix, so a large fat drop offers very little surface for an enzyme to work on until it is broken up.",
         "common_mistakes": [
           "Writing that bile digests fat. It only breaks the fat into small drops.",
-          "Leaving out the word emulsify. It is the marking word."
+          "Leaving out the word emulsify. Bile salts do not digest the fat; they break it into very small droplets."
         ],
         "memory_tip": "Bile is the soap of the gut: it breaks fat into small drops.",
-        "margin_note": "Two lines. Emulsify is the word that earns the mark.",
+        "margin_note": "Two lines. Emulsify is the word the answer turns on.",
         "lines": [
           "Bile juice has no digestive enzymes, but it",
           "contains bile salts.",

@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 28. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 28. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 (examiner audit Z2-07): the s2 why now says the bone marrow is not yet making blood cells in early foetal life rather than none before birth, and the insider note no longer advises against writing the definition that the first mark row asks for."
   },
   "answer": {
     "page_header": [
@@ -88,7 +88,7 @@
         "label": "Where they are made",
         "marks": 1,
         "mark_note": "Origin",
-        "why": "Before birth there is no working bone marrow, so the liver takes the job over until there is.",
+        "why": "In early foetal life the bone marrow is not yet making blood cells, so the liver produces them until the marrow takes over.",
         "common_mistakes": [
           "Naming the thymus. That is where T cells mature.",
           "Leaving out the foetal liver."
@@ -151,5 +151,5 @@
       }
     ]
   },
-  "insider_note": "Follow one B cell through its life: made, matured, moved, then split into memory and plasma cells. Marks are given for the sequence, not for repeating that B cells make antibodies."
+  "insider_note": "Follow one B cell through its life: what it is, where it is made, where it matures, and what it finally becomes. Each stage is a separate part of the answer, so give all four rather than expanding on one."
 }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 78. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 78. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Text revision (examiner audit, 2026-09-05): step 2's why and margin note now state that one motor neuron supplies many fibres, so they match the step's mark label and its listed mistake; the printed line was left as it stands because it is correct."
   },
   "answer": {
     "page_header": [
@@ -62,13 +62,13 @@
         "label": "The fibres it supplies",
         "marks": 1,
         "mark_note": "The fibres",
-        "why": "The fine branches of the axon end on many fibres at once, so a single signal moves them all.",
+        "why": "One motor neuron supplies many muscle fibres, because the fine branches of its axon, the telodendrites, end on all of them at once, so a single signal moves them together.",
         "common_mistakes": [
           "Writing that one neuron supplies one fibre. It supplies many.",
           "Leaving out the telodendrites."
         ],
         "memory_tip": "The axon's fine endings are the telodendrites.",
-        "margin_note": "Name the telodendrites for the second mark.",
+        "margin_note": "Name the telodendrites and say they reach many fibres.",
         "lines": [
           {
             "text": "Its telodendrites reach all those fibres",
