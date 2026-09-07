@@ -1,0 +1,606 @@
+{
+  "paper_id": "tg_eapcet_2022_20220719_an",
+  "subject": "chemistry",
+  "questions": [
+    {
+      "q_no": 121,
+      "question_en": "If the radius and energy of the second Bohr orbit of hydrogen atom is r₂ and E₂, respectively. The radius and energy of the third Bohr orbit will be ____, ____ respectively.",
+      "options_en": [
+        "4/9 r₂, 9/4 E₂",
+        "4/9 r₂, 4/9 E₂",
+        "9/4 r₂, 4/9 E₂",
+        "9/4 r₂, 9/4 E₂"
+      ],
+      "marked_correct": 3,
+      "chapter": "Atomic Structure",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 122,
+      "question_en": "When a radiation of 300 nm is shined on five metals, namely, Li, Mg, Ag, Cu and K, the number of metals that show photoelectric effect are",
+      "options_en": [
+        "2",
+        "4",
+        "5",
+        "3"
+      ],
+      "marked_correct": 4,
+      "chapter": "Atomic Structure",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 123,
+      "question_en": "The correct order of ionic radii for the given species is",
+      "options_en": [
+        "Na⁺ > Al³⁺ > Mg²⁺ > K⁺",
+        "K⁺ > Na⁺ > Mg²⁺ > Al³⁺",
+        "K⁺ > Na⁺ > Al³⁺ > Mg²⁺",
+        "Al³⁺ > Mg²⁺ > K⁺ > Na⁺"
+      ],
+      "marked_correct": 2,
+      "chapter": "Classification of Elements and Periodic Properties",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 3 and 4 were on the continuation image q123_1.png"
+    },
+    {
+      "q_no": 124,
+      "question_en": "Which of the following set of properties generally decreases along a period?",
+      "options_en": [
+        "Ionization energy and atomic radii",
+        "Metallic character and atomic radii",
+        "Electron affinity and electronegativity",
+        "Valency and oxidation potential"
+      ],
+      "marked_correct": 1,
+      "chapter": "Classification of Elements and Periodic Properties",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "The paper marks option 1, but ionization energy generally increases (not decreases) along a period while atomic radius decreases; option 2 (metallic character and atomic radii) is the pair that both actually decrease. Recording the officially marked option per instructions."
+    },
+    {
+      "q_no": 125,
+      "question_en": "The correct order of the bond angles of the compounds SiCl₄, BF₃, BeCl₂ and SF₆ is",
+      "options_en": [
+        "BF₃ > BeCl₂ > SF₆ > SiCl₄",
+        "BeCl₂ > SF₆ > SiCl₄ > BF₃",
+        "BeCl₂ > SiCl₄ > BF₃ > SF₆",
+        "BeCl₂ > BF₃ > SiCl₄ > SF₆"
+      ],
+      "marked_correct": 4,
+      "chapter": "Chemical Bonding",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "q125_0.png held only the page header; the full question and all four options were on q125_1.png"
+    },
+    {
+      "q_no": 126,
+      "question_en": "Identify all the species that do not exist: H₂⁺, He₂²⁺, Li₂²⁻, Ne₂, Be₂⁻, He₂",
+      "options_en": [
+        "He₂, Ne₂ only",
+        "Li₂²⁻, Ne₂, He₂ only",
+        "Be₂⁻, He₂, Ne₂ only",
+        "H₂⁺, Li₂²⁻ only"
+      ],
+      "marked_correct": 2,
+      "chapter": "Chemical Bonding",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 3 and 4 were on the continuation image q126_1.png"
+    },
+    {
+      "q_no": 127,
+      "question_en": "The compressibility factor of a real gas at high pressure is",
+      "options_en": [
+        "1",
+        "1 + RT/Pb",
+        "1 − RT/Pb",
+        "1 + Pb/RT"
+      ],
+      "marked_correct": 4,
+      "chapter": "States of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 128,
+      "question_en": "The compressibility factor (z) is lower for NH₃ and CO₂ gases than that of N₂ gas, because",
+      "options_en": [
+        "van der Waals constants 'a' of CO₂ and NH₃ are greater than that of N₂",
+        "van der Waals constants 'a' of CO₂ and NH₃ are less than that of N₂",
+        "'a' (NH₃) > 'a' (N₂) but 'a' (CO₂) < 'a' (N₂)",
+        "'a' (NH₃) < 'a' (N₂) but 'a' (CO₂) > 'a' (N₂)"
+      ],
+      "marked_correct": 1,
+      "chapter": "States of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "q128_0.png held only the page header; the full question and all four options were on q128_1.png"
+    },
+    {
+      "q_no": 129,
+      "question_en": "Combustion of 10 ml of a gaseous hydrocarbon gives 40 ml of CO₂ and 50 ml of water vapour under the same conditions. The molecular formula of the hydrocarbon is",
+      "options_en": [
+        "C₄H₆",
+        "C₄H₈",
+        "C₃H₄",
+        "C₄H₁₀"
+      ],
+      "marked_correct": 4,
+      "chapter": "Stoichiometry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 130,
+      "question_en": "The number of moles of ferrous oxalate oxidised by one mole of KMnO₄ in acidic medium is",
+      "options_en": [
+        "5/2",
+        "2/5",
+        "3/5",
+        "5/3"
+      ],
+      "marked_correct": 1,
+      "chapter": "Stoichiometry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 131,
+      "question_en": "An air bag on adiabatic expansion undergoes 5% increase in its volume. The percentage change in pressure is [γ_air = 1.4]",
+      "options_en": [
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "q131_0.png held only the page header; the full question and options were on q131_1.png"
+    },
+    {
+      "q_no": 132,
+      "question_en": "The Kp value at equilibrium of SO₃ formation reaction from SO₂(g) and O₂(g) is 5 atm⁻¹. What is the equilibrium partial pressure of O₂ if the equilibrium pressure of SO₂ and SO₃ are equal?",
+      "options_en": [
+        "0.2 atm",
+        "0.4 atm",
+        "0.3 atm",
+        "0.1 atm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Chemical Equilibrium, Acids and Bases",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q132_1.png"
+    },
+    {
+      "q_no": 133,
+      "question_en": "Match the following:\nMetal Sulfide      Solubility product\nA) PbS             I) 4.0×10⁻⁵³\nB) HgS             II) 8.0×10⁻²⁸\nC) MnS             III) 1.6×10⁻²⁴\nD) ZnS             IV) 2.5×10⁻¹³\nThe correct match is",
+      "options_en": [
+        "A-I, B-II, C-III, D-IV",
+        "A-II, B-I, C-IV, D-III",
+        "A-II, B-III, C-IV, D-I",
+        "A-III, B-IV, C-I, D-II"
+      ],
+      "marked_correct": 2,
+      "chapter": "Chemical Equilibrium, Acids and Bases",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q133_1.png"
+    },
+    {
+      "q_no": 134,
+      "question_en": "The correct statements among the following are\na) BeH₂ and MgH₂ are polymeric in nature.\nb) LiH is unreactive to oxygen, at moderate temperatures.\nc) BeH₂ and MgH₂ possesses significant covalent character.\nd) the stability of alkali hydrides follows the order LiH < NaH < KH < RbH < CsH.",
+      "options_en": [
+        "a, b, c, d",
+        "a, c only",
+        "a, c, d only",
+        "a, b, c only"
+      ],
+      "marked_correct": 4,
+      "chapter": "s-Block Elements",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 3-4 were on the continuation image q134_1.png"
+    },
+    {
+      "q_no": 135,
+      "question_en": "The correct order of melting points of the following salts is\nLiCl   LiF   LiI\nI      II    III",
+      "options_en": [
+        "I > II > III",
+        "II > I > III",
+        "III > II > I",
+        "II > III > I"
+      ],
+      "marked_correct": 2,
+      "chapter": "s-Block Elements",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 136,
+      "question_en": "Al + aq. NaOH (excess) → P + Q. P and Q are",
+      "options_en": [
+        "Al(OH)₃ ; H₂O",
+        "Al(OH)₃ ; Na₂O₂",
+        "Na⁺[Al(OH)₄]⁻ ; H₂",
+        "Al(OH)₃ ; Na₂O"
+      ],
+      "marked_correct": 3,
+      "chapter": "p-Block Elements: Group 13",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q136_1.png"
+    },
+    {
+      "q_no": 137,
+      "question_en": "Among the following elements, X exhibits maximum catenation and Y is the least abundant on earth. X and Y elements are",
+      "options_en": [
+        "C, Ge",
+        "Si, Ge",
+        "C, Pb",
+        "Ge, C"
+      ],
+      "marked_correct": 1,
+      "chapter": "p-Block Elements: Group 14",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 138,
+      "question_en": "For the following radicals, the correct order of their stability is [A], [B], [C], [D] — four cyclohexenyl/cyclohexyl radical structures with methyl substituents, radical position marked by a dot, differing in whether the radical carbon is allylic/tertiary and ring substitution pattern.",
+      "options_en": [
+        "[A] < [B] < [C] < [D]",
+        "[D] < [C] < [B] < [A]",
+        "[B] < [C] < [D] < [A]",
+        "[B] < [C] < [A] < [D]"
+      ],
+      "marked_correct": 3,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "medium",
+      "note": "has diagram — four skeletal radical structures [A]-[D] carry the structural information (radical position, ring/chain substitution) that plain text cannot fully capture; q138_0.png held only the page header, the full question with diagrams and options was on q138_1.png"
+    },
+    {
+      "q_no": 139,
+      "question_en": "The order of decreasing reactivity towards an electrophilic reagent, for the following compounds, is\n(i) Benzene\n(ii) Toluene\n(iii) Chlorobenzene\n(iv) Phenol",
+      "options_en": [
+        "(i) > (ii) > (iii) > (iv)",
+        "(ii) > (iv) > (i) > (iii)",
+        "(iv) > (iii) > (ii) > (i)",
+        "(iv) > (ii) > (i) > (iii)"
+      ],
+      "marked_correct": 4,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "q139_0.png held only the page header; the full question and options were on q139_1.png"
+    },
+    {
+      "q_no": 140,
+      "question_en": "The major product of the following reactions is\nPhenol --(i) Zn, Δ  (ii) anhyd. FeCl₃, Cl₂ (anhydrous)--> ?",
+      "options_en": [
+        "4-chlorophenol (Cl para to OH on the benzene ring)",
+        "2-chlorophenol (Cl ortho to OH on the benzene ring)",
+        "2,4-dichlorophenol (Cl at both ortho and para positions to OH)",
+        "chlorobenzene (Cl on benzene ring, no OH group)"
+      ],
+      "marked_correct": 4,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — the reaction scheme and all four options are structural formulas, not plain text; options were on the continuation image q140_1.png"
+    },
+    {
+      "q_no": 141,
+      "question_en": "If the length of the body diagonal of a FCC unit cell is x Å, the distance between two octahedral voids in the cell in Å is",
+      "options_en": [
+        "x/√2",
+        "x/√3",
+        "x/√6",
+        "x/√8"
+      ],
+      "marked_correct": 3,
+      "chapter": "Solid State",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q141_1.png"
+    },
+    {
+      "q_no": 142,
+      "question_en": "Calculate the quantity of CO₂ required to prepare 1 L of soda water when the soda water was packed under 2 atm of CO₂. [Henry's law constant for CO₂ is 1.67×10⁸ Pa]",
+      "options_en": [
+        "5.98 g",
+        "1.21 g",
+        "2.9 g",
+        "67.1 g"
+      ],
+      "marked_correct": 3,
+      "chapter": "Solutions",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 143,
+      "question_en": "Which of the following substances show the highest colligative properties?",
+      "options_en": [
+        "0.1 M BaCl₂",
+        "0.1 M AgNO₃",
+        "0.1 M urea",
+        "0.1 M (NH₄)₃PO₄"
+      ],
+      "marked_correct": 4,
+      "chapter": "Solutions",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "q143_0.png held only the page header; the full question and options were on q143_1.png"
+    },
+    {
+      "q_no": 144,
+      "question_en": "In two separate experiments, the same quantity of electricity was passed through silver and gold solutions [Assume 't' constant]. The amounts of Ag and Au deposited are 2.15 and 1.31 g, respectively. The valency of gold is [Atomic mass of Ag=107.9; Au=197]",
+      "options_en": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electrochemistry",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options 3-4 were on the continuation image q144_1.png"
+    },
+    {
+      "q_no": 145,
+      "question_en": "Which of the following is a zero order reaction?",
+      "options_en": [
+        "2HI → H₂ + I₂",
+        "H₂ + Br₂ →(Δ) 2HBr",
+        "2N₂O₅ → 4NO₂ + O₂",
+        "H₂ + Cl₂ →(hν) 2HCl"
+      ],
+      "marked_correct": 4,
+      "chapter": "Chemical Kinetics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 146,
+      "question_en": "The coagulation of 200 ml of a positive colloid took place when 0.73 g of HCl was added to it without changing the volume much. The flocculation value of HCl for the colloid is",
+      "options_en": [
+        "1000",
+        "0.365",
+        "200",
+        "100"
+      ],
+      "marked_correct": 4,
+      "chapter": "Surface Chemistry",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options were on the continuation image q146_1.png"
+    },
+    {
+      "q_no": 147,
+      "question_en": "The oxoacid of phosphorous which contains 4 P−O−H, 2P=O and one P−O−P bond is",
+      "options_en": [
+        "Orthophosphoric acid",
+        "Metaphosphoric acid",
+        "Pyrophosphoric acid",
+        "Hypophosphoric acid"
+      ],
+      "marked_correct": 3,
+      "chapter": "VA Group Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 148,
+      "question_en": "Group 16 elements are also called",
+      "options_en": [
+        "Pnicogens",
+        "Picogens",
+        "Halogens",
+        "Chalocogens"
+      ],
+      "marked_correct": 4,
+      "chapter": "VIA Group Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "option 4 is printed as \"Chalocogens\" on the paper (a misspelling of Chalcogens); transcribed verbatim as printed"
+    },
+    {
+      "q_no": 149,
+      "question_en": "For the reaction Br₂ + F₂ (excess) → P, the molecular formula and structure of P, respectively, are",
+      "options_en": [
+        "BrF₅, Square pyramidal",
+        "BrF₄, Square planar",
+        "BrF₃, Bent T-shaped",
+        "BrF₃, Linear"
+      ],
+      "marked_correct": 1,
+      "chapter": "VIIA Group Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q149_1.png"
+    },
+    {
+      "q_no": 150,
+      "question_en": "In the following reaction, a, b, p, q, r and s are\na XeF₄ + b H₂O → p Xe + q XeO₃ + r HF + s O₂",
+      "options_en": [
+        "a=6, b=10, p=4, q=2, r=20, s=3",
+        "a=8, b=14, p=5, q=2, r=26, s=4",
+        "a=6, b=12, p=4, q=2, r=24, s=3",
+        "a=5, b=10, p=3, q=2, r=20, s=3"
+      ],
+      "marked_correct": 3,
+      "chapter": "Noble Gases",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 151,
+      "question_en": "The increase in the atomic radii of the third (5d) series of transition elements is very small, which may be accounted for the filling of 'X' orbitals before 'Y' orbitals. X and Y are",
+      "options_en": [
+        "X=4f, Y=5d",
+        "X=5f, Y=5d",
+        "X=5d, Y=4f",
+        "X=4f, Y=4d"
+      ],
+      "marked_correct": 1,
+      "chapter": "d and f Block Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 152,
+      "question_en": "A metal complex absorbed orange light. The colour in which it appears is",
+      "options_en": [
+        "yellow",
+        "yellow – green",
+        "red",
+        "green – blue"
+      ],
+      "marked_correct": 4,
+      "chapter": "Coordination Compounds",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options 2-4 were on the continuation image q152_1.png"
+    },
+    {
+      "q_no": 153,
+      "question_en": "The major product of the following reactions is\nGlucose --(i) HI, Δ  (ii) Mo₂O₃, 773 K, 10–20 atm-->",
+      "options_en": [
+        "Cyclohexane",
+        "Benzene",
+        "Cyclohexadiene",
+        "Hexane"
+      ],
+      "marked_correct": 2,
+      "chapter": "Biomolecules",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options 3-4 were on the continuation image q153_1.png"
+    },
+    {
+      "q_no": 154,
+      "question_en": "The major product in the following reactions is\nToluene --(i) Br₂, UV light (ii) Mg (iii) CH₂O (iv) H₃O⁺ (v) PBr₃-->",
+      "options_en": [
+        "1-Bromoethylbenzene, i.e. PhCH(Br)CH₃ (Br and CH₃ on the same benzylic carbon)",
+        "2-(Bromomethyl)toluene, i.e. a benzene ring bearing both CH₃ and CH₂Br ortho to each other",
+        "2-Bromoethylbenzene, i.e. PhCH₂CH₂Br (Br on the terminal carbon, two carbons from the ring)",
+        "4-(Bromomethyl)toluene, i.e. a benzene ring bearing CH₃ and CH₂Br in the para positions"
+      ],
+      "marked_correct": 3,
+      "chapter": "Haloalkanes and Haloarenes",
+      "year_cycle": "second_year",
+      "confidence": "medium",
+      "note": "has diagram — the question and all four options are structural formulas rather than plain text; options 3-4 were on the continuation image q154_1.png"
+    },
+    {
+      "q_no": 155,
+      "question_en": "Arrange the following phenols in decreasing order of their pKa\nA) Phenol   B) ortho-Nitrophenol   C) meta-Nitrophenol   D) para-Nitrophenol",
+      "options_en": [
+        "D > B > C > A",
+        "A > C > B > D",
+        "A > C > D > B",
+        "B > D > C > A"
+      ],
+      "marked_correct": 2,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 156,
+      "question_en": "Decreasing order of reactivity of the following compounds in the Williamson's ether synthesis is\n(i) 3-chloro-3-ethyl-2,2-dimethylpentane-type tertiary chloride (structure: (CH₃CH₂)(CH₃CH₂)C(CH₂CH₃... drawn as a quaternary-carbon-adjacent tertiary chloride with a CH₂CH₃ chain, a C(CH₃)(CH₂CH₃) branch bearing Cl, and a CH₂CH₃ branch)\n(ii) Cl−CH₂−CH=CH₂ (allyl chloride)\n(iii) Cl−CH₂−CH₂−CH₂−CH₃ (1-chlorobutane)\n(iv) Cl−CH₂−CH(CH₃)−CH₃ (1-chloro-2-methylpropane)",
+      "options_en": [
+        "(ii) > (iv) > (iii) > (i)",
+        "(i) > (ii) > (iii) > (iv)",
+        "(iv) > (iii) > (ii) > (i)",
+        "(ii) > (iii) > (iv) > (i)"
+      ],
+      "marked_correct": 4,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "medium",
+      "note": "has diagram — the four structures in the question stem are skeletal formulas; q156_0.png held only the page header, the full question with structures and the options were on q156_1.png"
+    },
+    {
+      "q_no": 157,
+      "question_en": "Identify X and Y in the reactions, given below\n(A) Toluene --(i) X, CS₂ (ii) H₂O--> Benzaldehyde\n(B) Benzyl alcohol (PhCH₂OH) --Y--> Benzaldehyde (PhCHO)",
+      "options_en": [
+        "X=CrO₃, Y=KMnO₄ (alkaline), Δ",
+        "X=CrO₂Cl₂, Y=Cu, 573 K",
+        "X=AlCl₃, Y=CrO₃, H₂SO₄, reflux",
+        "X=H₂O₂, Y=KMnO₄ (acidic), Δ"
+      ],
+      "marked_correct": 2,
+      "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "q157_0.png held only the page header; the full question and options were on q157_1.png"
+    },
+    {
+      "q_no": 158,
+      "question_en": "A primary alcohol was reacted with pyridinium chlorochromate (PCC), which resulted in a product P. The product P on treatment with ammonical silver nitrate solution produces",
+      "options_en": [
+        "Anhydride of carboxylic acid",
+        "Aldehyde",
+        "Amide",
+        "Carboxylate anion"
+      ],
+      "marked_correct": 4,
+      "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "q158_0.png held only the page header; the full question and options were on q158_1.png"
+    },
+    {
+      "q_no": 159,
+      "question_en": "The major product of the following reactions\nCH₃CH₂CH₂CH₂COCH₃ --(i) NaOBr (ii) H₃O⁺ (iii) Red P, Br₂ (iv) H₂O-->",
+      "options_en": [
+        "CH₃CH₂CHBrCO₂H",
+        "CH₃CH₂CH₂CH₂CHBrCO₂H",
+        "CH₃CH₂CH₂CHBrCO₂H",
+        "CH₃CH₂CH₂CHBrCOBr"
+      ],
+      "marked_correct": 3,
+      "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "options were on the continuation image q159_1.png"
+    },
+    {
+      "q_no": 160,
+      "question_en": "In the following reaction, the suitable starting reagent P is\nP + HN(CH₃)₂ (dimethylamine) → benzene-SO₂-N(CH₃)₂ (N,N-dimethylbenzenesulfonamide)",
+      "options_en": [
+        "Benzenesulfonic acid, i.e. benzene-SO₂-OH",
+        "Benzenesulfonyl chloride, i.e. benzene-SO₂-Cl",
+        "Methyl benzenesulfonate, i.e. benzene-SO₂-OCH₃",
+        "Benzenesulfonamide, i.e. benzene-SO₂-NH₂"
+      ],
+      "marked_correct": 2,
+      "chapter": "Organic Compounds Containing Nitrogen",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — the question and all four options are structural formulas rather than plain text. q160_1.png (options 3-4) was initially missed on a directory listing that should have shown it but did not; a second, targeted listing found it present and readable on disk, and it was read before finalizing this question."
+    }
+  ]
+}

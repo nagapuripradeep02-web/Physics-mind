@@ -69,6 +69,18 @@ Block Elements | Coordination Compounds | Polymers | Biomolecules | Chemistry in
 Haloalkanes and Haloarenes | Alcohols, Phenols and Ethers | Aldehydes, Ketones and Carboxylic
 Acids | Organic Compounds Containing Nitrogen
 
+## Do not look at the answer key
+
+There is a file in this repository holding the official answers, extracted from the PDF by a
+different method. **Do not open it, and do not let any answer influence what you record.** Your
+reading of the green tick is only worth having because it is independent. The two readings get
+compared afterwards, and a disagreement is how a defect gets found - that already caught a bug
+that had a quarter of one year's answers wrong. An agent that checks itself against the key
+turns that comparison into a rubber stamp.
+
+Record what the page shows. If your own working disagrees with the mark, that is a finding: keep
+the mark and say so in the note.
+
 ## Output
 
 Write ONE JSON file to the output path, shaped exactly:

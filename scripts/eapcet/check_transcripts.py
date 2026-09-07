@@ -98,7 +98,7 @@ def main():
         allowed = set(CHAPTERS[subject])
         chap, conf = collections.Counter(), collections.Counter()
         tot = agree = scored = 0
-        unknown_ch, mismatches, broken, doubted = [], [], [], []
+        unknown_ch, mismatches, broken, doubted, tainted = [], [], [], [], []
 
         rows = sorted([k for k in groups if k[1] == subject])
         if not rows:
@@ -138,7 +138,12 @@ def main():
                                     nfiles.get((pid, q.get("q_no")), 0), note[:110]))
 
                 official = k.get(str(q.get("q_no")))
-                if official:
+                if q.get("independence") == "compromised":
+                    # The agent admitted consulting the extracted key for this question, so its
+                    # agreement proves nothing. Counting it would inflate the one number in this
+                    # whole pipeline that is supposed to be earned.
+                    tainted.append((pid, q.get("q_no")))
+                elif official:
                     s += 1
                     if q.get("marked_correct") == official:
                         a += 1
@@ -162,6 +167,9 @@ def main():
         print("scored against the key: %d" % scored)
         print("green tick agrees     : %d  (%.1f%%)" % (agree, 100.0 * agree / max(1, scored)))
         print("confidence            : %s" % dict(sorted(conf.items())))
+        if tainted:
+            print("EXCLUDED, agent consulted the key: %s"
+                  % ", ".join("%s Q%s" % t for t in tainted))
         grand[subject] = (tot, scored, agree, len(broken), len(mismatches))
 
         if broken:

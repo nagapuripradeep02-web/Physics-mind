@@ -49,7 +49,11 @@ def main():
         meta = idx.get(pid, {})
         k = keys.get(meta.get("source_pdf", ""), {})
         for q in d["questions"]:
-            subject = subject_of(q.get("q_no") or 0)
+            # Subject normally comes from the question number. One question breaks that: the
+            # 3 May 2025 afternoon paper prints a photoelectric-effect physics question at
+            # number 122, inside the chemistry block. Verified by reading the page - the paper
+            # is wrong, not the numbering - so the transcript carries an explicit override.
+            subject = q.get("subject_override") or subject_of(q.get("q_no") or 0)
             if not subject:
                 continue
             official = k.get(str(q["q_no"]))

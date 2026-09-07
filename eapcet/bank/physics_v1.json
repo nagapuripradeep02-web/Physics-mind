@@ -24844,6 +24844,33 @@
    "crops": "eapcet/crops/tg_eapcet_2024_20240511_fn"
   },
   {
+   "id": "tg_eapcet_2025_20250503_an_q122",
+   "paper_id": "tg_eapcet_2025_20250503_an",
+   "year": 2025,
+   "date": "2025-05-03",
+   "session": "AN",
+   "subject": "physics",
+   "q_no": 122,
+   "question_en": "Work functions of four metals M₁, M₂, M₃ and M₄ are 4.8, 4.3, 4.75 and 3.75 eV respectively. The metals which do not show photoelectric effect when light of wavelength 310 nm falls on the metals are",
+   "options_en": [
+    "M₁, M₂ only",
+    "M₁, M₃ only",
+    "M₁, M₂, M₃ only",
+    "M₁, M₂, M₄ only"
+   ],
+   "answer": 3,
+   "answer_source": "official_key_pdf",
+   "vision_marked_correct": 3,
+   "answer_disputed": false,
+   "chapter": "Dual Nature of Radiation and Matter",
+   "year_cycle": "second_year",
+   "needs_figure": false,
+   "key_disputed_by_working": false,
+   "transcription_confidence": "high",
+   "note": "The paper itself prints a PHYSICS question (photoelectric effect, work functions) at Question Number 122, inside the chemistry block. Verified by reading the page: the printed question number and the chemistry-sequential Question Id are both correct, so this is an error in the official paper, not in the numbering. Tagged with its real physics chapter and marked subject_override so it is not counted as a chemistry question.",
+   "crops": "eapcet/crops/tg_eapcet_2025_20250503_an"
+  },
+  {
    "id": "tg_eapcet_2025_20250503_an_q081",
    "paper_id": "tg_eapcet_2025_20250503_an",
    "year": 2025,
