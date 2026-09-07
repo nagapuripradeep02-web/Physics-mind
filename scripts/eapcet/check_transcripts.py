@@ -34,10 +34,14 @@ PLACEHOLDER = re.compile(
 # Agents invent new ways to say "I could not read this", so match the intent broadly, and keep
 # every phrase here impossible to find in a genuine chemistry, physics or maths option.
 
-# A bare refusal token, compared against the WHOLE trimmed option. Matching "N/A" loosely inside
-# an option flagged the sodium ion Na+ on the first chemistry paper that landed. A gate that
-# fires on real chemistry is worse than no gate, because it trains you to skim its output.
-BARE_REFUSAL = {"n/a", "na", "todo", "tbd", "-", "--", "?", "none", "blank", "unknown"}
+# A bare refusal token, compared against the WHOLE trimmed option.
+#
+# This set has now caused two false alarms, both on real chemistry. Loose matching of "N/A"
+# flagged the sodium ion Na+; then "na" as a whole-string token flagged the option "Na", which
+# is sodium. Chemistry answers are often a single element symbol, so no chemical symbol may
+# appear here. A gate that fires on real content is worse than no gate, because it trains you
+# to skim its output, and the next real defect goes past unread.
+BARE_REFUSAL = {"n/a", "todo", "tbd", "--", "?", "blank"}
 
 # A note claiming an image was absent is checked against how many crops that question really has.
 ABSENT = ("no _1", "no continuation", "not exist", "missing image", "no second image",

@@ -25,6 +25,12 @@ Every option carries a mark: a GREEN TICK on the correct one, a RED CROSS on the
 Record which option number carries the green tick. The 2025 papers use a lighter green and a
 brighter red than older years, so read the mark's shape as well as its colour.
 
+**The 2025 papers print a box reading `Chosen Option : N`. That is NOT the answer.** It is the
+option the real candidate picked when they sat the exam, so it matches the key only when that
+candidate happened to be right. Ignore the box completely. The only thing that decides
+`marked_correct` is which option label carries the GREEN TICK. This has already produced one wrong
+answer on a chemistry paper, caught only because a second reader disagreed.
+
 ## Method
 
 Use the Read tool on each image in turn, q081 through q120. Do not skip any. Do not guess at

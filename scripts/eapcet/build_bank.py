@@ -74,6 +74,11 @@ def main():
                 "answer_source": "official_key_pdf",
                 "vision_marked_correct": saw,       # the independent second reading
                 "answer_disputed": bool(official and saw and official != saw),
+                # A human read the page and settled which reading was right. Recorded rather
+                # than applied: marked_correct keeps what the agent actually saw, so the
+                # disagreement rate stays an honest measure of the vision pass instead of one
+                # quietly laundered by every correction.
+                "adjudication": q.get("adjudication"),
                 "chapter": q.get("chapter"),
                 "year_cycle": q.get("year_cycle"),
                 "needs_figure": note.startswith("has diagram"),
@@ -94,12 +99,17 @@ def main():
                  "re-crop the source, then rebuild."),
          "questions": gaps}, indent=1, ensure_ascii=False))
 
-    review = [r for r in rows if r["key_disputed_by_working"] or r["answer_disputed"]]
+    flagged = [r for r in rows if r["key_disputed_by_working"] or r["answer_disputed"]]
+    review = [r for r in flagged if not r["adjudication"]]
+    settled = [r for r in flagged if r["adjudication"]]
     io.open(os.path.join(BANK, "_review_queue.json"), "w", encoding="utf-8").write(json.dumps(
-        {"why": ("Every row here needs a human before it is shown to a student. Either the "
-                 "recomputed working contradicts the answer the paper marked, or the two "
-                 "independent readings of the green tick disagreed."),
-         "questions": review}, indent=1, ensure_ascii=False))
+        {"why": ("Every row in 'questions' still needs a human. Either the recomputed working "
+                 "contradicts the answer the paper marked, or the two independent readings of "
+                 "the green tick disagreed. Rows under 'already_adjudicated' have had a human "
+                 "read the page; they stay listed because their transcript still records the "
+                 "losing reading, which is deliberate - see the adjudication note on each."),
+         "questions": review,
+         "already_adjudicated": settled}, indent=1, ensure_ascii=False))
 
     print("%-10s %7s %7s %7s %7s %7s %7s"
           % ("subject", "papers", "quest", "answer", "figure", "dispute", "held"))

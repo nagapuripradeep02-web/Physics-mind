@@ -395,7 +395,8 @@
     "verdict": "the transcription is wrong; the green tick is on option 3",
     "correct_option": 3,
     "physics": "resistivity does depend on temperature so statement I is false, and a wire drawn to four times its length goes to 96 ohm not 48 so statement II is false, leaving only statement III true"
-   }
+   },
+   "adjudication": "official_key_confirmed_by_hand"
   },
   {
    "q_no": 107,

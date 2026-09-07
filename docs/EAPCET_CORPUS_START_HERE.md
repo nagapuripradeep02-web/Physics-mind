@@ -4,7 +4,9 @@ The evidence corpus for the competitive-exam product: every question the Telanga
 entrance exam has actually asked, transcribed verbatim with its **official answer key**, then
 tagged into chapters and question families.
 
-**Status: PROPOSED — no file has been written yet.** This document is the build brief. It reuses
+**Status: BUILT — all three subjects, 26 papers, 4,159 questions in the bank (2026-09-07; see 1f).**
+What follows below section 1f is the original build brief, kept because its reasoning still governs
+the work. It reuses
 the pattern already proven by `answer-book/papers/` (seven IPE Physics papers, 100% back-tested,
 2026-08-26); read `answer-book/papers/README.md` before starting, because the rules there apply
 here almost unchanged.
@@ -235,7 +237,8 @@ confirms the transcriptions, which is human time, not tokens.
 
 All 26 distinct engineering shifts, 2021 to 2025, physics section transcribed. Run by
 `model: sonnet` sub-agents on the subscription, one paper per agent, all working from the single
-brief at `eapcet/transcripts/_BRIEF.md`. Concurrency ceiling is 20 sub-agents.
+brief at `eapcet/transcripts/_BRIEF_PHYSICS.md` (named `_BRIEF.md` when only physics existed).
+Concurrency ceiling is 20 sub-agents.
 
 | Measure | Result |
 |---|---|
@@ -271,14 +274,95 @@ row keeps it, flagged, in `eapcet/bank/_review_queue.json`, and it is never show
 
 ### Artifacts
 
-`scripts/eapcet/crop_physics_fleet.py` - crops questions 81 to 120 for every shift.
+`scripts/eapcet/crop_fleet.py` - crops questions 81 to 120 for every shift (renamed from
+`crop_physics_fleet.py` and made subject-agnostic when chemistry and maths opened).
 `scripts/eapcet/check_transcripts.py` - the gates, the key agreement score, the chapter table.
 `scripts/eapcet/build_bank.py` - merges transcripts and keys into the bank.
-`eapcet/transcripts/*.json` - 26 papers. `eapcet/transcripts/_BRIEF.md` - the agent brief.
+`eapcet/transcripts/*__physics.json` - 26 papers. `eapcet/transcripts/_BRIEF_PHYSICS.md` - the
+agent brief.
 `eapcet/bank/physics_v1.json` - the bank. `eapcet/bank/_review_queue.json` - what needs a human.
 `eapcet/crops/` is gitignored and re-derivable in one command.
 
 **Next:** the same pass for Chemistry, questions 121 to 160, and Maths, questions 1 to 80.
+
+## 1f. THE CORPUS IS COMPLETE - all three subjects, 4,159 questions (2026-09-07)
+
+Chemistry (121 to 160) and Maths (1 to 80) finished the same way physics did: `model: sonnet`
+sub-agents on the subscription, working from `_BRIEF_CHEMISTRY.md` and `_BRIEF_MATHS.md`, never
+allowed to open the extracted key. Maths ran in halves, two agents per paper, because 80 questions
+does not fit one agent's budget; `check_transcripts.py` derives subject from the question number,
+so the halves merge with no seam.
+
+| Subject | Papers | Questions | Agrees with the official key | Structural defects |
+|---|---|---|---|---|
+| Maths | 26 | 2,080 | 2,080 of 2,080, **100.0%** | 0 |
+| Physics | 26 | 1,040 | 1,039 of 1,040, 99.9% | 0 |
+| Chemistry | 26 | 1,040 | 1,037 of 1,039, 99.8% | 1 |
+| **Total** | **26** | **4,160** | **4,156 of 4,159, 99.93%** | **1** |
+
+**All three disagreements were adjudicated by hand, and the official key was right all three times.**
+They are kept in the transcripts with the losing reading intact, tagged `adjudication`, so the
+disagreement rate stays an honest measure of the vision pass rather than one quietly laundered by
+its own corrections. The three: 20 Jul 2022 FN Q106 (only Statement III is true - resistivity does
+depend on temperature, and a wire drawn to four times its length has R proportional to L squared, so
+96 ohms, not the printed 48); 13 May 2023 AN Q127 (12.0 + 19.034 + 2.0143 is limited by one decimal
+place, so 33.0, three significant figures); 4 May 2025 FN Q159 (alkali-metal superoxides are
+coloured, so "colourless" is the incorrect statement).
+
+### The decoy field, and why only a second reader could find it
+
+Some 2025 sheets print a box reading `Chosen Option : N`. **That is the real candidate's answer from
+the exam, not the key.** It agrees with the correct answer only when that candidate happened to be
+right, so an agent reading it produces a row that is structurally perfect - four real options, a
+legal answer index, high confidence - and silently wrong. One chemistry question was recorded that
+way. Nothing but the disagreement with the extracted key could have caught it.
+
+Two things this settles. A page can print a decoy that looks like the answer, so a brief must name
+what the answer is NOT, not only what it is. And the layout is not uniform within a year: 3 May 2025
+AN has no such box while 4 May 2025 FN does, so never generalise a layout from one paper of its
+year. All three briefs now carry the warning. It was worth carrying: on one 2025 paper the box and
+the tick disagreed on roughly two-thirds of the questions.
+
+### The one question held out of the bank
+
+`tg_eapcet_2023_20230513_an` Q121 asks for the ground-state angular momentum of the electron in
+hydrogen. **Option 3's text is absent from the official source PDF**, not from our crop, confirmed
+three independent ways on page 91: the rendered crop shows the label and green tick with nothing
+beside them; the PDF text layer holds all four option LABELS as text spans but no value text for
+option 3; and the option VALUES are raster images, of which the page carries three, at options 1, 2
+and 4 only. The answer is not in doubt - key and vision pass both read option 3, and h/2pi is
+1055e-37 J s, exactly the value the three printed distractors are built around. That string is still
+not written into `options_en`, because deriving a value is not transcribing one. The question sits in
+`eapcet/bank/_gaps.json` with the full diagnosis; promoting it means a human deciding to print a
+reconstructed option.
+
+### What the frequency tables say, and it differs by subject
+
+**Maths is flat and cannot be short-cut.** No chapter exceeds 5.0%; the top ten of forty chapters
+are 41.7% between them. The four source papers are balanced almost exactly: 1A 24.5%, 1B 26.1%,
+2A 25.0%, 2B 24.5%. Heaviest: Applications of Derivatives 5.0%, Matrices 4.8%, Integration 4.5%,
+Differentiation 4.3%, The Straight Line 4.1%. The ten smallest chapters together are 9.0%, so even
+abandoning a quarter of the syllabus buys back under one question in ten.
+
+**Physics is flat too** - max 5.3%, top ten about 46%, first year 48% against second year 52%.
+
+**Chemistry is the exception, and organic is the reason.** Organic chemistry is 329 questions,
+**31.7% of the chemistry paper**, roughly 12.7 of its 40. General Organic Chemistry alone is 8.6%,
+Aldehydes/Ketones/Carboxylic Acids 6.0%, Alcohols/Phenols/Ethers 4.6%. The top ten chapters are
+48.3%. Year split is 47.9% first year to 52.1% second year.
+
+The product consequence: a "study these five chapters" promise is honest in chemistry and dishonest
+in maths and physics. Ranking by frequency is still right; promising a short path is not.
+
+### Artifacts
+
+`scripts/eapcet/crop_fleet.py` - crops any subject for every shift (`SUBJECTS` names the ranges).
+`scripts/eapcet/chapters.py` - the one taxonomy for all three subjects, and `subject_of(q_no)`.
+`scripts/eapcet/check_transcripts.py` - the gates, the agreement score, the chapter tables.
+`scripts/eapcet/build_bank.py` - merges transcripts and keys into one bank per subject.
+`eapcet/bank/{maths,physics,chemistry}_v1.json` - the banks, 4,159 questions.
+`eapcet/bank/_review_queue.json` - what still needs a human, and what has already been adjudicated.
+`eapcet/bank/_gaps.json` - held out rather than shipped with a hole.
 
 ## 2. The source, and the one advantage over the IPE bank
 
