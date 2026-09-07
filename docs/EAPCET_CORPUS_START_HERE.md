@@ -170,6 +170,51 @@ English followed by Telugu. Numbering, ids and the key are free; the content is 
 `eapcet/keys/_extracted.json` - 31 papers, 4,824 keys.
 `eapcet/keys/_summary.json` - per-paper counts.
 
+## 1d. CONTENT EXTRACTION - costed and quality-checked (2026-09-07)
+
+The remaining work is the question and option bodies, which are images. Tested on the Physics
+section of the 9 May 2024 forenoon paper before committing to the whole corpus.
+
+**Subject ranges, confirmed by reading real questions rather than assuming.** Question 4 is
+matrices, question 81 is fundamental forces, question 121 is quantum numbers. So Mathematics is
+1-80, Physics 81-120, Chemistry 121-160.
+
+**Method: crop the page region per question, do not pull image XObjects.** A question's region runs
+from its marker to the next one, spilling onto the following page when needed. Cropping preserves
+layout and mathematics; extracting the embedded images shreds it.
+
+| Physics section, 40 questions | |
+|---|---|
+| Images produced | 69, or 1.73 per question |
+| Questions spanning a page break | 29 of 40 |
+| Median size per question | 253 KB at 150 dpi |
+
+**Cost, at DeepSeek V4 Flash rates verified 2026-09-07** (an image bills at up to 384 tokens; add
+roughly 250 prompt and 320 output tokens per question):
+
+| Scope | Questions | Off-peak |
+|---|---|---|
+| One question | 1 | Rs 0.035 |
+| Physics across 26 papers | 1,040 | about Rs 36 |
+| Physics and Chemistry | 2,080 | about Rs 73 |
+| All three subjects | 4,160 | **about Rs 146** |
+
+Peak rates double it. Peak is roughly 06:30-09:30 and 11:30-15:30 India time, so a scheduled
+overnight run pays the lower rate.
+
+**Quality, checked by reading the crops.** Question 84 comes out complete and legible in a single
+image: the English text, the Telugu text, and all four options with their markers. Its green tick
+sits on option 2, the extractor's key says 2, and the physics is independently right - two bodies
+at 30 degrees to the horizontal and 30 degrees to the vertical with equal ranges give a height
+ratio of 1 to 6. Question 81 spans a page break and is complete across its two parts.
+
+**The one thing the pipeline must respect:** a question that spans a page break produces two images
+and both must be sent in the same request, or the options are lost.
+
+**Conclusion: content extraction is not the expensive step.** At roughly Rs 150 for the entire
+engineering corpus, cost is not a reason to stage the work. The real cost is the review pass that
+confirms the transcriptions, which is human time, not tokens.
+
 ## 2. The source, and the one advantage over the IPE bank
 
 TGCHE releases, after each exam, on `eapcet.tgche.ac.in`: the **master question paper** per shift,
