@@ -50,9 +50,19 @@ def markers(doc):
     return out
 
 
-def crop(doc, mk, idx, dpi=150, pad=6):
+def crop(doc, mk, idx, dpi=150, pad=6, tail_pages=2):
+    """Images covering one question, from its marker down to the next marker.
+
+    The LAST question of a paper has no next marker. Ending it at the bottom of its own page
+    silently drops whatever continues overleaf, which on these papers is usually most of its
+    options: question 160 came out with option 1 and three blanks on every chemistry paper.
+    So a question with no successor spills through the next `tail_pages` pages instead.
+    """
     q, pi, y = mk[idx]
-    nq, npi, ny = mk[idx + 1] if idx + 1 < len(mk) else (None, pi, None)
+    if idx + 1 < len(mk):
+        nq, npi, ny = mk[idx + 1]
+    else:
+        nq, npi, ny = None, min(doc.page_count - 1, pi + tail_pages), None
     page = doc[pi]
     top = max(0, y - pad)
     if npi == pi and ny is not None:

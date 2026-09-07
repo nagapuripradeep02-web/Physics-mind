@@ -1,5 +1,5 @@
 {
- "why": "Every row here needs a human before it is shown to a student. Either the recomputed physics contradicts the answer the paper marked, or the two independent readings of the green tick disagreed.",
+ "why": "Every row here needs a human before it is shown to a student. Either the recomputed working contradicts the answer the paper marked, or the two independent readings of the green tick disagreed.",
  "questions": [
   {
    "id": "tg_eapcet_2021_20210806_an_q084",
@@ -23,7 +23,7 @@
    "chapter": "Motion in a Straight Line",
    "year_cycle": "first_year",
    "needs_figure": false,
-   "key_disputed_by_physics": true,
+   "key_disputed_by_working": true,
    "transcription_confidence": "medium",
    "note": "Marked correct option (18 m) does not match recomputed physics: with a=6t and v0=10 m/s, x(t)=10t+t³ gives x(2)=28 m, not 18 m. The question text and the green-tick position were read clearly and are transcribed faithfully; flagging the mismatch for verification against the official key.",
    "crops": "eapcet/crops/tg_eapcet_2021_20210806_an"
@@ -50,7 +50,7 @@
    "chapter": "Thermal Properties of Matter",
    "year_cycle": "first_year",
    "needs_figure": false,
-   "key_disputed_by_physics": true,
+   "key_disputed_by_working": true,
    "transcription_confidence": "medium",
    "note": "Printed marked-correct value (1.116 kg) does not match Q=mcΔT computation (≈1.167 kg); transcribed exactly as printed and marked.",
    "crops": "eapcet/crops/tg_eapcet_2022_20220718_an"
@@ -77,10 +77,37 @@
    "chapter": "Wave Optics",
    "year_cycle": "second_year",
    "needs_figure": false,
-   "key_disputed_by_physics": true,
+   "key_disputed_by_working": true,
    "transcription_confidence": "medium",
    "note": "marked correct option (0.9°) is inconsistent with the standard relation θ_medium = θ_air / n, which gives 0.09° (option 1); transcribed exactly as printed, flagging for review",
    "crops": "eapcet/crops/tg_eapcet_2022_20220719_an"
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_fn_q141",
+   "paper_id": "tg_eapcet_2022_20220719_fn",
+   "year": 2022,
+   "date": "2022-07-19",
+   "session": "FN",
+   "subject": "chemistry",
+   "q_no": 141,
+   "question_en": "The number of nearest neighbours in a BCC unit cell is",
+   "options_en": [
+    "12",
+    "8",
+    "6",
+    "4"
+   ],
+   "answer": 3,
+   "answer_source": "official_key_pdf",
+   "vision_marked_correct": 3,
+   "answer_disputed": false,
+   "chapter": "Solid State",
+   "year_cycle": "second_year",
+   "needs_figure": false,
+   "key_disputed_by_working": true,
+   "transcription_confidence": "medium",
+   "note": "The paper's key marks option 3 (\"6\") as correct. Standard chemistry gives the number of nearest neighbours (coordination number) in a BCC unit cell as 8 (option 2), which contradicts the marked key. Recorded the marked option per instructions.",
+   "crops": "eapcet/crops/tg_eapcet_2022_20220719_fn"
   },
   {
    "id": "tg_eapcet_2022_20220720_fn_q106",
@@ -104,10 +131,64 @@
    "chapter": "Current Electricity",
    "year_cycle": "second_year",
    "needs_figure": false,
-   "key_disputed_by_physics": false,
+   "key_disputed_by_working": false,
    "transcription_confidence": "high",
    "note": "Adjudicated by hand against the image: this reading of the tick is wrong, the tick is on option 3.",
    "crops": "eapcet/crops/tg_eapcet_2022_20220720_fn"
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_an_q127",
+   "paper_id": "tg_eapcet_2023_20230513_an",
+   "year": 2023,
+   "date": "2023-05-13",
+   "session": "AN",
+   "subject": "chemistry",
+   "q_no": 127,
+   "question_en": "The sum of three values 12.0, 19.034 and 2.0143 is equal to X. The number of significant figures in X is",
+   "options_en": [
+    "2",
+    "5",
+    "4",
+    "3"
+   ],
+   "answer": 4,
+   "answer_source": "official_key_pdf",
+   "vision_marked_correct": 3,
+   "answer_disputed": true,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "needs_figure": false,
+   "key_disputed_by_working": false,
+   "transcription_confidence": "high",
+   "note": "",
+   "crops": "eapcet/crops/tg_eapcet_2023_20230513_an"
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q138",
+   "paper_id": "tg_eapcet_2024_20240509_fn",
+   "year": 2024,
+   "date": "2024-05-09",
+   "session": "FN",
+   "subject": "chemistry",
+   "q_no": 138,
+   "question_en": "An alkene X (C₄H₈) exhibits geometrical isomerism. Oxidation of A with KMnO₄ | H⁺ gave Y. On heating sodium salt of Y with a mixture of NaOH and CaO gave Z. What is Z?",
+   "options_en": [
+    "CH₃CH₃",
+    "CH₃CH₂CH₃",
+    "CH₃CH₂CH₂CH₃",
+    "CH₄"
+   ],
+   "answer": 4,
+   "answer_source": "official_key_pdf",
+   "vision_marked_correct": 4,
+   "answer_disputed": false,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "needs_figure": false,
+   "key_disputed_by_working": true,
+   "transcription_confidence": "high",
+   "note": "Printed question contradicts itself: the alkene is named X, but the next sentence says \"Oxidation of A with KMnO4 | H+ gave Y\" — transcribed exactly as printed (A is never otherwise defined; presumed to mean X).",
+   "crops": "eapcet/crops/tg_eapcet_2024_20240509_fn"
   },
   {
    "id": "tg_eapcet_2024_20240510_fn_q106",
@@ -131,7 +212,7 @@
    "chapter": "Current Electricity",
    "year_cycle": "second_year",
    "needs_figure": false,
-   "key_disputed_by_physics": true,
+   "key_disputed_by_working": true,
    "transcription_confidence": "medium",
    "note": "Green tick is clearly on option 2 (0.7×10⁻⁶ Am⁻²) in the source image, but computing J = σE with σ = L/(RA) = 1.5/(15×3×10⁻⁵) gives J = 0.7×10⁵ Am⁻² (option 4). Recorded exactly as marked; flagging possible answer-key error.",
    "crops": "eapcet/crops/tg_eapcet_2024_20240510_fn"

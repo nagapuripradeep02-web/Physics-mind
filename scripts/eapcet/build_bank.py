@@ -1,13 +1,21 @@
-"""Merge the transcripts and the official keys into one physics question bank.
+"""Merge the transcripts and the official keys into one question bank per subject.
 
 The ANSWER OF RECORD is the key extracted from the PDF, never the agent's reading of the
 green tick. The two are produced by different processes; where they disagree the key wins and
 the row is flagged so a human can look. Keeping the agent's reading in the row is what makes
 that disagreement visible at all - drop it and the bank looks certain when it is not.
 
+Subject comes from the question number, so a paper transcribed in halves merges by itself.
+A question whose transcript is incomplete is EXCLUDED from the bank and listed in the gaps
+file. A bank that quietly carries a blank option is worse than a bank that is honestly short.
+
     python scripts/eapcet/build_bank.py
 """
-import os, io, json, glob, re, collections
+import os, io, json, glob, re, sys, collections
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from chapters import CHAPTERS, SUBJECTS, subject_of
+from check_transcripts import structural_defect
 
 # The transcribing agent recomputes the physics and says so when its result contradicts the
 # option the paper marked. Four of the 1,040 physics questions tripped this, and by hand all
@@ -34,27 +42,27 @@ def main():
     keys = load(os.path.join(ROOT, "eapcet", "keys", "_extracted.json"))
     idx = {i["paper_id"]: i for i in load(os.path.join(ROOT, "eapcet", "crops", "_index.json"))}
 
-    rows, disputed, needs_figure, review = [], 0, 0, []
+    rows, gaps = [], []
     for f in sorted(glob.glob(os.path.join(TDIR, "tg_*.json"))):
         d = load(f)
         pid = d["paper_id"]
         meta = idx.get(pid, {})
         k = keys.get(meta.get("source_pdf", ""), {})
         for q in d["questions"]:
+            subject = subject_of(q.get("q_no") or 0)
+            if not subject:
+                continue
             official = k.get(str(q["q_no"]))
             saw = q.get("marked_correct")
             note = q.get("note") or ""
-            figure = note.startswith("has diagram")
-            key_disputed = bool(DISPUTE.search(note))
-            needs_figure += 1 if figure else 0
-            disputed += 1 if (official and saw and official != saw) else 0
-            rows.append({
+            broken = structural_defect(q)
+            row = {
                 "id": "%s_q%03d" % (pid, q["q_no"]),
                 "paper_id": pid,
                 "year": meta.get("year"),
                 "date": meta.get("date"),
                 "session": meta.get("session"),
-                "subject": "physics",
+                "subject": subject,
                 "q_no": q["q_no"],
                 "question_en": q.get("question_en"),
                 "options_en": q.get("options_en"),
@@ -64,38 +72,58 @@ def main():
                 "answer_disputed": bool(official and saw and official != saw),
                 "chapter": q.get("chapter"),
                 "year_cycle": q.get("year_cycle"),
-                "needs_figure": figure,
-                "key_disputed_by_physics": key_disputed,
+                "needs_figure": note.startswith("has diagram"),
+                "key_disputed_by_working": bool(DISPUTE.search(note)),
                 "transcription_confidence": q.get("confidence"),
                 "note": note,
                 "crops": "eapcet/crops/%s" % pid,
-            })
-
-    review = [r for r in rows if r["key_disputed_by_physics"] or r["answer_disputed"]]
+            }
+            if broken:
+                gaps.append(dict(row, defect=broken))
+            else:
+                rows.append(row)
 
     os.makedirs(BANK, exist_ok=True)
+    io.open(os.path.join(BANK, "_gaps.json"), "w", encoding="utf-8").write(json.dumps(
+        {"why": ("These questions were transcribed but are incomplete, so they are held OUT of "
+                 "the bank rather than shipped with a hole in them. Fix the transcript, or "
+                 "re-crop the source, then rebuild."),
+         "questions": gaps}, indent=1, ensure_ascii=False))
+
+    review = [r for r in rows if r["key_disputed_by_working"] or r["answer_disputed"]]
     io.open(os.path.join(BANK, "_review_queue.json"), "w", encoding="utf-8").write(json.dumps(
         {"why": ("Every row here needs a human before it is shown to a student. Either the "
-                 "recomputed physics contradicts the answer the paper marked, or the two "
+                 "recomputed working contradicts the answer the paper marked, or the two "
                  "independent readings of the green tick disagreed."),
          "questions": review}, indent=1, ensure_ascii=False))
-    out = os.path.join(BANK, "physics_v1.json")
-    io.open(out, "w", encoding="utf-8").write(json.dumps(
-        {"schema": "eapcet_physics_bank_v1", "subject": "physics",
-         "answer_of_record": "the key extracted from the official CBT PDF, not the vision pass",
-         "questions": rows}, indent=1, ensure_ascii=False))
 
-    papers = len({r["paper_id"] for r in rows})
-    ch = collections.Counter(r["chapter"] for r in rows)
-    print("papers            : %d" % papers)
-    print("questions         : %d" % len(rows))
-    print("with an answer    : %d" % len([r for r in rows if r["answer"]]))
-    print("answer disputed   : %d" % disputed)
-    print("need the figure   : %d  (%.0f%%)" % (needs_figure, 100.0 * needs_figure / max(1, len(rows))))
-    print("key disputed by physics: %d" % len([r for r in rows if r["key_disputed_by_physics"]]))
-    print("review queue      : %d" % len(review))
-    print("distinct chapters : %d of 30" % len(ch))
-    print("written           :", out)
+    print("%-10s %7s %7s %7s %7s %7s %7s"
+          % ("subject", "papers", "quest", "answer", "figure", "dispute", "held"))
+    for subject in ("maths", "physics", "chemistry"):
+        rs = [r for r in rows if r["subject"] == subject]
+        if not rs:
+            continue
+        g = [x for x in gaps if x["subject"] == subject]
+        out = os.path.join(BANK, "%s_v1.json" % subject)
+        io.open(out, "w", encoding="utf-8").write(json.dumps(
+            {"schema": "eapcet_%s_bank_v1" % subject, "subject": subject,
+             "answer_of_record":
+                 "the key extracted from the official CBT PDF, not the vision pass",
+             "questions": rs}, indent=1, ensure_ascii=False))
+        print("%-10s %7d %7d %7d %7d %7d %7d"
+              % (subject, len({r["paper_id"] for r in rs}), len(rs),
+                 len([r for r in rs if r["answer"]]),
+                 len([r for r in rs if r["needs_figure"]]),
+                 len([r for r in rs if r["key_disputed_by_working"] or r["answer_disputed"]]),
+                 len(g)))
+        missing = set(CHAPTERS[subject]) - {r["chapter"] for r in rs}
+        if missing:
+            print("           chapters with no question yet: %s" % ", ".join(sorted(missing)))
+
+    print("")
+    print("total in the bank : %d" % len(rows))
+    print("held out as gaps  : %d  -> eapcet/bank/_gaps.json" % len(gaps))
+    print("needing a human   : %d  -> eapcet/bank/_review_queue.json" % len(review))
 
 
 if __name__ == "__main__":

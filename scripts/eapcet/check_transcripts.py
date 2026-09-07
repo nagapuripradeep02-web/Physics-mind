@@ -26,7 +26,18 @@ TDIR = os.path.join(ROOT, "eapcet", "transcripts")
 # Non-empty is not the same as read.
 PLACEHOLDER = re.compile(
     r"not\s+visible|not\s+legible|unreadable|illegible|cropped|not\s+shown|could\s+not\s+read|"
-    r"placeholder|not\s+transcribed|missing\s+text|\bTODO\b|\bN/?A\b", re.I)
+    r"placeholder|not\s+transcribed|missing\s+text|not\s+captured|not\s+recoverable|"
+    r"not\s+in\s+(?:the\s+)?source|source\s+image|re-?crop|no\s+option\s+text|"
+    r"blank\s+in\s+source|see\s+note|unverified", re.I)
+# The list above grew twice, each time because a phrasing slipped through and a row with a hole
+# in it reached the bank: first "(option 3 not visible)", then "NOT CAPTURED IN SOURCE IMAGE".
+# Agents invent new ways to say "I could not read this", so match the intent broadly, and keep
+# every phrase here impossible to find in a genuine chemistry, physics or maths option.
+
+# A bare refusal token, compared against the WHOLE trimmed option. Matching "N/A" loosely inside
+# an option flagged the sodium ion Na+ on the first chemistry paper that landed. A gate that
+# fires on real chemistry is worse than no gate, because it trains you to skim its output.
+BARE_REFUSAL = {"n/a", "na", "todo", "tbd", "-", "--", "?", "none", "blank", "unknown"}
 
 # A note claiming an image was absent is checked against how many crops that question really has.
 ABSENT = ("no _1", "no continuation", "not exist", "missing image", "no second image",
@@ -47,6 +58,9 @@ def structural_defect(q):
     bad = [o for o in opts if PLACEHOLDER.search(str(o))]
     if bad:
         return "an option is placeholder prose, not transcribed text: %r" % str(bad[0])[:60]
+    bare = [o for o in opts if str(o).strip().lower() in BARE_REFUSAL]
+    if bare:
+        return "an option is a bare refusal token: %r" % str(bare[0])[:60]
     if not str(q.get("question_en", "")).strip():
         return "question_en is empty"
     if q.get("marked_correct") not in (1, 2, 3, 4):
