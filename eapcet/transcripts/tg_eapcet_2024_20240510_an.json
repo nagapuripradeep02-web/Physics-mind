@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2024_20240510_an",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "Wave picture of light has failed to explain",
+      "options_en": [
+        "photoelectric effect",
+        "interference of light",
+        "diffraction of light",
+        "polarization of light"
+      ],
+      "marked_correct": 1,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "A capacitor of capacitance (4.0±0.2) μF is charged to a potential of (10.0±0.1) V. The charge on the capacitor is",
+      "options_en": [
+        "2.5 μC±3%",
+        "2.5 μC±6%",
+        "40 μC±3%",
+        "40 μC±6%"
+      ],
+      "marked_correct": 4,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "3 : 4",
+        "1 : 1",
+        "2 : 1",
+        "3 : 2"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "From a height of 'h' above the ground, a ball is projected up at an angle 30° with the horizontal. If the ball strikes the ground with a speed of 1.25 times its initial speed of 40 ms⁻¹, the value of 'h' is (acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "75 m",
+        "60 m",
+        "30 m",
+        "45 m"
+      ],
+      "marked_correct": 4,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "A block is kept on a rough horizontal surface. The acceleration of the block increases from 6 ms⁻² to 11 ms⁻² when the horizontal force acting on it increases from 20 N to 30 N. The coefficient of kinetic friction between the block and the surface is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5"
+      ],
+      "marked_correct": 3,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "The kinetic energy of a body of mass 4 kg moving with a velocity of (2î − 4ĵ − k̂) ms⁻¹ is",
+      "options_en": [
+        "84 J",
+        "63 J",
+        "42 J",
+        "21 J"
+      ],
+      "marked_correct": 3,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "A ball P of mass 0.5 kg moving with a velocity of 10 ms⁻¹ collides with another ball Q of mass 1 kg at rest. If the coefficient of restitution is 0.4, the ratio of the velocities of the balls P and Q after the collision is",
+      "options_en": [
+        "1 : 7",
+        "2 : 7",
+        "2 : 5",
+        "5 : 6"
+      ],
+      "marked_correct": 1,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "A circular plate of radius r is removed from a uniform circular plate P of radius 4r to form a hole. If the distance between the centre of the hole formed and the centre of the plate P is 2r, then the distance of the centre of mass of the remaining portion from the centre of the plate P is",
+      "options_en": [
+        "r/3",
+        "r/15",
+        "2r/15",
+        "2r"
+      ],
+      "marked_correct": 3,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "A hollow cylinder and a solid cylinder initially at rest at the top of an inclined plane are rolling down without slipping. If the time taken by the hollow cylinder to reach the bottom of the inclined plane is 2 s, the time taken by the solid cylinder to reach the bottom of the inclined plane is",
+      "options_en": [
+        "2 s",
+        "1.414 s",
+        "1 s",
+        "1.732 s"
+      ],
+      "marked_correct": 4,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "A block kept on a frictionless horizontal surface is connected to one end of a horizontal spring of constant 100 Nm⁻¹ whose other end is fixed to a rigid vertical wall. Initially the block is at its equilibrium position. The block is pulled to a distance of 8 cm and released. The kinetic energy of the block when it is at a distance of 3 cm from the mean position is",
+      "options_en": [
+        "0.65 J",
+        "0.325 J",
+        "0.275 J",
+        "0.55 J"
+      ],
+      "marked_correct": 3,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "The ratio of the radii of a planet and the earth is 1:2, the ratio of their mean densities is 4:1. If the acceleration due to gravity on the surface of the earth is 9.8 ms⁻², then the acceleration due to gravity on the surface of the planet is",
+      "options_en": [
+        "4.9 ms⁻²",
+        "8.9 ms⁻²",
+        "29.4 ms⁻²",
+        "19.6 ms⁻²"
+      ],
+      "marked_correct": 4,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "A wire of cross-sectional area 10⁻⁶ m² is elongated by 0.1 % when the tension in it is 1000 N. The Young's modulus of the material of the wire is (Assume radius of the wire is constant)",
+      "options_en": [
+        "10¹¹ Nm⁻²",
+        "10¹² Nm⁻²",
+        "10¹⁰ Nm⁻²",
+        "10⁹ Nm⁻²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "The work done in blowing a soap bubble of volume V is W. The work done in blowing the bubble of volume 2V from the same soap solution is",
+      "options_en": [
+        "W/2",
+        "√2 W",
+        "(2)^(1/3) W",
+        "(4)^(1/3) W"
+      ],
+      "marked_correct": 4,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "Three identical vessels are filled up to the same height with three different liquids A, B and C of densities ρA, ρB and ρC respectively. If ρA>ρB>ρC, then the pressure at the bottom of the vessels is",
+      "options_en": [
+        "equal in all vessels",
+        "maximum in vessel containing liquid C",
+        "maximum in vessel containing liquid B",
+        "maximum in vessel containing liquid A"
+      ],
+      "marked_correct": 4,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "Steam of mass 60 g at a temperature 100 °C is mixed with water of mass 360 g at a temperature 40 °C. The ratio of the masses of steam and water in equilibrium is (Latent heat of steam is 540 cal g⁻¹ and specific heat capacity of water is 1 cal g⁻¹ °C⁻¹)",
+      "options_en": [
+        "1 : 20",
+        "1 : 10",
+        "1 : 5",
+        "1 : 3"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "The temperature difference between the ends of two cylindrical rods A and B of the same material is 2:3. In steady state the ratio of the rates of flow of heat through the rods A and B is 5:9. If the radii of the rods A and B are in the ratio 1:2, then the ratio of lengths of the rods A and B is",
+      "options_en": [
+        "2 : 7",
+        "3 : 7",
+        "2 : 5",
+        "3 : 10"
+      ],
+      "marked_correct": 4,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "When Q₁ amount of heat is supplied to a monatomic gas, the work done by the gas is W. When Q₂ amount of heat is supplied to a diatomic gas, the work done by the gas is 2W. Then Q₁:Q₂=",
+      "options_en": [
+        "2 : 3",
+        "3 : 5",
+        "5 : 7",
+        "5 : 14"
+      ],
+      "marked_correct": 4,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "The temperature at which the rms speed of oxygen molecules is 75 % of rms speed of nitrogen molecules at a temperature of 287 °C is",
+      "options_en": [
+        "87 °C",
+        "127 °C",
+        "227 °C",
+        "360 °C"
+      ],
+      "marked_correct": 1,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "The path difference between two particles of a sound wave is 50 cm and the phase difference between them is 1.8π. If the speed of sound in air is 340 ms⁻¹, the frequency of the sound wave is",
+      "options_en": [
+        "672 Hz",
+        "306 Hz",
+        "612 Hz",
+        "340 Hz"
+      ],
+      "marked_correct": 3,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 100,
+      "question_en": "A source at rest emits sound waves of frequency 102 Hz. Two observers are moving away from the source of sound in opposite directions each with a speed of 10 % of the speed of sound. The ratio of the frequencies of sound heard by the observers is",
+      "options_en": [
+        "9 : 11",
+        "1 : 1",
+        "7 : 9",
+        "2 : 3"
+      ],
+      "marked_correct": 2,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "The power of a thin convex lens placed in air is +4D. The refractive index of the material of the convex lens is 3/2. If this convex lens is immersed in a liquid of refractive index 5/3, then",
+      "options_en": [
+        "it behaves like a convex lens of focal length 75 cm",
+        "it behaves like a convex lens of focal length 125 cm",
+        "it behaves like a concave lens of focal length 125 cm",
+        "it behaves like a concave lens of focal length 75 cm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "The refractive index of the material of a small angled prism is 1.6. If the angle of minimum deviation is 4.2°, the angle of the prism is",
+      "options_en": [
+        "4.2°",
+        "7°",
+        "4.8°",
+        "9°"
+      ],
+      "marked_correct": 2,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 103,
+      "question_en": "The Brewster angle for air to glass transition of light is (Refractive index of glass = 1.5)",
+      "options_en": [
+        "Sin⁻¹(3/2)",
+        "Cos⁻¹(3/2)",
+        "Tan⁻¹(3/2)",
+        "Cos⁻¹(2/3)"
+      ],
+      "marked_correct": 3,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "A proton and an 'α' particle are both accelerated from rest in a uniform electric field. The ratio of works done by the electric field on the proton and the α-particle in a given time is",
+      "options_en": [
+        "1 : 1",
+        "1 : 2",
+        "1 : 4",
+        "4 : 1"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "Two capacitors of capacitances 1 μF and 2 μF can separately withstand potentials of 6 kV and 4 kV respectively. The total potential, they together can withstand when they are connected in series is",
+      "options_en": [
+        "9 kV",
+        "4 kV",
+        "6 kV",
+        "2 kV"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "The resistance of a wire is 2.5 Ω at a temperature 373 K. If the temperature coefficient of resistance of the material of the wire is 3.6×10⁻³ K⁻¹, its resistance at a temperature 273 K is nearly",
+      "options_en": [
+        "1.84 Ω",
+        "2.46 Ω",
+        "0.82 Ω",
+        "4.58 Ω"
+      ],
+      "marked_correct": 1,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "When two identical resistors are connected in series to an ideal cell, the current through each resistor is 2 A. If the resistors are connected in parallel to the cell, the current through each resistor is",
+      "options_en": [
+        "4 A",
+        "2 A",
+        "8 A",
+        "1 A"
+      ],
+      "marked_correct": 1,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 108,
+      "question_en": "An electron falling freely under the influence of gravity enters a uniform magnetic field directed towards south. The electron is initially deflected towards",
+      "options_en": [
+        "east",
+        "west",
+        "north",
+        "south"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 109,
+      "question_en": "Two long straight parallel wires A and B separated by 5 m carry currents 2 A and 6 A respectively in the same direction. The resultant magnetic field due to the two wires at a point of 2 m distance from the wire A in between the two wires is",
+      "options_en": [
+        "2×10⁻⁶ T",
+        "2×10⁻⁷ T",
+        "4×10⁻⁷ T",
+        "4×10⁻⁶ T"
+      ],
+      "marked_correct": 2,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "A short bar magnet placed in a uniform magnetic field making an angle with the field experiences a torque. If the angle made by the magnet with field is changed from 30° to 45°, the torque on the magnet",
+      "options_en": [
+        "increases by 50%",
+        "decreases by 50%",
+        "decreases by 41.4%",
+        "increases by 41.4%"
+      ],
+      "marked_correct": 4,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "The mutual inductance of two coils is 8 mH. The current in one coil changes according to the equation I=12 sin100t, where 'I' is in ampere and 't' is time in second. The maximum value of emf induced in the second coil is",
+      "options_en": [
+        "9.6 V",
+        "4.8 V",
+        "3.2 V",
+        "12.8 V"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 112,
+      "question_en": "An inductor of inductive reactance R, a capacitor of capacitive reactance 2R and a resistor of resistance R are connected in series to an ac source. The power factor of the series LCR circuit is",
+      "options_en": [
+        "1/√2",
+        "1/√3",
+        "1/4",
+        "√3/2"
+      ],
+      "marked_correct": 1,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "The efficiency of a bulb of power 60 W is 16 %. The peak value of the electric field produced by the electromagnetic radiation from the bulb at a distance of 2 m from the bulb is (1/4πε₀ = 9×10⁹ Nm²C⁻²)",
+      "options_en": [
+        "24 Vm⁻¹",
+        "16 Vm⁻¹",
+        "9 Vm⁻¹",
+        "12 Vm⁻¹"
+      ],
+      "marked_correct": 4,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "The work function of a photosensitive metal surface is 1.1 eV. Two light beams of energies 1.5 eV and 2 eV incident on the metal surface. The ratio of the maximum velocities of the emitted photoelectrons is",
+      "options_en": [
+        "3 : 4",
+        "1 : 1",
+        "2 : 3",
+        "4 : 9"
+      ],
+      "marked_correct": 3,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "The ground state energy of hydrogen atom is −13.6 eV. The potential energy of the electron in the first excited state of hydrogen is",
+      "options_en": [
+        "−6.8 eV",
+        "−3.4 eV",
+        "−13.6 eV",
+        "−27.2 eV"
+      ],
+      "marked_correct": 1,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "After the decay of a single 'β' particle, the parent and daughter nuclei are",
+      "options_en": [
+        "isotopes",
+        "isobars",
+        "isomers",
+        "isotones"
+      ],
+      "marked_correct": 2,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "A ₉₂U²³⁸ nucleus decays to a ₈₂Pb²¹⁴ nucleus. The number of α and β⁻ particles emitted are",
+      "options_en": [
+        "6 and 2",
+        "3 and 3",
+        "2 and 6",
+        "3 and 4"
+      ],
+      "marked_correct": 1,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "Re-read after q117_1.png was located (missed on first pass); it holds options 3 (\"2 and 6\") and 4 (\"3 and 4\"). All four options and the green tick on option 1 (\"6 and 2\") are now clearly visible, consistent with U-238 to Pb-214 decay (mass number drop of 24 = 6 alpha particles; that alone would drop Z by 12 to 80, so 2 beta-minus particles are needed to reach Z=82)."
+    },
+    {
+      "q_no": 118,
+      "question_en": "In an n-type semiconductor, electrons are majority charge carriers and holes are minority charge carriers. The charge of an n-type semiconductor is",
+      "options_en": [
+        "negative",
+        "positive",
+        "neutral",
+        "depends on the dopant"
+      ],
+      "marked_correct": 3,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "The region in the output voltage versus input voltage graph where a transistor can be used as an amplifier is",
+      "options_en": [
+        "active region",
+        "cut off region",
+        "saturation region",
+        "passive region"
+      ],
+      "marked_correct": 1,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 120,
+      "question_en": "For an amplitude modulated wave, the maximum and minimum amplitudes are found to be 10 V and 2 V respectively. Then the modulation index is",
+      "options_en": [
+        "1/3",
+        "3/4",
+        "1/5",
+        "2/3"
+      ],
+      "marked_correct": 4,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}

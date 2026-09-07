@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2022_20220720_an",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "Among the fundamental forces, which one of the following is the strongest force",
+      "options_en": [
+        "Electromagnetic force",
+        "Strong Nuclear force",
+        "Gravitational force",
+        "Weak nuclear force"
+      ],
+      "marked_correct": 2,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "Which of the following is the unit of mobility of a electron in a conductor?",
+      "options_en": [
+        "kg⁻¹s²A⁻¹",
+        "kg⁻¹s²A",
+        "kg⁻¹ms²A⁻¹",
+        "kg ms⁻¹A⁻¹"
+      ],
+      "marked_correct": 2,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A car starts at time t = 0 from an initial speed of 10 m/s and accelerates uniformly with 2 m/s² on a straight road for time 0 ≤ t ≤ 10s. Let S₁ and S₂ be the distance covered by the car in time 3 ≤ t ≤ 4s and 4 ≤ t ≤ 5s respectively. The ratio S₂/S₁ is",
+      "options_en": [
+        "1",
+        "19/7",
+        "9/7",
+        "5/3"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "Particle A (which was located at the origin at time t = 0) is moving along the x-axis with a constant speed of 1 m/s. Location of particle B which is moving along the y-axis is given by y = ct², where c = 1 m/s². Find the speed of particle A relative to particle B at t = 1 sec.",
+      "options_en": [
+        "√5 m/s",
+        "2 m/s",
+        "1 m/s",
+        "0 m/s"
+      ],
+      "marked_correct": 1,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "A particle is moving in xy-plane as x⃗ = (4t + t²)î, y⃗ = (2t + t²/2)ĵ where x⃗ & y⃗ are displacements measured along x and y axes respectively in meters and t in seconds. What is the velocity of the particle?",
+      "options_en": [
+        "v⃗ = (4+t)î + (2+t)ĵ",
+        "v⃗ = (4+2t)î + (2+t)ĵ",
+        "v⃗ = (4+2t)î + (2+t/2)ĵ",
+        "v⃗ = (4+t)î + (2+t/2)ĵ"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "The surface of a hill inclined at an angle 30° to the horizontal. A stone is thrown from the summit of the hill (point A) at an initial speed 10 m/s at angle 60° to the vertical. If the stone strikes the hill at point B as shown in the figure, the distance between A and B is (Take g = 10 m/s²)",
+      "options_en": [
+        "10 m",
+        "15 m",
+        "20 m",
+        "30 m"
+      ],
+      "marked_correct": 3,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 87,
+      "question_en": "A spherical bob of mass 250g is attached to the end of a string having length 50 cm. The bob is rotated on a horizontal circular path about a vertical axis. The maximum tension that the string can bear is 72 N. The maximum possible value of angular velocity of bob (in rad/s) is",
+      "options_en": [
+        "18",
+        "24",
+        "28",
+        "32"
+      ],
+      "marked_correct": 2,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "A boat of mass 1000 kg goes from rest to speed 20.0 m/s in 5.0 s. The water exerts a constant drag force and the acceleration of the boat is constant. If the average power required by the boat is 45000 W, then the magnitude of the drag force is",
+      "options_en": [
+        "500 N",
+        "750 N",
+        "250 N",
+        "1000 N"
+      ],
+      "marked_correct": 1,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "A pump on the ground floor of a building can pump up water to fill a tank of volume 36 m³ in 30 min. If the tank is 50 m above the ground, and the electric power consumed by the pump is 40 kW, the efficiency of the pump is (Use g = 10m/s² and density of water = 1000 Kg/m³)",
+      "options_en": [
+        "30 %",
+        "25 %",
+        "33%",
+        "40 %"
+      ],
+      "marked_correct": 2,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "A cyclist is riding with a speed of 36 km/h. As he approaches a circular turn on the road of radius 50 m, he applies brakes and reduces his speed at the constant rate of 0.5 m/s every second. The magnitude and direction of the net acceleration of the cyclist on the circular turn respectively are",
+      "options_en": [
+        "√3/2 m/s², Tan⁻¹(4)",
+        "√3/2 m/s², Tan⁻¹(1/4)",
+        "√17 m/s², Tan⁻¹(1/4)",
+        "√17/2 m/s², Tan⁻¹(4)"
+      ],
+      "marked_correct": 4,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "A block is in simple harmonic motion (S.H.M) on the end of the spring with position given by x = (5)cos(ωt + π/4) cm. If the total mechanical energy used is 100 J to achieve maximum displacement, then the potential energy at time t = 0 is",
+      "options_en": [
+        "20 J",
+        "80 J",
+        "75 J",
+        "50 J"
+      ],
+      "marked_correct": 4,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "Statement I: The force of attraction due to a hollow spherical shell of uniform density on a point mass situated inside it is always positive. Statement II: The force of attraction between a hollow spherical shell of uniform density and a point mass situated outside is same just as if the entire mass of the shell is at the center of the shell. Which of the following is correct?",
+      "options_en": [
+        "Both statement I and statement II are True",
+        "Statement I is true, but statement II is false",
+        "Statement II is true, but statement I is false",
+        "Both statements, I and II are false"
+      ],
+      "marked_correct": 3,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "What is the work done in stretching a uniform metal wire of length from 2 m to 2.004 m with an area of cross section 10⁻⁶ m²? [Young's modulus of the wire = 2×10¹¹ N/m²]",
+      "options_en": [
+        "1.6 J",
+        "0.8 J",
+        "8 J",
+        "16 J"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "A wide cylindrical vessel 50 cm in height is filled with water and rests on a table. Assuming the viscosity to be negligible, find at what height from the bottom of the vessel a small hole should be made for the water jet coming out of it to hit the surface of the table at the maximum horizontal distance from the vessel.",
+      "options_en": [
+        "15 cm",
+        "35 cm",
+        "25 cm",
+        "10 cm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "A spherical drop of radium r is divided in to 8 equal droplets. If the surface tension is S, then the work done in the process will be",
+      "options_en": [
+        "2πr²S",
+        "3πr²S",
+        "4πr²S",
+        "4πr²S²"
+      ],
+      "marked_correct": 3,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "medium",
+      "note": "printed question says 'radium r', which is almost certainly a typo for 'radius r' in the original paper; transcribed verbatim as printed"
+    },
+    {
+      "q_no": 96,
+      "question_en": "A circular copper ring at 30 °C has a hole with an area of 9.98 cm². It is made to slip onto a steel rod of cross-sectional area of 10 cm², by raising the temperature of both ring and rod simultaneously by an amount ΔT. If the coefficient of linear expansion of copper and steel are 17 × 10⁻⁶/°C and 11 × 10⁻⁶ /°C, then minimum value of ΔT should be",
+      "options_en": [
+        "167.6 °C",
+        "133.3 °C",
+        "83.3 °C",
+        "249.9 °C"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "Statement I: A device in which heat measurement can be made is called calorimeter. Statement II: Skating is possible on snow due to the formation of water below the skates. Water is formed due to the increase of temperature and ice melts. Statement III: Two bodies at different temperature are mixed in a calorimeter. Total internal energy of the two bodies remains conserved. Which of the following is correct?",
+      "options_en": [
+        "Statements I, II and III are true",
+        "Statements I is true, but statements II and III are false",
+        "Both statements I and II are true, but statement III is false",
+        "Both statements I, III are true, but statement II is false"
+      ],
+      "marked_correct": 4,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "Which of the following statements is NOT true?",
+      "options_en": [
+        "Specific heat capacity is dependent on nature of substance but independent of its quantity",
+        "Specific heat capacity depends on temperature",
+        "Specific heat capacity of water doesn't vary with temperature",
+        "The SI unit of specific heat capacity is JK⁻¹kg⁻¹"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "A gas system is taken through the thermodynamic cyclic process 1→2→3→1 as shown below. The amount of heat released by the system is",
+      "options_en": [
+        "-PV/2",
+        "PV",
+        "PV/2",
+        "-3PV/2"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 100,
+      "question_en": "An ideal gas at pressure P is enclosed in a container that is placed in a reservoir at temperature T. If the volume of the gas is increased to two times its original value, then the new pressure P¹ = ____ P",
+      "options_en": [
+        "1/2",
+        "2",
+        "1",
+        "Cannot be determined"
+      ],
+      "marked_correct": 1,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "A cylindrical tube open at both ends has a fundamental frequency 'f' in air. The tube is dipped vertically in water so that half of it is in water. The new fundamental frequency is",
+      "options_en": [
+        "f",
+        "f/2",
+        "2f",
+        "4f"
+      ],
+      "marked_correct": 1,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "A convex lens of focal length 25 cm and made of glass with refractive index 1.5 is immersed in water. The absolute change in focal length of the glass is [Use refractive index of water = 4/3]",
+      "options_en": [
+        "100 cm",
+        "37.5 cm",
+        "75 cm",
+        "12.5 cm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 103,
+      "question_en": "In a Young's double slit experiment, if the distance between two slits is reduced by a factor of 2 and the wavelength of light is increased 4 times then the distance between two maxima will become _____ times the original value.",
+      "options_en": [
+        "2",
+        "4",
+        "8",
+        "16"
+      ],
+      "marked_correct": 3,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "A small block of mass 5 g and charge 5 μC is placed on insulated, frictionless, inclined plane of angle 60°. An electric field is applied parallel to the inclined plane. If the block remains at rest then the magnitude of electric field is (Take g = 10 m/s²)",
+      "options_en": [
+        "10⁵/√3 N/C",
+        "(5/√3) × 10⁴ N/C",
+        "√3 × 10⁴ N/C",
+        "2 × 10⁴ N/C"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "Two metal spheres have their radii in the ratio of 4 : 7. They are put in contact and a charge 8.8 × 10⁻⁷C is given to the system. Then they are separated so that each can exert no influence on the other. The potential due to the smaller sphere at 60 m from it in Volt is",
+      "options_en": [
+        "85",
+        "76",
+        "48",
+        "66"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "The time required to raise the temperature of 3 litre of water from 0 °C to 80 °C by a heater operated under 200 V having resistance of 50 Ω is [specific heat capacity of water is 4200 J kg⁻¹ K⁻¹] [density of water = 1000 kg/m³]",
+      "options_en": [
+        "12 min",
+        "18 min",
+        "21 min",
+        "24 min"
+      ],
+      "marked_correct": 3,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "The current density in a circular wire is given by J(r) = (1×10⁵ A/m³)r, where r is the radial distance and the wire's radius is 2 mm. If the potential applied across the wire is 70 V, then the energy consumed by the wire in 1000 seconds is",
+      "options_en": [
+        "25 kJ",
+        "30π kJ",
+        "18π kJ",
+        "88 kJ"
+      ],
+      "marked_correct": 4,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 108,
+      "question_en": "Two infinitely long thin wires are placed at (1 cm, 0 cm) and (2 cm, 0 cm) as shown in the figure. The same current i flows in both the wires in the same direction, say, into the page. Let the magnetic field at the origin due to these wires is B⃗. If B₀ is the magnitude of the magnetic field if only the wire at (1cm, 0 cm) was present, then the value of B/B₀ is",
+      "options_en": [
+        "3/2",
+        "2/3",
+        "1/2",
+        "2"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 109,
+      "question_en": "A toroid core has inner radius of 0.24 m and outer radius of 0.26 m. A current of 10 A flows through the wire having 2500 turns around it. Find the magnetic field inside the core of the toroid.",
+      "options_en": [
+        "π×10⁻²T",
+        "2π×10⁻²T",
+        "2×10⁻²T",
+        "20×10⁻²T"
+      ],
+      "marked_correct": 3,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "In the magnetic meridian of a certain place, the horizontal component of the earth's magnetic field is 86.6 G (Gauss) and the magnetic field of earth is 100 G (Gauss). Then the dip angle is",
+      "options_en": [
+        "45°",
+        "60°",
+        "30°",
+        "75°"
+      ],
+      "marked_correct": 3,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "A wheel of 20 metallic spokes each 40 cm long is rotated with a speed of 180 rev/min in a plane normal to the horizontal component of earth's magnetic field Hₑ at a place. If Hₑ = 0.4 G (Gauss) at that place, the induced emf between the axle and the rim of the wheel is",
+      "options_en": [
+        "192π×10⁻⁷ V",
+        "256π×10⁻⁷ V",
+        "148π×10⁻⁷ V",
+        "110π×10⁻⁷ V"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 112,
+      "question_en": "A generator produces a current of 100 A at 4000V. The voltage is stepped up to 2×10⁵ V by a transformer before being sent on a high voltage transmission line of resistance 50 Ω. The percentage of power loss in the transmission line is",
+      "options_en": [
+        "0.25 %",
+        "0.05 %",
+        "1.25 %",
+        "0.02 %"
+      ],
+      "marked_correct": 2,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "In a plane EM wave the electric field oscillates sinusoidally at a frequency of 30 MHz and amplitude 150 V/m. Identify the correct expression of B⃗ assuming the wave is propagating along x-axis and is oscillating along y-axis.",
+      "options_en": [
+        "5×10⁻⁷ sin[x/3 − 6×10⁺⁷t] ẑ T",
+        "5×10⁻⁷ sin[π(x/5 − 6×10⁺⁷t)] ẑ T",
+        "5×10⁻⁷ sin[π(x/10 − 3×10⁺⁷t)] ẑ T",
+        "5×10⁻⁷ sin[π(2x/5 − 6×10⁺⁸t)] ẑ T"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "When monochromatic light falls on a photo-sensitive metal, an electron is emitted with maximum velocity 1.6×10⁶ m/s. Find the stopping potential. [charge of electron = 1.6×10⁻¹⁹ C, mass of electron = 9×10⁻³¹kg]",
+      "options_en": [
+        "7.2 V",
+        "14.4 V",
+        "21.6 V",
+        "28.8 V"
+      ],
+      "marked_correct": 1,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "A lamp of power 942 W radiates energy uniformly in all direction. The wavelength of radiation is 660 nm. The photon flux on a small screen 5.0 m from the lamp in units of photon/m².s is (Take Planck's constant h = 6.6×10⁻³⁴ SI unit)",
+      "options_en": [
+        "5×10²⁰",
+        "2π×10¹⁹",
+        "(6/π)×10¹⁸",
+        "1×10¹⁹"
+      ],
+      "marked_correct": 4,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "The shortest wavelength in Balmer series of hydrogen atom spectrum is approximately equal to (use R_H = 1.097×10⁷ m⁻¹)",
+      "options_en": [
+        "3646 Å",
+        "912 Å",
+        "364.6 Å",
+        "91.2 Å"
+      ],
+      "marked_correct": 1,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "What will be the energy released in joule, in the process of fission by 1 mg of ²⁴⁰₉₂U. Assume energy release per fission is 200 MeV. [use Avogadro's number as 6×10²³ and 1eV = 1.6×10⁻¹⁹ J]",
+      "options_en": [
+        "6.2×10⁷ J",
+        "7.0×10⁷ J",
+        "8.0×10⁷ J",
+        "8.2×10⁷ J"
+      ],
+      "marked_correct": 3,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "The band gap in a semi-conductor is 0.6 eV. The maximum wavelength of electromagnetic radiation which can create a hole-electron pair in this semiconductor is equal to [Use hc = 1242 eV-nm]",
+      "options_en": [
+        "2450 nm",
+        "1150 nm",
+        "2070 nm",
+        "1050 nm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "Identify the logic gate from the following with the same truth table characteristics of the logic circuit below.",
+      "options_en": [
+        "NAND",
+        "NOR",
+        "AND",
+        "OR"
+      ],
+      "marked_correct": 4,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 120,
+      "question_en": "For an amplitude modulated wave, the modulation index is found to be 0.5. If the maximum amplitude is found to be 10.0 V, then the minimum amplitude is",
+      "options_en": [
+        "5.0 V",
+        "3.33 V",
+        "2.5 V",
+        "6.66 V"
+      ],
+      "marked_correct": 2,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}

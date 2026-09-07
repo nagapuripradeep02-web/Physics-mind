@@ -1,0 +1,611 @@
+{
+ "paper_id": "tg_eapcet_2022_20220720_fn",
+ "questions": [
+  {
+   "q_no": 81,
+   "question_en": "Which of the following statements is true?",
+   "options_en": [
+    "The range for weak nuclear force is shortest among all four forces",
+    "The range for electromagnetic force is smaller than that for gravitation force",
+    "The relative strength of gravitational force is higher than that for weak nuclear force",
+    "The relative strength for weak nuclear force is larger than that for strong nuclear force"
+   ],
+   "marked_correct": 1,
+   "chapter": "Physical World and Measurement",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 82,
+   "question_en": "If the velocity of light C, the gravitational constant G and Planck's constant h are chosen as the fundamental units, the dimension of density in the new system is",
+   "options_en": [
+    "C³G⁻²h¹",
+    "C⁵G⁻²h⁻¹",
+    "C⁻³⁄²G⁻¹⁄²h¹⁄²",
+    "C⁹⁄²G⁻¹⁄²h⁻¹⁄²"
+   ],
+   "marked_correct": 2,
+   "chapter": "Physical World and Measurement",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 83,
+   "question_en": "A ball projected up passes the same height H at 2 s and 10 s. The value of H is [Use g = 9.8 m/s²]",
+   "options_en": [
+    "102 m",
+    "100 m",
+    "98 m",
+    "9.8 m"
+   ],
+   "marked_correct": 3,
+   "chapter": "Motion in a Straight Line",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 84,
+   "question_en": "Two towns X and Y are connected by a regular bus service. A bus leaves in either direction at every t = T minutes. A man moving with some speed in the direction X to Y finds that a bus goes past him every t = t₁ minutes in the direction of his motion, and every t = t₂ minutes in the opposite direction. Then T is given by",
+   "options_en": [
+    "2t₁t₂/(t₁+t₂)",
+    "(t₁−t₂)t₁/(t₁+t₂)",
+    "2t₂(t₁+t₂)/|t₁−t₂|",
+    "t₁t₂/|t₁−t₂|"
+   ],
+   "marked_correct": 1,
+   "chapter": "Motion in a Straight Line",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 85,
+   "question_en": "Statement (I): An object subjected to velocities v⃗₁ and v⃗₂ has a resultant velocity with magnitude |v⃗| = |v⃗₁| + |v⃗₂|. Statement (II): The magnitude of displacement is either less or equal to the path length of an object between two points. Statement (III): The instantaneous acceleration is the limiting value of the average acceleration as the time interval approaches zero. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II, III are true",
+    "Statements I, II are true, but statement III is false",
+    "Statements II, III are true, but statement I is false",
+    "Statements I, II, III are false"
+   ],
+   "marked_correct": 3,
+   "chapter": "Motion in a Plane",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 86,
+   "question_en": "For a projectile if α is the angle of projection, R is the range, h is the maximum height, T is the time of flight then",
+   "options_en": [
+    "tan α = R/2h, h = gT²/8",
+    "tan α = R/4h, h = gT²/8",
+    "tan α = 4h/R, h = gT²/8",
+    "tan α = 4h/R, h = gT²/4"
+   ],
+   "marked_correct": 3,
+   "chapter": "Motion in a Plane",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 87,
+   "question_en": "At time t = 0, a force F = αt, where t is time in seconds, is applied to a body of mass 1 kg, resting on a smooth horizontal plane. If the direction of the force makes an angle of 45° with the horizontal, then the velocity of the body at the moment of its breaking off the plane is",
+   "options_en": [
+    "100/α m/s",
+    "50√2/α m/s",
+    "50α/√2 m/s",
+    "50/α m/s"
+   ],
+   "marked_correct": 2,
+   "chapter": "Laws of Motion",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 88,
+   "question_en": "Statement (I): The slope of kinetic energy-displacement curve of a body in motion will be directly proportional to its acceleration. Statement (II): From a height of 15 m a ball is projected vertically upwards with a velocity of 30 m/s. If the ball rises to the same height after hitting the ground, the loss of its energy on hitting the ground is 30 %. Statement (III): The velocity acquired by a body of mass 'm' after travelling a fixed distance from rest under the action of a constant force is directly proportional to mass 'm'. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II, III are true",
+    "Statements I, III are true, but statement II is false",
+    "Statement I is true, but statements II and III are false",
+    "Statements I, II are true, but statement III is false"
+   ],
+   "marked_correct": 3,
+   "chapter": "Work Power Energy",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 89,
+   "question_en": "An object is moving in a straight line under the influence of a source of constant power. If v and t are velocity and time respectively, then",
+   "options_en": [
+    "v ∝ t²",
+    "v ∝ t¹⁄²",
+    "v ∝ t",
+    "v ∝ t³⁄²"
+   ],
+   "marked_correct": 2,
+   "chapter": "Work Power Energy",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 90,
+   "question_en": "A solid spherical ball is rolled up an inclined plane of angle of inclination 30° with an initial speed of 4 m/s at the bottom of the inclination. How far will the ball go up the plane. (Use g = 10 m/s²)",
+   "options_en": [
+    "56 cm",
+    "112 cm",
+    "225 cm",
+    "120 cm"
+   ],
+   "marked_correct": 1,
+   "chapter": "System of Particles and Rotational Motion",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 91,
+   "question_en": "A particle performs Simple harmonic motion with a time period of 16s. At a time t = 2s, the particle passes through the origin and at t = 4s its velocity is 4 m/s. The amplitude of the motion is",
+   "options_en": [
+    "32π/√2",
+    "32√2/π",
+    "32π",
+    "32"
+   ],
+   "marked_correct": 2,
+   "chapter": "Oscillations",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 92,
+   "question_en": "Let the escape speed of an object on the earth's surface be V₀. The object is projected out with speed 5V₀. The speed of the object far away from the earth will be",
+   "options_en": [
+    "2√6 V₀",
+    "4V₀",
+    "2√3 V₀",
+    "3√2 V₀"
+   ],
+   "marked_correct": 1,
+   "chapter": "Gravitation",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 93,
+   "question_en": "One end of a steel rod of radius 10.0 mm and length 50.0 cm is clamped on a horizontal table. The other end of the rod is pulled with a force of magnitude 10.0 ×π kN. This force is uniform across the flat surface of the rod and is perpendicular to it. The change in the length of the rod due to this applied force is (Use Young's modulus = 2.0 ×10¹¹ N/m²)",
+   "options_en": [
+    "0.25 mm",
+    "0.75 mm",
+    "0.50 mm",
+    "1.0 mm"
+   ],
+   "marked_correct": 1,
+   "chapter": "Mechanical Properties of Solids",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 94,
+   "question_en": "A venturimeter has a pipe diameter of 4 cm and a throat diameter of 2 cm. Velocity of water in the pipe section is 10 m/s. The pressure drop, between pipe section and the throat section is [use density of water = 1000 Kg/m³]",
+   "options_en": [
+    "1.5 × 10⁵ Pa",
+    "7.5 × 10⁵ Pa",
+    "75 × 10⁵ Pa",
+    "4.5 × 10⁵ Pa"
+   ],
+   "marked_correct": 2,
+   "chapter": "Mechanical Properties of Fluids",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 95,
+   "question_en": "A soap bubble of initial radius R is to be blown up. The surface tension of the soap film is T. The surface energy needed to double the diameter of the bubble is",
+   "options_en": [
+    "12πR²T",
+    "4πR²T",
+    "16πR²T",
+    "24πR²T"
+   ],
+   "marked_correct": 4,
+   "chapter": "Mechanical Properties of Fluids",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 96,
+   "question_en": "Two metal rods A and B each of length 50 cm and diameter 4.0 mm are joined together at temperature 30 °C. What is the change in length of the combined rod at 230 °C? [Given linear expansion coefficients of rods A and B are respectively, 2.0 ×10⁻⁵/°C and 1.0 ×10⁻⁵/°C]",
+   "options_en": [
+    "4 mm",
+    "2 mm",
+    "3 mm",
+    "1 mm"
+   ],
+   "marked_correct": 3,
+   "chapter": "Thermal Properties of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 97,
+   "question_en": "Find the difference in temperature between the water at the top and the bottom of 20 m high waterfall assuming 10 % of the energy of fall is spent in heating the water [Use specific heat capacity of water = 4000 J kg⁻¹ k⁻¹ and g = 10 m/s²]",
+   "options_en": [
+    "0.002 °C",
+    "0.004 °C",
+    "0.005 °C",
+    "0.006 °C"
+   ],
+   "marked_correct": 3,
+   "chapter": "Thermal Properties of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 98,
+   "question_en": "Assertion (A): The zeroth law of thermodynamics leads to the concept of temperature. Reason (R): The zeroth law states that two systems in thermal equilibrium with a third system are in thermal equilibrium with each other. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ],
+   "marked_correct": 1,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 99,
+   "question_en": "When a gas expands adiabatically, its volume is doubled while its absolute temperature is decreased by a factor of 2. The value of the adiabatic constant is",
+   "options_en": [
+    "1",
+    "5/3",
+    "2",
+    "7/5"
+   ],
+   "marked_correct": 3,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 100,
+   "question_en": "An amount of 700 J of heat is transferred to a diatomic gas allowing it to expand with the pressure held constant. The work done on the gas is",
+   "options_en": [
+    "200 J",
+    "100 J",
+    "300 J",
+    "500 J"
+   ],
+   "marked_correct": 1,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 101,
+   "question_en": "Which of the following wave has the largest wave speed?",
+   "options_en": [
+    "y(x,t) = 2 sin(2x − 2t)",
+    "y(x,t) = 3 sin(2x − 3t)",
+    "y(x,t) = 2 sin(3x − 2t)",
+    "y(x,t) = 3 sin(5x − 2t)"
+   ],
+   "marked_correct": 2,
+   "chapter": "Waves",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 102,
+   "question_en": "What is the refractive index of the material of a double convex lens having radii of curvature of 5 cm and 10 cm and focal length of 20/3 cm",
+   "options_en": [
+    "1.5",
+    "2.0",
+    "2.4",
+    "2.6"
+   ],
+   "marked_correct": 1,
+   "chapter": "Ray Optics and Optical Instruments",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 103,
+   "question_en": "In an interference pattern of Young's double slit experiment, at a point we observe the 12th order maximum for a monochromatic light source with wavelength 6000 Å. What order will be visible here if the source is replaced by a light of wavelength 4800 Å?",
+   "options_en": [
+    "15",
+    "10",
+    "8",
+    "18"
+   ],
+   "marked_correct": 1,
+   "chapter": "Wave Optics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 104,
+   "question_en": "Two charges are +10 μC and −10 μC are separated by 10 cm. The magnitude of force acting on another charge 5 μC placed at the midpoint of the line joining the two charges will be [Use 1/4πε₀ = 9×10⁹ in SI unit]",
+   "options_en": [
+    "360 N",
+    "0 N",
+    "320 N",
+    "380 N"
+   ],
+   "marked_correct": 1,
+   "chapter": "Electric Charges and Fields",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 105,
+   "question_en": "A sphere '1' with radius R has charge q. Sphere '2' with radius 3R is far from sphere '1' and is initially uncharged. If the two spheres are now connected with a thin conducting wire, then the ratio σ₁/σ₂ of the surface charge densities is",
+   "options_en": [
+    "2.0",
+    "2.5",
+    "3.0",
+    "9.0"
+   ],
+   "marked_correct": 3,
+   "chapter": "Electric Potential and Capacitance",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 106,
+   "question_en": "Statement I: Specific resistance depends on nature of material and independent of temperature of the material. Statement II: A wire of resistance 6 Ω is drawn out so that its new length is four times its original length. The resistance of the new wire is 48 Ω. Statement III: Drift velocity is the average constant velocity acquired by free electrons inside a metal by the application of an electric field which results in current. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II and III are true",
+    "Statement I is true, but, Statements II, III is false",
+    "Statement III is true, but Statements I, II are false",
+    "Statements II, III are true but Statement I is false"
+   ],
+   "marked_correct": 4,
+   "chapter": "Current Electricity",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Adjudicated by hand against the image: this reading of the tick is wrong, the tick is on option 3.",
+   "adjudicated": {
+    "by": "hand, reading eapcet/crops/tg_eapcet_2022_20220720_fn/q106_1.png",
+    "verdict": "the transcription is wrong; the green tick is on option 3",
+    "correct_option": 3,
+    "physics": "resistivity does depend on temperature so statement I is false, and a wire drawn to four times its length goes to 96 ohm not 48 so statement II is false, leaving only statement III true"
+   }
+  },
+  {
+   "q_no": 107,
+   "question_en": "Find the mobility of electron in a wire, if its average collision time is 9.1 × 10⁻¹⁵ s. (charge of electron = 1.6 × 10⁻¹⁹ C and mass of electron = 9.1 × 10⁻³¹ kg)",
+   "options_en": [
+    "9.1×10⁻³ m²/V-s",
+    "1.6×10⁻³ m²/V-s",
+    "1.75×10⁻³ m²/V-s",
+    "1×10⁻³ m²/V-s"
+   ],
+   "marked_correct": 2,
+   "chapter": "Current Electricity",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 108,
+   "question_en": "A current carrying loop ABCD has two circular arcs AD and BC with radius 1 cm and 2 cm respectively as shown in the figure. The two arcs AD and BC subtend a common angle 30° at the centre O. If the current flowing in the loop is 1.2/π A, then the magnitude of net magnetic field at O is (Given μ₀ = 4π×10⁻⁷)",
+   "options_en": [
+    "0.5 μT",
+    "3 μT",
+    "1 μT",
+    "1.5 μT"
+   ],
+   "marked_correct": 3,
+   "chapter": "Moving Charges and Magnetism",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 109,
+   "question_en": "Three parallel wires a, b and c carrying currents iₐ, i_b and i_c as shown in the figure are placed next to each other. The magnitude force on a length l of the wire a, if d₂=2d₁, i_b = iₐ and i_c = 4iₐ is",
+   "options_en": [
+    "μ₀iₐ²l/6πd₁",
+    "μ₀iₐ²l/2πd₁",
+    "μ₀iₐ²l/4πd₁",
+    "μ₀iₐ²l/3πd₁"
+   ],
+   "marked_correct": 1,
+   "chapter": "Moving Charges and Magnetism",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 110,
+   "question_en": "An iron bar having a cross sectional area of 2×10⁻⁵ m² and magnetising field of 2400 A/m produce a magnetic flux of 2.4 π × 10⁻⁵ Wb. What will be the value of permeability (μ) and susceptibility (χ) of the bar (Given μ₀ = 4π×10⁻⁷)",
+   "options_en": [
+    "μ = 5×10⁻⁴, χ = 1249π",
+    "μ = 5π×10⁻⁴, χ = 1249π",
+    "μ = 5π×10⁻⁴, χ = 1249",
+    "μ = 5×10⁻⁴, χ = 1249"
+   ],
+   "marked_correct": 3,
+   "chapter": "Magnetism and Matter",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 111,
+   "question_en": "A metal disc of radius 30 cm rotates with a constant angular velocity ω =100 rad/s about its axis. Find the magnitude of potential difference between the centre and the rim of the disc of the external uniform magnetic field of induction B = 4 mT is directed perpendicular to the disc.",
+   "options_en": [
+    "15 m V",
+    "18 m V",
+    "22 m V",
+    "20 m V"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electromagnetic Induction",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 112,
+   "question_en": "A capacitor of capacitance 100 μF and a coil of resistance 20 Ω and inductance 12.5 mH are connected in series with a 220 V, 200/π Hz AC source. The maximum value of instantaneous current in the circuit is",
+   "options_en": [
+    "20 A",
+    "10 A",
+    "11 A",
+    "15 A"
+   ],
+   "marked_correct": 3,
+   "chapter": "Alternating Current",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 113,
+   "question_en": "On a particular day, the sun delivers an average power of (6/π ×10³) W/m² to the top of Earth's atmosphere. Find the amplitude of magnetic field for the electromagnetic waves above atmosphere. (Take μ₀ = 4π×10⁻⁷ SI unit)",
+   "options_en": [
+    "5 ×10⁻⁵ T",
+    "4 ×10⁻⁶ T",
+    "6 ×10⁻⁶ T",
+    "3 ×10⁻⁵ T"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electromagnetic Waves",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 114,
+   "question_en": "Statement I: By increasing the potential difference between cathode and anode continuously in a photoelectric experiment, the photo current always increases continuously. Statement II: If two photons A and B of energies 2.5 eV and 3.5 eV respectively fall on a metal surface of work function 2.0 eV, then the ratio of maximum kinetic energies emitted between A and B is 3. Statement III: The maximum energy needed by an electron to come out from a metal surface is called the work function of the metal. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II and III are true",
+    "Statements I, II true, but statement III is false",
+    "Statements II, III are true, but statement I is false",
+    "Statements I, II and III are false"
+   ],
+   "marked_correct": 4,
+   "chapter": "Dual Nature of Radiation and Matter",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 115,
+   "question_en": "Which of the following has the largest de Broglie wavelength?",
+   "options_en": [
+    "a bullet of mass 0.02 kg moving with speed 1 km/s",
+    "a ball of mass 0.06 kg moving with speed 10 m/s",
+    "a particle of mass 0.01 kg moving with speed 100 m/s",
+    "a ball of mass 0.03 kg moving with speed 1 m/s"
+   ],
+   "marked_correct": 4,
+   "chapter": "Dual Nature of Radiation and Matter",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 116,
+   "question_en": "The energy of an electron in the fourth excited state of the hydrogen atom is",
+   "options_en": [
+    "− 0.85 eV",
+    "−1.70 eV",
+    "0",
+    "− 0.425 eV"
+   ],
+   "marked_correct": 1,
+   "chapter": "Atoms",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 117,
+   "question_en": "Estimate the approximate volume of aluminium nucleus (A = 27) Use (R₀ ≈ 1.0×10⁻¹⁵ m, π ≈ 3)",
+   "options_en": [
+    "1×10⁻¹³ Å³",
+    "1×10⁻¹⁰ Å³",
+    "1×10⁻¹⁵ Å³",
+    "1×10⁻¹⁷ Å³"
+   ],
+   "marked_correct": 1,
+   "chapter": "Nuclei",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 118,
+   "question_en": "A p−n junction is fabricated from a semiconductor with band gap of 2.8 eV. What approximate wavelength it cannot detect? [use h = 6 ×10⁻³⁴ m² kg/s]",
+   "options_en": [
+    "100 nm",
+    "200 nm",
+    "400 nm",
+    "600 nm"
+   ],
+   "marked_correct": 4,
+   "chapter": "Semiconductor Electronics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 119,
+   "question_en": "Identify the logic operation performed by the following circuit.",
+   "options_en": [
+    "OR",
+    "AND",
+    "NOT",
+    "NAND"
+   ],
+   "marked_correct": 2,
+   "chapter": "Semiconductor Electronics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 120,
+   "question_en": "A carrier wave of peak voltage 10 V is used to transmit a message signal. What should be the peak voltage of the modulating signal in order to have a modulation index of 80%",
+   "options_en": [
+    "8 V",
+    "8.8 V",
+    "5 V",
+    "12.5 V"
+   ],
+   "marked_correct": 1,
+   "chapter": "Communication System",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  }
+ ]
+}

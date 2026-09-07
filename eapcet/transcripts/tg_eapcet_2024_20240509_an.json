@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2024_20240509_an",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "The related effort to derive the properties of a bigger, more complex system from the properties and interactions of its constituent simpler parts is",
+      "options_en": [
+        "Unification",
+        "Reductionism",
+        "Classical approach",
+        "Quantum approach"
+      ],
+      "marked_correct": 2,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "The error in the measurement of resistance, when (10 ± 0.5) A current passing through it produces a potential difference of (100 ± 6) V across it is",
+      "options_en": [
+        "1 %",
+        "5.5 %",
+        "6.5 %",
+        "11 %"
+      ],
+      "marked_correct": 4,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "0.8 s",
+        "1.6 s",
+        "1.0 s",
+        "0.2 s"
+      ],
+      "marked_correct": 4,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "A cannon placed on a cliff at a height of 375 m fires a cannon ball with a velocity of 100 ms⁻¹ at an angle of 30° above the horizontal. The horizontal distance between the cannon and the target is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "750√3 m",
+        "500√3 m",
+        "250√3 m",
+        "750 m"
+      ],
+      "marked_correct": 1,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "A 20 ton truck is travelling along a curved path of radius 240 m. If the center of gravity of the truck above the ground is 2 m and the distance between its wheels is 1.5 m, the maximum speed of the truck with which it can travel without toppling over is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "43 ms⁻¹",
+        "40 ms⁻¹",
+        "38 ms⁻¹",
+        "30 ms⁻¹"
+      ],
+      "marked_correct": 4,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "A block of mass 'm' with an initial kinetic energy 'E' moves up an inclined plane of inclination 'θ'. If 'μ' is the coefficient of friction between the plane and the body, the work done against friction before coming to rest is",
+      "options_en": [
+        "μE cosθ",
+        "(μE cosθ)/(sinθ − μ cosθ)",
+        "(Eμ cosθ)/(cosθ + sinθ)",
+        "(μE cosθ)/(sinθ + μ cosθ)"
+      ],
+      "marked_correct": 4,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "A man of mass 80 kg goes to the market on a scooter of mass 100 kg with certain speed. On application of brakes, the stopping distance is S₁. The man returns home on the same scooter, with the same speed with a 60 kg bag of rice. If S₂ is the new stopping distance when the brakes are applied with the same force, then",
+      "options_en": [
+        "7S₁ = 4S₂",
+        "2S₁ = S₂",
+        "3S₁ = 4S₂",
+        "4S₁ = 3S₂"
+      ],
+      "marked_correct": 4,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "A thin uniform wire of mass 'm' and linear mass density 'ρ' is bent in the form of a circular loop. The moment of inertia of the loop about its diameter is",
+      "options_en": [
+        "m²/(4π²ρ²)",
+        "m³/(4ρ²)",
+        "m³/(8π²ρ²)",
+        "m³/(8ρ²)"
+      ],
+      "marked_correct": 3,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "Three particles A, B and C of masses m, 2m and 3m are moving towards north, south and east respectively. If the velocities of the particles A, B and C are 6 ms⁻¹, 12 ms⁻¹ and 8 ms⁻¹ respectively, then the velocity of the centre of mass of the system of particles is",
+      "options_en": [
+        "7 ms⁻¹",
+        "5 ms⁻¹",
+        "26 ms⁻¹",
+        "8 ms⁻¹"
+      ],
+      "marked_correct": 2,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "A particle of mass 4 mg is executing simple harmonic motion along x-axis with an angular frequency of 40 rad s⁻¹. If the potential energy of the particle is V(x) = a + bx², where V(x) is in joule and x is in metre, then the value of b is",
+      "options_en": [
+        "800×10⁻⁶ Jm⁻²",
+        "1600×10⁻⁶ Jm⁻²",
+        "3200×10⁻⁶ Jm⁻²",
+        "6400×10⁻⁶ Jm⁻²"
+      ],
+      "marked_correct": 3,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "The ratio of the accelerations due to gravity at heights 1280 km and 3200 km above the surface of the earth is (Radius of the earth = 6400 km)",
+      "options_en": [
+        "25:16",
+        "5:2",
+        "1:1",
+        "25:4"
+      ],
+      "marked_correct": 1,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "If the length of a string is 'P' when the tension in it is 6 N and its length is 'Q' when the tension in it is 8 N, then the original length of the string is",
+      "options_en": [
+        "3P + 4Q",
+        "3P − 4Q",
+        "4P + 3Q",
+        "4P − 3Q"
+      ],
+      "marked_correct": 4,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "The excess pressure inside a soap bubble of radius 0.5 cm is balanced by the pressure due to an oil column of height 4 mm. If the density of the oil is 900 kg m⁻³, then the surface tension of the soap solution is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "9×10⁻² Nm⁻¹",
+        "2.25×10⁻² Nm⁻¹",
+        "4.5×10⁻² Nm⁻¹",
+        "7×10⁻² Nm⁻¹"
+      ],
+      "marked_correct": 3,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "Water flows through a horizontal pipe of variable cross-section at the rate of 12π litre per minute. The velocity of the water at the point where the diameter of the pipe becomes 2 cm is",
+      "options_en": [
+        "6 ms⁻¹",
+        "8 ms⁻¹",
+        "4 ms⁻¹",
+        "2 ms⁻¹"
+      ],
+      "marked_correct": 4,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "When 54 g of ice at −20 °C is mixed with 25 g of steam at 100 °C, then the final mixture at thermal equilibrium contains",
+      "options_en": [
+        "20 g water at 100 °C",
+        "73 g water at 100 °C and 6 g steam at 100 °C",
+        "8 g steam at 100 °C and 12 g water at 0 °C",
+        "20 g water at 50 °C"
+      ],
+      "marked_correct": 2,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "A solid sphere at a temperature T K is cut in to two hemispheres. The ratio of energies radiated by one hemisphere to the whole sphere per second is",
+      "options_en": [
+        "1:1",
+        "1:2",
+        "3:4",
+        "1:4"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "If dQ, dU and dW are heat energy absorbed, change in internal energy and external work done respectively by a diatomic gas at constant pressure, then dW : dU : dQ is",
+      "options_en": [
+        "5:3:2",
+        "7:5:2",
+        "4:3:1",
+        "2:5:7"
+      ],
+      "marked_correct": 4,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "If the temperature of a gas is increased from 27 °C to 159 °C, the increase in the rms speed of the gas molecules is",
+      "options_en": [
+        "142%",
+        "71%",
+        "80%",
+        "20%"
+      ],
+      "marked_correct": 4,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "A boy standing on a platform observes the frequency of a train horn as it passes by. The change in the frequency noticed as the train approaches and recedes him with a velocity of 108 kmph is (speed of sound in air = 330 ms⁻¹)",
+      "options_en": [
+        "18.33%",
+        "16.67%",
+        "21.27%",
+        "15.23%"
+      ],
+      "marked_correct": 2,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 100,
+      "question_en": "If three sources of sound of frequencies (n−1), n and (n+1) are vibrated together, the number of beats produced and heard per second respectively are",
+      "options_en": [
+        "4 and 2",
+        "4 and 4",
+        "2 and 2",
+        "2 and 4"
+      ],
+      "marked_correct": 1,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "A small angled prism is made of a material of refractive index 3/2. The ratio of the angles of minimum deviations when the prism is placed in air and in water of refractive index 4/3 is",
+      "options_en": [
+        "4:1",
+        "3:4",
+        "2:3",
+        "1:3"
+      ],
+      "marked_correct": 1,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "If you are using eye glasses of power 2D, your near point is",
+      "options_en": [
+        "25 cm",
+        "50 cm",
+        "43 cm",
+        "32 cm"
+      ],
+      "marked_correct": 2,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 103,
+      "question_en": "The diameter of the objective of a telescope is 3.6 m. The limit of resolution of the telescope for a light of wavelength 540 nm is",
+      "options_en": [
+        "1.22×10⁻⁷ rad",
+        "1.83×10⁻⁷ rad",
+        "0.61×10⁻⁷ rad",
+        "3.76×10⁻⁷ rad"
+      ],
+      "marked_correct": 2,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "Two point charges of magnitudes −8 μC and +32 μC are separated by a distance of 15 cm in air. The position of the point from −8 μC charge at which the resultant electric field becomes zero is",
+      "options_en": [
+        "15 cm",
+        "30 cm",
+        "7.5 cm",
+        "5 cm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "If half of the space between the plates of a parallel plate capacitor is filled with a medium of dielectric constant 4, the capacitance is C₁. If one third of the space between the plates of the capacitor is filled with the medium of dielectric constant 4, the capacitance is C₂. If in both cases, the dielectric is placed parallel to the plates of the capacitor, then C₁:C₂ =",
+      "options_en": [
+        "2:3",
+        "4:3",
+        "6:5",
+        "7:5"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "The potential difference between the ends of a straight conductor of length 20 cm is 16 V. If the drift speed of the electrons is 2.4×10⁻⁴ ms⁻¹, the electron mobility in m² V⁻¹ s⁻¹ is",
+      "options_en": [
+        "3.6×10⁻⁶",
+        "2.4×10⁻⁶",
+        "2×10⁻⁶",
+        "3×10⁻⁶"
+      ],
+      "marked_correct": 4,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "The potential difference V across the filament of the bulb shown in the given Wheatstone bridge varies as V = i(2i+1), where 'i' is the current in ampere through the filament of the bulb. The emf of the battery (Vₐ) so that the bridge becomes balanced is",
+      "options_en": [
+        "10 V",
+        "15 V",
+        "20 V",
+        "25 V"
+      ],
+      "marked_correct": 4,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 108,
+      "question_en": "Two points A and B on the axis of a circular current loop are at distances of 4 cm and 3√3 cm from the centre of the loop. If the ratio of the induced magnetic fields at points A and B is 216:125, the radius of the loop is",
+      "options_en": [
+        "3 cm",
+        "4 cm",
+        "5 cm",
+        "6 cm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 109,
+      "question_en": "Two charged particles A and B of masses m and 2m, charges 2q and 3q respectively moving with same velocity enter a uniform magnetic field such that both the particles make same angle (<90°) with the direction of the magnetic field. Then the ratio of the pitches of the helical paths of the particles A and B is",
+      "options_en": [
+        "4:3",
+        "3:2",
+        "3:4",
+        "2:3"
+      ],
+      "marked_correct": 3,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "If a bar magnet of moment 10⁻⁴ Am² is kept in a uniform magnetic field of 12×10⁻³ T such that it makes an angle of 30° with the direction of magnetic field, then the torque acting on the magnet is",
+      "options_en": [
+        "6×10⁻⁷ Nm",
+        "6×10⁻⁵ Nm",
+        "12×10⁻⁷ Nm",
+        "12×10⁻⁵ Nm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "A train with an axle of length 1.66 m is moving towards north with a speed of 90 kmh⁻¹. If the vertical component of the earth's magnetic field is 0.2×10⁻⁴ T, the emf induced across the ends of the axle of the train is",
+      "options_en": [
+        "16.6 mV",
+        "1.66 mV",
+        "0.83 mV",
+        "8.3 mV"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 112,
+      "question_en": "The natural frequency of an LC circuit is 120 kHz. When the capacitor in the circuit is totally filled with a dielectric material, the natural frequency of the circuit decreases by 20 kHz. Dielectric constant of the material is",
+      "options_en": [
+        "3.33",
+        "1.44",
+        "2.12",
+        "1.91"
+      ],
+      "marked_correct": 2,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "A plane electromagnetic wave of electric and magnetic fields E₀ and B₀ respectively incidents on a surface. If the total energy transferred to the surface in a time of 't' is 'U', then the magnitude of the total momentum delivered to the surface for complete absorption is",
+      "options_en": [
+        "UE₀/B₀",
+        "UB₀/E₀",
+        "U/(E₀B₀)",
+        "UB₀/E₀²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "Option 4's formula was split across a page break: q113_0.png cuts off right after the '4.' marker and red cross with no visible text, but q113_1.png (11,059 bytes, initially missed) contains the continuation showing option 4 as UB₀/E₀². The green tick in q113_0.png is on option 2 (UB₀/E₀), confirmed by position."
+    },
+    {
+      "q_no": 114,
+      "question_en": "If the de Broglie wavelength of a neutron at a temperature of 77 °C is λ, then the de Broglie wavelength of the neutron at a temperature of 1127 °C is",
+      "options_en": [
+        "λ/2",
+        "λ/3",
+        "λ/4",
+        "λ/9"
+      ],
+      "marked_correct": 1,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "The ratio of the wavelengths of radiation emitted when an electron in the hydrogen atom jumps from 4th orbit to 2nd orbit and from 3rd orbit to 2nd orbit is",
+      "options_en": [
+        "27:25",
+        "20:25",
+        "20:27",
+        "25:27"
+      ],
+      "marked_correct": 3,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "The half lives of two radioactive materials A and B are respectively T and 2T. If the ratio of the initial masses of the materials A and B is 8:1, then the time after which the ratio of the masses of the materials A and B becomes 4:1 is",
+      "options_en": [
+        "2T",
+        "T",
+        "4T",
+        "8T"
+      ],
+      "marked_correct": 1,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "The energy released by the fission of one uranium nucleus is 200 MeV. The number of fissions per second required to produce 128 W power is",
+      "options_en": [
+        "6×10¹²",
+        "8×10¹²",
+        "2×10¹²",
+        "4×10¹²"
+      ],
+      "marked_correct": 4,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "A zener diode of zener voltage 30 V is connected in a circuit as shown in the figure. The maximum current through the zener diode is",
+      "options_en": [
+        "5 mA",
+        "14 mA",
+        "9 mA",
+        "7 mA"
+      ],
+      "marked_correct": 1,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 119,
+      "question_en": "Two logic gates are connected as shown in the figure. If the inputs are A = 1 and B = 0, then the values of y₁ and y₂ respectively are",
+      "options_en": [
+        "1, 1",
+        "1, 0",
+        "0, 1",
+        "0, 0"
+      ],
+      "marked_correct": 2,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 120,
+      "question_en": "A message signal of peak voltage 12 V is used to amplitude modulate a carrier signal of frequency 1.2 MHz. The amplitude of the side bands is",
+      "options_en": [
+        "12 V",
+        "3 V",
+        "6 V",
+        "8 V"
+      ],
+      "marked_correct": 3,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}

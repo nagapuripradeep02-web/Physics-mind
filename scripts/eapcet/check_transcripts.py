@@ -8,7 +8,12 @@ rather than a self-assessment.
 
     python scripts/eapcet/check_transcripts.py
 """
-import os, io, json, glob, collections
+import os, io, json, glob, re, collections
+
+PLACEHOLDER = re.compile(
+    r"not\s+visible|not\s+legible|unreadable|illegible|cropped|not\s+shown|"
+    r"could\s+not\s+read|placeholder|not\s+transcribed|missing\s+text|TODO|N/?A",
+    re.I)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -36,7 +41,9 @@ def load(p):
 
 def main():
     keys = load(KEYS)
-    src = {i["paper_id"]: i["source_pdf"] for i in load(INDEX)}
+    idx = load(INDEX)
+    src = {i["paper_id"]: i["source_pdf"] for i in idx}
+    nfiles = {(i["paper_id"], m["q_no"]): len(m["files"]) for i in idx for m in i["questions"]}
 
     files = sorted(glob.glob(os.path.join(TDIR, "*.json")))
     if not files:
@@ -46,7 +53,7 @@ def main():
     chap = collections.Counter()
     conf = collections.Counter()
     tot = agree = scored = 0
-    unknown_ch, flagged, mismatches, broken = [], [], [], []
+    unknown_ch, flagged, mismatches, broken, doubted = [], [], [], [], []
 
     print("%-32s %4s %5s %6s  %s" % ("paper", "q", "key", "agree", "confidence"))
     for f in files:
@@ -70,14 +77,28 @@ def main():
                 chap[c] += 1
             else:
                 unknown_ch.append((pid, q.get("q_no"), c))
-            if q.get("note"):
-                flagged.append((pid, q.get("q_no"), q["note"]))
+            note = q.get("note") or ""
+            if note:
+                flagged.append((pid, q.get("q_no"), note))
+            low = note.lower()
+            claims_absent = any(w in low for w in ("no _1", "no continuation", "not exist",
+                                                   "missing image", "no second image",
+                                                   "unreadable", "unconfirmed", "could not read",
+                                                   "cut off", "cropped off"))
+            if claims_absent:
+                have = nfiles.get((pid, q.get("q_no")), 0)
+                doubted.append((pid, q.get("q_no"), have, note[:110]))
             opts = q.get("options_en")
             why = None
             if not isinstance(opts, list) or len(opts) != 4:
                 why = "options_en is not 4 items"
             elif any(not str(o).strip() for o in opts):
                 why = "an option is empty"
+            elif [o for o in opts if PLACEHOLDER.search(str(o))]:
+                # Placeholder prose passes every emptiness check and then reaches a student as
+                # a real choice. Non-empty is not the same as read.
+                why = "an option is placeholder prose, not transcribed text: %r" % (
+                    [o for o in opts if PLACEHOLDER.search(str(o))][0][:60])
             elif not str(q.get("question_en", "")).strip():
                 why = "question_en is empty"
             elif q.get("marked_correct") not in (1, 2, 3, 4):
@@ -121,6 +142,14 @@ def main():
         print("DISAGREEMENTS (agent read vs official key) - each is a real defect somewhere:")
         for pid, q, saw, off, cf in mismatches:
             print("  %-32s Q%-4s agent=%s key=%s  confidence=%s" % (pid, q, saw, off, cf))
+
+    if doubted:
+        print("")
+        print("NOTES CLAIMING SOMETHING WAS UNREADABLE OR ABSENT: %d" % len(doubted))
+        print("  'crops' is how many images that question actually has. A note claiming a")
+        print("  missing continuation on a question with 2 crops means the agent did not look.")
+        for pid, q, have, n in doubted:
+            print("  %-32s Q%-4s crops=%d  %s" % (pid, q, have, n))
 
     if unknown_ch:
         print("")
