@@ -149,7 +149,21 @@ so the regex captured 10 and every question from 100 up was lost. The fix glues 
 bare-digit span when doing so restores the expected sequence, which is self-validating and cannot
 fire on a correctly-numbered marker. Rendering the page shows the split plainly.
 
-### Independent checks that the keys are right, not merely present
+### Checks that looked convincing and were not
+
+**Read this before trusting any check in this document.** Everything in the list below
+passed while 242 of the 4,960 keys were wrong - about a quarter of every 2023 paper. The
+extractor sorted a question's coloured option marks by `y` alone, so options printed at the
+top of the next page sorted ahead of options at the bottom of the previous one. Reading
+order is `(page, y)`. Only 2023 broke, because 2023 is the one profile that falls back to
+the green mark's ordinal position.
+
+Each check below was blind to it **by construction**, which is the part worth remembering:
+duplicate shifts share the bug, a permutation leaves the distribution as uniform as it was,
+and the two pages read by eye happened to be 2024 and 2025. A measure computed from the
+same reading cannot audit that reading. Fixed in `52b1ddea`.
+
+The checks, kept as written so the lesson stays legible:
 
 - **Five shifts exist as two separate uploads each.** All five pairs extract to **identical** keys,
   including the 2022 pairs where one file is the plain edition and the other the `(Eng)` edition.
@@ -161,8 +175,10 @@ fire on a correctly-numbered marker. Rendering the page shows the split plainly.
 - **`Chosen Option` is visibly not the key.** On that 2025 page the candidate chose 4 while the
   green tick sits on 1. The extractor ignores that field by design.
 
-**Still needs vision:** the question and option bodies are images, and every paper is bilingual,
-English followed by Telugu. Numbering, ids and the key are free; the content is not.
+**What actually caught it:** a second process reading the same fact a different way. The vision
+pass reads the green tick off the rendered image; the extractor reads the fill colour of the text
+span. They disagreed on 7 of one 2023 paper's 40 physics questions and the physics said the vision
+pass was right every time. Budget the second reader as part of the build.
 
 ### Artifacts on this desk
 
@@ -214,6 +230,55 @@ and both must be sent in the same request, or the options are lost.
 **Conclusion: content extraction is not the expensive step.** At roughly Rs 150 for the entire
 engineering corpus, cost is not a reason to stage the work. The real cost is the review pass that
 confirms the transcriptions, which is human time, not tokens.
+
+## 1e. THE PHYSICS BANK IS BUILT (2026-09-07)
+
+All 26 distinct engineering shifts, 2021 to 2025, physics section transcribed. Run by
+`model: sonnet` sub-agents on the subscription, one paper per agent, all working from the single
+brief at `eapcet/transcripts/_BRIEF.md`. Concurrency ceiling is 20 sub-agents.
+
+| Measure | Result |
+|---|---|
+| Papers | 26 |
+| Questions | 1,040 |
+| Chapters represented | 30 of 30 |
+| Vision reading agrees with the official key | 1,039 of 1,040, 99.9% |
+| Answers disputed by the physics | 4 |
+| Questions where the figure carries information the text does not | 84, 8% |
+
+**The answer of record is the key from the PDF, never the vision pass.** The vision pass's reading
+of the green tick is kept beside it in every row. That is the only reason a disagreement is visible
+at all; drop it and the bank looks certain when it is not.
+
+**The official key is not infallible.** Four questions carry a recomputation that contradicts the
+option the paper marked, and by hand all four hold up. Two are typos in the printed question or
+option: the 6 Aug 2021 afternoon Q84 needs an initial velocity of 5 m/s for its marked 18 m, not the
+printed 10; the 18 Jul 2022 afternoon Q97 prints 1.116 kg where the arithmetic gives 1.167. Two are
+simply wrong keys: the 19 Jul 2022 afternoon Q103 marks 0.9 degrees where dividing by the refractive
+index gives 0.09; the 10 May 2024 forenoon Q106 marks 0.7e-6 where conductivity gives 0.7e5, which
+was confirmed by reading the page. A wrong official key still scored marks in the real exam, so the
+row keeps it, flagged, in `eapcet/bank/_review_queue.json`, and it is never shown unreviewed.
+
+### The three gates, each added after something got past the previous ones
+
+- **structure** - 81 to 120 present once each, four options, none empty.
+- **placeholder** - an option reading `(option 3 not visible)` is not a transcription. It passes
+  every emptiness check and arrives in front of a student as a real choice.
+- **absent-claim** - a note saying an image was missing is checked against the real crop count.
+  Three separate agents reported a continuation image as non-existent while it sat on disk,
+  readable. All three were re-dispatched and corrected. Never take an agent's word that content
+  was unavailable; look at the disk.
+
+### Artifacts
+
+`scripts/eapcet/crop_physics_fleet.py` - crops questions 81 to 120 for every shift.
+`scripts/eapcet/check_transcripts.py` - the gates, the key agreement score, the chapter table.
+`scripts/eapcet/build_bank.py` - merges transcripts and keys into the bank.
+`eapcet/transcripts/*.json` - 26 papers. `eapcet/transcripts/_BRIEF.md` - the agent brief.
+`eapcet/bank/physics_v1.json` - the bank. `eapcet/bank/_review_queue.json` - what needs a human.
+`eapcet/crops/` is gitignored and re-derivable in one command.
+
+**Next:** the same pass for Chemistry, questions 121 to 160, and Maths, questions 1 to 80.
 
 ## 2. The source, and the one advantage over the IPE bank
 
