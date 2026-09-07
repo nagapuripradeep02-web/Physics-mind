@@ -1,9 +1,17 @@
-"""Crop the Physics section (questions 81-120) of every distinct engineering shift.
+"""Crop one subject's questions out of every distinct engineering shift.
 
-Subject ranges were confirmed by reading real questions: Mathematics 1-80, Physics 81-120,
-Chemistry 121-160.
+Subject ranges were confirmed by reading real questions:
+Mathematics 1-80, Physics 81-120, Chemistry 121-160.
 
-Writes eapcet/crops/<paper_id>/qNNN_M.png plus an index the transcription agents read.
+    python scripts/eapcet/crop_fleet.py physics
+    python scripts/eapcet/crop_fleet.py chemistry
+    python scripts/eapcet/crop_fleet.py maths [paper_id ...]
+
+Writes eapcet/crops/<paper_id>/qNNN_M.png plus an index the transcription agents read. Question
+numbers do not collide between subjects, so all three share one directory per paper. The index
+carries one entry per (paper, subject); consumers that key on paper_id alone still work because
+every entry for a paper names the same source PDF.
+
 The PDFs live in the gitignored pdfs/ tree; the crops go to eapcet/crops/, also gitignored,
 because they are re-derivable from the PDFs in one command.
 """
@@ -15,7 +23,8 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
 from crop_questions import markers, crop, DEST
 
-LO, HI, DPI = 81, 120, 150
+SUBJECTS = {"maths": (1, 80), "physics": (81, 120), "chemistry": (121, 160)}
+DPI = 150
 OUTDIR = os.path.join(ROOT, "eapcet", "crops")
 
 
@@ -42,8 +51,14 @@ def paper_id(r):
 
 
 def main():
+    args = sys.argv[1:]
+    if not args or args[0] not in SUBJECTS:
+        raise SystemExit("usage: crop_fleet.py <%s> [paper_id ...]" % "|".join(SUBJECTS))
+    subject = args[0]
+    LO, HI = SUBJECTS[subject]
     shifts = distinct_shifts()
-    only = sys.argv[1:]
+    only = args[1:]
+    print("subject: %s  questions %d-%d" % (subject, LO, HI))
     print("distinct engineering shifts:", len(shifts))
     index = []
     for r in shifts:
@@ -67,19 +82,21 @@ def main():
                 files.append(fn)
             made.append({"q_no": q, "files": files})
         doc.close()
-        index.append({"paper_id": pid, "source_pdf": r["file"], "year": r["year"],
-                      "date": r["date"], "session": r["session"], "dir": "eapcet/crops/" + pid,
-                      "questions": made})
+        index.append({"paper_id": pid, "subject": subject, "source_pdf": r["file"],
+                      "year": r["year"], "date": r["date"], "session": r["session"],
+                      "dir": "eapcet/crops/" + pid, "questions": made})
         print("  %-28s %-11s %-3s  %d questions, %d images"
               % (pid, r["date"] or "-", r["session"] or "-", len(made),
                  sum(len(m["files"]) for m in made)))
 
     os.makedirs(OUTDIR, exist_ok=True)
     p = os.path.join(OUTDIR, "_index.json")
-    if only and os.path.exists(p):
+    if os.path.exists(p):
         old = json.load(io.open(p, encoding="utf-8"))
-        have = {i["paper_id"] for i in index}
-        index = [o for o in old if o["paper_id"] not in have] + index
+        have = {(i["paper_id"], i.get("subject", "physics")) for i in index}
+        keep = [o for o in old if (o["paper_id"], o.get("subject", "physics")) not in have]
+        index = keep + index
+    index.sort(key=lambda i: (i.get("subject", "physics"), i["paper_id"]))
     io.open(p, "w", encoding="utf-8").write(json.dumps(index, indent=1))
     print("")
     print("papers: %d   questions: %d   images: %d"
