@@ -19,6 +19,13 @@ Three rules make one extractor cover all of them:
      followed by a bare '0' - so glue on a following bare-digit span when that restores the
      expected sequence.
 
+Reading order is (page, y), never y alone. A question's four options often straddle a page
+break, and the ones printed at the top of the next page carry SMALLER y values than the ones
+at the bottom of the previous page. Sorting by y alone silently reorders them, which flips
+the ordinal answer on exactly the profile that depends on ordinal position - 2023. Caught by
+the independent vision pass disagreeing on 7 of 40 questions, all of which the physics
+confirmed the vision pass had right.
+
 'Chosen Option :' is the CANDIDATE's own answer, not the key. It is ignored.
 
 Usage:
@@ -106,7 +113,7 @@ def extract(path):
                 k = classify(col)
                 if k and LBL_ANY.match(n):
                     pm = LBL_PLAIN.match(n)
-                    qs[cur]["marks"].append({"y": y, "colour": k,
+                    qs[cur]["marks"].append({"page": page.number, "y": y, "colour": k,
                                              "printed": int(pm.group(1)) if pm else None})
             i += 1
 
@@ -115,13 +122,13 @@ def extract(path):
     out = []
     for num in order:
         q = qs[num]
-        marks = sorted(q["marks"], key=lambda m: m["y"])
-        ded, lasty = [], None
+        marks = sorted(q["marks"], key=lambda m: (m["page"], m["y"]))
+        ded, last = [], None
         for m in marks:
-            if lasty is not None and abs(m["y"] - lasty) < 1.0:
+            if last is not None and m["page"] == last[0] and abs(m["y"] - last[1]) < 1.0:
                 continue
             ded.append(m)
-            lasty = m["y"]
+            last = (m["page"], m["y"])
         greens = [k for k, m in enumerate(ded) if m["colour"] == "G"]
         answer = None
         if len(ded) == 4 and len(greens) == 1:

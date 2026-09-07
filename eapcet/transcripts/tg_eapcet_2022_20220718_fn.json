@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2022_20220718_fn",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "Choose the correct statement from following.",
+      "options_en": [
+        "Not all basic laws of physics are universal",
+        "Conservation laws have a deep connection with symmetries of nature",
+        "There are four to six fundamental forces in nature that govern the diverse phenomena of the world",
+        "Physics can generate new technology but new physics cannot come out from technology"
+      ],
+      "marked_correct": 2,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "If E and E₀ denote energies at time t and t₀ respectively, and L and L₀ distance from some point at t and t₀ respectively, then which of the following equations can be declared to be incorrect on dimensional grounds\nA) E = 2E₀L/L₀\nB) E = E₀e^(−2L/L₀)\nC) E = 2Le^(−L/E₀)\nD) E = 2(E₀/L₀)×e^(−L/L₀)",
+      "options_en": [
+        "A, B only",
+        "A, C only",
+        "A, C, D only",
+        "C, D only"
+      ],
+      "marked_correct": 4,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A body starts from the rest and acquires a velocity of 10 m/s in 2s. What is the acceleration of the body and the distance travelled",
+      "options_en": [
+        "5 m/s² and 10 m",
+        "5 m/s² and 5 m",
+        "5 m/s² and 6 m",
+        "6 m/s² and 5 m"
+      ],
+      "marked_correct": 1,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "A bullet fired into a target losses one-third of its velocity after travelling a distance x meter into the target. If the bullet comes to rest by travelling a further distance x′, then the ratio x′/x is",
+      "options_en": [
+        "2/3",
+        "1/3",
+        "4/5",
+        "4/9"
+      ],
+      "marked_correct": 3,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "An ant starts from the origin and crawls 10 cm along the x − axis and then 20 cm along the y − axis. The dot product of the ant's displacement vector with the position vector of a point that makes 45° with the x − axis and has a magnitude of √2 cm is",
+      "options_en": [
+        "30 cm",
+        "30√2 cm",
+        "30/√2 cm",
+        "15 cm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "A projectile is launched with an initial speed of 40 m/s at an angle 30° above the ground. The projectile lands on a hillside 2.0 s later. The net displacement from where the projectile was launched to where it hits the target is\n(Take g = 10 m/s²)",
+      "options_en": [
+        "20√3 m",
+        "30√2 m",
+        "40 m",
+        "20√13 m"
+      ],
+      "marked_correct": 4,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "Two blocks of masses 1 kg and 2 kg connected by a light rod and the system is slipping down a rough incline angle 45° with the horizontal. The frictional coefficient at both the contacts is 0.4. If the acceleration of the system is α√2, the value of α is\n(Use g = 10 m/s²)",
+      "options_en": [
+        "4",
+        "3",
+        "2",
+        "6"
+      ],
+      "marked_correct": 2,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "The potential energy of an object is U(x) = (5x² − 4x³) J, where x is the position in meter. The position at which the force becomes zero is",
+      "options_en": [
+        "1/2 m",
+        "5/6 m",
+        "1/3 m",
+        "2/3 m"
+      ],
+      "marked_correct": 2,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "A time varying force acts on a ball of mass 100 g for 2 ms. The force versus time curve is shown below. If the initial speed of the ball is 10 m/s, then the speed of ball after 2 ms is\n[Graph: F(t) in kN on the vertical axis, t in ms on the horizontal axis. The force rises linearly from 0 at t = 0 to a peak of 20 kN at t = 1 ms, then falls linearly back to 0 at t = 2 ms, forming a triangle.]",
+      "options_en": [
+        "210 m/s",
+        "410 m/s",
+        "200 m/s",
+        "400 m/s"
+      ],
+      "marked_correct": 2,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 90,
+      "question_en": "Four masses are arranged along a circle of radius 1 m as shown in the figure. The center of mass of this system of masses is at\n[Figure: a circle of radius 1 m centered at the origin (0, 0). Mass 2M sits on the circle on the positive y-axis, mass M sits on the circle on the positive x-axis, mass 3M sits on the circle on the negative x-axis, and mass 4M sits on the circle on the negative y-axis.]",
+      "options_en": [
+        "−(1/5)î − (1/5)ĵ",
+        "(1/5)î + ĵ",
+        "î − (1/5)ĵ",
+        "(1/5)î + (1/5)ĵ"
+      ],
+      "marked_correct": 1,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 91,
+      "question_en": "A body starting at t = 0 from origin and oscillates simple harmonically with a period of 4s. After what time will its kinetic energy be 75% of its total energy",
+      "options_en": [
+        "1/2 s",
+        "1/3 s",
+        "1/4 s",
+        "1 s"
+      ],
+      "marked_correct": 2,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "Three particles, each of mass M, situated at the vertices of an equilateral triangle of side length 'l'. The only forces acting on the particles are their mutual gravitational forces. It is desired that each particle moves in a circle while maintaining the original separation 'l'. The initial speed that should be given to each particle is",
+      "options_en": [
+        "√(2GM/l)",
+        "√(GM/2l)",
+        "√(GM/l)",
+        "√(3GM/l)"
+      ],
+      "marked_correct": 3,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "Match the following\nColumn-I: A) Shear modulus  B) Shearing stress  C) Elastic fatigue  D) Modulus of elasticity\nColumn-II: I) Resistance to change in volume  II) Proportionality constant  III) Tangential stress  IV) Temporary loss of elastic property  V) Resistance to change against deformation force\nThe correct match is",
+      "options_en": [
+        "A-II, B-V, C-I, D-III",
+        "A-V, B-III, C-IV, D-II",
+        "A-III, B-IV, C-II, D-V",
+        "A-V, B-II, C-IV, D-I"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "A large storage tank, open to the atmosphere at top and filled with water, develops a small hole in its side at a point 20.0 m below the water level. If the rate of flow from the hole is 3.08 × 10⁻⁵ m³/s, then the diameter of the hole is\n[Take g = 10 m/s²]",
+      "options_en": [
+        "1.0 mm",
+        "1.2 mm",
+        "1.4 mm",
+        "1.6 mm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "An air bubble of radius 1 mm is at a depth of 8 cm below the free surface of a liquid column. If the surface tension and density of the liquid is 0.1 N/m and 2000 kg/m³, respectively, by what amount is the pressure inside the bubble greater than the atmospheric pressure?\n(Take g = 10 m/s²)",
+      "options_en": [
+        "1500 N/m²",
+        "1800 N/m²",
+        "1600 N/m²",
+        "1700 N/m²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "Find the ratio of the length of a steel rod and a copper rod if the steel rod is 4 cm longer than the copper rod at any temperature.\n[The coefficient of linear expansion for steel and copper are 1.1 × 10⁻⁵/°C and 1.7 × 10⁻⁵/°C respectively]",
+      "options_en": [
+        "17/11",
+        "11/17",
+        "11/4",
+        "17/4"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "An object cools from 100°C to 40°C in 10 minutes, when the surrounding temperature is 10°C. Then the time taken by the object to cool from 70°C to 20°C is\n[Take ln 2 = 0.7, ln 3 = 1.1, ln 6 = 1.8]",
+      "options_en": [
+        "30 min",
+        "8.5 min",
+        "22.4 min",
+        "16.3 min"
+      ],
+      "marked_correct": 4,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "1.00 kg of liquid water at 100°C undergoes a phase change into steam at 100°C at 1.0 atm (take it to be 1.00 × 10⁵ Pa). The initial volume of the liquid water was 1.00 × 10⁻³ m³ which is changed to 2.001 m³ of steam. Find the change in the internal energy of the system.\n[Use heat of vaporization ≈ 2000 kJ/kg]",
+      "options_en": [
+        "1800 kJ",
+        "200 kJ",
+        "2000 kJ",
+        "180 kJ"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "A monoatomic gas does 100 J of work when it is expanded isobarically. How much of heat is given to the gas in the process",
+      "options_en": [
+        "150 J",
+        "200 J",
+        "250 J",
+        "300 J"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 100,
+      "question_en": "If the root mean square (rms) speed of nitrogen molecules at room temperature is 100 m/s, then the rms speed of Helium molecule at the same temperature is",
+      "options_en": [
+        "100√7 m/s",
+        "350 m/s",
+        "50√14 m/s",
+        "100 m/s"
+      ],
+      "marked_correct": 1,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "Two waves of amplitudes A₁ and A₂ respectively are superimposed. The ratio between the maximum and minimum intensities of the resultant waves is 9 : 4. The value of A₂/A₁ is [Assume A₁ > A₂]",
+      "options_en": [
+        "0.66",
+        "0.20",
+        "0.75",
+        "0.44"
+      ],
+      "marked_correct": 2,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "A lens is made of glass having an index of refraction 1.5. One side of the lens is flat and the other side is convex with a radius R. If an object is placed 60 cm, towards the convex side of the lens, the image is formed at 120 cm on the other side of the lens. The value of R is\n[Diagram: a plano-convex lens (flat side facing the object) with an object point 60 cm to its left and an image point 120 cm to its right, on the same horizontal axis.]",
+      "options_en": [
+        "20 cm",
+        "40/3 cm",
+        "33 cm",
+        "18 cm"
+      ],
+      "marked_correct": 1,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 103,
+      "question_en": "A Young's double slit experiment apparatus has slits separated by 0.2 mm and a screen 60 cm away from the slits. The whole apparatus is immersed in a liquid medium of refractive index 11/9 and the slits are illuminated with green light (λ = 550 nm in vacuum). Find the fringe width of the pattern formed on the screen.",
+      "options_en": [
+        "0.95 mm",
+        "1.25 mm",
+        "1.35 mm",
+        "1.45 mm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "An electron is released from a distance of 4 m from a stationary point charge 20 nC. What will be the speed of the electron when it is 2 m away from the point charge?\n[Charge of electron = 1.6 × 10⁻¹⁹ C, mass of electron = 9 × 10⁻³¹ kg, 1/(4πε₀) = 9 × 10⁹ S.I unit]",
+      "options_en": [
+        "2 × 10⁶ m/s",
+        "4 × 10⁶ m/s",
+        "1.6 × 10⁶ m/s",
+        "2.4 × 10⁶ m/s"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "The following figure shows a 9 V battery and 3 uncharged capacitors of capacitances C₁ = C₂ = C₃ = 1 μF. The switch is thrown to the right side until capacitor C₁ is fully charged, then the switch is thrown to the left. The final charge on capacitor C₂ is\n[Diagram: a circuit with a two-position switch S. C₂ and C₃ are connected in series on the left branch. C₁ is in the middle branch below the switch. The 9 V battery is on the right branch. Throwing the switch right connects C₁ to the battery; throwing it left connects C₁ to the C₂–C₃ branch.]",
+      "options_en": [
+        "1 μC",
+        "2 μC",
+        "3 μC",
+        "4 μC"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 106,
+      "question_en": "A metal wire of length L and radius r has a resistance R. If a wire of the same metal of length 2L and radius 3r is taken, then what will be its resistance?",
+      "options_en": [
+        "2/9 R",
+        "2/3 R",
+        "2/(9π) R",
+        "2/(3π) R"
+      ],
+      "marked_correct": 1,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "Balancing point of a potentiometer shifts from a length of 60 cm to 40 cm by shunting the cell with a 4 ohm resistance. What is the internal resistance of the cell?",
+      "options_en": [
+        "1 Ω",
+        "2 Ω",
+        "4 Ω",
+        "6 Ω"
+      ],
+      "marked_correct": 2,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 108,
+      "question_en": "A current I = 5 A flows along a thin wire shaped as shown in figure. The radius of curved part of the wire is equal to R = 100 mm, the angle 2φ = 90°. The magnitude of magnetic field at the point O is approximately\n[Use μ₀/4π = 10⁻⁷ TmA⁻¹]\n[Diagram: a wire shaped like a semicircular arc of radius R closed by two straight segments that meet at the arc's center O, subtending an angle 2φ at O; the current I flows around the loop as shown by arrows.]",
+      "options_en": [
+        "33.6 μT",
+        "38.4 μT",
+        "48.7 μT",
+        "25.2 μT"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 109,
+      "question_en": "A toroid has a core (non-ferro magnetic) of inner radius 24 cm and outer radius 26 cm around which 2000 turns of a wire is wound. If the current in the wire is 12 A, the magnetic field inside the core of the toroid is",
+      "options_en": [
+        "1.92 × 10⁻² T",
+        "1.88 × 10⁻² T",
+        "2.12 × 10⁻² T",
+        "1.98 × 10⁻² T"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "A planet has magnetic dipole moment of 27 × 10²² Am². If the radius of the planet is 300 km, what would be the magnetic field at its equator?\n[μ₀/4π = 10⁻⁷]",
+      "options_en": [
+        "1 T",
+        "27 T",
+        "11 T",
+        "30 T"
+      ],
+      "marked_correct": 1,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "A long solenoid has 20 turns per cm. A small loop of area (4/π) cm² is placed inside the solenoid normal to its axis. If the current carried by the solenoid changes steadily from 1.0 A to 3.0 A in 0.2 s, what is the magnitude of the induced emf in the loop while the current is changing?",
+      "options_en": [
+        "2.4 μV",
+        "3.2 μV",
+        "7.2 μV",
+        "4.8 μV"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 112,
+      "question_en": "An AC current is given by the expression, I(t) = 50 sin(200πt) in amperes. The frequency and r.m.s value of the current respectively are",
+      "options_en": [
+        "100 Hz, 50√2 A",
+        "100 Hz, 25√2 A",
+        "200 Hz, 50√2 A",
+        "200 Hz, 25√2 A"
+      ],
+      "marked_correct": 2,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "An electromagnetic wave is propagating in vacuum along −ĵ direction. The magnetic field of the wave is given by B⃗ = (2 × 10⁻⁸)cos[π × 10¹⁵(t + y/c)]k̂ T. The electric field E⃗ of this wave is\n(c ≡ speed of light)",
+      "options_en": [
+        "E⃗ = (4)cos[π × 10¹⁵(t + y/c)]ĵ V/m",
+        "E⃗ = (6)cos[π × 10¹⁵(t + y/c)]î V/m",
+        "E⃗ = (6)cos[π × 10¹⁵(t − y/c)]ĵ V/m",
+        "E⃗ = (4)cos[π × 10¹⁵(t − y/c)]î V/m"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "For photoelectric effect which of the following statements are true.\nI) The kinetic energies of the photoelectrons do not depend on the frequency of light\nII) Photoelectric effect will always occur for highly intense light\nIII) The maximum kinetic energy of photoelectron does not depend upon the intensity of the light\nIV) The escaping electron's kinetic energy is larger for larger frequency",
+      "options_en": [
+        "I and II only",
+        "II and III only",
+        "III and IV only",
+        "IV and I only"
+      ],
+      "marked_correct": 3,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "Which of the following statements is NOT true?",
+      "options_en": [
+        "Electromagnetic radiation is made up of particles called photons",
+        "Each photon moves with the speed of light",
+        "Photon energy is dependent on the intensity of radiation",
+        "Photons are not deflected by electric and magnetic field"
+      ],
+      "marked_correct": 3,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "The light emitted in the transition n = 3 to n = 2 (where n is the principal quantum number of the state) in hydrogen is called Hα-light. Find the maximum work function that a metal can have so that Hα-light can emit photoelectrons from it.",
+      "options_en": [
+        "1.5 eV",
+        "2.89 eV",
+        "1.89 eV",
+        "3.5 eV"
+      ],
+      "marked_correct": 3,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "As the mass number A increases, which of the following quantities related to a nucleus does not change?",
+      "options_en": [
+        "mass",
+        "volume",
+        "density",
+        "binding energy"
+      ],
+      "marked_correct": 3,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "In a p-type semiconductor, which of the following statement is true?",
+      "options_en": [
+        "Holes are majority carriers and trivalent atoms are the dopants",
+        "Electrons are minority carriers and pentavalent atoms are the dopants",
+        "Electrons are majority carriers and trivalent atoms are the dopants",
+        "Holes are minority carriers and pentavalent atoms are the dopants"
+      ],
+      "marked_correct": 1,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "In a NAND Gate, A and B are inputs and Y is the output, then the correct option is",
+      "options_en": [
+        "A = 0, B = 0; Y = 0",
+        "A = 0, B = 1; Y = 0",
+        "A = 1, B = 0; Y = 0",
+        "A = 1, B = 1; Y = 0"
+      ],
+      "marked_correct": 4,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 120,
+      "question_en": "A TV transmission antenna is 40 m tall. How much service area it can cover if the receiving antenna is at the ground level?\n(radius of the Earth = 6400 km)",
+      "options_en": [
+        "640π × 10⁶ m²",
+        "512π × 10⁶ m²",
+        "480π × 10⁶ m²",
+        "440π × 10⁶ m²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}
