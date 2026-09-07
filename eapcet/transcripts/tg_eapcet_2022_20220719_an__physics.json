@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2022_20220719_an",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "The range of the nuclear force is",
+      "options_en": [
+        "10⁻¹⁸ m",
+        "10⁻¹⁶ m",
+        "10⁻¹⁵ m",
+        "10⁻¹³ m"
+      ],
+      "marked_correct": 3,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "Select the physical quantities in Column-I and Column-II having same dimensions.\n\nColumn-I: A) Entropy  B) Young's modulus of elasticity  C) Angular momentum  D) Decay constant\n\nColumn-II: I) Angular velocity  II) Boltzman constant  III) Energy density  IV) Planck's Constant\n\nThe correct match is",
+      "options_en": [
+        "A-III, B-IV, C-I, D-II",
+        "A-IV, B-I, C-III, D-II",
+        "A-II, B-III, C-IV, D-I",
+        "A-II, B-IV, C-III, D-II"
+      ],
+      "marked_correct": 3,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A rocket moves straight upward with zero initial velocity and with an acceleration 20 m/s². It runs out of fuel and stops accelerating at the end of 5th sec. It reaches a maximum height and falls back to the earth. The speed when it hits the ground is (Take g = 10 m/s²)",
+      "options_en": [
+        "100√2 m/s",
+        "150√3 m/s",
+        "50√6 m/s",
+        "75 m/s"
+      ],
+      "marked_correct": 3,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "Two cars, at a certain instant, are 50 km apart on a line running from south to north. The one farther north is moving west at 25 km/hr. The other is moving towards north at 25 km/hr. How long do they take to reach their distance of closest approach?",
+      "options_en": [
+        "30 min",
+        "60 min",
+        "85 min",
+        "90 min"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "A particle initially at origin starts moving in xy-plane has velocity component v = (6 + 2t)î + (4 + 2√3t)ĵ m/s. Acceleration of the particle in m/s² is [x, y are measured in meters, t in seconds, respectively]",
+      "options_en": [
+        "(6 + 2t)î + (4 + 2√3t)ĵ",
+        "(6 + 2t)î + 2√3 ĵ",
+        "2î + 2√3 ĵ",
+        "2î + 2√3 k̂"
+      ],
+      "marked_correct": 3,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "A bullet is fired at time t = 0 with velocity 20 m/s and at an initial angle of 30° with the horizontal. The tan angle between the displacement vector and the horizontal after time 0.1 s is (Assume g = 10 m/s²)",
+      "options_en": [
+        "38/(20√3)",
+        "19/(20√3)",
+        "19/20",
+        "19√3/20"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "A constant horizontal force F of magnitude 10 N is applied to a block A and this produces an acceleration of magnitude 20 m/s². If this block A is then kept against another block B of mass 1.5 kg as shown in figure and a force F′ of 20 N is applied, find the force on the block B. Neglect friction.",
+      "options_en": [
+        "15 N",
+        "10 N",
+        "20 N",
+        "5 N"
+      ],
+      "marked_correct": 1,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 88,
+      "question_en": "A body of mass 'm' slides down along a frictionless inclined plane from height 'h' and just completes motion in a vertical circle of radius 2m after reaching the bottom. What is the value of h? [Use g = 10 m/s²]",
+      "options_en": [
+        "2 m",
+        "5/2 m",
+        "5 m",
+        "10 m"
+      ],
+      "marked_correct": 3,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "Particle A moving with a velocity v = 10 m/s experienced a head on collision with a stationary particle B of the same mass. As a result of collision, the kinetic energy of the system decreased by 1%. The speed of particle A after collision is",
+      "options_en": [
+        "10 m/s",
+        "0.05 m/s",
+        "5 m/s",
+        "10√2 m/s"
+      ],
+      "marked_correct": 3,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "A metre stick is balanced on a knife edge at its centre. When four coins, each of mass 2g are put one on top of the other at 10.0 cm mark, the stick it found to be balanced at 46.0 cm mark. The mass of the metre stick is",
+      "options_en": [
+        "66 g",
+        "60 g",
+        "72 g",
+        "18 g"
+      ],
+      "marked_correct": 3,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "The amplitude of a damped oscillator varies with time as A(t) = A₀ exp(−bt/2m) where b = 70 g/s and m = 200 g. How long does it take for the mechanical energy to drop to one-fourth of its initial value? [Take ln2 = 0.7]",
+      "options_en": [
+        "2.0 s",
+        "4.0 s",
+        "2.5 s",
+        "3.5 s"
+      ],
+      "marked_correct": 2,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "Four particles each of mass m are placed at four vertices of a rectangle having side length as 3l₀ and 4l₀. The potential energy of the system in Gm²/l₀ is",
+      "options_en": [
+        "7/6",
+        "47/30",
+        "47/60",
+        "7/12"
+      ],
+      "marked_correct": 3,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "Two wires of same length having radius of 2 mm and 1.5 mm respectively are loaded with same weights. Extension of the second wire is double than that of the first wire. What is the ratio of the Young's modulus of the first wire to that of the second wire?",
+      "options_en": [
+        "8/9",
+        "9/8",
+        "3/4",
+        "4/3"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "Consider an increase of 1% in each of radius of artery, viscosity of blood and density of blood respectively. The percentage change in flow rate of blood in artery is",
+      "options_en": [
+        "0.25 %",
+        "0.50 %",
+        "1.0 %",
+        "3.0 %"
+      ],
+      "marked_correct": 3,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "A metal cube of side 10 cm rests on a film of a liquid of thickness 0.2 mm. If upon applying a horizontal force F of magnitude 0.1N the cube slides with a constant speed of 0.08 m/s, then the coefficient of viscosity is",
+      "options_en": [
+        "2.5×10⁻² Ns/m²",
+        "0.25×10⁻² Ns/m²",
+        "5×10⁻² Ns/m²",
+        "0.5×10⁻² Ns/m²"
+      ],
+      "marked_correct": 1,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "176 grams of CO₂ can change its temperature from 0°C to 30°C by absorbing 3600 joules of thermal energy. Molar specific heat of CO₂ in J.mol⁻¹K⁻¹ is",
+      "options_en": [
+        "30",
+        "40",
+        "50",
+        "60"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "A solution consists of ether and 5.0 g of water at 0 °C. If the ether evaporates completely to freeze the water, then the mass of the ether in the solution is",
+      "options_en": [
+        "5 g",
+        "4 g",
+        "4.5 g",
+        "6 g"
+      ],
+      "marked_correct": 2,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "Assertion (A): Heat and work are modes of energy transfer to a system resulting in change in its internal energy. Reason (R): Heat and work in thermodynamics are state variables. The correct option among the following is",
+      "options_en": [
+        "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+        "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+        "(A) is true but (R) is false",
+        "(A) is false but (R) is true"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "An ideal gas at pressure P₀ undergoes an isothermal expansion until its volume is 8.0 times its initial volume. The gas is slowly and adiabatically compressed back to its original volume. If the adiabatic constant of the gas is γ = 4/3, then the ratio of the average kinetic energy per molecule in this final state to that in the initial state is",
+      "options_en": [
+        "1.44",
+        "1.68",
+        "2.0",
+        "1.2"
+      ],
+      "marked_correct": 3,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 100,
+      "question_en": "At what temperature is the root mean square (rms) speed of Neon gas atoms is equal to the rms speed of Helium gas atom at −33 °C? (atomic mass of Ne = 20.2 u, and that of He = 4.0 u)",
+      "options_en": [
+        "1208 K",
+        "1210 K",
+        "1212 K",
+        "1220 K"
+      ],
+      "marked_correct": 3,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "A wire of length 0.4 m stretched at both ends vibrates 250 times per second. If the length of the wire is increased by 0.1 m and the stretching force is reduced to 1/4th of its original value then the new frequency is",
+      "options_en": [
+        "50 Hz",
+        "75 Hz",
+        "100 Hz",
+        "150 Hz"
+      ],
+      "marked_correct": 3,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "A spherical glass is attached to a rigid wall as shown in the figure. An observer located at point O is looking at a point A on the wall. The refractive index of the glass is 1.5 and that of air is 1.0. The distances are OA = 8 cm, XA = 3 cm. If the radius of curvature of spherical glass surface is R = 5 cm, then the apparent distance of A from observer O is",
+      "options_en": [
+        "6.5 cm",
+        "8.5 cm",
+        "7.0 cm",
+        "7.5 cm"
+      ],
+      "marked_correct": 4,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 103,
+      "question_en": "In a double-slit experiment performed in air the angular width of a fringe is found to be 0.15° on a screen placed 80 cm away. The wavelength of light used is 490 nm. The angular width of the fringe if the entire apparatus is immersed in a medium of refractive index 5/3 is",
+      "options_en": [
+        "0.09°",
+        "0.7°",
+        "0.9°",
+        "0.11°"
+      ],
+      "marked_correct": 3,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "medium",
+      "note": "marked correct option (0.9°) is inconsistent with the standard relation θ_medium = θ_air / n, which gives 0.09° (option 1); transcribed exactly as printed, flagging for review"
+    },
+    {
+      "q_no": 104,
+      "question_en": "6μC charge is placed at the centre of a cube. What will be the electric flux at each face of the cube? [Take 1/4πε₀ = 9×10⁹ Nm²C⁻²]",
+      "options_en": [
+        "9π×10² Nm²/C",
+        "36π×10³ Nm²/C",
+        "3.6π×10³ Nm²/C",
+        "4π×10³ Nm²/C"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "There are two thin wire rings, each of radius R, whose axes coincide. The charges of the rings are q and −q. The magnitude of potential difference between the centres of the rings separated by a distance √3 R is",
+      "options_en": [
+        "0",
+        "q/(4πε₀R)",
+        "q/(4πε₀R) × 1/(√3R)",
+        "q/(2πε₀R)"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "Statement (I): The temperature coefficient of resistance for most of metals in pure form is positive. Statement (II): A metal wire 2 mm in diameter carries a charge of 360π C in two hours. If the metal contains 5×10²² free electrons/cm³, then drift velocity of the electrons in the wire is 6.25×10⁻⁶ m/s. Statement (III): Semiconductors like pure germanium does not obey Ohm's law for all range of electric field values. Which of the following is correct?",
+      "options_en": [
+        "Statements I, II, III are true",
+        "Statements I, II are true, but statement III is false",
+        "Statements II, III are true, but statement I is false",
+        "Statements I, II, III are false"
+      ],
+      "marked_correct": 1,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "A cylindrical resistor of radius 7.0 mm and length 4.0 cm is made of material that has a resistivity of 10⁻⁶ Ω.m. If the energy is dissipated at rate 1.54 W in the resistor, then the current density is",
+      "options_en": [
+        "10⁶/√π A/m²",
+        "5×10⁵ A/m²",
+        "√π×10⁵ A/m²",
+        "8.5×10⁴ A/m²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 108,
+      "question_en": "Statement I: A uniform electric field and a uniform magnetic field are pointed in the same direction. If an electron is projected in the same direction the electron velocity will decrease in magnitude. Statement II: Two infinite long parallel wires are carrying current in the same direction. The magnetic field at a point midway between the wires is zero. Statement III: No net force acts on a rectangular coil carrying a steady current when suspended in a uniform magnetic field. Which of the following is correct?",
+      "options_en": [
+        "Statements I, II, III are true",
+        "Statements I, II are true, but statement III is false",
+        "Statements II, III are true, but statement I is false",
+        "Statements I, II, III are false"
+      ],
+      "marked_correct": 1,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 109,
+      "question_en": "Two parallel conductor each 50m long, separated by 0.2m experience a force of 1N. If the current in first conductor is twice that of the second conductor, then what is the current in the second conductor? (μ₀ = 4π×10⁻⁷)",
+      "options_en": [
+        "100 A",
+        "200 A",
+        "120 A",
+        "50 A"
+      ],
+      "marked_correct": 2,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "The magnitude of axial field due to a bar magnet at a distance of 1 m, is found to be 5×10⁻⁸ T. The magnetic moment of the bar magnet is (μ₀ = 4π×10⁻⁷)",
+      "options_en": [
+        "0.20 Am²",
+        "0.25 Am²",
+        "0.50 Am²",
+        "0.40 Am²"
+      ],
+      "marked_correct": 2,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "The magnetic flux through the triangular loop shown in the figure below, where a uniform magnetic field of strength 2T points perpendicularly into the plane of the triangle.",
+      "options_en": [
+        "10⁻⁴ Wb",
+        "2×10⁻⁴ Wb",
+        "1 Wb",
+        "2 Wb"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 112,
+      "question_en": "The Q-value of a series LCR circuit with L = 2H, C = 32 μF and R = 20 Ω is",
+      "options_en": [
+        "12.5",
+        "25.0",
+        "50.0",
+        "125.0"
+      ],
+      "marked_correct": 1,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "A laser beam has intensity 2.1×10¹⁵ W/m². The amplitude of magnetic field in the beam is approximately",
+      "options_en": [
+        "1.4 T",
+        "4.2 T",
+        "1 T",
+        "1.5 T"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "In a photo electric experiment, the wavelength of the light incident on the metal is changed from 200 nm to 400 nm. The decrease in the stopping potential is close to [Use hc = 1240 eV-nm where h = Planck's constant and c is velocity of light]",
+      "options_en": [
+        "3.1 V",
+        "2.8 V",
+        "4.2 V",
+        "1.2 V"
+      ],
+      "marked_correct": 1,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "The de-Broglie wavelength of an electron with kinetic energy of 320 eV is (Take h = 6.0×10⁻³⁴ SI unit, mass of electron = mₑ=9.0×10⁻³¹ kg, Charge of an electron = 1.6×10⁻¹⁹ C.)",
+      "options_en": [
+        "85.8 pm",
+        "110.5 pm",
+        "62.5 pm",
+        "50 pm"
+      ],
+      "marked_correct": 3,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "Considering the Bohr's model of Hydrogen atom, the ratio of velocities of electrons orbiting in the 4th orbit to that in the 9th orbit is",
+      "options_en": [
+        "9 : 4",
+        "3 : 2",
+        "2 : 3",
+        "4 : 9"
+      ],
+      "marked_correct": 1,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "What is the mass number of the nucleus having radius equal to 1/3 of that of ¹⁸⁹Os?",
+      "options_en": [
+        "20",
+        "7",
+        "12",
+        "14"
+      ],
+      "marked_correct": 2,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "The number of silicon atoms per m³ is 5×10²⁸. This is doped with 4.5×10²¹ atoms/m³ of Arsenic. The ratio of number of electrons to number of holes after doping is (Take nᵢ = Number of thermally-generated electrons = 1.5×10¹⁶/m³)",
+      "options_en": [
+        "4.5×10¹²",
+        "8×10¹⁴",
+        "9×10¹²",
+        "9×10¹¹"
+      ],
+      "marked_correct": 3,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "The output of the following circuit is equivalent to ______ gate.",
+      "options_en": [
+        "OR",
+        "AND",
+        "NOT",
+        "NAND"
+      ],
+      "marked_correct": 1,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 120,
+      "question_en": "Which of the following statements is NOT true?",
+      "options_en": [
+        "Power radiated from a linear antenna is directly proportional to square of antenna length",
+        "Power radiated decreases with increasing frequency",
+        "Antenna should have size comparable to the wavelength of the signal",
+        "Effective power radiated by a long wavelength baseband signal is small"
+      ],
+      "marked_correct": 2,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}

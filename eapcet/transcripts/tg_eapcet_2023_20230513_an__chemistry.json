@@ -1,0 +1,608 @@
+{
+ "paper_id": "tg_eapcet_2023_20230513_an",
+ "subject": "chemistry",
+ "questions": [
+  {
+   "q_no": 121,
+   "question_en": "What is the approximate angular momentum (in J s) of electron in hydrogen atom in its ground state? (h = 6.625×10⁻³⁴ J s)",
+   "options_en": [
+    "2110×10⁻³⁷",
+    "2110×10⁻³⁶",
+    "",
+    "1055×10⁻³⁶"
+   ],
+   "marked_correct": 3,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "low",
+   "note": "Option 3's text is ABSENT FROM THE OFFICIAL SOURCE PDF, not from our crop. Confirmed three independent ways on page 91 of the source: (a) the rendered crop shows the label and green tick with nothing beside them; (b) the PDF text layer holds the four option LABELS as text spans (option 3's is green, 008000) but no value text; (c) the option VALUES are raster images, and the page carries value images at option 1, 2 and 4's rows only - at option 3's row there is nothing but the 16x16 tick icon. The answer is not in doubt: the key and the vision pass both read option 3, and L = h/2π = 1.055×10⁻³⁴ J s = 1055×10⁻³⁷, which is exactly the value the three printed distractors are built around (2110×10⁻³⁷ is 2× it, 1055×10⁻³⁶ is 10× it). That value is NOT written into options_en, because deriving a string is not transcribing one. The question is held out of the bank; promoting it means a human deciding to print a reconstructed option.",
+   "adjudication": "source_pdf_defect_option_text_absent"
+  },
+  {
+   "q_no": 122,
+   "question_en": "The energy of electron in hydrogen atom when present in n=1, n=2 and n=3 will be in the ratio of",
+   "options_en": [
+    "25 : 16 : 9",
+    "16 : 9 : 4",
+    "36 : 9 : 4",
+    "3 : 2 : 1"
+   ],
+   "marked_correct": 3,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 123,
+   "question_en": "What is the correct order with respect to metallic property of Zr, Cd, Sn, Sr?",
+   "options_en": [
+    "Sn < Cd < Zr < Sr",
+    "Sn < Sr < Cd < Zr",
+    "Cd < Zr < Sr < Sn",
+    "Zr < Sr < Cd < Sn"
+   ],
+   "marked_correct": 1,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 124,
+   "question_en": "Identify the number of molecules in which the central atom has one lone pair of electrons from the following list\nPbCl₂, PH₃, ClF₃, SF₄, BF₃, SnCl₂",
+   "options_en": [
+    "3",
+    "4",
+    "1",
+    "2"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 125,
+   "question_en": "In which of the following molecules, the number of lone pairs of electrons on central atom and the number d-orbitals involved in the hybridisation of central atom, is same?",
+   "options_en": [
+    "ClF₃",
+    "PCl₅",
+    "BrF₅",
+    "SF₄"
+   ],
+   "marked_correct": 4,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 126,
+   "question_en": "4 g of an ideal gas A (molar mass = M_A) present in a vessel of volume V litre exerted a pressure of 5 atm at 300 K. When 16 g of another ideal gas B (molar mass = M_B) was introduced into this vessel at the same temperature, its pressure increased to 10 atm. What is the correct relationship between M_A and M_B?",
+   "options_en": [
+    "M_A = 4 M_B",
+    "M_A = M_B",
+    "M_A = 2 M_B",
+    "4 M_A = M_B"
+   ],
+   "marked_correct": 4,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 127,
+   "question_en": "The sum of three values 12.0, 19.034 and 2.0143 is equal to X. The number of significant figures in X is",
+   "options_en": [
+    "2",
+    "5",
+    "4",
+    "3"
+   ],
+   "marked_correct": 3,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "ADJUDICATED by hand 2026-09-07: the green tick is on the FOURTH option, whose text is \"3\". 12.0+19.034+2.0143 = 33.0483, and addition is limited by the fewest decimal places (12.0 has one), so X = 33.0 = three significant figures. The official key (4) is correct; this agent's reading of 3 was a misread. marked_correct is left as the agent read it so the disagreement rate stays honest.",
+   "adjudication": "official_key_confirmed_by_hand"
+  },
+  {
+   "q_no": 128,
+   "question_en": "Observe the following properties\nI. Molar volume  II. Mass\nIII. Internal energy  IV. Volume\nV. Enthalpy  VI. Temperature\nVII. Density\nThe intensive properties in the above list are",
+   "options_en": [
+    "I, VI, VII only",
+    "I, IV, VI, VII only",
+    "I, III, IV, V only",
+    "II, III, V only"
+   ],
+   "marked_correct": 1,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 129,
+   "question_en": "At T (K), Kc value for the reaction ⅓N₂(g)+H₂(g)⇌⅔NH₃(g) is 50. The Kc value for the reaction 2NH₃(g)⇌N₂(g)+3H₂(g) at the same temperature is",
+   "options_en": [
+    "4×10⁻⁶",
+    "8×10⁻⁶",
+    "6×10⁻⁶",
+    "8×10⁻³"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemical Equilibrium, Acids and Bases",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 130,
+   "question_en": "Identify the correct statements from the following\nA. In photosynthesis reaction, water is oxidized to oxygen\nB. An example for interstitial hydride is MgH₂\nC. Sodium hexametaphosphate is used in the removal of permanent hardness of water",
+   "options_en": [
+    "A, B, C",
+    "A & B only",
+    "B & C only",
+    "A & C only"
+   ],
+   "marked_correct": 4,
+   "chapter": "Hydrogen and its Compounds",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 131,
+   "question_en": "Which one of the following statements is not correct?",
+   "options_en": [
+    "Molecular formula of calgon is NaAlSiO₄",
+    "Beryllium halides are soluble in organic solvents",
+    "Among alkali metals, the reducing property of sodium is least in aqueous solution",
+    "White metal is an alloy of Lithium"
+   ],
+   "marked_correct": 1,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "Chemically consistent with the marked key: calgon's actual formula is sodium hexametaphosphate, not NaAlSiO₄, so statement 1 is indeed the incorrect one."
+  },
+  {
+   "q_no": 132,
+   "question_en": "Thermal decomposition of lithium nitrate gives",
+   "options_en": [
+    "LiO₂, O₂, NO₂",
+    "Li₂O, O₂, N₂O",
+    "Li₂O, O₂, N₂",
+    "Li₂O, O₂, NO₂"
+   ],
+   "marked_correct": 4,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 133,
+   "question_en": "Consider the following statements about group 13 elements\nA. AlCl₃ gets stability by forming a dimer\nB. BCl₃ is an electron deficient molecule\nC. E°(M³⁺|M) (V) is +1.26 for aluminium\nD. In +1 oxidation state thallium is unstable\nThe incorrect statements are",
+   "options_en": [
+    "C & D only",
+    "A & B only",
+    "A & D only",
+    "B & C only"
+   ],
+   "marked_correct": 1,
+   "chapter": "p-Block Elements: Group 13",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 134,
+   "question_en": "What is the correct order of melting temperature of C, Si, Ge?",
+   "options_en": [
+    "C > Ge > Si",
+    "Si > C > Ge",
+    "C > Si > Ge",
+    "Si > Ge > C"
+   ],
+   "marked_correct": 3,
+   "chapter": "p-Block Elements: Group 14",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 135,
+   "question_en": "The IUPAC name of the following compound is\n[skeletal structure: a hexane chain with an ethyl branch at C3 and a methyl branch at C4]",
+   "options_en": [
+    "3-(2-Butyl) Pentane",
+    "2-(3-Pentyl) butane",
+    "3-Ethyl-4-methylhexane",
+    "3-Methyl-4-ethylhexane"
+   ],
+   "marked_correct": 3,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "has diagram; option 4's text (\"3-Methyl-4-ethylhexane\") is printed at the top of q135_1.png while its option number/red-cross mark sit at the bottom of q135_0.png — joined by position per the brief."
+  },
+  {
+   "q_no": 136,
+   "question_en": "The delocalization of σ electrons of C-H bond of an alkyl group with the π electrons of benzene is observed in",
+   "options_en": [
+    "Inductive effect",
+    "Hyperconjugation effect",
+    "Resonance effect",
+    "Electromeric effect"
+   ],
+   "marked_correct": 2,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 137,
+   "question_en": "An alkene X (C₆H₁₂) on ozonolysis gave acetaldehyde and ethyl methyl ketone. What is the product formed when X reacts with HBr?",
+   "options_en": [
+    "CH₃CH₂-C(Br)(CH₃)-CH₂CH₃ (3-bromo-3-methylpentane)",
+    "CH₃-CHBr-CH(CH₃)-CH₂-CH₃ (2-bromo-3-methylpentane)",
+    "(CH₃)₂CBr-CH₂-CH₂-CH₃ (2-bromo-2-methylpentane)",
+    "CH₃-CH(CH₃)-CHBr-CH₂-CH₃ (3-bromo-2-methylpentane)"
+   ],
+   "marked_correct": 1,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "has diagram; all four options are skeletal structures with no printed name, transcribed here as condensed structural formulas with the equivalent IUPAC name added in parentheses for clarity. Reading verified against the stated ozonolysis fragments (acetaldehyde + ethyl methyl ketone imply X = 3-methylpent-2-ene) and Markovnikov addition of HBr, which is self-consistent with the marked answer."
+  },
+  {
+   "q_no": 138,
+   "question_en": "[Structure: an aromatic ring] --(i) CrO₂Cl₂ | CS₂, H₃O⁺  (ii) HNO₃ | H₂SO₄--> X\nWhat is X in the following reaction sequence?",
+   "options_en": [
+    "m-O₂N-C₆H₄-CO₂H (3-nitrobenzoic acid)",
+    "p-O₂N-C₆H₄-CH₂Cl (4-nitrobenzyl chloride)",
+    "m-O₂N-C₆H₄-COCl (3-nitrobenzoyl chloride)",
+    "m-O₂N-C₆H₄-CHO (3-nitrobenzaldehyde)"
+   ],
+   "marked_correct": 4,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram; the four options are skeletal structures (benzene ring with the named substituent and a meta or para NO₂), transcribed here as condensed formulas with the equivalent name in parentheses. The CrO₂Cl₂/CS₂ step (Etard-type oxidation) followed by nitration is chemically consistent with the marked m-nitrobenzaldehyde answer (CHO is a meta director)."
+  },
+  {
+   "q_no": 139,
+   "question_en": "A compound is formed by elements A, B and O. Atoms of oxygen form ccp lattice. Atoms of A (cation) occupy ⅛ th of tetrahedral voids and atoms of B (cation) occupy half of octahedral voids. What is the molecular formula of the compound?",
+   "options_en": [
+    "A₂BO₄",
+    "ABO₂",
+    "AB₂O₄",
+    "ABO₃"
+   ],
+   "marked_correct": 3,
+   "chapter": "Solid State",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 140,
+   "question_en": "Liquids A and B form an ideal solution. The vapour pressures of A and B are 50 and 32mm Hg respectively at 300K. One mole of liquid A is mixed with 1 mole of liquid B. What is the approximate mole fraction of A in vapour phase?",
+   "options_en": [
+    "0.39",
+    "0.50",
+    "0.25",
+    "0.61"
+   ],
+   "marked_correct": 4,
+   "chapter": "Solutions",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 141,
+   "question_en": "A and B are two metals. The standard reduction potential of A⁺(aq)/A(s) and B⁺(aq)/B(s) are -0.5V and +0.5V respectively. What is the log Kc value for the following reaction at 298 K?\nA(s)+B⁺(aq)⇌A⁺(aq)+B(s)\n(Given: 2.303RT/F = 0.06 V)",
+   "options_en": [
+    "6/100",
+    "100/6",
+    "6/200",
+    "200/6"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electrochemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 142,
+   "question_en": "For a zero order reaction A→product, a plot of [A] (on y-axis) and time (on x-axis) gave a straight line with slope equal to −3×10⁻³ M min⁻¹ and intercept equal to 2×10⁻² M (on y-axis). What is the rate constant (in M min⁻¹) of this reaction?",
+   "options_en": [
+    "3×10⁻³",
+    "5×10⁻⁵",
+    "3×10⁻⁴",
+    "5×10⁻⁴"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemical Kinetics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 143,
+   "question_en": "Match the following\nList I\nA. Negatively charged sol\nB. Milk\nC. Gold number\nD. Colloidal antimony\nList-II\nI. Emulsion\nII. Kalaazar\nIII. FeCl₃ solution is added to excess NaOH solution\nIV. Protection of colloids\nThe correct answer is",
+   "options_en": [
+    "A-III, B-I, C-II, D-IV",
+    "A-III, B-I, C-IV, D-II",
+    "A-I, B-III, C-IV, D-II",
+    "A-II, B-I, C-III, D-IV"
+   ],
+   "marked_correct": 2,
+   "chapter": "Surface Chemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 144,
+   "question_en": "4Ag(s)+8CN⁻(aq)+2H₂O(aq)+O₂(g)→ 4[Ag(CN)₂]⁻(aq)+4⁻OH(aq)\nThe above reaction represents the process of concentration of ore in the extraction of silver. This process is",
+   "options_en": [
+    "Leaching",
+    "Levigation",
+    "Froth floatation",
+    "Liquation"
+   ],
+   "marked_correct": 1,
+   "chapter": "Metallurgy",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 145,
+   "question_en": "Which one of the following statements is correct?",
+   "options_en": [
+    "N₂ is a brown coloured gas",
+    "O₃ is thermodynamically stable compared to oxygen",
+    "Rhombic sulphur is stable at room temperature",
+    "Cl₂ is a colourless gas"
+   ],
+   "marked_correct": 3,
+   "chapter": "VIA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 146,
+   "question_en": "Which oxo acid of sulphur contains S-O-S bond?",
+   "options_en": [
+    "H₂S₂O₅",
+    "H₂S₂O₄",
+    "H₂S₂O₇",
+    "H₂S₂O₈"
+   ],
+   "marked_correct": 3,
+   "chapter": "VIA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 147,
+   "question_en": "Which of the following reaction gives nitrogen (II) oxide as one of the products?",
+   "options_en": [
+    "Cu + dil HNO₃ →",
+    "Cu + conc. HNO₃ →",
+    "Zn + dil. HNO₃ →",
+    "Zn + conc. HNO₃ →"
+   ],
+   "marked_correct": 1,
+   "chapter": "VA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 148,
+   "question_en": "Identify the correct pairs in which the chemical substance given is correctly matched with its use\nChemical substance   use\nA) Cl₂   Preparation of phosgene\nB) I₂O₅   estimation of CO\nC) O₃   disinfectant",
+   "options_en": [
+    "A, B, C",
+    "A, B only",
+    "B, C only",
+    "A, C only"
+   ],
+   "marked_correct": 1,
+   "chapter": "VIIA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 149,
+   "question_en": "Observe the following ions\nV²⁺, Zn²⁺, Cu²⁺, Fe²⁺, Fe³⁺, Ti³⁺, Sc³⁺, Ti⁴⁺, Ni³⁺, Co³⁺, Cu⁺\nHow many ions in the above list have zero magnetic moment?",
+   "options_en": [
+    "4",
+    "3",
+    "5",
+    "2"
+   ],
+   "marked_correct": 1,
+   "chapter": "d and f Block Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 150,
+   "question_en": "Identify the correct set for [Co(NH₃)₆]³⁺ ion. (hybridisation of Co³⁺, type of complex, number of unpaired electrons in the complex ion respectively)",
+   "options_en": [
+    "d²sp³, inner orbital complex, zero",
+    "sp³d², outer orbital complex, three",
+    "d²sp³, inner orbital complex, two",
+    "sp³d², outer orbital complex, zero"
+   ],
+   "marked_correct": 1,
+   "chapter": "Coordination Compounds",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 151,
+   "question_en": "Identify the correct statement from the following\n(A) Glyptal is made from the monomers ethylene glycol and phthalic acid\n(B) Bakelite is used in making electrical switches\n(C) Nylon2-nylon6 is a biodegradable polymer",
+   "options_en": [
+    "A, B, C",
+    "A & C only",
+    "A & B only",
+    "B & C only"
+   ],
+   "marked_correct": 1,
+   "chapter": "Polymers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 152,
+   "question_en": "A vitamin X is soluble in fat and its source is egg yolk. Deficiency of X causes the disease",
+   "options_en": [
+    "Scurvy",
+    "Convulsions",
+    "Xerophthalmia",
+    "Rickets"
+   ],
+   "marked_correct": 4,
+   "chapter": "Biomolecules",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 153,
+   "question_en": "Identify the pair of drugs which act as tranquilizers",
+   "options_en": [
+    "Heroin, Codeine",
+    "Valium, Serotonin",
+    "Dimetapp, Seldane",
+    "Cimetidine, Ranitidine"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemistry in Everyday Life",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "The marked-correct pair pairs Valium (a genuine tranquilizer) with Serotonin, which is an endogenous neurotransmitter rather than a tranquilizer drug in standard pharmacology classification. Recorded as printed/marked per the brief — the official key is not overruled here."
+  },
+  {
+   "q_no": 154,
+   "question_en": "An alkyl halide X (C₄H₉Br) undergoes nucleophilic substitution by S_N2 reaction. The product of X on reaction with Mg/dry ether followed by D₂O is",
+   "options_en": [
+    "CH₃CH₂CH₂CH₂OD",
+    "CH₃CH₂CH₂CH₂D",
+    "(CH₃)₃C-D",
+    "(CH₃)₃C-OD"
+   ],
+   "marked_correct": 2,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram; all four options are skeletal structures (straight or branched C4 skeleton ending in D or OD), transcribed as condensed structural formulas."
+  },
+  {
+   "q_no": 155,
+   "question_en": "Assertion (A): pKa of phenol is 4.19 and that of benzoic acid is 10\nReason (R): Phenoxide ion is stabilised by non-equivalent resonance structures whereas benzoate ion by two equivalent resonance structures\nThe correct option among the following is",
+   "options_en": [
+    "A and R are true. R is the correct explanation of A",
+    "A and R are true, but R is not the correct explanation for A",
+    "A is true but R is false",
+    "A is false but R is true"
+   ],
+   "marked_correct": 4,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 156,
+   "question_en": "In which of the following pairs reactant is correctly matched with reagent that would form benzaldehyde as product?\nA. C₆H₅COCl --- H₂-Pd / BaSO₄\nB. C₆H₅CO₂CH₂CH₃ --- (i) LAH, (ii) H₂O\nC. C₆H₅CH₃ --- KMnO₄ / H⁺\nD. C₆H₅CN --- (i) AlH(t-Bu)₂, (ii) H₂O",
+   "options_en": [
+    "A & C only",
+    "C & D only",
+    "A & D only",
+    "B & C only"
+   ],
+   "marked_correct": 3,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram; A-D are drawn as benzene-ring skeletal structures with the substituent labelled (COCl, CO₂CH₂CH₃, CH₃, CN), transcribed here as condensed formulas."
+  },
+  {
+   "q_no": 157,
+   "question_en": "An alkene X with formula C₄H₈ does not exhibit geometrical isomerism. In the conversion of X to Y, the correct sequence of reagents A and B used are (Y gives iodoform test)",
+   "options_en": [
+    "BH₃, H₂O₂/OH⁻  ;  PCC",
+    "H₂O /H⁺  ;  ZnCl₂ / HCl",
+    "H₂O/H⁺  ;  Cu/573 K",
+    "BH₃, H₂O₂/OH⁻  ;  Cu/573 K"
+   ],
+   "marked_correct": 3,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 158,
+   "question_en": "Which of the following reaction is feasible?",
+   "options_en": [
+    "C₆H₅OH + SOCl₂ → C₆H₅Cl + SO₂ + HCl",
+    "H₃CCH=CHCH₂OH --PCC--> H₃CCH=CHCHO",
+    "CH₃CH₂CH₂OH --KMnO₄/H⁺--> H₃CCH₂CHO",
+    "CH₃CH₂CH₂CH₂OH --20% H₃PO₄/273 K--> CH₂=CHCH₂CH₃"
+   ],
+   "marked_correct": 2,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram; the four options are reaction schemes with skeletal/condensed structures, transcribed here as condensed structural formulas with the reagents/conditions as printed."
+  },
+  {
+   "q_no": 159,
+   "question_en": "The sequence of reagents which convert p-methyl aniline to p-methyl benzoic acid are",
+   "options_en": [
+    "KMnO₄/H⁺;  NaNO₂+HCl;  Cu/HCl",
+    "NaNO₂+HCl/273K;  Cu/HCl;  KMnO₄/H⁺",
+    "NaNO₂+HCl/273K;  CuCN/KCN;  H₃O⁺",
+    "NaNO₂+HCl/285K;  KCN;  H₃O⁺"
+   ],
+   "marked_correct": 3,
+   "chapter": "Organic Compounds Containing Nitrogen",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 160,
+   "question_en": "An amine (X) reacts with p-toluene sulphonyl chloride to give the product Y, which is insoluble in alkali. The product of X with benzoyl chloride is",
+   "options_en": [
+    "CH₃CH₂CH₂NHCOC₆H₅",
+    "CH₃CH₂CH₂N(CH₃)COCH₂C₆H₅",
+    "CH₃CH₂NHCOC₆H₅",
+    "CH₃CH₂N(CH₃)COC₆H₅"
+   ],
+   "marked_correct": 4,
+   "chapter": "Organic Compounds Containing Nitrogen",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; option 1's chain prints as 'CH₃CH₂CH' with no subscript on the third carbon in the source crop — read as CH₃CH₂CH₂ (n-propyl) for consistency with the parallel N-ethyl distractor in option 3, confirmed by pixel-level zoom (not a continuation-image gap). q121 in this same paper could not be repaired — see reply."
+  }
+ ]
+}

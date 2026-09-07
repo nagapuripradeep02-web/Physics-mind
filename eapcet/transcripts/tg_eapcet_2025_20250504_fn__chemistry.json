@@ -1,0 +1,607 @@
+{
+ "paper_id": "tg_eapcet_2025_20250504_fn",
+ "subject": "chemistry",
+ "questions": [
+  {
+   "q_no": 121,
+   "question_en": "Match the following\nList-1 (Elements)      List-2 (Group)\nA. Mn, Tc, Re          I. 12\nB. Zn, Cd, Hg          II. 4\nC. Ti, Zr, Hf          III. 17\nD. Ga, In, Tl          IV. 7\n                       V. 13\nThe correct answer is",
+   "options_en": [
+    "A – III, B – V, C – I, D – IV",
+    "A – IV, B – I, C – II, D – V",
+    "A – IV, B – II, C – I, D – V",
+    "A – III, B – I, C – II, D – V"
+   ],
+   "marked_correct": 2,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 122,
+   "question_en": "The isobars of one mole of an ideal gas were obtained at three different pressures (p₁, p₂ and p₃). The slopes of these isobars are m₁, m₂ and m₃ respectively. If p₁ < p₂ < p₃, then the correct relation of the slopes is",
+   "options_en": [
+    "m₁ > m₃ > m₂",
+    "m₁ > m₂ > m₃",
+    "m₁ < m₂ < m₃",
+    "m₁ = m₂ = m₃"
+   ],
+   "marked_correct": 2,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 123,
+   "question_en": "Observe the following statements\nStatement-I : Rutherford model of an atom cannot explain the stability of an atom\nStatement-II : The wavelength of X-rays is higher than the wavelength of microwaves\nThe correct answer is",
+   "options_en": [
+    "Statement I is not correct, but statement II is correct",
+    "Statement I is correct, but statement II is not correct",
+    "Both statements I and II are correct",
+    "Both statements I and II are not correct"
+   ],
+   "marked_correct": 2,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 124,
+   "question_en": "The condensed, bond line and complete formulae of n-butane are respectively (I: CH₃CH₂CH₂CH₃, condensed formula; II: zigzag skeletal bond-line structure; III: complete structural formula showing every C and H atom)",
+   "options_en": [
+    "II, III, I",
+    "I, III, II",
+    "II, I, III",
+    "I, II, III"
+   ],
+   "marked_correct": 4,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 125,
+   "question_en": "The order of negative standard potential values of Li, Na, K is",
+   "options_en": [
+    "Li > Na > K",
+    "Na > K > Li",
+    "Li > K > Na",
+    "K > Na > Li"
+   ],
+   "marked_correct": 3,
+   "chapter": "Electrochemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 126,
+   "question_en": "The number of lone pairs of electrons on the central atom of XeO₃, XeOF₄ and XeF₆ respectively is",
+   "options_en": [
+    "3, 2, 1",
+    "2, 1, 0",
+    "1, 2, 1",
+    "1, 1, 1"
+   ],
+   "marked_correct": 4,
+   "chapter": "Noble Gases",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 127,
+   "question_en": "A sample of water contains Mg(HCO₃)₂ and Ca(HCO₃)₂. On boiling this water, these hydrogen carbonates are removed as precipitates. The precipitates are",
+   "options_en": [
+    "Mg(OH)₂, Ca(OH)₂",
+    "MgCO₃, Ca(OH)₂",
+    "MgCO₃, CaCO₃",
+    "Mg(OH)₂, CaCO₃"
+   ],
+   "marked_correct": 4,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 128,
+   "question_en": "A metal (M), crystallizes in fcc lattice with edge length of 4.242 Å. What is the radius of M atom (in Å)?",
+   "options_en": [
+    "1.5",
+    "1.0",
+    "1.75",
+    "1.25"
+   ],
+   "marked_correct": 1,
+   "chapter": "Solid State",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 129,
+   "question_en": "Toluene on reaction with reagent A gives X. This (X) forms 2,4-dinitrophenylhydrazone and reduces ammonical silver nitrate solution. Reaction of toluene with another reagent B forms Y, which dissolves in NaHCO₃ with evolution of CO₂. What are A and B respectively?",
+   "options_en": [
+    "CrO₃ + (CH₃CO)₂O, H₃O⁺ ; KMnO₄ – KOH/Δ, H₃O⁺",
+    "KMnO₄|OH⁻, Δ ; CrO₃ – H₂SO₄",
+    "KMnO₄|OH⁻, Δ ; CrO₂Cl₂|CS₂, H₃O⁺",
+    "CrO₃ + (CH₃CO)₂O, H₃O⁺ ; CrO₂Cl₂|CS₂, H₃O⁺"
+   ],
+   "marked_correct": 1,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 130,
+   "question_en": "Amino acid 'X' contains phenolic hydroxy group and amino acid 'Y' contains amide group. 'X' and 'Y' respectively are",
+   "options_en": [
+    "Tyr, Gln",
+    "Thr, Asn",
+    "Ser, Arg",
+    "Cys, Lys"
+   ],
+   "marked_correct": 1,
+   "chapter": "Biomolecules",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 131,
+   "question_en": "Observe the following reactions\nI. CO(g) + H₂(g) —X→ HCHO(g)\nII. CO(g) + 3H₂(g) —Y→ CH₄(g) + H₂O(g)\nThe catalysts X and Y in the above reactions are respectively",
+   "options_en": [
+    "Cu, Ni",
+    "Ni, Cu",
+    "Cu, Cu",
+    "Ni, Ni"
+   ],
+   "marked_correct": 1,
+   "chapter": "Surface Chemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 132,
+   "question_en": "Observe the following reactions\nAllylbenzene, C₆H₅CH₂CH=CH₂ + HBr → X\nα-Methylstyrene, C₆H₅C(CH₃)=CH₂ + HBr → Y\nStyrene, C₆H₅CH=CH₂ + HBr, (C₆H₅COO)₂ → Z\nThe correct order of reactivity of X, Y, Z towards Sₙ1 reaction is",
+   "options_en": [
+    "Y > X > Z",
+    "X > Y > Z",
+    "X > Z > Y",
+    "Y > Z > X"
+   ],
+   "marked_correct": 1,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram (structures of allylbenzene, α-methylstyrene and styrene shown)"
+  },
+  {
+   "q_no": 133,
+   "question_en": "What are X and Y respectively in the following reactions? (Anhy. = anhydrous)\nAcetophenone ←Y– Benzene –X→ Toluene (both via anhydrous AlCl₃)",
+   "options_en": [
+    "C₂H₅Cl, CH₃COCl",
+    "C₂H₅COCl, CH₃Cl",
+    "CH₃COCl, CH₃Cl",
+    "CH₃Cl, CH₃COCl"
+   ],
+   "marked_correct": 4,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 134,
+   "question_en": "The sets of molecules in which central atom has no lone pair of electrons are:\ni. SnCl₂, NH₃, SF₄\nii. HgCl₂, SO₃, SF₆\niii. BeCl₂, BF₃, PCl₅\niv. ClF₃, BrF₅, XeF₆",
+   "options_en": [
+    "ii, iii, iv only",
+    "i, ii, iii only",
+    "ii, iii only",
+    "i, iv only"
+   ],
+   "marked_correct": 3,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 135,
+   "question_en": "What are X and Y in the following reaction sequence?\nIso pentane —(KMnO₄)→ X —(20% H₃PO₄, 358 K)→ Y\n(The four options show skeletal structures of C₅H₁₂O alcohol isomers and C₅H₁₀ alkene isomers)",
+   "options_en": [
+    "(CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol ; CH₂=C(CH₃)CH₂CH₃ — 2-methylbut-1-ene",
+    "CH₃CH(OH)CH(CH₃)₂ — 3-methylbutan-2-ol ; CH₂=C(CH₃)CH₂CH₃ — 2-methylbut-1-ene",
+    "CH₃CH(OH)CH(CH₃)₂ — 3-methylbutan-2-ol (drawn mirrored) ; (CH₃)₂C=CHCH₃ — 2-methylbut-2-ene (double bond drawn toward the right of the chain)",
+    "(CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol ; (CH₃)₂C=CHCH₃ — 2-methylbut-2-ene"
+   ],
+   "marked_correct": 4,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; options are skeletal (line-angle) structures. The correct option 4 (tertiary alcohol 2-methylbutan-2-ol oxidised from iso-pentane, dehydrating via Zaitsev's rule to 2-methylbut-2-ene) is chemically unambiguous and matches the marked answer; the exact OH / double-bond position drawn in distractor options 1-3 was harder to pin down pixel-exactly from the crop and is transcribed to the best of visual judgement."
+  },
+  {
+   "q_no": 136,
+   "question_en": "What are X and Y in the following reaction sequence?\nC₅H₁₂O —(Cu, 573 K)→ C₅H₁₀ —(i) O₃ (ii) Zn + H₂O→ X + Y",
+   "options_en": [
+    "CH₃CH₂CH₂CHO + HCO₂H",
+    "CH₃COCH₃ + CH₃CHO",
+    "CH₃CH₂CHO + CH₃CHO",
+    "(CH₃)₂CHCHO + HCHO"
+   ],
+   "marked_correct": 2,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; options are structural (condensed) formulas of carbonyl ozonolysis products, transcribed by visual inspection."
+  },
+  {
+   "q_no": 137,
+   "question_en": "The atomic numbers of the elements X, Y, Z are a, a + 1, a + 2 respectively. Z is an alkali metal. The nature of bonding in the compound formed by X and Z is",
+   "options_en": [
+    "Ionic",
+    "Covalent",
+    "Metallic",
+    "Coordinate covalent"
+   ],
+   "marked_correct": 1,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 138,
+   "question_en": "Observe the following statements\nStatement-I: The carbon containing components of photochemical smog are acrolein, methanal and PAN\nStatement-II: The number of greenhouse gases in the list given below is 5\nCH₄, CO₂, NO, H₂O (l), H₂O (g), O₂, O₃\nThe correct answer is",
+   "options_en": [
+    "Both statements I and II are not correct",
+    "Both statements I and II are correct",
+    "Statement I is correct, but statement II is not correct",
+    "Statement I is not correct, but statement II is correct"
+   ],
+   "marked_correct": 3,
+   "chapter": "Environmental Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 139,
+   "question_en": "The chemical X is used in the prevention of heart attack. The structure of X is",
+   "options_en": [
+    "Serotonin (5-hydroxytryptamine) — indole ring with HO at the 5-position and a CH₂CH₂NH₂ side chain at the 3-position",
+    "4-nitrophenyl-CH(OH)-CH(CH₂OH)-NHC(=O)CH₃ — a 4-nitrophenyl acetamido-diol structure",
+    "Aspirin (acetylsalicylic acid) — benzene ring bearing –OC(=O)CH₃ ortho to –CO₂H",
+    "Sulfanilamide — 4-aminobenzenesulfonamide, H₂N-C₆H₄-SO₂NH₂"
+   ],
+   "marked_correct": 3,
+   "chapter": "Chemistry in Everyday Life",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; options are structural formulas of drug molecules. Option 3 (aspirin, the marked correct answer) is clearly identifiable; option 2's exact structure is transcribed to the best of visual judgement."
+  },
+  {
+   "q_no": 140,
+   "question_en": "Consider the following set of reactions.\nX ←(A)– C₆H₅CN –(B)→ Y\nX dissolves in dil. HCl; Y reacts with 2,4-DNP\nWhat are A and B respectively?",
+   "options_en": [
+    "LiAlH₄, H₂O ; H₂/Ni",
+    "Na/Hg, C₂H₅OH ; H₂/Ni",
+    "DIBAL-H, H₂O ; LiAlH₄, H₂O",
+    "Na/Hg, C₂H₅OH ; DIBAL-H, H₂O"
+   ],
+   "marked_correct": 4,
+   "chapter": "Organic Compounds Containing Nitrogen",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 141,
+   "question_en": "Which of the following statements is not correct?",
+   "options_en": [
+    "TeO₂ is an oxidizing agent",
+    "SO₂ is reducing agent",
+    "SeO₃ is acidic in nature",
+    "SeO₂ is a gas"
+   ],
+   "marked_correct": 4,
+   "chapter": "VIA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 142,
+   "question_en": "The Cₚ of an ideal gas is 10.314 J mol⁻¹ K⁻¹. One mole of this gas is expanded against a constant pressure of p atm. The change in temperature during expansion is 1.0 K. The values of q (in J) and ΔH (in J mol⁻¹) are respectively",
+   "options_en": [
+    "10.314, 10.314",
+    "2.000, 10.314",
+    "10.314, 2.000",
+    "2.000, 2.000"
+   ],
+   "marked_correct": 1,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 143,
+   "question_en": "A→P is a first order reaction. At 300 K this reaction was started with [A] = 0.5 mol L⁻¹. The rate constant of reaction was 0.125 min⁻¹. The same reaction was started separately with [A] = 1 mol L⁻¹ at 300 K. The rate constant (in min⁻¹) now is",
+   "options_en": [
+    "0.125",
+    "1.00",
+    "0.25",
+    "0.50"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemical Kinetics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 144,
+   "question_en": "In hydrogen atom, an electron is transferred from an orbit of radius 1.3225 nm to another orbit of radius 0.2116 nm. What is the energy (in J) of emitted radiation?",
+   "options_en": [
+    "3.027×10⁻¹⁹",
+    "1.635×10⁻¹⁸",
+    "0.4578×10⁻¹⁸",
+    "4.087×10⁻¹⁹"
+   ],
+   "marked_correct": 3,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 145,
+   "question_en": "Observe the following set of reactions\nC₆H₅COCl —X→ C₆H₅CHO\nC₆H₅COCl —Y→ C₆H₅COCH₃\nC₆H₅CHO + C₆H₅COCH₃ —(OH⁻, 293 K)→ Z (Major product)\nWhat are X, Y and Z respectively?",
+   "options_en": [
+    "H₂|Pd–BaSO₄ ; (CH₃)₂Cd ; C₆H₅CH=CH–C(=O)–C₆H₅",
+    "H₂|Pd–BaSO₄ ; CH₃MgBr ; C₆H₅CH=CH–C(=O)–C₆H₅",
+    "LiAlH₄, H₃O⁺ ; CH₃MgBr ; C₆H₅–C(CH₃)=CH–C(=O)–C₆H₅",
+    "H₂|Pd ; (CH₃)₂Cd ; C₆H₅CH=CH–C(=O)–C₆H₅"
+   ],
+   "marked_correct": 1,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 146,
+   "question_en": "The pair of ions with paramagnetic nature and same number of electrons is",
+   "options_en": [
+    "La³⁺, Ce⁴⁺",
+    "Eu²⁺, Gd³⁺",
+    "Eu³⁺, Pm²⁺",
+    "Lu³⁺, Yb²⁺"
+   ],
+   "marked_correct": 2,
+   "chapter": "d and f Block Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 147,
+   "question_en": "Observe the following complex ions\n[Mn(CN)₆]³⁻ (A), [Fe(CN)₆]³⁻ (B), [CoF₆]³⁻ (C), [Co(C₂O₄)₃]³⁻ (D)\nIdentify the option in which the unpaired electrons in the complex ions are in correct increasing order",
+   "options_en": [
+    "D, A, B, C",
+    "D, B, A, C",
+    "B, A, C, D",
+    "C, A, B, D"
+   ],
+   "marked_correct": 2,
+   "chapter": "Coordination Compounds",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 148,
+   "question_en": "In which of the following reactions, hydrogen is evolved?\nI. Reaction of sodium borohydride with iodine\nII. Oxidation of diborane\nIII. Reaction of boron trifluoride with sodium hydride\nIV. Hydrolysis of diborane",
+   "options_en": [
+    "I, II only",
+    "I, II, IV only",
+    "III, IV only",
+    "I, IV only"
+   ],
+   "marked_correct": 4,
+   "chapter": "p-Block Elements: Group 13",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 149,
+   "question_en": "The polymer chains are held together by hydrogen bonding in a polymer X. Polymer X is formed from monomers Y and Z. What are Y and Z?\n(Table of monomers: A = styrene, C₆H₅CH=CH₂; B = hexamethylenediamine, H₂N(CH₂)₆NH₂; C = a diene monomer; D = a nitrile-substituted alkene, CH₂=CH-CN; E = adipic acid, HO₂C(CH₂)₄CO₂H)",
+   "options_en": [
+    "B, E",
+    "A, A",
+    "C, D",
+    "A, C"
+   ],
+   "marked_correct": 1,
+   "chapter": "Polymers",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; the monomer table's C column (a diene-type structure) is transcribed with lower certainty, but the marked-correct pairing B, E (hexamethylenediamine + adipic acid, forming nylon-6,6 via hydrogen-bonded amide chains) is unambiguous."
+  },
+  {
+   "q_no": 150,
+   "question_en": "An alcohol X (C₅H₁₂O) produces turbidity instantly with conc. HCl/ZnCl₂. Isomer (Y) of X undergoes dehydration with conc. H₂SO₄ at 443 K. X and Y respectively are",
+   "options_en": [
+    "(CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol (tertiary) ; (CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol (tertiary, drawn as the same skeleton)",
+    "a chain alcohol with OH near one end (branched, primary-looking) ; a tertiary alcohol shape with OH on a quaternary-adjacent carbon",
+    "(CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol (tertiary alcohol) ; (CH₃)₂CHCH(OH)CH₃ — 3-methylbutan-2-ol (secondary alcohol)",
+    "(CH₃)₂C(OH)CH₂CH₃ — 2-methylbutan-2-ol (tertiary, HO– drawn on the left) ; CH₃CH(CH₃)CH₂CH₂OH — 3-methylbutan-1-ol (primary alcohol)"
+   ],
+   "marked_correct": 3,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; options are skeletal structures of C5H12O alcohol isomers illustrating the Lucas test (conc. HCl/ZnCl2 instant turbidity = tertiary alcohol). The marked-correct option 3 is chemically unambiguous — X = 2-methylbutan-2-ol (tertiary), Y = its isomer 3-methylbutan-2-ol (secondary, consistent with acid-catalysed dehydration). The precise chain/OH position drawn in distractor options 1, 2 and 4 was harder to pin down pixel-exactly from the crop and is transcribed to the best of visual judgement."
+  },
+  {
+   "q_no": 151,
+   "question_en": "'X' is the isomer of C₆H₁₄. It has four primary carbons and two tertiary carbons. 'X' can be prepared from which of the following reaction?",
+   "options_en": [
+    "CH₃CH(CH₃)CH=CHCH₃ (an alkene) → Ni/Δ, H₂",
+    "(CH₃)₂CHBr, isopropyl bromide → Na/dry ether",
+    "CH₃CH₂CH₂Br, 1-bromopropane → Na/dry ether",
+    "a branched chloroalkane, CH₃CH₂CH(CH₃)CH₂CH₂Cl → Zn/H⁺"
+   ],
+   "marked_correct": 2,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "has diagram; option structures are alkyl halides/alkenes transcribed by visual inspection. The marked-correct option 2 (isopropyl bromide + Na/dry ether, Wurtz reaction giving 2,3-dimethylbutane — 4 primary + 2 tertiary carbons) is unambiguous; exact chain length/branch position in distractor options 1 and 4 read with slightly lower certainty from the crop."
+  },
+  {
+   "q_no": 152,
+   "question_en": "Which of the following gives more number of oxides on reacting with HCl?",
+   "options_en": [
+    "Na₂CO₃",
+    "NaHCO₃",
+    "NaNO₂",
+    "Na₂SO₃"
+   ],
+   "marked_correct": 3,
+   "chapter": "VA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 153,
+   "question_en": "Identify the correct orders regarding atomic radii\ni. Cl > F > Li\nii. P > C > N\niii. Tm > Sm > Eu\niv. Sr > Ca > Mg",
+   "options_en": [
+    "ii, iii, iv only",
+    "i, ii, iii only",
+    "iii, iv only",
+    "ii, iv only"
+   ],
+   "marked_correct": 4,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 154,
+   "question_en": "Which of the following statements is not correct regarding the gas evolved by the reaction of dilute HCl on CaCO₃?",
+   "options_en": [
+    "It is colourless, odourless gas",
+    "It is poisonous gas",
+    "It has least solubility in water",
+    "It is acidic in nature"
+   ],
+   "marked_correct": 2,
+   "chapter": "p-Block Elements: Group 14",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 155,
+   "question_en": "At T(K), Kₚ value for the reaction, 2AO₂(g) + O₂(g) ⇌ 2AO₃(g) is 4×10¹⁰. What is the K′ₚ value for 3AO₂(g) + (3/2)O₂(g) ⇌ 3AO₃(g) at T(K)?",
+   "options_en": [
+    "16×10¹⁵",
+    "8×10¹⁵",
+    "16×10²⁰",
+    "8×10²⁰"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemical Equilibrium, Acids and Bases",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 156,
+   "question_en": "Composition of siderite ore is",
+   "options_en": [
+    "CuCO₃.Cu(OH)₂",
+    "FeCO₃",
+    "CuFeS₂",
+    "ZnCO₃"
+   ],
+   "marked_correct": 2,
+   "chapter": "Metallurgy",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 157,
+   "question_en": "A solid mixture weighing 5 g contains equal number of moles of Na₂CO₃ and NaHCO₃. This solid mixture was dissolved in 1 L of water. What is the volume (in mL) of 0.1 M HCl required to completely react with this 1 L mixture solution?",
+   "options_en": [
+    "1578.0",
+    "946.8",
+    "789.0",
+    "157.8"
+   ],
+   "marked_correct": 3,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 158,
+   "question_en": "100 mL of 0.05 M Cu²⁺ aqueous solution is added to 1 L of 0.1 M KI solution. The number of moles of I₂ and Cu₂I₂ formed are respectively",
+   "options_en": [
+    "5×10⁻³, 2.5×10⁻³",
+    "5×10⁻³, 5×10⁻³",
+    "2.5×10⁻³, 2.5×10⁻³",
+    "2.5×10⁻³, 5×10⁻³"
+   ],
+   "marked_correct": 3,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 159,
+   "question_en": "Which of the following statements is not correct?",
+   "options_en": [
+    "Carbonates of alkaline earth metals are insoluble in water",
+    "Beryllium halides are covalent in nature",
+    "Alkali metal halides have high negative enthalpies of formation",
+    "The super oxides of alkali metals are colourless"
+   ],
+   "marked_correct": 3,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "ADJUDICATED by hand 2026-09-07: the green tick is on option 4. Alkali-metal superoxides (KO2, RbO2, CsO2) are coloured, so \"colourless\" is the incorrect statement and the official key (4) is correct. The agent read the page's \"Chosen Option : 3\" box, which is the CANDIDATE's answer from the real exam, not the key. marked_correct is left as the agent read it so the disagreement rate stays honest.",
+   "adjudication": "official_key_confirmed_by_hand"
+  },
+  {
+   "q_no": 160,
+   "question_en": "At 298 K the equilibrium constant for the reaction\nM(s) + 2Ag⁺(aq) → M²⁺(aq) + 2Ag(s) is 10¹⁵. What is the E⁰_cell (in V) for this reaction?\n(2.303RT/F) = 0.06 V",
+   "options_en": [
+    "0.225",
+    "0.45",
+    "0.90",
+    "1.10"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electrochemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  }
+ ]
+}

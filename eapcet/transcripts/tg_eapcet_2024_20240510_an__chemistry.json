@@ -1,0 +1,606 @@
+{
+  "paper_id": "tg_eapcet_2024_20240510_an",
+  "subject": "chemistry",
+  "questions": [
+    {
+      "q_no": 121,
+      "question_en": "The wavelength of an electron is 10³ nm. What is its momentum in kg m s⁻¹?\n(h = 6.625×10⁻³⁴ J s)",
+      "options_en": [
+        "6.625×10⁻³¹",
+        "6.625×10⁻³⁷",
+        "6.625×10⁻²⁸",
+        "6.625×10⁻³⁴"
+      ],
+      "marked_correct": 3,
+      "chapter": "Atomic Structure",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 122,
+      "question_en": "Two statements are given below\nStatement I: In H atom, the energy of 2s and 2p orbitals is same\nStatement II: In He atom, the energy of 2s and 2p orbitals is same\nThe correct answer is",
+      "options_en": [
+        "Both statements I and II are correct",
+        "Both statements I and II are not correct",
+        "Statement I is correct but statement II is not correct",
+        "Statement I is not correct but statement II is correct"
+      ],
+      "marked_correct": 3,
+      "chapter": "Atomic Structure",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 123,
+      "question_en": "The set containing the elements with positive electron gain enthalpies is",
+      "options_en": [
+        "S, Se, Te",
+        "Kr, Xe, Rn",
+        "Cl, Br, I",
+        "K, Rb, Cs"
+      ],
+      "marked_correct": 2,
+      "chapter": "Classification of Elements and Periodic Properties",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 124,
+      "question_en": "Assertion (A): The ionic radii of Na⁺ and F⁻ are same\nReason (R): Both Na⁺ and F⁻ are isoelectronic species\nThe correct answer is",
+      "options_en": [
+        "(A) and (R) are correct. (R) is the correct explanation of (A)",
+        "(A) and (R) are correct, but (R) is not the correct explanation of (A)",
+        "(A) is correct but (R) is not correct",
+        "(A) is not correct but (R) is correct"
+      ],
+      "marked_correct": 4,
+      "chapter": "Classification of Elements and Periodic Properties",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 125,
+      "question_en": "The number of lone pairs of electrons on central atom of ClF₃, NF₃, SF₄, XeF₄ respectively are",
+      "options_en": [
+        "0,1,0,2",
+        "2,1,0,0",
+        "2,1,1,2",
+        "2,1,1,0"
+      ],
+      "marked_correct": 3,
+      "chapter": "Chemical Bonding",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 126,
+      "question_en": "The hybridisation of central atom of BF₃, SnCl₂, HgCl₂ respectively is",
+      "options_en": [
+        "sp², sp², sp",
+        "sp², sp², sp²",
+        "sp³, sp², sp²",
+        "sp³, sp, sp²"
+      ],
+      "marked_correct": 1,
+      "chapter": "Chemical Bonding",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 127,
+      "question_en": "The variation of volume of an ideal gas with its number of moles (n) is obtained as a graph at 300 K and 1 atm pressure. What is the slope of the graph?",
+      "options_en": [
+        "24.6 L",
+        "24.6 L mol⁻¹",
+        "1/24.6 L⁻¹",
+        "1/24.6 L⁻¹ mol"
+      ],
+      "marked_correct": 2,
+      "chapter": "States of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 128,
+      "question_en": "Observe the following reaction\n2KClO₃(s) →(Δ) 2KCl(s) + 3O₂(g)↑\nIn this reaction",
+      "options_en": [
+        "Cl is oxidized and O is reduced",
+        "Cl is reduced and O is oxidized",
+        "K is oxidized and O is reduced",
+        "K is reduced and Cl is also reduced"
+      ],
+      "marked_correct": 2,
+      "chapter": "Stoichiometry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 129,
+      "question_en": "The ΔfH° of AO(s), BO₂(g) and ABO₃(s) is −635, x and −1210 kJ mol⁻¹ respectively.\nABO₃(s) → AO(s) + BO₂(g); ΔrH° = 175 kJ mol⁻¹. What is the value of x (in kJ mol⁻¹)?",
+      "options_en": [
+        "−750",
+        "+400",
+        "−400",
+        "+750"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 130,
+      "question_en": "At 27°C, 100 mL of 0.5 M HCl is mixed with 100 mL of 0.4 M NaOH solution. To this resultant solution, 800 mL of distilled water is added. What is the pH of final solution?",
+      "options_en": [
+        "12.0",
+        "2.0",
+        "1.3",
+        "1.0"
+      ],
+      "marked_correct": 2,
+      "chapter": "Chemical Equilibrium, Acids and Bases",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 131,
+      "question_en": "The proper conditions of storing H₂O₂ are",
+      "options_en": [
+        "Placing in wax lined plastic bottle and kept in dark",
+        "Placing in wax lined plastic bottle and exposed to light",
+        "Placing in wax lined plastic bottle containing traces of base",
+        "Placing in metal vessel and exposed to light"
+      ],
+      "marked_correct": 1,
+      "chapter": "Hydrogen and its Compounds",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 132,
+      "question_en": "The standard electrode potentials E°(V) for Li⁺/Li, Na⁺/Na respectively are",
+      "options_en": [
+        "−3.04, −2.714",
+        "−2.714, −3.04",
+        "−3.04, −3.04",
+        "−2.714, −2.714"
+      ],
+      "marked_correct": 1,
+      "chapter": "Electrochemistry",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 133,
+      "question_en": "The alloy formed by beryllium with 'X' is used in the preparation of high strength springs. 'X' is",
+      "options_en": [
+        "Al",
+        "Zn",
+        "Cu",
+        "Cr"
+      ],
+      "marked_correct": 3,
+      "chapter": "s-Block Elements",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 134,
+      "question_en": "What are X and Y respectively in the following reactions?\nX ←(CO)← B₂H₆ →(NaH, (C₂H₅)₂O)→ Y",
+      "options_en": [
+        "BH₃·2CO; NaBO₂",
+        "BH₃·CO; NaBH₄",
+        "BH₃·CO; NaBO₂",
+        "BH₃·CO; Na₂B₄O₇"
+      ],
+      "marked_correct": 2,
+      "chapter": "p-Block Elements: Group 13",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 135,
+      "question_en": "Which of the following statements are correct?\n(i) CCl₄ undergoes hydrolysis easily\n(ii) Diamond has directional covalent bonds\n(iii) Fullerene is thermodynamically most stable allotrope of carbon\n(iv) Glass is a man-made silicate\nThe correct answer is",
+      "options_en": [
+        "i, iii only",
+        "ii, iv only",
+        "ii, iii, iv only",
+        "i, ii only"
+      ],
+      "marked_correct": 2,
+      "chapter": "p-Block Elements: Group 14",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 136,
+      "question_en": "Which of the following industries generate non-biodegradable wastes?",
+      "options_en": [
+        "Cotton mills",
+        "Paper mills",
+        "Thermal power plants",
+        "Textile factories"
+      ],
+      "marked_correct": 3,
+      "chapter": "Environmental Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 137,
+      "question_en": "Possible number of isomers including stereoisomers for an organic compound with the molecular formula C₄H₉Br is",
+      "options_en": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "marked_correct": 3,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 138,
+      "question_en": "The alkane which is next to methane in homologous series can be prepared from which of the following reactions?\nI  2CH₃Br →(Na, dry ether)\nII  CH₃COOH →(NaOH, CaO, Δ)\nIII CH₃CH=CH₂ →(H₂/Pt)\nIV CH₃CH₂Br →(Zn, H⁺)\nCorrect answer is",
+      "options_en": [
+        "I, IV only",
+        "II, III only",
+        "I, III only",
+        "II, IV only"
+      ],
+      "marked_correct": 1,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 139,
+      "question_en": "At high pressure and regulated supply of air, methane is heated with catalyst 'X' to give methanol and with catalyst 'Y' to give methanal. X and Y respectively are",
+      "options_en": [
+        "Mo₂O₃, Cu",
+        "Cu, Mo₂O₃",
+        "V₂O₅, KMnO₄",
+        "KMnO₄, Cr₂O₃"
+      ],
+      "marked_correct": 2,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 140,
+      "question_en": "What is 'Y' in the following set of reactions?\nC₃H₄ →(H₂O, Hg²⁺/H⁺, 333K)→ X ←(i) O₃ (ii) Zn+H₂O← Y",
+      "options_en": [
+        "CH₃CH₂CH=CHCH₂CH₃ (hex-3-ene, skeletal structure)",
+        "(CH₃)₂C=C(CH₃)₂ (2,3-dimethylbut-2-ene, skeletal structure)",
+        "CH₃CH₂CH=CH₂ (but-1-ene, skeletal structure)",
+        "CH₂=CHCH₂CH₂CH₃ (pent-1-ene, skeletal structure)"
+      ],
+      "marked_correct": 2,
+      "chapter": "General Organic Chemistry",
+      "year_cycle": "first_year",
+      "confidence": "medium",
+      "note": "has diagram — all four options are skeletal line structures of alkenes; transcribed here as condensed structural formulas (compound identities inferred from the drawn carbon skeletons)"
+    },
+    {
+      "q_no": 141,
+      "question_en": "The molecular formula of a crystal is AB₂O₄. Oxygen atoms form ccp lattice. Atoms of A occupy x% of tetrahedral voids and atoms of B occupy y% of octahedral voids. x and y are respectively",
+      "options_en": [
+        "12.5%, 50%",
+        "50%, 12.5%",
+        "33.3%, 66.6%",
+        "66.6%, 33.3%"
+      ],
+      "marked_correct": 1,
+      "chapter": "Solid State",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 142,
+      "question_en": "At T(K), 0.1 moles of a non-volatile solute was dissolved in 0.9 moles of a volatile solvent. The vapour pressure of pure solvent is 0.9 bar. What is the vapour pressure (in bar) of solution?",
+      "options_en": [
+        "0.89",
+        "0.81",
+        "0.79",
+        "0.71"
+      ],
+      "marked_correct": 2,
+      "chapter": "Solutions",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 143,
+      "question_en": "Two statements are given below\nStatement I: Molten NaCl is electrolysed using Pt electrodes. Cl₂ is liberated at anode\nStatement II: Aqueous CuSO₄ is electrolysed using Pt electrodes. O₂ is liberated at cathode\nThe correct answer is",
+      "options_en": [
+        "Both statement I and II are correct",
+        "Both statement I and II are not correct",
+        "Statement I is correct but statement II is not correct",
+        "Statement I is not correct but statement II is correct"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electrochemistry",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 144,
+      "question_en": "For a first order reaction, the graph between log[a/(a−x)] (on y-axis) and time (in min, on x-axis) gave a straight line passing through origin. The slope is 2×10⁻³ min⁻¹. What is the rate constant (in min⁻¹)?",
+      "options_en": [
+        "2×10⁻³",
+        "2×10⁻³/2.303",
+        "4.606×10⁻³",
+        "0.5×10⁻⁵"
+      ],
+      "marked_correct": 3,
+      "chapter": "Chemical Kinetics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 145,
+      "question_en": "In Haber's process of manufacture of ammonia, the 'catalyst', the 'promoter' and 'poison for the catalyst' are respectively",
+      "options_en": [
+        "Fe, W, CO",
+        "Co, Mo, CO",
+        "Fe, Mo, CO₂",
+        "Fe, Mo, CO"
+      ],
+      "marked_correct": 4,
+      "chapter": "VA Group Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 146,
+      "question_en": "Among the following, the calcination process is",
+      "options_en": [
+        "2Cu₂S + 3O₂ →(Δ) 2Cu₂O + 2SO₂↑",
+        "Al₂O₃(s) + 2NaOH(aq) + 3H₂O(l) → 2Na[Al(OH)₄](aq)",
+        "2CuFeS₂ + O₂ → Cu₂S + 2FeS + SO₂↑",
+        "Fe₂O₃·xH₂O(s) →(Δ) Fe₂O₃(s) + xH₂O(g)"
+      ],
+      "marked_correct": 4,
+      "chapter": "Metallurgy",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 147,
+      "question_en": "The correct order of boiling points of hydrogen halides is",
+      "options_en": [
+        "HF < HCl < HBr < HI",
+        "HI < HBr < HCl < HF",
+        "HCl < HBr < HI < HF",
+        "HBr < HCl < HI < HF"
+      ],
+      "marked_correct": 3,
+      "chapter": "Hydrogen and its Compounds",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 148,
+      "question_en": "Observe the following reactions (unbalanced)\nP₂O₃ + H₂O → X\nP₄O₁₀ + H₂O → Y\nThe number of P=O bonds present in X, Y are respectively",
+      "options_en": [
+        "1, 3",
+        "1, 2",
+        "2, 1",
+        "1, 1"
+      ],
+      "marked_correct": 4,
+      "chapter": "VA Group Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 149,
+      "question_en": "Carbon on reaction with hot conc. H₂SO₄, gives two oxides along with H₂O. What is the nature of these two oxides?",
+      "options_en": [
+        "Both are acidic",
+        "Both are basic",
+        "Both are neutral",
+        "Both are amphoteric"
+      ],
+      "marked_correct": 1,
+      "chapter": "p-Block Elements: Group 14",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 150,
+      "question_en": "Which of the following orders is correct for the property given?",
+      "options_en": [
+        "Cr < Mn < Fe - standard electrode potential value for M³⁺/M²⁺",
+        "Cr²⁺ < Mn²⁺ < Fe²⁺ - magnetic moments",
+        "VO₂⁺ < Cr₂O₇²⁻ < MnO₄⁻ - oxidizing power",
+        "Ti < V < Cr - first ionization enthalpy"
+      ],
+      "marked_correct": 3,
+      "chapter": "d and f Block Elements",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 151,
+      "question_en": "Arrange the following in increasing order of their crystal field splitting energy\nI [Co(H₂O)₆]³⁺\nII [Co(NH₃)₆]³⁺\nIII [Co(CN)₆]³⁻\nIV [CoF₆]³⁻",
+      "options_en": [
+        "I < II < III < IV",
+        "IV < I < II < III",
+        "I < III < II < IV",
+        "IV < II < I < III"
+      ],
+      "marked_correct": 2,
+      "chapter": "Coordination Compounds",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 152,
+      "question_en": "What are 'X' and 'Y' respectively in the following reactions?\nPolymer used in making of safety helmets ← Y ← HOCH₂CH₂OH → X → Polymer used in manufacture of paints",
+      "options_en": [
+        "benzene-1,2-dicarboxylic acid (ortho, adjacent –COOH groups) and benzene-1,4-dicarboxylic acid (para, opposite –COOH groups) — skeletal structures",
+        "benzene-1,4-dicarboxylic acid (para) and benzene-1,3-dicarboxylic acid (meta) — skeletal structures",
+        "benzene-1,3-dicarboxylic acid (meta) and benzene-1,4-dicarboxylic acid (para) — skeletal structures",
+        "benzene-1,4-dicarboxylic acid (para) and benzene-1,2-dicarboxylic acid (ortho) — skeletal structures"
+      ],
+      "marked_correct": 1,
+      "chapter": "Polymers",
+      "year_cycle": "second_year",
+      "confidence": "medium",
+      "note": "has diagram — all four options are skeletal structures of ortho/meta/para benzene-dicarboxylic acid isomers; transcribed as named isomers based on relative –COOH positions drawn"
+    },
+    {
+      "q_no": 153,
+      "question_en": "Two statements are given below\nI Milk sugar is disaccharide of α-D-galactose and β-D-glucose\nII Sucrose is disaccharide of α-D-glucose and β-D-fructose\nCorrect answer is",
+      "options_en": [
+        "Both statements I and II are correct",
+        "Both statements I and II are incorrect",
+        "Statement I is correct but statement II is incorrect",
+        "Statement I is incorrect but statement II is correct"
+      ],
+      "marked_correct": 4,
+      "chapter": "Biomolecules",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 154,
+      "question_en": "The effects that aspirin can produce in the body are\n(Table: A = Anti-inflammatory, B = Antidepressant, C = Antipyretic, D = Anticoagulant, E = Hypnotic)",
+      "options_en": [
+        "A, B, C",
+        "A, C, D",
+        "A, B, E",
+        "C, D, E"
+      ],
+      "marked_correct": 2,
+      "chapter": "Chemistry in Everyday Life",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 155,
+      "question_en": "The reagent 'X' used in the following reaction to obtain good yield of the product is\n(CH₃)₂CHCH₂CH₂OH →(X)→ (CH₃)₂CHCH₂CH₂I",
+      "options_en": [
+        "KI, H₂SO₄",
+        "KI, 95% H₃PO₄",
+        "NaI, ZnCl₂",
+        "HI"
+      ],
+      "marked_correct": 2,
+      "chapter": "Haloalkanes and Haloarenes",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — substrate and product drawn as skeletal structures (3-methylbutan-1-ol converted to 1-iodo-3-methylbutane); question text reconstructed from the structures"
+    },
+    {
+      "q_no": 156,
+      "question_en": "The C-O-H bond angle in A is X and C-O-C bond angle in B is Y. What are X and Y?\n(A = H₃C-O-H, methanol; B = H₃C-O-CH₃, dimethyl ether)",
+      "options_en": [
+        "X > 109°28', Y > 109°28'",
+        "X < 109°28', Y < 109°28'",
+        "X < 109°28', Y > 109°28'",
+        "X > 109°28', Y < 109°28'"
+      ],
+      "marked_correct": 3,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 157,
+      "question_en": "IUPAC name of the following compound is\n(structure: benzene-O-CH₂CH₂CH₂CH(CH₃)CH₃)",
+      "options_en": [
+        "2-Methyl pentoxybenzene",
+        "4-Methylpentoxybenzene",
+        "Phenoxy-4-methylpentane",
+        "Phenoxy-2-methylpentane"
+      ],
+      "marked_correct": 2,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — compound shown only as a skeletal structure; question text reconstructed from the structure"
+    },
+    {
+      "q_no": 158,
+      "question_en": "The bromides formed by the cleavage of ethers A and B with HBr respectively are\n(A = C₆H₅-O-CH₂CH₂CH₃, phenyl propyl ether; B = (CH₃)₃C-O-CH₂CH₂CH₃, tert-butyl propyl ether)",
+      "options_en": [
+        "bromobenzene, tert-butyl bromide — skeletal structures",
+        "bromobenzene, propyl bromide — skeletal structures",
+        "propyl bromide, propyl bromide — skeletal structures",
+        "propyl bromide, tert-butyl bromide — skeletal structures"
+      ],
+      "marked_correct": 4,
+      "chapter": "Alcohols, Phenols and Ethers",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — ethers A and B and all four answer options are drawn as skeletal structures; transcribed as named compounds"
+    },
+    {
+      "q_no": 159,
+      "question_en": "Identify the set, in which X and Y are correctly matched\n(C₆H₅CHO, benzaldehyde →(X)→ Y)",
+      "options_en": [
+        "NH₂OH , Hydrazone",
+        "NH₂NH₂ , Semicarbazone",
+        "C₆H₅NH₂ , Schiff base",
+        "RNH₂ , Oxime"
+      ],
+      "marked_correct": 3,
+      "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — benzaldehyde shown as a benzene-ring structure with a CHO label"
+    },
+    {
+      "q_no": 160,
+      "question_en": "What are X and Y respectively in the following reactions?\nC₆H₅CH₂NH₂ ←(Y)← C₆H₅CONH₂ →(X)→ C₆H₅NH₂",
+      "options_en": [
+        "(i) LiAlH₄ (ii) H₂O ; NaOH+Br₂",
+        "NaOH+Br₂ ; (i) LiAlH₄ (ii) H₂O",
+        "NaOH+Br₂ ; (i) NaBH₄ (ii) H₂O",
+        "(i) NaBH₄ (ii) H₂O ; NaOH+Br₂"
+      ],
+      "marked_correct": 2,
+      "chapter": "Organic Compounds Containing Nitrogen",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — reaction scheme shown with ring structures; benzylamine (left product) has an explicit CH₂ linking the ring to NH₂, distinguishing it from aniline (right product)"
+    }
+  ]
+}

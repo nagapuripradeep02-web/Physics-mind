@@ -1,0 +1,34 @@
+{
+ "why": "These questions were transcribed but are incomplete, so they are held OUT of the bank rather than shipped with a hole in them. Fix the transcript, or re-crop the source, then rebuild.",
+ "questions": [
+  {
+   "id": "tg_eapcet_2023_20230513_an_q121",
+   "paper_id": "tg_eapcet_2023_20230513_an",
+   "year": 2023,
+   "date": "2023-05-13",
+   "session": "AN",
+   "subject": "chemistry",
+   "q_no": 121,
+   "question_en": "What is the approximate angular momentum (in J s) of electron in hydrogen atom in its ground state? (h = 6.625×10⁻³⁴ J s)",
+   "options_en": [
+    "2110×10⁻³⁷",
+    "2110×10⁻³⁶",
+    "",
+    "1055×10⁻³⁶"
+   ],
+   "answer": 3,
+   "answer_source": "official_key_pdf",
+   "vision_marked_correct": 3,
+   "answer_disputed": false,
+   "adjudication": "source_pdf_defect_option_text_absent",
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "needs_figure": false,
+   "key_disputed_by_working": false,
+   "transcription_confidence": "low",
+   "note": "Option 3's text is ABSENT FROM THE OFFICIAL SOURCE PDF, not from our crop. Confirmed three independent ways on page 91 of the source: (a) the rendered crop shows the label and green tick with nothing beside them; (b) the PDF text layer holds the four option LABELS as text spans (option 3's is green, 008000) but no value text; (c) the option VALUES are raster images, and the page carries value images at option 1, 2 and 4's rows only - at option 3's row there is nothing but the 16x16 tick icon. The answer is not in doubt: the key and the vision pass both read option 3, and L = h/2π = 1.055×10⁻³⁴ J s = 1055×10⁻³⁷, which is exactly the value the three printed distractors are built around (2110×10⁻³⁷ is 2× it, 1055×10⁻³⁶ is 10× it). That value is NOT written into options_en, because deriving a string is not transcribing one. The question is held out of the bank; promoting it means a human deciding to print a reconstructed option.",
+   "crops": "eapcet/crops/tg_eapcet_2023_20230513_an",
+   "defect": "an option is empty"
+  }
+ ]
+}

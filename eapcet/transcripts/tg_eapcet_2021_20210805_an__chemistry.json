@@ -1,0 +1,607 @@
+{
+ "paper_id": "tg_eapcet_2021_20210805_an",
+ "subject": "chemistry",
+ "questions": [
+  {
+   "q_no": 121,
+   "question_en": "The ratio of the highest to the lowest wavelength of Lyman series is",
+   "options_en": [
+    "4 : 3",
+    "9 : 8",
+    "27 : 5",
+    "16 : 5"
+   ],
+   "marked_correct": 1,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 122,
+   "question_en": "The relation between the stopping potential (V₀) and frequency (ν) is correctly represented in [φ = Work function]",
+   "options_en": [
+    "V₀ = φ/e − hν²/e",
+    "V₀ = he/ν + φ/e",
+    "V₀ = hν/e − φ/e",
+    "V₀ = hν/e²"
+   ],
+   "marked_correct": 3,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 123,
+   "question_en": "The correct increasing order of the electronegativity is",
+   "options_en": [
+    "B < C < S < Cl",
+    "B < S < C < Cl",
+    "B < C < Cl < S",
+    "C < B < S < Cl"
+   ],
+   "marked_correct": 1,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 124,
+   "question_en": "The alkaline earth metal sulphate, which has its hydration enthalpy greater than its lattice energy is",
+   "options_en": [
+    "BeSO₄",
+    "BaSO₄",
+    "CaSO₄",
+    "SrSO₄"
+   ],
+   "marked_correct": 1,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 125,
+   "question_en": "A pair of molecules with see-saw shape and linear shape, respectively, is",
+   "options_en": [
+    "CH₄ and SO₃",
+    "XeF₄ and CS₂",
+    "SF₄ and C₂H₂",
+    "CCl₄ and CO₂"
+   ],
+   "marked_correct": 3,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 126,
+   "question_en": "Which of the following species is a radical?",
+   "options_en": [
+    "CO₂",
+    "NO",
+    "NO₂⁻",
+    "CN⁻"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 127,
+   "question_en": "1 L each of gases A and B diffused through a membrane in 15 and 30 minutes, respectively, under identical conditions. What is the ratio of molecular weight of A and B?",
+   "options_en": [
+    "1 : 2",
+    "2 : 1",
+    "4 : 1",
+    "1 : 4"
+   ],
+   "marked_correct": 4,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 128,
+   "question_en": "The figure represents PV vs P relation for CO, CH₄, H₂ and He gases under identical conditions. Which curve, shown in the figure, represents He gas?",
+   "options_en": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "marked_correct": 3,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 129,
+   "question_en": "An organic compound contains 60% C; 4.48% H and 35.5% O. Its empirical formula is",
+   "options_en": [
+    "C₉H₈O₄",
+    "C₅H₄O₂",
+    "C₅H₄O₄",
+    "C₉H₇O₆"
+   ],
+   "marked_correct": 1,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 130,
+   "question_en": "The number of sodium ions present in 0.5 mole of sodium ferrocynide is",
+   "options_en": [
+    "2 × 10²³",
+    "0.5 × 10²³",
+    "12 × 10²³",
+    "4 × 10²³"
+   ],
+   "marked_correct": 3,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "Paper prints \"ferrocynide\" (likely a misprint for ferrocyanide); transcribed verbatim as printed."
+  },
+  {
+   "q_no": 131,
+   "question_en": "How many times the volume of a diatomic gas should be increased reversibly and adiabatically in order to reduce its RMS velocity to half of its initial value.",
+   "options_en": [
+    "4",
+    "8",
+    "16",
+    "32"
+   ],
+   "marked_correct": 4,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 132,
+   "question_en": "The correct decreasing order of the basic strength is",
+   "options_en": [
+    "HS⁻ > CH₃⁻ > NH₂⁻ > CN⁻",
+    "HS⁻ > CN⁻ > NH₂⁻ > CH₃⁻",
+    "CH₃⁻ > NH₂⁻ > CN⁻ > HS⁻",
+    "NH₂⁻ > CN⁻ > CH₃⁻ > HS⁻"
+   ],
+   "marked_correct": 3,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 133,
+   "question_en": "The equilibrium constant for the reaction is P₄(s) + 5O₂(g) ⇌ P₄O₁₀(s)",
+   "options_en": [
+    "Kc = √(5O₂)",
+    "Kc = [P₄O₁₀] / [P₄][O₂]⁵",
+    "Kc = [O₂]⁵",
+    "Kc = 1/[O₂]⁵"
+   ],
+   "marked_correct": 4,
+   "chapter": "Chemical Equilibrium, Acids and Bases",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 134,
+   "question_en": "The sum of the total number of neutrons present in protium, deuterium and tritium is",
+   "options_en": [
+    "5",
+    "3",
+    "4",
+    "6"
+   ],
+   "marked_correct": 2,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 135,
+   "question_en": "A metal 'M' readily gives MSO₄, which is soluble in water. It forms its oxide MO which is amphoteric. It forms an insoluble hydroxide M(OH)₂, which is soluble in NaOH solution. The M is",
+   "options_en": [
+    "Be",
+    "Ba",
+    "Ca",
+    "Mg"
+   ],
+   "marked_correct": 1,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 136,
+   "question_en": "Which one of the following oxide dissolves in both hydrochloric acid and sodium hydroxide?",
+   "options_en": [
+    "MgO",
+    "Na₂O",
+    "Al₂O₃",
+    "BaO"
+   ],
+   "marked_correct": 3,
+   "chapter": "p-Block Elements: Group 13",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 137,
+   "question_en": "Which of the given atoms has the greatest electron affinity?",
+   "options_en": [
+    "F",
+    "Cl",
+    "P",
+    "Al"
+   ],
+   "marked_correct": 2,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 138,
+   "question_en": "The indicator used during the estimation of COD of a water sample is",
+   "options_en": [
+    "EBT",
+    "K₂Cr₂O₇",
+    "Ferroin",
+    "Phenopthalene"
+   ],
+   "marked_correct": 2,
+   "chapter": "Environmental Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "Option 4 printed as \"Phenopthalene\" (misprint of phenolphthalein); transcribed verbatim as printed."
+  },
+  {
+   "q_no": 139,
+   "question_en": "The stability order of the given alkenes is",
+   "options_en": [
+    "(I) > (II) > (III)",
+    "(I) > (III) > (II)",
+    "(III) > (II) > (I)",
+    "(III) > (I) > (II)"
+   ],
+   "marked_correct": 4,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "Has diagram: three bicyclic (octahydronaphthalene-type) structures labelled I, II, III with the C=C at different ring positions, shown in the question stem."
+  },
+  {
+   "q_no": 140,
+   "question_en": "Among the following reactions, the reaction that \"does not\" give alkane product is",
+   "options_en": [
+    "CH₃C≡CCH₃ → (Pt, H₂)",
+    "CH₃CH₂CH₂CH₂CO₂Na → (Electrolysis)",
+    "CH₃CH₂Br → (Na, dry ether)",
+    "CH₃CH₂CH₂CH₂F → (Zn, H⁺)"
+   ],
+   "marked_correct": 4,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "Each option is a reaction scheme (substrate with reagents over the arrow); transcribed as substrate → (reagents)."
+  },
+  {
+   "q_no": 141,
+   "question_en": "Hex-1-yne on reaction with Br₂ (excess)/ CCl₄, gives",
+   "options_en": [
+    "1, 1, 3, 3 – Tetrabromohexane",
+    "2, 2, 3, 3 – Tetrabromohexane",
+    "1, 1, 1, 2 – Tetrabromohexane",
+    "1, 1, 2, 2 – Tetrabromohexane"
+   ],
+   "marked_correct": 4,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 142,
+   "question_en": "The number of voids in 1 mole of a compounds forming a hcp structure are",
+   "options_en": [
+    "1.8 × 10²⁴",
+    "3.6 × 10²⁴",
+    "6.0 × 10²³",
+    "7.2 × 10²⁴"
+   ],
+   "marked_correct": 1,
+   "chapter": "Solid State",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 143,
+   "question_en": "A 3 mL of solution was made by dissolving 20 mg of protein at 0 °C. The osmotic pressure of the resulting solution is 3.8 torr. The molecular weight of the protein is approximately (in g / mol)",
+   "options_en": [
+    "300",
+    "3 × 10⁵",
+    "3 × 10⁴",
+    "3 × 10³"
+   ],
+   "marked_correct": 3,
+   "chapter": "Solutions",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 144,
+   "question_en": "When salt is added to water, which of the following statement is true?",
+   "options_en": [
+    "Boiling point decreases",
+    "Boiling point increases",
+    "Boiling point remain constant",
+    "Freezing point increases"
+   ],
+   "marked_correct": 2,
+   "chapter": "Solutions",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 145,
+   "question_en": "Given λ°(Mg²⁺) = 106 S cm² mole⁻¹, λ°(SO₄²⁻) = 160 S cm² mole⁻¹. The value of λ°(MgSO₄) (in S cm² mole⁻¹) is",
+   "options_en": [
+    "271.6",
+    "266",
+    "390",
+    "126"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electrochemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 146,
+   "question_en": "For a first order reaction t½ is 1200 s. The specific rate constant in s⁻¹ is",
+   "options_en": [
+    "5.8 × 10⁻⁴",
+    "5.8 × 10⁻⁵",
+    "0.58 × 10⁻⁶",
+    "0.58 × 10⁻⁵"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemical Kinetics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 147,
+   "question_en": "Which of the following statements is false during adsorption of gas molecule on a metal surface?",
+   "options_en": [
+    "Enthalpy change is positive",
+    "Entropy change is negative",
+    "Both enthalpy and entropy simultaneously decreases",
+    "Free energy change is negative"
+   ],
+   "marked_correct": 1,
+   "chapter": "Surface Chemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 148,
+   "question_en": "Give the correct characteristic colours of the products (P, Q, R, S) formed in the following reactions.\nA) NO + NO₂ → (< 250 K) → P\nB) 2NO₂ ⇌ Q\nC) Pb(NO₃)₂ → (673 K) → R + PbO\nD) HNO₃ + P₄O₁₀ → S + 4HPO₃",
+   "options_en": [
+    "P: Blue, Q: Colourless, R: Brown, S: Colourless",
+    "P: Colourless, Q: Blue, R: Colourless, S: Brown",
+    "P: Colourless, Q: Colourless, R: Blue, S: Brown",
+    "P: Brown, Q: Blue, R: Colourless, S: Colourless"
+   ],
+   "marked_correct": 1,
+   "chapter": "VA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Each option is printed as a 4-column table (P, Q, R, S) of colour names; transcribed as labelled P/Q/R/S pairs."
+  },
+  {
+   "q_no": 149,
+   "question_en": "The neutral oxide among the following is",
+   "options_en": [
+    "SO₂",
+    "CO",
+    "CO₂",
+    "CaO"
+   ],
+   "marked_correct": 2,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 150,
+   "question_en": "Mustard gas among the following is",
+   "options_en": [
+    "CCl₃NO₂",
+    "ClCH₂CH₂SCH₂CH₂Cl",
+    "CH₃SH",
+    "H₂S"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemistry in Everyday Life",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 151,
+   "question_en": "The reaction of aqueous [Ni(H₂O)₆]²⁺ is performed by the addition of a bidentate ligand ethane-1, 2, diamine (en). Match the following.\n[Ni(H₂O)₆]²⁺ : en molar ratio — Colour of the product\nA) 1 : 1   B) 1 : 2   C) 1 : 3\nI) Pale blue   II) Blue / Purple   III) Violet   IV) Green\nThe correct match is",
+   "options_en": [
+    "A-I, B-II, C-III",
+    "A-II, B-III, C-IV",
+    "A-III, B-I, C-II",
+    "A-IV, B-I, C-III"
+   ],
+   "marked_correct": 1,
+   "chapter": "Coordination Compounds",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Match-the-following table (A/B/C molar ratios vs I/II/III/IV colours) transcribed as A-x, B-y, C-z pairs."
+  },
+  {
+   "q_no": 152,
+   "question_en": "The number of bridged CO ligands present in Fe₂(CO)₉ and Co₂(CO)₈, respectively, are",
+   "options_en": [
+    "2, 1",
+    "2, 2",
+    "2, 3",
+    "3, 2"
+   ],
+   "marked_correct": 4,
+   "chapter": "d and f Block Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 153,
+   "question_en": "Glucose on prolonged heating with HI, gives product P. The product P is",
+   "options_en": [
+    "CH₂I–(CHOH)₄–CH₂OH",
+    "CHO–(CH–I)₄–CH₂I",
+    "CH₃–(CH₂)₄–CH₃",
+    "CH₂–I–(CHI)₄–CH₂I"
+   ],
+   "marked_correct": 3,
+   "chapter": "Biomolecules",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Options are drawn as vertical condensed structural formulas; transcribed as linear condensed structures."
+  },
+  {
+   "q_no": 154,
+   "question_en": "The most reactive molecules towards SN¹ reaction is",
+   "options_en": [
+    "(I), (IV) and (VI)",
+    "(I), (II) and (IV)",
+    "(II), (III) and (V)",
+    "(IV), (V) and (VI)"
+   ],
+   "marked_correct": 1,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Has diagram: six labelled structures (I) bis(4-methoxyphenyl)methyl chloride, (II) CH₃CH₂Cl, (III) 4-nitrobenzyl chloride, (IV) tert-butyl chloride (CH₃)₃CCl, (V) chlorobenzene, (VI) 2-chloro-2-phenylpropane, shown in the question stem; the options themselves are plain roman-numeral lists."
+  },
+  {
+   "q_no": 155,
+   "question_en": "Identify A, B and C, respectively, in the following reaction sequence are\n(1-isopropylbenzene / cumene) --O₂--> A --H⁺/H₂O--> B + C",
+   "options_en": [
+    "A = C₆H₅COOH (benzoic acid), B = 4-isopropylphenol, C = CH₃CH₂CH₂OH (propan-1-ol)",
+    "A = C₆H₆ (benzene), B = 2-isopropylphenol, C = (CH₃)₂CHOH (propan-2-ol)",
+    "A = C₆H₅C(CH₃)₂OH (2-phenylpropan-2-ol), B = C₆H₅OH (phenol), C = (CH₃)₂CHOH (propan-2-ol)",
+    "A = C₆H₅C(CH₃)₂OOH (cumene hydroperoxide), B = C₆H₅OH (phenol), C = CH₃COCH₃ (acetone)"
+   ],
+   "marked_correct": 4,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Has diagram: question stem shows cumene structure; each option shows skeletal structures for A, B, C, transcribed as named/condensed structures."
+  },
+  {
+   "q_no": 156,
+   "question_en": "The reaction used for the synthesis of ether is",
+   "options_en": [
+    "Williamson's synthesis",
+    "Reimer- Tiemann reaction",
+    "Sandmeyer reaction",
+    "Finkelstein reaction"
+   ],
+   "marked_correct": 1,
+   "chapter": "Alcohols, Phenols and Ethers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 157,
+   "question_en": "The major product of the following reaction is\n4-CH₃-C₆H₄-CO-CHO --i) Conc. NaOH, Δ  ii) H₃O⁺-->",
+   "options_en": [
+    "4-CH₃-C₆H₄-CH(OH)-CHO",
+    "4-CH₃-C₆H₄-CH(OH)-CH₂OH",
+    "4-CH₃-C₆H₄-CH(OH)-CO₂H",
+    "4-CH₃-C₆H₄-CO-CH₂OH"
+   ],
+   "marked_correct": 3,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Has diagram: question stem and options are skeletal/condensed structural formulas of a substituted benzaldehyde/ketone; transcribed as condensed structures."
+  },
+  {
+   "q_no": 158,
+   "question_en": "The major product formed in the following reaction scheme is\ncyclohexene --i) Br₂, hν  ii) Mg, dry ether  iii) CdCl₂  iv) CH₃COCl-->",
+   "options_en": [
+    "Cyclohexenyl ring bonded to −CH(OH)CH₃ (secondary alcohol), double bond farther from the substituent, as drawn",
+    "Cyclohexenyl ring bonded to −CH(OH)CH₃ (secondary alcohol), double bond adjacent to the substituent, as drawn",
+    "Cyclohexenyl ring bonded to −C(OH)(CH₃)₂ (tertiary alcohol)",
+    "Cyclohexenyl ring bonded to −CO−CH₃ (methyl ketone)"
+   ],
+   "marked_correct": 4,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "medium",
+   "note": "Has diagram: all four options are cyclohexenyl skeletal structures differing in substituent (alcohol vs ketone) and the ring's C=C position relative to the substituent; the correct option (a methyl ketone) is unambiguous, but the exact ring double-bond locants for options 1 and 2 are described qualitatively rather than assigned precise numbering."
+  },
+  {
+   "q_no": 159,
+   "question_en": "Which among the following is correct structure of the semicarbazone formed when ethanal reacts with semicarbazide?",
+   "options_en": [
+    "H₃C–CH=N–C(=O)–NH–NH₂",
+    "H₃C–CH₂–NH–C(=O)–NH–NH₂",
+    "H₃C–CH=N–NH–C(=O)–NH₂",
+    "H₃C–CH₂–NH–NH–C(=O)–NH₂"
+   ],
+   "marked_correct": 3,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "Options are structural formulas; transcribed as condensed structures."
+  },
+  {
+   "q_no": 160,
+   "question_en": "A 90 g of ethyl amine on reaction with methyl chloride produced a tertiary amine as an exclusive product. The amount of methyl chloride required is [Given mass in amu : H = 1, C = 12, N = 14, Cl = 35.5]",
+   "options_en": [
+    "50.5 g",
+    "101 g",
+    "202 g",
+    "303 g"
+   ],
+   "marked_correct": 3,
+   "chapter": "Organic Compounds Containing Nitrogen",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "The transcribing agent reported cross-checking this answer against the extracted official key, so this one reading is NOT independent of the key and must be excluded from the agreement score.",
+   "independence": "compromised"
+  }
+ ]
+}

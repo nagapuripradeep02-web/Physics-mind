@@ -1,0 +1,405 @@
+{
+  "paper_id": "tg_eapcet_2025_20250503_fn",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "Two tuning forks of frequencies 320 Hz and 323 Hz are vibrated together. The time interval between a maximum sound and its adjacent minimum sound heard by an observer is",
+      "options_en": ["1/6 s", "1/3 s", "1/9 s", "1/12 s"],
+      "marked_correct": 1,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "A truck of mass 8 ton is carrying a block of mass 2 ton. If a breaking force of 25 kN is applied on the truck, then the frictional force acting on the block is (Coefficient of static friction between the block and the truck is 0.3)",
+      "options_en": ["5000 N", "6250 N", "1000 N", "6000 N"],
+      "marked_correct": 1,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "At a given place, to increase the number of oscillations made by a simple pendulum in one minute from 72 to 90, the length of the pendulum is to be decreased by",
+      "options_en": ["50%", "36%", "64%", "56%"],
+      "marked_correct": 2,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "The work done in displacing a particle from y = a to y = 2a by a force −K/y² acting along y-axis is",
+      "options_en": ["−5K/8a", "−K/a²", "−14K/8a³", "−K/2a"],
+      "marked_correct": 4,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "The ratios of the voltage sensitivities, resistances and areas of the coils of two moving coil galvanometers A and B are 4:3, 3:4 and 1:2 respectively. If the number of turns of the coil of galvanometer A is 200, then the number of turns of the coil of galvanometer B is (All other quantities remain same in both the cases)",
+      "options_en": ["400", "150", "100", "200"],
+      "marked_correct": 3,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "The amplitude of the electric field associated with a light beam of intensity 15/π Wm⁻² is",
+      "options_en": ["60 NC⁻¹", "30 NC⁻¹", "15 NC⁻¹", "120 NC⁻¹"],
+      "marked_correct": 1,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "A straight uniform wire of resistance 36 Ω is bent in the form of a semi-circular loop. The effective resistance between the ends of the diameter of the semi-circular loop is",
+      "options_en": ["36/7 Ω", "77/9 Ω", "99/7 Ω", "56/9 Ω"],
+      "marked_correct": 2,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "Which of the following logic gates is a universal gate?",
+      "options_en": ["OR", "NOT", "AND", "NAND"],
+      "marked_correct": 4,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "A parallel plate capacitor with air as dielectric has a capacitance of 4 μF. The space between the plates of the capacitor is completely filled with a material of dielectric constant 5 and charged to a potential of 100 V. The work done to completely remove the dielectric material after the capacitor is disconnected from the battery is",
+      "options_en": ["0.4 J", "0.5 J", "0.1 J", "0.6 J"],
+      "marked_correct": 1,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "A balance is made using a uniform metre scale of mass 100 g and two plates each of mass 200 g fixed at the two ends of the scale and the balance is pivoted at 45 cm mark of the scale. The error when 300 g weight is placed in the plate at 0 cm to weigh vegetables placed in the plate at 100 cm is",
+      "options_en": ["36.4 g", "63.6 g", "100 g", "200 g"],
+      "marked_correct": 3,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "If the rms speed of the molecules of a gas at a temperature of 77 °C is 50 ms⁻¹, then the rms speed of the same gas molecules at a temperature of 150.5 °C is",
+      "options_en": ["45 ms⁻¹", "55 ms⁻¹", "65 ms⁻¹", "35 ms⁻¹"],
+      "marked_correct": 2,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "An emf of 2.8 mV is induced in a rectangular loop of area 150 cm² when the current in the loop changes from 3 A to 8 A in a time of 0.2 s. Then the self-inductance of the loop is",
+      "options_en": ["84 μH", "28 μH", "56 μH", "112 μH"],
+      "marked_correct": 4,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "A solenoid of 1000 turns per metre has a core of material with relative permeability 400. The windings of the solenoid are insulated from the core and a current of 2 A is passed through the solenoid. Then the value of the magnetic intensity inside the solenoid is",
+      "options_en": ["2×10³ Am⁻¹", "8×10⁵ Am⁻¹", "1.0 Am⁻¹", "794 Am⁻¹"],
+      "marked_correct": 1,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "A capacitor and a resistor of resistance 100√3 Ω are connected in series to an ac source of voltage 100 sin(200t) V, where 't' is time in second. If the phase difference between the voltage and the current in the circuit is 30°, then the capacitance of the capacitor is",
+      "options_en": ["50 μF", "30 μF", "150 μF", "100 μF"],
+      "marked_correct": 1,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "A convex lens of radii of curvature 6 cm and 12 cm is immersed in a liquid of refractive index 1.3. If the refractive index of the material of the lens is 1.5, then the focal length of the lens when immersed in the liquid is",
+      "options_en": ["26 cm", "39 cm", "13 cm", "52 cm"],
+      "marked_correct": 1,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "A Cassegrain telescope uses two mirrors of radii of curvature 25 cm and 16 cm separated by a distance of 2.5 cm. The position of the final image of an object at infinity is",
+      "options_en": ["40 cm from convex mirror", "4.44 cm from convex mirror", "4.44 cm from concave mirror", "40 cm from concave mirror"],
+      "marked_correct": 1,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "A rectangular ice box of total surface area of 1000 cm² initially contains 1.5 kg of ice at 0 °C. If the thickness of the walls of the box is 2 mm and the temperature outside the box is 42 °C, then the mass of the ice remaining in the box after 160 minutes is (Thermal conductivity of the material of the box = 10⁻² Wm⁻¹K⁻¹ and latent heat of the fusion of ice = 336×10³ Jkg⁻¹)",
+      "options_en": ["0.8 kg", "0.9 kg", "0.6 kg", "0.7 kg"],
+      "marked_correct": 2,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "If a nucleus P converts into a nucleus Q by the decay of one alpha particle and two β⁻ particles, then the nuclei P and Q are",
+      "options_en": ["Isobars", "Isomers", "Isotones", "Isotopes"],
+      "marked_correct": 4,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "The graph between the input voltage (Vᵢ) and the output voltage (Vₒ) of a transistor connected in common emitter configuration is shown in the figure. The active, saturation and cutoff regions of the transistor are respectively",
+      "options_en": ["II, III and I", "I, II and III", "III, I and II", "I, III and II"],
+      "marked_correct": 1,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram — the Vo vs Vi graph marks Region I, Region II and Region III on the curve; the text alone does not indicate which physical region each roman numeral labels"
+    },
+    {
+      "q_no": 100,
+      "question_en": "A thin film of water is formed between two straight parallel wires each of length 8 cm separated by distance of 0.6 cm. The work done to increase the distance between the wires to 0.8 cm is (Surface tension of water = 0.07 Nm⁻¹)",
+      "options_en": ["22.4 μJ", "33.6 μJ", "44.8 μJ", "11.2 μJ"],
+      "marked_correct": 1,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "The potential energy of an electron in an orbit of hydrogen atom is −6.8 eV. The de Broglie wavelength of the electron in this orbit is (r₀ is Bohr radius)",
+      "options_en": ["3πr₀", "πr₀", "2πr₀", "4πr₀"],
+      "marked_correct": 4,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "If a radioactive substance decays 10% in every 16 hours, then the percentage of the radioactive substance that remains after 2 days is",
+      "options_en": ["72.9", "82.2", "18.8", "27.1"],
+      "marked_correct": 1,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 103,
+      "question_en": "The Young's modulus and Poisson's ratio of a material are respectively Y and σ. The force required to decrease the area of cross-section of a wire made of this material by ΔA is",
+      "options_en": ["YΔA/4σ", "YΔA/2σ", "2YΔA/σ", "YΔA/σ"],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "A piece of length 3.532 m is cut from a rod of length 43.4 m. The length of the remaining rod in metre is (up to correct significant figures)",
+      "options_en": ["39.8", "39.868", "39.9", "39.87"],
+      "marked_correct": 3,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "When unpolarised light from air incidents on the surface of a medium of refractive index √3, then the reflected light is totally polarised. The angle of refraction is",
+      "options_en": ["30°", "60°", "53°", "37°"],
+      "marked_correct": 1,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "If the orbital speed of a body revolving in a circular path near the surface of the earth is 8 kms⁻¹, then the orbital speed of a body revolving around the earth in a circular orbit at height of 19,200 km from the surface of earth is (Radius of the earth = 6400 km)",
+      "options_en": ["4 kms⁻¹", "9 kms⁻¹", "6 kms⁻¹", "7.5 kms⁻¹"],
+      "marked_correct": 1,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "When photons incident on a photosensitive material of work function 1.5 eV, the maximum velocity of the emitted photoelectrons is 8×10⁵ ms⁻¹. The stopping potential of the photoelectrons is (Mass of the electron = 9×10⁻³¹ kg and charge of the electron = 1.6×10⁻¹⁹ C)",
+      "options_en": ["2.1 V", "2.4 V", "1.5 V", "1.8 V"],
+      "marked_correct": 4,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 108,
+      "question_en": "A ball projected at an angle of 45° with the horizontal crosses two points at equal heights separated by a distance at times 2 s and 8 s respectively. The horizontal distance between the two points is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": ["500 m", "600 m", "400 m", "300 m"],
+      "marked_correct": 4,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 109,
+      "question_en": "The potential difference between the terminals of a cell is 20 V when a current of 2 A flows through the circuit. When the direction of current in the circuit is reversed, the potential difference between the terminals of the cell is 30 V. The internal resistance of the cell is",
+      "options_en": ["2 Ω", "1.5 Ω", "2.5 Ω", "1 Ω"],
+      "marked_correct": 3,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "Due to the presence of air resistance, if a body dropped from a height of 20 m reaches the ground with a speed of 18 ms⁻¹, then the time taken by the body to reach the ground is nearly",
+      "options_en": ["2.2 s", "2.5 s", "1.8 s", "2 s"],
+      "marked_correct": 1,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "The range of weak nuclear force is of the order of",
+      "options_en": ["10¹⁶ m", "10⁻¹⁰ m", "10¹⁰ m", "10⁻¹⁶ m"],
+      "marked_correct": 4,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "medium",
+      "note": "Chapter assignment inferred — the fundamental forces of nature (including the weak nuclear force range) are taught in the Physical World chapter of the first-year syllabus; the paper gives no explicit chapter tag."
+    },
+    {
+      "q_no": 112,
+      "question_en": "The temperature at which the reading on Fahrenheit scale becomes 90% more than the reading on Celsius scale is",
+      "options_en": ["608 °F", "320 °F", "580 °F", "280 °F"],
+      "marked_correct": 1,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "The ratio of radii of gyration of a thin circular ring and a circular disc of same radius about a tangential axis in their own planes is √12 : √K. The value of K is",
+      "options_en": ["10", "5", "12", "24"],
+      "marked_correct": 1,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "The frequency of sound heard by an observer moving towards a stationary source with certain speed is n₁ and if the observer moves away from the same source with same speed, the frequency of sound heard by the observer is n₂. If the speed of sound in air is 340 ms⁻¹ and n₁ : n₂ = 71 : 65, then speed of observer is",
+      "options_en": ["27 kmph", "15 kmph", "54 kmph", "36 kmph"],
+      "marked_correct": 3,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "The layer of the atmosphere which efficiently reflects high frequency waves particularly at night is",
+      "options_en": ["Stratosphere", "Troposphere", "Thermosphere", "Mesosphere"],
+      "marked_correct": 3,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "A person wearing a parachute jumps off a plane from a height of 2 km from the ground and falls freely for 20 m before his parachute opens. After his parachute opens if he continues to move uniformly with the velocity attained due to his freefall, the total time taken by the person to reach the ground is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": ["99 s", "101 s", "100 s", "102 s"],
+      "marked_correct": 2,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "At constant pressure, equal amounts of heat are supplied to a monatomic gas and a diatomic gas separately. The ratio of the increases in internal energies of the two gases is",
+      "options_en": ["9 : 49", "3 : 7", "21 : 25", "1 : 1"],
+      "marked_correct": 3,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "An alpha particle moving with certain speed towards east enters a uniform magnetic field directed vertically up. The alpha particle will then move in",
+      "options_en": ["vertical circular path with decreased speed", "horizontal circular path with the same speed", "vertical circular path with increased speed", "vertical circular path with the same speed"],
+      "marked_correct": 2,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "A rain drop of diameter 1 mm falls with a terminal velocity of 0.7 ms⁻¹ in air. If the coefficient of viscosity of air is 2×10⁻⁵ Pa s, the viscous force on the rain drop is",
+      "options_en": ["26.4×10⁻⁸ N", "13.2×10⁻⁸ N", "6.6×10⁻⁸ N", "10.4×10⁻⁸ N"],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 120,
+      "question_en": "An alpha particle and a proton are accelerated from rest in a uniform electric field. The ratio of the times taken by proton and alpha particle to attain equal displacements is",
+      "options_en": ["1 : √2", "√2 : 1", "1 : 2", "2 : 1"],
+      "marked_correct": 1,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}

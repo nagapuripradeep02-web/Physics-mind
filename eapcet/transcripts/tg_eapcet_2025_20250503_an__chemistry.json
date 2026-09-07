@@ -1,0 +1,607 @@
+{
+ "paper_id": "tg_eapcet_2025_20250503_an",
+ "subject": "chemistry",
+ "questions": [
+  {
+   "q_no": 121,
+   "question_en": "In the atomic spectrum of hydrogen, the wavelengths of the spectral lines corresponding to electronic transitions (i) n = 4 to n = 2 and (ii) n = 3 to n = 1 are λ₁ and λ₂ Å respectively. The value of (λ₁ − λ₂) (in cm) is (R_H = Rydberg constant)",
+   "options_en": [
+    "(1/R_H)[24/101]",
+    "R_H[24/101]",
+    "(1/R_H)[101/24]",
+    "R_H[101/24]"
+   ],
+   "marked_correct": 3,
+   "chapter": "Atomic Structure",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 122,
+   "question_en": "Work functions of four metals M₁, M₂, M₃ and M₄ are 4.8, 4.3, 4.75 and 3.75 eV respectively. The metals which do not show photoelectric effect when light of wavelength 310 nm falls on the metals are",
+   "options_en": [
+    "M₁, M₂ only",
+    "M₁, M₃ only",
+    "M₁, M₂, M₃ only",
+    "M₁, M₂, M₄ only"
+   ],
+   "marked_correct": 3,
+   "chapter": "Dual Nature of Radiation and Matter",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "The paper itself prints a PHYSICS question (photoelectric effect, work functions) at Question Number 122, inside the chemistry block. Verified by reading the page: the printed question number and the chemistry-sequential Question Id are both correct, so this is an error in the official paper, not in the numbering. Tagged with its real physics chapter and marked subject_override so it is not counted as a chemistry question.",
+   "subject_override": "physics"
+  },
+  {
+   "q_no": 123,
+   "question_en": "In second period of the modern periodic table, two elements X and Y have higher first ionization enthalpy values than the preceding and succeeding elements. X and Y are respectively",
+   "options_en": [
+    "B, C",
+    "Al, S",
+    "Be, N",
+    "Na, S"
+   ],
+   "marked_correct": 3,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 124,
+   "question_en": "Consider the following pairs of elements and identify the pairs of elements which have nearly same atomic radius. I. Y, La  II. Zr, Hf  III. Mo, W  IV. Cr, Mo",
+   "options_en": [
+    "I & II",
+    "II & III",
+    "III & IV",
+    "I & III"
+   ],
+   "marked_correct": 2,
+   "chapter": "Classification of Elements and Periodic Properties",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 125,
+   "question_en": "If the sum of bond orders of O₂⁻ and O₂²⁻ is x, then bond order of O₂²⁺ will be",
+   "options_en": [
+    "1.20x",
+    "1.33x",
+    "1.50x",
+    "2.50x"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 126,
+   "question_en": "Identify the molecule / ion in which the ratio of σ to π bonds is 3:2",
+   "options_en": [
+    "HCO₃⁻",
+    "CH₂(CN)₂",
+    "HClO₄",
+    "XeO₃"
+   ],
+   "marked_correct": 2,
+   "chapter": "Chemical Bonding",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 127,
+   "question_en": "At 298K, a flask 'A' of unknown volume (V) contains oxygen at 5 atm. Another flask 'B' of volume 2L contains helium at 3 atm. Two flasks are connected together by a small tube of zero volume. After the two gases are completely mixed, if the resulting mixture is found to have the mole fraction of oxygen as 0.2, the volume of flask 'A' (in L) is (Assume oxygen and helium as ideal gases)",
+   "options_en": [
+    "0.1",
+    "0.3",
+    "0.2",
+    "0.4"
+   ],
+   "marked_correct": 2,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 128,
+   "question_en": "In which of the following, oxidation state of nitrogen is lowest?",
+   "options_en": [
+    "NH₂OH",
+    "NH₄Cl",
+    "N₂H₄",
+    "HNO₂"
+   ],
+   "marked_correct": 2,
+   "chapter": "Stoichiometry",
+   "year_cycle": "first_year",
+   "confidence": "medium",
+   "note": "Oxidation-number question; assigned to Stoichiometry (the TG EAPCET chapter covering oxidation number rules) as the best-fit chapter — no dedicated 'redox' chapter exists in the supplied list."
+  },
+  {
+   "q_no": 129,
+   "question_en": "Which of the following processes are reversible? I. Vaporization of a liquid at its boiling point. II. Expansion of gas into vacuum. III. Transformation of a solid substance into liquid at its melting point. IV. Neutralization of an acid by a base.",
+   "options_en": [
+    "I & III",
+    "II & III",
+    "II & IV",
+    "I & IV"
+   ],
+   "marked_correct": 1,
+   "chapter": "Thermodynamics",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 130,
+   "question_en": "At T(K) in a saturated solution of MgCO₃ and Ag₂CO₃, if the concentration of Mg²⁺ ion is 3.2×10⁻⁵ M, then the concentration of Ag⁺ ion in the solution will be [Given: Ksp(MgCO₃) = 1.6×10⁻⁶ and Ksp(Ag₂CO₃) = 8.0×10⁻¹² at T(K)]",
+   "options_en": [
+    "√1.3×10⁻⁷ M",
+    "√1.5×10⁻⁶ M",
+    "√1.6×10⁻⁶ M",
+    "√1.6×10⁻⁵ M"
+   ],
+   "marked_correct": 4,
+   "chapter": "Chemical Equilibrium, Acids and Bases",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 131,
+   "question_en": "Temperature of maximum density of H₂O is y K and D₂O is x K. (x − y) (in K) is nearly",
+   "options_en": [
+    "7.0",
+    "3.5",
+    "4.0",
+    "8.5"
+   ],
+   "marked_correct": 1,
+   "chapter": "States of Matter",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 132,
+   "question_en": "How many of the following metals give oxides and nitrides when burnt in air?\nBe, Na, Mg, Ba, Sr, Li, K",
+   "options_en": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "marked_correct": 4,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "options 3 and 4 (with their marks) were in the continuation image, joined by position"
+  },
+  {
+   "q_no": 133,
+   "question_en": "Identify the incorrect order against the property given in brackets",
+   "options_en": [
+    "BeCO₃ < MgCO₃ < CaCO₃ < SrCO₃ (Thermal stability)",
+    "BeSO₄ > MgSO₄ > CaSO₄ > SrSO₄ (Solubility in water)",
+    "Li₂CO₃ > Na₂CO₃ > K₂CO₃ > Rb₂CO₃ (Thermal stability)",
+    "BeCO₃ > MgCO₃ > CaCO₃ > SrCO₃ (Solubility in water)"
+   ],
+   "marked_correct": 3,
+   "chapter": "s-Block Elements",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 134,
+   "question_en": "Diborane on hydrolysis gives a compound X. The correct statements about X are\nI. It is a tribasic acid\nII. It is a weak monobasic acid\nIII. It has a layer structure\nIV. It is highly soluble in water",
+   "options_en": [
+    "I & III",
+    "II & III",
+    "II & IV",
+    "I & IV"
+   ],
+   "marked_correct": 2,
+   "chapter": "p-Block Elements: Group 13",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "option 4 (with its mark) was in the continuation image, joined by position"
+  },
+  {
+   "q_no": 135,
+   "question_en": "Choose the correct statements about allotropes of carbon\nI. Graphite has layered structure\nII. Buckminster fullerene is not aromatic in nature\nIII. The distance between two adjacent layers in graphite is 141.5 pm\nIV. The hybridization of carbons in graphite and Buckminster fullerene is same",
+   "options_en": [
+    "I & IV",
+    "I & II",
+    "II & III",
+    "III & IV"
+   ],
+   "marked_correct": 1,
+   "chapter": "p-Block Elements: Group 14",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 136,
+   "question_en": "Which of the following is a lung irritant that can lead to an acute respiratory disease in children?",
+   "options_en": [
+    "SO₂",
+    "CO₂",
+    "CO",
+    "NO₂"
+   ],
+   "marked_correct": 4,
+   "chapter": "Environmental Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 137,
+   "question_en": "Arrange the following in decreasing order of their boiling points\n(A) 2 – Methylbutane (B) 2,2 – Dimethylpropane (C) Pentane (D) Hexane",
+   "options_en": [
+    "D > C > A > B",
+    "B > A > C > D",
+    "D > A > C > B",
+    "B > C > A > D"
+   ],
+   "marked_correct": 1,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": "all content (question + options) was in the continuation image; q137_0 held only the header block"
+  },
+  {
+   "q_no": 138,
+   "question_en": "Which of the following is not an aromatic species?",
+   "options_en": [
+    "Cyclohexadienyl cation (a six-membered ring with two C=C double bonds and an exocyclic positively charged sp3 carbon)",
+    "Cyclopentadienyl anion (a five-membered ring with two C=C double bonds and a negative charge)",
+    "Tropylium (cycloheptatrienyl) cation — a seven-membered ring with three C=C double bonds and a positive charge",
+    "Naphthalene (two fused benzene rings)"
+   ],
+   "marked_correct": 1,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "medium",
+   "note": "has diagram — all four options are drawn chemical structures, not text; transcribed by chemical identity since exact bond/charge placement cannot be copied verbatim as text"
+  },
+  {
+   "q_no": 139,
+   "question_en": "In the estimation of nitrogen by Kjeldahl's method 0.933 g of an organic compound 'X' was analyzed. Ammonia evolved was absorbed in 60 mL of 0.1 M H₂SO₄. The unreacted acid requires 20 mL of 0.1 M NaOH for complete neutralization. The compound 'X' is",
+   "options_en": [
+    "C₆H₅CH₂NH₂",
+    "C₆H₅NH₂",
+    "CH₃CH₂NH₂",
+    "CH₃CONH₂"
+   ],
+   "marked_correct": 2,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "medium",
+   "note": "all content was in the continuation image; q139_0 held only the header block. Chapter tag uncertain between General Organic Chemistry (organic quantitative analysis) and Stoichiometry — assigned General Organic Chemistry since Kjeldahl estimation is taught under organic-compound characterization"
+  },
+  {
+   "q_no": 140,
+   "question_en": "Which of the following is a least stable carbocation?",
+   "options_en": [
+    "CH₃–CH₂⁺",
+    "CH₂=CH⁺",
+    "CH₂=CH–CH₂⁺",
+    "C₆H₅–CH₂⁺"
+   ],
+   "marked_correct": 2,
+   "chapter": "General Organic Chemistry",
+   "year_cycle": "first_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 141,
+   "question_en": "The incorrect statement about crystals with Schottky defect is",
+   "options_en": [
+    "It is due to missing of equal number of cations and anions from lattice points",
+    "On the whole crystal is electrically neutral",
+    "It is shown by ionic compounds in which cation and anion are of almost same size",
+    "Density of the crystal increases"
+   ],
+   "marked_correct": 4,
+   "chapter": "Solid State",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 142,
+   "question_en": "Two liquids 'A' and 'B' form an ideal solution. At 300 K, the vapour pressure of a solution containing 1 mole of 'A' and 3 moles of 'B' is 550 mm Hg. At the same temperature, if one more mole of 'B' is added to the solution, the vapour pressure of solution increases to 560 mm Hg. Then the ratio of vapour pressures of A and B in their pure state is",
+   "options_en": [
+    "1:3",
+    "3:1",
+    "2:3",
+    "3:2"
+   ],
+   "marked_correct": 3,
+   "chapter": "Solutions",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 143,
+   "question_en": "The molar conductivity of acetic acid solution at infinite dilution is 390 S cm² mol⁻¹. What is the molar conductivity of 0.01 M acetic acid solution (in S cm² mol⁻¹)? (Given: Ka(CH₃COOH) = 1.8×10⁻⁵, assume 1−α=1)",
+   "options_en": [
+    "10.64",
+    "16.54",
+    "51.64",
+    "15.64"
+   ],
+   "marked_correct": 2,
+   "chapter": "Electrochemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 144,
+   "question_en": "The half-life of a zero order reaction A → products, is 0.5 hour. The initial concentration of A is 4 mol L⁻¹. How much time (in hr) does it take for its concentration to come from 2.0 mol L⁻¹ to 1.0 mol L⁻¹?",
+   "options_en": [
+    "1/4",
+    "1/8",
+    "1/2",
+    "1/6"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemical Kinetics",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 145,
+   "question_en": "Match the following. List-1 (Type of colloid): A) Sol, B) Foam, C) Gel, D) Aerosol. List-2 (Example): I) Cloud, II) Whipped cream, III) Paint, IV) Butter. The correct answer is",
+   "options_en": [
+    "A – IV, B – II, C – III, D – I",
+    "A – III, B – I, C – IV, D – II",
+    "A – III, B – II, C – IV, D – I",
+    "A – IV, B – I, C – II, D – III"
+   ],
+   "marked_correct": 3,
+   "chapter": "Surface Chemistry",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram"
+  },
+  {
+   "q_no": 146,
+   "question_en": "Observe the following statements. Statement-I: The choice of reducing agent for the reduction of an oxide ore can be predicted by using Ellingham diagram, a plot of ΔG⊖ Vs T. Statement-II: According to Ellingham diagram, metal oxide with higher ΔG⊖ is more stable than the oxide with lower ΔG⊖. The correct answer is",
+   "options_en": [
+    "Both statements I and II are correct",
+    "Statement I is correct, but statement II is not correct",
+    "Statement I is not correct, but statement II is correct",
+    "Both statements I and II are not correct"
+   ],
+   "marked_correct": 2,
+   "chapter": "Metallurgy",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 147,
+   "question_en": "Which one of the orders is correctly matched with the property mentioned against it?",
+   "options_en": [
+    "H₂S < H₂O < H₂Se < H₂Te (Boiling point)",
+    "N₂O < NO < N₂O₃ < N₂O₄ < N₂O₅ (Acidic nature)",
+    "HI < HCl < HBr < HF (Acidic nature)",
+    "H₂O < H₂S < H₂Se < H₂Te (Bond angle)"
+   ],
+   "marked_correct": 2,
+   "chapter": "VA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 148,
+   "question_en": "Noble gas 'X' is used as a diluent for oxygen in modern diving apparatus and noble gas 'Y' is used mainly to provide an inert atmosphere in high temperature metallurgical processes. 'Y' and 'X' are respectively?",
+   "options_en": [
+    "He, Ar",
+    "Ar, He",
+    "He, Kr",
+    "Ar, Kr"
+   ],
+   "marked_correct": 2,
+   "chapter": "Noble Gases",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 149,
+   "question_en": "The dibasic oxoacid of phosphorus on disproportionation gives two products A and B. A and B are respectively",
+   "options_en": [
+    "HPO₃, PH₃",
+    "H₃PO₂, H₂O",
+    "H₃PO₄, PH₃",
+    "H₄P₂O₆, H₃PO₂"
+   ],
+   "marked_correct": 3,
+   "chapter": "VA Group Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 150,
+   "question_en": "The number of moles of oxalate ions oxidized by one mole of permanganate ions in acidic medium is",
+   "options_en": [
+    "2.5",
+    "5.0",
+    "1.5",
+    "2.0"
+   ],
+   "marked_correct": 1,
+   "chapter": "d and f Block Elements",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 151,
+   "question_en": "Total number of geometrical isomers possible for the complexes [NiCl₄]²⁻, [CoCl₂(NH₃)₄]⁺, [Co(NH₃)₃(NO₂)₃] and [Co(NH₃)₅Cl]²⁺ is",
+   "options_en": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "marked_correct": 3,
+   "chapter": "Coordination Compounds",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 152,
+   "question_en": "Match the following.\nList – 1 (Type of polymer): A. Fibre  B. Elastomer  C. Thermosetting polymer  D. Thermoplastic polymer\nList – 2 (Structure of the example):\nI. –(CH₂–CH(Cl))ₙ–\nII. –{NH–(CH₂)₆–NH–CO–(CH₂)₄–CO}ₙ–\nIII. –(CH₂–C(Cl)=CH–CH₂)ₙ–\nIV. –(NH–CO–NH–CH₂)ₙ–\nThe correct answer is",
+   "options_en": [
+    "A – II, B – IV, C – I, D – III",
+    "A – II, B – III, C – IV, D – I",
+    "A – III, B – I, C – IV, D – II",
+    "A – III, B – II, C – IV, D – I"
+   ],
+   "marked_correct": 2,
+   "chapter": "Polymers",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — List-2 structures are chemical structural formulas, transcribed as linear formulas"
+  },
+  {
+   "q_no": 153,
+   "question_en": "Maltose on hydrolysis gives two monosaccharide units. The incorrect statement about the monosaccharides formed is",
+   "options_en": [
+    "Both are α-D-glucose units only",
+    "One is α-D-glucose and second one is β-D-fructose",
+    "Both are reducing sugars",
+    "In maltose, they are joined through 1,4-glycosidic linkage"
+   ],
+   "marked_correct": 2,
+   "chapter": "Biomolecules",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 154,
+   "question_en": "Identify the pair of drugs which act as antihistamines.",
+   "options_en": [
+    "Dimetapp, Seldane",
+    "Iproniazid, Nardil",
+    "Veronal, Valium",
+    "Heroin, Codeine"
+   ],
+   "marked_correct": 1,
+   "chapter": "Chemistry in Everyday Life",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  },
+  {
+   "q_no": 155,
+   "question_en": "Identify the product 'Y' in the given sequence of reactions.\nChlorobenzene --(HNO₃, Conc. H₂SO₄)--> X (Major) --(i) NaOH, 443 K (ii) H⁺--> Y",
+   "options_en": [
+    "2-Nitrophenol (OH and NO₂ ortho to each other)",
+    "4-Nitrophenol (OH and NO₂ para to each other)",
+    "2,4-Dinitrophenol",
+    "4-Hydroxybenzenesulfonic acid (OH and SO₃H para to each other)"
+   ],
+   "marked_correct": 2,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — options are structural formulas of substituted benzene rings, described in text"
+  },
+  {
+   "q_no": 156,
+   "question_en": "What is 'Z' in the given set of reactions?\nC₆H₅OCH₃ --(HI)--> X + Y\nX --(Zn, Δ)--> Benzene\nY --(C₆H₆, Anhy. AlCl₃)--> Z",
+   "options_en": [
+    "Ethylbenzene (C₆H₅–C₂H₅)",
+    "Benzyl chloride (C₆H₅–CH₂Cl)",
+    "Chlorobenzene (C₆H₅–Cl)",
+    "Toluene (C₆H₅–CH₃)"
+   ],
+   "marked_correct": 4,
+   "chapter": "Haloalkanes and Haloarenes",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — reaction scheme and options are structural formulas, described in text"
+  },
+  {
+   "q_no": 157,
+   "question_en": "Which of the following reactions is an example of Clemmensen reduction?",
+   "options_en": [
+    "R–COCl + H₂ --(Pd/BaSO₄)--> R–CHO + HCl",
+    "R–CHO --(i) NH₂–NH₂ (ii) KOH/ethylene glycol--> R–CH₃",
+    "R–COOC₂H₅ --(1. DIBAL-H 2. H₂O)--> R–CHO + C₂H₅OH",
+    "R–CO–CH₃ --(Zn–Hg/HCl)--> R–CH₂–CH₃"
+   ],
+   "marked_correct": 4,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — options are reaction schemes with structural formulas, described in text"
+  },
+  {
+   "q_no": 158,
+   "question_en": "Which of the following can undergo Hell-Volhard-Zelinsky reaction?",
+   "options_en": [
+    "C₆H₅–CO₂H",
+    "C₆H₅–CH₂–CO₂H",
+    "C₆H₅–CH₂–CHO",
+    "C₆H₅–CH₂–CO–CH₃"
+   ],
+   "marked_correct": 2,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — options are structural formulas, described in text"
+  },
+  {
+   "q_no": 159,
+   "question_en": "Which of the following has lowest pKₐ value?",
+   "options_en": [
+    "4-Nitrophenol",
+    "Benzoic acid",
+    "4-Methoxybenzoic acid",
+    "4-Nitrobenzoic acid"
+   ],
+   "marked_correct": 4,
+   "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": "has diagram — options are structural formulas of substituted benzoic acids/phenol, described in text"
+  },
+  {
+   "q_no": 160,
+   "question_en": "The correct statements about the products B and C in the given reactions are\nCH₃CH₂OH --(HCl / Anhy ZnCl₂)--> A --(ethanolic AgCN)--> B (Minor) + C (Major)\n(Anhy = anhydrous, ethanolic = ethanolic)\nI. B and C are functional isomers\nII. With H₂ | Catalyst, B gives 1° amine and C gives 2° amine\nIII. B on acid hydrolysis gives formic acid and C gives C₃H₆O₂\nIV. C forms isocyanate with HgO",
+   "options_en": [
+    "I & III",
+    "II & III",
+    "I, II & IV",
+    "II, III & IV"
+   ],
+   "marked_correct": 3,
+   "chapter": "Organic Compounds Containing Nitrogen",
+   "year_cycle": "second_year",
+   "confidence": "high",
+   "note": ""
+  }
+ ]
+}

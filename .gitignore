@@ -158,3 +158,6 @@ smoke.pid
 
 # local smoke-run logs (detached Playwright runs write here)
 .smoke_*.log
+
+# EAPCET working data (re-derivable from pdfs/ in one command)
+/eapcet/crops/

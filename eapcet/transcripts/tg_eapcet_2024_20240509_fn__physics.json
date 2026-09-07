@@ -1,0 +1,605 @@
+{
+  "paper_id": "tg_eapcet_2024_20240509_fn",
+  "questions": [
+    {
+      "q_no": 81,
+      "question_en": "Regarding fundamental forces in nature, the correct statement is",
+      "options_en": [
+        "electromagnetic forces are always attractive",
+        "electromagnetic forces are always repulsive",
+        "gravitational forces are always attractive",
+        "strong nuclear forces are always repulsive"
+      ],
+      "marked_correct": 3,
+      "chapter": "Physical World and Measurement",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 82,
+      "question_en": "The equation of motion of a damped oscillator is given by m d²x/dt² + b dx/dt + kx = 0. The dimensional formula of b/√(km) is",
+      "options_en": [
+        "[M⁰L⁰T⁰]",
+        "[M⁰L¹T⁻²]",
+        "[M¹L¹T⁻²]",
+        "[M¹L²T⁻²]"
+      ],
+      "marked_correct": 1,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 83,
+      "question_en": "A body is falling freely from the top of a tower of height 125 m. The distance covered by the body during the last second of its motion is x% of the height of the tower. Then x is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "9",
+        "36",
+        "25",
+        "49"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Straight Line",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 84,
+      "question_en": "A body P is projected at an angle of 30° with the horizontal and another body Q is projected at angle of 30° with the vertical. If the ratio of the horizontal ranges of the bodies P and Q is 1:2, then the ratio of the maximum heights reached by the bodies P and Q is",
+      "options_en": [
+        "1:4",
+        "1:6",
+        "2:3",
+        "1:1"
+      ],
+      "marked_correct": 2,
+      "chapter": "Motion in a Plane",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 85,
+      "question_en": "A car is moving on circular track banked at an angle of 45°. If the maximum permissible speed of the car to avoid slipping is twice the optimum speed of the car to avoid the wear and tear of the tyres, then the coefficient of static friction between the wheels of the car and the road is",
+      "options_en": [
+        "0.3",
+        "0.5",
+        "0.4",
+        "0.6"
+      ],
+      "marked_correct": 4,
+      "chapter": "Laws of Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 86,
+      "question_en": "A block of mass 0.5 kg is at rest on a horizontal table. The coefficient of kinetic friction between the table and the block is 0.2. If a horizontal force of 5 N is applied on the block, the kinetic energy of the block in a time of 4 s is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "64 J",
+        "128 J",
+        "256 J",
+        "512 J"
+      ],
+      "marked_correct": 3,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 87,
+      "question_en": "The sphere A of mass m moving with a constant velocity hits another sphere B of mass 2m at rest. If the coefficient of restitution is 0.4, the ratio of the velocities of the spheres A and B after collision is",
+      "options_en": [
+        "3:1",
+        "1:5",
+        "1:7",
+        "4:1"
+      ],
+      "marked_correct": 3,
+      "chapter": "Work Power Energy",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 88,
+      "question_en": "A solid sphere rolls down without slipping from the top of an inclined plane of height 28 m and angle of inclination 30°. The velocity of the sphere, when it reaches the bottom of the plane is (Acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "20 ms⁻¹",
+        "28 ms⁻¹",
+        "10 ms⁻¹",
+        "14 ms⁻¹"
+      ],
+      "marked_correct": 1,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 89,
+      "question_en": "Four identical particles each of mass 'm' are kept at the four corners of a square of side 'a'. If one of the particles is removed, the shift in the position of the centre of mass is",
+      "options_en": [
+        "√2 a",
+        "3a/√2",
+        "a/√2",
+        "a/(3√2)"
+      ],
+      "marked_correct": 4,
+      "chapter": "System of Particles and Rotational Motion",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 90,
+      "question_en": "In a time 't', the amplitude of vibrations of a damped oscillator becomes half of its initial value, then the mechanical energy of the oscillator decreases by",
+      "options_en": [
+        "40%",
+        "20%",
+        "75%",
+        "50%"
+      ],
+      "marked_correct": 3,
+      "chapter": "Oscillations",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 91,
+      "question_en": "The energy required to take a body from the surface of the earth to a height equal to the radius of the earth is 'W'. The energy required to take this body from the surface of the earth to a height equal to twice the radius of the earth is",
+      "options_en": [
+        "W/3",
+        "2W/3",
+        "W",
+        "4W/3"
+      ],
+      "marked_correct": 4,
+      "chapter": "Gravitation",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 92,
+      "question_en": "A steel wire of length 3 m and a copper wire of length 2.2 m are connected end to end. When the combination is stretched by a force, the net elongation is 1.05 mm. If the area of cross-section of each wire is 6 mm², then the load applied is (Young's moduli of steel and copper are respectively 2×10¹¹ Nm⁻² and 1.1×10¹¹ Nm⁻²)",
+      "options_en": [
+        "180 N",
+        "90 N",
+        "135 N",
+        "120 N"
+      ],
+      "marked_correct": 1,
+      "chapter": "Mechanical Properties of Solids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 93,
+      "question_en": "The height of water level in a tank of uniform cross-section is 5 m. The volume of the water leaked in 5 s through a hole of area 2.4 mm² made at the bottom of the tank is (Assume the level of the water in the tank remains constant and acceleration due to gravity = 10 ms⁻²)",
+      "options_en": [
+        "90×10⁻⁶ m³",
+        "120×10⁻⁶ m³",
+        "80×10⁻⁶ m³",
+        "40×10⁻⁶ m³"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 94,
+      "question_en": "The work done in increasing the diameter of a soap bubble from 2 cm to 4 cm is (Surface tension of soap solution = 3.5×10⁻² Nm⁻¹)",
+      "options_en": [
+        "528×10⁻⁶ J",
+        "264×10⁻⁶ J",
+        "132×10⁻⁶ J",
+        "178×10⁻⁶ J"
+      ],
+      "marked_correct": 2,
+      "chapter": "Mechanical Properties of Fluids",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 95,
+      "question_en": "The temperature on a Fahrenheit temperature scale that is twice the temperature on a Celsius temperature scale is",
+      "options_en": [
+        "160 °F",
+        "240 °F",
+        "320 °F",
+        "480 °F"
+      ],
+      "marked_correct": 3,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 96,
+      "question_en": "The temperatures of equal masses of three different liquids A, B and C are 15 °C, 24 °C and 30 °C respectively. The resultant temperature when liquids A and B are mixed is 20 °C and when liquids B and C are mixed is 26 °C. Then the ratio of specific heat capacities of the liquids A, B and C is",
+      "options_en": [
+        "5:8:10",
+        "8:10:5",
+        "5:10:8",
+        "8:5:10"
+      ],
+      "marked_correct": 2,
+      "chapter": "Thermal Properties of Matter",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 97,
+      "question_en": "The efficiency of a reversible heat engine working between two temperatures is 50%. The coefficient of performance of a refrigerator working between the same two temperatures but in reverse direction is",
+      "options_en": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "marked_correct": 1,
+      "chapter": "Thermodynamics",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 98,
+      "question_en": "The total internal energy of 4 moles of a diatomic gas at a temperature of 27 °C is (Universal gas constant = 8.31 J mol⁻¹ K⁻¹)",
+      "options_en": [
+        "13.47 kJ",
+        "4.98 kJ",
+        "24.93 kJ",
+        "14.96 kJ"
+      ],
+      "marked_correct": 3,
+      "chapter": "Kinetic Theory",
+      "year_cycle": "first_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 99,
+      "question_en": "A car travelling at a speed of 54 kmph towards a wall sounds horn of frequency 400 Hz. The difference in the frequencies of two sounds, one received directly from the car and other reflected from the wall noticed by a person standing between the car and the wall is (speed of sound in air is 335 ms⁻¹)",
+      "options_en": [
+        "35.9 Hz",
+        "20 Hz",
+        "70 Hz",
+        "Zero"
+      ],
+      "marked_correct": 4,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 100,
+      "question_en": "The speed of a transverse wave in a stretched string 'A' is 'v'. Another string 'B' of same length and same radius is subjected to same tension. If the density of the material of the string 'B' is 2% more than that of 'A', then the speed of the transverse wave in string 'B' is",
+      "options_en": [
+        "√1.04 v",
+        "√1.02 v",
+        "v/√1.04",
+        "v/√1.02"
+      ],
+      "marked_correct": 4,
+      "chapter": "Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 101,
+      "question_en": "For a combination of two convex lenses of focal lengths 'f₁' and 'f₂' to act as a glass slab, the distance of separation between them is",
+      "options_en": [
+        "f₁ + f₂",
+        "f₁ − f₂",
+        "(f₁ + f₂)/2",
+        "(f₁ − f₂)/2"
+      ],
+      "marked_correct": 1,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 102,
+      "question_en": "If a ray of light passes through an equilateral prism such that the angle of incidence and the angle of emergence are both equal to 70% of the angle of the prism, then the angle of minimum deviation is",
+      "options_en": [
+        "36°",
+        "18°",
+        "42°",
+        "24°"
+      ],
+      "marked_correct": 4,
+      "chapter": "Ray Optics and Optical Instruments",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 103,
+      "question_en": "Young's double slit experiment is performed with monochromatic light of wavelength 6000 Å. If the intensity of light at a point on the screen where path difference of 2000 Å is I₁ and the intensity of light at a point on the screen where the path difference is 1000 Å is I₂, then I₁:I₂=",
+      "options_en": [
+        "1 : 3",
+        "2 : 1",
+        "1 : 1",
+        "4 : 5"
+      ],
+      "marked_correct": 1,
+      "chapter": "Wave Optics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 104,
+      "question_en": "Two positive point charges are separated by a distance of 4 m in air. If the sum of the two charges is 36 μC and the electrostatic force between them is 0.18 N, then the bigger charge is",
+      "options_en": [
+        "30 μC",
+        "18 μC",
+        "20 μC",
+        "16 μC"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electric Charges and Fields",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 105,
+      "question_en": "Three capacitors of capacitances 10 μF, 5 μF and 20 μF are connected in series with a 14 V dc supply. The charge on 5 μF capacitor is",
+      "options_en": [
+        "20 μC",
+        "40 μC",
+        "70 μC",
+        "2.8 μC"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electric Potential and Capacitance",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 106,
+      "question_en": "When the temperature of a wire is increased from 303 K to 356 K, the resistance of the wire increases by 10%. The temperature coefficient of resistance of the material of the wire is",
+      "options_en": [
+        "2×10⁻³ °C⁻¹",
+        "2×10⁻⁴ °C⁻¹",
+        "1.1×10⁻³ °C⁻¹",
+        "1.1×10⁻⁴ °C⁻¹"
+      ],
+      "marked_correct": 1,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 107,
+      "question_en": "Three resistors of resistances 10 Ω, 20 Ω and 30 Ω are connected as shown in the figure. If the points A, B and C are at potentials 10 V, 6 V and 5 V respectively, then the ratio of the magnitudes of the currents through 10 Ω and 30 Ω resistors is",
+      "options_en": [
+        "1:3",
+        "3:1",
+        "1:2",
+        "2:1"
+      ],
+      "marked_correct": 4,
+      "chapter": "Current Electricity",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 108,
+      "question_en": "A particle of charge 2 C is moving with a velocity of (3î + 4ĵ) ms⁻¹ in the presence of magnetic and electric fields. If the magnetic field is (î + 2ĵ + 3k̂) T and the electric field is (−2k̂) NC⁻¹, then the Lorentz force on the particle is",
+      "options_en": [
+        "50 N",
+        "20 N",
+        "30 N",
+        "40 N"
+      ],
+      "marked_correct": 3,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 109,
+      "question_en": "A rectangular coil of 400 turns and 10⁻² m² area, carrying a current of 0.5 A is placed in a uniform magnetic field of 1 T such that the plane of the coil makes an angle of 60° with the direction of the magnetic field. The initial moment of force acting on the coil in Nm is",
+      "options_en": [
+        "√3",
+        "1/√3",
+        "1",
+        "√3/2"
+      ],
+      "marked_correct": 3,
+      "chapter": "Moving Charges and Magnetism",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 110,
+      "question_en": "The most exotic diamagnetic materials are",
+      "options_en": [
+        "Superconductors",
+        "Semiconductors",
+        "Conductors",
+        "Resistors"
+      ],
+      "marked_correct": 1,
+      "chapter": "Magnetism and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 111,
+      "question_en": "Two circular coils of radii r₁ and r₂ (r₁ << r₂) are placed coaxially with their centers coinciding. The mutual inductance of the arrangement is",
+      "options_en": [
+        "μ₀πr₂²/2r₁",
+        "μ₀πr₁r₂/2(r₁+r₂)",
+        "μ₀πr₁²/2r₂",
+        "μ₀π(r₁+r₂)/2r₁r₂"
+      ],
+      "marked_correct": 3,
+      "chapter": "Electromagnetic Induction",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 112,
+      "question_en": "In a series LCR circuit, if the current leads the source voltage, then",
+      "options_en": [
+        "X꜀ > X_L",
+        "X_L > X꜀",
+        "X_L = X꜀ ≠ 0",
+        "X_L = X꜀ = 0"
+      ],
+      "marked_correct": 1,
+      "chapter": "Alternating Current",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 113,
+      "question_en": "If the amplitude of the magnetic field part of a harmonic electromagnetic wave in vacuum is 270 nT, the amplitude of the electric field part of the wave is",
+      "options_en": [
+        "90 NC⁻¹",
+        "81 NC⁻¹",
+        "9 NC⁻¹",
+        "30 NC⁻¹"
+      ],
+      "marked_correct": 2,
+      "chapter": "Electromagnetic Waves",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 114,
+      "question_en": "If Planck's constant is 6.63×10⁻³⁴ Js, then the slope of a graph drawn between cut off voltage and frequency of incident light in a photoelectric experiment is",
+      "options_en": [
+        "4.14×10⁻¹⁵ Vs",
+        "19.776×10⁻¹⁵ Vs",
+        "2.198×10⁻¹⁵ Vs",
+        "1.337×10⁻¹⁵ Vs"
+      ],
+      "marked_correct": 1,
+      "chapter": "Dual Nature of Radiation and Matter",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 115,
+      "question_en": "At room temperature, gaseous hydrogen is bombarded with a beam of electrons of 13.6 eV energy. The series to which the emitted spectral line belongs to",
+      "options_en": [
+        "Lyman series",
+        "Balmer series",
+        "Paschen series",
+        "Pfund series"
+      ],
+      "marked_correct": 1,
+      "chapter": "Atoms",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 116,
+      "question_en": "The half-life of a radioactive substance is 12 minutes. The time gap between 28% decay and 82% decay of the radioactive substance is",
+      "options_en": [
+        "6 minutes",
+        "18 minutes",
+        "12 minutes",
+        "24 minutes"
+      ],
+      "marked_correct": 4,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 117,
+      "question_en": "An element consists of a mixture of three isotopes A, B and C of masses m₁, m₂ and m₃ respectively. If the relative abundances of the three isotopes A, B and C is in the ratio 2:3:5, the average mass of the element is",
+      "options_en": [
+        "0.2m₁ + 0.3m₂ + 0.5m₃",
+        "2m₁ + 3m₂ + 5m₃",
+        "0.4m₁ + 0.6m₂ + m₃",
+        "4m₁ + 6m₂ + 10m₃"
+      ],
+      "marked_correct": 1,
+      "chapter": "Nuclei",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 118,
+      "question_en": "The concentration of electrons in an intrinsic semiconductor is 6×10¹⁵ m⁻³. On doping with an impurity the electron concentration increases to 4×10²² m⁻³. In thermal equilibrium, the concentration of the holes in the doped semiconductor is",
+      "options_en": [
+        "18×10⁻⁸ m⁻³",
+        "1.5×10⁻⁷ m⁻³",
+        "9×10⁸ m⁻³",
+        "(2/3)×10⁷ m⁻³"
+      ],
+      "marked_correct": 3,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "q_no": 119,
+      "question_en": "Three logic gates are connected as shown in the figure. If the inputs are A=1 and B=1, then the values of y₁ and y₂ respectively are",
+      "options_en": [
+        "0, 0",
+        "0, 1",
+        "1, 0",
+        "1, 1"
+      ],
+      "marked_correct": 2,
+      "chapter": "Semiconductor Electronics",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": "has diagram"
+    },
+    {
+      "q_no": 120,
+      "question_en": "The heights of the transmitting and receiving antennas are 33.8 m and 64.8 m respectively. The maximum distance between the antennas for satisfactory communication in line of sight mode is (Radius of the earth = 6400 km)",
+      "options_en": [
+        "20.8 km",
+        "28.8 km",
+        "49.6 km",
+        "57.6 km"
+      ],
+      "marked_correct": 3,
+      "chapter": "Communication System",
+      "year_cycle": "second_year",
+      "confidence": "high",
+      "note": ""
+    }
+  ]
+}
