@@ -62,7 +62,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(1 + y)ⁿ can be expanded for any n only when |y| < 1",
+          "For a fractional or negative n, (1 + y)ⁿ can be",
+          "expanded only when |y| < 1",
           "Take the 3 out: 3 − 4x = 3(1 − 4x/3)",
           {
             "text": "(3 - 4x)^{3/4} = 3^{3/4}\\left(1 - \\dfrac{4x}{3}\\right)^{3/4}",

@@ -210,8 +210,10 @@
             "render": "katex",
             "style": "eq"
           },
+          "1 + 1/2 = (2 + 1)/2 = 3/2",
+          "A negative power inverts the fraction:",
           {
-            "text": "= \\left(\\tfrac{3}{2}\\right)^{-1/2} = \\left(\\tfrac{2}{3}\\right)^{1/2}   \\text{(negative power: invert)}",
+            "text": "= \\left(\\tfrac{3}{2}\\right)^{-1/2} = \\left(\\tfrac{2}{3}\\right)^{1/2}",
             "render": "katex",
             "style": "eq"
           },

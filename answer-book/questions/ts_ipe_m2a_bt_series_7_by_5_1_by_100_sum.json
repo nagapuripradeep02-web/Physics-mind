@@ -215,8 +215,10 @@
             "render": "katex",
             "style": "eq"
           },
+          "1 − 1/50 = (50 − 1)/50 = 49/50",
+          "A negative power inverts the fraction:",
           {
-            "text": "= \\left(\\tfrac{49}{50}\\right)^{-1/2} = \\left(\\tfrac{50}{49}\\right)^{1/2}   \\text{(negative power: invert)}",
+            "text": "= \\left(\\tfrac{49}{50}\\right)^{-1/2} = \\left(\\tfrac{50}{49}\\right)^{1/2}",
             "render": "katex",
             "style": "eq"
           },

@@ -214,8 +214,10 @@
             "render": "katex",
             "style": "eq"
           },
+          "1 − 2/5 = 3/5, and −4/2 = −2",
+          "A negative power inverts the fraction:",
           {
-            "text": "= \\left(\\tfrac{5}{3}\\right)^{2}   \\text{(negative power: invert)}",
+            "text": "= \\left(\\tfrac{5}{3}\\right)^{2}",
             "render": "katex",
             "style": "eq"
           },

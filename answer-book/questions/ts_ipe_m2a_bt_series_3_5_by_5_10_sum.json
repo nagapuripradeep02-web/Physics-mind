@@ -212,8 +212,10 @@
             "render": "katex",
             "style": "eq"
           },
+          "1 − 2/5 = (5 − 2)/5 = 3/5",
+          "A negative power inverts the fraction:",
           {
-            "text": "= \\left(\\tfrac{3}{5}\\right)^{-3/2} = \\left(\\tfrac{5}{3}\\right)^{3/2}   \\text{(negative power: invert)}",
+            "text": "= \\left(\\tfrac{3}{5}\\right)^{-3/2} = \\left(\\tfrac{5}{3}\\right)^{3/2}",
             "render": "katex",
             "style": "eq"
           },

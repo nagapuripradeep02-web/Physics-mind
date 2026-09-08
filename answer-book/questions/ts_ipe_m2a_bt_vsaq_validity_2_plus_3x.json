@@ -62,7 +62,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(1 + y)ⁿ can be expanded for any n only when |y| < 1",
+          "For a fractional or negative n, (1 + y)ⁿ can be",
+          "expanded only when |y| < 1",
           "Take the 2 out: 2 + 3x = 2(1 + 3x/2)",
           {
             "text": "(2 + 3x)^{-2/3} = 2^{-2/3}\\left(1 + \\dfrac{3x}{2}\\right)^{-2/3}",
