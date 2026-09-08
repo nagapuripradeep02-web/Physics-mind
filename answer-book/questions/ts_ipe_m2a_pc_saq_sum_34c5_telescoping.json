@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 9 Permutations & Combinations, answer 68.1. Printed appearances: AP 16, 17, 19, 22 and TS 17. ⚠ THE 1+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+1+2 split and the SAME step ids (s1_expand_sum, s2_pascal_identity, s3_collapse) are used on both telescoping-sum SAQs in this unit (answers 68.1 and 68.2), deliberately: they are one method over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 1 (book p.111) and is re-solved with the same working in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 9 Permutations & Combinations, answer 68.1. Printed appearances: AP 16, 17, 19, 22 and TS 17. ⚠ THE 1+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+1+2 split and the SAME step ids (s1_expand_sum, s2_pascal_identity, s3_collapse) are used on both telescoping-sum SAQs in this unit (answers 68.1 and 68.2), deliberately: they are one method over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 1 (book p.111) and is re-solved with the same working in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would simplify this sum of combinations — what you write out first, which identity you use, and how it collapses.",
   "insider_note": "The chain must be written line by line — ³⁵C₅, ³⁶C₅, ³⁷C₅, ³⁸C₅, then ³⁹C₅ — because two of the four marks are those lines, and a jump straight from the sum to ³⁹C₅ skips them. Start at the 34 pair, the only pair with a C₅ partner.",
@@ -78,10 +78,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Σ ⁽³⁸⁻ʳ⁾C₄ for r = 0, 1, 2, 3, 4 is",
-          "³⁸C₄ + ³⁷C₄ + ³⁶C₄ + ³⁵C₄ + ³⁴C₄",
-          "∴ G.E. = ³⁴C₅ + ³⁴C₄ + ³⁵C₄ + ³⁶C₄",
-          "+ ³⁷C₄ + ³⁸C₄"
+          "Put r = 0, 1, 2, 3, 4 in ⁽³⁸⁻ʳ⁾C₄:",
+          "r = 0 gives ³⁸C₄, r = 1 gives ³⁷C₄,",
+          "r = 2 gives ³⁶C₄, r = 3 gives ³⁵C₄,",
+          "r = 4 gives ³⁴C₄",
+          "Given expression",
+          "= ³⁴C₅ + ³⁸C₄ + ³⁷C₄ + ³⁶C₄ + ³⁵C₄ + ³⁴C₄",
+          "Write the C₄ terms in increasing order:",
+          "= ³⁴C₅ + ³⁴C₄ + ³⁵C₄ + ³⁶C₄",
+          "  + ³⁷C₄ + ³⁸C₄"
         ],
         "recall": {
           "credit": "say_it",
@@ -120,9 +125,10 @@
         "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 34: ³⁴C₄ + ³⁴C₅ = ³⁵C₅.",
         "memory_tip": "The two lower numbers must differ by ONE. Only the pair with top number 34 has a C₅ partner.",
         "lines": [
-          "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
-          "on the pair with the smallest top number:",
-          "³⁴C₅ + ³⁴C₄ = ³⁵C₅"
+          "The identity ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
+          "joins two terms with the SAME top number.",
+          "Take the first two, both with top 34:",
+          "³⁴C₄ + ³⁴C₅ = ³⁵C₅"
         ],
         "recall": {
           "credit": "say_it",
@@ -160,10 +166,13 @@
         "margin_note": "Two marks. The new ³⁵C₅ joins ³⁵C₄ to make ³⁶C₅, and so on up to ³⁹C₅. Show each line; the examiner is paying for the chain, not the last symbol.",
         "memory_tip": "The lower number stays 5 the whole way up to ³⁹C₅. The marks are for the chain, not the last symbol.",
         "lines": [
+          "Now ³⁵C₅ meets ³⁵C₄, the next term:",
           "³⁵C₅ + ³⁵C₄ = ³⁶C₅",
           "³⁶C₅ + ³⁶C₄ = ³⁷C₅",
           "³⁷C₅ + ³⁷C₄ = ³⁸C₅",
           "³⁸C₅ + ³⁸C₄ = ³⁹C₅",
+          "Each step uses the same identity, and",
+          "every term is used exactly once.",
           {
             "text": "∴ ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄ = ³⁹C₅",
             "style": "boxed"

@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 9 Permutations & Combinations, answer 75. Printed appearances: AP March 17, TS March 17 (printed as one chip \"AP,TS M-17\") and TS 15, 16, 17, 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_alphabetical_order, s2_count_words_before, s3_rank) are used on all three dictionary-rank SAQs in this unit (MASTER, PRISON, EAMCET), deliberately: they are one method over different words. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 5 (book p.119) and is re-solved in the Bullet Model Paper Q13&14 block (book p.102), which agrees with the chapter answer (133). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 9 Permutations & Combinations, answer 75. Printed appearances: AP March 17, TS March 17 (printed as one chip \"AP,TS M-17\") and TS 15, 16, 17, 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_alphabetical_order, s2_count_words_before, s3_rank) are used on all three dictionary-rank SAQs in this unit (MASTER, PRISON, EAMCET), deliberately: they are one method over different words. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 5 (book p.119) and is re-solved in the Bullet Model Paper Q13&14 block (book p.102), which agrees with the chapter answer (133). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the dictionary rank of EAMCET — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "The two E letters are what make this rank different from a word whose letters are all distinct: the A and C blocks are 5!/2! = 60 each, not 120. Miss that division and every later number moves — the marks are in the block table, not the final addition.",
@@ -78,8 +78,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Letters of EAMCET in alphabetical order:",
-          "A, C, E, E, M, T (E occurs twice)"
+          "EAMCET has 6 letters: E, A, M, C, E, T",
+          "The letter E occurs twice.",
+          "In alphabetical order they are",
+          "A, C, E, E, M, T",
+          "Dictionary order compares the first letter",
+          "first, then the second, and so on."
         ],
         "recall": {
           "credit": "say_it",
@@ -119,12 +123,21 @@
         "margin_note": "Two marks. Words starting with A or C still contain both E letters, so each block is 5!/2! = 60. With E fixed, E A C and E A E give 3! each. After E A M the remaining letters C, E, T are already in order, so EAMCET is the next word.",
         "memory_tip": "Blocks that still hold both E letters are 5!/2! = 60, not 120. With E fixed, EAC and EAE give 3! each.",
         "lines": [
-          "Words starting with A: 5!/2! = 60",
-          "Words starting with C: 5!/2! = 60",
-          "Words starting with EAC: 3! = 6",
-          "Words starting with EAE: 3! = 6",
-          "After EAM, the letters C, E, T are in order,",
-          "so the next word is EAMCET itself."
+          "Words starting with A: the other 5 letters",
+          "C, E, E, M, T are arranged in 5!/2! ways",
+          "  (divide by 2! because E repeats)",
+          "= 120/2 = 60",
+          "Words starting with C: the other 5 letters",
+          "A, E, E, M, T give 5!/2! = 60",
+          "Now the words starting with E.",
+          "EA_: the third letter can be C, E, M or T.",
+          "Words starting with EAC: the last 3 letters",
+          "E, M, T are all different: 3! = 6",
+          "Words starting with EAE: the last 3 letters",
+          "C, M, T give 3! = 6",
+          "Next comes EAM. After EAM the letters left",
+          "are C, E, T, and CET is their",
+          "alphabetical order, so EAMCET is next."
         ],
         "recall": {
           "credit": "say_it",
@@ -165,7 +178,9 @@
         "margin_note": "Last mark. 60 + 60 + 6 + 6 = 132 words come before EAMCET, so its rank is 133.",
         "memory_tip": "132 words come before it, so the rank is 133. Rank is words-before plus one.",
         "lines": [
-          "Rank = 60 + 60 + 6 + 6 + 1",
+          "Rank = words before it + 1",
+          "= 60 + 60 + 6 + 6 + 1",
+          "= 132 + 1",
           {
             "text": "∴ rank of EAMCET = 133",
             "style": "boxed"

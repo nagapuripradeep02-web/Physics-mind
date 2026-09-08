@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 9 Permutations & Combinations, answer 72. Printed appearances: TS 15, 19. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_cases, s2_count_cases, s3_total) are used on all three selection-with-conditions SAQs in this unit (answers 70, 71, 72), deliberately: they are one method — list the allowed compositions, count each, add — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer, and does not appear in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The nationalities are the question's own wording as printed and set by the board; they are kept because changing them would change the question."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 9 Permutations & Combinations, answer 72. Printed appearances: TS 15, 19. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_cases, s2_count_cases, s3_total) are used on all three selection-with-conditions SAQs in this unit (answers 70, 71, 72), deliberately: they are one method — list the allowed compositions, count each, add — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer, and does not appear in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The nationalities are the question's own wording as printed and set by the board; they are kept because changing them would change the question. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would count the committees — which compositions give an Indian majority, how each is counted, and how you finish.",
   "insider_note": "Indian majority means three cases — 3, 4 or 5 Indians — and the case list carries its own mark before any ⁿCᵣ is evaluated. The case students drop is all five Indians, ⁶C₅·⁵C₀ = 6, and without it 275 replaces 281.",
@@ -66,9 +66,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Committee of 5; Indians in majority means",
-          "at least 3 Indians. Three cases:",
-          "5 Indians + 0 Americans, 4 + 1, or 3 + 2."
+          "There are 6 Indians and 5 Americans,",
+          "and the committee has 5 members.",
+          "Indians in majority means more Indians",
+          "than Americans, so at least 3 Indians.",
+          "The possible splits of the 5 places are",
+          "5 Indians + 0 Americans,",
+          "4 Indians + 1 American,",
+          "3 Indians + 2 Americans."
         ],
         "recall": {
           "credit": "say_it",
@@ -107,9 +112,17 @@
         "margin_note": "Two marks. ⁶C₅ = 6, ⁶C₄ = 15, ⁶C₃ = 20; ⁵C₀ = 1, ⁵C₁ = 5, ⁵C₂ = 10. Multiply within each case.",
         "memory_tip": "Multiply within a case: ⁶C₅·⁵C₀, ⁶C₄·⁵C₁, ⁶C₃·⁵C₂. Note ⁵C₀ = 1, not 0.",
         "lines": [
-          "Case 1: ⁶C₅ · ⁵C₀ = 6 · 1 = 6",
-          "Case 2: ⁶C₄ · ⁵C₁ = 15 · 5 = 75",
-          "Case 3: ⁶C₃ · ⁵C₂ = 20 · 10 = 200"
+          "Case 1: choose 5 of the 6 Indians and",
+          "0 of the 5 Americans:",
+          "⁶C₅ · ⁵C₀ = 6 · 1 = 6",
+          "Case 2: choose 4 Indians and 1 American:",
+          "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
+          "⁵C₁ = 5",
+          "⁶C₄ · ⁵C₁ = 15 · 5 = 75",
+          "Case 3: choose 3 Indians and 2 Americans:",
+          "⁶C₃ = (6 · 5 · 4)/(1 · 2 · 3) = 120/6 = 20",
+          "⁵C₂ = (5 · 4)/(1 · 2) = 10",
+          "⁶C₃ · ⁵C₂ = 20 · 10 = 200"
         ],
         "recall": {
           "credit": "say_it",
@@ -149,8 +162,11 @@
         "margin_note": "Last mark. 6 + 75 + 200 = 281.",
         "memory_tip": "The cases are different committees, so ADD: 6 + 75 + 200 = 281.",
         "lines": [
+          "The three cases cannot happen together,",
+          "so add them:",
+          "Number of ways = 6 + 75 + 200",
           {
-            "text": "∴ number of ways = 6 + 75 + 200 = 281",
+            "text": "∴ number of ways = 281",
             "style": "boxed"
           }
         ],

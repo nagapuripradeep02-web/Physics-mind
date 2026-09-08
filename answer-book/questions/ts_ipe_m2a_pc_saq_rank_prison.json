@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 9 Permutations & Combinations, answer 74. Printed appearances: AP 17 and TS 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_alphabetical_order, s2_count_words_before, s3_rank) are used on all three dictionary-rank SAQs in this unit (MASTER, PRISON, EAMCET), deliberately: they are one method over different words. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 3 (book p.115). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 9 Permutations & Combinations, answer 74. Printed appearances: AP 17 and TS 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_alphabetical_order, s2_count_words_before, s3_rank) are used on all three dictionary-rank SAQs in this unit (MASTER, PRISON, EAMCET), deliberately: they are one method over different words. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 3 (book p.115). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the dictionary rank of PRISON — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "Every later block depends on the first line: alphabetical order is I, N, O, P, R, S, and O placed after P shifts every block. After P R is fixed there is no third-place block to add, because I is the smallest letter remaining.",
@@ -66,8 +66,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Letters of PRISON in alphabetical order:",
-          "I, N, O, P, R, S"
+          "PRISON has 6 letters: P, R, I, S, O, N",
+          "All six are different.",
+          "In alphabetical order they are",
+          "I, N, O, P, R, S",
+          "Dictionary order compares the first letter",
+          "first, then the second, and so on."
         ],
         "recall": {
           "credit": "say_it",
@@ -105,12 +109,21 @@
         "margin_note": "Two marks. Three letters (I, N, O) come before P: 5! each. With P fixed, three letters (I, N, O) come before R: 4! each. With P R fixed, I is the smallest so no block; with P R I fixed, N and O come before S: 2! each. With P R I S fixed, N comes before O: 1!.",
         "memory_tip": "After P R is fixed there is no block, because I is the smallest letter left. Do not invent one.",
         "lines": [
-          "Words starting with I, N, O: 3 × 5! = 360",
-          "Words starting with PI, PN, PO: 3 × 4! = 72",
+          "Three letters I, N, O come before P.",
+          "For each, the other 5 letters give 5! = 120",
+          "Words starting with I, N or O: 3 × 120 = 360",
+          "Now fix P. The letters left are I, N, O, R, S",
+          "Three of them, I, N, O, come before R.",
+          "For each, the other 4 give 4! = 24",
+          "Words starting with PI, PN or PO: 3 × 24 = 72",
+          "Now fix PR. The letters left are I, N, O, S",
+          "I is the given word's third letter,",
+          "so fix PRI. The letters left are N, O, S",
           "Words starting with PRIN: 2! = 2",
           "Words starting with PRIO: 2! = 2",
+          "Next is PRIS. The letters left are N, O",
           "Words starting with PRISN: 1! = 1",
-          "The next word is PRISON itself."
+          "Next is PRISO, then N — which is PRISON."
         ],
         "recall": {
           "credit": "say_it",
@@ -151,8 +164,9 @@
         "margin_note": "Last mark. 360 + 72 + 2 + 2 + 1 = 437 words come before PRISON, so its rank is 438.",
         "memory_tip": "437 words come before PRISON, so the rank is 438. Keep both single-word terms.",
         "lines": [
-          "Rank = 3(120) + 3(24) + 2 + 2 + 1 + 1",
-          "= 360 + 72 + 4 + 1 + 1",
+          "Rank = words before it + 1",
+          "= 360 + 72 + 2 + 2 + 1 + 1",
+          "= 436 + 1 + 1",
           {
             "text": "∴ rank of PRISON = 438",
             "style": "boxed"

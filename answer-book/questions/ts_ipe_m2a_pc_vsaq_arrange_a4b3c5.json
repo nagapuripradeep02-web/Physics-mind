@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 148.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as 12!/(4!3!5!); the card also evaluates it (479001600/17280 = 27,720)."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 16 Permutations & Combinations, answer 148.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_count_letters, s2_formula) are used on every 'arrangements of a word with repeated letters' VSAQ in this unit (answers 147.1 to 148.2 and Star Questions Plus 197, 198), deliberately: one formula n!/(p!·q!·r!) over different words. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as 12!/(4!3!5!); the card also evaluates it (479001600/17280 = 27,720). LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would count the arrangements of the letters of a to the 4, b cubed, c to the 5 written out in full — what you count first and which formula you use.",
   "insider_note": "In expanded form a⁴b³c⁵ is a word of 4 + 3 + 5 = 12 letters, so the count is 12!/(4!·3!·5!) — the exponents are letter counts to divide by, not powers to evaluate.",
@@ -53,8 +53,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Expanded, a⁴b³c⁵ = aaaabbbccccc: 12 letters,",
-          "a four times, b three times, c five times."
+          "Expanded, a⁴b³c⁵ = aaaa bbb ccccc",
+          "Count the letters: 4 + 3 + 5 = 12",
+          "a occurs 4 times, b occurs 3 times,",
+          "c occurs 5 times.",
+          "The like letters cannot be told apart,",
+          "so swapping them gives the same word."
         ],
         "recall": {
           "credit": "say_it",
@@ -93,9 +97,16 @@
         "margin_note": "Second mark. 12!/(4!·3!·5!) = 479001600/17280 = 27,720.",
         "memory_tip": "One factorial per repeated letter: 12!/(4!·3!·5!) = 27,720.",
         "lines": [
-          "Arrangements = n!/(p!·q!·r!)",
+          "When n things have p, q, r alike,",
+          "the arrangements are n!/(p!·q!·r!)",
+          "Here n = 12, p = 4, q = 3, r = 5:",
+          "Arrangements = 12!/(4!·3!·5!)",
+          "4! = 24, 3! = 6, 5! = 120",
+          "Bottom = 24 · 6 · 120 = 17280",
+          "12! = 479001600",
+          "= 479001600/17280",
           {
-            "text": "= 12!/(4!·3!·5!) = 27,720",
+            "text": "∴ number of arrangements = 27,720",
             "style": "boxed"
           }
         ],
