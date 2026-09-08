@@ -1,5 +1,25 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Complex Numbers written out in full, and the figure sweep is green again (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the third chapter, 38 cards, 332 written lines → 626. Three chapters and 121 cards now sit on one branch and one PR (#202). The pre-existing figure-label collision that had been failing the e2e sweep on master is also fixed here.**
+
+### What this chapter adds
+i² = −1 applied on its OWN line with the term written before and after, never as a "(since i² = −1)" aside · every conjugate multiplication names (a + ib)(a − ib) = a² + b² and evaluates numerator and denominator separately · the both-parts-must-match rule stated before any comparison · modulus-amplitude cards give the form and both formulas, then the quadrant, then BUILD the amplitude from the acute angle (θ = −π + π/4) instead of asserting it · the half-angle and Pythagorean identities cited where used, with the fraction split before tan(θ/2) appears · the Argand cards say what the shape REQUIRES before measuring (rhombus = equal sides + UNEQUAL diagonals; square = both equal).
+
+### The figure fix
+`ts_ipe_m2a_cn_argand_equilateral_triangle` — the y-axis label and "C(−2√3, 2√3)" overlapped by ~6px each way. **Measured in the browser, not guessed**: a script printing every `<text>` rect showed y at x 167.7–176.1 / y −8–19 and C at x 8–173.6 / y 13–53. Moving C's label from (8, 40) to (6, 66) gives 20px of clearance. `find_label_clashes` over the built book: 117 figures, no collisions anywhere.
+
+### Verified
+tsc 0 · `check:cards` 38/38 · `measure:wrap` 626/626 on one ruled row · both builds green · walk of all 38 cards on full marks, no console errors.
+
+**Two Opus examiners, 5 real defects found and fixed:**
+- FOUR modulus lines read `√(1 + 3 = √4)` — my generator interpolated "1 + 3 = √4" as one string, so the page literally asserted 4 = 2. **The same template bug had produced `√(49 + 576 = √625)` on the two square-root cards, which I caught by eye and rewrote — without checking whether other cards built from that template had inherited it.** They had. A regex sweep for `√(… = …)` now covers the whole paper.
+- ONE locus (`(z − i)/(z − 1)` purely imaginary) boxed x² + y² − x − y = 0 while (1, 0) is on that circle and makes the denominator 0. Its sibling card excludes z = −i correctly; this one now excludes z ≠ 1 and says why.
+
+### Lesson worth keeping
+A generated batch needs the SAME sweep applied to every card the generator touched, not just the one whose output happened to look wrong. Fixing the visible instance and moving on is what let four bad lines reach an examiner.
+
 ## 📗 SESSION — Permutations and Combinations written out in full: the second chapter, 49 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
 
 **Bottom line: the founder approved the level on a sample and said "do it". All 49 cards of Maths-2A Unit 5 now read at the same level as the Binomial chapter — 353 written lines → 774. Two chapters, 83 cards, on one branch and one PR (#202).**
