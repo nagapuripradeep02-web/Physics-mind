@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Theory of Equations, answer 16. Printed appearances: AP 17 · TS 22. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] against the assumption, [1 Mark] against S₁, [1 Mark] against a = 3/2, [1 Mark] against S₃, [1 Mark] against d = ±3 and [2 Marks] against the roots (1+1+1+1+1+2 = 7), and the card follows it exactly. The SAME step ids (s1_assume, s2_sum, s3_a, s4_product, s5_d, s6_roots) and the same 1+1+1+1+1+2 shape are used on answers 16, 18 and the practice question under 16, deliberately: they are one method — roots a − d, a, a + d, S₁ gives a, S₃ gives d — over different numbers. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 3 Q19 (book p.116) is this question; the Bullet Model Paper re-solves it under Q19 on book p.105 — arithmetic cross-checked, identical. Truth check: the roots −3/2, 3/2, 9/2 have equal gaps of 3, add to 9/2 = −a₁/a₀, and their pairwise products add to −9/4 + 27/4 − 27/4 = −9/4 = a₂/a₀, the relation the book never uses. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Theory of Equations, answer 16. Printed appearances: AP 17 · TS 22. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] against the assumption, [1 Mark] against S₁, [1 Mark] against a = 3/2, [1 Mark] against S₃, [1 Mark] against d = ±3 and [2 Marks] against the roots (1+1+1+1+1+2 = 7), and the card follows it exactly. The SAME step ids (s1_assume, s2_sum, s3_a, s4_product, s5_d, s6_roots) and the same 1+1+1+1+1+2 shape are used on answers 16, 18 and the practice question under 16, deliberately: they are one method — roots a − d, a, a + d, S₁ gives a, S₃ gives d — over different numbers. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 3 Q19 (book p.116) is this question; the Bullet Model Paper re-solves it under Q19 on book p.105 — arithmetic cross-checked, identical. Truth check: the roots −3/2, 3/2, 9/2 have equal gaps of 3, add to 9/2 = −a₁/a₀, and their pairwise products add to −9/4 + 27/4 − 27/4 = −9/4 = a₂/a₀, the relation the book never uses. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve a cubic whose roots are in A.P. — how you name the roots, which two relations you use, and what each one gives you.",
   "insider_note": "Two of the seven marks are the final three numbers; d = −3 is not a second answer, it lists the same roots in the other order.",
@@ -80,7 +80,11 @@
           },
           "The roots are in A.P., so take them as",
           "a − d, a, a + d.",
-          "Here a₀ = 8, a₁ = −36, a₂ = −18, a₃ = 81."
+          "Taking them this way makes the sum simple:",
+          "the −d and the +d cancel.",
+          "Comparing 8x³ − 36x² − 18x + 81 = 0 with",
+          "a₀x³ + a₁x² + a₂x + a₃ = 0:",
+          "a₀ = 8, a₁ = −36, a₂ = −18, a₃ = 81"
         ],
         "recall": {
           "credit": "name_it",
@@ -120,8 +124,11 @@
         "margin_note": "Second mark. S₁ = −a₁/a₀ = 36/8 = 9/2. The two d's cancel, so the left side is just 3a.",
         "memory_tip": "S₁ = −a₁/a₀ = 36/8 = 9/2. The d's cancel, leaving 3a.",
         "lines": [
-          "Sum of roots S₁ = −a₁/a₀:",
-          "(a − d) + a + (a + d) = 36/8 = 9/2"
+          "For a₀x³ + a₁x² + a₂x + a₃ = 0 the root relations are",
+          "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+          "Sum of the roots S₁ = −a₁/a₀ = −(−36)/8 = 9/2",
+          "(a − d) + a + (a + d) = 9/2",
+          "The −d and +d cancel:"
         ],
         "recall": {
           "credit": "say_it",
@@ -161,7 +168,8 @@
         "margin_note": "Third mark. 3a = 9/2 gives a = 3/2, the middle root.",
         "memory_tip": "3a = 9/2 gives a = 3/2, the middle root.",
         "lines": [
-          "3a = 9/2, so a = 3/2"
+          "3a = 9/2",
+          "a = 9/6 = 3/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -197,8 +205,9 @@
         "margin_note": "Fourth mark. S₃ = −a₃/a₀ = −81/8 = −81/8. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
         "memory_tip": "S₃ = −a₃/a₀ = −81/8. The product is a(a² − d²), never a³ − d².",
         "lines": [
-          "Product of roots S₃ = −a₃/a₀:",
-          "(a − d)·a·(a + d) = −81/8",
+          "Product of the roots S₃ = −a₃/a₀ = −81/8",
+          "(a − d) · a · (a + d) = −81/8",
+          "(a − d)(a + d) = a² − d², so",
           "a(a² − d²) = −81/8"
         ],
         "recall": {
@@ -239,7 +248,10 @@
         "margin_note": "Fifth mark. Put a = 3/2 in, divide out the a, and solve for d². d = ±3; either sign gives the same three roots.",
         "memory_tip": "Divide out a = 3/2 first, then d² = 9 and d = ±3. Either sign gives the same roots.",
         "lines": [
+          "Put a = 3/2:",
+          "(3/2)((3/2)² − d²) = −81/8",
           "(3/2)(9/4 − d²) = −81/8",
+          "Multiply both sides by 2/3:",
           "9/4 − d² = −81/8 × 2/3 = −27/4",
           "d² = 9/4 + 27/4 = 36/4 = 9",
           "d = ±3"
@@ -281,8 +293,11 @@
         "margin_note": "Last two marks. Substitute a and d back; the three numbers must have equal gaps and must add to the sum found in step 2.",
         "memory_tip": "Substitute back: −3/2, 3/2, 9/2. Equal gaps of 3, and they add to 9/2.",
         "lines": [
-          "Take d = 3 (d = −3 gives the same three roots):",
-          "a − d = 3/2 − 3 = −3/2, a = 3/2, a + d = 9/2",
+          "Take d = 3. (d = −3 only swaps the first",
+          "and last root, so the set is the same.)",
+          "a − d = 3/2 − 3 = 3/2 − 6/2 = −3/2",
+          "a = 3/2",
+          "a + d = 3/2 + 3 = 3/2 + 6/2 = 9/2",
           {
             "text": "∴ roots: −3/2, 3/2, 9/2",
             "style": "boxed"

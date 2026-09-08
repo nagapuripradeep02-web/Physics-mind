@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Theory of Equations, answer 14. Printed appearances: AP 15, 18. THE MARK SPLIT IS THE BOOK'S, with one division of ours inside it: the page prints [2 Marks] beside the two synthetic divisions / 'now we solve the SRE' block, then [1 Mark] each against the substitution, the t values, the roots from t = 5/2, the equation 3x² − 5x + 3 = 0, and its complex roots (2+1+1+1+1+1 = 7); the final 'hence all the six roots' line carries no tag. The card splits the printed 2 as 1 (identify) + 1 (divide), gives the t = 5/3 step the page's 1+1 = 2, and leaves the final list at 0 marks as the page does. The SAME step ids (s1_identify, s2_divide, s3_substitute, s4_solve_t, s5_first_t, s6_second_t, s7_roots) are used on answers 13, 14 and 15, deliberately: one method — remove the root ±1 by synthetic division, then solve the standard reciprocal quotient with x + 1/x = t. The per-step MARKS differ across the three because each page prints its own [N Marks] tags and the card follows its page; a step that the page does not mark separately carries 0 and no red mark. The book writes the substitution letter as y; the card writes t. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 2 Q19 (book p.114) is this question. Truth check: f(1) = 0 and f(−1) = 0 by substitution; both synthetic-division remainders are 0; the six roots add to 1 − 1 + 2 + 1/2 + 10/6 = 25/6 = −a₁/a₀. The book writes the complex roots first as (5 ± √−11)/6 and then as (5 ± √11 i)/6; the card writes (5 ± i√11)/6 throughout — a notation choice, not a correction. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Theory of Equations, answer 14. Printed appearances: AP 15, 18. THE MARK SPLIT IS THE BOOK'S, with one division of ours inside it: the page prints [2 Marks] beside the two synthetic divisions / 'now we solve the SRE' block, then [1 Mark] each against the substitution, the t values, the roots from t = 5/2, the equation 3x² − 5x + 3 = 0, and its complex roots (2+1+1+1+1+1 = 7); the final 'hence all the six roots' line carries no tag. The card splits the printed 2 as 1 (identify) + 1 (divide), gives the t = 5/3 step the page's 1+1 = 2, and leaves the final list at 0 marks as the page does. The SAME step ids (s1_identify, s2_divide, s3_substitute, s4_solve_t, s5_first_t, s6_second_t, s7_roots) are used on answers 13, 14 and 15, deliberately: one method — remove the root ±1 by synthetic division, then solve the standard reciprocal quotient with x + 1/x = t. The per-step MARKS differ across the three because each page prints its own [N Marks] tags and the card follows its page; a step that the page does not mark separately carries 0 and no red mark. The book writes the substitution letter as y; the card writes t. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 2 Q19 (book p.114) is this question. Truth check: f(1) = 0 and f(−1) = 0 by substitution; both synthetic-division remainders are 0; the six roots add to 1 − 1 + 2 + 1/2 + 10/6 = 25/6 = −a₁/a₀. The book writes the complex roots first as (5 ± √−11)/6 and then as (5 ± √11 i)/6; the card writes (5 ± i√11)/6 throughout — a notation choice, not a correction. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — which roots you take out first and why, how you divide twice, and how the quotient is solved with t = x + 1/x.",
   "insider_note": "The x³ coefficient is 0 and must be written in the synthetic division; leaving the column out shifts every later entry.",
@@ -78,13 +78,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree n = 6 is even, and aₖ = −aₙ₋ₖ for every k",
-          "(6, −25, 31, 0, −31, 25, −6:",
-          "signs flip end to end).",
-          "So this is a reciprocal equation of class II",
-          "and even degree;",
-          "x = 1 and x = −1 are both roots of it.",
-          "Check: f(1) = 6 − 25 + 31 − 31 + 25 − 6 = 0"
+          "Write every coefficient, including the",
+          "missing x³ term:",
+          "6, −25, 31, 0, −31, 25, −6",
+          "Read end to end the signs flip, so",
+          "aₖ = −aₙ₋ₖ: a reciprocal equation of class II.",
+          "Its degree n = 6 is even, and for such an",
+          "equation both x = 1 and x = −1 are roots.",
+          "Check: f(1) = 6 − 25 + 31 − 31 + 25 − 6 = 0 ✓"
         ],
         "recall": {
           "credit": "say_it",
@@ -152,8 +153,10 @@
             "text": "     6   −25   37  −25     6    0",
             "style": "indent"
           },
+          "Both remainders are 0, as expected.",
           "Quotient: 6x⁴ − 25x³ + 37x² − 25x + 6,",
-          "which is again reciprocal."
+          "which reads the same end to end,",
+          "so it is reciprocal too."
         ],
         "recall": {
           "credit": "say_it",
@@ -193,10 +196,15 @@
         "margin_note": "Third mark. Divide the quotient by x², group, substitute. 6(t² − 2) = 6t² − 12, and 37 − 12 = 25.",
         "memory_tip": "Work on the quotient: 6(t² − 2) = 6t² − 12, and 37 − 12 = 25.",
         "lines": [
-          "Divide 6x⁴ − 25x³ + 37x² − 25x + 6 = 0 by x²:",
+          "x = 0 is not a root, so divide the quotient by x²:",
+          "6x² − 25x + 37 − 25/x + 6/x² = 0",
+          "Group the pairs that match:",
           "6(x² + 1/x²) − 25(x + 1/x) + 37 = 0 … (1)",
-          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "Put x + 1/x = t.",
+          "Squaring both sides: x² + 2 + 1/x² = t²",
+          "So x² + 1/x² = t² − 2",
           "(1) becomes 6(t² − 2) − 25t + 37 = 0",
+          "6t² − 12 − 25t + 37 = 0",
           "6t² − 25t + 25 = 0"
         ],
         "recall": {
@@ -237,6 +245,7 @@
         "margin_note": "Fourth mark. Split −25 = −15 − 10 with (−15)(−10) = 150 = 6 × 25.",
         "memory_tip": "Split −25 = −15 − 10, since (−15)(−10) = 150 = 6 × 25.",
         "lines": [
+          "Split −25t as −15t − 10t:",
           "6t² − 15t − 10t + 25 = 0",
           "3t(2t − 5) − 5(2t − 5) = 0",
           "(2t − 5)(3t − 5) = 0",
@@ -281,7 +290,10 @@
         "memory_tip": "2x² − 5x + 2 = (2x − 1)(x − 2), giving 2 and 1/2.",
         "lines": [
           "If t = 5/2: x + 1/x = 5/2",
-          "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
+          "Multiply by 2x: 2x² + 2 = 5x",
+          "2x² − 5x + 2 = 0",
+          "Split −5x as −4x − x:",
+          "2x(x − 2) − 1(x − 2) = 0",
           "(2x − 1)(x − 2) = 0",
           "x = 2 or x = 1/2"
         ],
@@ -325,9 +337,12 @@
         "memory_tip": "25 − 36 = −11 is negative, so write √(−11) as i√11 — this pair is complex.",
         "lines": [
           "If t = 5/3: x + 1/x = 5/3",
-          "3x² + 3 = 5x, so 3x² − 5x + 3 = 0",
-          "x = (5 ± √(25 − 36))/6 = (5 ± √(−11))/6",
-          "= (5 ± i√11)/6"
+          "Multiply by 3x: 3x² + 3 = 5x",
+          "3x² − 5x + 3 = 0",
+          "x = (5 ± √(25 − 36))/6   [quadratic formula]",
+          "= (5 ± √(−11))/6",
+          "√(−11) = i√11, so",
+          "x = (5 ± i√11)/6"
         ],
         "recall": {
           "credit": "say_it",
@@ -367,9 +382,10 @@
         "margin_note": "No separate mark on the page for this line, but it is the answer. Six roots for degree 6: 1 and −1 from the two divisions, 2 and 1/2, and the complex pair. Their sum is 25/6 = −a₁/a₀.",
         "memory_tip": "Six roots for degree 6, and the 1 and −1 from the two divisions belong in the list.",
         "lines": [
-          "The six roots are:",
+          "Collecting the two roots from step 2",
+          "and the four above:",
           {
-            "text": "1, −1, 2, 1/2, (5 ± i√11)/6",
+            "text": "∴ roots: 1, −1, 2, 1/2, (5 ± i√11)/6",
             "style": "boxed"
           }
         ],

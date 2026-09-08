@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Theory of Equations, answer 15. Printed appearances: AP 16. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] beside the class-II identification, [1 Mark] beside 'now we solve the SRE' after the division, [1 Mark] beside the t values, [2 Marks] beside the roots from t = 3 and [2 Marks] beside the roots from t = 1 (1+1+1+2+2 = 7); the final 'hence all the five roots' line carries no tag. The card follows the page: the substitution step and the final list carry 0 marks (they are written, not marked separately). The SAME step ids (s1_identify, s2_divide, s3_substitute, s4_solve_t, s5_first_t, s6_second_t, s7_roots) are used on answers 13, 14 and 15, deliberately: one method — remove the root ±1 by synthetic division, then solve the standard reciprocal quotient with x + 1/x = t. The per-step MARKS differ across the three because each page prints its own [N Marks] tags and the card follows its page; a step that the page does not mark separately carries 0 and no red mark. The book writes the substitution letter as y; the card writes t. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: f(1) = 0 by substitution; the synthetic-division remainder is 0; the five roots add to 1 + 3 + 1 = 5 = −a₁/a₀ and multiply to 1 · 1 · 1 = 1 = −a₅/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Theory of Equations, answer 15. Printed appearances: AP 16. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] beside the class-II identification, [1 Mark] beside 'now we solve the SRE' after the division, [1 Mark] beside the t values, [2 Marks] beside the roots from t = 3 and [2 Marks] beside the roots from t = 1 (1+1+1+2+2 = 7); the final 'hence all the five roots' line carries no tag. The card follows the page: the substitution step and the final list carry 0 marks (they are written, not marked separately). The SAME step ids (s1_identify, s2_divide, s3_substitute, s4_solve_t, s5_first_t, s6_second_t, s7_roots) are used on answers 13, 14 and 15, deliberately: one method — remove the root ±1 by synthetic division, then solve the standard reciprocal quotient with x + 1/x = t. The per-step MARKS differ across the three because each page prints its own [N Marks] tags and the card follows its page; a step that the page does not mark separately carries 0 and no red mark. The book writes the substitution letter as y; the card writes t. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: f(1) = 0 by substitution; the synthetic-division remainder is 0; the five roots add to 1 + 3 + 1 = 5 = −a₁/a₀ and multiply to 1 · 1 · 1 = 1 = −a₅/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — which root you take out first and why, how you divide, and how the quotient is solved with t = x + 1/x.",
   "insider_note": "Four of the seven marks are the two endings; both discriminants (5 and −3) must be written, and the negative one gives i√3, not √3.",
@@ -70,11 +70,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree n = 5 is odd, and aₖ = −aₙ₋ₖ for every k",
-          "(1, −5, 9, −9, 5, −1: signs flip end to end).",
-          "So this is a reciprocal equation of class II",
-          "and odd degree; x = 1 is always a root of it.",
-          "Check: f(1) = 1 − 5 + 9 − 9 + 5 − 1 = 0"
+          "The coefficients are 1, −5, 9, −9, 5, −1.",
+          "Read end to end the signs flip, so",
+          "aₖ = −aₙ₋ₖ: a reciprocal equation of class II.",
+          "Its degree n = 5 is odd, and for such an",
+          "equation x = 1 is always a root.",
+          "Check by putting x = 1:",
+          "f(1) = 1 − 5 + 9 − 9 + 5 − 1 = 0 ✓"
         ],
         "recall": {
           "credit": "say_it",
@@ -117,7 +119,8 @@
         "margin_note": "Second mark. Synthetic division by 1: bring down 1, add each column. Remainder 0; quotient x⁴ − 4x³ + 5x² − 4x + 1, which is reciprocal (1, −4, 5, −4, 1).",
         "memory_tip": "Synthetic division by 1, remainder 0. The quotient 1, −4, 5, −4, 1 is reciprocal again.",
         "lines": [
-          "Divide f(x) by (x − 1) (synthetic division):",
+          "So (x − 1) is a factor. Divide f(x) by it",
+          "using synthetic division with 1:",
           {
             "text": "1 |  1   −5    9   −9    5   −1",
             "style": "indent"
@@ -130,7 +133,10 @@
             "text": "     1   −4    5   −4    1    0",
             "style": "indent"
           },
-          "Quotient: x⁴ − 4x³ + 5x² − 4x + 1, reciprocal."
+          "The last entry 0 is the remainder, as expected.",
+          "Quotient: x⁴ − 4x³ + 5x² − 4x + 1,",
+          "which reads the same end to end,",
+          "so it is reciprocal too."
         ],
         "recall": {
           "credit": "say_it",
@@ -169,9 +175,13 @@
         "margin_note": "No separate mark on the page for this step — its [1 Mark] sits beside the t values in the next step. Divide the quotient by x², group, substitute: (t² − 2) − 4t + 5 = t² − 4t + 3.",
         "memory_tip": "Work on the quotient: (t² − 2) − 4t + 5 = t² − 4t + 3.",
         "lines": [
-          "Divide x⁴ − 4x³ + 5x² − 4x + 1 = 0 by x²:",
+          "x = 0 is not a root, so divide the quotient by x²:",
+          "x² − 4x + 5 − 4/x + 1/x² = 0",
+          "Group the pairs that match:",
           "(x² + 1/x²) − 4(x + 1/x) + 5 = 0 … (1)",
-          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "Put x + 1/x = t.",
+          "Squaring both sides: x² + 2 + 1/x² = t²",
+          "So x² + 1/x² = t² − 2",
           "(1) becomes (t² − 2) − 4t + 5 = 0",
           "t² − 4t + 3 = 0"
         ],
@@ -213,6 +223,9 @@
         "margin_note": "Third mark. t² − 4t + 3 = (t − 3)(t − 1).",
         "memory_tip": "t² − 4t + 3 = (t − 3)(t − 1), so t = 3 or t = 1.",
         "lines": [
+          "Split −4t as −3t − t:",
+          "t² − 3t − t + 3 = 0",
+          "t(t − 3) − 1(t − 3) = 0",
           "(t − 3)(t − 1) = 0",
           "t = 3 or t = 1"
         ],
@@ -255,8 +268,10 @@
         "memory_tip": "x² − 3x + 1 = 0 has discriminant 9 − 4 = 5; the roots stay as surds.",
         "lines": [
           "If t = 3: x + 1/x = 3",
-          "x² + 1 = 3x, so x² − 3x + 1 = 0",
-          "x = (3 ± √(9 − 4))/2 = (3 ± √5)/2"
+          "Multiply by x: x² + 1 = 3x",
+          "x² − 3x + 1 = 0",
+          "x = (3 ± √(9 − 4))/2   [quadratic formula]",
+          "= (3 ± √5)/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -298,8 +313,11 @@
         "memory_tip": "x² − x + 1 = 0 has discriminant 1 − 4 = −3, so write √(−3) as i√3.",
         "lines": [
           "If t = 1: x + 1/x = 1",
-          "x² + 1 = x, so x² − x + 1 = 0",
-          "x = (1 ± √(1 − 4))/2 = (1 ± i√3)/2"
+          "Multiply by x: x² + 1 = x",
+          "x² − x + 1 = 0",
+          "x = (1 ± √(1 − 4))/2 = (1 ± √(−3))/2",
+          "√(−3) = i√3, so",
+          "x = (1 ± i√3)/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -339,9 +357,9 @@
         "margin_note": "No separate mark on the page for this line, but it is the answer. Five roots for degree 5: 1 from the division, the surd pair, and the complex pair. Their sum is 1 + 3 + 1 = 5 = −a₁/a₀.",
         "memory_tip": "Five roots for degree 5: the 1 from the division, the surd pair, and the complex pair.",
         "lines": [
-          "The five roots are:",
+          "Collecting the root from step 2 and the four above:",
           {
-            "text": "1, (3 ± √5)/2, (1 ± i√3)/2",
+            "text": "∴ roots: 1, (3 ± √5)/2, (1 ± i√3)/2",
             "style": "boxed"
           }
         ],

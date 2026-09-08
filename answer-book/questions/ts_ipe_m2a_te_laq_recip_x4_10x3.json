@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Theory of Equations, answer 10. Printed appearances: AP 18 · TS 15, 22. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] [1 Mark] [1 Mark] [2 Marks] [2 Marks] against the five stages (divide by x² · substitute · solve for t · t = 4 · t = 6) and the card follows it exactly. The SAME step ids (s1_identify, s2_substitute, s3_solve_t, s4_first_t, s5_second_t) and the same 1+1+1+2+2 shape are used on answers 10, 11 and 12, deliberately: they are one method — divide by x², put x + 1/x = t — over different numbers. The book writes the substitution letter as y; the card writes t, the letter the Telugu Akademi textbook uses. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 1 Q19 (book p.112) is this question; the Bullet Model Paper re-solves it under Q19 on book p.105 — arithmetic cross-checked, identical. Truth check: the four roots multiply to (4 − 3)(9 − 8) = 1, the constant term, and add to 10, the negative of the x³ coefficient. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Theory of Equations, answer 10. Printed appearances: AP 18 · TS 15, 22. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] [1 Mark] [1 Mark] [2 Marks] [2 Marks] against the five stages (divide by x² · substitute · solve for t · t = 4 · t = 6) and the card follows it exactly. The SAME step ids (s1_identify, s2_substitute, s3_solve_t, s4_first_t, s5_second_t) and the same 1+1+1+2+2 shape are used on answers 10, 11 and 12, deliberately: they are one method — divide by x², put x + 1/x = t — over different numbers. The book writes the substitution letter as y; the card writes t, the letter the Telugu Akademi textbook uses. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 1 Q19 (book p.112) is this question; the Bullet Model Paper re-solves it under Q19 on book p.105 — arithmetic cross-checked, identical. Truth check: the four roots multiply to (4 − 3)(9 − 8) = 1, the constant term, and add to 10, the negative of the x³ coefficient. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this reciprocal equation — what you divide by, what you substitute, and how each value of t gives two roots.",
   "insider_note": "Most students lose the −2 in x² + 1/x² = t² − 2; write the squaring line and the two 2-mark endings follow.",
@@ -78,11 +78,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree n = 4 is even, and aₖ = aₙ₋ₖ for every k",
-          "(1, −10, 26, −10, 1 read the same both ways).",
-          "So this is a standard reciprocal equation.",
-          "x ≠ 0, so divide every term by x²:",
+          "The coefficients are 1, −10, 26, −10, 1.",
+          "Read end to end they are the same, so",
+          "aₖ = aₙ₋ₖ for every k: this is a standard",
+          "reciprocal equation, and n = 4 is even.",
+          "x = 0 is not a root (the constant is 1 ≠ 0),",
+          "so divide every term by x²:",
           "x² − 10x + 26 − 10/x + 1/x² = 0",
+          "Group the pairs that match:",
           "(x² + 1/x²) − 10(x + 1/x) + 26 = 0 … (1)"
         ],
         "recall": {
@@ -125,8 +128,9 @@
         "memory_tip": "Write the squaring line once: t² = x² + 2 + 1/x², so x² + 1/x² = t² − 2.",
         "lines": [
           "Put x + 1/x = t.",
-          "Squaring: x² + 2 + 1/x² = t², so",
-          "x² + 1/x² = t² − 2",
+          "Squaring both sides: (x + 1/x)² = t²",
+          "x² + 2 + 1/x² = t²",
+          "So x² + 1/x² = t² − 2",
           "(1) becomes (t² − 2) − 10t + 26 = 0",
           "t² − 10t + 24 = 0"
         ],
@@ -169,6 +173,7 @@
         "margin_note": "Third mark. Split the middle term: −10 = −6 − 4 with (−6)(−4) = 24. Two values of t, so four roots are coming.",
         "memory_tip": "Split −10 = −6 − 4, since (−6)(−4) = 24. Two t values means four roots are coming.",
         "lines": [
+          "Split −10t as −6t − 4t:",
           "t² − 6t − 4t + 24 = 0",
           "t(t − 6) − 4(t − 6) = 0",
           "(t − 4)(t − 6) = 0",
@@ -213,8 +218,11 @@
         "memory_tip": "x² − 4x + 1 = 0, discriminant 12 = 4 × 3, so √12 = 2√3 and the 2 cancels: 2 ± √3.",
         "lines": [
           "If t = 4: x + 1/x = 4",
-          "x² + 1 = 4x, so x² − 4x + 1 = 0",
-          "x = (4 ± √(16 − 4))/2 = (4 ± √12)/2",
+          "Multiply by x: x² + 1 = 4x",
+          "x² − 4x + 1 = 0",
+          "x = (4 ± √(16 − 4))/2   [quadratic formula]",
+          "= (4 ± √12)/2",
+          "√12 = √(4 · 3) = 2√3",
           "= (4 ± 2√3)/2 = 2 ± √3"
         ],
         "recall": {
@@ -257,8 +265,10 @@
         "memory_tip": "x² − 6x + 1 = 0, discriminant 32 = 16 × 2, so √32 = 4√2: 3 ± 2√2. All four multiply to 1.",
         "lines": [
           "If t = 6: x + 1/x = 6",
-          "x² + 1 = 6x, so x² − 6x + 1 = 0",
+          "Multiply by x: x² + 1 = 6x",
+          "x² − 6x + 1 = 0",
           "x = (6 ± √(36 − 4))/2 = (6 ± √32)/2",
+          "√32 = √(16 · 2) = 4√2",
           "= (6 ± 4√2)/2 = 3 ± 2√2",
           {
             "text": "∴ roots: 2 ± √3, 3 ± 2√2",
