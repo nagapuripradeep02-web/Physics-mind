@@ -331,6 +331,8 @@ var Screens = (function () {
       row.appendChild(button('btn btn-primary', STR.lock_pay(sku.price_inr), function () {
         startPay(wall, '#/physics/' + key + '/fix/' + encodeURIComponent(qid));
       }));
+    } else if (sku) {
+      wall.appendChild(el('p', 'ep-note', STR.lock_price_soon));
     }
     var more = el('a', 'btn', STR.unlock_title);
     more.href = '#/unlock';
@@ -529,10 +531,13 @@ var Screens = (function () {
       var sku = Gate.price();
       var st = Gate.standing();
       if (st && st.unlocked) {
-        status.appendChild(el('p', 'ep-verdict', STR.unlock_paid_until(st.paid_until ? String(st.paid_until).slice(0, 10) : '—')));
+        status.appendChild(el('p', 'ep-verdict', st.paid_until
+          ? STR.unlock_paid_until(String(st.paid_until).slice(0, 10))
+          : STR.unlock_paid_open));
       } else {
         status.appendChild(el('div', 'ep-lock-price', sku ? STR.lock_price(sku.price_inr, sku.period_days) : STR.lock_price_soon));
         if (Gate.payable()) row.appendChild(button('btn btn-primary', STR.lock_pay(sku.price_inr), function () { startPay(box, '#/physics'); }));
+        else if (sku) status.appendChild(el('p', 'ep-note', STR.lock_price_soon));
       }
       if (Auth.available()) {
         status.appendChild(el('p', 'ep-note', Auth.signedIn() ? STR.unlock_signed_in(Auth.email() || '') : STR.unlock_signin_note));

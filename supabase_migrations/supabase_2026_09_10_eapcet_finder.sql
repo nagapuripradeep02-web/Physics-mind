@@ -283,7 +283,7 @@ begin
     end loop;
 
     -- ── recompute the chapter state from the retries ──
-    select coalesce(array_agg(distinct chapter_key), '{}') into v_keys
+    select coalesce(array_agg(distinct chapter_key), '{}'::text[]) into v_keys
       from (select chapter_key from ep_retries where device_id = p_device
             union select chapter_key from ep_runs where device_id = p_device) k;
 
@@ -363,7 +363,7 @@ begin
     select sku, label, price_inr, founding_price_inr, founding_limit, period_days
       into v_sku
       from ab_skus where sku = 'eapcet_physics_month' and active limit 1;
-    if v_sku is null then return null; end if;
+    if not found then return null; end if;
 
     if p_device is not null then
         select exists (select 1 from ep_payments where device_id = p_device and founding)

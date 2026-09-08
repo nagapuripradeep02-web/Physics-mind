@@ -56,7 +56,7 @@ var STR = {
   result_guessed: function (n) { return n === 1 ? '1 of them was a guess' : n + ' of them were guesses'; },
   result_hist_title: 'Where the wrong answers came from',
   result_timing: function (sec, exam) {
-    return 'You took about ' + sec + ' seconds a question. The exam gives ' + exam + '.';
+    return 'You took about ' + sec + (sec === 1 ? ' second' : ' seconds') + ' a question. The exam gives ' + exam + '.';
   },
   weakness: {
     concept: function (ch) { return 'In ' + ch + ', most of your wrong answers came from not knowing the concept. Learn the concept first, then the questions.'; },
@@ -134,6 +134,7 @@ var STR = {
   ],
   unlock_free_line: 'The ten-question run and the diagnosis stay free on every chapter.',
   unlock_paid_until: function (date) { return 'Your plan is active until ' + date + '.'; },
+  unlock_paid_open: 'Your plan is active.',
   unlock_signed_in: function (email) { return 'Signed in as ' + email + '. Your plan works on every phone you sign in on.'; },
   unlock_signin_note: 'Sign in with Google and the plan follows you to any phone or laptop. Paying without signing in works on this phone only.',
   unlock_signin: 'Sign in with Google',
