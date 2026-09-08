@@ -1,5 +1,33 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — MATHS-2A IS COMPLETE: all ten chapters written out in full, 257 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder said "no need to show the samples… go ahead, most cards to least cards", and the remaining seven chapters were authored in one run. The whole paper now reads at the level he set: 257 cards, 3,400 written lines → 5,158. Steps, marks and mark splits never changed.**
+
+| chapter | cards | lines |
+|---|---|---|
+| Permutations and Combinations | 49 | 353 → 774 |
+| Complex Numbers | 38 | 332 → 626 |
+| Binomial Theorem | 34 | 296 → 750 |
+| Quadratic Expressions | 24 | 264 → 452 |
+| Theory of Equations | 24 | 356 → 606 |
+| Probability | 23 | 306 → 502 |
+| De Moivre's Theorem | 22 | 250 → 414 |
+| Partial Fractions | 15 | 205 → 369 |
+| Random Variables | 14 | 223 → 330 |
+| Measures of Dispersion | 14 | 216 → 337 |
+
+### Verified
+tsc 0 · `check:cards` 257/257 (65 KaTeX lines) · `measure:wrap` 5158/5158 lines on ONE ruled row (0.0%) · vitest 85/85 · both builds green · a walk of ALL 257 cards: every one completes on full marks, zero console errors · `find_label_clashes` fleet-wide: 117 figures, no collisions (the pre-existing e2e figure failure is fixed and the sweep PASSES fleet-wide — 43.8 min, confirmed in a full smoke run).
+
+### Examination
+**Eight independent Opus examiners across the session re-derived all 257 cards.** Partial fractions recombined with sympy; every root substituted back; every transformed equation rebuilt from its roots; ranges re-derived from critical points rather than the card's algebra; probabilities as exact Fractions; ω powers numerically with exp(2πi/3); dispersion tables recomputed cell by cell from raw data; word ranks brute-forced against sorted permutations.
+
+**Real defects found and fixed: 9 across 257 cards.** Four malformed radicands (`√(1 + 3 = √4)`), one locus that included the point where it is undefined, one over-claiming validity condition, one rank card that never justified its own count, one mistake-note whose arithmetic contradicted itself, one deviation list described in the wrong order.
+
+### The lesson that repeated
+**A generated batch needs the same sweep applied to EVERY card the generator touched.** The `√(… = …)` bug was caught by eye on two cards, fixed there, and left on four others until an examiner found them. Later in the session a regex sweep of my own work over all 257 cards caught six ASCII exponents (`2^(1/2)`) BEFORE any examiner ran — that is the discipline, and it should be run after every generated batch, not after a defect is reported.
+
 ## 📗 SESSION — Complex Numbers written out in full, and the figure sweep is green again (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
 
 **Bottom line: the third chapter, 38 cards, 332 written lines → 626. Three chapters and 121 cards now sit on one branch and one PR (#202). The pre-existing figure-label collision that had been failing the e2e sweep on master is also fixed here.**
