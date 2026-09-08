@@ -1,0 +1,26 @@
+# Cloudflare Worker (static assets) for the EAPCET PHYSICS FINDER — a separate
+# site from the Answer Book (wrangler.answers.toml → answers.viditra.co), the
+# teacher app (wrangler.app.toml → app.viditra.co) and the marketing site
+# (wrangler.toml → viditra.co). Shares nothing student-visible with them; it
+# shares only the Supabase project behind the ep-* Edge Functions.
+#
+# Serves eapcet-app/dist — the HOSTED build (npm run build:eapcet:hosted), which
+# bakes the EP_* endpoint bases from .env.local. Always deploy via
+# `npm run deploy:eapcet`, which builds that exact directory first; the offline
+# build (build:eapcet) makes zero requests and must never be the one deployed.
+# The dogfood build (build:eapcet:dev, DEV-OPEN) shows unverified questions and
+# the build script refuses to combine it with --hosted.
+#
+# DOMAIN: not yet chosen (founder decision before Phase 2 goes live). Until a
+# custom_domain route is added here, the worker answers on workers.dev only.
+# When the domain lands: add `routes = [{ pattern = "<domain>", custom_domain = true }]`
+# ABOVE [assets] (a top-level key placed after a table header is silently
+# scoped into that table), then add https://<domain> to EP_ALLOWED_ORIGINS on
+# ep-state, ep-vidi-chat and ep-pay, and EP_PAY_RETURN_URL on ep-pay.
+#
+# Deploy:  npx wrangler deploy -c wrangler.eapcet.toml
+name = "viditra-eapcet"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./eapcet-app/dist"

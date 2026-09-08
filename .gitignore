@@ -162,3 +162,5 @@ smoke.pid
 # EAPCET finder builds (build:eapcet writes dist/, the e2e suite dist-e2e/)
 eapcet-app/dist/
 eapcet-app/dist-e2e/
+eapcet-app/dist-e2e-hosted/
+eapcet-app/dist-dev/

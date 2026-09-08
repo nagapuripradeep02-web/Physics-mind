@@ -114,10 +114,10 @@ async function open(page: Page, hash = '#/'): Promise<void> {
 
 /** The card on screen and the key for it, straight from the page's own pool. */
 async function currentCard(page: Page): Promise<{ qid: string; answer: number }> {
-    const qid = await page.locator('.ep-card[data-qid]').last().getAttribute('data-qid');
+    const qid = (await page.locator('.ep-card[data-qid]').last().getAttribute('data-qid')) || '';
     expect(qid).toBeTruthy();
     const answer = await page.evaluate((id) => (window as any).EP_POOL.questions[id].answer, qid);
-    return { qid: qid!, answer };
+    return { qid, answer };
 }
 
 /** The scripted ten: c/w = right or wrong pick, then the probe tapped. */
@@ -299,5 +299,178 @@ test.describe('EAPCET finder — offline build', () => {
         expect(flip.guessed_counts).toBeNull();
         await page.goto(URL + '#/physics');
         await expect(page.locator(`.ep-row[data-chapter="${OPEN_KEY}"] .ep-badge`)).toHaveText('Strong now: calculation');
+    });
+});
+
+// ═══ the hosted build, against faked endpoints ═══════════════════════════════
+// The same fixture built with --hosted and three EP_* bases on a host that does
+// not exist; page.route answers for ep-state, ep-vidi-chat and ep-pay. What it
+// proves: a locked device meets the lock wall and never receives a solution
+// byte in the page or in any response body; paying posts THIS device's id and
+// the return lands on the solution the student was heading to; an entitled
+// device renders the verified solution, the mistake that names its pick first,
+// the grounded card, a sibling retry that counts toward the streak; the chat
+// posts the open question and renders the reply under the AI tag.
+const HOSTED_OUT = join(ROOT, 'eapcet-app', 'dist-e2e-hosted');
+const HOSTED_URL = 'file:///' + join(HOSTED_OUT, 'index.html').replace(/\\/g, '/');
+const STATE = 'https://ep.test/state';
+const CHAT = 'https://ep.test/chat';
+const PAY = 'https://ep.test/pay';
+const SKU = { sku: 'eapcet_physics_month', label: 'EAPCET Physics', price_inr: 399, list_price_inr: 399,
+    founding: false, founding_locked: false, founding_slots_left: null, period_days: 31 };
+const CORS = { 'access-control-allow-origin': '*', 'content-type': 'application/json' };
+
+interface Fake { unlocked: boolean; posts: Array<{ url: string; body: any }>; reply: string }
+
+/** Wire the three endpoints. `fake.unlocked` decides the standing and the bundle. */
+async function wire(page: Page, fake: Fake): Promise<void> {
+    await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+    const standing = () => ({ unlocked: fake.unlocked, paid_until: fake.unlocked ? '2026-10-10T00:00:00Z' : null,
+        signed_in: false, devices: 1, sku: SKU });
+    await page.route(STATE, async (route) => {
+        const body = JSON.parse(route.request().postData() || '{}');
+        fake.posts.push({ url: STATE, body });
+        if (body.action === 'standing') return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true, ...standing() }) });
+        if (body.action === 'bundle') {
+            if (!fake.unlocked) return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true, locked: true, sku: SKU }) });
+            const f = fixture();
+            const solutions: Record<string, unknown> = {};
+            for (const q of Object.values(f.questions) as any[]) {
+                if (q.chapter_key === body.chapter_key && q.solution) {
+                    solutions[q.id] = { solution: q.solution, grounding: [{ question_id: 'ts_ipe_p1_wpe_card', title: 'Work-energy theorem', text: 'The net work done on a body equals the change in its kinetic energy.' }] };
+                }
+            }
+            return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true, unlocked: true, chapter_key: body.chapter_key, solutions }) });
+        }
+        return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true, chapters: {}, server_time: new Date().toISOString(), internal: false, standing: standing() }) });
+    });
+    await page.route(CHAT, async (route) => {
+        const body = JSON.parse(route.request().postData() || '{}');
+        fake.posts.push({ url: CHAT, body });
+        if (body.type === 'events') return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true }) });
+        if (!fake.unlocked) return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ locked: true, questions_left: 0 }) });
+        return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ reply: fake.reply, questions_left: 39 }) });
+    });
+    await page.route(PAY, async (route) => {
+        const body = JSON.parse(route.request().postData() || '{}');
+        fake.posts.push({ url: PAY, body });
+        return route.fulfill({ status: 200, headers: CORS, body: JSON.stringify({ ok: true, url: 'https://rzp.test/l/abc', price: SKU }) });
+    });
+    await page.route('https://rzp.test/l/abc', (route) => route.fulfill({ status: 200, headers: { 'content-type': 'text/html' }, body: '<html><body><h1>Razorpay</h1></body></html>' }));
+}
+
+test.describe('EAPCET finder — hosted build against faked endpoints', () => {
+    test.beforeAll(() => {
+        mkdirSync(HOSTED_OUT, { recursive: true });
+        writeFileSync(join(HOSTED_OUT, 'fixture_release.json'), JSON.stringify(fixture()));
+        execFileSync('npx', ['tsx', 'src/scripts/build_eapcet_app.ts', '--hosted', `--pool=${join(HOSTED_OUT, 'fixture_release.json')}`, `--out=${HOSTED_OUT}`], {
+            cwd: ROOT, stdio: 'pipe', shell: true,
+            env: { ...process.env, EP_CHAT_BASE: CHAT, EP_STATE_BASE: STATE, EP_PAY_BASE: PAY, EP_AUTH_BASE: '', EP_AUTH_ANON: '', EP_STAFF_WORD: 'teamword' },
+        });
+        if (!existsSync(join(HOSTED_OUT, 'index.html'))) throw new Error('the hosted e2e build produced no index.html');
+    });
+
+    test('a locked device meets the lock wall and never receives a solution byte; paying carries its device id and returns to the solution', async ({ page }) => {
+        const fake: Fake = { unlocked: false, posts: [], reply: '' };
+        await wire(page, fake);
+        const bodies: string[] = [];
+        page.on('response', async (r) => { try { if (/ep\.test/.test(r.url())) bodies.push(await r.text()); } catch { /* aborted */ } });
+        await page.goto(HOSTED_URL + `#/physics/${OPEN_KEY}`);
+        await playRun(page);
+        await page.locator('.ep-fix-btn').first().click();
+        await expect(page.locator('#lockWall')).toBeVisible();
+        await expect(page.locator('#lockWall')).toContainText('₹399 for 31 days');
+        const html = await page.content();
+        expect(html).not.toContain(STEP_TEXT);
+        for (const b of bodies) expect(b).not.toContain(STEP_TEXT);
+        const fixHash = await page.evaluate(() => location.hash);
+        expect(fixHash).toMatch(new RegExp(`^#/physics/${OPEN_KEY}/fix/`));
+        const deviceId = await page.evaluate(() => localStorage.getItem('ep_device_id'));
+        expect(deviceId).toMatch(/^[0-9a-f-]{36}$/);
+        // the sync on boot carried this device and its chapters
+        expect(fake.posts.some((p) => p.url === STATE && p.body.action === 'sync' && p.body.device_id === deviceId)).toBe(true);
+
+        await page.locator('#lockWall button', { hasText: 'Unlock for ₹399' }).click();
+        await page.waitForURL('https://rzp.test/l/abc');
+        const pay = fake.posts.find((p) => p.url === PAY);
+        expect(pay?.body.device_id).toBe(deviceId);
+
+        // Back from Razorpay: the webhook has landed, the plan is live, the page
+        // returns the student to the solution they were heading to.
+        fake.unlocked = true;
+        await page.goto(HOSTED_URL + '#/physics');
+        await expect(page).toHaveURL(new RegExp(fixHash.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$'), { timeout: 12000 });
+        await expect(page.locator('.ep-step')).toHaveCount(2);
+        expect(fake.posts.some((p) => p.url === CHAT && p.body.type === 'events' && p.body.events.some((e: any) => e.t === 'lock_hit'))).toBe(true);
+    });
+
+    test('an entitled device reads the verified solution, its own mistake first, the grounded card, and a sibling retry that counts', async ({ page }) => {
+        const fake: Fake = { unlocked: true, posts: [], reply: '' };
+        await wire(page, fake);
+        await page.goto(HOSTED_URL + `#/physics/${OPEN_KEY}`);
+        await playRun(page);
+        const first = page.locator('.ep-fix-item').first();
+        const qid = await first.getAttribute('data-qid');
+        await first.locator('.ep-fix-btn').click();
+        await expect(page.locator('.ep-step')).toHaveCount(2);
+        await expect(page.locator('.ep-step').first()).toContainText(STEP_TEXT);
+        await expect(page.locator('.ep-approach')).toContainText('Work equals the change in kinetic energy');
+        await expect(page.locator('.ep-fix-key')).toContainText('You picked');
+        // the fixture's one mistake names the option playRun picks: it is tagged as the student's own
+        await expect(page.locator('.ep-mistake').first()).toHaveClass(/ep-mistake-mine/);
+        await expect(page.locator('.ep-gcard-title')).toHaveText('Work-energy theorem');
+        // "why?" reveals the line; the solution never leaves memory for localStorage
+        const stored = await page.evaluate(() => Object.keys(localStorage).map((k) => localStorage.getItem(k) || '').join('\n'));
+        expect(stored).not.toContain(STEP_TEXT);
+        expect(fake.posts.some((p) => p.url === STATE && p.body.action === 'bundle' && p.body.chapter_key === OPEN_KEY)).toBe(true);
+
+        await page.locator('#retryBox button', { hasText: 'Try a similar question' }).click();
+        const sib = page.locator('#retryBox .ep-card[data-qid]');
+        await expect(sib).toHaveCount(1);
+        const sibId = (await sib.getAttribute('data-qid')) || '';
+        expect(sibId).toBeTruthy();
+        expect(sibId).not.toBe(qid);
+        const answer = await page.evaluate((id) => (window as any).EP_POOL.questions[id].answer, sibId);
+        await sib.locator(`.ep-opt[data-option="${answer}"]`).click();
+        await page.locator('#retryBox .ep-chip', { hasText: 'I was sure' }).click();
+        await expect(page.locator('#retryVerdict')).toHaveText('1 of 3 correct and sure in a row.');
+        const state = await page.evaluate(() => JSON.parse(localStorage.getItem('ep_state_v1')!));
+        expect(state.chapters[OPEN_KEY].retries).toHaveLength(1);
+        expect(state.chapters[OPEN_KEY].retries[0]).toMatchObject({ qid: sibId, from_qid: qid, type: 'calculation', correct: true, probe: 'sure' });
+        expect(state.chapters[OPEN_KEY].streak.calculation).toBe(1);
+    });
+
+    test('the chat posts the open question and where the student is, and renders the reply under the AI tag', async ({ page }) => {
+        const fake: Fake = { unlocked: true, posts: [], reply: 'Step 2 evaluates the work because the theorem needs the change in kinetic energy.' };
+        await wire(page, fake);
+        await page.goto(HOSTED_URL + `#/physics/${OPEN_KEY}`);
+        await playRun(page);
+        const first = page.locator('.ep-fix-item').first();
+        const qid = await first.getAttribute('data-qid');
+        await first.locator('.ep-fix-btn').click();
+        await expect(page.locator('.ep-chat')).toBeVisible();
+        await expect(page.locator('.ep-chat-chips .ep-chip')).toHaveCount(3);
+        await page.fill('.ep-chat-input', 'Why divide by two in step 2?');
+        await page.click('.ep-chat-send');
+        await expect(page.locator('.ep-chat-msg.tutor .ep-chat-text').last()).toHaveText(fake.reply);
+        await expect(page.locator('.ep-ai-tag').last()).toHaveText('AI answer — check it against the worked solution above');
+        const ask = fake.posts.find((p) => p.url === CHAT && p.body.question);
+        expect(ask?.body).toMatchObject({ question: 'Why divide by two in step 2?', question_id: qid, probe: 'calculation', weakness: 'calculation' });
+        expect(ask?.body.picked).toBeGreaterThanOrEqual(1);
+        expect(ask?.body.device_id).toMatch(/^[0-9a-f-]{36}$/);
+        // the page never sent a solution string: grounding is the server's job
+        expect(JSON.stringify(ask?.body)).not.toContain(STEP_TEXT);
+    });
+
+    test('the team route marks the device, and every batch after it says so', async ({ page }) => {
+        const fake: Fake = { unlocked: false, posts: [], reply: '' };
+        await wire(page, fake);
+        await page.goto(HOSTED_URL + '#/notastudent/teamword');
+        await expect(page.locator('#doorNote')).toContainText('marked as a team phone');
+        expect(await page.evaluate(() => localStorage.getItem('ep_internal'))).toBe('1');
+        await page.goto(HOSTED_URL + '#/physics');
+        await page.waitForTimeout(300);
+        await page.evaluate(() => (window as any).Track.flush());
+        await expect.poll(() => fake.posts.filter((p) => p.url === CHAT && p.body.type === 'events').some((p) => p.body.internal === true)).toBe(true);
     });
 });

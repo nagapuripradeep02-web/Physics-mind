@@ -108,5 +108,56 @@ a.ep-row:hover { border-color: var(--accent); }
 }
 .ep-again:hover { background: var(--clay-deep); }
 
+/* ── the fix screen: the worked solution ──────────────────────────────────── */
+.ep-fix-opts { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; }
+.ep-fix-opt { font-size: 14.5px; padding: 6px 10px; border-radius: 8px; color: var(--chrome-dim); white-space: pre-wrap; }
+.ep-fix-opt.right { background: var(--sage-wash); color: var(--sage-deep); font-weight: 600; }
+.ep-fix-key { font-weight: 600; font-size: 15px; margin: 4px 0 10px; }
+.ep-approach { font-family: var(--serif); font-size: 17px; line-height: 1.5; margin: 0 0 6px; }
+.ep-steps { margin: 0; padding: 0 0 0 22px; display: flex; flex-direction: column; gap: 12px; }
+.ep-step { font-size: 15px; line-height: 1.55; }
+.ep-step-text { white-space: pre-wrap; }
+.ep-step-eq { font-family: 'Cambria Math', 'STIX Two Math', var(--serif); font-size: 17px; padding: 6px 10px; margin: 6px 0; background: var(--chrome-card); border: 1px solid var(--chrome-line); border-radius: 8px; white-space: pre-wrap; }
+.ep-why { font: inherit; font-size: 13px; color: var(--clay-deep); background: none; border: 0; padding: 2px 0; cursor: pointer; text-decoration: underline; }
+.ep-step-why { font-size: 14px; color: var(--chrome-dim); border-left: 3px solid var(--accent); padding: 4px 10px; margin: 4px 0 0; }
+.ep-mistakes { display: flex; flex-direction: column; gap: 8px; }
+.ep-mistake { border: 1px solid var(--chrome-line); border-radius: 10px; background: var(--chrome-card); padding: 10px 12px; font-size: 14.5px; line-height: 1.5; }
+.ep-mistake-mine { border-color: var(--clay-deep); background: var(--clay-wash); }
+.ep-mistake-tag { font-size: 12px; font-weight: 600; color: var(--clay-deep); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.ep-mistake-opt { font-size: 12.5px; color: var(--chrome-dim); margin-top: 4px; }
+.ep-cards { display: flex; flex-direction: column; gap: 8px; }
+.ep-gcard { border: 1px solid var(--chrome-line); border-radius: 10px; background: var(--paper); padding: 10px 12px; }
+.ep-gcard-title { font-family: var(--serif); font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+.ep-gcard-text { font-size: 14px; color: var(--chrome-dim); line-height: 1.5; white-space: pre-wrap; }
+.ep-retry { margin: 22px 0 8px; display: flex; flex-direction: column; gap: 10px; }
+.ep-try { align-self: flex-start; }
+.ep-retry-after { display: flex; flex-direction: column; gap: 8px; }
+.ep-chips-inline { position: static; background: none; padding: 0; }
+
+/* ── the chat under a solution ────────────────────────────────────────────── */
+.ep-chat { margin-top: 22px; border-top: 1px solid var(--chrome-line); padding-top: 4px; }
+.ep-chat-thread { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 10px; }
+.ep-chat-msg { max-width: 92%; }
+.ep-chat-msg.tutor { align-self: flex-start; }
+.ep-chat-msg.student { align-self: flex-end; }
+.ep-chat-text { font-size: 15px; line-height: 1.55; padding: 10px 14px; border-radius: 14px; white-space: pre-wrap; word-break: break-word; }
+.ep-chat-msg.tutor .ep-chat-text { background: var(--chrome-card); border: 1px solid var(--chrome-line); border-top-left-radius: 4px; }
+.ep-chat-msg.student .ep-chat-text { background: var(--clay-wash); border: 1px solid rgba(203, 104, 67, 0.28); border-top-right-radius: 4px; }
+.ep-ai-tag { font-size: 11.5px; color: var(--chrome-dim); margin: 0 0 3px 6px; }
+.ep-chat-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.ep-chat-row { display: flex; gap: 8px; }
+.ep-chat-input { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 15px; padding: 10px 12px; border: 1px solid var(--chrome-line); border-radius: 10px; background: var(--paper); color: var(--ink); }
+.ep-chat-send { flex: none; }
+
+/* ── the lock wall and the unlock page ────────────────────────────────────── */
+.ep-lock { margin: 16px 0; padding: 16px; border: 1px solid var(--chrome-line); border-radius: 14px; background: var(--chrome-card); }
+.ep-lock-title { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.ep-lock-body { font-size: 14.5px; line-height: 1.55; color: var(--chrome-dim); margin: 0 0 10px; }
+.ep-lock-price { font-family: var(--serif); font-size: 24px; font-weight: 600; margin: 6px 0 12px; }
+.ep-lock-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ep-lock-row .btn { text-decoration: none; }
+.ep-includes { margin: 0 0 8px; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; }
+.ep-unlock-status { margin: 8px 0 12px; }
+
 /* The dogfood banner: unverified questions on screen. Never on a hosted build. */
 .ep-devnote { background: #FFF3C4; color: #6B4E00; font-size: 13px; padding: 8px 14px; text-align: center; }

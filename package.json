@@ -34,6 +34,8 @@
     "build:eapcet:hosted": "npx tsx --env-file=.env.local src/scripts/build_eapcet_app.ts --hosted",
     "serve:eapcet": "npx --yes http-server eapcet-app/dist -p 8120 -c-1",
     "smoke:eapcet": "playwright test e2e/eapcet_app.spec.ts",
+    "deploy:eapcet": "npm run build:eapcet:hosted && npx wrangler deploy -c wrangler.eapcet.toml",
+    "content:push:eapcet": "npx tsx --env-file=.env.local src/scripts/push_eapcet_content.ts",
     "deploy:review": "npm run deploy:app",
     "deploy:cf-site": "npx wrangler deploy",
     "deploy:app": "npx wrangler deploy -c wrangler.app.toml",

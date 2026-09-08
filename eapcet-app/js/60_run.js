@@ -146,7 +146,46 @@ var Run = (function () {
   function chapterStateOf(chapterKey) { return chapterState(chapterKey); }
   function all() { return state; }
 
+  /* What the server merged, folded in without touching what is live here: a
+   * run this device does not hold is added; a run it holds is kept (its own
+   * copy is never older than the server's, and an unfinished one may have
+   * moved on during the round trip); retries are added by (qid, at); the
+   * streak and strong-now dates are the server's — it recomputes them over
+   * every device's retries. Returns true when anything changed. */
+  function adopt(serverChapters) {
+    if (!serverChapters || typeof serverChapters !== 'object') return false;
+    var changed = false;
+    for (var key in serverChapters) {
+      if (!Object.prototype.hasOwnProperty.call(serverChapters, key)) continue;
+      var theirs = serverChapters[key] || {};
+      var cs = chapterState(key);
+      var have = {};
+      for (var i = 0; i < cs.runs.length; i++) have[cs.runs[i].run_no] = true;
+      var runs = theirs.runs || [];
+      for (var j = 0; j < runs.length; j++) {
+        if (have[runs[j].run_no] || !runs[j].finished_at) continue;
+        cs.runs.push(runs[j]); changed = true;
+      }
+      cs.runs.sort(function (a, b) { return a.run_no - b.run_no; });
+      var seen = {};
+      for (var k = 0; k < cs.retries.length; k++) seen[cs.retries[k].qid + '|' + cs.retries[k].at] = true;
+      var rets = theirs.retries || [];
+      for (var m = 0; m < rets.length; m++) {
+        if (seen[rets[m].qid + '|' + rets[m].at]) continue;
+        cs.retries.push(rets[m]); changed = true;
+      }
+      if (theirs.streak && typeof theirs.streak === 'object') { cs.streak = theirs.streak; changed = true; }
+      if (theirs.strong_now && typeof theirs.strong_now === 'object') {
+        for (var t in theirs.strong_now) if (Object.prototype.hasOwnProperty.call(theirs.strong_now, t) && !cs.strong_now[t]) {
+          cs.strong_now[t] = theirs.strong_now[t]; changed = true;
+        }
+      }
+    }
+    if (changed) Store.setJSON(KEY, state);     // no Sync.touch: this came FROM the server
+    return changed;
+  }
+
   return { start: start, resume: resume, current: current, question: question, total: total, shown: shown,
            pick: pick, probe: probe, lastFinished: lastFinished, retry: retry, badge: badge,
-           seenIds: seenIds, chapterState: chapterStateOf, all: all, KEY: KEY };
+           seenIds: seenIds, chapterState: chapterStateOf, all: all, adopt: adopt, KEY: KEY };
 })();

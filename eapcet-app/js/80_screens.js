@@ -5,10 +5,11 @@
  *   #/physics                chapter list
  *   #/physics/<key>          the run, as a thread
  *   #/physics/<key>/result   the diagnosis
- *   #/physics/<key>/fix/<id> the worked solution (paid; not in this build)
+ *   #/physics/<key>/fix/<id> the worked solution (paid: the lock wall for a locked device)
+ *   #/unlock                 the plan, the price, sign-in, pay
  *   #/notastudent/<word>[/off]  team marking */
 var Screens = (function () {
-  var VIEWS = ['doorView', 'chaptersView', 'runView', 'resultView', 'fixView'];
+  var VIEWS = ['doorView', 'chaptersView', 'runView', 'resultView', 'fixView', 'unlockView'];
   var currentView = null;
 
   function showView(id) {
@@ -22,6 +23,12 @@ var Screens = (function () {
     if (href) { b.href = href; b.textContent = '← ' + label; }
   }
   function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function button(cls, label, fn) {
+    var b = el('button', cls, label);
+    b.type = 'button';
+    b.onclick = fn;
+    return b;
+  }
 
   // ── door ────────────────────────────────────────────────────────────────
   function showDoor() {
@@ -100,13 +107,26 @@ var Screens = (function () {
     })(list[i]);
     chips.hidden = !list.length;
   }
+  function correctChips(onProbe_) {
+    return [
+      { label: STR.probe_sure, value: 'sure', onTap: function () { onProbe_('sure'); } },
+      { label: STR.probe_guessed, value: 'guessed', onTap: function () { onProbe_('guessed'); } }
+    ];
+  }
+  function wrongChips(onProbe_) {
+    return [
+      { label: STR.probe_concept, value: 'concept', onTap: function () { onProbe_('concept'); } },
+      { label: STR.probe_calculation, value: 'calculation', onTap: function () { onProbe_('calculation'); } },
+      { label: STR.probe_application, value: 'application', onTap: function () { onProbe_('application'); } },
+      { label: STR.probe_time, value: 'time', onTap: function () { onProbe_('time'); } }
+    ];
+  }
 
-  function askCard() {
-    var cur = Run.current();
-    var q = Run.question();
+  /** A question card: asked label, stem, four option buttons. onPick(card, n). */
+  function questionCard(q, progressText, onPick_) {
     var card = el('div', 'ep-card');
     card.setAttribute('data-qid', q.id);
-    card.appendChild(el('div', 'ep-progress', STR.run_progress(cur.i + 1, Run.total())));
+    if (progressText) card.appendChild(el('div', 'ep-progress', progressText));
     card.appendChild(el('div', 'ep-asked', q.asked_label));
     card.appendChild(el('div', 'ep-stem', q.question_en));
     var opts = el('div', 'ep-opts');
@@ -116,10 +136,27 @@ var Screens = (function () {
       b.setAttribute('data-option', String(n));
       b.appendChild(el('span', 'ep-opt-n', STR.option_label(n)));
       b.appendChild(el('span', 'ep-opt-t', q.options_en[n - 1]));
-      b.onclick = function () { onPick(card, n); };
+      b.onclick = function () { onPick_(card, n); };
       opts.appendChild(b);
     })(n);
     card.appendChild(opts);
+    return card;
+  }
+  function markPicked(card, q, n, correct) {
+    var buttons = card.querySelectorAll('.ep-opt');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true;
+      var k = Number(buttons[i].getAttribute('data-option'));
+      if (k === q.answer) buttons[i].classList.add('right');
+      if (k === n && !correct) buttons[i].classList.add('wrong');
+      if (k === n) buttons[i].classList.add('picked');
+    }
+  }
+
+  function askCard() {
+    var cur = Run.current();
+    var q = Run.question();
+    var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), onPick);
     thread.appendChild(card);
     card.scrollIntoView({ block: 'end' });
     Run.shown();
@@ -130,28 +167,13 @@ var Screens = (function () {
     var q = Run.question();
     var rec = Run.pick(n);
     if (!rec) return;
-    var buttons = card.querySelectorAll('.ep-opt');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = true;
-      var k = Number(buttons[i].getAttribute('data-option'));
-      if (k === q.answer) buttons[i].classList.add('right');
-      if (k === n && !rec.correct) buttons[i].classList.add('wrong');
-      if (k === n) buttons[i].classList.add('picked');
-    }
+    markPicked(card, q, n, rec.correct);
     if (rec.correct) {
       say(STR.correct + ' ' + STR.probe_correct_q);
-      setChips([
-        { label: STR.probe_sure, value: 'sure', onTap: function () { onProbe('sure'); } },
-        { label: STR.probe_guessed, value: 'guessed', onTap: function () { onProbe('guessed'); } }
-      ]);
+      setChips(correctChips(onProbe));
     } else {
       say(STR.wrong(n, q.answer) + ' ' + STR.probe_wrong_q);
-      setChips([
-        { label: STR.probe_concept, value: 'concept', onTap: function () { onProbe('concept'); } },
-        { label: STR.probe_calculation, value: 'calculation', onTap: function () { onProbe('calculation'); } },
-        { label: STR.probe_application, value: 'application', onTap: function () { onProbe('application'); } },
-        { label: STR.probe_time, value: 'time', onTap: function () { onProbe('time'); } }
-      ]);
+      setChips(wrongChips(onProbe));
     }
   }
 
@@ -199,18 +221,10 @@ var Screens = (function () {
       thread.appendChild(card);
       if (rec.correct) {
         say(STR.correct + ' ' + STR.probe_correct_q);
-        setChips([
-          { label: STR.probe_sure, value: 'sure', onTap: function () { onProbe('sure'); } },
-          { label: STR.probe_guessed, value: 'guessed', onTap: function () { onProbe('guessed'); } }
-        ]);
+        setChips(correctChips(onProbe));
       } else {
         say(STR.wrong(rec.picked, q.answer) + ' ' + STR.probe_wrong_q);
-        setChips([
-          { label: STR.probe_concept, value: 'concept', onTap: function () { onProbe('concept'); } },
-          { label: STR.probe_calculation, value: 'calculation', onTap: function () { onProbe('calculation'); } },
-          { label: STR.probe_application, value: 'application', onTap: function () { onProbe('application'); } },
-          { label: STR.probe_time, value: 'time', onTap: function () { onProbe('time'); } }
-        ]);
+        setChips(wrongChips(onProbe));
       }
     } else {
       askCard();
@@ -293,7 +307,173 @@ var Screens = (function () {
     Track.log('diag_view', { chapter: key, run_no: run.run_no });
   }
 
-  // ── fix (paid; the solution surface lands with the hosted build) ────────
+  // ── fix: the worked solution (paid) ─────────────────────────────────────
+  /** The record of the run's last meeting with this question: what they
+      picked and what they said happened. Null when it was never in a run. */
+  function recordOf(key, qid) {
+    var cs = Run.chapterState(key);
+    for (var i = cs.runs.length - 1; i >= 0; i--)
+      for (var j = cs.runs[i].records.length - 1; j >= 0; j--)
+        if (cs.runs[i].records[j].qid === qid) return cs.runs[i].records[j];
+    return null;
+  }
+
+  function lockWall(box, key, qid) {
+    Track.log('lock_hit', { from: qid, chapter: key });
+    var wall = el('div', 'ep-lock');
+    wall.id = 'lockWall';
+    wall.appendChild(el('div', 'ep-lock-title', STR.lock_title));
+    wall.appendChild(el('p', 'ep-lock-body', STR.lock_body));
+    var sku = Gate.price();
+    wall.appendChild(el('div', 'ep-lock-price', sku ? STR.lock_price(sku.price_inr, sku.period_days) : STR.lock_price_soon));
+    var row = el('div', 'ep-lock-row');
+    if (Gate.payable()) {
+      row.appendChild(button('btn btn-primary', STR.lock_pay(sku.price_inr), function () {
+        startPay(wall, '#/physics/' + key + '/fix/' + encodeURIComponent(qid));
+      }));
+    }
+    var more = el('a', 'btn', STR.unlock_title);
+    more.href = '#/unlock';
+    row.appendChild(more);
+    if (Auth.available() && !Auth.signedIn()) row.appendChild(button('btn', STR.lock_signin, function () { Auth.signIn(); }));
+    wall.appendChild(row);
+    box.appendChild(wall);
+  }
+
+  function startPay(host, returnTo) {
+    var note = el('p', 'ep-note', STR.pay_opening);
+    host.appendChild(note);
+    Gate.startPayment(returnTo, function () { note.textContent = STR.pay_failed; });
+  }
+
+  function renderSolution(box, key, q, entry, rec) {
+    var sol = entry.solution;
+    var cards = entry.grounding || [];
+    var picked = rec ? rec.picked : null;
+    box.appendChild(el('p', 'ep-fix-key', STR.fix_key(q.answer) + (picked && picked !== q.answer ? ' ' + STR.fix_you_picked(picked) : '')));
+
+    box.appendChild(el('div', 'ep-h3', STR.fix_approach_title));
+    box.appendChild(el('p', 'ep-approach', sol.approach));
+
+    box.appendChild(el('div', 'ep-h3', STR.fix_steps_title));
+    var steps = el('ol', 'ep-steps');
+    for (var i = 0; i < sol.steps.length; i++) (function (st, n) {
+      var li = el('li', 'ep-step');
+      li.setAttribute('data-step', String(n));
+      li.appendChild(el('div', 'ep-step-text', st.text));
+      if (st.equation) li.appendChild(el('div', 'ep-step-eq', st.equation));
+      if (st.why_this_step) {
+        var why = el('div', 'ep-step-why', st.why_this_step);
+        why.hidden = true;
+        var b = button('ep-why', STR.fix_why, function () {
+          why.hidden = !why.hidden;
+          Panel.setStep(n);
+          Track.log('solution_step', { qid: q.id, step: n });
+        });
+        li.appendChild(b);
+        li.appendChild(why);
+      }
+      steps.appendChild(li);
+    })(sol.steps[i], i + 1);
+    box.appendChild(steps);
+
+    var mistakes = sol.common_mistakes || [];
+    if (mistakes.length) {
+      box.appendChild(el('div', 'ep-h3', STR.fix_mistakes_title));
+      // The one that names the option the student picked comes first.
+      var ordered = mistakes.slice().sort(function (a, b) {
+        return (b.option === picked ? 1 : 0) - (a.option === picked ? 1 : 0);
+      });
+      var ul = el('div', 'ep-mistakes');
+      for (var m = 0; m < ordered.length; m++) {
+        var mk = ordered[m];
+        var mine = picked && mk.option === picked && picked !== q.answer;
+        var item = el('div', 'ep-mistake' + (mine ? ' ep-mistake-mine' : ''));
+        if (mine) item.appendChild(el('div', 'ep-mistake-tag', STR.fix_your_mistake));
+        item.appendChild(el('div', 'ep-mistake-text', mk.text));
+        if (mk.option) item.appendChild(el('div', 'ep-mistake-opt', STR.fix_mistake_option(mk.option)));
+        ul.appendChild(item);
+      }
+      box.appendChild(ul);
+    }
+
+    if (cards.length) {
+      box.appendChild(el('div', 'ep-h3', STR.fix_cards_title));
+      var cl = el('div', 'ep-cards');
+      for (var c = 0; c < cards.length; c++) {
+        var cd = el('div', 'ep-gcard');
+        cd.appendChild(el('div', 'ep-gcard-title', cards[c].title));
+        cd.appendChild(el('div', 'ep-gcard-text', cards[c].text));
+        cl.appendChild(cd);
+      }
+      box.appendChild(cl);
+    }
+
+    // The sibling retry: a similar question, in this panel, counted toward
+    // "strong now" for the kind of mistake this question was probed as.
+    var retryBox = el('div', 'ep-retry');
+    retryBox.id = 'retryBox';
+    var type = rec ? rec.probe : null;
+    var tryBtn = button('btn btn-primary ep-try', STR.fix_try_again, function () { sibling(retryBox, key, q.id, type); });
+    retryBox.appendChild(tryBtn);
+    box.appendChild(retryBox);
+
+    var cs = Run.chapterState(key);
+    Panel.mount(box, {
+      chapterKey: key, qid: q.id, key: q.answer, picked: picked, probe: type,
+      weakness: (Run.lastFinished(key) || { diagnosis: {} }).diagnosis.weakness || null,
+      streak: type && cs.streak[type] ? cs.streak[type] : 0, steps: sol.steps.length
+    });
+  }
+
+  function sibling(host, key, fromQid, type) {
+    clear(host);
+    var ch = Data.chapter(key);
+    var sib = Data.sibling(fromQid, ch, Run.seenIds(key));
+    if (!sib) { host.appendChild(el('p', 'ep-note', STR.fix_sibling_none)); return; }
+    var q = Data.question(sib);
+    host.appendChild(el('p', 'ep-note', STR.fix_sibling_head));
+    var shownAt = Date.now();
+    var card = questionCard(q, null, function (card_, n) {
+      var correct = n === q.answer;
+      markPicked(card_, q, n, correct);
+      var ms = Date.now() - shownAt;
+      var after = el('div', 'ep-retry-after');
+      host.appendChild(after);
+      function settle(probe_) {
+        var streak = Run.retry(key, fromQid, type, q.id, n, correct, probe_, ms);
+        var cs = Run.chapterState(key);
+        var msg;
+        if (streak === null) msg = STR.fix_streak_none;
+        else if (cs.strong_now[type] && streak >= Diag.STRONG_AT) msg = STR.fix_strong(type);
+        else if (streak > 0) msg = STR.fix_streak(streak, Diag.STRONG_AT);
+        else msg = STR.fix_streak_reset;
+        var note = el('p', 'ep-verdict', msg);
+        note.id = 'retryVerdict';
+        after.appendChild(note);
+        var row = el('div', 'ep-lock-row');
+        var link = el('a', 'btn', STR.fix_sibling_solution);
+        link.href = '#/physics/' + key + '/fix/' + encodeURIComponent(q.id);
+        row.appendChild(link);
+        row.appendChild(button('btn', STR.fix_try_another, function () { sibling(host, key, fromQid, type); }));
+        after.appendChild(row);
+      }
+      if (correct) {
+        after.appendChild(el('p', 'ep-note', STR.correct + ' ' + STR.probe_correct_q));
+        var row = el('div', 'ep-chips ep-chips-inline');
+        row.appendChild(button('ep-chip', STR.probe_sure, function () { clear(row); settle('sure'); }));
+        row.appendChild(button('ep-chip', STR.probe_guessed, function () { clear(row); settle('guessed'); }));
+        after.appendChild(row);
+      } else {
+        after.appendChild(el('p', 'ep-note', STR.wrong(n, q.answer)));
+        settle(null);
+      }
+    });
+    host.appendChild(card);
+    card.scrollIntoView({ block: 'end' });
+    Track.log('retry_start', { qid: q.id, from_qid: fromQid, type: type });
+  }
+
   function showFix(key, qid) {
     var q = Data.question(qid);
     if (!q) { location.hash = '#/physics/' + key + '/result'; return; }
@@ -303,8 +483,70 @@ var Screens = (function () {
     clear(box);
     box.appendChild(el('div', 'ep-asked', q.asked_label));
     box.appendChild(el('div', 'ep-stem', q.question_en));
-    box.appendChild(el('p', 'ep-note', STR.fix_not_built));
-    Track.log('fix_open', { qid: qid, built: false });
+    var opts = el('div', 'ep-fix-opts');
+    for (var n = 1; n <= 4; n++) opts.appendChild(el('div', 'ep-fix-opt' + (n === q.answer ? ' right' : ''), STR.option_label(n) + ' ' + q.options_en[n - 1]));
+    box.appendChild(opts);
+    var rec = recordOf(key, qid);
+    Track.log('fix_open', { qid: qid, built: Sync.on(), locked: Gate.locked() });
+
+    if (!Sync.on()) { box.appendChild(el('p', 'ep-note', STR.fix_not_built)); return; }
+    if (Gate.known() && Gate.locked()) { lockWall(box, key, qid); return; }
+
+    // Not known yet (a cold open straight to a fix route), or unlocked: ask.
+    // The server refuses a locked device the bundle, so this branch can never
+    // put a solution byte in front of one.
+    var wait = el('p', 'ep-note', STR.fix_loading);
+    box.appendChild(wait);
+    Sync.bundle(key, function (out) {
+      if (box.contains(wait)) box.removeChild(wait);
+      if (!out) { box.appendChild(el('p', 'ep-note', STR.fix_offline)); box.appendChild(button('btn', STR.try_again, function () { showFix(key, qid); })); return; }
+      if (out.locked) { Gate.refresh(); lockWall(box, key, qid); return; }
+      var entry = out.solutions && out.solutions[qid];
+      if (!entry || !entry.solution) { box.appendChild(el('p', 'ep-note', STR.fix_missing)); return; }
+      renderSolution(box, key, q, entry, rec);
+    });
+  }
+
+  // ── unlock: the plan, the price, sign-in ───────────────────────────────
+  function showUnlock() {
+    showView('unlockView');
+    setBack('#/physics', STR.back_chapters);
+    var box = $('unlockBody');
+    clear(box);
+    box.appendChild(el('h2', 'ep-h2', STR.unlock_title));
+    box.appendChild(el('div', 'ep-h3', STR.unlock_includes_title));
+    var ul = el('ul', 'ep-includes');
+    for (var i = 0; i < STR.unlock_includes.length; i++) ul.appendChild(el('li', null, STR.unlock_includes[i]));
+    box.appendChild(ul);
+    box.appendChild(el('p', 'ep-note', STR.unlock_free_line));
+    var status = el('div', 'ep-unlock-status');
+    box.appendChild(status);
+    var row = el('div', 'ep-lock-row');
+    box.appendChild(row);
+
+    function paint() {
+      clear(status); clear(row);
+      var sku = Gate.price();
+      var st = Gate.standing();
+      if (st && st.unlocked) {
+        status.appendChild(el('p', 'ep-verdict', STR.unlock_paid_until(st.paid_until ? String(st.paid_until).slice(0, 10) : '—')));
+      } else {
+        status.appendChild(el('div', 'ep-lock-price', sku ? STR.lock_price(sku.price_inr, sku.period_days) : STR.lock_price_soon));
+        if (Gate.payable()) row.appendChild(button('btn btn-primary', STR.lock_pay(sku.price_inr), function () { startPay(box, '#/physics'); }));
+      }
+      if (Auth.available()) {
+        status.appendChild(el('p', 'ep-note', Auth.signedIn() ? STR.unlock_signed_in(Auth.email() || '') : STR.unlock_signin_note));
+        row.appendChild(Auth.signedIn()
+          ? button('btn', STR.unlock_signout, function () { Auth.signOut(); Sync.forget(); location.reload(); })
+          : button('btn', STR.unlock_signin, function () { Auth.signIn(); }));
+      }
+      var back = el('a', 'btn', STR.unlock_back);
+      back.href = '#/physics';
+      row.appendChild(back);
+    }
+    paint();
+    if (Gate.on() && !Gate.known()) Gate.refresh(function () { paint(); });
+    if (Auth.signedIn() && !Auth.email()) Auth.loadProfile(function () { paint(); });
   }
 
   // ── team marking ────────────────────────────────────────────────────────
@@ -325,6 +567,7 @@ var Screens = (function () {
     if (ns) { showTeamMark(decodeURIComponent(ns[1]), !!ns[2]); return; }
     if (h === '#/' || h === '#') { showDoor(); return; }
     if (h === '#/physics') { showChapters(); return; }
+    if (h === '#/unlock') { showUnlock(); return; }
     var m = h.match(/^#\/physics\/(p[12]-\d{2})(?:\/(result|fix)(?:\/([^\/]+))?)?$/);
     if (!m) { location.hash = '#/'; return; }
     if (!Data.chapter(m[1])) { location.hash = '#/physics'; return; }
