@@ -1,5 +1,20 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — the Binomial Theorem chapter written out in full: 34 cards at the founder's own level (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder rejected the rail-card explanation layer built on 2026-09-04 ("this is not the way I wanted to do this") and instead HANDWROTE the answer he wanted, to `ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3`. The detail belongs INSIDE the written answer on the page. One LAQ was expanded to that level for his approval, he approved it, and the whole chapter followed: 34 cards, 296 written lines → 750. Steps, marks and mark splits never changed.**
+
+### The level, taken from his page
+r and n named on their own lines before any substitution · the general term substituted symbolically first and with the real entries second · every index law, ratio and substitution on its own line with the arithmetic shown BEFORE it is evaluated (3·8 before 24, (2²)⁸ before 2¹⁶, x¹²⁻²⁴ before x⁻¹²) · identities the source book merely cited (ⁿCᵣ/ⁿCᵣ₋₁, ((n+1)/(r+1))ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁) derived from the factorial formula on the page · every infinite series' denominators split into 3ᵏ·k! explicitly before the standard expansion is matched, and the match checks the third numerator before moving on · a numeric evaluation wherever the book stopped at a product.
+
+### Verified
+tsc 0 · `check:cards` 34/34 (45 KaTeX lines typeset) · `measure:wrap` 750/750 lines on one rule each, after reflowing two · the e2e typeset measurement replayed over all 45 typeset lines: 0 clipped, 0 raw TeX · a headless walk of all 34 cards: every card completes on full marks, no console errors · full build 22.6 MB and `--stream=mpc_2` 8.1 MB both green.
+
+**Two independent examiners (Opus, one per section) re-derived every card line by line — the LAQ one summed each infinite series to 30 digits against its boxed value. 34 cards, 0 mathematical defects.** Three fixes came out of reading the built pages rather than any gate: nine series cards had "(negative power: invert)" glued inside the KaTeX line, both validity cards claimed |y| < 1 is needed "for any n" (false for a positive integer n), and one line transcribed a power in ASCII.
+
+### Next
+Founder verdict on the chapter at the review link. The same treatment is now a known, measured cost per chapter (about 15 lines of working per mark) if he wants it rolled out to the rest of Maths-2A.
+
 ## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
 **Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer
