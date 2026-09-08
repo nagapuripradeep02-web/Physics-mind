@@ -62,8 +62,8 @@
           "The modulus-amplitude form is",
           "z = r(cos θ + i sin θ), where",
           "r = √(x² + y²) and tan θ = y/x",
-          "r = √((−√7)² + (√21)²) = √(7 + 21 = √28)",
-          "= 2√7"
+          "r = √((−√7)² + (√21)²) = √(7 + 21)",
+          "= √28 = 2√7"
         ],
         "recall": {
           "credit": "say_it",
