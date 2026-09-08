@@ -63,7 +63,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Measures of Dispersion, answer 48. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 15,16,17,22 · TS 16,18. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the four Cramer answers 18.1–18.4: the bulk computation carries most of the marks, the finish carries the rest): 2 for the first table (midpoints, dᵢ, fᵢdᵢ and the two sums), 2 for the mean by the step-deviation formula, 2 for the deviation columns and their sum, 1 for the mean deviation. The two step-deviation mean-deviation LAQs of this unit (answers 48 and 49) share the same split and the same step ids deliberately, because they are one method over different numbers. The book prints one seven-column table; the card writes it in two passes (the last two columns need x̄, which is only known after the mean step) and the margin note says so. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 1 (book p.112, index P44(48)) and is re-solved as the first Q22 of the Bullet Model Paper (book p.108) with the same table, the same Σfᵢ|xᵢ − x̄| = 472 and the same 9.44 — a second solution that agrees. Every column and every sum was recomputed for this card and the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Measures of Dispersion, answer 48. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 15,16,17,22 · TS 16,18. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the four Cramer answers 18.1–18.4: the bulk computation carries most of the marks, the finish carries the rest): 2 for the first table (midpoints, dᵢ, fᵢdᵢ and the two sums), 2 for the mean by the step-deviation formula, 2 for the deviation columns and their sum, 1 for the mean deviation. The two step-deviation mean-deviation LAQs of this unit (answers 48 and 49) share the same split and the same step ids deliberately, because they are one method over different numbers. The book prints one seven-column table; the card writes it in two passes (the last two columns need x̄, which is only known after the mean step) and the margin note says so. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 1 (book p.112, index P44(48)) and is re-solved as the first Q22 of the Bullet Model Paper (book p.108) with the same table, the same Σfᵢ|xᵢ − x̄| = 472 and the same 9.44 — a second solution that agrees. Every column and every sum was recomputed for this card and the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean by the step deviation method — what you put in the table, how you get the mean from dᵢ, and what you divide at the end.",
   "insider_note": "Four of the seven marks are the two tables and every later number is computed from them: write A = 25 and C = 10 down first, and divide by N = 50, never by the 5 classes.",
@@ -86,8 +86,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Assumed mean A = 25, class width C = 10.",
-          "dᵢ = (xᵢ − A)/C = (xᵢ − 25)/10",
+          "The class mark xᵢ is the middle of each class,",
+          "for example (0 + 10)/2 = 5.",
+          "The class marks are large, so use an assumed",
+          "mean A and the step deviation dᵢ = (xᵢ − A)/C.",
+          "Dividing by the class width C keeps the",
+          "numbers small; the mean formula puts C back.",
+          "Take A = 25 (a middle class mark) and C = 10.",
           {
             "text": "Class      fᵢ     xᵢ     dᵢ     fᵢdᵢ",
             "style": "indent"
@@ -158,8 +163,13 @@
         "margin_note": "Next two marks. The formula puts C back: the dᵢ were divided by 10, so Σfᵢdᵢ/N is multiplied by 10 before adding to A. Here 10·(10/50) = 2, so x̄ = 27.",
         "memory_tip": "x̄ = A + C·(Σfᵢdᵢ/N). The dᵢ were divided by C, so C multiplies back in.",
         "lines": [
-          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
-          "= 25 + 10·(10/50) = 25 + 2 = 27"
+          {
+            "text": "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
+            "style": "eq"
+          },
+          "= 25 + 10 · (10/50)",
+          "= 25 + 10(0.2)",
+          "= 25 + 2 = 27"
         ],
         "recall": {
           "credit": "say_it",
@@ -199,7 +209,9 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, the absolute deviation |xᵢ − 27|, and its product with fᵢ. Absolute values are all positive: 5 − 27 = −22 is written as 22. The sum 472 is the number the last step divides.",
         "memory_tip": "Deviate from x̄ = 27, not from the assumed mean 25. Absolute value makes every entry positive.",
         "lines": [
-          "With x̄ = 27, fill the last two columns:",
+          "Now take each class mark's distance from 27,",
+          "always as a positive number, and multiply",
+          "by its frequency:",
           {
             "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
             "style": "indent"
@@ -268,8 +280,12 @@
         "margin_note": "Last mark. Divide the weighted sum by N = 50, not by the number of classes. 472/50 = 9.44 exactly.",
         "memory_tip": "Divide by N = 50, the total frequency, never by the 5 classes. 472/50 = 9.44.",
         "lines": [
-          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
-          "= (1/50)·472 = 9.44",
+          {
+            "text": "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
+            "style": "eq"
+          },
+          "= 472/50",
+          "= 9.44",
           {
             "text": "∴ M.D. about the mean = 9.44",
             "style": "boxed"

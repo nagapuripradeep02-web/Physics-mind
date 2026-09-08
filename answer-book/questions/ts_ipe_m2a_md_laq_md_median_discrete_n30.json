@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 51 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: none — this answer carries no year chip. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers; it is re-solved as the second Q22 of the Bullet Model Paper (book p.108) with the same table, the same 149 and the same 4.97 — a second solution that agrees. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line reads 'Median deviation about median M.D.' — a slip for 'Mean deviation about the median'; the card writes the correct name. Every column and every sum was recomputed for this card: ascending order 3, 6, 9, 12, 13, 15, 21, 22 with c.f. 3, 7, 12, 14, 18, 23, 27, 30; N/2 = 15 is first reached at c.f. 18, so M = 13 (with N = 30 even, the 15th and 16th items are both 13, so the median is 13 either way); Σfᵢ|xᵢ − M| = 149 and 149/30 = 4.9666…, printed 4.97 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 51 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: none — this answer carries no year chip. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers; it is re-solved as the second Q22 of the Bullet Model Paper (book p.108) with the same table, the same 149 and the same 4.97 — a second solution that agrees. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line reads 'Median deviation about median M.D.' — a slip for 'Mean deviation about the median'; the card writes the correct name. Every column and every sum was recomputed for this card: ascending order 3, 6, 9, 12, 13, 15, 21, 22 with c.f. 3, 7, 12, 14, 18, 23, 27, 30; N/2 = 15 is first reached at c.f. 18, so M = 13 (with N = 30 even, the 15th and 16th items are both 13, so the median is 13 either way); Σfᵢ|xᵢ − M| = 149 and 149/30 = 4.9666…, printed 4.97 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for a discrete frequency table — what you do to the data first, how you locate the median, and what you divide at the end.",
   "insider_note": "Sort the data first and keep each frequency with its value; the median is read from the cumulative frequency column — the first c.f. at or above N/2 = 15 gives M = 13 — and the grouped-data formula with l and C is not used on discrete data.",
@@ -61,7 +61,9 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Ascending order of xᵢ, with the c.f.:",
+          "The median splits the data in half, so the",
+          "values must be in ascending order and the",
+          "frequencies added up as we go (the c.f.).",
           {
             "text": "xᵢ     fᵢ     c.f.",
             "style": "indent"
@@ -143,7 +145,11 @@
         "memory_tip": "Stop at the first c.f. that reaches N/2 = 15; the median is that xᵢ. No grouped-data formula on discrete data.",
         "lines": [
           "N/2 = 30/2 = 15",
-          "The first c.f. ≥ 15 is 18, at xᵢ = 13.",
+          "The median is the value at which the running",
+          "total first reaches 15.",
+          "The c.f. values are 3, 7, 12, 14, 18, …",
+          "The first one that is 15 or more is 18,",
+          "which sits against xᵢ = 13.",
           "∴ Median M = 13"
         ],
         "recall": {
@@ -185,7 +191,9 @@
         "margin_note": "Next two marks. Columns: xᵢ, fᵢ, |xᵢ − 13|, and the product with fᵢ. The row xᵢ = 13 contributes 0. The sum is 149.",
         "memory_tip": "Deviate from M = 13, and multiply by fᵢ, not by the c.f. The row xᵢ = 13 contributes 0.",
         "lines": [
-          "With M = 13:",
+          "Now take each value's distance from 13,",
+          "always as a positive number, and multiply",
+          "by its frequency:",
           {
             "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
             "style": "indent"
@@ -266,8 +274,12 @@
         "margin_note": "Last mark. 149/30 = 4.9666…, written 4.97. Divide by N = 30, not by the 8 rows.",
         "memory_tip": "The divisor is the total frequency N = 30, not the 8 rows of the table. 149/30 = 4.97.",
         "lines": [
-          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
-          "= 149/30 = 4.97",
+          {
+            "text": "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+            "style": "eq"
+          },
+          "= 149/30",
+          "= 4.97",
           {
             "text": "∴ M.D. about the median = 4.97",
             "style": "boxed"
