@@ -59,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 Binomial Theorem, answer 23. Printed appearances: AP 15, 19. THE SPLIT IS THE BOOK'S: book p.29 prints seven [1 Mark] tags — the general term of the first expansion; r = 4; the coefficient of x¹⁰; the general term of the second expansion; r = 7; the coefficient of x⁻¹⁰; equating to reach ab = −1. The card keeps all seven as printed. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 Binomial Theorem, answer 23. Printed appearances: AP 15, 19. THE SPLIT IS THE BOOK'S: book p.29 prints seven [1 Mark] tags — the general term of the first expansion; r = 4; the coefficient of x¹⁰; the general term of the second expansion; r = 7; the coefficient of x⁻¹⁰; equating to reach ab = −1. The card keeps all seven as printed. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the relation — the general term of each expansion, how you pick r to get x¹⁰ and x⁻¹⁰, what the two coefficients are, and how equating them gives ab = −1.",
   "insider_note": "Keep ¹¹C₄ and ¹¹C₇ unevaluated — 4 + 7 = 11 makes them equal, so they cancel — and keep the (−1)⁷ from the second bracket. That minus is what makes the answer ab = −1, not ab = 1.",
@@ -84,6 +84,9 @@
           },
           "In (ax² + 1/(bx))¹¹, the general term is",
           "Tᵣ₊₁ = ¹¹Cᵣ (ax²)¹¹⁻ʳ (1/(bx))ʳ",
+          "= ¹¹Cᵣ · a¹¹⁻ʳ (x²)¹¹⁻ʳ · 1/(bʳxʳ)",
+          "= ¹¹Cᵣ · a¹¹⁻ʳ x²²⁻²ʳ · b⁻ʳ x⁻ʳ",
+          "= ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x²²⁻²ʳ⁻ʳ",
           "= ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x²²⁻³ʳ …(1)"
         ],
         "recall": {
@@ -122,7 +125,9 @@
         "margin_note": "Second mark. Set the power equal to 10.",
         "memory_tip": "Set the power equal to 10, not to 0 — the term independent of x is not what is asked.",
         "lines": [
-          "For x¹⁰: 22 − 3r = 10 ⇒ 3r = 12 ⇒ r = 4"
+          "For the coefficient of x¹⁰, put 22 − 3r = 10",
+          "3r = 22 − 10 = 12",
+          "r = 4"
         ],
         "recall": {
           "credit": "say_it",
@@ -158,8 +163,10 @@
         "margin_note": "Third mark. Put r = 4 into (1) and drop the x.",
         "memory_tip": "Keep ¹¹C₄ unevaluated. It is going to cancel, so turning it into 330 wastes the chance.",
         "lines": [
-          "From (1), the coefficient of x¹⁰ is",
-          "¹¹C₄ a⁷/b⁴ …(2)"
+          "Put r = 4 in (1):",
+          "T₅ = ¹¹C₄ (a¹¹⁻⁴/b⁴) x²²⁻¹²",
+          "= ¹¹C₄ (a⁷/b⁴) x¹⁰",
+          "∴ coefficient of x¹⁰ = ¹¹C₄ a⁷/b⁴ …(2)"
         ],
         "recall": {
           "credit": "say_it",
@@ -197,6 +204,9 @@
         "lines": [
           "In (ax − 1/(bx²))¹¹, the general term is",
           "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
+          "= ¹¹Cᵣ · a¹¹⁻ʳ x¹¹⁻ʳ · (−1)ʳ/(bʳ(x²)ʳ)",
+          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ · x⁻²ʳ",
+          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ⁻²ʳ",
           "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
         ],
         "recall": {
@@ -234,7 +244,9 @@
         "margin_note": "Fifth mark. Set the power equal to −10.",
         "memory_tip": "A negative power needs a LARGER r: 11 − 3r = −10 gives r = 7.",
         "lines": [
-          "For x⁻¹⁰: 11 − 3r = −10 ⇒ 3r = 21 ⇒ r = 7"
+          "For the coefficient of x⁻¹⁰, put 11 − 3r = −10",
+          "3r = 11 + 10 = 21",
+          "r = 7"
         ],
         "recall": {
           "credit": "say_it",
@@ -270,8 +282,10 @@
         "margin_note": "Sixth mark. r = 7 is odd, so (−1)⁷ = −1.",
         "memory_tip": "r = 7 is odd, so (−1)⁷ = −1. That minus is what makes the answer ab = −1.",
         "lines": [
-          "From (3), the coefficient of x⁻¹⁰ is",
-          "(−1)⁷ ¹¹C₇ a⁴/b⁷ = −¹¹C₇ a⁴/b⁷ …(4)"
+          "Put r = 7 in (3):",
+          "T₈ = (−1)⁷ ¹¹C₇ (a¹¹⁻⁷/b⁷) x¹¹⁻²¹",
+          "= −¹¹C₇ (a⁴/b⁷) x⁻¹⁰   [(−1)⁷ = −1]",
+          "∴ coefficient of x⁻¹⁰ = −¹¹C₇ a⁴/b⁷ …(4)"
         ],
         "recall": {
           "credit": "say_it",
@@ -309,9 +323,14 @@
         "margin_note": "Seventh mark. ¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so they cancel. Then a³b³ = −1 and, for real a and b, ab = −1.",
         "memory_tip": "¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so both cancel. Then a³b³ = −1 gives ab = −1.",
         "lines": [
-          "Given the two coefficients are equal, from (2), (4):",
-          "¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷   [¹¹C₄ = ¹¹C₇]",
-          "a⁷/b⁴ = −a⁴/b⁷ ⇒ a³ = −1/b³ ⇒ a³b³ = −1",
+          "Given: coefficient of x¹⁰ = coefficient of x⁻¹⁰",
+          "From (2) and (4): ¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷",
+          "Now ¹¹C₇ = ¹¹C₁₁₋₇ = ¹¹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+          "Cancelling ¹¹C₄: a⁷/b⁴ = −a⁴/b⁷",
+          "Cross-multiplying: a⁷ · b⁷ = −a⁴ · b⁴",
+          "Dividing by a⁴b⁴: a⁷⁻⁴ · b⁷⁻⁴ = −1",
+          "a³b³ = −1",
+          "(ab)³ = −1 = (−1)³",
           {
             "text": "∴ ab = −1",
             "style": "boxed"

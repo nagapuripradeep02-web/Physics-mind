@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 162. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Here the two moves are the two parts: the even case (1) and the odd case (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 162. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Here the two moves are the two parts: the even case (1) and the odd case (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say which coefficient is largest in each expansion and why — what an even n gives and what an odd n gives.",
   "insider_note": "One answer for (i) and TWO for (ii): even n has a single largest coefficient, odd n has an equal middle pair. Giving only one of the pair is the usual half answer.",
@@ -53,8 +53,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(i) n = 24 is even, so the largest coefficient",
-          "is the middle one, ²⁴C₁₂"
+          "(i) In (1 + x)²⁴, n = 24 is even",
+          "When n is even there is one middle coefficient,",
+          "with r = n/2 = 24/2 = 12",
+          "∴ the largest coefficient is ²⁴C₁₂"
         ],
         "recall": {
           "credit": "say_it",
@@ -91,8 +93,11 @@
         "margin_note": "Second mark. For odd n the two middle coefficients are equal and both are largest.",
         "memory_tip": "Odd n has TWO equal largest coefficients. Give both ¹⁹C₉ and ¹⁹C₁₀.",
         "lines": [
-          "(ii) n = 19 is odd, so the two middle coefficients",
-          "are equal and largest: ¹⁹C₉ = ¹⁹C₁₀",
+          "(ii) In (1 + x)¹⁹, n = 19 is odd",
+          "When n is odd there are two middle coefficients,",
+          "with r = (n − 1)/2 and r = (n + 1)/2",
+          "r = (19 − 1)/2 = 9 and r = (19 + 1)/2 = 10",
+          "These are equal: ¹⁹C₉ = ¹⁹C₁₉₋₉ = ¹⁹C₁₀",
           {
             "text": "∴ (i) ²⁴C₁₂  (ii) ¹⁹C₉ and ¹⁹C₁₀",
             "style": "boxed"

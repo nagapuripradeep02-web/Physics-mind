@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Binomial Theorem, answer 29. Printed appearances: the year chip at the top right of book p.34 is clipped in the scan (reads \"TS 1…\"), so no appearance is entered until a cleaner copy is checked. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.34) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 3 (book p.116). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Binomial Theorem, answer 29. Printed appearances: the year chip at the top right of book p.34 is clipped in the scan (reads \"TS 1…\"), so no appearance is entered until a cleaner copy is checked. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.34) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 3 (book p.116). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find x² + 4x — how you rewrite each term as 3·5·7… over a factorial, what you add to both sides, what you compare with, how you find p, q and y, and how 2 + x gives the answer.",
   "insider_note": "Each term is short of one factor 3 on top: rewrite 5/(2!·3) as (3·5)/(2!·3²) and p = 3 appears, not the printed 5. The missing start is 1 + 1 = 2, and the final line squares 2 + x = √27.",
@@ -65,12 +65,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given x = 5/(2!·3) + (5·7)/(3!·3²) + …",
-          "= (3·5/2!)(1/3)² + (3·5·7/3!)(1/3)³ + …",
-          "The 1 and the (3/1!)(1/3) terms are missing,",
-          "so add 1 + (3/1!)(1/3) on both sides:",
-          "1 + (3/1!)(1/3) + x = 1 + (3/1!)(1/3)",
-          "  + (3·5/2!)(1/3)² + (3·5·7/3!)(1/3)³ + …"
+          "Given x = 5/(2!·3) + (5·7)/(3!·3²)",
+          "  + (5·7·9)/(4!·3³) + …",
+          "Multiply the top and bottom of each term by 3:",
+          "5/(2!·3) = (3·5)/(2!·3²) = (3·5/2!)(1/3)²",
+          "(5·7)/(3!·3²) = (3·5·7)/(3!·3³) = (3·5·7/3!)(1/3)³",
+          "(5·7·9)/(4!·3³) = (3·5·7·9/4!)(1/3)⁴",
+          "x = (3·5/2!)(1/3)² + (3·5·7/3!)(1/3)³ + …",
+          "The numerators start at 3, so the first two",
+          "terms, 1 and (3/1!)(1/3), are missing",
+          "(3/1!)(1/3) = 3/3 = 1",
+          "Adding 1 + 1 = 2 on both sides:",
+          "2 + x = 1 + (3/1!)(1/3) + (3·5/2!)(1/3)²",
+          "  + (3·5·7/3!)(1/3)³ + …"
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +120,9 @@
             "text": "(1 - y)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{y}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{y}{q}\\right)^2 + \\cdots",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "All the terms are added, so it is the (1 − y) form",
+          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
         ],
         "recall": {
           "credit": "say_it",
@@ -151,8 +160,12 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (3), p + q is the second (5) so q = 2, and y/q equals the common ratio 1/3 so y = q/3 = 2/3.",
         "memory_tip": "p = 3, p + q = 5 so q = 2, and y/q = 1/3 gives y = 2/3.",
         "lines": [
-          "p = 3, p + q = 5 ⇒ q = 2",
-          "y/q = 1/3 ⇒ y = q/3 = 2/3"
+          "Match the first numerator: p = 3",
+          "Match the second: p(p + q) = 3·5 ⇒ p + q = 5",
+          "q = 5 − 3 = 2",
+          "Check the third: p + 2q = 3 + 4 = 7, which matches",
+          "Match the bracket: y/q = 1/3",
+          "y = q · 1/3 = 2 · (1/3) = 2/3"
         ],
         "recall": {
           "credit": "say_it",
@@ -191,7 +204,17 @@
         "memory_tip": "(1/3) to the power −3/2 inverts to 3 to the power 3/2 = √27.",
         "lines": [
           {
-            "text": "1 + 1 + x = \\left(1 - \\tfrac{2}{3}\\right)^{-3/2} = \\left(\\tfrac{1}{3}\\right)^{-3/2} = 3^{3/2} = \\sqrt{27}",
+            "text": "2 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{3}\\right)^{-3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\left(\\tfrac{1}{3}\\right)^{-3/2} = 3^{3/2}   \\text{(negative power: invert)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\sqrt{3^{3}} = \\sqrt{27}",
             "render": "katex",
             "style": "eq"
           }
@@ -231,8 +254,9 @@
         "margin_note": "Seventh mark. 1 + 1 + x = 2 + x. Square it: x² + 4x + 4 = 27, and the 4 moves across.",
         "memory_tip": "The added terms make the left side 2 + x. Square it: x² + 4x + 4 = 27.",
         "lines": [
-          "2 + x = √27 ⇒ (2 + x)² = 27",
-          "x² + 4x + 4 = 27",
+          "Squaring both sides: (2 + x)² = 27",
+          "4 + 4x + x² = 27",
+          "x² + 4x = 27 − 4",
           {
             "text": "∴ x² + 4x = 23",
             "style": "boxed"

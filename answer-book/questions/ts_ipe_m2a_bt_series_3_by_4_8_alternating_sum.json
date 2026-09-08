@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 207. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — the same infinite-series method as book answers 26–32. Printed appearances: none — this answer carries no year tag. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. Star Questions Plus prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.95, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 207. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — the same infinite-series method as book answers 26–32. Printed appearances: none — this answer carries no year tag. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. Star Questions Plus prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.95, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this sum — how you rewrite the terms, what you add to both sides and why, which standard form the alternating signs point to, how you find p, q and x, and how you get S back.",
   "insider_note": "Alternating signs mean the (1 + x) form, and the missing start is 1 − 1/4, added with its minus sign. The 3/4 comes off again at the end: S = √(2/3) − 3/4.",
@@ -65,11 +65,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S = 3/(4·8) − (3·5)/(4·8·12) + …",
-          "= (1·3/2!)(1/4)² − (1·3·5/3!)(1/4)³ + …",
-          "The 1 and the −(1/1!)(1/4) terms are missing,",
-          "so add 1 − 1/4 on both sides:",
-          "1 − 1/4 + S = 1 − (1/1!)(1/4) + (1·3/2!)(1/4)² − …"
+          "Let S = 3/(4·8) − (3·5)/(4·8·12)",
+          "  + (3·5·7)/(4·8·12·16) − …",
+          "Look at the denominators:",
+          "4·8 = (4·1)(4·2) = 4²·(1·2) = 4²·2!",
+          "4·8·12 = (4·1)(4·2)(4·3) = 4³·3!",
+          "Write each numerator with the 1 in front:",
+          "3 = 1·3, 3·5 = 1·3·5, 3·5·7 = 1·3·5·7",
+          "So 3/(4·8) = (1·3)/(4²·2!) = (1·3/2!)(1/4)²",
+          "(3·5)/(4·8·12) = (1·3·5/3!)(1/4)³",
+          "S = (1·3/2!)(1/4)² − (1·3·5/3!)(1/4)³ + …",
+          "The first two terms, 1 and −(1/1!)(1/4), are missing",
+          "Adding 1 − 1/4 on both sides:",
+          "1 − 1/4 + S = 1 − (1/1!)(1/4) + (1·3/2!)(1/4)²",
+          "  − (1·3·5/3!)(1/4)³ + …"
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +122,9 @@
             "text": "(1 + x)^{-p/q} = 1 - \\dfrac{p}{1!}\\left(\\dfrac{x}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{x}{q}\\right)^2 - \\cdots",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "The signs alternate, so it is the (1 + x) form",
+          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
         ],
         "recall": {
           "credit": "say_it",
@@ -151,8 +162,12 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and x/q equals the common ratio 1/4 so x = q/4 = 2/4 = 1/2.",
         "memory_tip": "p = 1, p + q = 3 so q = 2, and x/q = 1/4 gives x = 2/4 = 1/2.",
         "lines": [
-          "p = 1, p + q = 3 ⇒ q = 2",
-          "x/q = 1/4 ⇒ x = q/4 = 2/4 = 1/2"
+          "Match the first numerator: p = 1",
+          "Match the second: p(p + q) = 1·3 ⇒ p + q = 3",
+          "q = 3 − 1 = 2",
+          "Check the third: p + 2q = 1 + 4 = 5, which matches",
+          "Match the bracket: x/q = 1/4",
+          "x = q · 1/4 = 2 · (1/4) = 2/4 = 1/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -191,7 +206,17 @@
         "memory_tip": "(3/2) to the power −1/2 inverts to √(2/3).",
         "lines": [
           {
-            "text": "\\tfrac{3}{4} + S = \\left(1 + \\tfrac{1}{2}\\right)^{-1/2} = \\left(\\tfrac{3}{2}\\right)^{-1/2} = \\sqrt{\\tfrac{2}{3}}",
+            "text": "1 - \\tfrac{1}{4} + S = (1 + x)^{-p/q} = \\left(1 + \\tfrac{1}{2}\\right)^{-1/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\left(\\tfrac{3}{2}\\right)^{-1/2} = \\left(\\tfrac{2}{3}\\right)^{1/2}   \\text{(negative power: invert)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\sqrt{\\tfrac{2}{3}}",
             "render": "katex",
             "style": "eq"
           }
@@ -231,6 +256,8 @@
         "margin_note": "Seventh mark. 1 − 1/4 = 3/4 was added, so it comes off: S = √(2/3) − 3/4.",
         "memory_tip": "The 1 − 1/4 = 3/4 that was added comes off again: S = √(2/3) − 3/4.",
         "lines": [
+          "1 − 1/4 = (4 − 1)/4 = 3/4",
+          "3/4 + S = √(2/3)",
           {
             "text": "∴ S = √(2/3) − 3/4",
             "style": "boxed"

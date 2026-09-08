@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 160. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 2 (book p.113). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The general term carries the fractional exponent (10 − r)/2, so that one line is typeset (KaTeX); the rest is plain."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 160. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 2 (book p.113). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The general term carries the fractional exponent (10 − r)/2, so that one line is typeset (KaTeX); the rest is plain. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the term independent of x — the power of x in the general term, the r that makes it zero, and the value of that term.",
   "insider_note": "The square root halves the power: x carries (10 − r)/2 − 2r, and that whole expression is set to zero. Treating √(x/3) as power 1 gives a wrong r before any arithmetic starts.",
@@ -53,13 +53,27 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "In (a + b)ⁿ, Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ",
+          "Here n = 10, a = √(x/3), b = 3/(2x²)",
           {
-            "text": "T_{r+1} = {}^{10}C_r \\left(\\sqrt{\\tfrac{x}{3}}\\right)^{10-r} \\left(\\tfrac{3}{2x^2}\\right)^{r} = {}^{10}C_r \\left(\\tfrac{1}{3}\\right)^{\\frac{10-r}{2}} \\left(\\tfrac{3}{2}\\right)^{r} x^{\\frac{10-r}{2} - 2r}",
+            "text": "T_{r+1} = {}^{10}C_r \\left(\\sqrt{\\tfrac{x}{3}}\\right)^{10-r} \\left(\\tfrac{3}{2x^2}\\right)^{r}",
             "render": "katex",
             "style": "eq"
           },
-          "For the term independent of x:",
-          "(10 − r)/2 − 2r = 0 ⇒ 10 − r = 4r ⇒ r = 2"
+          {
+            "text": "= {}^{10}C_r \\left(\\tfrac{x}{3}\\right)^{\\frac{10-r}{2}} \\cdot \\dfrac{3^r}{2^r x^{2r}}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= {}^{10}C_r \\left(\\tfrac{1}{3}\\right)^{\\frac{10-r}{2}} \\left(\\tfrac{3}{2}\\right)^{r} x^{\\frac{10-r}{2} - 2r}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "For the term independent of x, the power of x is 0:",
+          "(10 − r)/2 − 2r = 0",
+          "Multiplying by 2: 10 − r − 4r = 0",
+          "10 = 5r ⇒ r = 2"
         ],
         "recall": {
           "credit": "say_it",
@@ -97,7 +111,15 @@
         "margin_note": "Second mark. r = 2: ¹⁰C₂ = 45, (1/3)⁴ = 1/81, (3/2)² = 9/4.",
         "memory_tip": "r = 2: ¹⁰C₂ = 45, (1/3)⁴ = 1/81, (3/2)² = 9/4, giving 5/4.",
         "lines": [
-          "T₃ = ¹⁰C₂ (1/3)⁴ (3/2)² = 45 · (1/81) · (9/4)",
+          {
+            "text": "\\text{Put } r = 2:\\; T_3 = {}^{10}C_2 \\left(\\tfrac{1}{3}\\right)^{\\frac{10-2}{2}} \\left(\\tfrac{3}{2}\\right)^{2} = {}^{10}C_2 \\left(\\tfrac{1}{3}\\right)^{4} \\left(\\tfrac{3}{2}\\right)^{2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "¹⁰C₂ = (10 · 9)/(1 · 2) = 45",
+          "(1/3)⁴ = 1/81, (3/2)² = 9/4",
+          "T₃ = 45 · (1/81) · (9/4) = (45 · 9)/(81 · 4)",
+          "= 405/324 = 5/4",
           {
             "text": "∴ the term independent of x = 5/4",
             "style": "boxed"
