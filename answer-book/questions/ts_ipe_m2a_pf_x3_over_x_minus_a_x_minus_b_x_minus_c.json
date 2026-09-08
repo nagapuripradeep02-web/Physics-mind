@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 104. Printed appearances: TS 16, 19; AP 16. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 5 (book p.119) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book's final line prints the third constant with a lowercase c, 'c(x − a)(x − b)', in its identity; it is the constant C, and the card writes C. The book states A and then writes 'similarly' for B and C; the card writes all three so the pattern (each letter's cube over the differences from the other two) is visible. Truth check: with a = 1, b = 2, c = 3 the constants are A = 1/2, B = −8, C = 27/2, and putting x = 0 in the identity gives 0 = (−1)(−2)(−3) + (1/2)(−2)(−3) + (−8)(−1)(−3) + (27/2)(−1)(−2) = −6 + 3 − 24 + 27 = 0."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 104. Printed appearances: TS 16, 19; AP 16. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 5 (book p.119) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book's final line prints the third constant with a lowercase c, 'c(x − a)(x − b)', in its identity; it is the constant C, and the card writes C. The book states A and then writes 'similarly' for B and C; the card writes all three so the pattern (each letter's cube over the differences from the other two) is visible. Truth check: with a = 1, b = 2, c = 3 the constants are A = 1/2, B = −8, C = 27/2, and putting x = 0 in the identity gives 0 = (−1)(−2)(−3) + (1/2)(−2)(−3) + (−8)(−1)(−3) + (27/2)(−1)(−2) = −6 + 3 − 24 + 27 = 0. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve x³/((x − a)(x − b)(x − c)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "Equal degrees give the constant quotient 1 — no long division needed — and each constant follows one pattern: the letter cubed over its differences from the other two, so B's denominator is (b − a)(b − c), never a copy of A's.",
@@ -74,10 +74,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree 3 = degree 3: improper.",
-          "Leading coefficients 1 and 1, so the",
-          "quotient is the constant 1.",
-          "Let x³/((x − a)(x − b)(x − c))",
+          "The numerator's degree is not less than",
+          "the denominator's, so the fraction is",
+          "improper and a polynomial must come out first.",
+          "Numerator degree 3, denominator degree 3,",
+          "and both leading coefficients are 1,",
+          "so the quotient is the constant 1.",
+          "x³/((x − a)(x − b)(x − c))",
           "= 1 + A/(x − a) + B/(x − b) + C/(x − c)"
         ],
         "recall": {
@@ -120,10 +123,11 @@
         "margin_note": "Second mark. Multiply by (x − a)(x − b)(x − c). The 1 keeps the whole denominator; A keeps (x − b)(x − c), B keeps (x − a)(x − c), C keeps (x − a)(x − b).",
         "memory_tip": "The 1 keeps the whole denominator; A keeps (x − b)(x − c), B keeps (x − a)(x − c), C keeps (x − a)(x − b).",
         "lines": [
-          "Multiply by (x − a)(x − b)(x − c):",
+          "Multiply both sides by (x − a)(x − b)(x − c):",
           "x³ = (x − a)(x − b)(x − c)",
-          "+ A(x − b)(x − c) + B(x − a)(x − c)",
-          "+ C(x − a)(x − b)"
+          "  + A(x − b)(x − c) + B(x − a)(x − c)",
+          "  + C(x − a)(x − b)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -165,10 +169,16 @@
         "margin_note": "Third mark. x = a makes the product and the B and C terms zero: a³ = A(a − b)(a − c). The same pattern with x = b and x = c. Each constant is that letter cubed over its differences from the other two letters.",
         "memory_tip": "One pattern: each letter CUBED over its differences from the other two. B's denominator is (b − a)(b − c).",
         "lines": [
-          "Put x = a: a³ = A(a − b)(a − c)",
-          "⇒ A = a³/((a − b)(a − c))",
-          "Put x = b: B = b³/((b − a)(b − c))",
-          "Put x = c: C = c³/((c − a)(c − b))"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = a. The first, third and fourth",
+          "terms all carry (x − a) and vanish:",
+          "a³ = A(a − b)(a − c)",
+          "A = a³/((a − b)(a − c))",
+          "Put x = b in the same way:",
+          "B = b³/((b − a)(b − c))",
+          "Put x = c in the same way:",
+          "C = c³/((c − a)(c − b))"
         ],
         "recall": {
           "credit": "say_it",
@@ -212,9 +222,9 @@
         "memory_tip": "The 1 comes first, then each constant over its own factor. Test with a, b, c = 1, 2, 3 if unsure.",
         "lines": [
           "∴ x³/((x − a)(x − b)(x − c)) = 1",
-          "+ a³/((a − b)(a − c)(x − a))",
-          "+ b³/((b − a)(b − c)(x − b))",
-          "+ c³/((c − a)(c − b)(x − c))",
+          "  + a³/((a − b)(a − c)(x − a))",
+          "  + b³/((b − a)(b − c)(x − b))",
+          "  + c³/((c − a)(c − b)(x − c))",
           {
             "text": "∴ A = a³/((a − b)(a − c)); B, C likewise",
             "style": "boxed"
