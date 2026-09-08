@@ -164,8 +164,11 @@
           "(x² + y² − x − y)/((x − 1)² + y²) = 0",
           "A fraction is 0 only when its top is 0:",
           "x² + y² − x − y = 0",
+          "z = 1 would make the denominator 0,",
+          "and (1, 0) does satisfy this equation,",
+          "so that point is left out.",
           {
-            "text": "∴ Locus of P: x² + y² − x − y = 0",
+            "text": "∴ Locus of P: x² + y² − x − y = 0, z ≠ 1",
             "style": "boxed"
           }
         ],
