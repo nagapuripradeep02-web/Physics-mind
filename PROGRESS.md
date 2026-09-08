@@ -1,5 +1,28 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Permutations and Combinations written out in full: the second chapter, 49 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder approved the level on a sample and said "do it". All 49 cards of Maths-2A Unit 5 now read at the same level as the Binomial chapter — 353 written lines → 774. Two chapters, 83 cards, on one branch and one PR (#202).**
+
+### The finding that shaped the plan
+**Permutations and Combinations has NO long answers.** In Maths-2A only six units carry Section C (bt, dm, md, pb, rv, te); this unit is 12 SAQ at 4 marks and 37 VSAQ at 2. So the founder's "take a LAQ" was answered with the chapter's richest 4-mark card (sum of all four-digit numbers from 0, 2, 4, 7, 8 — the one whose old lines hid `⁴P₃ = 24`, `504 · 1111` and the leading-zero logic behind single lines), and the 2-mark cards took the same treatment at their own size.
+
+### What the pass adds, beyond the Binomial rules
+- every ⁿCᵣ and ⁿPᵣ evaluated on the page from its product form — `⁶C₃ = (6·5·4)/(1·2·3) = 120/6 = 20`, never a bare `= 20`;
+- WHY the count is a permutation or a combination, stated before the symbol is written;
+- case lists DERIVED ("at least 4 bowlers and only 6 exist, so bowlers are 4, 5 or 6"), plus why adding them is right;
+- the three word-rank cards walk prefix by prefix, naming the free letters at each step and the reason for the ÷2! when a letter repeats;
+- the telescoping Pascal sums expand r = 0..4, reorder, and name the identity's requirement before each collapse;
+- every large division carried out — `12!/(4!·4!·4!)` shows `24·24·24 = 13824` then `479001600/13824`.
+
+### Verified
+tsc 0 · `check:cards` 49/49 · `measure:wrap` 774/774 lines on one ruled row (0.0%) · both builds green · headless walk of all 49 cards: each completes on full marks, no console errors.
+
+**Two independent Opus examiners re-derived every card: 0 defects.** The SAQ one brute-forced all three word ranks against sorted permutations (133 / 257 / 438) and both digit-sums by enumeration (5,45,958 / 6,66,600); the VSAQ one recomputed every value, re-substituted every root, brute-forced D₄, and checked the four identities exhaustively for n ≤ 40. Two fixes came out of their non-defect observations: EAMCET's rank never said WHY no word starting with E precedes EA, and the derangement card's mistake-note described an error whose arithmetic did not match its own wording.
+
+### Next
+Founder verdict at the review link. Cost is now measured across two chapters: roughly 2.2× the written lines, about 15 lines of working per mark, ~0 defects when two examiners are run per chapter.
+
 ## 📗 SESSION — the Binomial Theorem chapter written out in full: 34 cards at the founder's own level (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
 
 **Bottom line: the founder rejected the rail-card explanation layer built on 2026-09-04 ("this is not the way I wanted to do this") and instead HANDWROTE the answer he wanted, to `ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3`. The detail belongs INSIDE the written answer on the page. One LAQ was expanded to that level for his approval, he approved it, and the whole chapter followed: 34 cards, 296 written lines → 750. Steps, marks and mark splits never changed.**
