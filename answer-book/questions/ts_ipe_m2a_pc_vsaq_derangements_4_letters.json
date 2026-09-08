@@ -85,7 +85,7 @@
         },
         "why": "The formula comes from inclusion–exclusion: start with all 4! arrangements, remove those fixing at least one letter, add back those fixing two, and so on. Knowing it is inclusion–exclusion explains the alternating signs.",
         "common_mistakes": [
-          "Answering 4! − 4 = 20, as if only the \"all correct\" cases were removed.",
+          "Answering 4! − 1 = 23, as if only the one arrangement with every letter correct had to be removed.",
           "Stopping the series at 1/3! and forgetting the 1/4! term."
         ]
       },
