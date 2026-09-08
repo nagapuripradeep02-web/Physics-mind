@@ -1,0 +1,112 @@
+/* EAPCET finder — the screens the Answer Book does not have. app.css (a copy
+ * of notebook.css) supplies the chrome: top bar, brand, buttons, the colour
+ * variables. Phone first: one column, the thread fills the width. */
+
+.ep-body { background: var(--chrome-bg); }
+.ep-main { max-width: 720px; margin: 0 auto; padding: 16px 14px 56px; }
+
+.ep-h1 { font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--chrome-ink); margin: 6px 0 4px; line-height: 1.2; }
+.ep-h1-run { font-size: 20px; margin-bottom: 10px; }
+.ep-h2 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 4px 0 2px; }
+.ep-h3 { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--chrome-dim); margin: 22px 0 8px; }
+.ep-sub { color: var(--chrome-dim); font-size: 14.5px; line-height: 1.5; margin: 0 0 18px; }
+.ep-note { color: var(--chrome-dim); font-size: 14px; line-height: 1.5; margin: 8px 0; }
+
+/* ── the door ─────────────────────────────────────────────────────────────── */
+.ep-tiles { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 560px) { .ep-tiles { grid-template-columns: repeat(3, 1fr); } }
+.ep-tile {
+  display: flex; flex-direction: column; gap: 4px; padding: 18px 16px;
+  border: 1px solid var(--chrome-line); border-radius: 14px; background: var(--chrome-card);
+  color: inherit; text-decoration: none;
+}
+a.ep-tile:hover { border-color: var(--accent); }
+.ep-tile-name { font-family: var(--serif); font-size: 20px; font-weight: 600; }
+.ep-tile-sub { color: var(--chrome-dim); font-size: 13px; }
+.ep-tile-soon { border-style: dashed; color: var(--chrome-dim); background: transparent; }
+
+/* ── the chapter list ─────────────────────────────────────────────────────── */
+.ep-chapters { display: flex; flex-direction: column; gap: 8px; }
+.ep-row {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  border: 1px solid var(--chrome-line); border-radius: 12px; background: var(--chrome-card);
+  color: inherit; text-decoration: none;
+}
+a.ep-row:hover { border-color: var(--accent); }
+.ep-row-closed { opacity: .72; }
+.ep-row-main { flex: 1 1 auto; min-width: 0; }
+.ep-row-name { font-weight: 600; font-size: 15.5px; }
+.ep-row-share { color: var(--chrome-dim); font-size: 12.5px; margin-top: 2px; }
+.ep-badge {
+  flex: none; max-width: 46%; text-align: right; font-size: 12px; line-height: 1.3;
+  padding: 4px 9px; border-radius: 999px;
+  background: var(--chrome-bg); color: var(--chrome-dim); border: 1px solid var(--chrome-line);
+}
+.ep-badge-weak { background: var(--clay-wash); color: var(--clay-deep); border-color: transparent; }
+.ep-badge-strong { background: var(--sage-wash); color: var(--sage-deep); border-color: transparent; }
+.ep-badge-score { color: var(--chrome-ink); }
+.ep-badge-closed { border-style: dashed; }
+
+/* ── the run: a thread ────────────────────────────────────────────────────── */
+.ep-thread { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 12px; }
+.ep-msg {
+  font-size: 15px; line-height: 1.55; padding: 10px 14px; border-radius: 14px;
+  max-width: 92%; white-space: pre-wrap; word-break: break-word;
+}
+.ep-msg.tutor { background: var(--chrome-card); border: 1px solid var(--chrome-line); align-self: flex-start; border-top-left-radius: 4px; }
+.ep-msg.student { background: var(--clay-wash); border: 1px solid rgba(203, 104, 67, 0.28); align-self: flex-end; border-top-right-radius: 4px; }
+
+.ep-card { border: 1px solid var(--chrome-line); border-radius: 14px; background: var(--paper); padding: 14px 16px 12px; }
+.ep-progress { font-size: 12px; color: var(--chrome-dim); letter-spacing: .04em; text-transform: uppercase; }
+.ep-asked { font-size: 12.5px; color: var(--chrome-dim); margin-top: 2px; }
+.ep-stem { font-family: var(--serif); font-size: 18px; line-height: 1.45; color: var(--ink); margin: 10px 0 12px; white-space: pre-wrap; }
+.ep-opts { display: flex; flex-direction: column; gap: 8px; }
+.ep-opt {
+  display: flex; gap: 10px; align-items: flex-start; text-align: left; width: 100%;
+  font: inherit; font-size: 15.5px; line-height: 1.4; padding: 10px 12px;
+  border: 1px solid var(--chrome-line); border-radius: 10px;
+  background: var(--chrome-card); color: var(--chrome-ink); cursor: pointer;
+}
+.ep-opt:hover:not(:disabled) { border-color: var(--accent); }
+.ep-opt:disabled { cursor: default; }
+.ep-opt.right { border-color: var(--sage-deep); background: var(--sage-wash); }
+.ep-opt.wrong { border-color: var(--clay-deep); background: var(--clay-wash); }
+.ep-opt-n { flex: none; color: var(--chrome-dim); font-variant-numeric: tabular-nums; }
+.ep-opt-t { white-space: pre-wrap; }
+
+.ep-chips {
+  position: sticky; bottom: 0; display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 10px 0 12px; background: linear-gradient(to top, var(--chrome-bg) 70%, transparent);
+}
+.ep-chip {
+  font: inherit; font-size: 14px; padding: 9px 14px; border-radius: 999px;
+  border: 1px solid var(--accent); background: var(--chrome-card); color: var(--clay-deep); cursor: pointer;
+}
+.ep-chip:hover { background: var(--clay-wash); }
+
+/* ── the result ───────────────────────────────────────────────────────────── */
+.ep-score { font-family: var(--serif); font-size: 30px; font-weight: 600; margin: 4px 0; }
+.ep-bars { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 14px; }
+.ep-bar { display: grid; grid-template-columns: 110px 1fr 28px; align-items: center; gap: 10px; font-size: 14px; }
+.ep-bar-track { display: block; height: 12px; border-radius: 6px; background: var(--chrome-card); border: 1px solid var(--chrome-line); overflow: hidden; }
+.ep-bar-fill { display: block; height: 100%; background: var(--clay-soft); }
+.ep-bar-weak .ep-bar-fill { background: var(--clay-deep); }
+.ep-bar-weak .ep-bar-label { font-weight: 600; color: var(--clay-deep); }
+.ep-bar-n { text-align: right; font-variant-numeric: tabular-nums; }
+.ep-verdict {
+  font-size: 16.5px; line-height: 1.55; padding: 12px 14px; margin: 14px 0;
+  border-left: 3px solid var(--accent); background: var(--chrome-card); border-radius: 0 10px 10px 0;
+}
+.ep-fix-list { display: flex; flex-direction: column; gap: 10px; }
+.ep-fix-item { border: 1px solid var(--chrome-line); border-radius: 12px; background: var(--chrome-card); padding: 12px 14px; }
+.ep-fix-row { font-weight: 600; font-size: 14px; }
+.ep-fix-stem { font-size: 14px; color: var(--chrome-dim); margin: 4px 0 10px; line-height: 1.45; white-space: pre-wrap; }
+.ep-fix-btn { display: inline-block; }
+.ep-again {
+  display: inline-block; margin-top: 22px; padding: 11px 18px; border-radius: 10px;
+  background: var(--accent); color: #fff; text-decoration: none; font-weight: 600;
+}
+.ep-again:hover { background: var(--clay-deep); }
+
+/* The dogfood banner: unverified questions on screen. Never on a hosted build. */
+.ep-devnote { background: #FFF3C4; color: #6B4E00; font-size: 13px; padding: 8px 14px; text-align: center; }

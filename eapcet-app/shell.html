@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  EAPCET Physics — find your mistakes and weaknesses, chapter by chapter.
+  BUILT FILE: do not edit eapcet-app/dist/index.html by hand.
+  Source: eapcet-app/shell.html + app.css (a copy of answer-book/notebook.css, Rule 40)
+          + eapcet.css + js/NN_*.js + the pool release
+  Build:  npm run build:eapcet   (npm run build:eapcet:dev shows unverified questions — never ship it)
+-->
+<!--__BUILT_AT__-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--__HEAD_META__-->
+<!-- The Viditra mark as the tab icon, inlined so the page works from file://. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23CB6843'/%3E%3Cg transform='translate(4 4)'%3E%3Cellipse cx='12' cy='12' rx='9.6' ry='4' stroke='%23fff' stroke-width='1.5' fill='none' transform='rotate(45 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9.6' ry='4' stroke='%23fff' stroke-width='1.5' fill='none' transform='rotate(135 12 12)'/%3E%3Ccircle cx='18.79' cy='18.79' r='1.5' fill='%23fff'/%3E%3Ccircle cx='5.21' cy='5.21' r='1.5' fill='%23fff'/%3E%3Ccircle cx='12' cy='12' r='2.3' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body class="ep-body">
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg>
+    </span>
+    <span class="brand-text">
+      <span class="brand-name">Viditra</span>
+      <span class="brand-product">EAPCET Physics</span>
+    </span>
+  </div>
+  <div class="topbar-actions">
+    <a class="btn btn-ghost btn-back" id="btnBack" href="#/" hidden></a>
+  </div>
+</header>
+
+<!-- Every word below is written by 80_screens.js from 05_strings.js, so the
+     Rule-41 scan the build runs over the string table covers the whole page. -->
+<div class="ep-devnote" id="buildNote" hidden></div>
+
+<main class="ep-main">
+  <section id="doorView" hidden>
+    <h1 class="ep-h1" id="doorTitle"></h1>
+    <p class="ep-sub" id="doorSub"></p>
+    <div class="ep-tiles" id="doorTiles"></div>
+    <p class="ep-note" id="doorNote" hidden></p>
+  </section>
+
+  <section id="chaptersView" hidden>
+    <h1 class="ep-h1" id="chaptersTitle"></h1>
+    <p class="ep-sub" id="chaptersSub"></p>
+    <div class="ep-chapters" id="chapterList"></div>
+  </section>
+
+  <section id="runView" hidden>
+    <h1 class="ep-h1 ep-h1-run" id="runTitle"></h1>
+    <div class="ep-thread" id="runThread"></div>
+    <div class="ep-chips" id="runChips" hidden></div>
+  </section>
+
+  <section id="resultView" hidden>
+    <div id="resultBody"></div>
+  </section>
+
+  <section id="fixView" hidden>
+    <div id="fixBody"></div>
+  </section>
+</main>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+/*__JS__*/
+</script>
+</body>
+</html>
