@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q117",
+ "item_sha": "6a965b01cd537981387ed71b32f22b463d4903a8a267aecab9cb4ce96d8a82d0",
+ "auditor_option": 3,
+ "auditor_value": "0.8 fm",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Recalling a nearby but incorrect value from the same curve gives 0.6 fm instead of 0.8 fm.",
+   "note": "This entry is circular: it says that recalling an incorrect value produces the incorrect value. It gives the student no way to tell 0.6 fm from 0.8 fm, so it is a generic warning rather than a named error route on this question.",
+   "fix": "0.6 fm is still inside the repulsive part of the curve, where the potential energy is rising, not at the minimum; the minimum is at about 0.8 fm."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: the nucleon-nucleon potential energy curve is strongly repulsive below about 0.8 fm and attractive beyond it, with the minimum at r0 = 0.8 fm (the value quoted in the Class 12 nuclei chapter). Option 3. The steps and common_mistakes[0] are correct as written. difficulty 'medium' for a pure recall item is on the high side but not clearly off, so not filed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T02:52:00+05:30"}
+}

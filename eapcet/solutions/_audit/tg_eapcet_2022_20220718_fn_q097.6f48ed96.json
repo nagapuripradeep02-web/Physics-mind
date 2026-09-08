@@ -1,0 +1,12 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q097",
+ "item_sha": "6f48ed9616b0406a5dfdada82b2a63be2dbe3f235fcdacbc13cababd049e637d",
+ "auditor_option": 4,
+ "auditor_value": "16.3 min",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first with the exponential form of Newton's law of cooling, which is the form the supplied logarithms point to. First case: (40−10)/(100−10) = 1/3, so 10k = ln 3 = 1.1 and k = 0.11 per minute. Second case: (20−10)/(70−10) = 1/6, so kt = ln 6 = 1.8 and t = 1.8/0.11 = 16.36 min, which is option 4. Python cross-check with true logarithms gives 16.31 min, the same option. The alternative average-temperature form of the law gives 14.29 min, which matches no option, confirming the exponential form is the one intended. The single common_mistakes entry describes a constant-rate route giving 50/6 = 8.33 min; its option field is null rather than 2, and since the printed option is 8.5 min the entry does not claim a match it cannot support, so this was checked and not filed. difficulty 'hard' is defensible for a two-case exponential problem and was not filed."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:26:20+05:30"}
+}

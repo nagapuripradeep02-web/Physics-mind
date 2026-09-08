@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q099",
+ "item_sha": "0e9ed9651474e3af02eb93d270e0dfa584c4b0391bb49f921cbe029d4c5b6e22",
+ "auditor_option": 4,
+ "auditor_value": "700 J",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "Q = (7/2) × 200 = 600 J",
+   "note": "The arithmetic is false: (7/2) × 200 = 700, not 600. The two lines above it are correct (W = nRΔT = 200 J and Q = nCpΔT = (7/2)(nRΔT)), so this printed line contradicts its own working and a student copying it loses the mark.",
+   "fix": "Q = (7/2) × 200 = 700 J"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 1, \"value\": \"600 J\"",
+   "note": "The heat supplied is Q = nCpΔT = (7/2) nRΔT = (7/2) × 200 J = 700 J, which is option 4. The independent check Q = ΔU + W = (5/2)(200) + 200 = 500 + 200 = 700 J agrees. 600 J would require Cp = 3R, which is neither the value given in the stem nor the value for a diatomic gas. The solution's own approach line, \"the heat supplied is Cp divided by R times the work done\", also gives 700 J, so the final answer contradicts the approach.",
+   "fix": "\"option\": 4, \"value\": \"700 J\""}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Independent solve before reading the steps: isobaric, so W = nRΔT = 200 J and Q = nCpΔT = (7/2)nRΔT = 700 J (option 4). The printed distractors corroborate this: common_mistakes already accounts for option 2 (Cv = 3R gives ΔU = 600 J and Q = 800 J, arithmetic verified) and option 3 (Cp = 9/2 R gives 900 J, verified), leaving 700 J as the only unclaimed correct value and 600 J as the value with no correct route to it. Both common_mistakes entries are themselves accurate and are not findings; the defect is confined to the last step and the final answer."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:22:00+05:30"}
+}

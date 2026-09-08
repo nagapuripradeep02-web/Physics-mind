@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "approach": "Find the total fall time, the distance covered in the last second from the nth-second formula, and express it as a percentage of the height.",
+ "steps": [
+  {"text": "Use h = ½gt² to find the total time to fall the full height of the tower from rest.",
+   "equation": "125 = ½×10×t²; t = 5 s"},
+  {"text": "Find the distance covered during the last, that is fifth, second using the nth-second formula for free fall from rest.",
+   "equation": "S₅ = g/2 × (2×5−1) = 5×9 = 45 m"},
+  {"text": "Express this distance as a percentage of the tower's height.",
+   "equation": "x = 45/125 × 100 = 36"}
+ ],
+ "final_answer": {"option": 2, "value": "36"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Computing the last-second distance as the difference of squares of the times, 5² − 4² = 9, forgetting to multiply by ½g, and mistaking this raw number for the percentage."}
+ ],
+ "concept_tags": ["free fall", "distance in last second", "percentage of total height"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:24:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q097",
+ "item_sha": "7d051b658e145df42462cb70d37f9038d521634421e309880843d59755295e39",
+ "auditor_option": 2,
+ "auditor_value": "500 K",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: T1 = 127 + 273 = 400 K. Sudden compression is adiabatic, so T V^(gamma-1) = constant with gamma - 1 = 2/3. V1/V2 = 27/8, and (27/8)^(2/3) = (3/2)^2 = 2.25 exactly. T2 = 400 x 2.25 = 900 K, so the RISE is 900 - 400 = 500 K, option 2. Verified in python. Note the question asks for the rise, not the final temperature; option 1 (450 K) and option 4 (405 K) are not produced by any route I found, but option 3 (225 K) is not either, and the solution answers the rise, not T2, which is the correct reading. common_mistakes[0] checks out: (8/27)^(2/3) = 4/9 gives T2 = 177.8 K, a fall of about 222 K, so \"a fall in temperature instead of a rise\" is accurate.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:25:00+05:30"}
+}

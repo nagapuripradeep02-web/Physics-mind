@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q097",
+ "approach": "At constant pressure the work, the change in internal energy, and the heat for a diatomic gas are all proportional to the same temperature rise, through R, Cv and Cp.",
+ "steps": [
+  {"text": "Write each quantity for a diatomic gas at constant pressure, in units of nRΔT.",
+   "equation": "dW = nRΔT, dU = n(5/2)RΔT, dQ = n(7/2)RΔT"},
+  {"text": "Divide through by nRΔT and clear the fractions by multiplying by 2.",
+   "equation": "dW : dU : dQ = 1 : 5/2 : 7/2 = 2 : 5 : 7"}
+ ],
+ "final_answer": {"option": 4, "value": "2:5:7"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Writing the ratio in the reverse order, dQ : dU : dW instead of the asked dW : dU : dQ, gives 7 : 5 : 2."},
+  {"option": null, "text": "Using Cv = 3/2 R, the value for a monatomic gas, in place of 5/2 R for this diatomic gas."}
+ ],
+ "concept_tags": ["isobaric process", "molar heat capacities", "diatomic gas"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

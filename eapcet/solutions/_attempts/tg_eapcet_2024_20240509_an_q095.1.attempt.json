@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "approach": "Find the heat needed to bring all the ice to boiling water at 100 °C, then check how much steam must condense to supply exactly that heat, since the mixture cannot rise above 100 °C while steam is still present.",
+ "steps": [
+  {"text": "Find the heat needed to warm the ice to 0 °C, melt it, and then heat the resulting water to 100 °C.",
+   "equation": "Q = 54×0.5×20 + 54×80 + 54×1×100 = 540 + 4320 + 5400 = 10260 cal"},
+  {"text": "Find the heat released if all the steam were to condense at 100 °C.",
+   "equation": "Q_steam = 25 × 540 = 13500 cal",
+   "why_this_step": "Latent heat of vaporisation is 540 cal g⁻¹, and condensation releases it without any temperature change."},
+  {"text": "Since 13500 cal is more than the 10260 cal needed, the mixture reaches 100 °C before all the steam condenses, so only part of the steam condenses and the mixture stays at 100 °C.",
+   "equation": "Let x g of steam condense: x × 540 = 10260"},
+  {"text": "Solve for x and find the remaining steam.",
+   "equation": "x = 10260/540 = 19 g, so steam left = 25 − 19 = 6 g"},
+  {"text": "The water present is the melted ice plus the condensed steam.",
+   "equation": "water = 54 + 19 = 73 g at 100 °C"}
+ ],
+ "final_answer": {"option": 2, "value": "73 g water at 100 °C and 6 g steam at 100 °C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming all 25 g of steam condenses and the mixture then cools further gives a temperature above 100 °C, which is impossible, because full condensation releases more heat than the ice needs to reach 100 °C."}
+ ],
+ "concept_tags": ["calorimetry", "latent heat of fusion", "latent heat of vaporisation", "method of mixtures"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:26:00+05:30"}
+}

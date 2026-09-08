@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q095",
+ "item_sha": "413ee9b4aef7b33b2b231c5fb32eb36ff26809e1785781e52d810826465ac1ab",
+ "auditor_option": 1,
+ "auditor_value": "357 x 10⁴ J",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "Q₂ = mL = 20000 g × 80 cal g⁻¹ = 800000 cal",
+   "note": "The mass is 10 kg = 10000 g, not 20000 g - the same mass the previous step correctly used as 10000 g - and the printed product is false on its own terms as well, since 20000 × 80 = 1600000, not 800000. A student copying this line either doubles the mass or accepts a wrong multiplication, and gets 1600000 + 50000 = 1650000 cal = 693 × 10⁴ J, which matches no option. The final answer is right only because the printed result 800000 cal is the value the correct mass gives.",
+   "fix": "Q₂ = mL = 10000 g × 80 cal g⁻¹ = 800000 cal"}
+ ],
+ "verdict": "harmful",
+ "question_defect": "The specific heat capacity of ice is printed as \"0.5 cal g⁻¹\", which is the unit of a latent heat; a specific heat capacity needs the per-degree factor, cal g⁻¹ °C⁻¹. The solution silently supplies the missing °C⁻¹ in its own first line.",
+ "notes": "Solved independently first: Q1 = 10000 g × 0.5 × 10 = 50000 cal, Q2 = 10000 g × 80 = 800000 cal, total 850000 cal × 4.2 J/cal = 3570000 J = 357 × 10⁴ J, option 1. Confirmed with python. Both common_mistakes entries are numerically correct and point at the right options: reading 10 kg as 1 kg gives 85000 cal = 357000 J = 357 × 10³ J (option 2), and reading it as 100 kg gives 8500000 cal = 35700000 J = 357 × 10⁵ J (option 4). The 1 cal = 4.2 J conversion is the one the options require - 4.186 would give 3558000 J, which still rounds to the same option - so it is not a finding. Every other printed line is correct; the single defect is the mass written in step 2.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:28:35+05:30"}
+}

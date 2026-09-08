@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q084",
+ "item_sha": "35e737230de50dd4cd2898f19b597e63c5ad22c81af236d4cb8d458d0873765a",
+ "auditor_option": 1,
+ "auditor_value": "North-West",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "East − West = 4 − 6 = −4 (net 4 west); North − South = 8 − 4 = 4 (net 4 north)",
+   "note": "The walk has 2 steps east, not 4 — steps[0] of this same solution states 'East: 2'. As printed the arithmetic is also false: 4 − 6 = −2, not −4. A student copying this line either carries a wrong east count or a wrong subtraction, and the solution contradicts its own previous step.",
+   "fix": "East − West = 2 − 6 = −4 (net 4 west); North − South = 8 − 4 = 4 (net 4 north)"}
+ ],
+ "verdict": "harmful",
+ "notes": "Independent solve: legs are 2 east, 4 south, 6 west, then 20 − 12 = 8 north. Net x = 2 − 6 = −4 (4 west), net y = 8 − 4 = +4 (4 north), so the displacement points at 135° from +x, exactly North-West — option 1, which is the option the solution also reaches. The finding is on the printed line, not the final option. The remaining steps and the single mistake entry (stopping at 12 steps gives 4 west and 4 south, i.e. south-west, unprinted) are correct.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:47:00+05:30"}
+}

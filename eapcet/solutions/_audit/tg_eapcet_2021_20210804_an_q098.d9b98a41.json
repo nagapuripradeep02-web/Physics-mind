@@ -1,0 +1,12 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q098",
+ "item_sha": "d9b98a414014d36d40896cb3d54d161b01e2958699b193c4460fec351d662772",
+ "auditor_option": 2,
+ "auditor_value": "6 × 10⁸ Pa",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently before reading the steps: constant volume blocks a volume strain γΔT = 3×10⁻⁵ × 107 = 3.21×10⁻³, so ΔP = KγΔT = 2×10¹¹ × 3.21×10⁻³ = 6.42×10⁸ Pa, and P = 10⁵ + 6.42×10⁸ = 6.421×10⁸ Pa, which rounds to option 2. Checked with python: both distractor routes quoted in common_mistakes reproduce their stated options exactly (α alone gives 2.14×10⁸ Pa against option 1's 2×10⁸ Pa; 2α gives 4.28×10⁸ Pa against option 4's 4×10⁸ Pa). The definition given in steps[2].why_this_step, that the bulk modulus is the pressure per unit fractional volume change, matches K = −ΔP/(ΔV/V). The claim in steps[3].why_this_step that 10⁵ Pa is smaller by a factor of thousands is also true (the ratio is about 6400). Considered filing the wording 'the bulk modulus converts that blocked volume strain into a pressure rise' as personification, but this is ordinary technical usage of a material constant, not a force being given intent, so it was not filed."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:22:10+05:30"}
+}

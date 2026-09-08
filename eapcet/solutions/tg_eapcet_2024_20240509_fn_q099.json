@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q099",
+ "approach": "Since the car, the person and the wall lie on one line, the wall receives the same Doppler-raised frequency as the person, so it reflects that frequency back unchanged.",
+ "steps": [
+  {
+   "text": "Convert the car's speed to metres per second.",
+   "equation": "v_s = 54 kmph = 15 m s⁻¹"
+  },
+  {
+   "text": "Find the frequency the person hears directly from the approaching car.",
+   "equation": "f_direct = f·v/(v − v_s) = 400×335/320 = 418.75 Hz"
+  },
+  {
+   "text": "The wall is a fixed point on the same line as the car and the person, so the car is approaching the wall at the same closing speed. The wall therefore receives the identical Doppler-raised frequency.",
+   "equation": "f_wall = f·v/(v − v_s) = 418.75 Hz",
+   "why_this_step": "The Doppler shift a stationary point receives from a moving source depends only on the source's speed along the line to that point, and the wall and the person share the same line."
+  },
+  {
+   "text": "The wall is stationary and reflects sound without changing its frequency, and the person is also stationary with respect to the wall, so the reflected sound reaches the person unchanged.",
+   "equation": "f_reflected = f_wall = 418.75 Hz"
+  },
+  {
+   "text": "Find the difference between the two frequencies the person hears.",
+   "equation": "f_direct − f_reflected = 418.75 − 418.75 = 0"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "Zero"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Treating the reflected sound as if the wall or the person were also moving relative to each other, applying a second Doppler shift that does not apply here and getting a non-zero difference."
+  }
+ ],
+ "concept_tags": [
+  "Doppler effect",
+  "reflection of sound",
+  "moving source"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:31:21+05:30"
+ }
+}

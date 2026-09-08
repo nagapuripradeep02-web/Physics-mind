@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "f101167f52e62c481add3695cfdde4cb51958a974a78de28d8af43588d37ae6a",
+ "auditor_option": 3,
+ "auditor_value": "−2av³",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[2].text",
+   "quote": "Dropping the negative sign that comes from differentiating 1/(2ax+b), giving 2av² instead of the correct −2av³.",
+   "note": "Dropping only the negative sign from −2av³ gives 2av³, not 2av². Option 4 also has one power of v fewer, so reaching it needs a second error as well: stopping at dv/dx = −2av² without multiplying by v. As written the stated error does not produce the option the entry is attached to.",
+   "fix": "Stopping at dv/dx = −2av² and also dropping its negative sign, so that dv/dx is reported as the acceleration, giving 2av² instead of multiplying by v to get −2av³."}
+ ],
+ "verdict": "wrong",
+ "notes": "Solved independently before reading the solution: dt/dx = 2ax + b, so v = 1/(2ax + b); dv/dx = −2a/(2ax + b)² = −2av²; acceleration = v dv/dx = −2av³, which is option 3. I checked this numerically with a = 0.3, b = 0.7 at x = 1.234 and the finite-difference values matched −2av² and −2av³ to seven figures. All four printed step equations are correct. common_mistakes[0] and [1] each name both of the changes needed to reach their option (a and b multiplied plus a lost power of v; b substituted for a plus a dropped sign), so only entry [2] is under-specified.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:56:00+05:30"}
+}

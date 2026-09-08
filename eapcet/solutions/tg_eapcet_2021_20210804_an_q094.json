@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q094",
+ "approach": "The two adjacent masses give a resultant √2 times one force, the diagonal mass adds along it; equate this standard formula to the given value to find the side.",
+ "steps": [
+  {
+   "text": "Write the net force on one corner mass from the two adjacent masses (each Gm²/a², resultant √2Gm²/a²) plus the diagonal mass (Gm²/2a²).",
+   "equation": "F = √2 Gm²/a² + Gm²/(2a²) = (2√2+1)/2 × Gm²/a²"
+  },
+  {
+   "text": "Set this equal to the given force expression, which uses L instead of a.",
+   "equation": "(2√2+1)/2 × Gm²/a² = (2√2+1)/32 × Gm²/L²"
+  },
+  {
+   "text": "Cancel the common factor (2√2+1) and Gm² from both sides and solve for a.",
+   "equation": "1/a² = 1/(16L²) → a² = 16L² → a = 4L"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "4 L"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Treating the given expression as already describing a square of side L, without solving the equation for a, leads a student to pick L directly."
+  },
+  {
+   "option": 2,
+   "text": "Making an algebra slip, such as reaching a² = 4L² instead of a² = 16L², gives a = 2L instead of the correct 4L."
+  }
+ ],
+ "concept_tags": [
+  "gravitational force between point masses",
+  "vector addition of forces",
+  "square arrangement of masses"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:00:00+05:30"
+ }
+}

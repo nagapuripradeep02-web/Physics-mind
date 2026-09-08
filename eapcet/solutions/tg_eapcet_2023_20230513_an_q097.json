@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230513_an_q097",
+ "approach": "At constant pressure the fraction of heat that raises internal energy is Cv over Cp, found from the given ratio of specific heats.",
+ "steps": [
+  {"text": "Write Cv and Cp for a monatomic gas in terms of R.",
+   "equation": "Cv = (3/2)R, Cp = (5/2)R"},
+  {"text": "Find the fraction of heat that goes into internal energy.",
+   "equation": "dU/dQ = Cv/Cp = (3/2)/(5/2) = 3/5"},
+  {"text": "Convert the fraction to a percentage.",
+   "equation": "(3/5) × 100% = 60%"}
+ ],
+ "final_answer": {"option": 1, "value": "60"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Computing the fraction of heat converted into work instead, R/Cp = 2/5 = 40%, rather than the fraction that raises internal energy."},
+  {"option": 3, "text": "Misremembering the relation Cp − Cv = R as Cp − Cv = 2R gives Cv = R/2 and a fraction of 20%."}
+ ],
+ "concept_tags": ["isobaric process", "monatomic gas", "internal energy fraction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

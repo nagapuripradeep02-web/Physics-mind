@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q088",
+ "item_sha": "700d3f91d4f236317d37e59a9f9cccc3df82e037a909dd740c71d6e15a32fdf1",
+ "auditor_option": 3,
+ "auditor_value": "5 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem gives the mass the symbol 'm' and then writes the loop radius as '2m' in the same sentence, so the radius reads literally as two times the mass; only the options, which are lengths in metres, settle that it means 2 metres.",
+ "notes": "Solved blind first by a different route: 'just completes' the loop needs v_bottom = sqrt(5gR) = sqrt(5*10*2) = 10 m/s, so h = v^2/(2g) = 5 m. The solution's route (minimum speed at the top, then energy conservation to the top of the loop) reaches the same value; recomputed each line: v^2_top = gR = 20 m^2/s^2, mgh = mg(2R) + 0.5mv^2 gives h = 2R + R/2 = 2.5R = 5 m. All three common_mistakes routes recomputed and each lands on the option it names: cm[0] h read off as R = 2 m (option 1), cm[1] 2 m taken as the diameter so R = 1 m and 5R/2 = 5/2 m (option 2), cm[2] the rule misremembered as h = 5R giving 10 m (option 4). None of them condemns a correct method. Plain-language pass; difficulty 'medium' and mistake_type_hint 'application' both fit a two-stage energy-plus-circular-motion item.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T06:53:10+05:30"}
+}

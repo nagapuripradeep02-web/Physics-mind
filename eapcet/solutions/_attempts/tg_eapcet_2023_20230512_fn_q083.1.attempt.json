@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "approach": "Differentiate the given relation between t and x to get velocity in terms of x, then differentiate velocity with respect to time using the chain rule to get acceleration.",
+ "steps": [
+  {"text": "Differentiate t = ax² + bx with respect to x to relate dt/dx to the velocity.",
+   "equation": "dt/dx = 2ax + b; v = 1/(2ax + b)"},
+  {"text": "Differentiate v with respect to x.",
+   "equation": "dv/dx = −2a/(2ax + b)²"},
+  {"text": "Rewrite dv/dx in terms of v, since 2ax + b = 1/v.",
+   "equation": "dv/dx = −2av²"},
+  {"text": "Get the acceleration using the chain rule, acceleration = (dv/dx) × v.",
+   "equation": "acceleration = (−2av²) × v = −2av³"}
+ ],
+ "final_answer": {"option": 3, "value": "−2av³"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Multiplying the two constants a and b together by mistake instead of eliminating b through the substitution 2ax+b = 1/v, and losing one power of v in the process."},
+  {"option": 2, "text": "Mixing up the two constants while differentiating, and attaching b instead of a to the final result, along with dropping the negative sign."},
+  {"option": 4, "text": "Dropping the negative sign that comes from differentiating 1/(2ax+b), giving 2av² instead of the correct −2av³."}
+ ],
+ "concept_tags": ["differentiation", "chain rule", "velocity and acceleration from x-t relation"],
+ "difficulty": "hard",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:21:00+05:30"}
+}

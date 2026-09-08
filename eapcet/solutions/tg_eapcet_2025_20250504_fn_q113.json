@@ -1,0 +1,36 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q113",
+ "approach": "This describes the definition of the gravitational force: the mutual attraction between any two bodies because of their masses.",
+ "steps": [
+  {
+   "text": "The electromagnetic force acts between charges, and the weak and strong nuclear forces act only over nuclear distances inside or between nuclei, not between any two massive bodies in general."
+  },
+  {
+   "text": "The force that exists between any two bodies purely because they have mass is, by definition, the gravitational force."
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "Gravitational force"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Confusing 'mutual attraction' with the strong nuclear force, which is also attractive at short range, overlooks that the strong force needs nucleons at nuclear distances, not any two massive bodies."
+  }
+ ],
+ "concept_tags": [
+  "fundamental forces of nature",
+  "gravitational force"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T15:30:00+05:30"
+ }
+}

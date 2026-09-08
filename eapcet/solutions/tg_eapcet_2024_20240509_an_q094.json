@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q094",
+ "approach": "The equation of continuity gives the water's speed at any section as the flow rate divided by the cross-sectional area there.",
+ "steps": [
+  {"text": "Convert the flow rate to SI units.",
+   "equation": "Q = 12π L/min = 12π × 10⁻³ m³ / 60 s = 2×10⁻⁴π m³/s"},
+  {"text": "Find the cross-sectional area of the pipe where its diameter is 2 cm.",
+   "equation": "r = 2 cm / 2 = 0.01 m; A = πr² = π × 10⁻⁴ m²"},
+  {"text": "Find the speed of the water at this section.",
+   "equation": "v = Q/A = 2×10⁻⁴π / (π×10⁻⁴) = 2 m/s",
+   "why_this_step": "The π cancels because both the flow rate and the area were expressed with the same π factor from the pipe's circular cross-section."}
+ ],
+ "final_answer": {"option": 4, "value": "2 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Halving the radius again after already converting the diameter to a radius, using 0.5 cm instead of 1 cm, gives 8 ms⁻¹."}
+ ],
+ "concept_tags": ["equation of continuity", "flow rate", "fluid speed"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:26:00+05:30"}
+}

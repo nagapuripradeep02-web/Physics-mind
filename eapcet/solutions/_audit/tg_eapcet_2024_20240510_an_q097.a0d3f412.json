@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q097",
+ "item_sha": "a0d3f4122444cf13c46bf8551fec623ee47929d2b2b5ca1b96b03268fcc7c90a",
+ "auditor_option": 4,
+ "auditor_value": "5 : 14",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem never says the processes are isobaric. The relation Q = (Cp/R)W holds only at constant pressure; for a general process the ratio Q1:Q2 is not fixed by the data, and for an isothermal process Q equals W for both gases, giving 1:2. The printed options fix the intended reading as constant pressure, but the stem does not state it.",
+ "notes": "Independent solve, taking both processes to be isobaric: Q1 = (Cp/R)_mono W = (5/2)W and Q2 = (Cp/R)_dia (2W) = (7/2)(2W) = 7W, so Q1 : Q2 = (5/2) : 7 = 5 : 14, option 4. Both printed lines are correct, and the factor of 2 on the diatomic work is carried through correctly. The single common_mistakes entry is verified: using W for both gases gives (5/2) : (7/2) = 5 : 7, which is option 3. The solution declares the constant-pressure assumption in its approach line."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:32:00+05:30"}
+}

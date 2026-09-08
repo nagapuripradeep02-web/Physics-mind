@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q100",
+ "approach": "The rms speed of a gas at fixed temperature varies inversely with the square root of its molar mass, so compare nitrogen and helium through that ratio.",
+ "steps": [
+  {"text": "Write the rms speed formula and note it depends on molar mass at fixed temperature.",
+   "equation": "v = √(3RT/M)"},
+  {"text": "Form the ratio of the helium speed to the nitrogen speed using their molar masses.",
+   "equation": "v(He)/v(N₂) = √(M(N₂)/M(He)) = √(28/4) = √7"},
+  {"text": "Multiply by the given nitrogen speed.",
+   "equation": "v(He) = 100 × √7 m/s",
+   "why_this_step": "Nitrogen's heavier molecule moves slower than helium's lighter molecule at the same temperature, so helium's speed must come out larger."}
+ ],
+ "final_answer": {"option": 1, "value": "100√7 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Using a molar mass of 8 for helium, as if it were diatomic, instead of 4, which gives 50√14 m/s instead of 100√7 m/s."},
+  {"option": 4, "text": "Assuming rms speed is the same for every gas at a given temperature because average kinetic energy per molecule is the same, when speed itself still depends on molar mass."}
+ ],
+ "concept_tags": ["rms speed", "molar mass dependence", "kinetic theory of gases"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:18:00+05:30"}
+}

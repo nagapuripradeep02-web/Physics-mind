@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "approach": "Integrate the velocity function with respect to time, using the given position at t = 0 to fix the constant, then evaluate at t = 2 s.",
+ "steps": [
+  {"text": "Integrate v(t) to get x(t), since velocity is the derivative of position.",
+   "equation": "x(t) = ∫(1 − 3t² + 2t³) dt = t − t³ + t⁴/2 + C"},
+  {"text": "Use the condition x(0) = 0 to find the constant of integration.",
+   "equation": "x(0) = C = 0"},
+  {"text": "Substitute t = 2 s.",
+   "equation": "x(2) = 2 − 8 + 8 = 2 m"}
+ ],
+ "final_answer": {"option": 2, "value": "2 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Making a power-rule slip while integrating the −3t² term, treating its antiderivative as −3t instead of −t³, which changes the answer to 4 m."},
+  {"option": null, "text": "Substituting t = 2 s directly into the velocity expression and treating that value as the position, instead of integrating velocity to get displacement first."}
+ ],
+ "concept_tags": ["kinematics", "position from velocity function"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:15:00+05:30"}
+}

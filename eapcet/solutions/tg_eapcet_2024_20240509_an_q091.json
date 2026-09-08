@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q091",
+ "approach": "Acceleration due to gravity at height h is gR²/(R+h)²; form the ratio for the two given heights.",
+ "steps": [
+  {
+   "text": "Write g at height h above the surface.",
+   "equation": "g(h) = gR²/(R+h)²"
+  },
+  {
+   "text": "Add each height to the radius of the earth.",
+   "equation": "R+h₁ = 6400+1280 = 7680 km; R+h₂ = 6400+3200 = 9600 km"
+  },
+  {
+   "text": "Form the ratio g(h₁)/g(h₂); the common factor gR² cancels, leaving only the (R+h) terms.",
+   "equation": "g(h₁)/g(h₂) = (R+h₂)²/(R+h₁)² = (9600/7680)² = 25/16"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "25:16"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Treating g as inversely proportional to height alone, taking the ratio of the heights themselves (3200:1280 = 5:2), forgets that the earth's radius must be added first."
+  },
+  {
+   "option": 3,
+   "text": "Assuming both heights are small compared with the earth's radius and that g barely changes gives the wrong ratio of 1:1."
+  }
+ ],
+ "concept_tags": [
+  "variation of g with height",
+  "inverse square law"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:18:00+05:30"
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q085",
+ "item_sha": "166aea7258695f62bdea9050326ee4dedbe391bf51e9e5bb2bc3940056fa612f",
+ "auditor_option": 1,
+ "auditor_value": "30 cm",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: displacement = 10î + 20ĵ cm; the second vector is √2(cos45° î + sin45° ĵ) = î + ĵ cm; the dot product is 10 + 20 = 30. Option 1 is the only match. The question itself is dimensionally loose — the dot product of two lengths carries units of cm², while all four options print cm — but that is the paper's defect, not the solution's, and the solution matches the printed option as written. Both mistake entries reach the numbers their options print (30√2 = 42.43, 30/√2 = 21.21).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:46:00+05:30"}
+}

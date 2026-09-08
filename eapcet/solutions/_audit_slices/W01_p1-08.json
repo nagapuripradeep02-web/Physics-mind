@@ -1,0 +1,722 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q094",
+   "audit_file": "tg_eapcet_2021_20210804_an_q094.7d681199.json",
+   "item_sha": "7d681199acb4a2b35afe284aae89cfe84dff1361eb81572f35b1ef456df793e8",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Four identical masses of m are kept at corners of a square. If the gravitational force exerted on one of masses by the other masses is ((2√2+1)/32) Gm²/L², then the length of the side of the square is",
+   "options_en": [
+    "L",
+    "2 L",
+    "4 L",
+    "L/2"
+   ],
+   "solution": {
+    "approach": "The two adjacent masses give a resultant √2 times one force, the diagonal mass adds along it; equate this standard formula to the given value to find the side.",
+    "steps": [
+     {
+      "text": "Write the net force on one corner mass from the two adjacent masses (each Gm²/a², resultant √2Gm²/a²) plus the diagonal mass (Gm²/2a²).",
+      "equation": "F = √2 Gm²/a² + Gm²/(2a²) = (2√2+1)/2 × Gm²/a²"
+     },
+     {
+      "text": "Set this equal to the given force expression, which uses L instead of a.",
+      "equation": "(2√2+1)/2 × Gm²/a² = (2√2+1)/32 × Gm²/L²"
+     },
+     {
+      "text": "Cancel the common factor (2√2+1) and Gm² from both sides and solve for a.",
+      "equation": "1/a² = 1/(16L²) → a² = 16L² → a = 4L"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4 L"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Treating the given expression as already describing a square of side L, without solving the equation for a, leads a student to pick L directly."
+     },
+     {
+      "option": 2,
+      "text": "Making an algebra slip, such as reaching a² = 4L² instead of a² = 16L², gives a = 2L instead of the correct 4L."
+     }
+    ],
+    "concept_tags": [
+     "gravitational force between point masses",
+     "vector addition of forces",
+     "square arrangement of masses"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_fn_q094",
+   "audit_file": "tg_eapcet_2021_20210805_fn_q094.e725bb57.json",
+   "item_sha": "e725bb570f4a4971446ce8adae5c1593f203a5226f2ecdb4237a8b739df5dc5b",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Two stars of equal masses M are orbiting in a circle of radius R. Their orbital time period is proportional to",
+   "options_en": [
+    "R^(3/2)",
+    "R",
+    "R²",
+    "R^(1/2)"
+   ],
+   "solution": {
+    "approach": "The mutual gravitational force supplies the centripetal force for each star's orbit of radius R; solving for the angular speed shows how the period depends on R.",
+    "steps": [
+     {
+      "text": "Write the gravitational force between the two stars, separated by 2R, and set it equal to the centripetal force needed for one star moving on a circle of radius R.",
+      "equation": "GM²/(2R)² = Mω²R"
+     },
+     {
+      "text": "Solve for the angular speed ω.",
+      "equation": "ω² = GM/(4R³)"
+     },
+     {
+      "text": "Write the period as 2π/ω, square it, and see how it depends on R.",
+      "equation": "T = 2π/ω → T² = R"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "R"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Misremembering the centripetal acceleration as ω²R² instead of ω²R changes the power of R obtained, giving T proportional to R² instead of R¹·⁵."
+     }
+    ],
+    "concept_tags": [
+     "two-body gravitational orbit",
+     "Kepler's third law",
+     "centripetal force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210806_an_q094",
+   "audit_file": "tg_eapcet_2021_20210806_an_q094.d6228497.json",
+   "item_sha": "d62284970256b13d68e6d3681de8d42a002c870541bf2c3f18a93005442ffd14",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Match the following. Column-1: A) Potential energy of satellite, B) Total energy of satellite, C) Kinetic energy of satellite, D) Gravitational potential energy of satellite at infinity. Column-2: I) Positive, II) Negative, III) Zero, IV) Infinity",
+   "options_en": [
+    "A-IV, B-II, C-I, D-III",
+    "A-III, B-I, C-IV, D-II",
+    "A-II, B-II, C-I, D-III",
+    "A-II, B-I, C-IV, D-III"
+   ],
+   "solution": {
+    "approach": "Recall the sign and value of each energy quantity for a satellite in a stable circular orbit and match each one to column two.",
+    "steps": [
+     {
+      "text": "The potential energy of an orbiting satellite is negative, since the satellite is gravitationally bound to the earth.",
+      "equation": "U = −GMm/r"
+     },
+     {
+      "text": "The kinetic energy of a satellite in a circular orbit is positive.",
+      "equation": "K = GMm/2r"
+     },
+     {
+      "text": "The total energy is negative, and equal in size to half the potential energy, which is the usual signature of a bound circular orbit.",
+      "equation": "E = U + K = −GMm/2r"
+     },
+     {
+      "text": "By the usual convention, the gravitational potential energy at infinite separation is taken as the zero reference.",
+      "equation": "U(∞) = 0"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "A-II, B-II, C-I, D-III"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming every column-two label must be used exactly once, a student rules out matching both potential energy and total energy to 'Negative', but both are genuinely negative for a bound orbit."
+     },
+     {
+      "option": 4,
+      "text": "Mixing up kinetic energy and total energy, marking total energy as positive and kinetic energy as infinity, swaps their correct pairings."
+     }
+    ],
+    "concept_tags": [
+     "energy of a satellite",
+     "sign conventions in gravitation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q092",
+   "audit_file": "tg_eapcet_2022_20220718_an_q092.4f91cdff.json",
+   "item_sha": "4f91cdffd7cc38a94542356100f24b8f8354eaa0c0dc69558b764d90b56b0b5c",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "A rocket fired vertically with a speed of 4 km/s from the earth's surface. How far from the earth does the rocket go before returning to the earth? (Take radius of earth = 6.4×10⁶ m and g = 10 m/s²)",
+   "options_en": [
+    "500.24 km",
+    "914.28 km",
+    "1230.24 km",
+    "1750.28 km"
+   ],
+   "solution": {
+    "approach": "Use energy conservation with the true gravitational potential energy, since 4 km/s is too large to treat g as constant, and solve for the height reached.",
+    "steps": [
+     {
+      "text": "Write GM in terms of the surface values of g and R.",
+      "equation": "GM = gR² = 10×(6.4×10⁶)² = 4.096×10¹⁴ m³s⁻²",
+      "why_this_step": "GM equals gR² everywhere in the true inverse-square field, so this lets the constant-g value of g be used in the exact energy formula."
+     },
+     {
+      "text": "Set up energy conservation: the kinetic energy per unit mass at launch equals the gain in potential energy per unit mass up to the highest point, where the speed is zero.",
+      "equation": "½v² = GM·h / (R(R+h))"
+     },
+     {
+      "text": "Substitute the launch speed, R and GM into the equation.",
+      "equation": "½×4000² = 8×10⁶ = 4.096×10¹⁴×h / (6.4×10⁶×(6.4×10⁶+h))"
+     },
+     {
+      "text": "Solve the resulting equation for h.",
+      "equation": "h ≈ 914.29 km, matching the listed option 914.28 km to the given precision"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "914.28 km"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the constant-gravity formula h = v²/2g, valid only very close to the surface, gives about 800 km, which understates the true height because g actually falls off with height."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to convert 4 km/s to 4000 m/s before using the SI energy equation gives a height far too small to match any listed option."
+     }
+    ],
+    "concept_tags": [
+     "gravitational potential energy",
+     "energy conservation",
+     "variable gravitational field"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q092",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q092.2dfb630e.json",
+   "item_sha": "2dfb630edd8656e407df860f68e9f62f9422a3c03646f3b52f6913cce306ca5a",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "Three particles, each of mass M, situated at the vertices of an equilateral triangle of side length 'l'. The only forces acting on the particles are their mutual gravitational forces. It is desired that each particle moves in a circle while maintaining the original separation 'l'. The initial speed that should be given to each particle is",
+   "options_en": [
+    "√(2GM/l)",
+    "√(GM/2l)",
+    "√(GM/l)",
+    "√(3GM/l)"
+   ],
+   "solution": {
+    "approach": "Find the net force on one particle from the other two and equate it to the centripetal force for its circular path of radius l/√3.",
+    "steps": [
+     {
+      "text": "Each pair separated by l attracts with force GM²/l²; the two forces on one particle are 60° apart, the vertex angle of the equilateral triangle, so their resultant points toward the centroid.",
+      "equation": "F = 2×(GM²/l²)×cos30° = √3 GM²/l²",
+      "why_this_step": "The resultant of two equal vectors at angle θ has magnitude 2F cos(θ/2)."
+     },
+     {
+      "text": "The distance from each particle to the centroid, which is the radius of its circular path, is l/√3.",
+      "equation": "r = l/√3"
+     },
+     {
+      "text": "Set the net gravitational force equal to the centripetal force Mv²/r and solve for v.",
+      "equation": "√3 GM²/l² = Mv²/(l/√3) → GM/l = v² → v = √(GM/l)"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "√(GM/l)"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the net force is twice one pair's force alone and that the particles orbit at radius l instead of the centroid distance l/√3 gives v = √(2GM/l)."
+     },
+     {
+      "option": 2,
+      "text": "Including only one of the two neighbouring forces' component toward the centroid, instead of adding both, halves the net force and gives v = √(GM/2l)."
+     }
+    ],
+    "concept_tags": [
+     "circular motion under mutual gravity",
+     "vector addition of forces",
+     "equilateral triangle geometry"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q091",
+   "audit_file": "tg_eapcet_2023_20230512_an_q091.7574972d.json",
+   "item_sha": "7574972d56764b5168e452bb92df34c17cedd313ba0f574ed9cde0fab0e0a9ab",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "The ratio of the radii of two planets is 'r' and the ratio of accelerations due to gravity on the planets is 'x'. Then the ratio of the escape velocities from the planets is",
+   "options_en": [
+    "xr",
+    "√(r/x)",
+    "√(rx)",
+    "√(x/r)"
+   ],
+   "solution": {
+    "approach": "Escape velocity is √(2gR); write it for each planet using the given ratios of radius and g, then take the ratio.",
+    "steps": [
+     {
+      "text": "Write the escape velocity of each planet using its own g and R.",
+      "equation": "v₁ = √(2g₁R₁), v₂ = √(2g₂R₂)"
+     },
+     {
+      "text": "Form the ratio of the two escape velocities.",
+      "equation": "v₁/v₂ = √(g₁R₁ / (g₂R₂))"
+     },
+     {
+      "text": "Substitute the given ratios: r = R₁/R₂ and x = g₁/g₂.",
+      "equation": "v₁/v₂ = √(x×r) = √(rx)"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "√(rx)"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Writing the ratio upside down as √(r/x) instead of √(rx) mixes up which quantity multiplies and which divides."
+     },
+     {
+      "option": 4,
+      "text": "Swapping which ratio is called x and which is called r gives √(x/r) instead of √(rx)."
+     }
+    ],
+    "concept_tags": [
+     "escape velocity",
+     "ratio and proportion in gravitation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q098",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q098.9e45de09.json",
+   "item_sha": "9e45de09134a9d0528272a4e5dbfcb42583025ad3269366029ced969f602317a",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "A ring has a mass M and radius R. The distance of the point on its geometric axis from its centre at which the gravitational field is strongest is",
+   "options_en": [
+    "R/2",
+    "R/4",
+    "R/√3",
+    "R/√2"
+   ],
+   "solution": {
+    "approach": "Write the gravitational field on the axis of a ring as a function of distance x from its centre, then maximise it with respect to x.",
+    "steps": [
+     {
+      "text": "Write the field at distance x on the axis of a ring of mass M and radius R.",
+      "equation": "g(x) = GMx / √((R²+x²)³)"
+     },
+     {
+      "text": "Differentiate g(x) with respect to x and set the numerator of the derivative to zero to find the maximum.",
+      "equation": "dg/dx = 0 → R²+x² − 3x² = 0 → R² = 2x²",
+      "why_this_step": "At a maximum the derivative vanishes, and the denominator of g(x) is always positive, so only the numerator condition matters."
+     },
+     {
+      "text": "Solve for x.",
+      "equation": "x = R/√2"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "R/√2"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Guessing that the field is strongest at half the radius, x = R/2, instead of carrying out the maximisation, misses the correct point of R/√2."
+     },
+     {
+      "option": 2,
+      "text": "Making an algebra slip while solving R² = 2x², such as writing x² = R²/4 instead of R²/2, gives x = R/4."
+     }
+    ],
+    "concept_tags": [
+     "gravitational field of a ring",
+     "maxima using calculus"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q091",
+   "audit_file": "tg_eapcet_2023_20230513_an_q091.36bc60ff.json",
+   "item_sha": "36bc60ff6cb61772d1238286129d64ef914eb301b5ad150ee9d0b15d0d017c7a",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "The ratio of orbital velocity of a body near to the surface of a planet and escape velocity of a body from the surface of the same planet is",
+   "options_en": [
+    "√2 : 1",
+    "√5 : 1",
+    "1 : √2",
+    "1 : √5"
+   ],
+   "solution": {
+    "approach": "Write orbital velocity as √(gR) and escape velocity as √(2gR) for the same planet, then take their ratio.",
+    "steps": [
+     {
+      "text": "Write the orbital velocity near the surface and the escape velocity from the surface of the same planet.",
+      "equation": "vₒ = √(gR), vₑ = √(2gR)"
+     },
+     {
+      "text": "Form the ratio of orbital velocity to escape velocity.",
+      "equation": "vₒ/vₑ = √(gR)/√(2gR) = 1/√2"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1 : √2"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Inverting the ratio, writing escape velocity over orbital velocity instead of orbital over escape, gives √2 : 1 instead of 1 : √2."
+     },
+     {
+      "option": 2,
+      "text": "Recalling the numerically different ratio √5 : 1, which belongs to a different satellite comparison, instead of deriving this ratio from vₒ = √(gR) and vₑ = √(2gR)."
+     }
+    ],
+    "concept_tags": [
+     "orbital velocity",
+     "escape velocity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q091",
+   "audit_file": "tg_eapcet_2024_20240509_an_q091.4f5d6966.json",
+   "item_sha": "4f5d69668cc117b6bbe5d57bf7389a4ddfeafe36da1acd07f3c74f920921ac83",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The ratio of the accelerations due to gravity at heights 1280 km and 3200 km above the surface of the earth is (Radius of the earth = 6400 km)",
+   "options_en": [
+    "25:16",
+    "5:2",
+    "1:1",
+    "25:4"
+   ],
+   "solution": {
+    "approach": "Acceleration due to gravity at height h is gR²/(R+h)²; form the ratio for the two given heights.",
+    "steps": [
+     {
+      "text": "Write g at height h above the surface.",
+      "equation": "g(h) = gR²/(R+h)²"
+     },
+     {
+      "text": "Add each height to the radius of the earth.",
+      "equation": "R+h₁ = 6400+1280 = 7680 km; R+h₂ = 6400+3200 = 9600 km"
+     },
+     {
+      "text": "Form the ratio g(h₁)/g(h₂); the common factor gR² cancels, leaving only the (R+h) terms.",
+      "equation": "g(h₁)/g(h₂) = (R+h₂)²/(R+h₁)² = (9600/7680)² = 25/16"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "25:16"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Treating g as inversely proportional to height alone, taking the ratio of the heights themselves (3200:1280 = 5:2), forgets that the earth's radius must be added first."
+     },
+     {
+      "option": 3,
+      "text": "Assuming both heights are small compared with the earth's radius and that g barely changes gives the wrong ratio of 1:1."
+     }
+    ],
+    "concept_tags": [
+     "variation of g with height",
+     "inverse square law"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q091",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q091.1c214f29.json",
+   "item_sha": "1c214f29a9c3047f7f3ebd77e0a22d09716a1b74570ec77d41c9c5430d59316d",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The energy required to take a body from the surface of the earth to a height equal to the radius of the earth is 'W'. The energy required to take this body from the surface of the earth to a height equal to twice the radius of the earth is",
+   "options_en": [
+    "W/3",
+    "2W/3",
+    "W",
+    "4W/3"
+   ],
+   "solution": {
+    "approach": "Write the energy needed to lift a body to height h as mgRh/(R+h), evaluate it at h=R to get W, then at h=2R and take the ratio.",
+    "steps": [
+     {
+      "text": "Write the energy required to raise a body of mass m from the surface to height h, using GM = gR².",
+      "equation": "E(h) = GMm·h / (R(R+h)) = mgRh/(R+h)",
+      "why_this_step": "This exact expression is needed because the constant-g formula mgh does not hold once the height is comparable to the earth's radius."
+     },
+     {
+      "text": "Evaluate the energy at h = R, which is given as W.",
+      "equation": "E(R) = mgR·R/(2R) = mgR/2 = W"
+     },
+     {
+      "text": "Evaluate the energy at h = 2R.",
+      "equation": "E(2R) = mgR·2R/(3R) = 2mgR/3"
+     },
+     {
+      "text": "Take the ratio of the two energies and express E(2R) in terms of W.",
+      "equation": "E(2R)/E(R) = (2mgR/3)/(mgR/2) = 4/3 → E(2R) = 4W/3"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "4W/3"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the constant-gravity formula E = mgh instead of the correct expression gives E(2R) = 2W, which is not even one of the listed options."
+     },
+     {
+      "option": 3,
+      "text": "Assuming the energy needed stops growing once the height reaches the earth's radius and taking E(2R) equal to E(R) gives W instead of the correct 4W/3."
+     }
+    ],
+    "concept_tags": [
+     "gravitational potential energy",
+     "energy to raise a body against gravity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q091",
+   "audit_file": "tg_eapcet_2024_20240510_an_q091.14763014.json",
+   "item_sha": "14763014e05a47d9e3a0fb3aeeda89a5d103cfacb68f07775ebb4a7d338a9763",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The ratio of the radii of a planet and the earth is 1:2, the ratio of their mean densities is 4:1. If the acceleration due to gravity on the surface of the earth is 9.8 ms⁻², then the acceleration due to gravity on the surface of the planet is",
+   "options_en": [
+    "4.9 ms⁻²",
+    "8.9 ms⁻²",
+    "29.4 ms⁻²",
+    "19.6 ms⁻²"
+   ],
+   "solution": {
+    "approach": "Since g is proportional to density times radius, multiply the earth's g by the given ratios of density and radius to get the planet's g.",
+    "steps": [
+     {
+      "text": "Write g in terms of density and radius, using M = (4/3)πR³ρ in g = GM/R².",
+      "equation": "g = (4/3)πGρR"
+     },
+     {
+      "text": "Form the ratio of the planet's g to the earth's g using the given ratios of density and radius.",
+      "equation": "gₚ/gₑ = (ρₚ/ρₑ)×(Rₚ/Rₑ) = 4 × (1/2) = 2"
+     },
+     {
+      "text": "Multiply by the earth's given value of g.",
+      "equation": "gₚ = 2 × 9.8 = 19.6 ms⁻²"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "19.6 ms⁻²"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the radius ratio alone and forgetting the density ratio gives 9.8×(1/2) = 4.9 ms⁻², missing that the planet is also four times denser."
+     },
+     {
+      "option": null,
+      "text": "Adding the density and radius ratios instead of multiplying them, 4 + 1/2 = 4.5, scales g by the wrong factor and does not match any listed option."
+     }
+    ],
+    "concept_tags": [
+     "variation of g with density and radius",
+     "mean density of a planet"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q106",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q106.5f5ed0d8.json",
+   "item_sha": "5f5ed0d8a30807daf80ff5b345a1d656b3815d4b2e6fd637ae0aba82b5a63e9e",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "If the orbital speed of a body revolving in a circular path near the surface of the earth is 8 kms⁻¹, then the orbital speed of a body revolving around the earth in a circular orbit at height of 19,200 km from the surface of earth is (Radius of the earth = 6400 km)",
+   "options_en": [
+    "4 kms⁻¹",
+    "9 kms⁻¹",
+    "6 kms⁻¹",
+    "7.5 kms⁻¹"
+   ],
+   "solution": {
+    "approach": "Orbital speed at radius R+h is √(GM/(R+h)); take the ratio to the surface value and substitute the given height.",
+    "steps": [
+     {
+      "text": "Write the orbital speed at the earth's surface (radius R) and at radius R+h for the higher orbit.",
+      "equation": "v(R) = √(GM/R), v(R+h) = √(GM/(R+h))"
+     },
+     {
+      "text": "Form the ratio, which depends only on R and h, since GM cancels.",
+      "equation": "v(R+h)/v(R) = √(R/(R+h))"
+     },
+     {
+      "text": "Substitute R = 6400 km and h = 19200 km, so R+h = 25600 km.",
+      "equation": "v(R+h)/v(R) = √(6400/25600) = √(1/4) = 1/2"
+     },
+     {
+      "text": "Multiply by the given surface orbital speed.",
+      "equation": "v(R+h) = 8 × 1/2 = 4 kms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "4 kms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the height h alone as the orbital radius, instead of adding it to the earth's radius, gives a speed of about 4.6 kms⁻¹, not the correct 4 kms⁻¹."
+     },
+     {
+      "option": null,
+      "text": "Taking the ratio R/(R+h) without the square root and multiplying by 8 gives 2 kms⁻¹, missing the square-root step in the orbital speed formula."
+     }
+    ],
+    "concept_tags": [
+     "orbital velocity",
+     "inverse square law",
+     "ratio and proportion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q082",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q082.ba20c4a2.json",
+   "item_sha": "ba20c4a2d8b04e04db0ee900fdbed749d2348c123f1437129e4f60f5940b708b",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "Which of the following is incorrect about the gravitational force between two bodies?",
+   "options_en": [
+    "Conservative force",
+    "Attractive force",
+    "Not a central force",
+    "Not a contact force"
+   ],
+   "solution": {
+    "approach": "Check each statement against the known properties of the gravitational force between two bodies and find the one that is false.",
+    "steps": [
+     {
+      "text": "Gravitational force is conservative: the work it does between two points depends only on the initial and final separation, not on the path taken."
+     },
+     {
+      "text": "Gravitational force is always attractive, and it acts between two bodies without physical contact, so it is a non-contact force."
+     },
+     {
+      "text": "Gravitational force acts along the line joining the two bodies. Acting along that line is exactly the definition of a central force, so calling it 'not a central force' is the false statement."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "Not a central force"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Confusing 'central force' with 'contact force' leads some students to think a force acting at a distance cannot also be central, but gravity is both non-contact and central at once."
+     }
+    ],
+    "concept_tags": [
+     "nature of gravitational force",
+     "central force"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q113",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q113.ae58eda2.json",
+   "item_sha": "ae58eda2c87179fd26bec913414c7a81f4afa44e26811ef6dfc0d43b83b86fbe",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "The force of mutual attraction between any two objects by virtue of their masses is",
+   "options_en": [
+    "Electromagnetic force",
+    "Weak nuclear force",
+    "Strong nuclear force",
+    "Gravitational force"
+   ],
+   "solution": {
+    "approach": "This describes the definition of the gravitational force: the mutual attraction between any two bodies because of their masses.",
+    "steps": [
+     {
+      "text": "The electromagnetic force acts between charges, and the weak and strong nuclear forces act only over nuclear distances inside or between nuclei, not between any two massive bodies in general."
+     },
+     {
+      "text": "The force that exists between any two bodies purely because they have mass is, by definition, the gravitational force."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "Gravitational force"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Confusing 'mutual attraction' with the strong nuclear force, which is also attractive at short range, overlooks that the strong force needs nucleons at nuclear distances, not any two massive bodies."
+     }
+    ],
+    "concept_tags": [
+     "fundamental forces of nature",
+     "gravitational force"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

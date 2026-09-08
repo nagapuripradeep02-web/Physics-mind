@@ -1,0 +1,24 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2021_20210804_fn_q089",
+  "approach": "The force is the negative derivative of the potential energy, and the strongest attractive force occurs where that force reaches its most negative value.",
+  "steps": [
+    {"text": "Differentiate U(r) to get the force.",
+     "equation": "F(r) = −dU/dr = −(−2/r³ + 1/r²) = 2/r³ − 1/r²"},
+    {"text": "Find where the force is an extremum by setting its derivative to zero.",
+     "equation": "dF/dr = −6/r⁴ + 2/r³ = 0  →  r = 3"},
+    {"text": "Evaluate the force at r = 3.",
+     "equation": "F(3) = 2/27 − 1/9 = −1/27 N",
+     "why_this_step": "The negative sign shows the force points inward, toward the centre, which is the attractive direction; its magnitude here is the largest attractive value."}
+  ],
+  "final_answer": {"option": 1, "value": "1/27"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 4, "text": "Evaluating the force at r = 1, a convenient test point, instead of solving dF/dr = 0 for the true position of maximum force, gives a magnitude of 1."},
+    {"option": null, "text": "Confusing the position where the potential energy is minimum (r = 2, where the net force is actually zero) with the position of maximum attractive force."}
+  ],
+  "concept_tags": ["conservative force from potential energy", "maxima and minima", "central force"],
+  "difficulty": "hard",
+  "mistake_type_hint": "application",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:30:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_fn_q100",
+ "item_sha": "70cb0aa41e3c6eab6b54ebb8888a527e220f169f0477aaf780a3afa1dc6b5fdb",
+ "auditor_option": 4,
+ "auditor_value": "20%",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: f' = f(v + v/5)/v = 1.2f, so f' − f = 0.2f and the increase is 0.2f/f × 100 = 20% — option 4, the solution's answer. All three step equations are correct. The common_mistakes entry checks out numerically: measuring the rise against f' gives 0.2f/1.2f = 16.67%, exactly the printed option 1 it is tagged with. Difficulty easy and mistake_type_hint calculation both fit, and the prose is literal throughout.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:40:00+05:30"}
+}

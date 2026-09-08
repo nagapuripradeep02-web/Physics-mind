@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q115",
+ "approach": "Compare the given trajectory equation with the standard form to find the angle of projection and the initial speed, then compute the time of flight.",
+ "steps": [
+  {"text": "Compare the coefficient of x with tanθ from the standard trajectory equation.",
+   "equation": "tanθ = √3 → θ = 60°"},
+  {"text": "Compare the coefficient of x² with g/(2u²cos²θ) to find the initial speed.",
+   "equation": "0.2 = 10/(2u²cos²60°) = 10/(2u² × 0.25) → u² = 100 → u = 10 m/s"},
+  {"text": "Compute the time of flight using T = 2u sinθ/g.",
+   "equation": "T = 2 × 10 × sin60°/10 = 2 × (√3/2) = √3 s"}
+ ],
+ "final_answer": {"option": 1, "value": "√3 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting to take the square root after solving u² = 100 and carrying u = 100 into the time-of-flight formula gives 10√3 s, not any of the printed choices."}
+ ],
+ "concept_tags": ["projectile motion", "trajectory equation", "time of flight"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:45:00+05:30"}
+}

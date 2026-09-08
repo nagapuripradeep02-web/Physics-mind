@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q098",
+ "item_sha": "e38c4dcfb569d9a66947db7960df656ff301a9a55d9a9c0de6e265f0478f51c8",
+ "auditor_option": 1,
+ "auditor_value": "87 °C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: T(N2) = 560 K. Setting sqrt(3RT_O/32) = 0.75 sqrt(3R x 560/28) and squaring gives T_O = 0.5625 x 560 x (32/28) = 360 K = 87 °C, option 1. Verified in python: 0.5625 x 560 = 315 and 315 x 8/7 = 360 exactly. Every printed line follows from the one above it, including the squaring step. common_mistakes[0] checks out: not squaring gives 0.75 x 560 x (32/28) = 480 K = 207 °C, exactly the numbers the entry prints, and 207 °C is not a listed option, so option null is right. Checked and did not file: option 4 (360 °C) is the trap of reporting the kelvin value as Celsius and is not covered by any mistake entry, but the brief does not require every distractor to be claimed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:29:00+05:30"}
+}

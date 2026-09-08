@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q083",
+ "approach": "Average velocity over an interval equals the change in position divided by the change in time, using the given x(t).",
+ "steps": [
+  {"text": "Compute the position at the two given times using x(t) = αt + βt³ with α = 2.0 m/s and β = 0.01 m/s³.",
+   "equation": "x(2) = 2×2 + 0.01×2³ = 4.08 m; x(4) = 2×4 + 0.01×4³ = 8.64 m"},
+  {"text": "Divide the change in position by the change in time.",
+   "equation": "v_avg = (8.64 − 4.08)/(4 − 2) = 4.56/2 = 2.28 m/s"}
+ ],
+ "final_answer": {"option": 1, "value": "2.28 m/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Subtracting the two positions but forgetting to divide by the 2 s time interval, which gives 4.56 rather than the average velocity of 2.28 m/s."}
+ ],
+ "concept_tags": ["average velocity", "position as a function of time"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:30:00+05:30"}
+}

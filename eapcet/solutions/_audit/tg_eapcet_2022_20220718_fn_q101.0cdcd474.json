@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q101",
+ "item_sha": "0cdcd4743ea689bfe61e050b1ff95478c377f9087819afce2253da2ea2249a6e",
+ "auditor_option": 2,
+ "auditor_value": "0.20",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: I_max/I_min = (A₁ + A₂)²/(A₁ − A₂)² = 9/4, so (A₁ + A₂)/(A₁ − A₂) = 3/2, giving 2A₁ + 2A₂ = 3A₁ − 3A₂, A₁ = 5A₂ and A₂/A₁ = 0.20 — option 2, the solution's answer. Every step equation is correct as printed. I checked the common_mistakes entry on its own terms: the negative branch gives 2(A₁ + A₂) = −3(A₁ − A₂), that is A₂ = 5A₁, exactly as the entry states, and it is correctly rejected by A₁ > A₂; option null is right because A₂/A₁ = 5 matches no printed option. Not filed: the entry does not cover the commoner trap of reading 9:4 as the ratio of the two individual intensities, which gives A₁/A₂ = 3/2 and A₂/A₁ = 0.667, the printed 0.66 — a missing entry is not a defect in what is written.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:32:00+05:30"}
+}

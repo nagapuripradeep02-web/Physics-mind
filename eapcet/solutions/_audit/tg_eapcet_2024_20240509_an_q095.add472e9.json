@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "item_sha": "add472e90b54e063e02ec9c1b19f9f495583dbe3c25554c7990a7eb8e9ceb3a6",
+ "auditor_option": 2,
+ "auditor_value": "73 g water at 100 °C and 6 g steam at 100 °C",
+ "findings": [
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 3, \"value\": \"8 g steam at 100 °C and 12 g water at 0 °C\"",
+   "note": "Every step of this solution reaches 73 g water at 100 °C plus 6 g of surviving steam, which is printed option 2; the stated final answer is option 3 instead. Option 3 is also impossible on its own terms: 8 g + 12 g = 20 g, while 54 g of ice and 25 g of steam must conserve to 79 g, and it places water at 0 °C in contact with steam at 100 °C, which is not thermal equilibrium.",
+   "fix": "\"option\": 2, \"value\": \"73 g water at 100 °C and 6 g steam at 100 °C\""},
+  {"grade": "harmful",
+   "field": "steps[7].equation",
+   "quote": "water = 54 + 19 = 73 g at 100°C; steam left = 25 − 19 = 8 g steam at 100 °C and 12 g water at 0 °C",
+   "note": "The printed subtraction is false: 25 − 19 = 6, not 8. The line then abandons its own subtraction and copies the text of printed option 3, so the final displayed line contradicts the 73 g it states in its own first half.",
+   "fix": "water = 54 + 19 = 73 g at 100 °C; steam left = 25 − 19 = 6 g at 100 °C"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Steps 1-7 are all correct and were recomputed: Q1 = 54 × 0.5 × 20 = 540 cal, Q2 = 54 × 80 = 4320 cal, Q3 = 54 × 1 × 100 = 5400 cal, Q_needed = 10260 cal; Q_available = 25 × 540 = 13500 cal > 10260 cal, so the equilibrium temperature is 100 °C and m_condensed = 10260/540 = 19 g exactly. The standard values used (c_ice = 0.5 cal g⁻¹ °C⁻¹, L_f = 80 cal g⁻¹, L_v = 540 cal g⁻¹) are the ones the printed options require. Both common_mistakes entries were recomputed and are sound: condensing all 25 g gives 54 + 25 = 79 g water, which matches no printed option, so option null is correct; omitting the −20 °C to 0 °C warming gives 4320 + 5400 = 9720 cal, m_condensed = 18 g, 72 g water and 7 g steam, which also matches no printed option, so option null is correct there too. Neither entry condemns a valid method. The defect is confined to the last step line and the final_answer block.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

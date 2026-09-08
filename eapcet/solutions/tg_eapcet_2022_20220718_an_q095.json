@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q095",
+ "approach": "A falling raindrop reaches terminal velocity when viscous drag balances its weight, since the surrounding air's density is neglected.",
+ "steps": [
+  {"text": "Write the terminal velocity of a small sphere falling through a viscous fluid, with the fluid's own density neglected.",
+   "equation": "vₜ = 2r²ρ_water g / (9η)"},
+  {"text": "Substitute the given radius, density, viscosity and g.",
+   "equation": "r = 0.02 mm = 2×10⁻⁵ m",
+   "why_this_step": "The radius must be in metres to match the SI units of the other quantities."},
+  {"text": "Evaluate the terminal velocity.",
+   "equation": "vₜ = 2 × (2×10⁻⁵)² × 1000 × 10 / (9 × 1.8×10⁻⁵) = 4.94×10⁻² m/s = 4.9 cm/s"}
+ ],
+ "final_answer": {"option": 1, "value": "4.9 cm/s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Misremembering the constant in the formula as 4r²ρg/(9η) instead of 2r²ρg/(9η), which doubles the answer to about 9.8 cm/s."},
+  {"option": 3, "text": "Converting the final speed from metres per second to centimetres per second using a factor of 10 instead of 100 gives about 0.49 cm/s."}
+ ],
+ "concept_tags": ["Stokes' law", "terminal velocity", "viscosity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:12:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q103",
+ "item_sha": "3312b010ec1f85a8ae028dbb72105995d6ad5821fd823c5d4a05bba3d620e530",
+ "auditor_option": 4,
+ "auditor_value": "0.2 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved blind first: k = 5π so λ = 2π/k = 0.4 m; two particles have equal speed at every instant only if |cos(kx₁ − ωt)| = |cos(kx₂ − ωt)| for all t, which forces kΔx = nπ and gives Δx_min = π/k = λ/2 = 0.2 m. Matches the solution. Verified the condition by brute force as well as algebraically: scanning separations from 0.005 m to 0.85 m against 20001 time samples, the only separations with equal speed at every instant are 0.2, 0.4, 0.6 and 0.8 m, and the smallest is 0.2 m. Recomputed the printed lines: Aω = 0.02 × 20 = 0.4, so v_y = −0.4 cos(5πx − 20t) is right including its sign; 2π/(5π) = 0.4 m; π/k = 0.2 m; 0.4/2 = 0.2 m. All three common_mistakes routes reproduce and land on the option named: amplitude 0.02 m is option 1; requiring the velocity to match in direction as well, which the same brute-force scan confirms needs a full 0.4 m, is option 2; and doubling instead of halving λ gives 0.8 m, option 3. None condemns a correct method, since the question asks for speed and cm[1] is a genuinely stricter condition than the stem asks for. Checked and did not file: step[2] carries no equation, but its text states the whole condition and so is not an empty step; 'hard' and 'concept' both fit an item that turns on the absolute-value argument rather than on arithmetic.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T07:00:12+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q091",
+ "approach": "Escape velocity depends on both the surface gravity and the radius, so write it in terms of these two and substitute the given ratios.",
+ "steps": [
+  {"text": "Write the escape velocity of a planet in terms of its surface acceleration due to gravity and its radius.",
+   "equation": "vₑ = √(2gR)"},
+  {"text": "Write the ratio of the escape velocities of the two planets using their own g and R.",
+   "equation": "vₑ₁/vₑ₂ = √(2g₁R₁)/√(2g₂R₂) = √((g₁R₁)/(g₂R₂))"},
+  {"text": "Substitute the given ratios: the radius ratio is r and the gravity ratio is x.",
+   "equation": "vₑ₁/vₑ₂ = √(x·r) = √(rx)",
+   "why_this_step": "R₁/R₂ = r and g₁/g₂ = x are exactly the two ratios given in the question."}
+ ],
+ "final_answer": {"option": 3, "value": "√(rx)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Forgetting the square root and taking the ratio of escape velocities as the product of the gravity ratio and the radius ratio directly gives xr."},
+  {"option": 4, "text": "Misremembering the escape velocity formula as √(2g/R) instead of √(2gR) inverts the radius dependence and gives √(x/r)."}
+ ],
+ "concept_tags": ["escape velocity", "acceleration due to gravity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-08-R2", "at": "2026-09-08T16:45:00+05:30"}
+}

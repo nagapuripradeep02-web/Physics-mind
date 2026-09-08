@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q091",
+ "approach": "Since g is proportional to density times radius, multiply the earth's g by the given ratios of density and radius to get the planet's g.",
+ "steps": [
+  {
+   "text": "Write g in terms of density and radius, using M = (4/3)πR³ρ in g = GM/R².",
+   "equation": "g = (4/3)πGρR"
+  },
+  {
+   "text": "Form the ratio of the planet's g to the earth's g using the given ratios of density and radius.",
+   "equation": "gₚ/gₑ = (ρₚ/ρₑ)×(Rₚ/Rₑ) = 4 × (1/2) = 2"
+  },
+  {
+   "text": "Multiply by the earth's given value of g.",
+   "equation": "gₚ = 2 × 9.8 = 19.6 ms⁻²"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "19.6 ms⁻²"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Using the radius ratio alone and forgetting the density ratio gives 9.8×(1/2) = 4.9 ms⁻², missing that the planet is also four times denser."
+  },
+  {
+   "option": null,
+   "text": "Adding the density and radius ratios instead of multiplying them, 4 + 1/2 = 4.5, scales g by the wrong factor and does not match any listed option."
+  }
+ ],
+ "concept_tags": [
+  "variation of g with density and radius",
+  "mean density of a planet"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T15:24:00+05:30"
+ }
+}

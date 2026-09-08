@@ -1,0 +1,26 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2021_20210804_an_q089",
+  "approach": "The block starts and ends at rest, so the work done by gravity along the slope must equal the work done against a friction force that grows with distance.",
+  "steps": [
+    {"text": "Write the friction force at a distance x down the slope, using the given coefficient.",
+     "equation": "f(x) = μ(x)·mg cos30° = (2/3)x·mg cos30°"},
+    {"text": "Set the work done by gravity over the whole distance d equal to the work done against friction, since the block starts and ends at rest.",
+     "equation": "mg sin30°·d = ∫₀ᵈ (2/3)x·mg cos30° dx",
+     "why_this_step": "The net work on the block is zero because its kinetic energy is zero both before it starts and after it stops."},
+    {"text": "Evaluate the integral and cancel mg from both sides.",
+     "equation": "sin30°·d = cos30°·d²/3"},
+    {"text": "Solve for d.",
+     "equation": "d = 3 tan30° = 3/√3 = √3 m"}
+  ],
+  "final_answer": {"option": 2, "value": "√3 m"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Using the friction coefficient at the final position, μ(d), as if it were constant along the whole slide, instead of integrating the growing friction force, gives d = √3/2 m."},
+    {"option": null, "text": "Leaving out cos30° from the normal force in the friction term gives a different, unlisted distance of 1.5 m."}
+  ],
+  "concept_tags": ["work-energy theorem", "variable friction", "inclined plane"],
+  "difficulty": "hard",
+  "mistake_type_hint": "application",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:15:00+05:30"}
+}

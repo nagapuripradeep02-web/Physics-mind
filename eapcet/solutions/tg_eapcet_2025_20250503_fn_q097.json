@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q097",
+ "approach": "Heat conducted steadily through the walls of the box melts part of the ice, and the melted mass follows from the conduction equation divided by the latent heat of fusion.",
+ "steps": [
+  {"text": "Convert the given quantities to SI units.",
+   "equation": "A = 1000 cm² = 0.1 m², d = 2 mm = 0.002 m, t = 160 min = 9600 s"},
+  {"text": "Write the heat conducted through the walls in this time.",
+   "equation": "Q = kAΔT t/d = (10⁻² × 0.1 × 42 × 9600)/0.002",
+   "why_this_step": "Steady-state conduction carries heat at a constant rate kAΔT/d, so the total heat is this rate multiplied by the time."},
+  {"text": "Evaluate the heat conducted.",
+   "equation": "Q = 201600 J"},
+  {"text": "Find the mass of ice this heat melts.",
+   "equation": "m_melted = Q/L = 201600/336000 = 0.6 kg"},
+  {"text": "Subtract from the initial mass to get the ice remaining.",
+   "equation": "m_remaining = 1.5 − 0.6 = 0.9 kg"}
+ ],
+ "final_answer": {"option": 2, "value": "0.9 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Reporting the melted mass, 0.6 kg, as the answer instead of subtracting it from the initial 1.5 kg to get the ice remaining."}
+ ],
+ "concept_tags": ["thermal conduction", "latent heat of fusion", "steady-state heat flow"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:22:00+05:30"}
+}

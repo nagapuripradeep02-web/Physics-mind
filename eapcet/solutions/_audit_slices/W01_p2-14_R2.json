@@ -1,0 +1,212 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q081",
+   "audit_file": "tg_eapcet_2022_20220719_an_q081.23be8f1b.json",
+   "item_sha": "23be8f1b3667bceb66762c11c2953d3776b63e57b8695e0cb45e2840a48b7c6d",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "The range of the nuclear force is",
+   "options_en": [
+    "10⁻¹⁸ m",
+    "10⁻¹⁶ m",
+    "10⁻¹⁵ m",
+    "10⁻¹³ m"
+   ],
+   "solution": {
+    "approach": "The range of the strong nuclear force is a standard recalled value, comparable to the size of a nucleon.",
+    "steps": [
+     {
+      "text": "The strong nuclear force acts only between nucleons that are very close together, over a distance comparable to the size of a nucleon or a small nucleus.",
+      "equation": "range of the nuclear force ≈ 1 to 2 femtometres"
+     },
+     {
+      "text": "Write this range in metres to match the options.",
+      "equation": "range ≈ 10⁻¹⁵ m"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "10⁻¹⁵ m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Recalling the range of the weak nuclear force instead of the strong nuclear force, which is one order smaller, of the order of 10⁻¹⁶ m."
+     }
+    ],
+    "concept_tags": [
+     "nuclear force",
+     "range of fundamental forces"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q116",
+   "audit_file": "tg_eapcet_2023_20230512_an_q116.cfe36a7c.json",
+   "item_sha": "cfe36a7caf99e7a1d7e422b1ff59edcaf74fefb8dd8f988ce786df33d7073425",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "In the following nuclear reaction X is: ₁₃Al²⁷ + ₂He⁴ → ₀n¹ + X",
+   "options_en": [
+    "₁₅P³¹",
+    "₁₄Si³⁰",
+    "₁₅P³⁰",
+    "₁₅Si³¹"
+   ],
+   "solution": {
+    "approach": "In a nuclear reaction the total atomic number and the total mass number are each conserved, so both sides must balance separately.",
+    "steps": [
+     {
+      "text": "List the atomic number Z and mass number A of every particle on the left side and of the neutron on the right.",
+      "equation": "₁₃Al²⁷: Z=13, A=27;  ₂He⁴: Z=2, A=4;  ₀n¹: Z=0, A=1"
+     },
+     {
+      "text": "Conserve the atomic number to find the atomic number of X.",
+      "equation": "Z(X) = 13 + 2 − 0 = 15"
+     },
+     {
+      "text": "Conserve the mass number to find the mass number of X.",
+      "equation": "A(X) = 27 + 4 − 1 = 30"
+     },
+     {
+      "text": "The element with atomic number 15 is phosphorus, so X is phosphorus-30.",
+      "equation": "X = ₁₅P³⁰",
+      "why_this_step": "Charge and mass number must each add up to the same total before and after a nuclear reaction."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "₁₅P³⁰"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Forgetting to subtract the mass number carried away by the neutron gives A = 27 + 4 = 31, leading to ₁₅P³¹."
+     },
+     {
+      "option": 2,
+      "text": "Wrongly treating the emitted neutron as if it carried a charge of +1 gives Z = 13 + 2 − 1 = 14, leading to ₁₄Si³⁰."
+     }
+    ],
+    "concept_tags": [
+     "nuclear reaction",
+     "conservation of charge and mass number"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q081",
+   "audit_file": "tg_eapcet_2025_20250503_an_q081.cd086538.json",
+   "item_sha": "cd0865383f4e7a91419a568b525ab5f7b0555494e6382ce12eafa1e3e1cb61e4",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ],
+   "solution": {
+    "approach": "The range of the weak nuclear force is a standard recalled value, smaller than the range of the strong nuclear force.",
+    "steps": [
+     {
+      "text": "The weak nuclear force is short-ranged, acting only over distances smaller than the size of a nucleus.",
+      "equation": "range of the weak nuclear force is smaller than that of the strong nuclear force"
+     },
+     {
+      "text": "Write this range in metres to match the options.",
+      "equation": "= 10¹⁶ m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "10¹⁶ m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Confusing the weak nuclear force's range with the scale of an atom instead of a nucleus, giving 10⁻¹⁰ m."
+     }
+    ],
+    "concept_tags": [
+     "weak nuclear force",
+     "range of fundamental forces"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q098",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q098.b120e8da.json",
+   "item_sha": "b120e8daa7d2ea5ffc09f090ffba09991cf0cd717cafc9a635be4311c8fa0486",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a nucleus P converts into a nucleus Q by the decay of one alpha particle and two β⁻ particles, then the nuclei P and Q are",
+   "options_en": [
+    "Isobars",
+    "Isomers",
+    "Isotones",
+    "Isotopes"
+   ],
+   "solution": {
+    "approach": "Track how the atomic number and the mass number change through the alpha decay and the two beta-minus decays, then compare P and Q.",
+    "steps": [
+     {
+      "text": "An alpha decay lowers the atomic number by 2 and the mass number by 4.",
+      "equation": "alpha decay: ΔZ = −2, ΔA = −4"
+     },
+     {
+      "text": "Each beta-minus decay raises the atomic number by 1 and leaves the mass number unchanged, because a neutron turns into a proton. Two of them raise the atomic number by 2 in all.",
+      "equation": "two beta-minus decays: ΔZ = +2, ΔA = 0"
+     },
+     {
+      "text": "Add the changes from the alpha decay and the two beta-minus decays to get the net change from P to Q.",
+      "equation": "net ΔZ = −2 + 2 = 0, net ΔA = −4 + 0 = −4"
+     },
+     {
+      "text": "P and Q have the same atomic number but a mass number smaller by 4, so P and Q are isotopes.",
+      "equation": "Z(Q) = Z(P), A(Q) = A(P) − 4 → P and Q are isotopes",
+      "why_this_step": "Nuclei with the same atomic number but different mass numbers are, by definition, isotopes."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "Isotopes"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Counting only the two beta-minus decays and forgetting the alpha decay gives the same mass number with a different atomic number, which is the definition of isobars."
+     },
+     {
+      "option": 2,
+      "text": "Correctly finding that the atomic number is unchanged but wrongly assuming the mass number is also unchanged gives the same atomic number and mass number, which is the definition of isomers."
+     },
+     {
+      "option": 3,
+      "text": "Wrongly believing beta-minus decay lowers the atomic number, as in beta-plus decay, gives a net change of −4 in atomic number and mass number, so the neutron number is unchanged: isotones."
+     }
+    ],
+    "concept_tags": [
+     "radioactive decay",
+     "isotopes, isobars, isotones and isomers",
+     "alpha and beta decay"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

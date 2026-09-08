@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_an_q081",
+ "item_sha": "cd0865383f4e7a91419a568b525ab5f7b0555494e6382ce12eafa1e3e1cb61e4",
+ "auditor_option": 4,
+ "auditor_value": "10⁻¹⁶ m",
+ "findings": [
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 1, \"value\": \"10¹⁶ m\"",
+   "note": "The weak nuclear force range is of the order of 10⁻¹⁶ m, which is printed option 4. The stated answer 10¹⁶ m is a positive exponent: about 10 million billion metres, roughly a light-year, and 32 orders of magnitude away from the correct value. It also contradicts the solution's own first step, which says the force acts only over distances smaller than the size of a nucleus.",
+   "fix": "\"option\": 4, \"value\": \"10⁻¹⁶ m\""},
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "= 10¹⁶ m",
+   "note": "The minus sign in the exponent is missing, so the printed line asserts an astronomical distance for a force the line above correctly calls short-ranged. This is the line a student copies as the answer.",
+   "fix": "range of the weak nuclear force ≈ 10⁻¹⁶ m"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Recall question, answered from my own knowledge before reading the solution: the weak nuclear force is much shorter ranged than the strong nuclear force, of the order of 10⁻¹⁶ m against 10⁻¹⁵ m, so the answer is printed option 4. The approach and steps[0] are both true; the defect is confined to the exponent sign in the last step line and the final_answer block. The single common_mistakes entry is sound and reaches the option it names: the atomic scale is about 10⁻¹⁰ m, printed option 2, and confusing the nuclear scale with the atomic scale is a real error here. Note that this same entry, and the corresponding item in this slice on the strong nuclear force, both state a negative exponent for the weak force range, so the solution disagrees with itself. Printed options 1 and 3 carry positive exponents and are physically impossible as force ranges, which makes the option set unusually easy but is not a defect in the question.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

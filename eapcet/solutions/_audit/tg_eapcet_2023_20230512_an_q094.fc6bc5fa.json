@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q094",
+ "item_sha": "fc6bc5fafed6c99a4e66815fc0de76dcaa539f90c2479364c2422dad2868650e",
+ "auditor_option": 1,
+ "auditor_value": "Equal in all vessels",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: identical vessels give the same base area A, and equal masses give h = m/(ρA), so P = ρgh = mg/A, the same for all three. Option 1. The steps derive exactly this, and the mistake entry pointing at option 2 describes the real error (using ρ alone and ignoring that the height adjusts).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:27:00+05:30"}
+}

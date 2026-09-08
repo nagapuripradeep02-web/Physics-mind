@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q099",
+ "item_sha": "13835a81b178a2ebbb81f0ba08372adf0a1aa6df524ac043b984d4890874f563",
+ "auditor_option": 3,
+ "auditor_value": "−25°C to +75°C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: ΔT = δ/(Lα) = 0.5 mm / (1000 mm × 10⁻⁵ °C⁻¹) = 50 °C, applied on both sides of 25 °C, giving −25 °C to +75 °C, printed option 3. Every step line was recomputed and follows from the one above it, with L and δ in the same unit throughout. The reading direction stated in step 4 is correct: an expanded scale has divisions longer than their marked value, so a fixed object spans fewer of them and the scale under-reads; a contracted scale over-reads. Both common_mistakes routes were recomputed and reach the options they name: the one-sided reading gives +25 °C to +75 °C, printed option 2, and treating 50 °C as the full width gives 25 ± 25 = 0 °C to +50 °C, printed option 1. Neither condemns a correct method. Printed option 4 is left unaccounted for, which the brief does not require. difficulty medium and mistake_type_hint concept are both defensible: the arithmetic is one line, but the two-sided range is the conceptual step the distractors are built on.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

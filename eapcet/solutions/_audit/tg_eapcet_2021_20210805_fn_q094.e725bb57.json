@@ -1,0 +1,21 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_fn_q094",
+ "item_sha": "e725bb570f4a4971446ce8adae5c1593f203a5226f2ecdb4237a8b739df5dc5b",
+ "auditor_option": 1,
+ "auditor_value": "R^(3/2)",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "T = 2π/ω → T² = R",
+   "note": "This does not follow from the line above it. With ω² = GM/(4R³), T = 2π/ω gives T² = 4π²/ω² = 16π²R³/(GM), so T² is proportional to R³ and T is proportional to R^(3/2), not to R. The printed line is also dimensionally impossible, since a squared time cannot equal a length.",
+   "fix": "T = 2π/ω → T² = 4π²/ω² = 16π²R³/(GM) → T ∝ R^(3/2)"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 2, \"value\": \"R\"",
+   "note": "The correct period for two equal masses M on a circle of radius R (separation 2R) is T = 4πR^(3/2)/√(GM), so T is proportional to R^(3/2), which is option 1. The same conclusion follows if the separation is read as R instead of 2R, so the reading of the geometry does not change the exponent. The solution also contradicts itself: common_mistakes[0] states that the correct dependence is R^1.5, which is option 1, not the option 2 the final answer marks.",
+   "fix": "option 1, value \"R^(3/2)\""}
+ ],
+ "verdict": "harmful",
+ "notes": "Solved independently before reading the steps: GM²/(2R)² = Mω²R gives ω² = GM/(4R³), T = 2π/ω = 4πR^(3/2)/√(GM). Verified with sympy, including the alternative reading in which R is the separation (T = √2·πR^(3/2)/√(GM)); both give T ∝ R^(3/2). Steps 1 and 2 are correct; only the last line and the final answer are wrong. common_mistakes[0] is itself sound (taking the centripetal acceleration as ω²R² does give T ∝ R², verified) and it names R^1.5 as the correct answer, so the error is confined to the last step and the recorded option.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

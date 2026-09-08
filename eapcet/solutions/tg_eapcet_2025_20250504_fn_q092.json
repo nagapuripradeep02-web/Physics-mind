@@ -1,0 +1,22 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2025_20250504_fn_q092",
+  "approach": "Kinetic energy depends on the square of the speed, found by squaring and adding the components of the velocity vector.",
+  "steps": [
+    {"text": "Find the square of the speed from the vector components.",
+     "equation": "v² = 2² + 3² + (−4)² = 4 + 9 + 16 = 29 m² s⁻²"},
+    {"text": "Apply the kinetic energy formula and solve for the mass.",
+     "equation": "87 = ½ × m × 29  →  m = 87/14.5 = 6 kg"}
+  ],
+  "final_answer": {"option": 3, "value": "6 kg"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Leaving out the one-half in the kinetic energy formula, dividing 87 directly by v² = 29, gives a mass of 3 kg."},
+    {"option": 2, "text": "Using ¼mv² instead of ½mv² for the kinetic energy formula gives 87/(0.25×29), a mass of 12 kg."},
+    {"option": null, "text": "Adding the velocity components before squaring, (2+3−4)² = 1, instead of squaring each component first, gives a badly wrong speed."}
+  ],
+  "concept_tags": ["kinetic energy", "vector magnitude"],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:12:00+05:30"}
+}

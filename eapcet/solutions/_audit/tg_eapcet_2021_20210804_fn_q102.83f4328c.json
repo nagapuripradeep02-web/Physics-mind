@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q102",
+ "item_sha": "83f4328c57b162bc9a8d7914aa81eb7fdf456875abd10c7abff330f451076933",
+ "auditor_option": 3,
+ "auditor_value": "a & c are true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own reading: (a) true, temperature fixes the average kinetic energy per molecule, (3/2)kT; (b) false, that average kinetic energy is the same for every gas at a given temperature; (c) true, speed varies as 1/sqrt(m) so the heavier molecule is slower; (d) false. Only a & c, so option 3. Checked and did not file: step 3 answers a statement about AVERAGE speed by quoting the RMS speed formula v = sqrt(3kT/m); the mean speed is sqrt(8kT/(pi m)), but both vary as 1/sqrt(m), so the conclusion about statement c is unchanged and the step names its quantity honestly as rms. Also checked common_mistakes[1]: its text explains only the c/d mix-up, while option 4 (b & d) additionally needs statement b to be believed true; option 4 is nevertheless the only listed option containing d, so the pointer is the correct landing place for that confusion and I did not file it.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:18:00+05:30"}
+}

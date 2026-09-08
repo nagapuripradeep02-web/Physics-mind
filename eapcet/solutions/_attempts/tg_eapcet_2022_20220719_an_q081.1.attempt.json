@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220719_an_q081",
+ "approach": "The strong nuclear force that binds protons and neutrons together acts only over the size of a nucleus, of the order of a few femtometres.",
+ "steps": [
+  {"text": "Recall the size of a typical atomic nucleus, since the nuclear force must reach at least that far to hold the nucleus together.",
+   "equation": "nuclear size ∼ 10⁻¹⁵ m"},
+  {"text": "The nuclear force falls to nearly zero beyond this separation, so its range is of the same order as the nuclear size.",
+   "equation": "range of nuclear force ∼ 10⁻¹⁵ m"}
+ ],
+ "final_answer": {"option": 3, "value": "10⁻¹⁵ m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Misremembering the exponent as −13 instead of −15 gives 10⁻¹³ m, two orders of magnitude too large for the actual nuclear force range."},
+  {"option": 1, "text": "Confusing the very short range of the weak nuclear force with the strong nuclear force gives 10⁻¹⁸ m."}
+ ],
+ "concept_tags": ["nuclear force", "range of forces"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

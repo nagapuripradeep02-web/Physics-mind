@@ -1,0 +1,62 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-10",
+ "chapter": "Mechanical Properties of Fluids",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q096",
+   "audit_file": "tg_eapcet_2021_20210804_an_q096.1a69890b.json",
+   "item_sha": "1a69890b189424c380afd060125d619f88642b2f3ab22c50818cdddb3d9a5382",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "What is the terminal velocity of air bubble of 1.0 mm in diameter rising in liquid of viscosity 0.85 Ns/m² and density 900 kgm⁻³? [air density 1.293 kg/m³, g = 9 m/s²]",
+   "options_en": [
+    "Vₜ = 0.25 mm/s",
+    "Vₜ = 0.5 mm/s",
+    "Vₜ = 1.5 mm/s",
+    "Vₜ = 2.5 mm/s"
+   ],
+   "solution": {
+    "approach": "A rising air bubble in a denser viscous liquid reaches terminal velocity when the upward buoyant force is balanced by viscous drag, given by Stokes' law.",
+    "steps": [
+     {
+      "text": "Convert the given diameter to a radius.",
+      "equation": "r = 1.0 mm / 2 = 0.5 × 10⁻³ m"
+     },
+     {
+      "text": "Write the terminal velocity of a sphere rising through a denser viscous liquid.",
+      "equation": "vₜ = 2r²(ρ_liquid − ρ_air)g / (9η)",
+      "why_this_step": "The bubble is far less dense than the liquid, so buoyancy pushes it up and viscous drag opposes the motion until the two balance."
+     },
+     {
+      "text": "Substitute the given values and evaluate.",
+      "equation": "vₜ = 2 × (0.5×10⁻³)² × (900 − 1.293) × 9 / (9 × 0.85) = 5.29×10⁻⁴ m/s = 0.53 mm/s"
+     },
+     {
+      "text": "Compare with the printed options.",
+      "equation": "0.53 mm/s is closest to the printed 0.5 mm/s"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Vₜ = 0.5 mm/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Leaving out the factor of 2 in the formula and using r²(ρ_liquid − ρ_air)g/(9η) gives about 0.26 mm/s, which rounds toward 0.25 mm/s."
+     }
+    ],
+    "concept_tags": [
+     "Stokes' law",
+     "terminal velocity",
+     "buoyancy"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

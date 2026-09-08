@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q115",
+ "item_sha": "0ff4b124b4487f35249e2c1d4974061259de034efd0850e07121c103e224788f",
+ "auditor_option": 1,
+ "auditor_value": "√3 s",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: comparing y = x tanθ − gx²/(2u²cos²θ) with y = √3x − 0.2x² gives tanθ = √3, θ = 60°, and 0.2 = 10/(2u² × 0.25) = 20/u², so u² = 100 and u = 10 m s⁻¹. T = 2u sinθ/g = 2(10)(√3/2)/10 = √3 s = 1.732 s. The x² comparison is written on the magnitude of the coefficient, which is the standard reading and is unambiguous here. The mistake entry is correct: carrying u = 100 gives 10√3 s, which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:54:00+05:30"}
+}

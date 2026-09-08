@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q086",
+ "item_sha": "9ef7952ab29bccab0fdac1f103fb5c3353825ec09bb8fef7daf2e9f959263a2c",
+ "auditor_option": 2,
+ "auditor_value": "−5",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: with v_x = 3 and v_y = 4, y = (4/3)x − 10x²/(2×9) = (4/3)x − (5/9)x² = (1/9)(12x − 5x²), so β = 12 and γ = −5. The printed reduction 10/18 = 5/9 and 4/3 = 12/9 are both correct. The mistake entry is also right: dropping the factor 2 gives γ = −10, which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:45:00+05:30"}
+}

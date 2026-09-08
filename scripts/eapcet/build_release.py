@@ -73,6 +73,7 @@ def main():
     discredited = set(misses)
 
     verified, unaudited, failed_audit, spot_failed = {}, [], [], []
+    rework, defects = [], []
     author_key_miss = sum(1 for s in status.values() if s.get("reason") == "key_miss")
     gated = len(status)
     aud_vs_author, aud_vs_key, audited_real = 0, 0, 0
@@ -92,8 +93,14 @@ def main():
             aud_vs_key += 1
         agent = au.get("audited_by", {}).get("agent", "?")
         ok = au.get("verdict") in OK and au.get("auditor_option") == sol["final_answer"]["option"]
+        if au.get("question_defect"):
+            defects.append({"question_id": qid, "chapter": byid[qid]["chapter"], "auditor": agent, "note": au["question_defect"]})
         if not ok or agent in discredited:
             failed_audit.append(qid)
+            if agent not in discredited:
+                rework.append({"question_id": qid, "chapter_key": byid[qid]["chapter_key"], "verdict": au.get("verdict"),
+                               "auditor_option": au.get("auditor_option"), "author_option": sol["final_answer"]["option"],
+                               "findings": [f.get("field", "") + ": " + (f.get("note") or "")[:120] for f in au.get("findings", [])]})
             continue
         sp = spot["items"].get(qid)
         if sp and sp["sha"] == sha[:8] and sp["verdict"] == "fail":
@@ -117,6 +124,8 @@ def main():
                                  "attempts": [os.path.basename(f), qid + ".json"], "chapter": byid[qid]["chapter"]})
                 break
     io.open(ESCALATE, "w", encoding="utf-8").write(json.dumps(escalate, indent=1, ensure_ascii=False))
+    io.open(os.path.join(SOL, "_rework.json"), "w", encoding="utf-8").write(json.dumps(rework, indent=1, ensure_ascii=False))
+    io.open(os.path.join(SOL, "_question_defects.json"), "w", encoding="utf-8").write(json.dumps(defects, indent=1, ensure_ascii=False))
 
     chapters = []
     for c in pool["chapters"]:
@@ -167,6 +176,12 @@ def main():
     print("escalations (two blind authors agree against the key): %d -> %s" % (len(escalate), os.path.relpath(ESCALATE, ROOT)))
     for e in escalate:
         print("  %s  key %d, both authors %d  (%s)" % (e["question_id"], e["key"], e["authors_reached"], e["chapter"]))
+    print("rework (audit wrong/harmful, to re-author blind): %d -> eapcet/solutions/_rework.json" % len(rework))
+    for r in rework:
+        print("  %s %s %s: %s" % (r["question_id"], r["chapter_key"], r["verdict"], "; ".join(r["findings"])[:110]))
+    print("question defects noted by auditors: %d -> eapcet/solutions/_question_defects.json" % len(defects))
+    for d in defects:
+        print("  %s (%s): %s" % (d["question_id"], d["chapter"], d["note"][:110]))
 
 
 if __name__ == "__main__":

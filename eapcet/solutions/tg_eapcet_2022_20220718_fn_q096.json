@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q096",
+ "approach": "If the steel rod stays 4 cm longer than the copper rod at every temperature, both rods must expand equally for the same rise, fixing the length ratio.",
+ "steps": [
+  {"text": "Write the change in length of each rod for the same temperature rise.",
+   "equation": "ΔL_steel = L_steel α_steel ΔT, ΔL_copper = L_copper α_copper ΔT"},
+  {"text": "The 4 cm gap stays fixed at every temperature only if both rods expand by the same amount.",
+   "equation": "L_steel α_steel = L_copper α_copper",
+   "why_this_step": "If the two expansions differed, the gap would change as the temperature changed, contradicting the question."},
+  {"text": "Solve for the length ratio.",
+   "equation": "L_steel/L_copper = α_copper/α_steel = 1.7×10⁻⁵/1.1×10⁻⁵ = 17/11"}
+ ],
+ "final_answer": {"option": 1, "value": "17/11"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Inverting the relation and writing L_copper/L_steel instead of L_steel/L_copper gives 11/17."},
+  {"option": 4, "text": "Mistaking the 4 cm gap as part of the ratio and writing the copper coefficient over 4 gives 17/4."}
+ ],
+ "concept_tags": ["linear thermal expansion", "expansion of rods"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R1", "at": "2026-09-08T20:14:00+05:30"}
+}

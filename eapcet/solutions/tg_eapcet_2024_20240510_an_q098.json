@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q098",
+ "approach": "Set the rms speed of oxygen at the unknown temperature equal to 75% of nitrogen's rms speed at 287°C, using the molar masses of both gases.",
+ "steps": [
+  {"text": "Convert nitrogen's temperature to kelvin.",
+   "equation": "T(N₂) = 287 + 273 = 560 K"},
+  {"text": "Write the condition that oxygen's rms speed is 75% of nitrogen's rms speed, using the rms speed formula for each gas.",
+   "equation": "√(3RT(O₂)/M(O₂)) = 0.75 × √(3RT(N₂)/M(N₂))"},
+  {"text": "Square both sides and solve for the oxygen temperature.",
+   "equation": "T(O₂)/M(O₂) = 0.5625 × T(N₂)/M(N₂), so T(O₂) = 0.5625 × 560 × (32/28)",
+   "why_this_step": "Squaring removes the square root and turns the speed ratio into a ratio of temperature over molar mass."},
+  {"text": "Evaluate and convert to Celsius.",
+   "equation": "T(O₂) = 360 K = 87 °C"}
+ ],
+ "final_answer": {"option": 1, "value": "87 °C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using 0.75 directly instead of squaring it before solving for temperature, which gives 480 K, or 207 °C, instead of 360 K."}
+ ],
+ "concept_tags": ["rms speed", "molar mass dependence", "temperature from speed ratio"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:39:00+05:30"}
+}

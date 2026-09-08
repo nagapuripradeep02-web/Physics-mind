@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q096",
+ "approach": "Power radiated by a black body is proportional to its exposed surface area, so compare the hemisphere's curved and flat surface to the whole sphere's surface.",
+ "steps": [
+  {"text": "Write the total surface area of the sphere.",
+   "equation": "A_sphere = 4πr²"},
+  {"text": "Write the exposed surface area of one hemisphere after the cut, including the flat circular face.",
+   "equation": "A_hemisphere = 2πr² + πr² = 3πr²",
+   "why_this_step": "Once the sphere is cut, the flat circular face is no longer touching the other half, so it also radiates."},
+  {"text": "Take the ratio, since radiated power at a fixed temperature is proportional to surface area.",
+   "equation": "A_hemisphere/A_sphere = 3πr²/4πr² = 3/4"}
+ ],
+ "final_answer": {"option": 3, "value": "3:4"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Comparing intensity (power per unit area) instead of total power, which is 1:1 since both surfaces are at the same temperature, ignores that the hemisphere has less total area than the sphere."},
+  {"option": 2, "text": "Counting only the curved surface of the hemisphere and forgetting the flat circular face exposed by the cut gives 2πr² against 4πr², or 1:2."}
+ ],
+ "concept_tags": ["Stefan-Boltzmann law", "radiated power", "surface area"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R1", "at": "2026-09-08T20:24:00+05:30"}
+}

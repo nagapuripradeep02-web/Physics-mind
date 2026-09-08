@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q081",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ]
+  }
+ ]
+}

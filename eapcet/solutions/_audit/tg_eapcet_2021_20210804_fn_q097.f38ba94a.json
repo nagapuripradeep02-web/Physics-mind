@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q097",
+ "item_sha": "f38ba94a2216f22e490071ac44c277fa94c779bde11314584ccd1398fa24b00a",
+ "auditor_option": 2,
+ "auditor_value": "10 cm",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[0].why_this_step",
+   "quote": "The liquid pushed out of the left arm has nowhere to go except into the right arm, and both arms are the same width.",
+   "note": "\"has nowhere to go\" is a colloquial phrase that gives the liquid intent; the brief asks for literal textbook English in every reader-facing string.",
+   "fix": "The liquid displaced from the left arm moves into the right arm, and the two arms have the same cross-sectional area, so the fall on the left equals the rise on the right."}
+ ],
+ "verdict": "weak",
+ "notes": "Independent solve: left liquid surface falls 15 cm, right rises 15 cm, so the liquid levels differ by 30 cm. Pressure balance at the oil–liquid interface gives H_oil = (1.2/0.9) × 30 = 40 cm. Oil top sits at −15 + 40 = +25 cm and the right liquid surface at +15 cm, a difference of 10 cm. All printed equations follow correctly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:12:00+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "b153a645b5475d82d1b18914bad6e7d8a9a2c19b54de97341de0a2e397222ace",
+ "auditor_option": 4,
+ "auditor_value": "0.2 s",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "5t² + 8t − 1.8 = 0, so t = 0.8 s",
+   "note": "0.8 s is not a root of this quadratic. The roots are t = (−8 ± √(64 + 36))/10 = (−8 ± 10)/10, that is t = 0.2 s and t = −1.8 s. Substituting t = 0.8 gives 5(0.64) + 6.4 − 1.8 = 7.8, not 0. The step's own why_this_step names the other root as −1.8 s, which pairs with +0.2 s (sum −1.6, product −0.36), not with +0.8 s — the solution contradicts itself on this line.",
+   "fix": "5t² + 8t − 1.8 = 0, so t = (−8 + √(64 + 36))/10 = (−8 + 10)/10 = 0.2 s"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 1, \"value\": \"0.8 s\"",
+   "note": "The correct crossing time is 0.2 s, printed as option 4. Starting the downward crossing at 8 m/s and falling 1.8 m under g = 10 m/s² gives 1.8 = 8t + 5t², whose positive root is 0.2 s; the speed reached at the window's bottom is then 8 + 10(0.2) = 10 m/s, which matches √(8² + 2·10·1.8) = 10 m/s. 0.8 s is the time to rise to the top of the flight (u/g), not the window-crossing time.",
+   "fix": "option 4, value \"0.2 s\""}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Solved blind before opening the solution: with the origin at the window's top and up positive, the stone returns to that level at 8 m/s downward, then −1.8 = −8t − 5t² gives t = 0.2 s (option 4). The approach and steps 0 and 1 are correct — 2u/g = 1.6 s for the return to the top, and 1.8 = 8t + ½·10·t² is the right equation for the crossing — the defect is only the solved root, which then propagates into final_answer. Both common_mistakes routes were recomputed and reach the options they name: 2u/g = 1.6 s is option 2, and the bottom speed √(64 + 36) = 10 m/s divided by g gives 1.0 s, option 3. Neither condemns a correct method.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:14:00+05:30"}
+}

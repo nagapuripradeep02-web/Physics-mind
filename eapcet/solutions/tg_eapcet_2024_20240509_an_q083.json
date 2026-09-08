@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "approach": "Find the stone's downward speed when it returns to the window's top, then use that as the starting speed for falling through the window's height.",
+ "steps": [
+  {"text": "Find the time for the stone to return to the level of the window's top on its way down, where its downward speed equals the launch speed by symmetry.",
+   "equation": "2u/g = 2 × 8/10 = 1.6 s",
+   "why_this_step": "In vertical motion under gravity, the speed at a given height on the way down equals the speed at that height on the way up."},
+  {"text": "From that instant the stone moves down with speed 8 m/s and covers the window's height of 1.8 m to reach the window's bottom.",
+   "equation": "1.8 = 8t + ½ × 10 × t²"},
+  {"text": "Solve the quadratic equation for the crossing time and keep the positive root.",
+   "equation": "5t² + 8t − 1.8 = 0, so t = 0.2 s",
+   "why_this_step": "The other root, t = −1.8 s, is negative and has no physical meaning here."}
+ ],
+ "final_answer": {"option": 4, "value": "0.2 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Computing the time to reach the highest point of the throw, u/g = 8/10 = 0.8 s, and mistaking it for the time to cross the window."},
+  {"option": 2, "text": "Computing the total time to return to the release point, 2u/g = 1.6 s, and mistaking it for the time to cross the window."},
+  {"option": 3, "text": "Finding the speed at the window's bottom correctly as 10 m/s, then dividing by g to get 10/10 = 1.0 s, forgetting to subtract the initial 8 m/s already present at the window's top."}
+ ],
+ "concept_tags": ["vertical motion under gravity", "symmetry of speed in projectile motion", "quadratic equation for time"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02-R1", "at": "2026-09-08T16:20:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_an_q097",
+ "item_sha": "3849a877d3b5526ba1fd1f863b05c92fb1bb9d1ad29e8d9d78c7c2ed07e203e6",
+ "auditor_option": 4,
+ "auditor_value": "21:25",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: at constant pressure ΔU = (Cv/Cp)Q, so with equal Q the ratio is (3/5) : (5/7). Multiplying both by 35 gives 21 : 25, option 4, and the order matches the order the stem names the gases (monatomic first). All three printed lines are correct. Both common_mistakes verified: assuming the same fraction for both gases gives 1 : 1, which is option 1, and pairing Cv of the monatomic gas with Cp of the diatomic gas gives (3/2) : (7/2) = 3 : 7, which is option 3. The stem states \"At constant pressure\" explicitly, so unlike several other items in this chapter it is not under-specified."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:33:00+05:30"}
+}

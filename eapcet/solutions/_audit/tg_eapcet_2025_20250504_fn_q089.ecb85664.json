@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q089",
+ "item_sha": "ecb85664c897b6a33baba0dff63d6fc87a44a159f693fbe51aff2d90042369d4",
+ "auditor_option": 3,
+ "auditor_value": "16 ms⁻¹",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[4].equation",
+   "quote": "2v_c = 0.10(v − v_c)  ⟹  2.1v_c = 0.10×336  ⟹  v_c = 33.6/2.1 = 33 ms⁻¹",
+   "note": "The setup is right but the division is false: 33.6/2.1 = 16, not 33. The printed line reaches 33 from a quotient that equals 16, and a student copies the line.",
+   "fix": "2v_c = 0.10(v − v_c)  ⟹  2.1v_c = 0.10×336 = 33.6  ⟹  v_c = 33.6/2.1 = 16 ms⁻¹"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 4, \"value\": \"33 ms⁻¹\"",
+   "note": "My own solve gives 16 m s⁻¹, printed option 3. Substituting back: with v_c = 16, f_echo/n = (336+16)/(336−16) = 352/320 = 1.100, exactly the required 10% rise; with v_c = 33 the rise would be 21.8%, more than twice the given value. The solution's own common_mistakes entry says the single-shift route 'overstates v_c and gives 30 ms⁻¹', which only makes sense against a correct answer below 30 — that is, against 16, not 33.",
+   "fix": "option 3, value 16 ms⁻¹"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "My own solve, before reading the steps: the driver moves with the horn, so the direct sound is heard at n. The echo is shifted twice, f_echo = n(v + v_c)/(v − v_c), so f_echo − n = 2n·v_c/(v − v_c) = 0.10n, giving 2v_c = 0.10(v − v_c), 2.1v_c = 33.6 and v_c = 16 m s⁻¹ — printed option 3, and the rise is exactly 10%, matching the question's word 'nearly'. The approach and the first four steps are all correct; the defect is confined to the final division and the answer it carries. Checked separately: the common_mistakes entry is itself sound — the single-shift route gives 1.1v_c = 33.6, v_c = 30.5 m s⁻¹, which is printed option 1.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:48:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q108",
+ "approach": "Two points at equal height on a projectile's path are reached at times symmetric about the time of maximum height, which fixes the initial speed.",
+ "steps": [
+  {"text": "The two times of equal height are symmetric about the time to reach maximum height.",
+   "equation": "t_top = (t₁+t₂)/2 = (2+8)/2 = 5 s"},
+  {"text": "Use the time to maximum height to find the initial speed, with the projection angle 45°.",
+   "equation": "t_top = u sin45°/g → 5 = u sin45°/10 → u = 50√2 m/s"},
+  {"text": "Find the horizontal component of the velocity, which stays constant through the flight.",
+   "equation": "vₓ = u cos45° = 50√2 × (√2/2) = 50 m/s"},
+  {"text": "Multiply the horizontal speed by the time between the two points to get the horizontal distance.",
+   "equation": "x = vₓ(t₂ − t₁) = 50 × 6 = 300 m"}
+ ],
+ "final_answer": {"option": 4, "value": "300 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the full time of flight, 10 s (twice t_top), instead of the 6 s gap between the two given points gives 500 m."}
+ ],
+ "concept_tags": ["projectile motion", "equal heights on a trajectory"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:20:00+05:30"}
+}

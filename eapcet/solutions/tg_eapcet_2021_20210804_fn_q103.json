@@ -1,0 +1,28 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q103",
+ "approach": "Two particles have the same speed at every instant only if their phases differ by a whole multiple of π, and the smallest such separation is half a wavelength.",
+ "steps": [
+  {"text": "Find the particle velocity by differentiating the displacement with respect to time.",
+   "equation": "y = 0.02 sin(5πx − 20t), v_y = ∂y/∂t = −0.4 cos(5πx − 20t)"},
+  {"text": "Find the wavelength from the coefficient of x.",
+   "equation": "k = 5π, λ = 2π/k = 0.4 m"},
+  {"text": "State when two particles keep the same speed magnitude for all time. Their phases differ by Δ, and |cos(θ+Δ)| = |cos θ| for every θ only when Δ is a whole multiple of π.",
+   "why_this_step": "cos(θ+Δ) reduces to ±cos θ for every θ only when sin Δ = 0, which needs Δ = nπ."},
+  {"text": "Take the smallest nonzero multiple of π and convert it to a distance using Δ = k(x₁ − x₂).",
+   "equation": "Δ = π = k·d, so d = π/k = λ/2"},
+  {"text": "Evaluate the minimum distance.",
+   "equation": "d = 0.4/2 = 0.2 m"}
+ ],
+ "final_answer": {"option": 4, "value": "0.2 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Reading off the amplitude 0.02 m from the equation and mistaking it for the required distance."},
+  {"option": 2, "text": "Requiring the velocity to match in direction as well as magnitude, which needs a full wavelength separation, giving 0.4 m."},
+  {"option": 3, "text": "Multiplying the wavelength by 2 instead of dividing it by 2, giving 0.8 m instead of 0.2 m."}
+ ],
+ "concept_tags": ["transverse wave equation", "particle velocity", "wavelength"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-01-R2", "at": "2026-09-08T12:00:00+05:30"}
+}

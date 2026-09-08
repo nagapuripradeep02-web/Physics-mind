@@ -1,0 +1,789 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q083",
+   "audit_file": "tg_eapcet_2021_20210804_an_q083.794d4137.json",
+   "item_sha": "794d413736871672a3a0e9e43c8e3b79f02ade8368132d4445f7b2761d3cb8d2",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "A stone falls freely under gravity. It covers distance d₁ and d₂ in the first 4 seconds, and the next 8 seconds respectively. The ratio d₂/d₁ is",
+   "options_en": [
+    "8",
+    "2",
+    "16",
+    "12"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, distance from the start grows with the square of time, so subtract the total distances at the two times to get each interval.",
+    "steps": [
+     {
+      "text": "Write the distance fallen from rest as a function of time.",
+      "equation": "d(t) = ½gt²"
+     },
+     {
+      "text": "Find the distance covered in the first 4 seconds.",
+      "equation": "d₁ = d(4) = ½g(4)² = 8g"
+     },
+     {
+      "text": "Find the total distance fallen by t = 12 s and subtract the first part to get the distance in the next 8 seconds.",
+      "equation": "d(12) = ½g(12)² = 72g; d₂ = 72g − 8g = 64g"
+     },
+     {
+      "text": "Divide the two distances.",
+      "equation": "d₂/d₁ = 64g/8g = 8"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "8"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the next 8 seconds as a fresh fall from rest, ½g(8)² = 32g, instead of subtracting the first 4 seconds from the total at 12 seconds."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in a given time interval"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q084",
+   "audit_file": "tg_eapcet_2021_20210804_an_q084.66d2b568.json",
+   "item_sha": "66d2b568423adf85615e0c15c835f28ecfc00afb58079429bac481860ac45de3",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "The velocity of a particle moving along the x - axis varies as a function of time t as v(t) = (1 − 3t² + 2t³) m/s. If its position at t = 0 is x = 0 then at t = 2 s, its position is",
+   "options_en": [
+    "1 m",
+    "2 m",
+    "4 m",
+    "18 m"
+   ],
+   "solution": {
+    "approach": "Integrate the velocity function with respect to time, using the given position at t = 0 to fix the constant, then evaluate at t = 2 s.",
+    "steps": [
+     {
+      "text": "Integrate v(t) to get x(t), since velocity is the derivative of position.",
+      "equation": "x(t) = ∫(1 − 3t² + 2t³) dt = t − t³ + t⁴/2 + C"
+     },
+     {
+      "text": "Use the condition x(0) = 0 to find the constant of integration.",
+      "equation": "x(0) = C = 0"
+     },
+     {
+      "text": "Substitute t = 2 s.",
+      "equation": "x(2) = 2 − 8 + 8 = 2 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "2 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Making a power-rule slip while integrating the −3t² term, treating its antiderivative as −3t instead of −t³, which changes the answer to 4 m."
+     },
+     {
+      "option": null,
+      "text": "Substituting t = 2 s directly into the velocity expression and treating that value as the position, instead of integrating velocity to get displacement first."
+     }
+    ],
+    "concept_tags": [
+     "kinematics",
+     "position from velocity function"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q083",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q083.b65e2d3e.json",
+   "item_sha": "b65e2d3ef5fe16586966cd6015be52cdabbfb5617c04705a81f4c08dc2ae1351",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "A car travels in a straight line along a road. Its distance 'x' from a stop sign is given as a function of 't' by the equation x(t) = αt + βt³, where α = 2.0 m/s, β = 0.01 m/s³. Calculate the average velocity of the car in the time interval t = 2.00 sec to 4.00 sec.",
+   "options_en": [
+    "2.28 m/s",
+    "4.94 m/s",
+    "3.34 m/s",
+    "4.12 m/s"
+   ],
+   "solution": {
+    "approach": "Average velocity over an interval equals the change in position divided by the change in time, using the given x(t).",
+    "steps": [
+     {
+      "text": "Compute the position at the two given times using x(t) = αt + βt³ with α = 2.0 m/s and β = 0.01 m/s³.",
+      "equation": "x(2) = 2×2 + 0.01×2³ = 4.08 m; x(4) = 2×4 + 0.01×4³ = 8.64 m"
+     },
+     {
+      "text": "Divide the change in position by the change in time.",
+      "equation": "v_avg = (8.64 − 4.08)/(4 − 2) = 4.56/2 = 2.28 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2.28 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Subtracting the two positions but forgetting to divide by the 2 s time interval, which gives 4.56 rather than the average velocity of 2.28 m/s."
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "position as a function of time"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q084",
+   "audit_file": "tg_eapcet_2022_20220718_an_q084.a5bb1392.json",
+   "item_sha": "a5bb1392f9187452c5bd79b2e4c379db1395e6a9bda47e1051f7331edaf5241d",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "Assertion(A) : The zero velocity of a particle at any instant always implies zero acceleration at that instant. Reason(R) : A body is momentarily at rest when reverses its direction of motion. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ],
+   "solution": {
+    "approach": "Zero velocity does not force zero acceleration; check each statement using a case such as a ball at the top of its vertical throw.",
+    "steps": [
+     {
+      "text": "Test the assertion using a ball thrown straight up: at its highest point the velocity is momentarily zero.",
+      "equation": "at the highest point, v = 0"
+     },
+     {
+      "text": "At that same instant gravity is still acting on the ball, so the acceleration is not zero. This makes the assertion false.",
+      "equation": "a = g ≠ 0"
+     },
+     {
+      "text": "Test the reason using the same example: after being momentarily at rest, the ball reverses direction and moves downward."
+     },
+     {
+      "text": "A body must pass through zero velocity to reverse direction, so the reason is a true general statement. So (A) is false but (R) is true."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "(A) is false but (R) is true"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming that because a body is briefly at rest when it reverses direction, its acceleration must also be zero there, wrongly treating rest as the same as no acceleration."
+     },
+     {
+      "option": 3,
+      "text": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest."
+     }
+    ],
+    "concept_tags": [
+     "velocity and acceleration",
+     "instantaneous rest"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q083",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q083.c1aa3bc3.json",
+   "item_sha": "c1aa3bc34beb28b22f746ede3de5eebd8794756c62ea741ae1d9c6f8dc3a27c0",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A body starts from the rest and acquires a velocity of 10 m/s in 2s. What is the acceleration of the body and the distance travelled",
+   "options_en": [
+    "5 m/s² and 10 m",
+    "5 m/s² and 5 m",
+    "5 m/s² and 6 m",
+    "6 m/s² and 5 m"
+   ],
+   "solution": {
+    "approach": "Find the acceleration from the change in velocity over the given time, then use it to find the distance travelled from rest.",
+    "steps": [
+     {
+      "text": "Compute the acceleration from the initial and final velocities and the time taken.",
+      "equation": "a = (v−u)/t = (10−0)/2 = 5 m/s²"
+     },
+     {
+      "text": "Use this acceleration to find the distance travelled from rest in the same time.",
+      "equation": "s = ½at² = ½×5×2² = 10 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "5 m/s² and 10 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."
+     }
+    ],
+    "concept_tags": [
+     "uniformly accelerated motion",
+     "kinematics from rest"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q084",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q084.44c29c4d.json",
+   "item_sha": "44c29c4db0f0825702f97978f667b683b84e49f8054bb9679b8d4f23b1c4acea",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A bullet fired into a target losses one-third of its velocity after travelling a distance x meter into the target. If the bullet comes to rest by travelling a further distance x′, then the ratio x′/x is",
+   "options_en": [
+    "2/3",
+    "1/3",
+    "4/5",
+    "4/9"
+   ],
+   "solution": {
+    "approach": "Apply v² = u² − 2as for uniform retardation, once over distance x where v drops to (2/3)u, then again over x′ until it stops.",
+    "steps": [
+     {
+      "text": "Write the velocity after travelling distance x, given that it drops to two-thirds of the initial value.",
+      "equation": "v = (2/3)u"
+     },
+     {
+      "text": "Apply v² = u² − 2ax for the first stage to relate the retardation a to u and x.",
+      "equation": "(2u/3)² = u² − 2ax; a = 5u²/(18x)"
+     },
+     {
+      "text": "Apply the same equation for the second stage, where the bullet slows from v = 2u/3 to rest over distance x′.",
+      "equation": "0 = (2u/3)² − 2ax′"
+     },
+     {
+      "text": "Substitute a and solve for x′, then form the ratio x′/x.",
+      "equation": "x′ = 4x/5; x′/x = 4/5"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4/5"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Reading the one-third velocity loss stated in the question and mistaking that fraction directly for the distance ratio x′/x, without using v² = u² − 2as at all."
+     },
+     {
+      "option": 4,
+      "text": "Taking the ratio of the squared velocities, (2u/3)²/u² = 4/9, and mistaking that fraction directly for x′/x without separately relating each stage to the constant retardation."
+     }
+    ],
+    "concept_tags": [
+     "uniform retardation",
+     "v² = u² − 2as"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q083",
+   "audit_file": "tg_eapcet_2023_20230512_an_q083.23665689.json",
+   "item_sha": "2366568901b125bacb9bd555bfe1f6bbe51fa4c66d2821a08bdb4a2bda825f68",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The ratio of the displacements of a freely falling body during first, second and third seconds of its motion is",
+   "options_en": [
+    "1:1:1",
+    "1:3:5",
+    "1:2:3",
+    "1:4:9"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, displacement in the nth second is proportional to (2n − 1), giving the first three seconds in ratio 1:3:5.",
+    "steps": [
+     {
+      "text": "Write the distance covered in the nth second of free fall starting from rest.",
+      "equation": "Sₙ = g/2 × (2n − 1)"
+     },
+     {
+      "text": "Evaluate this for n = 1, 2 and 3, using g = 10 m s⁻².",
+      "equation": "S₁ = 5 m, S₂ = 15 m, S₃ = 25 m"
+     },
+     {
+      "text": "Write the ratio of these three distances in lowest terms.",
+      "equation": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1:2:3"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1:2:3"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming a falling body covers equal distances each second, which would only be true if it moved at constant velocity, not while accelerating."
+     },
+     {
+      "option": 4,
+      "text": "Using the ratio of the squares of the times, 1:4:9, which gives the total distance fallen by each second, not the distance fallen during each second."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in nth second"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q083",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q083.f101167f.json",
+   "item_sha": "f101167f52e62c481add3695cfdde4cb51958a974a78de28d8af43588d37ae6a",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ],
+   "solution": {
+    "approach": "Differentiate the given relation between t and x to get velocity in terms of x, then differentiate velocity with respect to time using the chain rule to get acceleration.",
+    "steps": [
+     {
+      "text": "Differentiate t = ax² + bx with respect to x to relate dt/dx to the velocity.",
+      "equation": "dt/dx = 2ax + b; v = 1/(2ax + b)"
+     },
+     {
+      "text": "Differentiate v with respect to x.",
+      "equation": "dv/dx = −2a/(2ax + b)²"
+     },
+     {
+      "text": "Rewrite dv/dx in terms of v, since 2ax + b = 1/v.",
+      "equation": "dv/dx = −2av²"
+     },
+     {
+      "text": "Get the acceleration using the chain rule, acceleration = (dv/dx) × v.",
+      "equation": "acceleration = (−2av²) × v = −2av³"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "−2av³"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Multiplying the two constants a and b together by mistake instead of eliminating b through the substitution 2ax+b = 1/v, and losing one power of v in the process."
+     },
+     {
+      "option": 2,
+      "text": "Mixing up the two constants while differentiating, and attaching b instead of a to the final result, along with dropping the negative sign."
+     },
+     {
+      "option": 4,
+      "text": "Dropping the negative sign that comes from differentiating 1/(2ax+b), giving 2av² instead of the correct −2av³."
+     }
+    ],
+    "concept_tags": [
+     "differentiation",
+     "chain rule",
+     "velocity and acceleration from x-t relation"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q083",
+   "audit_file": "tg_eapcet_2023_20230513_an_q083.580d9ff7.json",
+   "item_sha": "580d9ff7e26817c65434977e19d9bc54f41ec3dc802940304930762a32feb35d",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "A bird flies with a velocity (t−2) ms⁻¹ along a straight line, where t is the time in seconds. The distance covered by it in a time of 4 seconds is",
+   "options_en": [
+    "2 m",
+    "4 m",
+    "6 m",
+    "8 m"
+   ],
+   "solution": {
+    "approach": "Since the velocity changes sign at t = 2 s, find the distance covered in each of the two stages separately and add them, rather than the net displacement.",
+    "steps": [
+     {
+      "text": "Note that v(t) = t − 2 is negative for t less than 2 s and positive for t greater than 2 s, so the bird reverses direction at t = 2 s.",
+      "equation": "v(t) = t − 2; v = 0 at t = 2 s"
+     },
+     {
+      "text": "Find the distance covered while moving in the first direction, from t = 0 to t = 2 s.",
+      "equation": "∫₀² (2 − t) dt = [2t − t²/2]₀² = 4 − 2 = 2 m"
+     },
+     {
+      "text": "Find the distance covered after it reverses, from t = 2 s to t = 4 s.",
+      "equation": "∫₂⁴ (t − 2) dt = [t²/2 − 2t]₂⁴ = 0 − (−2) = 2 m"
+     },
+     {
+      "text": "Add the two distances.",
+      "equation": "2 + 2 = 4 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "4 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Integrating v(t) directly from 0 to 4 seconds without splitting at the reversal point, which gives a net displacement of 0 m because the two stages cancel."
+     },
+     {
+      "option": 1,
+      "text": "Computing only the distance covered up to the moment of reversal, 2 m, and stopping there without adding the return-direction distance from t = 2 s to t = 4 s."
+     }
+    ],
+    "concept_tags": [
+     "velocity as a function of time",
+     "distance vs displacement"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q083",
+   "audit_file": "tg_eapcet_2024_20240509_an_q083.aa15d066.json",
+   "item_sha": "aa15d066758f8cff47eb5297dae584734f5821293239aa07f1e0a1798e581779",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "0.8 s",
+    "1.6 s",
+    "1.0 s",
+    "0.2 s"
+   ],
+   "solution": {
+    "approach": "Find when the stone returns to the top of the window on the way down, then when it reaches 1.8 m below that point, and subtract the two times.",
+    "steps": [
+     {
+      "text": "Write the downward displacement from the top of the window at time t, taking upward as positive.",
+      "equation": "s = ut − ½gt² = 8t − 5t²"
+     },
+     {
+      "text": "Find the time at which the stone returns to the top of the window on its way down, that is, when its net displacement from the start is zero.",
+      "equation": "t = 2u/g = 2×8/10 = 1.6 s"
+     },
+     {
+      "text": "Set the downward displacement equal to 1.8 m, the height of the window, and solve the quadratic for t.",
+      "equation": "5t² − 8t − 1.8 = 0; t = 1.8 s"
+     },
+     {
+      "text": "Subtract the two times to get the time spent crossing the window on the way down.",
+      "equation": "1.8 − 1.6 = 0.2 s"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "0.2 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the time to reach the maximum height, u/g = 0.8 s, and mistaking that for the time spent crossing the window."
+     },
+     {
+      "option": 2,
+      "text": "Finding only the time for the stone to return to the top of the window, 1.6 s, and stopping there without going on to the bottom of the window."
+     }
+    ],
+    "concept_tags": [
+     "vertical projectile motion",
+     "kinematics under gravity"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q083",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q083.80f65d92.json",
+   "item_sha": "80f65d924c975602744b7a056c9c93994c79e301f36ef259acb81fad098a5a6c",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is falling freely from the top of a tower of height 125 m. The distance covered by the body during the last second of its motion is x% of the height of the tower. Then x is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9",
+    "36",
+    "25",
+    "49"
+   ],
+   "solution": {
+    "approach": "Find the total fall time, the distance covered in the last second from the nth-second formula, and express it as a percentage of the height.",
+    "steps": [
+     {
+      "text": "Use h = ½gt² to find the total time to fall the full height of the tower from rest.",
+      "equation": "125 = ½×10×t²; t = 5 s"
+     },
+     {
+      "text": "Find the distance covered during the last, that is fifth, second using the nth-second formula for free fall from rest.",
+      "equation": "S₅ = g/2 × (2×5−1) = 5×9 = 45 m"
+     },
+     {
+      "text": "Express this distance as a percentage of the tower's height.",
+      "equation": "x = 45/125 × 100 = 36"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "36"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the last-second distance as the difference of squares of the times, 5² − 4² = 9, forgetting to multiply by ½g, and mistaking this raw number for the percentage."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in last second",
+     "percentage of total height"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q083",
+   "audit_file": "tg_eapcet_2024_20240510_an_q083.92ed5ff8.json",
+   "item_sha": "92ed5ff8c423be6a87a4984b04cec68f6f52e615f61ada28eafc55ff06732f39",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "3 : 4",
+    "1 : 1",
+    "2 : 1",
+    "3 : 2"
+   ],
+   "solution": {
+    "approach": "Write the velocity as a function of time for vertical projectile motion, evaluate it at both instants, and compare the magnitudes since speed is asked, not velocity.",
+    "steps": [
+     {
+      "text": "Write the velocity at time t, taking the upward direction as positive.",
+      "equation": "v(t) = 35 − 10t"
+     },
+     {
+      "text": "Evaluate the velocity at t = 3 s and t = 4 s.",
+      "equation": "v(3) = 35 − 30 = 5 ms⁻¹; v(4) = 35 − 40 = −5 ms⁻¹"
+     },
+     {
+      "text": "Take the magnitudes, since speed does not carry a sign, and form the ratio.",
+      "equation": "speed(3) : speed(4) = 5 : 5 = 1 : 1"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1 : 1"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the ratio of times, 3:4, directly gives the ratio of speeds, without checking that the body has already reversed direction and slowed back to the same speed by symmetry."
+     }
+    ],
+    "concept_tags": [
+     "vertically thrown body",
+     "speed vs velocity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q110",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q110.c145e157.json",
+   "item_sha": "c145e157ada6300b3a5f7157a55e730a2a96fc7526d363ef41257bd02b1d8ae7",
+   "chapter": "Motion in a Straight Line",
+   "year": 2025,
+   "question_en": "Due to the presence of air resistance, if a body dropped from a height of 20 m reaches the ground with a speed of 18 ms⁻¹, then the time taken by the body to reach the ground is nearly",
+   "options_en": [
+    "2.2 s",
+    "2.5 s",
+    "1.8 s",
+    "2 s"
+   ],
+   "solution": {
+    "approach": "Treat the fall as roughly uniformly accelerated and use the average of the initial and final speeds to estimate the time taken.",
+    "steps": [
+     {
+      "text": "Take the distance fallen as 20 m, the initial speed as zero, and the final speed as 18 m s⁻¹.",
+      "equation": "s = 20 m, u = 0, v = 18 ms⁻¹"
+     },
+     {
+      "text": "Estimate the time from the distance and the average of the initial and final speeds.",
+      "equation": "t = s / ((u+v)/2) = 20/9"
+     },
+     {
+      "text": "Evaluate.",
+      "equation": "t ≈ 2.2 s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2.2 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Applying v = gt directly with the given final speed and g = 10 ms⁻², ignoring that air resistance means the acceleration was not g throughout the fall, which gives 1.8 s."
+     },
+     {
+      "option": 4,
+      "text": "Ignoring the given final speed of 18 ms⁻¹ and computing the ordinary free-fall time for 20 m using g = 10 ms⁻², which gives 2 s and misses the effect of air resistance."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with variable acceleration",
+     "average velocity method"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q116",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q116.b2840239.json",
+   "item_sha": "b2840239a28fa69406db4b618cb51e7435b9d52d2708bd027c9e0dc65c66f67e",
+   "chapter": "Motion in a Straight Line",
+   "year": 2025,
+   "question_en": "A person wearing a parachute jumps off a plane from a height of 2 km from the ground and falls freely for 20 m before his parachute opens. After his parachute opens if he continues to move uniformly with the velocity attained due to his freefall, the total time taken by the person to reach the ground is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "99 s",
+    "101 s",
+    "100 s",
+    "102 s"
+   ],
+   "solution": {
+    "approach": "Split the fall into a free-fall stage of 20 m and a constant-velocity stage for the remaining height, and add the two times.",
+    "steps": [
+     {
+      "text": "Find the speed gained during the 20 m of free fall.",
+      "equation": "v = √(2×10×20) = 20 ms⁻¹"
+     },
+     {
+      "text": "Find the time taken for this free-fall stage.",
+      "equation": "t₁ = v/g = 20/10 = 2 s"
+     },
+     {
+      "text": "Find the remaining height to be covered at this constant speed.",
+      "equation": "2000 − 20 = 1980 m"
+     },
+     {
+      "text": "Find the time for the constant-velocity stage and add it to the free-fall time.",
+      "equation": "t₂ = 1980/20 = 99 s; total = 2 + 99 = 101 s"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "101 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing only the time for the constant-velocity stage, 1980/20 = 99 s, and forgetting to add the 2 s spent in free fall before the parachute opened."
+     },
+     {
+      "option": 3,
+      "text": "Dividing the entire 2000 m by the constant velocity of 20 ms⁻¹, treating the whole fall as if it happened at that one speed, which gives 100 s."
+     },
+     {
+      "option": 4,
+      "text": "Adding the 2 s free-fall time to the time for the full 2000 m at the constant velocity, 2000/20 = 100 s, instead of subtracting the 20 m already covered, giving 102 s."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "combined free-fall and constant-velocity motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q081",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q081.6e0f880f.json",
+   "item_sha": "6e0f880fa233d7b568c4a4769783df950440d2365791b9b36ae738ce7a83c103",
+   "chapter": "Motion in a Straight Line",
+   "year": 2025,
+   "question_en": "For a particle moving along a straight line path, the displacements in third and fifth seconds of its motion are 10 m and 18 m respectively. The speed of the particle at time t = 4s is",
+   "options_en": [
+    "32 ms⁻¹",
+    "12 ms⁻¹",
+    "16 ms⁻¹",
+    "8 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "Use the nth-second formula at n = 3 and n = 5 to find u and a, then use them to get the speed at t = 4 s.",
+    "steps": [
+     {
+      "text": "Write the nth-second displacement formula and apply it for n = 3 and n = 5.",
+      "equation": "Sₙ = u + a/2(2n−1); S₃ = u + 2.5a = 10; S₅ = u + 4.5a = 18"
+     },
+     {
+      "text": "Subtract the two equations to find the acceleration.",
+      "equation": "2a = 8; a = 4 m/s²"
+     },
+     {
+      "text": "Substitute back to find the initial velocity.",
+      "equation": "u = 10 − 2.5×4 = 0"
+     },
+     {
+      "text": "Use v = u + at to find the speed at t = 4 s.",
+      "equation": "v = 0 + 4×4 = 16 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "16 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using v = 2at instead of v = u + at, effectively doubling the correct product of acceleration and time, which gives 32 ms⁻¹."
+     },
+     {
+      "option": 2,
+      "text": "Evaluating v = u + at at t = 3 s instead of t = 4 s, confusing the value of t with the third second mentioned earlier in the question, which gives 12 ms⁻¹."
+     },
+     {
+      "option": 4,
+      "text": "Using v = ½at, wrongly carrying over the one-half from the distance formula s = ut + ½at² into the velocity formula, which gives 8 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "nth-second displacement formula",
+     "uniformly accelerated motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

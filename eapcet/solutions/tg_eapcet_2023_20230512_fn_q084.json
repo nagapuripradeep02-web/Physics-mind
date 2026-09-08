@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q084",
+ "approach": "Convert the plane's speed to metres per second, find the time to fall 490 m under gravity, and multiply to get the horizontal distance.",
+ "steps": [
+  {"text": "Convert the plane's speed from kilometres per hour to metres per second.",
+   "equation": "60 kmh⁻¹ = 60×1000/3600 = 50/3 m/s"},
+  {"text": "Find the time for the bomb to fall 490 m, taking g = 9.8 ms⁻².",
+   "equation": "490 = ½ × 9.8 × t² → t² = 100 → t = 10 s"},
+  {"text": "Multiply the plane's speed by this time to get the horizontal distance the bomb must be released before the target.",
+   "equation": "x = (50/3) × 10 = 500/3 m"}
+ ],
+ "final_answer": {"option": 2, "value": "(500/3) m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using g = 10 ms⁻² instead of 9.8 ms⁻² gives a fall time of 7√2 s and a horizontal distance near 165 m, close to but not matching any printed choice exactly."}
+ ],
+ "concept_tags": ["projectile motion", "horizontal projection"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:35:00+05:30"}
+}

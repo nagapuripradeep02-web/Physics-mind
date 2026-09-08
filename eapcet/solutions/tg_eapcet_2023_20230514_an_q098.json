@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230514_an_q098",
+ "approach": "The rms speed is proportional to the square root of the absolute temperature, so find the ratio of the new and old kelvin temperatures.",
+ "steps": [
+  {"text": "Convert both temperatures to kelvin.",
+   "equation": "T₁ = 27 + 273 = 300 K, T₂ = 159 + 273 = 432 K"},
+  {"text": "The rms speed varies as the square root of the absolute temperature, so take the square root of the temperature ratio.",
+   "equation": "v₂/v₁ = √(T₂/T₁) = √(432/300) = √1.44 = 1.2",
+   "why_this_step": "The rms speed formula has temperature under a square root, so a change in temperature does not change speed by the same fraction."},
+  {"text": "The percentage increase is the fractional change in speed written as a percentage.",
+   "equation": "percentage increase = (1.2 − 1) × 100 = 20"}
+ ],
+ "final_answer": {"option": 4, "value": "20"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the Celsius values 27 and 159 directly instead of converting to kelvin, which gives a percentage increase of about 143 instead of 20."},
+  {"option": null, "text": "Treating the rms speed as directly proportional to temperature instead of its square root, which gives a percentage increase of 44 instead of 20."}
+ ],
+ "concept_tags": ["rms speed", "kinetic theory of gases", "temperature dependence of speed"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:06:00+05:30"}
+}

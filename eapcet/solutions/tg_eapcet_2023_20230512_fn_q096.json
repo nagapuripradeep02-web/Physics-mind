@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q096",
+ "approach": "At constant pressure the fraction of heat converted into work equals R divided by Cp, the molar heat capacity at constant pressure.",
+ "steps": [
+  {"text": "Write Cp for a diatomic gas.",
+   "equation": "Cp = (7/2)R"},
+  {"text": "Write the fraction of heat that becomes work.",
+   "equation": "W/Q = R/Cp = R/((7/2)R) = 2/7"},
+  {"text": "Convert the fraction to a percentage.",
+   "equation": "(2/7) × 100% = 28.6%"}
+ ],
+ "final_answer": {"option": 3, "value": "28.6"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Computing the percentage of heat that raises the internal energy, Cv/Cp = 5/7 = 71.4%, instead of the percentage converted to work."}
+ ],
+ "concept_tags": ["isobaric process", "molar heat capacity", "work done by a gas"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

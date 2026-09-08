@@ -1,0 +1,58 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-13",
+ "chapter": "Kinetic Theory",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q117",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q117.c1aa77a2.json",
+   "item_sha": "c1aa77a277949551e4c50eea02ad69d626501fe2f6ed9cbe362f9bc1e0182c75",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "At constant pressure, equal amounts of heat are supplied to a monatomic gas and a diatomic gas separately. The ratio of the increases in internal energies of the two gases is",
+   "options_en": [
+    "9 : 49",
+    "3 : 7",
+    "21 : 25",
+    "1 : 1"
+   ],
+   "solution": {
+    "approach": "At constant pressure the increase in internal energy is the heat supplied times the ratio of specific heats, Cᵥ over Cₚ, which equals 1/γ for each gas.",
+    "steps": [
+     {
+      "text": "At constant pressure, the heat supplied and the rise in internal energy are related through the specific heats.",
+      "equation": "Q = nCₚΔT, ΔU = nCᵥΔT, so ΔU = Q × (Cᵥ/Cₚ) = Q/γ",
+      "why_this_step": "Only part of the heat supplied at constant pressure raises the internal energy; the rest goes into the work done as the gas expands."
+     },
+     {
+      "text": "Write 1/γ for each gas using its known ratio of specific heats.",
+      "equation": "monatomic: γ = 5/3, so ΔU₁ = 3Q/5; diatomic: γ = 7/5, so ΔU₂ = 5Q/7"
+     },
+     {
+      "text": "Form the ratio, which does not depend on the amount of gas since the same Q is supplied to both.",
+      "equation": "ΔU₁/ΔU₂ = (3/5)/(5/7) = 21/25"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "21 : 25"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Assuming the heat becomes internal energy for both gases as it would at constant volume, which wrongly gives an equal increase of 1:1."
+     }
+    ],
+    "concept_tags": [
+     "specific heats of a gas",
+     "constant pressure process",
+     "internal energy"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

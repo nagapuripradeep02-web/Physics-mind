@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q096",
+ "approach": "The 4 cm gap between the rods stays the same at every temperature only if both rods expand by the same absolute amount, which fixes the ratio of their lengths as the inverse ratio of their expansion coefficients.",
+ "steps": [
+  {"text": "Write the condition that the length difference is the same at any temperature.",
+   "equation": "L_s − L_c = 4 cm, for every temperature"},
+  {"text": "Since this difference does not change with temperature, the two rods must gain the same amount of length for any temperature change.",
+   "equation": "ΔL_s = ΔL_c",
+   "why_this_step": "If the two rods expanded by different amounts, the 4 cm gap would grow or shrink as the temperature changed, contradicting the given fact."},
+  {"text": "Write each expansion in terms of length, coefficient and temperature change, and cancel ΔT.",
+   "equation": "L_s α_s ΔT = L_c α_c ΔT → L_s α_s = L_c α_c"},
+  {"text": "Solve for the ratio of the lengths.",
+   "equation": "L_s/L_c = α_c/α_s = 1.7×10⁻⁵ / 1.1×10⁻⁵ = 17/11"}
+ ],
+ "final_answer": {"option": 1, "value": "17/11"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Taking the length ratio as directly proportional to the expansion coefficients instead of inversely proportional gives α_s/α_c = 11/17."}
+ ],
+ "concept_tags": ["thermal expansion", "linear expansion coefficient"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:24:00+05:30"}
+}

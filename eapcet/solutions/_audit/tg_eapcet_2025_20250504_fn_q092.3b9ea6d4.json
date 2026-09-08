@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q092",
+ "item_sha": "3b9ea6d4c7fe3250a4218727456f4bedb1b0a9b65c325a3a5b59f6a0158bc858",
+ "auditor_option": 3,
+ "auditor_value": "6 kg",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: v² = 2² + 3² + (−4)² = 29 m² s⁻², so m = 87/(½ × 29) = 87/14.5 = 6 kg. All three mistake entries verify: 87/29 = 3 kg (option 1), 87/(0.25 × 29) = 12 kg (option 2), and (2+3−4)² = 1 gives a speed of 1 m s⁻¹ and hence a mass of 174 kg, which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q085",
+ "approach": "Write the ant's displacement vector after its two straight-line legs, form the given position vector from its magnitude and angle, then take their dot product.",
+ "steps": [
+  {"text": "The ant's displacement from the origin is fixed by the two legs it crawled.",
+   "equation": "displacement = 10î + 20ĵ (cm)"},
+  {"text": "Write the second vector from its given magnitude √2 cm and its 45° angle with the x-axis.",
+   "equation": "point vector = √2cos45° î + √2sin45° ĵ = 1î + 1ĵ (cm)"},
+  {"text": "Take the dot product of the two vectors.",
+   "equation": "(10î+20ĵ)·(î+ĵ) = 10×1 + 20×1 = 30"}
+ ],
+ "final_answer": {"option": 1, "value": "30 cm"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Multiplying the finished dot product by the magnitude √2 a second time, after already using it to build the position vector, gives 30√2."},
+  {"option": 3, "text": "Dividing the dot product by √2 instead, perhaps confusing this step with finding a unit vector, gives 30/√2."}
+ ],
+ "concept_tags": ["scalar product", "displacement vector"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:55:00+05:30"}
+}

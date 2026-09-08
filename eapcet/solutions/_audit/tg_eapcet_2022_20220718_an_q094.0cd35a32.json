@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q094",
+ "item_sha": "0cd35a32881ded6aa9b59f5aeb143330f7317fa66ad04e90ae3a2792075b2b71",
+ "auditor_option": 2,
+ "auditor_value": "1.14 g/cm³",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: (4/3)π(R³ − r³)ρ_material = (1/2)(4/3)πR³ρ_liquid gives ρ_material = R³ρ_liquid / [2(R³ − r³)] = 64 × 2.0 / 112 = 1.1428 g/cm³, matching option 2. The single mistake entry is correct: a solid sphere would give ρ_liquid/2 = 1.0 g/cm³, which is not printed, and the entry's option is null accordingly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:15:00+05:30"}
+}

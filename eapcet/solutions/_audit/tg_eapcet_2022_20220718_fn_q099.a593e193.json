@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q099",
+ "item_sha": "a593e193339f74d97dfea27a04f526699a629f9025af8cf12f7f2f545b37d890",
+ "auditor_option": 3,
+ "auditor_value": "250 J",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: isobaric, so W = nRΔT = 100 J and Q = nCpΔT = (5/2)nRΔT = 250 J, option 3. The cross-check Q = ΔU + W = (3/2)(100) + 100 = 250 J agrees. Every printed line is correct, including the value 5/2 for Cp/R of a monatomic gas. Both common_mistakes verified: ΔU alone is (3/2)(100) = 150 J, which is option 1, and Cv = R gives ΔU = 100 J and Q = 200 J, which is option 2. Checked and not filed: the stem's wording \"How much of heat is given to the gas\" is ungrammatical, but the meaning is unambiguous."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:24:00+05:30"}
+}

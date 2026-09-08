@@ -1,0 +1,28 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q098",
+ "approach": "At constant volume, heating a solid raises its pressure by exactly enough to cancel the free thermal expansion, so the pressure rise equals the bulk modulus times the volume expansion coefficient times the temperature change.",
+ "steps": [
+  {"text": "Find the rise in temperature.",
+   "equation": "ΔT = 127 − 20 = 107 °C"},
+  {"text": "Write the fractional volume expansion the ball would undergo if it were free to expand, using the volume expansion coefficient 3α.",
+   "equation": "ΔV/V = 3αΔT = 3 × 10⁻⁵ × 107 = 3.21 × 10⁻³",
+   "why_this_step": "For a solid, the volume expansion coefficient is three times the linear expansion coefficient."},
+  {"text": "Since the volume cannot change, this expansion is prevented by a pressure rise given by the bulk modulus.",
+   "equation": "ΔP = K × (ΔV/V) = 2 × 10¹¹ × 3.21 × 10⁻³ = 6.42 × 10⁸ Pa",
+   "why_this_step": "Bulk modulus is the pressure change needed to produce, or here to cancel, a given fractional volume change."},
+  {"text": "Add the small initial pressure to get the final pressure.",
+   "equation": "P = 10⁵ + 6.42 × 10⁸ ≈ 6 × 10⁸ Pa",
+   "why_this_step": "10⁵ Pa is a few thousand times smaller than the pressure rise, so it does not change the rounded value."}
+ ],
+ "final_answer": {"option": 2, "value": "6 × 10⁸ Pa"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the linear expansion coefficient α in place of the volume expansion coefficient 3α gives 2.14 × 10⁸ Pa, rounding to 2 × 10⁸ Pa."},
+  {"option": 4, "text": "Using the areal expansion coefficient 2α in place of the volume expansion coefficient 3α gives 4.28 × 10⁸ Pa, rounding to 4 × 10⁸ Pa."}
+ ],
+ "concept_tags": ["thermal expansion at constant volume", "bulk modulus", "volume expansion coefficient"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:18:00+05:30"}
+}

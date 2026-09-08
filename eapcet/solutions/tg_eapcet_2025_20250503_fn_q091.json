@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q091",
+ "approach": "The rms speed scales with the square root of the absolute temperature, so scale the given speed by the square root of the temperature ratio.",
+ "steps": [
+  {"text": "Convert both temperatures to kelvin.",
+   "equation": "T₁ = 77 + 273 = 350 K, T₂ = 150.5 + 273 = 423.5 K"},
+  {"text": "Apply the rms speed and temperature relation to find the new speed.",
+   "equation": "v₂ = v₁ × √(T₂/T₁) = 50 × √(423.5/350) = 50 × √1.21 = 50 × 1.1"},
+  {"text": "Evaluate the result.",
+   "equation": "v₂ = 55 ms⁻¹"}
+ ],
+ "final_answer": {"option": 2, "value": "55 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Dividing by the square root of the temperature ratio instead of multiplying, using 50/1.1 instead of 50 × 1.1, which gives about 45 ms⁻¹ instead of 55 ms⁻¹."},
+  {"option": null, "text": "Using the Celsius values 77 and 150.5 directly instead of converting both to kelvin before taking the square root."}
+ ],
+ "concept_tags": ["rms speed", "temperature dependence of speed", "kinetic theory of gases"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:12:00+05:30"}
+}

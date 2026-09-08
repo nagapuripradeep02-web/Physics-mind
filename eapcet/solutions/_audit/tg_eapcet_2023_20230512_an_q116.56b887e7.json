@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q116",
+ "item_sha": "56b887e7b952b369b0670e8945ae43980838436d8f5786f49ea12c70b3329edf",
+ "auditor_option": 3,
+ "auditor_value": "₁₅P³⁰",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Balancing only the mass number and forgetting to subtract the atomic number of the neutron (which is zero anyway) but misreading the element gives silicon (Z = 14) instead of phosphorus (Z = 15).",
+   "note": "The stated route cannot produce option 2. The entry itself admits the neutron's atomic number is zero, so forgetting to subtract it changes nothing, and 'misreading the element' names no actual error. The real route to ₁₄Si³⁰ is treating the emitted particle as a proton rather than a neutron, which takes 1 away from the atomic number while leaving the mass number at 30.",
+   "fix": "Treating the emitted particle as a proton instead of a neutron subtracts 1 from the atomic number, giving Z = 14 (silicon) with mass number 30, instead of Z = 15 (phosphorus)."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently: mass numbers 27 + 4 = 31 = 1 + A(X) so A(X) = 30; atomic numbers 13 + 2 = 15 = 0 + Z(X) so Z(X) = 15, which is phosphorus. X = ₁₅P³⁰, option 3. All three step equations are correct. common_mistakes[0] (option 1, ₁₅P³¹ from forgetting the neutron's mass number) is a genuine and correctly mapped error route.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:10:00+05:30"}
+}

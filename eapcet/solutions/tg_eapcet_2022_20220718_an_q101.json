@@ -1,0 +1,43 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q101",
+ "approach": "The distance between successive minima gives the wavelength, and the rate at which crests pass the point gives the frequency; their product is the wave speed.",
+ "steps": [
+  {
+   "text": "Successive minima of a travelling wave are one full wavelength apart.",
+   "equation": "λ = 2.7 m"
+  },
+  {
+   "text": "Find the frequency from the rate at which crests pass the point.",
+   "equation": "f = 5 crests / 15.0 s = 1/3 Hz"
+  },
+  {
+   "text": "Find the wave speed.",
+   "equation": "v = fλ = (1/3) × 2.7 = 0.9 m/s"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "0.9 m/s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Counting only 4 gaps between the 5 crests and using f = 4/15 Hz, which gives 0.72 m/s and matches no printed option."
+  }
+ ],
+ "concept_tags": [
+  "wave speed",
+  "wavelength",
+  "frequency"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:10:21+05:30"
+ }
+}

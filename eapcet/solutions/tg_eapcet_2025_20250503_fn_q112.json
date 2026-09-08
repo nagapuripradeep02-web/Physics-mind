@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q112",
+ "approach": "Write the Fahrenheit reading as 1.9 times the Celsius reading, and solve it together with the standard Celsius-to-Fahrenheit conversion.",
+ "steps": [
+  {"text": "Write the condition that the Fahrenheit reading is 90% more than the Celsius reading.",
+   "equation": "F = C + 0.9C = 1.9C"},
+  {"text": "Write the standard conversion between the two scales.",
+   "equation": "F = (9/5)C + 32"},
+  {"text": "Set the two expressions for F equal and solve for C.",
+   "equation": "1.9C = 1.8C + 32 → 0.1C = 32 → C = 320 °C"},
+  {"text": "Use F = 1.9C to get the Fahrenheit reading.",
+   "equation": "F = 1.9 × 320 = 608 °F"}
+ ],
+ "final_answer": {"option": 1, "value": "608 °F"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Solving correctly for C = 320 and then stopping there, reporting this Celsius value as if it were the Fahrenheit answer."}
+ ],
+ "concept_tags": ["temperature scale conversion", "Celsius and Fahrenheit scales"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:27:00+05:30"}
+}

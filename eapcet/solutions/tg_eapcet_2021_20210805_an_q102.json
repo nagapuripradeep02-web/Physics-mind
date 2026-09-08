@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210805_an_q102",
+ "approach": "Use the ideal gas law to express density in terms of pressure and molar mass, since both gases share the same volume and temperature.",
+ "steps": [
+  {"text": "Write the ideal gas law for each gas and express density as mass over volume.",
+   "equation": "PV = (m/M)RT, so ρ = m/V = PM/(RT)"},
+  {"text": "Since both gases are in the same vessel at the same temperature, form the ratio of their densities.",
+   "equation": "ρ₁/ρ₂ = (P₁M₁)/(P₂M₂)",
+   "why_this_step": "Both gases occupy the same container at the same temperature, so only the pressure and molar mass of each gas set its density."},
+  {"text": "Substitute the given ratios of pressure and molar mass.",
+   "equation": "ρ₁/ρ₂ = (2/3) × (3/4) = 6/12 = 0.5"}
+ ],
+ "final_answer": {"option": 4, "value": "0.5"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Finding the density ratio of the second gas to the first instead of the first to the second, which inverts the answer to 2.0."},
+  {"option": null, "text": "Using only the mass ratio 3:4 as the density ratio and ignoring the pressure ratio, which gives 0.75 instead of 0.5."}
+ ],
+ "concept_tags": ["ideal gas law", "density of a gas", "partial pressure"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:15:00+05:30"}
+}

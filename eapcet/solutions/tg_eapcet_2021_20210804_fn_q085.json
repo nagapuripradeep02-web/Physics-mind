@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q085",
+ "approach": "The cosine of the angle between two vectors equals their dot product divided by the product of their magnitudes.",
+ "steps": [
+  {"text": "Compute the dot product of the two vectors.",
+   "equation": "a⃗·b⃗ = (3)(5) + (2)(3) + (5)(1) = 26"},
+  {"text": "Compute the magnitude of each vector.",
+   "equation": "|a⃗| = √(9+4+25) = √38; |b⃗| = √(25+9+1) = √35"},
+  {"text": "Divide the dot product by the product of the magnitudes and take the inverse cosine.",
+   "equation": "cosθ = 26/√(38×35) = 26/√1330 → θ = cos⁻¹(26/√1330)"}
+ ],
+ "final_answer": {"option": 1, "value": "cos⁻¹(26/√1330)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Computing the ratio 26/√1330 correctly but applying the inverse tangent instead of the inverse cosine confuses the dot-product angle formula with the tangent formula."},
+  {"option": 2, "text": "Applying the inverse sine instead of the inverse cosine to the same correctly computed ratio also confuses which formula the dot product gives."}
+ ],
+ "concept_tags": ["scalar product", "angle between two vectors"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:50:00+05:30"}
+}

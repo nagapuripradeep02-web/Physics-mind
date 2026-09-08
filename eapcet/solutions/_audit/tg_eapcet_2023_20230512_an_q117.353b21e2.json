@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q117",
+ "item_sha": "353b21e2f71f047cb4bd69b67ecb785689e9a94ff531ac8cb168559ab0f7d69e",
+ "auditor_option": 3,
+ "auditor_value": "Einstein mass-energy equation",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: in both fission and fusion the rest mass of the products is less than that of the reactants, and the mass defect appears as released energy through E = Δm c². Option 3. The two step equations are correct. common_mistakes[0] (option 1, the broader theory of relativity) and common_mistakes[1] (option 4, the photoelectric equation) are both genuine confusions with true descriptions. Option 2 (specific heat) is unaddressed, which is not a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:13:00+05:30"}
+}

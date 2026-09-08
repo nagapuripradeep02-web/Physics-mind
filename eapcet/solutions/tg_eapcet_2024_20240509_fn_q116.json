@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q116",
+ "approach": "Find the remaining fraction at each stage of decay, notice the second fraction is one quarter of the first, and read off the number of half-lives between them.",
+ "steps": [
+  {"text": "Find the fraction remaining after 28% has decayed and after 82% has decayed.",
+   "equation": "after 28% decay: fraction remaining = 0.72;  after 82% decay: fraction remaining = 0.18"},
+  {"text": "Compare the two remaining fractions by taking their ratio.",
+   "equation": "0.18 ÷ 0.72 = 0.25 = 1 ÷ 4"},
+  {"text": "A drop to one quarter of the earlier remaining amount corresponds to exactly two half-lives, since each half-life halves the amount.",
+   "equation": "1 ÷ 4 = (1 ÷ 2) × (1 ÷ 2), so 2 half-lives separate the two stages"},
+  {"text": "Multiply the number of half-lives by the half-life value to get the time gap.",
+   "equation": "time gap = 2 × 12 minutes = 24 minutes"}
+ ],
+ "final_answer": {"option": 4, "value": "24 minutes"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Assuming the gap equals one half-life instead of checking that the remaining fraction actually drops by a factor of four, giving 12 minutes."},
+  {"option": 2, "text": "Assuming the gap equals one and a half half-lives without computing the actual ratio of remaining fractions, giving 18 minutes."}
+ ],
+ "concept_tags": ["radioactive decay law", "half-life"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

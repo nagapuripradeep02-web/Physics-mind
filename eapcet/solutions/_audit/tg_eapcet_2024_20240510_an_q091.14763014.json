@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q091",
+ "item_sha": "14763014e05a47d9e3a0fb3aeeda89a5d103cfacb68f07775ebb4a7d338a9763",
+ "auditor_option": 4,
+ "auditor_value": "19.6 ms⁻²",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: with M = (4/3)πR³ρ, g = GM/R² = (4/3)πGρR, so gₚ/gₑ = (ρₚ/ρₑ)(Rₚ/Rₑ) = 4 × (1/2) = 2 and gₚ = 19.6 ms⁻², option 4. Every printed line is correct. Both common_mistakes entries were checked numerically: 9.8 × (1/2) = 4.9 reproduces option 1, and 9.8 × 4.5 = 44.1, which matches no listed option as the entry states.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

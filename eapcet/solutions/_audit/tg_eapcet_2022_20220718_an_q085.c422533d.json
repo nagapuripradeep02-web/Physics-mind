@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q085",
+ "item_sha": "c422533dd46b26edaa4ca183f10769aed90c293056efd9ba78ee16a4939bef21",
+ "auditor_option": 4,
+ "auditor_value": "4/3",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: upstream speed 2v − v = v, downstream 2v + v = 3v, so t = d/v + d/3v = 4d/3v. The still-water swim covers the same total path 2d at 2v, so t₀ = d/v and t/t₀ = 4/3. Both mistake entries reproduce their stated numbers (2d/4v gives 1/2, option 1; using d instead of 2d gives 8/3, correctly reported as unprinted).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:44:00+05:30"}
+}

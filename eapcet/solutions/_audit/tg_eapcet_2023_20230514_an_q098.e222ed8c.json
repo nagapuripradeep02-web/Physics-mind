@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230514_an_q098",
+ "item_sha": "e222ed8cfccf319913eb3fdae55f50d87e5bd0011aedb4c5bbe985f5dbde35e0",
+ "auditor_option": 4,
+ "auditor_value": "20",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The options are bare numbers (5, 10, 15, 20) while the question asks for a percentage increase; the unit is left implicit. This does not create ambiguity about which option is meant.",
+ "notes": "My own solve: T1 = 300 K, T2 = 432 K, T2/T1 = 1.44 exactly, and v_rms varies as sqrt(T), so v2/v1 = 1.2 and the increase is 20 per cent, option 4. Verified in python. Both mistake entries are numerically right: the Celsius route sqrt(159/27) = 2.4267 gives 142.7 per cent (\"about 143\"), and treating v as proportional to T gives 44 per cent. Neither of those numbers is a listed option, and both entries correctly carry option null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:26:00+05:30"}
+}

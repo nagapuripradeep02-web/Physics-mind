@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q090",
+ "item_sha": "f8fda21d409cf707a8e302b3d86de3bcf79776dd4fbec66def0dc8a8fc354cc7",
+ "auditor_option": 2,
+ "auditor_value": "12 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: W = ∫₀³ (3t²+3) dt = 27 + 9 = 36 J; 36 = ½ × 0.5 × v² gives v² = 144 and v = 12 m s⁻¹. Both mistake entries are correct: P(3) = 30 W, and treating that as the kinetic energy would give v = √120 ≈ 11 m s⁻¹, which is not printed. That second entry names the route but not the resulting number, which is looser than the rest of this slice but still specific to this question.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

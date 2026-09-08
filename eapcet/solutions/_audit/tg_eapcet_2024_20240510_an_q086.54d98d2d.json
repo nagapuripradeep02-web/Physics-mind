@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q086",
+ "item_sha": "54d98d2d1e85afaafe09dee92a5e3b1e4df27003b269b86905a2c74f54db3614",
+ "auditor_option": 3,
+ "auditor_value": "42 J",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Using a mass of 6 kg by mistake instead of the given 4 kg gives ½ × 6 × 21 = 63 J.",
+   "note": "Substituting a mass that appears nowhere in the question is not an error a student makes here; it is an arithmetic route invented to land on option 2. The entry teaches nothing about this question, unlike the other two entries, which name real errors.",
+   "fix": null}
+ ],
+ "verdict": "weak",
+ "notes": "Own solve: v² = 2² + (−4)² + (−1)² = 21 m² s⁻², KE = ½ × 4 × 21 = 42 J. Both step equations are correct. common_mistakes[0] (84 J, one-half dropped) and common_mistakes[2] (21 J, reporting v²) verify exactly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

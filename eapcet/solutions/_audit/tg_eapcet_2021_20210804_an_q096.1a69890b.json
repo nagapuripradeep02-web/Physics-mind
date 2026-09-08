@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q096",
+ "item_sha": "1a69890b189424c380afd060125d619f88642b2f3ab22c50818cdddb3d9a5382",
+ "auditor_option": 2,
+ "auditor_value": "Vₜ = 0.5 mm/s",
+ "findings": [
+  {"grade": "wrong",
+   "field": "approach",
+   "quote": "A rising air bubble in a denser viscous liquid reaches terminal velocity when the upward buoyant force is balanced by viscous drag, given by Stokes' law.",
+   "note": "The force balance is stated with the bubble's own weight left out. At terminal velocity the upthrust equals the weight plus the drag, which is why the step that follows uses the density difference (900 − 1.293) rather than 900 alone; the approach therefore contradicts the formula the solution goes on to apply. Numerically the two readings differ by 0.1 percent here, so the option is unaffected.",
+   "fix": "A rising air bubble in a denser viscous liquid reaches terminal velocity when the upward buoyant force equals the bubble's weight plus the viscous drag given by Stokes' law, so the net upward driving force is (ρ_liquid − ρ_air)Vg."}
+ ],
+ "verdict": "wrong",
+ "question_defect": "The data block gives g = 9 m s⁻², which is not the value of g anywhere on Earth and appears to be chosen or misprinted so that it cancels the 9 in Stokes' law. The option does not change: with g = 9.8 m s⁻² the terminal velocity is 0.576 mm/s, still nearest the printed 0.5 mm/s.",
+ "notes": "Solved independently first. r = 0.5 mm = 0.5 × 10⁻³ m; v = 2r²(ρ_liquid − ρ_air)g/(9η) = 2(0.5e-3)²(900 − 1.293)(9)/(9 × 0.85) = 5.2865 × 10⁻⁴ m/s = 0.529 mm/s, nearest the printed 0.5 mm/s, option 2. All arithmetic done in python. The three computational steps are correct as printed and the rounding step handles the 0.53-to-0.5 gap honestly. The common_mistakes entry was recomputed: dropping the factor 2 gives 0.264 mm/s, which is indeed nearest the printed 0.25 mm/s, and it points at option 1 which prints that value. Difficulty medium and mistake_type_hint calculation both fit. The why_this_step on step 1 repeats the same omission of the bubble's weight, but it at least supplies the reason ('far less dense'), so it was folded into the single approach finding rather than filed twice.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:03:00+05:30"}
+}

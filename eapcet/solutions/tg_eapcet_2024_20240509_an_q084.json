@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q084",
+ "approach": "Resolve the initial velocity, use the vertical motion to find the time to reach the ground below the cliff, then multiply by the horizontal speed.",
+ "steps": [
+  {"text": "Resolve the velocity into horizontal and vertical components.",
+   "equation": "vₓ = 100cos30° = 50√3 m/s; v_y = 100sin30° = 50 m/s"},
+  {"text": "Write the vertical displacement equation, taking the net drop to the ground as 375 m below the firing point.",
+   "equation": "−375 = 50t − ½(10)t²"},
+  {"text": "Rearrange into a standard quadratic and solve for the positive time.",
+   "equation": "t² − 10t − 75 = 0 → t = 15 s"},
+  {"text": "Multiply the horizontal speed by the time of flight to get the horizontal distance.",
+   "equation": "x = vₓt = 50√3 × 15 = 750√3 m"}
+ ],
+ "final_answer": {"option": 1, "value": "750√3 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Ignoring the initial upward vertical velocity and treating the fall as starting from rest at the cliff top gives a flight time of 5√3 s, which multiplies by 50√3 to give exactly 750 m."}
+ ],
+ "concept_tags": ["projectile motion", "motion from a height"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:15:00+05:30"}
+}

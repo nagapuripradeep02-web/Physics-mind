@@ -1,0 +1,787 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-13",
+ "chapter": "Kinetic Theory",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q102",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q102.83f4328c.json",
+   "item_sha": "83f4328c57b162bc9a8d7914aa81eb7fdf456875abd10c7abff330f451076933",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "As per kinetic theory of gases which of the following statements is / are true? a) Temperature of a gas is a measure of average kinetic energy of a molecule b) Temperature of a gas depends on the nature of the gas c) Heavier molecule has lower average speed d) Lighter molecule has lower average speed",
+   "options_en": [
+    "a & b are true",
+    "b & c are true",
+    "a & c are true",
+    "b & d are true"
+   ],
+   "solution": {
+    "approach": "Temperature measures the average kinetic energy per molecule, which is the same for every gas, while the rms speed depends on molecular mass.",
+    "steps": [
+     {
+      "text": "Temperature is defined through the average kinetic energy of a molecule, so statement a is true.",
+      "equation": "average KE per molecule = (3/2)kT"
+     },
+     {
+      "text": "This average kinetic energy at a given temperature is the same for every gas, so temperature does not depend on the nature of the gas, making statement b false.",
+      "why_this_step": "Two different gases at the same temperature have molecules with the same average kinetic energy, even though their masses differ."
+     },
+     {
+      "text": "The rms speed depends on molecular mass, so a heavier molecule moves slower and a lighter molecule moves faster at the same temperature. Statement c is true and statement d is false.",
+      "equation": "v = √(3kT/m)"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "a & c are true"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Thinking temperature depends on the type of gas because different gases move at different speeds, when it is the average kinetic energy, not the speed, that stays fixed by temperature."
+     },
+     {
+      "option": 4,
+      "text": "Mixing up which molecule is faster and concluding the lighter molecule has the lower speed, when the heavier molecule is the one that moves slower."
+     }
+    ],
+    "concept_tags": [
+     "kinetic theory of gases",
+     "temperature and kinetic energy",
+     "rms speed and molecular mass"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_an_q102",
+   "audit_file": "tg_eapcet_2021_20210805_an_q102.cbb3e1da.json",
+   "item_sha": "cbb3e1da6518710c5c9ed3e218ba57eda651778517a4dfe6ea882f57b904b3a2",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "Two non-reactive monoatomic ideal gases have their atomic masses in the ratio 3 : 4. The ratio of their partial pressures when enclosed in a vessel kept at a constant temperature is 2 : 3. The ratio of their densities is:",
+   "options_en": [
+    "1.1",
+    "2.0",
+    "0.9",
+    "0.5"
+   ],
+   "solution": {
+    "approach": "Use the ideal gas law to express density in terms of pressure and molar mass, since both gases share the same volume and temperature.",
+    "steps": [
+     {
+      "text": "Write the ideal gas law for each gas and express density as mass over volume.",
+      "equation": "PV = (m/M)RT, so ρ = m/V = PM/(RT)"
+     },
+     {
+      "text": "Since both gases are in the same vessel at the same temperature, form the ratio of their densities.",
+      "equation": "ρ₁/ρ₂ = (P₁M₁)/(P₂M₂)",
+      "why_this_step": "Both gases occupy the same container at the same temperature, so only the pressure and molar mass of each gas set its density."
+     },
+     {
+      "text": "Substitute the given ratios of pressure and molar mass.",
+      "equation": "ρ₁/ρ₂ = (2/3) × (3/4) = 6/12 = 0.5"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "0.5"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Finding the density ratio of the second gas to the first instead of the first to the second, which inverts the answer to 2.0."
+     },
+     {
+      "option": null,
+      "text": "Using only the mass ratio 3:4 as the density ratio and ignoring the pressure ratio, which gives 0.75 instead of 0.5."
+     }
+    ],
+    "concept_tags": [
+     "ideal gas law",
+     "density of a gas",
+     "partial pressure"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_fn_q101",
+   "audit_file": "tg_eapcet_2021_20210805_fn_q101.83d9d74c.json",
+   "item_sha": "83d9d74c113013dd8bc3e7eb2f33a89f2e751dbdc5b0cee45169d3265bcca9eb",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "Consider an ideal gas in a closed container at 300 K. The container is then heated so that the average velocity of a particles of the gas increases by a factor of 4. What would be the final temperature?",
+   "options_en": [
+    "4500 °C",
+    "4527 °C",
+    "4617 °C",
+    "4600 °C"
+   ],
+   "solution": {
+    "approach": "The average molecular speed is proportional to the square root of absolute temperature, so a fourfold speed increase means the temperature rises sixteenfold.",
+    "steps": [
+     {
+      "text": "Write the relation between average speed and absolute temperature.",
+      "equation": "v ∝ √T"
+     },
+     {
+      "text": "If the speed becomes 4 times its original value, the temperature becomes 4² = 16 times its original value.",
+      "equation": "T(final) = 300 × 4² = 300 × 16 = 4800 K"
+     },
+     {
+      "text": "Convert the final temperature to Celsius.",
+      "equation": "4800 − 273 = 4527 °C"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "4527 °C"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Converting kelvin to Celsius by subtracting 300, the original temperature, instead of 273, which gives 4500 °C instead of 4527 °C."
+     },
+     {
+      "option": null,
+      "text": "Multiplying the temperature by 4 instead of 16, forgetting that speed varies with the square root of temperature, which gives 927 °C instead of 4527 °C."
+     }
+    ],
+    "concept_tags": [
+     "average molecular speed",
+     "temperature dependence of speed",
+     "kelvin to Celsius conversion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q100",
+   "audit_file": "tg_eapcet_2022_20220718_an_q100.e93422da.json",
+   "item_sha": "e93422da3ce9117ba571f453ea31210d7c263dea0680f32104a1a172cd30e4aa",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "Statement (I) : Gas thermometers are less sensitive than liquid thermometers. Statement (II) : The ratio of universal gas constant and avagadro's number is called Boltzman's constant. Statement (III) : The density of a given mass of a gas at constant pressure is inversely proportional to its absolute temperature. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II, III are true",
+    "Statements I, II are true, but statement III is false",
+    "Statements II, III are true, but statement I is false",
+    "Statements I, II, III are false"
+   ],
+   "solution": {
+    "approach": "Check each statement: a gas thermometer is more sensitive than a liquid one, Boltzmann's constant is R divided by Avogadro's number, and density falls as temperature rises at constant pressure.",
+    "steps": [
+     {
+      "text": "A gas thermometer responds to pressure or volume changes that track temperature more closely than a liquid's expansion does, so it is more sensitive, not less, and statement I is false."
+     },
+     {
+      "text": "Boltzmann's constant is defined as the universal gas constant divided by Avogadro's number, so statement II is true.",
+      "equation": "k = R/Nₐ"
+     },
+     {
+      "text": "From the ideal gas law, at constant pressure the density of a fixed mass of gas is inversely proportional to its absolute temperature, so statement III is true.",
+      "equation": "ρ = PM/(RT)",
+      "why_this_step": "Density is mass over volume, and the ideal gas law gives volume in terms of pressure and temperature, so at fixed pressure, density and temperature are inversely related."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "Statements II, III are true, but statement I is false"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming a gas thermometer is less sensitive because it has no visible liquid column to read, when in fact the gas thermometer is the more sensitive device."
+     },
+     {
+      "option": 4,
+      "text": "Rejecting statements II and III as false despite both following directly from the definition of Boltzmann's constant and the ideal gas law."
+     }
+    ],
+    "concept_tags": [
+     "gas thermometer sensitivity",
+     "Boltzmann constant",
+     "density and temperature at constant pressure"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q100",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q100.6a31715f.json",
+   "item_sha": "6a31715fd1c03403b7ad5a0ce83f45f9624824cfda2dac977cc814439a225cab",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "If the root mean square (rms) speed of nitrogen molecules at room temperature is 100 m/s, then the rms speed of Helium molecule at the same temperature is",
+   "options_en": [
+    "100√7 m/s",
+    "350 m/s",
+    "50√14 m/s",
+    "100 m/s"
+   ],
+   "solution": {
+    "approach": "The rms speed of a gas at fixed temperature varies inversely with the square root of its molar mass, so compare nitrogen and helium through that ratio.",
+    "steps": [
+     {
+      "text": "Write the rms speed formula and note it depends on molar mass at fixed temperature.",
+      "equation": "v = √(3RT/M)"
+     },
+     {
+      "text": "Form the ratio of the helium speed to the nitrogen speed using their molar masses.",
+      "equation": "v(He)/v(N₂) = √(M(N₂)/M(He)) = √(28/4) = √7"
+     },
+     {
+      "text": "Multiply by the given nitrogen speed.",
+      "equation": "v(He) = 100 × √7 m/s",
+      "why_this_step": "Nitrogen's heavier molecule moves slower than helium's lighter molecule at the same temperature, so helium's speed must come out larger."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "100√7 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Using a molar mass of 8 for helium, as if it were diatomic, instead of 4, which gives 50√14 m/s instead of 100√7 m/s."
+     },
+     {
+      "option": 4,
+      "text": "Assuming rms speed is the same for every gas at a given temperature because average kinetic energy per molecule is the same, when speed itself still depends on molar mass."
+     }
+    ],
+    "concept_tags": [
+     "rms speed",
+     "molar mass dependence",
+     "kinetic theory of gases"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q099",
+   "audit_file": "tg_eapcet_2022_20220719_an_q099.3c0ec384.json",
+   "item_sha": "3c0ec3841ac60533b7057a02ad9e4641a06f42cfb01085a5557c70d26e22a4b9",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "An ideal gas at pressure P₀ undergoes an isothermal expansion until its volume is 8.0 times its initial volume. The gas is slowly and adiabatically compressed back to its original volume. If the adiabatic constant of the gas is γ = 4/3, then the ratio of the average kinetic energy per molecule in this final state to that in the initial state is",
+   "options_en": [
+    "1.44",
+    "1.68",
+    "2.0",
+    "1.2"
+   ],
+   "solution": {
+    "approach": "Average kinetic energy per molecule is proportional to absolute temperature, so track the temperature through the isothermal expansion and the adiabatic compression.",
+    "steps": [
+     {
+      "text": "During the isothermal expansion the temperature stays at the original value, so immediately before the adiabatic compression begins, the gas is at temperature T₀ and volume 8V₀.",
+      "equation": "state after expansion: T₀, 8V₀"
+     },
+     {
+      "text": "For an adiabatic process, temperature times volume raised to the power gamma minus one stays constant, so relate this state to the final state at volume V₀."
+     },
+     {
+      "text": "For this gas gamma minus one equals one-third, so the final temperature is T₀ times the cube root of 8.",
+      "equation": "γ − 1 = 1/3, ∛8 = 2, final temperature = T₀ × 2",
+      "why_this_step": "Raising both sides of the adiabatic relation to the power one over (γ−1) turns the volume ratio into a cube root here."
+     },
+     {
+      "text": "Average kinetic energy per molecule is proportional to absolute temperature, so the ratio of final to initial kinetic energy equals the ratio of final to initial temperature.",
+      "equation": "ratio = 2T₀/T₀ = 2.0"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "2.0"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Raising the reciprocal volume ratio, 1/8, to the power (γ−1) instead of 8 itself, which wrongly gives a decrease to half the original temperature."
+     }
+    ],
+    "concept_tags": [
+     "adiabatic process",
+     "isothermal process",
+     "average kinetic energy and temperature"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q096",
+   "audit_file": "tg_eapcet_2023_20230512_an_q096.2f36d73c.json",
+   "item_sha": "2f36d73c2062e53a61ba033ec23e5f2fbfecccf6399b52b73da6e2fd0cb61b7e",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "For a given mass of a gas at constant temperature, the volume and the pressure are V and P respectively. Then the slope of the graph drawn between logₑ V on X-axis and logₑ P on Y-axis is",
+   "options_en": [
+    "1",
+    "−1",
+    "Zero",
+    "Infinity"
+   ],
+   "solution": {
+    "approach": "Boyle's law gives pressure inversely proportional to volume at constant temperature, so taking logarithms turns this into a straight line of slope minus one.",
+    "steps": [
+     {
+      "text": "Write Boyle's law for a fixed mass of gas at constant temperature.",
+      "equation": "PV = constant = C"
+     },
+     {
+      "text": "Take the natural logarithm of both sides and rearrange to express logₑP in terms of logₑV.",
+      "equation": "logₑP = logₑC − logₑV"
+     },
+     {
+      "text": "Compare this with the equation of a straight line, y = mx + c, to read off the slope.",
+      "equation": "y = (−1)x + logₑC, so slope = −1",
+      "why_this_step": "Plotting logₑV on the x-axis and logₑP on the y-axis, the coefficient of logₑV is the slope."
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "−1"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Dropping the negative sign when taking the logarithm of Boyle's law, which gives a slope of +1 instead of −1."
+     },
+     {
+      "option": 3,
+      "text": "Confusing constant temperature with constant pressure and concluding the graph must be a flat line of slope zero."
+     }
+    ],
+    "concept_tags": [
+     "Boyle's law",
+     "logarithmic graph",
+     "isothermal process"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q097",
+   "audit_file": "tg_eapcet_2023_20230512_an_q097.7d051b65.json",
+   "item_sha": "7d051b658e145df42462cb70d37f9038d521634421e309880843d59755295e39",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "An ideal gas at 127 °C is compressed suddenly to 8/27 of its initial volume. If γ = 5/3 for an ideal gas, then rise in its temperature is",
+   "options_en": [
+    "450 K",
+    "500 K",
+    "225 K",
+    "405 K"
+   ],
+   "solution": {
+    "approach": "Use the adiabatic relation between temperature and volume to find the final temperature after sudden compression, then subtract the initial temperature.",
+    "steps": [
+     {
+      "text": "Convert the initial temperature to kelvin.",
+      "equation": "T₁ = 127 + 273 = 400 K"
+     },
+     {
+      "text": "For a sudden, adiabatic compression, temperature times volume raised to the power gamma minus one stays constant, so the final temperature is the initial temperature times the volume ratio raised to that same power."
+     },
+     {
+      "text": "The volume ratio is the reciprocal of the given compression fraction, and gamma minus one equals two-thirds here.",
+      "equation": "V₁/V₂ = 27/8, γ − 1 = 2/3"
+     },
+     {
+      "text": "Evaluate using the cube root.",
+      "equation": "∛(27/8) = 3/2, so (3/2)² = 9/4 = 2.25",
+      "why_this_step": "Raising a number to the two-thirds power is the same as taking its cube root and then squaring the result."
+     },
+     {
+      "text": "Find the final temperature and the rise.",
+      "equation": "T₂ = 400 × 2.25 = 900 K, rise = 900 − 400 = 500 K"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "500 K"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Raising the volume ratio 8/27 instead of 27/8 to the power (γ−1), which wrongly gives a fall in temperature instead of a rise."
+     }
+    ],
+    "concept_tags": [
+     "adiabatic process",
+     "sudden compression",
+     "temperature-volume relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230514_an_q098",
+   "audit_file": "tg_eapcet_2023_20230514_an_q098.e222ed8c.json",
+   "item_sha": "e222ed8cfccf319913eb3fdae55f50d87e5bd0011aedb4c5bbe985f5dbde35e0",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "If the temperature of a gas is increased from 27°C to 159°C, then the percentage increase in the rms speed of the gas molecules is",
+   "options_en": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ],
+   "solution": {
+    "approach": "The rms speed is proportional to the square root of the absolute temperature, so find the ratio of the new and old kelvin temperatures.",
+    "steps": [
+     {
+      "text": "Convert both temperatures to kelvin.",
+      "equation": "T₁ = 27 + 273 = 300 K, T₂ = 159 + 273 = 432 K"
+     },
+     {
+      "text": "The rms speed varies as the square root of the absolute temperature, so take the square root of the temperature ratio.",
+      "equation": "v₂/v₁ = √(T₂/T₁) = √(432/300) = √1.44 = 1.2",
+      "why_this_step": "The rms speed formula has temperature under a square root, so a change in temperature does not change speed by the same fraction."
+     },
+     {
+      "text": "The percentage increase is the fractional change in speed written as a percentage.",
+      "equation": "percentage increase = (1.2 − 1) × 100 = 20"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "20"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the Celsius values 27 and 159 directly instead of converting to kelvin, which gives a percentage increase of about 143 instead of 20."
+     },
+     {
+      "option": null,
+      "text": "Treating the rms speed as directly proportional to temperature instead of its square root, which gives a percentage increase of 44 instead of 20."
+     }
+    ],
+    "concept_tags": [
+     "rms speed",
+     "kinetic theory of gases",
+     "temperature dependence of speed"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q098",
+   "audit_file": "tg_eapcet_2024_20240509_an_q098.5c7daa8e.json",
+   "item_sha": "5c7daa8eb89b02cf4af0f21494a6c26489efb29fbcfe8264c15664cc6949000a",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "If the temperature of a gas is increased from 27 °C to 159 °C, the increase in the rms speed of the gas molecules is",
+   "options_en": [
+    "142%",
+    "71%",
+    "80%",
+    "20%"
+   ],
+   "solution": {
+    "approach": "The rms speed is proportional to the square root of the absolute temperature; find the percentage increase from the ratio of the kelvin temperatures.",
+    "steps": [
+     {
+      "text": "Convert both temperatures to kelvin.",
+      "equation": "T₁ = 27 + 273 = 300 K, T₂ = 159 + 273 = 432 K"
+     },
+     {
+      "text": "Take the square root of the ratio of the two absolute temperatures to get the ratio of the speeds.",
+      "equation": "v₂/v₁ = √(432/300) = √1.44 = 1.2"
+     },
+     {
+      "text": "Express the increase in speed as a percentage of the original speed.",
+      "equation": "increase = (1.2 − 1) × 100% = 20%",
+      "why_this_step": "The rms speed formula has temperature under a square root, so the speed does not rise by the same percentage as the temperature."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "20%"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Forgetting to convert the Celsius temperatures to kelvin and taking the square root of 159 divided by 27 directly, which gives about 142% instead of 20%."
+     },
+     {
+      "option": null,
+      "text": "Treating the rms speed as directly proportional to temperature instead of its square root, which gives 44% instead of 20%."
+     }
+    ],
+    "concept_tags": [
+     "rms speed",
+     "kinetic theory of gases",
+     "temperature dependence of speed"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q098",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q098.ea2cc555.json",
+   "item_sha": "ea2cc5559921edb616d11e6c2f9a094561d4ee23cbfaee8d08fa9a5154be90d4",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "The total internal energy of 4 moles of a diatomic gas at a temperature of 27 °C is (Universal gas constant = 8.31 J mol⁻¹ K⁻¹)",
+   "options_en": [
+    "13.47 kJ",
+    "4.98 kJ",
+    "24.93 kJ",
+    "14.96 kJ"
+   ],
+   "solution": {
+    "approach": "The internal energy of a diatomic ideal gas is five halves of nRT, since it has five degrees of freedom at ordinary temperatures.",
+    "steps": [
+     {
+      "text": "Write the internal energy formula for a diatomic gas.",
+      "equation": "U = (5/2)nRT",
+      "why_this_step": "A diatomic molecule has three translational and two rotational degrees of freedom at room temperature, giving five in total."
+     },
+     {
+      "text": "Convert the temperature to kelvin.",
+      "equation": "T = 27 + 273 = 300 K"
+     },
+     {
+      "text": "Substitute the given values and evaluate.",
+      "equation": "U = (5/2) × 4 × 8.31 × 300 = 24930 J = 24.93 kJ"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "24.93 kJ"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Using the monatomic formula with three degrees of freedom instead of five, which gives 14.96 kJ instead of 24.93 kJ."
+     },
+     {
+      "option": 2,
+      "text": "Leaving out the number of degrees of freedom and using U = ½nRT, which gives 4.98 kJ instead of 24.93 kJ."
+     }
+    ],
+    "concept_tags": [
+     "internal energy of an ideal gas",
+     "degrees of freedom",
+     "diatomic gas"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q098",
+   "audit_file": "tg_eapcet_2024_20240510_an_q098.e38c4dcf.json",
+   "item_sha": "e38c4dcfb569d9a66947db7960df656ff301a9a55d9a9c0de6e265f0478f51c8",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "The temperature at which the rms speed of oxygen molecules is 75 % of rms speed of nitrogen molecules at a temperature of 287 °C is",
+   "options_en": [
+    "87 °C",
+    "127 °C",
+    "227 °C",
+    "360 °C"
+   ],
+   "solution": {
+    "approach": "Set the rms speed of oxygen at the unknown temperature equal to 75% of nitrogen's rms speed at 287°C, using the molar masses of both gases.",
+    "steps": [
+     {
+      "text": "Convert nitrogen's temperature to kelvin.",
+      "equation": "T(N₂) = 287 + 273 = 560 K"
+     },
+     {
+      "text": "Write the condition that oxygen's rms speed is 75% of nitrogen's rms speed, using the rms speed formula for each gas.",
+      "equation": "√(3RT(O₂)/M(O₂)) = 0.75 × √(3RT(N₂)/M(N₂))"
+     },
+     {
+      "text": "Square both sides and solve for the oxygen temperature.",
+      "equation": "T(O₂)/M(O₂) = 0.5625 × T(N₂)/M(N₂), so T(O₂) = 0.5625 × 560 × (32/28)",
+      "why_this_step": "Squaring removes the square root and turns the speed ratio into a ratio of temperature over molar mass."
+     },
+     {
+      "text": "Evaluate and convert to Celsius.",
+      "equation": "T(O₂) = 360 K = 87 °C"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "87 °C"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using 0.75 directly instead of squaring it before solving for temperature, which gives 480 K, or 207 °C, instead of 360 K."
+     }
+    ],
+    "concept_tags": [
+     "rms speed",
+     "molar mass dependence",
+     "temperature from speed ratio"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q091",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q091.d0a2e888.json",
+   "item_sha": "d0a2e88814d396bd3ff664e588f6f898cf843c86bd212ec8596591f286692293",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "If the rms speed of the molecules of a gas at a temperature of 77 °C is 50 ms⁻¹, then the rms speed of the same gas molecules at a temperature of 150.5 °C is",
+   "options_en": [
+    "45 ms⁻¹",
+    "55 ms⁻¹",
+    "65 ms⁻¹",
+    "35 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "The rms speed scales with the square root of the absolute temperature, so scale the given speed by the square root of the temperature ratio.",
+    "steps": [
+     {
+      "text": "Convert both temperatures to kelvin.",
+      "equation": "T₁ = 77 + 273 = 350 K, T₂ = 150.5 + 273 = 423.5 K"
+     },
+     {
+      "text": "Apply the rms speed and temperature relation to find the new speed.",
+      "equation": "v₂ = v₁ × √(T₂/T₁) = 50 × √(423.5/350) = 50 × √1.21 = 50 × 1.1"
+     },
+     {
+      "text": "Evaluate the result.",
+      "equation": "v₂ = 55 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "55 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Dividing by the square root of the temperature ratio instead of multiplying, using 50/1.1 instead of 50 × 1.1, which gives about 45 ms⁻¹ instead of 55 ms⁻¹."
+     },
+     {
+      "option": null,
+      "text": "Using the Celsius values 77 and 150.5 directly instead of converting both to kelvin before taking the square root."
+     }
+    ],
+    "concept_tags": [
+     "rms speed",
+     "temperature dependence of speed",
+     "kinetic theory of gases"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q117",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q117.53fda838.json",
+   "item_sha": "53fda838d83f2bc019b036b65a31dc9f0950338f949f106f1456eb4e85dc83b1",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "At constant pressure, equal amounts of heat are supplied to a monatomic gas and a diatomic gas separately. The ratio of the increases in internal energies of the two gases is",
+   "options_en": [
+    "9 : 49",
+    "3 : 7",
+    "21 : 25",
+    "1 : 1"
+   ],
+   "solution": {
+    "approach": "At constant pressure the increase in internal energy is the heat supplied times the ratio of specific heats, Cᵥ over Cₚ, which equals 1/γ for each gas.",
+    "steps": [
+     {
+      "text": "At constant pressure, the heat supplied and the rise in internal energy are related through the specific heats.",
+      "equation": "Q = nCₚΔT, ΔU = nCᵥΔT, so ΔU = Q × (Cᵥ/Cₚ) = Q/γ",
+      "why_this_step": "Only part of the heat supplied at constant pressure raises the internal energy; the rest goes into the work done as the gas expands."
+     },
+     {
+      "text": "Write 1/γ for each gas using its known ratio of specific heats.",
+      "equation": "monatomic: γ = 5/3, so ΔU₁ = 3Q/5; diatomic: γ = 7/5, so ΔU₂ = 5Q/7"
+     },
+     {
+      "text": "Form the ratio, which does not depend on the amount of gas since the same Q is supplied to both.",
+      "equation": "ΔU₁/ΔU₂ = (3/5)/(5/7) = 1 : 1"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "1 : 1"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "specific heats of a gas",
+     "constant pressure process",
+     "internal energy"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q111",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q111.af551e99.json",
+   "item_sha": "af551e9993010a204ada72561e4bebf2658886542ce7f644e679e8715f75489f",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "The ratio of the average translational kinetic energies of hydrogen and oxygen at the same temperature is",
+   "options_en": [
+    "1 : 6",
+    "1 : 8",
+    "1 : 1",
+    "1 : 4"
+   ],
+   "solution": {
+    "approach": "Average translational kinetic energy per molecule depends only on absolute temperature, not on molecular mass, so it is the same for every gas at the same temperature.",
+    "steps": [
+     {
+      "text": "Write the formula for average translational kinetic energy per molecule.",
+      "equation": "average KE = (3/2)kT"
+     },
+     {
+      "text": "Note that this expression contains only the temperature, not the mass or identity of the molecule.",
+      "why_this_step": "The mass of the molecule appears in its speed, but cancels out of the kinetic energy expression once written in terms of temperature."
+     },
+     {
+      "text": "Since hydrogen and oxygen are at the same temperature, their average translational kinetic energies are equal.",
+      "equation": "KE(H₂) : KE(O₂) = 1 : 1"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1 : 1"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming a heavier molecule carries more kinetic energy at the same temperature and computing the ratio from the molar masses of hydrogen and oxygen instead of recognising they are equal."
+     }
+    ],
+    "concept_tags": [
+     "average translational kinetic energy",
+     "kinetic theory of gases",
+     "temperature dependence"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q117",
+ "approach": "A moderator slows down the fast neutrons released in fission so that they are more likely to cause further fission in uranium-235, sustaining the chain reaction.",
+ "steps": [
+  {"text": "Recall that fission releases fast neutrons, but slow (thermal) neutrons are far more effective at causing further fission in uranium-235.",
+   "equation": "fast neutrons must be slowed to sustain the chain reaction"},
+  {"text": "The moderator, such as heavy water or graphite, slows down these fast neutrons through repeated collisions, without absorbing them.",
+   "equation": "moderator: slows fast neutrons to thermal energies"}
+ ],
+ "final_answer": {"option": 2, "value": "Slow down the fast neutrons"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Confusing the role of the moderator with the role of control rods, which absorb excess neutrons to control the reaction rate."},
+  {"option": 3, "text": "Confusing the moderator with the coolant, which removes the heat generated in the reactor."}
+ ],
+ "concept_tags": ["nuclear reactor", "moderator"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

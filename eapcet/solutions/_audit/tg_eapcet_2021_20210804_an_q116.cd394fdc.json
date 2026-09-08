@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q116",
+ "item_sha": "cd394fdcf885f3c13cdf6c420cd192bb2e0732f575c139c8301b5310e3d0d53b",
+ "auditor_option": 1,
+ "auditor_value": "5:6",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: R = R0 A^(1/3), so R(I)/R(Po) = (125/216)^(1/3) = 5/6 = 0.8333. Both cube roots are exact integers (5 and 6), so no rounding question arises. Checked every step equation, both common_mistakes entries (125:216 does indeed match no printed option), the concept tags, difficulty and mistake_type_hint. Nothing to file.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T02:48:00+05:30"}
+}

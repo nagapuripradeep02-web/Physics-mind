@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q100",
+ "item_sha": "e93422da3ce9117ba571f453ea31210d7c263dea0680f32104a1a172cd30e4aa",
+ "auditor_option": 3,
+ "auditor_value": "Statements II, III are true, but statement I is false",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "Spelling errors in the printed question: \"avagadro's\" for Avogadro's and \"Boltzman's\" for Boltzmann's. They do not affect the answer.",
+ "notes": "My own reading: (I) false, a gas expands far more than a liquid for the same temperature rise, so a gas thermometer is more sensitive, not less; (II) true, k = R/N_A by definition; (III) true, at constant pressure V is proportional to T for a fixed mass, so rho = m/V is inversely proportional to T. That gives II and III true with I false, option 3. Both common_mistakes entries map to the right options: believing I as printed makes all three true (option 1), and rejecting II and III leaves all three false (option 4). Step 0 carries no equation, but its text is the whole substance of the statement-I judgement, so it is not an empty step.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:21:00+05:30"}
+}

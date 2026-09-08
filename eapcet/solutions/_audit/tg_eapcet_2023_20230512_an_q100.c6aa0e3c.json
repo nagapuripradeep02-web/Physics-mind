@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q100",
+ "item_sha": "c6aa0e3c45e1d202c0c6e386593913cd08a29d1d2a167b9d08754035cf1898a1",
+ "auditor_option": 1,
+ "auditor_value": "1.2 f",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: for a stationary source and an observer approaching with v_o = v/5, f′ = f(v + v_o)/v = f(1 + 1/5) = 1.2 f, printed option 1. All three step lines follow from one another and the sign convention is the correct one for an approaching observer. All three common_mistakes routes were recomputed and reach the options they name: the reversed sign gives f(1 − 1/5) = 0.8 f, printed option 3; assuming no change because the source is at rest gives f, printed option 2; and taking v_o = v gives 2 f, printed option 4. All three are genuine errors on this question and none condemns a correct method. Considered and did not file: the approach says the frequency 'increases by the ratio of the sum of the wave speed and the observer's speed to the wave speed', where the frequency is strictly multiplied by that ratio rather than increased by it. This is the ordinary textbook use of 'in the ratio', the equation directly below states the relation exactly, and no number changes, so it did not meet the bar for a finding. difficulty easy and mistake_type_hint concept both fit a single-substitution Doppler question whose distractors are all sign or setup errors.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

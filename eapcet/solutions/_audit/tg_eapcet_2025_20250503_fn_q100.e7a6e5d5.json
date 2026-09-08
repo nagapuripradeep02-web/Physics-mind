@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q100",
+ "item_sha": "e7a6e5d5fa1ba9fb11aced8041c4f73eb24496acb0d6ee6fd08b65ac82ce2924",
+ "auditor_option": 1,
+ "auditor_value": "22.4 μJ",
+ "findings": [
+  {"grade": "weak",
+   "field": "approach",
+   "quote": "The soap film has two free surfaces, so the work done equals the surface tension times twice the increase in the film's area.",
+   "note": "The question states a film of water, not a soap film, and gives the surface tension of water (0.07 N m⁻¹). The physics is unchanged, but naming the wrong liquid in the opening line can suggest the two-surface count applies only to soap films.",
+   "fix": "The water film has two free surfaces, so the work done equals the surface tension times twice the increase in the film's area."}
+ ],
+ "verdict": "weak",
+ "notes": "Independent solve: ΔA per face = 0.08 × (0.008 − 0.006) = 1.6×10⁻⁴ m²; W = T × 2ΔA = 0.07 × 3.2×10⁻⁴ = 2.24×10⁻⁵ J = 22.4 μJ, matching option 1. Both mistake entries were checked: one surface gives 11.2 μJ (option 4) and a factor 4 gives 44.8 μJ (option 3). The concept_tags also carry \"soap film\" for the same reason, but the tags are not reader-facing so I filed only the approach.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:42:00+05:30"}
+}

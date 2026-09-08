@@ -1,0 +1,18 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q096",
+ "item_sha": "411adec5108a57ec23af88de03b7764c9b14eb12cdaa5c2b177f66c81c3796d4",
+ "auditor_option": 1,
+ "auditor_value": "17/11",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Mistaking the 4 cm gap as part of the ratio and writing the copper coefficient over 4 gives 17/4.",
+   "note": "Dividing a coefficient of linear expansion by a length in centimetres is not a route a student actually takes, and the described operation is dimensionally meaningless, so the entry explains option 4 by inventing an error rather than by naming one made on this question. Option 3 (11/4), the closer companion distractor, is left unexplained.",
+   "fix": "Using the 4 cm difference as one term of the ratio, for example writing 17/4 from the coefficients and the 4 cm, gives option 4; the 4 cm fixes which rod is longer and does not enter the ratio at all."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently first: the difference L_steel − L_copper stays fixed at every temperature only if ΔL_steel = ΔL_copper for the same ΔT, so L_steel α_steel = L_copper α_copper and L_steel/L_copper = α_copper/α_steel = 1.7/1.1 = 17/11 (checked exactly with python fractions). The ratio exceeds 1, consistent with steel being the longer rod since its coefficient is the smaller one. Steps and final_answer are correct and internally consistent; common_mistakes[0] correctly maps the inverted ratio 11/17 to option 2. The 4 cm value is not needed for the numeric answer, which is the question's own design and not a defect."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:25:05+05:30"}
+}

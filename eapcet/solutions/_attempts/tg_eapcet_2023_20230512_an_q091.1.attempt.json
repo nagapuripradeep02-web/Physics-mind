@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q091",
+ "approach": "Escape velocity is √(2gR); write it for each planet using the given ratios of radius and g, then take the ratio.",
+ "steps": [
+  {
+   "text": "Write the escape velocity of each planet using its own g and R.",
+   "equation": "v₁ = √(2g₁R₁), v₂ = √(2g₂R₂)"
+  },
+  {
+   "text": "Form the ratio of the two escape velocities.",
+   "equation": "v₁/v₂ = √(g₁R₁ / (g₂R₂))"
+  },
+  {
+   "text": "Substitute the given ratios: r = R₁/R₂ and x = g₁/g₂.",
+   "equation": "v₁/v₂ = √(x×r) = √(rx)"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "√(rx)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Writing the ratio upside down as √(r/x) instead of √(rx) mixes up which quantity multiplies and which divides."
+  },
+  {
+   "option": 4,
+   "text": "Swapping which ratio is called x and which is called r gives √(x/r) instead of √(rx)."
+  }
+ ],
+ "concept_tags": [
+  "escape velocity",
+  "ratio and proportion in gravitation"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:12:00+05:30"
+ }
+}

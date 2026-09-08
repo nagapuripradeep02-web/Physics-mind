@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q100",
+ "item_sha": "9705ea50261c080119b9ed40ba6ca715856bd64ffd29cbb885ac737262635cb2",
+ "auditor_option": 1,
+ "auditor_value": "1.25 × 10⁵ J",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[1].why_this_step",
+   "quote": "The volume of water changes so little on heating that the work done against the atmosphere is negligible, so almost all this heat becomes internal energy.",
+   "note": "This repeats the approach line almost word for word (\"Water expands so little on heating that the work done is negligible, so the change in internal energy equals the heat supplied\"). Duplicated prose in the same solution.",
+   "fix": "Heat supplied at atmospheric pressure is shared between internal energy and expansion work; for a liquid the expansion work is a few joules against 1.26 × 10⁵ J, so it is dropped here."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent solve: ΔT = 60 K, Q = 0.500 × 4184 × 60 = 1.2552 × 10⁵ J, nearest option 1.25 × 10⁵ J (option 1). Checked and not filed: step 3 says \"Round to match the precision of the printed options\" while 1.2552 rounded to three significant figures is 1.26, not 1.25; the line carries an ≈ sign and the printed option is 1.25 × 10⁵ J, so the statement is defensible as selecting the nearest option. Both common_mistakes verified numerically: 0.05 kg gives 1.2552 × 10⁴ J (option 3 prints 1.3 × 10⁴ J); the calorie route gives 30000 cal, which matches no printed option, so option null is correct."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:18:00+05:30"}
+}

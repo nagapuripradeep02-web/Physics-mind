@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q099",
+ "approach": "Linear expansion makes the scale misread away from 25°C; find the temperature change producing the 0.5 mm allowed error, then apply it on both sides of 25°C.",
+ "steps": [
+  {"text": "Write the length of the scale and the maximum allowed error in the same unit.",
+   "equation": "L = 1000 mm, allowed error δ = 0.5 mm"},
+  {"text": "Use the linear expansion relation to find the temperature change that produces this error.",
+   "equation": "δ = L α ΔT, so ΔT = δ / (L α) = 0.5 / (1000 × 10⁻⁵)",
+   "why_this_step": "The scale's marked length changes by Lα ΔT for a temperature change ΔT away from the temperature at which it was made."},
+  {"text": "Evaluate the maximum temperature change.",
+   "equation": "ΔT = 0.5 / 0.01 = 50°C"},
+  {"text": "The scale reads correctly to within 0.5 mm whether it is heated above 25°C (it expands and under-reads) or cooled below 25°C (it contracts and over-reads), so this 50°C limit applies on both sides of 25°C.",
+   "equation": "range = 25°C − 50°C to 25°C + 50°C = −25°C to +75°C"}
+ ],
+ "final_answer": {"option": 3, "value": "−25°C to +75°C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming the scale only goes wrong when heated above 25°C, and forgetting it also errs when cooled below 25°C, gives the one-sided range +25°C to +75°C."},
+  {"option": 1, "text": "Treating the calculated 50°C as the width of the whole allowed range instead of the deviation on each side, and splitting it as ±25°C about 25°C, gives 0°C to +50°C."}
+ ],
+ "concept_tags": ["linear expansion", "thermal expansion", "measurement error"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R2", "at": "2026-09-08T12:00:00+05:30"}
+}

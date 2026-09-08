@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "item_sha": "580d9ff7e26817c65434977e19d9bc54f41ec3dc802940304930762a32feb35d",
+ "auditor_option": 2,
+ "auditor_value": "4 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: v = t − 2 changes sign at t = 2 s, so the distance is ∫₀²|t−2|dt + ∫₂⁴(t−2)dt = 2 + 2 = 4 m. I confirmed this by numerical integration of |v| over 0 to 4 s (4.000000) and of v itself (0.000000 net displacement). Both printed definite integrals evaluate correctly: [2t − t²/2]₀² = 4 − 2 = 2 and [t²/2 − 2t]₂⁴ = 0 − (−2) = 2. The distinction between distance and displacement is stated correctly in the approach and carried through the steps. common_mistakes[0] is the net-displacement error giving 0 m, which is not an option and correctly carries option null; common_mistakes[1] gives 2 m, which is option 1 as stated.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:59:00+05:30"}
+}

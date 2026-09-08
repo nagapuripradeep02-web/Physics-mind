@@ -1,0 +1,12 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q095",
+ "item_sha": "c6ce9c7768109ee532ae6fc56b1722b3b34292564ee68c7456dce151da063ed5",
+ "auditor_option": 1,
+ "auditor_value": "357 × 10⁴ J",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The specific heat capacity of ice is printed as '0.5 cal g⁻¹', which is missing the per-degree part of the unit; the quantity used is 0.5 cal g⁻¹ °C⁻¹.",
+ "notes": "Solved independently first: warming 10 000 g of ice through 10 °C needs 10 000 × 0.5 × 10 = 50 000 cal, melting it needs 10 000 × 80 = 800 000 cal, total 850 000 cal, and at 4.2 J per calorie that is 3 570 000 J = 357 × 10⁴ J, which is option 1. Python confirms both distractor routes named in common_mistakes land exactly on their stated options (85 000 cal is 357 × 10³ J for option 2; 8 500 000 cal is 357 × 10⁵ J for option 4). All four steps follow from the one above, the units are carried correctly, and the final_answer value is what the last step reached. The question stops at water at 0 °C, so no further heating term is missing."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:27:35+05:30"}
+}

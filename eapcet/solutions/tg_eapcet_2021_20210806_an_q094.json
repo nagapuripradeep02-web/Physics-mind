@@ -1,0 +1,50 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210806_an_q094",
+ "approach": "Recall the sign and value of each energy quantity for a satellite in a stable circular orbit and match each one to column two.",
+ "steps": [
+  {
+   "text": "The potential energy of an orbiting satellite is negative, since the satellite is gravitationally bound to the earth.",
+   "equation": "U = −GMm/r"
+  },
+  {
+   "text": "The kinetic energy of a satellite in a circular orbit is positive.",
+   "equation": "K = GMm/2r"
+  },
+  {
+   "text": "The total energy is negative, and equal in size to half the potential energy, which is the usual signature of a bound circular orbit.",
+   "equation": "E = U + K = −GMm/2r"
+  },
+  {
+   "text": "By the usual convention, the gravitational potential energy at infinite separation is taken as the zero reference.",
+   "equation": "U(∞) = 0"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "A-II, B-II, C-I, D-III"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Assuming every column-two label must be used exactly once, a student rules out matching both potential energy and total energy to 'Negative', but both are genuinely negative for a bound orbit."
+  },
+  {
+   "option": 4,
+   "text": "Mixing up kinetic energy and total energy, marking total energy as positive and kinetic energy as infinity, swaps their correct pairings."
+  }
+ ],
+ "concept_tags": [
+  "energy of a satellite",
+  "sign conventions in gravitation"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T15:04:00+05:30"
+ }
+}

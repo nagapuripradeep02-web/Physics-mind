@@ -1,0 +1,21 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "2366568901b125bacb9bd555bfe1f6bbe51fa4c66d2821a08bdb4a2bda825f68",
+ "auditor_option": 2,
+ "auditor_value": "1:3:5",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1:2:3",
+   "note": "5 : 15 : 25 divided through by 5 is 1 : 3 : 5, not 1 : 2 : 3. The reduction printed in this line is arithmetically false, and it is the line a student copies.",
+   "fix": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1:3:5"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 3, \"value\": \"1:2:3\"",
+   "note": "The displacements in the first, second and third seconds of free fall from rest are in the ratio 1 : 3 : 5, which is option 2, not option 3. The solution's own approach field and its own step 2 values (5 m, 15 m, 25 m) both give 1:3:5, so the final answer contradicts the body of the solution.",
+   "fix": "\"option\": 2, \"value\": \"1:3:5\""}
+ ],
+ "verdict": "harmful",
+ "notes": "Solved independently before reading the solution: Sₙ = u + (g/2)(2n − 1) with u = 0 gives S₁ : S₂ : S₃ = 1 : 3 : 5, which is option 2. With g = 10 m s⁻² the distances are 5 m, 15 m and 25 m, exactly the numbers the solution's step 2 prints; the ratio is independent of the value of g. The solution is internally inconsistent: the approach states 'giving the first three seconds in ratio 1:3:5' while step 3 and the final answer both print 1:2:3. Steps 1 and 2 are correct as written. Both common_mistakes entries are sound: 1:1:1 (option 1) is the constant-velocity error, and 1:4:9 (option 4) is the ratio of total distances fallen by the end of each second, which I confirmed as 5 m, 20 m, 45 m.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:52:00+05:30"}
+}

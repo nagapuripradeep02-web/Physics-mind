@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q096",
+ "item_sha": "9cdd9ba7540dfc81ae1550d5010d7a4a9c5fb2c7a140b8de1e94534c692d38a1",
+ "auditor_option": 2,
+ "auditor_value": "Vₜ = 0.5 mm/s (computed 0.529 mm/s)",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes",
+   "quote": "\"common_mistakes\": []",
+   "note": "The solution offers no mistake route at all, although at least one printed distractor has a clean, checked student route: dropping the factor 2 from v = 2r²g(ρ − σ)/(9η) gives 2.64×10⁻⁴ m/s = 0.264 mm/s, which reads as the printed option 1, 0.25 mm/s. This is a completeness gap, not an error; the physics that is printed is correct.",
+   "fix": "Add an entry with option 1: \"Dropping the factor 2 from the Stokes terminal-velocity formula and using v = r²g(ρ − σ)/(9η) gives 0.26 mm/s, which reads as the printed 0.25 mm/s.\""}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved blind before opening the solution: r = 0.5 mm, v = 2r²g(ρ_liquid − ρ_air)/(9η) = 2(5×10⁻⁴)²(9)(898.707)/(9×0.85) = 5.287×10⁻⁴ m/s = 0.529 mm/s — option 2, agreeing with the solution. Every printed line was rederived: the force balance (4/3)πr³ρg = (4/3)πr³σg + 6πηrv is the correct statement for a rising bubble at constant speed, solving it does give v = 2r²g(ρ − σ)/(9η), the substitution uses the radius as half the given diameter, and 5.29×10⁻⁴ m/s is what the expression evaluates to. The solution DECLARES the rounding to the printed 0.5 mm/s in its last step and the nearest other options (0.25 and 1.5 mm/s) are far away, so per the brief that is a match and not a finding. The solution uses ρ for the liquid and σ for the air, the reverse of the more usual convention, but it states which is which in the same step, so I did not file it. g = 9 m/s² looks unusual but is deliberate: it cancels the 9 in 9η. I also checked that the answer is unchanged with g = 9.8 (0.576 mm/s, still nearest 0.5) and if the air density is neglected entirely (0.529 mm/s). Stokes' law strictly assumes a rigid sphere and a real bubble circulates internally, but that correction is outside the syllabus and the options are built on Stokes, so it is not a finding. difficulty \"medium\" and mistake_type_hint \"application\" both fit. I also tested routes to the other distractors: taking the given 1.0 mm as the radius gives 2.11 mm/s, which is nearest option 4 but not cleanly so, and I found no clean route to 1.5 mm/s, so I proposed only the option-1 route above.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:23:00+05:30"}
+}

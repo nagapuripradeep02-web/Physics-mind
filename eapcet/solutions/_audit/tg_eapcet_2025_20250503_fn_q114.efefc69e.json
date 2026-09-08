@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q114",
+ "item_sha": "efefc69eee717cdcb7329d18b695be58dd67272157babc0b31b7210dda0a3a1c",
+ "auditor_option": 3,
+ "auditor_value": "54 kmph",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Making an arithmetic slip while cross-multiplying the ratio 71:65 and reaching 15 kmph",
+   "note": "No arithmetic slip is involved in reaching the printed 15 kmph. The cross-multiplication is done correctly and gives u = 15 m s⁻¹; the error is only that the unit is not converted, which the second half of the same sentence then states. The first clause misnames the cause of the mistake it is describing.",
+   "fix": "Solving correctly to u = 15 m s⁻¹ and then reading that number as 15 kmph, without converting metres per second to kilometres per hour."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "My own solve: n₁/n₂ = (v + u)/(v − u) = 71/65 gives 65(v + u) = 71(v − u), so 136u = 6v and u = 6 × 340/136 = 15 m s⁻¹ = 54 kmph — option 3, the solution's answer. I verified the cross-multiplication numerically: 65(340 + 15) = 71(340 − 15) = 23075. All five step equations are correct, including the 18/5 conversion. The tagged option 2 (15 kmph) is the right target for the described mistake; only the stated cause is muddled.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:46:00+05:30"}
+}

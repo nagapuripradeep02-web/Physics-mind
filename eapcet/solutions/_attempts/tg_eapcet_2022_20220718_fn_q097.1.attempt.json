@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q097",
+ "approach": "The exact form of Newton's law of cooling gives an exponential decay of the temperature excess above the surroundings, so the first cooling fixes the rate constant and the second gives the time.",
+ "steps": [
+  {"text": "Write the exponential cooling law relating the temperature excess at any time to the initial excess.",
+   "equation": "(θ − θₛ) = (θ₀ − θₛ) e^(−kt)"},
+  {"text": "Apply it to the first cooling, from 100 °C to 40 °C in 10 minutes with surroundings at 10 °C.",
+   "equation": "(40 − 10) = (100 − 10) e^(−10k) → e^(−10k) = 1/3 → 10k = ln 3 = 1.1 → k = 0.11 per min"},
+  {"text": "Apply the same law to the second cooling, from 70 °C to 20 °C.",
+   "equation": "(20 − 10) = (70 − 10) e^(−kt) → e^(−kt) = 1/6 → kt = ln 6 = 1.8"},
+  {"text": "Solve for the time using the value of k found above.",
+   "equation": "t = 1.8/0.11 = 18/1.1 = 16.3 min"}
+ ],
+ "final_answer": {"option": 4, "value": "16.3 min"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the approximate average-temperature form of Newton's law instead of the exact exponential form gives about 14.3 min, which matches no option."}
+ ],
+ "concept_tags": ["Newton's law of cooling", "exponential decay"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:29:00+05:30"}
+}

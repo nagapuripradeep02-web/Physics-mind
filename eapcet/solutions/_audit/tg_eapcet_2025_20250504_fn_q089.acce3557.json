@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q089",
+ "item_sha": "acce3557252a6ea33d2b115d4ab0228682bed5d0baf01f096afb57c4c140426b",
+ "auditor_option": 3,
+ "auditor_value": "16 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. The driver hears the horn itself at n because driver and source move together. The cliff receives n·v/(v − v_c) as a stationary observer approached by the source, reflects it unchanged, and the driver then receives it as an observer moving toward that reflected source, giving f_echo = n(v + v_c)/(v − v_c). The difference is 2n·v_c/(v − v_c) = 0.10n, so 2v_c = 0.10(336 − v_c), 2.1v_c = 33.6, v_c = 16 m s⁻¹, option 3. Solved in python (sympy) and back-checked: with v_c = 16, (v + v_c)/(v − v_c) − 1 = 0.100 exactly. Every printed equation follows from the one above it, including the algebra in the last line. The why_this_step on step 2 correctly names the two shifts. The common_mistakes entry was recomputed: a single shift gives v_c/(v − v_c) = 0.10, so v_c = 30.5 m s⁻¹, which is nearest the printed 30 ms⁻¹ and does overstate v_c as the entry says, and it points at option 1 which prints that value. mistake_type_hint application fits. Considered and did not file: difficulty hard is on the high side for a standard echo-Doppler substitution, but the two-stage shift is a real stumbling point, so it is not clearly off.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:11:00+05:30"}
+}

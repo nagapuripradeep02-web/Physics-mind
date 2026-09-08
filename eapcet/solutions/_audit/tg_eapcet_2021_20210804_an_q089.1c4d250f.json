@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q089",
+ "item_sha": "1c4d250f1b07ca301224390e0a1624efcf28d369f3cda19697513d1160caaf31",
+ "auditor_option": 2,
+ "auditor_value": "√3 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: mg sin30 d = ∫0^d (2/3)x mg cos30 dx gives sin30 d = cos30 d²/3, so d = 3 tan30 = √3 m. Both mistake entries check out numerically: constant μ(d) gives √3/2 m (option 1) and dropping cos30 gives 1.5 m, which is not among the printed options.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

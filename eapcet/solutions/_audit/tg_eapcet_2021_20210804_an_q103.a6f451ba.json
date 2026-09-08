@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q103",
+ "item_sha": "a6f451ba64d3ac9e10fd2a9a2d96e8f0b7a12e2b136d3b4022879fef77427a59",
+ "auditor_option": 2,
+ "auditor_value": "312 Hz",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: the 8 Hz beat puts f_B at 328 Hz or 312 Hz. Reducing the tension in A lowers f_A below 320 Hz. With f_B = 328 the gap 328 − f_A widens, so the beat would rise; with f_B = 312 the gap f_A − 312 narrows, and f_A = 316 Hz gives exactly the observed 4 Hz. So f_B = 312 Hz, option 2, which is the solution's answer. Every step equation is true as printed (I checked |f_A(new) − 328| > 8 and |f_A(new) − 312| < 8 numerically for f_A(new) = 319 and 316 Hz). The common_mistakes entry names option 4 (328 Hz), which is the genuine trap here. Difficulty medium and mistake_type_hint concept are both reasonable; prose is literal throughout.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:26:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q098",
+ "item_sha": "9e45de09134a9d0528272a4e5dbfcb42583025ad3269366029ced969f602317a",
+ "auditor_option": 4,
+ "auditor_value": "R/√2",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Making an algebra slip while solving R² = 2x², such as writing x² = R²/4 instead of R²/2, gives x = R/4.",
+   "note": "x² = R²/4 gives x = R/2, which is option 1, not x = R/4. The stated slip therefore does not produce the option this entry is attached to, and the printed step from x² = R²/4 to x = R/4 is itself a false square root. Reaching R/4 would require x² = R²/16, which no step of this problem produces.",
+   "fix": "Using the wrong power in the denominator, (R²+x²)² instead of (R²+x²)^(3/2), makes the derivative condition R²+x²−4x² = 0, so R² = 3x² and x = R/√3."}
+ ],
+ "verdict": "wrong",
+ "notes": "Solved independently: g(x) = GMx/(R²+x²)^(3/2); setting dg/dx = 0 gives (R²+x²)−3x² = 0, so R² = 2x² and x = R/√2, option 4. Confirmed with sympy. Steps 1 to 3 and the why_this_step are all correct. The proposed fix was checked with sympy: differentiating x/(R²+x²)² gives R² = 3x², x = R/√3, which is option 3 and currently has no mistake entry.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

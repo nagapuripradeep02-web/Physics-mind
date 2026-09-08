@@ -1,0 +1,34 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "approach": "Find the heat needed to bring all the ice to water at 100°C, then find how much of the steam must condense to supply exactly that heat.",
+ "steps": [
+  {"text": "Find the heat needed to warm the ice from −20°C to 0°C.",
+   "equation": "Q₁ = m_ice × c_ice × ΔT = 54 × 0.5 × 20 = 540 cal"},
+  {"text": "Find the heat needed to melt the ice at 0°C.",
+   "equation": "Q₂ = m_ice × L_f = 54 × 80 = 4320 cal"},
+  {"text": "Find the heat needed to warm this melted ice from 0°C to 100°C.",
+   "equation": "Q₃ = m_ice × c_water × ΔT = 54 × 1 × 100 = 5400 cal"},
+  {"text": "Add these to get the total heat needed to bring all 54 g of ice to water at 100°C.",
+   "equation": "Q_needed = 540 + 4320 + 5400 = 10260 cal"},
+  {"text": "Find the heat released if the full 25 g of steam condenses at 100°C.",
+   "equation": "Q_available = m_steam × L_v = 25 × 540 = 13500 cal",
+   "why_this_step": "Steam gives up heat by condensing to water at the same 100°C before any further cooling can happen."},
+  {"text": "Since the heat available exceeds the heat needed, the ice side reaches 100°C before all the steam condenses, so the final temperature is 100°C and only part of the steam turns to water.",
+   "equation": "Q_available (13500 cal) > Q_needed (10260 cal)"},
+  {"text": "Find the mass of steam that condenses by dividing the heat actually used by the latent heat of vaporisation.",
+   "equation": "m_condensed = Q_needed / L_v = 10260 / 540 = 19 g"},
+  {"text": "State the final mixture: the condensed steam adds to the melted ice as water, and the rest of the steam remains as steam, both at 100°C.",
+   "equation": "water = 54 + 19 = 73 g at 100°C; steam left = 25 − 19 = 6 g at 100°C"}
+ ],
+ "final_answer": {"option": 2, "value": "73 g water at 100°C and 6 g steam at 100°C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming all 25 g of steam condenses without checking the heat balance gives 79 g of water at 100°C, a total that matches none of the printed options."},
+  {"option": null, "text": "Forgetting that the ice must first warm from −20°C to 0°C before melting, and using only the melting and 0→100°C heat (9720 cal), gives 72 g water and 7 g steam left, matching no option."}
+ ],
+ "concept_tags": ["calorimetry", "latent heat", "phase change mixture"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R2", "at": "2026-09-08T12:00:00+05:30"}
+}

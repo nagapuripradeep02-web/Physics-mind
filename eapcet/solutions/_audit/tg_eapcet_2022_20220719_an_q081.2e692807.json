@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q081",
+ "item_sha": "2e6928072fd0a48814b904c6adb04ab723002ce6a0b883c0b38b5441788f5fcd",
+ "auditor_option": 3,
+ "auditor_value": "10⁻¹⁵ m",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Confusing the very short range of the weak nuclear force with the strong nuclear force gives 10⁻¹⁸ m.",
+   "note": "At this syllabus level the range quoted for the weak nuclear force is 10⁻¹⁶ m, which is printed here as option 2 — the same value the 2025 paper in this chapter treats as the answer to 'the range of weak nuclear force'. So the weak-force confusion leads a student to option 2, not to option 1; the entry points at the wrong option. (10⁻¹⁸ m is the W-boson range used in particle physics, not a value in this course.)",
+   "fix": "Confusing the range of the weak nuclear force, about 10⁻¹⁶ m, with the range of the strong nuclear force gives 10⁻¹⁶ m — this entry should point at option 2."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently: the strong nuclear force acts only over nuclear dimensions and falls to zero beyond a few femtometres, so its range is of the order 10⁻¹⁵ m. Option 3. Both step equations are true as written. common_mistakes[0] (option 4, exponent −13 instead of −15) is correct, including the claim that this is two orders of magnitude too large.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:06:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q096",
+ "approach": "Boyle's law gives pressure inversely proportional to volume at constant temperature, so taking logarithms turns this into a straight line of slope minus one.",
+ "steps": [
+  {"text": "Write Boyle's law for a fixed mass of gas at constant temperature.",
+   "equation": "PV = constant = C"},
+  {"text": "Take the natural logarithm of both sides and rearrange to express logₑP in terms of logₑV.",
+   "equation": "logₑP = logₑC − logₑV"},
+  {"text": "Compare this with the equation of a straight line, y = mx + c, to read off the slope.",
+   "equation": "y = (−1)x + logₑC, so slope = −1",
+   "why_this_step": "Plotting logₑV on the x-axis and logₑP on the y-axis, the coefficient of logₑV is the slope."}
+ ],
+ "final_answer": {"option": 2, "value": "−1"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Dropping the negative sign when taking the logarithm of Boyle's law, which gives a slope of +1 instead of −1."},
+  {"option": 3, "text": "Confusing constant temperature with constant pressure and concluding the graph must be a flat line of slope zero."}
+ ],
+ "concept_tags": ["Boyle's law", "logarithmic graph", "isothermal process"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:21:00+05:30"}
+}

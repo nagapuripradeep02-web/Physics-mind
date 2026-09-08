@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "approach": "Since the velocity changes sign at t = 2 s, find the distance covered in each of the two stages separately and add them, rather than the net displacement.",
+ "steps": [
+  {"text": "Note that v(t) = t − 2 is negative for t less than 2 s and positive for t greater than 2 s, so the bird reverses direction at t = 2 s.",
+   "equation": "v(t) = t − 2; v = 0 at t = 2 s"},
+  {"text": "Find the distance covered while moving in the first direction, from t = 0 to t = 2 s.",
+   "equation": "∫₀² (2 − t) dt = [2t − t²/2]₀² = 4 − 2 = 2 m"},
+  {"text": "Find the distance covered after it reverses, from t = 2 s to t = 4 s.",
+   "equation": "∫₂⁴ (t − 2) dt = [t²/2 − 2t]₂⁴ = 0 − (−2) = 2 m"},
+  {"text": "Add the two distances.",
+   "equation": "2 + 2 = 4 m"}
+ ],
+ "final_answer": {"option": 2, "value": "4 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Integrating v(t) directly from 0 to 4 seconds without splitting at the reversal point, which gives a net displacement of 0 m because the two stages cancel."},
+  {"option": 1, "text": "Computing only the distance covered up to the moment of reversal, 2 m, and stopping there without adding the return-direction distance from t = 2 s to t = 4 s."}
+ ],
+ "concept_tags": ["velocity as a function of time", "distance vs displacement"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:36:00+05:30"}
+}

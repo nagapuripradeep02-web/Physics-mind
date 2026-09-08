@@ -1,0 +1,748 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-05",
+ "chapter": "Work Power Energy",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q089",
+   "audit_file": "tg_eapcet_2021_20210804_an_q089.1c4d250f.json",
+   "item_sha": "1c4d250f1b07ca301224390e0a1624efcf28d369f3cda19697513d1160caaf31",
+   "chapter": "Work Power Energy",
+   "year": 2021,
+   "question_en": "Consider a small block sliding down an inclined plane of inclination 30° with the horizontal. The coefficient of friction is μ = ⅔x, where x is the distance (in meter) through which the mass slides down. The distance covered by the mass before it stops is",
+   "options_en": [
+    "√3/2 m",
+    "√3 m",
+    "2/√3 m",
+    "2√3 m"
+   ],
+   "solution": {
+    "approach": "The block starts and ends at rest, so the work done by gravity along the slope must equal the work done against a friction force that grows with distance.",
+    "steps": [
+     {
+      "text": "Write the friction force at a distance x down the slope, using the given coefficient.",
+      "equation": "f(x) = μ(x)·mg cos30° = (2/3)x·mg cos30°"
+     },
+     {
+      "text": "Set the work done by gravity over the whole distance d equal to the work done against friction, since the block starts and ends at rest.",
+      "equation": "mg sin30°·d = ∫₀ᵈ (2/3)x·mg cos30° dx",
+      "why_this_step": "The net work on the block is zero because its kinetic energy is zero both before it starts and after it stops."
+     },
+     {
+      "text": "Evaluate the integral and cancel mg from both sides.",
+      "equation": "sin30°·d = cos30°·d²/3"
+     },
+     {
+      "text": "Solve for d.",
+      "equation": "d = 3 tan30° = 3/√3 = √3 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "√3 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the friction coefficient at the final position, μ(d), as if it were constant along the whole slide, instead of integrating the growing friction force, gives d = √3/2 m."
+     },
+     {
+      "option": null,
+      "text": "Leaving out cos30° from the normal force in the friction term gives a different, unlisted distance of 1.5 m."
+     }
+    ],
+    "concept_tags": [
+     "work-energy theorem",
+     "variable friction",
+     "inclined plane"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_an_q090",
+   "audit_file": "tg_eapcet_2021_20210805_an_q090.e143952a.json",
+   "item_sha": "e143952ac808289762ea8868c9ad6ea87c7b88c0345070bfbfa0f5486cb58bf3",
+   "chapter": "Work Power Energy",
+   "year": 2021,
+   "question_en": "Ball P of mass m moving with velocity 'v' collides with another ball Q of mass 2m, at rest. If v_P and v_Q are the final velocities of P and Q respectively, after collision, then: (Assume the coefficient of restitution is 1/3)",
+   "options_en": [
+    "v_Q/v_P = 4",
+    "v_P/v_Q = 4",
+    "v_Q/v_P = 2",
+    "v_P/v_Q = 2"
+   ],
+   "solution": {
+    "approach": "Momentum conservation and the restitution equation together fix both final velocities, giving the ratio that is asked for.",
+    "steps": [
+     {
+      "text": "Write momentum conservation for the two balls.",
+      "equation": "m·v = m·v_P + 2m·v_Q  →  v = v_P + 2v_Q"
+     },
+     {
+      "text": "Write the restitution equation using the given coefficient.",
+      "equation": "e = (v_Q − v_P)/v  →  v_Q − v_P = v/3",
+      "why_this_step": "The coefficient of restitution compares the separation speed after impact to the approach speed before impact."
+     },
+     {
+      "text": "Solve the two equations together for the final velocities.",
+      "equation": "v_P = v/9,  v_Q = 4v/9"
+     },
+     {
+      "text": "Divide to get the ratio asked for.",
+      "equation": "v_Q/v_P = (4v/9)/(v/9) = 4"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "v_Q/v_P = 4"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Writing the ratio the other way round, v_P/v_Q instead of v_Q/v_P, attaches the 4 to the wrong ball."
+     },
+     {
+      "option": 3,
+      "text": "Assuming the collision is perfectly elastic instead of using the given coefficient of restitution 1/3 gives v_Q/v_P = 2."
+     }
+    ],
+    "concept_tags": [
+     "collision",
+     "coefficient of restitution",
+     "momentum conservation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q089",
+   "audit_file": "tg_eapcet_2022_20220718_an_q089.d9e8d2d7.json",
+   "item_sha": "d9e8d2d7249e5e8eeee2f8e801a98c938fba75c06f9596bc90f71263955c80d2",
+   "chapter": "Work Power Energy",
+   "year": 2022,
+   "question_en": "A moving particle collides with a stationary particle of mass 1/n times the mass of moving particle, the fraction of its kinetic energy transferred to the stationary particle is",
+   "options_en": [
+    "4n²/(1+n)²",
+    "4n/(1+n)²",
+    "4n/(1+n²)",
+    "4n²"
+   ],
+   "solution": {
+    "approach": "For a head-on elastic collision, the fraction of kinetic energy handed to the struck particle follows a standard formula in the mass ratio.",
+    "steps": [
+     {
+      "text": "Write the fraction of kinetic energy transferred to a stationary target in an elastic collision.",
+      "equation": "fraction = 4m₁m₂/(m₁+m₂)²",
+      "why_this_step": "This comes from solving momentum conservation and kinetic energy conservation together for an elastic collision."
+     },
+     {
+      "text": "Substitute the given masses, the moving particle m₁ = m and the stationary one m₂ = m/n.",
+      "equation": "fraction = 4·m·(m/n) / (m + m/n)²"
+     },
+     {
+      "text": "Simplify by cancelling m² and clearing the fraction inside the bracket.",
+      "equation": "fraction = 4n/(1+n)²"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "4n/(1+n)²"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Squaring the velocity-transfer ratio 2m₁/(m₁+m₂) directly and calling it the energy fraction, without weighting it by the mass ratio, gives 4n²/(1+n)²."
+     },
+     {
+      "option": 3,
+      "text": "Expanding (m₁+m₂)² as m₁²+m₂², dropping the cross term, gives 4n/(1+n²)."
+     },
+     {
+      "option": 4,
+      "text": "Dropping the denominator (1+n)² after finding the numerator 4n² leaves only 4n²."
+     }
+    ],
+    "concept_tags": [
+     "elastic collision",
+     "kinetic energy transfer",
+     "mass ratio"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q088",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q088.bb094b8f.json",
+   "item_sha": "bb094b8f18a35ff71cc70652cb3e8b3c8dee877845dc291e4ea01f42965bf354",
+   "chapter": "Work Power Energy",
+   "year": 2022,
+   "question_en": "The potential energy of an object is U(x) = (5x² − 4x³) J, where x is the position in meter. The position at which the force becomes zero is",
+   "options_en": [
+    "1/2 m",
+    "5/6 m",
+    "1/3 m",
+    "2/3 m"
+   ],
+   "solution": {
+    "approach": "The force is the negative slope of the potential energy, so setting it to zero and solving for the nonzero position gives the answer.",
+    "steps": [
+     {
+      "text": "Differentiate U(x) with respect to x.",
+      "equation": "dU/dx = 10x − 12x²"
+     },
+     {
+      "text": "Write the force and set it to zero.",
+      "equation": "F = −dU/dx = 12x² − 10x = 0"
+     },
+     {
+      "text": "Factor and solve, keeping the nonzero root.",
+      "equation": "x(12x − 10) = 0  →  x = 0 or x = 5/6 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "5/6 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking x = 0, the trivial root where the object has not moved at all, instead of the nonzero position asked for."
+     }
+    ],
+    "concept_tags": [
+     "potential energy",
+     "conservative force",
+     "calculus of U(x)"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q088",
+   "audit_file": "tg_eapcet_2022_20220719_an_q088.dc9a82ee.json",
+   "item_sha": "dc9a82ee3f2f1edbc112a9ffda0f38b30edc815c82731b4877de4dd41fcc0322",
+   "chapter": "Work Power Energy",
+   "year": 2022,
+   "question_en": "A body of mass 'm' slides down along a frictionless inclined plane from height 'h' and just completes motion in a vertical circle of radius 2m after reaching the bottom. What is the value of h? [Use g = 10 m/s²]",
+   "options_en": [
+    "2 m",
+    "5/2 m",
+    "5 m",
+    "10 m"
+   ],
+   "solution": {
+    "approach": "Energy conservation from the top of the incline to the top of the loop, combined with the minimum-speed condition at the top of the loop, gives the height.",
+    "steps": [
+     {
+      "text": "Write the minimum speed condition at the top of the loop, where gravity alone supplies the centripetal force.",
+      "equation": "mg = mv_top²/R  →  v_top² = gR"
+     },
+     {
+      "text": "Apply energy conservation from the release height h to the top of the loop, which is at height 2R above the bottom.",
+      "equation": "mgh = mg(2R) + ½mv_top²"
+     },
+     {
+      "text": "Substitute v_top² = gR and solve for h.",
+      "equation": "h = 2R + R/2 = 5R/2 = 5(2)/2 = 5 m"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "5 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Thinking the release height only needs to equal the radius R, missing the extra R/2 that comes from the required speed at the top, gives 2 m instead of 5 m."
+     }
+    ],
+    "concept_tags": [
+     "vertical circular motion",
+     "energy conservation",
+     "minimum speed condition"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q087",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q087.9baae6fa.json",
+   "item_sha": "9baae6fa69dcd78b64def361d204a35c5c4dfae2ed85079925a3927b9a29aef7",
+   "chapter": "Work Power Energy",
+   "year": 2023,
+   "question_en": "The displacement 's' of a body of mass 3 kg under the action of a force is given by s = t³/3, where 's' is in metres and 't' is in seconds. The work done by the force in the first two seconds is",
+   "options_en": [
+    "32 J",
+    "3.8 J",
+    "5.2 J",
+    "24 J"
+   ],
+   "solution": {
+    "approach": "The given force is the only one doing work, so the work it does equals the change in kinetic energy.",
+    "steps": [
+     {
+      "text": "Differentiate the displacement to get the velocity.",
+      "equation": "v = ds/dt = d(t³/3)/dt = t²"
+     },
+     {
+      "text": "Evaluate the velocity at the start and at the end of the two seconds.",
+      "equation": "v(0) = 0,  v(2) = 2² = 4 m s⁻¹"
+     },
+     {
+      "text": "Apply the work-energy theorem over this interval.",
+      "equation": "W = ½mv(2)² − ½mv(0)² = ½ × 3 × 4² − 0 = 24 J",
+      "why_this_step": "The work-energy theorem holds for the net force, and here the given force is the only one doing work."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "24 J"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Multiplying the force at t = 2 s by the total displacement, instead of using the work-energy theorem, gives 12 N × 8/3 m = 32 J."
+     },
+     {
+      "option": null,
+      "text": "Leaving out the one-half in the kinetic energy formula gives 3 × 4² = 48 J."
+     }
+    ],
+    "concept_tags": [
+     "work-energy theorem",
+     "velocity from displacement",
+     "differentiation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q087",
+   "audit_file": "tg_eapcet_2023_20230513_an_q087.f73a1471.json",
+   "item_sha": "f73a1471391fc7def6dfb2a078e03577a4da0a955cf1857f244f0fe55a96eb11",
+   "chapter": "Work Power Energy",
+   "year": 2023,
+   "question_en": "A body of mass 3 kg is moving under the action of a force which causes a displacement of (t³/3) m, where 't' is time in seconds. The work done by the force in first 2 seconds is",
+   "options_en": [
+    "2 J",
+    "3.8 J",
+    "5.2 J",
+    "24 J"
+   ],
+   "solution": {
+    "approach": "The given force is the only one doing work, so the work it does equals the change in kinetic energy over the two seconds.",
+    "steps": [
+     {
+      "text": "Differentiate the displacement to get the velocity.",
+      "equation": "v = ds/dt = d(t³/3)/dt = t²"
+     },
+     {
+      "text": "Evaluate the velocity at the start and at the end of the two seconds.",
+      "equation": "v(0) = 0,  v(2) = 2² = 4 m s⁻¹"
+     },
+     {
+      "text": "Apply the work-energy theorem over this interval.",
+      "equation": "W = ½mv(2)² − ½mv(0)² = ½ × 3 × 4² − 0 = 24 J",
+      "why_this_step": "The work-energy theorem holds for the net force, and here the given force is the only one doing work."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "24 J"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Leaving out the one-half in the kinetic energy formula gives 3 × 4² = 48 J instead of 24 J."
+     }
+    ],
+    "concept_tags": [
+     "work-energy theorem",
+     "velocity from displacement",
+     "differentiation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_fn_q087",
+   "audit_file": "tg_eapcet_2023_20230513_fn_q087.0aee68f5.json",
+   "item_sha": "0aee68f52013202d5caf63cbe48d52a1c61a78510cebb3bdb7ea43ba43c1f07d",
+   "chapter": "Work Power Energy",
+   "year": 2023,
+   "question_en": "A body falls freely from a height 'h' on a fixed horizontal plane and rebounds. If 'e' is the coefficient of restitution, the total distance travelled before it comes to rest is",
+   "options_en": [
+    "h[(1+e²)/(1−e²)]",
+    "h[(1−e²)/(1+e²)]",
+    "(h/2)[(1−e²)/(1+e²)]",
+    "(h/2)[(1+e²)/(1−e²)]"
+   ],
+   "solution": {
+    "approach": "Each bounce rises to a height reduced by e² from the previous one, and the total path length is the sum of this geometric series of up-and-down trips.",
+    "steps": [
+     {
+      "text": "Write the rebound height after the first bounce in terms of the coefficient of restitution.",
+      "equation": "h₁ = e²h",
+      "why_this_step": "The rebound speed is e times the impact speed, and height is proportional to the square of the speed."
+     },
+     {
+      "text": "Write the total distance as the initial fall plus twice every rebound height, since each rebound is climbed and then fallen again.",
+      "equation": "total = h + 4(e²h + e⁴h + e⁶h + …)"
+     },
+     {
+      "text": "Sum the infinite geometric series with first term e²h and common ratio e².",
+      "equation": "total = h + 2h·e²/(1−e²)"
+     },
+     {
+      "text": "Combine into a single fraction.",
+      "equation": "total = h(1+e²)/(1−e²)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "h[(1+e²)/(1−e²)]"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Counting only the rise of each bounce and not also the fall back down, missing the factor of 2 for each rebound, gives total = h/(1−e²), which is not among the printed options."
+     }
+    ],
+    "concept_tags": [
+     "coefficient of restitution",
+     "geometric series",
+     "free fall and rebound"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q087",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q087.7ac8644b.json",
+   "item_sha": "7ac8644b1d22d26dd06120d2bbbfa1d089933aab7be6e1aebde84cdc21049b94",
+   "chapter": "Work Power Energy",
+   "year": 2024,
+   "question_en": "The sphere A of mass m moving with a constant velocity hits another sphere B of mass 2m at rest. If the coefficient of restitution is 0.4, the ratio of the velocities of the spheres A and B after collision is",
+   "options_en": [
+    "3:1",
+    "1:5",
+    "1:7",
+    "4:1"
+   ],
+   "solution": {
+    "approach": "Momentum conservation and the restitution equation together fix both spheres' final velocities, whose ratio is the answer.",
+    "steps": [
+     {
+      "text": "Write momentum conservation for the two spheres.",
+      "equation": "m·v = m·v_A + 2m·v_B  →  v = v_A + 2v_B"
+     },
+     {
+      "text": "Write the restitution equation using e = 0.4.",
+      "equation": "e = (v_B − v_A)/v  →  v_B − v_A = 0.4v"
+     },
+     {
+      "text": "Solve the two equations together.",
+      "equation": "v_A = v/15,  v_B = 7v/15"
+     },
+     {
+      "text": "Form the ratio asked for.",
+      "equation": "v_A : v_B = (v/15) : (7v/15) = 1 : 7"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1:7"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Writing the restitution equation with the velocities swapped, v_A′ − v_B′ = e·v instead of v_B′ − v_A′ = e·v, gives v_A:v_B = 3:1."
+     },
+     {
+      "option": null,
+      "text": "Assuming the collision is perfectly elastic (e = 1) instead of using the given e = 0.4 gives a ratio of 1:2, which is not among the printed options."
+     }
+    ],
+    "concept_tags": [
+     "collision",
+     "coefficient of restitution",
+     "momentum conservation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q086",
+   "audit_file": "tg_eapcet_2024_20240510_an_q086.54d98d2d.json",
+   "item_sha": "54d98d2d1e85afaafe09dee92a5e3b1e4df27003b269b86905a2c74f54db3614",
+   "chapter": "Work Power Energy",
+   "year": 2024,
+   "question_en": "The kinetic energy of a body of mass 4 kg moving with a velocity of (2î − 4ĵ − k̂) ms⁻¹ is",
+   "options_en": [
+    "84 J",
+    "63 J",
+    "42 J",
+    "21 J"
+   ],
+   "solution": {
+    "approach": "Kinetic energy depends on the square of the speed, found by squaring and adding the components of the velocity vector.",
+    "steps": [
+     {
+      "text": "Find the square of the speed from the components.",
+      "equation": "v² = 2² + (−4)² + (−1)² = 4 + 16 + 1 = 21 m² s⁻²"
+     },
+     {
+      "text": "Apply the kinetic energy formula.",
+      "equation": "KE = ½ × 4 × 21 = 42 J"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "42 J"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Leaving out the one-half in the kinetic energy formula gives 4 × 21 = 84 J."
+     },
+     {
+      "option": 2,
+      "text": "Using a mass of 6 kg by mistake instead of the given 4 kg gives ½ × 6 × 21 = 63 J."
+     },
+     {
+      "option": 4,
+      "text": "Reporting the speed-squared value itself, 21, as the kinetic energy, without multiplying by ½m, gives 21 J."
+     }
+    ],
+    "concept_tags": [
+     "kinetic energy",
+     "vector magnitude"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q087",
+   "audit_file": "tg_eapcet_2024_20240510_an_q087.3178a6a1.json",
+   "item_sha": "3178a6a1554349c402e88003f6aa0200e9063d7713ace2fd9a7dfb07a99cdd11",
+   "chapter": "Work Power Energy",
+   "year": 2024,
+   "question_en": "A ball P of mass 0.5 kg moving with a velocity of 10 ms⁻¹ collides with another ball Q of mass 1 kg at rest. If the coefficient of restitution is 0.4, the ratio of the velocities of the balls P and Q after the collision is",
+   "options_en": [
+    "1 : 7",
+    "2 : 7",
+    "2 : 5",
+    "5 : 6"
+   ],
+   "solution": {
+    "approach": "Momentum conservation and the restitution equation together fix both balls' final velocities, whose ratio is the answer.",
+    "steps": [
+     {
+      "text": "Write momentum conservation for the two balls.",
+      "equation": "0.5×10 = 0.5v_P + 1×v_Q  →  v_P + 2v_Q = 10"
+     },
+     {
+      "text": "Write the restitution equation using e = 0.4.",
+      "equation": "e = (v_Q − v_P)/(10 − 0)  →  v_Q − v_P = 4"
+     },
+     {
+      "text": "Solve the two equations together.",
+      "equation": "v_P = 2/3 m s⁻¹,  v_Q = 14/3 m s⁻¹"
+     },
+     {
+      "text": "Form the ratio asked for.",
+      "equation": "v_P : v_Q = (2/3) : (14/3) = 1 : 7"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1 : 7"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Mistaking the coefficient of restitution itself for the ratio of the final velocities gives 0.4 = 2/5, so v_P:v_Q = 2:5."
+     },
+     {
+      "option": 2,
+      "text": "Reducing the ratio 2:14 by dividing only the second number by 2, and leaving the first as it is, gives 2:7 instead of 1:7."
+     }
+    ],
+    "concept_tags": [
+     "collision",
+     "coefficient of restitution",
+     "momentum conservation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q084",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q084.f652f2e3.json",
+   "item_sha": "f652f2e3a6b46037f852d8875d8d3a3cdff82f4c7deae3b1a027f80406f43ebe",
+   "chapter": "Work Power Energy",
+   "year": 2025,
+   "question_en": "The work done in displacing a particle from y = a to y = 2a by a force −K/y² acting along y-axis is",
+   "options_en": [
+    "−5K/8a",
+    "−K/a²",
+    "−14K/8a³",
+    "−K/2a"
+   ],
+   "solution": {
+    "approach": "The work done by a position-dependent force is the definite integral of the force over the displacement.",
+    "steps": [
+     {
+      "text": "Write the work as the integral of the force from y = a to y = 2a.",
+      "equation": "W = ∫ (−K/y²) dy, taken from y = a to y = 2a"
+     },
+     {
+      "text": "Integrate.",
+      "equation": "W = K/y, evaluated from y = a to y = 2a = K/(2a) − K/a"
+     },
+     {
+      "text": "Simplify.",
+      "equation": "W = −K/(2a)"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "−K/2a"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the average of the force at the two endpoints, y = a and y = 2a, times the displacement a, instead of integrating, gives −5K/8a."
+     },
+     {
+      "option": 2,
+      "text": "Evaluating the force only at the starting point y = a and reporting it directly as the work, instead of integrating over the displacement, gives −K/a²."
+     }
+    ],
+    "concept_tags": [
+     "work done by variable force",
+     "integration",
+     "inverse-square force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q090",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q090.f8fda21d.json",
+   "item_sha": "f8fda21d409cf707a8e302b3d86de3bcf79776dd4fbec66def0dc8a8fc354cc7",
+   "chapter": "Work Power Energy",
+   "year": 2025,
+   "question_en": "A body of mass 0.5 kg is supplied with a power 'P' (in watt) which varies with time 't' (in second) as P = 3t² + 3. If the velocity of the body at time t = 0 is zero, then the velocity of the body at time t = 3s is",
+   "options_en": [
+    "36 ms⁻¹",
+    "12 ms⁻¹",
+    "18 ms⁻¹",
+    "24 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "Power is the rate of doing work, so integrating it over time gives the kinetic energy gained, from which the final speed follows.",
+    "steps": [
+     {
+      "text": "Write power as the time derivative of kinetic energy.",
+      "equation": "P = dW/dt = d(½mv²)/dt"
+     },
+     {
+      "text": "Integrate the power over the three seconds to get the total work done.",
+      "equation": "W = ∫₀³ (3t²+3) dt = [t³+3t]₀³ = 27+9 = 36 J"
+     },
+     {
+      "text": "Set this equal to the gain in kinetic energy and solve for the speed at t = 3 s.",
+      "equation": "36 = ½ × 0.5 × v²  →  v² = 144  →  v = 12 m s⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "12 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking the numerical value of the work done, 36, directly as the final speed instead of solving ½mv² = 36 for v, gives 36 m s⁻¹."
+     },
+     {
+      "option": null,
+      "text": "Using the power at t = 3 s alone, P(3) = 30 W, as if it equalled the final kinetic energy, instead of integrating power over the three seconds, gives a different, wrong speed."
+     }
+    ],
+    "concept_tags": [
+     "power and kinetic energy",
+     "work-energy theorem",
+     "integration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q092",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q092.3b9ea6d4.json",
+   "item_sha": "3b9ea6d4c7fe3250a4218727456f4bedb1b0a9b65c325a3a5b59f6a0158bc858",
+   "chapter": "Work Power Energy",
+   "year": 2025,
+   "question_en": "If the kinetic energy of a body moving with a velocity of (2î + 3ĵ − 4k̂) ms⁻¹ is 87 J, then the mass of the body is",
+   "options_en": [
+    "3 kg",
+    "12 kg",
+    "6 kg",
+    "9 kg"
+   ],
+   "solution": {
+    "approach": "Kinetic energy depends on the square of the speed, found by squaring and adding the components of the velocity vector.",
+    "steps": [
+     {
+      "text": "Find the square of the speed from the vector components.",
+      "equation": "v² = 2² + 3² + (−4)² = 4 + 9 + 16 = 29 m² s⁻²"
+     },
+     {
+      "text": "Apply the kinetic energy formula and solve for the mass.",
+      "equation": "87 = ½ × m × 29  →  m = 87/14.5 = 6 kg"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "6 kg"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Leaving out the one-half in the kinetic energy formula, dividing 87 directly by v² = 29, gives a mass of 3 kg."
+     },
+     {
+      "option": 2,
+      "text": "Using ¼mv² instead of ½mv² for the kinetic energy formula gives 87/(0.25×29), a mass of 12 kg."
+     },
+     {
+      "option": null,
+      "text": "Adding the velocity components before squaring, (2+3−4)² = 1, instead of squaring each component first, gives a badly wrong speed."
+     }
+    ],
+    "concept_tags": [
+     "kinetic energy",
+     "vector magnitude"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

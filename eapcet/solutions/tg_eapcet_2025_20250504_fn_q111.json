@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q111",
+ "approach": "Average translational kinetic energy per molecule depends only on absolute temperature, not on molecular mass, so it is the same for every gas at the same temperature.",
+ "steps": [
+  {"text": "Write the formula for average translational kinetic energy per molecule.",
+   "equation": "average KE = (3/2)kT"},
+  {"text": "Note that this expression contains only the temperature, not the mass or identity of the molecule.",
+   "why_this_step": "The mass of the molecule appears in its speed, but cancels out of the kinetic energy expression once written in terms of temperature."},
+  {"text": "Since hydrogen and oxygen are at the same temperature, their average translational kinetic energies are equal.",
+   "equation": "KE(H₂) : KE(O₂) = 1 : 1"}
+ ],
+ "final_answer": {"option": 3, "value": "1 : 1"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming a heavier molecule carries more kinetic energy at the same temperature and computing the ratio from the molar masses of hydrogen and oxygen instead of recognising they are equal."}
+ ],
+ "concept_tags": ["average translational kinetic energy", "kinetic theory of gases", "temperature dependence"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:42:00+05:30"}
+}

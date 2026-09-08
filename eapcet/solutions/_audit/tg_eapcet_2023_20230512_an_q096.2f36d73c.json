@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q096",
+ "item_sha": "2f36d73c2062e53a61ba033ec23e5f2fbfecccf6399b52b73da6e2fd0cb61b7e",
+ "auditor_option": 2,
+ "auditor_value": "−1",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: at constant temperature for a fixed mass, PV = C. Taking natural logarithms, ln P + ln V = ln C, so ln P = ln C - ln V. With ln V on the x-axis and ln P on the y-axis the coefficient of x is -1, so the slope is -1, option 2. Every printed line follows from the one above it. common_mistakes[0] points at option 1 (+1), the sign slip, and common_mistakes[1] points at option 3 (zero): at constant pressure ln P would be a constant and the line flat, which is a real confusion between the isothermal and isobaric conditions, so it is a genuine error on this question and not a generic warning.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:24:00+05:30"}
+}

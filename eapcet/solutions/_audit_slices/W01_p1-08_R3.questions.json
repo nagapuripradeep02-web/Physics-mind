@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q098",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "A ring has a mass M and radius R. The distance of the point on its geometric axis from its centre at which the gravitational field is strongest is",
+   "options_en": [
+    "R/2",
+    "R/4",
+    "R/√3",
+    "R/√2"
+   ]
+  }
+ ]
+}

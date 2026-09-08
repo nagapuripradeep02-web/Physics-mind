@@ -27,10 +27,19 @@ looks. That is the whole design.
 
 1. Read the question and the four options. Solve it with your own working.
 2. **Compute every number with python** (plain arithmetic or sympy). Quote the number you
-   computed, to the precision the options need. Never do the arithmetic in your head.
+   computed, to the precision the options need. Never do the arithmetic in your head. A pure
+   recall question (the range of the weak force) has no number to compute; say so in one line
+   of your reply and move on. Name every scratch file with your agent label
+   (`W02-A-p1-04_q091.py`): the scratchpad is shared with the other agents of your wave, and
+   a generic name gets overwritten mid-run.
 3. Pick the option whose text equals your result. Then write the file.
 4. If your result equals **no** option, do not pick the nearest one. Write a refusal file
-   naming the value you reached. A forced match is worse than a refusal: it puts a wrong
+   naming the value you reached. One exception, for numerical questions whose data is
+   rounded by the exam itself (g = 9, π = 3, a density to one figure): when your computed
+   value ROUNDS to one printed option and the next-nearest option is at least twice as far
+   away, that option is the answer — state the computed value and the rounding in the last
+   step ("v = 0.53 mm/s, which rounds to 0.5 mm/s") and put the option's printed text in
+   `final_answer.value`. A value that sits between two options is still a refusal. A forced match is worse than a refusal: it puts a wrong
    solution in front of a student with a confident face on it.
 5. If **two** options are both consistent with your result (a unit ambiguity, a sign
    convention the question leaves open), write a refusal that names both.
@@ -108,7 +117,13 @@ Field by field — every one is used by the product or by the gate, and **no oth
 - `steps` — 2 to 8 objects, in order. `text` (at most 60 words) says what this step does;
   `equation` (optional) shows it in real Unicode — ½ ² ³ ⁻¹ × − √ π θ Δ μ °; `why_this_step`
   (optional) is the one line a student sees on tapping "why?". Never ASCII maths ("^2", "sqrt",
-  "->", "deg", "x10^-5").
+  "->", "deg", "x10^-5"). Derivative slashes (`ds/dt`, `dv/dx`) and fraction slashes (`47/30`)
+  are fine — they are the textbook's own notation. A variable or fractional exponent has no
+  single glyph: write `R^(3/2)` only inside `final_answer.value` when the option prints it
+  that way; in a step, say it in words or with a named helper (`let m = t/2T, then 2²ᵐ`).
+  **The last step states the final answer in full**, every number of a compound answer
+  included ("4 beats produced and 2 heard per second"); the gate reads the last two steps for
+  the final value and rejects a solution that reaches it earlier and drifts.
 - `final_answer.option` — 1 to 4. `final_answer.value` — the option's text as you computed
   it, for example `"24 J"` or `"4n/(1+n)²"`. The gate compares it against the option's printed
   text, so write the same units and the same form.
@@ -117,7 +132,16 @@ Field by field — every one is used by the product or by the gate, and **no oth
   mistake leads a student to, or `null` when it does not land on a printed option. A mistake
   must be an error a student actually makes on THIS question, not a generic warning, and
   **never a valid alternative method** — condemning correct work was the single commonest
-  defect in the Answer Book audits.
+  defect in the Answer Book audits. **Compute every mistake route in python before writing
+  it**: when the entry names an `option`, the wrong working in its text must land exactly on
+  that option's printed value, and the text must describe the error that produces it. The
+  wave-1 audits rejected more solutions for a mistake entry that does not reach its option
+  than for any other reason. A route you cannot reproduce is left out, not guessed; an entry
+  with `option: null` is honest and welcome when the slip lands on no printed option — but a
+  slip that lands on a printed option up to SIGN (your route gives −2av², an option prints
+  2av²) has found the distractor the examiner built for it, so name that option. For
+  options made of statements ("a and c are true"), the entry must account for every
+  statement the wrong option asserts, not one of them.
 - `concept_tags` — 1 to 4 short strings naming the physics used.
 - `difficulty` — `"easy"`, `"medium"` or `"hard"` for a student who has learnt the chapter.
 - `mistake_type_hint` — where most students go wrong on it: `"concept"` (they do not know the
@@ -144,7 +168,9 @@ heat" are fine. What is not fine:
 - idioms and metaphors: no "the trick is", "the key is", "nail it", "a breeze", "in the bag";
 - personification: a force does not "want" anything, a formula does not "know", energy does
   not "decide"; write what happens;
-- filler that sneers: no "simply", "obviously", "of course", "just";
+- filler that sneers: no "simply", "obviously", "of course", "just" (the exam's own phrase
+  "just completes the vertical circle" is a technical condition and may be quoted; the ban is
+  on conversational filler);
 - markdown: no `**bold**`, no `# headings`, no `- bullets`, no backticks. The page prints your
   words exactly as typed.
 

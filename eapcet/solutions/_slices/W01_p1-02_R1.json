@@ -1,0 +1,33 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "0.8 s",
+    "1.6 s",
+    "1.0 s",
+    "0.2 s"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q082",
+ "item_sha": "ba20c4a2d8b04e04db0ee900fdbed749d2348c123f1437129e4f60f5940b708b",
+ "auditor_option": 3,
+ "auditor_value": "Not a central force",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: gravitation is conservative (option 1 true), always attractive (option 2 true), and acts without contact (option 4 true). It acts along the line joining the two bodies and depends only on their separation, which is the definition of a central force, so 'Not a central force' is the incorrect statement, option 3. The three steps are correct and the third states the definition accurately. The steps carry no equation field, which is appropriate for a statement-identification question. The common_mistakes entry names a real confusion between 'central' and 'contact'.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

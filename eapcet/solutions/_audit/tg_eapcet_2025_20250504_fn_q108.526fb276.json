@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q108",
+ "item_sha": "526fb276845e89778123cfe033626ce6c0f2c9fe3d0bd788164e7adf9bcdf418",
+ "auditor_option": 3,
+ "auditor_value": "75 %",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: for a diatomic gas γ = 7/5, so γ − 1 = 2/5. Along the adiabatic expansion TV^(γ−1) is constant, so Tc/Th = (V1/V2)^(γ−1) = (1/32)^(2/5) = (2⁻⁵)^(2/5) = 2⁻² = 1/4, and η = 1 − 1/4 = 75%, option 3. Every printed line is correct, including the direction of the volume ratio (the gas expands, so the temperature falls) and the exponent arithmetic. Both common_mistakes verified: (1/32)^(1/5) = 1/2 gives 50%, which is option 2, and reporting Tc/Th = 1/4 itself gives 25%, which is option 4. Checked and not filed: difficulty is marked hard for what is a two-line standard Carnot question, but that is a judgement call rather than a clear error."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:34:00+05:30"}
+}

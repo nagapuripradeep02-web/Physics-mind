@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q102",
+ "approach": "The speed of sound in the gas from the standing wave equals the speed from the adiabatic gas formula, since the node separation gives the wavelength.",
+ "steps": [
+  {"text": "Write the speed of sound in a gas of adiabatic constant γ.",
+   "equation": "v = √(γRT/M)"},
+  {"text": "Relate the node separation to the wavelength. Successive nodes of a standing wave are half a wavelength apart.",
+   "equation": "L = λ/2, so λ = 2L"},
+  {"text": "Write the wave speed from the frequency and this wavelength.",
+   "equation": "v = fλ = 2fL"},
+  {"text": "Equate the two expressions for v and square both sides.",
+   "equation": "(2fL)² = γRT/M"},
+  {"text": "Solve for γ.",
+   "equation": "γ = 4Mf²L²/RT"}
+ ],
+ "final_answer": {"option": 3, "value": "4Mf²L²/RT"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Taking the node separation L itself as the full wavelength (forgetting nodes are half a wavelength apart), giving v = fL and γ = Mf²L²/RT."},
+  {"option": 2, "text": "Inverting the node-separation relation as L = 2λ instead of λ = 2L, giving λ = L/2, v = fL/2, and γ = Mf²L²/4RT."}
+ ],
+ "concept_tags": ["speed of sound in a gas", "standing waves", "adiabatic constant"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-01-R2", "at": "2026-09-08T12:00:00+05:30"}
+}

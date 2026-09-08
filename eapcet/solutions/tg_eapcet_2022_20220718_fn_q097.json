@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q097",
+ "approach": "Newton's law of cooling gives an exponential decay toward the surrounding temperature, so the logarithm of the temperature excess ratio is proportional to time.",
+ "steps": [
+  {"text": "Write the exponential cooling law with the temperature excess decaying from the surrounding temperature.",
+   "equation": "θ(t) − θ₀ = (θᵢ − θ₀) e⁻ᵏᵗ"},
+  {"text": "Use the first cooling case to find the rate constant k.",
+   "equation": "40 − 10 = (100 − 10) e⁻¹⁰ᵏ, so e⁻¹⁰ᵏ = 1/3 and 10k = ln 3 = 1.1"},
+  {"text": "Use the second cooling case with the same k to find the unknown time.",
+   "equation": "20 − 10 = (70 − 10) e⁻ᵏᵗ, so e⁻ᵏᵗ = 1/6 and kt = ln 6 = 1.8",
+   "why_this_step": "The rate constant k depends only on the object and its surroundings, not on the starting temperature, so it carries over from the first case."},
+  {"text": "Solve for t using the value of k found in the first case.",
+   "equation": "k = 1.1/10 = 0.11, t = 1.8/0.11 = 16.3 min"}
+ ],
+ "final_answer": {"option": 4, "value": "16.3 min"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the object cools at a constant rate of 6°C per minute and scaling the 50°C drop proportionally gives about 8.3 min, ignoring that cooling slows near the surrounding temperature."}
+ ],
+ "concept_tags": ["Newton's law of cooling", "exponential decay"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R1", "at": "2026-09-08T20:17:00+05:30"}
+}

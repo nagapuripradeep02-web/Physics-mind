@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210805_fn_q101",
+ "approach": "The average molecular speed is proportional to the square root of absolute temperature, so a fourfold speed increase means the temperature rises sixteenfold.",
+ "steps": [
+  {"text": "Write the relation between average speed and absolute temperature.",
+   "equation": "v ∝ √T"},
+  {"text": "If the speed becomes 4 times its original value, the temperature becomes 4² = 16 times its original value.",
+   "equation": "T(final) = 300 × 4² = 300 × 16 = 4800 K"},
+  {"text": "Convert the final temperature to Celsius.",
+   "equation": "4800 − 273 = 4527 °C"}
+ ],
+ "final_answer": {"option": 2, "value": "4527 °C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Converting kelvin to Celsius by subtracting 300, the original temperature, instead of 273, which gives 4500 °C instead of 4527 °C."},
+  {"option": null, "text": "Multiplying the temperature by 4 instead of 16, forgetting that speed varies with the square root of temperature, which gives 927 °C instead of 4527 °C."}
+ ],
+ "concept_tags": ["average molecular speed", "temperature dependence of speed", "kelvin to Celsius conversion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:30:00+05:30"}
+}

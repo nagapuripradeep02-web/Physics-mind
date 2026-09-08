@@ -1,0 +1,57 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q081",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "The range of the nuclear force is",
+   "options_en": [
+    "10⁻¹⁸ m",
+    "10⁻¹⁶ m",
+    "10⁻¹⁵ m",
+    "10⁻¹³ m"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q116",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "In the following nuclear reaction X is: ₁₃Al²⁷ + ₂He⁴ → ₀n¹ + X",
+   "options_en": [
+    "₁₅P³¹",
+    "₁₄Si³⁰",
+    "₁₅P³⁰",
+    "₁₅Si³¹"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q081",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q098",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a nucleus P converts into a nucleus Q by the decay of one alpha particle and two β⁻ particles, then the nuclei P and Q are",
+   "options_en": [
+    "Isobars",
+    "Isomers",
+    "Isotones",
+    "Isotopes"
+   ]
+  }
+ ]
+}

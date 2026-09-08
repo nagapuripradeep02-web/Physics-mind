@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q084",
+ "approach": "Use conservation of energy between the launch point and the ground, since gravity does no work on the horizontal motion, to relate the speeds to the height.",
+ "steps": [
+  {"text": "Write the final speed in terms of the initial speed.",
+   "equation": "v_f = 1.25 × 40 = 50 m/s"},
+  {"text": "Apply energy conservation between the launch point, at height h above the ground, and the ground.",
+   "equation": "v_f² = v_i² + 2gh"},
+  {"text": "Substitute the known values and solve for h.",
+   "equation": "50² = 40² + 2(10)h → 2500 − 1600 = 20h → h = 45 m"}
+ ],
+ "final_answer": {"option": 4, "value": "45 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only the vertical component of the initial velocity, 40sin30° = 20 m/s, instead of the full launch speed 40 m/s gives h = 105 m, not among the printed choices."}
+ ],
+ "concept_tags": ["projectile motion", "conservation of energy"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T15:05:00+05:30"}
+}

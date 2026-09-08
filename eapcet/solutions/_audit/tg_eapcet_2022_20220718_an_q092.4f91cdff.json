@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q092",
+ "item_sha": "4f91cdffd7cc38a94542356100f24b8f8354eaa0c0dc69558b764d90b56b0b5c",
+ "auditor_option": 2,
+ "auditor_value": "914.28 km",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently with energy conservation in the true inverse-square field: v²/2 = gRh/(R+h), so 8×10⁶ = (6.4×10⁷)h/(6.4×10⁶+h), giving h = 914285.71 m = 914.29 km, which is the listed 914.28 km (option 2). Verified with sympy. GM = gR² = 4.096×10¹⁴ m³s⁻² is correct, and the substituted line reproduces it. Both common_mistakes entries were checked numerically: v²/2g = 800 km, and leaving the speed as 4 m/s gives h = 0.8 m, far below every option. Note on the question itself: it asks how far the rocket goes, and the options are heights above the surface, not distances from the centre; the solution reads it that way and is right to.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

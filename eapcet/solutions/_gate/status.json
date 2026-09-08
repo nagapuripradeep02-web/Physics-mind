@@ -1,0 +1,2540 @@
+{
+ "tg_eapcet_2021_20210804_an_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "794d413736871672a3a0e9e43c8e3b79f02ade8368132d4445f7b2761d3cb8d2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "66d2b568423adf85615e0c15c835f28ecfc00afb58079429bac481860ac45de3",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a38d041cabdb200e39955d00709db123472eb6aae45d2b601fd92377a3a04534",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q086": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e42a47114abb80b1486ab9ffcbb2de30e3dcc9ea798498de6ed9026ffe7c7766",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q089": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "1c4d250f1b07ca301224390e0a1624efcf28d369f3cda19697513d1160caaf31",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "7d681199acb4a2b35afe284aae89cfe84dff1361eb81572f35b1ef456df793e8",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "9cdd9ba7540dfc81ae1550d5010d7a4a9c5fb2c7a140b8de1e94534c692d38a1",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Vₜ = 0.5 mm/s' not found in the last two steps"
+  ],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d9b98a414014d36d40896cb3d54d161b01e2958699b193c4460fec351d662772",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "9705ea50261c080119b9ed40ba6ca715856bd64ffd29cbb885ac737262635cb2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q102": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8a7dee98fb2a1209fd89d93f80692b389b6e761f7a09658a10b4bec2882d7a06",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q103": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a6f451ba64d3ac9e10fd2a9a2d96e8f0b7a12e2b136d3b4022879fef77427a59",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q116": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "cd394fdcf885f3c13cdf6c420cd192bb2e0732f575c139c8301b5310e3d0d53b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_an_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6a965b01cd537981387ed71b32f22b463d4903a8a267aecab9cb4ce96d8a82d0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "b65e2d3ef5fe16586966cd6015be52cdabbfb5617c04705a81f4c08dc2ae1351",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "766b9053fa977049b6b083243adc6e790ba378c2521dd9fc942e6c3b3677c757",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q089": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8c3069c596835933f40dc015d9038dabceba641dba885a6a80e012e5cc09581f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "4b2f6fc47493064e3cafa610a3289df61f073b3bf94b518d6444c084e7c08e3a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "f38ba94a2216f22e490071ac44c277fa94c779bde11314584ccd1398fa24b00a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3fbc19e5613111850d61bea39216ea763ee027ce37ffac6fe43e7fec9b1ef1c9",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0949a2b609e8f859f8065f2c1cfb40c8315c0f877f8924e9d0d765ce63cd412b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q102": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "83f4328c57b162bc9a8d7914aa81eb7fdf456875abd10c7abff330f451076933",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'a & c are true' not found in the last two steps"
+  ],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q103": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3312b010ec1f85a8ae028dbb72105995d6ad5821fd823c5d4a05bba3d620e530",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210804_fn_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "7f3525c2e953c4be3cf1bc21cf94c8ce66e14330a030fe25f3eb1674cdb09844",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Slow down the fast neutrons' not found in the last two steps"
+  ],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_an_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d219eb64070ddb03427c7e23ecbfa7bc03d99de817062ac086788d683a976736",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_an_q090": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e143952ac808289762ea8868c9ad6ea87c7b88c0345070bfbfa0f5486cb58bf3",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'v_Q/v_P = 4' not found in the last two steps"
+  ],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_an_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "7b0654fd1224423b893789160592b88fbdc0be74f56f20e3883f83a38af0637b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_an_q102": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "cbb3e1da6518710c5c9ed3e218ba57eda651778517a4dfe6ea882f57b904b3a2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_fn_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6aa6eff6e01ea3fdff7fed145bf54e36fb21826146c8ceecf3568b898e938daa",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'R^(3/2)' not found in the last two steps"
+  ],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210805_fn_q101": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "83d9d74c113013dd8bc3e7eb2f33a89f2e751dbdc5b0cee45169d3265bcca9eb",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2021_20210806_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d62284970256b13d68e6d3681de8d42a002c870541bf2c3f18a93005442ffd14",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'A-II, B-II, C-I, D-III' not found in the last two steps"
+  ],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q081": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a969806e7ed8dfd621428c832cccc3a4f1d2d2d2349d845db9c51d2508c3e0ee",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a5bb1392f9187452c5bd79b2e4c379db1395e6a9bda47e1051f7331edaf5241d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c422533dd46b26edaa4ca183f10769aed90c293056efd9ba78ee16a4939bef21",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q086": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "9ef7952ab29bccab0fdac1f103fb5c3353825ec09bb8fef7daf2e9f959263a2c",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q089": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d9e8d2d7249e5e8eeee2f8e801a98c938fba75c06f9596bc90f71263955c80d2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q092": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "4f91cdffd7cc38a94542356100f24b8f8354eaa0c0dc69558b764d90b56b0b5c",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0cd35a32881ded6aa9b59f5aeb143330f7317fa66ad04e90ae3a2792075b2b71",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q095": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "49bc2af0cf0c264ecf9884e8f572862cf39934f8ce7a666edbb183c951d40427",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "9d788102a5f82fc4a2a6804978959a05f903e5738ecf3b905b66e0d6d52654a1",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q099": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "1e2d9d8ac86520cd391cf1a941efe4fa01861c2509d7ecc99067f598b324fd4d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e93422da3ce9117ba571f453ea31210d7c263dea0680f32104a1a172cd30e4aa",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Statements II, III are true, but statement I is false' not found in the last two steps"
+  ],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q101": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5c02671bed0e32a159578886f3528d7688e6a7cc8758232f0ebf618864b5b9fa",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_an_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e2da98f98c635ecc33a6dc47fe4681b901cbd131ce0ca083360eb15a6c89bd23",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c1aa3bc34beb28b22f746ede3de5eebd8794756c62ea741ae1d9c6f8dc3a27c0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "44c29c4db0f0825702f97978f667b683b84e49f8054bb9679b8d4f23b1c4acea",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "166aea7258695f62bdea9050326ee4dedbe391bf51e9e5bb2bc3940056fa612f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q088": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "bb094b8f18a35ff71cc70652cb3e8b3c8dee877845dc291e4ea01f42965bf354",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q092": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "2dfb630edd8656e407df860f68e9f62f9422a3c03646f3b52f6913cce306ca5a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0d10d5008033d99538aa7fb31da6b13ce8f238f4ecb294347ece808f134154a2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "411adec5108a57ec23af88de03b7764c9b14eb12cdaa5c2b177f66c81c3796d4",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6f48ed9616b0406a5dfdada82b2a63be2dbe3f235fcdacbc13cababd049e637d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5fd3d7ddd016cd606ba1c02756035e6b0118b1523a1568870d72c4055f0543b7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q099": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a593e193339f74d97dfea27a04f526699a629f9025af8cf12f7f2f545b37d890",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6a31715fd1c03403b7ad5a0ce83f45f9624824cfda2dac977cc814439a225cab",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220718_fn_q101": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0cdcd4743ea689bfe61e050b1ff95478c377f9087819afce2253da2ea2249a6e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220719_an_q081": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "23be8f1b3667bceb66762c11c2953d3776b63e57b8695e0cb45e2840a48b7c6d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220719_an_q088": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "700d3f91d4f236317d37e59a9f9cccc3df82e037a909dd740c71d6e15a32fdf1",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220719_an_q092": {
+  "verdict": "reject",
+  "answer_matches_key": false,
+  "content_sha": "ec84875e636982a0a11274bb2767a170200e66dfbf6dab3328996af73345f04f",
+  "checks": {
+   "schema": true,
+   "key": false
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00",
+  "reason": "key_miss",
+  "detail": "author 2, key 3"
+ },
+ "tg_eapcet_2022_20220719_an_q099": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3c0ec3841ac60533b7057a02ad9e4641a06f42cfb01085a5557c70d26e22a4b9",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2022_20220719_fn_q101": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "fe27e3304d29c4d115d1c306996f06a2d0dc4f4a2aa59eeec4b840bf65b0ed48",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a182bf7ef28fb726a82ed155b868377c246c3c8ae622663dc2260461932255e6",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0b930724247f15916062a763a4037f48bc76f871788486db2ab2f87e627281c8",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0a54dea4f60001346b828c0ad04030ee2554e376d402474a50f50ca1de3b0267",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q093": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0ad7123298b412ec3f03e7d7a8e30b7090ffa06e6e5e0309e79660788e78381f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "fc6bc5fafed6c99a4e66815fc0de76dcaa539f90c2479364c2422dad2868650e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Equal in all vessels' not found in the last two steps"
+  ],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q095": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5bf9a10da218156393dfd75b3a0df4cc535b7dce5c0a4fe5dcbf3787f29fcc24",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "2f36d73c2062e53a61ba033ec23e5f2fbfecccf6399b52b73da6e2fd0cb61b7e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "7d051b658e145df42462cb70d37f9038d521634421e309880843d59755295e39",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "2506cac75884981fb8be221a4bbb6c61a7f5bf411c09c7e609fc8965d9e645e7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c6aa0e3c45e1d202c0c6e386593913cd08a29d1d2a167b9d08754035cf1898a1",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q116": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "cfe36a7caf99e7a1d7e422b1ff59edcaf74fefb8dd8f988ce786df33d7073425",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_an_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "353b21e2f71f047cb4bd69b67ecb785689e9a94ff531ac8cb168559ab0f7d69e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Einstein mass-energy equation' not found in the last two steps"
+  ],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "362ae0127b057b0adb7932f3d915dc366a2c8b3f4db49b2d1d0d37f5d315376d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "562c9b64b8055cb0184fadd99d4e083e5886ce2fce82c6a3c8977346e1d66d0b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value '(500/3) m' not found in the last two steps"
+  ],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q085": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8ef949f7f0fce1e3c6e02c529768f551a7a57ea1b43b19ce6bb69a5d38a3728e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "9baae6fa69dcd78b64def361d204a35c5c4dfae2ed85079925a3927b9a29aef7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q092": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "cb653fcfb19b87058253ab5536e2247840109c2bf14fd4c3f61e296369a628fc",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d5af7d9a20d882ad46937ef0f4e53f2650b7655fac06b1b822f768d6bc08c4b0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a1c5c619a02870ea1f3b8e9f635ae44750dff92f20dcf54efffd60566ac4a17d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "62f0ee7c038302c8861e63b613ab0397ceed7909d82b207a79d7c80625d670b2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d21df07f97b56924af107609e8bd381acb8beee98052b87cd7da4fca6bfb0c5f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_an_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "580d9ff7e26817c65434977e19d9bc54f41ec3dc802940304930762a32feb35d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_an_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "f73a1471391fc7def6dfb2a078e03577a4da0a955cf1857f244f0fe55a96eb11",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_an_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "36bc60ff6cb61772d1238286129d64ef914eb301b5ad150ee9d0b15d0d017c7a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_an_q095": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c6ce9c7768109ee532ae6fc56b1722b3b34292564ee68c7456dce151da063ed5",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_an_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "ef828cb4e191ad4a6b5df642650e4cd9f5759d33466c1897c1aae11260229b85",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_fn_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "16f3cfbbcb46d3d0bd076225113c426384519fa000bef7080c59f8065953f9f7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'h[(1+e²)/(1−e²)]' not found in the last two steps"
+  ],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230513_fn_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "70cb0aa41e3c6eab6b54ebb8888a527e220f169f0477aaf780a3afa1dc6b5fdb",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230514_an_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e222ed8cfccf319913eb3fdae55f50d87e5bd0011aedb4c5bbe985f5dbde35e0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2023_20230514_an_q113": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "f0b8d22397c37064d3924f7726b864640932c9e1f2198b1a200ebe4a59e1ed34",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8aeccebc343daea8291a6bcc88754f83e02bbb3c4983c055cc9c044a9cd7e9d9",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d32d6ed7df87ac57fb0c97d0ce55ae64e8592966a0818377c8223146b38ecb82",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "4f5d69668cc117b6bbe5d57bf7389a4ddfeafe36da1acd07f3c74f920921ac83",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q093": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "fca7c8a73034d9a4caa18b11e1ef10b7f9d9112656212c4ee4520628169d5427",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d5494ab51f830c7cad6a5fac01ee2a4ae4847afba8e7b1451e9f4da6a7c3112e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q095": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "69ddfaab6dc9209b0c591bd8be96f3547f6fb2e5676806a71c66daef1bf6d569",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "800ca0d7c7f5cf355634a98dbe93ccf005f96ce9009b0abe6229de850840f09b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d27c11b377abf91f31f4e0e61ee8c16f0e8eba4762eec546ba4fcfe484c4042c",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5c7daa8eb89b02cf4af0f21494a6c26489efb29fbcfe8264c15664cc6949000a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q099": {
+  "verdict": "reject",
+  "answer_matches_key": false,
+  "content_sha": "871b949e5b4925b18235f2d65211603d3deef99a26d405880c878f270fa16cb9",
+  "checks": {
+   "schema": true,
+   "key": false
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00",
+  "reason": "key_miss",
+  "detail": "author 1, key 2"
+ },
+ "tg_eapcet_2024_20240509_an_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5fee70c86894dfa614e6b34eacd8e528a6de323a9e13dc760b12ce18ae774450",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q116": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "07e40869c3b2f766b70c2be94522793309fdc9c72f8997a1b5c233d19afc5576",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_an_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "ff790225561dd022b4575342def59b9d4688051d0d5172ea612bdb1d15841325",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "80f65d924c975602744b7a056c9c93994c79e301f36ef259acb81fad098a5a6c",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "16fa408113bb81c8217030b3cae12eeaa24b7e8fa007490a6d397759c98ae82d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "7ac8644b1d22d26dd06120d2bbbfa1d089933aab7be6e1aebde84cdc21049b94",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "1c214f29a9c3047f7f3ebd77e0a22d09716a1b74570ec77d41c9c5430d59316d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8b82e8cf261575d9884d6f5cf4edfe63196e4ade76eef41891985c9113c71135",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "ea2cc5559921edb616d11e6c2f9a094561d4ee23cbfaee8d08fa9a5154be90d4",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q099": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "637a3d093c8f0cc10c8321fc590ecb345da24851b5e6d4ac7f2a8b38f2db0ee7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'Zero' not found in the last two steps"
+  ],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240509_fn_q116": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a343d0ea52a78e7ae7297c588a09fb4b169d4d518b486af3719d5736d0fd81e1",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q083": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "92ed5ff8c423be6a87a4984b04cec68f6f52e615f61ada28eafc55ff06732f39",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "17194bac6ee077d647a979b61167b4784aadd836b7f0dd991a0d790baa73d4d0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q086": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "54d98d2d1e85afaafe09dee92a5e3b1e4df27003b269b86905a2c74f54db3614",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3178a6a1554349c402e88003f6aa0200e9063d7713ace2fd9a7dfb07a99cdd11",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "14763014e05a47d9e3a0fb3aeeda89a5d103cfacb68f07775ebb4a7d338a9763",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q094": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6bf4b8b6920a9220fba6fd3beef939a1c889ff53a43d888897efbc941673b173",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value 'maximum in vessel containing liquid A' not found in the last two steps"
+  ],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "a0d3f4122444cf13c46bf8551fec623ee47929d2b2b5ca1b96b03268fcc7c90a",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_an_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e38c4dcfb569d9a66947db7960df656ff301a9a55d9a9c0de6e265f0478f51c8",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2024_20240510_fn_q095": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0d993cabaaeecd7e59d3a631dbb35fd7b8b618d5a8dd8ee41dda18590fd9202f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_an_q081": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5935e7872f2db4decce9cbac9c96b8d0b7013603e3d9b45865c20e8b83fcd7dc",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_an_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3849a877d3b5526ba1fd1f863b05c92fb1bb9d1ad29e8d9d78c7c2ed07e203e6",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q081": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "fd8e61333bcb064cf5f652504f189bfe0fe084e2a1d1625eaee7bed2629f3f26",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q084": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "f652f2e3a6b46037f852d8875d8d3a3cdff82f4c7deae3b1a027f80406f43ebe",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [
+   "ending_unverified: symbolic value '−K/2a' not found in the last two steps"
+  ],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q091": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "d0a2e88814d396bd3ff664e588f6f898cf843c86bd212ec8596591f286692293",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q097": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "4e5db754b56007e3a7bd0bc78b7f4ea67bdff25dfddef71c3604b77aa9d969b0",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q098": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "b120e8daa7d2ea5ffc09f090ffba09991cf0cd717cafc9a635be4311c8fa0486",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q100": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "e7a6e5d5fa1ba9fb11aced8041c4f73eb24496acb0d6ee6fd08b65ac82ce2924",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q102": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "cf0096bcd811c6f71925e701bd677c6ce2526a8c75b8de341de34fee25a3741d",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-14",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q106": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "5f5ed0d8a30807daf80ff5b345a1d656b3815d4b2e6fd637ae0aba82b5a63e9e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q108": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "fa00ba7f8dc299bb42f7e5edf11575a94defe17c10786dacd86702533b3d1e14",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q110": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c145e157ada6300b3a5f7157a55e730a2a96fc7526d363ef41257bd02b1d8ae7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q112": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "8501d5fa4689ba07a9c1366ac920c603e235027462b3761db519c8d61bb10c45",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q114": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "efefc69eee717cdcb7329d18b695be58dd67272157babc0b31b7210dda0a3a1c",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q116": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "b2840239a28fa69406db4b618cb51e7435b9d52d2708bd027c9e0dc65c66f67e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q117": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "c1aa77a277949551e4c50eea02ad69d626501fe2f6ed9cbe362f9bc1e0182c75",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250503_fn_q119": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "08720ba8f8afbaa34d7acc5245bb8840398d344ba71ef9421e0afff2806e0d7e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q081": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "6e0f880fa233d7b568c4a4769783df950440d2365791b9b36ae738ce7a83c103",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-02",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q082": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "ba20c4a2d8b04e04db0ee900fdbed749d2348c123f1437129e4f60f5940b708b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q089": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "acce3557252a6ea33d2b115d4ab0228682bed5d0baf01f096afb57c4c140426b",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p2-01",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q090": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "f8fda21d409cf707a8e302b3d86de3bcf79776dd4fbec66def0dc8a8fc354cc7",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q092": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "3b9ea6d4c7fe3250a4218727456f4bedb1b0a9b65c325a3a5b59f6a0158bc858",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q099": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "13835a81b178a2ebbb81f0ba08372adf0a1aa6df524ac043b984d4890874f563",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q103": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "172e6c837d737c7f53d49a0d69bf5c606232a689d14c2e53e5f69c753c6e73b2",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-10",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q108": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "526fb276845e89778123cfe033626ce6c0f2c9fe3d0bd788164e7adf9bcdf418",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-12",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q111": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "af551e9993010a204ada72561e4bebf2658886542ce7f644e679e8715f75489f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-13",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q113": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "ae58eda2c87179fd26bec913414c7a81f4afa44e26811ef6dfc0d43b83b86fbe",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-08",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ },
+ "tg_eapcet_2025_20250504_fn_q115": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "0ff4b124b4487f35249e2c1d4974061259de034efd0850e07121c103e224788f",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-03",
+  "gate_run": "2026-09-08T03:09:55+02:00"
+ }
+}

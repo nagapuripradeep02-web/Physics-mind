@@ -1,0 +1,25 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2024_20240509_fn_q087",
+  "approach": "Momentum conservation and the restitution equation together fix both spheres' final velocities, whose ratio is the answer.",
+  "steps": [
+    {"text": "Write momentum conservation for the two spheres.",
+     "equation": "m·v = m·v_A + 2m·v_B  →  v = v_A + 2v_B"},
+    {"text": "Write the restitution equation using e = 0.4.",
+     "equation": "e = (v_B − v_A)/v  →  v_B − v_A = 0.4v"},
+    {"text": "Solve the two equations together.",
+     "equation": "v_A = v/15,  v_B = 7v/15"},
+    {"text": "Form the ratio asked for.",
+     "equation": "v_A : v_B = (v/15) : (7v/15) = 1 : 7"}
+  ],
+  "final_answer": {"option": 3, "value": "1:7"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Writing the restitution equation with the velocities swapped, v_A′ − v_B′ = e·v instead of v_B′ − v_A′ = e·v, gives v_A:v_B = 3:1."},
+    {"option": null, "text": "Assuming the collision is perfectly elastic (e = 1) instead of using the given e = 0.4 gives a ratio of 1:2, which is not among the printed options."}
+  ],
+  "concept_tags": ["collision", "coefficient of restitution", "momentum conservation"],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:24:00+05:30"}
+}

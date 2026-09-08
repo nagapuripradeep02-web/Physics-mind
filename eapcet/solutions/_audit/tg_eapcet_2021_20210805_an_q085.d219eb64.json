@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_an_q085",
+ "item_sha": "d219eb64070ddb03427c7e23ecbfa7bc03d99de817062ac086788d683a976736",
+ "auditor_option": 1,
+ "auditor_value": "4/√3",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: the speed at maximum height is the horizontal component u cosθ, so u = 2u cosθ gives cosθ = 1/2 and θ = 60°. R/H = (u²sin2θ/g)/(u²sin²θ/2g) = 4cotθ = 4/√3 = 2.309. Every printed line follows: sin2θ/(sin²θ/2) does reduce to 4cosθ/sinθ. The single mistake entry checks out numerically as well (dropping the square in H gives R/H = 4cosθ = 2, which is printed option 3). 'hard' is on the high side for a two-step standard ratio question but not clearly off enough to file.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:43:00+05:30"}
+}

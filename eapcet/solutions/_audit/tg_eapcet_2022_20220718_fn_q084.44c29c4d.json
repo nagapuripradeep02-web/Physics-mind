@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "44c29c4db0f0825702f97978f667b683b84e49f8054bb9679b8d4f23b1c4acea",
+ "auditor_option": 3,
+ "auditor_value": "4/5",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently with exact fractions: losing one third of the velocity leaves v = 2u/3; (2u/3)^2 = u^2 - 2ax gives a = 5u^2/(18x); then 0 = (2u/3)^2 - 2ax' gives x' = (4u^2/9)/(2a) = 4x/5, so x'/x = 4/5. Both the retardation a = 5u^2/(18x) and the final ratio are exactly as printed, and each step follows from the one above. Both common_mistakes entries were checked: the raw one-third gives 1/3 (option 2) and the squared-velocity ratio gives 4/9 (option 4), matching the options attached to them. Neither entry condemns a correct alternative method.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:48:00+05:30"}
+}

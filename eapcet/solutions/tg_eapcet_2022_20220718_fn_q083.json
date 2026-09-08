@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "approach": "Find the acceleration from the change in velocity over the given time, then use it to find the distance travelled from rest.",
+ "steps": [
+  {"text": "Compute the acceleration from the initial and final velocities and the time taken.",
+   "equation": "a = (v−u)/t = (10−0)/2 = 5 m/s²"},
+  {"text": "Use this acceleration to find the distance travelled from rest in the same time.",
+   "equation": "s = ½at² = ½×5×2² = 10 m"}
+ ],
+ "final_answer": {"option": 1, "value": "5 m/s² and 10 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."}
+ ],
+ "concept_tags": ["uniformly accelerated motion", "kinematics from rest"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:18:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220719_an_q099",
+ "approach": "Average kinetic energy per molecule is proportional to absolute temperature, so track the temperature through the isothermal expansion and the adiabatic compression.",
+ "steps": [
+  {"text": "During the isothermal expansion the temperature stays at the original value, so immediately before the adiabatic compression begins, the gas is at temperature T₀ and volume 8V₀.",
+   "equation": "state after expansion: T₀, 8V₀"},
+  {"text": "For an adiabatic process, temperature times volume raised to the power gamma minus one stays constant, so relate this state to the final state at volume V₀."},
+  {"text": "For this gas gamma minus one equals one-third, so the final temperature is T₀ times the cube root of 8.",
+   "equation": "γ − 1 = 1/3, ∛8 = 2, final temperature = T₀ × 2",
+   "why_this_step": "Raising both sides of the adiabatic relation to the power one over (γ−1) turns the volume ratio into a cube root here."},
+  {"text": "Average kinetic energy per molecule is proportional to absolute temperature, so the ratio of final to initial kinetic energy equals the ratio of final to initial temperature.",
+   "equation": "ratio = 2T₀/T₀ = 2.0"}
+ ],
+ "final_answer": {"option": 3, "value": "2.0"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Raising the reciprocal volume ratio, 1/8, to the power (γ−1) instead of 8 itself, which wrongly gives a decrease to half the original temperature."}
+ ],
+ "concept_tags": ["adiabatic process", "isothermal process", "average kinetic energy and temperature"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:33:00+05:30"}
+}

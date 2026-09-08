@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q094",
+ "item_sha": "7d681199acb4a2b35afe284aae89cfe84dff1361eb81572f35b1ef456df793e8",
+ "auditor_option": 3,
+ "auditor_value": "4 L",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently with side a: two adjacent masses give perpendicular forces Gm2/a2 each, resultant sqrt(2)Gm2/a2 along the diagonal; the diagonal mass at distance a*sqrt(2) adds Gm2/(2a2) along the same direction, so F = (2sqrt(2)+1)/2 * Gm2/a2. Equating to (2sqrt(2)+1)/32 * Gm2/L2 gives a2 = 16L2, a = 4L. Every printed line checked with sympy and follows from the one above; step 3 has already multiplied both sides by 2 while cancelling, which is an equivalent equation, not a false one. Both common_mistakes entries reproduce the option they name (a2 = 4L2 gives a = 2L, option 2).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

@@ -1,0 +1,93 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-11",
+ "chapter": "Thermal Properties of Matter",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q098",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "A metal ball initially at pressure of 10⁵ Pa is heated from 20°C to 127°C keeping its volume constant. The coefficient of linear expansion of metal is 10⁻⁵ °C⁻¹ and bulk modulus of metal is 2 × 10¹¹ N/m². The pressure inside the ball becomes",
+   "options_en": [
+    "2 × 10⁸ Pa",
+    "6 × 10⁸ Pa",
+    "1 × 10⁹ Pa",
+    "4 × 10⁸ Pa"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "A hole of diameter 5 cm is drilled in a metal sheet at 30 °C. The linear expansion of metal is 2×10⁻⁵ K⁻¹. The diameter of the hole when the temperature is raised to 230 °C, is equal to",
+   "options_en": [
+    "5.01 cm",
+    "5.02 cm",
+    "5.03 cm",
+    "5.04 cm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "Find the ratio of the length of a steel rod and a copper rod if the steel rod is 4 cm longer than the copper rod at any temperature.\n[The coefficient of linear expansion for steel and copper are 1.1 × 10⁻⁵/°C and 1.7 × 10⁻⁵/°C respectively]",
+   "options_en": [
+    "17/11",
+    "11/17",
+    "11/4",
+    "17/4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q097",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "An object cools from 100°C to 40°C in 10 minutes, when the surrounding temperature is 10°C. Then the time taken by the object to cool from 70°C to 20°C is\n[Take ln 2 = 0.7, ln 3 = 1.1, ln 6 = 1.8]",
+   "options_en": [
+    "30 min",
+    "8.5 min",
+    "22.4 min",
+    "16.3 min"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "When 54 g of ice at −20 °C is mixed with 25 g of steam at 100 °C, then the final mixture at thermal equilibrium contains",
+   "options_en": [
+    "20 g water at 100 °C",
+    "73 g water at 100 °C and 6 g steam at 100 °C",
+    "8 g steam at 100 °C and 12 g water at 0 °C",
+    "20 g water at 50 °C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "A solid sphere at a temperature T K is cut in to two hemispheres. The ratio of energies radiated by one hemisphere to the whole sphere per second is",
+   "options_en": [
+    "1:1",
+    "1:2",
+    "3:4",
+    "1:4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q099",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "A metal metre scale that is accurate up to 0.5 mm is made at a temperature of 25°C. The range of temperatures within which it can be used is (Coefficient of linear expansion of the metal = 10⁻⁵/°C)",
+   "options_en": [
+    "0°C to +50°C",
+    "+25°C to +75°C",
+    "−25°C to +75°C",
+    "+25°C to +50°C"
+   ]
+  }
+ ]
+}

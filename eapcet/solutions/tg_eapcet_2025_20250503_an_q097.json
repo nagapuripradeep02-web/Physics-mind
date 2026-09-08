@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_an_q097",
+ "approach": "At constant pressure the fraction of heat that raises internal energy is Cv over Cp, so equal heat gives internal energy increases in the ratio of these two fractions.",
+ "steps": [
+  {"text": "Write Cv over Cp for the monatomic gas.",
+   "equation": "(Cv/Cp)_mono = (3/2)/(5/2) = 3/5"},
+  {"text": "Write Cv over Cp for the diatomic gas.",
+   "equation": "(Cv/Cp)_dia = (5/2)/(7/2) = 5/7"},
+  {"text": "The change in internal energy equals Cv over Cp times the heat supplied, and the heat supplied is the same for both gases, so take the ratio of the two fractions.",
+   "equation": "dU_mono : dU_dia = 3/5 : 5/7 = 21 : 25"}
+ ],
+ "final_answer": {"option": 4, "value": "21:25"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming the same fraction of the heat raises the internal energy in both gases gives the wrong ratio, 1 : 1."},
+  {"option": 3, "text": "Comparing Cv of the monatomic gas directly to Cp of the diatomic gas, instead of the ratio Cv over Cp for each gas separately, gives 3 : 7."}
+ ],
+ "concept_tags": ["isobaric process", "internal energy", "monatomic and diatomic gases"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

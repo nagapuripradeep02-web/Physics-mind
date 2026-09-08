@@ -1,0 +1,22 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2022_20220718_fn_q088",
+  "approach": "The force is the negative slope of the potential energy, so setting it to zero and solving for the nonzero position gives the answer.",
+  "steps": [
+    {"text": "Differentiate U(x) with respect to x.",
+     "equation": "dU/dx = 10x − 12x²"},
+    {"text": "Write the force and set it to zero.",
+     "equation": "F = −dU/dx = 12x² − 10x = 0"},
+    {"text": "Factor and solve, keeping the nonzero root.",
+     "equation": "x(12x − 10) = 0  →  x = 0 or x = 5/6 m"}
+  ],
+  "final_answer": {"option": 2, "value": "5/6 m"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": null, "text": "Taking x = 0, the trivial root where the object has not moved at all, instead of the nonzero position asked for."}
+  ],
+  "concept_tags": ["potential energy", "conservative force", "calculus of U(x)"],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:18:00+05:30"}
+}

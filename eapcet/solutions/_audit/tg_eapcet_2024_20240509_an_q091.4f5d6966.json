@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q091",
+ "item_sha": "4f5d69668cc117b6bbe5d57bf7389a4ddfeafe36da1acd07f3c74f920921ac83",
+ "auditor_option": 1,
+ "auditor_value": "25:16",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: g(h) = gR²/(R+h)², R+h₁ = 7680 km and R+h₂ = 9600 km, so g(h₁)/g(h₂) = (9600/7680)² = 1.25² = 1.5625 = 25/16, option 1. Verified numerically. Every printed line follows from the one above, including the inversion of the (R+h) terms when the ratio is formed. Both common_mistakes entries were checked: 3200/1280 = 2.5 = 5:2 reproduces option 2, and assuming g barely changes gives 1:1, option 3.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

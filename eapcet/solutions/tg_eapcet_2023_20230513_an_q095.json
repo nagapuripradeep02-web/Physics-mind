@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230513_an_q095",
+ "approach": "The heat needed has two parts, first warming the ice to 0°C and then melting it, and the total in calories is converted to joules at the end.",
+ "steps": [
+  {"text": "Find the heat needed to warm the ice from −10 °C to 0 °C.",
+   "equation": "Q₁ = mcΔT = 10000 g × 0.5 cal g⁻¹ °C⁻¹ × 10 °C = 50000 cal"},
+  {"text": "Find the heat needed to melt all the ice at 0 °C.",
+   "equation": "Q₂ = mL = 10000 g × 80 cal g⁻¹ = 800000 cal"},
+  {"text": "Add the two heats.",
+   "equation": "Q = Q₁ + Q₂ = 850000 cal"},
+  {"text": "Convert the total from calories to joules.",
+   "equation": "Q = 850000 × 4.2 = 3570000 J = 357 × 10⁴ J",
+   "why_this_step": "1 cal = 4.2 J is the conversion used in this exam's calorimetry questions."}
+ ],
+ "final_answer": {"option": 1, "value": "357 x 10⁴ J"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Using 10 kg as if it were 1 kg (a misplaced decimal in converting to grams) gives 85000 cal, which is 357 × 10³ J."},
+  {"option": 4, "text": "Using 10 kg as if it were 100 kg (a misplaced decimal the other way) gives 8500000 cal, which is 357 × 10⁵ J."}
+ ],
+ "concept_tags": ["specific heat capacity", "latent heat of fusion", "calorie to joule conversion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:20:00+05:30"}
+}

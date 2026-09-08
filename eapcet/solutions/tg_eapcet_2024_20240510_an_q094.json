@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q094",
+ "approach": "When the vessels are filled to the same height, the pressure at the bottom is directly proportional to the density, so the densest liquid gives the highest pressure.",
+ "steps": [
+  {"text": "Write the pressure at the bottom of a vessel filled to height h with a liquid of density ρ.",
+   "equation": "P = ρgh"},
+  {"text": "Since h and g are the same for all three identical vessels, P depends only on ρ.",
+   "equation": "P_A ∝ ρ_A, P_B ∝ ρ_B, P_C ∝ ρ_C"},
+  {"text": "Use the given ordering of densities to rank the pressures.",
+   "equation": "ρ_A > ρ_B > ρ_C  ⇒  P_A > P_B > P_C",
+   "why_this_step": "With height fixed, a larger density directly gives a larger weight of liquid pressing down on the same base area."}
+ ],
+ "final_answer": {"option": 4, "value": "maximum in vessel containing liquid A"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Confusing this equal-height version with the companion equal-mass version of the question, where the pressures do come out equal in all vessels."},
+  {"option": 2, "text": "Reversing the inequality and picking the least dense liquid, C, as the one with maximum pressure."}
+ ],
+ "concept_tags": ["pressure in a liquid", "hydrostatic pressure", "density and height relation"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:06:00+05:30"}
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q102",
+ "approach": "Since the substance decays by the same 10% in every 16-hour period, find how many such periods fit into 2 days, and multiply the remaining fraction that many times.",
+ "steps": [
+  {"text": "Find how many 16-hour periods make up 2 days.",
+   "equation": "2 days = 48 hours = 48 ÷ 16 = 3 periods"},
+  {"text": "In each period, 10% decays, so 90% of the amount at the start of that period remains at its end.",
+   "equation": "fraction remaining per period = 0.90"},
+  {"text": "Multiply the remaining fraction over the three successive periods.",
+   "equation": "remaining fraction = 0.90 × 0.90 × 0.90 = 0.729"},
+  {"text": "Express the remaining fraction as a percentage.",
+   "equation": "percentage remaining = 72.9%"}
+ ],
+ "final_answer": {"option": 1, "value": "72.9"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Subtracting 10% three times from 100% instead of multiplying the remaining fraction each time gives 70%, which matches no printed option."},
+  {"option": 4, "text": "Correctly finding that 27.1% has decayed, but then reporting this decayed percentage as the answer instead of the remaining percentage the question asks for."}
+ ],
+ "concept_tags": ["radioactive decay law", "successive decay periods"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "item_sha": "92ed5ff8c423be6a87a4984b04cec68f6f52e615f61ada28eafc55ff06732f39",
+ "auditor_option": 2,
+ "auditor_value": "1 : 1",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: with upward positive, v = 35 − 10t, so v(3) = +5 m s⁻¹ and v(4) = −5 m s⁻¹. The question asks for speeds, so the ratio is 5 : 5 = 1 : 1, option 2. The time to the top is 3.5 s, and 3 s and 4 s are symmetric about it, which is the reason the two speeds are equal. All three printed equations are correct and the step that takes magnitudes states the reason plainly. The single common_mistakes entry maps correctly to option 1.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:09:00+05:30"}
+}

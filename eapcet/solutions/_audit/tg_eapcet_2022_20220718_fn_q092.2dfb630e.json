@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q092",
+ "item_sha": "2dfb630edd8656e407df860f68e9f62f9422a3c03646f3b52f6913cce306ca5a",
+ "auditor_option": 3,
+ "auditor_value": "√(GM/l)",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: the two attractions on one particle are each GM²/l² and are 60° apart, so the resultant toward the centroid is 2(GM²/l²)cos30° = √3 GM²/l². The circumradius of an equilateral triangle of side l is l/√3, so √3 GM²/l² = Mv²/(l/√3) gives v² = GM/l and v = √(GM/l), option 3. Verified with sympy. The resultant rule quoted in why_this_step, 2F cos(θ/2), is correct for two equal vectors at angle θ. Both common_mistakes entries were reproduced numerically: taking F = 2GM²/l² with r = l gives √(2GM/l) (option 1), and using only one force's component toward the centroid halves the net force and gives √(GM/2l) (option 2).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

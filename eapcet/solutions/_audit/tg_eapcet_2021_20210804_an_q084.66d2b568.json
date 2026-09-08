@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "item_sha": "66d2b568423adf85615e0c15c835f28ecfc00afb58079429bac481860ac45de3",
+ "auditor_option": 2,
+ "auditor_value": "2 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: x(t) = t - t^3 + t^4/2 + C, x(0) = 0 gives C = 0, and x(2) = 2 - 8 + 8 = 2 m. Each antiderivative term is correct and the substitution arithmetic checks. common_mistakes[0] was verified: replacing the antiderivative of -3t^2 by -3t gives x(2) = 2 - 6 + 8 = 4 m, which is option 3 as stated. common_mistakes[1] gives v(2) = 1 - 12 + 16 = 5 m/s, which is not an option, and the entry correctly carries option null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:38:00+05:30"}
+}

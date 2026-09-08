@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q117",
+ "item_sha": "53fda838d83f2bc019b036b65a31dc9f0950338f949f106f1456eb4e85dc83b1",
+ "auditor_option": 3,
+ "auditor_value": "21 : 25",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "ΔU₁/ΔU₂ = (3/5)/(5/7) = 1 : 1",
+   "note": "The arithmetic is false. (3/5) divided by (5/7) is (3/5) x (7/5) = 21/25 = 0.84, not 1. The two quantities the step divides are printed correctly in the step above it (3Q/5 and 5Q/7), so the error is in this division alone, and a student copying this line reaches the wrong option.",
+   "fix": "ΔU₁/ΔU₂ = (3Q/5)/(5Q/7) = (3/5) × (7/5) = 21/25, so the ratio is 21 : 25"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 4, \"value\": \"1 : 1\"",
+   "note": "With the same heat Q supplied at constant pressure, ΔU = Q/γ for each gas, so ΔU(mono)/ΔU(di) = γ(di)/γ(mono) = (7/5)/(5/3) = 21/25. That is option 3, \"21 : 25\", which is printed in the option list. The solution's own steps 0 and 1 derive ΔU = 3Q/5 and 5Q/7 correctly and then contradict themselves at the final division; 1 : 1 would require the two gases to convert the same fraction of the supplied heat into internal energy, which is only true if their γ were equal.",
+   "fix": "option 3, value \"21 : 25\""}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "My own solve before reading the steps: at constant pressure Q = nCpΔT and ΔU = nCvΔT, so ΔU = Q(Cv/Cp) = Q/γ. Monatomic γ = 5/3 gives ΔU = 0.6Q; diatomic γ = 7/5 gives ΔU = 0.714286Q. The ratio is 0.6/0.714286 = 0.84 = 21/25, option 3. Verified in python with exact fractions: (3/5)/(5/7) = 21/25 = 0.84, while option 1 is 9/49 = 0.1837, option 2 is 3/7 = 0.4286 and option 4 is 1.0. The approach and the first two steps of this solution are correct and lead to 21 : 25; only the final division and the answer are wrong, which is the self-contradiction signature. common_mistakes is empty, so nothing there was checkable. difficulty \"hard\" is defensible for a two-gas Cv/Cp argument.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:31:00+05:30"}
+}

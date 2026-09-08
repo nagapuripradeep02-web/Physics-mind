@@ -1,0 +1,39 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q082",
+ "approach": "Check each statement against the known properties of the gravitational force between two bodies and find the one that is false.",
+ "steps": [
+  {
+   "text": "Gravitational force is conservative: the work it does between two points depends only on the initial and final separation, not on the path taken."
+  },
+  {
+   "text": "Gravitational force is always attractive, and it acts between two bodies without physical contact, so it is a non-contact force."
+  },
+  {
+   "text": "Gravitational force acts along the line joining the two bodies. Acting along that line is exactly the definition of a central force, so calling it 'not a central force' is the false statement."
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "Not a central force"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Confusing 'central force' with 'contact force' leads some students to think a force acting at a distance cannot also be central, but gravity is both non-contact and central at once."
+  }
+ ],
+ "concept_tags": [
+  "nature of gravitational force",
+  "central force"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:58:00+05:30"
+ }
+}

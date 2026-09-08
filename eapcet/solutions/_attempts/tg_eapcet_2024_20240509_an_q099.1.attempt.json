@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q099",
+ "approach": "Find the apparent frequency while the train approaches and while it recedes, then express their difference as a percentage of the true horn frequency.",
+ "steps": [
+  {
+   "text": "Convert the train's speed to metres per second.",
+   "equation": "v_s = 108 kmph = 30 m s⁻¹"
+  },
+  {
+   "text": "Write the apparent frequency while approaching and while receding, as a multiple of the true frequency f.",
+   "equation": "f_approach = f·v/(v − v_s) = f·330/300 = 1.1 f;  f_recede = f·v/(v + v_s) = f·330/360 = 0.9167 f"
+  },
+  {
+   "text": "The change in frequency, as a fraction of f, is the difference of these two multiples.",
+   "equation": "(f_approach − f_recede)/f = 1.1 − 0.9167 = 0.1833",
+   "why_this_step": "This ratio simplifies to 2v_s·v/(v² − v_s²), the standard result for the total frequency swing during a pass-by."
+  },
+  {
+   "text": "Express this fraction as a percentage.",
+   "equation": "0.1833 × 100% = 18.33%"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "18.33%"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Dividing the frequency change by the approach frequency instead of the true frequency f, which gives 16.67% instead of 18.33%."
+  }
+ ],
+ "concept_tags": [
+  "Doppler effect",
+  "moving source",
+  "percentage change in frequency"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:01:21+05:30"
+ }
+}

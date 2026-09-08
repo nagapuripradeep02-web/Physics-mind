@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q100",
+ "item_sha": "6a31715fd1c03403b7ad5a0ce83f45f9624824cfda2dac977cc814439a225cab",
+ "auditor_option": 1,
+ "auditor_value": "100√7 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: at the same temperature v_rms varies as 1/sqrt(M), so v(He)/v(N2) = sqrt(28/4) = sqrt(7) and v(He) = 100 sqrt(7) = 264.6 m/s, option 1. Verified in python. common_mistakes[0] checks out exactly: taking M(He) = 8 gives 100 sqrt(28/8) = 187.083 m/s, which is exactly 50 sqrt(14) = 187.083, the printed option 3. common_mistakes[1] correctly points at option 4 and states the real distinction: equal average kinetic energy per molecule does not mean equal speed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:22:00+05:30"}
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q103",
+ "approach": "Two particles have the same speed at every instant only when their vibration phases differ by zero or by π; the smallest non-zero separation is half a wavelength.",
+ "steps": [
+  {
+   "text": "Read the wave number and angular frequency from the wave equation.",
+   "equation": "y = 0.02 sin(5πx − 20t)  ⟹  k = 5π rad m⁻¹, ω = 20 rad s⁻¹"
+  },
+  {
+   "text": "Find the wavelength.",
+   "equation": "λ = 2π/k = 2π/5π = 0.4 m"
+  },
+  {
+   "text": "A particle's speed is proportional to cos of its phase. Two particles have equal speed at every instant only if their phases are equal, or differ by exactly π, since only then does cos of one phase equal plus or minus cos of the other for all time.",
+   "equation": "k·Δx = 0 or π (mod 2π)",
+   "why_this_step": "A phase gap of π makes the two particles' velocities exact negatives of each other at every instant, so their speeds (the magnitudes) are always equal even though their directions are opposite."
+  },
+  {
+   "text": "The smallest non-zero separation corresponds to the phase gap of π.",
+   "equation": "Δx = π/k = π/5π = 0.2 m = λ/2"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "0.2 m"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Taking the full wavelength 0.4 m as the answer, which is the separation for particles with identical velocity, not merely identical speed."
+  }
+ ],
+ "concept_tags": [
+  "transverse wave",
+  "particle velocity",
+  "phase difference"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:22:21+05:30"
+ }
+}

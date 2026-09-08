@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q089",
+ "item_sha": "4ee851b9f3740f3fc47997066dfb3f0abb4228c2f29e5bdcf7691725d086124b",
+ "auditor_option": 1,
+ "auditor_value": "1/27",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "dF/dr = −12/r⁴ + 2/r³ = 0  →  r = 3",
+   "note": "The derivative is printed wrong. With F(r) = 2/r³ − 1/r², dF/dr = −6/r⁴ + 2/r³, not −12/r⁴ + 2/r³. The printed line is also self-contradicting: setting −12/r⁴ + 2/r³ = 0 gives r = 6, not the r = 3 written on the same line and used in the next step. A student who copies this line reaches r = 6 and then F(6) = 2/216 − 1/36 = −1/54, losing the mark.",
+   "fix": "dF/dr = −6/r⁴ + 2/r³ = 0  →  2r = 6  →  r = 3"}
+ ],
+ "verdict": "harmful",
+ "question_defect": "U(r) = 1/r² − 1/r is written with no units on either term, so the demand for the force 'in Newton' is only nominal; the numbers are dimensionless and no unit system is stated.",
+ "notes": "Solved independently before reading the steps. F = −dU/dr = 2/r³ − 1/r²; F is negative (attractive, pointing inward) for r > 2; setting dF/dr = −6/r⁴ + 2/r³ = 0 gives r = 3; F(3) = 2/27 − 3/27 = −1/27, magnitude 1/27, option 1. All confirmed with python (sympy): sympy returns dF/dr = 2(r−3)/r⁴ = 2/r³ − 6/r⁴ and the single critical point r = 3, and it returns r = 6 for the printed −12/r⁴ + 2/r³. Step 0 and step 2 are both correct, and the final option is right — only the middle line is false, which is exactly the case the brief says to file even when the final answer comes out right. Checked and did not file: common_mistakes[0] is true, F(1) = 2 − 1 = 1 so the magnitude is 1 and option 4 prints 1 (worth noting the force at r = 1 is repulsive, not attractive, but the entry claims only a magnitude); common_mistakes[1] is true, dU/dr = 0 at r = 2 where U = −1/4 is the minimum and the net force is zero. Difficulty hard fits a two-stage differentiation problem.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T02:56:00+05:30"}
+}

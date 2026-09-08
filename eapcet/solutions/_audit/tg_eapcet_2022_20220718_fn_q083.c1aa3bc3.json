@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "c1aa3bc34beb28b22f746ede3de5eebd8794756c62ea741ae1d9c6f8dc3a27c0",
+ "auditor_option": 1,
+ "auditor_value": "5 m/s² and 10 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: a = (10 - 0)/2 = 5 m/s^2, and s = 1/2 * 5 * 2^2 = 10 m (cross-checked as average speed 5 m/s times 2 s = 10 m). Both printed equations are correct. The single common_mistakes entry was verified: 1/2 * 5 * 2 = 5 m, which pairs with a = 5 m/s^2 to give option 2 exactly as stated. Difficulty 'easy' and hint 'calculation' both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:45:00+05:30"}
+}

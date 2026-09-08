@@ -1,0 +1,236 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-01",
+ "chapter": "Waves",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q102",
+   "audit_file": "tg_eapcet_2021_20210804_an_q102.8a7dee98.json",
+   "item_sha": "8a7dee98fb2a1209fd89d93f80692b389b6e761f7a09658a10b4bec2882d7a06",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "Consider a gas with molar mass M. If the sound at frequency f is introduced to a tube of this gas at temperature T then an internal acoustic standing wave is set up with nodes separated by L. The adiabatic constant (γ = Cp/Cv) is",
+   "options_en": [
+    "Mf²L²/RT",
+    "Mf²L²/4RT",
+    "4Mf²L²/RT",
+    "3Mf²L²/2RT"
+   ],
+   "solution": {
+    "approach": "The speed of sound in the gas from the standing wave equals the speed from the adiabatic gas formula, since the node separation gives the wavelength.",
+    "steps": [
+     {
+      "text": "Write the speed of sound in a gas of adiabatic constant γ.",
+      "equation": "v = √(γRT/M)"
+     },
+     {
+      "text": "Relate the node separation to the wavelength. Successive nodes of a standing wave are half a wavelength apart.",
+      "equation": "L = λ/2, so λ = 2L"
+     },
+     {
+      "text": "Write the wave speed from the frequency and this wavelength.",
+      "equation": "v = fλ = 2fL"
+     },
+     {
+      "text": "Equate the two expressions for v and square both sides.",
+      "equation": "(2fL)² = γRT/M"
+     },
+     {
+      "text": "Solve for γ.",
+      "equation": "γ = 4Mf²L²/RT"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4Mf²L²/RT"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking the node separation L itself as the full wavelength (forgetting nodes are half a wavelength apart), giving v = fL and γ = Mf²L²/RT."
+     },
+     {
+      "option": 2,
+      "text": "Inverting the node-separation relation as L = 2λ instead of λ = 2L, giving λ = L/2, v = fL/2, and γ = Mf²L²/4RT."
+     }
+    ],
+    "concept_tags": [
+     "speed of sound in a gas",
+     "standing waves",
+     "adiabatic constant"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q103",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q103.00626998.json",
+   "item_sha": "0062699876c4e24bd7ac77c7b678738142f0e0b852d2fce40c0cbc6fe7e98758",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "A wave is represented by the equation y = (0.02 m) sin(5πx − 20t). The minimum distance between the two particles always having the same speed is. (Assume x and t are in SI units)",
+   "options_en": [
+    "0.02 m",
+    "0.4 m",
+    "0.8 m",
+    "0.2 m"
+   ],
+   "solution": {
+    "approach": "Two particles have the same speed at every instant only if their phases differ by a whole multiple of π, and the smallest such separation is half a wavelength.",
+    "steps": [
+     {
+      "text": "Find the particle velocity by differentiating the displacement with respect to time.",
+      "equation": "y = 0.02 sin(5πx − 20t), v_y = ∂y/∂t = −0.4 cos(5πx − 20t)"
+     },
+     {
+      "text": "Find the wavelength from the coefficient of x.",
+      "equation": "k = 5π, λ = 2π/k = 0.4 m"
+     },
+     {
+      "text": "State when two particles keep the same speed magnitude for all time. Their phases differ by Δ, and |cos(θ+Δ)| = |cos θ| for every θ only when Δ is a whole multiple of π.",
+      "why_this_step": "cos(θ+Δ) reduces to ±cos θ for every θ only when sin Δ = 0, which needs Δ = nπ."
+     },
+     {
+      "text": "Take the smallest nonzero multiple of π and convert it to a distance using Δ = k(x₁ − x₂).",
+      "equation": "Δ = π = k·d, so d = π/k = λ/2"
+     },
+     {
+      "text": "Evaluate the minimum distance.",
+      "equation": "d = 0.4/2 = 0.02 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "0.02 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Requiring the velocity to match in direction as well as magnitude, which needs a full wavelength separation, giving 0.4 m."
+     },
+     {
+      "option": 3,
+      "text": "Multiplying the wavelength by 2 instead of dividing it by 2, giving 0.8 m instead of 0.2 m."
+     }
+    ],
+    "concept_tags": [
+     "transverse wave equation",
+     "particle velocity",
+     "wavelength"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q100",
+   "audit_file": "tg_eapcet_2023_20230512_an_q100.c6aa0e3c.json",
+   "item_sha": "c6aa0e3c45e1d202c0c6e386593913cd08a29d1d2a167b9d08754035cf1898a1",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "An observer moves towards a stationary source of sound with a speed (1/5)th that of sound. The frequency of the sound emitted by the source is f. The apparent frequency recorded by the observer is",
+   "options_en": [
+    "1.2 f",
+    "f",
+    "0.8 f",
+    "2 f"
+   ],
+   "solution": {
+    "approach": "For an observer moving towards a stationary source, the apparent frequency increases by the ratio of the sum of the wave speed and the observer's speed to the wave speed.",
+    "steps": [
+     {
+      "text": "Write the Doppler formula for a source at rest and an observer moving towards it with speed v_o.",
+      "equation": "f′ = f(v + v_o)/v"
+     },
+     {
+      "text": "Substitute the observer's speed as one fifth of the speed of sound.",
+      "equation": "v_o = v/5"
+     },
+     {
+      "text": "Evaluate the apparent frequency.",
+      "equation": "f′ = f(v + v/5)/v = f(6/5) = 1.2f"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1.2 f"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Using the minus sign as if the observer were moving away from the source, giving f(v − v/5)/v = 0.8f."
+     },
+     {
+      "option": 2,
+      "text": "Assuming the frequency does not change because the source itself is at rest, ignoring the observer's own motion."
+     },
+     {
+      "option": 4,
+      "text": "Ignoring the one-fifth fraction and taking the observer's speed as equal to the speed of sound, giving f(v + v)/v = 2f."
+     }
+    ],
+    "concept_tags": [
+     "Doppler effect",
+     "moving observer"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q100",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q100.d21df07f.json",
+   "item_sha": "d21df07f97b56924af107609e8bd381acb8beee98052b87cd7da4fca6bfb0c5f",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "A wave is given by the equation y = (0.02) sin(πx − 8πt) then the velocity of the wave is (y and x are in metre and t is in second)",
+   "options_en": [
+    "16 ms⁻¹",
+    "2 ms⁻¹",
+    "8 ms⁻¹",
+    "18 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "The wave speed is the ratio of the angular frequency to the wave number, read directly from the coefficients of t and x.",
+    "steps": [
+     {
+      "text": "Identify the wave number and the angular frequency from the equation.",
+      "equation": "y = 0.02 sin(πx − 8πt), so k = π rad m⁻¹, ω = 8π rad s⁻¹"
+     },
+     {
+      "text": "Find the wave speed from the ratio of angular frequency to wave number.",
+      "equation": "v = ω/k = 8π/π"
+     },
+     {
+      "text": "Evaluate.",
+      "equation": "v = 8 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "8 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the frequency f = ω/2π = 4 Hz and the wavelength λ = 2π/k = 2 m correctly, then doubling the product to get v = 2fλ = 16 ms⁻¹."
+     },
+     {
+      "option": null,
+      "text": "Dividing the wave number by the angular frequency instead of the other way round, giving v = π/8π = 0.125 ms⁻¹, which matches no option."
+     }
+    ],
+    "concept_tags": [
+     "progressive wave equation",
+     "wave speed",
+     "angular frequency"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

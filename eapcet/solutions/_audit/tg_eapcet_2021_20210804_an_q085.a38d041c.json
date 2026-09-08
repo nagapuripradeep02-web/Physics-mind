@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q085",
+ "item_sha": "a38d041cabdb200e39955d00709db123472eb6aae45d2b601fd92377a3a04534",
+ "auditor_option": 1,
+ "auditor_value": "2√3 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: the angle is measured from the +y axis, so A_y = A cos30°, giving A = 3.0/(√3/2) = 6/√3 = 2√3 m = 3.464 m. The other printed values are √11 = 3.317, √15 = 3.873, √21 = 4.583, so only option 1 fits. The common-mistakes entry describes using sin30° instead of cos30°, which does give 6 m; its clause about the 3.0 m being 'measured from the x-axis' reads as 'taken as the x-component', which produces the same 6 m, so the entry is correct in substance even though the wording is loose.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:40:00+05:30"}
+}

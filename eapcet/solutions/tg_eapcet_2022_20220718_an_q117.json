@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q117",
+ "approach": "Find the nuclear radius from the mass number using R = R₀∛A, then divide the nuclear mass by the nuclear volume to get the density.",
+ "steps": [
+  {"text": "Find the radius of the nucleus using the mass number A = 60.",
+   "equation": "R = R₀∛A = 1.2×10⁻¹⁵ × ∛60 = 4.70×10⁻¹⁵ m"},
+  {"text": "Find the volume of the nucleus, treating it as a sphere of this radius.",
+   "equation": "V = (4/3)πR³ = (4/3)π × (4.70×10⁻¹⁵)³ = 4.34×10⁻⁴³ m³"},
+  {"text": "Find the mass of the nucleus from its mass number and the mass of one nucleon.",
+   "equation": "mass = A × 1.6×10⁻²⁷ kg = 60 × 1.6×10⁻²⁷ = 9.6×10⁻²⁶ kg"},
+  {"text": "Divide the mass by the volume to get the nuclear density.",
+   "equation": "density = mass ÷ V = 9.6×10⁻²⁶ ÷ 4.34×10⁻⁴³ ≈ 2.2×10¹⁷ kg/m³"}
+ ],
+ "final_answer": {"option": 4, "value": "2.2 × 10¹⁷ kg/m³"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the mass number directly as the radius scaling factor instead of taking its cube root changes the density by orders of magnitude from the correct value."},
+  {"option": null, "text": "Forgetting to cube the radius before computing the sphere's volume gives a result far off the correct order of magnitude."}
+ ],
+ "concept_tags": ["nuclear radius formula", "nuclear density"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

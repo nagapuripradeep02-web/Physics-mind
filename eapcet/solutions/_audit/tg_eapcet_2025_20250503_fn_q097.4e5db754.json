@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q097",
+ "item_sha": "4e5db754b56007e3a7bd0bc78b7f4ea67bdff25dfddef71c3604b77aa9d969b0",
+ "auditor_option": 2,
+ "auditor_value": "0.9 kg",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. A = 1000 cm² = 0.1 m² (1 m² = 10⁴ cm²), d = 2 mm = 0.002 m, t = 160 min = 9600 s, dT = 42 K. Q = kA dT t/d = (0.01 × 0.1 × 42 × 9600)/0.002 = 201600 J, confirmed with python. Mass melted = 201600/(336 × 10³) = 0.600 kg, so the ice remaining is 1.5 - 0.6 = 0.9 kg, option 2. Every printed line follows from the one above it and every unit conversion is right; the step-2 line \"Evaluate the heat conducted\" carries the arithmetic in its equation, so it is not an empty step. The common_mistakes entry is the real trap here - the melted mass 0.6 kg is printed as option 3 - and the entry points at that option correctly. The question asks for the mass remaining, which is what final_answer gives. Checked that the answer does not depend on any unstated assumption beyond steady-state conduction through the full stated surface area, which the approach and why_this_step both state.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:34:20+05:30"}
+}

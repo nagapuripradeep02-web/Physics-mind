@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q094",
+ "item_sha": "6bf4b8b6920a9220fba6fd3beef939a1c889ff53a43d888897efbc941673b173",
+ "auditor_option": 4,
+ "auditor_value": "maximum in vessel containing liquid A",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: with the same height h and the same g, P = ρgh is proportional to density alone, so ρ_A > ρ_B > ρ_C gives P_A > P_B > P_C and the maximum is in vessel A, which is option 4. Both mistake entries map to the right options: option 1 is the equal-mass version of this question, and option 2 is the reversed inequality naming C.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:39:00+05:30"}
+}

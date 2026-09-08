@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "approach": "Split the fall into a free-fall stage of 20 m and a constant-velocity stage for the remaining height, and add the two times.",
+ "steps": [
+  {"text": "Find the speed gained during the 20 m of free fall.",
+   "equation": "v = √(2×10×20) = 20 ms⁻¹"},
+  {"text": "Find the time taken for this free-fall stage.",
+   "equation": "t₁ = v/g = 20/10 = 2 s"},
+  {"text": "Find the remaining height to be covered at this constant speed.",
+   "equation": "2000 − 20 = 1980 m"},
+  {"text": "Find the time for the constant-velocity stage and add it to the free-fall time.",
+   "equation": "t₂ = 1980/20 = 99 s; total = 2 + 99 = 101 s"}
+ ],
+ "final_answer": {"option": 2, "value": "101 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Computing only the time for the constant-velocity stage, 1980/20 = 99 s, and forgetting to add the 2 s spent in free fall before the parachute opened."},
+  {"option": 3, "text": "Dividing the entire 2000 m by the constant velocity of 20 ms⁻¹, treating the whole fall as if it happened at that one speed, which gives 100 s."},
+  {"option": 4, "text": "Adding the 2 s free-fall time to the time for the full 2000 m at the constant velocity, 2000/20 = 100 s, instead of subtracting the 20 m already covered, giving 102 s."}
+ ],
+ "concept_tags": ["free fall", "combined free-fall and constant-velocity motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:27:00+05:30"}
+}

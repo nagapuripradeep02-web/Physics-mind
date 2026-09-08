@@ -1,0 +1,115 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-05",
+ "chapter": "Work Power Energy",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q089",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q089.4ee851b9.json",
+   "item_sha": "4ee851b9f3740f3fc47997066dfb3f0abb4228c2f29e5bdcf7691725d086124b",
+   "chapter": "Work Power Energy",
+   "year": 2021,
+   "question_en": "The potential energy of a particle in a central field has the form U(r) = 1/r² − 1/r, where 'r' is the distance from the centre of the field. The magnitude of the maximum attractive force in Newton is",
+   "options_en": [
+    "1/27",
+    "1/9",
+    "1/3",
+    "1"
+   ],
+   "solution": {
+    "approach": "The force is the negative derivative of the potential energy, and the strongest attractive force occurs where that force reaches its most negative value.",
+    "steps": [
+     {
+      "text": "Differentiate U(r) to get the force.",
+      "equation": "F(r) = −dU/dr = −(−2/r³ + 1/r²) = 2/r³ − 1/r²"
+     },
+     {
+      "text": "Find where the force is an extremum by setting its derivative to zero.",
+      "equation": "dF/dr = −12/r⁴ + 2/r³ = 0  →  r = 3"
+     },
+     {
+      "text": "Evaluate the force at r = 3.",
+      "equation": "F(3) = 2/27 − 1/9 = −1/27 N",
+      "why_this_step": "The negative sign shows the force points inward, toward the centre, which is the attractive direction; its magnitude here is the largest attractive value."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1/27"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Evaluating the force at r = 1, a convenient test point, instead of solving dF/dr = 0 for the true position of maximum force, gives a magnitude of 1."
+     },
+     {
+      "option": null,
+      "text": "Confusing the position where the potential energy is minimum (r = 2, where the net force is actually zero) with the position of maximum attractive force."
+     }
+    ],
+    "concept_tags": [
+     "conservative force from potential energy",
+     "maxima and minima",
+     "central force"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_fn_q087",
+   "audit_file": "tg_eapcet_2023_20230513_fn_q087.16f3cfbb.json",
+   "item_sha": "16f3cfbbcb46d3d0bd076225113c426384519fa000bef7080c59f8065953f9f7",
+   "chapter": "Work Power Energy",
+   "year": 2023,
+   "question_en": "A body falls freely from a height 'h' on a fixed horizontal plane and rebounds. If 'e' is the coefficient of restitution, the total distance travelled before it comes to rest is",
+   "options_en": [
+    "h[(1+e²)/(1−e²)]",
+    "h[(1−e²)/(1+e²)]",
+    "(h/2)[(1−e²)/(1+e²)]",
+    "(h/2)[(1+e²)/(1−e²)]"
+   ],
+   "solution": {
+    "approach": "Each bounce rises to a height reduced by e² from the previous one, and the total path length is the sum of this geometric series of up-and-down trips.",
+    "steps": [
+     {
+      "text": "Write the rebound height after the first bounce in terms of the coefficient of restitution.",
+      "equation": "h₁ = e²h",
+      "why_this_step": "The rebound speed is e times the impact speed, and height is proportional to the square of the speed."
+     },
+     {
+      "text": "Write the total distance as the initial fall plus twice every rebound height, since each rebound is climbed and then fallen again.",
+      "equation": "total = h + 2(e²h + e⁴h + e⁶h + …)"
+     },
+     {
+      "text": "Sum the infinite geometric series with first term e²h and common ratio e².",
+      "equation": "total = h + 2h·e²/(1−e²)"
+     },
+     {
+      "text": "Combine into a single fraction.",
+      "equation": "total = h(1+e²)/(1−e²)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "h[(1+e²)/(1−e²)]"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Counting only the rise of each bounce and not also the fall back down, missing the factor of 2 for each rebound, gives total = h/(1−e²), which is not among the printed options."
+     }
+    ],
+    "concept_tags": [
+     "coefficient of restitution",
+     "geometric series",
+     "free fall and rebound"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

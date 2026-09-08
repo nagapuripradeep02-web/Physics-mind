@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q092",
+ "approach": "Use energy conservation with the true gravitational potential energy, since 4 km/s is too large to treat g as constant, and solve for the height reached.",
+ "steps": [
+  {
+   "text": "Write GM in terms of the surface values of g and R.",
+   "equation": "GM = gR² = 10×(6.4×10⁶)² = 4.096×10¹⁴ m³s⁻²",
+   "why_this_step": "GM equals gR² everywhere in the true inverse-square field, so this lets the constant-g value of g be used in the exact energy formula."
+  },
+  {
+   "text": "Set up energy conservation: the kinetic energy per unit mass at launch equals the gain in potential energy per unit mass up to the highest point, where the speed is zero.",
+   "equation": "½v² = GM·h / (R(R+h))"
+  },
+  {
+   "text": "Substitute the launch speed, R and GM into the equation.",
+   "equation": "½×4000² = 8×10⁶ = 4.096×10¹⁴×h / (6.4×10⁶×(6.4×10⁶+h))"
+  },
+  {
+   "text": "Solve the resulting equation for h.",
+   "equation": "h ≈ 914.29 km, matching the listed option 914.28 km to the given precision"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "914.28 km"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the constant-gravity formula h = v²/2g, valid only very close to the surface, gives about 800 km, which understates the true height because g actually falls off with height."
+  },
+  {
+   "option": null,
+   "text": "Forgetting to convert 4 km/s to 4000 m/s before using the SI energy equation gives a height far too small to match any listed option."
+  }
+ ],
+ "concept_tags": [
+  "gravitational potential energy",
+  "energy conservation",
+  "variable gravitational field"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:05:00+05:30"
+ }
+}

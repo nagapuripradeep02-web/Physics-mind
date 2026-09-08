@@ -1,0 +1,735 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-12",
+ "chapter": "Thermodynamics",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q100",
+   "audit_file": "tg_eapcet_2021_20210804_an_q100.9705ea50.json",
+   "item_sha": "9705ea50261c080119b9ed40ba6ca715856bd64ffd29cbb885ac737262635cb2",
+   "chapter": "Thermodynamics",
+   "year": 2021,
+   "question_en": "500 g of water is heated from 30°C to 90°C. What is the change in its internal energy? (Specific heat of water is 4184 J kg⁻¹ K⁻¹)",
+   "options_en": [
+    "1.25 × 10⁵ J",
+    "2.0 × 10⁵ J",
+    "1.3 × 10⁴ J",
+    "2.0 × 10⁴ J"
+   ],
+   "solution": {
+    "approach": "Water expands so little on heating that the work done is negligible, so the change in internal energy equals the heat supplied, mcΔT.",
+    "steps": [
+     {
+      "text": "Write the rise in temperature.",
+      "equation": "ΔT = 90 − 30 = 60 K"
+     },
+     {
+      "text": "Find the heat supplied using the mass, specific heat and temperature rise.",
+      "equation": "Q = mcΔT = 0.500 × 4184 × 60 = 1.2552 × 10⁵ J",
+      "why_this_step": "The volume of water changes so little on heating that the work done against the atmosphere is negligible, so almost all this heat becomes internal energy."
+     },
+     {
+      "text": "Round to match the precision of the printed options.",
+      "equation": "ΔU ≈ 1.25 × 10⁵ J"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1.25 × 10⁵ J"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Misplacing the decimal point when converting 500 g to kilograms, using 0.05 kg instead of 0.500 kg, gives 1.3 × 10⁴ J."
+     },
+     {
+      "option": null,
+      "text": "Taking the specific heat as 1 calorie per gram per kelvin and reporting 500 × 60 = 30000 without converting calories to joules."
+     }
+    ],
+    "concept_tags": [
+     "first law of thermodynamics",
+     "specific heat capacity",
+     "internal energy of a liquid"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q100",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q100.0949a2b6.json",
+   "item_sha": "0949a2b609e8f859f8065f2c1cfb40c8315c0f877f8924e9d0d765ce63cd412b",
+   "chapter": "Thermodynamics",
+   "year": 2021,
+   "question_en": "Consider a two stage Carnot engine. In the first stage heat Q₁ is absorbed at temperature T and heat Q₂ is expelled at temperature αT (where α < 1). In the second stage heat Q₂ is absorbed at temperature αT and heat Q₃ is expelled at temperature βT (β < α). The efficiency of the Carnot engine will be",
+   "options_en": [
+    "1 − α − β",
+    "1 − α",
+    "1 − β",
+    "1 − αβ"
+   ],
+   "solution": {
+    "approach": "Each stage is a Carnot engine, so heat is proportional to temperature; the heat placed in the intermediate reservoir cancels, leaving one engine between T and βT.",
+    "steps": [
+     {
+      "text": "For the first Carnot stage, write heat as proportional to temperature.",
+      "equation": "Q1/T = Q2/(αT), so Q2 = αQ1"
+     },
+     {
+      "text": "For the second Carnot stage, apply the same proportionality.",
+      "equation": "Q2/(αT) = Q3/(βT), so Q3 = (β/α)Q2 = βQ1"
+     },
+     {
+      "text": "The heat Q2 that the first stage deposits in the intermediate reservoir is exactly what the second stage withdraws from it.",
+      "equation": "net exchange with the αT reservoir = 0",
+      "why_this_step": "This makes the two stages together equivalent to a single heat engine that takes heat only at T and rejects heat only at βT."
+     },
+     {
+      "text": "Write the overall efficiency of the combined engine.",
+      "equation": "η = 1 − Q3/Q1 = 1 − β"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1 − β"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Ignoring the second stage and reporting only the first stage's efficiency, 1 − α, as the overall efficiency."
+     },
+     {
+      "option": 4,
+      "text": "Using the original temperature T instead of αT as the hot temperature of the second stage gives Q3 = αβQ1 and an efficiency of 1 − αβ."
+     }
+    ],
+    "concept_tags": [
+     "Carnot engine",
+     "multi-stage heat engine",
+     "efficiency"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_an_q100",
+   "audit_file": "tg_eapcet_2021_20210805_an_q100.7b0654fd.json",
+   "item_sha": "7b0654fd1224423b893789160592b88fbdc0be74f56f20e3883f83a38af0637b",
+   "chapter": "Thermodynamics",
+   "year": 2021,
+   "question_en": "An ideal monoatomic gas of volume V is adiabatically expanded to a volume 3V at 27°C. The final temperature in Kelvins is: (use C_P/C_V = 5/3)",
+   "options_en": [
+    "144.2",
+    "170.3",
+    "50.4",
+    "100.2"
+   ],
+   "solution": {
+    "approach": "In an adiabatic process, temperature and volume are related through TV to the power γ minus 1 staying constant.",
+    "steps": [
+     {
+      "text": "Write the initial temperature in kelvin.",
+      "equation": "T1 = 27 + 273 = 300 K"
+     },
+     {
+      "text": "Apply the adiabatic relation between the initial and final states.",
+      "equation": "T1 V1^(γ−1) = T2 V2^(γ−1), with V2 = 3V1 and γ − 1 = 2/3"
+     },
+     {
+      "text": "Solve for the final temperature.",
+      "equation": "T2 = T1 × (1/3)^(2/3) = 300 × (1/3)^(2/3)"
+     },
+     {
+      "text": "Evaluate the expression numerically.",
+      "equation": "T2 = 300 × 0.4807 = 144.2 K"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "144.2"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Treating the exponent γ − 1 as 1 instead of 2/3 gives T2 = 300 × (1/3) = 100 K, near the printed 100.2."
+     },
+     {
+      "option": null,
+      "text": "Using the volume ratio the wrong way round, taking V2/V1 = 1/3 instead of 3, would make the temperature rise instead of fall during this expansion."
+     }
+    ],
+    "concept_tags": [
+     "adiabatic process",
+     "monatomic gas",
+     "relation between temperature and volume"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q099",
+   "audit_file": "tg_eapcet_2022_20220718_an_q099.0e9ed965.json",
+   "item_sha": "0e9ed9651474e3af02eb93d270e0dfa584c4b0391bb49f921cbe029d4c5b6e22",
+   "chapter": "Thermodynamics",
+   "year": 2022,
+   "question_en": "A diatomic gas (Cp = 7/2 R) does 200 J of work when it is expanded isobarically. The heat given to the gas in the process is",
+   "options_en": [
+    "600 J",
+    "800 J",
+    "900 J",
+    "700 J"
+   ],
+   "solution": {
+    "approach": "At constant pressure, the heat supplied is Cp divided by R times the work done, since the work equals nRΔT.",
+    "steps": [
+     {
+      "text": "Write the work done in terms of the temperature rise.",
+      "equation": "W = nRΔT = 200 J"
+     },
+     {
+      "text": "Write the heat supplied using the molar heat capacity at constant pressure.",
+      "equation": "Q = nCpΔT = (7/2)(nRΔT)"
+     },
+     {
+      "text": "Substitute the work done for nRΔT and evaluate.",
+      "equation": "Q = (7/2) × 200 = 600 J"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "600 J"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using Cv = 3R, as if the gas had more energy-storing modes, gives a change in internal energy of 600 J, and adding the work gives 800 J."
+     },
+     {
+      "option": 3,
+      "text": "Misremembering Cp for a diatomic gas as 9/2 R instead of 7/2 R gives Q = (9/2) × 200 = 900 J."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "molar heat capacity",
+     "first law of thermodynamics"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q098",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q098.5fd3d7dd.json",
+   "item_sha": "5fd3d7ddd016cd606ba1c02756035e6b0118b1523a1568870d72c4055f0543b7",
+   "chapter": "Thermodynamics",
+   "year": 2022,
+   "question_en": "1.00 kg of liquid water at 100°C undergoes a phase change into steam at 100°C at 1.0 atm (take it to be 1.00 × 10⁵ Pa). The initial volume of the liquid water was 1.00 × 10⁻³ m³ which is changed to 2.001 m³ of steam. Find the change in the internal energy of the system.\n[Use heat of vaporization ≈ 2000 kJ/kg]",
+   "options_en": [
+    "1800 kJ",
+    "200 kJ",
+    "2000 kJ",
+    "180 kJ"
+   ],
+   "solution": {
+    "approach": "The heat supplied for vaporization goes partly into the work of expansion against the constant atmospheric pressure and partly into the change in internal energy.",
+    "steps": [
+     {
+      "text": "Write the heat absorbed using the given latent heat of vaporization.",
+      "equation": "Q = mL = 1.00 × 2000 = 2000 kJ"
+     },
+     {
+      "text": "Write the work done by the system as it expands at constant pressure.",
+      "equation": "W = PΔV = 1.00×10⁵ × (2.001 − 0.001) = 2.00×10⁵ J = 200 kJ"
+     },
+     {
+      "text": "Apply the first law of thermodynamics to get the change in internal energy.",
+      "equation": "ΔU = Q − W = 2000 − 200 = 1800 kJ"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1800 kJ"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Reporting the heat absorbed itself, 2000 kJ, without subtracting the work done in the expansion."
+     },
+     {
+      "option": 2,
+      "text": "Reporting only the work done by the expanding steam, 200 kJ, as if it were the change in internal energy."
+     }
+    ],
+    "concept_tags": [
+     "first law of thermodynamics",
+     "latent heat",
+     "work done in expansion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q099",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q099.a593e193.json",
+   "item_sha": "a593e193339f74d97dfea27a04f526699a629f9025af8cf12f7f2f545b37d890",
+   "chapter": "Thermodynamics",
+   "year": 2022,
+   "question_en": "A monoatomic gas does 100 J of work when it is expanded isobarically. How much of heat is given to the gas in the process",
+   "options_en": [
+    "150 J",
+    "200 J",
+    "250 J",
+    "300 J"
+   ],
+   "solution": {
+    "approach": "At constant pressure, the heat supplied to a monatomic gas is Cp divided by R times the work it does, since the work equals nRΔT.",
+    "steps": [
+     {
+      "text": "Write the work done in terms of the temperature rise.",
+      "equation": "W = nRΔT = 100 J"
+     },
+     {
+      "text": "Write the heat supplied using the molar heat capacity at constant pressure for a monatomic gas.",
+      "equation": "Q = nCpΔT = (5/2)(nRΔT)"
+     },
+     {
+      "text": "Substitute the work done for nRΔT and evaluate.",
+      "equation": "Q = (5/2) × 100 = 250 J"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "250 J"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Reporting only the change in internal energy, ΔU = (3/2) × 100 = 150 J, without adding the work done to it."
+     },
+     {
+      "option": 2,
+      "text": "Taking Cv = R instead of 3/2 R for a monatomic gas gives a change in internal energy of 100 J and a total heat of 200 J."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "monatomic gas",
+     "molar heat capacity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q098",
+   "audit_file": "tg_eapcet_2023_20230512_an_q098.2506cac7.json",
+   "item_sha": "2506cac75884981fb8be221a4bbb6c61a7f5bf411c09c7e609fc8965d9e645e7",
+   "chapter": "Thermodynamics",
+   "year": 2023,
+   "question_en": "An insulating cylinder contains 4 moles of an ideal diatomic gas. When a heat Q is supplied to it, 2 moles of the gas molecules dissociate. If the temperature of the gas remains constant, then the value of Q is (R – universal gas constant)",
+   "options_en": [
+    "2RT",
+    "RT",
+    "3RT",
+    "4RT"
+   ],
+   "solution": {
+    "approach": "In a rigid insulated cylinder the gas does no external work, so the heat supplied equals the rise in internal energy from the change in degrees of freedom.",
+    "steps": [
+     {
+      "text": "Write the initial internal energy of the 4 moles of diatomic gas.",
+      "equation": "U_i = 4 × (5/2)RT = 10RT"
+     },
+     {
+      "text": "After dissociation, 2 moles of diatomic gas remain, and the other 2 moles turn into 4 moles of monatomic gas.",
+      "equation": "n(diatomic remaining) = 2, n(monatomic produced) = 4"
+     },
+     {
+      "text": "Write the final internal energy at the same temperature T.",
+      "equation": "U_f = 2 × (5/2)RT + 4 × (3/2)RT = 5RT + 6RT = 11RT",
+      "why_this_step": "Each remaining diatomic molecule still has 5 degrees of freedom, and each new atom has only 3 translational degrees of freedom."
+     },
+     {
+      "text": "Since the cylinder is rigid, no work is done, so the heat supplied equals the change in internal energy.",
+      "equation": "Q = U_f − U_i = 11RT − 10RT = RT"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "RT"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Misreading the question as if all 4 moles dissociate, instead of only 2, gives a final internal energy of 12RT and a change of 2RT."
+     }
+    ],
+    "concept_tags": [
+     "first law of thermodynamics",
+     "degrees of freedom",
+     "dissociation of a diatomic gas"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q096",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q096.a1c5c619.json",
+   "item_sha": "a1c5c619a02870ea1f3b8e9f635ae44750dff92f20dcf54efffd60566ac4a17d",
+   "chapter": "Thermodynamics",
+   "year": 2023,
+   "question_en": "The percentage of heat supplied to a diatomic ideal gas that is converted into work in an isobaric process is",
+   "options_en": [
+    "62.7",
+    "71.4",
+    "28.6",
+    "34.6"
+   ],
+   "solution": {
+    "approach": "At constant pressure the fraction of heat converted into work equals R divided by Cp, the molar heat capacity at constant pressure.",
+    "steps": [
+     {
+      "text": "Write Cp for a diatomic gas.",
+      "equation": "Cp = (7/2)R"
+     },
+     {
+      "text": "Write the fraction of heat that becomes work.",
+      "equation": "W/Q = R/Cp = R/((7/2)R) = 2/7"
+     },
+     {
+      "text": "Convert the fraction to a percentage.",
+      "equation": "(2/7) × 100% = 28.6%"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "28.6"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Computing the percentage of heat that raises the internal energy, Cv/Cp = 5/7 = 71.4%, instead of the percentage converted to work."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "molar heat capacity",
+     "work done by a gas"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q097",
+   "audit_file": "tg_eapcet_2023_20230513_an_q097.ef828cb4.json",
+   "item_sha": "ef828cb4e191ad4a6b5df642650e4cd9f5759d33466c1897c1aae11260229b85",
+   "chapter": "Thermodynamics",
+   "year": 2023,
+   "question_en": "When some amount of heat energy is supplied to a monatomic gas, the percentage of heat energy used for increasing the internal energy of the gas (γ = 5/3) is",
+   "options_en": [
+    "60",
+    "40",
+    "20",
+    "80"
+   ],
+   "solution": {
+    "approach": "At constant pressure the fraction of heat that raises internal energy is Cv over Cp, found from the given ratio of specific heats.",
+    "steps": [
+     {
+      "text": "Write Cv and Cp for a monatomic gas in terms of R.",
+      "equation": "Cv = (3/2)R, Cp = (5/2)R"
+     },
+     {
+      "text": "Find the fraction of heat that goes into internal energy.",
+      "equation": "dU/dQ = Cv/Cp = (3/2)/(5/2) = 3/5"
+     },
+     {
+      "text": "Convert the fraction to a percentage.",
+      "equation": "(3/5) × 100% = 60%"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "60"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Computing the fraction of heat converted into work instead, R/Cp = 2/5 = 40%, rather than the fraction that raises internal energy."
+     },
+     {
+      "option": 3,
+      "text": "Misremembering the relation Cp − Cv = R as Cp − Cv = 2R gives Cv = R/2 and a fraction of 20%."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "monatomic gas",
+     "internal energy fraction"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q097",
+   "audit_file": "tg_eapcet_2024_20240509_an_q097.d27c11b3.json",
+   "item_sha": "d27c11b377abf91f31f4e0e61ee8c16f0e8eba4762eec546ba4fcfe484c4042c",
+   "chapter": "Thermodynamics",
+   "year": 2024,
+   "question_en": "If dQ, dU and dW are heat energy absorbed, change in internal energy and external work done respectively by a diatomic gas at constant pressure, then dW : dU : dQ is",
+   "options_en": [
+    "5:3:2",
+    "7:5:2",
+    "4:3:1",
+    "2:5:7"
+   ],
+   "solution": {
+    "approach": "At constant pressure the work, the change in internal energy, and the heat for a diatomic gas are all proportional to the same temperature rise, through R, Cv and Cp.",
+    "steps": [
+     {
+      "text": "Write each quantity for a diatomic gas at constant pressure, in units of nRΔT.",
+      "equation": "dW = nRΔT, dU = n(5/2)RΔT, dQ = n(7/2)RΔT"
+     },
+     {
+      "text": "Divide through by nRΔT and clear the fractions by multiplying by 2.",
+      "equation": "dW : dU : dQ = 1 : 5/2 : 7/2 = 2 : 5 : 7"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "2:5:7"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Writing the ratio in the reverse order, dQ : dU : dW instead of the asked dW : dU : dQ, gives 7 : 5 : 2."
+     },
+     {
+      "option": null,
+      "text": "Using Cv = 3/2 R, the value for a monatomic gas, in place of 5/2 R for this diatomic gas."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "molar heat capacities",
+     "diatomic gas"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q097",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q097.8b82e8cf.json",
+   "item_sha": "8b82e8cf261575d9884d6f5cf4edfe63196e4ade76eef41891985c9113c71135",
+   "chapter": "Thermodynamics",
+   "year": 2024,
+   "question_en": "The efficiency of a reversible heat engine working between two temperatures is 50%. The coefficient of performance of a refrigerator working between the same two temperatures but in reverse direction is",
+   "options_en": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "solution": {
+    "approach": "A Carnot engine's efficiency and a Carnot refrigerator's coefficient of performance between the same two temperatures both come from the ratio of the cold to the hot temperature.",
+    "steps": [
+     {
+      "text": "Write the efficiency in terms of the temperature ratio.",
+      "equation": "η = 1 − Tc/Th = 0.5, so Tc/Th = 0.5"
+     },
+     {
+      "text": "Write the coefficient of performance of the refrigerator working between the same two temperatures.",
+      "equation": "COP = Tc/(Th − Tc)"
+     },
+     {
+      "text": "Rewrite the coefficient of performance in terms of the efficiency and substitute.",
+      "equation": "COP = (1 − η)/η = (1 − 0.5)/0.5 = 1"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using COP = 1/η instead of (1 − η)/η gives 2."
+     }
+    ],
+    "concept_tags": [
+     "Carnot engine",
+     "coefficient of performance",
+     "reversible heat engine"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q097",
+   "audit_file": "tg_eapcet_2024_20240510_an_q097.a0d3f412.json",
+   "item_sha": "a0d3f4122444cf13c46bf8551fec623ee47929d2b2b5ca1b96b03268fcc7c90a",
+   "chapter": "Thermodynamics",
+   "year": 2024,
+   "question_en": "When Q₁ amount of heat is supplied to a monatomic gas, the work done by the gas is W. When Q₂ amount of heat is supplied to a diatomic gas, the work done by the gas is 2W. Then Q₁:Q₂=",
+   "options_en": [
+    "2 : 3",
+    "3 : 5",
+    "5 : 7",
+    "5 : 14"
+   ],
+   "solution": {
+    "approach": "At constant pressure, heat equals Cp over R times the work done, so writing each gas's heat in terms of its own work gives the ratio Q1 to Q2.",
+    "steps": [
+     {
+      "text": "Write the heat supplied to the monatomic gas in terms of the work W it does.",
+      "equation": "Q1 = (Cp/R)_mono × W = (5/2)W"
+     },
+     {
+      "text": "Write the heat supplied to the diatomic gas in terms of the work 2W it does.",
+      "equation": "Q2 = (Cp/R)_dia × 2W = (7/2) × 2W = 7W"
+     },
+     {
+      "text": "Form the ratio Q1 to Q2.",
+      "equation": "Q1 : Q2 = (5/2)W : 7W = 5 : 14"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "5 : 14"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Forgetting that the diatomic gas does twice the work of the monatomic gas and using W for both gases gives Q1 : Q2 = 5 : 7."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "monatomic and diatomic gases",
+     "work-heat relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q097",
+   "audit_file": "tg_eapcet_2025_20250503_an_q097.3849a877.json",
+   "item_sha": "3849a877d3b5526ba1fd1f863b05c92fb1bb9d1ad29e8d9d78c7c2ed07e203e6",
+   "chapter": "Thermodynamics",
+   "year": 2025,
+   "question_en": "At constant pressure, equal amounts of heat are supplied to a monatomic gas and a diatomic gas separately. The ratio of the increases in internal energies of the two gases is",
+   "options_en": [
+    "1:1",
+    "9:49",
+    "3:7",
+    "21:25"
+   ],
+   "solution": {
+    "approach": "At constant pressure the fraction of heat that raises internal energy is Cv over Cp, so equal heat gives internal energy increases in the ratio of these two fractions.",
+    "steps": [
+     {
+      "text": "Write Cv over Cp for the monatomic gas.",
+      "equation": "(Cv/Cp)_mono = (3/2)/(5/2) = 3/5"
+     },
+     {
+      "text": "Write Cv over Cp for the diatomic gas.",
+      "equation": "(Cv/Cp)_dia = (5/2)/(7/2) = 5/7"
+     },
+     {
+      "text": "The change in internal energy equals Cv over Cp times the heat supplied, and the heat supplied is the same for both gases, so take the ratio of the two fractions.",
+      "equation": "dU_mono : dU_dia = 3/5 : 5/7 = 21 : 25"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "21:25"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the same fraction of the heat raises the internal energy in both gases gives the wrong ratio, 1 : 1."
+     },
+     {
+      "option": 3,
+      "text": "Comparing Cv of the monatomic gas directly to Cp of the diatomic gas, instead of the ratio Cv over Cp for each gas separately, gives 3 : 7."
+     }
+    ],
+    "concept_tags": [
+     "isobaric process",
+     "internal energy",
+     "monatomic and diatomic gases"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q108",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q108.526fb276.json",
+   "item_sha": "526fb276845e89778123cfe033626ce6c0f2c9fe3d0bd788164e7adf9bcdf418",
+   "chapter": "Thermodynamics",
+   "year": 2025,
+   "question_en": "A Carnot engine uses diatomic gas as a working substance. During the adiabatic expansion part of the cycle, if the volume of the gas becomes 32 times its initial volume, then the efficiency of the engine is",
+   "options_en": [
+    "100 %",
+    "50 %",
+    "75 %",
+    "25 %"
+   ],
+   "solution": {
+    "approach": "The adiabatic leg of a Carnot cycle links the hot and cold temperatures through the volume ratio raised to the power γ minus 1.",
+    "steps": [
+     {
+      "text": "Write γ for a diatomic gas.",
+      "equation": "γ = 7/5"
+     },
+     {
+      "text": "Apply the adiabatic relation between the hot and cold temperatures across the expansion.",
+      "equation": "Th V1^(γ−1) = Tc V2^(γ−1), with V2/V1 = 32"
+     },
+     {
+      "text": "Solve for the temperature ratio, using 32 = 2⁵.",
+      "equation": "Tc/Th = (1/32)^(γ−1) = (2⁻⁵)^(2/5) = 2⁻² = 1/4"
+     },
+     {
+      "text": "Find the efficiency of the Carnot engine.",
+      "equation": "η = 1 − Tc/Th = 1 − 1/4 = 3/4 = 75%"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "75 %"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Matching the 5 in 32 = 2⁵ and taking Tc/Th = (1/32)^(1/5) = 1/2, instead of using the exponent γ − 1 = 2/5, gives an efficiency of 50%."
+     },
+     {
+      "option": 4,
+      "text": "Reporting the ratio Tc/Th = 1/4 itself as the efficiency, forgetting to subtract it from 1, gives 25%."
+     }
+    ],
+    "concept_tags": [
+     "Carnot cycle",
+     "adiabatic process",
+     "efficiency of a heat engine"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

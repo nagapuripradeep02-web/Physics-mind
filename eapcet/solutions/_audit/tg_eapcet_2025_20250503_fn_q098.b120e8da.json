@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q098",
+ "item_sha": "b120e8daa7d2ea5ffc09f090ffba09991cf0cd717cafc9a635be4311c8fa0486",
+ "auditor_option": 4,
+ "auditor_value": "Isotopes",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "gives the same atomic number and mass number, which is the definition of isomers",
+   "note": "Same atomic number and same mass number alone describe the same nuclide, not an isomer. Nuclear isomers additionally differ in nuclear energy state, and leaving that clause out gives the student an incomplete definition to carry into a later question. It changes nothing on this question, where the route still lands on printed option 2.",
+   "fix": "Correctly finding that the atomic number is unchanged but wrongly assuming the mass number is also unchanged gives the same atomic number and the same mass number, the condition a student associates with isomers, which are nuclei of the same atomic number and mass number differing only in nuclear energy state."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: alpha decay gives ΔZ = −2 and ΔA = −4, each beta-minus decay gives ΔZ = +1 and ΔA = 0, so the net change is ΔZ = 0 and ΔA = −4; same atomic number with different mass number is the definition of isotopes, printed option 4. Every step line follows from the one above it and the why_this_step is a true definition. Two of the three common_mistakes routes were recomputed and are correct in every part: omitting the alpha decay leaves ΔA = 0 with ΔZ = +2, same mass number and different atomic number, which is isobars, printed option 1; and believing beta-minus lowers Z gives ΔZ = −4 and ΔA = −4, so the neutron number ΔN = ΔA − ΔZ = 0 is unchanged, which is isotones, printed option 3, exactly as the entry states. Beta-plus decay does lower Z by 1, so that comparison is also true. No entry condemns a correct method. difficulty medium and mistake_type_hint concept both fit a four-way definition discrimination.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

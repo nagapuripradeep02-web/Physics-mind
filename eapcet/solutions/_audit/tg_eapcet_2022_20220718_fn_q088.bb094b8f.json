@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q088",
+ "item_sha": "bb094b8f18a35ff71cc70652cb3e8b3c8dee877845dc291e4ea01f42965bf354",
+ "auditor_option": 2,
+ "auditor_value": "5/6 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: dU/dx = 10x − 12x², F = −dU/dx = 12x² − 10x, roots x = 0 and x = 5/6 m. Only 5/6 m is printed, so option 2. The question is loosely worded in that x = 0 is also a position where the force vanishes; the solution handles that openly by keeping the nonzero root and by flagging x = 0 in common_mistakes.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

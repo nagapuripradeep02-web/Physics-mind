@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "approach": "Use the nth-second formula at n = 3 and n = 5 to find u and a, then use them to get the speed at t = 4 s.",
+ "steps": [
+  {"text": "Write the nth-second displacement formula and apply it for n = 3 and n = 5.",
+   "equation": "Sₙ = u + a/2(2n−1); S₃ = u + 2.5a = 10; S₅ = u + 4.5a = 18"},
+  {"text": "Subtract the two equations to find the acceleration.",
+   "equation": "2a = 8; a = 4 m/s²"},
+  {"text": "Substitute back to find the initial velocity.",
+   "equation": "u = 10 − 2.5×4 = 0"},
+  {"text": "Use v = u + at to find the speed at t = 4 s.",
+   "equation": "v = 0 + 4×4 = 16 ms⁻¹"}
+ ],
+ "final_answer": {"option": 3, "value": "16 ms⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using v = 2at instead of v = u + at, effectively doubling the correct product of acceleration and time, which gives 32 ms⁻¹."},
+  {"option": 2, "text": "Evaluating v = u + at at t = 3 s instead of t = 4 s, confusing the value of t with the third second mentioned earlier in the question, which gives 12 ms⁻¹."},
+  {"option": 4, "text": "Using v = ½at, wrongly carrying over the one-half from the distance formula s = ut + ½at² into the velocity formula, which gives 8 ms⁻¹."}
+ ],
+ "concept_tags": ["nth-second displacement formula", "uniformly accelerated motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:42:00+05:30"}
+}

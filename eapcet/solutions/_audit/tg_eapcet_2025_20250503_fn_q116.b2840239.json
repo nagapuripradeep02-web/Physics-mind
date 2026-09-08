@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "item_sha": "b2840239a28fa69406db4b618cb51e7435b9d52d2708bd027c9e0dc65c66f67e",
+ "auditor_option": 2,
+ "auditor_value": "101 s",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: v = √(2×10×20) = 20 m s⁻¹ after the 20 m of free fall, taking t₁ = v/g = 2 s (also √(2×20/10) = 2 s); the remaining 2000 − 20 = 1980 m at a constant 20 m s⁻¹ takes 99 s, so the total is 101 s, option 2. All four printed equations are correct, including the conversion of 2 km to 2000 m. All three common_mistakes entries were checked and each produces the option it is attached to: 1980/20 = 99 s (option 1), 2000/20 = 100 s (option 3), and 2 + 2000/20 = 102 s (option 4).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:16:00+05:30"}
+}

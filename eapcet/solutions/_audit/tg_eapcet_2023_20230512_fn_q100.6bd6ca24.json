@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q100",
+ "item_sha": "6bd6ca24fa171b1a6d5aaaa44d3c846957a6e7c4eef89a87af718d7a89bf6bd9",
+ "auditor_option": 3,
+ "auditor_value": "8 ms⁻¹",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Multiplying the coefficients 8π and π instead of dividing, or misreading 8π as the wave speed directly, which gives 16 ms⁻¹.",
+   "note": "Neither route gives 16: 8π × π = 78.96 and 8π alone = 25.13. The printed 16 ms⁻¹ comes from a different slip, multiplying the wavelength λ = 2π/k = 2 m by the numerical coefficient 8 of the time term instead of by the frequency f = ω/2π = 4 Hz.",
+   "fix": "Multiplying the wavelength λ = 2π/k = 2 m by the coefficient 8 of the time term instead of by the frequency f = ω/2π = 4 Hz, which gives 16 ms⁻¹."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "My own solve: k = π rad m⁻¹ and ω = 8π rad s⁻¹, so v = ω/k = 8 m s⁻¹ — option 3, the solution's answer. Both step equations are correct. The defect is only in the arithmetic claimed inside the common_mistakes entry, which is labelled as the error route, so no student copies it as working; the final answer is unaffected. Difficulty easy and mistake_type_hint calculation both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:38:00+05:30"}
+}

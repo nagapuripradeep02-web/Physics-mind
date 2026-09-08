@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "item_sha": "69ddfaab6dc9209b0c591bd8be96f3547f6fb2e5676806a71c66daef1bf6d569",
+ "auditor_option": 2,
+ "auditor_value": "73 g water at 100 °C and 6 g steam at 100 °C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "Options 1, 3 and 4 each describe a final mixture of only 20 g (option 3 as 8 g + 12 g) when 54 g of ice and 25 g of steam, total 79 g, were mixed, so those three options violate conservation of mass on their own terms and are eliminable without any calorimetry.",
+ "notes": "Solved blind first: Q to bring 54 g ice at −20 °C to water at 100 °C = 540 + 4320 + 5400 = 10260 cal; condensing all 25 g of steam would give 25 × 540 = 13500 cal > 10260, so equilibrium sits at 100 °C with 10260/540 = 19 g of steam condensed, leaving 73 g water and 6 g steam. Matches the solution. Recomputed every printed equation including the running sum (540 + 4320 = 4860, + 5400 = 10260) and the division (540 × 19 = 10260 exactly, no rounding). Constants used are the standard cal-gram set (c_ice 0.5, L_f 80, c_water 1, L_v 540) and they land exactly on a printed option, so they are the intended ones. Both common_mistakes routes recomputed and each reaches the number its text states and lands on no printed option, so option: null is correct in both: all-steam-condenses gives 79 g water, and omitting the −20 °C to 0 °C warming gives Q = 9720 cal, 18 g condensed, 72 g water and 7 g steam. Checked and did not file: no obvious slip reaches options 1, 3 or 4, since all three are mass-inconsistent, so the absence of entries for them is not a coverage gap. Plain-language pass; 'steam gives up heat by condensing' is standard calorimetry wording, not personification.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T06:57:55+05:30"}
+}

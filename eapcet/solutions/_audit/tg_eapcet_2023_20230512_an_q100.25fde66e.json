@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q100",
+ "item_sha": "25fde66e709f3f7a001163b070ce7c820e8ba5af68df2921eeb3df55decf2942",
+ "auditor_option": 1,
+ "auditor_value": "1.2 f",
+ "findings": [
+  {"grade": "wrong",
+   "field": "approach",
+   "quote": "the apparent frequency is the source frequency scaled by the ratio of the observer's speed and the sound speed",
+   "note": "Taken literally this says f' = f·(v₀/v), which for v₀ = v/5 would give 0.2f. The solution's own first step uses f' = f(v + v₀)/v, so the approach states a different and false relation from the one the steps apply.",
+   "fix": "For an observer moving towards a stationary source, the apparent frequency is the source frequency multiplied by (v + v₀)/v, where v is the speed of sound and v₀ is the observer's speed."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "My own solve: f' = f(v + v₀)/v with v₀ = v/5 gives f' = f(1 + 1/5) = 1.2f — option 1, the solution's answer. The three step equations are correct and the common_mistakes entry is right: the receding form f(v − v₀)/v gives 0.8f, which is printed option 3. Difficulty easy and mistake_type_hint application both fit. Only the approach sentence is defective; it does not change the answer.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:36:00+05:30"}
+}

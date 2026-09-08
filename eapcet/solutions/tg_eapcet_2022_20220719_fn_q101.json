@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220719_fn_q101",
+ "approach": "Raising the tension in A raises its frequency, and the beat frequency falls, so A must be moving towards B's higher frequency.",
+ "steps": [
+  {
+   "text": "Increasing the tension in a string raises its frequency, so the new frequency of A is slightly above f₀.",
+   "equation": "f_A(new) > f₀"
+  },
+  {
+   "text": "The beat frequency falls from Δf₁ to Δf₂, so the new frequency of A has moved closer to the frequency of B.",
+   "equation": "Δf₂ < Δf₁"
+  },
+  {
+   "text": "A frequency that is rising can only get closer to f_B if f_B lies above f₀, so the original beat gap is f_B − f₀.",
+   "equation": "f_B − f₀ = Δf₁",
+   "why_this_step": "If f_B were below f₀, raising f_A would move it further from f_B and the beat frequency would rise instead of fall."
+  },
+  {
+   "text": "Solve for the frequency of B.",
+   "equation": "f_B = f₀ + Δf₁"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "f₀ + Δf₁"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Assuming B has the lower frequency and writing f_B = f₀ − Δf₁, without checking that this would make the beat frequency rise, not fall, when A's tension is increased."
+  }
+ ],
+ "concept_tags": [
+  "beats",
+  "beat frequency",
+  "effect of tension on frequency"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T05:55:21+05:30"
+ }
+}

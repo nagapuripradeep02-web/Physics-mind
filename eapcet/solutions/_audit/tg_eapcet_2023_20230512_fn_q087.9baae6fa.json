@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q087",
+ "item_sha": "9baae6fa69dcd78b64def361d204a35c5c4dfae2ed85079925a3927b9a29aef7",
+ "auditor_option": 4,
+ "auditor_value": "24 J",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: v = ds/dt = t², v(2) = 4 m s⁻¹, W = ½ × 3 × 4² = 24 J. Both mistake entries verify: a = 2t so F(2) = 12 N and s(2) = 8/3 m, giving 12 × 8/3 = 32 J (option 1); dropping the one-half gives 48 J, which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q091",
+ "item_sha": "7574972d56764b5168e452bb92df34c17cedd313ba0f574ed9cde0fab0e0a9ab",
+ "auditor_option": 3,
+ "auditor_value": "√(rx)",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Swapping which ratio is called x and which is called r gives √(x/r) instead of √(rx).",
+   "note": "The correct result √(rx) is symmetric in r and x, so exchanging the two labels leaves it unchanged and cannot produce √(x/r). The stated error does not lead to the option it is attached to. A student who reached √(x/r) divided one of the ratios instead of multiplying it.",
+   "fix": "Using the radius ratio the wrong way round, R₂/R₁ = 1/r instead of R₁/R₂ = r, in v₁/v₂ = √(g₁R₁/(g₂R₂)) gives √(x/r) instead of √(rx)."}
+ ],
+ "verdict": "wrong",
+ "notes": "Solved independently: v_e = √(2gR), so v₁/v₂ = √(g₁R₁/(g₂R₂)) = √(xr) = √(rx), option 3. All three printed equations are correct and each follows from the one above. Symmetry of √(rx) under exchange of r and x confirmed with sympy.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

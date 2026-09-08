@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q116",
+ "item_sha": "cfe36a7caf99e7a1d7e422b1ff59edcaf74fefb8dd8f988ce786df33d7073425",
+ "auditor_option": 3,
+ "auditor_value": "₁₅P³⁰",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "Printed option 4 is written ₁₅Si³¹, pairing atomic number 15 with the symbol Si; silicon has atomic number 14, so this distractor contradicts itself. It does not affect which option is correct.",
+ "notes": "Solved independently before reading the solution: conserving charge gives Z(X) = 13 + 2 − 0 = 15 and conserving mass number gives A(X) = 27 + 4 − 1 = 30, and element 15 is phosphorus, so X is ₁₅P³⁰, printed option 3. Every step line follows from the one above it and the why_this_step is a true statement of the conservation used. Both common_mistakes routes were recomputed and reach the options they name: omitting the neutron's mass number gives A = 31 with Z = 15, printed option 1, and treating the neutron as carrying charge +1 gives Z = 13 + 2 − 1 = 14 with A = 30, which is silicon-30, printed option 2. Both are genuine bookkeeping slips here and neither condemns a correct method. difficulty easy is right; mistake_type_hint calculation is defensible since both listed errors are arithmetic in the conservation ledger rather than a misunderstanding of the principle, so it was not filed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

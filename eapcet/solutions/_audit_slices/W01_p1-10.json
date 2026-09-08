@@ -1,0 +1,812 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-10",
+ "chapter": "Mechanical Properties of Fluids",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q096",
+   "audit_file": "tg_eapcet_2021_20210804_an_q096.8f24be44.json",
+   "item_sha": "8f24be447e6e86e7a35f00df2ad092a0d45bc5b2d3c26503fb1b3fc9cb86ee38",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "What is the terminal velocity of air bubble of 1.0 mm in diameter rising in liquid of viscosity 0.85 Ns/m² and density 900 kgm⁻³? [air density 1.293 kg/m³, g = 9 m/s²]",
+   "options_en": [
+    "Vₜ = 0.25 mm/s",
+    "Vₜ = 0.5 mm/s",
+    "Vₜ = 1.5 mm/s",
+    "Vₜ = 2.5 mm/s"
+   ],
+   "solution": {
+    "approach": "A rising air bubble in a denser viscous liquid reaches terminal velocity when the upward buoyant force is balanced by viscous drag, given by Stokes' law.",
+    "steps": [
+     {
+      "text": "Convert the given diameter to a radius.",
+      "equation": "r = 1.0 mm / 2 = 0.5 × 10⁻³ m"
+     },
+     {
+      "text": "Write the terminal velocity of a sphere rising through a denser viscous liquid.",
+      "equation": "vₜ = 4r²(ρ_liquid − ρ_air)g / (9η)",
+      "why_this_step": "The bubble is far less dense than the liquid, so buoyancy pushes it up and viscous drag opposes the motion until the two balance."
+     },
+     {
+      "text": "Substitute the given values and evaluate.",
+      "equation": "vₜ = 2 × (0.5×10⁻³)² × (900 − 1.293) × 9 / (9 × 0.85) = 5.29×10⁻⁴ m/s = 0.53 mm/s"
+     },
+     {
+      "text": "Compare with the printed options.",
+      "equation": "0.53 mm/s is closest to the printed 0.5 mm/s"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Vₜ = 0.5 mm/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Leaving out the factor of 2 in the formula and using r²(ρ_liquid − ρ_air)g/(9η) gives about 0.26 mm/s, which rounds toward 0.25 mm/s."
+     }
+    ],
+    "concept_tags": [
+     "Stokes' law",
+     "terminal velocity",
+     "buoyancy"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q096",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q096.4b2f6fc4.json",
+   "item_sha": "4b2f6fc47493064e3cafa610a3289df61f073b3bf94b518d6444c084e7c08e3a",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "Water is pumped steadily out of a flooded basement, at the speed of 10 m/s through a hose (tube) of radius 1 cm, passing through a window 3 m above the water level. The power of the pump is (Assume g = 10 m/s², density of water = 1000 kg/m³)",
+   "options_en": [
+    "80π W",
+    "30π W",
+    "50π W",
+    "90π W"
+   ],
+   "solution": {
+    "approach": "The pump must supply the rate of kinetic energy gain and the rate of potential energy gain of the water it lifts and ejects.",
+    "steps": [
+     {
+      "text": "Find the mass flow rate of the water through the hose.",
+      "equation": "ṁ = ρAv = 1000 × π(0.01)² × 10 = π kg/s"
+     },
+     {
+      "text": "Write the power as the rate of kinetic energy delivered plus the rate of potential energy gained in rising 3 m.",
+      "equation": "P = ṁ(v²/2 + gh)",
+      "why_this_step": "The water starts at rest at the basement floor and leaves the window with speed v at height h, so the pump supplies both energies per second."
+     },
+     {
+      "text": "Substitute the values and evaluate.",
+      "equation": "P = π × (10²/2 + 10 × 3) = π × (50 + 30) = 80π W"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "80π W"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Including only the potential energy term and forgetting the kinetic energy the water carries gives 30π W."
+     },
+     {
+      "option": 3,
+      "text": "Including only the kinetic energy term and forgetting the height the water is lifted through gives 50π W."
+     }
+    ],
+    "concept_tags": [
+     "work-energy theorem",
+     "power",
+     "fluid flow through a pipe"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q097",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q097.f38ba94a.json",
+   "item_sha": "f38ba94a2216f22e490071ac44c277fa94c779bde11314584ccd1398fa24b00a",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "A U-shaped tube is partially filled with an incompressible liquid of density 1.2 g/cm³. Oil which does not mix with the liquid is next poured into left side of the U-tube until the liquid rises by 15 cm on the right side of U-tube. If the density of the oil is 0.9 g/cm³, the oil level will stand higher than the liquid level of right side of U-tube by",
+   "options_en": [
+    "15 cm",
+    "10 cm",
+    "12 cm",
+    "9 cm"
+   ],
+   "solution": {
+    "approach": "Pouring oil into one arm pushes liquid down there and up by the same amount on the other side, and the two columns must give equal pressure at the interface.",
+    "steps": [
+     {
+      "text": "Since the two arms have equal cross-section, the liquid level on the oil side drops by the same amount the level on the open side rises.",
+      "equation": "drop on left = rise on right = 15 cm",
+      "why_this_step": "The liquid pushed out of the left arm has nowhere to go except into the right arm, and both arms are the same width."
+     },
+     {
+      "text": "Find the total height difference between the liquid surface under the oil and the open liquid surface on the right.",
+      "equation": "Δh_liquid = 15 + 15 = 30 cm"
+     },
+     {
+      "text": "At the level of the liquid surface under the oil, the pressure from the oil column above must equal the pressure from the 30 cm liquid column above the same level on the right.",
+      "equation": "ρ_oil × g × H_oil = ρ_liquid × g × 30"
+     },
+     {
+      "text": "Solve for the height of the oil column and evaluate.",
+      "equation": "H_oil = 1.2 × 30 / 0.9 = 40 cm"
+     },
+     {
+      "text": "Find how much higher the top of the oil stands than the open liquid surface on the right, measuring both from the same original common level.",
+      "equation": "oil top = −15 + 40 = 25 cm; right liquid surface = +15 cm; difference = 25 − 15 = 10 cm",
+      "why_this_step": "The oil sits on top of the liquid that has already dropped by 15 cm, so its own top is 15 cm below the oil column's height, not at the original level."
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "10 cm"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the oil surface stands only as high above the right liquid surface as the right liquid itself rose, giving 15 cm."
+     }
+    ],
+    "concept_tags": [
+     "hydrostatic pressure",
+     "U-tube",
+     "immiscible liquids"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q094",
+   "audit_file": "tg_eapcet_2022_20220718_an_q094.0cd35a32.json",
+   "item_sha": "0cd35a32881ded6aa9b59f5aeb143330f7317fa66ad04e90ae3a2792075b2b71",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "A hollow spherical body of outer and inner radii of 4 cm and 2 cm respectively floats half submerged in a liquid of density 2.0 g/cm³. The density of the material of the sphere is",
+   "options_en": [
+    "1.02 g/cm³",
+    "1.14 g/cm³",
+    "1.18 g/cm³",
+    "1.24 g/cm³"
+   ],
+   "solution": {
+    "approach": "The sphere floats, so its total weight equals the weight of liquid displaced by the half of its outer volume that is submerged.",
+    "steps": [
+     {
+      "text": "Write the volume of the hollow shell material, between the outer and inner radii.",
+      "equation": "V_material = (4/3)π(R³ − r³), R = 4 cm, r = 2 cm"
+     },
+     {
+      "text": "Write the volume of liquid displaced, which is half the outer sphere's volume since it floats half submerged.",
+      "equation": "V_displaced = (1/2) × (4/3)πR³"
+     },
+     {
+      "text": "Equate the weight of the sphere to the weight of the displaced liquid.",
+      "equation": "V_material × ρ_material = V_displaced × ρ_liquid",
+      "why_this_step": "A floating body displaces liquid whose weight equals its own weight."
+     },
+     {
+      "text": "Solve for the density of the material and substitute values.",
+      "equation": "ρ_material = R³ρ_liquid / [2(R³ − r³)] = 64 × 2.0 / (2 × 56) = 1.14 g/cm³"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1.14 g/cm³"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the sphere as solid throughout instead of hollow, which uses the full outer volume as the material volume and gives 1.0 g/cm³, an unlisted value."
+     }
+    ],
+    "concept_tags": [
+     "floatation",
+     "Archimedes' principle",
+     "hollow sphere density"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q095",
+   "audit_file": "tg_eapcet_2022_20220718_an_q095.49bc2af0.json",
+   "item_sha": "49bc2af0cf0c264ecf9884e8f572862cf39934f8ce7a666edbb183c951d40427",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "What is the terminal velocity of a rain drop of radius 0.02 mm? [Note that the coefficient of viscosity of air is 1.8 × 10⁻⁵ N/m², density of water is 1000 Kg/m³. Use g = 10m/s² and density of air can be neglected in comparison with density of water]",
+   "options_en": [
+    "4.9 cm/s",
+    "9.8 cm/s",
+    "0.49 cm/s",
+    "49 cm/s"
+   ],
+   "solution": {
+    "approach": "A falling raindrop reaches terminal velocity when viscous drag balances its weight, since the surrounding air's density is neglected.",
+    "steps": [
+     {
+      "text": "Write the terminal velocity of a small sphere falling through a viscous fluid, with the fluid's own density neglected.",
+      "equation": "vₜ = 2r²ρ_water g / (9η)"
+     },
+     {
+      "text": "Substitute the given radius, density, viscosity and g.",
+      "equation": "r = 0.02 mm = 2×10⁻⁵ m",
+      "why_this_step": "The radius must be in metres to match the SI units of the other quantities."
+     },
+     {
+      "text": "Evaluate the terminal velocity.",
+      "equation": "vₜ = 2 × (2×10⁻⁵)² × 1000 × 10 / (9 × 1.8×10⁻⁵) = 4.94×10⁻² m/s = 4.9 cm/s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "4.9 cm/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Misremembering the constant in the formula as 4r²ρg/(9η) instead of 2r²ρg/(9η), which doubles the answer to about 9.8 cm/s."
+     },
+     {
+      "option": 3,
+      "text": "Converting the final speed from metres per second to centimetres per second using a factor of 10 instead of 100 gives about 0.49 cm/s."
+     }
+    ],
+    "concept_tags": [
+     "Stokes' law",
+     "terminal velocity",
+     "viscosity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q094",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q094.0d10d500.json",
+   "item_sha": "0d10d5008033d99538aa7fb31da6b13ce8f238f4ecb294347ece808f134154a2",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "A large storage tank, open to the atmosphere at top and filled with water, develops a small hole in its side at a point 20.0 m below the water level. If the rate of flow from the hole is 3.08 × 10⁻⁵ m³/s, then the diameter of the hole is\n[Take g = 10 m/s²]",
+   "options_en": [
+    "1.0 mm",
+    "1.2 mm",
+    "1.4 mm",
+    "1.6 mm"
+   ],
+   "solution": {
+    "approach": "The speed of the water leaving the hole comes from Torricelli's law, and the flow rate then fixes the area, and so the diameter, of the hole.",
+    "steps": [
+     {
+      "text": "Find the speed of the water jet from the hole using Torricelli's law.",
+      "equation": "v = √(2gh) = √(2 × 10 × 20) = 20 m/s",
+      "why_this_step": "A small hole deep below an open, wide tank behaves like free fall from the water surface to the hole."
+     },
+     {
+      "text": "Use the flow rate to find the cross-sectional area of the hole.",
+      "equation": "A = Q/v = 3.08×10⁻⁵ / 20 = 1.54×10⁻⁶ m²"
+     },
+     {
+      "text": "Find the radius from the area, then double it for the diameter.",
+      "equation": "r = √(A/π) = √(1.54×10⁻⁶/π) = 7.0×10⁻⁴ m"
+     },
+     {
+      "text": "Evaluate the diameter.",
+      "equation": "d = 2r = 1.4×10⁻³ m = 1.4 mm"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "1.4 mm"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Using v = √(gh) instead of √(2gh) for the outflow speed gives a diameter of about 1.6 mm."
+     }
+    ],
+    "concept_tags": [
+     "Torricelli's law",
+     "equation of continuity",
+     "efflux speed"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q093",
+   "audit_file": "tg_eapcet_2023_20230512_an_q093.0ad71232.json",
+   "item_sha": "0ad7123298b412ec3f03e7d7a8e30b7090ffa06e6e5e0309e79660788e78381f",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "If the work done in blowing a soap bubble of radius R is W, then the work done in blowing the soap bubble of radius 2R is",
+   "options_en": [
+    "6W",
+    "12W",
+    "4W",
+    "2W"
+   ],
+   "solution": {
+    "approach": "The work done in blowing a soap bubble equals its surface energy, which is proportional to the square of its radius.",
+    "steps": [
+     {
+      "text": "Write the work done in blowing a soap bubble of radius R as the surface energy of its two surfaces.",
+      "equation": "W = T × 2 × 4πR² = 8πTR²"
+     },
+     {
+      "text": "Write the same expression for a bubble of radius 2R.",
+      "equation": "W' = 8πT(2R)² = 8πT × 4R² = 4 × (8πTR²)",
+      "why_this_step": "Doubling the radius quadruples the surface area, since area grows with the square of the radius."
+     },
+     {
+      "text": "Express W' in terms of W.",
+      "equation": "W' = 4W"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4W"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Treating the work as proportional to the radius itself instead of its square, giving 2W for a doubled radius."
+     },
+     {
+      "option": null,
+      "text": "Assuming the work scales with the bubble's volume rather than its surface area, giving 8W for a doubled radius, a value not printed among the options."
+     }
+    ],
+    "concept_tags": [
+     "surface tension",
+     "surface energy",
+     "soap bubble"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q094",
+   "audit_file": "tg_eapcet_2023_20230512_an_q094.fc6bc5fa.json",
+   "item_sha": "fc6bc5fafed6c99a4e66815fc0de76dcaa539f90c2479364c2422dad2868650e",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "Three identical vessels are filled with three liquids A, B, and C with equal masses but having densities ρ_A, ρ_B and ρ_C respectively. If ρ_A > ρ_B > ρ_C then the pressure at the bottom of the vessels will be",
+   "options_en": [
+    "Equal in all vessels",
+    "Maximum in vessel containing liquid A",
+    "Maximum in vessel containing liquid B",
+    "Maximum in vessel containing liquid C"
+   ],
+   "solution": {
+    "approach": "Equal masses in identical vessels give different liquid heights, and the pressure at the bottom depends only on the mass and the base area, not on the density.",
+    "steps": [
+     {
+      "text": "Write the mass of a liquid column of height h in a vessel of base area A and density ρ.",
+      "equation": "m = ρAh, so h = m/(ρA)"
+     },
+     {
+      "text": "Write the pressure at the bottom of the vessel using this height.",
+      "equation": "P = ρgh = ρg × m/(ρA) = mg/A",
+      "why_this_step": "The density cancels because a denser liquid of the same mass fills a smaller height."
+     },
+     {
+      "text": "Since the vessels are identical (same A) and the masses are equal, the pressure mg/A is the same number for A, B and C.",
+      "equation": "P_A = P_B = P_C = mg/A"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "Equal in all vessels"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Assuming pressure at the bottom rises with density alone, without noticing that the equal mass forces the denser liquid to stand at a shorter height, which cancels the density out."
+     }
+    ],
+    "concept_tags": [
+     "pressure in a liquid",
+     "hydrostatic pressure",
+     "density and height relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q092",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q092.cb653fcf.json",
+   "item_sha": "cb653fcfb19b87058253ab5536e2247840109c2bf14fd4c3f61e296369a628fc",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "A straw of circular cross-section of radius R and negligible thickness is dipped vertically into a liquid of surface tension T. If the contact angle between the liquid and the straw material is 53°, the force acting on the straw due to surface tension of the liquid is (cos 53° = 0.6)",
+   "options_en": [
+    "12πRT/5",
+    "6πRT/5",
+    "4πRT/5",
+    "3πRT/5"
+   ],
+   "solution": {
+    "approach": "Since the straw's wall has negligible thickness, the liquid meets it along two contact lines, one inside and one outside, each pulling with surface tension at the contact angle.",
+    "steps": [
+     {
+      "text": "Write the length of one contact line where the liquid meets the circular wall of the straw.",
+      "equation": "length = 2πR"
+     },
+     {
+      "text": "Because the wall has negligible thickness, the liquid touches it from inside and from outside, giving two such contact lines.",
+      "equation": "total contact length = 2 × 2πR = 4πR",
+      "why_this_step": "A real straw has two surfaces facing the liquid at almost the same radius, so both menisci pull on it."
+     },
+     {
+      "text": "Write the total force from surface tension, resolved along the vertical using the contact angle.",
+      "equation": "F = T × 4πR × cos53° = 4πRT × 0.6"
+     },
+     {
+      "text": "Simplify to match the form of the options.",
+      "equation": "F = 2.4πRT = 12πRT/5"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "12πRT/5"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Counting only one contact line, inside or outside, instead of both gives 6πRT/5."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to resolve the surface tension force through the contact angle, taking cos53° as 1, gives 4πRT, which is not among the printed options."
+     }
+    ],
+    "concept_tags": [
+     "surface tension",
+     "contact angle",
+     "capillary force on a tube"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q093",
+   "audit_file": "tg_eapcet_2024_20240509_an_q093.fca7c8a7.json",
+   "item_sha": "fca7c8a73034d9a4caa18b11e1ef10b7f9d9112656212c4ee4520628169d5427",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "The excess pressure inside a soap bubble of radius 0.5 cm is balanced by the pressure due to an oil column of height 4 mm. If the density of the oil is 900 kg m⁻³, then the surface tension of the soap solution is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9×10⁻² Nm⁻¹",
+    "2.25×10⁻² Nm⁻¹",
+    "4.5×10⁻² Nm⁻¹",
+    "7×10⁻² Nm⁻¹"
+   ],
+   "solution": {
+    "approach": "The excess pressure inside a soap bubble, which has two surfaces, is balanced by the pressure of the oil column of the given height.",
+    "steps": [
+     {
+      "text": "Write the excess pressure inside a soap bubble of radius R.",
+      "equation": "ΔP = 4T/R",
+      "why_this_step": "A soap bubble has two free surfaces, an inner and an outer one, so its excess pressure is twice that of a single liquid surface."
+     },
+     {
+      "text": "Write the pressure of the oil column of height h that balances this excess pressure.",
+      "equation": "ΔP = ρ_oil g h"
+     },
+     {
+      "text": "Equate the two expressions and solve for the surface tension T.",
+      "equation": "4T/R = ρ_oil g h  ⇒  T = ρ_oil g h R / 4"
+     },
+     {
+      "text": "Substitute the given values and evaluate.",
+      "equation": "T = 900 × 10 × 0.004 × 0.005 / 4 = 4.5×10⁻² N m⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4.5×10⁻² Nm⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the excess pressure of a single free surface, 2T/R, instead of the soap bubble's two surfaces, 4T/R, gives 9×10⁻² N m⁻¹."
+     },
+     {
+      "option": 2,
+      "text": "Mistaking the given 0.5 cm for the diameter and halving it again to 0.25 cm before using it as the radius gives 2.25×10⁻² N m⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "excess pressure",
+     "soap bubble",
+     "surface tension"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q094",
+   "audit_file": "tg_eapcet_2024_20240509_an_q094.d5494ab5.json",
+   "item_sha": "d5494ab51f830c7cad6a5fac01ee2a4ae4847afba8e7b1451e9f4da6a7c3112e",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "Water flows through a horizontal pipe of variable cross-section at the rate of 12π litre per minute. The velocity of the water at the point where the diameter of the pipe becomes 2 cm is",
+   "options_en": [
+    "6 ms⁻¹",
+    "8 ms⁻¹",
+    "4 ms⁻¹",
+    "2 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "The equation of continuity gives the water's speed at any section as the flow rate divided by the cross-sectional area there.",
+    "steps": [
+     {
+      "text": "Convert the flow rate to SI units.",
+      "equation": "Q = 12π L/min = 12π × 10⁻³ m³ / 60 s = 2×10⁻⁴π m³/s"
+     },
+     {
+      "text": "Find the cross-sectional area of the pipe where its diameter is 2 cm.",
+      "equation": "r = 2 cm / 2 = 0.01 m; A = πr² = π × 10⁻⁴ m²"
+     },
+     {
+      "text": "Find the speed of the water at this section.",
+      "equation": "v = Q/A = 2×10⁻⁴π / (π×10⁻⁴) = 2 m/s",
+      "why_this_step": "The π cancels because both the flow rate and the area were expressed with the same π factor from the pipe's circular cross-section."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "2 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Halving the radius again after already converting the diameter to a radius, using 0.5 cm instead of 1 cm, gives 8 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "equation of continuity",
+     "flow rate",
+     "fluid speed"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q094",
+   "audit_file": "tg_eapcet_2024_20240510_an_q094.6bf4b8b6.json",
+   "item_sha": "6bf4b8b6920a9220fba6fd3beef939a1c889ff53a43d888897efbc941673b173",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "Three identical vessels are filled up to the same height with three different liquids A, B and C of densities ρA, ρB and ρC respectively. If ρA>ρB>ρC, then the pressure at the bottom of the vessels is",
+   "options_en": [
+    "equal in all vessels",
+    "maximum in vessel containing liquid C",
+    "maximum in vessel containing liquid B",
+    "maximum in vessel containing liquid A"
+   ],
+   "solution": {
+    "approach": "When the vessels are filled to the same height, the pressure at the bottom is directly proportional to the density, so the densest liquid gives the highest pressure.",
+    "steps": [
+     {
+      "text": "Write the pressure at the bottom of a vessel filled to height h with a liquid of density ρ.",
+      "equation": "P = ρgh"
+     },
+     {
+      "text": "Since h and g are the same for all three identical vessels, P depends only on ρ.",
+      "equation": "P_A ∝ ρ_A, P_B ∝ ρ_B, P_C ∝ ρ_C"
+     },
+     {
+      "text": "Use the given ordering of densities to rank the pressures.",
+      "equation": "ρ_A > ρ_B > ρ_C  ⇒  P_A > P_B > P_C",
+      "why_this_step": "With height fixed, a larger density directly gives a larger weight of liquid pressing down on the same base area."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "maximum in vessel containing liquid A"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Confusing this equal-height version with the companion equal-mass version of the question, where the pressures do come out equal in all vessels."
+     },
+     {
+      "option": 2,
+      "text": "Reversing the inequality and picking the least dense liquid, C, as the one with maximum pressure."
+     }
+    ],
+    "concept_tags": [
+     "pressure in a liquid",
+     "hydrostatic pressure",
+     "density and height relation"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q100",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q100.e7a6e5d5.json",
+   "item_sha": "e7a6e5d5fa1ba9fb11aced8041c4f73eb24496acb0d6ee6fd08b65ac82ce2924",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A thin film of water is formed between two straight parallel wires each of length 8 cm separated by distance of 0.6 cm. The work done to increase the distance between the wires to 0.8 cm is (Surface tension of water = 0.07 Nm⁻¹)",
+   "options_en": [
+    "22.4 μJ",
+    "33.6 μJ",
+    "44.8 μJ",
+    "11.2 μJ"
+   ],
+   "solution": {
+    "approach": "The soap film has two free surfaces, so the work done equals the surface tension times twice the increase in the film's area.",
+    "steps": [
+     {
+      "text": "Write the increase in the area of one face of the film as the wires are pulled apart.",
+      "equation": "ΔA_one_face = L × (d₂ − d₁) = 0.08 × (0.008 − 0.006) = 1.6×10⁻⁴ m²"
+     },
+     {
+      "text": "Double it because the film has a front surface and a back surface, both stretching.",
+      "equation": "ΔA_total = 2 × ΔA_one_face = 3.2×10⁻⁴ m²",
+      "why_this_step": "A soap or water film supported on a wire frame has liquid on both sides, giving it two surfaces of surface tension energy."
+     },
+     {
+      "text": "Multiply by the surface tension to get the work done.",
+      "equation": "W = T × ΔA_total = 0.07 × 3.2×10⁻⁴ = 2.24×10⁻⁵ J = 22.4 μJ"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "22.4 μJ"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Counting only one surface of the film instead of two gives 11.2 μJ, half the correct work."
+     },
+     {
+      "option": 3,
+      "text": "Using a factor of 4 instead of 2 for the two surfaces gives 44.8 μJ, double the correct work."
+     }
+    ],
+    "concept_tags": [
+     "surface tension",
+     "work done against surface tension",
+     "soap film"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q119",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q119.08720ba8.json",
+   "item_sha": "08720ba8f8afbaa34d7acc5245bb8840398d344ba71ef9421e0afff2806e0d7e",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A rain drop of diameter 1 mm falls with a terminal velocity of 0.7 ms⁻¹ in air. If the coefficient of viscosity of air is 2×10⁻⁵ Pa s, the viscous force on the rain drop is",
+   "options_en": [
+    "26.4×10⁻⁸ N",
+    "13.2×10⁻⁸ N",
+    "6.6×10⁻⁸ N",
+    "10.4×10⁻⁸ N"
+   ],
+   "solution": {
+    "approach": "At terminal velocity, the viscous force on the falling drop is given directly by Stokes' law.",
+    "steps": [
+     {
+      "text": "Convert the given diameter to a radius.",
+      "equation": "r = 1 mm / 2 = 0.5×10⁻³ m"
+     },
+     {
+      "text": "Write Stokes' law for the viscous drag force on a sphere moving at speed v through a fluid.",
+      "equation": "F = 6πηrv",
+      "why_this_step": "At terminal velocity the drop moves at constant speed, so this drag force is exactly what the problem asks for."
+     },
+     {
+      "text": "Substitute the given values and evaluate.",
+      "equation": "F = 6π × 2×10⁻⁵ × 0.5×10⁻³ × 0.7 = 1.32×10⁻⁷ N = 13.2×10⁻⁸ N"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "13.2×10⁻⁸ N"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the given diameter directly as the radius in Stokes' law, without halving it, gives 26.4×10⁻⁸ N."
+     },
+     {
+      "option": 3,
+      "text": "Misremembering the constant in Stokes' law as 3πηrv instead of 6πηrv gives 6.6×10⁻⁸ N, half the correct force."
+     }
+    ],
+    "concept_tags": [
+     "Stokes' law",
+     "viscous force",
+     "terminal velocity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q103",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q103.172e6c83.json",
+   "item_sha": "172e6c837d737c7f53d49a0d69bf5c606232a689d14c2e53e5f69c753c6e73b2",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A cube of side 40 cm is floating with 1/4th of its volume immersed in water. When a circular disc is placed on the cube, it floats with 2/5th of its volume immersed in water. The mass of the disc is",
+   "options_en": [
+    "9.6 kg",
+    "1.6 kg",
+    "6.4 kg",
+    "3.2 kg"
+   ],
+   "solution": {
+    "approach": "The extra weight of the disc equals the extra buoyant force gained from the extra volume of the cube that goes underwater once the disc is added.",
+    "steps": [
+     {
+      "text": "Write the volume of the cube.",
+      "equation": "V = (0.40 m)³ = 0.064 m³"
+     },
+     {
+      "text": "Write the weight balance for the cube floating alone, with one quarter of its volume submerged.",
+      "equation": "m_cube g = ρ_water g × (V/4)"
+     },
+     {
+      "text": "Write the weight balance after the disc is placed on top, with two fifths of the volume submerged.",
+      "equation": "(m_cube + m_disc) g = ρ_water g × (2V/5)"
+     },
+     {
+      "text": "Subtract the first equation from the second to isolate the disc's mass.",
+      "equation": "m_disc = ρ_water V (2/5 − 1/4) = ρ_water V × 3/20",
+      "why_this_step": "Only the extra submerged volume, beyond what the cube alone already displaced, supports the added disc."
+     },
+     {
+      "text": "Substitute the values and evaluate.",
+      "equation": "m_disc = 1000 × 0.064 × 3/20 = 9.6 kg"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "9.6 kg"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the full submerged weight after the disc is added, ρ_water g (2V/5), as the disc's own weight and forgetting to subtract the cube's share, gives 25.6 kg, which is not a printed option."
+     }
+    ],
+    "concept_tags": [
+     "floatation",
+     "Archimedes' principle",
+     "buoyant force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

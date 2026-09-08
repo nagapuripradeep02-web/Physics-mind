@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q084",
+ "item_sha": "0b930724247f15916062a763a4037f48bc76f871788486db2ab2f87e627281c8",
+ "auditor_option": 1,
+ "auditor_value": "North-West",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. Facing east and turning right gives south; south then right gives west; west then right gives north, so the fourth leg is north and its length is 20 - (2+4+6) = 8 steps. Net east component 2 - 6 = -4 (4 steps west); net north component 8 - 4 = +4 (4 steps north). Equal westward and northward components give a direction exactly north-west, option 1. Checked with python. Every printed equation follows from the one above it, and the turn sequence used in step 1 is the correct one for right turns. The single common_mistakes entry is true: after only three legs the displacement is 4 west and 4 south, that is south-west, which is not among the four printed choices, so option is correctly left null. Difficulty easy and mistake_type_hint application are both reasonable. Considered but did not file: only one common_mistakes entry is present, which is thin coverage but not itself an error.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T02:54:00+05:30"}
+}

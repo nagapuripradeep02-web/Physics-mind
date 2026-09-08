@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q091",
+ "item_sha": "1c214f29a9c3047f7f3ebd77e0a22d09716a1b74570ec77d41c9c5430d59316d",
+ "auditor_option": 4,
+ "auditor_value": "4W/3",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: E(h) = GMm/R − GMm/(R+h) = mgRh/(R+h). E(R) = mgR/2 = W and E(2R) = 2mgR/3, so E(2R) = (4/3)W, option 4. Verified with sympy. All four printed equations are correct and each follows from the one above. common_mistakes[0] was checked: with the constant-g formula E = mgh, W would be mgR and E(2R) = 2mgR = 2W, which is indeed not a listed option. common_mistakes[1] reproduces option 3.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

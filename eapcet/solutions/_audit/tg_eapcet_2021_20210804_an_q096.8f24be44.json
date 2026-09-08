@@ -1,0 +1,21 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q096",
+ "item_sha": "8f24be447e6e86e7a35f00df2ad092a0d45bc5b2d3c26503fb1b3fc9cb86ee38",
+ "auditor_option": 2,
+ "auditor_value": "Vₜ = 0.5 mm/s",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "vₜ = 4r²(ρ_liquid − ρ_air)g / (9η)",
+   "note": "The terminal velocity from Stokes' law is 2r²(ρ_liquid − ρ_air)g/(9η), not 4r². A student copying this line gets 1.06 mm/s, which is not a printed option. The solution contradicts itself: the very next step substitutes the factor 2 and reaches 0.53 mm/s.",
+   "fix": "vₜ = 2r²(ρ_liquid − ρ_air)g / (9η)"},
+  {"grade": "weak",
+   "field": "approach",
+   "quote": "reaches terminal velocity when the upward buoyant force is balanced by viscous drag",
+   "note": "The balance actually used in the steps is buoyant force = weight of the bubble + viscous drag; that is why the factor (ρ_liquid − ρ_air) appears rather than ρ_liquid alone. The approach names a two-force balance while the equation uses a three-force one.",
+   "fix": "A rising air bubble reaches terminal velocity when the upward buoyant force equals the weight of the bubble plus the viscous drag, given by Stokes' law."}
+ ],
+ "verdict": "harmful",
+ "notes": "The question supplies g = 9 m/s², and the steps use it correctly. My own value 0.529 mm/s matches option 2.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:06:00+05:30"}
+}

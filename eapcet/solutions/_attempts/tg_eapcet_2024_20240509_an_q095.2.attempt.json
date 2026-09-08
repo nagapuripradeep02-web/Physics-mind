@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "approach": "The heat released by all the steam condensing is compared with the heat needed to melt the ice and warm it to 100°C, fixing how much steam condenses.",
+ "steps": [
+  {"text": "Find the heat needed to bring all the ice from −20°C to water at 100°C.",
+   "equation": "Q = 54×0.5×20 + 54×80 + 54×1×100 = 540 + 4320 + 5400 = 10260 cal"},
+  {"text": "Find the heat released if all 25 g of steam condensed at 100°C.",
+   "equation": "Q_steam = 25 × 540 = 13500 cal",
+   "why_this_step": "13500 cal is more than the 10260 cal needed, so not all the steam has to condense; the mixture settles at 100°C."},
+  {"text": "Find the mass of steam that actually condenses to supply exactly the heat needed.",
+   "equation": "m = 10260/540 = 19 g"},
+  {"text": "Find the final composition at 100°C.",
+   "equation": "water = 54 + 19 = 73 g, steam left = 25 − 19 = 6 g"}
+ ],
+ "final_answer": {"option": 2, "value": "73 g water at 100 °C and 6 g steam at 100 °C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the specific heat of ice equal to that of water instead of half that value makes the condensed steam exactly 20 g; mistaking that for the final water forgets the melted ice."},
+  {"option": 4, "text": "Naively averaging the ice and steam temperatures as (0+100)/2 = 50°C ignores that melting and vaporizing absorb heat before any temperature can rise."}
+ ],
+ "concept_tags": ["calorimetry", "latent heat", "specific heat"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R1", "at": "2026-09-08T20:21:00+05:30"}
+}

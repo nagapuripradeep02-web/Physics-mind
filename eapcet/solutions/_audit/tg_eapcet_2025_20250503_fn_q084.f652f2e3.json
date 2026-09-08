@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q084",
+ "item_sha": "f652f2e3a6b46037f852d8875d8d3a3cdff82f4c7deae3b1a027f80406f43ebe",
+ "auditor_option": 4,
+ "auditor_value": "−K/2a",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: W = ∫ₐ^{2a} (−K/y²) dy = [K/y]ₐ^{2a} = K/(2a) − K/a = −K/(2a), option 4. The antiderivative, the limits and the sign are all correct. common_mistakes[0] verifies: the endpoint average force −5K/(8a²) times the displacement a gives −5K/(8a), option 1.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

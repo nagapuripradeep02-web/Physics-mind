@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q091",
+ "approach": "Write the energy needed to lift a body to height h as mgRh/(R+h), evaluate it at h=R to get W, then at h=2R and take the ratio.",
+ "steps": [
+  {
+   "text": "Write the energy required to raise a body of mass m from the surface to height h, using GM = gR².",
+   "equation": "E(h) = GMm·h / (R(R+h)) = mgRh/(R+h)",
+   "why_this_step": "This exact expression is needed because the constant-g formula mgh does not hold once the height is comparable to the earth's radius."
+  },
+  {
+   "text": "Evaluate the energy at h = R, which is given as W.",
+   "equation": "E(R) = mgR·R/(2R) = mgR/2 = W"
+  },
+  {
+   "text": "Evaluate the energy at h = 2R.",
+   "equation": "E(2R) = mgR·2R/(3R) = 2mgR/3"
+  },
+  {
+   "text": "Take the ratio of the two energies and express E(2R) in terms of W.",
+   "equation": "E(2R)/E(R) = (2mgR/3)/(mgR/2) = 4/3 → E(2R) = 4W/3"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "4W/3"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the constant-gravity formula E = mgh instead of the correct expression gives E(2R) = 2W, which is not even one of the listed options."
+  },
+  {
+   "option": 3,
+   "text": "Assuming the energy needed stops growing once the height reaches the earth's radius and taking E(2R) equal to E(R) gives W instead of the correct 4W/3."
+  }
+ ],
+ "concept_tags": [
+  "gravitational potential energy",
+  "energy to raise a body against gravity"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:53:00+05:30"
+ }
+}

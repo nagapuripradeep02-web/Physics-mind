@@ -1,0 +1,98 @@
+[
+ {
+  "question_id": "tg_eapcet_2021_20210804_fn_q089",
+  "chapter": "Work Power Energy",
+  "auditor": "W01-U-R2-A",
+  "note": "The stem gives a unitless potential U(r) = 1/r² − 1/r with no constants attached, yet asks for the answer \"in Newton\"; the expression is dimensionally inconsistent as printed, so the numerical answer 1/27 is only meaningful if SI units are assumed throughout. This is the exam's defect, not the solution's, and the solution handles it the way the options require."
+ },
+ {
+  "question_id": "tg_eapcet_2021_20210804_fn_q098",
+  "chapter": "Thermal Properties of Matter",
+  "auditor": "W01-U-p1-11",
+  "note": "The printed phrase \"co-efficient of a real expansion\" is a corruption of \"coefficient of areal expansion\" (the space is in the wrong place). Read literally it says \"real expansion\", which is a liquid-expansion term and has no meaning for a solid sheet; the intended quantity is unambiguous only because the options fit the areal reading."
+ },
+ {
+  "question_id": "tg_eapcet_2021_20210805_fn_q094",
+  "chapter": "Gravitation",
+  "auditor": "W01-U-mixed-R1",
+  "note": "The question does not say whether R is each star's orbital radius or the separation between the stars. The dependence T ∝ R^(3/2) is the same under either reading, so no option changes, but the wording is ambiguous."
+ },
+ {
+  "question_id": "tg_eapcet_2021_20210805_fn_q101",
+  "chapter": "Kinetic Theory",
+  "auditor": "W01-U-p1-13",
+  "note": "The question says \"average velocity of a particles of the gas\". Velocity is a vector and its average over the molecules of a gas at rest is zero; the quantity meant is the average (or rms) SPEED. \"a particles\" is also a typographical slip for \"the particles\". Neither changes which option fits."
+ },
+ {
+  "question_id": "tg_eapcet_2022_20220718_an_q096",
+  "chapter": "Thermal Properties of Matter",
+  "auditor": "W01-U-p1-11-R1",
+  "note": "The question names the quantity as 'The linear expansion of metal', but 2×10⁻⁵ K⁻¹ is the coefficient of linear expansion; the printed name is incomplete and its unit belongs to the coefficient, not to an expansion."
+ },
+ {
+  "question_id": "tg_eapcet_2022_20220718_an_q100",
+  "chapter": "Kinetic Theory",
+  "auditor": "W01-U-p1-13",
+  "note": "Spelling errors in the printed question: \"avagadro's\" for Avogadro's and \"Boltzman's\" for Boltzmann's. They do not affect the answer."
+ },
+ {
+  "question_id": "tg_eapcet_2022_20220718_fn_q098",
+  "chapter": "Thermodynamics",
+  "auditor": "W01-U-p1-12",
+  "note": "The stem asserts that 1.00 kg of water at 100°C and 1 atm becomes 2.001 m³ of steam. The real specific volume of saturated steam at 100°C and 1 atm is about 1.67 m³ kg⁻¹, and the real latent heat is about 2256 kJ kg⁻¹ rather than the 2000 kJ kg⁻¹ the stem tells the candidate to use. The numbers are chosen so that ΔV is exactly 2.000 m³ and the arithmetic is clean; the question is internally consistent and solvable, so this does not change the verdict."
+ },
+ {
+  "question_id": "tg_eapcet_2022_20220719_an_q088",
+  "chapter": "Work Power Energy",
+  "auditor": "W01-U-R3",
+  "note": "The stem gives the mass the symbol 'm' and then writes the loop radius as '2m' in the same sentence, so the radius reads literally as two times the mass; only the options, which are lengths in metres, settle that it means 2 metres."
+ },
+ {
+  "question_id": "tg_eapcet_2023_20230512_an_q098",
+  "chapter": "Thermodynamics",
+  "auditor": "W01-U-p1-12",
+  "note": "The stem never says the cylinder is rigid, and it calls the cylinder insulating while also supplying heat Q to it. Both readings lead to printed options: at fixed volume Q = ΔU = RT (option 2), while at fixed pressure the mole count rises from 4 to 6 at constant T, so W = ΔnRT = 2RT and Q = RT + 2RT = 3RT (option 3). The word insulating is standard shorthand for walls that exchange no heat with the surroundings while a heater inside supplies Q, so that part is loose wording rather than a contradiction, but the missing statement about volume is a real gap."
+ },
+ {
+  "question_id": "tg_eapcet_2023_20230512_an_q116",
+  "chapter": "Nuclei",
+  "auditor": "W01-U-R2-B",
+  "note": "Printed option 4 is written ₁₅Si³¹, pairing atomic number 15 with the symbol Si; silicon has atomic number 14, so this distractor contradicts itself. It does not affect which option is correct."
+ },
+ {
+  "question_id": "tg_eapcet_2023_20230513_an_q095",
+  "chapter": "Thermal Properties of Matter",
+  "auditor": "W01-U-p1-11-R1",
+  "note": "The specific heat capacity of ice is printed as '0.5 cal g⁻¹', which is missing the per-degree part of the unit; the quantity used is 0.5 cal g⁻¹ °C⁻¹."
+ },
+ {
+  "question_id": "tg_eapcet_2023_20230513_an_q097",
+  "chapter": "Thermodynamics",
+  "auditor": "W01-U-p1-12",
+  "note": "The stem does not name the process. The fraction of heat that raises internal energy is Cv/Cp = 1/γ = 3/5 only at constant pressure; at constant volume every joule raises internal energy and the answer would be 100%. The printed options fix the intended reading as isobaric, but the stem never says it."
+ },
+ {
+  "question_id": "tg_eapcet_2023_20230514_an_q098",
+  "chapter": "Kinetic Theory",
+  "auditor": "W01-U-p1-13",
+  "note": "The options are bare numbers (5, 10, 15, 20) while the question asks for a percentage increase; the unit is left implicit. This does not create ambiguity about which option is meant."
+ },
+ {
+  "question_id": "tg_eapcet_2024_20240509_an_q095",
+  "chapter": "Thermal Properties of Matter",
+  "auditor": "W01-U-R3",
+  "note": "Options 1, 3 and 4 each describe a final mixture of only 20 g (option 3 as 8 g + 12 g) when 54 g of ice and 25 g of steam, total 79 g, were mixed, so those three options violate conservation of mass on their own terms and are eliminable without any calorimetry."
+ },
+ {
+  "question_id": "tg_eapcet_2024_20240509_an_q096",
+  "chapter": "Thermal Properties of Matter",
+  "auditor": "W01-U-p1-11-R1",
+  "note": "The question does not state that 'the whole sphere' means the original uncut sphere; read as the two hemispheres taken together it would give 3πr² : 6πr² = 1:2, which is also a printed option. The uncut sphere is the standard reading and the one that makes 3:4 available."
+ },
+ {
+  "question_id": "tg_eapcet_2024_20240510_an_q097",
+  "chapter": "Thermodynamics",
+  "auditor": "W01-U-p1-12",
+  "note": "The stem never says the processes are isobaric. The relation Q = (Cp/R)W holds only at constant pressure; for a general process the ratio Q1:Q2 is not fixed by the data, and for an isothermal process Q equals W for both gases, giving 1:2. The printed options fix the intended reading as constant pressure, but the stem does not state it."
+ }
+]

@@ -1,0 +1,38 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q100",
+ "approach": "The wave speed is the ratio of the angular frequency to the wave number read from the wave equation.",
+ "steps": [
+  {
+   "text": "Read the wave number and angular frequency from the equation.",
+   "equation": "y = 0.02 sin(πx − 8πt)  ⟹  k = π rad m⁻¹, ω = 8π rad s⁻¹"
+  },
+  {
+   "text": "Find the wave speed.",
+   "equation": "v = ω/k = 8π/π = 8 m s⁻¹"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "8 ms⁻¹"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Multiplying the coefficients 8π and π instead of dividing, or misreading 8π as the wave speed directly, which gives 16 ms⁻¹."
+  }
+ ],
+ "concept_tags": [
+  "progressive wave",
+  "wave speed"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:28:21+05:30"
+ }
+}

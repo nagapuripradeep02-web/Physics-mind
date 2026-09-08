@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q087",
+ "item_sha": "7ac8644b1d22d26dd06120d2bbbfa1d089933aab7be6e1aebde84cdc21049b94",
+ "auditor_option": 3,
+ "auditor_value": "1:7",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: v = v_A + 2v_B with v_B − v_A = 0.4v gives v_A = v/15 and v_B = 7v/15, ratio 1:7. Both mistake entries verify: swapping the restitution difference gives v_A = 3v/5, v_B = v/5, ratio 3:1 (option 1); e = 1 gives v_A = −v/3, v_B = 2v/3, magnitudes 1:2, not printed. The second entry omits that the incident sphere reverses direction in the elastic case, but the paper's own options are unsigned ratios, so this is not filed as a finding.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

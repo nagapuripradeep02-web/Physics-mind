@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q106",
+ "item_sha": "5f5ed0d8a30807daf80ff5b345a1d656b3815d4b2e6fd637ae0aba82b5a63e9e",
+ "auditor_option": 1,
+ "auditor_value": "4 kms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: v = √(GM/(R+h)), so v(R+h)/v(R) = √(R/(R+h)) = √(6400/25600) = 1/2 and v = 8 × 1/2 = 4 kms⁻¹, option 1. Every printed line is correct. Both common_mistakes entries were checked numerically: using h alone as the radius gives 8√(6400/19200) = 4.62 kms⁻¹, and omitting the square root gives 8 × (1/4) = 2 kms⁻¹, both as stated.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

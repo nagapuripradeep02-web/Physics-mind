@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q100",
+ "approach": "For an observer moving towards a stationary source, the apparent frequency increases by the ratio of the sum of the wave speed and the observer's speed to the wave speed.",
+ "steps": [
+  {"text": "Write the Doppler formula for a source at rest and an observer moving towards it with speed v_o.",
+   "equation": "f′ = f(v + v_o)/v"},
+  {"text": "Substitute the observer's speed as one fifth of the speed of sound.",
+   "equation": "v_o = v/5"},
+  {"text": "Evaluate the apparent frequency.",
+   "equation": "f′ = f(v + v/5)/v = f(6/5) = 1.2f"}
+ ],
+ "final_answer": {"option": 1, "value": "1.2 f"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Using the minus sign as if the observer were moving away from the source, giving f(v − v/5)/v = 0.8f."},
+  {"option": 2, "text": "Assuming the frequency does not change because the source itself is at rest, ignoring the observer's own motion."},
+  {"option": 4, "text": "Ignoring the one-fifth fraction and taking the observer's speed as equal to the speed of sound, giving f(v + v)/v = 2f."}
+ ],
+ "concept_tags": ["Doppler effect", "moving observer"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-01-R2", "at": "2026-09-08T12:00:00+05:30"}
+}

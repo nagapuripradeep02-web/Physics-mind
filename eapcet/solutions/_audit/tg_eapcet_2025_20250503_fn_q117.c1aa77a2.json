@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q117",
+ "item_sha": "c1aa77a277949551e4c50eea02ad69d626501fe2f6ed9cbe362f9bc1e0182c75",
+ "auditor_option": 3,
+ "auditor_value": "21 : 25",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. At constant pressure Q = nC_pΔT and ΔU = nC_vΔT, so ΔU = Q(C_v/C_p) = Q/γ for each gas with the same Q. Monatomic γ = 5/3 gives ΔU₁ = 3Q/5; diatomic γ = 7/5 gives ΔU₂ = 5Q/7; the ratio is (3/5)(7/5) = 21/25, option 3. Confirmed exactly in python (sympy Rational). Every printed equation follows from the one above it, and the why_this_step on step 0 (only part of the heat raises internal energy at constant pressure, the rest does expansion work) is the correct reason for that line. The single common_mistakes entry is true: treating the process as if it were at constant volume makes ΔU = Q for both gases and gives 1:1, which is the option-4 value. mistake_type_hint concept fits. Considered and did not file: difficulty is marked hard, which reads a little high for a one-formula result, but it is not clearly off since the ΔU = Q/γ step is the non-obvious part and the distractors 9:49 and 3:7 are built from plausible wrong ratios; also, only one of the three wrong options carries a mistake entry, which is thin coverage but not an error.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:07:00+05:30"}
+}

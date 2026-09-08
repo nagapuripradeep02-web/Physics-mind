@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q084",
+ "item_sha": "562c9b64b8055cb0184fadd99d4e083e5886ce2fce82c6a3c8977346e1d66d0b",
+ "auditor_option": 2,
+ "auditor_value": "(500/3) m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: 60 km h⁻¹ = 50/3 m s⁻¹; with g = 9.8 m s⁻², 490 = 4.9t² gives t = 10 s exactly, so x = (50/3)(10) = 500/3 = 166.67 m. The height 490 m and the exact printed option both confirm g = 9.8 was intended. The mistake entry is accurate: g = 10 gives t = 7√2 = 9.899 s and x = 164.99 m, which is close to 500/3 but matches no option exactly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:48:00+05:30"}
+}

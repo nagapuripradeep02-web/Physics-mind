@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q098",
+ "approach": "Held at constant volume while heated, the metal is prevented from expanding volumetrically; the bulk modulus converts that blocked volume strain into a pressure rise.",
+ "steps": [
+  {"text": "Find the volume expansion coefficient from the linear expansion coefficient.",
+   "equation": "γ = 3α = 3 × 10⁻⁵ °C⁻¹"},
+  {"text": "Find the rise in temperature.",
+   "equation": "ΔT = 127 − 20 = 107 °C"},
+  {"text": "The blocked volume strain multiplied by the bulk modulus gives the extra pressure built up.",
+   "equation": "ΔP = KγΔT = 2×10¹¹ × 3×10⁻⁵ × 107 = 6.42×10⁸ Pa",
+   "why_this_step": "Bulk modulus is the pressure needed per unit fractional volume change, so it converts the prevented volume expansion directly into pressure."},
+  {"text": "Add the extra pressure to the initial pressure.",
+   "equation": "P = 10⁵ + 6.42×10⁸ ≈ 6×10⁸ Pa",
+   "why_this_step": "The initial pressure of 10⁵ Pa is smaller than the rise by a factor of thousands, so it does not change the rounded answer."}
+ ],
+ "final_answer": {"option": 2, "value": "6 × 10⁸ Pa"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the linear expansion coefficient directly as the volume expansion coefficient, without multiplying by 3, gives 2×10⁸ Pa."},
+  {"option": 4, "text": "Using 2α, the coefficient for area expansion, in place of the volume coefficient 3α gives about 4×10⁸ Pa."}
+ ],
+ "concept_tags": ["thermal stress", "bulk modulus", "volume expansion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11-R1", "at": "2026-09-08T20:10:00+05:30"}
+}

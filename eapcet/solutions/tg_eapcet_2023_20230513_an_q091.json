@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230513_an_q091",
+ "approach": "Write orbital velocity as √(gR) and escape velocity as √(2gR) for the same planet, then take their ratio.",
+ "steps": [
+  {
+   "text": "Write the orbital velocity near the surface and the escape velocity from the surface of the same planet.",
+   "equation": "vₒ = √(gR), vₑ = √(2gR)"
+  },
+  {
+   "text": "Form the ratio of orbital velocity to escape velocity.",
+   "equation": "vₒ/vₑ = √(gR)/√(2gR) = 1/√2"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "1 : √2"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Inverting the ratio, writing escape velocity over orbital velocity instead of orbital over escape, gives √2 : 1 instead of 1 : √2."
+  },
+  {
+   "option": 2,
+   "text": "Recalling the numerically different ratio √5 : 1, which belongs to a different satellite comparison, instead of deriving this ratio from vₒ = √(gR) and vₑ = √(2gR)."
+  }
+ ],
+ "concept_tags": [
+  "orbital velocity",
+  "escape velocity"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T15:18:00+05:30"
+ }
+}

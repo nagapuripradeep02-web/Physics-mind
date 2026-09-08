@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2022_20220719_an_q092",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "Four particles each of mass m are placed at four vertices of a rectangle having side length as 3l₀ and 4l₀. The potential energy of the system in Gm²/l₀ is",
+   "options_en": [
+    "7/6",
+    "47/30",
+    "47/60",
+    "7/12"
+   ]
+  }
+ ]
+}

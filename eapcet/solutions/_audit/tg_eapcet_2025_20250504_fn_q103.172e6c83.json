@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q103",
+ "item_sha": "172e6c837d737c7f53d49a0d69bf5c606232a689d14c2e53e5f69c753c6e73b2",
+ "auditor_option": 1,
+ "auditor_value": "9.6 kg",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: V = 0.40³ = 0.064 m³; subtracting the two float conditions gives m_disc = ρ_water V (2/5 − 1/4) = 1000 × 0.064 × 0.15 = 9.6 kg, matching option 1. The mistake entry was checked: ρ_water V × 2/5 = 25.6 kg, which is not printed, so the null option is right.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:48:00+05:30"}
+}

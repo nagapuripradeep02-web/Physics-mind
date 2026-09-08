@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-01",
+ "chapter": "Waves",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q103",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "A wave is represented by the equation y = (0.02 m) sin(5πx − 20t). The minimum distance between the two particles always having the same speed is. (Assume x and t are in SI units)",
+   "options_en": [
+    "0.02 m",
+    "0.4 m",
+    "0.8 m",
+    "0.2 m"
+   ]
+  }
+ ]
+}

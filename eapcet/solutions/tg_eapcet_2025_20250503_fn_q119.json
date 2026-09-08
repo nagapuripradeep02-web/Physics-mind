@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q119",
+ "approach": "At terminal velocity, the viscous force on the falling drop is given directly by Stokes' law.",
+ "steps": [
+  {"text": "Convert the given diameter to a radius.",
+   "equation": "r = 1 mm / 2 = 0.5×10⁻³ m"},
+  {"text": "Write Stokes' law for the viscous drag force on a sphere moving at speed v through a fluid.",
+   "equation": "F = 6πηrv",
+   "why_this_step": "At terminal velocity the drop moves at constant speed, so this drag force is exactly what the problem asks for."},
+  {"text": "Substitute the given values and evaluate.",
+   "equation": "F = 6π × 2×10⁻⁵ × 0.5×10⁻³ × 0.7 = 1.32×10⁻⁷ N = 13.2×10⁻⁸ N"}
+ ],
+ "final_answer": {"option": 2, "value": "13.2×10⁻⁸ N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the given diameter directly as the radius in Stokes' law, without halving it, gives 26.4×10⁻⁸ N."},
+  {"option": 3, "text": "Misremembering the constant in Stokes' law as 3πηrv instead of 6πηrv gives 6.6×10⁻⁸ N, half the correct force."}
+ ],
+ "concept_tags": ["Stokes' law", "viscous force", "terminal velocity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:18:00+05:30"}
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2023_20230513_fn_q087",
+  "approach": "Each bounce rises to a height reduced by e² from the previous one, and the total path length is the sum of this geometric series of up-and-down trips.",
+  "steps": [
+    {"text": "Write the rebound height after the first bounce in terms of the coefficient of restitution.",
+     "equation": "h₁ = e²h",
+     "why_this_step": "The rebound speed is e times the impact speed, and height is proportional to the square of the speed."},
+    {"text": "Write the total distance as the initial fall plus twice every rebound height, since each rebound is climbed and then fallen again.",
+     "equation": "total = h + 2(e²h + e⁴h + e⁶h + …)"},
+    {"text": "Sum the infinite geometric series with first term e²h and common ratio e².",
+     "equation": "total = h + 2h·e²/(1−e²)"},
+    {"text": "Combine into a single fraction.",
+     "equation": "total = h(1+e²)/(1−e²)"}
+  ],
+  "final_answer": {"option": 1, "value": "h[(1+e²)/(1−e²)]"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": null, "text": "Counting only the rise of each bounce and not also the fall back down, missing the factor of 2 for each rebound, gives total = h/(1−e²), which is not among the printed options."}
+  ],
+  "concept_tags": ["coefficient of restitution", "geometric series", "free fall and rebound"],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:36:00+05:30"}
+}

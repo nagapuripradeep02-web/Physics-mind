@@ -92,7 +92,21 @@ def main():
     byid = {q["id"]: q for q in pool["questions"]}
     status = load(os.path.join(GATE, "status.json"), {})
     controls = load(CONTROLS, {})
+    # a control is orphaned when its corrupted item sits in no audit slice on disk (the round
+    # was un-planned): drop it, or the chapter never gets a control again
+    sliced = set()
+    for f in glob.glob(os.path.join(SOL, "_audit_slices", "*.json")):
+        for it in (load(f) or {}).get("items", []):
+            sliced.add(it.get("item_sha"))
+    for sha in list(controls):
+        c = controls[sha]
+        audited = os.path.exists(os.path.join(AUDIT, "%s.%s.json" % (c["question_id"], sha[:8])))
+        if not audited and sha not in sliced:
+            del controls[sha]
     controlled_qids = {c["question_id"] for c in controls.values()}
+    # one control in flight per chapter: a second would only pile up unaudited entries
+    pending = {c["chapter_key"] for sha, c in controls.items()
+               if not os.path.exists(os.path.join(AUDIT, "%s.%s.json" % (c["question_id"], sha[:8])))}
 
     scope = set(byid)
     if a.wave is not None:
@@ -128,7 +142,7 @@ def main():
     written, planted = 0, []
     for ck, ids in sorted(cands.items()):
         control_qid, h = None, 0
-        if not a.no_controls and len(ids) >= 4:
+        if not a.no_controls and len(ids) >= 2 and ck not in pending:     # a control needs one real item beside it
             h = int(hashlib.sha256((str(a.wave) + ck + "|".join(ids)).encode()).hexdigest(), 16)
             order = sorted(ids, key=lambda i: hashlib.sha256((str(h) + i).encode()).hexdigest())
             for cand in order:                      # the first one never controlled before

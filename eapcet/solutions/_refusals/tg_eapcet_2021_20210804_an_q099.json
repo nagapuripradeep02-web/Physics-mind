@@ -1,0 +1,4 @@
+{"question_id": "tg_eapcet_2021_20210804_an_q099",
+ "reason": "no_option_matches",
+ "options_reached": ["Using Stefan's law for the same material, power ratio = r1²T1⁴ : r2²T2⁴ = 5²×200⁴ : 2²×2500⁴ = 4 : 15625 (about 2.56×10⁻⁴), which equals none of the four printed options. Replacing the second sphere's temperature with 250 K instead of 2500 K gives 5²×200⁴ : 2²×250⁴ = 64:25 exactly, matching option 1 — this looks like an extra zero may have entered the 2500 K figure in transcription, but I have not looked at any key and cannot confirm this."],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:23:00+05:30"}}

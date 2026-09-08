@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q093",
+ "approach": "The work done in blowing a soap bubble equals its surface energy, which is proportional to the square of its radius.",
+ "steps": [
+  {"text": "Write the work done in blowing a soap bubble of radius R as the surface energy of its two surfaces.",
+   "equation": "W = T × 2 × 4πR² = 8πTR²"},
+  {"text": "Write the same expression for a bubble of radius 2R.",
+   "equation": "W' = 8πT(2R)² = 8πT × 4R² = 4 × (8πTR²)",
+   "why_this_step": "Doubling the radius quadruples the surface area, since area grows with the square of the radius."},
+  {"text": "Express W' in terms of W.",
+   "equation": "W' = 4W"}
+ ],
+ "final_answer": {"option": 3, "value": "4W"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Treating the work as proportional to the radius itself instead of its square, giving 2W for a doubled radius."},
+  {"option": null, "text": "Assuming the work scales with the bubble's volume rather than its surface area, giving 8W for a doubled radius, a value not printed among the options."}
+ ],
+ "concept_tags": ["surface tension", "surface energy", "soap bubble"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:14:00+05:30"}
+}

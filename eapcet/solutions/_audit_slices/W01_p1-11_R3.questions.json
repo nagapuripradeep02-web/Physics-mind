@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-11",
+ "chapter": "Thermal Properties of Matter",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "When 54 g of ice at −20 °C is mixed with 25 g of steam at 100 °C, then the final mixture at thermal equilibrium contains",
+   "options_en": [
+    "20 g water at 100 °C",
+    "73 g water at 100 °C and 6 g steam at 100 °C",
+    "8 g steam at 100 °C and 12 g water at 0 °C",
+    "20 g water at 50 °C"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q093",
+ "item_sha": "fca7c8a73034d9a4caa18b11e1ef10b7f9d9112656212c4ee4520628169d5427",
+ "auditor_option": 3,
+ "auditor_value": "4.5×10⁻² Nm⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: 4T/R = ρgh gives T = ρghR/4 = 900 × 10 × 0.004 × 0.005 / 4 = 4.5×10⁻² N m⁻¹, matching option 3. Both mistake entries were checked: 2T/R gives 9×10⁻² (option 1) and R = 0.0025 m gives 2.25×10⁻² (option 2).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:33:00+05:30"}
+}

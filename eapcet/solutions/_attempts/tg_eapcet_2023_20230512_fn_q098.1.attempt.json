@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q098",
+ "approach": "Write the gravitational field on the axis of a ring as a function of distance x from its centre, then maximise it with respect to x.",
+ "steps": [
+  {
+   "text": "Write the field at distance x on the axis of a ring of mass M and radius R.",
+   "equation": "g(x) = GMx / √((R²+x²)³)"
+  },
+  {
+   "text": "Differentiate g(x) with respect to x and set the numerator of the derivative to zero to find the maximum.",
+   "equation": "dg/dx = 0 → R²+x² − 3x² = 0 → R² = 2x²",
+   "why_this_step": "At a maximum the derivative vanishes, and the denominator of g(x) is always positive, so only the numerator condition matters."
+  },
+  {
+   "text": "Solve for x.",
+   "equation": "x = R/√2"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "R/√2"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Guessing that the field is strongest at half the radius, x = R/2, instead of carrying out the maximisation, misses the correct point of R/√2."
+  },
+  {
+   "option": 2,
+   "text": "Making an algebra slip while solving R² = 2x², such as writing x² = R²/4 instead of R²/2, gives x = R/4."
+  }
+ ],
+ "concept_tags": [
+  "gravitational field of a ring",
+  "maxima using calculus"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:46:00+05:30"
+ }
+}

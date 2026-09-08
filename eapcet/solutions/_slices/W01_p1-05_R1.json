@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-05",
+ "chapter": "Work Power Energy",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2022_20220719_an_q088",
+   "chapter": "Work Power Energy",
+   "year": 2022,
+   "question_en": "A body of mass 'm' slides down along a frictionless inclined plane from height 'h' and just completes motion in a vertical circle of radius 2m after reaching the bottom. What is the value of h? [Use g = 10 m/s²]",
+   "options_en": [
+    "2 m",
+    "5/2 m",
+    "5 m",
+    "10 m"
+   ]
+  }
+ ]
+}

@@ -106,20 +106,35 @@ def plan_audits(ledger, wave, model):
     if missing:
         print("  %d ids of wave %d have no audit input yet (run make_audit_input.py): first %s"
               % (len(missing), wave, missing[:3]))
-    planned = {(r["wave"], r["role"], r["chapter_key"]) for r in ledger}
+    # coverage is by ITEM SHA, read from the slices themselves: the real solution behind a
+    # planted control shares its question id with the control and must still get its audit
+    covered = set()
+    rounds = collections.Counter()
+    for r in ledger:
+        if r["wave"] == wave and r["role"] == "audit":
+            rounds[r["chapter_key"]] += 1
+            for it in (load(os.path.join(ROOT, r["slice_path"])) or {}).get("items", []):
+                covered.add(it.get("item_sha"))
     rows = []
     by_ch = collections.defaultdict(list)
     for i in sorted(wave_ids & have):
+        if (load(os.path.join(AUDIT_IN, i + ".json")) or {}).get("item_sha") in covered:
+            continue
         by_ch[byid[i]["chapter_key"]].append(i)
     for ck, ids in sorted(by_ch.items()):
-        if (wave, "audit", ck) in planned:
-            print("  audit for %s wave %d already planned - skipped" % (ck, wave))
-            continue
-        slice_path = os.path.join(AUDIT_SLICES, "W%02d_%s.json" % (wave, ck))
+        k = rounds[ck] or None
+        suffix = "" if k is None else "_R%d" % k
+        slice_path = os.path.join(AUDIT_SLICES, "W%02d_%s%s.json" % (wave, ck, suffix))
+        items = [load(os.path.join(AUDIT_IN, i + ".json")) for i in ids]
         save(slice_path, {"wave": wave, "role": "audit", "chapter_key": ck, "chapter": bych[ck]["name"],
-                          "items": [load(os.path.join(AUDIT_IN, i + ".json")) for i in ids]})
+                          "round": k, "items": items})
+        # the questions-only twin: what the auditor opens FIRST, so the blind solve has a file
+        # to be blind with, not only an instruction
+        save(slice_path.replace(".json", ".questions.json"),
+             {"wave": wave, "role": "audit", "chapter_key": ck, "chapter": bych[ck]["name"], "round": k,
+              "items": [{k2: it[k2] for k2 in ("question_id", "chapter", "year", "question_en", "options_en")} for it in items]})
         rows.append({"wave": wave, "role": "audit", "chapter_key": ck, "chapter": bych[ck]["name"],
-                     "question_ids": ids, "model": model, "agent_label": label(wave, "audit", ck),
+                     "question_ids": ids, "model": model, "agent_label": label(wave, "audit", ck, k),
                      "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
                      "planned_at": now(), "dispatched_at": None, "status": "planned",
                      "files_expected": len(ids), "files_present": 0})
@@ -176,7 +191,10 @@ def audit_disk(ledger):
                        if os.path.exists(os.path.join(SOL, i + ".json"))
                        or os.path.exists(os.path.join(SOL, "_refusals", i + ".json"))]
         else:
-            present = [i for i in r["question_ids"] if os.path.exists(os.path.join(SOL, "_audit", i + ".json"))]
+            # audit files are named <qid>.<sha8>.json: the slice knows which sha each row judged
+            sl = load(os.path.join(ROOT, r["slice_path"])) if os.path.exists(os.path.join(ROOT, r["slice_path"])) else {"items": []}
+            present = [it["question_id"] for it in sl.get("items", [])
+                       if os.path.exists(os.path.join(SOL, "_audit", it["audit_file"]))]
         r["files_present"] = len(present)
         if r["status"] in ("dispatched", "partial", "written"):
             r["status"] = "written" if len(present) == r["files_expected"] else "partial" if present else "dispatched"
@@ -201,6 +219,7 @@ def main():
     ap.add_argument("--redispatch", action="store_true")
     ap.add_argument("--mark-dispatched", action="store_true")
     ap.add_argument("--audit-disk", action="store_true")
+    ap.add_argument("--unplan", action="store_true", help="drop rows still 'planned' (never dispatched) for --wave/--role, and their slices")
     ap.add_argument("--status", action="store_true")
     ap.add_argument("--wave", type=int)
     ap.add_argument("--role", default="author", choices=["author", "audit"])
@@ -236,6 +255,21 @@ def main():
                 n += 1
         save(LEDGER, ledger)
         print("marked %d rows dispatched" % n)
+    elif a.unplan:
+        if a.wave is None:
+            sys.exit("--unplan needs --wave")
+        keep, dropped = [], 0
+        for r in ledger:
+            if r["wave"] == a.wave and r["role"] == a.role and r["status"] == "planned":
+                p = os.path.join(ROOT, r["slice_path"])
+                if os.path.exists(p):
+                    os.remove(p)
+                dropped += 1
+                print("  unplanned %s (%s)" % (r["agent_label"], r["slice_path"]))
+            else:
+                keep.append(r)
+        save(LEDGER, keep)
+        print("unplanned %d rows" % dropped)
     elif a.audit_disk:
         audit_disk(ledger)
         save(LEDGER, ledger)

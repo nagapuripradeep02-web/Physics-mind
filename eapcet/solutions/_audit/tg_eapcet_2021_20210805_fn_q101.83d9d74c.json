@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_fn_q101",
+ "item_sha": "83d9d74c113013dd8bc3e7eb2f33a89f2e751dbdc5b0cee45169d3265bcca9eb",
+ "auditor_option": 2,
+ "auditor_value": "4527 °C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The question says \"average velocity of a particles of the gas\". Velocity is a vector and its average over the molecules of a gas at rest is zero; the quantity meant is the average (or rms) SPEED. \"a particles\" is also a typographical slip for \"the particles\". Neither changes which option fits.",
+ "notes": "My own solve: speed varies as sqrt(T), so a factor 4 in speed is a factor 16 in absolute temperature. T_final = 300 x 16 = 4800 K = 4800 - 273 = 4527 °C, option 2. Verified in python. Both mistake entries check out numerically: subtracting 300 instead of 273 gives 4500 °C (option 1), and multiplying T by 4 instead of 16 gives 1200 K = 927 °C. Using 273.15 instead of 273 gives 4526.85 °C, which still rounds to option 2, so the choice of 273 is not a finding.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:20:00+05:30"}
+}

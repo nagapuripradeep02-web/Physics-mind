@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "a182bf7ef28fb726a82ed155b868377c246c3c8ae622663dc2260461932255e6",
+ "auditor_option": 2,
+ "auditor_value": "1:3:5",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently before reading the steps: distance in the nth second of free fall from rest is S_n = g(2n-1)/2, so S1:S2:S3 = 1:3:5 regardless of the value of g. Checked with python (sympy): with g = 10, S1 = 5 m, S2 = 15 m, S3 = 25 m, ratio 1:3:5; total distances after 1, 2, 3 s are 5, 20, 45 m, ratio 1:4:9, which confirms common_mistakes[2] is a true statement about option 4. Every printed equation follows from the one above it. common_mistakes[0] (equal distances only under constant velocity) and common_mistakes[1] (linear 1:2:3 count) are genuine student errors here and each points at the option its text produces. Difficulty easy and mistake_type_hint concept both fit a one-formula recall question. No plain-language defect found; 'simple linear count' is an adjective, not the banned adverb 'simply', so it was not filed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T02:52:00+05:30"}
+}

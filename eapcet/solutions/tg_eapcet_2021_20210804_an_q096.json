@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q096",
+ "approach": "At terminal velocity, the upward buoyant force on the rising bubble equals its downward weight plus the downward viscous drag given by Stokes' law.",
+ "steps": [
+  {"text": "At terminal velocity the bubble moves at a constant speed, so the upward buoyant force on it equals its downward weight plus the downward viscous drag from the liquid, using ρ for the liquid's density and σ for the air's density.",
+   "equation": "(4/3)πr³ρg = (4/3)πr³σg + 6πηrv"},
+  {"text": "Solve this balance for the terminal velocity v.",
+   "equation": "v = 2r²g(ρ − σ)/(9η)"},
+  {"text": "Substitute the radius (half the given 1.0 mm diameter), the liquid density ρ = 900 kg/m³, the air density σ = 1.293 kg/m³, g = 9 m/s² as given, and η = 0.85 Ns/m².",
+   "equation": "v = 2×(5×10⁻⁴)²×9×(900 − 1.293)/(9×0.85)"},
+  {"text": "Evaluate the expression to find the terminal velocity.",
+   "equation": "v = 5.29×10⁻⁴ m/s = 0.53 mm/s, closest to the printed value 0.5 mm/s"}
+ ],
+ "final_answer": {"option": 2, "value": "Vₜ = 0.5 mm/s"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["terminal velocity", "Stokes' law", "buoyancy"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10-R1", "at": "2026-09-08T00:00:00+05:30"}
+}

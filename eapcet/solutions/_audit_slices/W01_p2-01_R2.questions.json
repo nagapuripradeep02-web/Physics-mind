@@ -1,0 +1,57 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-01",
+ "chapter": "Waves",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q102",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "Consider a gas with molar mass M. If the sound at frequency f is introduced to a tube of this gas at temperature T then an internal acoustic standing wave is set up with nodes separated by L. The adiabatic constant (γ = Cp/Cv) is",
+   "options_en": [
+    "Mf²L²/RT",
+    "Mf²L²/4RT",
+    "4Mf²L²/RT",
+    "3Mf²L²/2RT"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q103",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "A wave is represented by the equation y = (0.02 m) sin(5πx − 20t). The minimum distance between the two particles always having the same speed is. (Assume x and t are in SI units)",
+   "options_en": [
+    "0.02 m",
+    "0.4 m",
+    "0.8 m",
+    "0.2 m"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q100",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "An observer moves towards a stationary source of sound with a speed (1/5)th that of sound. The frequency of the sound emitted by the source is f. The apparent frequency recorded by the observer is",
+   "options_en": [
+    "1.2 f",
+    "f",
+    "0.8 f",
+    "2 f"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q100",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "A wave is given by the equation y = (0.02) sin(πx − 8πt) then the velocity of the wave is (y and x are in metre and t is in second)",
+   "options_en": [
+    "16 ms⁻¹",
+    "2 ms⁻¹",
+    "8 ms⁻¹",
+    "18 ms⁻¹"
+   ]
+  }
+ ]
+}

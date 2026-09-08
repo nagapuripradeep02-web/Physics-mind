@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q102",
+ "item_sha": "cf0096bcd811c6f71925e701bd677c6ce2526a8c75b8de341de34fee25a3741d",
+ "auditor_option": 1,
+ "auditor_value": "72.9",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. Two days is 48 hours, which is three 16-hour periods. Each period leaves 90 percent, so the remaining fraction is 0.9³ = 0.729, that is 72.9 percent, option 1. Checked in python. Every printed equation follows from the one above it, and the multiplicative treatment is the correct one for a fixed-percentage decay. Both common_mistakes entries were recomputed and are true: subtracting 10 percent of the original three times gives 70 percent, which matches no printed option, so option is correctly null; and 100 − 72.9 = 27.1, which is the option-4 value, so reporting the decayed share instead of the remaining share lands exactly there. mistake_type_hint application fits. Considered and did not file: difficulty is marked medium and this is arithmetic only, closer to easy, but that is not clearly off; and options 2 (82.2) and 3 (18.8) carry no mistake entry, which is thin coverage rather than an error.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:13:00+05:30"}
+}

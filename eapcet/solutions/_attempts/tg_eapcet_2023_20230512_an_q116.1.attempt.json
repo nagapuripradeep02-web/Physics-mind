@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q116",
+ "approach": "In a nuclear reaction, the total mass number and the total atomic number must be equal on both sides of the equation.",
+ "steps": [
+  {"text": "Write the mass number balance: the sum of mass numbers on the left equals the sum on the right.",
+   "equation": "27 + 4 = 1 + A(X) → A(X) = 30"},
+  {"text": "Write the atomic number balance: the sum of atomic numbers on the left equals the sum on the right.",
+   "equation": "13 + 2 = 0 + Z(X) → Z(X) = 15"},
+  {"text": "The element with atomic number 15 is phosphorus, so X is identified.",
+   "equation": "X = ₁₅P³⁰"}
+ ],
+ "final_answer": {"option": 3, "value": "₁₅P³⁰"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Balancing only the atomic number and forgetting to subtract the mass number of the neutron gives mass number 31 instead of 30."},
+  {"option": 2, "text": "Balancing only the mass number and forgetting to subtract the atomic number of the neutron (which is zero anyway) but misreading the element gives silicon (Z = 14) instead of phosphorus (Z = 15)."}
+ ],
+ "concept_tags": ["nuclear reaction balancing", "conservation of mass and atomic number"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

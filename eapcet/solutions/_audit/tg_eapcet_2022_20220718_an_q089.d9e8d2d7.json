@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q089",
+ "item_sha": "d9e8d2d7249e5e8eeee2f8e801a98c938fba75c06f9596bc90f71263955c80d2",
+ "auditor_option": 2,
+ "auditor_value": "4n/(1+n)²",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[2].text",
+   "quote": "Dropping the denominator (1+n)² after finding the numerator 4n² leaves only 4n².",
+   "note": "The correct working in this solution has numerator 4n, not 4n², so \"after finding the numerator 4n²\" does not follow from any step printed above it; option 4 is only reached by first making the separate error described in common_mistakes[0] and then dropping the denominator. As written the entry describes no single error a student makes on this question.",
+   "fix": "Starting from the wrong energy fraction 4n²/(1+n)² of the previous entry and then dropping the denominator (1+n)² leaves only 4n²."}
+ ],
+ "verdict": "weak",
+ "notes": "Own solve: m₂ = m₁/n, fraction transferred = 4m₁m₂/(m₁+m₂)² = 4n/(1+n)². Both other mistake entries verify exactly: (2m₁/(m₁+m₂))² = 4n²/(1+n)² (option 1) and 4m₁m₂/(m₁²+m₂²) = 4n/(1+n²) (option 3). The question itself never says the collision is elastic; the standard fraction formula and all four printed options presuppose it, and the solution states the assumption in its approach, which is the right handling.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

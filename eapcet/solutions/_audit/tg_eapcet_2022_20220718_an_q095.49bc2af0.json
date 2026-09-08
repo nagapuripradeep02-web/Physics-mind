@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q095",
+ "item_sha": "49bc2af0cf0c264ecf9884e8f572862cf39934f8ce7a666edbb183c951d40427",
+ "auditor_option": 1,
+ "auditor_value": "4.9 cm/s",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[1].text",
+   "quote": "Substitute the given radius, density, viscosity and g.",
+   "note": "The step's equation converts only the radius; the density, viscosity and g are not substituted until the next step. The text promises more than the line beneath it does.",
+   "fix": "Convert the given radius to metres before substituting."}
+ ],
+ "verdict": "weak",
+ "notes": "Independent solve: vₜ = 2r²ρg/(9η) = 2 × (2×10⁻⁵)² × 1000 × 10 / (9 × 1.8×10⁻⁵) = 4.94×10⁻² m/s = 4.94 cm/s, matching option 1. Both mistake entries reproduce their named options (9.88 ≈ 9.8 cm/s from a factor 4, and 0.49 cm/s from a ×10 conversion). The question itself misprints the unit of viscosity as N/m² instead of N s/m²; the solution is not responsible for that and used the value correctly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:18:00+05:30"}
+}

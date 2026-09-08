@@ -1,0 +1,33 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p2-01",
+ "chapter": "Waves",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2024_20240509_an_q099",
+   "chapter": "Waves",
+   "year": 2024,
+   "question_en": "A boy standing on a platform observes the frequency of a train horn as it passes by. The change in the frequency noticed as the train approaches and recedes him with a velocity of 108 kmph is (speed of sound in air = 330 ms⁻¹)",
+   "options_en": [
+    "18.33%",
+    "16.67%",
+    "21.27%",
+    "15.23%"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q100",
+   "chapter": "Waves",
+   "year": 2024,
+   "question_en": "If three sources of sound of frequencies (n−1), n and (n+1) are vibrated together, the number of beats produced and heard per second respectively are",
+   "options_en": [
+    "4 and 2",
+    "4 and 4",
+    "2 and 2",
+    "2 and 4"
+   ]
+  }
+ ]
+}

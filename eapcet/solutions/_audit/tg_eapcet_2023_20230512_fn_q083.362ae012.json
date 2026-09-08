@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "362ae0127b057b0adb7932f3d915dc366a2c8b3f4db49b2d1d0d37f5d315376d",
+ "auditor_option": 3,
+ "auditor_value": "−2av³",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[2].why_this_step",
+   "quote": "The denominator (2ax + b) equals 1/v, so squaring it is the same as dividing by v².",
+   "note": "Read literally this inverts the operation: since (2ax + b)² = 1/v², dividing by (2ax + b)² is the same as MULTIPLYING by v², which is what the equation on the same step actually does (−2a/(2ax+b)² = −2av²). Only a charitable reading (\"squaring it gives 1 divided by v²\") makes the sentence true; the numerical result of the step is unaffected.",
+   "fix": "The denominator (2ax + b) equals 1/v, so (2ax + b)² equals 1/v², and dividing by it is the same as multiplying by v²."},
+  {"grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "a = v × dv/dx = v × (−2av²) = −2av³",
+   "note": "The symbol a is used for two different quantities inside one printed line: the acceleration on the left and the constant a of t = ax² + bx on the right. A student copying the line reads a self-referential equation. The value is correct.",
+   "fix": "acceleration = v × dv/dx = v × (−2av²) = −2av³"}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved blind with sympy: v = 1/(2ax + b), dv/dx = −2av², acceleration = v dv/dx = −2av³ — option 3, agreeing with the solution. Steps 1, 2, 3 and 4 each follow from the one above; the chain-rule conversion and the sign are correct. common_mistakes[0] carries option: null and its slip lands on −2av², which is not a printed option (option 4 prints +2av², the opposite sign), so option: null is defensible; a case could be made that option 4 is the intended landing place for that slip with a sign error, but I did not file it because the number the text states does not match the printed option. difficulty \"hard\" and mistake_type_hint \"concept\" are reasonable for a chain-rule question of this type.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:13:00+05:30"}
+}

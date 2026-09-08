@@ -1,0 +1,56 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q081",
+   "audit_file": "tg_eapcet_2025_20250503_an_q081.5935e787.json",
+   "item_sha": "5935e7872f2db4decce9cbac9c96b8d0b7013603e3d9b45865c20e8b83fcd7dc",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ],
+   "solution": {
+    "approach": "The range of the weak nuclear force is a standard recalled value, smaller than the range of the strong nuclear force.",
+    "steps": [
+     {
+      "text": "The weak nuclear force is short-ranged, acting only over distances smaller than the size of a nucleus.",
+      "equation": "range of the weak nuclear force is smaller than that of the strong nuclear force"
+     },
+     {
+      "text": "Write this range in metres to match the options.",
+      "equation": "range ≈ 10⁻¹⁶ m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "10⁻¹⁶ m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Confusing the weak nuclear force's range with the scale of an atom instead of a nucleus, giving 10⁻¹⁰ m."
+     },
+     {
+      "option": 1,
+      "text": "Dropping the negative sign on the exponent gives 10¹⁶ m instead of 10⁻¹⁶ m."
+     }
+    ],
+    "concept_tags": [
+     "weak nuclear force",
+     "range of fundamental forces"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

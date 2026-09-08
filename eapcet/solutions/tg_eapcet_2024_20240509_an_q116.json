@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q116",
+ "approach": "Count the number of half-lives each material completes in the same time, write each remaining mass in terms of that count, then solve the mass ratio equation for time.",
+ "steps": [
+  {"text": "Let m be the number of half-lives that B (half-life 2T) completes in time t. Since A's half-life T is half of B's, A completes twice as many half-lives in the same time.",
+   "equation": "m = t ÷ 2T,  number of half-lives of A = 2m"},
+  {"text": "Write the remaining mass of each material after these many half-lives, starting from initial masses 8M for A and M for B.",
+   "equation": "M_A(t) = 8M ÷ 2²ᵐ,  M_B(t) = M ÷ 2ᵐ"},
+  {"text": "Divide the two remaining masses and set the ratio equal to 4.",
+   "equation": "M_A ÷ M_B = 8 ÷ 2ᵐ = 4, so 2ᵐ = 2, so m = 1"},
+  {"text": "Convert m back to time using its definition.",
+   "equation": "m = t ÷ 2T = 1, so t = 2T"}
+ ],
+ "final_answer": {"option": 1, "value": "2T"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "After correctly finding that the half-life count m equals 1, converting back to time using A's half-life T instead of the 2T that m was defined against gives t = T instead of 2T."},
+  {"option": 3, "text": "Solving 2ᵐ = 2 as m = 2 instead of m = 1 doubles the correct time, giving t = 4T instead of 2T."}
+ ],
+ "concept_tags": ["radioactive decay law", "half-life"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

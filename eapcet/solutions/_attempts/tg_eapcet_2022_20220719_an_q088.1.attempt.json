@@ -1,0 +1,22 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2022_20220719_an_q088",
+  "approach": "Energy conservation from the top of the incline to the top of the loop, combined with the minimum-speed condition at the top of the loop, gives the height.",
+  "steps": [
+    {"text": "Write the minimum speed condition at the top of the loop, where gravity alone supplies the centripetal force.",
+     "equation": "mg = mv_top²/R  →  v_top² = gR"},
+    {"text": "Apply energy conservation from the release height h to the top of the loop, which is at height 2R above the bottom.",
+     "equation": "mgh = mg(2R) + ½mv_top²"},
+    {"text": "Substitute v_top² = gR and solve for h.",
+     "equation": "h = 2R + R/2 = 5R/2 = 5(2)/2 = 5 m"}
+  ],
+  "final_answer": {"option": 3, "value": "5 m"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Thinking the release height only needs to equal the radius R, missing the extra R/2 that comes from the required speed at the top, gives 2 m instead of 5 m."}
+  ],
+  "concept_tags": ["vertical circular motion", "energy conservation", "minimum speed condition"],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:33:00+05:30"}
+}

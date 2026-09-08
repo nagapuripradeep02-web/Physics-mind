@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q098",
+ "item_sha": "5fd3d7ddd016cd606ba1c02756035e6b0118b1523a1568870d72c4055f0543b7",
+ "auditor_option": 1,
+ "auditor_value": "1800 kJ",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem asserts that 1.00 kg of water at 100°C and 1 atm becomes 2.001 m³ of steam. The real specific volume of saturated steam at 100°C and 1 atm is about 1.67 m³ kg⁻¹, and the real latent heat is about 2256 kJ kg⁻¹ rather than the 2000 kJ kg⁻¹ the stem tells the candidate to use. The numbers are chosen so that ΔV is exactly 2.000 m³ and the arithmetic is clean; the question is internally consistent and solvable, so this does not change the verdict.",
+ "notes": "Independent solve: Q = mL = 2000 kJ; W = PΔV = 1.00 × 10⁵ × (2.001 − 0.001) = 2.00 × 10⁵ J = 200 kJ; ΔU = Q − W = 1800 kJ, option 1. Every printed line follows from the one above, the subtraction of the liquid volume is done correctly, and the joule-to-kilojoule conversion is right. Both common_mistakes verified against the printed options: 2000 kJ is option 3 and 200 kJ is option 2."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:23:00+05:30"}
+}

@@ -80,6 +80,7 @@ def idioms_in(text, idioms):
 def norm_value(s):
     s = (s or "").strip().lower()
     s = s.replace("−", "-").replace("–", "-").replace("×", "x").replace("·", "x").replace("÷", "/")
+    s = s.replace(":", "/").replace("∶", "/")   # a ratio 25:16 is the number 25/16, on both sides (U+2236 too)
     out, in_sup = [], False
     for ch in s:
         if ch in SUP:
@@ -93,17 +94,20 @@ def norm_value(s):
     return re.sub(r"\s+", "", "".join(out))
 
 
-NUM = re.compile(r"^[-+]?\d+(?:\.\d+)?(?:x10\^[-+]?\d+|e[-+]?\d+)?")
+# a number, with an optional power of ten and an optional plain fraction: 24, 4x10^12, 1/27, 47/30
+NUM_BODY = r"[-+]?\d+(?:\.\d+)?(?:x10\^[-+]?\d+|e[-+]?\d+)?(?:/\d+(?:\.\d+)?)?"
+NUM = re.compile("^" + NUM_BODY)
+NUM_ANY = re.compile(NUM_BODY)
 
 
 def num_of(s):
     m = NUM.match(s)
     if not m:
         return None
-    t = m.group(0).replace("x10^", "e")
+    num, _, den = m.group(0).replace("x10^", "e").partition("/")
     try:
-        return float(t)
-    except ValueError:
+        return float(num) / float(den) if den else float(num)
+    except (ValueError, ZeroDivisionError):
         return None
 
 
@@ -191,12 +195,17 @@ def check(sol, q, idioms):
 
     # 4. the working arrives at the answer
     tail = norm_value(" ".join(str(st.get("text", "")) + " " + str(st.get("equation", "")) for st in steps[-2:]))
-    key_bit = nv if a is None else NUM.match(nv).group(0)
-    if key_bit and key_bit in tail:
+    if a is not None:
+        # numerically, like the value check: 4.0x10^12 in the working IS 4x10^12 in the value
+        # magnitudes: a question that asks for a magnitude is worked with the sign on
+        hits = [num_of(m.group(0)) for m in NUM_ANY.finditer(tail)]
+        if any(h is not None and abs(abs(h) - abs(a)) <= 0.01 * max(abs(a), 1e-12) for h in hits):
+            checks["ending"] = True
+        else:
+            checks["ending"] = False
+            return "ending_missing", "final number %r not in the last two steps" % NUM.match(nv).group(0), checks, warn
+    elif nv and nv in tail:
         checks["ending"] = True
-    elif a is not None:
-        checks["ending"] = False
-        return "ending_missing", "final number %r not in the last two steps" % key_bit, checks, warn
     else:
         checks["ending"] = True
         warn.append("ending_unverified: symbolic value %r not found in the last two steps" % fa["value"])

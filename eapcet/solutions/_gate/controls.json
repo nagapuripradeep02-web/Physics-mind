@@ -1,0 +1,155 @@
+{
+ "2366568901b125bacb9bd555bfe1f6bbe51fa4c66d2821a08bdb4a2bda825f68": {
+  "question_id": "tg_eapcet_2023_20230512_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 1,
+  "corruption": "final option changed 2 -> 3 and the last line made to end in that option's text",
+  "real_sha": "a182bf7ef28fb726a82ed155b868377c246c3c8ae622663dc2260461932255e6",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "35e737230de50dd4cd2898f19b597e63c5ad22c81af236d4cb8d458d0873765a": {
+  "question_id": "tg_eapcet_2023_20230512_an_q084",
+  "chapter_key": "p1-03",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "real_sha": "0b930724247f15916062a763a4037f48bc76f871788486db2ab2f87e627281c8",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "0aee68f52013202d5caf63cbe48d52a1c61a78510cebb3bdb7ea43ba43c1f07d": {
+  "question_id": "tg_eapcet_2023_20230513_fn_q087",
+  "chapter_key": "p1-05",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "real_sha": "16f3cfbbcb46d3d0bd076225113c426384519fa000bef7080c59f8065953f9f7",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "e725bb570f4a4971446ce8adae5c1593f203a5226f2ecdb4237a8b739df5dc5b": {
+  "question_id": "tg_eapcet_2021_20210805_fn_q094",
+  "chapter_key": "p1-08",
+  "wave": 1,
+  "corruption": "final option changed 1 -> 2 and the last line made to end in that option's text",
+  "real_sha": "6aa6eff6e01ea3fdff7fed145bf54e36fb21826146c8ceecf3568b898e938daa",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "8f24be447e6e86e7a35f00df2ad092a0d45bc5b2d3c26503fb1b3fc9cb86ee38": {
+  "question_id": "tg_eapcet_2021_20210804_an_q096",
+  "chapter_key": "p1-10",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "real_sha": "1a69890b189424c380afd060125d619f88642b2f3ab22c50818cdddb3d9a5382",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "413ee9b4aef7b33b2b231c5fb32eb36ff26809e1785781e52d810826465ac1ab": {
+  "question_id": "tg_eapcet_2023_20230513_an_q095",
+  "chapter_key": "p1-11",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (10000 -> 20000); final answer untouched",
+  "real_sha": "c6ce9c7768109ee532ae6fc56b1722b3b34292564ee68c7456dce151da063ed5",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "0e9ed9651474e3af02eb93d270e0dfa584c4b0391bb49f921cbe029d4c5b6e22": {
+  "question_id": "tg_eapcet_2022_20220718_an_q099",
+  "chapter_key": "p1-12",
+  "wave": 1,
+  "corruption": "final option changed 4 -> 1 and the last line made to end in that option's text",
+  "real_sha": "1e2d9d8ac86520cd391cf1a941efe4fa01861c2509d7ecc99067f598b324fd4d",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "53fda838d83f2bc019b036b65a31dc9f0950338f949f106f1456eb4e85dc83b1": {
+  "question_id": "tg_eapcet_2025_20250503_fn_q117",
+  "chapter_key": "p1-13",
+  "wave": 1,
+  "corruption": "final option changed 3 -> 4 and the last line made to end in that option's text",
+  "real_sha": "c1aa77a277949551e4c50eea02ad69d626501fe2f6ed9cbe362f9bc1e0182c75",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:40+02:00"
+ },
+ "ecb85664c897b6a33baba0dff63d6fc87a44a159f693fbe51aff2d90042369d4": {
+  "question_id": "tg_eapcet_2025_20250504_fn_q089",
+  "chapter_key": "p2-01",
+  "wave": 1,
+  "corruption": "final option changed 3 -> 4 and the last line made to end in that option's text",
+  "real_sha": "acce3557252a6ea33d2b115d4ab0228682bed5d0baf01f096afb57c4c140426b",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:41+02:00"
+ },
+ "cf9b14d92bddcb94e88c810d53ced76b2c4910572b5b39ac74cd5bdc3e827384": {
+  "question_id": "tg_eapcet_2025_20250503_fn_q102",
+  "chapter_key": "p2-14",
+  "wave": 1,
+  "corruption": "final option changed 1 -> 2 and the last line made to end in that option's text",
+  "real_sha": "cf0096bcd811c6f71925e701bd677c6ce2526a8c75b8de341de34fee25a3741d",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:30:41+02:00"
+ },
+ "4ee851b9f3740f3fc47997066dfb3f0abb4228c2f29e5bdcf7691725d086124b": {
+  "question_id": "tg_eapcet_2021_20210804_fn_q089",
+  "chapter_key": "p1-05",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (6 -> 12); final answer untouched",
+  "real_sha": "8c3069c596835933f40dc015d9038dabceba641dba885a6a80e012e5cc09581f",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T02:47:14+02:00"
+ },
+ "b153a645b5475d82d1b18914bad6e7d8a9a2c19b54de97341de0a2e397222ace": {
+  "question_id": "tg_eapcet_2024_20240509_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 1,
+  "corruption": "final option changed 4 -> 1 and the last line made to end in that option's text",
+  "real_sha": "8aeccebc343daea8291a6bcc88754f83e02bbb3c4983c055cc9c044a9cd7e9d9",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "1ffd1c2c38a468cc9421c579535a91b6207d98f399ea10599783e8409ebce2c0": {
+  "question_id": "tg_eapcet_2022_20220719_an_q088",
+  "chapter_key": "p1-05",
+  "wave": 1,
+  "corruption": "final option changed 3 -> 4 and the last line made to end in that option's text",
+  "real_sha": "700d3f91d4f236317d37e59a9f9cccc3df82e037a909dd740c71d6e15a32fdf1",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "3d5c1d6056e4fcf66ad88d80bfe88b10c47d9ea54db0ed71e9b0c7bc51b98eba": {
+  "question_id": "tg_eapcet_2023_20230512_fn_q098",
+  "chapter_key": "p1-08",
+  "wave": 1,
+  "corruption": "a number in a printed line doubled (2 -> 4); final answer untouched",
+  "real_sha": "62f0ee7c038302c8861e63b613ab0397ceed7909d82b207a79d7c80625d670b2",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "add472e90b54e063e02ec9c1b19f9f495583dbe3c25554c7990a7eb8e9ceb3a6": {
+  "question_id": "tg_eapcet_2024_20240509_an_q095",
+  "chapter_key": "p1-11",
+  "wave": 1,
+  "corruption": "final option changed 2 -> 3 and the last line made to end in that option's text",
+  "real_sha": "69ddfaab6dc9209b0c591bd8be96f3547f6fb2e5676806a71c66daef1bf6d569",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "0062699876c4e24bd7ac77c7b678738142f0e0b852d2fce40c0cbc6fe7e98758": {
+  "question_id": "tg_eapcet_2021_20210804_fn_q103",
+  "chapter_key": "p2-01",
+  "wave": 1,
+  "corruption": "final option changed 4 -> 1 and the last line made to end in that option's text",
+  "real_sha": "3312b010ec1f85a8ae028dbb72105995d6ad5821fd823c5d4a05bba3d620e530",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "cd0865383f4e7a91419a568b525ab5f7b0555494e6382ce12eafa1e3e1cb61e4": {
+  "question_id": "tg_eapcet_2025_20250503_an_q081",
+  "chapter_key": "p2-14",
+  "wave": 1,
+  "corruption": "final option changed 4 -> 1 and the last line made to end in that option's text",
+  "real_sha": "5935e7872f2db4decce9cbac9c96b8d0b7013603e3d9b45865c20e8b83fcd7dc",
+  "expected": "harmful",
+  "planted_at": "2026-09-08T03:09:56+02:00"
+ }
+}

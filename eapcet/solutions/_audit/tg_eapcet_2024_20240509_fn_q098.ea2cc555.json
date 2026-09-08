@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q098",
+ "item_sha": "ea2cc5559921edb616d11e6c2f9a094561d4ee23cbfaee8d08fa9a5154be90d4",
+ "auditor_option": 3,
+ "auditor_value": "24.93 kJ",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: a diatomic gas has five active degrees of freedom at ordinary temperatures, so U = (5/2)nRT = 2.5 x 4 x 8.31 x 300 = 24930 J = 24.93 kJ, option 3. Verified in python. Both mistake entries check out exactly: the monatomic formula (3/2)nRT gives 14.958 kJ, which is the printed option 4 (14.96 kJ), and (1/2)nRT gives 4.986 kJ, which is the printed option 2 (4.98 kJ). Option 1 (13.47 kJ) corresponds to no clean route I could find and is not claimed by any entry, which is not required.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:28:00+05:30"}
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q102",
+ "approach": "The node spacing fixes the wavelength, the wavelength and frequency fix the speed of sound, and the speed of sound in a gas fixes the adiabatic constant.",
+ "steps": [
+  {
+   "text": "In a standing wave, successive nodes are half a wavelength apart, so the wavelength is twice the node spacing.",
+   "equation": "λ = 2L"
+  },
+  {
+   "text": "Find the speed of sound in the gas from the frequency and wavelength.",
+   "equation": "v = fλ = 2fL"
+  },
+  {
+   "text": "Write the speed of sound in a gas of molar mass M at temperature T.",
+   "equation": "v = √(γRT/M)",
+   "why_this_step": "This is the standard formula for the speed of sound in an ideal gas undergoing adiabatic compressions and rarefactions."
+  },
+  {
+   "text": "Square both expressions for v and solve for γ.",
+   "equation": "4f²L² = γRT/M  ⟹  γ = 4Mf²L²/(RT)"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "4Mf²L²/RT"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Treating the node spacing L itself as the full wavelength instead of half of it, which gives Mf²L²/(4RT)."
+  }
+ ],
+ "concept_tags": [
+  "speed of sound in a gas",
+  "standing waves",
+  "adiabatic constant"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:07:21+05:30"
+ }
+}

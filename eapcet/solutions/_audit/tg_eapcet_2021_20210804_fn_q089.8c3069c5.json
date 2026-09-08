@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q089",
+ "item_sha": "8c3069c596835933f40dc015d9038dabceba641dba885a6a80e012e5cc09581f",
+ "auditor_option": 1,
+ "auditor_value": "1/27",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem gives a unitless potential U(r) = 1/r² − 1/r with no constants attached, yet asks for the answer \"in Newton\"; the expression is dimensionally inconsistent as printed, so the numerical answer 1/27 is only meaningful if SI units are assumed throughout. This is the exam's defect, not the solution's, and the solution handles it the way the options require.",
+ "notes": "Solved blind with sympy before opening the solution: F = −dU/dr = 2/r³ − 1/r², dF/dr = −6/r⁴ + 2/r³ = 0 at r = 3, F(3) = 2/27 − 3/27 = −1/27, so the maximum attractive magnitude is 1/27 — option 1, agreeing with the solution. Every printed line was recomputed and each follows from the one above: the sign of −dU/dr, the derivative dF/dr, the root r = 3, and 2/27 − 1/9 = −1/27. I also confirmed r = 3 is a minimum of F (d²F/dr² = 24/r⁵ − 6/r⁴ > 0 there) and that F → 0⁻ as r → ∞, so r = 3 really is the strongest attraction and not a local artefact. Both common_mistakes routes were recomputed: F(1) = 2 − 1 = 1, magnitude 1, which is the printed option 4 as claimed; and U is genuinely minimum at r = 2 (dU/dr = 0 there, d²U/dr² = 6/16 − 2/8 = +0.125) where F is exactly zero, a value that matches no printed option, so option: null is correct for that entry. Neither entry condemns a correct method. difficulty \"hard\" and mistake_type_hint \"application\" are both defensible for a calculus maximisation.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:16:00+05:30"}
+}

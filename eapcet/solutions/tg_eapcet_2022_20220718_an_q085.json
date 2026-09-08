@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q085",
+ "approach": "Find the effective upstream and downstream speeds, add the two travel times, and compare with the still-water time for the same total distance.",
+ "steps": [
+  {"text": "Write the effective speeds against and with the current, using the still-water speed 2v and current speed v.",
+   "equation": "upstream speed = 2v − v = v; downstream speed = 2v + v = 3v"},
+  {"text": "Add the times for the upstream and downstream legs, each of length d.",
+   "equation": "t = d/v + d/3v = 4d/(3v)"},
+  {"text": "Find the still-water time for the same total distance, 2d, swum at speed 2v.",
+   "equation": "t₀ = 2d/(2v) = d/v"},
+  {"text": "Divide the two times.",
+   "equation": "t/t₀ = [4d/(3v)] / (d/v) = 4/3"}
+ ],
+ "final_answer": {"option": 4, "value": "4/3"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Treating the round trip as covering the total distance 2d at a single combined speed v + 3v, giving t = 2d/4v and a ratio of 1/2 instead of 4/3."},
+  {"option": null, "text": "Forgetting the still-water comparison also covers the distance d twice and using d alone instead of 2d gives a ratio of 8/3, matching no printed choice."}
+ ],
+ "concept_tags": ["relative velocity", "river-boat problems"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:05:00+05:30"}
+}

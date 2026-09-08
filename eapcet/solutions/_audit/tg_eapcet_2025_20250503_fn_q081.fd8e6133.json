@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q081",
+ "item_sha": "fd8e61333bcb064cf5f652504f189bfe0fe084e2a1d1625eaee7bed2629f3f26",
+ "auditor_option": 1,
+ "auditor_value": "1/6 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: the beat frequency is 323 − 320 = 3 Hz, so the beat period is 1/3 s. A minimum of loudness lies halfway between two successive maxima, so the interval from a maximum to the adjacent minimum is half the beat period, 1/6 s — option 1, the solution's answer. All three step equations are correct and the why_this_step gives the right reason. The common_mistakes entry points at option 2 (1/3 s), the genuine trap of not halving. Difficulty easy and mistake_type_hint concept both fit; prose is literal.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:44:00+05:30"}
+}

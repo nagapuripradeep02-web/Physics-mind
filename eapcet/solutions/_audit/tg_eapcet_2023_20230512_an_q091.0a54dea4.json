@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q091",
+ "item_sha": "0a54dea4f60001346b828c0ad04030ee2554e376d402474a50f50ca1de3b0267",
+ "auditor_option": 3,
+ "auditor_value": "√(rx)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved blind before opening the solution: vₑ = √(2gR), so vₑ₁/vₑ₂ = √((g₁R₁)/(g₂R₂)) = √(xr) — option 3, agreeing with the solution. Each of the three printed lines follows from the one above, the square root is kept throughout, and the substitution matches the ratios the stem defines (R₁/R₂ = r, g₁/g₂ = x). Both common_mistakes routes were recomputed and land on the options they name: dropping the square root from √(xr) gives xr, option 1; using the misremembered √(2g/R) gives √((g₁/R₁)/(g₂/R₂)) = √(x/r), option 4. Neither entry condemns a correct method — √(2gR) and √(2GM/R) are the same formula and the solution uses the one the stem's data supports. difficulty \"medium\" and mistake_type_hint \"concept\" both fit. The stem does not say which planet is planet 1, but since both given ratios are taken in the same order the answer is unaffected, so I did not file it as a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:19:00+05:30"}
+}

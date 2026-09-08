@@ -1,0 +1,43 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q081",
+ "approach": "The beat frequency sets the time from one maximum to the next; a maximum and its adjacent minimum are half of that time apart.",
+ "steps": [
+  {
+   "text": "Find the beat frequency of the two tuning forks.",
+   "equation": "Δf = 323 − 320 = 3 Hz"
+  },
+  {
+   "text": "Find the time between two successive maxima (the beat period).",
+   "equation": "T = 1/Δf = 1/3 s"
+  },
+  {
+   "text": "A minimum of loudness falls exactly halfway between two successive maxima, so the time from a maximum to the adjacent minimum is half the beat period.",
+   "equation": "t = T/2 = 1/6 s",
+   "why_this_step": "Within one beat period the loudness rises to a maximum, falls through a minimum, and rises to the next maximum, so the minimum sits midway."
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "1/6 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Taking the beat period itself, 1/3 s, as the time to the adjacent minimum instead of halving it."
+  }
+ ],
+ "concept_tags": [
+  "beats",
+  "beat period"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:04:21+05:30"
+ }
+}

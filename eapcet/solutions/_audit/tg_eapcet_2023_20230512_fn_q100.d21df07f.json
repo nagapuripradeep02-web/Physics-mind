@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q100",
+ "item_sha": "d21df07f97b56924af107609e8bd381acb8beee98052b87cd7da4fca6bfb0c5f",
+ "auditor_option": 3,
+ "auditor_value": "8 ms⁻¹",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Computing the frequency f = ω/2π = 4 Hz and the wavelength λ = 2π/k = 2 m correctly, then doubling the product to get v = 2fλ = 16 ms⁻¹.",
+   "note": "The arithmetic reaches printed option 1, but the cause described is not an error a student makes: the entry states the student got both f and λ correct and then multiplied by 2 for no stated reason. The route that actually produces 16 ms⁻¹ here is reading the coefficient 8π as the frequency in hertz rather than the angular frequency, then using v = fλ = 8 × 2 = 16, which is the standard ω-for-f confusion this equation invites.",
+   "fix": "Reading the coefficient of t as the frequency, taking f = 8 Hz instead of ω = 8π rad s⁻¹, and combining it with the correct λ = 2π/k = 2 m to get v = fλ = 8 × 2 = 16 ms⁻¹."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: k = π rad m⁻¹ and ω = 8π rad s⁻¹, so v = ω/k = 8 ms⁻¹, printed option 3. All three step lines are correct and follow from one another, and the units on k and ω are right. common_mistakes[1] was recomputed: inverting the ratio gives π/8π = 0.125 ms⁻¹, which matches none of the printed options 16, 2, 8, 18, so its option null is correct rather than a defect. Neither entry condemns a correct method, and the finding above is about the plausibility of a stated cause, not about a wrong number or a wrong option. difficulty easy and mistake_type_hint calculation both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q102",
+ "item_sha": "8a7dee98fb2a1209fd89d93f80692b389b6e761f7a09658a10b4bec2882d7a06",
+ "auditor_option": 3,
+ "auditor_value": "4Mf²L²/RT",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution: successive nodes are λ/2 apart, so λ = 2L and v = fλ = 2fL; equating to v = √(γRT/M) and solving symbolically gives γ = 4Mf²L²/(RT), printed option 3. Every step line follows from the one above it and the algebra of the squaring step was re-derived in sympy. Both common_mistakes routes were recomputed symbolically and reach the options they name: λ = L gives γ = Mf²L²/(RT), printed option 1, and the inverted relation λ = L/2 gives γ = Mf²L²/(4RT), printed option 2. Both are genuine slips on this question and neither condemns a correct method. Printed option 4 is left unaccounted for, which the brief does not require. difficulty medium and mistake_type_hint concept are both appropriate: the arithmetic is trivial and the whole question turns on the node-to-wavelength relation.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

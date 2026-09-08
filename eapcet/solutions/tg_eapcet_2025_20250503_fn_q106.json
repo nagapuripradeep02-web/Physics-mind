@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q106",
+ "approach": "Orbital speed at radius R+h is √(GM/(R+h)); take the ratio to the surface value and substitute the given height.",
+ "steps": [
+  {
+   "text": "Write the orbital speed at the earth's surface (radius R) and at radius R+h for the higher orbit.",
+   "equation": "v(R) = √(GM/R), v(R+h) = √(GM/(R+h))"
+  },
+  {
+   "text": "Form the ratio, which depends only on R and h, since GM cancels.",
+   "equation": "v(R+h)/v(R) = √(R/(R+h))"
+  },
+  {
+   "text": "Substitute R = 6400 km and h = 19200 km, so R+h = 25600 km.",
+   "equation": "v(R+h)/v(R) = √(6400/25600) = √(1/4) = 1/2"
+  },
+  {
+   "text": "Multiply by the given surface orbital speed.",
+   "equation": "v(R+h) = 8 × 1/2 = 4 kms⁻¹"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "4 kms⁻¹"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the height h alone as the orbital radius, instead of adding it to the earth's radius, gives a speed of about 4.6 kms⁻¹, not the correct 4 kms⁻¹."
+  },
+  {
+   "option": null,
+   "text": "Taking the ratio R/(R+h) without the square root and multiplying by 8 gives 2 kms⁻¹, missing the square-root step in the orbital speed formula."
+  }
+ ],
+ "concept_tags": [
+  "orbital velocity",
+  "inverse square law",
+  "ratio and proportion"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-08",
+  "at": "2026-09-08T14:24:00+05:30"
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "approach": "Apply v² = u² − 2as for uniform retardation, once over distance x where v drops to (2/3)u, then again over x′ until it stops.",
+ "steps": [
+  {"text": "Write the velocity after travelling distance x, given that it drops to two-thirds of the initial value.",
+   "equation": "v = (2/3)u"},
+  {"text": "Apply v² = u² − 2ax for the first stage to relate the retardation a to u and x.",
+   "equation": "(2u/3)² = u² − 2ax; a = 5u²/(18x)"},
+  {"text": "Apply the same equation for the second stage, where the bullet slows from v = 2u/3 to rest over distance x′.",
+   "equation": "0 = (2u/3)² − 2ax′"},
+  {"text": "Substitute a and solve for x′, then form the ratio x′/x.",
+   "equation": "x′ = 4x/5; x′/x = 4/5"}
+ ],
+ "final_answer": {"option": 3, "value": "4/5"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Reading the one-third velocity loss stated in the question and mistaking that fraction directly for the distance ratio x′/x, without using v² = u² − 2as at all."},
+  {"option": 4, "text": "Taking the ratio of the squared velocities, (2u/3)²/u² = 4/9, and mistaking that fraction directly for x′/x without separately relating each stage to the constant retardation."}
+ ],
+ "concept_tags": ["uniform retardation", "v² = u² − 2as"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:33:00+05:30"}
+}

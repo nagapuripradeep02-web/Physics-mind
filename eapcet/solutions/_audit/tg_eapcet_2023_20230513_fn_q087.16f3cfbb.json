@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_fn_q087",
+ "item_sha": "16f3cfbbcb46d3d0bd076225113c426384519fa000bef7080c59f8065953f9f7",
+ "auditor_option": 1,
+ "auditor_value": "h[(1+e²)/(1−e²)]",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. Rebound speed is e times impact speed, so each rebound height is e² times the previous one: h, e²h, e⁴h, ... The path length is the first fall h plus each rebound climbed and fallen again: h + 2h(e² + e⁴ + e⁶ + ...) = h + 2he²/(1−e²) = h(1+e²)/(1−e²), option 1. Verified with python (sympy): h + 2*h*e**2/(1-e**2) simplifies to exactly h(1+e²)/(1−e²). Every printed equation follows from the one above it; the why_this_step on step 0 (height goes as the square of the speed) is the correct reason for h₁ = e²h. The common_mistakes entry is true and its arithmetic checks: dropping the factor 2 gives h/(1−e²), which sympy confirms and which is not among the four printed options, so option is correctly null. Difficulty medium and mistake_type_hint concept both fit. Considered and did not file: the question is filed under Work Power Energy while the coefficient of restitution is a collisions topic, which is a chapter-mapping matter and not a defect in the solution.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T02:58:00+05:30"}
+}

@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q098",
+ "approach": "In a rigid insulated cylinder the gas does no external work, so the heat supplied equals the rise in internal energy from the change in degrees of freedom.",
+ "steps": [
+  {"text": "Write the initial internal energy of the 4 moles of diatomic gas.",
+   "equation": "U_i = 4 × (5/2)RT = 10RT"},
+  {"text": "After dissociation, 2 moles of diatomic gas remain, and the other 2 moles turn into 4 moles of monatomic gas.",
+   "equation": "n(diatomic remaining) = 2, n(monatomic produced) = 4"},
+  {"text": "Write the final internal energy at the same temperature T.",
+   "equation": "U_f = 2 × (5/2)RT + 4 × (3/2)RT = 5RT + 6RT = 11RT",
+   "why_this_step": "Each remaining diatomic molecule still has 5 degrees of freedom, and each new atom has only 3 translational degrees of freedom."},
+  {"text": "Since the cylinder is rigid, no work is done, so the heat supplied equals the change in internal energy.",
+   "equation": "Q = U_f − U_i = 11RT − 10RT = RT"}
+ ],
+ "final_answer": {"option": 2, "value": "RT"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Misreading the question as if all 4 moles dissociate, instead of only 2, gives a final internal energy of 12RT and a change of 2RT."}
+ ],
+ "concept_tags": ["first law of thermodynamics", "degrees of freedom", "dissociation of a diatomic gas"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

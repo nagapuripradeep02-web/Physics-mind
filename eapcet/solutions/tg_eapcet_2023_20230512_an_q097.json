@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q097",
+ "approach": "Use the adiabatic relation between temperature and volume to find the final temperature after sudden compression, then subtract the initial temperature.",
+ "steps": [
+  {"text": "Convert the initial temperature to kelvin.",
+   "equation": "T₁ = 127 + 273 = 400 K"},
+  {"text": "For a sudden, adiabatic compression, temperature times volume raised to the power gamma minus one stays constant, so the final temperature is the initial temperature times the volume ratio raised to that same power."},
+  {"text": "The volume ratio is the reciprocal of the given compression fraction, and gamma minus one equals two-thirds here.",
+   "equation": "V₁/V₂ = 27/8, γ − 1 = 2/3"},
+  {"text": "Evaluate using the cube root.",
+   "equation": "∛(27/8) = 3/2, so (3/2)² = 9/4 = 2.25",
+   "why_this_step": "Raising a number to the two-thirds power is the same as taking its cube root and then squaring the result."},
+  {"text": "Find the final temperature and the rise.",
+   "equation": "T₂ = 400 × 2.25 = 900 K, rise = 900 − 400 = 500 K"}
+ ],
+ "final_answer": {"option": 2, "value": "500 K"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Raising the volume ratio 8/27 instead of 27/8 to the power (γ−1), which wrongly gives a fall in temperature instead of a rise."}
+ ],
+ "concept_tags": ["adiabatic process", "sudden compression", "temperature-volume relation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:36:00+05:30"}
+}

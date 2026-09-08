@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q084",
+ "item_sha": "d32d6ed7df87ac57fb0c97d0ce55ae64e8592966a0818377c8223146b38ecb82",
+ "auditor_option": 1,
+ "auditor_value": "750√3 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: v_x = 100cos30° = 50√3 = 86.60 m s⁻¹, v_y = 50 m s⁻¹. Taking up as positive, −375 = 50t − 5t² gives t² − 10t − 75 = 0, whose positive root is t = 15 s, so x = 50√3 × 15 = 750√3 = 1299 m. Sign convention and the quadratic rearrangement are both correct as printed. The mistake entry is exact: ignoring v_y gives t = √75 = 5√3 s and x = 50√3 × 5√3 = 750 m, printed option 4.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:50:00+05:30"}
+}

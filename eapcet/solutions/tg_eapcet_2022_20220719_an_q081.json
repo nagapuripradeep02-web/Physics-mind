@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220719_an_q081",
+ "approach": "The range of the strong nuclear force is a standard recalled value, comparable to the size of a nucleon.",
+ "steps": [
+  {"text": "The strong nuclear force acts only between nucleons that are very close together, over a distance comparable to the size of a nucleon or a small nucleus.",
+   "equation": "range of the nuclear force ≈ 1 to 2 femtometres"},
+  {"text": "Write this range in metres to match the options.",
+   "equation": "range ≈ 10⁻¹⁵ m"}
+ ],
+ "final_answer": {"option": 3, "value": "10⁻¹⁵ m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Recalling the range of the weak nuclear force instead of the strong nuclear force, which is one order smaller, of the order of 10⁻¹⁶ m."}
+ ],
+ "concept_tags": ["nuclear force", "range of fundamental forces"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14-R1", "at": "2026-09-08T15:20:00+05:30"}
+}

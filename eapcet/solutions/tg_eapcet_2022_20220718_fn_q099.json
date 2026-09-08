@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q099",
+ "approach": "At constant pressure, the heat supplied to a monatomic gas is Cp divided by R times the work it does, since the work equals nRΔT.",
+ "steps": [
+  {"text": "Write the work done in terms of the temperature rise.",
+   "equation": "W = nRΔT = 100 J"},
+  {"text": "Write the heat supplied using the molar heat capacity at constant pressure for a monatomic gas.",
+   "equation": "Q = nCpΔT = (5/2)(nRΔT)"},
+  {"text": "Substitute the work done for nRΔT and evaluate.",
+   "equation": "Q = (5/2) × 100 = 250 J"}
+ ],
+ "final_answer": {"option": 3, "value": "250 J"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Reporting only the change in internal energy, ΔU = (3/2) × 100 = 150 J, without adding the work done to it."},
+  {"option": 2, "text": "Taking Cv = R instead of 3/2 R for a monatomic gas gives a change in internal energy of 100 J and a total heat of 200 J."}
+ ],
+ "concept_tags": ["isobaric process", "monatomic gas", "molar heat capacity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

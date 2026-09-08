@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q117",
+ "approach": "In both fission and fusion, the total rest mass changes, and this mass difference appears as released energy according to Einstein's mass-energy relation.",
+ "steps": [
+  {"text": "In fission and fusion, the total mass of the products is slightly less than the total mass of the starting nuclei.",
+   "equation": "mass defect: Δm = mass(before) − mass(after)"},
+  {"text": "This lost mass is converted into the energy that is released, following Einstein's relation between mass and energy.",
+   "equation": "E = Δm × c²"}
+ ],
+ "final_answer": {"option": 3, "value": "Einstein mass-energy equation"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Choosing the broader theory of relativity instead of the specific mass-energy relation E = mc² that is actually applied to compute the released energy."},
+  {"option": 4, "text": "Confusing this with the photoelectric equation, which explains the emission of electrons from a metal surface by light, not energy release in the nucleus."}
+ ],
+ "concept_tags": ["mass-energy equivalence", "nuclear fission and fusion"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

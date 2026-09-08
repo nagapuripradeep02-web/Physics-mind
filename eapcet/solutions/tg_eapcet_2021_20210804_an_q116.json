@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q116",
+ "approach": "Nuclear radius is proportional to the cube root of the mass number, so the ratio of two radii equals the ratio of the cube roots of their mass numbers.",
+ "steps": [
+  {"text": "Write the nuclear radius formula relating the radius R to the mass number A.",
+   "equation": "R = R₀∛A"},
+  {"text": "Form the ratio of the radius of iodine (mass number 125) to the radius of polonium (mass number 216).",
+   "equation": "R(iodine) ∶ R(polonium) = ∛125 ∶ ∛216"},
+  {"text": "Evaluate the two cube roots.",
+   "equation": "∛125 = 5, ∛216 = 6, so the ratio is 5 ∶ 6"}
+ ],
+ "final_answer": {"option": 1, "value": "5:6"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Writing the ratio the other way round, polonium to iodine, gives 6:5 instead of iodine to polonium."},
+  {"option": null, "text": "Using the mass numbers directly instead of their cube roots gives 125:216, which matches no option."}
+ ],
+ "concept_tags": ["nuclear radius formula", "mass number dependence"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

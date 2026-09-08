@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q098",
+ "approach": "The heat supplied for vaporization goes partly into the work of expansion against the constant atmospheric pressure and partly into the change in internal energy.",
+ "steps": [
+  {"text": "Write the heat absorbed using the given latent heat of vaporization.",
+   "equation": "Q = mL = 1.00 × 2000 = 2000 kJ"},
+  {"text": "Write the work done by the system as it expands at constant pressure.",
+   "equation": "W = PΔV = 1.00×10⁵ × (2.001 − 0.001) = 2.00×10⁵ J = 200 kJ"},
+  {"text": "Apply the first law of thermodynamics to get the change in internal energy.",
+   "equation": "ΔU = Q − W = 2000 − 200 = 1800 kJ"}
+ ],
+ "final_answer": {"option": 1, "value": "1800 kJ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Reporting the heat absorbed itself, 2000 kJ, without subtracting the work done in the expansion."},
+  {"option": 2, "text": "Reporting only the work done by the expanding steam, 200 kJ, as if it were the change in internal energy."}
+ ],
+ "concept_tags": ["first law of thermodynamics", "latent heat", "work done in expansion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

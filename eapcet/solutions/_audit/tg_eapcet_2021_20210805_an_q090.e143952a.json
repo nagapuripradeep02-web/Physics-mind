@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_an_q090",
+ "item_sha": "e143952ac808289762ea8868c9ad6ea87c7b88c0345070bfbfa0f5486cb58bf3",
+ "auditor_option": 1,
+ "auditor_value": "v_Q/v_P = 4",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: v = v_P + 2v_Q and v_Q − v_P = v/3 give v_P = v/9 and v_Q = 4v/9, so v_Q/v_P = 4. Every printed line follows from the one above it. One convention point, not filed as a finding: for a perfectly elastic collision here v_P = −v/3 and v_Q = 2v/3, so the signed quotient is −2, not +2; common_mistakes[1] states 2. The exam itself prints option 3 as \"v_Q/v_P = 2\", so the solution is using the paper's own unsigned convention.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

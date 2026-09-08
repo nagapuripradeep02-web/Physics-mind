@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q093",
+ "item_sha": "0ad7123298b412ec3f03e7d7a8e30b7090ffa06e6e5e0309e79660788e78381f",
+ "auditor_option": 3,
+ "auditor_value": "4W",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: W = T × 2 × 4πR² = 8πTR², so W ∝ R² and doubling the radius gives W' = 4W, matching option 3. The question asks for the total work to blow a bubble of radius 2R, not the extra work in expanding from R to 2R (which would be 3W), and the solution reads it correctly. Both mistake entries are genuine and their values are checked: 2W is printed as option 4, and 8W is not printed, consistent with the null option.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:24:00+05:30"}
+}

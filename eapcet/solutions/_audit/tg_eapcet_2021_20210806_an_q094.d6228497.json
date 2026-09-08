@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210806_an_q094",
+ "item_sha": "d62284970256b13d68e6d3681de8d42a002c870541bf2c3f18a93005442ffd14",
+ "auditor_option": 3,
+ "auditor_value": "A-II, B-II, C-I, D-III",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: for a satellite in a bound circular orbit U = -GMm/r is negative (A-II), E = U + K = -GMm/2r is negative (B-II), K = +GMm/2r is positive (C-I), and the potential energy at infinite separation is the zero reference (D-III). That is option 3. Every printed equation is correct and each follows the text above it; the statement that the total energy is equal in size to half the potential energy is right, since |E| = GMm/2r and |U| = GMm/r. common_mistakes[1] reproduces option 4 exactly (B to Positive, C to Infinity), and common_mistakes[0] names a real trap in match-the-following items, that a label may be used twice.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q098",
+ "approach": "Track how the atomic number and the mass number change through the alpha decay and the two beta-minus decays, then compare P and Q.",
+ "steps": [
+  {"text": "An alpha decay lowers the atomic number by 2 and the mass number by 4.",
+   "equation": "alpha decay: ΔZ = −2, ΔA = −4"},
+  {"text": "Each beta-minus decay raises the atomic number by 1 and leaves the mass number unchanged, because a neutron turns into a proton. Two of them raise the atomic number by 2 in all.",
+   "equation": "two beta-minus decays: ΔZ = +2, ΔA = 0"},
+  {"text": "Add the changes from the alpha decay and the two beta-minus decays to get the net change from P to Q.",
+   "equation": "net ΔZ = −2 + 2 = 0, net ΔA = −4 + 0 = −4"},
+  {"text": "P and Q have the same atomic number but a mass number smaller by 4, so P and Q are isotopes.",
+   "equation": "Z(Q) = Z(P), A(Q) = A(P) − 4 → P and Q are isotopes",
+   "why_this_step": "Nuclei with the same atomic number but different mass numbers are, by definition, isotopes."}
+ ],
+ "final_answer": {"option": 4, "value": "Isotopes"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Counting only the two beta-minus decays and forgetting the alpha decay gives the same mass number with a different atomic number, which is the definition of isobars."},
+  {"option": 2, "text": "Correctly finding that the atomic number is unchanged but wrongly assuming the mass number is also unchanged gives the same atomic number and mass number, which is the definition of isomers."},
+  {"option": 3, "text": "Wrongly believing beta-minus decay lowers the atomic number, as in beta-plus decay, gives a net change of −4 in atomic number and mass number, so the neutron number is unchanged: isotones."}
+ ],
+ "concept_tags": ["radioactive decay", "isotopes, isobars, isotones and isomers", "alpha and beta decay"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14-R1", "at": "2026-09-08T15:27:00+05:30"}
+}

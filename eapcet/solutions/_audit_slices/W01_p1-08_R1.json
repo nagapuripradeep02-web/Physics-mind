@@ -1,0 +1,61 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210805_fn_q094",
+   "audit_file": "tg_eapcet_2021_20210805_fn_q094.6aa6eff6.json",
+   "item_sha": "6aa6eff6e01ea3fdff7fed145bf54e36fb21826146c8ceecf3568b898e938daa",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Two stars of equal masses M are orbiting in a circle of radius R. Their orbital time period is proportional to",
+   "options_en": [
+    "R^(3/2)",
+    "R",
+    "R²",
+    "R^(1/2)"
+   ],
+   "solution": {
+    "approach": "The mutual gravitational force supplies the centripetal force for each star's orbit of radius R; solving for the angular speed shows how the period depends on R.",
+    "steps": [
+     {
+      "text": "Write the gravitational force between the two stars, separated by 2R, and set it equal to the centripetal force needed for one star moving on a circle of radius R.",
+      "equation": "GM²/(2R)² = Mω²R"
+     },
+     {
+      "text": "Solve for the angular speed ω.",
+      "equation": "ω² = GM/(4R³)"
+     },
+     {
+      "text": "Write the period as 2π/ω, square it, and see how it depends on R.",
+      "equation": "T = 2π/ω → T² = 16π²R³/(GM) ∝ R³ → T ∝ √(R³)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "R^(3/2)"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Mistaking the gravitational force law as varying with 1/R instead of 1/R² changes the balance and gives T proportional to R instead of R¹·⁵."
+     },
+     {
+      "option": 3,
+      "text": "Misremembering the centripetal acceleration as ω²R² instead of ω²R changes the power of R obtained, giving T proportional to R² instead of R¹·⁵."
+     }
+    ],
+    "concept_tags": [
+     "two-body gravitational orbit",
+     "Kepler's third law",
+     "centripetal force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

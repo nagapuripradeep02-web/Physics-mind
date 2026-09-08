@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q081",
+ "approach": "Beta decay happens when a neutron converts into a proton (or a proton into a neutron), a process caused by the weak interaction.",
+ "steps": [
+  {"text": "Identify what happens inside the nucleus during beta decay: a neutron changes into a proton, an electron and an antineutrino.",
+   "equation": "n → p + e⁻ + antineutrino"},
+  {"text": "This conversion of one type of nucleon into another is caused by the weak interaction, one of the four fundamental forces.",
+   "equation": "beta decay is caused by the weak interaction"}
+ ],
+ "final_answer": {"option": 2, "value": "Weak"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Assuming any process happening inside the nucleus must be due to the strong interaction, which actually only binds nucleons together and does not change one type of nucleon into another."},
+  {"option": 3, "text": "Confusing beta decay with gamma decay, which is an electromagnetic process, not a weak one."}
+ ],
+ "concept_tags": ["beta decay", "fundamental interactions"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

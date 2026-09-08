@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q101",
+ "approach": "The ratio of maximum to minimum intensity in interference fixes the ratio of the two amplitudes through a standard identity.",
+ "steps": [
+  {
+   "text": "Write the standard ratio of maximum to minimum intensity for two superimposing waves of amplitudes A₁ and A₂.",
+   "equation": "I_max/I_min = (A₁ + A₂)²/(A₁ − A₂)² = 9/4"
+  },
+  {
+   "text": "Take the square root of both sides.",
+   "equation": "(A₁ + A₂)/(A₁ − A₂) = 3/2"
+  },
+  {
+   "text": "Cross-multiply and collect terms.",
+   "equation": "2A₁ + 2A₂ = 3A₁ − 3A₂  ⟹  5A₂ = A₁"
+  },
+  {
+   "text": "Solve for the required ratio.",
+   "equation": "A₂/A₁ = 1/5 = 0.20"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "0.20"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Taking the square root of 9/4 as ±3/2 and keeping the negative branch, or solving the quadratic without discarding the root A₂ = 5A₁, which contradicts the given A₁ > A₂."
+  }
+ ],
+ "concept_tags": [
+  "interference",
+  "intensity ratio",
+  "amplitude ratio"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:25:21+05:30"
+ }
+}

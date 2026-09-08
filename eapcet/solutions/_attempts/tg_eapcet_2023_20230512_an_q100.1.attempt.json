@@ -1,0 +1,42 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q100",
+ "approach": "For an observer moving towards a stationary source, the apparent frequency is the source frequency scaled by the ratio of the observer's speed and the sound speed.",
+ "steps": [
+  {
+   "text": "Write the Doppler formula for a moving observer and a stationary source.",
+   "equation": "f' = f(v + v₀)/v"
+  },
+  {
+   "text": "Substitute the observer's speed as one-fifth of the speed of sound.",
+   "equation": "v₀ = v/5"
+  },
+  {
+   "text": "Evaluate the apparent frequency.",
+   "equation": "f' = f(v + v/5)/v = f(1 + 1/5) = 1.2 f"
+  }
+ ],
+ "final_answer": {
+  "option": 1,
+  "value": "1.2 f"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 3,
+   "text": "Using the formula for a receding observer, f(v − v₀)/v, which gives 0.8 f instead of the correct increase for an approaching observer."
+  }
+ ],
+ "concept_tags": [
+  "Doppler effect",
+  "moving observer"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T05:58:21+05:30"
+ }
+}

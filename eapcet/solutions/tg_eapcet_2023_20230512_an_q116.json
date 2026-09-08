@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q116",
+ "approach": "In a nuclear reaction the total atomic number and the total mass number are each conserved, so both sides must balance separately.",
+ "steps": [
+  {"text": "List the atomic number Z and mass number A of every particle on the left side and of the neutron on the right.",
+   "equation": "₁₃Al²⁷: Z=13, A=27;  ₂He⁴: Z=2, A=4;  ₀n¹: Z=0, A=1"},
+  {"text": "Conserve the atomic number to find the atomic number of X.",
+   "equation": "Z(X) = 13 + 2 − 0 = 15"},
+  {"text": "Conserve the mass number to find the mass number of X.",
+   "equation": "A(X) = 27 + 4 − 1 = 30"},
+  {"text": "The element with atomic number 15 is phosphorus, so X is phosphorus-30.",
+   "equation": "X = ₁₅P³⁰",
+   "why_this_step": "Charge and mass number must each add up to the same total before and after a nuclear reaction."}
+ ],
+ "final_answer": {"option": 3, "value": "₁₅P³⁰"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Forgetting to subtract the mass number carried away by the neutron gives A = 27 + 4 = 31, leading to ₁₅P³¹."},
+  {"option": 2, "text": "Wrongly treating the emitted neutron as if it carried a charge of +1 gives Z = 13 + 2 − 1 = 14, leading to ₁₄Si³⁰."}
+ ],
+ "concept_tags": ["nuclear reaction", "conservation of charge and mass number"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14-R1", "at": "2026-09-08T15:22:00+05:30"}
+}

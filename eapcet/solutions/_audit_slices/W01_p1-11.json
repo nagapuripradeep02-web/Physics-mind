@@ -1,0 +1,388 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-11",
+ "chapter": "Thermal Properties of Matter",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q098",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q098.3fbc19e5.json",
+   "item_sha": "3fbc19e5613111850d61bea39216ea763ee027ce37ffac6fe43e7fec9b1ef1c9",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "The ratio of linear expansivity to the co-efficient of a real expansion of a rectangular sheet of a solid is",
+   "options_en": [
+    "2",
+    "0.5",
+    "1",
+    "1.5"
+   ],
+   "solution": {
+    "approach": "A flat sheet expands in area, so its own coefficient of expansion is the areal (superficial) expansivity, which for any solid is twice the linear expansivity.",
+    "steps": [
+     {
+      "text": "Write the standard relation between the linear expansivity α and the areal expansivity β for a solid.",
+      "equation": "β = 2α",
+      "why_this_step": "Every length in a flat sheet grows by the factor (1+αΔT), so its area grows by (1+αΔT)² ≈ 1+2αΔT for small αΔT."
+     },
+     {
+      "text": "For a rectangular sheet, the areal expansivity β is the coefficient describing its own expansion.",
+      "equation": "linear expansivity : areal expansivity = α : 2α"
+     },
+     {
+      "text": "Simplify the ratio.",
+      "equation": "α/(2α) = 0.5"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "0.5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Writing the ratio the other way round, areal expansivity to linear expansivity, gives 2 instead of 0.5."
+     },
+     {
+      "option": 4,
+      "text": "Comparing the cubical expansivity 3α with the areal expansivity 2α instead of the linear expansivity with the areal expansivity gives 1.5."
+     }
+    ],
+    "concept_tags": [
+     "thermal expansion",
+     "areal expansivity",
+     "linear expansivity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q095",
+   "audit_file": "tg_eapcet_2023_20230512_an_q095.5bf9a10d.json",
+   "item_sha": "5bf9a10da218156393dfd75b3a0df4cc535b7dce5c0a4fe5dcbf3787f29fcc24",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "Two rods of same area of cross-section have lengths L and 2L and coefficients of linear expansions 2α and α respectively. If they are welded to form a composite rod of length 3L then the coefficient of linear expansion of the composite rod is",
+   "options_en": [
+    "3α/2",
+    "3α",
+    "3α/4",
+    "4α/3"
+   ],
+   "solution": {
+    "approach": "The effective expansion coefficient of the welded rod is the length-weighted average of the two coefficients, found by adding the actual expansions of the two parts.",
+    "steps": [
+     {
+      "text": "Write the expansion of each part for a temperature change ΔT.",
+      "equation": "ΔL₁ = L(2α)ΔT, ΔL₂ = (2L)(α)ΔT"
+     },
+     {
+      "text": "Add the two expansions to get the total expansion of the composite rod.",
+      "equation": "ΔL = ΔL₁ + ΔL₂ = 2LαΔT + 2LαΔT = 4LαΔT"
+     },
+     {
+      "text": "Define the effective coefficient of the composite rod, of length 3L, by the same expansion law, and solve for it.",
+      "equation": "(3L)α_eff ΔT = 4LαΔT → α_eff = 4α/3",
+      "why_this_step": "An effective coefficient must reproduce the same total expansion when applied to the full length of the composite rod."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "4α/3"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking a plain average of the two coefficients, (2α + α)/2, without weighting by the lengths, gives 3α/2."
+     },
+     {
+      "option": 2,
+      "text": "Adding the two coefficients directly, 2α + α, gives 3α."
+     }
+    ],
+    "concept_tags": [
+     "thermal expansion",
+     "composite rod",
+     "effective expansion coefficient"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q094",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q094.d5af7d9a.json",
+   "item_sha": "d5af7d9a20d882ad46937ef0f4e53f2650b7655fac06b1b822f768d6bc08c4b0",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "Two objects made of the same material have masses 'm' and '2m' and are at temperatures '2T' and 'T' respectively. When heat 'Q' is supplied to the object of mass '2m', its temperature raises to '2T'. If the same heat is supplied to the object of mass 'm', its temperature raises to",
+   "options_en": [
+    "2T",
+    "3T/2",
+    "4T",
+    "3T"
+   ],
+   "solution": {
+    "approach": "The same heat produces a temperature rise inversely proportional to the mass, since both objects are made of the same material and so share the same specific heat capacity.",
+    "steps": [
+     {
+      "text": "Write the heat Q that raises the object of mass 2m from T to 2T.",
+      "equation": "Q = (2m)c(2T − T) = 2mcT"
+     },
+     {
+      "text": "Apply the same heat Q to the object of mass m, which starts at 2T, and find its temperature rise.",
+      "equation": "Q = mcΔT′ → ΔT′ = Q/(mc) = 2mcT/(mc) = 2T",
+      "why_this_step": "The same heat given to half the mass produces twice the temperature rise, since specific heat capacity is the same for both objects."
+     },
+     {
+      "text": "Add this rise to the object's starting temperature of 2T.",
+      "equation": "T_final = 2T + 2T = 4T"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4T"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the temperature rise 2T correctly but forgetting to add it to the object's starting temperature of 2T."
+     },
+     {
+      "option": 4,
+      "text": "Using mass m instead of 2m when finding Q in the first step gives Q = mcT, leading to a rise of T and a final temperature of 3T."
+     }
+    ],
+    "concept_tags": [
+     "specific heat capacity",
+     "heat and temperature rise"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q095",
+   "audit_file": "tg_eapcet_2023_20230513_an_q095.413ee9b4.json",
+   "item_sha": "413ee9b4aef7b33b2b231c5fb32eb36ff26809e1785781e52d810826465ac1ab",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "The heat energy required to convert 10 kg of ice at −10 °C into water at 0 °C is (specific heat capacity of ice = 0.5 cal g⁻¹ and latent heat of fusion of ice = 80 cal g⁻¹)",
+   "options_en": [
+    "357 x 10⁴ J",
+    "357 x 10³ J",
+    "357 x 10² J",
+    "357 x 10⁵ J"
+   ],
+   "solution": {
+    "approach": "The heat needed has two parts, first warming the ice to 0°C and then melting it, and the total in calories is converted to joules at the end.",
+    "steps": [
+     {
+      "text": "Find the heat needed to warm the ice from −10 °C to 0 °C.",
+      "equation": "Q₁ = mcΔT = 10000 g × 0.5 cal g⁻¹ °C⁻¹ × 10 °C = 50000 cal"
+     },
+     {
+      "text": "Find the heat needed to melt all the ice at 0 °C.",
+      "equation": "Q₂ = mL = 20000 g × 80 cal g⁻¹ = 800000 cal"
+     },
+     {
+      "text": "Add the two heats.",
+      "equation": "Q = Q₁ + Q₂ = 850000 cal"
+     },
+     {
+      "text": "Convert the total from calories to joules.",
+      "equation": "Q = 850000 × 4.2 = 3570000 J = 357 × 10⁴ J",
+      "why_this_step": "1 cal = 4.2 J is the conversion used in this exam's calorimetry questions."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "357 x 10⁴ J"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using 10 kg as if it were 1 kg (a misplaced decimal in converting to grams) gives 85000 cal, which is 357 × 10³ J."
+     },
+     {
+      "option": 4,
+      "text": "Using 10 kg as if it were 100 kg (a misplaced decimal the other way) gives 8500000 cal, which is 357 × 10⁵ J."
+     }
+    ],
+    "concept_tags": [
+     "specific heat capacity",
+     "latent heat of fusion",
+     "calorie to joule conversion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_fn_q095",
+   "audit_file": "tg_eapcet_2024_20240510_fn_q095.0d993cab.json",
+   "item_sha": "0d993cabaaeecd7e59d3a631dbb35fd7b8b618d5a8dd8ee41dda18590fd9202f",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "37 g of ice at 0 °C temperature is mixed with 74 g of water at 70 °C temperature. The resultant temperature is (Specific heat capacity of water = 1 cal g⁻¹ °C⁻¹ and latent heat of fusion of ice = 80 cal g⁻¹)",
+   "options_en": [
+    "45°C",
+    "70°C",
+    "20°C",
+    "35°C"
+   ],
+   "solution": {
+    "approach": "The heat lost by the warm water as it cools equals the heat gained by the ice as it melts and then warms to the common final temperature.",
+    "steps": [
+     {
+      "text": "Let the final temperature be T and write the heat lost by the water cooling from 70 °C.",
+      "equation": "Q_lost = 74 × 1 × (70 − T)"
+     },
+     {
+      "text": "Write the heat gained by the ice, first melting completely and then warming the resulting water to T.",
+      "equation": "Q_gained = 37 × 80 + 37 × 1 × (T − 0)",
+      "why_this_step": "All the ice melts because the heat available from the water cooling to 0 °C, 74 × 70 = 5180 cal, is more than the 37 × 80 = 2960 cal needed to melt it."
+     },
+     {
+      "text": "Set the heat lost equal to the heat gained and solve for T.",
+      "equation": "74(70 − T) = 2960 + 37T"
+     },
+     {
+      "text": "Expand and collect terms.",
+      "equation": "5180 − 74T = 2960 + 37T → 2220 = 111T → T = 20 °C"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "20°C"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Averaging the two starting temperatures directly, (70 + 0)/2, gives 35 °C, ignoring both the masses and the latent heat."
+     },
+     {
+      "option": null,
+      "text": "Forgetting the latent heat needed to melt the ice and balancing only specific heats gives about 46.7 °C, which matches no option because the ice must fully melt first."
+     }
+    ],
+    "concept_tags": [
+     "calorimetry",
+     "latent heat of fusion",
+     "method of mixtures"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q097",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q097.4e5db754.json",
+   "item_sha": "4e5db754b56007e3a7bd0bc78b7f4ea67bdff25dfddef71c3604b77aa9d969b0",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "A rectangular ice box of total surface area of 1000 cm² initially contains 1.5 kg of ice at 0 °C. If the thickness of the walls of the box is 2 mm and the temperature outside the box is 42 °C, then the mass of the ice remaining in the box after 160 minutes is (Thermal conductivity of the material of the box = 10⁻² Wm⁻¹K⁻¹ and latent heat of the fusion of ice = 336×10³ Jkg⁻¹)",
+   "options_en": [
+    "0.8 kg",
+    "0.9 kg",
+    "0.6 kg",
+    "0.7 kg"
+   ],
+   "solution": {
+    "approach": "Heat conducted steadily through the walls of the box melts part of the ice, and the melted mass follows from the conduction equation divided by the latent heat of fusion.",
+    "steps": [
+     {
+      "text": "Convert the given quantities to SI units.",
+      "equation": "A = 1000 cm² = 0.1 m², d = 2 mm = 0.002 m, t = 160 min = 9600 s"
+     },
+     {
+      "text": "Write the heat conducted through the walls in this time.",
+      "equation": "Q = kAΔT t/d = (10⁻² × 0.1 × 42 × 9600)/0.002",
+      "why_this_step": "Steady-state conduction carries heat at a constant rate kAΔT/d, so the total heat is this rate multiplied by the time."
+     },
+     {
+      "text": "Evaluate the heat conducted.",
+      "equation": "Q = 201600 J"
+     },
+     {
+      "text": "Find the mass of ice this heat melts.",
+      "equation": "m_melted = Q/L = 201600/336000 = 0.6 kg"
+     },
+     {
+      "text": "Subtract from the initial mass to get the ice remaining.",
+      "equation": "m_remaining = 1.5 − 0.6 = 0.9 kg"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "0.9 kg"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Reporting the melted mass, 0.6 kg, as the answer instead of subtracting it from the initial 1.5 kg to get the ice remaining."
+     }
+    ],
+    "concept_tags": [
+     "thermal conduction",
+     "latent heat of fusion",
+     "steady-state heat flow"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q112",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q112.8501d5fa.json",
+   "item_sha": "8501d5fa4689ba07a9c1366ac920c603e235027462b3761db519c8d61bb10c45",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "The temperature at which the reading on Fahrenheit scale becomes 90% more than the reading on Celsius scale is",
+   "options_en": [
+    "608 °F",
+    "320 °F",
+    "580 °F",
+    "280 °F"
+   ],
+   "solution": {
+    "approach": "Write the Fahrenheit reading as 1.9 times the Celsius reading, and solve it together with the standard Celsius-to-Fahrenheit conversion.",
+    "steps": [
+     {
+      "text": "Write the condition that the Fahrenheit reading is 90% more than the Celsius reading.",
+      "equation": "F = C + 0.9C = 1.9C"
+     },
+     {
+      "text": "Write the standard conversion between the two scales.",
+      "equation": "F = (9/5)C + 32"
+     },
+     {
+      "text": "Set the two expressions for F equal and solve for C.",
+      "equation": "1.9C = 1.8C + 32 → 0.1C = 32 → C = 320 °C"
+     },
+     {
+      "text": "Use F = 1.9C to get the Fahrenheit reading.",
+      "equation": "F = 1.9 × 320 = 608 °F"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "608 °F"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Solving correctly for C = 320 and then stopping there, reporting this Celsius value as if it were the Fahrenheit answer."
+     }
+    ],
+    "concept_tags": [
+     "temperature scale conversion",
+     "Celsius and Fahrenheit scales"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

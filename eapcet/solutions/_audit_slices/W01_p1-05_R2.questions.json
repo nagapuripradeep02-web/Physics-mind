@@ -1,0 +1,33 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-05",
+ "chapter": "Work Power Energy",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q089",
+   "chapter": "Work Power Energy",
+   "year": 2021,
+   "question_en": "The potential energy of a particle in a central field has the form U(r) = 1/r² − 1/r, where 'r' is the distance from the centre of the field. The magnitude of the maximum attractive force in Newton is",
+   "options_en": [
+    "1/27",
+    "1/9",
+    "1/3",
+    "1"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q088",
+   "chapter": "Work Power Energy",
+   "year": 2022,
+   "question_en": "A body of mass 'm' slides down along a frictionless inclined plane from height 'h' and just completes motion in a vertical circle of radius 2m after reaching the bottom. What is the value of h? [Use g = 10 m/s²]",
+   "options_en": [
+    "2 m",
+    "5/2 m",
+    "5 m",
+    "10 m"
+   ]
+  }
+ ]
+}

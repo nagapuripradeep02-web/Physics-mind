@@ -1,0 +1,25 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2024_20240510_an_q087",
+  "approach": "Momentum conservation and the restitution equation together fix both balls' final velocities, whose ratio is the answer.",
+  "steps": [
+    {"text": "Write momentum conservation for the two balls.",
+     "equation": "0.5×10 = 0.5v_P + 1×v_Q  →  v_P + 2v_Q = 10"},
+    {"text": "Write the restitution equation using e = 0.4.",
+     "equation": "e = (v_Q − v_P)/(10 − 0)  →  v_Q − v_P = 4"},
+    {"text": "Solve the two equations together.",
+     "equation": "v_P = 2/3 m s⁻¹,  v_Q = 14/3 m s⁻¹"},
+    {"text": "Form the ratio asked for.",
+     "equation": "v_P : v_Q = (2/3) : (14/3) = 1 : 7"}
+  ],
+  "final_answer": {"option": 1, "value": "1 : 7"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 3, "text": "Mistaking the coefficient of restitution itself for the ratio of the final velocities gives 0.4 = 2/5, so v_P:v_Q = 2:5."},
+    {"option": 2, "text": "Reducing the ratio 2:14 by dividing only the second number by 2, and leaving the first as it is, gives 2:7 instead of 1:7."}
+  ],
+  "concept_tags": ["collision", "coefficient of restitution", "momentum conservation"],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:09:00+05:30"}
+}

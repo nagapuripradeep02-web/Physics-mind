@@ -1,0 +1,27 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q103",
+ "approach": "The extra weight of the disc equals the extra buoyant force gained from the extra volume of the cube that goes underwater once the disc is added.",
+ "steps": [
+  {"text": "Write the volume of the cube.",
+   "equation": "V = (0.40 m)³ = 0.064 m³"},
+  {"text": "Write the weight balance for the cube floating alone, with one quarter of its volume submerged.",
+   "equation": "m_cube g = ρ_water g × (V/4)"},
+  {"text": "Write the weight balance after the disc is placed on top, with two fifths of the volume submerged.",
+   "equation": "(m_cube + m_disc) g = ρ_water g × (2V/5)"},
+  {"text": "Subtract the first equation from the second to isolate the disc's mass.",
+   "equation": "m_disc = ρ_water V (2/5 − 1/4) = ρ_water V × 3/20",
+   "why_this_step": "Only the extra submerged volume, beyond what the cube alone already displaced, supports the added disc."},
+  {"text": "Substitute the values and evaluate.",
+   "equation": "m_disc = 1000 × 0.064 × 3/20 = 9.6 kg"}
+ ],
+ "final_answer": {"option": 1, "value": "9.6 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the full submerged weight after the disc is added, ρ_water g (2V/5), as the disc's own weight and forgetting to subtract the cube's share, gives 25.6 kg, which is not a printed option."}
+ ],
+ "concept_tags": ["floatation", "Archimedes' principle", "buoyant force"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:28:00+05:30"}
+}

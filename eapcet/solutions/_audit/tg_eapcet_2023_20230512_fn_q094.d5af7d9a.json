@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q094",
+ "item_sha": "d5af7d9a20d882ad46937ef0f4e53f2650b7655fac06b1b822f768d6bc08c4b0",
+ "auditor_option": 3,
+ "auditor_value": "4T",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. The 2m object starts at T and ends at 2T, so Q = (2m)c(T) = 2mcT. The m object starts at 2T; the same Q gives a rise of Q/(mc) = 2T, so its final temperature is 2T + 2T = 4T, option 3. Every printed line matches: Q = (2m)c(2T - T) = 2mcT, then 2mcT/(mc) = 2T, then 2T + 2T = 4T; the final_answer.value equals what the last step reached. Both common_mistakes entries checked: stopping at the rise 2T is option 1 (printed \"2T\"), and using mass m in the first step gives Q = mcT, a rise of T and a final 3T, which is option 4 (printed \"3T\") - both verified with python and both name the right option. The approach (rise inversely proportional to mass at equal specific heat) is consistent with the steps, and the step-2 why_this_step says the same thing correctly. The question's grammar (\"its temperature raises to\") is a slip for \"rises to\" but does not affect solvability, so it is not filed as a question defect. The wording could in principle be read as asking for the rise rather than the final temperature, but the presence of both 2T and 4T among the options makes the final-temperature reading the intended one and the solution states its reading explicitly.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:25:12+05:30"}
+}

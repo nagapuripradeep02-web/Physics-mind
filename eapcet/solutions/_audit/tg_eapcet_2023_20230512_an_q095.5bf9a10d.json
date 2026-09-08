@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q095",
+ "item_sha": "5bf9a10da218156393dfd75b3a0df4cc535b7dce5c0a4fe5dcbf3787f29fcc24",
+ "auditor_option": 4,
+ "auditor_value": "4α/3",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first: dL = L(2a)dT + (2L)(a)dT = 4LadT, and (3L)a_eff dT = 4LadT gives a_eff = 4a/3, option 4. This equals the length-weighted average (L*2a + 2L*a)/3L that the approach names, so approach and steps agree. Every printed line checked with python: dL1 = 2LadT, dL2 = 2LadT, sum 4LadT, a_eff = 4a/3. Both common_mistakes entries verified numerically - the unweighted average (2a+a)/2 = 3a/2 is option 1 (printed \"3α/2\") and the direct sum 2a+a = 3a is option 2 (printed \"3α\"); each entry points at the option its own text produces. The equal cross-section given in the question is not needed for the answer, which is correct rather than a defect (it is what makes a single welded rod meaningful). Option 3 (3a/4) is left unexplained, which is acceptable. difficulty=medium and mistake_type_hint=application both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:22:40+05:30"}
+}

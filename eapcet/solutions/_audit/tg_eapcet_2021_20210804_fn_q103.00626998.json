@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q103",
+ "item_sha": "0062699876c4e24bd7ac77c7b678738142f0e0b852d2fce40c0cbc6fe7e98758",
+ "auditor_option": 4,
+ "auditor_value": "0.2 m",
+ "findings": [
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 1, \"value\": \"0.02 m\"",
+   "note": "The correct minimum separation is λ/2 = 0.2 m, which is printed option 4. The stated answer 0.02 m is the wave's amplitude copied out of the stem, and it is ten times smaller than what the solution's own step 4 (d = π/k = λ/2, with λ = 0.4 m) reaches. The solution also contradicts itself here: common_mistakes[1] states in plain words that the correct value is 0.2 m.",
+   "fix": "\"option\": 4, \"value\": \"0.2 m\""},
+  {"grade": "harmful",
+   "field": "steps[4].equation",
+   "quote": "d = 0.4/2 = 0.02 m",
+   "note": "The printed division is false: 0.4/2 = 0.2, not 0.02. This is the one line a student copies to get the number, and it drops a factor of ten from the correct λ/2 that step 4 had just established.",
+   "fix": "d = 0.4/2 = 0.2 m"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Solved independently before reading the solution. Particle velocity is v_y = −0.4 cos(5πx − 20t); two particles keep equal speed at every instant only if |cos(θ + Δ)| = |cos θ| for all θ, which requires sin Δ = 0, so Δ = nπ. With k = 5π rad m⁻¹, λ = 0.4 m and the smallest nonzero separation is d = π/k = 0.2 m, printed option 4. Steps 0 to 3 are all correct, including the differentiation constant (0.02 × 20 = 0.4) and the why_this_step justification of Δ = nπ, which is a true statement. Both common_mistakes routes were recomputed and are sound: demanding equal velocity including sign needs Δ = 2nπ, so d = λ = 0.4 m, printed option 2, and multiplying rather than dividing by 2 gives 0.8 m, printed option 3. Neither entry condemns a correct method. difficulty hard is defensible for the |cos| phase argument and was not filed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q086",
+ "approach": "Write the standard trajectory equation from the given velocity components, then match its coefficients to the given form to read off γ.",
+ "steps": [
+  {"text": "Write the trajectory equation using the given velocity components and g = 10 m/s².",
+   "equation": "y = (v_y/v_x)x − gx²/(2v_x²) = (4/3)x − (10/18)x² = (4/3)x − (5/9)x²"},
+  {"text": "Rewrite the expression with a common factor of 1/9, matching the given form.",
+   "equation": "y = (1/9)(12x − 5x²)"},
+  {"text": "Compare with y = (1/9)(βx + γx²) to read off γ.",
+   "equation": "γ = −5"}
+ ],
+ "final_answer": {"option": 2, "value": "−5"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting to divide by 2 in the term gx²/(2v_x²) doubles that coefficient, giving γ = −10, which does not match any of the printed choices."}
+ ],
+ "concept_tags": ["projectile motion", "trajectory equation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:30:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_an_q081",
+ "item_sha": "5935e7872f2db4decce9cbac9c96b8d0b7013603e3d9b45865c20e8b83fcd7dc",
+ "auditor_option": 4,
+ "auditor_value": "10⁻¹⁶ m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Recall item, answered from my own knowledge and written down before the slice was opened: the standard textbook range of the weak nuclear force is of the order of 10⁻¹⁶ m, against about 10⁻¹⁵ m for the strong nuclear force, with the gravitational and electromagnetic forces infinite in range. Matches the solution. The two positive-exponent options are macroscopic and cannot be any force range, and 10⁻¹⁰ m is the size of an atom, not a nuclear-scale range, so option 4 is the only physically possible one. Both printed statements are true: the weak force does act over distances smaller than a nucleus, and its range is smaller than the strong force's. Both common_mistakes entries reproduce and land on the option they name: the atomic-scale confusion gives 10⁻¹⁰ m, option 2, and dropping the minus sign on the exponent gives 10¹⁶ m, option 1. Checked and did not file: option 3 (10¹⁰ m) has no entry, but reaching it needs both named errors stacked together rather than one obvious slip, so this is not a coverage gap. Also not filed, because it is a textbook convention and not a defect in this question: the modern measured range implied by the W boson mass is nearer 10⁻¹⁸ m, while 10⁻¹⁶ m is the value the NCERT fundamental-forces table gives and the only small value the options offer. Difficulty 'easy' is right for a one-line recall. Plain-language pass.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T07:02:30+05:30"}
+}

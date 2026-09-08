@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q097",
+ "item_sha": "8b82e8cf261575d9884d6f5cf4edfe63196e4ade76eef41891985c9113c71135",
+ "auditor_option": 1,
+ "auditor_value": "1",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: η = 1 − Tc/Th = 0.5 gives Tc/Th = 0.5, so Th = 2Tc and COP = Tc/(Th − Tc) = Tc/Tc = 1, option 1. The identity COP = (1 − η)/η printed in step 3 is correct, since Tc/Th = 1 − η and (Th − Tc)/Th = η. The single common_mistakes entry is verified: 1/η = 2, which is option 2; that is the coefficient of performance of a heat pump, and the stem asks for a refrigerator, so calling it an error is right and does not condemn a correct method."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:31:00+05:30"}
+}

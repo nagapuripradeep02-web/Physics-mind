@@ -1,0 +1,442 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-11",
+ "chapter": "Thermal Properties of Matter",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q098",
+   "audit_file": "tg_eapcet_2021_20210804_an_q098.d9b98a41.json",
+   "item_sha": "d9b98a414014d36d40896cb3d54d161b01e2958699b193c4460fec351d662772",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "A metal ball initially at pressure of 10⁵ Pa is heated from 20°C to 127°C keeping its volume constant. The coefficient of linear expansion of metal is 10⁻⁵ °C⁻¹ and bulk modulus of metal is 2 × 10¹¹ N/m². The pressure inside the ball becomes",
+   "options_en": [
+    "2 × 10⁸ Pa",
+    "6 × 10⁸ Pa",
+    "1 × 10⁹ Pa",
+    "4 × 10⁸ Pa"
+   ],
+   "solution": {
+    "approach": "Held at constant volume while heated, the metal is prevented from expanding volumetrically; the bulk modulus converts that blocked volume strain into a pressure rise.",
+    "steps": [
+     {
+      "text": "Find the volume expansion coefficient from the linear expansion coefficient.",
+      "equation": "γ = 3α = 3 × 10⁻⁵ °C⁻¹"
+     },
+     {
+      "text": "Find the rise in temperature.",
+      "equation": "ΔT = 127 − 20 = 107 °C"
+     },
+     {
+      "text": "The blocked volume strain multiplied by the bulk modulus gives the extra pressure built up.",
+      "equation": "ΔP = KγΔT = 2×10¹¹ × 3×10⁻⁵ × 107 = 6.42×10⁸ Pa",
+      "why_this_step": "Bulk modulus is the pressure needed per unit fractional volume change, so it converts the prevented volume expansion directly into pressure."
+     },
+     {
+      "text": "Add the extra pressure to the initial pressure.",
+      "equation": "P = 10⁵ + 6.42×10⁸ ≈ 6×10⁸ Pa",
+      "why_this_step": "The initial pressure of 10⁵ Pa is smaller than the rise by a factor of thousands, so it does not change the rounded answer."
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "6 × 10⁸ Pa"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the linear expansion coefficient directly as the volume expansion coefficient, without multiplying by 3, gives 2×10⁸ Pa."
+     },
+     {
+      "option": 4,
+      "text": "Using 2α, the coefficient for area expansion, in place of the volume coefficient 3α gives about 4×10⁸ Pa."
+     }
+    ],
+    "concept_tags": [
+     "thermal stress",
+     "bulk modulus",
+     "volume expansion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q096",
+   "audit_file": "tg_eapcet_2022_20220718_an_q096.9d788102.json",
+   "item_sha": "9d788102a5f82fc4a2a6804978959a05f903e5738ecf3b905b66e0d6d52654a1",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "A hole of diameter 5 cm is drilled in a metal sheet at 30 °C. The linear expansion of metal is 2×10⁻⁵ K⁻¹. The diameter of the hole when the temperature is raised to 230 °C, is equal to",
+   "options_en": [
+    "5.01 cm",
+    "5.02 cm",
+    "5.03 cm",
+    "5.04 cm"
+   ],
+   "solution": {
+    "approach": "A hole in a metal sheet expands like a disc of the same metal, so its diameter grows by the same fraction as any length in the sheet.",
+    "steps": [
+     {
+      "text": "Write the change in temperature.",
+      "equation": "ΔT = 230 − 30 = 200 K"
+     },
+     {
+      "text": "Apply linear expansion to the diameter, treating the hole as a disc of the same metal.",
+      "equation": "d′ = d(1 + αΔT) = 5 × (1 + 2×10⁻⁵ × 200)",
+      "why_this_step": "Every length in the sheet, including the edge of the hole, scales by the same expansion factor."
+     },
+     {
+      "text": "Evaluate.",
+      "equation": "d′ = 5 × 1.004 = 5.02 cm"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "5.02 cm"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Expecting the hole to shrink as the surrounding metal expands inward. Every length in the sheet scales up together, so the hole grows, not shrinks."
+     },
+     {
+      "option": 4,
+      "text": "Using the area expansion coefficient 2α on the diameter instead of the linear coefficient α gives 5.04 cm."
+     }
+    ],
+    "concept_tags": [
+     "thermal expansion",
+     "expansion of a hole"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q096",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q096.411adec5.json",
+   "item_sha": "411adec5108a57ec23af88de03b7764c9b14eb12cdaa5c2b177f66c81c3796d4",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "Find the ratio of the length of a steel rod and a copper rod if the steel rod is 4 cm longer than the copper rod at any temperature.\n[The coefficient of linear expansion for steel and copper are 1.1 × 10⁻⁵/°C and 1.7 × 10⁻⁵/°C respectively]",
+   "options_en": [
+    "17/11",
+    "11/17",
+    "11/4",
+    "17/4"
+   ],
+   "solution": {
+    "approach": "If the steel rod stays 4 cm longer than the copper rod at every temperature, both rods must expand equally for the same rise, fixing the length ratio.",
+    "steps": [
+     {
+      "text": "Write the change in length of each rod for the same temperature rise.",
+      "equation": "ΔL_steel = L_steel α_steel ΔT, ΔL_copper = L_copper α_copper ΔT"
+     },
+     {
+      "text": "The 4 cm gap stays fixed at every temperature only if both rods expand by the same amount.",
+      "equation": "L_steel α_steel = L_copper α_copper",
+      "why_this_step": "If the two expansions differed, the gap would change as the temperature changed, contradicting the question."
+     },
+     {
+      "text": "Solve for the length ratio.",
+      "equation": "L_steel/L_copper = α_copper/α_steel = 1.7×10⁻⁵/1.1×10⁻⁵ = 17/11"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "17/11"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Inverting the relation and writing L_copper/L_steel instead of L_steel/L_copper gives 11/17."
+     },
+     {
+      "option": 4,
+      "text": "Mistaking the 4 cm gap as part of the ratio and writing the copper coefficient over 4 gives 17/4."
+     }
+    ],
+    "concept_tags": [
+     "linear thermal expansion",
+     "expansion of rods"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q097",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q097.6f48ed96.json",
+   "item_sha": "6f48ed9616b0406a5dfdada82b2a63be2dbe3f235fcdacbc13cababd049e637d",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "An object cools from 100°C to 40°C in 10 minutes, when the surrounding temperature is 10°C. Then the time taken by the object to cool from 70°C to 20°C is\n[Take ln 2 = 0.7, ln 3 = 1.1, ln 6 = 1.8]",
+   "options_en": [
+    "30 min",
+    "8.5 min",
+    "22.4 min",
+    "16.3 min"
+   ],
+   "solution": {
+    "approach": "Newton's law of cooling gives an exponential decay toward the surrounding temperature, so the logarithm of the temperature excess ratio is proportional to time.",
+    "steps": [
+     {
+      "text": "Write the exponential cooling law with the temperature excess decaying from the surrounding temperature.",
+      "equation": "θ(t) − θ₀ = (θᵢ − θ₀) e⁻ᵏᵗ"
+     },
+     {
+      "text": "Use the first cooling case to find the rate constant k.",
+      "equation": "40 − 10 = (100 − 10) e⁻¹⁰ᵏ, so e⁻¹⁰ᵏ = 1/3 and 10k = ln 3 = 1.1"
+     },
+     {
+      "text": "Use the second cooling case with the same k to find the unknown time.",
+      "equation": "20 − 10 = (70 − 10) e⁻ᵏᵗ, so e⁻ᵏᵗ = 1/6 and kt = ln 6 = 1.8",
+      "why_this_step": "The rate constant k depends only on the object and its surroundings, not on the starting temperature, so it carries over from the first case."
+     },
+     {
+      "text": "Solve for t using the value of k found in the first case.",
+      "equation": "k = 1.1/10 = 0.11, t = 1.8/0.11 = 16.3 min"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "16.3 min"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the object cools at a constant rate of 6°C per minute and scaling the 50°C drop proportionally gives about 8.3 min, ignoring that cooling slows near the surrounding temperature."
+     }
+    ],
+    "concept_tags": [
+     "Newton's law of cooling",
+     "exponential decay"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q095",
+   "audit_file": "tg_eapcet_2023_20230513_an_q095.c6ce9c77.json",
+   "item_sha": "c6ce9c7768109ee532ae6fc56b1722b3b34292564ee68c7456dce151da063ed5",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "The heat energy required to convert 10 kg of ice at −10 °C into water at 0 °C is (specific heat capacity of ice = 0.5 cal g⁻¹ and latent heat of fusion of ice = 80 cal g⁻¹)",
+   "options_en": [
+    "357 x 10⁴ J",
+    "357 x 10³ J",
+    "357 x 10² J",
+    "357 x 10⁵ J"
+   ],
+   "solution": {
+    "approach": "The heat needed has two parts, first warming the ice to 0°C and then melting it, and the total in calories is converted to joules at the end.",
+    "steps": [
+     {
+      "text": "Find the heat needed to warm the ice from −10 °C to 0 °C.",
+      "equation": "Q₁ = mcΔT = 10000 g × 0.5 cal g⁻¹ °C⁻¹ × 10 °C = 50000 cal"
+     },
+     {
+      "text": "Find the heat needed to melt all the ice at 0 °C.",
+      "equation": "Q₂ = mL = 10000 g × 80 cal g⁻¹ = 800000 cal"
+     },
+     {
+      "text": "Add the two heats.",
+      "equation": "Q = Q₁ + Q₂ = 850000 cal"
+     },
+     {
+      "text": "Convert the total from calories to joules.",
+      "equation": "Q = 850000 × 4.2 = 3570000 J = 357 × 10⁴ J",
+      "why_this_step": "1 cal = 4.2 J is the conversion used in this exam's calorimetry questions."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "357 x 10⁴ J"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using 10 kg as if it were 1 kg (a misplaced decimal in converting to grams) gives 85000 cal, which is 357 × 10³ J."
+     },
+     {
+      "option": 4,
+      "text": "Using 10 kg as if it were 100 kg (a misplaced decimal the other way) gives 8500000 cal, which is 357 × 10⁵ J."
+     }
+    ],
+    "concept_tags": [
+     "specific heat capacity",
+     "latent heat of fusion",
+     "calorie to joule conversion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q095",
+   "audit_file": "tg_eapcet_2024_20240509_an_q095.4ce030cf.json",
+   "item_sha": "4ce030cf8284f7e53b2b05653d61f586b498b447a8eeb992fecfa61a95cba764",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "When 54 g of ice at −20 °C is mixed with 25 g of steam at 100 °C, then the final mixture at thermal equilibrium contains",
+   "options_en": [
+    "20 g water at 100 °C",
+    "73 g water at 100 °C and 6 g steam at 100 °C",
+    "8 g steam at 100 °C and 12 g water at 0 °C",
+    "20 g water at 50 °C"
+   ],
+   "solution": {
+    "approach": "The heat released by all the steam condensing is compared with the heat needed to melt the ice and warm it to 100°C, fixing how much steam condenses.",
+    "steps": [
+     {
+      "text": "Find the heat needed to bring all the ice from −20°C to water at 100°C.",
+      "equation": "Q = 54×0.5×20 + 54×80 + 54×1×100 = 540 + 4320 + 5400 = 10260 cal"
+     },
+     {
+      "text": "Find the heat released if all 25 g of steam condensed at 100°C.",
+      "equation": "Q_steam = 25 × 540 = 13500 cal",
+      "why_this_step": "13500 cal is more than the 10260 cal needed, so not all the steam has to condense; the mixture settles at 100°C."
+     },
+     {
+      "text": "Find the mass of steam that actually condenses to supply exactly the heat needed.",
+      "equation": "m = 10260/540 = 19 g"
+     },
+     {
+      "text": "Find the final composition at 100°C.",
+      "equation": "water = 54 + 19 = 73 g, steam left = 25 − 19 = 6 g"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "73 g water at 100 °C and 6 g steam at 100 °C"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the specific heat of ice equal to that of water instead of half that value makes the condensed steam exactly 20 g; mistaking that for the final water forgets the melted ice."
+     },
+     {
+      "option": 4,
+      "text": "Naively averaging the ice and steam temperatures as (0+100)/2 = 50°C ignores that melting and vaporizing absorb heat before any temperature can rise."
+     }
+    ],
+    "concept_tags": [
+     "calorimetry",
+     "latent heat",
+     "specific heat"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q096",
+   "audit_file": "tg_eapcet_2024_20240509_an_q096.800ca0d7.json",
+   "item_sha": "800ca0d7c7f5cf355634a98dbe93ccf005f96ce9009b0abe6229de850840f09b",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "A solid sphere at a temperature T K is cut in to two hemispheres. The ratio of energies radiated by one hemisphere to the whole sphere per second is",
+   "options_en": [
+    "1:1",
+    "1:2",
+    "3:4",
+    "1:4"
+   ],
+   "solution": {
+    "approach": "Power radiated by a black body is proportional to its exposed surface area, so compare the hemisphere's curved and flat surface to the whole sphere's surface.",
+    "steps": [
+     {
+      "text": "Write the total surface area of the sphere.",
+      "equation": "A_sphere = 4πr²"
+     },
+     {
+      "text": "Write the exposed surface area of one hemisphere after the cut, including the flat circular face.",
+      "equation": "A_hemisphere = 2πr² + πr² = 3πr²",
+      "why_this_step": "Once the sphere is cut, the flat circular face is no longer touching the other half, so it also radiates."
+     },
+     {
+      "text": "Take the ratio, since radiated power at a fixed temperature is proportional to surface area.",
+      "equation": "A_hemisphere/A_sphere = 3πr²/4πr² = 3/4"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "3:4"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Comparing intensity (power per unit area) instead of total power, which is 1:1 since both surfaces are at the same temperature, ignores that the hemisphere has less total area than the sphere."
+     },
+     {
+      "option": 2,
+      "text": "Counting only the curved surface of the hemisphere and forgetting the flat circular face exposed by the cut gives 2πr² against 4πr², or 1:2."
+     }
+    ],
+    "concept_tags": [
+     "Stefan-Boltzmann law",
+     "radiated power",
+     "surface area"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q099",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q099.70391fa0.json",
+   "item_sha": "70391fa04ba24b6c553ad2ebe046b3dd573b438cbe2f1566f7a7ba7b6e712395",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "A metal metre scale that is accurate up to 0.5 mm is made at a temperature of 25°C. The range of temperatures within which it can be used is (Coefficient of linear expansion of the metal = 10⁻⁵/°C)",
+   "options_en": [
+    "0°C to +50°C",
+    "+25°C to +75°C",
+    "−25°C to +75°C",
+    "+25°C to +50°C"
+   ],
+   "solution": {
+    "approach": "The scale reads correctly within the temperature range where the length error caused by expansion or contraction stays within the stated 0.5 mm tolerance.",
+    "steps": [
+     {
+      "text": "Write the length of the metre scale and the allowed error.",
+      "equation": "L = 1000 mm, ΔL = 0.5 mm"
+     },
+     {
+      "text": "Find the temperature change that produces exactly this length error.",
+      "equation": "ΔT = ΔL/(Lα) = 0.5/(1000 × 10⁻⁵) = 50 °C"
+     },
+     {
+      "text": "The scale can be used this many degrees above or below the temperature it was made at.",
+      "equation": "range = (25 − 50) °C to (25 + 50) °C = −25 °C to +75 °C",
+      "why_this_step": "Below the making temperature the metal contracts, making marked lengths too long; above it, the metal expands, making them too short; both directions are limited by the same 0.5 mm tolerance."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "−25°C to +75°C"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Extending the temperature range only above 25°C, from 25°C to 75°C, misses that the scale also misreads by the same amount when cooled below the making temperature."
+     },
+     {
+      "option": 1,
+      "text": "Treating the 0.5 mm tolerance as split evenly into ±0.25 mm instead of the full 0.5 mm allowed each way gives a narrower range of 0°C to +50°C."
+     }
+    ],
+    "concept_tags": [
+     "linear thermal expansion",
+     "measurement error"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

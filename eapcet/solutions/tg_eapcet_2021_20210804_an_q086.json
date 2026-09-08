@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q086",
+ "approach": "The component of one vector along another equals their dot product divided by the magnitude of the second vector.",
+ "steps": [
+  {"text": "Compute the dot product of P and Q.",
+   "equation": "P⃗·Q⃗ = (2)(1) + (3)(1) = 5"},
+  {"text": "Compute the magnitude of Q.",
+   "equation": "|Q⃗| = √(1²+1²) = √2"},
+  {"text": "Divide the dot product by the magnitude of Q to get the component.",
+   "equation": "component = 5/√2"}
+ ],
+ "final_answer": {"option": 3, "value": "5/√2"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Taking only the x-components, 2×1 = 2, and ignoring the y-components and the division by |Q⃗|, gives 2."},
+  {"option": 4, "text": "Inverting the formula and computing |Q⃗|/(P⃗·Q⃗) instead of (P⃗·Q⃗)/|Q⃗| gives √2/5."}
+ ],
+ "concept_tags": ["scalar product", "component of a vector along another vector"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:25:00+05:30"}
+}

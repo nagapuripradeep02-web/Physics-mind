@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q113",
+ "item_sha": "ae58eda2c87179fd26bec913414c7a81f4afa44e26811ef6dfc0d43b83b86fbe",
+ "auditor_option": 4,
+ "auditor_value": "Gravitational force",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: the mutual attraction between any two objects arising from their masses is the gravitational force, option 4. The electromagnetic force acts between charges, and the strong and weak nuclear forces are short-range forces acting at nuclear and sub-nuclear separations, so none of the other three fits. Both steps are correct and the common_mistakes entry names a plausible confusion with the strong nuclear force and states the correct distinguishing point, which is its range.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

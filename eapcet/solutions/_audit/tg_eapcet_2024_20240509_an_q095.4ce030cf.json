@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q095",
+ "item_sha": "4ce030cf8284f7e53b2b05653d61f586b498b447a8eeb992fecfa61a95cba764",
+ "auditor_option": 2,
+ "auditor_value": "73 g water at 100 °C and 6 g steam at 100 °C",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Naively averaging the ice and steam temperatures as (0+100)/2 = 50°C ignores that melting and vaporizing absorb heat before any temperature can rise.",
+   "note": "Two statements here are false for this question. The ice is given at −20 °C, so averaging the ice and steam temperatures gives (−20+100)/2 = 40 °C, not the 50 °C printed; the entry silently uses 0 °C for the ice. And no vaporization occurs in this mixture: the steam condenses and releases latent heat, it does not absorb it, so 'vaporizing absorb heat' misdescribes the process the student is being warned about.",
+   "fix": "Averaging the two temperatures to get 50 °C, and reporting 20 g of water at that temperature, ignores the latent heats: the ice must absorb heat to warm to 0 °C and melt, and the steam releases latent heat as it condenses, so the mixture settles at 100 °C, not at an average temperature."},
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Naively averaging",
+   "note": "'Naively' judges the reader rather than naming the error, and belongs to the same register as 'simply' and 'obviously' that the plain-language standard excludes.",
+   "fix": "Averaging the two temperatures"}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently first. Heat to take all 54 g of ice from −20 °C to water at 100 °C is 54×0.5×20 + 54×80 + 54×1×100 = 540 + 4320 + 5400 = 10 260 cal. Condensing all 25 g of steam would release 25×540 = 13 500 cal, which is more, so the equilibrium temperature is 100 °C and only 10 260/540 = 19.0 g of steam condenses, leaving 54 + 19 = 73 g of water and 25 − 19 = 6 g of steam, which is option 2 (all values checked in python; 19 g is exact). common_mistakes[0] was verified numerically and is sound: with the specific heat of ice taken as 1 cal g⁻¹ °C⁻¹ the requirement becomes 10 800 cal and exactly 20 g condenses, which is option 1's number. steps[1].why_this_step correctly justifies why the mixture settles at 100 °C. The approach line says 'melt the ice and warm it to 100°C' and omits the warming from −20 °C to 0 °C, but the steps include that term, so this was checked and not filed as a separate finding.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:29:50+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q100",
+ "approach": "Water expands so little on heating that the work done is negligible, so the change in internal energy equals the heat supplied, mcΔT.",
+ "steps": [
+  {"text": "Write the rise in temperature.",
+   "equation": "ΔT = 90 − 30 = 60 K"},
+  {"text": "Find the heat supplied using the mass, specific heat and temperature rise.",
+   "equation": "Q = mcΔT = 0.500 × 4184 × 60 = 1.2552 × 10⁵ J",
+   "why_this_step": "The volume of water changes so little on heating that the work done against the atmosphere is negligible, so almost all this heat becomes internal energy."},
+  {"text": "Round to match the precision of the printed options.",
+   "equation": "ΔU ≈ 1.25 × 10⁵ J"}
+ ],
+ "final_answer": {"option": 1, "value": "1.25 × 10⁵ J"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Misplacing the decimal point when converting 500 g to kilograms, using 0.05 kg instead of 0.500 kg, gives 1.3 × 10⁴ J."},
+  {"option": null, "text": "Taking the specific heat as 1 calorie per gram per kelvin and reporting 500 × 60 = 30000 without converting calories to joules."}
+ ],
+ "concept_tags": ["first law of thermodynamics", "specific heat capacity", "internal energy of a liquid"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

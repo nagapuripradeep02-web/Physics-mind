@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q102",
+ "item_sha": "cf9b14d92bddcb94e88c810d53ced76b2c4910572b5b39ac74cd5bdc3e827384",
+ "auditor_option": 1,
+ "auditor_value": "72.9",
+ "findings": [
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 2, \"value\": \"82.2\"",
+   "note": "The remaining fraction is 0.9³ = 0.729, that is 72.9 percent, which is the printed option 1. The solution's own step 3 reaches 0.729 and then the final answer prints 82.2 and option 2. A student who copies this loses the mark.",
+   "fix": "\"option\": 1, \"value\": \"72.9\""},
+  {"grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "percentage remaining = 82.2",
+   "note": "This line does not follow from the line above it. Step 3 gives a remaining fraction of 0.729, and converting that to a percentage gives 72.9, not 82.2. The printed equation is false and 82.2 appears nowhere in the working.",
+   "fix": "percentage remaining = 0.729 × 100 = 72.9"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Solved independently with python before reading the solution: 2 days = 48 hours = three 16-hour periods; 10 percent decays each period so 0.90 remains each period; 0.90³ = 0.7290, that is 72.9 percent remaining, the printed option 1. The approach and steps 1 to 3 are all correct — the defect is confined to the last step and the final answer. Note that common_mistakes[1] is itself consistent with 72.9 being correct: it says a student who reports the decayed percentage instead of the remaining percentage lands on 27.1 (option 4), and 100 − 72.9 = 27.1 exactly, so the solution contradicts its own final answer twice over. common_mistakes[0] is also correct: subtracting 10 three times gives 70, which matches no printed option.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:43:00+05:30"}
+}

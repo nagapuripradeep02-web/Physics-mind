@@ -1,0 +1,770 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q116",
+   "audit_file": "tg_eapcet_2021_20210804_an_q116.cd394fdc.json",
+   "item_sha": "cd394fdcf885f3c13cdf6c420cd192bb2e0732f575c139c8301b5310e3d0d53b",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "The mass number of an iodine nucleus and a polonium nucleus is 125 and 216 respectively. The ratio of radius of iodine nucleus to that of polonium nucleus is",
+   "options_en": [
+    "5:6",
+    "6:5",
+    "7:6",
+    "5:7"
+   ],
+   "solution": {
+    "approach": "Nuclear radius is proportional to the cube root of the mass number, so the ratio of two radii equals the ratio of the cube roots of their mass numbers.",
+    "steps": [
+     {
+      "text": "Write the nuclear radius formula relating the radius R to the mass number A.",
+      "equation": "R = R₀∛A"
+     },
+     {
+      "text": "Form the ratio of the radius of iodine (mass number 125) to the radius of polonium (mass number 216).",
+      "equation": "R(iodine) ∶ R(polonium) = ∛125 ∶ ∛216"
+     },
+     {
+      "text": "Evaluate the two cube roots.",
+      "equation": "∛125 = 5, ∛216 = 6, so the ratio is 5 ∶ 6"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "5:6"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Writing the ratio the other way round, polonium to iodine, gives 6:5 instead of iodine to polonium."
+     },
+     {
+      "option": null,
+      "text": "Using the mass numbers directly instead of their cube roots gives 125:216, which matches no option."
+     }
+    ],
+    "concept_tags": [
+     "nuclear radius formula",
+     "mass number dependence"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q117",
+   "audit_file": "tg_eapcet_2021_20210804_an_q117.6a965b01.json",
+   "item_sha": "6a965b01cd537981387ed71b32f22b463d4903a8a267aecab9cb4ce96d8a82d0",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "The distance between two nucleons for which the potential energy is minimum, is",
+   "options_en": [
+    "0.2 fm",
+    "0.6 fm",
+    "0.8 fm",
+    "0.1 fm"
+   ],
+   "solution": {
+    "approach": "The potential energy between two nucleons as a function of separation is repulsive at very small distances and attractive beyond that, reaching its lowest value at a known separation.",
+    "steps": [
+     {
+      "text": "Recall the shape of the nucleon-nucleon potential energy curve: it rises steeply (repulsive) for separations below a certain distance, and is attractive beyond it.",
+      "equation": "potential energy is minimum at r = r₀"
+     },
+     {
+      "text": "The accepted value of this separation, where the potential energy dips to its lowest (most negative) value, is close to one femtometre.",
+      "equation": "r₀ ≈ 0.8 fm"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "0.8 fm"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Recalling the wrong distance from the same curve gives 0.2 fm, which is inside the repulsive core, not the minimum."
+     },
+     {
+      "option": 2,
+      "text": "Recalling a nearby but incorrect value from the same curve gives 0.6 fm instead of 0.8 fm."
+     }
+    ],
+    "concept_tags": [
+     "nucleon-nucleon potential energy",
+     "nuclear force range"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q117",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q117.7f3525c2.json",
+   "item_sha": "7f3525c2e953c4be3cf1bc21cf94c8ce66e14330a030fe25f3eb1674cdb09844",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "In a nuclear reactor, the main purpose of the moderator is to",
+   "options_en": [
+    "Initiate the fission process by giving away its neutron",
+    "Slow down the fast neutrons",
+    "Cool down the excess of heat generated in the reactor",
+    "Absorb excess of neutrons and control the reaction rate"
+   ],
+   "solution": {
+    "approach": "A moderator slows down the fast neutrons released in fission so that they are more likely to cause further fission in uranium-235, sustaining the chain reaction.",
+    "steps": [
+     {
+      "text": "Recall that fission releases fast neutrons, but slow (thermal) neutrons are far more effective at causing further fission in uranium-235.",
+      "equation": "fast neutrons must be slowed to sustain the chain reaction"
+     },
+     {
+      "text": "The moderator, such as heavy water or graphite, slows down these fast neutrons through repeated collisions, without absorbing them.",
+      "equation": "moderator: slows fast neutrons to thermal energies"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Slow down the fast neutrons"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Confusing the role of the moderator with the role of control rods, which absorb excess neutrons to control the reaction rate."
+     },
+     {
+      "option": 3,
+      "text": "Confusing the moderator with the coolant, which removes the heat generated in the reactor."
+     }
+    ],
+    "concept_tags": [
+     "nuclear reactor",
+     "moderator"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q081",
+   "audit_file": "tg_eapcet_2022_20220718_an_q081.a969806e.json",
+   "item_sha": "a969806e7ed8dfd621428c832cccc3a4f1d2d2d2349d845db9c51d2508c3e0ee",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "Which of the following interaction is responsible for beta decay?",
+   "options_en": [
+    "Gravitational",
+    "Weak",
+    "Electromagnetic",
+    "Strong"
+   ],
+   "solution": {
+    "approach": "Beta decay happens when a neutron converts into a proton (or a proton into a neutron), a process caused by the weak interaction.",
+    "steps": [
+     {
+      "text": "Identify what happens inside the nucleus during beta decay: a neutron changes into a proton, an electron and an antineutrino.",
+      "equation": "n → p + e⁻ + antineutrino"
+     },
+     {
+      "text": "This conversion of one type of nucleon into another is caused by the weak interaction, one of the four fundamental forces.",
+      "equation": "beta decay is caused by the weak interaction"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Weak"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Assuming any process happening inside the nucleus must be due to the strong interaction, which actually only binds nucleons together and does not change one type of nucleon into another."
+     },
+     {
+      "option": 3,
+      "text": "Confusing beta decay with gamma decay, which is an electromagnetic process, not a weak one."
+     }
+    ],
+    "concept_tags": [
+     "beta decay",
+     "fundamental interactions"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q117",
+   "audit_file": "tg_eapcet_2022_20220718_an_q117.e2da98f9.json",
+   "item_sha": "e2da98f98c635ecc33a6dc47fe4681b901cbd131ce0ca083360eb15a6c89bd23",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "Consider a nucleus ⁶⁰₃₀X. It's approximate density is (Take 1 amu=1.6 ×10⁻²⁷ kg, R₀ = 1.2 x 10⁻¹⁵ m.)",
+   "options_en": [
+    "1.2 × 10¹⁸ kg/m³",
+    "8.5 × 10¹⁹ kg/m³",
+    "3.3 × 10¹⁶ kg/m³",
+    "2.2 × 10¹⁷ kg/m³"
+   ],
+   "solution": {
+    "approach": "Find the nuclear radius from the mass number using R = R₀∛A, then divide the nuclear mass by the nuclear volume to get the density.",
+    "steps": [
+     {
+      "text": "Find the radius of the nucleus using the mass number A = 60.",
+      "equation": "R = R₀∛A = 1.2×10⁻¹⁵ × ∛60 = 4.70×10⁻¹⁵ m"
+     },
+     {
+      "text": "Find the volume of the nucleus, treating it as a sphere of this radius.",
+      "equation": "V = (4/3)πR³ = (4/3)π × (4.70×10⁻¹⁵)³ = 4.34×10⁻⁴³ m³"
+     },
+     {
+      "text": "Find the mass of the nucleus from its mass number and the mass of one nucleon.",
+      "equation": "mass = A × 1.6×10⁻²⁷ kg = 60 × 1.6×10⁻²⁷ = 9.6×10⁻²⁶ kg"
+     },
+     {
+      "text": "Divide the mass by the volume to get the nuclear density.",
+      "equation": "density = mass ÷ V = 9.6×10⁻²⁶ ÷ 4.34×10⁻⁴³ ≈ 2.2×10¹⁷ kg/m³"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "2.2 × 10¹⁷ kg/m³"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the mass number directly as the radius scaling factor instead of taking its cube root changes the density by orders of magnitude from the correct value."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to cube the radius before computing the sphere's volume gives a result far off the correct order of magnitude."
+     }
+    ],
+    "concept_tags": [
+     "nuclear radius formula",
+     "nuclear density"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220719_an_q081",
+   "audit_file": "tg_eapcet_2022_20220719_an_q081.2e692807.json",
+   "item_sha": "2e6928072fd0a48814b904c6adb04ab723002ce6a0b883c0b38b5441788f5fcd",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "The range of the nuclear force is",
+   "options_en": [
+    "10⁻¹⁸ m",
+    "10⁻¹⁶ m",
+    "10⁻¹⁵ m",
+    "10⁻¹³ m"
+   ],
+   "solution": {
+    "approach": "The strong nuclear force that binds protons and neutrons together acts only over the size of a nucleus, of the order of a few femtometres.",
+    "steps": [
+     {
+      "text": "Recall the size of a typical atomic nucleus, since the nuclear force must reach at least that far to hold the nucleus together.",
+      "equation": "nuclear size ∼ 10⁻¹⁵ m"
+     },
+     {
+      "text": "The nuclear force falls to nearly zero beyond this separation, so its range is of the same order as the nuclear size.",
+      "equation": "range of nuclear force ∼ 10⁻¹⁵ m"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "10⁻¹⁵ m"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Misremembering the exponent as −13 instead of −15 gives 10⁻¹³ m, two orders of magnitude too large for the actual nuclear force range."
+     },
+     {
+      "option": 1,
+      "text": "Confusing the very short range of the weak nuclear force with the strong nuclear force gives 10⁻¹⁸ m."
+     }
+    ],
+    "concept_tags": [
+     "nuclear force",
+     "range of forces"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q116",
+   "audit_file": "tg_eapcet_2023_20230512_an_q116.56b887e7.json",
+   "item_sha": "56b887e7b952b369b0670e8945ae43980838436d8f5786f49ea12c70b3329edf",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "In the following nuclear reaction X is: ₁₃Al²⁷ + ₂He⁴ → ₀n¹ + X",
+   "options_en": [
+    "₁₅P³¹",
+    "₁₄Si³⁰",
+    "₁₅P³⁰",
+    "₁₅Si³¹"
+   ],
+   "solution": {
+    "approach": "In a nuclear reaction, the total mass number and the total atomic number must be equal on both sides of the equation.",
+    "steps": [
+     {
+      "text": "Write the mass number balance: the sum of mass numbers on the left equals the sum on the right.",
+      "equation": "27 + 4 = 1 + A(X) → A(X) = 30"
+     },
+     {
+      "text": "Write the atomic number balance: the sum of atomic numbers on the left equals the sum on the right.",
+      "equation": "13 + 2 = 0 + Z(X) → Z(X) = 15"
+     },
+     {
+      "text": "The element with atomic number 15 is phosphorus, so X is identified.",
+      "equation": "X = ₁₅P³⁰"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "₁₅P³⁰"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Balancing only the atomic number and forgetting to subtract the mass number of the neutron gives mass number 31 instead of 30."
+     },
+     {
+      "option": 2,
+      "text": "Balancing only the mass number and forgetting to subtract the atomic number of the neutron (which is zero anyway) but misreading the element gives silicon (Z = 14) instead of phosphorus (Z = 15)."
+     }
+    ],
+    "concept_tags": [
+     "nuclear reaction balancing",
+     "conservation of mass and atomic number"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q117",
+   "audit_file": "tg_eapcet_2023_20230512_an_q117.353b21e2.json",
+   "item_sha": "353b21e2f71f047cb4bd69b67ecb785689e9a94ff531ac8cb168559ab0f7d69e",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "Nuclear fission and fusion can be explained on the basis of",
+   "options_en": [
+    "Einstein's theory of relativity",
+    "Einstein specific heat equation",
+    "Einstein mass-energy equation",
+    "Einstein photoelectric equation"
+   ],
+   "solution": {
+    "approach": "In both fission and fusion, the total rest mass changes, and this mass difference appears as released energy according to Einstein's mass-energy relation.",
+    "steps": [
+     {
+      "text": "In fission and fusion, the total mass of the products is slightly less than the total mass of the starting nuclei.",
+      "equation": "mass defect: Δm = mass(before) − mass(after)"
+     },
+     {
+      "text": "This lost mass is converted into the energy that is released, following Einstein's relation between mass and energy.",
+      "equation": "E = Δm × c²"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "Einstein mass-energy equation"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Choosing the broader theory of relativity instead of the specific mass-energy relation E = mc² that is actually applied to compute the released energy."
+     },
+     {
+      "option": 4,
+      "text": "Confusing this with the photoelectric equation, which explains the emission of electrons from a metal surface by light, not energy release in the nucleus."
+     }
+    ],
+    "concept_tags": [
+     "mass-energy equivalence",
+     "nuclear fission and fusion"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230514_an_q113",
+   "audit_file": "tg_eapcet_2023_20230514_an_q113.f0b8d223.json",
+   "item_sha": "f0b8d22397c37064d3924f7726b864640932c9e1f2198b1a200ebe4a59e1ed34",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "Energy released in the fission of a single uranium nucleus is 200 MeV. Then the number of fissions per second to produce 5 mW power is",
+   "options_en": [
+    "1.56×10⁸",
+    "1.56×10¹³",
+    "3.12×10⁸",
+    "3.12×10¹³"
+   ],
+   "solution": {
+    "approach": "Power equals the energy released per fission multiplied by the number of fissions per second, so divide the required power by the energy per fission.",
+    "steps": [
+     {
+      "text": "Convert the energy released per fission from mega electron volts to joules.",
+      "equation": "E = 200 MeV = 200 × 1.602×10⁻¹³ J = 3.204×10⁻¹¹ J"
+     },
+     {
+      "text": "Divide the required power by the energy released per fission to get the number of fissions per second.",
+      "equation": "n = P/E = 5×10⁻³ / 3.204×10⁻¹¹"
+     },
+     {
+      "text": "Evaluate the division.",
+      "equation": "n = 1.56×10⁸ fissions per second"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "1.56×10⁸"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Using 100 MeV per fission instead of 200 MeV doubles the number of fissions needed to supply the same power, giving 3.12×10⁸."
+     },
+     {
+      "option": null,
+      "text": "Forgetting to convert 5 mW to watts and dividing 5 (instead of 5×10⁻³) by the energy per fission inflates the count by a factor of a thousand, landing on no printed option."
+     }
+    ],
+    "concept_tags": [
+     "nuclear fission energy",
+     "power from fission rate"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q116",
+   "audit_file": "tg_eapcet_2024_20240509_an_q116.07e40869.json",
+   "item_sha": "07e40869c3b2f766b70c2be94522793309fdc9c72f8997a1b5c233d19afc5576",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The half lives of two radioactive materials A and B are respectively T and 2T. If the ratio of the initial masses of the materials A and B is 8:1, then the time after which the ratio of the masses of the materials A and B becomes 4:1 is",
+   "options_en": [
+    "2T",
+    "T",
+    "4T",
+    "8T"
+   ],
+   "solution": {
+    "approach": "Count the number of half-lives each material completes in the same time, write each remaining mass in terms of that count, then solve the mass ratio equation for time.",
+    "steps": [
+     {
+      "text": "Let m be the number of half-lives that B (half-life 2T) completes in time t. Since A's half-life T is half of B's, A completes twice as many half-lives in the same time.",
+      "equation": "m = t ÷ 2T,  number of half-lives of A = 2m"
+     },
+     {
+      "text": "Write the remaining mass of each material after these many half-lives, starting from initial masses 8M for A and M for B.",
+      "equation": "M_A(t) = 8M ÷ 2²ᵐ,  M_B(t) = M ÷ 2ᵐ"
+     },
+     {
+      "text": "Divide the two remaining masses and set the ratio equal to 4.",
+      "equation": "M_A ÷ M_B = 8 ÷ 2ᵐ = 4, so 2ᵐ = 2, so m = 1"
+     },
+     {
+      "text": "Convert m back to time using its definition.",
+      "equation": "m = t ÷ 2T = 1, so t = 2T"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2T"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "After correctly finding that the half-life count m equals 1, converting back to time using A's half-life T instead of the 2T that m was defined against gives t = T instead of 2T."
+     },
+     {
+      "option": 3,
+      "text": "Solving 2ᵐ = 2 as m = 2 instead of m = 1 doubles the correct time, giving t = 4T instead of 2T."
+     }
+    ],
+    "concept_tags": [
+     "radioactive decay law",
+     "half-life"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q117",
+   "audit_file": "tg_eapcet_2024_20240509_an_q117.ff790225.json",
+   "item_sha": "ff790225561dd022b4575342def59b9d4688051d0d5172ea612bdb1d15841325",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The energy released by the fission of one uranium nucleus is 200 MeV. The number of fissions per second required to produce 128 W power is",
+   "options_en": [
+    "6×10¹²",
+    "8×10¹²",
+    "2×10¹²",
+    "4×10¹²"
+   ],
+   "solution": {
+    "approach": "Power equals the energy released per fission multiplied by the number of fissions per second, so divide the required power by the energy per fission.",
+    "steps": [
+     {
+      "text": "Convert the energy released per fission from mega electron volts to joules.",
+      "equation": "E = 200 MeV = 200 × 1.602×10⁻¹³ J = 3.204×10⁻¹¹ J"
+     },
+     {
+      "text": "Divide the required power by the energy released per fission to get the number of fissions per second.",
+      "equation": "n = P/E = 128 / 3.204×10⁻¹¹"
+     },
+     {
+      "text": "Evaluate the division.",
+      "equation": "n ≈ 4.0×10¹² fissions per second"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "4×10¹²"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Using 100 MeV per fission instead of 200 MeV doubles the required rate, giving 8×10¹²."
+     },
+     {
+      "option": 3,
+      "text": "Using 400 MeV per fission instead of 200 MeV halves the required rate, giving 2×10¹²."
+     }
+    ],
+    "concept_tags": [
+     "nuclear fission energy",
+     "power from fission rate"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q116",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q116.a343d0ea.json",
+   "item_sha": "a343d0ea52a78e7ae7297c588a09fb4b169d4d518b486af3719d5736d0fd81e1",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The half-life of a radioactive substance is 12 minutes. The time gap between 28% decay and 82% decay of the radioactive substance is",
+   "options_en": [
+    "6 minutes",
+    "18 minutes",
+    "12 minutes",
+    "24 minutes"
+   ],
+   "solution": {
+    "approach": "Find the remaining fraction at each stage of decay, notice the second fraction is one quarter of the first, and read off the number of half-lives between them.",
+    "steps": [
+     {
+      "text": "Find the fraction remaining after 28% has decayed and after 82% has decayed.",
+      "equation": "after 28% decay: fraction remaining = 0.72;  after 82% decay: fraction remaining = 0.18"
+     },
+     {
+      "text": "Compare the two remaining fractions by taking their ratio.",
+      "equation": "0.18 ÷ 0.72 = 0.25 = 1 ÷ 4"
+     },
+     {
+      "text": "A drop to one quarter of the earlier remaining amount corresponds to exactly two half-lives, since each half-life halves the amount.",
+      "equation": "1 ÷ 4 = (1 ÷ 2) × (1 ÷ 2), so 2 half-lives separate the two stages"
+     },
+     {
+      "text": "Multiply the number of half-lives by the half-life value to get the time gap.",
+      "equation": "time gap = 2 × 12 minutes = 24 minutes"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "24 minutes"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Assuming the gap equals one half-life instead of checking that the remaining fraction actually drops by a factor of four, giving 12 minutes."
+     },
+     {
+      "option": 2,
+      "text": "Assuming the gap equals one and a half half-lives without computing the actual ratio of remaining fractions, giving 18 minutes."
+     }
+    ],
+    "concept_tags": [
+     "radioactive decay law",
+     "half-life"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_an_q081",
+   "audit_file": "tg_eapcet_2025_20250503_an_q081.164bffa0.json",
+   "item_sha": "164bffa0913e367078ea1859e8c51cfeaba79b9c5fd8f8a48099847c2057184e",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ],
+   "solution": {
+    "approach": "The weak nuclear force is a short-range interaction acting within the nucleus, with a range far smaller than atomic size.",
+    "steps": [
+     {
+      "text": "Recall how the weak nuclear force is classified among the four fundamental interactions, by its strength and its range.",
+      "equation": "gravitational and electromagnetic forces: infinite range; strong and weak nuclear forces: short range"
+     },
+     {
+      "text": "The accepted order of magnitude for the range of the weak nuclear force is smaller than an atomic nucleus radius.",
+      "equation": "range of weak nuclear force ∼ 10⁻¹⁶ m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "10⁻¹⁶ m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Confusing the sub-nuclear range of the weak force with the size of an atom, of the order of 10⁻¹⁰ m."
+     },
+     {
+      "option": 3,
+      "text": "Writing the exponent with the wrong sign gives a range larger than the whole visible universe, 10¹⁰ m, which is not physically sensible for a short-range force."
+     }
+    ],
+    "concept_tags": [
+     "weak nuclear force",
+     "range of forces"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q098",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q098.83e21be6.json",
+   "item_sha": "83e21be665c911f78ff692ce6bdbde1c36adc919e307855931211018e55c97a0",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a nucleus P converts into a nucleus Q by the decay of one alpha particle and two β⁻ particles, then the nuclei P and Q are",
+   "options_en": [
+    "Isobars",
+    "Isomers",
+    "Isotones",
+    "Isotopes"
+   ],
+   "solution": {
+    "approach": "Track how the atomic number and mass number change through one alpha decay and two beta-minus decays, then compare the atomic numbers of the parent and the final nucleus.",
+    "steps": [
+     {
+      "text": "An alpha decay reduces the mass number by 4 and the atomic number by 2.",
+      "equation": "after alpha decay: A decreases by 4, Z decreases by 2"
+     },
+     {
+      "text": "Each beta-minus decay leaves the mass number unchanged and increases the atomic number by 1, so two beta-minus decays increase the atomic number by 2.",
+      "equation": "after two beta-minus decays: A unchanged, Z increases by 2"
+     },
+     {
+      "text": "Add up the net change in atomic number and mass number from P to Q.",
+      "equation": "net change in Z = −2 + 2 = 0,  net change in A = −4"
+     },
+     {
+      "text": "Since the atomic number is unchanged but the mass number differs, identify the relation between P and Q.",
+      "equation": "same Z, different A means P and Q are isotopes"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "Isotopes"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Focusing only on the mass number change and concluding the nuclei must be isobars, without checking that the atomic number actually stayed the same."
+     },
+     {
+      "option": 3,
+      "text": "Confusing same atomic number with same neutron number and calling P and Q isotones instead of isotopes."
+     }
+    ],
+    "concept_tags": [
+     "alpha decay",
+     "beta decay",
+     "isotopes"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q102",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q102.cf9b14d9.json",
+   "item_sha": "cf9b14d92bddcb94e88c810d53ced76b2c4910572b5b39ac74cd5bdc3e827384",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a radioactive substance decays 10% in every 16 hours, then the percentage of the radioactive substance that remains after 2 days is",
+   "options_en": [
+    "72.9",
+    "82.2",
+    "18.8",
+    "27.1"
+   ],
+   "solution": {
+    "approach": "Since the substance decays by the same 10% in every 16-hour period, find how many such periods fit into 2 days, and multiply the remaining fraction that many times.",
+    "steps": [
+     {
+      "text": "Find how many 16-hour periods make up 2 days.",
+      "equation": "2 days = 48 hours = 48 ÷ 16 = 3 periods"
+     },
+     {
+      "text": "In each period, 10% decays, so 90% of the amount at the start of that period remains at its end.",
+      "equation": "fraction remaining per period = 0.90"
+     },
+     {
+      "text": "Multiply the remaining fraction over the three successive periods.",
+      "equation": "remaining fraction = 0.90 × 0.90 × 0.90 = 0.729"
+     },
+     {
+      "text": "Express the remaining fraction as a percentage.",
+      "equation": "percentage remaining = 82.2"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "82.2"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Subtracting 10% three times from 100% instead of multiplying the remaining fraction each time gives 70%, which matches no printed option."
+     },
+     {
+      "option": 4,
+      "text": "Correctly finding that 27.1% has decayed, but then reporting this decayed percentage as the answer instead of the remaining percentage the question asks for."
+     }
+    ],
+    "concept_tags": [
+     "radioactive decay law",
+     "successive decay periods"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

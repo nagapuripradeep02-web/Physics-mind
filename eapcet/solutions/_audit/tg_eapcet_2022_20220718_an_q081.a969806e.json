@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q081",
+ "item_sha": "a969806e7ed8dfd621428c832cccc3a4f1d2d2d2349d845db9c51d2508c3e0ee",
+ "auditor_option": 2,
+ "auditor_value": "Weak",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: beta decay converts a neutron into a proton with the emission of an electron and an antineutrino, a flavour-changing process mediated by the weak interaction. Option 2. The decay equation n -> p + e- + antineutrino is correctly written. common_mistakes[0] points at option 4 (Strong) and common_mistakes[1] at option 3 (Electromagnetic), both correct mappings, and the reason given for each is true. Option 1 (Gravitational) is unaddressed, which is not a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T02:58:00+05:30"}
+}

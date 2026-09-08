@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q096",
+ "approach": "Radiated power at a fixed temperature is proportional to the exposed surface area, so compare the total surface area of one hemisphere, curved surface plus flat cut face, with the surface area of the whole sphere.",
+ "steps": [
+  {"text": "Write the surface area of the whole sphere.",
+   "equation": "A_sphere = 4πr²"},
+  {"text": "Write the total exposed surface area of one hemisphere, which radiates from both its curved surface and its flat circular face.",
+   "equation": "A_hemisphere = 2πr² + πr² = 3πr²",
+   "why_this_step": "Cutting the sphere creates a new flat face that is now exposed to the surroundings and radiates in the same way as the rest of the surface."},
+  {"text": "Take the ratio of the two areas at the same temperature.",
+   "equation": "A_hemisphere / A_sphere = 3πr² / 4πr² = 3/4"}
+ ],
+ "final_answer": {"option": 3, "value": "3:4"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Counting only the curved surface of the hemisphere, 2πr², and forgetting that the flat cut face also radiates, gives 1:2."},
+  {"option": 4, "text": "Counting only the flat circular face, πr², and forgetting the curved surface gives 1:4."}
+ ],
+ "concept_tags": ["Stefan-Boltzmann law", "radiated power and surface area"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:31:00+05:30"}
+}

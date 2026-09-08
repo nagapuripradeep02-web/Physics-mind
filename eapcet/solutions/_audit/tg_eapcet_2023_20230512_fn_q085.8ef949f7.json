@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q085",
+ "item_sha": "8ef949f7f0fce1e3c6e02c529768f551a7a57ea1b43b19ce6bb69a5d38a3728e",
+ "auditor_option": 1,
+ "auditor_value": "4 times the initial centripetal acceleration",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: a_c = ω²r at fixed radius, so ω → 2ω multiplies a_c by 4. The three printed lines follow from one another and the radius being held fixed is stated explicitly, which is the assumption the question needs. The mistake entry pointing at option 3 is the genuine error here (treating a_c as linear in ω).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:49:00+05:30"}
+}

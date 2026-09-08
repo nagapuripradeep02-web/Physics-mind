@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_fn_q095",
+ "item_sha": "0d993cabaaeecd7e59d3a631dbb35fd7b8b618d5a8dd8ee41dda18590fd9202f",
+ "auditor_option": 3,
+ "auditor_value": "20°C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first: heat available from the water cooling to 0 °C is 74 × 70 = 5180 cal, more than the 37 × 80 = 2960 cal needed to melt all the ice, so the ice melts completely and the final temperature is above 0 °C. Balancing 74(70 - T) = 2960 + 37T gives 111T = 2220, T = 20 °C, option 3. Confirmed with python, including the substitution check that both sides equal 3700 cal at T = 20. Every printed line follows from the one above it, and final_answer.value is what the last step reached. The step-2 why_this_step justifies the complete-melting assumption with the right two numbers, which is the one place this question can go wrong. Both common_mistakes entries checked: the plain temperature average (70+0)/2 = 35 °C is option 4 (printed \"35°C\"), and dropping the latent heat gives 5180/111 = 46.67 °C, which indeed matches no option - the entry's option: null is honest rather than a mispointed option. The specific heat capacity of ice is not given and is not needed, since the ice starts at 0 °C.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:31:04+05:30"}
+}

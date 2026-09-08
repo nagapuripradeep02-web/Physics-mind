@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q096",
+ "item_sha": "9d788102a5f82fc4a2a6804978959a05f903e5738ecf3b905b66e0d6d52654a1",
+ "auditor_option": 2,
+ "auditor_value": "5.02 cm",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The question names the quantity as 'The linear expansion of metal', but 2×10⁻⁵ K⁻¹ is the coefficient of linear expansion; the printed name is incomplete and its unit belongs to the coefficient, not to an expansion.",
+ "notes": "Solved independently first: a hole in a sheet expands with the same coefficient as the solid metal, so d′ = d(1 + αΔT) = 5(1 + 2×10⁻⁵ × 200) = 5 × 1.004 = 5.020 cm exactly, which is option 2. Python confirms the 2α route gives 5.040 cm, so common_mistakes[1] points at the right option. common_mistakes[0] (expecting the hole to shrink) is the genuine misconception on this question and is correctly answered. ΔT is the same number in K and °C, so writing 200 K after subtracting Celsius values is not an error.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:23:40+05:30"}
+}

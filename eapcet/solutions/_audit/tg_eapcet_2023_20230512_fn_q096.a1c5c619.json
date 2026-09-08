@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q096",
+ "item_sha": "a1c5c619a02870ea1f3b8e9f635ae44750dff92f20dcf54efffd60566ac4a17d",
+ "auditor_option": 3,
+ "auditor_value": "28.6",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: in an isobaric process W = nRΔT and Q = nCpΔT, so W/Q = R/Cp = R/((7/2)R) = 2/7 = 28.571%, printed as 28.6 (option 3). Every line is correct, including Cp = (7/2)R for a diatomic gas and the rounding of 28.571 to 28.6. The single common_mistakes entry is verified: Cv/Cp = (5/2)/(7/2) = 5/7 = 71.4%, which is option 2. Options 1 (62.7) and 4 (34.6) are not accounted for, but no rule requires every distractor to be covered."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:27:00+05:30"}
+}

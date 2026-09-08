@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q088",
+ "item_sha": "1ffd1c2c38a468cc9421c579535a91b6207d98f399ea10599783e8409ebce2c0",
+ "auditor_option": 3,
+ "auditor_value": "5 m",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "gh = 2gR + ½(gR) = (5/2)gR, so h = (5/2) × 2 = 10 m",
+   "note": "The algebra h = (5/2)R is right, but the arithmetic that follows is false: (5/2) × 2 = 5, not 10. Substituting directly gives h = 2R + v²/(2g) = 2(2) + 20/20 = 4 + 1 = 5 m. A student copies the printed line and loses the mark.",
+   "fix": "gh = 2gR + ½(gR) = (5/2)gR, so h = (5/2) × 2 = 5 m"},
+  {"grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 4, \"value\": \"10 m\"",
+   "note": "With R = 2 m and g = 10 m/s², the minimum top speed is v² = gR = 20 m²s⁻² and energy conservation gives h = 2R + v²/(2g) = 5 m, printed as option 3. The solution's own common_mistakes[1] states the correct relation h = 5R/2, which at the true R = 2 m returns 5 m, contradicting the 10 m it reports as the answer.",
+   "fix": "option 3, value \"5 m\""}
+ ],
+ "verdict": "harmful",
+ "question_defect": "The radius is printed as \"radius 2m\" in a stem that also uses m for the mass of the body, so \"2m\" can be read as twice the mass rather than 2 metres; g = 10 m/s² and the options in metres settle it, but the typography is genuinely ambiguous.",
+ "notes": "Solved blind before opening the solution: v_top² = gR = 20, v_bottom² = 5gR = 100, h = v_bottom²/(2g) = 5 m — option 3. The approach and steps 0, 1 and 2 are all correct (mg = mv²/R at the top, v² = 20 m²s⁻², and mgh = mg(2R) + ½mv²); the whole defect is the final numeric substitution in step 3, which then propagates into final_answer. Both common_mistakes routes were recomputed and reach the options they name: taking h = R gives 2 m, option 1; reading 2 m as the diameter so R = 1 m and applying h = 5R/2 gives 2.5 m, option 2. Neither condemns a correct method, and neither route is affected by the error above.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:17:00+05:30"}
+}

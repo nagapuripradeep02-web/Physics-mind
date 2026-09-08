@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q097",
+ "approach": "A Carnot engine's efficiency and a Carnot refrigerator's coefficient of performance between the same two temperatures both come from the ratio of the cold to the hot temperature.",
+ "steps": [
+  {"text": "Write the efficiency in terms of the temperature ratio.",
+   "equation": "η = 1 − Tc/Th = 0.5, so Tc/Th = 0.5"},
+  {"text": "Write the coefficient of performance of the refrigerator working between the same two temperatures.",
+   "equation": "COP = Tc/(Th − Tc)"},
+  {"text": "Rewrite the coefficient of performance in terms of the efficiency and substitute.",
+   "equation": "COP = (1 − η)/η = (1 − 0.5)/0.5 = 1"}
+ ],
+ "final_answer": {"option": 1, "value": "1"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Using COP = 1/η instead of (1 − η)/η gives 2."}
+ ],
+ "concept_tags": ["Carnot engine", "coefficient of performance", "reversible heat engine"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-12", "at": "2026-09-08T00:21:51+05:30"}
+}

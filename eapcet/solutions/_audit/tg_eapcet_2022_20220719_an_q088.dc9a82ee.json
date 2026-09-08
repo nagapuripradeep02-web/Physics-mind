@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q088",
+ "item_sha": "dc9a82ee3f2f1edbc112a9ffda0f38b30edc815c82731b4877de4dd41fcc0322",
+ "auditor_option": 3,
+ "auditor_value": "5 m",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Thinking the release height only needs to equal the radius R, missing the extra R/2 that comes from the required speed at the top, gives 2 m instead of 5 m.",
+   "note": "The entry contradicts itself. Taking h = R does give 2 m, but the shortfall from R to the correct 5R/2 is 3R/2, not R/2. The R/2 shortfall belongs to the different error h = 2R, which gives 4 m and is not a printed option. As written the reason does not match the route or the number.",
+   "fix": "Taking the release height to be only the radius R, and so forgetting both the extra height R of the loop top and the R/2 needed for the minimum speed there, gives 2 m instead of 5 m."}
+ ],
+ "verdict": "wrong",
+ "notes": "Own solve: v_top² = gR at minimum speed, energy conservation mgh = mg(2R) + ½mv_top² gives h = 5R/2 = 5 m with R = 2 m. All three step equations are correct and follow from each other.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

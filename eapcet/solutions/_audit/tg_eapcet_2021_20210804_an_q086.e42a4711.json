@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q086",
+ "item_sha": "e42a47114abb80b1486ab9ffcbb2de30e3dcc9ea798498de6ed9026ffe7c7766",
+ "auditor_option": 3,
+ "auditor_value": "5/√2",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: the scalar component of P along Q is (P·Q)/|Q| = (2·1 + 3·1)/√2 = 5/√2 = 3.536. Every printed equation follows from the one above it, and both common-mistake entries reach the numbers their options print (2 for option 1, √2/5 = 0.283 for option 4).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:41:00+05:30"}
+}

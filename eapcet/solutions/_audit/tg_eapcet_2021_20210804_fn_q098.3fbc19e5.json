@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q098",
+ "item_sha": "3fbc19e5613111850d61bea39216ea763ee027ce37ffac6fe43e7fec9b1ef1c9",
+ "auditor_option": 2,
+ "auditor_value": "0.5",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The printed phrase \"co-efficient of a real expansion\" is a corruption of \"coefficient of areal expansion\" (the space is in the wrong place). Read literally it says \"real expansion\", which is a liquid-expansion term and has no meaning for a solid sheet; the intended quantity is unambiguous only because the options fit the areal reading.",
+ "notes": "Solved independently before reading the solution: for an isotropic solid the areal (superficial) expansivity is beta = 2 alpha, so alpha : beta = 1 : 2 = 0.5, option 2. Checked both distractor entries numerically: reversing the ratio gives 2 (option 1, printed \"2\") and cubical-to-areal 3alpha/2alpha gives 1.5 (option 4, printed \"1.5\") - both entries name the option that their own text produces. The why_this_step binomial argument (1+alpha dT)^2 ~ 1+2 alpha dT is correct. Considered filing difficulty=medium as weak for what is a one-line definition recall, but did not: the corrupted wording in the question makes \"medium\" defensible, so it is not clearly off.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:19:01+05:30"}
+}

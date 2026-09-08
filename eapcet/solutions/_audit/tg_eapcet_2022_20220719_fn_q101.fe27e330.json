@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_fn_q101",
+ "item_sha": "fe27e3304d29c4d115d1c306996f06a2d0dc4f4a2aa59eeec4b840bf65b0ed48",
+ "auditor_option": 1,
+ "auditor_value": "f₀ + Δf₁",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: raising the tension raises f_A to f₀ + δ. If f_B were below f₀ the new gap would be f₀ + δ − f_B = Δf₁ + δ, which is larger than Δf₁, contradicting Δf₂ < Δf₁. So f_B lies above f₀ and f_B − f₀ = Δf₁, giving f_B = f₀ + Δf₁ — option 1, the solution's answer. Each step follows from the one above it and the why_this_step states the correct reason. The common_mistakes entry points at option 3 (f₀ − Δf₁), which is the genuine trap. Difficulty medium and mistake_type_hint concept both fit; prose is literal.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:34:00+05:30"}
+}

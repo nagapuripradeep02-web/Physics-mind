@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q085",
+ "approach": "The y-component of a vector equals its magnitude times the cosine of the angle the vector makes with the y-axis.",
+ "steps": [
+  {"text": "Write the y-component in terms of the magnitude and the angle measured from the y-axis.",
+   "equation": "A_y = A cos30°"},
+  {"text": "Substitute the given y-component and solve for the magnitude.",
+   "equation": "3.0 = A × (√3/2)"},
+  {"text": "Evaluate the magnitude.",
+   "equation": "A = 6/√3 = 2√3 m"}
+ ],
+ "final_answer": {"option": 1, "value": "2√3 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using sin30° instead of cos30°, treating the given 3.0 m as if it were measured from the x-axis instead of the y-axis, gives 6 m."}
+ ],
+ "concept_tags": ["vector components", "resolving a vector along an axis"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T14:00:00+05:30"}
+}

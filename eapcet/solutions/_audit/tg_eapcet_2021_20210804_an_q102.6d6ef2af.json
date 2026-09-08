@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q102",
+ "item_sha": "6d6ef2af59aea8ca7d4ffd98cf6f6e8912e4078bbfd4475a39b70983481fa0a1",
+ "auditor_option": 3,
+ "auditor_value": "4Mf²L²/RT",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Treating the node spacing L itself as the full wavelength instead of half of it, which gives Mf²L²/(4RT).",
+   "note": "That route gives λ = L, so v = fL and γ = Mv²/(RT) = Mf²L²/(RT), which is printed option 1, not Mf²L²/(4RT). The stated result and the tagged option (2) are both wrong for the error described; option 2 would need v = fL/2.",
+   "fix": "Treating the node spacing L itself as the full wavelength instead of half of it, which gives v = fL and γ = Mf²L²/(RT), the first option."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "My own solve: successive nodes are λ/2 apart, so λ = 2L, v = fλ = 2fL; with v = √(γRT/M), 4f²L² = γRT/M and γ = 4Mf²L²/(RT) — option 3, matching the solution's steps and final answer. All four step equations are correct and follow from one another. The defect is confined to the single common_mistakes entry, whose arithmetic and option tag are both wrong; the final answer is unaffected.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:24:00+05:30"}
+}

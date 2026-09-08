@@ -1,0 +1,25 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2022_20220718_an_q089",
+  "approach": "For a head-on elastic collision, the fraction of kinetic energy handed to the struck particle follows a standard formula in the mass ratio.",
+  "steps": [
+    {"text": "Write the fraction of kinetic energy transferred to a stationary target in an elastic collision.",
+     "equation": "fraction = 4m₁m₂/(m₁+m₂)²",
+     "why_this_step": "This comes from solving momentum conservation and kinetic energy conservation together for an elastic collision."},
+    {"text": "Substitute the given masses, the moving particle m₁ = m and the stationary one m₂ = m/n.",
+     "equation": "fraction = 4·m·(m/n) / (m + m/n)²"},
+    {"text": "Simplify by cancelling m² and clearing the fraction inside the bracket.",
+     "equation": "fraction = 4n/(1+n)²"}
+  ],
+  "final_answer": {"option": 2, "value": "4n/(1+n)²"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Squaring the velocity-transfer ratio 2m₁/(m₁+m₂) directly and calling it the energy fraction, without weighting it by the mass ratio, gives 4n²/(1+n)²."},
+    {"option": 3, "text": "Expanding (m₁+m₂)² as m₁²+m₂², dropping the cross term, gives 4n/(1+n²)."},
+    {"option": 4, "text": "Dropping the denominator (1+n)² after finding the numerator 4n² leaves only 4n²."}
+  ],
+  "concept_tags": ["elastic collision", "kinetic energy transfer", "mass ratio"],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:03:00+05:30"}
+}

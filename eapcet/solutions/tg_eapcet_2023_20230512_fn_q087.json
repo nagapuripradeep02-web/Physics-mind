@@ -1,0 +1,24 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2023_20230512_fn_q087",
+  "approach": "The given force is the only one doing work, so the work it does equals the change in kinetic energy.",
+  "steps": [
+    {"text": "Differentiate the displacement to get the velocity.",
+     "equation": "v = ds/dt = d(t³/3)/dt = t²"},
+    {"text": "Evaluate the velocity at the start and at the end of the two seconds.",
+     "equation": "v(0) = 0,  v(2) = 2² = 4 m s⁻¹"},
+    {"text": "Apply the work-energy theorem over this interval.",
+     "equation": "W = ½mv(2)² − ½mv(0)² = ½ × 3 × 4² − 0 = 24 J",
+     "why_this_step": "The work-energy theorem holds for the net force, and here the given force is the only one doing work."}
+  ],
+  "final_answer": {"option": 4, "value": "24 J"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Multiplying the force at t = 2 s by the total displacement, instead of using the work-energy theorem, gives 12 N × 8/3 m = 32 J."},
+    {"option": null, "text": "Leaving out the one-half in the kinetic energy formula gives 3 × 4² = 48 J."}
+  ],
+  "concept_tags": ["work-energy theorem", "velocity from displacement", "differentiation"],
+  "difficulty": "easy",
+  "mistake_type_hint": "application",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:06:00+05:30"}
+}

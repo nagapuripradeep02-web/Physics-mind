@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "approach": "Zero velocity does not force zero acceleration; check each statement using a case such as a ball at the top of its vertical throw.",
+ "steps": [
+  {"text": "Test the assertion using a ball thrown straight up: at its highest point the velocity is momentarily zero.",
+   "equation": "at the highest point, v = 0"},
+  {"text": "At that same instant gravity is still acting on the ball, so the acceleration is not zero. This makes the assertion false.",
+   "equation": "a = g ≠ 0"},
+  {"text": "Test the reason using the same example: after being momentarily at rest, the ball reverses direction and moves downward."},
+  {"text": "A body must pass through zero velocity to reverse direction, so the reason is a true general statement. So (A) is false but (R) is true."}
+ ],
+ "final_answer": {"option": 4, "value": "(A) is false but (R) is true"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming that because a body is briefly at rest when it reverses direction, its acceleration must also be zero there, wrongly treating rest as the same as no acceleration."},
+  {"option": 3, "text": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest."}
+ ],
+ "concept_tags": ["velocity and acceleration", "instantaneous rest"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:03:00+05:30"}
+}

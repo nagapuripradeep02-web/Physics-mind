@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230514_an_q113",
+ "approach": "Power equals the energy released per fission multiplied by the number of fissions per second, so divide the required power by the energy per fission.",
+ "steps": [
+  {"text": "Convert the energy released per fission from mega electron volts to joules.",
+   "equation": "E = 200 MeV = 200 × 1.602×10⁻¹³ J = 3.204×10⁻¹¹ J"},
+  {"text": "Divide the required power by the energy released per fission to get the number of fissions per second.",
+   "equation": "n = P/E = 5×10⁻³ / 3.204×10⁻¹¹"},
+  {"text": "Evaluate the division.",
+   "equation": "n = 1.56×10⁸ fissions per second"}
+ ],
+ "final_answer": {"option": 1, "value": "1.56×10⁸"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Using 100 MeV per fission instead of 200 MeV doubles the number of fissions needed to supply the same power, giving 3.12×10⁸."},
+  {"option": null, "text": "Forgetting to convert 5 mW to watts and dividing 5 (instead of 5×10⁻³) by the energy per fission inflates the count by a factor of a thousand, landing on no printed option."}
+ ],
+ "concept_tags": ["nuclear fission energy", "power from fission rate"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

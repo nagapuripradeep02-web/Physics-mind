@@ -1,0 +1,56 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-10",
+ "chapter": "Mechanical Properties of Fluids",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q096",
+   "audit_file": "tg_eapcet_2021_20210804_an_q096.9cdd9ba7.json",
+   "item_sha": "9cdd9ba7540dfc81ae1550d5010d7a4a9c5fb2c7a140b8de1e94534c692d38a1",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "What is the terminal velocity of air bubble of 1.0 mm in diameter rising in liquid of viscosity 0.85 Ns/m² and density 900 kgm⁻³? [air density 1.293 kg/m³, g = 9 m/s²]",
+   "options_en": [
+    "Vₜ = 0.25 mm/s",
+    "Vₜ = 0.5 mm/s",
+    "Vₜ = 1.5 mm/s",
+    "Vₜ = 2.5 mm/s"
+   ],
+   "solution": {
+    "approach": "At terminal velocity, the upward buoyant force on the rising bubble equals its downward weight plus the downward viscous drag given by Stokes' law.",
+    "steps": [
+     {
+      "text": "At terminal velocity the bubble moves at a constant speed, so the upward buoyant force on it equals its downward weight plus the downward viscous drag from the liquid, using ρ for the liquid's density and σ for the air's density.",
+      "equation": "(4/3)πr³ρg = (4/3)πr³σg + 6πηrv"
+     },
+     {
+      "text": "Solve this balance for the terminal velocity v.",
+      "equation": "v = 2r²g(ρ − σ)/(9η)"
+     },
+     {
+      "text": "Substitute the radius (half the given 1.0 mm diameter), the liquid density ρ = 900 kg/m³, the air density σ = 1.293 kg/m³, g = 9 m/s² as given, and η = 0.85 Ns/m².",
+      "equation": "v = 2×(5×10⁻⁴)²×9×(900 − 1.293)/(9×0.85)"
+     },
+     {
+      "text": "Evaluate the expression to find the terminal velocity.",
+      "equation": "v = 5.29×10⁻⁴ m/s = 0.53 mm/s, closest to the printed value 0.5 mm/s"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "Vₜ = 0.5 mm/s"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "terminal velocity",
+     "Stokes' law",
+     "buoyancy"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2024_20240510_an_q086",
+  "approach": "Kinetic energy depends on the square of the speed, found by squaring and adding the components of the velocity vector.",
+  "steps": [
+    {"text": "Find the square of the speed from the components.",
+     "equation": "v² = 2² + (−4)² + (−1)² = 4 + 16 + 1 = 21 m² s⁻²"},
+    {"text": "Apply the kinetic energy formula.",
+     "equation": "KE = ½ × 4 × 21 = 42 J"}
+  ],
+  "final_answer": {"option": 3, "value": "42 J"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Leaving out the one-half in the kinetic energy formula gives 4 × 21 = 84 J."},
+    {"option": 2, "text": "Using a mass of 6 kg by mistake instead of the given 4 kg gives ½ × 6 × 21 = 63 J."},
+    {"option": 4, "text": "Reporting the speed-squared value itself, 21, as the kinetic energy, without multiplying by ½m, gives 21 J."}
+  ],
+  "concept_tags": ["kinetic energy", "vector magnitude"],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:39:00+05:30"}
+}

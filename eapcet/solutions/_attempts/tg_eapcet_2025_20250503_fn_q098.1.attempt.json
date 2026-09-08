@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q098",
+ "approach": "Track how the atomic number and mass number change through one alpha decay and two beta-minus decays, then compare the atomic numbers of the parent and the final nucleus.",
+ "steps": [
+  {"text": "An alpha decay reduces the mass number by 4 and the atomic number by 2.",
+   "equation": "after alpha decay: A decreases by 4, Z decreases by 2"},
+  {"text": "Each beta-minus decay leaves the mass number unchanged and increases the atomic number by 1, so two beta-minus decays increase the atomic number by 2.",
+   "equation": "after two beta-minus decays: A unchanged, Z increases by 2"},
+  {"text": "Add up the net change in atomic number and mass number from P to Q.",
+   "equation": "net change in Z = −2 + 2 = 0,  net change in A = −4"},
+  {"text": "Since the atomic number is unchanged but the mass number differs, identify the relation between P and Q.",
+   "equation": "same Z, different A means P and Q are isotopes"}
+ ],
+ "final_answer": {"option": 4, "value": "Isotopes"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Focusing only on the mass number change and concluding the nuclei must be isobars, without checking that the atomic number actually stayed the same."},
+  {"option": 3, "text": "Confusing same atomic number with same neutron number and calling P and Q isotones instead of isotopes."}
+ ],
+ "concept_tags": ["alpha decay", "beta decay", "isotopes"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

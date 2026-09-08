@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "80f65d924c975602744b7a056c9c93994c79e301f36ef259acb81fad098a5a6c",
+ "auditor_option": 2,
+ "auditor_value": "36",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: 125 = ½ × 10 × t² gives t = 5 s; the fifth-second distance is S₅ = (g/2)(2×5 − 1) = 5 × 9 = 45 m; 45/125 × 100 = 36, which is option 2. Cross-checked as the difference of totals, ½×10×5² − ½×10×4² = 125 − 80 = 45 m. Every printed equation is correct. The single common_mistakes entry was verified: 5² − 4² = 9, which is option 1 as stated.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:06:00+05:30"}
+}

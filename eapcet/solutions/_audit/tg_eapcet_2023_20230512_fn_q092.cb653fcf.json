@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q092",
+ "item_sha": "cb653fcfb19b87058253ab5536e2247840109c2bf14fd4c3f61e296369a628fc",
+ "auditor_option": 1,
+ "auditor_value": "12πRT/5",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: a wall of negligible thickness is wetted on both faces, so the contact length is 2 × 2πR = 4πR and the vertical force is F = 4πRT cos53° = 4πRT × 0.6 = 2.4πRT = 12πRT/5, matching option 1. Both mistake entries were checked numerically: one contact line gives 1.2πRT = 6πRT/5 (option 2), and omitting cos53° gives 4πRT, which is not printed, so the null option is right.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:30:00+05:30"}
+}

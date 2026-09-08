@@ -1,0 +1,116 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q083",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q083.362ae012.json",
+   "item_sha": "362ae0127b057b0adb7932f3d915dc366a2c8b3f4db49b2d1d0d37f5d315376d",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ],
+   "solution": {
+    "approach": "Differentiate the relation between time and distance to get the velocity in terms of distance, then use acceleration equals velocity times its own derivative with distance.",
+    "steps": [
+     {
+      "text": "Differentiate the given relation between time and distance to find how t changes with x.",
+      "equation": "dt/dx = 2ax + b"
+     },
+     {
+      "text": "Invert this derivative to write the velocity, since velocity is the rate of change of distance with time.",
+      "equation": "v = dx/dt = 1/(2ax + b)"
+     },
+     {
+      "text": "Differentiate the velocity with respect to distance.",
+      "equation": "dv/dx = −2a/(2ax + b)² = −2av²",
+      "why_this_step": "The denominator (2ax + b) equals 1/v, so squaring it is the same as dividing by v²."
+     },
+     {
+      "text": "Acceleration is the rate of change of velocity with time, so multiply dv/dx by dx/dt, which is v, to convert it.",
+      "equation": "a = v × dv/dx = v × (−2av²) = −2av³"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "−2av³"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the derivative of velocity with respect to distance as the acceleration, without the extra factor of v needed to convert it into a derivative with respect to time; this gives −2av² instead of −2av³."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with t as a function of x",
+     "chain rule",
+     "velocity-acceleration relation a = v dv/dx"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q083",
+   "audit_file": "tg_eapcet_2024_20240509_an_q083.b153a645.json",
+   "item_sha": "b153a645b5475d82d1b18914bad6e7d8a9a2c19b54de97341de0a2e397222ace",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "0.8 s",
+    "1.6 s",
+    "1.0 s",
+    "0.2 s"
+   ],
+   "solution": {
+    "approach": "Find the stone's downward speed when it returns to the window's top, then use that as the starting speed for falling through the window's height.",
+    "steps": [
+     {
+      "text": "Find the time for the stone to return to the level of the window's top on its way down, where its downward speed equals the launch speed by symmetry.",
+      "equation": "2u/g = 2 × 8/10 = 1.6 s",
+      "why_this_step": "In vertical motion under gravity, the speed at a given height on the way down equals the speed at that height on the way up."
+     },
+     {
+      "text": "From that instant the stone moves down with speed 8 m/s and covers the window's height of 1.8 m to reach the window's bottom.",
+      "equation": "1.8 = 8t + ½ × 10 × t²"
+     },
+     {
+      "text": "Solve the quadratic equation for the crossing time and keep the positive root.",
+      "equation": "5t² + 8t − 1.8 = 0, so t = 0.8 s",
+      "why_this_step": "The other root, t = −1.8 s, is negative and has no physical meaning here."
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "0.8 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Computing the total time to return to the release point, 2u/g = 1.6 s, and mistaking it for the time to cross the window."
+     },
+     {
+      "option": 3,
+      "text": "Finding the speed at the window's bottom correctly as 10 m/s, then dividing by g to get 10/10 = 1.0 s, forgetting to subtract the initial 8 m/s already present at the window's top."
+     }
+    ],
+    "concept_tags": [
+     "vertical motion under gravity",
+     "symmetry of speed in projectile motion",
+     "quadratic equation for time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

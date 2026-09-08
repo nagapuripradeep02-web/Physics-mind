@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q083",
+ "item_sha": "b65e2d3ef5fe16586966cd6015be52cdabbfb5617c04705a81f4c08dc2ae1351",
+ "auditor_option": 1,
+ "auditor_value": "2.28 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: x(2) = 2.0*2 + 0.01*8 = 4.08 m, x(4) = 2.0*4 + 0.01*64 = 8.64 m, so v_avg = (8.64 - 4.08)/2 = 2.28 m/s. Both printed positions and the division are correct. The single common_mistakes entry (subtracting the positions but not dividing by the 2 s interval, giving 4.56) is a real slip on this question; 4.56 is not an option and the entry correctly carries option null. Difficulty 'easy' is fair for a two-substitution question.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:40:00+05:30"}
+}

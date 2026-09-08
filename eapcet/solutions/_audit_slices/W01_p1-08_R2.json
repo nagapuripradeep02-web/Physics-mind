@@ -1,0 +1,113 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q091",
+   "audit_file": "tg_eapcet_2023_20230512_an_q091.0a54dea4.json",
+   "item_sha": "0a54dea4f60001346b828c0ad04030ee2554e376d402474a50f50ca1de3b0267",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "The ratio of the radii of two planets is 'r' and the ratio of accelerations due to gravity on the planets is 'x'. Then the ratio of the escape velocities from the planets is",
+   "options_en": [
+    "xr",
+    "√(r/x)",
+    "√(rx)",
+    "√(x/r)"
+   ],
+   "solution": {
+    "approach": "Escape velocity depends on both the surface gravity and the radius, so write it in terms of these two and substitute the given ratios.",
+    "steps": [
+     {
+      "text": "Write the escape velocity of a planet in terms of its surface acceleration due to gravity and its radius.",
+      "equation": "vₑ = √(2gR)"
+     },
+     {
+      "text": "Write the ratio of the escape velocities of the two planets using their own g and R.",
+      "equation": "vₑ₁/vₑ₂ = √(2g₁R₁)/√(2g₂R₂) = √((g₁R₁)/(g₂R₂))"
+     },
+     {
+      "text": "Substitute the given ratios: the radius ratio is r and the gravity ratio is x.",
+      "equation": "vₑ₁/vₑ₂ = √(x·r) = √(rx)",
+      "why_this_step": "R₁/R₂ = r and g₁/g₂ = x are exactly the two ratios given in the question."
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "√(rx)"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Forgetting the square root and taking the ratio of escape velocities as the product of the gravity ratio and the radius ratio directly gives xr."
+     },
+     {
+      "option": 4,
+      "text": "Misremembering the escape velocity formula as √(2g/R) instead of √(2gR) inverts the radius dependence and gives √(x/r)."
+     }
+    ],
+    "concept_tags": [
+     "escape velocity",
+     "acceleration due to gravity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q098",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q098.3d5c1d60.json",
+   "item_sha": "3d5c1d6056e4fcf66ad88d80bfe88b10c47d9ea54db0ed71e9b0c7bc51b98eba",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "A ring has a mass M and radius R. The distance of the point on its geometric axis from its centre at which the gravitational field is strongest is",
+   "options_en": [
+    "R/2",
+    "R/4",
+    "R/√3",
+    "R/√2"
+   ],
+   "solution": {
+    "approach": "The gravitational field on the axis of a ring rises from zero at the centre and falls with distance, so its maximum is where the derivative is zero.",
+    "steps": [
+     {
+      "text": "Write the gravitational field on the axis of the ring at a distance x from its centre.",
+      "equation": "g(x) = GMx/(R²+x²)^(3/2)"
+     },
+     {
+      "text": "Differentiate g with respect to x and set the derivative to zero to locate the maximum.",
+      "equation": "dg/dx = GM(R²−4x²)/(R²+x²)^(5/2) = 0",
+      "why_this_step": "The field is zero at the centre, rises to a peak, then decreases as x grows large, so the peak is where the slope of g against x is zero."
+     },
+     {
+      "text": "Solve the resulting equation for x.",
+      "equation": "R² − 2x² = 0 → x² = R²/2 → x = R/√2"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "R/√2"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Reaching the correct equation x² = R²/2 but simplifying the square root incorrectly as x = R/2 instead of x = R/√2."
+     },
+     {
+      "option": null,
+      "text": "Assuming by symmetry that the field is strongest at the centre of the ring, but the field there is actually zero, not maximum."
+     }
+    ],
+    "concept_tags": [
+     "gravitational field due to a ring",
+     "maximum of a function"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-03",
+ "chapter": "Motion in a Plane",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q084",
+   "audit_file": "tg_eapcet_2023_20230512_an_q084.0b930724.json",
+   "item_sha": "0b930724247f15916062a763a4037f48bc76f871788486db2ab2f87e627281c8",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "A person walks in such a way that he covers equal distance in each step. The person takes 2 steps forward towards east, then takes a right turn and walks 4 steps towards south, then takes a right turn and walks 6 steps towards west and then takes a right turn and walks further. The direction of his final position after a total of 20 steps walk with respect to his initial position is",
+   "options_en": [
+    "North-West",
+    "60° West of South",
+    "60° South of West",
+    "South-East"
+   ],
+   "solution": {
+    "approach": "Add up the east-west steps and the north-south steps separately to get the net displacement, then read off its direction.",
+    "steps": [
+     {
+      "text": "List the four legs of the walk and the number of steps in each, given a total of 20 steps and a right turn after every leg.",
+      "equation": "East: 2, South: 4, West: 6, North: 20 − (2+4+6) = 8"
+     },
+     {
+      "text": "Combine the east-west steps into one number and the north-south steps into another.",
+      "equation": "East − West = 2 − 6 = −4 (net 4 west); North − South = 8 − 4 = 4 (net 4 north)"
+     },
+     {
+      "text": "Since the net westward and northward steps are equal, the final position lies exactly on the diagonal between west and north.",
+      "equation": "direction = North-West"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "North-West"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Stopping the count after the third leg (12 steps: 2 east, 4 south, 6 west) gives an equal 4-west, 4-south displacement, a south-west direction not among the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "vector addition",
+     "displacement direction"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

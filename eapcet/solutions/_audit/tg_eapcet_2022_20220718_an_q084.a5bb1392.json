@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "a5bb1392f9187452c5bd79b2e4c379db1395e6a9bda47e1051f7331edaf5241d",
+ "auditor_option": 4,
+ "auditor_value": "(A) is false but (R) is true",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest.",
+   "note": "Option 3 reads '(A) is true but (R) is false', so a student lands there only by judging the assertion TRUE as well as the reason false. This entry explains only the reason half and says nothing about the assertion error that is also required, so it does not fully account for the option it is attached to.",
+   "fix": "Judging the assertion true because a body at rest seems to have no acceleration, and at the same time doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest."}
+ ],
+ "verdict": "weak",
+ "notes": "Solved independently before reading the solution: a ball at the top of a vertical throw has v = 0 but a = g, so the assertion is false; a body moving continuously along a line must pass through v = 0 to change sign, so the reason is true. That is option 4. The steps are correct and the ball-at-the-top example is the right counter-example. common_mistakes[0] correctly maps to option 1. Strictly, the reason is true only for continuous motion (an idealised instantaneous bounce reverses without an instant of rest); the solution's step 4 states the continuity condition explicitly, so this is handled rather than a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:43:00+05:30"}
+}

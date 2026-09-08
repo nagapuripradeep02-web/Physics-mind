@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "approach": "For free fall from rest, distance from the start grows with the square of time, so subtract the total distances at the two times to get each interval.",
+ "steps": [
+  {"text": "Write the distance fallen from rest as a function of time.",
+   "equation": "d(t) = ½gt²"},
+  {"text": "Find the distance covered in the first 4 seconds.",
+   "equation": "d₁ = d(4) = ½g(4)² = 8g"},
+  {"text": "Find the total distance fallen by t = 12 s and subtract the first part to get the distance in the next 8 seconds.",
+   "equation": "d(12) = ½g(12)² = 72g; d₂ = 72g − 8g = 64g"},
+  {"text": "Divide the two distances.",
+   "equation": "d₂/d₁ = 64g/8g = 8"}
+ ],
+ "final_answer": {"option": 1, "value": "8"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the next 8 seconds as a fresh fall from rest, ½g(8)² = 32g, instead of subtracting the first 4 seconds from the total at 12 seconds."}
+ ],
+ "concept_tags": ["free fall", "distance in a given time interval"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:00:00+05:30"}
+}

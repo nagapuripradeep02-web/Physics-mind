@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q112",
+ "item_sha": "8501d5fa4689ba07a9c1366ac920c603e235027462b3761db519c8d61bb10c45",
+ "auditor_option": 1,
+ "auditor_value": "608 °F",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. \"90% more than the Celsius reading\" means F = C + 0.90C = 1.9C. With F = (9/5)C + 32 = 1.8C + 32, the condition gives 1.9C - 1.8C = 32, so C = 320 °C and F = 608 °F, option 1. Verified with python both ways: (9/5)(320) + 32 = 608 and 608/320 = 1.9 exactly, so the answer satisfies the stated condition. Every printed line follows from the one above it and final_answer.value is what the last step reached. The single common_mistakes entry is the real trap - solving for C = 320 and reporting it as the Fahrenheit answer - and option 2 does print \"320 °F\", so the entry points at the right option. Considered whether mistake_type_hint should be \"concept\" rather than \"calculation\", since the difficulty is in reading \"90% more\" as 1.9C rather than in the arithmetic, but this is a judgement call and not clearly off, so it is not filed. difficulty=easy is right for a two-line simultaneous solve. Options 3 and 4 (580 °F, 280 °F) are left unexplained, which is acceptable.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11", "at": "2026-09-08T06:36:45+05:30"}
+}

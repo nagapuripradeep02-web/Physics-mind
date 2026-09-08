@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "aa15d066758f8cff47eb5297dae584734f5821293239aa07f1e0a1798e581779",
+ "auditor_option": 4,
+ "auditor_value": "0.2 s",
+ "findings": [
+  {"grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "Write the downward displacement from the top of the window at time t, taking upward as positive.",
+   "note": "With upward taken as positive, s = 8t − 5t² is the displacement measured upward from the top of the window; it is positive while the stone is above that point. Calling the same quantity the downward displacement contradicts the sign convention stated in the same sentence, and sign convention is exactly what a student gets wrong on this question.",
+   "fix": "Write the displacement from the top of the window at time t, taking the upward direction as positive."}
+ ],
+ "verdict": "wrong",
+ "notes": "Solved independently before reading the solution: with upward positive and the origin at the top of the window, s = 8t − 5t²; s = 0 again at t = 2u/g = 1.6 s, and s = −1.8 m gives 5t² − 8t − 1.8 = 0 whose roots are t = 1.8 s and t = −0.2 s, so the downward crossing takes 1.8 − 1.6 = 0.2 s. That is option 4. All four printed equations are correct, including the quadratic and its positive root, which I verified. Related to the finding above, step 3's 'Set the downward displacement equal to 1.8 m' is loose in the same way, since the equation it prints comes from setting s = −1.8 m; it reads as a magnitude statement so I have not filed it separately, but a single consistent convention through the four steps would remove both. Both common_mistakes entries are correct and map to the right options (u/g = 0.8 s to option 1, 2u/g = 1.6 s to option 2).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:03:00+05:30"}
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2025_20250503_fn_q084",
+  "approach": "The work done by a position-dependent force is the definite integral of the force over the displacement.",
+  "steps": [
+    {"text": "Write the work as the integral of the force from y = a to y = 2a.",
+     "equation": "W = ∫ (−K/y²) dy, taken from y = a to y = 2a"},
+    {"text": "Integrate.",
+     "equation": "W = K/y, evaluated from y = a to y = 2a = K/(2a) − K/a"},
+    {"text": "Simplify.",
+     "equation": "W = −K/(2a)"}
+  ],
+  "final_answer": {"option": 4, "value": "−K/2a"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Using the average of the force at the two endpoints, y = a and y = 2a, times the displacement a, instead of integrating, gives −5K/8a."},
+    {"option": 2, "text": "Evaluating the force only at the starting point y = a and reporting it directly as the work, instead of integrating over the displacement, gives −K/a²."}
+  ],
+  "concept_tags": ["work done by variable force", "integration", "inverse-square force"],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:27:00+05:30"}
+}

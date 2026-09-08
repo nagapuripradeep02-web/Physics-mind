@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q098",
+ "approach": "The internal energy of a diatomic ideal gas is five halves of nRT, since it has five degrees of freedom at ordinary temperatures.",
+ "steps": [
+  {"text": "Write the internal energy formula for a diatomic gas.",
+   "equation": "U = (5/2)nRT",
+   "why_this_step": "A diatomic molecule has three translational and two rotational degrees of freedom at room temperature, giving five in total."},
+  {"text": "Convert the temperature to kelvin.",
+   "equation": "T = 27 + 273 = 300 K"},
+  {"text": "Substitute the given values and evaluate.",
+   "equation": "U = (5/2) × 4 × 8.31 × 300 = 24930 J = 24.93 kJ"}
+ ],
+ "final_answer": {"option": 3, "value": "24.93 kJ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Using the monatomic formula with three degrees of freedom instead of five, which gives 14.96 kJ instead of 24.93 kJ."},
+  {"option": 2, "text": "Leaving out the number of degrees of freedom and using U = ½nRT, which gives 4.98 kJ instead of 24.93 kJ."}
+ ],
+ "concept_tags": ["internal energy of an ideal gas", "degrees of freedom", "diatomic gas"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:24:00+05:30"}
+}

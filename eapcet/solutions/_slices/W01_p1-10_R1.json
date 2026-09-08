@@ -1,0 +1,21 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-10",
+ "chapter": "Mechanical Properties of Fluids",
+ "redispatch": 1,
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q096",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "What is the terminal velocity of air bubble of 1.0 mm in diameter rising in liquid of viscosity 0.85 Ns/m² and density 900 kgm⁻³? [air density 1.293 kg/m³, g = 9 m/s²]",
+   "options_en": [
+    "Vₜ = 0.25 mm/s",
+    "Vₜ = 0.5 mm/s",
+    "Vₜ = 1.5 mm/s",
+    "Vₜ = 2.5 mm/s"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q094",
+ "approach": "Equal masses in identical vessels give different liquid heights, and the pressure at the bottom depends only on the mass and the base area, not on the density.",
+ "steps": [
+  {"text": "Write the mass of a liquid column of height h in a vessel of base area A and density ρ.",
+   "equation": "m = ρAh, so h = m/(ρA)"},
+  {"text": "Write the pressure at the bottom of the vessel using this height.",
+   "equation": "P = ρgh = ρg × m/(ρA) = mg/A",
+   "why_this_step": "The density cancels because a denser liquid of the same mass fills a smaller height."},
+  {"text": "Since the vessels are identical (same A) and the masses are equal, the pressure mg/A is the same number for A, B and C.",
+   "equation": "P_A = P_B = P_C = mg/A"}
+ ],
+ "final_answer": {"option": 1, "value": "Equal in all vessels"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming pressure at the bottom rises with density alone, without noticing that the equal mass forces the denser liquid to stand at a shorter height, which cancels the density out."}
+ ],
+ "concept_tags": ["pressure in a liquid", "hydrostatic pressure", "density and height relation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:04:00+05:30"}
+}

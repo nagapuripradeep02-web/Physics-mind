@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "6e0f880fa233d7b568c4a4769783df950440d2365791b9b36ae738ce7a83c103",
+ "auditor_option": 3,
+ "auditor_value": "16 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: Sₙ = u + (a/2)(2n − 1) gives u + 2.5a = 10 and u + 4.5a = 18; subtracting gives 2a = 8, so a = 4 m s⁻² and u = 10 − 10 = 0. Then v(4) = 0 + 4×4 = 16 m s⁻¹, option 3. Both nth-second equations, the subtraction and the back-substitution are printed correctly. All three common_mistakes entries were checked numerically and each produces its stated option: 2at = 32 (option 1), u + a×3 = 12 (option 2), and ½at = 8 (option 4). None of them condemns a correct method.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:19:00+05:30"}
+}

@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q099",
+ "item_sha": "3c0ec3841ac60533b7057a02ad9e4641a06f42cfb01085a5557c70d26e22a4b9",
+ "auditor_option": 3,
+ "auditor_value": "2.0",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[2].why_this_step",
+   "quote": "Raising both sides of the adiabatic relation to the power one over (γ−1) turns the volume ratio into a cube root here.",
+   "note": "The direct statement is that the temperature ratio equals the VOLUME ratio raised to the power (γ−1) = 1/3, that is, the cube root of 8. As written, the sentence names the exponent 1/(γ−1) = 3, which a student can read as instructing them to cube the volume ratio, giving 8 cubed instead of the cube root of 8. The sentence is defensible on a longer route (cubing TV^(1/3) = C gives T³V = C³, and solving for T then puts the volume ratio under a cube root), so it is not false, but it states the exponent that is not the one applied to the volume ratio in the equation beside it.",
+   "fix": "Since gamma minus one is one third, the temperature ratio is the volume ratio raised to the power one third, that is the cube root of 8, which is 2."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "My own solve: the isothermal expansion leaves the gas at T0 and 8V0. Adiabatic compression back to V0 obeys TV^(gamma-1) = constant with gamma - 1 = 1/3, so T_final = T0 x 8^(1/3) = 2 T0. Average kinetic energy per molecule is (3/2)kT, proportional to T, so the ratio is 2.0, option 3. Verified in python: 8^(1/3) = 2.000 and (1/8)^(1/3) = 0.500, so common_mistakes[0] is a genuine route and its stated outcome (a fall to half the original temperature) is exactly right. The initial pressure P0 is not needed. difficulty \"hard\" is fair for a two-process chain.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:23:00+05:30"}
+}

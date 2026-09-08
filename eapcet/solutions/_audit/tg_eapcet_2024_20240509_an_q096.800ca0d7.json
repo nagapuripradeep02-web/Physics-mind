@@ -1,0 +1,12 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q096",
+ "item_sha": "800ca0d7c7f5cf355634a98dbe93ccf005f96ce9009b0abe6229de850840f09b",
+ "auditor_option": 3,
+ "auditor_value": "3:4",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The question does not state that 'the whole sphere' means the original uncut sphere; read as the two hemispheres taken together it would give 3πr² : 6πr² = 1:2, which is also a printed option. The uncut sphere is the standard reading and the one that makes 3:4 available.",
+ "notes": "Solved independently first. Radiated power at a fixed temperature is proportional to exposed area. After the cut, one hemisphere exposes the curved surface 2πr² plus the newly exposed flat circular face πr², a total of 3πr², against the original sphere's 4πr², so the ratio is 3:4, which is option 3. Both common_mistakes entries were checked: entry 0 correctly describes comparing power per unit area, which is equal at equal temperature and gives option 1, and entry 1 correctly gives 2πr²/4πr² = 1:2 for a student who forgets the flat face, matching option 2. The approach calls the body a black body while the question only says solid sphere, but the emissivity cancels in a ratio at one temperature, so this was checked and not filed."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:31:05+05:30"}
+}

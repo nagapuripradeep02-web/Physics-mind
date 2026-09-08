@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q099",
+ "item_sha": "637a3d093c8f0cc10c8321fc590ecb345da24851b5e6d4ac7f2a8b38f2db0ee7",
+ "auditor_option": 4,
+ "auditor_value": "Zero",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "applying a second Doppler shift that does not apply here and getting a non-zero difference",
+   "note": "The entry names the right mechanism but never states the number it produces, so the reader cannot see why it is tagged option 2. The extra observer shift gives 400 × 350/320 = 437.5 Hz against the direct 418.75 Hz, a difference of 18.75 Hz, which is the nearest of the printed options to 20 Hz but is not equal to it.",
+   "fix": "Treating the person as if he were moving towards the wall and applying a second Doppler shift to the reflected sound, which gives 437.5 Hz against the direct 418.75 Hz and a spurious difference of about 19 Hz."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "My own solve: v_s = 54 kmph = 15 m s⁻¹. The person hears the approaching car directly at 400 × 335/320 = 418.75 Hz. The wall is a stationary point on the same line, so it receives the same 418.75 Hz, reflects it unchanged, and the stationary person receives 418.75 Hz again. The difference is zero — option 4, the solution's answer. Every step equation is correct and the why_this_step reasoning is sound. Checked and not filed: option 1 (35.9 Hz) is the driver's-echo distractor, 2nv_s/v = 35.82 Hz, which the entry does not mention; a missing entry is not a defect in what is written. Difficulty 'hard' is defensible.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:42:00+05:30"}
+}

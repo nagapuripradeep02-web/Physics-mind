@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q098",
+ "item_sha": "2506cac75884981fb8be221a4bbb6c61a7f5bf411c09c7e609fc8965d9e645e7",
+ "auditor_option": 2,
+ "auditor_value": "RT",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem never says the cylinder is rigid, and it calls the cylinder insulating while also supplying heat Q to it. Both readings lead to printed options: at fixed volume Q = ΔU = RT (option 2), while at fixed pressure the mole count rises from 4 to 6 at constant T, so W = ΔnRT = 2RT and Q = RT + 2RT = 3RT (option 3). The word insulating is standard shorthand for walls that exchange no heat with the surroundings while a heater inside supplies Q, so that part is loose wording rather than a contradiction, but the missing statement about volume is a real gap.",
+ "notes": "Independent solve, taking the container to be rigid: U_i = 4 × (5/2)RT = 10RT; after 2 mol of diatomic molecules split into 4 mol of atoms, U_f = 2 × (5/2)RT + 4 × (3/2)RT = 5RT + 6RT = 11RT; with no work, Q = ΔU = RT, option 2. Every printed line is correct, including the mole bookkeeping (2 mol diatomic to 4 mol monatomic) and the degrees-of-freedom reasoning in why_this_step. The solution states the fixed-volume assumption openly in both the approach and step 3 rather than hiding it, which is the right handling of an under-specified stem, so I filed no finding for it. The single common_mistakes entry is verified: all 4 mol dissociating gives 8 mol of atoms, U_f = 12RT and ΔU = 2RT, which is option 1. Not filed but worth a human's eye: no mistake entry covers option 3 (3RT), which is exactly the constant-pressure reading of this stem and therefore the most likely wrong route a student takes here."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:26:00+05:30"}
+}

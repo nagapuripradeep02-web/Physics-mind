@@ -1,0 +1,48 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q103",
+ "approach": "A drop in beat frequency after reducing the tension in A shows that the frequency of A moved closer to the frequency of B.",
+ "steps": [
+  {
+   "text": "Write the two frequencies that fit the original beat of 8 Hz with the frequency of A equal to 320 Hz.",
+   "equation": "f_B = 320 + 8 = 328 Hz, or f_B = 320 − 8 = 312 Hz"
+  },
+  {
+   "text": "Reducing the tension in a string lowers its frequency, so the new frequency of A is slightly below 320 Hz.",
+   "equation": "f_A(new) < 320 Hz"
+  },
+  {
+   "text": "Test each candidate. If f_B = 328 Hz, lowering f_A moves it away from 328 Hz, so the beat frequency would rise, not fall to 4 Hz.",
+   "equation": "|f_A(new) − 328| > 8"
+  },
+  {
+   "text": "If f_B = 312 Hz, lowering f_A moves it towards 312 Hz, so the beat frequency falls, matching the observed drop to 4 Hz.",
+   "equation": "|f_A(new) − 312| < 8",
+   "why_this_step": "Only the candidate that makes the gap shrink when f_A falls is consistent with the observation."
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "312 Hz"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 4,
+   "text": "Picking 328 Hz because it is also 8 Hz away from 320 Hz, without checking which direction the beat frequency actually moves."
+  }
+ ],
+ "concept_tags": [
+  "beats",
+  "beat frequency",
+  "effect of tension on frequency"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T05:52:21+05:30"
+ }
+}

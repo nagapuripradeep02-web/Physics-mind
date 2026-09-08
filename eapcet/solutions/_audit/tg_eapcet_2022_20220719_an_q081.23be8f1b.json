@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220719_an_q081",
+ "item_sha": "23be8f1b3667bceb66762c11c2953d3776b63e57b8695e0cb45e2840a48b7c6d",
+ "auditor_option": 3,
+ "auditor_value": "10⁻¹⁵ m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Recall question, answered from my own knowledge before reading the solution: the strong nuclear force acts over a few femtometres, so its range is of the order of 10⁻¹⁵ m, printed option 3. Both step lines are true and the femtometre-to-metre conversion is correct. The single common_mistakes entry is sound: the weak nuclear force range is of the order of 10⁻¹⁶ m, which is printed option 2, it is one order smaller than the strong-force range as the entry states, and confusing the two forces is a real error on a recall item like this. Printed options 1 and 4 are left unaccounted for, which the brief does not require. difficulty easy and mistake_type_hint concept both fit a one-line recall item whose only trap is which force is meant.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-B", "at": "2026-09-08T06:42:38+05:30"}
+}

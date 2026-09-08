@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q091",
+ "item_sha": "36bc60ff6cb61772d1238286129d64ef914eb301b5ad150ee9d0b15d0d017c7a",
+ "auditor_option": 3,
+ "auditor_value": "1 : √2",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Recalling the numerically different ratio √5 : 1, which belongs to a different satellite comparison, instead of deriving this ratio from vₒ = √(gR) and vₑ = √(2gR).",
+   "note": "There is no standard satellite comparison that gives √5 : 1, so the stated origin of the distractor is not a real result. The entry also describes no step a student takes on this question; it only says the student may recall a wrong number, which is a generic warning rather than an identified error.",
+   "fix": null}
+ ],
+ "verdict": "weak",
+ "notes": "Solved independently: vₒ = √(gR) near the surface and vₑ = √(2gR), so vₒ : vₑ = 1 : √2, option 3. Both printed equations are correct. common_mistakes[0] is a genuine and specific error, inverting the order of the ratio, and it reproduces option 1.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-08", "at": "2026-09-08T06:04:44+05:30"}
+}

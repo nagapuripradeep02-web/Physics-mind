@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240509_an_q093",
+ "approach": "The excess pressure inside a soap bubble, which has two surfaces, is balanced by the pressure of the oil column of the given height.",
+ "steps": [
+  {"text": "Write the excess pressure inside a soap bubble of radius R.",
+   "equation": "ΔP = 4T/R",
+   "why_this_step": "A soap bubble has two free surfaces, an inner and an outer one, so its excess pressure is twice that of a single liquid surface."},
+  {"text": "Write the pressure of the oil column of height h that balances this excess pressure.",
+   "equation": "ΔP = ρ_oil g h"},
+  {"text": "Equate the two expressions and solve for the surface tension T.",
+   "equation": "4T/R = ρ_oil g h  ⇒  T = ρ_oil g h R / 4"},
+  {"text": "Substitute the given values and evaluate.",
+   "equation": "T = 900 × 10 × 0.004 × 0.005 / 4 = 4.5×10⁻² N m⁻¹"}
+ ],
+ "final_answer": {"option": 3, "value": "4.5×10⁻² Nm⁻¹"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the excess pressure of a single free surface, 2T/R, instead of the soap bubble's two surfaces, 4T/R, gives 9×10⁻² N m⁻¹."},
+  {"option": 2, "text": "Mistaking the given 0.5 cm for the diameter and halving it again to 0.25 cm before using it as the radius gives 2.25×10⁻² N m⁻¹."}
+ ],
+ "concept_tags": ["excess pressure", "soap bubble", "surface tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:16:00+05:30"}
+}

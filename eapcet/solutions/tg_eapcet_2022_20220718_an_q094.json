@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q094",
+ "approach": "The sphere floats, so its total weight equals the weight of liquid displaced by the half of its outer volume that is submerged.",
+ "steps": [
+  {"text": "Write the volume of the hollow shell material, between the outer and inner radii.",
+   "equation": "V_material = (4/3)π(R³ − r³), R = 4 cm, r = 2 cm"},
+  {"text": "Write the volume of liquid displaced, which is half the outer sphere's volume since it floats half submerged.",
+   "equation": "V_displaced = (1/2) × (4/3)πR³"},
+  {"text": "Equate the weight of the sphere to the weight of the displaced liquid.",
+   "equation": "V_material × ρ_material = V_displaced × ρ_liquid",
+   "why_this_step": "A floating body displaces liquid whose weight equals its own weight."},
+  {"text": "Solve for the density of the material and substitute values.",
+   "equation": "ρ_material = R³ρ_liquid / [2(R³ − r³)] = 64 × 2.0 / (2 × 56) = 1.14 g/cm³"}
+ ],
+ "final_answer": {"option": 2, "value": "1.14 g/cm³"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the sphere as solid throughout instead of hollow, which uses the full outer volume as the material volume and gives 1.0 g/cm³, an unlisted value."}
+ ],
+ "concept_tags": ["floatation", "Archimedes' principle", "hollow sphere density"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:02:00+05:30"}
+}

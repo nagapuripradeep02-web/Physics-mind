@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q098",
+ "item_sha": "5c7daa8eb89b02cf4af0f21494a6c26489efb29fbcfe8264c15664cc6949000a",
+ "auditor_option": 4,
+ "auditor_value": "20%",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: T1 = 300 K, T2 = 432 K, ratio 1.44, sqrt 1.2, so the rms speed rises by 20 per cent, option 4. Verified in python. common_mistakes[0] points at option 1: sqrt(159/27) = 2.4267 gives a 142.67 per cent increase, which is the printed 142 per cent, so the pointer is right. common_mistakes[1] gives 44 per cent for the linear route, which matches my computation and is correctly left with option null. The question asks for \"the increase in the rms speed\" while the options are percentages; the solution reads that as a percentage increase, which is the only reading the options allow.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:27:00+05:30"}
+}

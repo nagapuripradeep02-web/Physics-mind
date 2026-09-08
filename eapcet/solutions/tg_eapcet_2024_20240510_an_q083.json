@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "approach": "Write the velocity as a function of time for vertical projectile motion, evaluate it at both instants, and compare the magnitudes since speed is asked, not velocity.",
+ "steps": [
+  {"text": "Write the velocity at time t, taking the upward direction as positive.",
+   "equation": "v(t) = 35 − 10t"},
+  {"text": "Evaluate the velocity at t = 3 s and t = 4 s.",
+   "equation": "v(3) = 35 − 30 = 5 ms⁻¹; v(4) = 35 − 40 = −5 ms⁻¹"},
+  {"text": "Take the magnitudes, since speed does not carry a sign, and form the ratio.",
+   "equation": "speed(3) : speed(4) = 5 : 5 = 1 : 1"}
+ ],
+ "final_answer": {"option": 2, "value": "1 : 1"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming the ratio of times, 3:4, directly gives the ratio of speeds, without checking that the body has already reversed direction and slowed back to the same speed by symmetry."}
+ ],
+ "concept_tags": ["vertically thrown body", "speed vs velocity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:39:00+05:30"}
+}

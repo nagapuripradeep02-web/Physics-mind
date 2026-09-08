@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_fn_q094",
+ "item_sha": "6aa6eff6e01ea3fdff7fed145bf54e36fb21826146c8ceecf3568b898e938daa",
+ "auditor_option": 1,
+ "auditor_value": "R^(3/2)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The question does not say whether R is each star's orbital radius or the separation between the stars. The dependence T ∝ R^(3/2) is the same under either reading, so no option changes, but the wording is ambiguous.",
+ "notes": "Solved independently first. Equal masses orbit their common centre, so with each orbital radius R the separation is 2R: GM²/(2R)² = Mω²R gives ω² = GM/(4R³), and T = 2π/ω gives T² = 16π²R³/(GM), so T ∝ R^(3/2), option 1. Verified with python (sympy). I also checked the other reading (R = separation): GM²/R² = Mω²(R/2) gives ω² = 2GM/R³ and still T ∝ R^(3/2), so the ambiguity does not change the option. Every printed equation follows from the one above it, including T² = 16π²R³/(GM) which sympy reproduces exactly. Both common_mistakes entries were recomputed and are true: with F ∝ 1/(2R) sympy gives ω² = GM/(2R²), so ω ∝ 1/R and T ∝ R (option 2); with the centripetal term written ω²R² sympy gives ω² = GM/(4R⁴), so ω ∝ R⁻² and T ∝ R² (option 3). Difficulty medium and mistake_type_hint application both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:00:00+05:30"}
+}

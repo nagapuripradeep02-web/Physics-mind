@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q084",
+ "item_sha": "17194bac6ee077d647a979b61167b4784aadd836b7f0dd991a0d790baa73d4d0",
+ "auditor_option": 4,
+ "auditor_value": "45 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: v_f = 1.25 × 40 = 50 m s⁻¹. Because gravity is vertical the horizontal component is unchanged, so the speeds and the drop are related by v_f² = v_i² + 2gh: 2500 − 1600 = 20h gives h = 45 m. The projection angle 30° is not needed and is correctly left unused. The mistake entry is right: using 40sin30° = 20 m s⁻¹ as the initial speed gives h = 105 m, which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:52:00+05:30"}
+}

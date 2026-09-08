@@ -1,0 +1,56 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220719_an_q088",
+ "approach": "At the top of the loop gravity alone supplies the centripetal force at the minimum speed, and energy is conserved from the top of the incline to that point.",
+ "steps": [
+  {
+   "text": "State the condition for the body to complete the loop with the minimum possible speed: at the top, gravity alone supplies the centripetal force.",
+   "equation": "mg = mv²/R, so v² = gR",
+   "why_this_step": "Any slower at the top and the body would leave the track before completing the circle."
+  },
+  {
+   "text": "Substitute the given radius and g to find the speed needed at the top of the loop.",
+   "equation": "v² = gR = 10 × 2 = 20 m² s⁻²"
+  },
+  {
+   "text": "Apply conservation of energy on the frictionless track, from the top of the incline (height h above the bottom) to the top of the loop, which is a height 2R above the bottom.",
+   "equation": "mgh = mg(2R) + ½mv²"
+  },
+  {
+   "text": "Cancel the mass and solve for h using the values found above.",
+   "equation": "gh = 2gR + ½(gR) = (5/2)gR, so h = (5/2) × 2 = 5 m"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "5 m"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Mistaking the radius of the loop for the required drop height, since both are lengths in metres, gives h = 2 m directly without any calculation."
+  },
+  {
+   "option": 2,
+   "text": "Reading the given 2 m as the diameter of the loop instead of the radius, so radius = 1 m, then applying h = 5R/2 gives 5/2 m."
+  },
+  {
+   "option": 4,
+   "text": "Recalling the minimum-height rule for completing a vertical loop as h = 5R instead of h = 5R/2 gives 5 × 2 = 10 m."
+  }
+ ],
+ "concept_tags": [
+  "energy conservation",
+  "vertical circular motion",
+  "minimum speed at the top of a loop"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p1-05-R1",
+  "at": "2026-09-08T06:18:21+05:30"
+ }
+}

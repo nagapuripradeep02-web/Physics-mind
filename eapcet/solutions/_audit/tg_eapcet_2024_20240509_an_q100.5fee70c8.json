@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q100",
+ "item_sha": "5fee70c86894dfa614e6b34eacd8e528a6de323a9e13dc760b12ce18ae774450",
+ "auditor_option": 1,
+ "auditor_value": "4 and 2",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. The three pairs give beat frequencies 1, 1 and 2 per second, so 4 beats are produced per second. For what is heard, the sum of the three equal-amplitude waves is cos(2πnt)[1 + 2cos(2πt)], so the loudness follows [1 + 2cos(2πt)]², which reaches a maximum twice in each second: 2 beats heard. Answer 4 and 2, option 1. Verified in python (sympy): the trigonometric identity in step 2 is exact, and the envelope squared is 9 at t = 0, 0 at t = 1/3, 1 at t = 1/2, 0 at t = 2/3 and 9 at t = 1, exactly as the step prints. Every printed equation follows from the one above it, and the why_this_step on step 2 (combining the outer pair and adding the middle wave gives a fast oscillation inside a slow envelope) is the correct reason for that line. All three common_mistakes entries were checked and each points at the option whose printed pair its text produces: option 2 for hearing every produced beat, option 4 for swapping the two counts, option 3 for using only the outer-pair beat frequency for both. Difficulty hard and mistake_type_hint concept both fit. No plain-language defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:09:00+05:30"}
+}

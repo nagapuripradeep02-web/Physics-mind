@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q099",
+ "approach": "Find how far the temperature can move away from 25 °C, in either direction, before the thermal expansion of the scale's length produces an error larger than the stated 0.5 mm accuracy.",
+ "steps": [
+  {"text": "Write the length error produced by a temperature change ΔT away from 25 °C.",
+   "equation": "δL = Lα|ΔT|"},
+  {"text": "Set this error equal to the allowed 0.5 mm over the metre length and solve for the allowed |ΔT|.",
+   "equation": "0.5 = 1000 × 10⁻⁵ × |ΔT| → |ΔT| = 50 °C"},
+  {"text": "The scale can be used within 50 °C on either side of the temperature at which it was made.",
+   "equation": "range = (25 − 50) °C to (25 + 50) °C = −25 °C to +75 °C"}
+ ],
+ "final_answer": {"option": 3, "value": "−25°C to +75°C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using 2 × 10⁻⁵ instead of the given 10⁻⁵ for α gives an allowed change of only 25 °C, and applying it symmetrically but forgetting the 25 °C base gives 0°C to +50°C."},
+  {"option": 4, "text": "Using 2 × 10⁻⁵ instead of the given 10⁻⁵ for α gives an allowed change of only 25 °C, and extending it in only the warmer direction from 25 °C gives +25°C to +50°C."}
+ ],
+ "concept_tags": ["thermal expansion", "linear expansion coefficient", "measurement accuracy"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:32:00+05:30"}
+}

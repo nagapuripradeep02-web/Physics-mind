@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2024_20240510_fn_q095",
+ "approach": "The heat lost by the warm water as it cools equals the heat gained by the ice as it melts and then warms to the common final temperature.",
+ "steps": [
+  {"text": "Let the final temperature be T and write the heat lost by the water cooling from 70 °C.",
+   "equation": "Q_lost = 74 × 1 × (70 − T)"},
+  {"text": "Write the heat gained by the ice, first melting completely and then warming the resulting water to T.",
+   "equation": "Q_gained = 37 × 80 + 37 × 1 × (T − 0)",
+   "why_this_step": "All the ice melts because the heat available from the water cooling to 0 °C, 74 × 70 = 5180 cal, is more than the 37 × 80 = 2960 cal needed to melt it."},
+  {"text": "Set the heat lost equal to the heat gained and solve for T.",
+   "equation": "74(70 − T) = 2960 + 37T"},
+  {"text": "Expand and collect terms.",
+   "equation": "5180 − 74T = 2960 + 37T → 2220 = 111T → T = 20 °C"}
+ ],
+ "final_answer": {"option": 3, "value": "20°C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Averaging the two starting temperatures directly, (70 + 0)/2, gives 35 °C, ignoring both the masses and the latent heat."},
+  {"option": null, "text": "Forgetting the latent heat needed to melt the ice and balancing only specific heats gives about 46.7 °C, which matches no option because the ice must fully melt first."}
+ ],
+ "concept_tags": ["calorimetry", "latent heat of fusion", "method of mixtures"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:21:00+05:30"}
+}

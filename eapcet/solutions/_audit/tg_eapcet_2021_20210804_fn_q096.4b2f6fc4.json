@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q096",
+ "item_sha": "4b2f6fc47493064e3cafa610a3289df61f073b3bf94b518d6444c084e7c08e3a",
+ "auditor_option": 1,
+ "auditor_value": "80π W",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: ṁ = ρAv = 1000 × π(0.01)² × 10 = π kg/s; P = ṁ(v²/2 + gh) = π(50 + 30) = 80π W ≈ 251 W. Every printed line follows from the one above it, and both mistake entries reproduce their named options exactly (30π from the potential-energy term alone, 50π from the kinetic term alone).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:09:00+05:30"}
+}

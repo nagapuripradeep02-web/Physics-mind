@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q114",
+ "approach": "Write the approaching and receding Doppler frequencies for the same observer speed, use their given ratio to solve for the observer's speed.",
+ "steps": [
+  {
+   "text": "Write the frequency heard while approaching and while receding, for a stationary source and observer speed u.",
+   "equation": "n₁ = f(v + u)/v,  n₂ = f(v − u)/v"
+  },
+  {
+   "text": "Take the ratio of the two, which cancels the source frequency f and the speed of sound v.",
+   "equation": "n₁/n₂ = (v + u)/(v − u) = 71/65"
+  },
+  {
+   "text": "Cross-multiply and collect terms in u.",
+   "equation": "65(v + u) = 71(v − u)  ⟹  136u = 6v"
+  },
+  {
+   "text": "Solve for u using v = 340 m s⁻¹.",
+   "equation": "u = 6×340/136 = 15 m s⁻¹"
+  },
+  {
+   "text": "Convert to km/h.",
+   "equation": "u = 15 × 18/5 = 54 kmph"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "54 kmph"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 2,
+   "text": "Making an arithmetic slip while cross-multiplying the ratio 71:65 and reaching 15 kmph, an answer that is 15 m s⁻¹ read directly in kmph without converting the units."
+  }
+ ],
+ "concept_tags": [
+  "Doppler effect",
+  "moving observer",
+  "ratio of frequencies"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:19:21+05:30"
+ }
+}

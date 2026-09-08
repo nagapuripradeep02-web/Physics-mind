@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q098",
+ "item_sha": "83e21be665c911f78ff692ce6bdbde1c36adc919e307855931211018e55c97a0",
+ "auditor_option": 4,
+ "auditor_value": "Isotopes",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Focusing only on the mass number change and concluding the nuclei must be isobars, without checking that the atomic number actually stayed the same.",
+   "note": "The stated reason cannot lead to isobars. Isobars are nuclei with the SAME mass number, and here the mass number falls by 4, so looking at the mass number rules isobars out rather than suggesting them. The real route to this option is mixing up the two definitions: seeing that one of the two numbers is unchanged and calling that isobars instead of isotopes.",
+   "fix": "Mixing up the definitions: isobars have the same mass number, isotopes the same atomic number. Here the atomic number is unchanged and the mass number falls by 4, so P and Q are isotopes, not isobars."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently: one alpha decay gives ΔA = −4, ΔZ = −2; two beta-minus decays give ΔA = 0, ΔZ = +2. Net ΔZ = 0 and ΔA = −4, so P and Q have the same atomic number and different mass numbers, which makes them isotopes. Option 4. All four step equations are correct. common_mistakes[1] (option 3, isotones) is correct and correctly mapped; I checked that the neutron number does change here (by −4), so isotones is genuinely excluded. Option 2 (isomers) is unaddressed, which is not a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:38:00+05:30"}
+}

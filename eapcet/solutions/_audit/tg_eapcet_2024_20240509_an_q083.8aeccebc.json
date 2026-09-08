@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "8aeccebc343daea8291a6bcc88754f83e02bbb3c4983c055cc9c044a9cd7e9d9",
+ "auditor_option": 4,
+ "auditor_value": "0.2 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved blind first: the stone is thrown from the TOP end of the window, so by symmetry it re-crosses that level moving down at 8 m/s; 1.8 = 8t + 5t^2 gives 5t^2 + 8t - 1.8 = 0, roots t = 0.2 s and t = -1.8 s. Matches the solution. Recomputed every printed line: 2u/g = 1.6 s, the quadratic and both its roots, and all three common_mistakes routes. cm[0] u/g = 0.8 s hits option 1; cm[1] 2u/g = 1.6 s hits option 2; cm[2] v_bottom = sqrt(64 + 2*10*1.8) = 10 m/s and v/g = 1.0 s hits option 3, and its stated cause is exactly right since the correct time is (v - u)/g = (10 - 8)/10 = 0.2 s, an independent confirmation of the final answer. Checked and did not file: step[0] computes a time (1.6 s) that is never reused, while the approach announces a search for a speed; the step text and its why_this_step are both true and they do deliver the 8 m/s used in step[1], so the chain is coherent rather than self-contradictory. Plain-language pass: no idioms, metaphors, personification, or 'simply/obviously/just'.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T06:51:23+05:30"}
+}

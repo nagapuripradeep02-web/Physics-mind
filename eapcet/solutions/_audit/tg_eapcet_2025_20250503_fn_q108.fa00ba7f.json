@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q108",
+ "item_sha": "fa00ba7f8dc299bb42f7e5edf11575a94defe17c10786dacd86702533b3d1e14",
+ "auditor_option": 4,
+ "auditor_value": "300 m",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: equal heights at t = 2 s and t = 8 s are symmetric about t_top = 5 s, so u sin45° = g t_top = 50 and u = 50√2 m s⁻¹. The horizontal speed u cos45° = 50 m s⁻¹ is constant, so the separation is 50 × (8 − 2) = 300 m. Each printed line follows from the one above. The mistake entry is correct: using the full flight time 10 s gives 500 m, printed option 1.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:53:00+05:30"}
+}

@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q119",
+ "item_sha": "08720ba8f8afbaa34d7acc5245bb8840398d344ba71ef9421e0afff2806e0d7e",
+ "auditor_option": 2,
+ "auditor_value": "13.2×10⁻⁸ N",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: F = 6πηrv = 6π × 2×10⁻⁵ × 0.5×10⁻³ × 0.7 = 1.319×10⁻⁷ N = 13.19×10⁻⁸ N, matching option 2. Both mistake entries were checked: using 1 mm as the radius gives 26.4×10⁻⁸ N (option 1) and a 3π constant gives 6.6×10⁻⁸ N (option 3).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:45:00+05:30"}
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q102",
+ "approach": "Temperature measures the average kinetic energy per molecule, which is the same for every gas, while the rms speed depends on molecular mass.",
+ "steps": [
+  {"text": "Temperature is defined through the average kinetic energy of a molecule, so statement a is true.",
+   "equation": "average KE per molecule = (3/2)kT"},
+  {"text": "This average kinetic energy at a given temperature is the same for every gas, so temperature does not depend on the nature of the gas, making statement b false.",
+   "why_this_step": "Two different gases at the same temperature have molecules with the same average kinetic energy, even though their masses differ."},
+  {"text": "The rms speed depends on molecular mass, so a heavier molecule moves slower and a lighter molecule moves faster at the same temperature. Statement c is true and statement d is false.",
+   "equation": "v = √(3kT/m)"}
+ ],
+ "final_answer": {"option": 3, "value": "a & c are true"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Thinking temperature depends on the type of gas because different gases move at different speeds, when it is the average kinetic energy, not the speed, that stays fixed by temperature."},
+  {"option": 4, "text": "Mixing up which molecule is faster and concluding the lighter molecule has the lower speed, when the heavier molecule is the one that moves slower."}
+ ],
+ "concept_tags": ["kinetic theory of gases", "temperature and kinetic energy", "rms speed and molecular mass"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-13", "at": "2026-09-08T14:00:00+05:30"}
+}

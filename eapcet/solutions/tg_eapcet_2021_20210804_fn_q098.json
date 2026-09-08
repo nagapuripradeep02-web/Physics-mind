@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q098",
+ "approach": "A flat sheet expands in area, so its own coefficient of expansion is the areal (superficial) expansivity, which for any solid is twice the linear expansivity.",
+ "steps": [
+  {"text": "Write the standard relation between the linear expansivity α and the areal expansivity β for a solid.",
+   "equation": "β = 2α",
+   "why_this_step": "Every length in a flat sheet grows by the factor (1+αΔT), so its area grows by (1+αΔT)² ≈ 1+2αΔT for small αΔT."},
+  {"text": "For a rectangular sheet, the areal expansivity β is the coefficient describing its own expansion.",
+   "equation": "linear expansivity : areal expansivity = α : 2α"},
+  {"text": "Simplify the ratio.",
+   "equation": "α/(2α) = 0.5"}
+ ],
+ "final_answer": {"option": 2, "value": "0.5"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Writing the ratio the other way round, areal expansivity to linear expansivity, gives 2 instead of 0.5."},
+  {"option": 4, "text": "Comparing the cubical expansivity 3α with the areal expansivity 2α instead of the linear expansivity with the areal expansivity gives 1.5."}
+ ],
+ "concept_tags": ["thermal expansion", "areal expansivity", "linear expansivity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:28:00+05:30"}
+}

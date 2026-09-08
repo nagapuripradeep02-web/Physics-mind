@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q111",
+ "item_sha": "af551e9993010a204ada72561e4bebf2658886542ce7f644e679e8715f75489f",
+ "auditor_option": 3,
+ "auditor_value": "1 : 1",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own reading: the average translational kinetic energy per molecule is (3/2)kT, which contains only the temperature. Hydrogen and oxygen are at the same temperature, so the ratio is 1 : 1, option 3. The same conclusion holds per mole, (3/2)RT, so the answer does not depend on whether the question means per molecule or per mole. Checked and did not file: the why_this_step says the mass \"cancels out of the kinetic energy expression once written in terms of temperature\", which is loosely worded but true in substance, since (1/2)m<v²> becomes (3/2)kT with no m left. The single mistake entry names a real belief, that a heavier molecule carries more kinetic energy, and correctly carries option null because the molar-mass ratio 1:16 is not among the listed options.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:32:00+05:30"}
+}

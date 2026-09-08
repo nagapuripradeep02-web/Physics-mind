@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q103",
+ "item_sha": "5d02261201d2f45373ab065576d3fa471c60acaa5e7b31fee2966eea6297b84b",
+ "auditor_option": 4,
+ "auditor_value": "0.2 m",
+ "findings": [
+  {"grade": "wrong",
+   "field": "steps[2].text",
+   "quote": "A particle's speed is proportional to cos of its phase.",
+   "note": "The particle velocity ∂y/∂t = −0.4 cos(kx − ωt) is proportional to the cosine; the speed is the magnitude of that, so it is proportional to |cos|. This question turns on exactly the speed-versus-velocity distinction, and the sentence as printed erases it — read literally it would force equal cosines and give Δx = λ, contradicting the same step's own conclusion that a phase gap of π also works.",
+   "fix": "A particle's velocity is proportional to the cosine of its phase, and its speed is the magnitude of that velocity."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "My own solve: k = 5π rad m⁻¹ so λ = 2π/5π = 0.4 m. Particle velocity is −0.4 cos(kx − ωt); two particles keep equal speed at every instant only when |cos(kx₁ − ωt)| = |cos(kx₂ − ωt)| for all t, which requires kΔx = nπ. The smallest non-zero separation is Δx = π/k = 0.2 m = λ/2 — option 4, the solution's answer. I confirmed numerically that Δx = 0.2 m and 0.4 m hold equal speed at all sampled times while Δx = 0.1 m does not. The remaining equations and the why_this_step (velocities exact negatives, speeds equal) are correct, and the common_mistakes entry correctly identifies 0.4 m as the separation for identical velocity. Difficulty 'hard' is defensible for this paper.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-01", "at": "2026-09-08T06:28:00+05:30"}
+}

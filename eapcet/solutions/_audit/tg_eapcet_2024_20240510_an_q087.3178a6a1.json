@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q087",
+ "item_sha": "3178a6a1554349c402e88003f6aa0200e9063d7713ace2fd9a7dfb07a99cdd11",
+ "auditor_option": 1,
+ "auditor_value": "1 : 7",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Own solve: 0.5 × 10 = 0.5v_P + 1 × v_Q and v_Q − v_P = 0.4 × 10 = 4 give v_P = 2/3 m s⁻¹ and v_Q = 14/3 m s⁻¹, ratio 1:7. Every step equation follows from the one above it. Both mistake entries are genuine student errors on this question and land on the options they name.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

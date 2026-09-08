@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q116",
+ "item_sha": "07e40869c3b2f766b70c2be94522793309fdc9c72f8997a1b5c233d19afc5576",
+ "auditor_option": 1,
+ "auditor_value": "2T",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: M_A/M_B = 8 × 2^(−t/T) ÷ 2^(−t/2T) = 8 × 2^(−t/2T). Setting this to 4 gives 2^(−t/2T) = 1/2, so t = 2T. Option 1. Checked numerically for t = 0.5T, T, 2T, 3T, 4T; only t = 2T gives a ratio of exactly 4. The solution's substitution m = t/2T with A completing 2m half-lives is a different but valid route, and each of its four equations follows from the one above: 8/2^(2m) ÷ 1/2^m does simplify to 8/2^m. Both common_mistakes entries reproduce the option they point at (option 2 from converting m back with T instead of 2T; option 3 from reading 2^m = 2 as m = 2, giving t = 4T).",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:21:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_fn_q087",
+ "item_sha": "0aee68f52013202d5caf63cbe48d52a1c61a78510cebb3bdb7ea43ba43c1f07d",
+ "auditor_option": 1,
+ "auditor_value": "h[(1+e²)/(1−e²)]",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "total = h + 4(e²h + e⁴h + e⁶h + …)",
+   "note": "The multiplier is 2, not 4: each rebound of height e^{2k}h is climbed once and fallen once, so the total is h + 2(e²h + e⁴h + …). The printed factor 4 gives h(1+3e²)/(1−e²), which is not among the options, and it contradicts both this step's own text (\"twice every rebound height\") and the next step, which uses 2. A student copying this line reaches a non-existent option.",
+   "fix": "total = h + 2(e²h + e⁴h + e⁶h + …)"}
+ ],
+ "verdict": "harmful",
+ "notes": "Own solve: rebound heights are e²h, e⁴h, …, so total path = h + 2h e²/(1−e²) = h(1+e²)/(1−e²), option 1. The final answer and the last two step equations are correct; only steps[1].equation is false. The mistake entry verifies: counting the rise only gives h/(1−e²), which is not printed.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-08T06:05:28+05:30"}
+}

@@ -1,7 +1,8 @@
 # Audit brief — worked solutions for TG EAPCET physics questions
 
-You audit ~15 worked solutions from ONE chapter, written by another agent who never saw the
-official key. Your dispatch names your SLICE file. Everything else is here.
+You audit worked solutions written by another agent who never saw the official key — usually
+~15 from ONE chapter, sometimes a handful of small slices from several chapters. Your dispatch
+names your slice file or files. Everything else is here.
 
 Input:   the slice file named in your dispatch, under `eapcet/solutions/_audit_slices/`
 Output:  `C:\Tutor\physics-mind-eapcet-corpus\eapcet\solutions\_audit\<audit_file>` — one file
@@ -25,8 +26,11 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
 
 ## Method — in this order, per item
 
-1. **Solve it yourself first.** Read only the question and the options. Reach your own option
-   and value BEFORE reading the solution's steps. Compute every number with python (write the
+1. **Solve it yourself first.** Every slice comes with a `.questions.json` twin holding ONLY
+   the questions and options. Open that file first, solve every item, write your options and
+   values to a scratch file named with your agent label (`W02-U-p1-04_solves.txt` — the
+   scratchpad is shared, a generic name gets overwritten), and only then open the full slice.
+   Reach your own option and value BEFORE reading the solution's steps. Compute every number with python (write the
    script to a file and run it; a multi-line `-e` string dies silently in this shell). Write
    your option and value down — they go into the output as `auditor_option`, `auditor_value`.
 2. **Then read the steps, line by line.** Every `equation` must follow from the one above it:
@@ -39,7 +43,25 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
      correct alternative method is the commonest defect in this bank's audits** — a valid
      alternative formula called wrong, an exact value called "rounding". That is a WRONG.
    - An entry whose `option` does not match the number its text says it produces (the text
-     computes 32 J, option 1 prints 32 J, but `option` says 3).
+     computes 32 J, option 1 prints 32 J, but `option` says 3), or whose stated cause cannot
+     produce that number at all (a "wrong sign" that gives 10¹⁶ tagged to the 10¹⁰ option).
+     An entry with `option: null` is legitimate when its slip lands on no printed option; it is
+     a finding only if the text's number does match a printed option after all.
+   - For options made of statements ("b and d are true"), the entry must account for every
+     statement the wrong option asserts; a route that explains one of two is WEAK.
+   - A slip that lands on a printed option UP TO SIGN (the route gives −2av², option 4 prints
+     2av²) has found the distractor built for it: the entry should name that option, and an
+     `option: null` there is WEAK, not a pass.
+   - A MISSING mistake — the list is empty, or non-empty but leaves out the paper's obvious
+     distractor (R/√3 printed beside the R/√2 answer) — is WEAK when the slip lands on a printed
+     option by the rounding rule below, whatever else the list holds. An empty list on its own
+     is a choice the author brief allows. For an omission the `quote` is `null` and the `field`
+     is the bare array name; never quote a neighbouring entry as if it were the defect.
+   - An `equation` holding a short sentence on a pure recall item (the range of a force) is not
+     a finding; the field is optional and the text is the content.
+   - One finding per defective FIELD: a wrong final value and the step line that produced it
+     are two findings with two `field` paths. For a whole-array field write the bare name
+     (`common_mistakes`), for one entry the index (`common_mistakes[1].text`).
    - The solution contradicting ITSELF is the highest-yield signature: an approach that names
      one principle and steps that use another; a `why_this_step` that disagrees with its own
      equation; a `final_answer.value` that is not what the last step reached.
@@ -57,9 +79,15 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
 - **WRONG** — incorrect but not exam-costing: a false reason in `why_this_step`, an `approach`
   that misexplains, a mistake entry pointing at the wrong option, a wrong unit in a line whose
   number is right.
-- **WEAK** — quality: plain-language register, a step that says nothing (`"Evaluate."` with no
-  equation), duplicated prose, a vague mistake entry that is a generic warning rather than an
+- **WEAK** — quality: plain-language register, a step whose text says nothing AND carries no
+  equation (`"Evaluate."` beside an equation is fine: the equation is the content), duplicated prose,
+  a physically imprecise statement whose numerical consequence is nil on this question (an
+  `approach` that omits a 0.1% term the equation keeps), a vague mistake entry that is a generic warning rather than an
   error made on this question, an off `difficulty` or `mistake_type_hint`.
+
+False algebra INSIDE a `common_mistakes` entry (a wrong square root in the text of a mistake) is
+WRONG, not HARMFUL: the entry is labelled as the error route, so a student does not copy it as
+working. It becomes HARMFUL only when the entry condemns the correct method.
 
 ## Traps that produced false findings before
 
@@ -72,7 +100,14 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
 - Before proposing replacement wording, check it against THIS question. A fix that is itself
   wrong is worse than no finding.
 - Do not grade the exam's question. If the question is defective (no option fits your own
-  solve), say so in `notes` and grade the solution on how it handled that.
+  solve), say so in `question_defect` and grade the solution on how it handled that. An option
+  that is inconsistent with itself (₁₅Si³¹ pairs Z = 15 with silicon) is a question defect too;
+  record it, and it changes no verdict. A
+  computed value that only ROUNDS to the printed option (0.53 mm/s against a printed
+  0.5 mm/s, with the next option 1.5 mm/s) is a match when the solution says so in its last
+  step; it is a finding only if the solution hides the rounding or the next option is close. A
+  solution that DECLARES an assumption the stem omits (isobaric, rigid walls) and reaches the
+  only option that fits is not a finding; one that imports the assumption silently is WEAK.
 
 ## Output — one file per item, exact shape
 
@@ -90,10 +125,14 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
    "fix": "replacement wording you have checked, or null"}
  ],
  "verdict": "wrong",
- "notes": "anything else: the question itself defective, a convention the exam leaves open, or null",
- "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-05", "at": "2026-09-09T12:00:00+05:30"}
+ "question_defect": "a defect in the QUESTION itself (options in cm for a product of two lengths; a misprinted unit), or null; several defects go in one string separated by ' | '",
+ "notes": "anything else: a convention the exam leaves open, what you checked and did not file, or null",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "<the agent label in your dispatch>", "at": "<ISO-8601, +05:30>"}
 }
 ```
+
+- `question_defect` is about the exam's question, never about the solution; it is collected for
+  the founder separately and does not change the verdict.
 
 - `field` names one field: `approach`, `steps[2].equation`, `steps[0].why_this_step`,
   `final_answer`, `common_mistakes[1].text`, `difficulty`, `mistake_type_hint`.

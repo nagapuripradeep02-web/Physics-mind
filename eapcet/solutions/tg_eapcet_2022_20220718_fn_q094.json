@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_fn_q094",
+ "approach": "The speed of the water leaving the hole comes from Torricelli's law, and the flow rate then fixes the area, and so the diameter, of the hole.",
+ "steps": [
+  {"text": "Find the speed of the water jet from the hole using Torricelli's law.",
+   "equation": "v = √(2gh) = √(2 × 10 × 20) = 20 m/s",
+   "why_this_step": "A small hole deep below an open, wide tank behaves like free fall from the water surface to the hole."},
+  {"text": "Use the flow rate to find the cross-sectional area of the hole.",
+   "equation": "A = Q/v = 3.08×10⁻⁵ / 20 = 1.54×10⁻⁶ m²"},
+  {"text": "Find the radius from the area, then double it for the diameter.",
+   "equation": "r = √(A/π) = √(1.54×10⁻⁶/π) = 7.0×10⁻⁴ m"},
+  {"text": "Evaluate the diameter.",
+   "equation": "d = 2r = 1.4×10⁻³ m = 1.4 mm"}
+ ],
+ "final_answer": {"option": 3, "value": "1.4 mm"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Using v = √(gh) instead of √(2gh) for the outflow speed gives a diameter of about 1.6 mm."}
+ ],
+ "concept_tags": ["Torricelli's law", "equation of continuity", "efflux speed"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:22:00+05:30"}
+}

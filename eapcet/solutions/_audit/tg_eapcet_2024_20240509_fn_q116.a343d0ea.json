@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q116",
+ "item_sha": "a343d0ea52a78e7ae7297c588a09fb4b169d4d518b486af3719d5736d0fd81e1",
+ "auditor_option": 4,
+ "auditor_value": "24 minutes",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently with python: 28 percent decayed leaves 0.72 of the sample, 82 percent decayed leaves 0.18, and 0.18/0.72 = 0.25 exactly, which is two half-lives, so the gap is 2 × 12 = 24 minutes. Option 4. log2(0.72/0.18) = 2.000 confirms the count is exact, not rounded. All four step equations follow from the one above. common_mistakes[0] (option 3, assuming one half-life, 12 minutes) and common_mistakes[1] (option 2, assuming one and a half half-lives, 18 minutes) both reproduce the option they point at.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:28:00+05:30"}
+}

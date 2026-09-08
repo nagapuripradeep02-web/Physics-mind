@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "item_sha": "c145e157ada6300b3a5f7157a55e730a2a96fc7526d363ef41257bd02b1d8ae7",
+ "auditor_option": 1,
+ "auditor_value": "2.2 s",
+ "findings": [
+  {"grade": "weak",
+   "field": "steps[2].text",
+   "quote": "Evaluate.",
+   "note": "This step's text carries no content of its own; step 2 has already reached t = 20/9 and this step only converts that to a decimal. A step should state what is being done and why.",
+   "fix": "Convert the fraction 20/9 to a decimal to compare it with the options."}
+ ],
+ "verdict": "weak",
+ "notes": "Solved independently before reading the solution: taking the deceleration due to air resistance as uniform, v² = u² + 2as gives a = 18²/(2×20) = 8.1 m s⁻², and t = v/a = 18/8.1 = 2.22 s; the same number comes from t = s/((u+v)/2) = 20/9 = 2.22 s, so the answer is 2.2 s, option 1. The approach is honest that this is an estimate, and the average-speed route is the intended one. Both common_mistakes entries were checked numerically: 18/10 = 1.8 s is option 3 and √(2×20/10) = 2 s is option 4, as stated. One physics caveat worth recording: with real air resistance the acceleration decreases during the fall, so v(t) is concave and the true time is somewhat less than 20/9 s; the constant-acceleration estimate is an upper bound. The question says 'nearly' and 2.2 s is the closest option, so this does not change the answer and I have not filed it as a finding.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T03:13:00+05:30"}
+}

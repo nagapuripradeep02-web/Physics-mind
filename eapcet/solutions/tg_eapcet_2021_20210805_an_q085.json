@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210805_an_q085",
+ "approach": "The speed at the top of the path is the horizontal component of the launch speed, so the given condition fixes the angle of projection.",
+ "steps": [
+  {"text": "Set the launch speed equal to twice the speed at maximum height, which is the horizontal component u cosθ.",
+   "equation": "u = 2(u cosθ) → cosθ = 1/2 → θ = 60°"},
+  {"text": "Write the ratio R/H using R = u²sin2θ/g and H = u²sin²θ/(2g).",
+   "equation": "R/H = sin2θ/(sin²θ/2) = 4cosθ/sinθ = 4cotθ"},
+  {"text": "Substitute θ = 60°.",
+   "equation": "R/H = 4cos60°/sin60° = 4×(1/2)/(√3/2) = 4/√3"}
+ ],
+ "final_answer": {"option": 1, "value": "4/√3"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Forgetting to square sinθ in the maximum-height formula, using H = u²sinθ/(2g) instead of u²sin²θ/(2g), gives R/H = 4cosθ = 2."}
+ ],
+ "concept_tags": ["projectile motion", "range and maximum height", "speed at maximum height"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-03", "at": "2026-09-08T15:10:00+05:30"}
+}

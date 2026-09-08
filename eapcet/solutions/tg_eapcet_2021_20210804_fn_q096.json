@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_fn_q096",
+ "approach": "The pump must supply the rate of kinetic energy gain and the rate of potential energy gain of the water it lifts and ejects.",
+ "steps": [
+  {"text": "Find the mass flow rate of the water through the hose.",
+   "equation": "ṁ = ρAv = 1000 × π(0.01)² × 10 = π kg/s"},
+  {"text": "Write the power as the rate of kinetic energy delivered plus the rate of potential energy gained in rising 3 m.",
+   "equation": "P = ṁ(v²/2 + gh)",
+   "why_this_step": "The water starts at rest at the basement floor and leaves the window with speed v at height h, so the pump supplies both energies per second."},
+  {"text": "Substitute the values and evaluate.",
+   "equation": "P = π × (10²/2 + 10 × 3) = π × (50 + 30) = 80π W"}
+ ],
+ "final_answer": {"option": 1, "value": "80π W"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Including only the potential energy term and forgetting the kinetic energy the water carries gives 30π W."},
+  {"option": 3, "text": "Including only the kinetic energy term and forgetting the height the water is lifted through gives 50π W."}
+ ],
+ "concept_tags": ["work-energy theorem", "power", "fluid flow through a pipe"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:10:00+05:30"}
+}

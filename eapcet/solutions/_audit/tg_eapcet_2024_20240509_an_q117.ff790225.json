@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q117",
+ "item_sha": "ff790225561dd022b4575342def59b9d4688051d0d5172ea612bdb1d15841325",
+ "auditor_option": 4,
+ "auditor_value": "4×10¹²",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently with python: E = 200 MeV = 3.204e-11 J; n = 128 / 3.204e-11 = 3.995e12 per second (exactly 4.0e12 if 1 MeV is taken as 1.6e-13 J). Option 4. Each step equation follows from the one above. Both common_mistakes entries check out numerically: 100 MeV gives 7.99e12, matching the printed 8×10¹² (option 2), and 400 MeV gives 2.00e12, matching the printed 2×10¹² (option 3). Option 1 (6×10¹²) is unaddressed, which is not a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:24:00+05:30"}
+}

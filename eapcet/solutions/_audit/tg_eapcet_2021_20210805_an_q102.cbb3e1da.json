@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210805_an_q102",
+ "item_sha": "cbb3e1da6518710c5c9ed3e218ba57eda651778517a4dfe6ea882f57b904b3a2",
+ "auditor_option": 4,
+ "auditor_value": "0.5",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: both gases share V and T, so rho = PM/(RT) and rho1/rho2 = (P1/P2)(M1/M2) = (2/3)(3/4) = 0.5, option 4. The gases are monatomic, so the atomic-mass ratio 3:4 is also the molar-mass ratio, which the solution uses correctly. Verified in python: 0.5 exactly; the inverted ratio gives 2.0 (matches common_mistakes[0] and option 2) and the mass-only route gives 0.75 (matches common_mistakes[1]). Both mistake entries are genuine routes and their stated numbers are right.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:19:00+05:30"}
+}

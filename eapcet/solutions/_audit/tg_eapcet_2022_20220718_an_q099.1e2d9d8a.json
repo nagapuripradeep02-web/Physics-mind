@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q099",
+ "item_sha": "1e2d9d8ac86520cd391cf1a941efe4fa01861c2509d7ecc99067f598b324fd4d",
+ "auditor_option": 4,
+ "auditor_value": "700 J",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently first. Isobaric expansion gives W = pΔV = nRΔT = 200 J, and Q = nC_pΔT = (7/2)nRΔT = (7/2)(200) = 700 J, option 4. Checked in python. A cross-check by the first law agrees: ΔU = nC_vΔT = (5/2)(200) = 500 J, so Q = ΔU + W = 700 J. Every printed equation follows from the one above it. Both common_mistakes entries were recomputed and both are true and correctly targeted: C_v = 3R gives ΔU = 600 J and Q = 800 J, which is the option-2 value; C_p = 9/2 R gives Q = 900 J, which is the option-3 value. Difficulty easy and mistake_type_hint calculation both fit a two-line substitution. No plain-language defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-mixed-R1", "at": "2026-09-08T03:05:00+05:30"}
+}

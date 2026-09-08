@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230514_an_q113",
+ "item_sha": "f0b8d22397c37064d3924f7726b864640932c9e1f2198b1a200ebe4a59e1ed34",
+ "auditor_option": 1,
+ "auditor_value": "1.56×10⁸",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently with python: E = 200 MeV = 200 × 1.602e-13 = 3.204e-11 J; n = P/E = 5e-3 / 3.204e-11 = 1.5605e8 per second (1.5625e8 if 1 MeV is taken as 1.6e-13 J). Both round to 1.56×10⁸, option 1. Every step equation follows from the one above it, including the milliwatt conversion. common_mistakes[0] checks out numerically: using 100 MeV gives 3.121e8, which is the printed option 3. common_mistakes[1] also checks out: dividing 5 W by the energy per fission gives 1.56e11, which matches no printed option, and its option field is correctly null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T03:17:00+05:30"}
+}

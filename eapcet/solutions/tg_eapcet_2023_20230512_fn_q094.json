@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q094",
+ "approach": "The same heat produces a temperature rise inversely proportional to the mass, since both objects are made of the same material and so share the same specific heat capacity.",
+ "steps": [
+  {"text": "Write the heat Q that raises the object of mass 2m from T to 2T.",
+   "equation": "Q = (2m)c(2T − T) = 2mcT"},
+  {"text": "Apply the same heat Q to the object of mass m, which starts at 2T, and find its temperature rise.",
+   "equation": "Q = mcΔT′ → ΔT′ = Q/(mc) = 2mcT/(mc) = 2T",
+   "why_this_step": "The same heat given to half the mass produces twice the temperature rise, since specific heat capacity is the same for both objects."},
+  {"text": "Add this rise to the object's starting temperature of 2T.",
+   "equation": "T_final = 2T + 2T = 4T"}
+ ],
+ "final_answer": {"option": 3, "value": "4T"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Computing the temperature rise 2T correctly but forgetting to add it to the object's starting temperature of 2T."},
+  {"option": 4, "text": "Using mass m instead of 2m when finding Q in the first step gives Q = mcT, leading to a rise of T and a final temperature of 3T."}
+ ],
+ "concept_tags": ["specific heat capacity", "heat and temperature rise"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:30:00+05:30"}
+}

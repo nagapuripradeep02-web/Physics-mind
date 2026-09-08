@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q094",
+ "item_sha": "0d10d5008033d99538aa7fb31da6b13ce8f238f4ecb294347ece808f134154a2",
+ "auditor_option": 3,
+ "auditor_value": "1.4 mm",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: v = √(2gh) = 20 m/s; A = Q/v = 1.54×10⁻⁶ m²; r = √(A/π) = 7.00×10⁻⁴ m; d = 1.40 mm, matching option 3. The mistake entry checks out: v = √(gh) = 14.14 m/s gives d = 1.67 mm, whose nearest printed option is 1.6 mm.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:21:00+05:30"}
+}

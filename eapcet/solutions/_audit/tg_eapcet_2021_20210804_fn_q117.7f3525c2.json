@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q117",
+ "item_sha": "7f3525c2e953c4be3cf1bc21cf94c8ce66e14330a030fe25f3eb1674cdb09844",
+ "auditor_option": 2,
+ "auditor_value": "Slow down the fast neutrons",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: the moderator (heavy water, graphite, light water) slows fission neutrons to thermal energies, where the fission cross-section of uranium-235 is much larger; control rods absorb neutrons and the coolant removes heat. Option 2. Both common_mistakes entries map correctly to the printed options (option 4 = control rods, option 3 = coolant). Option 1 is left unaddressed, which is not a defect. Steps, tags, difficulty and mistake_type_hint all check out.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p2-14", "at": "2026-09-08T02:55:00+05:30"}
+}

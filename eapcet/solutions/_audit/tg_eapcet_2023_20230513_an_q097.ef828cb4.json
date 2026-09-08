@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q097",
+ "item_sha": "ef828cb4e191ad4a6b5df642650e4cd9f5759d33466c1897c1aae11260229b85",
+ "auditor_option": 1,
+ "auditor_value": "60",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Misremembering the relation Cp − Cv = R as Cp − Cv = 2R gives Cv = R/2 and a fraction of 20%.",
+   "note": "The step from Cp − Cv = 2R to Cv = R/2 works only if the student also holds Cp at (5/2)R, and the entry does not say so. A student who instead keeps the given γ = 5/3 and uses Cp − Cv = 2R gets Cv = 3R, Cp = 5R and still 60%, so as written the entry does not reach 20%.",
+   "fix": "Keeping Cp = (5/2)R from memory but misremembering the relation Cp − Cv = R as Cp − Cv = 2R gives Cv = (5/2)R − 2R = R/2, and Cv/Cp = (R/2)/((5/2)R) = 1/5 = 20%."}
+ ],
+ "verdict": "weak",
+ "question_defect": "The stem does not name the process. The fraction of heat that raises internal energy is Cv/Cp = 1/γ = 3/5 only at constant pressure; at constant volume every joule raises internal energy and the answer would be 100%. The printed options fix the intended reading as isobaric, but the stem never says it.",
+ "notes": "Independent solve, taking the process to be isobaric: Cv/Cp = 1/γ = 3/5 = 60%, option 1. Steps 1 to 3 are all correct. common_mistakes[0] is verified: R/Cp = 2/5 = 40%, which is option 2. The solution states the constant-pressure assumption in its approach line, which is the right handling of the stem's gap."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:29:00+05:30"}
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q117",
+ "approach": "The potential energy between two nucleons as a function of separation is repulsive at very small distances and attractive beyond that, reaching its lowest value at a known separation.",
+ "steps": [
+  {"text": "Recall the shape of the nucleon-nucleon potential energy curve: it rises steeply (repulsive) for separations below a certain distance, and is attractive beyond it.",
+   "equation": "potential energy is minimum at r = r₀"},
+  {"text": "The accepted value of this separation, where the potential energy dips to its lowest (most negative) value, is close to one femtometre.",
+   "equation": "r₀ ≈ 0.8 fm"}
+ ],
+ "final_answer": {"option": 3, "value": "0.8 fm"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Recalling the wrong distance from the same curve gives 0.2 fm, which is inside the repulsive core, not the minimum."},
+  {"option": 2, "text": "Recalling a nearby but incorrect value from the same curve gives 0.6 fm instead of 0.8 fm."}
+ ],
+ "concept_tags": ["nucleon-nucleon potential energy", "nuclear force range"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14", "at": "2026-09-08T00:16:09+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q100",
+ "item_sha": "0949a2b609e8f859f8065f2c1cfb40c8315c0f877f8924e9d0d765ce63cd412b",
+ "auditor_option": 3,
+ "auditor_value": "1 − β",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: for a reversible stage Q/T is the same at both reservoirs, so Q2 = αQ1 and Q3 = (β/α)Q2 = βQ1. The intermediate reservoir at αT receives Q2 and gives back the same Q2, so the pair acts as one engine between T and βT and η = 1 − Q3/Q1 = 1 − β (option 3). Every printed line follows from the one above it. Both common_mistakes verified: the first-stage-only route gives 1 − α (option 2), and taking T rather than αT as the hot side of the second stage gives Q3 = αβQ1 and 1 − αβ (option 4). Checked and not filed: the stem writes \"The efficiency of the Carnot engine\" without the word overall or combined, but the sentence before it defines the device as the two stage engine, so the intended reading is not in real doubt."
+ ,"audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-12", "at": "2026-09-08T06:19:00+05:30"}
+}

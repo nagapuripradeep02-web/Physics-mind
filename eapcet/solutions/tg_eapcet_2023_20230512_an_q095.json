@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q095",
+ "approach": "The effective expansion coefficient of the welded rod is the length-weighted average of the two coefficients, found by adding the actual expansions of the two parts.",
+ "steps": [
+  {"text": "Write the expansion of each part for a temperature change ΔT.",
+   "equation": "ΔL₁ = L(2α)ΔT, ΔL₂ = (2L)(α)ΔT"},
+  {"text": "Add the two expansions to get the total expansion of the composite rod.",
+   "equation": "ΔL = ΔL₁ + ΔL₂ = 2LαΔT + 2LαΔT = 4LαΔT"},
+  {"text": "Define the effective coefficient of the composite rod, of length 3L, by the same expansion law, and solve for it.",
+   "equation": "(3L)α_eff ΔT = 4LαΔT → α_eff = 4α/3",
+   "why_this_step": "An effective coefficient must reproduce the same total expansion when applied to the full length of the composite rod."}
+ ],
+ "final_answer": {"option": 4, "value": "4α/3"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Taking a plain average of the two coefficients, (2α + α)/2, without weighting by the lengths, gives 3α/2."},
+  {"option": 2, "text": "Adding the two coefficients directly, 2α + α, gives 3α."}
+ ],
+ "concept_tags": ["thermal expansion", "composite rod", "effective expansion coefficient"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:25:00+05:30"}
+}

@@ -1,0 +1,43 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230513_fn_q100",
+ "approach": "Find the apparent frequency for an observer approaching a stationary source, then take the fractional rise over the true frequency as a percentage.",
+ "steps": [
+  {
+   "text": "Write the Doppler formula for a moving observer and a stationary source, with the observer's speed one-fifth of the speed of sound.",
+   "equation": "f' = f(v + v/5)/v = 1.2 f"
+  },
+  {
+   "text": "Find the increase in frequency over the true frequency f.",
+   "equation": "f' − f = 0.2 f"
+  },
+  {
+   "text": "Express this increase as a percentage of f.",
+   "equation": "0.2 f / f × 100% = 20%"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "20%"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Reporting the ratio 16.67%, which is the fractional rise measured against the apparent frequency f' instead of against the true frequency f."
+  }
+ ],
+ "concept_tags": [
+  "Doppler effect",
+  "moving observer",
+  "percentage change in frequency"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-p2-01",
+  "at": "2026-09-08T06:13:21+05:30"
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q098",
+ "approach": "The gravitational field on the axis of a ring rises from zero at the centre and falls with distance, so its maximum is where the derivative is zero.",
+ "steps": [
+  {"text": "Write the gravitational field on the axis of the ring at a distance x from its centre.",
+   "equation": "g(x) = GMx/(R²+x²)^(3/2)"},
+  {"text": "Differentiate g with respect to x and set the derivative to zero to locate the maximum.",
+   "equation": "dg/dx = GM(R²−2x²)/(R²+x²)^(5/2) = 0",
+   "why_this_step": "The field is zero at the centre, rises to a peak, then decreases as x grows large, so the peak is where the slope of g against x is zero."},
+  {"text": "Solve the resulting equation for x.",
+   "equation": "R² − 2x² = 0 → x² = R²/2 → x = R/√2"}
+ ],
+ "final_answer": {"option": 4, "value": "R/√2"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Reaching the correct equation x² = R²/2 but simplifying the square root incorrectly as x = R/2 instead of x = R/√2."},
+  {"option": null, "text": "Assuming by symmetry that the field is strongest at the centre of the ring, but the field there is actually zero, not maximum."}
+ ],
+ "concept_tags": ["gravitational field due to a ring", "maximum of a function"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-08-R2", "at": "2026-09-08T16:47:00+05:30"}
+}

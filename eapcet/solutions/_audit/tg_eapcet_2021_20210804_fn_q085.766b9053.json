@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q085",
+ "item_sha": "766b9053fa977049b6b083243adc6e790ba378c2521dd9fc942e6c3b3677c757",
+ "auditor_option": 1,
+ "auditor_value": "cos⁻¹(26/√1330)",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: a·b = 15 + 6 + 5 = 26; |a|² = 9+4+25 = 38; |b|² = 25+9+1 = 35; 38×35 = 1330, so cosθ = 26/√1330 = 0.7129 and θ = 44.53°. Option 3 prints √1335, which does not come from these magnitudes. Both mistake entries name the printed option they produce.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-03", "at": "2026-09-08T18:42:00+05:30"}
+}

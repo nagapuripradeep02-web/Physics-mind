@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_an_q081",
+ "approach": "The range of the weak nuclear force is a standard recalled value, smaller than the range of the strong nuclear force.",
+ "steps": [
+  {"text": "The weak nuclear force is short-ranged, acting only over distances smaller than the size of a nucleus.",
+   "equation": "range of the weak nuclear force is smaller than that of the strong nuclear force"},
+  {"text": "Write this range in metres to match the options.",
+   "equation": "range ≈ 10⁻¹⁶ m"}
+ ],
+ "final_answer": {"option": 4, "value": "10⁻¹⁶ m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Confusing the weak nuclear force's range with the scale of an atom instead of a nucleus, giving 10⁻¹⁰ m."},
+  {"option": 1, "text": "Dropping the negative sign on the exponent gives 10¹⁶ m instead of 10⁻¹⁶ m."}
+ ],
+ "concept_tags": ["weak nuclear force", "range of fundamental forces"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p2-14-R1", "at": "2026-09-08T15:24:00+05:30"}
+}

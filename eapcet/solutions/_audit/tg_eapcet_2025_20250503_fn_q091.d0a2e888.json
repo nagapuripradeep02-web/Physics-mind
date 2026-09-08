@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q091",
+ "item_sha": "d0a2e88814d396bd3ff664e588f6f898cf843c86bd212ec8596591f286692293",
+ "auditor_option": 2,
+ "auditor_value": "55 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "My own solve: T1 = 350 K, T2 = 423.5 K, T2/T1 = 1.21 exactly, sqrt = 1.1, so v2 = 50 x 1.1 = 55 m/s, option 2. Verified in python (350 x 1.21 = 423.5 exactly, so the awkward 150.5 °C is chosen to make the ratio a perfect square). Same gas throughout, so the molar mass cancels and only the temperature ratio matters, which is what the solution uses. common_mistakes[0] checks out: 50/1.1 = 45.45, which rounds to the printed option 1 (45 m/s). common_mistakes[1] describes the Celsius route without printing a number; it gives 69.9 m/s, which is not a listed option, and the entry correctly carries option null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-13", "at": "2026-09-08T06:30:00+05:30"}
+}

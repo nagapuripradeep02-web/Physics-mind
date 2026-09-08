@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "794d413736871672a3a0e9e43c8e3b79f02ade8368132d4445f7b2761d3cb8d2",
+ "auditor_option": 1,
+ "auditor_value": "8",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Solved independently: d1 = 1/2 g (4)^2 = 8g, total at 12 s = 1/2 g (12)^2 = 72g, so d2 = 64g and d2/d1 = 8, independent of the value of g. Every printed line follows from the one above it and the arithmetic (8g, 72g, 64g, 64/8 = 8) is correct. The single common_mistakes entry describes a real error (treating the second interval as a fresh fall from rest, giving 32g and a ratio of 4); 4 is not among the options, and the entry correctly carries option null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-02", "at": "2026-09-08T02:36:00+05:30"}
+}

@@ -1,0 +1,18 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q099",
+ "item_sha": "70391fa04ba24b6c553ad2ebe046b3dd573b438cbe2f1566f7a7ba7b6e712395",
+ "auditor_option": 3,
+ "auditor_value": "−25 °C to +75 °C",
+ "findings": [
+  {"grade": "wrong",
+   "field": "steps[2].why_this_step",
+   "quote": "Below the making temperature the metal contracts, making marked lengths too long; above it, the metal expands, making them too short",
+   "note": "As written, both clauses state the opposite of what happens to the scale. When the metal contracts, the physical distance between two marks becomes shorter than the value engraved on them, not longer; when it expands, that distance becomes longer, not shorter. The sentence is true only if 'marked lengths' is read as the value a user reads off the scale rather than the lengths marked on it, and the wording does not say that. The answer itself is unaffected, since the tolerance limits the size of ΔT equally in both directions.",
+   "fix": "Below the making temperature the metal contracts, so a measured object reads longer than it is; above it, the metal expands, so the object reads shorter than it is; the same 0.5 mm tolerance limits the temperature change in both directions."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently first: the metre scale is 1000 mm long, and the length error reaches the 0.5 mm tolerance when ΔT = ΔL/(Lα) = 0.5/(1000 × 10⁻⁵) = 50 °C, so the usable range is 25 ± 50 °C, that is −25 °C to +75 °C, which is option 3 (checked with python). Both common_mistakes entries were verified numerically and are sound: entry 0 correctly describes taking only the upward direction, giving option 2, and entry 1 correctly gives ΔT = 25 °C and the range 0 °C to +50 °C for a ±0.25 mm split, which is option 1. The steps themselves and the final_answer value are correct and mutually consistent; the finding is confined to the direction statement in the why_this_step."
+ ,
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-11-R1", "at": "2026-09-08T06:33:20+05:30"}
+}

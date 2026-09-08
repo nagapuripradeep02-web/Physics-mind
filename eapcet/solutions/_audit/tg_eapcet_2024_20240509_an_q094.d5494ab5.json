@@ -1,0 +1,10 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q094",
+ "item_sha": "d5494ab51f830c7cad6a5fac01ee2a4ae4847afba8e7b1451e9f4da6a7c3112e",
+ "auditor_option": 4,
+ "auditor_value": "2 ms⁻¹",
+ "findings": [],
+ "verdict": "ok",
+ "notes": "Independent solve: Q = 12π × 10⁻³ / 60 = 2×10⁻⁴π m³/s; r = 1 cm = 0.01 m so A = π × 10⁻⁴ m²; v = Q/A = 2 m/s, matching option 4. The mistake entry was checked: r = 0.005 m gives v = 8 m/s (option 2). I considered flagging the why_this_step claim that the π in the flow rate comes from the circular cross-section, but for a circular pipe Q = πr²v does carry a factor π, so the statement is defensible and I did not file it.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-p1-10", "at": "2026-09-08T06:36:00+05:30"}
+}

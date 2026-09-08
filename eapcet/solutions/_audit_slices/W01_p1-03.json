@@ -1,0 +1,743 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter_key": "p1-03",
+ "chapter": "Motion in a Plane",
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q085",
+   "audit_file": "tg_eapcet_2021_20210804_an_q085.a38d041c.json",
+   "item_sha": "a38d041cabdb200e39955d00709db123472eb6aae45d2b601fd92377a3a04534",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "The y-component of vector A⃗ is +3.0 m if A⃗ makes an angle of 30° counter clockwise from the positive y - axis, the magnitude of A⃗ is (assume A⃗ is in x - y plane)",
+   "options_en": [
+    "2√3 m",
+    "√11 m",
+    "√15 m",
+    "√21 m"
+   ],
+   "solution": {
+    "approach": "The y-component of a vector equals its magnitude times the cosine of the angle the vector makes with the y-axis.",
+    "steps": [
+     {
+      "text": "Write the y-component in terms of the magnitude and the angle measured from the y-axis.",
+      "equation": "A_y = A cos30°"
+     },
+     {
+      "text": "Substitute the given y-component and solve for the magnitude.",
+      "equation": "3.0 = A × (√3/2)"
+     },
+     {
+      "text": "Evaluate the magnitude.",
+      "equation": "A = 6/√3 = 2√3 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2√3 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using sin30° instead of cos30°, treating the given 3.0 m as if it were measured from the x-axis instead of the y-axis, gives 6 m."
+     }
+    ],
+    "concept_tags": [
+     "vector components",
+     "resolving a vector along an axis"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q086",
+   "audit_file": "tg_eapcet_2021_20210804_an_q086.e42a4711.json",
+   "item_sha": "e42a47114abb80b1486ab9ffcbb2de30e3dcc9ea798498de6ed9026ffe7c7766",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "Find the component of vector P⃗ = 2î + 3ĵ along the direction of vector Q⃗ = î + ĵ.",
+   "options_en": [
+    "2",
+    "2√5",
+    "5/√2",
+    "√2/5"
+   ],
+   "solution": {
+    "approach": "The component of one vector along another equals their dot product divided by the magnitude of the second vector.",
+    "steps": [
+     {
+      "text": "Compute the dot product of P and Q.",
+      "equation": "P⃗·Q⃗ = (2)(1) + (3)(1) = 5"
+     },
+     {
+      "text": "Compute the magnitude of Q.",
+      "equation": "|Q⃗| = √(1²+1²) = √2"
+     },
+     {
+      "text": "Divide the dot product by the magnitude of Q to get the component.",
+      "equation": "component = 5/√2"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "5/√2"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking only the x-components, 2×1 = 2, and ignoring the y-components and the division by |Q⃗|, gives 2."
+     },
+     {
+      "option": 4,
+      "text": "Inverting the formula and computing |Q⃗|/(P⃗·Q⃗) instead of (P⃗·Q⃗)/|Q⃗| gives √2/5."
+     }
+    ],
+    "concept_tags": [
+     "scalar product",
+     "component of a vector along another vector"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q085",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q085.766b9053.json",
+   "item_sha": "766b9053fa977049b6b083243adc6e790ba378c2521dd9fc942e6c3b3677c757",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "Find the angle between the two vectors: a⃗ = 3i + 2j + 5k, b⃗ = 5i + 3j + k",
+   "options_en": [
+    "cos⁻¹(26/√1330)",
+    "sin⁻¹(26/√1330)",
+    "cos⁻¹(26/√1335)",
+    "tan⁻¹(26/√1330)"
+   ],
+   "solution": {
+    "approach": "The cosine of the angle between two vectors equals their dot product divided by the product of their magnitudes.",
+    "steps": [
+     {
+      "text": "Compute the dot product of the two vectors.",
+      "equation": "a⃗·b⃗ = (3)(5) + (2)(3) + (5)(1) = 26"
+     },
+     {
+      "text": "Compute the magnitude of each vector.",
+      "equation": "|a⃗| = √(9+4+25) = √38; |b⃗| = √(25+9+1) = √35"
+     },
+     {
+      "text": "Divide the dot product by the product of the magnitudes and take the inverse cosine.",
+      "equation": "cosθ = 26/√(38×35) = 26/√1330 → θ = cos⁻¹(26/√1330)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "cos⁻¹(26/√1330)"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Computing the ratio 26/√1330 correctly but applying the inverse tangent instead of the inverse cosine confuses the dot-product angle formula with the tangent formula."
+     },
+     {
+      "option": 2,
+      "text": "Applying the inverse sine instead of the inverse cosine to the same correctly computed ratio also confuses which formula the dot product gives."
+     }
+    ],
+    "concept_tags": [
+     "scalar product",
+     "angle between two vectors"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210805_an_q085",
+   "audit_file": "tg_eapcet_2021_20210805_an_q085.d219eb64.json",
+   "item_sha": "d219eb64070ddb03427c7e23ecbfa7bc03d99de817062ac086788d683a976736",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "A projectile is thrown at a speed which is twice its speed at its maximum height. If R and H are its range and maximum height respectively then the ratio R/H is:",
+   "options_en": [
+    "4/√3",
+    "√3/8",
+    "2",
+    "2√3"
+   ],
+   "solution": {
+    "approach": "The speed at the top of the path is the horizontal component of the launch speed, so the given condition fixes the angle of projection.",
+    "steps": [
+     {
+      "text": "Set the launch speed equal to twice the speed at maximum height, which is the horizontal component u cosθ.",
+      "equation": "u = 2(u cosθ) → cosθ = 1/2 → θ = 60°"
+     },
+     {
+      "text": "Write the ratio R/H using R = u²sin2θ/g and H = u²sin²θ/(2g).",
+      "equation": "R/H = sin2θ/(sin²θ/2) = 4cosθ/sinθ = 4cotθ"
+     },
+     {
+      "text": "Substitute θ = 60°.",
+      "equation": "R/H = 4cos60°/sin60° = 4×(1/2)/(√3/2) = 4/√3"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "4/√3"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Forgetting to square sinθ in the maximum-height formula, using H = u²sinθ/(2g) instead of u²sin²θ/(2g), gives R/H = 4cosθ = 2."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range and maximum height",
+     "speed at maximum height"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q085",
+   "audit_file": "tg_eapcet_2022_20220718_an_q085.c422533d.json",
+   "item_sha": "c422533dd46b26edaa4ca183f10769aed90c293056efd9ba78ee16a4939bef21",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "A river has a steady speed of 'v'. A man swims upstream at a distance of 'd' and swims back to the starting point in total time 't'. The man can swim at a speed of '2v' in still water. If the time taken by the man in still water is 't₀' to complete the same length of swim, then t/t₀ is",
+   "options_en": [
+    "1/2",
+    "3/2",
+    "3/4",
+    "4/3"
+   ],
+   "solution": {
+    "approach": "Find the effective upstream and downstream speeds, add the two travel times, and compare with the still-water time for the same total distance.",
+    "steps": [
+     {
+      "text": "Write the effective speeds against and with the current, using the still-water speed 2v and current speed v.",
+      "equation": "upstream speed = 2v − v = v; downstream speed = 2v + v = 3v"
+     },
+     {
+      "text": "Add the times for the upstream and downstream legs, each of length d.",
+      "equation": "t = d/v + d/3v = 4d/(3v)"
+     },
+     {
+      "text": "Find the still-water time for the same total distance, 2d, swum at speed 2v.",
+      "equation": "t₀ = 2d/(2v) = d/v"
+     },
+     {
+      "text": "Divide the two times.",
+      "equation": "t/t₀ = [4d/(3v)] / (d/v) = 4/3"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "4/3"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Treating the round trip as covering the total distance 2d at a single combined speed v + 3v, giving t = 2d/4v and a ratio of 1/2 instead of 4/3."
+     },
+     {
+      "option": null,
+      "text": "Forgetting the still-water comparison also covers the distance d twice and using d alone instead of 2d gives a ratio of 8/3, matching no printed choice."
+     }
+    ],
+    "concept_tags": [
+     "relative velocity",
+     "river-boat problems"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q086",
+   "audit_file": "tg_eapcet_2022_20220718_an_q086.9ef7952a.json",
+   "item_sha": "9ef7952ab29bccab0fdac1f103fb5c3353825ec09bb8fef7daf2e9f959263a2c",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "A projectile is given an initial velocity of (3i + 4j) m/s where, î is along the ground and ĵ is along the vertical. Assuming g = 10 m/s², if the equation of its trajectory can be written as (1/9)[βx + γx²], then the value of γ is",
+   "options_en": [
+    "−8",
+    "−5",
+    "−6",
+    "−12"
+   ],
+   "solution": {
+    "approach": "Write the standard trajectory equation from the given velocity components, then match its coefficients to the given form to read off γ.",
+    "steps": [
+     {
+      "text": "Write the trajectory equation using the given velocity components and g = 10 m/s².",
+      "equation": "y = (v_y/v_x)x − gx²/(2v_x²) = (4/3)x − (10/18)x² = (4/3)x − (5/9)x²"
+     },
+     {
+      "text": "Rewrite the expression with a common factor of 1/9, matching the given form.",
+      "equation": "y = (1/9)(12x − 5x²)"
+     },
+     {
+      "text": "Compare with y = (1/9)(βx + γx²) to read off γ.",
+      "equation": "γ = −5"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "−5"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting to divide by 2 in the term gx²/(2v_x²) doubles that coefficient, giving γ = −10, which does not match any of the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "trajectory equation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q085",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q085.166aea72.json",
+   "item_sha": "166aea7258695f62bdea9050326ee4dedbe391bf51e9e5bb2bc3940056fa612f",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "An ant starts from the origin and crawls 10 cm along the x − axis and then 20 cm along the y − axis. The dot product of the ant's displacement vector with the position vector of a point that makes 45° with the x − axis and has a magnitude of √2 cm is",
+   "options_en": [
+    "30 cm",
+    "30√2 cm",
+    "30/√2 cm",
+    "15 cm"
+   ],
+   "solution": {
+    "approach": "Write the ant's displacement vector after its two straight-line legs, form the given position vector from its magnitude and angle, then take their dot product.",
+    "steps": [
+     {
+      "text": "The ant's displacement from the origin is fixed by the two legs it crawled.",
+      "equation": "displacement = 10î + 20ĵ (cm)"
+     },
+     {
+      "text": "Write the second vector from its given magnitude √2 cm and its 45° angle with the x-axis.",
+      "equation": "point vector = √2cos45° î + √2sin45° ĵ = 1î + 1ĵ (cm)"
+     },
+     {
+      "text": "Take the dot product of the two vectors.",
+      "equation": "(10î+20ĵ)·(î+ĵ) = 10×1 + 20×1 = 30"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "30 cm"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Multiplying the finished dot product by the magnitude √2 a second time, after already using it to build the position vector, gives 30√2."
+     },
+     {
+      "option": 3,
+      "text": "Dividing the dot product by √2 instead, perhaps confusing this step with finding a unit vector, gives 30/√2."
+     }
+    ],
+    "concept_tags": [
+     "scalar product",
+     "displacement vector"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q084",
+   "audit_file": "tg_eapcet_2023_20230512_an_q084.35e73723.json",
+   "item_sha": "35e737230de50dd4cd2898f19b597e63c5ad22c81af236d4cb8d458d0873765a",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "A person walks in such a way that he covers equal distance in each step. The person takes 2 steps forward towards east, then takes a right turn and walks 4 steps towards south, then takes a right turn and walks 6 steps towards west and then takes a right turn and walks further. The direction of his final position after a total of 20 steps walk with respect to his initial position is",
+   "options_en": [
+    "North-West",
+    "60° West of South",
+    "60° South of West",
+    "South-East"
+   ],
+   "solution": {
+    "approach": "Add up the east-west steps and the north-south steps separately to get the net displacement, then read off its direction.",
+    "steps": [
+     {
+      "text": "List the four legs of the walk and the number of steps in each, given a total of 20 steps and a right turn after every leg.",
+      "equation": "East: 2, South: 4, West: 6, North: 20 − (2+4+6) = 8"
+     },
+     {
+      "text": "Combine the east-west steps into one number and the north-south steps into another.",
+      "equation": "East − West = 4 − 6 = −4 (net 4 west); North − South = 8 − 4 = 4 (net 4 north)"
+     },
+     {
+      "text": "Since the net westward and northward steps are equal, the final position lies exactly on the diagonal between west and north.",
+      "equation": "direction = North-West"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "North-West"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Stopping the count after the third leg (12 steps: 2 east, 4 south, 6 west) gives an equal 4-west, 4-south displacement, a south-west direction not among the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "vector addition",
+     "displacement direction"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q084",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q084.562c9b64.json",
+   "item_sha": "562c9b64b8055cb0184fadd99d4e083e5886ce2fce82c6a3c8977346e1d66d0b",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "A bomb is dropped on an enemy post on the ground by an aeroplane flying horizontally with a velocity of 60 kmh⁻¹ at a height of 490 m. At the time of dropping the bomb, the horizontal distance of the aeroplane from the enemy post so that the bomb hits the target is",
+   "options_en": [
+    "(400/3) m",
+    "(500/3) m",
+    "(1700/3) m",
+    "498 m"
+   ],
+   "solution": {
+    "approach": "Convert the plane's speed to metres per second, find the time to fall 490 m under gravity, and multiply to get the horizontal distance.",
+    "steps": [
+     {
+      "text": "Convert the plane's speed from kilometres per hour to metres per second.",
+      "equation": "60 kmh⁻¹ = 60×1000/3600 = 50/3 m/s"
+     },
+     {
+      "text": "Find the time for the bomb to fall 490 m, taking g = 9.8 ms⁻².",
+      "equation": "490 = ½ × 9.8 × t² → t² = 100 → t = 10 s"
+     },
+     {
+      "text": "Multiply the plane's speed by this time to get the horizontal distance the bomb must be released before the target.",
+      "equation": "x = (50/3) × 10 = 500/3 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "(500/3) m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using g = 10 ms⁻² instead of 9.8 ms⁻² gives a fall time of 7√2 s and a horizontal distance near 165 m, close to but not matching any printed choice exactly."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "horizontal projection"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q085",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q085.8ef949f7.json",
+   "item_sha": "8ef949f7f0fce1e3c6e02c529768f551a7a57ea1b43b19ce6bb69a5d38a3728e",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "The angular speed of a particle moving in a circular path is doubled. Then, the centripetal acceleration of the particle is",
+   "options_en": [
+    "4 times the initial centripetal acceleration",
+    "halved",
+    "doubled",
+    "unchanged"
+   ],
+   "solution": {
+    "approach": "Centripetal acceleration is proportional to the square of the angular speed at a fixed radius, so doubling the angular speed multiplies it by four.",
+    "steps": [
+     {
+      "text": "Write the centripetal acceleration in terms of angular speed and radius.",
+      "equation": "a_c = ω²r"
+     },
+     {
+      "text": "Double the angular speed while the radius stays fixed.",
+      "equation": "a_c′ = (2ω)²r = 4ω²r"
+     },
+     {
+      "text": "Compare the new value with the original.",
+      "equation": "a_c′ = 4a_c"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "4 times the initial centripetal acceleration"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Treating the centripetal acceleration as directly (not quadratically) proportional to the angular speed leads a student to conclude it merely doubles."
+     }
+    ],
+    "concept_tags": [
+     "circular motion",
+     "centripetal acceleration"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q084",
+   "audit_file": "tg_eapcet_2024_20240509_an_q084.d32d6ed7.json",
+   "item_sha": "d32d6ed7df87ac57fb0c97d0ce55ae64e8592966a0818377c8223146b38ecb82",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "A cannon placed on a cliff at a height of 375 m fires a cannon ball with a velocity of 100 ms⁻¹ at an angle of 30° above the horizontal. The horizontal distance between the cannon and the target is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "750√3 m",
+    "500√3 m",
+    "250√3 m",
+    "750 m"
+   ],
+   "solution": {
+    "approach": "Resolve the initial velocity, use the vertical motion to find the time to reach the ground below the cliff, then multiply by the horizontal speed.",
+    "steps": [
+     {
+      "text": "Resolve the velocity into horizontal and vertical components.",
+      "equation": "vₓ = 100cos30° = 50√3 m/s; v_y = 100sin30° = 50 m/s"
+     },
+     {
+      "text": "Write the vertical displacement equation, taking the net drop to the ground as 375 m below the firing point.",
+      "equation": "−375 = 50t − ½(10)t²"
+     },
+     {
+      "text": "Rearrange into a standard quadratic and solve for the positive time.",
+      "equation": "t² − 10t − 75 = 0 → t = 15 s"
+     },
+     {
+      "text": "Multiply the horizontal speed by the time of flight to get the horizontal distance.",
+      "equation": "x = vₓt = 50√3 × 15 = 750√3 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "750√3 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Ignoring the initial upward vertical velocity and treating the fall as starting from rest at the cliff top gives a flight time of 5√3 s, which multiplies by 50√3 to give exactly 750 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "motion from a height"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q084",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q084.16fa4081.json",
+   "item_sha": "16fa408113bb81c8217030b3cae12eeaa24b7e8fa007490a6d397759c98ae82d",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "A body P is projected at an angle of 30° with the horizontal and another body Q is projected at angle of 30° with the vertical. If the ratio of the horizontal ranges of the bodies P and Q is 1:2, then the ratio of the maximum heights reached by the bodies P and Q is",
+   "options_en": [
+    "1:4",
+    "1:6",
+    "2:3",
+    "1:1"
+   ],
+   "solution": {
+    "approach": "Write the angle body Q makes with the horizontal, then use the given range ratio together with the range and height formulas to find the height ratio.",
+    "steps": [
+     {
+      "text": "Body Q's angle with the vertical is 30°, so its angle with the horizontal is 90° − 30° = 60°.",
+      "equation": "θ_P = 30°, θ_Q = 60°"
+     },
+     {
+      "text": "Write the range ratio using R = u²sin2θ/g, noting sin2θ_P and sin2θ_Q are equal.",
+      "equation": "sin2θ_P = sin60° = sin2θ_Q → R_P/R_Q = u_P²/u_Q² = 1/2"
+     },
+     {
+      "text": "Write the maximum height ratio using H = u²sin²θ/(2g) and substitute the speed ratio found above.",
+      "equation": "H_P/H_Q = (u_P²/u_Q²) × (sin²30°/sin²60°) = (1/2) × [(1/4)/(3/4)] = (1/2) × (1/3) = 1/6"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1:6"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Misreading Q's 30° as already measured from the horizontal (not converting it to 60°) gives a height ratio of 1:2, which is not among the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "range and maximum height"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q084",
+   "audit_file": "tg_eapcet_2024_20240510_an_q084.17194bac.json",
+   "item_sha": "17194bac6ee077d647a979b61167b4784aadd836b7f0dd991a0d790baa73d4d0",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "From a height of 'h' above the ground, a ball is projected up at an angle 30° with the horizontal. If the ball strikes the ground with a speed of 1.25 times its initial speed of 40 ms⁻¹, the value of 'h' is (acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "75 m",
+    "60 m",
+    "30 m",
+    "45 m"
+   ],
+   "solution": {
+    "approach": "Use conservation of energy between the launch point and the ground, since gravity does no work on the horizontal motion, to relate the speeds to the height.",
+    "steps": [
+     {
+      "text": "Write the final speed in terms of the initial speed.",
+      "equation": "v_f = 1.25 × 40 = 50 m/s"
+     },
+     {
+      "text": "Apply energy conservation between the launch point, at height h above the ground, and the ground.",
+      "equation": "v_f² = v_i² + 2gh"
+     },
+     {
+      "text": "Substitute the known values and solve for h.",
+      "equation": "50² = 40² + 2(10)h → 2500 − 1600 = 20h → h = 45 m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "45 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using only the vertical component of the initial velocity, 40sin30° = 20 m/s, instead of the full launch speed 40 m/s gives h = 105 m, not among the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "conservation of energy"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q108",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q108.fa00ba7f.json",
+   "item_sha": "fa00ba7f8dc299bb42f7e5edf11575a94defe17c10786dacd86702533b3d1e14",
+   "chapter": "Motion in a Plane",
+   "year": 2025,
+   "question_en": "A ball projected at an angle of 45° with the horizontal crosses two points at equal heights separated by a distance at times 2 s and 8 s respectively. The horizontal distance between the two points is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "500 m",
+    "600 m",
+    "400 m",
+    "300 m"
+   ],
+   "solution": {
+    "approach": "Two points at equal height on a projectile's path are reached at times symmetric about the time of maximum height, which fixes the initial speed.",
+    "steps": [
+     {
+      "text": "The two times of equal height are symmetric about the time to reach maximum height.",
+      "equation": "t_top = (t₁+t₂)/2 = (2+8)/2 = 5 s"
+     },
+     {
+      "text": "Use the time to maximum height to find the initial speed, with the projection angle 45°.",
+      "equation": "t_top = u sin45°/g → 5 = u sin45°/10 → u = 50√2 m/s"
+     },
+     {
+      "text": "Find the horizontal component of the velocity, which stays constant through the flight.",
+      "equation": "vₓ = u cos45° = 50√2 × (√2/2) = 50 m/s"
+     },
+     {
+      "text": "Multiply the horizontal speed by the time between the two points to get the horizontal distance.",
+      "equation": "x = vₓ(t₂ − t₁) = 50 × 6 = 300 m"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "300 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using the full time of flight, 10 s (twice t_top), instead of the 6 s gap between the two given points gives 500 m."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "equal heights on a trajectory"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q115",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q115.0ff4b124.json",
+   "item_sha": "0ff4b124b4487f35249e2c1d4974061259de034efd0850e07121c103e224788f",
+   "chapter": "Motion in a Plane",
+   "year": 2025,
+   "question_en": "The vertical displacement (y in metre) of a projectile in terms of its horizontal displacement (x in metre) is given by y = (√3x − 0.2x²). The time of flight of the projectile is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "√3 s",
+    "0.2 s",
+    "5√3 s",
+    "0.2√3 s"
+   ],
+   "solution": {
+    "approach": "Compare the given trajectory equation with the standard form to find the angle of projection and the initial speed, then compute the time of flight.",
+    "steps": [
+     {
+      "text": "Compare the coefficient of x with tanθ from the standard trajectory equation.",
+      "equation": "tanθ = √3 → θ = 60°"
+     },
+     {
+      "text": "Compare the coefficient of x² with g/(2u²cos²θ) to find the initial speed.",
+      "equation": "0.2 = 10/(2u²cos²60°) = 10/(2u² × 0.25) → u² = 100 → u = 10 m/s"
+     },
+     {
+      "text": "Compute the time of flight using T = 2u sinθ/g.",
+      "equation": "T = 2 × 10 × sin60°/10 = 2 × (√3/2) = √3 s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "√3 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting to take the square root after solving u² = 100 and carrying u = 100 into the time-of-flight formula gives 10√3 s, not any of the printed choices."
+     }
+    ],
+    "concept_tags": [
+     "projectile motion",
+     "trajectory equation",
+     "time of flight"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  }
+ ]
+}

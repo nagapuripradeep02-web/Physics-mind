@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q092",
+ "approach": "Since the straw's wall has negligible thickness, the liquid meets it along two contact lines, one inside and one outside, each pulling with surface tension at the contact angle.",
+ "steps": [
+  {"text": "Write the length of one contact line where the liquid meets the circular wall of the straw.",
+   "equation": "length = 2πR"},
+  {"text": "Because the wall has negligible thickness, the liquid touches it from inside and from outside, giving two such contact lines.",
+   "equation": "total contact length = 2 × 2πR = 4πR",
+   "why_this_step": "A real straw has two surfaces facing the liquid at almost the same radius, so both menisci pull on it."},
+  {"text": "Write the total force from surface tension, resolved along the vertical using the contact angle.",
+   "equation": "F = T × 4πR × cos53° = 4πRT × 0.6"},
+  {"text": "Simplify to match the form of the options.",
+   "equation": "F = 2.4πRT = 12πRT/5"}
+ ],
+ "final_answer": {"option": 1, "value": "12πRT/5"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Counting only one contact line, inside or outside, instead of both gives 6πRT/5."},
+  {"option": null, "text": "Forgetting to resolve the surface tension force through the contact angle, taking cos53° as 1, gives 4πRT, which is not among the printed options."}
+ ],
+ "concept_tags": ["surface tension", "contact angle", "capillary force on a tube"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:24:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2022_20220718_an_q096",
+ "approach": "A hole in a metal sheet expands exactly like a disc of the same metal filling that hole, so its diameter grows by the same linear expansion factor as any length in the sheet.",
+ "steps": [
+  {"text": "Find the rise in temperature.",
+   "equation": "ΔT = 230 − 30 = 200 K"},
+  {"text": "Apply linear expansion to the diameter of the hole, treating it as if it were a solid disc of the same metal.",
+   "equation": "d′ = d(1 + αΔT)",
+   "why_this_step": "Every length in the sheet, including the edge of the hole, scales up by the same factor when the sheet is heated."},
+  {"text": "Substitute the given values and evaluate.",
+   "equation": "d′ = 5 × (1 + 2 × 10⁻⁵ × 200) = 5 × 1.004 = 5.02 cm"}
+ ],
+ "final_answer": {"option": 2, "value": "5.02 cm"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Expecting the hole to shrink because the surrounding metal expands inward. Every length in the sheet grows, so the hole grows too."},
+  {"option": 4, "text": "Using the areal expansion coefficient 2α on the diameter instead of α gives 5.04 cm."}
+ ],
+ "concept_tags": ["thermal expansion", "expansion of a hole in a sheet"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-11", "at": "2026-09-08T00:19:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q100",
+ "approach": "The soap film has two free surfaces, so the work done equals the surface tension times twice the increase in the film's area.",
+ "steps": [
+  {"text": "Write the increase in the area of one face of the film as the wires are pulled apart.",
+   "equation": "ΔA_one_face = L × (d₂ − d₁) = 0.08 × (0.008 − 0.006) = 1.6×10⁻⁴ m²"},
+  {"text": "Double it because the film has a front surface and a back surface, both stretching.",
+   "equation": "ΔA_total = 2 × ΔA_one_face = 3.2×10⁻⁴ m²",
+   "why_this_step": "A soap or water film supported on a wire frame has liquid on both sides, giving it two surfaces of surface tension energy."},
+  {"text": "Multiply by the surface tension to get the work done.",
+   "equation": "W = T × ΔA_total = 0.07 × 3.2×10⁻⁴ = 2.24×10⁻⁵ J = 22.4 μJ"}
+ ],
+ "final_answer": {"option": 1, "value": "22.4 μJ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Counting only one surface of the film instead of two gives 11.2 μJ, half the correct work."},
+  {"option": 3, "text": "Using a factor of 4 instead of 2 for the two surfaces gives 44.8 μJ, double the correct work."}
+ ],
+ "concept_tags": ["surface tension", "work done against surface tension", "soap film"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-10", "at": "2026-09-08T14:08:00+05:30"}
+}

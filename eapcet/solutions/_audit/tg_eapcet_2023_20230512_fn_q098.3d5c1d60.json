@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q098",
+ "item_sha": "3d5c1d6056e4fcf66ad88d80bfe88b10c47d9ea54db0ed71e9b0c7bc51b98eba",
+ "auditor_option": 4,
+ "auditor_value": "R/√2",
+ "findings": [
+  {"grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "dg/dx = GM(R²−4x²)/(R²+x²)^(5/2) = 0",
+   "note": "The numerator is wrong. Differentiating g = GMx(R²+x²)^(−3/2) gives GM[(R²+x²) − 3x²]/(R²+x²)^(5/2) = GM(R² − 2x²)/(R²+x²)^(5/2), confirmed with sympy. The printed R² − 4x² sets to zero at x = R/2, which is the printed option 1, so a student who copies this line is led straight to a wrong option. The very next step silently uses the correct R² − 2x², so the solution also contradicts itself between steps 1 and 2.",
+   "fix": "dg/dx = GM(R²−2x²)/(R²+x²)^(5/2) = 0"}
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Solved blind before opening the solution: g(x) = GMx/(R²+x²)^(3/2) is maximised at x = R/√2 (sympy root, and a numeric scan of g on R = 1 peaks at x = 0.70709) — option 4, agreeing with the solution's final answer. Step 0 and step 2 are both correct, and the why_this_step reasoning that the field is zero at the centre, peaks, then falls off is true; the whole defect is the numerator of the derivative in step 1. Both common_mistakes routes were recomputed: simplifying √(R²/2) as R/2 does land on option 1 as claimed, and the field at the centre of the ring is genuinely zero (x = 0 in g(x)), a value matching no printed option, so option: null is correct there. Neither entry condemns a correct method. Note that the mistake entry for option 1 attributes that option to a square-root slip while the false derivative in step 1 reaches the same option by a different route; both are plausible, and the entry is not itself wrong. difficulty \"medium\" and mistake_type_hint \"calculation\" both fit.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R2-A", "at": "2026-09-08T01:20:00+05:30"}
+}

@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q098",
+ "item_sha": "62f0ee7c038302c8861e63b613ab0397ceed7909d82b207a79d7c80625d670b2",
+ "auditor_option": 4,
+ "auditor_value": "R/√2",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes",
+   "quote": "Assuming by symmetry that the field is strongest at the centre of the ring, but the field there is actually zero, not maximum.",
+   "note": "This entry is itself legitimate and its option: null is correct, since x = 0 is not printed. The gap is that the list then covers only option 1, leaving option 3 (R/√3) unexplained, and R/√3 is the paper's principal computational distractor: it is exactly what a student gets by dropping the x² when combining the factored numerator, writing R² − 3x² = 0 instead of (R² + x²) − 3x² = R² − 2x² = 0. An obvious slip that lands on a printed option should have an entry.",
+   "fix": "Add an entry with option 3: \"Factoring the derivative but dropping the x² from the first bracket, so that (R² + x²) − 3x² is written as R² − 3x² = 0, gives x = R/√3.\""}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved blind first: g(x) = GMx/(R²+x²)^(3/2), dg/dx = 0 gives R² − 2x² = 0 and x = R/√2; a numerical scan of x/(x²+1)^1.5 also peaks at 0.7071R. Matches the solution. Verified the printed derivative symbolically with sympy: GM(R² − 2x²)/(R²+x²)^(5/2) is exactly the simplified derivative, powers of ten and exponents included, so no printed line is false. common_mistakes[0] recomputed: mis-rooting x² = R²/2 as R/2 does land on option 1, and false algebra inside a labelled mistake entry is not itself exam-costing. Checked and did not file: option 2 (R/4) has no obvious route, so leaving it uncovered is fine; mistake_type_hint 'calculation' fits a maximisation done by differentiation; naming the field g(x) alongside g the free-fall acceleration is standard for a gravitational field and is not a defect.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-U-R3", "at": "2026-09-08T06:55:40+05:30"}
+}

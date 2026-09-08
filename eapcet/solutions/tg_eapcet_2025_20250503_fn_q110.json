@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "approach": "Treat the fall as roughly uniformly accelerated and use the average of the initial and final speeds to estimate the time taken.",
+ "steps": [
+  {"text": "Take the distance fallen as 20 m, the initial speed as zero, and the final speed as 18 m s⁻¹.",
+   "equation": "s = 20 m, u = 0, v = 18 ms⁻¹"},
+  {"text": "Estimate the time from the distance and the average of the initial and final speeds.",
+   "equation": "t = s / ((u+v)/2) = 20/9"},
+  {"text": "Evaluate.",
+   "equation": "t ≈ 2.2 s"}
+ ],
+ "final_answer": {"option": 1, "value": "2.2 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Applying v = gt directly with the given final speed and g = 10 ms⁻², ignoring that air resistance means the acceleration was not g throughout the fall, which gives 1.8 s."},
+  {"option": 4, "text": "Ignoring the given final speed of 18 ms⁻¹ and computing the ordinary free-fall time for 20 m using g = 10 ms⁻², which gives 2 s and misses the effect of air resistance."}
+ ],
+ "concept_tags": ["kinematics with variable acceleration", "average velocity method"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:12:00+05:30"}
+}

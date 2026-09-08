@@ -1,0 +1,23 @@
+{
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2025_20250504_fn_q090",
+  "approach": "Power is the rate of doing work, so integrating it over time gives the kinetic energy gained, from which the final speed follows.",
+  "steps": [
+    {"text": "Write power as the time derivative of kinetic energy.",
+     "equation": "P = dW/dt = d(½mv²)/dt"},
+    {"text": "Integrate the power over the three seconds to get the total work done.",
+     "equation": "W = ∫₀³ (3t²+3) dt = [t³+3t]₀³ = 27+9 = 36 J"},
+    {"text": "Set this equal to the gain in kinetic energy and solve for the speed at t = 3 s.",
+     "equation": "36 = ½ × 0.5 × v²  →  v² = 144  →  v = 12 m s⁻¹"}
+  ],
+  "final_answer": {"option": 2, "value": "12 ms⁻¹"},
+  "confidence": "sure",
+  "common_mistakes": [
+    {"option": 1, "text": "Taking the numerical value of the work done, 36, directly as the final speed instead of solving ½mv² = 36 for v, gives 36 m s⁻¹."},
+    {"option": null, "text": "Using the power at t = 3 s alone, P(3) = 30 W, as if it equalled the final kinetic energy, instead of integrating power over the three seconds, gives a different, wrong speed."}
+  ],
+  "concept_tags": ["power and kinetic energy", "work-energy theorem", "integration"],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-05", "at": "2026-09-08T16:42:00+05:30"}
+}
