@@ -114,7 +114,7 @@
         "lines": [
           "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
           "= (√2)²ⁿ (cos π/4 + i sin π/4)²ⁿ",
-          "(√2)²ⁿ = (2^(1/2))²ⁿ = 2ⁿ",
+          "(√2)²ⁿ = ((√2)²)ⁿ = 2ⁿ",
           "By De Moivre's theorem the angle is multiplied:",
           "(cos π/4 + i sin π/4)²ⁿ",
           "= cos(2n · π/4) + i sin(2n · π/4)",

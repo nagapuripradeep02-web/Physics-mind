@@ -131,7 +131,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "(√2)ⁿ = (2^(1/2))ⁿ = 2^(n/2), so",
+          {
+            "text": "(\\sqrt{2})^{n} = (2^{1/2})^{n} = 2^{n/2},\\ \\text{so}",
+            "render": "katex",
+            "style": "eq"
+          },
           {
             "text": "= 2^{n/2}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]\\ \\dots(1)",
             "render": "katex",
@@ -229,7 +233,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "Now 2 = 2¹, so 2^(n/2) · 2 = 2^(n/2 + 1) = 2^((n+2)/2)",
+          {
+            "text": "2 = 2^{1},\\ \\text{so } 2^{n/2}\\cdot 2 = 2^{n/2 + 1} = 2^{(n+2)/2}",
+            "render": "katex",
+            "style": "eq"
+          },
           {
             "text": "\\therefore (1+i)^{n} + (1-i)^{n} = 2^{(n+2)/2}\\cos\\tfrac{n\\pi}{4}",
             "render": "katex",

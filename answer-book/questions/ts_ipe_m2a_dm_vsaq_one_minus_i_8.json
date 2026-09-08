@@ -108,7 +108,7 @@
         "memory_tip": "(√2)⁸ = 2⁴ = 16, and 8 · π/4 = 2π, where cos = 1 and sin = 0.",
         "lines": [
           "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
-          "(√2)⁸ = (2^(1/2))⁸ = 2⁴ = 16",
+          "(√2)⁸ = ((√2)²)⁴ = 2⁴ = 16",
           "By De Moivre's theorem the angle is multiplied:",
           "(cos π/4 − i sin π/4)⁸ = cos(8π/4) − i sin(8π/4)",
           "= cos 2π − i sin 2π",
