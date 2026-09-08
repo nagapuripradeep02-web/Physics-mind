@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-11",
+ "chapter": "Thermal Properties of Matter",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q098",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "A metal ball initially at pressure of 10⁵ Pa is heated from 20°C to 127°C keeping its volume constant. The coefficient of linear expansion of metal is 10⁻⁵ °C⁻¹ and bulk modulus of metal is 2 × 10¹¹ N/m². The pressure inside the ball becomes",
+   "options_en": [
+    "2 × 10⁸ Pa",
+    "6 × 10⁸ Pa",
+    "1 × 10⁹ Pa",
+    "4 × 10⁸ Pa"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "A hole of diameter 5 cm is drilled in a metal sheet at 30 °C. The linear expansion of metal is 2×10⁻⁵ K⁻¹. The diameter of the hole when the temperature is raised to 230 °C, is equal to",
+   "options_en": [
+    "5.01 cm",
+    "5.02 cm",
+    "5.03 cm",
+    "5.04 cm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_an_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "The heat energy required to convert 10 kg of ice at −10 °C into water at 0 °C is (specific heat capacity of ice = 0.5 cal g⁻¹ and latent heat of fusion of ice = 80 cal g⁻¹)",
+   "options_en": [
+    "357 x 10⁴ J",
+    "357 x 10³ J",
+    "357 x 10² J",
+    "357 x 10⁵ J"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_fn_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "37 g of ice at 0 °C temperature is mixed with 74 g of water at 70 °C temperature. The resultant temperature is (Specific heat capacity of water = 1 cal g⁻¹ °C⁻¹ and latent heat of fusion of ice = 80 cal g⁻¹)",
+   "options_en": [
+    "45°C",
+    "70°C",
+    "20°C",
+    "35°C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q097",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "A rectangular ice box of total surface area of 1000 cm² initially contains 1.5 kg of ice at 0 °C. If the thickness of the walls of the box is 2 mm and the temperature outside the box is 42 °C, then the mass of the ice remaining in the box after 160 minutes is (Thermal conductivity of the material of the box = 10⁻² Wm⁻¹K⁻¹ and latent heat of the fusion of ice = 336×10³ Jkg⁻¹)",
+   "options_en": [
+    "0.8 kg",
+    "0.9 kg",
+    "0.6 kg",
+    "0.7 kg"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_an_q099",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "Two spheres of same material and radii 5 m and 2 m are at temperature 200 K and 2500 K respectively. The ratio of energies radiated by them per second is",
+   "options_en": [
+    "64:25",
+    "36:75",
+    "128:625",
+    "16:125"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "Find the ratio of the length of a steel rod and a copper rod if the steel rod is 4 cm longer than the copper rod at any temperature.\n[The coefficient of linear expansion for steel and copper are 1.1 × 10⁻⁵/°C and 1.7 × 10⁻⁵/°C respectively]",
+   "options_en": [
+    "17/11",
+    "11/17",
+    "11/4",
+    "17/4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "Two rods of same area of cross-section have lengths L and 2L and coefficients of linear expansions 2α and α respectively. If they are welded to form a composite rod of length 3L then the coefficient of linear expansion of the composite rod is",
+   "options_en": [
+    "3α/2",
+    "3α",
+    "3α/4",
+    "4α/3"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q095",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "When 54 g of ice at −20 °C is mixed with 25 g of steam at 100 °C, then the final mixture at thermal equilibrium contains",
+   "options_en": [
+    "20 g water at 100 °C",
+    "73 g water at 100 °C and 6 g steam at 100 °C",
+    "8 g steam at 100 °C and 12 g water at 0 °C",
+    "20 g water at 50 °C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q112",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "The temperature at which the reading on Fahrenheit scale becomes 90% more than the reading on Celsius scale is",
+   "options_en": [
+    "608 °F",
+    "320 °F",
+    "580 °F",
+    "280 °F"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q098",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2021,
+   "question_en": "The ratio of linear expansivity to the co-efficient of a real expansion of a rectangular sheet of a solid is",
+   "options_en": [
+    "2",
+    "0.5",
+    "1",
+    "1.5"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q097",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2022,
+   "question_en": "An object cools from 100°C to 40°C in 10 minutes, when the surrounding temperature is 10°C. Then the time taken by the object to cool from 70°C to 20°C is\n[Take ln 2 = 0.7, ln 3 = 1.1, ln 6 = 1.8]",
+   "options_en": [
+    "30 min",
+    "8.5 min",
+    "22.4 min",
+    "16.3 min"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q094",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2023,
+   "question_en": "Two objects made of the same material have masses 'm' and '2m' and are at temperatures '2T' and 'T' respectively. When heat 'Q' is supplied to the object of mass '2m', its temperature raises to '2T'. If the same heat is supplied to the object of mass 'm', its temperature raises to",
+   "options_en": [
+    "2T",
+    "3T/2",
+    "4T",
+    "3T"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q096",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2024,
+   "question_en": "A solid sphere at a temperature T K is cut in to two hemispheres. The ratio of energies radiated by one hemisphere to the whole sphere per second is",
+   "options_en": [
+    "1:1",
+    "1:2",
+    "3:4",
+    "1:4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q099",
+   "chapter": "Thermal Properties of Matter",
+   "year": 2025,
+   "question_en": "A metal metre scale that is accurate up to 0.5 mm is made at a temperature of 25°C. The range of temperatures within which it can be used is (Coefficient of linear expansion of the metal = 10⁻⁵/°C)",
+   "options_en": [
+    "0°C to +50°C",
+    "+25°C to +75°C",
+    "−25°C to +75°C",
+    "+25°C to +50°C"
+   ]
+  }
+ ]
+}

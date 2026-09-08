@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-10",
+ "chapter": "Mechanical Properties of Fluids",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q096",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "What is the terminal velocity of air bubble of 1.0 mm in diameter rising in liquid of viscosity 0.85 Ns/m² and density 900 kgm⁻³? [air density 1.293 kg/m³, g = 9 m/s²]",
+   "options_en": [
+    "Vₜ = 0.25 mm/s",
+    "Vₜ = 0.5 mm/s",
+    "Vₜ = 1.5 mm/s",
+    "Vₜ = 2.5 mm/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q094",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "A hollow spherical body of outer and inner radii of 4 cm and 2 cm respectively floats half submerged in a liquid of density 2.0 g/cm³. The density of the material of the sphere is",
+   "options_en": [
+    "1.02 g/cm³",
+    "1.14 g/cm³",
+    "1.18 g/cm³",
+    "1.24 g/cm³"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q094",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "Three identical vessels are filled with three liquids A, B, and C with equal masses but having densities ρ_A, ρ_B and ρ_C respectively. If ρ_A > ρ_B > ρ_C then the pressure at the bottom of the vessels will be",
+   "options_en": [
+    "Equal in all vessels",
+    "Maximum in vessel containing liquid A",
+    "Maximum in vessel containing liquid B",
+    "Maximum in vessel containing liquid C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_an_q094",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "Three identical vessels are filled up to the same height with three different liquids A, B and C of densities ρA, ρB and ρC respectively. If ρA>ρB>ρC, then the pressure at the bottom of the vessels is",
+   "options_en": [
+    "equal in all vessels",
+    "maximum in vessel containing liquid C",
+    "maximum in vessel containing liquid B",
+    "maximum in vessel containing liquid A"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q100",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A thin film of water is formed between two straight parallel wires each of length 8 cm separated by distance of 0.6 cm. The work done to increase the distance between the wires to 0.8 cm is (Surface tension of water = 0.07 Nm⁻¹)",
+   "options_en": [
+    "22.4 μJ",
+    "33.6 μJ",
+    "44.8 μJ",
+    "11.2 μJ"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q096",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "Water is pumped steadily out of a flooded basement, at the speed of 10 m/s through a hose (tube) of radius 1 cm, passing through a window 3 m above the water level. The power of the pump is (Assume g = 10 m/s², density of water = 1000 kg/m³)",
+   "options_en": [
+    "80π W",
+    "30π W",
+    "50π W",
+    "90π W"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q095",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "What is the terminal velocity of a rain drop of radius 0.02 mm? [Note that the coefficient of viscosity of air is 1.8 × 10⁻⁵ N/m², density of water is 1000 Kg/m³. Use g = 10m/s² and density of air can be neglected in comparison with density of water]",
+   "options_en": [
+    "4.9 cm/s",
+    "9.8 cm/s",
+    "0.49 cm/s",
+    "49 cm/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q093",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "If the work done in blowing a soap bubble of radius R is W, then the work done in blowing the soap bubble of radius 2R is",
+   "options_en": [
+    "6W",
+    "12W",
+    "4W",
+    "2W"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q093",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "The excess pressure inside a soap bubble of radius 0.5 cm is balanced by the pressure due to an oil column of height 4 mm. If the density of the oil is 900 kg m⁻³, then the surface tension of the soap solution is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9×10⁻² Nm⁻¹",
+    "2.25×10⁻² Nm⁻¹",
+    "4.5×10⁻² Nm⁻¹",
+    "7×10⁻² Nm⁻¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q119",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A rain drop of diameter 1 mm falls with a terminal velocity of 0.7 ms⁻¹ in air. If the coefficient of viscosity of air is 2×10⁻⁵ Pa s, the viscous force on the rain drop is",
+   "options_en": [
+    "26.4×10⁻⁸ N",
+    "13.2×10⁻⁸ N",
+    "6.6×10⁻⁸ N",
+    "10.4×10⁻⁸ N"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q097",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2021,
+   "question_en": "A U-shaped tube is partially filled with an incompressible liquid of density 1.2 g/cm³. Oil which does not mix with the liquid is next poured into left side of the U-tube until the liquid rises by 15 cm on the right side of U-tube. If the density of the oil is 0.9 g/cm³, the oil level will stand higher than the liquid level of right side of U-tube by",
+   "options_en": [
+    "15 cm",
+    "10 cm",
+    "12 cm",
+    "9 cm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q094",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2022,
+   "question_en": "A large storage tank, open to the atmosphere at top and filled with water, develops a small hole in its side at a point 20.0 m below the water level. If the rate of flow from the hole is 3.08 × 10⁻⁵ m³/s, then the diameter of the hole is\n[Take g = 10 m/s²]",
+   "options_en": [
+    "1.0 mm",
+    "1.2 mm",
+    "1.4 mm",
+    "1.6 mm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q092",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2023,
+   "question_en": "A straw of circular cross-section of radius R and negligible thickness is dipped vertically into a liquid of surface tension T. If the contact angle between the liquid and the straw material is 53°, the force acting on the straw due to surface tension of the liquid is (cos 53° = 0.6)",
+   "options_en": [
+    "12πRT/5",
+    "6πRT/5",
+    "4πRT/5",
+    "3πRT/5"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q094",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2024,
+   "question_en": "Water flows through a horizontal pipe of variable cross-section at the rate of 12π litre per minute. The velocity of the water at the point where the diameter of the pipe becomes 2 cm is",
+   "options_en": [
+    "6 ms⁻¹",
+    "8 ms⁻¹",
+    "4 ms⁻¹",
+    "2 ms⁻¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q103",
+   "chapter": "Mechanical Properties of Fluids",
+   "year": 2025,
+   "question_en": "A cube of side 40 cm is floating with 1/4th of its volume immersed in water. When a circular disc is placed on the cube, it floats with 2/5th of its volume immersed in water. The mass of the disc is",
+   "options_en": [
+    "9.6 kg",
+    "1.6 kg",
+    "6.4 kg",
+    "3.2 kg"
+   ]
+  }
+ ]
+}

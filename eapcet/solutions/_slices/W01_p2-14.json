@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p2-14",
+ "chapter": "Nuclei",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q116",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "The mass number of an iodine nucleus and a polonium nucleus is 125 and 216 respectively. The ratio of radius of iodine nucleus to that of polonium nucleus is",
+   "options_en": [
+    "5:6",
+    "6:5",
+    "7:6",
+    "5:7"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_an_q081",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "The range of the nuclear force is",
+   "options_en": [
+    "10⁻¹⁸ m",
+    "10⁻¹⁶ m",
+    "10⁻¹⁵ m",
+    "10⁻¹³ m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230514_an_q113",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "Energy released in the fission of a single uranium nucleus is 200 MeV. Then the number of fissions per second to produce 5 mW power is",
+   "options_en": [
+    "1.56×10⁸",
+    "1.56×10¹³",
+    "3.12×10⁸",
+    "3.12×10¹³"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q117",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The energy released by the fission of one uranium nucleus is 200 MeV. The number of fissions per second required to produce 128 W power is",
+   "options_en": [
+    "6×10¹²",
+    "8×10¹²",
+    "2×10¹²",
+    "4×10¹²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_an_q081",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "The range of weak nuclear force is of the order of",
+   "options_en": [
+    "10¹⁶ m",
+    "10⁻¹⁰ m",
+    "10¹⁰ m",
+    "10⁻¹⁶ m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_an_q117",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "The distance between two nucleons for which the potential energy is minimum, is",
+   "options_en": [
+    "0.2 fm",
+    "0.6 fm",
+    "0.8 fm",
+    "0.1 fm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q081",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "Which of the following interaction is responsible for beta decay?",
+   "options_en": [
+    "Gravitational",
+    "Weak",
+    "Electromagnetic",
+    "Strong"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q116",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "In the following nuclear reaction X is: ₁₃Al²⁷ + ₂He⁴ → ₀n¹ + X",
+   "options_en": [
+    "₁₅P³¹",
+    "₁₄Si³⁰",
+    "₁₅P³⁰",
+    "₁₅Si³¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q116",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The half lives of two radioactive materials A and B are respectively T and 2T. If the ratio of the initial masses of the materials A and B is 8:1, then the time after which the ratio of the masses of the materials A and B becomes 4:1 is",
+   "options_en": [
+    "2T",
+    "T",
+    "4T",
+    "8T"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q098",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a nucleus P converts into a nucleus Q by the decay of one alpha particle and two β⁻ particles, then the nuclei P and Q are",
+   "options_en": [
+    "Isobars",
+    "Isomers",
+    "Isotones",
+    "Isotopes"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q117",
+   "chapter": "Nuclei",
+   "year": 2021,
+   "question_en": "In a nuclear reactor, the main purpose of the moderator is to",
+   "options_en": [
+    "Initiate the fission process by giving away its neutron",
+    "Slow down the fast neutrons",
+    "Cool down the excess of heat generated in the reactor",
+    "Absorb excess of neutrons and control the reaction rate"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q117",
+   "chapter": "Nuclei",
+   "year": 2022,
+   "question_en": "Consider a nucleus ⁶⁰₃₀X. It's approximate density is (Take 1 amu=1.6 ×10⁻²⁷ kg, R₀ = 1.2 x 10⁻¹⁵ m.)",
+   "options_en": [
+    "1.2 × 10¹⁸ kg/m³",
+    "8.5 × 10¹⁹ kg/m³",
+    "3.3 × 10¹⁶ kg/m³",
+    "2.2 × 10¹⁷ kg/m³"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q117",
+   "chapter": "Nuclei",
+   "year": 2023,
+   "question_en": "Nuclear fission and fusion can be explained on the basis of",
+   "options_en": [
+    "Einstein's theory of relativity",
+    "Einstein specific heat equation",
+    "Einstein mass-energy equation",
+    "Einstein photoelectric equation"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q116",
+   "chapter": "Nuclei",
+   "year": 2024,
+   "question_en": "The half-life of a radioactive substance is 12 minutes. The time gap between 28% decay and 82% decay of the radioactive substance is",
+   "options_en": [
+    "6 minutes",
+    "18 minutes",
+    "12 minutes",
+    "24 minutes"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q102",
+   "chapter": "Nuclei",
+   "year": 2025,
+   "question_en": "If a radioactive substance decays 10% in every 16 hours, then the percentage of the radioactive substance that remains after 2 days is",
+   "options_en": [
+    "72.9",
+    "82.2",
+    "18.8",
+    "27.1"
+   ]
+  }
+ ]
+}

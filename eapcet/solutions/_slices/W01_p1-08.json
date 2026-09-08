@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-08",
+ "chapter": "Gravitation",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q094",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Four identical masses of m are kept at corners of a square. If the gravitational force exerted on one of masses by the other masses is ((2√2+1)/32) Gm²/L², then the length of the side of the square is",
+   "options_en": [
+    "L",
+    "2 L",
+    "4 L",
+    "L/2"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q092",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "A rocket fired vertically with a speed of 4 km/s from the earth's surface. How far from the earth does the rocket go before returning to the earth? (Take radius of earth = 6.4×10⁶ m and g = 10 m/s²)",
+   "options_en": [
+    "500.24 km",
+    "914.28 km",
+    "1230.24 km",
+    "1750.28 km"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q091",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "The ratio of the radii of two planets is 'r' and the ratio of accelerations due to gravity on the planets is 'x'. Then the ratio of the escape velocities from the planets is",
+   "options_en": [
+    "xr",
+    "√(r/x)",
+    "√(rx)",
+    "√(x/r)"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q091",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The ratio of the accelerations due to gravity at heights 1280 km and 3200 km above the surface of the earth is (Radius of the earth = 6400 km)",
+   "options_en": [
+    "25:16",
+    "5:2",
+    "1:1",
+    "25:4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q106",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "If the orbital speed of a body revolving in a circular path near the surface of the earth is 8 kms⁻¹, then the orbital speed of a body revolving around the earth in a circular orbit at height of 19,200 km from the surface of earth is (Radius of the earth = 6400 km)",
+   "options_en": [
+    "4 kms⁻¹",
+    "9 kms⁻¹",
+    "6 kms⁻¹",
+    "7.5 kms⁻¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_fn_q094",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Two stars of equal masses M are orbiting in a circle of radius R. Their orbital time period is proportional to",
+   "options_en": [
+    "R^(3/2)",
+    "R",
+    "R²",
+    "R^(1/2)"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q092",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "Three particles, each of mass M, situated at the vertices of an equilateral triangle of side length 'l'. The only forces acting on the particles are their mutual gravitational forces. It is desired that each particle moves in a circle while maintaining the original separation 'l'. The initial speed that should be given to each particle is",
+   "options_en": [
+    "√(2GM/l)",
+    "√(GM/2l)",
+    "√(GM/l)",
+    "√(3GM/l)"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q098",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "A ring has a mass M and radius R. The distance of the point on its geometric axis from its centre at which the gravitational field is strongest is",
+   "options_en": [
+    "R/2",
+    "R/4",
+    "R/√3",
+    "R/√2"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q091",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The energy required to take a body from the surface of the earth to a height equal to the radius of the earth is 'W'. The energy required to take this body from the surface of the earth to a height equal to twice the radius of the earth is",
+   "options_en": [
+    "W/3",
+    "2W/3",
+    "W",
+    "4W/3"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q082",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "Which of the following is incorrect about the gravitational force between two bodies?",
+   "options_en": [
+    "Conservative force",
+    "Attractive force",
+    "Not a central force",
+    "Not a contact force"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210806_an_q094",
+   "chapter": "Gravitation",
+   "year": 2021,
+   "question_en": "Match the following. Column-1: A) Potential energy of satellite, B) Total energy of satellite, C) Kinetic energy of satellite, D) Gravitational potential energy of satellite at infinity. Column-2: I) Positive, II) Negative, III) Zero, IV) Infinity",
+   "options_en": [
+    "A-IV, B-II, C-I, D-III",
+    "A-III, B-I, C-IV, D-II",
+    "A-II, B-II, C-I, D-III",
+    "A-II, B-I, C-IV, D-III"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_an_q092",
+   "chapter": "Gravitation",
+   "year": 2022,
+   "question_en": "Four particles each of mass m are placed at four vertices of a rectangle having side length as 3l₀ and 4l₀. The potential energy of the system in Gm²/l₀ is",
+   "options_en": [
+    "7/6",
+    "47/30",
+    "47/60",
+    "7/12"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_an_q091",
+   "chapter": "Gravitation",
+   "year": 2023,
+   "question_en": "The ratio of orbital velocity of a body near to the surface of a planet and escape velocity of a body from the surface of the same planet is",
+   "options_en": [
+    "√2 : 1",
+    "√5 : 1",
+    "1 : √2",
+    "1 : √5"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_an_q091",
+   "chapter": "Gravitation",
+   "year": 2024,
+   "question_en": "The ratio of the radii of a planet and the earth is 1:2, the ratio of their mean densities is 4:1. If the acceleration due to gravity on the surface of the earth is 9.8 ms⁻², then the acceleration due to gravity on the surface of the planet is",
+   "options_en": [
+    "4.9 ms⁻²",
+    "8.9 ms⁻²",
+    "29.4 ms⁻²",
+    "19.6 ms⁻²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q113",
+   "chapter": "Gravitation",
+   "year": 2025,
+   "question_en": "The force of mutual attraction between any two objects by virtue of their masses is",
+   "options_en": [
+    "Electromagnetic force",
+    "Weak nuclear force",
+    "Strong nuclear force",
+    "Gravitational force"
+   ]
+  }
+ ]
+}

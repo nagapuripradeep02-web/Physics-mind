@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-13",
+ "chapter": "Kinetic Theory",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q102",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "As per kinetic theory of gases which of the following statements is / are true? a) Temperature of a gas is a measure of average kinetic energy of a molecule b) Temperature of a gas depends on the nature of the gas c) Heavier molecule has lower average speed d) Lighter molecule has lower average speed",
+   "options_en": [
+    "a & b are true",
+    "b & c are true",
+    "a & c are true",
+    "b & d are true"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q100",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "Statement (I) : Gas thermometers are less sensitive than liquid thermometers. Statement (II) : The ratio of universal gas constant and avagadro's number is called Boltzman's constant. Statement (III) : The density of a given mass of a gas at constant pressure is inversely proportional to its absolute temperature. Which of the following is correct?",
+   "options_en": [
+    "Statements I, II, III are true",
+    "Statements I, II are true, but statement III is false",
+    "Statements II, III are true, but statement I is false",
+    "Statements I, II, III are false"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230514_an_q098",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "If the temperature of a gas is increased from 27°C to 159°C, then the percentage increase in the rms speed of the gas molecules is",
+   "options_en": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q098",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "If the temperature of a gas is increased from 27 °C to 159 °C, the increase in the rms speed of the gas molecules is",
+   "options_en": [
+    "142%",
+    "71%",
+    "80%",
+    "20%"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q091",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "If the rms speed of the molecules of a gas at a temperature of 77 °C is 50 ms⁻¹, then the rms speed of the same gas molecules at a temperature of 150.5 °C is",
+   "options_en": [
+    "45 ms⁻¹",
+    "55 ms⁻¹",
+    "65 ms⁻¹",
+    "35 ms⁻¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_an_q102",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "Two non-reactive monoatomic ideal gases have their atomic masses in the ratio 3 : 4. The ratio of their partial pressures when enclosed in a vessel kept at a constant temperature is 2 : 3. The ratio of their densities is:",
+   "options_en": [
+    "1.1",
+    "2.0",
+    "0.9",
+    "0.5"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q100",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "If the root mean square (rms) speed of nitrogen molecules at room temperature is 100 m/s, then the rms speed of Helium molecule at the same temperature is",
+   "options_en": [
+    "100√7 m/s",
+    "350 m/s",
+    "50√14 m/s",
+    "100 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q096",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "For a given mass of a gas at constant temperature, the volume and the pressure are V and P respectively. Then the slope of the graph drawn between logₑ V on X-axis and logₑ P on Y-axis is",
+   "options_en": [
+    "1",
+    "−1",
+    "Zero",
+    "Infinity"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q098",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "The total internal energy of 4 moles of a diatomic gas at a temperature of 27 °C is (Universal gas constant = 8.31 J mol⁻¹ K⁻¹)",
+   "options_en": [
+    "13.47 kJ",
+    "4.98 kJ",
+    "24.93 kJ",
+    "14.96 kJ"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q117",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "At constant pressure, equal amounts of heat are supplied to a monatomic gas and a diatomic gas separately. The ratio of the increases in internal energies of the two gases is",
+   "options_en": [
+    "9 : 49",
+    "3 : 7",
+    "21 : 25",
+    "1 : 1"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_fn_q101",
+   "chapter": "Kinetic Theory",
+   "year": 2021,
+   "question_en": "Consider an ideal gas in a closed container at 300 K. The container is then heated so that the average velocity of a particles of the gas increases by a factor of 4. What would be the final temperature?",
+   "options_en": [
+    "4500 °C",
+    "4527 °C",
+    "4617 °C",
+    "4600 °C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_an_q099",
+   "chapter": "Kinetic Theory",
+   "year": 2022,
+   "question_en": "An ideal gas at pressure P₀ undergoes an isothermal expansion until its volume is 8.0 times its initial volume. The gas is slowly and adiabatically compressed back to its original volume. If the adiabatic constant of the gas is γ = 4/3, then the ratio of the average kinetic energy per molecule in this final state to that in the initial state is",
+   "options_en": [
+    "1.44",
+    "1.68",
+    "2.0",
+    "1.2"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q097",
+   "chapter": "Kinetic Theory",
+   "year": 2023,
+   "question_en": "An ideal gas at 127 °C is compressed suddenly to 8/27 of its initial volume. If γ = 5/3 for an ideal gas, then rise in its temperature is",
+   "options_en": [
+    "450 K",
+    "500 K",
+    "225 K",
+    "405 K"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_an_q098",
+   "chapter": "Kinetic Theory",
+   "year": 2024,
+   "question_en": "The temperature at which the rms speed of oxygen molecules is 75 % of rms speed of nitrogen molecules at a temperature of 287 °C is",
+   "options_en": [
+    "87 °C",
+    "127 °C",
+    "227 °C",
+    "360 °C"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q111",
+   "chapter": "Kinetic Theory",
+   "year": 2025,
+   "question_en": "The ratio of the average translational kinetic energies of hydrogen and oxygen at the same temperature is",
+   "options_en": [
+    "1 : 6",
+    "1 : 8",
+    "1 : 1",
+    "1 : 4"
+   ]
+  }
+ ]
+}

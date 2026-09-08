@@ -1,0 +1,36 @@
+{
+ "tg_eapcet_2022_20220718_an_q096": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "40901b413cc84213062986df81f4b4f7f9fd8f0c63e4aafffd5476b63373bf66",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T02:11:52+02:00"
+ },
+ "tg_eapcet_2023_20230512_fn_q087": {
+  "verdict": "pass",
+  "answer_matches_key": true,
+  "content_sha": "676da7b2176ebba37cb886194633381d95df96aca695f65ea5fc544dbed35c9e",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": true
+  },
+  "warnings": [],
+  "chapter_key": "p1-05",
+  "gate_run": "2026-09-08T02:11:52+02:00"
+ }
+}

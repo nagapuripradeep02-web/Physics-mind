@@ -1,0 +1,37 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2021_20210805_an_q090",
+ "approach": "Use conservation of momentum and the coefficient of restitution to find both final velocities.",
+ "steps": [
+  {
+   "text": "Conserve momentum.",
+   "equation": "mv = m v_P + 2m v_Q"
+  },
+  {
+   "text": "Apply the restitution relation.",
+   "equation": "v_Q − v_P = e v = v/3"
+  },
+  {
+   "text": "Solve the two equations.",
+   "equation": "v_Q/v_P = 2"
+  }
+ ],
+ "final_answer": {
+  "option": 3,
+  "value": "v_Q/v_P = 2"
+ },
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": [
+  "collision",
+  "coefficient of restitution"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "founder-checked example",
+  "wave": 0,
+  "agent": "DELIBERATELY WRONG test file",
+  "at": "2026-09-08T00:00:00+05:30"
+ }
+}

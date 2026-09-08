@@ -1,0 +1,21 @@
+{
+ "tg_eapcet_2022_20220718_an_q096": {
+  "verdict": "reject",
+  "answer_matches_key": true,
+  "content_sha": "b7d06b06c99daf2e1ed70a335cf47670bb44a31c7ae6bfa5137d6e504f652d34",
+  "checks": {
+   "schema": true,
+   "key": true,
+   "value": true,
+   "ending": true,
+   "placeholder": true,
+   "markdown": true,
+   "idioms": false
+  },
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T02:11:52+02:00",
+  "reason": "idiom",
+  "detail": "the trick is"
+ }
+}

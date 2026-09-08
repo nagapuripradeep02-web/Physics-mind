@@ -1,0 +1,250 @@
+"""The dispatch ledger: what has been handed to which agent, written to disk BEFORE any agent runs.
+
+A duplicate dispatch happened on the transcription pass because the list of what was out was
+held in my head. This file is the only list. Plan a wave, and the ledger rows and the slices
+exist before a single agent is launched; audit the disk, and the ledger learns what actually
+got written, so an agent's failure notice never triggers a rerun of work that is sitting there.
+
+Author slices carry NO answer. An author who can see the key is not an independent reader of
+it, and the key gate stops being a test.
+
+    python scripts/eapcet/dispatch.py --plan --wave 1 --chapter-keys p1-11 p1-10 p1-05 ...
+    python scripts/eapcet/dispatch.py --plan --wave 1 --role audit          # after make_audit_input.py
+    python scripts/eapcet/dispatch.py --redispatch --wave 1 --ids <id> ... --reason "key miss"
+    python scripts/eapcet/dispatch.py --mark-dispatched --wave 1 [--role author]
+    python scripts/eapcet/dispatch.py --audit-disk
+    python scripts/eapcet/dispatch.py --status
+"""
+import os, io, sys, json, argparse, datetime, collections
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(HERE))
+POOL = os.path.join(ROOT, "eapcet", "pool", "physics_pool_v1.json")
+SOL = os.path.join(ROOT, "eapcet", "solutions")
+LEDGER = os.path.join(SOL, "_dispatch.json")
+SLICES = os.path.join(SOL, "_slices")
+AUDIT_IN = os.path.join(SOL, "_audit_input")
+AUDIT_SLICES = os.path.join(SOL, "_audit_slices")
+SPLIT_WORDS = ("split", "join", "continu", "second image")
+
+
+def now():
+    return datetime.datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+def load(p, default=None):
+    if not os.path.exists(p):
+        return default
+    return json.load(io.open(p, encoding="utf-8"))
+
+
+def save(p, obj):
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    io.open(p, "w", encoding="utf-8").write(json.dumps(obj, indent=1, ensure_ascii=False))
+
+
+def pool_index():
+    p = load(POOL)
+    if not p:
+        sys.exit("no pool file - run select_pool.py first")
+    return p, {q["id"]: q for q in p["questions"]}, {c["key"]: c for c in p["chapters"]}
+
+
+def author_view(q):
+    """What an author is allowed to see. Never the answer, never the vision reading."""
+    v = {"id": q["id"], "chapter": q["chapter"], "year": q["year"],
+         "question_en": q["question_en"], "options_en": q["options_en"]}
+    note = q.get("note") or ""
+    if any(w in note.lower() for w in SPLIT_WORDS):
+        v["note"] = note
+    return v
+
+
+def label(wave, role, chapter_key, k=None):
+    base = "W%02d-%s-%s" % (wave, "A" if role == "author" else "U", chapter_key)
+    return base if k is None else base + "-R%d" % k
+
+
+def plan_authors(ledger, wave, chapter_keys, model):
+    pool, byid, bych = pool_index()
+    planned = {(r["wave"], r["role"], r["chapter_key"]) for r in ledger if not r.get("redispatch_of")}
+    rows = []
+    for ck in chapter_keys:
+        c = bych.get(ck)
+        if not c:
+            sys.exit("unknown chapter key %r" % ck)
+        if (wave, "author", ck) in planned:
+            sys.exit("chapter %s already planned in wave %d - use --redispatch --reason" % (ck, wave))
+        if not c["question_ids"]:
+            print("  %s has no pooled questions - skipped" % ck)
+            continue
+        slice_path = os.path.join(SLICES, "W%02d_%s.json" % (wave, ck))
+        save(slice_path, {"wave": wave, "role": "author", "chapter_key": ck, "chapter": c["name"],
+                          "questions": [author_view(byid[i]) for i in c["question_ids"]]})
+        rows.append({"wave": wave, "role": "author", "chapter_key": ck, "chapter": c["name"],
+                     "question_ids": list(c["question_ids"]), "model": model,
+                     "agent_label": label(wave, "author", ck),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(c["question_ids"]), "files_present": 0})
+        print("  planned %-14s %-40s %2d questions -> %s" % (rows[-1]["agent_label"], c["name"][:40],
+                                                             len(c["question_ids"]), rows[-1]["slice_path"]))
+    return rows
+
+
+def plan_audits(ledger, wave, model):
+    """One audit slice per chapter, over every audit-input view that exists for that wave's ids."""
+    pool, byid, bych = pool_index()
+    wave_ids = set()
+    for r in ledger:
+        if r["wave"] == wave and r["role"] == "author":
+            wave_ids.update(r["question_ids"])
+    if not wave_ids:
+        sys.exit("wave %d has no author rows" % wave)
+    have = {f[:-5] for f in os.listdir(AUDIT_IN)} if os.path.isdir(AUDIT_IN) else set()
+    missing = sorted(wave_ids - have)
+    if missing:
+        print("  %d ids of wave %d have no audit input yet (run make_audit_input.py): first %s"
+              % (len(missing), wave, missing[:3]))
+    planned = {(r["wave"], r["role"], r["chapter_key"]) for r in ledger}
+    rows = []
+    by_ch = collections.defaultdict(list)
+    for i in sorted(wave_ids & have):
+        by_ch[byid[i]["chapter_key"]].append(i)
+    for ck, ids in sorted(by_ch.items()):
+        if (wave, "audit", ck) in planned:
+            print("  audit for %s wave %d already planned - skipped" % (ck, wave))
+            continue
+        slice_path = os.path.join(AUDIT_SLICES, "W%02d_%s.json" % (wave, ck))
+        save(slice_path, {"wave": wave, "role": "audit", "chapter_key": ck, "chapter": bych[ck]["name"],
+                          "items": [load(os.path.join(AUDIT_IN, i + ".json")) for i in ids]})
+        rows.append({"wave": wave, "role": "audit", "chapter_key": ck, "chapter": bych[ck]["name"],
+                     "question_ids": ids, "model": model, "agent_label": label(wave, "audit", ck),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(ids), "files_present": 0})
+        print("  planned %-14s %-40s %2d items" % (rows[-1]["agent_label"], bych[ck]["name"][:40], len(ids)))
+    return rows
+
+
+def archive_attempt(qid):
+    """Keep the attempt being replaced. Two blind attempts reaching the same option against the
+    key is the escalation signal, and build_release.py needs both to see it."""
+    attempts = os.path.join(SOL, "_attempts")
+    for src, tag in ((os.path.join(SOL, qid + ".json"), "attempt"),
+                     (os.path.join(SOL, "_refusals", qid + ".json"), "refusal")):
+        if os.path.exists(src):
+            n = 1 + len([f for f in os.listdir(attempts) if f.startswith(qid + ".")]) if os.path.isdir(attempts) else 1
+            os.makedirs(attempts, exist_ok=True)
+            os.replace(src, os.path.join(attempts, "%s.%d.%s.json" % (qid, n, tag)))
+            print("  archived %s -> _attempts/%s.%d.%s.json" % (tag, qid, n, tag))
+
+
+def redispatch(ledger, wave, ids, reason, model):
+    """Re-author specific ids (key misses, refusals, audit failures) - grouped by chapter, a
+    fresh agent, still blind."""
+    pool, byid, bych = pool_index()
+    bad = [i for i in ids if i not in byid]
+    if bad:
+        sys.exit("ids not in the pool: %s" % bad)
+    by_ch = collections.defaultdict(list)
+    for i in ids:
+        by_ch[byid[i]["chapter_key"]].append(i)
+        archive_attempt(i)
+    rows = []
+    for ck, group in sorted(by_ch.items()):
+        k = 1 + sum(1 for r in ledger if r["wave"] == wave and r["chapter_key"] == ck and r.get("redispatch_of"))
+        slice_path = os.path.join(SLICES, "W%02d_%s_R%d.json" % (wave, ck, k))
+        save(slice_path, {"wave": wave, "role": "author", "chapter_key": ck, "chapter": bych[ck]["name"],
+                          "redispatch": k, "questions": [author_view(byid[i]) for i in group]})
+        rows.append({"wave": wave, "role": "author", "chapter_key": ck, "chapter": bych[ck]["name"],
+                     "question_ids": group, "model": model, "agent_label": label(wave, "author", ck, k),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(group), "files_present": 0,
+                     "redispatch_of": k, "reason": reason})
+        print("  planned %-16s %-36s %2d ids  (%s)" % (rows[-1]["agent_label"], bych[ck]["name"][:36],
+                                                       len(group), reason))
+    return rows
+
+
+def audit_disk(ledger):
+    """What is actually on disk, per row. A refusal counts as written: the agent did its job."""
+    for r in ledger:
+        if r["role"] == "author":
+            present = [i for i in r["question_ids"]
+                       if os.path.exists(os.path.join(SOL, i + ".json"))
+                       or os.path.exists(os.path.join(SOL, "_refusals", i + ".json"))]
+        else:
+            present = [i for i in r["question_ids"] if os.path.exists(os.path.join(SOL, "_audit", i + ".json"))]
+        r["files_present"] = len(present)
+        if r["status"] in ("dispatched", "partial", "written"):
+            r["status"] = "written" if len(present) == r["files_expected"] else "partial" if present else "dispatched"
+        r["audited_disk_at"] = now()
+
+
+def status(ledger):
+    print("%-16s %-6s %-28s %-9s %5s/%-5s %s" % ("agent", "role", "chapter", "status", "have", "want", "slice"))
+    for r in ledger:
+        print("%-16s %-6s %-28s %-9s %5d/%-5d %s" % (r["agent_label"], r["role"], r["chapter"][:28],
+                                                     r["status"], r["files_present"], r["files_expected"],
+                                                     r["slice_path"]))
+    c = collections.Counter((r["role"], r["status"]) for r in ledger)
+    print("")
+    for (role, st), n in sorted(c.items()):
+        print("  %-6s %-9s %d" % (role, st, n))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--plan", action="store_true")
+    ap.add_argument("--redispatch", action="store_true")
+    ap.add_argument("--mark-dispatched", action="store_true")
+    ap.add_argument("--audit-disk", action="store_true")
+    ap.add_argument("--status", action="store_true")
+    ap.add_argument("--wave", type=int)
+    ap.add_argument("--role", default="author", choices=["author", "audit"])
+    ap.add_argument("--chapter-keys", nargs="*", default=[])
+    ap.add_argument("--ids", nargs="*", default=[])
+    ap.add_argument("--reason", default="")
+    ap.add_argument("--model", default=None)
+    a = ap.parse_args()
+
+    ledger = load(LEDGER, [])
+    model = a.model or ("opus" if a.role == "audit" else "sonnet")
+
+    if a.plan:
+        if a.wave is None:
+            sys.exit("--plan needs --wave")
+        if a.role == "author":
+            if not a.chapter_keys:
+                sys.exit("--plan --role author needs --chapter-keys")
+            ledger += plan_authors(ledger, a.wave, a.chapter_keys, model)
+        else:
+            ledger += plan_audits(ledger, a.wave, model)
+        save(LEDGER, ledger)
+    elif a.redispatch:
+        if a.wave is None or not a.ids or not a.reason:
+            sys.exit("--redispatch needs --wave, --ids and --reason")
+        ledger += redispatch(ledger, a.wave, a.ids, a.reason, model)
+        save(LEDGER, ledger)
+    elif a.mark_dispatched:
+        n = 0
+        for r in ledger:
+            if r["wave"] == a.wave and r["role"] == a.role and r["status"] == "planned":
+                r["status"], r["dispatched_at"] = "dispatched", now()
+                n += 1
+        save(LEDGER, ledger)
+        print("marked %d rows dispatched" % n)
+    elif a.audit_disk:
+        audit_disk(ledger)
+        save(LEDGER, ledger)
+        status(ledger)
+    elif a.status:
+        status(ledger)
+    else:
+        ap.print_help()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p2-01",
+ "chapter": "Waves",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q103",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "Two vibrating strings 'A' and 'B' produce beats of frequency 8 Hz. The beat frequency is found to reduce to 4 Hz if the tension in the string 'A' is slightly reduced. If the original frequency of A is 320 Hz, then the frequency of 'B' is",
+   "options_en": [
+    "324 Hz",
+    "312 Hz",
+    "316 Hz",
+    "328 Hz"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_fn_q101",
+   "chapter": "Waves",
+   "year": 2022,
+   "question_en": "Two strings A and B produce beat of frequency Δf₁>0. The tension in string A is slightly increased and the beat frequency is found to be Δf₂>0. If the original frequency of A is f₀ and Δf₂<Δf₁, then the frequency of B is",
+   "options_en": [
+    "f₀ + Δf₁",
+    "f₀ + Δf₁ − Δf₂",
+    "f₀ − Δf₁",
+    "f₀ + (Δf₁ + Δf₂)/2"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q100",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "An observer moves towards a stationary source of sound with a speed (1/5)th that of sound. The frequency of the sound emitted by the source is f. The apparent frequency recorded by the observer is",
+   "options_en": [
+    "1.2 f",
+    "f",
+    "0.8 f",
+    "2 f"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q099",
+   "chapter": "Waves",
+   "year": 2024,
+   "question_en": "A boy standing on a platform observes the frequency of a train horn as it passes by. The change in the frequency noticed as the train approaches and recedes him with a velocity of 108 kmph is (speed of sound in air = 330 ms⁻¹)",
+   "options_en": [
+    "18.33%",
+    "16.67%",
+    "21.27%",
+    "15.23%"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q081",
+   "chapter": "Waves",
+   "year": 2025,
+   "question_en": "Two tuning forks of frequencies 320 Hz and 323 Hz are vibrated together. The time interval between a maximum sound and its adjacent minimum sound heard by an observer is",
+   "options_en": [
+    "1/6 s",
+    "1/3 s",
+    "1/9 s",
+    "1/12 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_an_q102",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "Consider a gas with molar mass M. If the sound at frequency f is introduced to a tube of this gas at temperature T then an internal acoustic standing wave is set up with nodes separated by L. The adiabatic constant (γ = Cp/Cv) is",
+   "options_en": [
+    "Mf²L²/RT",
+    "Mf²L²/4RT",
+    "4Mf²L²/RT",
+    "3Mf²L²/2RT"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q101",
+   "chapter": "Waves",
+   "year": 2022,
+   "question_en": "The distance between two successive minima of a transverse wave is 2.7 m. Five crests of the wave pass a given point along the direction of travel every 15.0 s. The speed of the wave is",
+   "options_en": [
+    "0.9 m/s",
+    "1.2 m/s",
+    "0.5 m/s",
+    "2.4 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_fn_q100",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "An observer moves towards a stationary source of sound, with a speed of one-fifth of the speed of sound. The apparent increase in the frequency heard by the observer is",
+   "options_en": [
+    "16.67%",
+    "2%",
+    "25%",
+    "20%"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q100",
+   "chapter": "Waves",
+   "year": 2024,
+   "question_en": "If three sources of sound of frequencies (n−1), n and (n+1) are vibrated together, the number of beats produced and heard per second respectively are",
+   "options_en": [
+    "4 and 2",
+    "4 and 4",
+    "2 and 2",
+    "2 and 4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q114",
+   "chapter": "Waves",
+   "year": 2025,
+   "question_en": "The frequency of sound heard by an observer moving towards a stationary source with certain speed is n₁ and if the observer moves away from the same source with same speed, the frequency of sound heard by the observer is n₂. If the speed of sound in air is 340 ms⁻¹ and n₁ : n₂ = 71 : 65, then speed of observer is",
+   "options_en": [
+    "27 kmph",
+    "15 kmph",
+    "54 kmph",
+    "36 kmph"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q103",
+   "chapter": "Waves",
+   "year": 2021,
+   "question_en": "A wave is represented by the equation y = (0.02 m) sin(5πx − 20t). The minimum distance between the two particles always having the same speed is. (Assume x and t are in SI units)",
+   "options_en": [
+    "0.02 m",
+    "0.4 m",
+    "0.8 m",
+    "0.2 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q101",
+   "chapter": "Waves",
+   "year": 2022,
+   "question_en": "Two waves of amplitudes A₁ and A₂ respectively are superimposed. The ratio between the maximum and minimum intensities of the resultant waves is 9 : 4. The value of A₂/A₁ is [Assume A₁ > A₂]",
+   "options_en": [
+    "0.66",
+    "0.20",
+    "0.75",
+    "0.44"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q100",
+   "chapter": "Waves",
+   "year": 2023,
+   "question_en": "A wave is given by the equation y = (0.02) sin(πx − 8πt) then the velocity of the wave is (y and x are in metre and t is in second)",
+   "options_en": [
+    "16 ms⁻¹",
+    "2 ms⁻¹",
+    "8 ms⁻¹",
+    "18 ms⁻¹"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q099",
+   "chapter": "Waves",
+   "year": 2024,
+   "question_en": "A car travelling at a speed of 54 kmph towards a wall sounds horn of frequency 400 Hz. The difference in the frequencies of two sounds, one received directly from the car and other reflected from the wall noticed by a person standing between the car and the wall is (speed of sound in air is 335 ms⁻¹)",
+   "options_en": [
+    "35.9 Hz",
+    "20 Hz",
+    "70 Hz",
+    "Zero"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q089",
+   "chapter": "Waves",
+   "year": 2025,
+   "question_en": "A car moving towards a cliff emits sound of frequency 'n'. If the difference in frequencies of the horn and its echo heard by the driver of the car is 10 % of 'n', then the speed of the car is nearly (Speed of sound in air is 336 ms⁻¹)",
+   "options_en": [
+    "30 ms⁻¹",
+    "18 ms⁻¹",
+    "16 ms⁻¹",
+    "33 ms⁻¹"
+   ]
+  }
+ ]
+}

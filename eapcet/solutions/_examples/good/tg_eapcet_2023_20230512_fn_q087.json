@@ -1,0 +1,47 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q087",
+ "approach": "Velocity is the time derivative of displacement, and the work done equals the change in kinetic energy.",
+ "steps": [
+  {
+   "text": "Differentiate the displacement to get the velocity.",
+   "equation": "v = ds/dt = d(t³/3)/dt = t²"
+  },
+  {
+   "text": "Find the velocity at the start and at the end of the two seconds.",
+   "equation": "at t = 0, v = 0; at t = 2 s, v = 4 m s⁻¹"
+  },
+  {
+   "text": "The work done by the force equals the gain in kinetic energy.",
+   "equation": "W = ½mv² − 0 = ½ × 3 × 4² = 24 J",
+   "why_this_step": "The work-energy theorem holds for the net force, and here the given force is the only one doing work."
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "24 J"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Taking the force at t = 2 s as constant over the whole motion and multiplying it by the displacement gives 12 N × 8/3 m = 32 J."
+  },
+  {
+   "option": null,
+   "text": "Leaving out the half in ½mv², which gives 48 J."
+  }
+ ],
+ "concept_tags": [
+  "work-energy theorem",
+  "velocity from displacement"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "founder-checked example",
+  "wave": 0,
+  "agent": "brief",
+  "at": "2026-09-08T00:00:00+05:30"
+ }
+}

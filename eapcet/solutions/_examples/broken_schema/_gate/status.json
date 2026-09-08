@@ -1,0 +1,13 @@
+{
+ "tg_eapcet_2022_20220718_an_q096": {
+  "verdict": "reject",
+  "answer_matches_key": false,
+  "content_sha": "813b75266408f4cfcefb198ae9a5a2d7bc186e68018e6b75fc65224f95b2068f",
+  "checks": {},
+  "warnings": [],
+  "chapter_key": "p1-11",
+  "gate_run": "2026-09-08T02:11:53+02:00",
+  "reason": "unknown_keys",
+  "detail": "notes"
+ }
+}

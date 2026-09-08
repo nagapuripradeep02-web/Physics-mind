@@ -521,8 +521,15 @@ browsable free tier.
    cards, and `check:eapcet` enforces it.
 4. **The final key, or the question is not publishable.** A preliminary key may be transcribed, but
    `key_source` must say so and the solve gate must not run against it.
-5. **Our restatement is what ships.** The corpus is the evidence file. Anything a student sees is
-   our own wording and our own solution, the same rule the Answer Book already runs under.
+5. **Our restatement is what ships - except the EAPCET question itself, which ships verbatim and
+   attributed.** The corpus is the evidence file, and the solution, the explanation and every
+   other word a student reads are our own, the same rule the Answer Book runs under. The
+   question stem and options are the exception (founder decision, 2026-09-08): the source is a
+   government exam body's published paper, the product's claim to the student is "real past
+   questions", and a restatement would make that claim false. Every shipped question therefore
+   carries its `asked_label` ("TG EAPCET 2024, 9 May, morning, Q86") and its text is the
+   transcript's `question_en` unchanged. Figures are not shipped at all in V1 (the crops carry
+   the exam's own tick marks).
 6. **One shift per file, one question per row, no exceptions.** A half-transcribed paper is the
    failure the gates exist to prevent.
 7. **State is a field, not a fork.** AP EAPCET runs the same 160-question pattern on the same

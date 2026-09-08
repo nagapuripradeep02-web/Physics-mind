@@ -1,0 +1,188 @@
+{
+ "wave": 1,
+ "role": "author",
+ "chapter_key": "p1-03",
+ "chapter": "Motion in a Plane",
+ "questions": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "The y-component of vector A⃗ is +3.0 m if A⃗ makes an angle of 30° counter clockwise from the positive y - axis, the magnitude of A⃗ is (assume A⃗ is in x - y plane)",
+   "options_en": [
+    "2√3 m",
+    "√11 m",
+    "√15 m",
+    "√21 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "A river has a steady speed of 'v'. A man swims upstream at a distance of 'd' and swims back to the starting point in total time 't'. The man can swim at a speed of '2v' in still water. If the time taken by the man in still water is 't₀' to complete the same length of swim, then t/t₀ is",
+   "options_en": [
+    "1/2",
+    "3/2",
+    "3/4",
+    "4/3"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q084",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "A person walks in such a way that he covers equal distance in each step. The person takes 2 steps forward towards east, then takes a right turn and walks 4 steps towards south, then takes a right turn and walks 6 steps towards west and then takes a right turn and walks further. The direction of his final position after a total of 20 steps walk with respect to his initial position is",
+   "options_en": [
+    "North-West",
+    "60° West of South",
+    "60° South of West",
+    "South-East"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q084",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "A cannon placed on a cliff at a height of 375 m fires a cannon ball with a velocity of 100 ms⁻¹ at an angle of 30° above the horizontal. The horizontal distance between the cannon and the target is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "750√3 m",
+    "500√3 m",
+    "250√3 m",
+    "750 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q108",
+   "chapter": "Motion in a Plane",
+   "year": 2025,
+   "question_en": "A ball projected at an angle of 45° with the horizontal crosses two points at equal heights separated by a distance at times 2 s and 8 s respectively. The horizontal distance between the two points is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "500 m",
+    "600 m",
+    "400 m",
+    "300 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_an_q086",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "Find the component of vector P⃗ = 2î + 3ĵ along the direction of vector Q⃗ = î + ĵ.",
+   "options_en": [
+    "2",
+    "2√5",
+    "5/√2",
+    "√2/5"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q086",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "A projectile is given an initial velocity of (3i + 4j) m/s where, î is along the ground and ĵ is along the vertical. Assuming g = 10 m/s², if the equation of its trajectory can be written as (1/9)[βx + γx²], then the value of γ is",
+   "options_en": [
+    "−8",
+    "−5",
+    "−6",
+    "−12"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q084",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "A bomb is dropped on an enemy post on the ground by an aeroplane flying horizontally with a velocity of 60 kmh⁻¹ at a height of 490 m. At the time of dropping the bomb, the horizontal distance of the aeroplane from the enemy post so that the bomb hits the target is",
+   "options_en": [
+    "(400/3) m",
+    "(500/3) m",
+    "(1700/3) m",
+    "498 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q084",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "A body P is projected at an angle of 30° with the horizontal and another body Q is projected at angle of 30° with the vertical. If the ratio of the horizontal ranges of the bodies P and Q is 1:2, then the ratio of the maximum heights reached by the bodies P and Q is",
+   "options_en": [
+    "1:4",
+    "1:6",
+    "2:3",
+    "1:1"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q115",
+   "chapter": "Motion in a Plane",
+   "year": 2025,
+   "question_en": "The vertical displacement (y in metre) of a projectile in terms of its horizontal displacement (x in metre) is given by y = (√3x − 0.2x²). The time of flight of the projectile is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "√3 s",
+    "0.2 s",
+    "5√3 s",
+    "0.2√3 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "Find the angle between the two vectors: a⃗ = 3i + 2j + 5k, b⃗ = 5i + 3j + k",
+   "options_en": [
+    "cos⁻¹(26/√1330)",
+    "sin⁻¹(26/√1330)",
+    "cos⁻¹(26/√1335)",
+    "tan⁻¹(26/√1330)"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2022,
+   "question_en": "An ant starts from the origin and crawls 10 cm along the x − axis and then 20 cm along the y − axis. The dot product of the ant's displacement vector with the position vector of a point that makes 45° with the x − axis and has a magnitude of √2 cm is",
+   "options_en": [
+    "30 cm",
+    "30√2 cm",
+    "30/√2 cm",
+    "15 cm"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2023,
+   "question_en": "The angular speed of a particle moving in a circular path is doubled. Then, the centripetal acceleration of the particle is",
+   "options_en": [
+    "4 times the initial centripetal acceleration",
+    "halved",
+    "doubled",
+    "unchanged"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_an_q084",
+   "chapter": "Motion in a Plane",
+   "year": 2024,
+   "question_en": "From a height of 'h' above the ground, a ball is projected up at an angle 30° with the horizontal. If the ball strikes the ground with a speed of 1.25 times its initial speed of 40 ms⁻¹, the value of 'h' is (acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "75 m",
+    "60 m",
+    "30 m",
+    "45 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_an_q085",
+   "chapter": "Motion in a Plane",
+   "year": 2021,
+   "question_en": "A projectile is thrown at a speed which is twice its speed at its maximum height. If R and H are its range and maximum height respectively then the ratio R/H is:",
+   "options_en": [
+    "4/√3",
+    "√3/8",
+    "2",
+    "2√3"
+   ]
+  }
+ ]
+}
