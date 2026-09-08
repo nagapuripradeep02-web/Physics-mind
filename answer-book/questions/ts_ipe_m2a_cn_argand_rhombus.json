@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 55. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15, 20 · TS 16, 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 5 (book p.119). Small simplification, not an error: the book leaves BD as √136/2; the card writes the equal value √34 so the comparison with AC = √136 is read at a glance. The figure carries no mark. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 55. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15, 20 · TS 16, 18. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 5 (book p.119). Small simplification, not an error: the book leaves BD as √136/2; the card writes the equal value √34 so the comparison with AC = √136 is read at a glance. The figure carries no mark. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show that the four points make a rhombus — what you compute, and which two facts you compare at the end.",
   "insider_note": "A rhombus answer needs the two diagonals as well as the four sides: equal sides with unequal diagonals is what separates a rhombus from a square. The last mark is the sentence that states both and names the shape.",
@@ -74,14 +74,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(7/2)(1 + i) = 7/2 + (7/2)i, so the four numbers",
-          "are the points A(−2, 7), B(−3/2, 1/2),",
-          "C(4, −3), D(7/2, 7/2).",
-          "Distance between two points:",
-          {
-            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
-            "style": "eq"
-          }
+          "First write every number in the a + ib form:",
+          "(7/2)(1 + i) = 7/2 + (7/2)i",
+          "In the Argand plane, a + ib is the point (a, b).",
+          "−2 + 7i is A(−2, 7)",
+          "−3/2 + (1/2)i is B(−3/2, 1/2)",
+          "4 − 3i is C(4, −3)",
+          "7/2 + (7/2)i is D(7/2, 7/2)",
+          "A rhombus has four equal sides but",
+          "UNEQUAL diagonals, so find both.",
+          "The distance between two points is",
+          "d = √((x₁ − x₂)² + (y₁ − y₂)²)"
         ],
         "recall": {
           "credit": "say_it",
@@ -305,54 +308,24 @@
         "margin_note": "Half the marks. Each side is √170/2 — the pairs 1/4 + 169/4 and 121/4 + 49/4 both add to 170/4. The diagonals are √136 and √34, which are not equal.",
         "memory_tip": "Six distances, not four. Every side is √170/2; the diagonals √136 and √34 are different.",
         "lines": [
-          {
-            "text": "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(1/4 + 169/4) = √(170/4) = √170/2",
-            "style": "indent"
-          },
-          {
-            "text": "BC = √((−3/2 − 4)² + (1/2 + 3)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(121/4 + 49/4) = √(170/4) = √170/2",
-            "style": "indent"
-          },
-          {
-            "text": "CD = √((4 − 7/2)² + (−3 − 7/2)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(1/4 + 169/4) = √170/2",
-            "style": "indent"
-          },
-          {
-            "text": "DA = √((7/2 + 2)² + (7/2 − 7)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(121/4 + 49/4) = √170/2",
-            "style": "indent"
-          },
-          {
-            "text": "AC = √((−2 − 4)² + (7 + 3)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(36 + 100) = √136",
-            "style": "indent"
-          },
-          {
-            "text": "BD = √((−3/2 − 7/2)² + (1/2 − 7/2)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(25 + 9) = √34",
-            "style": "indent"
-          }
+          "The four sides:",
+          "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
+          "= √((−1/2)² + (13/2)²) = √(1/4 + 169/4)",
+          "= √(170/4) = √170/2",
+          "BC = √((−3/2 − 4)² + (1/2 + 3)²)",
+          "= √((−11/2)² + (7/2)²) = √(121/4 + 49/4)",
+          "= √(170/4) = √170/2",
+          "CD = √((4 − 7/2)² + (−3 − 7/2)²)",
+          "= √((1/2)² + (−13/2)²) = √(1/4 + 169/4)",
+          "= √170/2",
+          "DA = √((7/2 + 2)² + (7/2 − 7)²)",
+          "= √((11/2)² + (−7/2)²) = √(121/4 + 49/4)",
+          "= √170/2",
+          "The two diagonals:",
+          "AC = √((−2 − 4)² + (7 + 3)²)",
+          "= √(36 + 100) = √136",
+          "BD = √((−3/2 − 7/2)² + (1/2 − 7/2)²)",
+          "= √((−5)² + (−3)²) = √(25 + 9) = √34"
         ],
         "recall": {
           "credit": "say_it",
@@ -393,8 +366,11 @@
         "margin_note": "Last mark. Say the sides are equal, say the diagonals are not, and name the shape.",
         "memory_tip": "Two facts, then the name: sides equal, diagonals unequal, therefore rhombus.",
         "lines": [
-          "AB = BC = CD = DA = √170/2 — four equal sides.",
-          "AC = √136 ≠ BD = √34 — the diagonals are unequal.",
+          "AB = BC = CD = DA = √170/2, so the four",
+          "sides are equal.",
+          "AC = √136 and BD = √34, which are unequal.",
+          "Equal diagonals would make it a square;",
+          "unequal diagonals leave a rhombus.",
           {
             "text": "∴ A, B, C, D form a rhombus.",
             "style": "boxed"

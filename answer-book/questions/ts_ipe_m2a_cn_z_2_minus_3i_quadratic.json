@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 115. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 19 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 115. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 19 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show z satisfies this quadratic without substituting z into it.",
   "insider_note": "The short route earns both marks: move the 2 across first, so squaring gives (−3i)² = −9 and the i disappears in one line. Substituting z = 2 − 3i straight into z² − 4z + 13 also works and also reaches 0, but the i terms cancel only at the last step (−12i from z² against +12i from −4z), so it costs an extra line.",
@@ -62,8 +62,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "z = 2 − 3i ⇒ z − 2 = −3i",
-          "Squaring: (z − 2)² = (−3i)² = 9i² = −9"
+          "z = 2 − 3i",
+          "Move the real part across so that only",
+          "the i term is left on the right:",
+          "z − 2 = −3i",
+          "Square both sides to remove i:",
+          "(z − 2)² = (−3i)²",
+          "= 9i² = 9(−1) = −9   [i² = −1]"
         ],
         "recall": {
           "credit": "say_it",
@@ -102,7 +107,9 @@
         "margin_note": "Second mark. (z − 2)² = z² − 4z + 4. Move the −9 across: 4 + 9 = 13.",
         "memory_tip": "The 13 is 4 + 9 — the 4 from squaring the 2, the 9 from squaring the 3.",
         "lines": [
-          "⇒ z² − 4z + 4 = −9",
+          "Expand the left side:",
+          "z² − 4z + 4 = −9",
+          "z² − 4z + 4 + 9 = 0",
           {
             "text": "∴ z² − 4z + 13 = 0",
             "style": "boxed"

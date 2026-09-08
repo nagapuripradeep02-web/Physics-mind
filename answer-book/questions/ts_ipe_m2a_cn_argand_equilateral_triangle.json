@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.1. (In this part of the scan book page = PDF page − 1: book p.48 is PDF p.49, not p.50 as the −2 rule predicts.) Printed appearances: TS 18 · AP 15. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: 1 for the set-up, 2 for the bulk computation, 1 for the conclusion); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and the same step ids deliberately, because they are one method over different points. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 3 (book p.115). The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.1. (In this part of the scan book page = PDF page − 1: book p.48 is PDF p.49, not p.50 as the −2 rule predicts.) Printed appearances: TS 18 · AP 15. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: 1 for the set-up, 2 for the bulk computation, 1 for the conclusion); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and the same step ids deliberately, because they are one method over different points. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 3 (book p.115). The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show that the three points make an equilateral triangle — what you turn each complex number into, what you compute, and what you compare at the end.",
   "insider_note": "All three distances are needed — two equal sides only show an isosceles triangle. The last mark is a sentence, not a number: say the three sides are equal and name the triangle.",
@@ -66,13 +66,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The numbers 2 + 2i, −2 − 2i, −2√3 + 2√3i are",
-          "the points A(2, 2), B(−2, −2), C(−2√3, 2√3).",
-          "Distance between two points:",
-          {
-            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
-            "style": "eq"
-          }
+          "In the Argand diagram, a + ib is the point (a, b).",
+          "2 + 2i is A(2, 2)",
+          "−2 − 2i is B(−2, −2)",
+          "−2√3 + 2√3i is C(−2√3, 2√3)",
+          "A triangle is equilateral when all three",
+          "sides are equal, so find AB, BC and CA.",
+          "The distance between two points is",
+          "d = √((x₁ − x₂)² + (y₁ − y₂)²)"
         ],
         "recall": {
           "credit": "say_it",
@@ -227,8 +228,8 @@
             {
               "type": "label",
               "id": "lbl_c",
-              "x": 8,
-              "y": 40,
+              "x": 6,
+              "y": 66,
               "text": "C(−2√3, 2√3)",
               "ms": 200,
               "em": true
@@ -245,27 +246,17 @@
         "margin_note": "Half the marks. AB is quick. BC and CA both have a √3 inside the root; the identity (a + b)² + (a − b)² = 2(a² + b²) does both in one line each and avoids expanding (2 + 2√3)² by hand.",
         "memory_tip": "(a + b)² + (a − b)² = 2(a² + b²) does BC and CA in one line each. All three sides come out √32.",
         "lines": [
-          {
-            "text": "AB = √((2 + 2)² + (2 + 2)²) = √(16 + 16) = √32",
-            "style": "eq"
-          },
-          {
-            "text": "BC = √((−2 + 2√3)² + (−2 − 2√3)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(2[(−2)² + (2√3)²]) = √(2(4 + 12)) = √32",
-            "style": "indent"
-          },
-          "(using (a + b)² + (a − b)² = 2(a² + b²))",
-          {
-            "text": "CA = √((2 + 2√3)² + (2 − 2√3)²)",
-            "style": "eq"
-          },
-          {
-            "text": "= √(2[2² + (2√3)²]) = √(2(4 + 12)) = √32",
-            "style": "indent"
-          }
+          "AB = √((2 − (−2))² + (2 − (−2))²)",
+          "= √(4² + 4²) = √(16 + 16) = √32",
+          "BC = √((−2 − (−2√3))² + (−2 − 2√3)²)",
+          "= √((−2 + 2√3)² + (−2 − 2√3)²)",
+          "Use (a + b)² + (a − b)² = 2(a² + b²)",
+          "with a = −2 and b = 2√3:",
+          "= √(2[(−2)² + (2√3)²]) = √(2(4 + 12))",
+          "= √(2 · 16) = √32",
+          "CA = √((−2√3 − 2)² + (2√3 − 2)²)",
+          "Use the same identity with a = 2, b = 2√3:",
+          "= √(2[2² + (2√3)²]) = √(2(4 + 12)) = √32"
         ],
         "recall": {
           "credit": "say_it",
@@ -308,6 +299,7 @@
         "memory_tip": "Equilateral needs all three sides shown; two equal sides is only isosceles. Name the shape in the last line.",
         "lines": [
           "AB = BC = CA = √32",
+          "All three sides are equal.",
           {
             "text": "∴ A, B, C form an equilateral triangle.",
             "style": "boxed"

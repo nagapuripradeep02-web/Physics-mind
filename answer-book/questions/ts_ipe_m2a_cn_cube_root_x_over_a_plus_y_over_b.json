@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 56. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 18. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A house habit of one mark per named move for a four-move SAQ (the Cramer LAQs of 1A, book pp.27–28, give one mark per determinant). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 2 (book p.113); the Bullet Model Paper re-solves it on book p.100 with the same expansion. The fractional exponent in the first line is set in KaTeX per the notation ledger (a plain superscript 1/3 reads as a division). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.49 — SAQ chapter 7 Complex Numbers, answer 56. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 18. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A house habit of one mark per named move for a four-move SAQ (the Cramer LAQs of 1A, book pp.27–28, give one mark per determinant). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 2 (book p.113); the Bullet Model Paper re-solves it on book p.100 with the same expansion. The fractional exponent in the first line is set in KaTeX per the notation ledger (a plain superscript 1/3 reads as a division). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — what you do to the cube root first, what you expand, what you compare, and how the two fractions combine.",
   "insider_note": "The first mark is the first step: cube both sides, and the cube root never appears again. After that the minus sign in −iy on the left must be carried through to y — compare real parts with real parts and keep that minus.",
@@ -66,11 +66,14 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Given (x − iy)^(1/3) = a − ib",
+          "Cube both sides to clear the cube root:",
           {
-            "text": "(x - iy)^{1/3} = a - ib \\;\\Rightarrow\\; x - iy = (a - ib)^3",
+            "text": "\\left[(x - iy)^{1/3}\\right]^3 = (a - ib)^3",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "x − iy = (a − ib)³"
         ],
         "recall": {
           "credit": "say_it",
@@ -109,14 +112,16 @@
         "margin_note": "Second mark. Use (p − q)³ = p³ − 3p²q + 3pq² − q³ with p = a, q = ib. Then i² = −1 and i³ = −i. Collect the real terms and the i terms separately.",
         "memory_tip": "(p − q)³ with q = ib. Then i² = −1 and i³ = −i move terms between the real group and the i group.",
         "lines": [
+          "Use (p − q)³ = p³ − 3p²q + 3pq² − q³",
+          "with p = a and q = ib:",
           "(a − ib)³ = a³ − 3a²(ib) + 3a(ib)² − (ib)³",
           "= a³ − 3a²bi + 3ab²i² − b³i³",
+          "Now i² = −1 and i³ = i²·i = −i",
+          "= a³ − 3a²bi + 3ab²(−1) − b³(−i)",
           "= a³ − 3a²bi − 3ab² + b³i",
-          "(since i² = −1 and i³ = −i)",
-          {
-            "text": "∴ x − iy = (a³ − 3ab²) − i(3a²b − b³)",
-            "style": "eq"
-          }
+          "Collect the real and the imaginary parts:",
+          "= (a³ − 3ab²) + i(b³ − 3a²b)",
+          "∴ x − iy = (a³ − 3ab²) − i(3a²b − b³)"
         ],
         "recall": {
           "credit": "say_it",
@@ -158,16 +163,15 @@
         "margin_note": "Third mark. Two complex numbers are equal only when both parts match. The real parts give x, the imaginary parts give y — watch the minus in front of iy on the left.",
         "memory_tip": "The left side is x − iy, so −y matches the i coefficient. Divide x by a and y by b, never crossed.",
         "lines": [
-          "Comparing real parts:",
-          {
-            "text": "x = a³ − 3ab² = a(a² − 3b²) ⇒ x/a = a² − 3b²",
-            "style": "eq"
-          },
-          "Comparing imaginary parts:",
-          {
-            "text": "y = 3a²b − b³ = b(3a² − b²) ⇒ y/b = 3a² − b²",
-            "style": "eq"
-          }
+          "Two complex numbers are equal only when",
+          "their real parts are equal and their",
+          "imaginary parts are equal.",
+          "Real parts: x = a³ − 3ab²",
+          "= a(a² − 3b²)",
+          "Divide both sides by a: x/a = a² − 3b²",
+          "Imaginary parts: −y = −(3a²b − b³)",
+          "y = 3a²b − b³ = b(3a² − b²)",
+          "Divide both sides by b: y/b = 3a² − b²"
         ],
         "recall": {
           "credit": "say_it",
@@ -208,7 +212,9 @@
         "margin_note": "Last mark. Add the two fractions, collect a² with a² and b² with b², and take out the 4.",
         "memory_tip": "(a² − 3b²) + (3a² − b²) = 4a² − 4b². Take the 4 out to match the form asked.",
         "lines": [
+          "Adding the two results:",
           "x/a + y/b = (a² − 3b²) + (3a² − b²)",
+          "= a² + 3a² − 3b² − b²",
           "= 4a² − 4b²",
           {
             "text": "∴ x/a + y/b = 4(a² − b²)",

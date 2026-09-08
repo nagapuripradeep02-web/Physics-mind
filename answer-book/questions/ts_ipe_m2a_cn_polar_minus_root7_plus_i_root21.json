@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 110.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately: one method over different points. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. 'Polar form' and 'modulus-amplitude form' are the same thing; the card uses the question's word. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 110.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately: one method over different points. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. 'Polar form' and 'modulus-amplitude form' are the same thing; the card uses the question's word. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would write a complex number in polar form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "tan θ = −√3 fits two angles and a calculator picks the wrong one; (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3. Simplify r = √28 to 2√7 — that is the expected form.",
@@ -58,8 +58,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let −√7 + i√21 = x + iy ⇒ x = −√7, y = √21",
-          "r = √(x² + y²) = √(7 + 21) = √28 = 2√7"
+          "Let −√7 + i√21 = x + iy, so x = −√7 and y = √21",
+          "The modulus-amplitude form is",
+          "z = r(cos θ + i sin θ), where",
+          "r = √(x² + y²) and tan θ = y/x",
+          "r = √((−√7)² + (√21)²) = √(7 + 21 = √28)",
+          "= 2√7"
         ],
         "recall": {
           "credit": "say_it",
@@ -98,8 +102,10 @@
         "memory_tip": "tan θ = −√3 also fits −π/3. (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
         "lines": [
           "tan θ = y/x = √21/(−√7) = −√3",
-          "(−√7, √21) lies in the second quadrant",
-          "⇒ θ = π − π/3 = 2π/3",
+          "The point (−√7, √21) lies in the second quadrant,",
+          "where the amplitude is taken as",
+          "θ = π − (the acute angle with tan = √3)",
+          "= π − π/3 = 2π/3",
           {
             "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
             "style": "boxed"
