@@ -200,7 +200,7 @@
         },
         "why": "With only two roots and four constants, two constants must come from coefficients. x³ appears in Ax²(x + 3) and Dx³, giving A + D; x² appears in 3Ax² from the A term and Bx² from the B term, giving 3A + B. The left side has no x³ or x², so both equal 0.",
         "common_mistakes": [
-          "Writing 3(−3) − 18 as −9 + 18 = 9 instead of −27, which makes D come out as −1.",
+          "Writing 3(−3) − 18 as −9 + 18 = 9 instead of −27, which makes D come out as −1/3.",
           "Reading the x² coefficient as B alone and forgetting the 3A from Ax²(x + 3).",
           "Stopping after C and D and never finding A and B."
         ]

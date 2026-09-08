@@ -110,7 +110,7 @@
           "Take each value's distance from 13,",
           "always as a positive number:",
           "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
-          "  (in the sorted order above)",
+          "  (in the order the data was given)",
           "Σ|xᵢ − M| = 27",
           {
             "text": "M.D. = Σ|xᵢ − M|/n",
