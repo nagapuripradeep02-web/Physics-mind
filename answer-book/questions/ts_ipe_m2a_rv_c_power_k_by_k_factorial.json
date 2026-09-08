@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 5 Random Variables, answer 46. (In this part of the scan book page = PDF page − 1: book p.43 was read at PDF p.44, not p.45 as the −2 rule predicts.) Printed appearances: TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The 2 + 3 + 2 gives 2 for writing ΣP = 1 as an infinite series, 3 for recognising the series as the exponential series and solving for c, and 2 for the two-term probability (the 2 for a two-term probability is the book's own weight, from answer 45 on book p.42). The SAME split and the SAME step ids (s1_sum_series, s2_find_c, s3_prob) are used on the two infinite-range LAQs of this unit (46, 47) deliberately: one method (sum a known series) over two series. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot; the Bullet Model Paper re-solves this question under Q24 on book p.110 with the same c = logₑ 2 — both printings recompute. Notation: c = logₑ 2 (the natural logarithm, also written ln 2) is written the way the book and the 1A cards write it. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 5 Random Variables, answer 46. (In this part of the scan book page = PDF page − 1: book p.43 was read at PDF p.44, not p.45 as the −2 rule predicts.) Printed appearances: TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The 2 + 3 + 2 gives 2 for writing ΣP = 1 as an infinite series, 3 for recognising the series as the exponential series and solving for c, and 2 for the two-term probability (the 2 for a two-term probability is the book's own weight, from answer 45 on book p.42). The SAME split and the SAME step ids (s1_sum_series, s2_find_c, s3_prob) are used on the two infinite-range LAQs of this unit (46, 47) deliberately: one method (sum a known series) over two series. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot; the Bullet Model Paper re-solves this question under Q24 on book p.110 with the same c = logₑ 2 — both printings recompute. Notation: c = logₑ 2 (the natural logarithm, also written ln 2) is written the way the book and the 1A cards write it. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find c and P(0 < X < 3) when P(X = k) = cᵏ/k! — what series the probabilities make, which standard series it is, and which terms the probability needs.",
   "insider_note": "Σ P(X = k) = 1 written as the series c/1! + c²/2! + … is where the first marks sit; the series is eᶜ with its leading 1 missing, so add 1 to BOTH sides to get eᶜ = 2 — and the final answer stays as logₑ 2, never a decimal.",
@@ -63,13 +63,14 @@
             "style": "heading"
           },
           "Given P(X = k) = cᵏ/k!, k = 1, 2, 3, …",
-          "The probabilities add to 1:",
+          "A probability distribution must have all",
+          "its probabilities adding up to 1:",
           {
             "text": "ΣP(X = k) = 1",
             "style": "eq"
           },
-          "⇒ P(X = 1) + P(X = 2) + P(X = 3) + … = 1",
-          "⇒ c/1! + c²/2! + c³/3! + … = 1"
+          "P(X = 1) + P(X = 2) + P(X = 3) + … = 1",
+          "c/1! + c²/2! + c³/3! + … = 1"
         ],
         "recall": {
           "credit": "say_it",
@@ -109,11 +110,15 @@
         "margin_note": "Three marks — the main idea. The series is the exponential series with its first term 1 missing: 1 + x/1! + x²/2! + x³/3! + … = eˣ. Add 1 to both sides, so the left side becomes eᶜ and the right side 2. Then c = logₑ 2.",
         "memory_tip": "This is the exponential series missing its first term, so add 1 to BOTH sides: eᶜ = 2, and c = logₑ 2.",
         "lines": [
-          "Add 1 to both sides:",
+          "The exponential series is",
+          "eˣ = 1 + x/1! + x²/2! + x³/3! + …",
+          "Our series is the same without its first",
+          "term 1, so add 1 to both sides:",
           "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
-          "We know 1 + x/1! + x²/2! + x³/3! + … = eˣ",
-          "⇒ eᶜ = 2",
-          "⇒ c = logₑ 2"
+          "The left side is eᶜ, so",
+          "eᶜ = 2",
+          "Taking logarithms to the base e:",
+          "c = logₑ 2"
         ],
         "recall": {
           "credit": "say_it",
@@ -153,11 +158,13 @@
         "margin_note": "Last two marks. 0 < X < 3 on the range {1, 2, 3, …} means X = 1 or 2. Add the two terms c/1! + c²/2! = c + c²/2 and put c = logₑ 2. The answer stays in logarithms; there is no simpler form.",
         "memory_tip": "0 < X < 3 on {1, 2, 3, …} keeps X = 1 and 2. Leave the answer in logarithms, not decimals.",
         "lines": [
+          "0 < X < 3 means X = 1 or X = 2:",
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
-          "= c/1! + c²/2! = c + c²/2",
-          "= logₑ 2 + (logₑ 2)²/2",
+          "= c/1! + c²/2!",
+          "= c + c²/2",
+          "Put c = logₑ 2:",
           {
-            "text": "∴ c = logₑ 2, P(0 < X < 3) = logₑ 2 + (logₑ 2)²/2",
+            "text": "∴ c = logₑ 2, P = logₑ 2 + (logₑ 2)²/2",
             "style": "boxed"
           }
         ],
