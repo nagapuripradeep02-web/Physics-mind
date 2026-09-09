@@ -1,0 +1,10 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "right_route": "I used the average of the initial and final speeds",
+ "mistakes": [
+  {"index": 0, "type": "application", "route": "I divided the final speed by the usual gravity value"},
+  {"index": 1, "type": "application", "route": "I used the plain free-fall time formula for the full fall"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

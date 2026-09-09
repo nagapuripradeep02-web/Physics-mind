@@ -1,0 +1,11 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "right_route": "I applied the formula for the distance covered in the nth second",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I assumed the falling body covers equal distances each second"},
+  {"index": 1, "type": "concept", "route": "I treated the nth second's distance as equal to n"},
+  {"index": 2, "type": "application", "route": "I used the total distance fallen, not the distance in each second"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02-R2", "at": "2026-09-09T01:19:28+05:30"}
+}

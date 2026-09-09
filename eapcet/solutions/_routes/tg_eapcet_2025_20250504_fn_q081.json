@@ -1,0 +1,11 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "right_route": "I used v equals u plus at, evaluated at the fourth second",
+ "mistakes": [
+  {"index": 0, "type": "application", "route": "I used twice the product of acceleration and time"},
+  {"index": 1, "type": "application", "route": "I evaluated the velocity formula at the third second"},
+  {"index": 2, "type": "application", "route": "I carried the one-half from the distance formula into velocity"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

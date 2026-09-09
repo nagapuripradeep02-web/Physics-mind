@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "item_sha": "add0b24c533848a2d6422c2e6640f07dbb657fcf5f769f06047562f99034bed7",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "I checked the solution: the velocity is five upward at three seconds and five downward at four seconds, so the speeds are equal and the second option is right. mistakes[0] 'concept' is right - believing the speeds share the ratio of the times is a wrong belief about how speed changes for a body thrown up, not a slip - and it matches the solution's own hint. Its route describes that belief only, is first person, and pointedly does not print the ratio itself, so nothing on the menu names an option's value. right_route (evaluate the velocity at both times and compare their sizes) covers steps two and three rather than writing the velocity function, but it is the approach's defining move and it carries the point that matters, taking sizes rather than signed values, so I did not file it.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

@@ -35,7 +35,11 @@ a route is **what a student would say they did, before they know it was wrong**:
 
 It is not a verdict on the student. A student reading the menu must not be able to tell the
 right route from the wrong ones by the wording: never "I forgot", "I wrongly", "by mistake",
-"I ignored". State what was done, as the student would.
+"I ignored", and never an "X, not Y" contrast that names the right quantity and disowns it ("I used
+the total distance, not the distance in each second" tells the student which is right). State what
+was done, as the student would. And test every wrong route against the correct working: if a
+student who reached the key could honestly say it too (the key's values often share a property
+with a wrong rule — equal steps, a constant ratio, a symmetry), it is not a route to that mistake.
 
 ## Method, per question
 

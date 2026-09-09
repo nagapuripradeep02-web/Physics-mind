@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "8e8bb50b4d1d6e9e698708751ebe27a65b29523267036b71ca9bff862ab2155f",
+ "findings": [
+  {"grade": "harmful",
+   "field": "mistakes[1].route",
+   "quote": "I assumed the distances grow by the same fixed amount every second",
+   "note": "In uniformly accelerated motion the successive-second distances really do grow by a fixed amount: the correct answer here is five, fifteen and twenty-five metres, which rise by ten metres each second. So this phrase describes a correct way to reach the right answer, and a student who reasoned that way and worked it right would tap it and be told they made the one-two-three mistake. It also fails to describe its own entry, which is a plain counting pattern, and it reads almost identically to mistakes[0]'s route about equal distances every second.",
+   "fix": "I assumed each second's distance is proportional to that second's number"}
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "I checked the solution first: the odd-number rule gives five, fifteen, twenty-five, so the second option is right. mistakes[0] 'concept' is right (believing a falling body covers equal distances is a wrong belief) and its route describes that entry. mistakes[2] 'application' is right by the definition: the square-of-time law is known and correctly used, but aimed at the wrong quantity (the total fallen by each second rather than the distance during it), and its route says exactly that. right_route matches step one and names the rule the solution uses. The only defect is mistakes[1]'s route wording; with the proposed replacement the three wrong routes become tellable apart.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

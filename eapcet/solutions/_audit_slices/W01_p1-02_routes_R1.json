@@ -1,0 +1,156 @@
+{
+ "wave": 1,
+ "role": "routes_audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q084",
+   "audit_file": "tg_eapcet_2022_20220718_an_q084.69bfde8a.json",
+   "item_sha": "69bfde8a320385783729f4dd1ff30bfe661fdb627ab4017a46a64fbb39ddbf2d",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "Assertion(A) : The zero velocity of a particle at any instant always implies zero acceleration at that instant. Reason(R) : A body is momentarily at rest when reverses its direction of motion. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ],
+   "solution": {
+    "approach": "Zero velocity does not force zero acceleration; check each statement using a case such as a ball at the top of its vertical throw.",
+    "steps": [
+     {
+      "text": "Test the assertion using a ball thrown straight up: at its highest point the velocity is momentarily zero.",
+      "equation": "at the highest point, v = 0"
+     },
+     {
+      "text": "At that same instant gravity is still acting on the ball, so the acceleration is not zero. This makes the assertion false.",
+      "equation": "a = g ≠ 0"
+     },
+     {
+      "text": "Test the reason using the same example: after being momentarily at rest, the ball reverses direction and moves downward."
+     },
+     {
+      "text": "A body must pass through zero velocity to reverse direction, so the reason is a true general statement. So (A) is false but (R) is true."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "(A) is false but (R) is true"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming that because a body is briefly at rest when it reverses direction, its acceleration must also be zero there, wrongly treating rest as the same as no acceleration."
+     },
+     {
+      "option": 3,
+      "text": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest."
+     }
+    ],
+    "concept_tags": [
+     "velocity and acceleration",
+     "instantaneous rest"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2022_20220718_an_q084",
+    "right_route": "I tested it on a ball at the top of its throw",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "concept",
+      "route": "I assumed being momentarily at rest means zero acceleration too"
+     },
+     {
+      "index": 1,
+      "type": "concept",
+      "route": "I doubted that reversing direction requires passing through zero velocity"
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q083",
+   "audit_file": "tg_eapcet_2023_20230512_an_q083.9de43c16.json",
+   "item_sha": "9de43c16bf370261fad8257c065e9202100308de693067d014c67a9b9bcecce1",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The ratio of the displacements of a freely falling body during first, second and third seconds of its motion is",
+   "options_en": [
+    "1:1:1",
+    "1:3:5",
+    "1:2:3",
+    "1:4:9"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, displacement in the nth second is proportional to (2n − 1), giving the first three seconds in ratio 1:3:5.",
+    "steps": [
+     {
+      "text": "Write the distance covered in the nth second of free fall starting from rest.",
+      "equation": "Sₙ = g/2 × (2n − 1)"
+     },
+     {
+      "text": "Evaluate this for n = 1, 2 and 3, using g = 10 m s⁻².",
+      "equation": "S₁ = 5 m, S₂ = 15 m, S₃ = 25 m"
+     },
+     {
+      "text": "Write the ratio of these three distances in lowest terms.",
+      "equation": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1 : 3 : 5"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1:3:5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming a falling body covers equal distances each second, which would only be true if it moved at constant velocity, not while accelerating."
+     },
+     {
+      "option": 3,
+      "text": "Assuming the distances grow in a simple linear count 1, 2, 3 instead of computing them from the odd-number rule for the nth second of free fall."
+     },
+     {
+      "option": 4,
+      "text": "Using the ratio of the squares of the times, 1:4:9, which gives the total distance fallen by each second, not the distance fallen during each second."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in nth second"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2023_20230512_an_q083",
+    "right_route": "I treated the fall as equal distance every second",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "concept",
+      "route": "I treated the fall as equal distance every second"
+     },
+     {
+      "index": 1,
+      "type": "concept",
+      "route": "I treated the distances as increasing by equal amounts"
+     },
+     {
+      "index": 2,
+      "type": "application",
+      "route": "I compared the total distance fallen by each second"
+     }
+    ]
+   }
+  }
+ ]
+}

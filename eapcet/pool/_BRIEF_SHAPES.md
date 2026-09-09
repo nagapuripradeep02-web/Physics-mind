@@ -73,7 +73,7 @@ take one question per shape, so the grouping is yours to do, by reading.
 }
 ```
 
-- `key` — snake_case, unique in the chapter, stable: the app stores results against it.
+- `key` — snake_case, unique in the chapter, stable: the app stores results against it. At most 40 characters of `a-z 0-9 _ -` (the app, the chat guard and the database column all cap it there).
 - `label` — **at most six words**, plain literal English, the student sees it. It is scanned for
   idioms and refused on a hit.
 - `definition` — one sentence for the founder and for the next author: what belongs here and

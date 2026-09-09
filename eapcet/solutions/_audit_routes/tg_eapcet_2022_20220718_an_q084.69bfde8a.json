@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "69bfde8a320385783729f4dd1ff30bfe661fdb627ab4017a46a64fbb39ddbf2d",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I doubted that reversing direction requires passing through zero velocity",
+   "note": "Faithful to the entry and correctly typed, but the student picking option 3 judged (R) false outright rather than 'doubting' it, and the embedded negation ('doubted that X requires Y') has to be unpacked before it can be recognised at a tap. Register only, not a factual defect.",
+   "fix": "I thought a body can reverse without ever stopping"}
+ ],
+ "verdict": "weak",
+ "solution_defect": "The option-3 entry describes only half of that option's reasoning. Option 3 is '(A) is true but (R) is false', so the student also held the rest-implies-zero-acceleration belief; the entry names only the doubt about (R). Mild incompleteness in the solution's mistake text, not the routes author's defect.",
+ "notes": "Worked the physics myself: at the top of a vertical throw v = 0 while a = g, so (A) is false; a continuous reversal must pass through v = 0, so (R) is true (option 4) - the solution's approach is sound. right_route matches step 1 (the ball-at-the-top counterexample), is first person, 12 words, names no number or option value. Both types are concept by the definition (each entry rests on a wrong physics belief), matching mistake_type_hint. Checked and did not file: the pronoun 'it' in right_route (its antecedent is the assertion directly above the menu, so it reads); and the fact that a student who picked option 3 could also honestly tap mistakes[0].route, since option 3 shares the rest-implies-zero-acceleration belief - that overlap comes from the solution entry's partiality recorded above, not from the route, which describes its own entry and nothing else.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02-R1", "at": "2026-09-09T06:44:11+05:30"}
+}

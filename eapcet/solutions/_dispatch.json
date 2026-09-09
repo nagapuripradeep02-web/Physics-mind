@@ -29,7 +29,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -61,7 +61,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -93,7 +93,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -125,7 +125,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -157,7 +157,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -189,7 +189,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -221,7 +221,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -253,7 +253,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -285,7 +285,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -317,7 +317,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -343,7 +343,7 @@
   "files_present": 7,
   "redispatch_of": 1,
   "reason": "approach over 30 words (gate approach_length)",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -363,7 +363,7 @@
   "files_present": 1,
   "redispatch_of": 1,
   "reason": "key miss: author 2 (47/30), key 3 (47/60)",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -384,7 +384,7 @@
   "files_present": 2,
   "redispatch_of": 1,
   "reason": "q099 key miss: author 1 (18.33%), key 2 (16.67%) - two readings fit; q100 final value not stated in the last steps",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -416,7 +416,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -448,7 +448,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -479,7 +479,7 @@
   "status": "written",
   "files_expected": 14,
   "files_present": 14,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -510,7 +510,7 @@
   "status": "written",
   "files_expected": 14,
   "files_present": 14,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -542,7 +542,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -566,7 +566,7 @@
   "status": "written",
   "files_expected": 7,
   "files_present": 7,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -597,7 +597,7 @@
   "status": "written",
   "files_expected": 14,
   "files_present": 14,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -629,7 +629,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -659,7 +659,7 @@
   "status": "written",
   "files_expected": 13,
   "files_present": 13,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -691,7 +691,7 @@
   "status": "written",
   "files_expected": 15,
   "files_present": 15,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -712,7 +712,7 @@
   "files_present": 2,
   "redispatch_of": 1,
   "reason": "audit wrong: a common_mistakes entry that does not produce the option it names",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -732,7 +732,7 @@
   "files_present": 1,
   "redispatch_of": 1,
   "reason": "audit wrong: self-contradictory common_mistakes entry",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -753,7 +753,7 @@
   "files_present": 2,
   "redispatch_of": 2,
   "reason": "audit wrong: common_mistakes entries with false algebra / impossible route",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -771,7 +771,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -789,7 +789,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -808,7 +808,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -826,7 +826,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -844,7 +844,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -869,7 +869,7 @@
   "status": "written",
   "files_expected": 8,
   "files_present": 8,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -887,7 +887,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -905,7 +905,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -924,7 +924,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -942,7 +942,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -962,7 +962,7 @@
   "files_present": 1,
   "redispatch_of": 1,
   "reason": "audit verdict wrong on round-1 sha (mistake route does not reach its option / approach or step states the wrong physics) - see _rework.json",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -983,7 +983,7 @@
   "files_present": 2,
   "redispatch_of": 2,
   "reason": "audit verdict wrong on round-1 sha (mistake route does not reach its option / approach or step states the wrong physics) - see _rework.json",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1006,7 +1006,7 @@
   "files_present": 4,
   "redispatch_of": 2,
   "reason": "audit verdict wrong on round-1 sha (mistake route does not reach its option / approach or step states the wrong physics) - see _rework.json",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1029,7 +1029,7 @@
   "files_present": 4,
   "redispatch_of": 1,
   "reason": "audit verdict wrong on round-1 sha (mistake route does not reach its option / approach or step states the wrong physics) - see _rework.json",
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1048,7 +1048,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1067,7 +1067,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1086,7 +1086,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1104,7 +1104,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1123,7 +1123,7 @@
   "status": "written",
   "files_expected": 2,
   "files_present": 2,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1144,7 +1144,7 @@
   "status": "written",
   "files_expected": 4,
   "files_present": 4,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1165,7 +1165,7 @@
   "status": "written",
   "files_expected": 4,
   "files_present": 4,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1183,7 +1183,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1201,7 +1201,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1219,7 +1219,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1237,7 +1237,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1255,7 +1255,7 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  },
  {
   "wave": 1,
@@ -1273,6 +1273,185 @@
   "status": "written",
   "files_expected": 1,
   "files_present": 1,
-  "audited_disk_at": "2026-09-08T03:27:00+02:00"
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2021_20210804_an_q083",
+   "tg_eapcet_2022_20220718_an_q084",
+   "tg_eapcet_2023_20230512_an_q083",
+   "tg_eapcet_2024_20240509_an_q083",
+   "tg_eapcet_2025_20250503_fn_q110",
+   "tg_eapcet_2021_20210804_an_q084",
+   "tg_eapcet_2022_20220718_fn_q083",
+   "tg_eapcet_2023_20230512_fn_q083",
+   "tg_eapcet_2024_20240509_fn_q083",
+   "tg_eapcet_2025_20250503_fn_q116",
+   "tg_eapcet_2021_20210804_fn_q083",
+   "tg_eapcet_2022_20220718_fn_q084",
+   "tg_eapcet_2023_20230513_an_q083",
+   "tg_eapcet_2024_20240510_an_q083",
+   "tg_eapcet_2025_20250504_fn_q081"
+  ],
+  "model": "sonnet",
+  "agent_label": "W01-R-p1-02",
+  "slice_path": "eapcet/solutions/_slices/W01_p1-02_routes.json",
+  "planned_at": "2026-09-09T02:38:44+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 15,
+  "files_present": 15,
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2021_20210804_an_q083",
+   "tg_eapcet_2021_20210804_an_q084",
+   "tg_eapcet_2021_20210804_fn_q083",
+   "tg_eapcet_2022_20220718_an_q084",
+   "tg_eapcet_2022_20220718_fn_q083",
+   "tg_eapcet_2022_20220718_fn_q084",
+   "tg_eapcet_2023_20230512_an_q083",
+   "tg_eapcet_2023_20230512_fn_q083",
+   "tg_eapcet_2023_20230513_an_q083",
+   "tg_eapcet_2024_20240509_an_q083",
+   "tg_eapcet_2024_20240509_fn_q083",
+   "tg_eapcet_2024_20240510_an_q083",
+   "tg_eapcet_2025_20250503_fn_q110",
+   "tg_eapcet_2025_20250503_fn_q116",
+   "tg_eapcet_2025_20250504_fn_q081"
+  ],
+  "model": "opus",
+  "agent_label": "W01-V-p1-02",
+  "slice_path": "eapcet/solutions/_audit_slices/W01_p1-02_routes.json",
+  "planned_at": "2026-09-09T02:48:51+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 15,
+  "files_present": 15,
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "sonnet",
+  "agent_label": "W01-R-p1-02-R1",
+  "slice_path": "eapcet/solutions/_slices/W01_p1-02_routes_R1.json",
+  "planned_at": "2026-09-09T03:04:54+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 1,
+  "files_present": 1,
+  "redispatch_of": 1,
+  "reason": "audit harmful: mistakes[1].route describes correct reasoning",
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2022_20220718_an_q084",
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "opus",
+  "agent_label": "W01-V-p1-02-R1",
+  "slice_path": "eapcet/solutions/_audit_slices/W01_p1-02_routes_R1.json",
+  "planned_at": "2026-09-09T03:10:04+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 2,
+  "files_present": 2,
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "sonnet",
+  "agent_label": "W01-R-p1-02-R2",
+  "slice_path": "eapcet/solutions/_slices/W01_p1-02_routes_R2.json",
+  "planned_at": "2026-09-09T03:16:07+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 1,
+  "files_present": 1,
+  "redispatch_of": 2,
+  "reason": "routes audit wrong: mistakes[1].route 'increasing by equal amounts' is also true of the key's 5, 15, 25 m (a constant step), so a correct solver could tap it; the entry's error is per-second distances proportional to the second number",
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "opus",
+  "agent_label": "W01-V-p1-02-R2",
+  "slice_path": "eapcet/solutions/_audit_slices/W01_p1-02_routes_R2.json",
+  "planned_at": "2026-09-09T03:20:03+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 1,
+  "files_present": 1,
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "sonnet",
+  "agent_label": "W01-R-p1-02-R3",
+  "slice_path": "eapcet/solutions/_slices/W01_p1-02_routes_R3.json",
+  "planned_at": "2026-09-09T03:22:33+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 1,
+  "files_present": 1,
+  "redispatch_of": 3,
+  "reason": "routes audit wrong: mistakes[2].route 'I used the total distance fallen, not the distance in each second' names the correct quantity and disowns it, so the student who believed 1:4:9 was right would not tap it",
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 1,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2023_20230512_an_q083"
+  ],
+  "model": "opus",
+  "agent_label": "W01-V-p1-02-R3",
+  "slice_path": "eapcet/solutions/_audit_slices/W01_p1-02_routes_R3.json",
+  "planned_at": "2026-09-09T03:26:19+02:00",
+  "dispatched_at": null,
+  "status": "planned",
+  "files_expected": 1,
+  "files_present": 1,
+  "audited_disk_at": "2026-09-09T03:29:22+02:00"
  }
 ]

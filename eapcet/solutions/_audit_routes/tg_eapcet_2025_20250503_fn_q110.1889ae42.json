@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "item_sha": "1889ae424b25ba07f4f9cfd9fdf767805747a6b109114d8d24feba60a86acb37",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "I checked the solution: twenty metres divided by the average of zero and eighteen gives about two point two seconds, the first option, and both entries land on the options they name. Both types are 'application' and both fit the definition: the first uses the right velocity-time relation with the wrong acceleration (gravity, when air resistance means the acceleration was not gravity), the second uses the right free-fall relation while ignoring the given landing speed. I considered 'concept' for the first (believing the acceleration must be gravity) and left it as a boundary I would not overturn. The two routes describe their own entries, are tellable apart, carry no digits, and neither names an option's value. right_route names the approach's defining move, the average of the two speeds.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

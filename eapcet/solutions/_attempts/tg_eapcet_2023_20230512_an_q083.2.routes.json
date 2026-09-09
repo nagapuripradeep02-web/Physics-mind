@@ -1,0 +1,11 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "right_route": "I found each second's distance using the odd number rule",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I treated the fall as equal distance every second"},
+  {"index": 1, "type": "concept", "route": "I treated the distances as increasing by equal amounts"},
+  {"index": 2, "type": "application", "route": "I compared the total distance fallen by each second"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02-R1", "at": "2026-09-09T06:39:23+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "right_route": "I found the distance in each second using the odd-number rule",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I assumed the body covers equal distance every second"},
+  {"index": 1, "type": "concept", "route": "I took each second's distance as proportional to its number"},
+  {"index": 2, "type": "application", "route": "I used the square of each time to get total distance"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02-R3", "at": "2026-09-09T01:25:19+05:30"}
+}

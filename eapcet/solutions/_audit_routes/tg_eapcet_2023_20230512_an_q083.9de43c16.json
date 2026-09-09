@@ -1,0 +1,20 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "9de43c16bf370261fad8257c065e9202100308de693067d014c67a9b9bcecce1",
+ "findings": [
+  {"grade": "harmful",
+   "field": "right_route",
+   "quote": "I treated the fall as equal distance every second",
+   "note": "This is a wrong method, not the solution's first move: step 1 applies the distance-in-the-nth-second rule S(n) = g/2 (2n - 1). The phrase is the option-1 error verbatim - it is character-for-character the same string as mistakes[0].route - so the menu offers no route for the student who worked it correctly, and a student who did assume equal distances each second is told that route was the right one.",
+   "fix": "I used the formula for distance in the nth second"},
+  {"grade": "wrong",
+   "field": "mistakes[1].route",
+   "quote": "I treated the distances as increasing by equal amounts",
+   "note": "The key's own distances rise by equal amounts (5, 15, 25 - a constant 10 m step), so this phrase is true of the correct answer as well and does not describe entry 1's actual error, which is taking the per-second distances proportional to the second number (a linear 1, 2, 3 count). A student who reasoned correctly could honestly tap it.",
+   "fix": "I assumed the distances grow in direct proportion to the time"}
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "Worked the physics myself: S(n) = g/2 (2n - 1) gives 5, 15 and 25 m with g = 10 m s^-2, ratio 1:3:5 - the solution's approach and key are sound, so both findings are sidecar defects. Checked and did not file: mistakes[0].type concept (a falling body covering equal distances each second is a wrong belief about accelerated motion) and its route, which describes that entry correctly on its own - the collision is charged to right_route, the field that is wrong; mistakes[1].type concept (the entry rests on a wrong belief about how free-fall distances grow), only its route is at fault; mistakes[2].type application, correct by the definition - s = 1/2 g t^2 is known and applied to the wrong quantity (total distance fallen by each second instead of distance during that second) - and its route describes that entry without naming the 1:4:9 value.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02-R1", "at": "2026-09-09T06:46:02+05:30"}
+}

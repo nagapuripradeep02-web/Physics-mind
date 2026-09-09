@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "025c72113f39fd93aacdbc755e6a6c18b35d9e8758e8c83b7e38bcc4e46ae698",
+ "findings": [
+  {"grade": "weak",
+   "field": "right_route",
+   "quote": "I subtracted the first four seconds from the total by twelve",
+   "note": "The move is right (subtract the two totals) but the sentence is garbled: it subtracts seconds rather than distances, and 'the total by twelve' is not English a student would produce. It also skips the first move (distance grows as half g t squared) and opens on the subtraction instead.",
+   "fix": "I subtracted the first stage's distance from the total distance"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "mistakes[0].type 'application' accepted: the formula is known and applied to the wrong interval (the next stage treated as a fresh fall from rest), which is the definition's 'wrong interval'. Its route describes that entry and no other, is first person, and carries only a single-digit number. On the right_route I judged the sidecar's convention across the slice to be 'the defining move of the approach' rather than literally step 1, and filed only the wording. 'twelve' is spelled as a word, so it passes the two-or-more-digits test; I did not file it. Checked and not filed: the entry's outcome (a ratio of four) matches none of the four options, but the entry carries option null, which is honest.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

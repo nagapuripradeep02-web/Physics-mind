@@ -15,6 +15,7 @@ wrong keys in this corpus.
 
     python scripts/eapcet/build_release.py
 """
+import re
 import os, io, sys, json, glob, copy, hashlib, datetime, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -191,6 +192,8 @@ def main():
             for s in lst:
                 if not s.get("key") or not isinstance(s["key"], str):
                     bad.append("%s: a shape without a key" % ck)
+                elif not re.match(r"^[a-z0-9_-]{1,40}$", s["key"]):
+                    bad.append("%s: shape key %r must be 1-40 of [a-z0-9_-] (the app, the chat guard and ep_retries.shape_key all cap it)" % (ck, s["key"]))
                     continue
                 lab = s.get("label") or ""
                 if not lab.strip() or len(lab.split()) > 6:

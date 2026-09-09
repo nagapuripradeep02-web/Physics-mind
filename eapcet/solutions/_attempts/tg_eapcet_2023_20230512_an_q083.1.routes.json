@@ -1,0 +1,11 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "right_route": "I used the odd-number rule for each second's distance",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I assumed the body covers equal distance every second"},
+  {"index": 1, "type": "concept", "route": "I assumed the distances grow by the same fixed amount every second"},
+  {"index": 2, "type": "application", "route": "I used the total fallen distance instead of that second's share"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

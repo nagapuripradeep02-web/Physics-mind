@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "c0a43fa7c4ec6ca288ce33c5e31ce1f0d0482bf77a577fc985cf150433b64ca0",
+ "findings": [
+  {"grade": "wrong",
+   "field": "mistakes[0].type",
+   "quote": "calculation",
+   "note": "This is an assertion-reason question with no computation anywhere in it, so there is no number, sign, unit or algebra step that could go wrong; 'calculation' cannot apply. The entry is a wrong physics belief - that a body momentarily at rest must also have zero acceleration - which the definitions put squarely at 'concept', and which the solution's own mistake_type_hint also says. Because the type is calculation the route is null, so the student who picked the leading distractor is shown a menu with no route matching what they did.",
+   "fix": "concept"}
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "With the type corrected to concept a route becomes required; a route that passes the phrase tests is 'I thought a body at rest has no acceleration' (nine words, first person, no digits). mistakes[1] 'concept' is right (doubting that reversal needs an instant of rest is a wrong belief). Considered and not filed: its route 'I doubted that reversing direction requires passing through zero velocity' is stiffer than a student's own words and would read better as 'I thought a body can turn around without stopping', but it does describe the belief and does not mark itself as wrong. right_route matches step one (test it on a ball at the top of its throw) and is distinct from both wrong beliefs.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

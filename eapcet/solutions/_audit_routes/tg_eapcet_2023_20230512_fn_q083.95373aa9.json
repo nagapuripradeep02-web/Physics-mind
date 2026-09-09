@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "95373aa9ea5adc8eb50975e523bf49236880e3dc6c24e65eee9e7656026ea74b",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "I re-derived the solution: velocity is one over two a x plus b, its derivative with distance is minus two a v squared, and multiplying by v gives the third option. mistakes[0] 'concept' is right: calling the derivative of velocity with distance the acceleration is a wrong belief about what acceleration is, not an algebra slip, and the solution's own hint agrees. Its route says that and nothing else, in first person, with no digits. right_route names the move that separates the right method from that belief (multiply by the velocity). It is a later step than step one, but it is the approach's defining move and the sidecar follows that convention across this slice, so I did not file it; the pair is clearly tellable apart on the menu.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

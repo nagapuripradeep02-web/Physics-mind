@@ -1,0 +1,10 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "right_route": "I integrated the velocity function to get the position",
+ "mistakes": [
+  {"index": 0, "type": "calculation", "route": null},
+  {"index": 1, "type": "concept", "route": "I treated the velocity value itself as the position"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

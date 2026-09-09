@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "e3fdad0da874612963a20d96b86cfa39703702d513da6f966b3179a11a438fdc",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "mistakes[0] 'calculation' with a null route is right: the acceleration is found correctly and the only error is dropping the square on the time inside the distance formula, an algebra step inside a right route. I checked the entry's arithmetic against the options and it lands on the second option, as claimed. right_route names the order of the two moves (acceleration first, then distance), which is step one plus step two and is specific rather than a generic 'I used the formula'. The menu is the right route plus 'I guessed' only, so there is nothing here that could be confused or that gives an answer away.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

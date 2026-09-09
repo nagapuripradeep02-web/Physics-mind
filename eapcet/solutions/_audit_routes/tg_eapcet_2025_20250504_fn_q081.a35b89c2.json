@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "a35b89c20cadc2703ca61c9e6b16c6dd575a8b2a9f94df83d22e75cd1895a7d5",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "I checked the solution: the two nth-second equations give an acceleration of four and an initial velocity of zero, so the speed at four seconds is the third option, and each entry lands on the option it names. All three types are 'application'. I considered other types and left them: doubling the product and carrying the half from the distance formula are each a coefficient belonging to another relation applied to the velocity, which is 'wrong quantity' rather than a slip inside a right route; and for mistakes[1] I considered 'careless', since the entry says the third second was taken from the question, but using the right relation at the wrong instant is the standard application case. The three routes describe their own entries and are tellable apart (twice the product, the wrong instant, the carried half). right_route names the relation and the instant, which is the axis all three distractors turn on, rather than the earlier work of finding the acceleration and initial velocity; I did not file that, as it matches the sidecar's convention across the slice and still separates the right route from every wrong one.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

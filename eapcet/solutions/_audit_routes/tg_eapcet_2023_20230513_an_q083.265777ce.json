@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "item_sha": "265777cee05c37d8f84420f31b35d6fc98a54646b98551339e96d7cfa66f8e7b",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "I checked the solution: the velocity changes sign at two seconds, each stage covers two metres, and the total distance is the second option; integrating straight through does give zero, as the first entry claims. mistakes[0] 'concept' is right - integrating through the reversal is the distance-versus-displacement belief, not a slip - and its route says that. mistakes[1] 'application' is right by the definition: the split-and-add method is known but applied to only the first interval, and its route says the student stopped after the first stage. The right route (split at the reversal and add) is close in subject to that second route but differs on the operative move, adding versus stopping, so a student can tell them apart. No route carries a number of two or more digits or names an option's value.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

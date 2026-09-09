@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q083",
+ "item_sha": "0a0f1c9ce85a99a22602f89b17b7acee65326ac87eb39a6028ce5f691470d704",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": "The single common_mistakes entry ends at a value that is not one of the four options, so no distractor in this question is explained by any listed mistake.",
+ "notes": "mistakes[0] 'calculation' with a null route: I considered 'concept' (not knowing that average velocity is a change in position over a change in time) and decided against it. The entry words the error as forgetting one division inside an otherwise right route, and the two positions are computed correctly first, which is the 'calculation' definition. It is a boundary I would not overturn. right_route is the approach's defining move rather than literally step one (computing the two positions); I read the sidecar's convention across this slice as the defining move and did not file it. It is specific, first person, and carries no digits.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

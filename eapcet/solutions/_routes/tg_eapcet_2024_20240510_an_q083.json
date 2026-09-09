@@ -1,0 +1,9 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "right_route": "I evaluated the velocity at both times and compared their sizes",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I assumed the speed ratio equals the ratio of the times"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

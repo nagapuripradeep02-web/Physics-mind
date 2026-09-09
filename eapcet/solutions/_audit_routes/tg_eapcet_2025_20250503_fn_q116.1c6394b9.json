@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "item_sha": "1c6394b948ed00534083e85cf70bbef3757337902f9c2ec2cf9d88ec3e9b5a4b",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[2].route",
+   "quote": "I used the full drop height for the constant-speed stage",
+   "note": "This says the same thing as mistakes[1]'s route, 'I divided the whole height by the constant speed' - both students divide the whole height by the constant speed. The one feature that separates this entry is that the free-fall time was still added on top, and the route never says so, so the two sit on the menu as near-synonyms and a student cannot reliably pick their own.",
+   "fix": "I added the free-fall time but used the whole height"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "I checked the solution: the free-fall stage gives a speed of twenty metres per second in two seconds, the remaining height takes ninety-nine seconds, and the total is the second option; each entry lands on the option it names. All three types are 'application' and all three fit - a stage dropped, both stages collapsed into one, and the wrong height used for a stage - with routes present as required. mistakes[0] and mistakes[1] are tellable apart from each other and from the right route. The proposed replacement for mistakes[2] also keeps it distinct from right_route, which uses the remaining height rather than the whole height.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

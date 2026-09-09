@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "a5339756a6e6336230fbd09745b858d7e5c06ef018e34d6f4d465e7600a6b731",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[0].type",
+   "quote": "application",
+   "note": "The 'application' definition requires the concept to be known and then aimed at the wrong quantity, interval, body or frame. This entry says in its own words that the student worked 'without using v squared equals u squared minus two a s at all' and simply read the stated velocity fraction as the distance ratio - a wrong belief that distance falls in the same proportion as speed, which is 'concept'. I have capped this at weak because it is a concept-versus-application boundary, and a route is required either way, so the menu is unaffected.",
+   "fix": "concept"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "I re-derived the solution (retardation five u squared over eighteen x, second stage four x over five) and it matches the third option, so both entries are checked against a correct solution. mistakes[1] 'application' is right: squares of speeds are the correct idea, aimed at the wrong quantity (a ratio of squares instead of the difference of squares per stage). The two routes are parallel in shape but differ in their operative content (the stated speed fraction versus the squared ratio), so I judged them tellable apart and did not file. right_route names the approach's defining move (the same speed-distance relation on both stages) and no route names the answer's value.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

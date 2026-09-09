@@ -1,0 +1,20 @@
+{
+ "c0a43fa7c4ec6ca288ce33c5e31ce1f0d0482bf77a577fc985cf150433b64ca0": {
+  "question_id": "tg_eapcet_2022_20220718_an_q084",
+  "chapter_key": "p1-02",
+  "wave": 1,
+  "corruption": "mistakes[0] retyped concept -> calculation and its route dropped",
+  "real_sha": "69bfde8a320385783729f4dd1ff30bfe661fdb627ab4017a46a64fbb39ddbf2d",
+  "expected": "wrong",
+  "planted_at": "2026-09-09T02:48:51+02:00"
+ },
+ "9de43c16bf370261fad8257c065e9202100308de693067d014c67a9b9bcecce1": {
+  "question_id": "tg_eapcet_2023_20230512_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 1,
+  "corruption": "right_route replaced by the wrong route of mistakes[0]",
+  "real_sha": "573914808b2b25586f2c90078c5b1fce7f4b25f2420bd52b84a389a12398665b",
+  "expected": "wrong",
+  "planted_at": "2026-09-09T03:10:04+02:00"
+ }
+}

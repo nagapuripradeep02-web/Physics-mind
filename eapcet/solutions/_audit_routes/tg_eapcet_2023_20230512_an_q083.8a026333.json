@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "8a02633305ce47b285bbeb6249f4b75bf071f4839dfdb46efb379b902c56d9f3",
+ "findings": [
+  {"grade": "ok",
+   "field": "mistakes[2].route",
+   "quote": "I used the square of each time to get total distance",
+   "note": "Not a defect, recorded so the dispatcher can see it. This sentence is also the honest first move of the alternative CORRECT method: totals by s = g/2 t^2 (5 m, 20 m, 45 m) then successive differences (5, 15, 25) to reach the key. A student who solved it that way could say these words. The right route is tied to the verified solution's odd-number method by design, so I did not lower the verdict; against the solution's own method the route is correct, and it describes its own entry (t^2 ratio = total fallen, not the per-second distance).",
+   "fix": null}
+ ],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Worked the physics myself before reading the sidecar. Free fall from rest, S_n = (g/2)(2n-1): S1 = 5 m, S2 = 15 m, S3 = 25 m, ratio 1:3:5 = option 2 (ratio is g-independent; 9.8 gives 4.9:14.7:24.5 = 1:3:5). Distractor arithmetic reproduced: equal-each-second gives 1:1:1 (CM[0], opt 1), S proportional to n gives 1:2:3 (CM[1], opt 3), ratio of t^2 totals 5/20/45 gives 1:4:9 (CM[2], opt 4). All four options accounted for and the option numbering is consistent, so no solution defect. Types: I independently typed CM[0] and CM[1] concept (the belief itself is wrong - an accelerating body does not cover equal or linearly-growing distances) and CM[2] application (s = g/2 t^2 is a CORRECT belief applied to the wrong INTERVAL, cumulative [0,n] instead of [n-1,n]); the sidecar matches all three. The question-level mistake_type_hint 'concept' does not bind the per-entry type, so mistakes[2].type = application is right, not a mismatch. right_route matches step 1 (write S_n = g/2 (2n-1)), not step 2 or 3, and is not generic. Phrase tests on all four routes: first person, 9-11 words each, no numeral of two or more digits, no option value spoken, no verdict word ('wrongly'/'forgot'), no 'X, not Y' contrast naming the right quantity, one voice and one confidence level, all four mutually distinguishable. Checked and did not file: 'odd-number rule' in right_route contains no numeral and is the standard name of the solution's own (2n-1) principle, so it is terminology, not a give-away of 1:3:5; 'to get total distance' in mistakes[2].route names the WRONG quantity the student computed (which is what a route must do), not the right one, so it is not self-marking.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02-R3", "at": "2026-09-09T03:28:26+05:30"}
+}

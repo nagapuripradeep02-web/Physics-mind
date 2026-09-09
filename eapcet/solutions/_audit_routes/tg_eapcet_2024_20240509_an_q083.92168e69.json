@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "92168e690d46e9d9cb7fbff6def60df1a7ac4ae571b3187c4799cba68a21ca3b",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[2].type",
+   "quote": "calculation",
+   "note": "The student finds the speed at the window's bottom correctly and then divides that whole speed by gravity, when the relation needs the CHANGE in speed - the stone already had speed at the window's top. That is the known relation aimed at the wrong quantity, which the definitions put at 'application', not a number or algebra step going wrong inside a right route. I have capped it at weak because the entry words it as 'forgetting to subtract', which reads as a slip, and because there is real arithmetic in this route.",
+   "fix": "application"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "If the type is corrected to application a route becomes required, and one that passes the phrase tests is 'I divided the bottom speed by gravity' (seven words, first person, no digits). I re-derived the solution first: the stone returns to the window's top at the launch speed, the quadratic for the crossing gives the fourth option, and the speed at the window's bottom really is ten metres per second, so all three entries are checked against a correct solution. mistakes[0] and mistakes[1] are both 'application' correctly (right relations, wrong intervals) and their routes describe their own entries and are tellable apart. Considered and not filed: 'instead' in mistakes[0]'s route mildly signals that this was not the asked quantity, but a student reporting their route against the question would naturally say it, and it is far from the 'I wrongly' or 'I forgot' class.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

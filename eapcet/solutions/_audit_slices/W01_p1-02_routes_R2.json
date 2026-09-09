@@ -1,0 +1,86 @@
+{
+ "wave": 1,
+ "role": "routes_audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 2,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q083",
+   "audit_file": "tg_eapcet_2023_20230512_an_q083.2574b8e4.json",
+   "item_sha": "2574b8e4408aa7a26e20e8374158b120ce1bfbdfb6a83652b6d46fac608c656f",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The ratio of the displacements of a freely falling body during first, second and third seconds of its motion is",
+   "options_en": [
+    "1:1:1",
+    "1:3:5",
+    "1:2:3",
+    "1:4:9"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, displacement in the nth second is proportional to (2n − 1), giving the first three seconds in ratio 1:3:5.",
+    "steps": [
+     {
+      "text": "Write the distance covered in the nth second of free fall starting from rest.",
+      "equation": "Sₙ = g/2 × (2n − 1)"
+     },
+     {
+      "text": "Evaluate this for n = 1, 2 and 3, using g = 10 m s⁻².",
+      "equation": "S₁ = 5 m, S₂ = 15 m, S₃ = 25 m"
+     },
+     {
+      "text": "Write the ratio of these three distances in lowest terms.",
+      "equation": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1 : 3 : 5"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1:3:5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming a falling body covers equal distances each second, which would only be true if it moved at constant velocity, not while accelerating."
+     },
+     {
+      "option": 3,
+      "text": "Assuming the distances grow in a simple linear count 1, 2, 3 instead of computing them from the odd-number rule for the nth second of free fall."
+     },
+     {
+      "option": 4,
+      "text": "Using the ratio of the squares of the times, 1:4:9, which gives the total distance fallen by each second, not the distance fallen during each second."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in nth second"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2023_20230512_an_q083",
+    "right_route": "I applied the formula for the distance covered in the nth second",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "concept",
+      "route": "I assumed the falling body covers equal distances each second"
+     },
+     {
+      "index": 1,
+      "type": "concept",
+      "route": "I treated the nth second's distance as equal to n"
+     },
+     {
+      "index": 2,
+      "type": "application",
+      "route": "I used the total distance fallen, not the distance in each second"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "d7e609f51b034b6f6030f16902268cde33dd730bdf8097f776b30641ae08d67f",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": "The single mistake entry bundles two different errors - dropping the half-g factor from the nth-second formula, and then reading a length as if it were the percentage - so no single type can cover it; these belong in two entries.",
+ "notes": "I checked the solution: the fall takes five seconds, the last second covers forty-five metres, and the percentage is the second option. Judging the type against the entry as written, the dominant error is the dropped factor inside an otherwise right route, so 'calculation' with a null route is acceptable; the bundled second half is a solution-side defect, filed above and changing no verdict. right_route names the nth-second formula with its g factor. It is step two rather than step one (the total fall time), and its 'including the g factor' clause is contrastive, but with no wrong route on this menu there is nothing it can give away, so I did not file it.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}

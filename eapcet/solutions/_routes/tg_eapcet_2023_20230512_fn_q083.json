@@ -1,0 +1,9 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "right_route": "I multiplied the derivative of velocity by velocity itself",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I treated the derivative of velocity with distance as acceleration"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

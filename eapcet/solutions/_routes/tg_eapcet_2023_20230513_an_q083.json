@@ -1,0 +1,10 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "right_route": "I split the motion at the reversal point and added distances",
+ "mistakes": [
+  {"index": 0, "type": "concept", "route": "I integrated the velocity over the whole time without splitting"},
+  {"index": 1, "type": "application", "route": "I stopped after finding only the first stage's distance"}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

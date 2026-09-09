@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "2574b8e4408aa7a26e20e8374158b120ce1bfbdfb6a83652b6d46fac608c656f",
+ "findings": [
+  {"grade": "wrong",
+   "field": "mistakes[2].route",
+   "quote": "I used the total distance fallen, not the distance in each second",
+   "note": "The trailing negation names the question's own target quantity and disowns it, so the route self-marks as the wrong option — the same defect class as \"I wrongly...\". A student who genuinely took the 1:4:9 path believed the cumulative distances WERE the displacements during each second; they would never append that correction, so on the menu they read this as somebody else's route and do not tap it.",
+   "fix": "I used the total distance fallen by the end of each second"}
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "Worked the physics independently first: Sn = g/2 (2n-1) gives 5, 15, 25 m -> 1:3:5 (option 2), while the cumulative fall s = 1/2 g t^2 gives 5, 20, 45 m -> 1:4:9 (option 4) — so every common_mistakes entry's story checks out and nothing went to solution_defect. All three types agree with the ones I wrote down before opening the sidecar: idx0 and idx1 are wrong beliefs about how a falling body's per-second distance behaves (concept), idx2 knows s = 1/2 g t^2 correctly and applies it to the wrong quantity/interval (application). right_route matches step 1 and names WHICH formula, so it is not the generic \"I used the formula\" — not filed. Considered and did not file: mistakes[1].route \"as equal to n\" is literally Sn = n rather than proportional to n, but it is the same belief, yields the same 1:2:3 ratio, and is still the student's own words — a boundary, not a defect. Checked the whole menu: no route carries a two-or-more-digit number, none names an option's value, no two routes are confusable, and no wrong route describes the correct method (so nothing here is harmful). The proposed fix passes the phrase tests: first person, twelve words, no 2+ digit number, no idiom, describes only entry 2.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02-R2", "at": "2026-09-09T06:51:35+05:30"}
+}

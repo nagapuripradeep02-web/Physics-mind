@@ -1,0 +1,9 @@
+{
+ "schema": "eapcet_routes_v1",
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "right_route": "I used the nth-second formula including the g factor",
+ "mistakes": [
+  {"index": 0, "type": "calculation", "route": null}
+ ],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+}

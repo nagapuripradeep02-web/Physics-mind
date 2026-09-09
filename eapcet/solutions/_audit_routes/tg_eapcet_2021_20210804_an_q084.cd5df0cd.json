@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "item_sha": "cd5df0cdbbbc97af760c7ede24f1408517a9e3d88d662630c5e25f556bdf52d3",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "mistakes[0] 'calculation' with a null route is right: the route was right (integrate) and a single antiderivative step went wrong; I re-derived the claimed outcome (position becomes minus two t plus t to the fourth over two, giving four metres at two seconds), so the entry is internally consistent. mistakes[1] 'concept' is right: treating the velocity value as the position is a wrong belief about what v means, not a slip. Its route names that belief only, in first person, with no digits. right_route matches step one (integrate the velocity to get the position) and is clearly distinct from the wrong route, so the menu separates a student who integrated from one who substituted. Checked and not filed: mistakes[1]'s outcome (five metres) matches no option, but the entry carries option null.",
+ "audited_by": {"model": "opus", "wave": 1, "agent": "W01-V-p1-02", "at": "2026-09-09T06:27:56+05:30"}
+}
