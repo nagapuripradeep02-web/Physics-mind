@@ -2,6 +2,12 @@
 
 ## 📱 SESSION — EAPCET finder becomes a three-tab student app: Learn and practice · Weakness · Solutions, front end first, on a PREVIEW worker (2026-09-09, `feat/eapcet-app`)
 
+**Desk: worktree `C:\Tutor\physics-mind-eapcet-app`, branch `feat/eapcet-app`, tip `a5f70cc6`.**
+Nothing about this product is on `master` — `master` does not carry `eapcet-app/` at all. The
+corpus half lives in `C:\Tutor\physics-mind-eapcet-corpus` on `feat/eapcet-solutions` (`970a7a0f`).
+Both are clean and pushed; no PR is open for either. **Handoff for a new session:
+`docs/EAPCET_APP_START_HERE.md` in this worktree.**
+
 **Bottom line: the live finder is now one subject shell with three tabs, built in place on the
 same single-file engine, deployed to a preview URL and never to the student site.** The founder
 asked for the front end and UX first ("later, we start with building a strong back end and AI
@@ -62,6 +68,24 @@ architecture"); the backend for lesson sync and photo reading is recorded as out
   chemistry and maths packs, sign-in deploy, the money path. Waiting on the founder: the p1-02
   shape labels, the spot sheet, q092/q099, q101, domain, founding price, the auditor's brief
   critiques, and the vault sync proposal (unwritten until confirmed).
+
+### Next session, first task
+
+1. **A teacher reviews the p1-02 lesson pack.** Everything else in Learn is blocked behind it:
+   until `reviewed: true`, the pack is a sample, a `--hosted` build leaves it out, and the tab
+   ships to students empty. Ask before authoring more packs — eleven chapters written against an
+   unvalidated brief risks eleven reworks.
+2. Then the backend the founder deferred: sync for the `ep_state_v1.learn` branch (additive; a
+   server reply must never clear a local green) and photo reading for Solutions (today the flow is
+   honest but empty).
+3. Corpus work runs independently on `feat/eapcet-solutions`: routes and shapes for p1-03 and
+   p1-05 are next in the plan.
+
+**Blockers, all with the founder:** the p1-02 shape labels (student-facing text), the spot sheet,
+q092/q099, q101, the domain, the founding price, the auditor's brief critiques, the teacher review
+above, and the Obsidian vault sync proposal, which stays unwritten until confirmed.
+
+**No CLAUDE.md change is proposed by this session.**
 
 ## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
