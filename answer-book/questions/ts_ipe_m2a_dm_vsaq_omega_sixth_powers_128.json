@@ -103,14 +103,30 @@
         "margin_note": "Second mark. (−2ω)⁶ + (−2ω²)⁶ = 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴ = 64 + 64 = 128. An even power removes the minus sign.",
         "memory_tip": "An even power removes the minus: 64ω⁶ + 64ω¹² = 64 + 64 = 128, since both are powers of ω³ = 1.",
         "lines": [
-          "(−2ω)⁶ = (−2)⁶ω⁶ = 64ω⁶",
-          "(−2ω²)⁶ = (−2)⁶(ω²)⁶ = 64ω¹²",
-          "ω⁶ = (ω³)² = 1² = 1",
-          "ω¹² = (ω³)⁴ = 1⁴ = 1",
-          "Sum = 64(1) + 64(1)",
+          {
+            "text": "(−2ω)⁶ = (−2)⁶ω⁶ = 64ω⁶",
+            "added": true
+          },
+          {
+            "text": "(−2ω²)⁶ = (−2)⁶(ω²)⁶ = 64ω¹²",
+            "added": true
+          },
+          {
+            "text": "ω⁶ = (ω³)² = 1² = 1",
+            "added": true
+          },
+          {
+            "text": "ω¹² = (ω³)⁴ = 1⁴ = 1",
+            "added": true
+          },
+          {
+            "text": "Sum = 64(1) + 64(1)",
+            "added": true
+          },
           {
             "text": "∴ the value is 128",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -140,6 +156,14 @@
           "Writing (−2ω)⁶ = −64ω⁶, keeping the minus.",
           "Writing ω⁶ = ω instead of (ω³)² = 1.",
           "Getting 2⁶ = 32."
+        ],
+        "lines_compact": [
+          "(1 − ω + ω²)⁶ + (1 + ω − ω²)⁶ = (−2ω)⁶ + (−2ω²)⁶",
+          "= 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴",
+          {
+            "text": "= 64 + 64 = 128",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -118,10 +118,16 @@
         "margin_note": "Second mark. Multiply by (x + 1)(x − 1)². A keeps (x − 1)², B keeps (x + 1)(x − 1) because one (x − 1) cancels, and C keeps only (x + 1) because both cancel.",
         "memory_tip": "A keeps (x − 1)², B keeps (x + 1)(x − 1) as one factor cancels, and C keeps only (x + 1).",
         "lines": [
-          "Multiply both sides by (x + 1)(x − 1)²:",
+          {
+            "text": "Multiply both sides by (x + 1)(x − 1)²:",
+            "added": true
+          },
           "x² − x + 1 = A(x − 1)² + B(x + 1)(x − 1)",
           "  + C(x + 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,6 +157,11 @@
           "Giving the C term (x + 1)(x − 1) instead of (x + 1).",
           "Giving the B term (x − 1)² instead of (x + 1)(x − 1).",
           "Dropping the left side x² − x + 1."
+        ],
+        "lines_compact": [
+          "Multiply by (x + 1)(x − 1)²:",
+          "x² − x + 1 = A(x − 1)² + B(x + 1)(x − 1)",
+          "+ C(x + 1)"
         ]
       },
       {
@@ -162,16 +173,46 @@
         "margin_note": "Third mark. Only two roots, 1 and −1, but three constants. x = 1 gives C, x = −1 gives A, and B comes from comparing the x² coefficient on both sides.",
         "memory_tip": "Two roots but three constants, so B cannot come from a substitution — compare the x² coefficient.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1: 1 − 1 + 1 = C(2)",
-          "1 = 2C, so C = 1/2",
-          "Put x = −1: 1 + 1 + 1 = A(4)",
-          "3 = 4A, so A = 3/4",
-          "The two roots do not give B, so compare",
-          "the x² terms on both sides:",
-          "left 1, right A + B, so A + B = 1",
-          "B = 1 − 3/4 = 1/4"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 1 − 1 + 1 = C(2)",
+            "added": true
+          },
+          {
+            "text": "1 = 2C, so C = 1/2",
+            "added": true
+          },
+          {
+            "text": "Put x = −1: 1 + 1 + 1 = A(4)",
+            "added": true
+          },
+          {
+            "text": "3 = 4A, so A = 3/4",
+            "added": true
+          },
+          {
+            "text": "The two roots do not give B, so compare",
+            "added": true
+          },
+          {
+            "text": "the x² terms on both sides:",
+            "added": true
+          },
+          {
+            "text": "left 1, right A + B, so A + B = 1",
+            "added": true
+          },
+          {
+            "text": "B = 1 − 3/4 = 1/4",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -203,6 +244,11 @@
           "Trying to find B by substitution; there is no third root, so no substitution isolates B.",
           "Reading the x² coefficient on the right as A only and forgetting the B(x + 1)(x − 1) term also gives x².",
           "Putting x = −1 and getting (−1)² − (−1) + 1 as 1 instead of 3."
+        ],
+        "lines_compact": [
+          "Put x = 1: 1 = C(2) ⇒ C = 1/2",
+          "Put x = −1: 3 = A(4) ⇒ A = 3/4",
+          "Compare x²: A + B = 1 ⇒ B = 1/4"
         ]
       },
       {

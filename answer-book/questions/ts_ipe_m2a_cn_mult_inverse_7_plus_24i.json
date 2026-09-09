@@ -115,9 +115,18 @@
         "margin_note": "Second mark. 49 + 576 = 625. Write the answer with the real and imaginary parts separated.",
         "memory_tip": "49 + 576 = 625, from the 7, 24, 25 triple. Split the answer into a real part and an imaginary part.",
         "lines": [
-          "= 625",
-          "So the inverse is (7 − 24i)/625",
-          "Split into a real and an imaginary term:",
+          {
+            "text": "= 625",
+            "added": true
+          },
+          {
+            "text": "So the inverse is (7 − 24i)/625",
+            "added": true
+          },
+          {
+            "text": "Split into a real and an imaginary term:",
+            "added": true
+          },
           {
             "text": "∴ inverse = 7/625 − (24/625)i",
             "style": "boxed"
@@ -149,6 +158,13 @@
         "common_mistakes": [
           "Adding 49 + 576 as 615.",
           "Leaving the answer as (7 − 24i)/625 without separating — acceptable to many examiners, but the split form is safer."
+        ],
+        "lines_compact": [
+          "= (7 − 24i) / (49 + 576) = (7 − 24i)/625",
+          {
+            "text": "∴ inverse = 7/625 − (24/625)i",
+            "style": "boxed"
+          }
         ]
       }
     ]

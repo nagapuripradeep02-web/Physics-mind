@@ -101,17 +101,35 @@
         "margin_note": "Second mark. b > 0, so the two parts share a sign. r + a = 13 + (−5) = 8 and r − a = 13 − (−5) = 18; halved, 4 and 9.",
         "memory_tip": "Carry the sign on a: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, halving to 4 and 9.",
         "lines": [
-          "Here b = 12, which is positive, and for b > 0",
+          {
+            "text": "Here b = 12, which is positive, and for b > 0",
+            "added": true
+          },
           "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
-          "(r + a)/2 = (13 − 5)/2 = 8/2 = 4",
-          "(r − a)/2 = (13 + 5)/2 = 18/2 = 9",
-          "√(−5 + 12i) = ±(√4 + i√9)",
+          {
+            "text": "(r + a)/2 = (13 − 5)/2 = 8/2 = 4",
+            "added": true
+          },
+          {
+            "text": "(r − a)/2 = (13 + 5)/2 = 18/2 = 9",
+            "added": true
+          },
+          {
+            "text": "√(−5 + 12i) = ±(√4 + i√9)",
+            "added": true
+          },
           {
             "text": "∴ √(−5 + 12i) = ±(2 + 3i)",
             "style": "boxed"
           },
-          "Check: (2 + 3i)² = 4 + 12i + 9i²",
-          "= 4 + 12i − 9 = −5 + 12i   [i² = −1]"
+          {
+            "text": "Check: (2 + 3i)² = 4 + 12i + 9i²",
+            "added": true
+          },
+          {
+            "text": "= 4 + 12i − 9 = −5 + 12i   [i² = −1]",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -140,6 +158,23 @@
           "Computing r + a as 13 + 5 = 18 and getting ±(3 + 2i), which squares to 5 + 12i.",
           "Dropping the ±.",
           "Skipping the check by squaring."
+        ],
+        "lines_compact": [
+          "For b > 0:",
+          {
+            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
+            "style": "eq"
+          },
+          {
+            "text": "√(−5 + 12i) = ±(√((13 − 5)/2) + i·√((13 + 5)/2))",
+            "style": "eq"
+          },
+          "= ±(√4 + i√9)",
+          {
+            "text": "∴ √(−5 + 12i) = ±(2 + 3i)",
+            "style": "boxed"
+          },
+          "Check: (2 + 3i)² = 4 + 12i − 9 = −5 + 12i"
         ]
       }
     ]

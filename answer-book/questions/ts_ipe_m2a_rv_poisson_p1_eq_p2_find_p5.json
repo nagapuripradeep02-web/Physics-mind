@@ -122,10 +122,22 @@
         "margin_note": "Second mark. Put λ = 2 and r = 5: e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leaving e⁻²·2⁵/5! unsimplified is accepted; do not replace e⁻² by a decimal.",
         "memory_tip": "e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leave e⁻² as it is; do not use a decimal.",
         "lines": [
-          "P(X = 5) = e⁻² · 2⁵/5!",
-          "2⁵ = 32 and 5! = 120",
-          "= 32e⁻²/120",
-          "Divide the top and bottom by 8:",
+          {
+            "text": "P(X = 5) = e⁻² · 2⁵/5!",
+            "added": true
+          },
+          {
+            "text": "2⁵ = 32 and 5! = 120",
+            "added": true
+          },
+          {
+            "text": "= 32e⁻²/120",
+            "added": true
+          },
+          {
+            "text": "Divide the top and bottom by 8:",
+            "added": true
+          },
           {
             "text": "∴ P(X = 5) = 4e⁻²/15",
             "style": "boxed"
@@ -158,6 +170,13 @@
           "Writing 5! as 20 or 25.",
           "Using λ = 1 or r = 2 by mixing up the given data with the question.",
           "Reducing 32/120 to 8/30 and stopping."
+        ],
+        "lines_compact": [
+          "P(X = 5) = e⁻² · 2⁵/5! = 32e⁻²/120",
+          {
+            "text": "∴ P(X = 5) = 4e⁻²/15",
+            "style": "boxed"
+          }
         ]
       }
     ]

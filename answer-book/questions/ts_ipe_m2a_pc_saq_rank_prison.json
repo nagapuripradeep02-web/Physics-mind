@@ -109,21 +109,51 @@
         "margin_note": "Two marks. Three letters (I, N, O) come before P: 5! each. With P fixed, three letters (I, N, O) come before R: 4! each. With P R fixed, I is the smallest so no block; with P R I fixed, N and O come before S: 2! each. With P R I S fixed, N comes before O: 1!.",
         "memory_tip": "After P R is fixed there is no block, because I is the smallest letter left. Do not invent one.",
         "lines": [
-          "Three letters I, N, O come before P.",
-          "For each, the other 5 letters give 5! = 120",
+          {
+            "text": "Three letters I, N, O come before P.",
+            "added": true
+          },
+          {
+            "text": "For each, the other 5 letters give 5! = 120",
+            "added": true
+          },
           "Words starting with I, N or O: 3 × 120 = 360",
-          "Now fix P. The letters left are I, N, O, R, S",
-          "Three of them, I, N, O, come before R.",
-          "For each, the other 4 give 4! = 24",
+          {
+            "text": "Now fix P. The letters left are I, N, O, R, S",
+            "added": true
+          },
+          {
+            "text": "Three of them, I, N, O, come before R.",
+            "added": true
+          },
+          {
+            "text": "For each, the other 4 give 4! = 24",
+            "added": true
+          },
           "Words starting with PI, PN or PO: 3 × 24 = 72",
-          "Now fix PR. The letters left are I, N, O, S",
-          "I is the given word's third letter,",
-          "so fix PRI. The letters left are N, O, S",
+          {
+            "text": "Now fix PR. The letters left are I, N, O, S",
+            "added": true
+          },
+          {
+            "text": "I is the given word's third letter,",
+            "added": true
+          },
+          {
+            "text": "so fix PRI. The letters left are N, O, S",
+            "added": true
+          },
           "Words starting with PRIN: 2! = 2",
           "Words starting with PRIO: 2! = 2",
-          "Next is PRIS. The letters left are N, O",
+          {
+            "text": "Next is PRIS. The letters left are N, O",
+            "added": true
+          },
           "Words starting with PRISN: 1! = 1",
-          "Next is PRISO, then N — which is PRISON."
+          {
+            "text": "Next is PRISO, then N — which is PRISON.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,6 +183,14 @@
           "Counting a block for P R before P R I — I is the smallest remaining letter, so there is no such block.",
           "Forgetting the P R I S N block (1!) before PRISON.",
           "Using 5! = 120 for the P I block — after P and I are fixed only 4 letters remain, so it is 4! = 24."
+        ],
+        "lines_compact": [
+          "Words starting with I, N, O: 3 × 5! = 360",
+          "Words starting with PI, PN, PO: 3 × 4! = 72",
+          "Words starting with PRIN: 2! = 2",
+          "Words starting with PRIO: 2! = 2",
+          "Words starting with PRISN: 1! = 1",
+          "The next word is PRISON itself."
         ]
       },
       {
@@ -164,9 +202,15 @@
         "margin_note": "Last mark. 360 + 72 + 2 + 2 + 1 = 437 words come before PRISON, so its rank is 438.",
         "memory_tip": "437 words come before PRISON, so the rank is 438. Keep both single-word terms.",
         "lines": [
-          "Rank = words before it + 1",
+          {
+            "text": "Rank = words before it + 1",
+            "added": true
+          },
           "= 360 + 72 + 2 + 2 + 1 + 1",
-          "= 436 + 1 + 1",
+          {
+            "text": "= 436 + 1 + 1",
+            "added": true
+          },
           {
             "text": "∴ rank of PRISON = 438",
             "style": "boxed"
@@ -197,6 +241,14 @@
         "common_mistakes": [
           "Answering 437 — the count of words before PRISON, not its rank.",
           "Dropping one of the two single-word terms (the PRISN block and PRISON itself)."
+        ],
+        "lines_compact": [
+          "Rank = 3(120) + 3(24) + 2 + 2 + 1 + 1",
+          "= 360 + 72 + 4 + 1 + 1",
+          {
+            "text": "∴ rank of PRISON = 438",
+            "style": "boxed"
+          }
         ]
       }
     ]

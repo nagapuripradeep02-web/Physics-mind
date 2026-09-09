@@ -108,8 +108,14 @@
         "margin_note": "Second mark. Divide by 2⁹⁹: 2¹⁰⁰/2⁹⁹ = 2. Then square.",
         "memory_tip": "2¹⁰⁰/2⁹⁹ = 2¹ = 2. Then square both sides: a² + b² = 4.",
         "lines": [
-          "Divide both sides by 2⁹⁹:",
-          "√(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2¹⁰⁰⁻⁹⁹ = 2",
+          {
+            "text": "Divide both sides by 2⁹⁹:",
+            "added": true
+          },
+          {
+            "text": "√(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2¹⁰⁰⁻⁹⁹ = 2",
+            "added": true
+          },
           "Square both sides:",
           {
             "text": "∴ a² + b² = 4",
@@ -142,6 +148,14 @@
         "common_mistakes": [
           "Dividing 2¹⁰⁰ by 2⁹⁹ to get 2⁹⁹ or 1.",
           "Stopping at √(a² + b²) = 2 without squaring."
+        ],
+        "lines_compact": [
+          "⇒ √(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2",
+          "Squaring both sides:",
+          {
+            "text": "∴ a² + b² = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

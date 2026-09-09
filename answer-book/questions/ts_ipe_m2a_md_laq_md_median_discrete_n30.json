@@ -145,11 +145,26 @@
         "memory_tip": "Stop at the first c.f. that reaches N/2 = 15; the median is that xᵢ. No grouped-data formula on discrete data.",
         "lines": [
           "N/2 = 30/2 = 15",
-          "The median is the value at which the running",
-          "total first reaches 15.",
-          "The c.f. values are 3, 7, 12, 14, 18, …",
-          "The first one that is 15 or more is 18,",
-          "which sits against xᵢ = 13.",
+          {
+            "text": "The median is the value at which the running",
+            "added": true
+          },
+          {
+            "text": "total first reaches 15.",
+            "added": true
+          },
+          {
+            "text": "The c.f. values are 3, 7, 12, 14, 18, …",
+            "added": true
+          },
+          {
+            "text": "The first one that is 15 or more is 18,",
+            "added": true
+          },
+          {
+            "text": "which sits against xᵢ = 13.",
+            "added": true
+          },
           "∴ Median M = 13"
         ],
         "recall": {
@@ -180,6 +195,11 @@
           "Using the grouped-data formula l + (C/f)(N/2 − m) on discrete data.",
           "Taking the median as the middle of the xᵢ list (12 or 13 by position) and ignoring the frequencies.",
           "Reading N/2 = 15 as 'the median is 15'."
+        ],
+        "lines_compact": [
+          "N/2 = 30/2 = 15",
+          "The first c.f. ≥ 15 is 18, at xᵢ = 13.",
+          "∴ Median M = 13"
         ]
       },
       {
@@ -191,9 +211,18 @@
         "margin_note": "Next two marks. Columns: xᵢ, fᵢ, |xᵢ − 13|, and the product with fᵢ. The row xᵢ = 13 contributes 0. The sum is 149.",
         "memory_tip": "Deviate from M = 13, and multiply by fᵢ, not by the c.f. The row xᵢ = 13 contributes 0.",
         "lines": [
-          "Now take each value's distance from 13,",
-          "always as a positive number, and multiply",
-          "by its frequency:",
+          {
+            "text": "Now take each value's distance from 13,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number, and multiply",
+            "added": true
+          },
+          {
+            "text": "by its frequency:",
+            "added": true
+          },
           {
             "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
             "style": "indent"
@@ -263,6 +292,49 @@
           "Keeping the signs.",
           "Multiplying by the c.f. instead of by fᵢ.",
           "An addition slip: 30 + 28 + 20 + 2 + 0 + 10 + 32 + 27 = 149."
+        ],
+        "lines_compact": [
+          "With M = 13:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
+            "style": "indent"
+          },
+          {
+            "text": "3      3      10           30",
+            "style": "indent"
+          },
+          {
+            "text": "6      4      7            28",
+            "style": "indent"
+          },
+          {
+            "text": "9      5      4            20",
+            "style": "indent"
+          },
+          {
+            "text": "12     2      1            2",
+            "style": "indent"
+          },
+          {
+            "text": "13     4      0            0",
+            "style": "indent"
+          },
+          {
+            "text": "15     5      2            10",
+            "style": "indent"
+          },
+          {
+            "text": "21     4      8            32",
+            "style": "indent"
+          },
+          {
+            "text": "22     3      9            27",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − M| = 149",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -278,8 +350,14 @@
             "text": "M.D. about the median = Σfᵢ|xᵢ − M|/N",
             "style": "eq"
           },
-          "= 149/30",
-          "= 4.97",
+          {
+            "text": "= 149/30",
+            "added": true
+          },
+          {
+            "text": "= 4.97",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the median = 4.97",
             "style": "boxed"
@@ -312,6 +390,14 @@
           "Dividing by 8 (the number of rows) instead of 30.",
           "Stopping at 149 without dividing.",
           "Copying the book's slip 'median deviation' — the name is mean deviation about the median."
+        ],
+        "lines_compact": [
+          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+          "= 149/30 = 4.97",
+          {
+            "text": "∴ M.D. about the median = 4.97",
+            "style": "boxed"
+          }
         ]
       }
     ]

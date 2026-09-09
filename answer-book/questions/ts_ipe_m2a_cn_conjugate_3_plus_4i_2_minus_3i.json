@@ -114,7 +114,10 @@
         "memory_tip": "The product is not the answer. The conjugate of 18 − i is 18 + i.",
         "lines": [
           "The conjugate of a + ib is a − ib.",
-          "Here a = 18 and b = −1,",
+          {
+            "text": "Here a = 18 and b = −1,",
+            "added": true
+          },
           {
             "text": "∴ conjugate of 18 − i is 18 + i",
             "style": "boxed"
@@ -145,6 +148,13 @@
         "common_mistakes": [
           "Changing the sign of the real part too, giving −18 + i.",
           "Stopping at 18 − i, the product, without writing its conjugate."
+        ],
+        "lines_compact": [
+          "The conjugate of a + ib is a − ib.",
+          {
+            "text": "∴ conjugate of 18 − i is 18 + i",
+            "style": "boxed"
+          }
         ]
       }
     ]

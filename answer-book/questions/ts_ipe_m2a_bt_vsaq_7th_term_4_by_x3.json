@@ -103,13 +103,29 @@
           {
             "text": "= {}^{14}C_6 \\left(\\dfrac{4^8}{x^{3 \\cdot 8}}\\right)\\left(\\dfrac{x^{2 \\cdot 6}}{2^6}\\right)",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= ¹⁴C₆ (4⁸/x²⁴) (x¹²/2⁶)",
-          "= ¹⁴C₆ ((2²)⁸/2⁶) (x¹²/x²⁴)   [4 = 2²]",
-          "= ¹⁴C₆ (2¹⁶/2⁶) x¹²⁻²⁴",
-          "= ¹⁴C₆ · 2¹⁶⁻⁶ · x⁻¹² = ¹⁴C₆ · 2¹⁰ · x⁻¹²",
-          "2¹⁰ = (2²)⁵ = 4⁵ and x⁻¹² = 1/x¹²",
+          {
+            "text": "= ¹⁴C₆ (4⁸/x²⁴) (x¹²/2⁶)",
+            "added": true
+          },
+          {
+            "text": "= ¹⁴C₆ ((2²)⁸/2⁶) (x¹²/x²⁴)   [4 = 2²]",
+            "added": true
+          },
+          {
+            "text": "= ¹⁴C₆ (2¹⁶/2⁶) x¹²⁻²⁴",
+            "added": true
+          },
+          {
+            "text": "= ¹⁴C₆ · 2¹⁶⁻⁶ · x⁻¹² = ¹⁴C₆ · 2¹⁰ · x⁻¹²",
+            "added": true
+          },
+          {
+            "text": "2¹⁰ = (2²)⁵ = 4⁵ and x⁻¹² = 1/x¹²",
+            "added": true
+          },
           {
             "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
             "style": "boxed"
@@ -140,6 +156,14 @@
         "common_mistakes": [
           "Writing 4⁸/2⁶ as 2².",
           "Getting x¹² in the numerator by subtracting the wrong way."
+        ],
+        "lines_compact": [
+          "= ¹⁴C₆ · (4⁸/x²⁴) · (x¹²/2⁶) = ¹⁴C₆ · 4⁸/(2⁶ x¹²)",
+          "4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵",
+          {
+            "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
+            "style": "boxed"
+          }
         ]
       }
     ]

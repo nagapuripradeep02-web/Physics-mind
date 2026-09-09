@@ -257,6 +257,8 @@
       The hash is kept truthful so the current view is always shareable. */
   function switchCut(i) {
     if (i === cutIndex) return;
+    // A different length is a different answer, so it starts folded too.
+    expandedSteps = {};
     applyCut(i);
     renderChrome();
     renderUpTo(-1, false);
@@ -275,6 +277,18 @@
       It KEEPS the reading position: the same step is re-laid instantly, and
       pagination is decided fresh because the fuller working is taller and will
       not sit on the same pages. Steps ABOVE the toggled one do not move. */
+  /** Start this answer over: nothing revealed, and nothing unfolded either.
+      Restart is a student asking to meet the answer again from the top, so the
+      marks they had written out in full go back to exam length with it —
+      otherwise Restart hands back a page that is not the one the card opens
+      with, and the button beside an already-expanded mark still says Simplify
+      (founder, 2026-09-10). */
+  function restartAnswer() {
+    expandedSteps = {};
+    applyCut(cutIndex);
+    renderUpTo(-1, false);
+  }
+
   function toggleStep(stepId) {
     expandedSteps[stepId] = !expandedSteps[stepId];
     var at = stepIndex;
@@ -1425,6 +1439,12 @@
           toggleStep(step.id);
         });
         aside.appendChild(sb);
+        // The gutter column is ~3 rules tall (tick, mark number, button) and a
+        // step can be ONE line. Without this the column overhangs its own step
+        // and lands on the next step's gutter — which both reads as the wrong
+        // step's button and, being later in the DOM, swallows its clicks. The
+        // class (not :has()) so the rule is explicit and testable.
+        block.classList.add('has-simplify');
       }
 
       block.appendChild(aside);
@@ -1929,7 +1949,7 @@
   btnNext.addEventListener('click', advance);
   $('btnRestart').addEventListener('click', function () {
     Vidi.log('restart', { qid: question.question_id });
-    renderUpTo(-1, false);
+    restartAnswer();
   });
   $('doorBack').addEventListener('click', function () { Door.show(); });
   var searchLogTimer = null;

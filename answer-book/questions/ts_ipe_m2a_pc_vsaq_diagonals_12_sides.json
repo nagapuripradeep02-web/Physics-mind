@@ -112,12 +112,22 @@
         "margin_note": "Second mark. 12 × 9/2 = 54.",
         "memory_tip": "12 × 9/2 = 54. Check the other way: ¹²C₂ − 12 = 66 − 12 = 54.",
         "lines": [
-          "Here n = 12:",
-          "= 12(12 − 3)/2 = 12 · 9/2",
-          "= 108/2",
+          {
+            "text": "Here n = 12:",
+            "added": true
+          },
+          {
+            "text": "= 12(12 − 3)/2 = 12 · 9/2",
+            "added": true
+          },
+          {
+            "text": "= 108/2",
+            "added": true
+          },
           {
             "text": "∴ number of diagonals = 54",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -144,6 +154,13 @@
         "common_mistakes": [
           "Answering 66 (¹²C₂ without subtracting the sides).",
           "Answering 108 (forgetting the division by 2)."
+        ],
+        "lines_compact": [
+          "= 12 · 9 / 2",
+          {
+            "text": "= 54",
+            "style": "boxed"
+          }
         ]
       }
     ]

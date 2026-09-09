@@ -131,9 +131,15 @@
             "style": "eq"
           },
           "= 1(k) + 2(2k) + 3(3k) + 4(4k) + 5(5k)",
-          "= k + 4k + 9k + 16k + 25k",
+          {
+            "text": "= k + 4k + 9k + 16k + 25k",
+            "added": true
+          },
           "= k(1 + 4 + 9 + 16 + 25) = 55k",
-          "Put k = 1/15:",
+          {
+            "text": "Put k = 1/15:",
+            "added": true
+          },
           "= 55/15 = 11/3"
         ],
         "recall": {
@@ -163,6 +169,15 @@
           "Adding the probabilities to the values instead of multiplying.",
           "Putting k = 1/15 into every term first and then adding five fractions.",
           "Leaving 55/15 unsimplified."
+        ],
+        "lines_compact": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 1(k) + 2(2k) + 3(3k) + 4(4k) + 5(5k)",
+          "= k(1 + 4 + 9 + 16 + 25) = 55k",
+          "= 55/15 = 11/3"
         ]
       },
       {
@@ -178,11 +193,20 @@
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
             "style": "eq"
           },
-          "Σxᵢ²·P(X = xᵢ)",
+          {
+            "text": "Σxᵢ²·P(X = xᵢ)",
+            "added": true
+          },
           "= 1(k) + 4(2k) + 9(3k) + 16(4k) + 25(5k)",
           "= k(1 + 8 + 27 + 64 + 125) = 225k",
-          "= 225/15 = 15",
-          "σ² = 15 − (11/3)² = 15 − 121/9",
+          {
+            "text": "= 225/15 = 15",
+            "added": true
+          },
+          {
+            "text": "σ² = 15 − (11/3)² = 15 − 121/9",
+            "added": true
+          },
           "= 135/9 − 121/9 = 14/9",
           {
             "text": "∴ k = 1/15, μ = 11/3, σ² = 14/9",
@@ -216,6 +240,20 @@
           "Squaring the probabilities instead of the values.",
           "Subtracting μ instead of μ².",
           "Getting a negative variance and not stopping — a negative variance always means an arithmetic slip."
+        ],
+        "lines_compact": [
+          {
+            "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+            "style": "eq"
+          },
+          "= 1(k) + 4(2k) + 9(3k) + 16(4k) + 25(5k) − (11/3)²",
+          "= k(1 + 8 + 27 + 64 + 125) − 121/9",
+          "= 225/15 − 121/9 = 15 − 121/9",
+          "= (135 − 121)/9 = 14/9",
+          {
+            "text": "∴ k = 1/15, μ = 11/3, σ² = 14/9",
+            "style": "boxed"
+          }
         ]
       }
     ]

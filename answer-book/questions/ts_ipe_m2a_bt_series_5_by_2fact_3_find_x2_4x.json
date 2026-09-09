@@ -121,8 +121,14 @@
             "render": "katex",
             "style": "eq"
           },
-          "All the terms are added, so it is the (1 − y) form",
-          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
+          {
+            "text": "All the terms are added, so it is the (1 − y) form",
+            "added": true
+          },
+          {
+            "text": "The numerators are p, p(p + q), p(p + q)(p + 2q), …",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -149,6 +155,14 @@
         "common_mistakes": [
           "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
           "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ],
+        "lines_compact": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - y)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{y}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{y}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -160,12 +174,30 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (3), p + q is the second (5) so q = 2, and y/q equals the common ratio 1/3 so y = q/3 = 2/3.",
         "memory_tip": "p = 3, p + q = 5 so q = 2, and y/q = 1/3 gives y = 2/3.",
         "lines": [
-          "Match the first numerator: p = 3",
-          "Match the second: p(p + q) = 3·5 ⇒ p + q = 5",
-          "q = 5 − 3 = 2",
-          "Check the third: p + 2q = 3 + 4 = 7, which matches",
-          "Match the bracket: y/q = 1/3",
-          "y = q · 1/3 = 2 · (1/3) = 2/3"
+          {
+            "text": "Match the first numerator: p = 3",
+            "added": true
+          },
+          {
+            "text": "Match the second: p(p + q) = 3·5 ⇒ p + q = 5",
+            "added": true
+          },
+          {
+            "text": "q = 5 − 3 = 2",
+            "added": true
+          },
+          {
+            "text": "Check the third: p + 2q = 3 + 4 = 7, which matches",
+            "added": true
+          },
+          {
+            "text": "Match the bracket: y/q = 1/3",
+            "added": true
+          },
+          {
+            "text": "y = q · 1/3 = 2 · (1/3) = 2/3",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -192,6 +224,10 @@
         "common_mistakes": [
           "Taking y = 1/3 directly — the bracket holds y/q, so y = q × 1/3.",
           "Reading q from the second factor as a whole instead of as p + q."
+        ],
+        "lines_compact": [
+          "p = 3, p + q = 5 ⇒ q = 2",
+          "y/q = 1/3 ⇒ y = q/3 = 2/3"
         ]
       },
       {
@@ -206,19 +242,28 @@
           {
             "text": "2 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{3}\\right)^{-3/2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "1 − 2/3 = (3 − 2)/3 = 1/3",
-          "A negative power inverts the fraction:",
+          {
+            "text": "1 − 2/3 = (3 − 2)/3 = 1/3",
+            "added": true
+          },
+          {
+            "text": "A negative power inverts the fraction:",
+            "added": true
+          },
           {
             "text": "= \\left(\\tfrac{1}{3}\\right)^{-3/2} = 3^{3/2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= \\sqrt{3^{3}} = \\sqrt{27}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -245,6 +290,13 @@
         "common_mistakes": [
           "Inverting the exponent instead of the fraction when the index is negative.",
           "Leaving a root in the denominator without a clear final value."
+        ],
+        "lines_compact": [
+          {
+            "text": "1 + 1 + x = \\left(1 - \\tfrac{2}{3}\\right)^{-3/2} = \\left(\\tfrac{1}{3}\\right)^{-3/2} = 3^{3/2} = \\sqrt{27}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -256,9 +308,18 @@
         "margin_note": "Seventh mark. 1 + 1 + x = 2 + x. Square it: x² + 4x + 4 = 27, and the 4 moves across.",
         "memory_tip": "The added terms make the left side 2 + x. Square it: x² + 4x + 4 = 27.",
         "lines": [
-          "Squaring both sides: (2 + x)² = 27",
-          "4 + 4x + x² = 27",
-          "x² + 4x = 27 − 4",
+          {
+            "text": "Squaring both sides: (2 + x)² = 27",
+            "added": true
+          },
+          {
+            "text": "4 + 4x + x² = 27",
+            "added": true
+          },
+          {
+            "text": "x² + 4x = 27 − 4",
+            "added": true
+          },
           {
             "text": "∴ x² + 4x = 23",
             "style": "boxed"
@@ -289,6 +350,14 @@
         "common_mistakes": [
           "Adding only 1 on both sides and missing the (3/1!)(1/3) = 1 term, which changes the left side to 1 + x.",
           "Reading p as 5 from the printed first numerator instead of 3 after the rewrite."
+        ],
+        "lines_compact": [
+          "2 + x = √27 ⇒ (2 + x)² = 27",
+          "x² + 4x + 4 = 27",
+          {
+            "text": "∴ x² + 4x = 23",
+            "style": "boxed"
+          }
         ]
       }
     ]

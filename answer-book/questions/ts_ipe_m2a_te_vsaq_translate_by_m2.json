@@ -104,16 +104,43 @@
         "margin_note": "Second mark. Expand each bracket and add like powers: x³: 8 − 5 = 3; x²: 24 − 30 + 7 = 1; x: 32 − 60 + 28 − 4 = −4; constant: 16 − 40 + 28 − 8 + 5 = 1.",
         "memory_tip": "(x + 2)⁴ uses 1, 4, 6, 4, 1 times powers of 2: 1, 8, 24, 32, 16. Then add like powers.",
         "lines": [
-          "Expand each term:",
+          {
+            "text": "Expand each term:",
+            "added": true
+          },
           "(x + 2)⁴ = x⁴ + 8x³ + 24x² + 32x + 16",
-          "−5(x + 2)³ = −5(x³ + 6x² + 12x + 8)",
-          "  = −5x³ − 30x² − 60x − 40",
-          "7(x + 2)² = 7(x² + 4x + 4) = 7x² + 28x + 28",
-          "−4(x + 2) = −4x − 8, and +5 gives −4x − 3",
-          "Add the x³ terms: 8 − 5 = 3",
-          "Add the x² terms: 24 − 30 + 7 = 1",
-          "Add the x terms: 32 − 60 + 28 − 4 = −4",
-          "Add the constants: 16 − 40 + 28 − 3 = 1",
+          {
+            "text": "−5(x + 2)³ = −5(x³ + 6x² + 12x + 8)",
+            "added": true
+          },
+          {
+            "text": "  = −5x³ − 30x² − 60x − 40",
+            "added": true
+          },
+          {
+            "text": "7(x + 2)² = 7(x² + 4x + 4) = 7x² + 28x + 28",
+            "added": true
+          },
+          {
+            "text": "−4(x + 2) = −4x − 8, and +5 gives −4x − 3",
+            "added": true
+          },
+          {
+            "text": "Add the x³ terms: 8 − 5 = 3",
+            "added": true
+          },
+          {
+            "text": "Add the x² terms: 24 − 30 + 7 = 1",
+            "added": true
+          },
+          {
+            "text": "Add the x terms: 32 − 60 + 28 − 4 = −4",
+            "added": true
+          },
+          {
+            "text": "Add the constants: 16 − 40 + 28 − 3 = 1",
+            "added": true
+          },
           {
             "text": "∴ x⁴ + 3x³ + x² − 4x + 1 = 0",
             "style": "boxed"
@@ -147,6 +174,17 @@
           "A slip in the binomial expansion of (x + 2)⁴ (coefficients 1, 4, 6, 4, 1 times powers of 2: 1, 8, 24, 32, 16).",
           "Losing the constant −40 + 28 − 8 + 5 + 16 = 1.",
           "Reading Horner's remainders in the wrong order (the first remainder is the constant term)."
+        ],
+        "lines_compact": [
+          "(x + 2)⁴ = x⁴ + 8x³ + 24x² + 32x + 16",
+          "−5(x + 2)³ = −5x³ − 30x² − 60x − 40",
+          "7(x + 2)² = 7x² + 28x + 28",
+          "−4(x + 2) + 5 = −4x − 3",
+          "Adding:",
+          {
+            "text": "∴ x⁴ + 3x³ + x² − 4x + 1 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

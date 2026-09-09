@@ -110,8 +110,14 @@
         "margin_note": "Second mark. (n − 5)(n − 6) = 7 · 6, two consecutive numbers, so n − 5 = 7 and n = 12.",
         "memory_tip": "42 = 7 × 6, two consecutive numbers. The LARGER is n − 5, so n = 12, not 13.",
         "lines": [
-          "42 is a product of two consecutive numbers:",
-          "42 = 7 · 6",
+          {
+            "text": "42 is a product of two consecutive numbers:",
+            "added": true
+          },
+          {
+            "text": "42 = 7 · 6",
+            "added": true
+          },
           "(n − 5)(n − 6) = 7 · 6",
           "n − 5 = 7",
           {
@@ -143,6 +149,14 @@
         "common_mistakes": [
           "Taking n − 6 = 7 and answering n = 13; the larger factor is n − 5.",
           "Expanding to n² − 11n − 12 = 0 and keeping the negative root."
+        ],
+        "lines_compact": [
+          "(n − 5)(n − 6) = 7 · 6",
+          "n − 5 = 7",
+          {
+            "text": "∴ n = 12",
+            "style": "boxed"
+          }
         ]
       }
     ]

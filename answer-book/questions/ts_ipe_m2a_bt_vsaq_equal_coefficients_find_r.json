@@ -102,9 +102,18 @@
         "memory_tip": "The equal branch gives r = 0, the same term twice. The sum branch gives the real answer, r = 3.",
         "lines": [
           "Case 1: 2r + 3 = 3r + 3 ⇒ r = 0 (the same term twice)",
-          "Case 2: (2r + 3) + (3r + 3) = 21",
-          "5r + 6 = 21",
-          "5r = 21 − 6 = 15 ⇒ r = 3",
+          {
+            "text": "Case 2: (2r + 3) + (3r + 3) = 21",
+            "added": true
+          },
+          {
+            "text": "5r + 6 = 21",
+            "added": true
+          },
+          {
+            "text": "5r = 21 − 6 = 15 ⇒ r = 3",
+            "added": true
+          },
           {
             "text": "∴ r = 3",
             "style": "boxed"
@@ -135,6 +144,14 @@
         "common_mistakes": [
           "Stopping at r = 0.",
           "Writing 5r = 21 instead of 5r = 15, forgetting to subtract the 6 from both sides, which gives the non-integer r = 21/5."
+        ],
+        "lines_compact": [
+          "2r + 3 = 3r + 3 ⇒ r = 0 (the same term twice)",
+          "(2r + 3) + (3r + 3) = 21 ⇒ 5r = 15 ⇒ r = 3",
+          {
+            "text": "∴ r = 3",
+            "style": "boxed"
+          }
         ]
       }
     ]

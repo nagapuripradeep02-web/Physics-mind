@@ -102,12 +102,24 @@
         "margin_note": "Second mark. Combine the fractions: 1/α + 1/β = (β + α)/(αβ). Then (−b/a) ÷ (c/a) — the a's cancel — gives −b/c.",
         "memory_tip": "1/α + 1/β = (α + β)/(αβ), never 1/(α + β). The a's cancel, leaving −b/c.",
         "lines": [
-          "Add the two fractions:",
+          {
+            "text": "Add the two fractions:",
+            "added": true
+          },
           "1/α + 1/β = (β + α)/(αβ)",
-          "= (α + β)/(αβ)",
+          {
+            "text": "= (α + β)/(αβ)",
+            "added": true
+          },
           "= (−b/a) ÷ (c/a)",
-          "= (−b/a) × (a/c)",
-          "The a cancels:",
+          {
+            "text": "= (−b/a) × (a/c)",
+            "added": true
+          },
+          {
+            "text": "The a cancels:",
+            "added": true
+          },
           {
             "text": "∴ 1/α + 1/β = −b/c",
             "style": "boxed"
@@ -140,6 +152,14 @@
           "Writing 1/α + 1/β = 1/(α + β).",
           "Dividing (−b/a) by (c/a) and getting −b/(ac) — the a's cancel.",
           "Losing the minus sign: the answer is −b/c, not b/c."
+        ],
+        "lines_compact": [
+          "1/α + 1/β = (α + β)/(αβ)",
+          "= (−b/a)/(c/a)",
+          {
+            "text": "∴ 1/α + 1/β = −b/c",
+            "style": "boxed"
+          }
         ]
       }
     ]

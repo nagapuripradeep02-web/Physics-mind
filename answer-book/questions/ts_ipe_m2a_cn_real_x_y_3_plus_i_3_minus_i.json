@@ -111,10 +111,22 @@
         "lines": [
           "(x − 1)(3 − i) = 3x − xi − 3 + i",
           "(y − 1)(3 + i) = 3y + yi − 3 − i",
-          "Adding them, the real terms are",
-          "3x − 3 + 3y − 3 = 3x + 3y − 6",
-          "and the imaginary terms are",
-          "−xi + i + yi − i = i(y − x)",
+          {
+            "text": "Adding them, the real terms are",
+            "added": true
+          },
+          {
+            "text": "3x − 3 + 3y − 3 = 3x + 3y − 6",
+            "added": true
+          },
+          {
+            "text": "and the imaginary terms are",
+            "added": true
+          },
+          {
+            "text": "−xi + i + yi − i = i(y − x)",
+            "added": true
+          },
           "∴ (3x + 3y − 6) + i(y − x) = 0 + 10i"
         ],
         "recall": {
@@ -146,6 +158,15 @@
           "Sign slip in −xi + i or in yi − i, so the imaginary part comes out as x + y instead of y − x.",
           "Forgetting to multiply the right side by 10.",
           "Writing the right side as 10 instead of 10i."
+        ],
+        "lines_compact": [
+          "(x − 1)(3 − i) = 3x − xi − 3 + i",
+          "(y − 1)(3 + i) = 3y + yi − 3 − i",
+          "Adding: (3x + 3y − 6) + i(y − x)",
+          {
+            "text": "∴ (3x + 3y − 6) + i(y − x) = 10i",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -157,12 +178,30 @@
         "margin_note": "Third mark. The right side 10i has real part 0 and imaginary part 10. That gives one equation from each part.",
         "memory_tip": "10i has real part 0 and imaginary part 10 — one equation from each part.",
         "lines": [
-          "Two complex numbers are equal only when",
-          "their real parts are equal and their",
-          "imaginary parts are equal.",
-          "Real parts: 3x + 3y − 6 = 0",
-          "Divide by 3: x + y = 2    …(1)",
-          "Imaginary parts: y − x = 10    …(2)"
+          {
+            "text": "Two complex numbers are equal only when",
+            "added": true
+          },
+          {
+            "text": "their real parts are equal and their",
+            "added": true
+          },
+          {
+            "text": "imaginary parts are equal.",
+            "added": true
+          },
+          {
+            "text": "Real parts: 3x + 3y − 6 = 0",
+            "added": true
+          },
+          {
+            "text": "Divide by 3: x + y = 2    …(1)",
+            "added": true
+          },
+          {
+            "text": "Imaginary parts: y − x = 10    …(2)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -191,6 +230,18 @@
           "Setting the real part equal to 10 instead of 0.",
           "Not dividing 3x + 3y − 6 = 0 by 3, which makes the next step messier.",
           "Losing the sign in y − x = 10."
+        ],
+        "lines_compact": [
+          "Comparing real parts:",
+          {
+            "text": "3x + 3y − 6 = 0 ⇒ x + y = 2    …(1)",
+            "style": "eq"
+          },
+          "Comparing imaginary parts:",
+          {
+            "text": "y − x = 10    …(2)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -202,11 +253,26 @@
         "margin_note": "Last mark. Adding (1) and (2) removes x at once. Then put y back into (1). Check: −4 + 6 = 2 and 6 − (−4) = 10.",
         "memory_tip": "x has opposite signs in (1) and (2), so add. Check: −4 + 6 = 2 and 6 − (−4) = 10.",
         "lines": [
-          "Adding (1) and (2):",
-          "(x + y) + (y − x) = 2 + 10",
-          "2y = 12 ⇒ y = 6",
-          "Put y = 6 in (1): x + 6 = 2",
-          "x = 2 − 6 = −4",
+          {
+            "text": "Adding (1) and (2):",
+            "added": true
+          },
+          {
+            "text": "(x + y) + (y − x) = 2 + 10",
+            "added": true
+          },
+          {
+            "text": "2y = 12 ⇒ y = 6",
+            "added": true
+          },
+          {
+            "text": "Put y = 6 in (1): x + 6 = 2",
+            "added": true
+          },
+          {
+            "text": "x = 2 − 6 = −4",
+            "added": true
+          },
           {
             "text": "∴ x = −4, y = 6",
             "style": "boxed"
@@ -238,6 +304,14 @@
           "Subtracting instead of adding, which gives 2x = −8 and is also fine — but then y must come from (1), not be guessed.",
           "Writing x = 4 by dropping the sign.",
           "Not checking the pair in the original equation."
+        ],
+        "lines_compact": [
+          "(1) + (2): 2y = 12 ⇒ y = 6",
+          "From (1): x = 2 − 6 = −4",
+          {
+            "text": "∴ x = −4, y = 6",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -99,15 +99,31 @@
         "memory_tip": "(√2)¹⁶ = 2⁸ = 256, and 16 · π/4 = 4π — two full turns, so cos = 1 and sin = 0.",
         "lines": [
           "(1 + i)¹⁶ = (√2)¹⁶ (cos π/4 + i sin π/4)¹⁶",
-          "(√2)¹⁶ = ((√2)²)⁸ = 2⁸ = 256",
-          "By De Moivre's theorem the angle is multiplied:",
-          "(cos π/4 + i sin π/4)¹⁶ = cos(16π/4) + i sin(16π/4)",
+          {
+            "text": "(√2)¹⁶ = ((√2)²)⁸ = 2⁸ = 256",
+            "added": true
+          },
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
+          {
+            "text": "(cos π/4 + i sin π/4)¹⁶ = cos(16π/4) + i sin(16π/4)",
+            "added": true
+          },
           "= cos 4π + i sin 4π",
-          "4π is two full turns, so cos 4π = 1, sin 4π = 0",
-          "= 256(1 + i · 0)",
+          {
+            "text": "4π is two full turns, so cos 4π = 1, sin 4π = 0",
+            "added": true
+          },
+          {
+            "text": "= 256(1 + i · 0)",
+            "added": true
+          },
           {
             "text": "∴ (1 + i)¹⁶ = 256",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -137,6 +153,14 @@
           "Writing (√2)¹⁶ = 2¹⁶, forgetting the square root.",
           "Writing cos 4π = −1.",
           "Leaving the answer as 256(cos 4π + i sin 4π)."
+        ],
+        "lines_compact": [
+          "(1 + i)¹⁶ = (√2)¹⁶ (cos π/4 + i sin π/4)¹⁶",
+          "= 2⁸ (cos 4π + i sin 4π)",
+          {
+            "text": "= 256 (1 + i · 0) = 256",
+            "style": "boxed"
+          }
         ]
       }
     ]

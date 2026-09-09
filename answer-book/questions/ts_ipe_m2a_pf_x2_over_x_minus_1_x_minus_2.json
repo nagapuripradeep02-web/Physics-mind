@@ -109,9 +109,15 @@
         "margin_note": "Second mark. Multiply by (x − 1)(x − 2). The 1 keeps the whole product; A keeps (x − 2), B keeps (x − 1).",
         "memory_tip": "The 1 keeps the whole product (x − 1)(x − 2); A keeps (x − 2) and B keeps (x − 1).",
         "lines": [
-          "Multiply both sides by (x − 1)(x − 2):",
+          {
+            "text": "Multiply both sides by (x − 1)(x − 2):",
+            "added": true
+          },
           "x² = (x − 1)(x − 2) + A(x − 2) + B(x − 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -141,6 +147,10 @@
           "Dropping the (x − 1)(x − 2) term.",
           "Pairing A with (x − 1) instead of (x − 2).",
           "Writing x on the left instead of x²."
+        ],
+        "lines_compact": [
+          "Multiply by (x − 1)(x − 2):",
+          "x² = (x − 1)(x − 2) + A(x − 2) + B(x − 1)"
         ]
       },
       {
@@ -152,12 +162,30 @@
         "margin_note": "Third mark. x = 1 makes the product and the B term zero: 1 = −A. x = 2 makes the product and the A term zero: 4 = B.",
         "memory_tip": "At each root the product vanishes too: x = 1 gives 1 = −A, and x = 2 gives 4 = B.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1: 1 = (0)(−1) + A(−1) + B(0)",
-          "1 = −A, so A = −1",
-          "Put x = 2: 4 = (1)(0) + A(0) + B(1)",
-          "B = 4"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 1 = (0)(−1) + A(−1) + B(0)",
+            "added": true
+          },
+          {
+            "text": "1 = −A, so A = −1",
+            "added": true
+          },
+          {
+            "text": "Put x = 2: 4 = (1)(0) + A(0) + B(1)",
+            "added": true
+          },
+          {
+            "text": "B = 4",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -187,6 +215,10 @@
           "Putting x = 1 and writing A(1 − 2) = A instead of −A, giving A = 1.",
           "Keeping the product (x − 1)(x − 2) on the right at x = 1; it is zero there.",
           "Putting x = 2 and writing 2 instead of 2² = 4 on the left."
+        ],
+        "lines_compact": [
+          "Put x = 1: 1 = A(−1) ⇒ A = −1",
+          "Put x = 2: 4 = B(1) ⇒ B = 4"
         ]
       },
       {

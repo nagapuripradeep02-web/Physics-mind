@@ -101,8 +101,14 @@
         "margin_note": "Second mark. Square both sides. The equation is a circle with centre at the origin and radius 1.",
         "memory_tip": "Square both sides: x² + y² = 1, the circle of radius 1 about the origin. No root in the final line.",
         "lines": [
-          "Square both sides:",
-          "x² + y² = 1",
+          {
+            "text": "Square both sides:",
+            "added": true
+          },
+          {
+            "text": "x² + y² = 1",
+            "added": true
+          },
           {
             "text": "∴ Locus of z: x² + y² = 1",
             "style": "boxed"
@@ -135,6 +141,14 @@
         "common_mistakes": [
           "Leaving the root in the final answer.",
           "Calling the locus a line."
+        ],
+        "lines_compact": [
+          "Squaring: x² + y² = 1",
+          {
+            "text": "∴ Locus of z: x² + y² = 1",
+            "style": "boxed"
+          },
+          "(a circle, centre the origin, radius 1)"
         ]
       }
     ]

@@ -130,23 +130,28 @@
         "lines": [
           {
             "text": "(ii) Neither A nor B occurs means A is absent",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "AND B is absent, which is Aᶜ ∩ Bᶜ.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "By De Morgan's law, Aᶜ ∩ Bᶜ = (A ∪ B)ᶜ,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "so it is the complement of 'A or B occurs':",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Aᶜ ∩ Bᶜ) = 1 − P(A ∪ B)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -173,6 +178,16 @@
         "common_mistakes": [
           "Writing neither A nor B = 1 − P(A ∩ B).",
           "Multiplying P(Aᶜ)·P(Bᶜ) — that needs independence, which is not given."
+        ],
+        "lines_compact": [
+          {
+            "text": "(ii) Neither A nor B occurs:",
+            "style": "normal"
+          },
+          {
+            "text": "P(Aᶜ ∩ Bᶜ) = P((A ∪ B)ᶜ) = 1 − P(A ∪ B)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -186,7 +201,8 @@
         "lines": [
           {
             "text": "By the addition theorem,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
@@ -198,11 +214,13 @@
           },
           {
             "text": "= 0.9 − 0.3 = 0.6",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(Aᶜ ∩ Bᶜ) = 1 − 0.6 = 0.4",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ (i) 0.5   (ii) 0.4",
@@ -233,6 +251,24 @@
         "common_mistakes": [
           "Forgetting to subtract P(A ∩ B) and getting 0.9, then 0.1.",
           "Stopping at P(A ∪ B) = 0.6 as the answer to (ii)."
+        ],
+        "lines_compact": [
+          {
+            "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.5 + 0.4 − 0.3 = 0.6",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ ∩ Bᶜ) = 1 − 0.6",
+            "style": "eq"
+          },
+          {
+            "text": "∴ (i) 0.5   (ii) 0.4",
+            "style": "boxed"
+          }
         ]
       }
     ]

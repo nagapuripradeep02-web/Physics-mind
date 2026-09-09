@@ -95,13 +95,28 @@
         "margin_note": "Second mark. Multiply two brackets first, then the third. The coefficients are −S₁, +S₂, −S₃: 11, 36, 36.",
         "memory_tip": "Multiply two brackets first. The coefficients are −S₁, +S₂, −S₃: 11, 36, 36.",
         "lines": [
-          "Multiply the last two brackets first:",
-          "(x − 3)(x − 6) = x² − 6x − 3x + 18",
-          "= x² − 9x + 18",
-          "Now multiply by (x − 2):",
+          {
+            "text": "Multiply the last two brackets first:",
+            "added": true
+          },
+          {
+            "text": "(x − 3)(x − 6) = x² − 6x − 3x + 18",
+            "added": true
+          },
+          {
+            "text": "= x² − 9x + 18",
+            "added": true
+          },
+          {
+            "text": "Now multiply by (x − 2):",
+            "added": true
+          },
           "(x − 2)(x² − 9x + 18)",
           "= x³ − 9x² + 18x − 2x² + 18x − 36",
-          "= x³ − 11x² + 36x − 36",
+          {
+            "text": "= x³ − 11x² + 36x − 36",
+            "added": true
+          },
           {
             "text": "∴ x³ − 11x² + 36x − 36 = 0",
             "style": "boxed"
@@ -132,6 +147,14 @@
         "common_mistakes": [
           "A slip collecting like terms: −9x² − 2x² = −11x² and 18x + 18x = 36x.",
           "Writing the constant as +36 (it is −2 × 18 = −36)."
+        ],
+        "lines_compact": [
+          "(x − 2)(x² − 9x + 18) = 0",
+          "x³ − 9x² + 18x − 2x² + 18x − 36 = 0",
+          {
+            "text": "∴ x³ − 11x² + 36x − 36 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

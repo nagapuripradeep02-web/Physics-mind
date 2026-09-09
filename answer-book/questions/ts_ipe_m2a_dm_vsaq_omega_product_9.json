@@ -101,10 +101,22 @@
         "memory_tip": "(1 − ω)(1 − ω²) = 1 − (ω + ω²) + ω³ = 1 + 1 + 1 = 3. Drop the ω³ term and the pair gives 2.",
         "lines": [
           "(1 − ω)(1 − ω²) = 1 − ω² − ω + ω³",
-          "= 1 − (ω + ω²) + ω³",
-          "Now ω + ω² = −1 and ω³ = 1:",
-          "= 1 − (−1) + 1 = 3",
-          "So the product = 3²",
+          {
+            "text": "= 1 − (ω + ω²) + ω³",
+            "added": true
+          },
+          {
+            "text": "Now ω + ω² = −1 and ω³ = 1:",
+            "added": true
+          },
+          {
+            "text": "= 1 − (−1) + 1 = 3",
+            "added": true
+          },
+          {
+            "text": "So the product = 3²",
+            "added": true
+          },
           {
             "text": "∴ the product = 9",
             "style": "boxed"
@@ -137,6 +149,14 @@
           "Writing ω + ω² = 1 instead of −1.",
           "Forgetting ω³ = 1 and getting 2² = 4.",
           "Stopping at 3."
+        ],
+        "lines_compact": [
+          "(1 − ω)(1 − ω²) = 1 − ω − ω² + ω³",
+          "= 1 − (ω + ω²) + 1 = 1 + 1 + 1 = 3",
+          {
+            "text": "∴ the product = 3² = 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

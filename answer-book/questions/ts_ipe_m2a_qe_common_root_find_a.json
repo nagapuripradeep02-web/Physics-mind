@@ -102,10 +102,22 @@
         "memory_tip": "Both candidates go in: α = 1 gives a = 12, α = 5 gives a = 4. Two roots, two answers.",
         "lines": [
           "α also satisfies α² − 3aα + 35 = 0.",
-          "Put α = 1: 1 − 3a + 35 = 0",
-          "36 = 3a ⇒ a = 12",
-          "Put α = 5: 25 − 15a + 35 = 0",
-          "60 = 15a ⇒ a = 4",
+          {
+            "text": "Put α = 1: 1 − 3a + 35 = 0",
+            "added": true
+          },
+          {
+            "text": "36 = 3a ⇒ a = 12",
+            "added": true
+          },
+          {
+            "text": "Put α = 5: 25 − 15a + 35 = 0",
+            "added": true
+          },
+          {
+            "text": "60 = 15a ⇒ a = 4",
+            "added": true
+          },
           {
             "text": "∴ a = 12 or a = 4",
             "style": "boxed"
@@ -139,6 +151,15 @@
           "Giving only a = 12.",
           "Substituting α = 5 and writing 3a(5) as 3a instead of 15a.",
           "Sign slip: 1 − 3a + 35 = 0 gives a = +12, not −12."
+        ],
+        "lines_compact": [
+          "α also satisfies α² − 3aα + 35 = 0.",
+          "α = 1: 1 − 3a + 35 = 0 ⇒ a = 12",
+          "α = 5: 25 − 15a + 35 = 0 ⇒ a = 4",
+          {
+            "text": "∴ a = 12 or a = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

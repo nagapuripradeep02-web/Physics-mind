@@ -130,9 +130,18 @@
           },
           "= (−2)(0.1) + (−1)(k) + 0(0.2)",
           "  + 1(2k) + 2(0.3) + 3(k)",
-          "= −0.2 − k + 0 + 2k + 0.6 + 3k",
-          "= 4k + 0.4",
-          "Put k = 0.1:",
+          {
+            "text": "= −0.2 − k + 0 + 2k + 0.6 + 3k",
+            "added": true
+          },
+          {
+            "text": "= 4k + 0.4",
+            "added": true
+          },
+          {
+            "text": "Put k = 0.1:",
+            "added": true
+          },
           "= 0.4 + 0.4 = 0.8"
         ],
         "recall": {
@@ -162,6 +171,16 @@
           "Dropping the minus signs on −2 and −1.",
           "Skipping the mean because the question asks only for the variance.",
           "Writing 0(0.2) as 0.2."
+        ],
+        "lines_compact": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= (−2)(0.1) + (−1)(k) + 0(0.2)",
+          "   + 1(2k) + 2(0.3) + 3(k)",
+          "= −0.2 − k + 0 + 2k + 0.6 + 3k = 4k + 0.4",
+          "= 4(0.1) + 0.4 = 0.8"
         ]
       },
       {
@@ -177,13 +196,34 @@
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
             "style": "eq"
           },
-          "Σxᵢ²·P(X = xᵢ)",
-          "= 4(0.1) + 1(k) + 0(0.2) + 1(2k)",
-          "  + 4(0.3) + 9(k)",
-          "= 0.4 + k + 2k + 1.2 + 9k",
-          "= 12k + 1.6",
-          "Put k = 0.1: = 1.2 + 1.6 = 2.8",
-          "σ² = 2.8 − (0.8)² = 2.8 − 0.64",
+          {
+            "text": "Σxᵢ²·P(X = xᵢ)",
+            "added": true
+          },
+          {
+            "text": "= 4(0.1) + 1(k) + 0(0.2) + 1(2k)",
+            "added": true
+          },
+          {
+            "text": "  + 4(0.3) + 9(k)",
+            "added": true
+          },
+          {
+            "text": "= 0.4 + k + 2k + 1.2 + 9k",
+            "added": true
+          },
+          {
+            "text": "= 12k + 1.6",
+            "added": true
+          },
+          {
+            "text": "Put k = 0.1: = 1.2 + 1.6 = 2.8",
+            "added": true
+          },
+          {
+            "text": "σ² = 2.8 − (0.8)² = 2.8 − 0.64",
+            "added": true
+          },
           {
             "text": "∴ k = 0.1, σ² = 2.16",
             "style": "boxed"
@@ -216,6 +256,20 @@
           "Keeping the sign after squaring, writing (−2)² = −4.",
           "Subtracting μ = 0.8 instead of μ² = 0.64.",
           "Squaring the probabilities instead of the values."
+        ],
+        "lines_compact": [
+          {
+            "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+            "style": "eq"
+          },
+          "= 4(0.1) + 1(k) + 0(0.2) + 1(2k) + 4(0.3) + 9(k) − μ²",
+          "= 0.4 + 12k + 1.2 − (0.8)²",
+          "= 0.4 + 1.2 + 1.2 − 0.64",
+          "= 2.8 − 0.64 = 2.16",
+          {
+            "text": "∴ k = 0.1, σ² = 2.16",
+            "style": "boxed"
+          }
         ]
       }
     ]

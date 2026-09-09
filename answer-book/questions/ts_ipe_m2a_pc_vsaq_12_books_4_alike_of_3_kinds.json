@@ -95,16 +95,38 @@
         "margin_note": "Second mark. 12!/(4!·4!·4!) = 479001600/13824 = 34,650.",
         "memory_tip": "One 4! per title, three times over: 12!/(4!·4!·4!) = 34,650.",
         "lines": [
-          "When n things have p, q, r alike,",
-          "the arrangements are n!/(p!·q!·r!)",
-          "Here n = 12 and p = q = r = 4:",
-          "Arrangements = 12!/(4!·4!·4!)",
-          "4! = 24, so the bottom is 24 · 24 · 24 = 13824",
-          "12! = 479001600",
-          "= 479001600/13824",
+          {
+            "text": "When n things have p, q, r alike,",
+            "added": true
+          },
+          {
+            "text": "the arrangements are n!/(p!·q!·r!)",
+            "added": true
+          },
+          {
+            "text": "Here n = 12 and p = q = r = 4:",
+            "added": true
+          },
+          {
+            "text": "Arrangements = 12!/(4!·4!·4!)",
+            "added": true
+          },
+          {
+            "text": "4! = 24, so the bottom is 24 · 24 · 24 = 13824",
+            "added": true
+          },
+          {
+            "text": "12! = 479001600",
+            "added": true
+          },
+          {
+            "text": "= 479001600/13824",
+            "added": true
+          },
           {
             "text": "∴ number of arrangements = 34,650",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -132,6 +154,13 @@
         "common_mistakes": [
           "Dividing by 4! once instead of three times.",
           "Dividing by 12! ÷ 3 or some other guess — the denominator is the product of the group factorials."
+        ],
+        "lines_compact": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(4!·4!·4!) = 34,650",
+            "style": "boxed"
+          }
         ]
       }
     ]

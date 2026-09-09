@@ -97,16 +97,29 @@
         "margin_note": "Second mark. Deviations from 9 (signs kept), squared: 9, 4, 1, 9, 16, 25, 1, 9. Sum 74, divide by n = 8. 74/8 = 9.25. Only the variance is asked — no square root.",
         "memory_tip": "Square the deviations, so 74 and not the 22 the unsquared ones give. Variance only — no square root here.",
         "lines": [
-          "Subtract the mean from each value:",
+          {
+            "text": "Subtract the mean from each value:",
+            "added": true
+          },
           "xᵢ − x̄ : −3, −2, 1, 3, 4, −5, −1, 3",
-          "Square each of them:",
+          {
+            "text": "Square each of them:",
+            "added": true
+          },
           "(xᵢ − x̄)² : 9, 4, 1, 9, 16, 25, 1, 9",
-          "Σ(xᵢ − x̄)² = 74",
+          {
+            "text": "Σ(xᵢ − x̄)² = 74",
+            "added": true
+          },
           {
             "text": "Variance σ² = Σ(xᵢ − x̄)²/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= 74/8 = 9.25",
+          {
+            "text": "= 74/8 = 9.25",
+            "added": true
+          },
           {
             "text": "∴ Variance σ² = 9.25",
             "style": "boxed"
@@ -141,6 +154,15 @@
           "Adding the absolute deviations (22) instead of their squares (74) — that is mean deviation, not variance.",
           "Taking a square root at the end — the question asks for the variance only.",
           "Dividing by n − 1 = 7; this syllabus divides by n."
+        ],
+        "lines_compact": [
+          "xᵢ − x̄ : −3, −2, 1, 3, 4, −5, −1, 3",
+          "(xᵢ − x̄)² : 9, 4, 1, 9, 16, 25, 1, 9",
+          "Variance σ² = Σ(xᵢ − x̄)²/n = 74/8 = 9.25",
+          {
+            "text": "∴ Variance σ² = 9.25",
+            "style": "boxed"
+          }
         ]
       }
     ]

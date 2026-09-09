@@ -103,10 +103,14 @@
         "memory_tip": "⁷P₅ = 7·6·5·4·3 = 2520. Five factors, counting down from 7.",
         "lines": [
           "⁷P₅ = 7 · 6 · 5 · 4 · 3",
-          "= 42 · 60",
+          {
+            "text": "= 42 · 60",
+            "added": true
+          },
           {
             "text": "∴ number of injections = 2520",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -133,6 +137,13 @@
         "common_mistakes": [
           "Multiplying only four factors (7·6·5·4 = 840).",
           "Dividing by 5! by habit and answering 21."
+        ],
+        "lines_compact": [
+          "⁷P₅ = 7 · 6 · 5 · 4 · 3",
+          {
+            "text": "= 2520",
+            "style": "boxed"
+          }
         ]
       }
     ]

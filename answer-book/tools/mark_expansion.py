@@ -136,7 +136,13 @@ def main():
         # Idempotent: a re-run must not inherit the last run's verdict, so every
         # flag and compact copy is cleared before this run decides again.
         step.pop('lines_compact', None)
-        step['lines'] = [strip_added(l) for l in (step.get('lines') or [])] or step.get('lines')
+        # Only where there ARE lines: a diagram step carries no `lines` key at
+        # all, and writing one back as null is a schema violation the validator
+        # catches one card later, a long way from the cause.
+        if step.get('lines'):
+            step['lines'] = [strip_added(l) for l in step['lines']]
+        elif 'lines' in step and step['lines'] is None:
+            step.pop('lines')
 
         if step.get('kind') == 'diagram':
             print(f'  {step["id"]}: diagram — skipped')
@@ -159,6 +165,19 @@ def main():
             continue
 
         added = mark_added(old_lines, new_lines)
+
+        # A step with nothing NEW to show gets no button. The early-exit above
+        # only catches a step the expansion left byte-identical; this catches the
+        # one it merely reworded — `1·2·3·4` respaced to `1 · 2 · 3 · 4` is not
+        # working a student can be shown, and a Simplify that swaps four lines for
+        # four differently-spaced lines, none of them in the second pen, is a
+        # button that does nothing. Both conditions mirror the schema's guards, so
+        # this tool and the validator can never disagree about a card.
+        if not any(added) or len(new_lines) <= len(old_lines):
+            print(f'  {step["id"]}: reworded, not expanded '
+                  f'({len(old_lines)} -> {len(new_lines)} lines, {sum(added)} new) — no button')
+            continue
+
         rebuilt = []
         for raw, is_added in zip(new_lines, added):
             if not is_added:

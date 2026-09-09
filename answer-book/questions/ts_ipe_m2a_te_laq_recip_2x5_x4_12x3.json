@@ -139,8 +139,14 @@
         "margin_note": "Second mark. Synthetic division by −1: bring down 2, multiply by −1, add, repeat. The last entry must be 0. The quotient 2x⁴ − x³ − 11x² − x + 2 is itself reciprocal (2, −1, −11, −1, 2).",
         "memory_tip": "Synthetic division by −1; the last entry must be 0. The quotient is reciprocal again.",
         "lines": [
-          "So (x + 1) is a factor. Divide f(x) by it",
-          "using synthetic division with −1:",
+          {
+            "text": "So (x + 1) is a factor. Divide f(x) by it",
+            "added": true
+          },
+          {
+            "text": "using synthetic division with −1:",
+            "added": true
+          },
           {
             "text": "−1 |  2    1   −12   −12    1    2",
             "style": "indent"
@@ -153,10 +159,19 @@
             "text": "      2   −1   −11    −1    2    0",
             "style": "indent"
           },
-          "The last entry 0 is the remainder, as expected.",
+          {
+            "text": "The last entry 0 is the remainder, as expected.",
+            "added": true
+          },
           "Quotient: 2x⁴ − x³ − 11x² − x + 2,",
-          "whose coefficients again read the same",
-          "end to end, so it is reciprocal too."
+          {
+            "text": "whose coefficients again read the same",
+            "added": true
+          },
+          {
+            "text": "end to end, so it is reciprocal too.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -185,6 +200,23 @@
           "A sign slip in the synthetic division row, so the remainder is not 0 and the quotient is wrong.",
           "Writing the quotient with one coefficient too many or too few (degree must drop by exactly 1 per division).",
           "Dividing by (x − 1) when the root is −1, or the reverse."
+        ],
+        "lines_compact": [
+          "Divide f(x) by (x + 1) (synthetic division):",
+          {
+            "text": "−1 |  2    1   −12   −12    1    2",
+            "style": "indent"
+          },
+          {
+            "text": "   |      −2     1    11     1   −2",
+            "style": "indent"
+          },
+          {
+            "text": "      2   −1   −11    −1    2    0",
+            "style": "indent"
+          },
+          "Quotient: 2x⁴ − x³ − 11x² − x + 2,",
+          "which is again reciprocal."
         ]
       },
       {
@@ -196,15 +228,36 @@
         "margin_note": "Third mark. Divide the quotient by x², group, and substitute. 2(t² − 2) = 2t² − 4, and −4 − 11 = −15.",
         "memory_tip": "Substitute in the QUOTIENT, not the original. 2(t² − 2) = 2t² − 4, and −4 − 11 = −15.",
         "lines": [
-          "x = 0 is not a root, so divide the quotient by x²:",
-          "2x² − x − 11 − 1/x + 2/x² = 0",
-          "Group the pairs that match:",
+          {
+            "text": "x = 0 is not a root, so divide the quotient by x²:",
+            "added": true
+          },
+          {
+            "text": "2x² − x − 11 − 1/x + 2/x² = 0",
+            "added": true
+          },
+          {
+            "text": "Group the pairs that match:",
+            "added": true
+          },
           "2(x² + 1/x²) − (x + 1/x) − 11 = 0 … (1)",
-          "Put x + 1/x = t.",
-          "Squaring both sides: x² + 2 + 1/x² = t²",
-          "So x² + 1/x² = t² − 2",
+          {
+            "text": "Put x + 1/x = t.",
+            "added": true
+          },
+          {
+            "text": "Squaring both sides: x² + 2 + 1/x² = t²",
+            "added": true
+          },
+          {
+            "text": "So x² + 1/x² = t² − 2",
+            "added": true
+          },
           "(1) becomes 2(t² − 2) − t − 11 = 0",
-          "2t² − 4 − t − 11 = 0",
+          {
+            "text": "2t² − 4 − t − 11 = 0",
+            "added": true
+          },
           "2t² − t − 15 = 0"
         ],
         "recall": {
@@ -234,6 +287,13 @@
           "Writing x² + 1/x² = t² and losing the −2.",
           "Forgetting to multiply the leading coefficient into the −2.",
           "Substituting in the ORIGINAL equation instead of the quotient."
+        ],
+        "lines_compact": [
+          "Divide 2x⁴ − x³ − 11x² − x + 2 = 0 by x²:",
+          "2(x² + 1/x²) − (x + 1/x) − 11 = 0 … (1)",
+          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "(1) becomes 2(t² − 2) − t − 11 = 0",
+          "2t² − t − 15 = 0"
         ]
       },
       {
@@ -245,7 +305,10 @@
         "margin_note": "Fourth mark. Split −1 = −6 + 5 with (−6)(5) = −30 = 2 × (−15).",
         "memory_tip": "Split −1 = −6 + 5, since (−6)(5) = −30 = 2 × (−15).",
         "lines": [
-          "Split −t as −6t + 5t:",
+          {
+            "text": "Split −t as −6t + 5t:",
+            "added": true
+          },
           "2t² − 6t + 5t − 15 = 0",
           "2t(t − 3) + 5(t − 3) = 0",
           "(t − 3)(2t + 5) = 0",
@@ -278,6 +341,12 @@
           "A sign slip when splitting the middle term.",
           "Stopping at the two t values as if they were the roots.",
           "Solving the t-quadratic with the formula and making an arithmetic slip a factorisation would have avoided."
+        ],
+        "lines_compact": [
+          "2t² − 6t + 5t − 15 = 0",
+          "2t(t − 3) + 5(t − 3) = 0",
+          "(t − 3)(2t + 5) = 0",
+          "t = 3 or t = −5/2"
         ]
       },
       {
@@ -290,10 +359,22 @@
         "memory_tip": "x² − 3x + 1 = 0 has discriminant 5, so the roots stay as surds.",
         "lines": [
           "If t = 3: x + 1/x = 3",
-          "Multiply by x: x² + 1 = 3x",
-          "x² − 3x + 1 = 0",
-          "x = (3 ± √(9 − 4))/2   [quadratic formula]",
-          "= (3 ± √5)/2"
+          {
+            "text": "Multiply by x: x² + 1 = 3x",
+            "added": true
+          },
+          {
+            "text": "x² − 3x + 1 = 0",
+            "added": true
+          },
+          {
+            "text": "x = (3 ± √(9 − 4))/2   [quadratic formula]",
+            "added": true
+          },
+          {
+            "text": "= (3 ± √5)/2",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -323,6 +404,11 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 9 − 4 = 5.",
           "Not simplifying the surd form of the roots at the end."
+        ],
+        "lines_compact": [
+          "If t = 3: x + 1/x = 3",
+          "x² + 1 = 3x, so x² − 3x + 1 = 0",
+          "x = (3 ± √(9 − 4))/2 = (3 ± √5)/2"
         ]
       },
       {
@@ -335,11 +421,26 @@
         "memory_tip": "Multiply by 2x: 2x² + 5x + 2 = (2x + 1)(x + 2), so x = −2 or −1/2.",
         "lines": [
           "If t = −5/2: x + 1/x = −5/2",
-          "Multiply by 2x: 2x² + 2 = −5x",
-          "2x² + 5x + 2 = 0",
-          "Split 5x as 4x + x:",
-          "2x² + 4x + x + 2 = 0",
-          "2x(x + 2) + 1(x + 2) = 0",
+          {
+            "text": "Multiply by 2x: 2x² + 2 = −5x",
+            "added": true
+          },
+          {
+            "text": "2x² + 5x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "Split 5x as 4x + x:",
+            "added": true
+          },
+          {
+            "text": "2x² + 4x + x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "2x(x + 2) + 1(x + 2) = 0",
+            "added": true
+          },
           "(2x + 1)(x + 2) = 0",
           "x = −2 or x = −1/2"
         ],
@@ -371,6 +472,12 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "Using the quadratic formula on 2x² + 5x + 2 and making an arithmetic slip that the factorisation (2x + 1)(x + 2) would have avoided.",
           "Writing down only one root of the pair: (2x + 1)(x + 2) = 0 gives both x = −2 and x = −1/2."
+        ],
+        "lines_compact": [
+          "If t = −5/2: x + 1/x = −5/2",
+          "2x² + 2 = −5x, so 2x² + 5x + 2 = 0",
+          "(2x + 1)(x + 2) = 0",
+          "x = −2 or x = −1/2"
         ]
       },
       {

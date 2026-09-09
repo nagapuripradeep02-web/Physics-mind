@@ -109,9 +109,18 @@
         "margin_note": "Second mark. The formula has a MINUS before the sum and a PLUS before the product. Write '= 0' — an expression is not an equation.",
         "memory_tip": "x² − (sum)x + (product) = 0: MINUS before the sum, PLUS before the product. Write the '= 0'.",
         "lines": [
-          "A quadratic with roots α and β is",
-          "x² − (α + β)x + αβ = 0",
-          "x² − 14x + 29 = 0",
+          {
+            "text": "A quadratic with roots α and β is",
+            "added": true
+          },
+          {
+            "text": "x² − (α + β)x + αβ = 0",
+            "added": true
+          },
+          {
+            "text": "x² − 14x + 29 = 0",
+            "added": true
+          },
           {
             "text": "∴ x² − 14x + 29 = 0",
             "style": "boxed"
@@ -145,6 +154,13 @@
           "Writing x² + 14x + 29 = 0 with the wrong sign on the sum.",
           "Leaving off '= 0'.",
           "Swapping sum and product: x² − 29x + 14."
+        ],
+        "lines_compact": [
+          "Required equation: x² − (α + β)x + αβ = 0",
+          {
+            "text": "∴ x² − 14x + 29 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

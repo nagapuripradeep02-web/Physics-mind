@@ -119,12 +119,27 @@
         "margin_note": "Second mark. Replace x² + 1/x² by t² − 2 and x + 1/x by t. The 2 in front multiplies the whole bracket: 2(t² − 2) = 2t² − 4.",
         "memory_tip": "x² + 1/x² is t² − 2, never t². The 2 in front multiplies the whole bracket.",
         "lines": [
-          "Put x + 1/x = t.",
-          "Squaring both sides: (x + 1/x)² = t²",
-          "x² + 2 + 1/x² = t²",
-          "So x² + 1/x² = t² − 2",
+          {
+            "text": "Put x + 1/x = t.",
+            "added": true
+          },
+          {
+            "text": "Squaring both sides: (x + 1/x)² = t²",
+            "added": true
+          },
+          {
+            "text": "x² + 2 + 1/x² = t²",
+            "added": true
+          },
+          {
+            "text": "So x² + 1/x² = t² − 2",
+            "added": true
+          },
           "(1) becomes 2(t² − 2) + t − 11 = 0",
-          "2t² − 4 + t − 11 = 0",
+          {
+            "text": "2t² − 4 + t − 11 = 0",
+            "added": true
+          },
           "2t² + t − 15 = 0"
         ],
         "recall": {
@@ -155,6 +170,11 @@
           "Writing x² + 1/x² = t² and losing the −2.",
           "Writing t² + 2 instead of t² − 2.",
           "Substituting for x + 1/x but leaving x² + 1/x² unchanged."
+        ],
+        "lines_compact": [
+          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "(1) becomes 2(t² − 2) + t − 11 = 0",
+          "2t² + t − 15 = 0"
         ]
       },
       {
@@ -166,7 +186,10 @@
         "margin_note": "Third mark. Split the middle term: 1 = 6 − 5 with (6)(−5) = −30 = 2 × (−15).",
         "memory_tip": "Split 1 = 6 − 5, since (6)(−5) = −30 = 2 × (−15).",
         "lines": [
-          "Split t as 6t − 5t:",
+          {
+            "text": "Split t as 6t − 5t:",
+            "added": true
+          },
           "2t² + 6t − 5t − 15 = 0",
           "2t(t + 3) − 5(t + 3) = 0",
           "(2t − 5)(t + 3) = 0",
@@ -199,6 +222,12 @@
           "A sign slip when splitting the middle term.",
           "Stopping at the two t values as if they were the roots.",
           "Solving the t-quadratic with the formula and making an arithmetic slip a factorisation would have avoided."
+        ],
+        "lines_compact": [
+          "2t² + 6t − 5t − 15 = 0",
+          "2t(t + 3) − 5(t + 3) = 0",
+          "(2t − 5)(t + 3) = 0",
+          "t = 5/2 or t = −3"
         ]
       },
       {
@@ -211,11 +240,26 @@
         "memory_tip": "Multiply x + 1/x = 5/2 by 2x: 2x² − 5x + 2 = 0 factorises, so no formula is needed.",
         "lines": [
           "If t = 5/2: x + 1/x = 5/2",
-          "Multiply by 2x: 2x² + 2 = 5x",
-          "2x² − 5x + 2 = 0",
-          "Split −5x as −4x − x:",
-          "2x² − 4x − x + 2 = 0",
-          "2x(x − 2) − 1(x − 2) = 0",
+          {
+            "text": "Multiply by 2x: 2x² + 2 = 5x",
+            "added": true
+          },
+          {
+            "text": "2x² − 5x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "Split −5x as −4x − x:",
+            "added": true
+          },
+          {
+            "text": "2x² − 4x − x + 2 = 0",
+            "added": true
+          },
+          {
+            "text": "2x(x − 2) − 1(x − 2) = 0",
+            "added": true
+          },
           "(2x − 1)(x − 2) = 0",
           "x = 2 or x = 1/2"
         ],
@@ -247,6 +291,12 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "Using the quadratic formula on 2x² − 5x + 2 and making an arithmetic slip that the factorisation (2x − 1)(x − 2) would have avoided.",
           "Writing down only one root of the pair: (2x − 1)(x − 2) = 0 gives both x = 2 and x = 1/2."
+        ],
+        "lines_compact": [
+          "If t = 5/2: x + 1/x = 5/2",
+          "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
+          "(2x − 1)(x − 2) = 0",
+          "x = 2 or x = 1/2"
         ]
       },
       {
@@ -259,10 +309,22 @@
         "memory_tip": "x² + 3x + 1 = 0 has discriminant 5, so this pair stays as surds. Box all four roots.",
         "lines": [
           "If t = −3: x + 1/x = −3",
-          "Multiply by x: x² + 1 = −3x",
-          "x² + 3x + 1 = 0",
-          "x = (−3 ± √(9 − 4))/2   [quadratic formula]",
-          "= (−3 ± √5)/2",
+          {
+            "text": "Multiply by x: x² + 1 = −3x",
+            "added": true
+          },
+          {
+            "text": "x² + 3x + 1 = 0",
+            "added": true
+          },
+          {
+            "text": "x = (−3 ± √(9 − 4))/2   [quadratic formula]",
+            "added": true
+          },
+          {
+            "text": "= (−3 ± √5)/2",
+            "added": true
+          },
           {
             "text": "∴ roots: 2, 1/2, (−3 ± √5)/2",
             "style": "boxed"
@@ -296,6 +358,15 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 9 − 4 = 5, and the −3 keeps its sign in the numerator.",
           "Not simplifying the surd form of the roots at the end."
+        ],
+        "lines_compact": [
+          "If t = −3: x + 1/x = −3",
+          "x² + 1 = −3x, so x² + 3x + 1 = 0",
+          "x = (−3 ± √(9 − 4))/2 = (−3 ± √5)/2",
+          {
+            "text": "∴ roots: 2, 1/2, (−3 ± √5)/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

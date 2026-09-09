@@ -95,7 +95,10 @@
         "memory_tip": "n is the largest factor, 8, not the 5 at the other end.",
         "lines": [
           "n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5",
-          "The largest factor on each side is the same,",
+          {
+            "text": "The largest factor on each side is the same,",
+            "added": true
+          },
           {
             "text": "∴ n = 8",
             "style": "boxed"
@@ -125,6 +128,13 @@
         "common_mistakes": [
           "Answering n = 5, the smallest factor.",
           "Writing n = 8 without the comparison line."
+        ],
+        "lines_compact": [
+          "n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5",
+          {
+            "text": "∴ n = 8",
+            "style": "boxed"
+          }
         ]
       }
     ]

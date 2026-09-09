@@ -1970,10 +1970,17 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
+    // Both authored lengths: a typeset line may live in the short answer
+    // (lines_compact), in the full working, or only in working the expansion
+    // ADDED — and a card opens SHORT, so scanning `lines` alone once left the
+    // sweep blind to the third case (ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3, the
+    // only one in the book, 2026-09-10). A truncated typeset line has no other
+    // symptom, so neither length may go unmeasured.
     const withKatex = await page.evaluate(() =>
         ((window as any).PM_QUESTIONS as any[])
             .filter((q) => q.answer.steps.some((s: any) =>
-                (s.lines || []).some((l: any) => l && l.render === 'katex')))
+                [...(s.lines || []), ...(s.lines_compact || [])]
+                    .some((l: any) => l && l.render === 'katex')))
             .map((q) => q.question_id));
     if (!withKatex.length) return;              // a book with no typeset line is legal
 
@@ -1981,7 +1988,7 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
         await openQ(page, id);
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
         await page.waitForTimeout(700);
-        const r = await page.evaluate(() => {
+        const probe = () => page.evaluate(() => {
             const clips = [...document.querySelectorAll('.kx-clip')] as HTMLElement[];
             return {
                 clips: clips.length,
@@ -2009,10 +2016,34 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
                     document.getElementById('notebookView')!.textContent || ''),
             };
         });
-        expect(r.clips, `${id} has typeset lines`).toBeGreaterThan(0);
-        expect(r.typeset, `${id}: every clip holds real KaTeX output`).toBe(r.clips);
-        expect(r.clipped, `${id}: typeset line(s) truncated by the wipe container`).toEqual([]);
-        expect(r.rawTex, `${id}: raw TeX leaked onto the page`).toBe(false);
+
+        const check = (r: any, where: string) => {
+            expect(r.typeset, `${id} ${where}: every clip holds real KaTeX output`).toBe(r.clips);
+            expect(r.clipped, `${id} ${where}: typeset line(s) truncated by the wipe container`).toEqual([]);
+            expect(r.rawTex, `${id} ${where}: raw TeX leaked onto the page`).toBe(false);
+        };
+
+        const short = await probe();
+        check(short, 'at exam length');
+
+        // Then written out in full, where a card that has one carries typeset
+        // lines the short answer never shows.
+        const expandable = (await page.evaluate(() =>
+            (window as any).PM_ANSWER.getState().expandableSteps)) as string[];
+        let full = short;
+        if (expandable.length) {
+            await page.evaluate((ids: string[]) => {
+                ids.forEach((sid) => (window as any).PM_ANSWER.setStepDetail(sid, 'full'));
+            }, expandable);
+            await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+            await page.waitForTimeout(700);
+            full = await probe();
+            check(full, 'written out in full');
+        }
+
+        // The line exists at ONE of the two lengths — that is what makes it a card
+        // with a typeset line at all.
+        expect(short.clips + full.clips, `${id} has typeset lines at some length`).toBeGreaterThan(0);
     }
 });
 
@@ -3159,6 +3190,35 @@ test('pressing Simplify does not also write the next step', async ({ page }) => 
     await page.click(`.step-simplify[data-step-id="${target}"]`);
     await page.waitForTimeout(300);
     expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).stepIndex).toBe(at);
+});
+
+test('Restart folds every mark back to exam length', async ({ page }) => {
+    // Restart used to leave the unfolded marks unfolded, so the answer came back
+    // written out in full while every button still read "Simplify" (founder,
+    // 2026-09-10). Restart must hand back the page the card OPENS with.
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const ids = (await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandableSteps;
+    for (const id of ids) await page.click(`.step-simplify[data-step-id="${id}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps).toEqual(ids);
+    const openWide = await page.locator('.line.added').count();
+    expect(openWide).toBeGreaterThan(0);
+
+    await page.click('#btnRestart');
+    // Restart reveals nothing, so re-read the whole answer before judging it.
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    const after = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(after.expandedSteps).toEqual([]);
+    expect(after.expandableSteps).toEqual(ids);            // the offer is still there
+    expect(await page.locator('.line.added').count()).toBe(0);
+    // and every button offers to expand again, none to shorten
+    const labels = await page.locator('.step-simplify').allTextContents();
+    expect(labels.length).toBe(ids.length);
+    expect(Array.from(new Set(labels.map((t) => t.trim())))).toEqual(['Simplify']);
 });
 
 test('a card with no fuller version offers no Simplify button', async ({ page }) => {

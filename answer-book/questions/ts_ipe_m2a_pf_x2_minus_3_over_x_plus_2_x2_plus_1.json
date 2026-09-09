@@ -128,9 +128,15 @@
         "margin_note": "Second mark. Multiply by (x + 2)(x² + 1). A keeps (x² + 1), (Bx + C) keeps (x + 2).",
         "memory_tip": "A keeps (x² + 1), (Bx + C) keeps (x + 2). Keep the bracket around Bx + C.",
         "lines": [
-          "Multiply both sides by (x + 2)(x² + 1):",
+          {
+            "text": "Multiply both sides by (x + 2)(x² + 1):",
+            "added": true
+          },
           "x² − 3 = A(x² + 1) + (Bx + C)(x + 2)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -159,6 +165,10 @@
           "Writing Bx + C(x + 2) without the bracket.",
           "Giving A the factor (x + 2) instead of (x² + 1).",
           "Dropping the left side x² − 3."
+        ],
+        "lines_compact": [
+          "Multiply by (x + 2)(x² + 1):",
+          "x² − 3 = A(x² + 1) + (Bx + C)(x + 2)"
         ]
       },
       {
@@ -170,16 +180,46 @@
         "margin_note": "Third mark. x = −2 gives A = 1/5. x = 0 gives A + 2C = −3, so C = −8/5. Compare x² for B = 4/5. Fractions with 5 all the way; keep them as fractions.",
         "memory_tip": "x = −2 gives (−2)² − 3 = 1, so A = 1/5. Then x = 0 gives A + 2C = −3, so C = −8/5.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = −2: 4 − 3 = A(4 + 1)",
-          "1 = 5A, so A = 1/5",
-          "Put x = 0: −3 = A(1) + C(2)",
-          "−3 = 1/5 + 2C",
-          "2C = −3 − 1/5 = −16/5, so C = −8/5",
-          "Compare the x² terms on both sides:",
-          "left 1, right A + B, so A + B = 1",
-          "B = 1 − 1/5 = 4/5"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = −2: 4 − 3 = A(4 + 1)",
+            "added": true
+          },
+          {
+            "text": "1 = 5A, so A = 1/5",
+            "added": true
+          },
+          {
+            "text": "Put x = 0: −3 = A(1) + C(2)",
+            "added": true
+          },
+          {
+            "text": "−3 = 1/5 + 2C",
+            "added": true
+          },
+          {
+            "text": "2C = −3 − 1/5 = −16/5, so C = −8/5",
+            "added": true
+          },
+          {
+            "text": "Compare the x² terms on both sides:",
+            "added": true
+          },
+          {
+            "text": "left 1, right A + B, so A + B = 1",
+            "added": true
+          },
+          {
+            "text": "B = 1 − 1/5 = 4/5",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,6 +250,12 @@
           "Putting x = −2 and writing (−2)² − 3 as −7 instead of 1.",
           "Solving A + 2C = −3 as C = (−3 − A)/2 with A = 1/5 and getting −7/5; −3 − 1/5 = −16/5, half of that is −8/5.",
           "Writing B = 1 by forgetting A in the x² coefficient."
+        ],
+        "lines_compact": [
+          "Put x = −2: 1 = A(5) ⇒ A = 1/5",
+          "Put x = 0: −3 = A + 2C ⇒ 2C = −16/5",
+          "⇒ C = −8/5",
+          "Compare x²: A + B = 1 ⇒ B = 4/5"
         ]
       },
       {

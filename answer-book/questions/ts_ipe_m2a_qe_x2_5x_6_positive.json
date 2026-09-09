@@ -109,8 +109,14 @@
         "margin_note": "Second mark. Positive for x < 2 or x > 3. In interval form: (−∞, 2) ∪ (3, ∞), round brackets because at x = 2 and x = 3 the expression is zero, not positive.",
         "memory_tip": "Positive for x < 2 or x > 3. Round brackets, and the join is 'or', never 'and'.",
         "lines": [
-          "So the expression is positive when",
-          "x < 2 or x > 3",
+          {
+            "text": "So the expression is positive when",
+            "added": true
+          },
+          {
+            "text": "x < 2 or x > 3",
+            "added": true
+          },
           {
             "text": "∴ x ∈ (−∞, 2) ∪ (3, ∞)",
             "style": "boxed"
@@ -145,6 +151,13 @@
           "Writing [−∞, 2] ∪ [3, ∞] with square brackets.",
           "Writing (2, 3), the interval where it is negative.",
           "Writing 2 < x < 3 in words 'x less than 2 or greater than 3' — the 'or' must not become 'and'."
+        ],
+        "lines_compact": [
+          "⇒ x² − 5x + 6 > 0 for x < 2 or x > 3",
+          {
+            "text": "∴ x ∈ (−∞, 2) ∪ (3, ∞)",
+            "style": "boxed"
+          }
         ]
       }
     ]

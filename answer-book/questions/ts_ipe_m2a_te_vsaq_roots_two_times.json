@@ -104,8 +104,14 @@
         "margin_note": "Second mark. Multiply through by 2⁵ = 32 to clear every denominator: 32 · (1/8) = 4, 32 · (3/8) = 12, 32 · (1/2) = 16, 32 · 2 = 64, 32 · 3 = 96.",
         "memory_tip": "Multiply by 2⁵ = 32 to clear every denominator, the constant included: 32 × 3 = 96.",
         "lines": [
-          "Multiply every term by 2⁵ = 32:",
-          "x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0",
+          {
+            "text": "Multiply every term by 2⁵ = 32:",
+            "added": true
+          },
+          {
+            "text": "x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0",
+            "added": true
+          },
           {
             "text": "∴ x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0",
             "style": "boxed"
@@ -137,6 +143,13 @@
         "common_mistakes": [
           "Multiplying the constant 3 by 1 instead of 32.",
           "A slip in one denominator, for example 2x²/4 = x²/2, so 32 · (1/2) = 16."
+        ],
+        "lines_compact": [
+          "Multiply by 2⁵ = 32:",
+          {
+            "text": "∴ x⁵ − 4x⁴ + 12x³ − 16x² + 64x + 96 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

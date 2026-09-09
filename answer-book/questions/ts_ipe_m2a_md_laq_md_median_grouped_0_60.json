@@ -141,18 +141,39 @@
         "margin_note": "Next two marks. N/2 = 25; the first c.f. that reaches 25 is 28, so 20–30 is the median class. In the formula l = lower limit 20, C = width 10, f = frequency of the median class 14, m = c.f. of the class BEFORE it, 14. 110/14 = 7.857…, written 7.86.",
         "memory_tip": "M = l + (C/f)·(N/2 − m), where m is the c.f. of the class BEFORE the median class — 14 here, not 28.",
         "lines": [
-          "N/2 = 50/2 = 25",
-          "The c.f. values are 6, 14, 28, 44, …",
-          "The first one that is 25 or more is 28,",
+          {
+            "text": "N/2 = 50/2 = 25",
+            "added": true
+          },
+          {
+            "text": "The c.f. values are 6, 14, 28, 44, …",
+            "added": true
+          },
+          {
+            "text": "The first one that is 25 or more is 28,",
+            "added": true
+          },
           "so the median class is 20–30.",
-          "l = 20 (its lower limit), C = 10 (its width),",
-          "f = 14 (its frequency),",
-          "m = 14 (the c.f. of the class before it)",
+          {
+            "text": "l = 20 (its lower limit), C = 10 (its width),",
+            "added": true
+          },
+          {
+            "text": "f = 14 (its frequency),",
+            "added": true
+          },
+          {
+            "text": "m = 14 (the c.f. of the class before it)",
+            "added": true
+          },
           {
             "text": "Median M = l + (C/f)·(N/2 − m)",
             "style": "eq"
           },
-          "= 20 + (10/14)(25 − 14)",
+          {
+            "text": "= 20 + (10/14)(25 − 14)",
+            "added": true
+          },
           "= 20 + (10/14)(11) = 20 + 110/14",
           "= 20 + 7.86 = 27.86"
         ],
@@ -184,6 +205,15 @@
           "Taking m as the c.f. OF the median class (28) instead of the one before it (14).",
           "Taking the median class as the one whose c.f. is nearest to 25 rather than the first one at or above 25.",
           "Using the midpoint 25 as the median."
+        ],
+        "lines_compact": [
+          "N/2 = 25. The first c.f. ≥ 25 is 28,",
+          "so the median class is 20–30.",
+          "l = 20, C = 10, f = 14,",
+          "m = 14 (the c.f. before the median class)",
+          "Median M = l + (C/f)·(N/2 − m)",
+          "= 20 + (10/14)·(25 − 14) = 20 + 110/14",
+          "= 20 + 7.86 = 27.86"
         ]
       },
       {
@@ -195,9 +225,18 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 27.86|, and the product with fᵢ. Every deviation has two decimals because M does. The products are 6 × 22.86 = 137.16 and so on; the sum is 517.16.",
         "memory_tip": "Subtract the median 27.86, not the mean. Two decimals in M means two decimals in every deviation.",
         "lines": [
-          "Now take each class mark's distance from 27.86,",
-          "always as a positive number, and multiply",
-          "by its frequency:",
+          {
+            "text": "Now take each class mark's distance from 27.86,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number, and multiply",
+            "added": true
+          },
+          {
+            "text": "by its frequency:",
+            "added": true
+          },
           {
             "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
             "style": "indent"
@@ -259,6 +298,41 @@
           "Subtracting from the mean instead of from the median.",
           "Keeping the signs.",
           "A multiplication slip: 16 × 7.14 = 114.24, 14 × 2.86 = 40.04."
+        ],
+        "lines_compact": [
+          "With M = 27.86:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
+            "style": "indent"
+          },
+          {
+            "text": "5      6      22.86        137.16",
+            "style": "indent"
+          },
+          {
+            "text": "15     8      12.86        102.88",
+            "style": "indent"
+          },
+          {
+            "text": "25     14     2.86         40.04",
+            "style": "indent"
+          },
+          {
+            "text": "35     16     7.14         114.24",
+            "style": "indent"
+          },
+          {
+            "text": "45     4      17.14        68.56",
+            "style": "indent"
+          },
+          {
+            "text": "55     2      27.14        54.28",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − M| = 517.16",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -274,8 +348,14 @@
             "text": "M.D. about the median = Σfᵢ|xᵢ − M|/N",
             "style": "eq"
           },
-          "= 517.16/50",
-          "= 10.34",
+          {
+            "text": "= 517.16/50",
+            "added": true
+          },
+          {
+            "text": "= 10.34",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the median = 10.34",
             "style": "boxed"
@@ -308,6 +388,14 @@
           "Dividing by 6 (the number of classes) instead of 50.",
           "Stopping at 517.16 without dividing.",
           "Writing 'about the mean' when the question asked about the median."
+        ],
+        "lines_compact": [
+          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+          "= 517.16/50 = 10.34",
+          {
+            "text": "∴ M.D. about the median = 10.34",
+            "style": "boxed"
+          }
         ]
       }
     ]

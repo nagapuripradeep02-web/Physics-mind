@@ -102,11 +102,18 @@
         "memory_tip": "7! = 5040. The 720 answer is 6!, one factor short.",
         "lines": [
           "7! = 7 · 6 · 5 · 4 · 3 · 2 · 1",
-          "= 42 · 20 · 6",
-          "= 42 · 120",
+          {
+            "text": "= 42 · 20 · 6",
+            "added": true
+          },
+          {
+            "text": "= 42 · 120",
+            "added": true
+          },
           {
             "text": "∴ number of bijections = 5040",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -133,6 +140,13 @@
         "common_mistakes": [
           "Writing 7! = 720 (that is 6!).",
           "Leaving the answer as 7!."
+        ],
+        "lines_compact": [
+          "7! = 7 · 6 · 5 · 4 · 3 · 2 · 1",
+          {
+            "text": "= 5040",
+            "style": "boxed"
+          }
         ]
       }
     ]

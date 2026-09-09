@@ -116,7 +116,10 @@
           "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
           "  + A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
           "  + C(2x − 1)(x + 2)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,6 +150,12 @@
           "Dropping the (1/2)(2x − 1)(x + 2)(x − 3) term.",
           "Giving A the factor (2x − 1) that it sits over.",
           "Writing the identity over x³ but forgetting one of the three products."
+        ],
+        "lines_compact": [
+          "Multiply by (2x − 1)(x + 2)(x − 3):",
+          "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
+          "+ A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
+          "+ C(2x − 1)(x + 2)"
         ]
       },
       {
@@ -158,15 +167,42 @@
         "margin_note": "Third mark. Three roots: x = 1/2 for A, x = −2 for B, x = 3 for C. At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = (1/8)(−4/25) = −1/50. Fractions with 25 and 50 are expected here.",
         "memory_tip": "At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = −1/50. Fractions with 25 and 50 are expected.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1/2: (1/2)³ = A(1/2 + 2)(1/2 − 3)",
-          "1/8 = A(5/2)(−5/2) = −25A/4",
-          "A = −4/(8 × 25) = −1/50",
-          "Put x = −2: (−2)³ = B(−4 − 1)(−2 − 3)",
-          "−8 = B(−5)(−5) = 25B, so B = −8/25",
-          "Put x = 3: 3³ = C(6 − 1)(3 + 2)",
-          "27 = C(5)(5) = 25C, so C = 27/25"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1/2: (1/2)³ = A(1/2 + 2)(1/2 − 3)",
+            "added": true
+          },
+          {
+            "text": "1/8 = A(5/2)(−5/2) = −25A/4",
+            "added": true
+          },
+          {
+            "text": "A = −4/(8 × 25) = −1/50",
+            "added": true
+          },
+          {
+            "text": "Put x = −2: (−2)³ = B(−4 − 1)(−2 − 3)",
+            "added": true
+          },
+          {
+            "text": "−8 = B(−5)(−5) = 25B, so B = −8/25",
+            "added": true
+          },
+          {
+            "text": "Put x = 3: 3³ = C(6 − 1)(3 + 2)",
+            "added": true
+          },
+          {
+            "text": "27 = C(5)(5) = 25C, so C = 27/25",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,6 +233,12 @@
           "Using x = 1 for the factor (2x − 1); its root is 1/2.",
           "At x = 1/2 computing (1/2 + 2)(1/2 − 3) as (5/2)(5/2) = +25/4 and getting A = +1/50.",
           "At x = −2 computing (−4 − 1)(−2 − 3) as −25 and getting B = +8/25."
+        ],
+        "lines_compact": [
+          "Put x = 1/2: 1/8 = A(5/2)(−5/2)",
+          "⇒ 1/8 = −25A/4 ⇒ A = −1/50",
+          "Put x = −2: −8 = B(−5)(−5) ⇒ B = −8/25",
+          "Put x = 3: 27 = C(5)(5) ⇒ C = 27/25"
         ]
       },
       {

@@ -108,13 +108,23 @@
         "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ = (13 · 12)/(1 · 2) = 78.",
         "memory_tip": "Finish what was asked: ¹³C₁₁ = ¹³C₂ = (13 × 12)/2 = 78. n alone is not the answer.",
         "lines": [
-          "¹³Cₙ = ¹³C₁₁",
-          "= ¹³C₁₃₋₁₁ = ¹³C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+          {
+            "text": "¹³Cₙ = ¹³C₁₁",
+            "added": true
+          },
+          {
+            "text": "= ¹³C₁₃₋₁₁ = ¹³C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+            "added": true
+          },
           "= (13 · 12)/(1 · 2)",
-          "= 156/2",
+          {
+            "text": "= 156/2",
+            "added": true
+          },
           {
             "text": "∴ ¹³Cₙ = 78",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -141,6 +151,13 @@
         "common_mistakes": [
           "Leaving the answer as ¹³C₁₁.",
           "Computing 13 · 12 = 156 and forgetting to divide by 2."
+        ],
+        "lines_compact": [
+          "¹³Cₙ = ¹³C₁₁ = ¹³C₂",
+          {
+            "text": "= (13 · 12)/(1 · 2) = 78",
+            "style": "boxed"
+          }
         ]
       }
     ]

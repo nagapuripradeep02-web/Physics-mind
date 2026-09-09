@@ -105,20 +105,56 @@
         "margin_note": "Half the marks. The conjugate of the denominator is x − i(y + 1). The denominator becomes x² + (y + 1)²; the real part of the numerator is x(x + 1) + y(y + 1).",
         "memory_tip": "The conjugate of x + i(y + 1) is x − i(y + 1). The numerator's imaginary part is never used.",
         "lines": [
-          "Multiply above and below by the conjugate",
-          "of the denominator, x − i(y + 1):",
+          {
+            "text": "Multiply above and below by the conjugate",
+            "added": true
+          },
+          {
+            "text": "of the denominator, x − i(y + 1):",
+            "added": true
+          },
           "= [(x + 1) + iy][x − i(y + 1)]",
-          "  ÷ [x + i(y + 1)][x − i(y + 1)]",
-          "Denominator = x² + (y + 1)²",
-          "  [(a + ib)(a − ib) = a² + b²]",
+          {
+            "text": "  ÷ [x + i(y + 1)][x − i(y + 1)]",
+            "added": true
+          },
+          {
+            "text": "Denominator = x² + (y + 1)²",
+            "added": true
+          },
+          {
+            "text": "  [(a + ib)(a − ib) = a² + b²]",
+            "added": true
+          },
           "Numerator = x(x + 1) − i(x + 1)(y + 1)",
-          "  + ixy − i²y(y + 1)",
-          "= x(x + 1) + y(y + 1)   [−i² = 1]",
-          "  + i[xy − (x + 1)(y + 1)]",
-          "Real part of the numerator",
-          "= x² + x + y² + y",
-          "∴ real part = (x² + y² + x + y)",
-          "  ÷ (x² + (y + 1)²)"
+          {
+            "text": "  + ixy − i²y(y + 1)",
+            "added": true
+          },
+          {
+            "text": "= x(x + 1) + y(y + 1)   [−i² = 1]",
+            "added": true
+          },
+          {
+            "text": "  + i[xy − (x + 1)(y + 1)]",
+            "added": true
+          },
+          {
+            "text": "Real part of the numerator",
+            "added": true
+          },
+          {
+            "text": "= x² + x + y² + y",
+            "added": true
+          },
+          {
+            "text": "∴ real part = (x² + y² + x + y)",
+            "added": true
+          },
+          {
+            "text": "  ÷ (x² + (y + 1)²)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,6 +184,24 @@
           "Using x + i(y + 1) instead of x − i(y + 1).",
           "Writing −i·iy(y + 1) as −y(y + 1) instead of +y(y + 1).",
           "Expanding the imaginary part in full — it is never used."
+        ],
+        "lines_compact": [
+          "Multiply above and below by x − i(y + 1):",
+          {
+            "text": "= [(x + 1) + iy][x − i(y + 1)]",
+            "style": "eq"
+          },
+          {
+            "text": "/ [x² + (y + 1)²]",
+            "style": "indent"
+          },
+          "Numerator = x(x + 1) − i(x + 1)(y + 1) + ixy",
+          "+ y(y + 1)        (since −i² = 1)",
+          {
+            "text": "= [x² + y² + x + y] + i[xy − (x + 1)(y + 1)]",
+            "style": "eq"
+          },
+          "∴ real part = (x² + y² + x + y)/(x² + (y + 1)²)"
         ]
       },
       {
@@ -159,15 +213,33 @@
         "margin_note": "Last mark. Set the real part to 1, cross-multiply, and the squares cancel — the locus is a straight line.",
         "memory_tip": "Real part = 1 here, not 0. Both x² and y² cancel, so the locus is the line x − y = 1, with z ≠ −i.",
         "lines": [
-          "Given that the real part is 1:",
-          "(x² + y² + x + y)/(x² + (y + 1)²) = 1",
+          {
+            "text": "Given that the real part is 1:",
+            "added": true
+          },
+          {
+            "text": "(x² + y² + x + y)/(x² + (y + 1)²) = 1",
+            "added": true
+          },
           "x² + y² + x + y = x² + (y + 1)²",
           "x² + y² + x + y = x² + y² + 2y + 1",
-          "Cancel x² and y² on both sides:",
+          {
+            "text": "Cancel x² and y² on both sides:",
+            "added": true
+          },
           "x + y = 2y + 1",
-          "x − y = 1",
-          "z = −i would make the denominator 0,",
-          "so that point is left out.",
+          {
+            "text": "x − y = 1",
+            "added": true
+          },
+          {
+            "text": "z = −i would make the denominator 0,",
+            "added": true
+          },
+          {
+            "text": "so that point is left out.",
+            "added": true
+          },
           {
             "text": "∴ Locus of z: x − y = 1, z ≠ −i",
             "style": "boxed"
@@ -201,6 +273,16 @@
           "Setting the real part to 0, which is the 'purely imaginary' condition, instead of to 1 as asked.",
           "Expanding (y + 1)² as y² + 1.",
           "Leaving z = −i in the locus, where the expression is undefined."
+        ],
+        "lines_compact": [
+          "Real part = 1",
+          "⇒ x² + y² + x + y = x² + (y + 1)²",
+          "⇒ x² + y² + x + y = x² + y² + 2y + 1",
+          "⇒ x + y = 2y + 1",
+          {
+            "text": "∴ Locus of z: x − y = 1, z ≠ −i",
+            "style": "boxed"
+          }
         ]
       }
     ]

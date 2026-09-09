@@ -141,7 +141,8 @@
         "lines": [
           {
             "text": "For three events the addition theorem is",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B ∪ C) = P(A) + P(B) + P(C)",
@@ -149,23 +150,28 @@
           },
           {
             "text": "  − P(A ∩ B) − P(B ∩ C) − P(C ∩ A)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "  + P(A ∩ B ∩ C)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "The pairs are subtracted because they were",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "counted twice, and the triple is added back",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "because subtracting the three pairs removed it.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           }
         ],
         "recall": {
@@ -192,6 +198,16 @@
         "common_mistakes": [
           "Subtracting the triple instead of adding it.",
           "Leaving out one of the three pair terms."
+        ],
+        "lines_compact": [
+          {
+            "text": "P(A ∪ B ∪ C) = P(A) + P(B) + P(C) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "− P(B ∩ C) − P(C ∩ A) + P(A ∩ B ∩ C)",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -205,27 +221,33 @@
         "lines": [
           {
             "text": "= 0.2 + 0.16 + 0.14",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "  − 0.08 − 0.04 − 0.05 + 0.02",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 0.5 − 0.17 + 0.02",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 0.35",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Turn the probability back into a percentage:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "∴ 35% read at least one newspaper",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -251,6 +273,20 @@
         "common_mistakes": [
           "Answering 0.35 with no conversion to a percentage.",
           "Arithmetic: 0.2 + 0.16 + 0.14 = 0.5, not 0.6."
+        ],
+        "lines_compact": [
+          {
+            "text": "= 0.2 + 0.16 + 0.14 − 0.08 − 0.04 − 0.05 + 0.02",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.52 − 0.17 = 0.35",
+            "style": "eq"
+          },
+          {
+            "text": "∴ 0.35 × 100% = 35% read at least one",
+            "style": "boxed"
+          }
         ]
       }
     ]

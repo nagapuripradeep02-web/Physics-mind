@@ -100,10 +100,22 @@
         "margin_note": "Second mark. The largest factor is 10, so n = 10.",
         "memory_tip": "n is the LARGEST factor, 10, not the smallest. Check ¹⁰C₄ = 210.",
         "lines": [
-          "The left side is a product of four",
-          "consecutive numbers counting down from n.",
-          "Write 5040 the same way:",
-          "5040 = 10 · 504 = 10 · 9 · 56 = 10 · 9 · 8 · 7",
+          {
+            "text": "The left side is a product of four",
+            "added": true
+          },
+          {
+            "text": "consecutive numbers counting down from n.",
+            "added": true
+          },
+          {
+            "text": "Write 5040 the same way:",
+            "added": true
+          },
+          {
+            "text": "5040 = 10 · 504 = 10 · 9 · 56 = 10 · 9 · 8 · 7",
+            "added": true
+          },
           "n(n − 1)(n − 2)(n − 3) = 10 · 9 · 8 · 7",
           {
             "text": "∴ n = 10",
@@ -134,6 +146,13 @@
         "common_mistakes": [
           "Answering n = 7, the smallest factor.",
           "Forgetting to check that ¹⁰C₄ really is 210."
+        ],
+        "lines_compact": [
+          "n(n − 1)(n − 2)(n − 3) = 10 · 9 · 8 · 7",
+          {
+            "text": "∴ n = 10",
+            "style": "boxed"
+          }
         ]
       }
     ]

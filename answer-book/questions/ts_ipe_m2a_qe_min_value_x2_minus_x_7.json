@@ -100,9 +100,18 @@
         "memory_tip": "(4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = +1, and the answer is the value, not the x.",
         "lines": [
           "Minimum value = (4ac − b²)/(4a)",
-          "4ac = 4(1)(7) = 28",
-          "b² = (−1)² = 1",
-          "4a = 4(1) = 4",
+          {
+            "text": "4ac = 4(1)(7) = 28",
+            "added": true
+          },
+          {
+            "text": "b² = (−1)² = 1",
+            "added": true
+          },
+          {
+            "text": "4a = 4(1) = 4",
+            "added": true
+          },
           "= (28 − 1)/4",
           {
             "text": "∴ minimum value = 27/4",
@@ -136,6 +145,15 @@
           "Writing (−1)² as −1 and getting 29/4.",
           "Using (b² − 4ac)/(4a) with the sign reversed.",
           "Answering x = 1/2 (where the minimum occurs) instead of the minimum value."
+        ],
+        "lines_compact": [
+          "Minimum value = (4ac − b²)/(4a)",
+          "= (4(1)(7) − (−1)²)/(4(1))",
+          "= (28 − 1)/4",
+          {
+            "text": "∴ minimum value = 27/4",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -111,19 +111,46 @@
         "margin_note": "Second to fourth marks. Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they turn ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) into (r + 1)/(n + 1).",
         "memory_tip": "Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they give (r + 1)/(n + 1).",
         "lines": [
-          "L.H.S. = a₁/(a₁ + a₂) + a₃/(a₃ + a₄)",
+          {
+            "text": "L.H.S. = a₁/(a₁ + a₂) + a₃/(a₃ + a₄)",
+            "added": true
+          },
           "= ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
           "Now ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁",
-          "and ⁿCᵣ₊₂ + ⁿCᵣ₊₃ = ⁿ⁺¹Cᵣ₊₃",
+          {
+            "text": "and ⁿCᵣ₊₂ + ⁿCᵣ₊₃ = ⁿ⁺¹Cᵣ₊₃",
+            "added": true
+          },
           "L.H.S. = ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
-          "Now ⁿ⁺¹Cᵣ₊₁ = (n + 1)!/((r + 1)!(n − r)!)",
-          "= ((n + 1)/(r + 1)) · n!/(r!(n − r)!)",
-          "= ((n + 1)/(r + 1))·ⁿCᵣ",
-          "so ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ = (r + 1)/(n + 1)",
-          "In the same way ⁿ⁺¹Cᵣ₊₃ = ((n + 1)/(r + 3))·ⁿCᵣ₊₂",
-          "so ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃ = (r + 3)/(n + 1)",
+          {
+            "text": "Now ⁿ⁺¹Cᵣ₊₁ = (n + 1)!/((r + 1)!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= ((n + 1)/(r + 1)) · n!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= ((n + 1)/(r + 1))·ⁿCᵣ",
+            "added": true
+          },
+          {
+            "text": "so ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ = (r + 1)/(n + 1)",
+            "added": true
+          },
+          {
+            "text": "In the same way ⁿ⁺¹Cᵣ₊₃ = ((n + 1)/(r + 3))·ⁿCᵣ₊₂",
+            "added": true
+          },
+          {
+            "text": "so ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃ = (r + 3)/(n + 1)",
+            "added": true
+          },
           "L.H.S. = (r + 1)/(n + 1) + (r + 3)/(n + 1)",
-          "= (r + 1 + r + 3)/(n + 1)",
+          {
+            "text": "= (r + 1 + r + 3)/(n + 1)",
+            "added": true
+          },
           "= (2r + 4)/(n + 1) = 2(r + 2)/(n + 1) …(1)"
         ],
         "recall": {
@@ -152,6 +179,14 @@
           "Writing ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ instead of ⁿ⁺¹Cᵣ₊₁.",
           "Inverting the ratio and getting (n + 1)/(r + 1).",
           "Adding the two fractions before reducing them."
+        ],
+        "lines_compact": [
+          "L.H.S. = ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
+          "= ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
+          "  [ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁]",
+          "Now ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ, so",
+          "= (r + 1)/(n + 1) + (r + 3)/(n + 1)",
+          "= (2r + 4)/(n + 1) = 2(r + 2)/(n + 1) …(1)"
         ]
       },
       {
@@ -163,11 +198,26 @@
         "margin_note": "Fifth and sixth marks. The same two identities, one index higher: a₂ + a₃ = ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁.",
         "memory_tip": "Same two identities one index higher, and keep the factor 2 in front.",
         "lines": [
-          "R.H.S. = 2a₂/(a₂ + a₃)",
-          "= 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂)",
-          "= 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂   [ⁿCᵣ₊₁ + ⁿCᵣ₊₂ = ⁿ⁺¹Cᵣ₊₂]",
-          "Now ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁",
-          "so ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂ = (r + 2)/(n + 1)",
+          {
+            "text": "R.H.S. = 2a₂/(a₂ + a₃)",
+            "added": true
+          },
+          {
+            "text": "= 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂)",
+            "added": true
+          },
+          {
+            "text": "= 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂   [ⁿCᵣ₊₁ + ⁿCᵣ₊₂ = ⁿ⁺¹Cᵣ₊₂]",
+            "added": true
+          },
+          {
+            "text": "Now ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁",
+            "added": true
+          },
+          {
+            "text": "so ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂ = (r + 2)/(n + 1)",
+            "added": true
+          },
           "R.H.S. = 2(r + 2)/(n + 1) …(2)"
         ],
         "recall": {
@@ -194,6 +244,11 @@
         "common_mistakes": [
           "Forgetting the factor 2 in front.",
           "Writing the denominator as ⁿ⁺¹Cᵣ₊₁."
+        ],
+        "lines_compact": [
+          "R.H.S. = 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂) = 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂",
+          "= 2·ⁿCᵣ₊₁ / (((n + 1)/(r + 2))·ⁿCᵣ₊₁)",
+          "= 2(r + 2)/(n + 1) …(2)"
         ]
       },
       {
@@ -205,10 +260,14 @@
         "margin_note": "Seventh mark. (1) and (2) are the same expression — say so in one line.",
         "memory_tip": "(1) and (2) are the same expression — write that line, or the last mark is lost.",
         "lines": [
-          "From (1) and (2), both sides equal 2(r + 2)/(n + 1)",
+          {
+            "text": "From (1) and (2), both sides equal 2(r + 2)/(n + 1)",
+            "added": true
+          },
           {
             "text": "∴ L.H.S. = R.H.S.",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -235,6 +294,12 @@
         "why": "A show-that question is finished only when the two reduced forms are placed side by side and declared equal.",
         "common_mistakes": [
           "Reducing both sides and never writing the concluding line."
+        ],
+        "lines_compact": [
+          {
+            "text": "From (1) and (2), L.H.S. = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]

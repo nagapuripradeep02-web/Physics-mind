@@ -99,8 +99,14 @@
         "margin_note": "Second mark. Add 1 to each value: x = −1, 1 − 2ω, 1 − 2ω². Three values of x − 1 give three roots.",
         "memory_tip": "Add the 1 back to every value: x = −1, 1 − 2ω, 1 − 2ω².",
         "lines": [
-          "Adding 1 to each:",
-          "x = 1 − 2 = −1, or x = 1 − 2ω, or x = 1 − 2ω²",
+          {
+            "text": "Adding 1 to each:",
+            "added": true
+          },
+          {
+            "text": "x = 1 − 2 = −1, or x = 1 − 2ω, or x = 1 − 2ω²",
+            "added": true
+          },
           {
             "text": "∴ x = −1, 1 − 2ω, 1 − 2ω²",
             "style": "boxed"
@@ -133,6 +139,12 @@
           "Forgetting to add 1 and giving −2, −2ω, −2ω² as the roots.",
           "Writing 1 + 2ω instead of 1 − 2ω.",
           "Dropping one of the three roots."
+        ],
+        "lines_compact": [
+          {
+            "text": "x = −1, 1 − 2ω, 1 − 2ω²",
+            "style": "boxed"
+          }
         ]
       }
     ]

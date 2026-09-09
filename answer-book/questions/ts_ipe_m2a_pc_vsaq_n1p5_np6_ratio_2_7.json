@@ -99,20 +99,50 @@
         "margin_note": "Second mark. 7(n + 1) = 2(n − 4)(n − 5) gives 2n² − 25n + 33 = 0, which factors as (n − 11)(2n − 3); n = 3/2 is not a whole number and is below 6, so n = 11.",
         "memory_tip": "2n² − 25n + 33 = (n − 11)(2n − 3). Reject n = 3/2: n must be a whole number and at least 6.",
         "lines": [
-          "Cross-multiplying:",
+          {
+            "text": "Cross-multiplying:",
+            "added": true
+          },
           "7(n + 1) = 2(n − 4)(n − 5)",
-          "7n + 7 = 2(n² − 5n − 4n + 20)",
-          "7n + 7 = 2(n² − 9n + 20)",
+          {
+            "text": "7n + 7 = 2(n² − 5n − 4n + 20)",
+            "added": true
+          },
+          {
+            "text": "7n + 7 = 2(n² − 9n + 20)",
+            "added": true
+          },
           "7n + 7 = 2n² − 18n + 40",
-          "0 = 2n² − 18n − 7n + 40 − 7",
+          {
+            "text": "0 = 2n² − 18n − 7n + 40 − 7",
+            "added": true
+          },
           "2n² − 25n + 33 = 0",
-          "Split −25n as −22n − 3n:",
-          "2n² − 22n − 3n + 33 = 0",
-          "2n(n − 11) − 3(n − 11) = 0",
+          {
+            "text": "Split −25n as −22n − 3n:",
+            "added": true
+          },
+          {
+            "text": "2n² − 22n − 3n + 33 = 0",
+            "added": true
+          },
+          {
+            "text": "2n(n − 11) − 3(n − 11) = 0",
+            "added": true
+          },
           "(n − 11)(2n − 3) = 0",
-          "n = 11 or n = 3/2",
-          "ⁿP₆ needs n ≥ 6 and n a whole number,",
-          "so n = 3/2 is rejected.",
+          {
+            "text": "n = 11 or n = 3/2",
+            "added": true
+          },
+          {
+            "text": "ⁿP₆ needs n ≥ 6 and n a whole number,",
+            "added": true
+          },
+          {
+            "text": "so n = 3/2 is rejected.",
+            "added": true
+          },
           {
             "text": "∴ n = 11",
             "style": "boxed"
@@ -145,6 +175,17 @@
           "Expanding (n − 4)(n − 5) as n² − 9n − 20; the constant is +20.",
           "Keeping both roots and answering n = 11 or 3/2.",
           "Slip in collecting terms: −18n − 7n = −25n, not −11n."
+        ],
+        "lines_compact": [
+          "7(n + 1) = 2(n − 4)(n − 5)",
+          "7n + 7 = 2n² − 18n + 40",
+          "2n² − 25n + 33 = 0",
+          "(n − 11)(2n − 3) = 0",
+          "n = 3/2 is not a whole number ≥ 6.",
+          {
+            "text": "∴ n = 11",
+            "style": "boxed"
+          }
         ]
       }
     ]

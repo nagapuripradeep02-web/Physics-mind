@@ -102,17 +102,42 @@
         "margin_note": "Second mark. 12!/(4!·3!·2!) = 479001600/288 = 16,63,200.",
         "memory_tip": "12!/(4!·3!·2!) = 16,63,200. Missing the D pair doubles the answer.",
         "lines": [
-          "When n things have p, q, r alike,",
-          "the arrangements are n!/(p!·q!·r!)",
-          "Here n = 12, p = 4, q = 3, r = 2:",
-          "Arrangements = 12!/(4!·3!·2!)",
-          "4! = 24, 3! = 6, 2! = 2",
-          "Bottom = 24 · 6 · 2 = 288",
-          "12! = 479001600",
-          "= 479001600/288",
+          {
+            "text": "When n things have p, q, r alike,",
+            "added": true
+          },
+          {
+            "text": "the arrangements are n!/(p!·q!·r!)",
+            "added": true
+          },
+          {
+            "text": "Here n = 12, p = 4, q = 3, r = 2:",
+            "added": true
+          },
+          {
+            "text": "Arrangements = 12!/(4!·3!·2!)",
+            "added": true
+          },
+          {
+            "text": "4! = 24, 3! = 6, 2! = 2",
+            "added": true
+          },
+          {
+            "text": "Bottom = 24 · 6 · 2 = 288",
+            "added": true
+          },
+          {
+            "text": "12! = 479001600",
+            "added": true
+          },
+          {
+            "text": "= 479001600/288",
+            "added": true
+          },
           {
             "text": "∴ number of arrangements = 16,63,200",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -140,6 +165,13 @@
         "common_mistakes": [
           "Dividing by 4!·3! only and forgetting the D pair.",
           "Dividing by 9! (the sum 4 + 3 + 2) instead of the product of factorials."
+        ],
+        "lines_compact": [
+          "Arrangements = n!/(p!·q!·r!)",
+          {
+            "text": "= 12!/(4!·3!·2!) = 16,63,200",
+            "style": "boxed"
+          }
         ]
       }
     ]

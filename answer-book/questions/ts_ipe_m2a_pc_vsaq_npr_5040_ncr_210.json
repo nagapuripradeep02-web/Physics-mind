@@ -107,9 +107,18 @@
         "margin_note": "Second mark. ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10.",
         "memory_tip": "Then ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10. State BOTH letters.",
         "lines": [
-          "Put r = 4 in ⁿPᵣ = 5040:",
-          "ⁿP₄ = n(n − 1)(n − 2)(n − 3) = 5040",
-          "5040 = 10 · 9 · 8 · 7",
+          {
+            "text": "Put r = 4 in ⁿPᵣ = 5040:",
+            "added": true
+          },
+          {
+            "text": "ⁿP₄ = n(n − 1)(n − 2)(n − 3) = 5040",
+            "added": true
+          },
+          {
+            "text": "5040 = 10 · 9 · 8 · 7",
+            "added": true
+          },
           {
             "text": "∴ n = 10, r = 4",
             "style": "boxed"
@@ -140,6 +149,13 @@
         "common_mistakes": [
           "Answering n = 7 (the smallest factor).",
           "Stating n only and forgetting to write r = 4 in the answer."
+        ],
+        "lines_compact": [
+          "ⁿP₄ = 5040 = 10 · 9 · 8 · 7 = ¹⁰P₄",
+          {
+            "text": "∴ n = 10, r = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

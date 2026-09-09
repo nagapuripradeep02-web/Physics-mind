@@ -108,13 +108,23 @@
         "margin_note": "Second mark. (6 − 1)!/2 = 5!/2 = 120/2 = 60.",
         "memory_tip": "5!/2 = 120/2 = 60. The 120 is the round-table answer, not the chain answer.",
         "lines": [
-          "Here n = 6:",
+          {
+            "text": "Here n = 6:",
+            "added": true
+          },
           "Number of chains = (6 − 1)!/2 = 5!/2",
-          "5! = 120",
-          "= 120/2",
+          {
+            "text": "5! = 120",
+            "added": true
+          },
+          {
+            "text": "= 120/2",
+            "added": true
+          },
           {
             "text": "∴ number of chains = 60",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -141,6 +151,13 @@
         "common_mistakes": [
           "Answering 120 (forgetting the halving).",
           "Answering 360 (using 6!/2)."
+        ],
+        "lines_compact": [
+          "Number of chains = (6 − 1)!/2 = 5!/2 = 120/2",
+          {
+            "text": "= 60",
+            "style": "boxed"
+          }
         ]
       }
     ]

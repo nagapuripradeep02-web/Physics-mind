@@ -1002,7 +1002,15 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .step-aside {
   position: absolute; top: 0; right: calc(-1 * var(--pad-right) + 12px);
   width: 76px; text-align: center;
+  /* Transparent column: only the button takes a click. The mark already opts
+     out, and an overhanging empty column must never intercept anything. */
+  pointer-events: none;
 }
+/* A step carrying a button reserves the rules its gutter column needs — THREE,
+   the tick plus the mark number plus the button. A whole number of rules, so
+   the page's one vertical invariant holds; placeStep measures the block after
+   building it, so pagination follows this by itself. */
+.step-block.has-simplify { min-height: calc(3 * var(--rule)); }
 .red-mark {
   font-family: Kalam, cursive; color: var(--red);
   pointer-events: none;
@@ -1015,6 +1023,7 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   padding: 4px 2px; border-radius: 999px;
   border: 1px solid var(--chrome-line); background: var(--chrome-card);
   color: var(--chrome-dim); cursor: pointer; line-height: 1.2;
+  pointer-events: auto;
 }
 .step-simplify:hover { border-color: var(--accent); color: var(--accent); }
 .step-simplify.open { background: var(--accent); border-color: var(--accent); color: #fff; }
