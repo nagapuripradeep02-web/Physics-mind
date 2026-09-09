@@ -444,7 +444,9 @@ Deno.serve(async (req: Request) => {
 
     // The route the page reports is an id; every phrase comes from the row.
     // The option the student picked outranks the route they claim: when the
-    // two disagree the situation says so, and the ledger records `mismatch`.
+    // two disagree the situation says so, and the ledger records `mismatch`
+    // (a calculation-typed option under the right route is a slip, not a
+    // disagreement — the same rule as 55_diag.js).
     const route = typeof body.route === 'string' && /^(r|m\d{1,2}|guess|sure)$/.test(body.route) ? body.route : '';
     const KEY_RE = /^[a-z0-9_-]{1,40}$/;
     const keysOf = (v: unknown): string[] => Array.isArray(v) ? v.filter((k) => typeof k === 'string' && KEY_RE.test(k)).slice(0, 20) : [];
@@ -462,7 +464,10 @@ Deno.serve(async (req: Request) => {
         routeLine = '- they say they were sure of their answer';
     } else if (route === 'r') {
         routeLine = '- they say they went the right way' + (row.solution?.right_route ? `: "${row.solution.right_route}"` : '');
-        if (pickedEntry) {
+        if (pickedEntry && (pickedEntry.type === 'calculation' || pickedEntry.type === 'careless')) {
+            // the engine's rule: a calculation-typed option under the right route is a confirmed slip, not a disagreement
+            routeLine += `. The option they picked is a ${pickedEntry.type} slip along that route: "${pickedEntry.text ?? ''}". Show the step where the arithmetic goes wrong; do not call it a wrong route`;
+        } else if (pickedEntry) {
             mismatch = true;
             routeLine += `. But the option they picked is where this mistake leads: "${pickedEntry.text ?? ''}"${asKind(pickedEntry.type)}. Say so plainly, then explain that mistake and the step where the right route differs`;
         } else if (wrongPick) {
