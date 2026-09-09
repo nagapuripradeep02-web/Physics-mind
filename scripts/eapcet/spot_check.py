@@ -80,8 +80,17 @@ def render(n, q, sol, sha, au):
         if st.get("why_this_step"):
             L.append("       why: %s" % st["why_this_step"])
     L += ["", "**Final:** option %d — %s" % (sol["final_answer"]["option"], sol["final_answer"]["value"])]
-    for m in sol.get("common_mistakes", []):
-        L.append("- mistake%s: %s" % (" (option %d)" % m["option"] if m.get("option") else "", m["text"]))
+    # the routes sidecar, when one exists: the founder ticks what the student will see, and the
+    # student sees the type and the route beside each mistake
+    side = load(os.path.join(SOL, "_routes", q["id"] + ".json")) or {}
+    typed = {m["index"]: m for m in side.get("mistakes", []) if isinstance(m, dict) and "index" in m}
+    for i, m in enumerate(sol.get("common_mistakes", [])):
+        tag = ""
+        if i in typed:
+            tag = " [%s%s]" % (typed[i].get("type"), ('; route: "%s"' % typed[i]["route"]) if typed[i].get("route") else "")
+        L.append("- mistake%s%s: %s" % (" (option %d)" % m["option"] if m.get("option") else "", tag, m["text"]))
+    if side:
+        L.append("- right route: %s" % (('"%s"' % side["right_route"]) if side.get("right_route") else "(none: a theory question)"))
     L += ["", "audit: verdict **%s**, auditor picked option %s (%s)" % (au["verdict"], au.get("auditor_option"),
                                                                       au.get("audited_by", {}).get("agent"))]
     for f in au.get("findings", []):

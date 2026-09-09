@@ -14,6 +14,12 @@ stale by construction; the release build refuses a stale verdict.
     python scripts/eapcet/gate_solutions.py                      # gate everything, write sidecars
     python scripts/eapcet/gate_solutions.py --baseline           # also diff against the frozen run
     python scripts/eapcet/gate_solutions.py --freeze-baseline    # after the diff has been read
+    python scripts/eapcet/gate_solutions.py --routes [--baseline | --freeze-baseline]
+                                                                 # gate the _routes/ sidecars instead
+
+The routes sidecar (`_routes/<qid>.json`) types every common mistake and phrases the routes a
+student can claim. It is a separate file with its own sha so that adding it never moves a
+verified solution's `content_sha`: the solution's verdict stays, the sidecar earns its own.
 """
 import os, io, re, sys, json, hashlib, argparse, datetime, collections
 
@@ -35,6 +41,16 @@ MISTAKE_KEYS = {"option", "text"}
 LIMITS = {"approach": 30, "step_text": 60, "mistake": 35, "steps_min": 2, "steps_max": 8, "mistakes_max": 3}
 DIFFICULTY = {"easy", "medium", "hard"}
 MISTAKE_TYPES = {"concept", "calculation", "application"}
+
+# the routes sidecar: what a student can claim they did, typed per common mistake
+ROUTES = os.path.join(SOL, "_routes")
+ROUTES_SCHEMA = "eapcet_routes_v1"
+ROUTES_REQUIRED = {"schema", "question_id", "right_route", "mistakes", "authored_by"}
+ROUTE_MISTAKE_KEYS = {"index", "type", "route"}
+ROUTE_TYPES = {"concept", "application", "calculation", "careless"}
+ROUTED_TYPES = {"concept", "application"}          # the mistake IS a route; the others keep the right route
+ROUTE_MAX_WORDS = 12
+ROUTE_NEEDS_RIGHT = {"calculation", "application"}  # a hint that means the question has a route
 
 EXTRA_PLACEHOLDER = re.compile(r"assume the figure|cannot determine|not enough information|figure not|"
                                r"insufficient data|would need the figure", re.I)
@@ -122,9 +138,35 @@ def all_text(sol):
     return "\n".join(parts)
 
 
-def content_sha(sol):
-    body = {k: v for k, v in sol.items() if k != "authored_by"}
+def sha_of(obj, drop=("authored_by",)):
+    """The sha of what was judged: every field except provenance. One function for the solution
+    and for its routes sidecar, so the two shas are computed the same way and never confused."""
+    body = {k: v for k, v in obj.items() if k not in drop}
     return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def content_sha(sol):
+    return sha_of(sol)
+
+
+def routes_sha(side):
+    return sha_of(side)
+
+
+def phrase_problem(s, against_text=None):
+    """Why a route phrase fails, or None. A route is what a student would say they did: first
+    person, short, and free of any number that could hand over the answer."""
+    if not isinstance(s, str) or not s.strip():
+        return "empty"
+    if not s.startswith("I "):
+        return "not first person"
+    if words(s) > ROUTE_MAX_WORDS:
+        return "%d words" % words(s)
+    if re.search(r"\d{2,}", s):
+        return "a number of two or more digits"
+    if against_text is not None and s.strip().lower() == str(against_text).strip().lower():
+        return "equals the mistake text"
+    return None
 
 
 def check(sol, q, idioms):
@@ -234,23 +276,180 @@ def check(sol, q, idioms):
     return None, "", checks, warn
 
 
+def check_routes(side, sol, q, idioms, gated_sha):
+    """Return (reject_reason or None, detail, checks dict, warnings list) for a routes sidecar,
+    judged against the solution the last solution-gate run passed."""
+    checks, warn = {}, []
+    if not isinstance(side, dict):
+        return "not_an_object", "", checks, warn
+    keys = set(side)
+    if side.get("schema") != ROUTES_SCHEMA:
+        return "wrong_schema", repr(side.get("schema")), checks, warn
+    if keys - ROUTES_REQUIRED:
+        return "unknown_keys", ", ".join(sorted(keys - ROUTES_REQUIRED)), checks, warn
+    if ROUTES_REQUIRED - keys:
+        return "missing_keys", ", ".join(sorted(ROUTES_REQUIRED - keys)), checks, warn
+    if side["question_id"] != q["id"]:
+        return "id_mismatch", "%s vs %s" % (side["question_id"], q["id"]), checks, warn
+    if not isinstance(side["authored_by"], dict):
+        return "bad_provenance", "", checks, warn
+    checks["schema"] = True
+
+    # the sidecar hangs off ONE gated solution; a moved solution orphans its routes
+    if sol is None or gated_sha is None:
+        return "solution_not_passing", "no gate-pass solution to attach routes to", checks, warn
+    if content_sha(sol) != gated_sha:
+        return "solution_changed", "the solution on disk is not the gated one; run the solution gate first", checks, warn
+    checks["integrity"] = True
+
+    cm = sol.get("common_mistakes", [])
+    ms = side["mistakes"]
+    if not isinstance(ms, list) or not all(isinstance(m, dict) for m in ms):
+        return "bad_mistakes", "", checks, warn
+    have = sorted(m.get("index") for m in ms if isinstance(m.get("index"), int) and not isinstance(m.get("index"), bool))
+    if have != list(range(len(cm))) or len(have) != len(ms):
+        return "index_coverage", "have %s, need every index 0..%d exactly once" % (have, len(cm) - 1), checks, warn
+    for m in ms:
+        if set(m) != ROUTE_MISTAKE_KEYS:
+            return "bad_mistake_keys", ", ".join(sorted(set(m) ^ ROUTE_MISTAKE_KEYS)), checks, warn
+        if m["type"] not in ROUTE_TYPES:
+            return "bad_type", "mistakes[%d]: %r" % (m["index"], m["type"]), checks, warn
+        routed = m["type"] in ROUTED_TYPES
+        if routed and m["route"] is None:
+            return "route_missing", "mistakes[%d] is %s, so the mistake is a route and needs its phrase" % (m["index"], m["type"]), checks, warn
+        if not routed and m["route"] is not None:
+            return "route_forbidden", "mistakes[%d] is %s: the route was right, so it carries no route phrase" % (m["index"], m["type"]), checks, warn
+        if routed:
+            p = phrase_problem(m["route"], cm[m["index"]].get("text"))
+            if p:
+                return "bad_route", "mistakes[%d]: %s" % (m["index"], p), checks, warn
+    checks["mistakes"] = True
+
+    rr = side["right_route"]
+    if rr is None:
+        if sol.get("mistake_type_hint") in ROUTE_NEEDS_RIGHT:
+            return "right_route_missing", "hint is %s, so the question has a route" % sol["mistake_type_hint"], checks, warn
+        warn.append("theory: no right route; the run asks 'were you sure?' on this question")
+    else:
+        p = phrase_problem(rr)
+        if p:
+            return "bad_right_route", p, checks, warn
+    checks["right_route"] = True
+
+    text = "\n".join([rr or ""] + [m["route"] or "" for m in ms])
+    for rx, name in MARKDOWN:
+        if rx.search(text):
+            checks["markdown"] = False
+            return "markdown", name, checks, warn
+    checks["markdown"] = True
+    found = idioms_in(text, idioms)
+    if found:
+        checks["idioms"] = False
+        return "idiom", ", ".join(found), checks, warn
+    checks["idioms"] = True
+    return None, "", checks, warn
+
+
+def gate_routes(a, pool, byid, idioms, run_at):
+    """Gate every sidecar in _routes/ against the solutions the last solution-gate run passed.
+    Writes _gate/routes_status.json; --baseline diffs it the way status.json is diffed."""
+    sol_status_path = os.path.join(GATE, "status.json")
+    sol_status = load(sol_status_path) if os.path.exists(sol_status_path) else {}
+    status, rejected = {}, []
+    files = sorted(f for f in os.listdir(ROUTES) if f.endswith(".json") and not f.startswith("_")) if os.path.isdir(ROUTES) else []
+    for f in files:
+        qid = f[:-5]
+        try:
+            side = load(os.path.join(ROUTES, f))
+        except Exception as e:
+            status[qid] = {"verdict": "reject", "reason": "unparseable", "detail": str(e)[:120], "gate_run": run_at}
+            rejected.append({"id": qid, "reason": "unparseable", "detail": str(e)[:120]})
+            continue
+        q = byid.get(qid)
+        if not q:
+            status[qid] = {"verdict": "reject", "reason": "not_in_pool", "detail": "", "gate_run": run_at}
+            rejected.append({"id": qid, "reason": "not_in_pool", "detail": ""})
+            continue
+        st = sol_status.get(qid)
+        gated = st["content_sha"] if st and st.get("verdict") == "pass" else None
+        sol_path = os.path.join(SOL, qid + ".json")
+        sol = load(sol_path) if os.path.exists(sol_path) else None
+        reason, detail, checks, warn = check_routes(side, sol, q, idioms, gated)
+        row = {"verdict": "reject" if reason else "pass",
+               "routes_sha": routes_sha(side) if isinstance(side, dict) else None,
+               "solution_sha": gated, "checks": checks, "warnings": warn,
+               "chapter_key": q["chapter_key"], "gate_run": run_at}
+        if reason:
+            row["reason"], row["detail"] = reason, detail
+            rejected.append({"id": qid, "reason": reason, "detail": detail})
+        status[qid] = row
+
+    print("%-40s %4s %4s %4s %4s  %s" % ("chapter", "pool", "rout", "pass", "rej", "reject reasons"))
+    tot = collections.Counter()
+    for c in pool["chapters"]:
+        ids = c["question_ids"]
+        have = [i for i in ids if i in status]
+        ok = [i for i in have if status[i]["verdict"] == "pass"]
+        rej = [i for i in have if status[i]["verdict"] == "reject"]
+        reasons = collections.Counter(status[i]["reason"] for i in rej)
+        tot.update(pool=len(ids), have=len(have), ok=len(ok), rej=len(rej))
+        if have:
+            print("%-40s %4d %4d %4d %4d  %s" % (c["name"][:40], len(ids), len(have), len(ok), len(rej),
+                                                " ".join("%s=%d" % kv for kv in sorted(reasons.items()))))
+    print("%-40s %4d %4d %4d %4d" % ("TOTAL", tot["pool"], tot["have"], tot["ok"], tot["rej"]))
+    for r in rejected:
+        print("  REJECT %s: %s %s" % (r["id"], r["reason"], r["detail"]))
+    theory = sum(1 for r in status.values() if r["verdict"] == "pass" and r.get("warnings"))
+    if theory:
+        print("theory questions (no right route): %d" % theory)
+
+    if a.baseline:
+        base_path = os.path.join(GATE, "routes_baseline.json")
+        if os.path.exists(base_path):
+            base = load(base_path)
+            new_pass = sorted(i for i, r in status.items() if r["verdict"] == "pass" and base.get(i, {}).get("verdict") != "pass")
+            new_rej = sorted(i for i, r in status.items() if r["verdict"] == "reject" and base.get(i, {}).get("verdict") == "pass")
+            flipped = sorted(i for i, r in status.items() if i in base and base[i].get("routes_sha") == r.get("routes_sha")
+                             and base[i].get("verdict") != r["verdict"])
+            print("")
+            print("vs routes baseline: newly passing %d, newly rejected %d, verdict changed on UNCHANGED sidecar %d"
+                  % (len(new_pass), len(new_rej), len(flipped)))
+            for i in flipped:
+                print("   ", i, base[i].get("verdict"), "->", status[i]["verdict"])
+        else:
+            print("no routes baseline yet - run --routes --freeze-baseline after reading this output")
+
+    os.makedirs(GATE, exist_ok=True)
+    io.open(os.path.join(GATE, "routes_status.json"), "w", encoding="utf-8").write(json.dumps(status, indent=1, ensure_ascii=False))
+    io.open(os.path.join(GATE, "_routes_rejected.json"), "w", encoding="utf-8").write(json.dumps(rejected, indent=1, ensure_ascii=False))
+    if a.freeze_baseline:
+        io.open(os.path.join(GATE, "routes_baseline.json"), "w", encoding="utf-8").write(json.dumps(status, indent=1, ensure_ascii=False))
+        print("routes baseline frozen")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--baseline", action="store_true")
     ap.add_argument("--freeze-baseline", action="store_true")
+    ap.add_argument("--routes", action="store_true", help="gate the _routes/ sidecars instead of the solutions")
     ap.add_argument("--dir", default=None,
                     help="gate a different directory (the examples, a test set) instead of eapcet/solutions")
     a = ap.parse_args()
-    global SOL, GATE
+    global SOL, GATE, ROUTES
     if a.dir:
         SOL = a.dir if os.path.isabs(a.dir) else os.path.join(ROOT, a.dir)
         GATE = os.path.join(SOL, "_gate")
+        ROUTES = os.path.join(SOL, "_routes")
 
     pool = load(POOL)
     byid = {q["id"]: q for q in pool["questions"]}
     idioms = idioms_from_ts()
     os.makedirs(GATE, exist_ok=True)
     run_at = datetime.datetime.now().astimezone().isoformat(timespec="seconds")
+
+    if a.routes:
+        gate_routes(a, pool, byid, idioms, run_at)
+        return
 
     status, rejected = {}, []
     files = sorted(f for f in os.listdir(SOL) if f.endswith(".json") and not f.startswith("_")) if os.path.isdir(SOL) else []

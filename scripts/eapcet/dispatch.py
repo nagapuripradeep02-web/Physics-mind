@@ -12,8 +12,15 @@ it, and the key gate stops being a test.
     python scripts/eapcet/dispatch.py --plan --wave 1 --role audit          # after make_audit_input.py
     python scripts/eapcet/dispatch.py --redispatch --wave 1 --ids <id> ... --reason "key miss"
     python scripts/eapcet/dispatch.py --mark-dispatched --wave 1 [--role author]
+    python scripts/eapcet/dispatch.py --plan --wave 1 --role routes --chapter-keys p1-02      # after build_release.py
+    python scripts/eapcet/dispatch.py --plan --wave 1 --role routes_audit    # after make_audit_input.py --role routes
+    python scripts/eapcet/dispatch.py --redispatch --wave 1 --role routes --ids <id> ... --reason "audit wrong"
     python scripts/eapcet/dispatch.py --audit-disk
     python scripts/eapcet/dispatch.py --status
+
+Routes slices carry the question AND the verified solution's content fields: the routes author is
+sighted by design (its routes are derived from a solution the key gate already passed). It still
+never sees the key file, the bank, or the gate's verdict.
 """
 import os, io, sys, json, argparse, datetime, collections
 
@@ -26,6 +33,12 @@ SLICES = os.path.join(SOL, "_slices")
 AUDIT_IN = os.path.join(SOL, "_audit_input")
 AUDIT_SLICES = os.path.join(SOL, "_audit_slices")
 SPLIT_WORDS = ("split", "join", "continu", "second image")
+ROUTES = os.path.join(SOL, "_routes")
+AUDIT_ROUTES = os.path.join(SOL, "_audit_routes")
+AUDIT_IN_ROUTES = os.path.join(SOL, "_audit_input_routes")
+RELEASE = POOL.replace(".json", ".release.json")
+SHOWN = ("approach", "steps", "final_answer", "common_mistakes", "concept_tags", "difficulty", "mistake_type_hint")
+LETTER = {"author": "A", "audit": "U", "routes": "R", "routes_audit": "V"}
 
 
 def now():
@@ -60,8 +73,17 @@ def author_view(q):
     return v
 
 
+def routes_view(q, sol):
+    """What the routes author sees: the question and the verified solution's content fields.
+    Sighted by design - the routes are derived from a solution the key gate already passed - but
+    still never the key file, never the bank, never the gate verdict."""
+    return {"id": q["id"], "chapter": q["chapter"], "year": q["year"],
+            "question_en": q["question_en"], "options_en": q["options_en"],
+            "solution": {k: sol[k] for k in SHOWN if k in sol}}
+
+
 def label(wave, role, chapter_key, k=None):
-    base = "W%02d-%s-%s" % (wave, "A" if role == "author" else "U", chapter_key)
+    base = "W%02d-%s-%s" % (wave, LETTER.get(role, "U"), chapter_key)
     return base if k is None else base + "-R%d" % k
 
 
@@ -142,12 +164,95 @@ def plan_audits(ledger, wave, model):
     return rows
 
 
-def archive_attempt(qid):
+def plan_routes(ledger, wave, chapter_keys, model):
+    """One routes slice per chapter over its VERIFIED solutions: the release's verified_ids when a
+    release exists, else every gate-pass solution. The author reads the solution, never the key."""
+    pool, byid, bych = pool_index()
+    rel = load(RELEASE)
+    if rel:
+        verified = {c["key"]: set(c["verified_ids"]) for c in rel["chapters"]}
+    else:
+        verified = collections.defaultdict(set)
+        for qid, row in (load(os.path.join(SOL, "_gate", "status.json"), {}) or {}).items():
+            if row.get("verdict") == "pass":
+                verified[row["chapter_key"]].add(qid)
+    planned = {(r["wave"], r["role"], r["chapter_key"]) for r in ledger if not r.get("redispatch_of")}
+    rows = []
+    for ck in chapter_keys:
+        c = bych.get(ck)
+        if not c:
+            sys.exit("unknown chapter key %r" % ck)
+        if (wave, "routes", ck) in planned:
+            sys.exit("chapter %s routes already planned in wave %d - use --redispatch --role routes --reason" % (ck, wave))
+        ids = [i for i in c["question_ids"] if i in verified.get(ck, set())]
+        if not ids:
+            print("  %s has no verified solutions - skipped" % ck)
+            continue
+        slice_path = os.path.join(SLICES, "W%02d_%s_routes.json" % (wave, ck))
+        save(slice_path, {"wave": wave, "role": "routes", "chapter_key": ck, "chapter": c["name"],
+                          "questions": [routes_view(byid[i], load(os.path.join(SOL, i + ".json"))) for i in ids]})
+        rows.append({"wave": wave, "role": "routes", "chapter_key": ck, "chapter": c["name"],
+                     "question_ids": ids, "model": model,
+                     "agent_label": label(wave, "routes", ck),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(ids), "files_present": 0})
+        print("  planned %-14s %-40s %2d verified solutions -> %s" % (rows[-1]["agent_label"], c["name"][:40],
+                                                                      len(ids), rows[-1]["slice_path"]))
+    return rows
+
+
+def plan_route_audits(ledger, wave, model):
+    """One routes-audit slice per chapter over every routes audit input for that wave's ids.
+    Coverage is by item sha, as for plan_audits: the real sidecar behind a control shares its id."""
+    pool, byid, bych = pool_index()
+    wave_ids = set()
+    for r in ledger:
+        if r["wave"] == wave and r["role"] == "routes":
+            wave_ids.update(r["question_ids"])
+    if not wave_ids:
+        sys.exit("wave %d has no routes rows" % wave)
+    have = {f[:-5] for f in os.listdir(AUDIT_IN_ROUTES)} if os.path.isdir(AUDIT_IN_ROUTES) else set()
+    missing = sorted(wave_ids - have)
+    if missing:
+        print("  %d ids of wave %d have no routes audit input yet (run make_audit_input.py --role routes): first %s"
+              % (len(missing), wave, missing[:3]))
+    covered = set()
+    rounds = collections.Counter()
+    for r in ledger:
+        if r["wave"] == wave and r["role"] == "routes_audit":
+            rounds[r["chapter_key"]] += 1
+            for it in (load(os.path.join(ROOT, r["slice_path"])) or {}).get("items", []):
+                covered.add(it.get("item_sha"))
+    rows = []
+    by_ch = collections.defaultdict(list)
+    for i in sorted(wave_ids & have):
+        if (load(os.path.join(AUDIT_IN_ROUTES, i + ".json")) or {}).get("item_sha") in covered:
+            continue
+        by_ch[byid[i]["chapter_key"]].append(i)
+    for ck, ids in sorted(by_ch.items()):
+        k = rounds[ck] or None
+        suffix = "" if k is None else "_R%d" % k
+        slice_path = os.path.join(AUDIT_SLICES, "W%02d_%s_routes%s.json" % (wave, ck, suffix))
+        items = [load(os.path.join(AUDIT_IN_ROUTES, i + ".json")) for i in ids]
+        save(slice_path, {"wave": wave, "role": "routes_audit", "chapter_key": ck, "chapter": bych[ck]["name"],
+                          "round": k, "items": items})
+        rows.append({"wave": wave, "role": "routes_audit", "chapter_key": ck, "chapter": bych[ck]["name"],
+                     "question_ids": ids, "model": model, "agent_label": label(wave, "routes_audit", ck, k),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(ids), "files_present": 0})
+        print("  planned %-14s %-40s %2d items" % (rows[-1]["agent_label"], bych[ck]["name"][:40], len(ids)))
+    return rows
+
+
+def archive_attempt(qid, role="author"):
     """Keep the attempt being replaced. Two blind attempts reaching the same option against the
     key is the escalation signal, and build_release.py needs both to see it."""
     attempts = os.path.join(SOL, "_attempts")
-    for src, tag in ((os.path.join(SOL, qid + ".json"), "attempt"),
-                     (os.path.join(SOL, "_refusals", qid + ".json"), "refusal")):
+    sources = ((os.path.join(ROUTES, qid + ".json"), "routes"),) if role == "routes" else \
+        ((os.path.join(SOL, qid + ".json"), "attempt"), (os.path.join(SOL, "_refusals", qid + ".json"), "refusal"))
+    for src, tag in sources:
         if os.path.exists(src):
             n = 1 + len([f for f in os.listdir(attempts) if f.startswith(qid + ".")]) if os.path.isdir(attempts) else 1
             os.makedirs(attempts, exist_ok=True)
@@ -155,9 +260,9 @@ def archive_attempt(qid):
             print("  archived %s -> _attempts/%s.%d.%s.json" % (tag, qid, n, tag))
 
 
-def redispatch(ledger, wave, ids, reason, model):
+def redispatch(ledger, wave, ids, reason, model, role="author"):
     """Re-author specific ids (key misses, refusals, audit failures) - grouped by chapter, a
-    fresh agent, still blind."""
+    fresh agent, still blind. With --role routes: re-phrase specific sidecars, a fresh agent."""
     pool, byid, bych = pool_index()
     bad = [i for i in ids if i not in byid]
     if bad:
@@ -165,15 +270,18 @@ def redispatch(ledger, wave, ids, reason, model):
     by_ch = collections.defaultdict(list)
     for i in ids:
         by_ch[byid[i]["chapter_key"]].append(i)
-        archive_attempt(i)
+        archive_attempt(i, role)
     rows = []
     for ck, group in sorted(by_ch.items()):
-        k = 1 + sum(1 for r in ledger if r["wave"] == wave and r["chapter_key"] == ck and r.get("redispatch_of"))
-        slice_path = os.path.join(SLICES, "W%02d_%s_R%d.json" % (wave, ck, k))
-        save(slice_path, {"wave": wave, "role": "author", "chapter_key": ck, "chapter": bych[ck]["name"],
-                          "redispatch": k, "questions": [author_view(byid[i]) for i in group]})
-        rows.append({"wave": wave, "role": "author", "chapter_key": ck, "chapter": bych[ck]["name"],
-                     "question_ids": group, "model": model, "agent_label": label(wave, "author", ck, k),
+        k = 1 + sum(1 for r in ledger if r["wave"] == wave and r["chapter_key"] == ck and r["role"] == role and r.get("redispatch_of"))
+        suffix = "_routes" if role == "routes" else ""
+        slice_path = os.path.join(SLICES, "W%02d_%s%s_R%d.json" % (wave, ck, suffix, k))
+        view = [routes_view(byid[i], load(os.path.join(SOL, i + ".json"))) for i in group] if role == "routes" \
+            else [author_view(byid[i]) for i in group]
+        save(slice_path, {"wave": wave, "role": role, "chapter_key": ck, "chapter": bych[ck]["name"],
+                          "redispatch": k, "questions": view})
+        rows.append({"wave": wave, "role": role, "chapter_key": ck, "chapter": bych[ck]["name"],
+                     "question_ids": group, "model": model, "agent_label": label(wave, role, ck, k),
                      "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
                      "planned_at": now(), "dispatched_at": None, "status": "planned",
                      "files_expected": len(group), "files_present": 0,
@@ -190,11 +298,14 @@ def audit_disk(ledger):
             present = [i for i in r["question_ids"]
                        if os.path.exists(os.path.join(SOL, i + ".json"))
                        or os.path.exists(os.path.join(SOL, "_refusals", i + ".json"))]
+        elif r["role"] == "routes":
+            present = [i for i in r["question_ids"] if os.path.exists(os.path.join(ROUTES, i + ".json"))]
         else:
             # audit files are named <qid>.<sha8>.json: the slice knows which sha each row judged
+            audit_dir = AUDIT_ROUTES if r["role"] == "routes_audit" else os.path.join(SOL, "_audit")
             sl = load(os.path.join(ROOT, r["slice_path"])) if os.path.exists(os.path.join(ROOT, r["slice_path"])) else {"items": []}
             present = [it["question_id"] for it in sl.get("items", [])
-                       if os.path.exists(os.path.join(SOL, "_audit", it["audit_file"]))]
+                       if os.path.exists(os.path.join(audit_dir, it["audit_file"]))]
         r["files_present"] = len(present)
         if r["status"] in ("dispatched", "partial", "written"):
             r["status"] = "written" if len(present) == r["files_expected"] else "partial" if present else "dispatched"
@@ -222,7 +333,7 @@ def main():
     ap.add_argument("--unplan", action="store_true", help="drop rows still 'planned' (never dispatched) for --wave/--role, and their slices")
     ap.add_argument("--status", action="store_true")
     ap.add_argument("--wave", type=int)
-    ap.add_argument("--role", default="author", choices=["author", "audit"])
+    ap.add_argument("--role", default="author", choices=["author", "audit", "routes", "routes_audit"])
     ap.add_argument("--chapter-keys", nargs="*", default=[])
     ap.add_argument("--ids", nargs="*", default=[])
     ap.add_argument("--reason", default="")
@@ -230,7 +341,7 @@ def main():
     a = ap.parse_args()
 
     ledger = load(LEDGER, [])
-    model = a.model or ("opus" if a.role == "audit" else "sonnet")
+    model = a.model or ("opus" if a.role in ("audit", "routes_audit") else "sonnet")
 
     if a.plan:
         if a.wave is None:
@@ -239,13 +350,21 @@ def main():
             if not a.chapter_keys:
                 sys.exit("--plan --role author needs --chapter-keys")
             ledger += plan_authors(ledger, a.wave, a.chapter_keys, model)
+        elif a.role == "routes":
+            if not a.chapter_keys:
+                sys.exit("--plan --role routes needs --chapter-keys")
+            ledger += plan_routes(ledger, a.wave, a.chapter_keys, model)
+        elif a.role == "routes_audit":
+            ledger += plan_route_audits(ledger, a.wave, model)
         else:
             ledger += plan_audits(ledger, a.wave, model)
         save(LEDGER, ledger)
     elif a.redispatch:
         if a.wave is None or not a.ids or not a.reason:
             sys.exit("--redispatch needs --wave, --ids and --reason")
-        ledger += redispatch(ledger, a.wave, a.ids, a.reason, model)
+        if a.role not in ("author", "routes"):
+            sys.exit("--redispatch is for --role author or --role routes")
+        ledger += redispatch(ledger, a.wave, a.ids, a.reason, model, a.role)
         save(LEDGER, ledger)
     elif a.mark_dispatched:
         n = 0

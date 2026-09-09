@@ -1,0 +1,515 @@
+{
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "threshold": 0.5,
+ "bank_asked": 37,
+ "bank_questions": 32,
+ "pool_ids": [
+  "tg_eapcet_2021_20210804_an_q083",
+  "tg_eapcet_2022_20220718_an_q084",
+  "tg_eapcet_2023_20230512_an_q083",
+  "tg_eapcet_2024_20240509_an_q083",
+  "tg_eapcet_2025_20250503_fn_q110",
+  "tg_eapcet_2021_20210804_an_q084",
+  "tg_eapcet_2022_20220718_fn_q083",
+  "tg_eapcet_2023_20230512_fn_q083",
+  "tg_eapcet_2024_20240509_fn_q083",
+  "tg_eapcet_2025_20250503_fn_q116",
+  "tg_eapcet_2021_20210804_fn_q083",
+  "tg_eapcet_2022_20220718_fn_q084",
+  "tg_eapcet_2023_20230513_an_q083",
+  "tg_eapcet_2024_20240510_an_q083",
+  "tg_eapcet_2025_20250504_fn_q081"
+ ],
+ "clusters": [],
+ "singletons": [
+  {
+   "id": "tg_eapcet_2021_20210804_an_q083",
+   "year": 2021,
+   "date": "2021-08-04",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A stone falls freely under gravity. It covers distance d₁ and d₂ in the first 4 seconds, and the next 8 seconds respectively. The ratio d₂/d₁ is",
+   "options_en": [
+    "8",
+    "2",
+    "16",
+    "12"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_an_q084",
+   "year": 2021,
+   "date": "2021-08-04",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "The velocity of a particle moving along the x - axis varies as a function of time t as v(t) = (1 − 3t² + 2t³) m/s. If its position at t = 0 is x = 0 then at t = 2 s, its position is",
+   "options_en": [
+    "1 m",
+    "2 m",
+    "4 m",
+    "18 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210804_fn_q083",
+   "year": 2021,
+   "date": "2021-08-04",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A car travels in a straight line along a road. Its distance 'x' from a stop sign is given as a function of 't' by the equation x(t) = αt + βt³, where α = 2.0 m/s, β = 0.01 m/s³. Calculate the average velocity of the car in the time interval t = 2.00 sec to 4.00 sec.",
+   "options_en": [
+    "2.28 m/s",
+    "4.94 m/s",
+    "3.34 m/s",
+    "4.12 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_an_q083",
+   "year": 2021,
+   "date": "2021-08-05",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "Two balls are released from the same position at a height of 500 m above ground, one after the other, with an interval of 1 s. What is the distance between the two balls when the first hits ground? (Acceleration due to gravity g = 10 m/s²)",
+   "options_en": [
+    "95 m",
+    "65 m",
+    "130 m",
+    "175 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_an_q084",
+   "year": 2021,
+   "date": "2021-08-05",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A cyclist traversed half the distance of a linear track with a velocity 10 m/s. The remaining part of the track was covered with a velocity v₁ for half the time and a velocity v₂ for the other half of the time. If v₁ + v₂ = 20 m/s, then the average velocity of the cyclist during the completion of the journey through the track is:",
+   "options_en": [
+    "30 m/s",
+    "20 m/s",
+    "10 m/s",
+    "15 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_fn_q083",
+   "year": 2021,
+   "date": "2021-08-05",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "Two cars A and B initially at rest are moving in same direction with accelerations a₁ and a₂ respectively. After a certain time, they achieve velocities v₁ and v₂ respectively and separated are by a distance of 50 m. If (a₁−a₂)= 4 m/s², then the quantity (v₁−v₂) will be",
+   "options_en": [
+    "24 m/s",
+    "20 m/s",
+    "40 m/s",
+    "12 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210805_fn_q084",
+   "year": 2021,
+   "date": "2021-08-05",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A rocket lifts off from ground and accelerate upwards at 1 m/s². 20 seconds after lift off a piece breaks off from the bottom of rocket. After breaking off, how much time it takes approximately to reach the ground? (Take g = 10 m/s²)",
+   "options_en": [
+    "6.3 s",
+    "4.5 s",
+    "10.5 s",
+    "8.5 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210806_an_q083",
+   "year": 2021,
+   "date": "2021-08-06",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A ball is dropped from rest at time t= 0 from certain height. A second ball is dropped from same height at time t =1 s. At what time t, the distance between two balls becomes 10 m?",
+   "options_en": [
+    "1.25 s",
+    "1.5 s",
+    "1.75 s",
+    "2 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210806_fn_q084",
+   "year": 2021,
+   "date": "2021-08-06",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A ball thrown upwards vertically reaches a height 25 m in 1 s. The ratio of total distance covered by the ball in time t = 2 s and t = 4 s is (use g = 10 m/s²)",
+   "options_en": [
+    "1",
+    "4/5",
+    "2/3",
+    "3/4"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2021_20210806_fn_q086",
+   "year": 2021,
+   "date": "2021-08-06",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "At time t = 0, a particle leaves the origin and moves in the positive direction of the X-axis. If the velocity of the particles varies as V̄(t) = V̄0(1 − t/t₀), |V₀| = 10 m/s and t₀ = 10 s, then the distance covered by the particle during the first 20 s is:",
+   "options_en": [
+    "200 m",
+    "100 m",
+    "0 m",
+    "400 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_an_q084",
+   "year": 2022,
+   "date": "2022-07-18",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "Assertion(A) : The zero velocity of a particle at any instant always implies zero acceleration at that instant. Reason(R) : A body is momentarily at rest when reverses its direction of motion. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q083",
+   "year": 2022,
+   "date": "2022-07-18",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A body starts from the rest and acquires a velocity of 10 m/s in 2s. What is the acceleration of the body and the distance travelled",
+   "options_en": [
+    "5 m/s² and 10 m",
+    "5 m/s² and 5 m",
+    "5 m/s² and 6 m",
+    "6 m/s² and 5 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220718_fn_q084",
+   "year": 2022,
+   "date": "2022-07-18",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A bullet fired into a target losses one-third of its velocity after travelling a distance x meter into the target. If the bullet comes to rest by travelling a further distance x′, then the ratio x′/x is",
+   "options_en": [
+    "2/3",
+    "1/3",
+    "4/5",
+    "4/9"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_an_q083",
+   "year": 2022,
+   "date": "2022-07-19",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A rocket moves straight upward with zero initial velocity and with an acceleration 20 m/s². It runs out of fuel and stops accelerating at the end of 5th sec. It reaches a maximum height and falls back to the earth. The speed when it hits the ground is (Take g = 10 m/s²)",
+   "options_en": [
+    "100√2 m/s",
+    "150√3 m/s",
+    "50√6 m/s",
+    "75 m/s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220719_fn_q083",
+   "year": 2022,
+   "date": "2022-07-19",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A particle moves along a straight line such that its displacement 'x' varies with time 't' as x = αt³ + βt² + γ, where α, β, γ are constants. V₁ is the average velocity of the particle during its journey between t = 1s and t = 3s. V₂ is the instantaneous velocity of the particle at t = 3s. The ratio V₁/V₂ is",
+   "options_en": [
+    "(27α + 9β)/(26α + 6β)",
+    "(9α + 3β)/(18α + 4β)",
+    "(13α + 4β)/(27α + 6β)",
+    "(26α + 8β)/(9α + 3β)"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220720_an_q083",
+   "year": 2022,
+   "date": "2022-07-20",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A car starts at time t = 0 from an initial speed of 10 m/s and accelerates uniformly with 2 m/s² on a straight road for time 0 ≤ t ≤ 10s. Let S₁ and S₂ be the distance covered by the car in time 3 ≤ t ≤ 4s and 4 ≤ t ≤ 5s respectively. The ratio S₂/S₁ is",
+   "options_en": [
+    "1",
+    "19/7",
+    "9/7",
+    "5/3"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220720_fn_q083",
+   "year": 2022,
+   "date": "2022-07-20",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A ball projected up passes the same height H at 2 s and 10 s. The value of H is [Use g = 9.8 m/s²]",
+   "options_en": [
+    "102 m",
+    "100 m",
+    "98 m",
+    "9.8 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2022_20220720_fn_q084",
+   "year": 2022,
+   "date": "2022-07-20",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "Two towns X and Y are connected by a regular bus service. A bus leaves in either direction at every t = T minutes. A man moving with some speed in the direction X to Y finds that a bus goes past him every t = t₁ minutes in the direction of his motion, and every t = t₂ minutes in the opposite direction. Then T is given by",
+   "options_en": [
+    "2t₁t₂/(t₁+t₂)",
+    "(t₁−t₂)t₁/(t₁+t₂)",
+    "2t₂(t₁+t₂)/|t₁−t₂|",
+    "t₁t₂/|t₁−t₂|"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_an_q083",
+   "year": 2023,
+   "date": "2023-05-12",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "The ratio of the displacements of a freely falling body during first, second and third seconds of its motion is",
+   "options_en": [
+    "1:1:1",
+    "1:3:5",
+    "1:2:3",
+    "1:4:9"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230512_fn_q083",
+   "year": 2023,
+   "date": "2023-05-12",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_an_q083",
+   "year": 2023,
+   "date": "2023-05-13",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A bird flies with a velocity (t−2) ms⁻¹ along a straight line, where t is the time in seconds. The distance covered by it in a time of 4 seconds is",
+   "options_en": [
+    "2 m",
+    "4 m",
+    "6 m",
+    "8 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230513_fn_q083",
+   "year": 2023,
+   "date": "2023-05-13",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A body starts from rest with uniform acceleration. If its velocity after nth second (last second) is 'V' then its displacement in the last two seconds is",
+   "options_en": [
+    "2V(n+1)/n",
+    "V(n+1)/n",
+    "V(n−1)/n",
+    "2V(n−1)/n"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230514_an_q083",
+   "year": 2023,
+   "date": "2023-05-14",
+   "session": "AN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "The displacement-time graphs of two moving particles make angles of 30° and 45° with the time axis. The ratio of their velocities is",
+   "options_en": [
+    "√3:2",
+    "1:1",
+    "1:2",
+    "1:√3"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2023_20230514_fn_q083",
+   "year": 2023,
+   "date": "2023-05-14",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "The acceleration of a vertically projected body at its highest reaching position is",
+   "options_en": [
+    "0",
+    "Equal to acceleration due to gravity at the place",
+    "Infinity",
+    "−1 ms⁻²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_an_q083",
+   "year": 2024,
+   "date": "2024-05-09",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "0.8 s",
+    "1.6 s",
+    "1.0 s",
+    "0.2 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240509_fn_q083",
+   "year": 2024,
+   "date": "2024-05-09",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A body is falling freely from the top of a tower of height 125 m. The distance covered by the body during the last second of its motion is x% of the height of the tower. Then x is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9",
+    "36",
+    "25",
+    "49"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_an_q083",
+   "year": 2024,
+   "date": "2024-05-10",
+   "session": "AN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "3 : 4",
+    "1 : 1",
+    "2 : 1",
+    "3 : 2"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240510_fn_q083",
+   "year": 2024,
+   "date": "2024-05-10",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "A body moving with uniform acceleration, travels a distance of 25 m in the fourth second and 37 m in the sixth second. The distance covered by the body in the next two seconds is",
+   "options_en": [
+    "63 m",
+    "84 m",
+    "49 m",
+    "92 m"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2024_20240511_fn_q083",
+   "year": 2024,
+   "date": "2024-05-11",
+   "session": "FN",
+   "in_pool": false,
+   "twin_of": [],
+   "question_en": "The position x (in metre) of a particle moving along a straight line is given by x = t³ − 12t + 3, where 't' is time (in second). The acceleration of the particle when its velocity becomes 15 ms⁻¹ is",
+   "options_en": [
+    "15 ms⁻²",
+    "24 ms⁻²",
+    "18 ms⁻²",
+    "12 ms⁻²"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q110",
+   "year": 2025,
+   "date": "2025-05-03",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [
+    "tg_eapcet_2025_20250503_an_q087"
+   ],
+   "question_en": "Due to the presence of air resistance, if a body dropped from a height of 20 m reaches the ground with a speed of 18 ms⁻¹, then the time taken by the body to reach the ground is nearly",
+   "options_en": [
+    "2.2 s",
+    "2.5 s",
+    "1.8 s",
+    "2 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250503_fn_q116",
+   "year": 2025,
+   "date": "2025-05-03",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [
+    "tg_eapcet_2025_20250503_an_q083"
+   ],
+   "question_en": "A person wearing a parachute jumps off a plane from a height of 2 km from the ground and falls freely for 20 m before his parachute opens. After his parachute opens if he continues to move uniformly with the velocity attained due to his freefall, the total time taken by the person to reach the ground is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "99 s",
+    "101 s",
+    "100 s",
+    "102 s"
+   ]
+  },
+  {
+   "id": "tg_eapcet_2025_20250504_fn_q081",
+   "year": 2025,
+   "date": "2025-05-04",
+   "session": "FN",
+   "in_pool": true,
+   "twin_of": [],
+   "question_en": "For a particle moving along a straight line path, the displacements in third and fifth seconds of its motion are 10 m and 18 m respectively. The speed of the particle at time t = 4s is",
+   "options_en": [
+    "32 ms⁻¹",
+    "12 ms⁻¹",
+    "16 ms⁻¹",
+    "8 ms⁻¹"
+   ]
+  }
+ ],
+ "built_from": {
+  "bank": "eapcet/bank/physics_v1.json",
+  "bank_sha256": "9449149204cbef0af14cf816f377ffbd1c3fe64eda5b94c6eae846618e684421"
+ }
+}
