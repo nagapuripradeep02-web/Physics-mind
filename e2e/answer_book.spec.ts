@@ -3024,37 +3024,73 @@ test('the offline build bakes no staff word and no ask endpoint', async () => {
     expect(/PM_VIDI_BASE\s*=\s*""/.test(src)).toBe(true);
 });
 
-/* ── Simplify: the same answer short, then written out in full ──────────────
-   A card written out in full carries both lengths (step.lines_compact) and
-   flags the working the expansion added. These gates pin the three things that
-   can silently break: the SHORT answer is what a student meets, the button
-   actually swaps the working, and the added lines are visibly a different pen.
-   The pagination invariant is re-checked at the longer length, because the
-   fuller working is exactly what pushes a block over a page break. */
+/* ── Simplify: one MARK at a time ───────────────────────────────────────────
+   A step written out in full carries both lengths (step.lines_compact) and flags
+   the working the expansion added. Each such step gets its own button in the
+   red-pen gutter, so a student unfolds the one mark they are stuck on. These
+   gates pin what can silently break: the SETUP step is never expandable, a press
+   moves ONLY its own step, the added lines are visibly a different pen, and the
+   pagination invariant survives the longer working. */
 
 const EXPANDED_CARD = 'ts_ipe_m2a_bt_terms_240_720_1080';
 
-test('Simplify writes the answer out in full, and the added working is a second pen', async ({ page }) => {
+/** Lines per step id, plus which steps are showing added working. */
+async function stepShape(page: any) {
+    return page.evaluate(() => {
+        const out: Record<string, { lines: number; added: number }> = {};
+        document.querySelectorAll('.step-block[data-step-id]').forEach((bl) => {
+            out[bl.getAttribute('data-step-id')!] = {
+                lines: bl.querySelectorAll('.line').length,
+                added: bl.querySelectorAll('.line.added').length,
+            };
+        });
+        return out;
+    });
+}
+
+test('Simplify writes ONE mark out in full and leaves the rest at exam length', async ({ page }) => {
     await openFirst(page);
     await openQ(page, EXPANDED_CARD);
-
-    // 1. a student meets the SHORT answer, with the offer to unfold it
-    expect(await page.evaluate(() => (window as any).PM_ANSWER.getState().detail)).toBe('compact');
-    await expect(page.locator('#detailBar')).toBeVisible();
-    expect((await page.locator('#btnSimplify').textContent())!.trim()).toBe('Simplify');
-
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
-    const short = await page.evaluate(() => ({
-        lines: document.querySelectorAll('.step-block .line').length,
-        added: document.querySelectorAll('.line.added').length,
-        marks: (window as any).PM_ANSWER.getState().marksEarned,
-    }));
-    expect(short.added).toBe(0);                    // nothing is flagged in the short answer
 
-    // 2. the button — not the API — swaps the working
-    await page.click('#btnSimplify');
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    const firstStep = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps[0].id);
+
+    // The SETUP step is never expandable: a solution opens by writing what is
+    // given and the formula, and there is nothing there to unfold on demand.
+    expect(st.expandableSteps).not.toContain(firstStep);
+    expect(st.expandableSteps.length).toBeGreaterThan(0);
+    expect(st.expandedSteps).toEqual([]);
+    expect(await page.locator(`.step-block[data-step-id="${firstStep}"] .step-simplify`).count()).toBe(0);
+    // ...and it is in ink, at full length, from the start.
+    expect(await page.locator(`.step-block[data-step-id="${firstStep}"] .line.added`).count()).toBe(0);
+
+    // One button per expandable step, and nothing is unfolded yet.
+    expect(await page.locator('.step-simplify').count()).toBe(st.expandableSteps.length);
+    expect(await page.locator('.line.added').count()).toBe(0);
+    const before = await stepShape(page);
+
+    // Press ONE mark's button — not the API.
+    const target = st.expandableSteps[0];
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
-    const full = await page.evaluate(() => {
+
+    const after = await stepShape(page);
+    const st2 = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(st2.expandedSteps).toEqual([target]);
+    expect(st2.marksEarned).toBe(st.marksEarned);          // marks are the answer's, not the length's
+
+    // ONLY that step changed. This is the whole point of a per-mark button.
+    for (const id of Object.keys(before)) {
+        if (id === target) {
+            expect(after[id].lines).toBeGreaterThan(before[id].lines);
+            expect(after[id].added).toBeGreaterThan(0);
+        } else {
+            expect({ id, ...after[id] }).toEqual({ id, ...before[id] });
+        }
+    }
+
+    const check = await page.evaluate(() => {
         const added = Array.from(document.querySelectorAll('.line.added')) as HTMLElement[];
         const ink = Array.from(document.querySelectorAll('.step-block .line:not(.added)')) as HTMLElement[];
         const straddle: string[] = [];
@@ -3067,18 +3103,13 @@ test('Simplify writes the answer out in full, and the added working is a second 
             });
         });
         return {
-            detail: (window as any).PM_ANSWER.getState().detail,
-            marks: (window as any).PM_ANSWER.getState().marksEarned,
-            lines: document.querySelectorAll('.step-block .line').length,
-            addedCount: added.length,
             addedColours: Array.from(new Set(added.map((el) => getComputedStyle(el).color))),
             inkColours: Array.from(new Set(ink.map((el) => getComputedStyle(el).color))),
             // The second pen must not MOVE a line: every metric on this page is
             // shared, so `added` may change colour and nothing else. Measured
             // against a probe wearing the same classes minus `added`, because the
             // ink lines legitimately differ from each other (a heading and a boxed
-            // final are not indented like an equation) and a set comparison would
-            // fail on that alone.
+            // final are not indented like an equation).
             drift: added.filter((el) => {
                 const probe = document.createElement('div');
                 probe.className = el.className.replace(/\badded\b/, '').trim();
@@ -3092,36 +3123,54 @@ test('Simplify writes the answer out in full, and the added working is a second 
             straddle,
         };
     });
+    expect(check.addedColours).toHaveLength(1);
+    expect(check.inkColours).not.toContain(check.addedColours[0]);
+    expect(check.drift).toEqual([]);                        // colour only, never metric
+    expect(check.straddle).toEqual([]);                     // still no block split across a page
 
-    expect(full.detail).toBe('full');
-    expect(full.lines).toBeGreaterThan(short.lines);           // it really is more working
-    expect(full.addedCount).toBeGreaterThan(0);
-    expect(full.straddle).toEqual([]);                          // still no split block
-    expect(full.marks).toBe(short.marks);                       // the marks are the answer's, not the length's
-    expect((await page.locator('#btnSimplify').textContent())!.trim()).toBe('Back to the short answer');
-
-    // 3. the added working is a DIFFERENT pen from the ink, and only a pen
-    expect(full.addedColours).toHaveLength(1);
-    expect(full.inkColours).not.toContain(full.addedColours[0]);
-    expect(full.drift).toEqual([]);                             // colour only, never metric
-
-    // 4. and back again
-    await page.click('#btnSimplify');
+    // A second mark unfolds independently of the first.
+    const other = st.expandableSteps[st.expandableSteps.length - 1];
+    await page.click(`.step-simplify[data-step-id="${other}"]`);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
-    expect(await page.evaluate(() => (window as any).PM_ANSWER.getState().detail)).toBe('compact');
-    expect(await page.locator('.line.added').count()).toBe(0);
-    expect(await page.evaluate(() => document.querySelectorAll('.step-block .line').length)).toBe(short.lines);
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps)
+        .toEqual([target, other]);
+
+    // And each folds back on its own.
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).expandedSteps)
+        .toEqual([other]);
+});
+
+test('pressing Simplify does not also write the next step', async ({ page }) => {
+    // The notebook advances on click, so the button must stop its event. This is
+    // the gate on that one stopPropagation.
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    const target = st.expandableSteps[0];
+    // Reveal exactly as far as the target step, no further. Then WAIT for the
+    // gutter to appear: it is hidden while the step is being written, and a click
+    // sent during the animation would complete that step rather than test the
+    // button — which is what this gate measured on its first run.
+    await page.evaluate((id) => (window as any).PM_ANSWER.goToStep(id), target);
+    await page.locator(`.step-simplify[data-step-id="${target}"]`).waitFor({ state: 'visible' });
+    const at = (await page.evaluate(() => (window as any).PM_ANSWER.getState())).stepIndex;
+    await page.click(`.step-simplify[data-step-id="${target}"]`);
+    await page.waitForTimeout(300);
+    expect((await page.evaluate(() => (window as any).PM_ANSWER.getState())).stepIndex).toBe(at);
 });
 
 test('a card with no fuller version offers no Simplify button', async ({ page }) => {
     await openFirst(page);
     // PM_QUESTIONS[0] is alphabetical and carries no lines_compact — the state
     // every card in the book is in until it is written out in full.
-    const has = await page.evaluate(() => {
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(st.expandableSteps).toEqual([]);
+    expect(await page.locator('.step-simplify').count()).toBe(0);
+    expect(await page.evaluate(() => {
         const q = (window as any).PM_ANSWER.question;
-        return q.answer.steps.some((s: any) => s.lines_compact);
-    });
-    expect(has).toBe(false);
-    await expect(page.locator('#detailBar')).toBeHidden();
-    expect(await page.evaluate(() => (window as any).PM_ANSWER.setDetail('full'))).toBe(false);
+        return (window as any).PM_ANSWER.setStepDetail(q.answer.steps[0].id, 'full');
+    })).toBe(false);
 });

@@ -43,18 +43,20 @@
 
   var cuts, cutIndex = 0, cut, steps, marksTotal;
 
-  // ═══ detail — the same answer written short or written out in full ═══════
-  // A card written out in full carries BOTH: `lines` is the full working and
+  // ═══ detail — PER MARK, the working short or written out in full ═════════
+  // A step written out in full carries BOTH: `lines` is the full working and
   // `lines_compact` the short answer it grew from, with every line the
-  // expansion added flagged. This selects between them. It is orthogonal to a
-  // cut: a cut chooses WHICH STEPS are answered, detail chooses how much of
-  // each step is written down.
+  // expansion added flagged. Each such step gets its OWN Simplify button in the
+  // red-pen gutter beside its mark, so a student unfolds the ONE mark they are
+  // stuck on and the rest of the answer stays at exam length (founder,
+  // 2026-09-09). This is orthogonal to a cut: a cut chooses WHICH STEPS are
+  // answered, this chooses how much of one step is written down.
   //
-  // 'compact' is the default so a student meets the answer at the length the
-  // paper wants; Simplify unfolds it. A card with no lines_compact anywhere
-  // has nothing to unfold, reads identically at both levels, and shows no
-  // button — which is every card authored before 2026-09-09.
-  var detail = 'compact';
+  // Step id -> true while that step is written out in full. Empty is the default,
+  // so a card opens at exam length; a step with no lines_compact — the setup step
+  // that writes the given and the formula, and every step of every card authored
+  // before 2026-09-09 — has nothing to unfold and shows no button.
+  var expandedSteps = {};
 
   function loadCuts() {
     cuts = question.cuts && question.cuts.length ? question.cuts : [{
@@ -88,7 +90,7 @@
         // base step's compact copy no longer describes what is on the page — that
         // step simply reads the same at both levels unless the cut supplies its own.
         merged.lines_compact = o.lines ? o.lines_compact : s.lines_compact;
-        if (detail === 'compact' && merged.lines_compact) merged.lines = merged.lines_compact;
+        if (!expandedSteps[s.id] && merged.lines_compact) merged.lines = merged.lines_compact;
         if (o.margin_note) merged.margin_note = o.margin_note;
         if (o.why) merged.why = o.why;
         if (o.memory_tip) merged.memory_tip = o.memory_tip;
@@ -249,7 +251,6 @@
     renderMeta();
     renderMarkSplit();
     renderStepList();
-    renderDetailBar();
   }
 
   /** Switching cut restarts the answer: it is a different answer, not a filter.
@@ -264,40 +265,25 @@
     syncHash();
   }
 
-  /** Does the answer on screen have a fuller version to unfold? */
-  function hasExpansion() {
-    for (var i = 0; i < steps.length; i++) if (steps[i].lines_compact) return true;
-    return false;
-  }
+  /** Can this step be written out in full? */
+  function stepHasExpansion(step) { return !!(step && step.lines_compact); }
 
-  /** Switching detail KEEPS the student's place: it is the same answer at the
-      same step, written at a different length, so re-reading from the top would
-      be a punishment for asking for more detail. Everything up to the current
-      step is re-laid instantly — pagination is decided fresh, because the fuller
-      working is taller and will not sit on the same pages. */
-  function setDetail(level) {
-    if (level === detail) return;
-    detail = level;
+  /** One mark's working, short or written out in full. Everything ELSE on the
+      page is left exactly as it was — the point of a per-mark button is that a
+      student unfolds the step they are stuck on, not the whole answer.
+
+      It KEEPS the reading position: the same step is re-laid instantly, and
+      pagination is decided fresh because the fuller working is taller and will
+      not sit on the same pages. Steps ABOVE the toggled one do not move. */
+  function toggleStep(stepId) {
+    expandedSteps[stepId] = !expandedSteps[stepId];
     var at = stepIndex;
     applyCut(cutIndex);
-    renderStepList();
     renderUpTo(at, false);
-    renderDetailBar();
-    Vidi.log('detail', { qid: question.question_id, level: level, step: at + 1 });
-  }
-
-  function renderDetailBar() {
-    var bar = $('detailBar');
-    if (!bar) return;                     // an older shell — the button is optional
-    var on = hasExpansion();
-    bar.hidden = !on;
-    if (!on) return;
-    var full = detail === 'full';
-    $('btnSimplify').textContent = full ? 'Back to the short answer' : 'Simplify';
-    $('btnSimplify').setAttribute('aria-pressed', full ? 'true' : 'false');
-    $('detailNote').textContent = full
-      ? 'Every step written out. The added steps are in red.'
-      : 'The answer at exam length. Simplify writes out every step.';
+    Vidi.log('step_detail', {
+      qid: question.question_id, step: stepId,
+      level: expandedSteps[stepId] ? 'full' : 'compact'
+    });
   }
 
   /** Full question load — the mechanism behind the router. Always re-renders,
@@ -313,8 +299,8 @@
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
-    // Every question opens at exam length, whatever the last one was left on.
-    detail = 'compact';
+    // Every question opens at exam length, whatever was unfolded on the last one.
+    expandedSteps = {};
     loadCuts();
     var ci = 0;
     if (cutKey) {
@@ -1361,9 +1347,10 @@
         var style = spec.style;
         var el = document.createElement('div');
         el.className = 'line ' + style;
-        // Working the expansion added, shown only when the expansion is on screen.
-        // In the short answer the flag is meaningless — those lines are not there.
-        if (spec.added && detail === 'full') el.classList.add('added');
+        // Working the expansion added, shown only while THIS step is written out
+        // in full. In the short answer the flag is meaningless — those lines are
+        // not on the page at all.
+        if (spec.added && expandedSteps[step.id]) el.classList.add('added');
         el.setAttribute('data-line-index', String(li));
         if (spec.render === 'katex' && spec.html) {
           // Typeset by the BUILD (never here — Rule 18). A typeset tree has no
@@ -1399,18 +1386,48 @@
       });
     }
 
-    if (step.marks > 0) {
-      var red = document.createElement('div');
-      red.className = 'red-mark';
-      red.innerHTML =
-        '<svg width="40" height="30" viewBox="0 0 40 30">' +
-        // The examiner's tick. style=, not stroke=, because var() is invalid in
-        // an SVG presentation attribute — the same trap that kept the figure
-        // pens navy through a full sweep of notebook.css.
-        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
-        'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '<span class="red-num">' + step.marks + '</span>';
-      block.appendChild(red);
+    // The gutter column: the examiner's mark, and under it this step's own
+    // Simplify button. Both sit in the red-pen margin OUTSIDE the ruled page —
+    // nothing here is typed, and nothing here moves a line off its rule.
+    if (step.marks > 0 || stepHasExpansion(step)) {
+      var aside = document.createElement('div');
+      aside.className = 'step-aside';
+
+      if (step.marks > 0) {
+        var red = document.createElement('div');
+        red.className = 'red-mark';
+        red.innerHTML =
+          '<svg width="40" height="30" viewBox="0 0 40 30">' +
+          // The examiner's tick. style=, not stroke=, because var() is invalid in
+          // an SVG presentation attribute — the same trap that kept the figure
+          // pens navy through a full sweep of notebook.css.
+          '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
+          'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '<span class="red-num">' + step.marks + '</span>';
+        aside.appendChild(red);
+      }
+
+      if (stepHasExpansion(step)) {
+        var open = !!expandedSteps[step.id];
+        var sb = document.createElement('button');
+        sb.type = 'button';
+        sb.className = 'step-simplify' + (open ? ' open' : '');
+        sb.setAttribute('data-step-id', step.id);
+        sb.setAttribute('aria-pressed', open ? 'true' : 'false');
+        sb.textContent = open ? 'Shorten' : 'Simplify';
+        sb.title = open
+          ? 'Show this step at exam length'
+          : 'Write this step out, line by line';
+        sb.addEventListener('click', function (e) {
+          // The notebook advances on click. Without this, asking for more detail
+          // would ALSO write the next step.
+          e.stopPropagation();
+          toggleStep(step.id);
+        });
+        aside.appendChild(sb);
+      }
+
+      block.appendChild(aside);
     }
     return block;
   }
@@ -1761,12 +1778,16 @@
 
     // arm the figure while layout is live (getTotalLength needs it)
     var figWrap = block.querySelector('.figure-wrap');
+    var aside = block.querySelector('.step-aside');
     var redMark = block.querySelector('.red-mark');
-    if (redMark) redMark.style.visibility = 'hidden';
+    // The whole gutter column waits for the step to be written — the mark is not
+    // earned until then, and offering to expand working that is still appearing
+    // reads as an error. visibility, not display: it must keep its box.
+    if (aside) aside.style.visibility = 'hidden';
 
     function complete() {
+      if (aside) aside.style.visibility = '';
       if (redMark) {
-        redMark.style.visibility = '';
         var tick = redMark.querySelector('.tick');
         if (animate && !REDUCED) {
           var L = tick.getTotalLength();
@@ -1909,9 +1930,6 @@
   $('btnRestart').addEventListener('click', function () {
     Vidi.log('restart', { qid: question.question_id });
     renderUpTo(-1, false);
-  });
-  $('btnSimplify').addEventListener('click', function () {
-    setDetail(detail === 'full' ? 'compact' : 'full');
   });
   $('doorBack').addEventListener('click', function () { Door.show(); });
   var searchLogTimer = null;
@@ -6043,8 +6061,11 @@
         // know what it is a total OF.
         cutKey: cut.key,
         cutIndex: cutIndex,
-        // 'compact' = the short answer, 'full' = every step written out.
-        detail: detail,
+        // The step ids currently written out in full, in authored order.
+        expandedSteps: steps.filter(function (st) { return expandedSteps[st.id]; })
+                            .map(function (st) { return st.id; }),
+        // The step ids that COULD be — the ones with a Simplify button.
+        expandableSteps: steps.filter(stepHasExpansion).map(function (st) { return st.id; }),
         stepIds: steps.map(function (s) { return s.id; })
       };
     },
@@ -6080,13 +6101,17 @@
     },
     revealNext: advance,
     revealAll: function () { renderUpTo(steps.length - 1, false); },
-    /** Write the answer short or in full. False when this card has no fuller
-        version to unfold — which is every card that was never expanded. */
-    setDetail: function (level) {
+    /** Write ONE step short or in full. False when that step has no fuller
+        version — the setup step, and every step of a card never expanded. */
+    setStepDetail: function (stepId, level) {
       if (level !== 'compact' && level !== 'full') return false;
-      if (!hasExpansion()) return false;
-      setDetail(level);
-      return true;
+      for (var i = 0; i < steps.length; i++) {
+        if (steps[i].id !== stepId) continue;
+        if (!stepHasExpansion(steps[i])) return false;
+        if (!!expandedSteps[stepId] !== (level === 'full')) toggleStep(stepId);
+        return true;
+      }
+      return false;
     },
     /** The exact ANSWER FACTS string the model is grounded in for the question and
         cut currently on screen. Read-only, and the reason it exists: the offline

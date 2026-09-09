@@ -5,12 +5,19 @@ mark_expansion.py — give a card the data the "Simplify" button needs.
     python3 answer-book/tools/mark_expansion.py <question_id> [--base <commit>] [--dry]
     python3 answer-book/tools/mark_expansion.py ts_ipe_m2a_bt_terms_240_720_1080
 
-A card that was "written out in full" holds only the EXPANDED working. The
-Simplify button shows the short answer first and the expansion on demand, so the
-card has to carry both, and has to know which lines the expansion ADDED:
+A card that was "written out in full" holds only the EXPANDED working. Each mark
+that has an expansion carries its own Simplify button, so the card has to carry
+both lengths PER STEP, and has to know which lines the expansion ADDED:
 
     step.lines_compact[]   the pre-expansion lines, verbatim
     step.lines[i].added    true where that line is new working
+
+The SETUP steps are the exception (founder, 2026-09-09). A solution opens by
+writing down what is given and the formula it will use; there is nothing there to
+unfold on demand, and offering to is noise. So the leading `--promote` steps keep
+their fuller working as the ONLY version — written in ink like the rest of the
+answer, with no button and no second pen. Promotion is why those steps end up
+with no lines_compact and therefore no button: the renderer needs no rule for it.
 
 Both are derived here, from git, and never hand-authored: the short answer IS
 the version that shipped before the expansion commit, so the honest source for
@@ -40,6 +47,18 @@ QDIR = ROOT / 'answer-book' / 'questions'
 
 # A rewrite this close to its old line is the SAME line, not new working.
 NEAR = 0.85
+
+
+def strip_added(raw):
+    """The line with any previous run's `added` verdict removed."""
+    if isinstance(raw, str):
+        return raw
+    if 'added' not in raw:
+        return raw
+    o = {k: v for k, v in raw.items() if k != 'added'}
+    # A line that was ONLY ever an object to carry the flag goes back to a plain
+    # string, so a re-run leaves the card as the author would have written it.
+    return o['text'] if set(o) == {'text'} else o
 
 
 def spec(raw):
@@ -96,6 +115,10 @@ def main():
     ap.add_argument('--base', default='c67c6e11',
                     help='the commit holding the pre-expansion card')
     ap.add_argument('--dry', action='store_true', help='report, write nothing')
+    ap.add_argument('--promote', type=int, default=1, metavar='N',
+                    help='leading steps whose expansion becomes the permanent '
+                         'answer in ink, with no button (default 1: the setup '
+                         'step that writes the given and the formula). 0 = none.')
     args = ap.parse_args()
 
     rel = f'answer-book/questions/{args.question_id}.json'
@@ -108,9 +131,20 @@ def main():
     old_steps = {s['id']: s for s in old['answer']['steps']}
 
     total_added = total_compact = 0
+    promoted = 0
     for step in new['answer']['steps']:
+        # Idempotent: a re-run must not inherit the last run's verdict, so every
+        # flag and compact copy is cleared before this run decides again.
+        step.pop('lines_compact', None)
+        step['lines'] = [strip_added(l) for l in (step.get('lines') or [])] or step.get('lines')
+
         if step.get('kind') == 'diagram':
             print(f'  {step["id"]}: diagram — skipped')
+            continue
+        if promoted < args.promote:
+            promoted += 1
+            n = len(step.get('lines') or [])
+            print(f'  {step["id"]}: SETUP — the full working stays, in ink ({n} lines)')
             continue
         was = old_steps.get(step['id'])
         if not was:
@@ -141,8 +175,8 @@ def main():
         print(f'  {step["id"]}: {len(old_lines)} -> {len(new_lines)} lines, '
               f'{sum(added)} added')
 
-    print(f'{args.question_id}: compact {total_compact} lines · '
-          f'{total_added} lines marked as added')
+    print(f'{args.question_id}: {promoted} setup step(s) in ink · compact '
+          f'{total_compact} lines · {total_added} lines marked as added')
     if args.dry:
         print('(dry run — nothing written)')
         return

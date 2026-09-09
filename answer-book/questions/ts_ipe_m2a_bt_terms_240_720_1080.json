@@ -74,28 +74,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          {
-            "text": "In (a + x)ⁿ, the general term is",
-            "added": true
-          },
-          {
-            "text": "Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ",
-            "added": true
-          },
-          {
-            "text": "2nd term: r + 1 = 2 ⇒ r = 1",
-            "added": true
-          },
+          "In (a + x)ⁿ, the general term is",
+          "Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ",
+          "2nd term: r + 1 = 2 ⇒ r = 1",
           "T₂ = ⁿC₁ aⁿ⁻¹ x¹ = 240 …(1)",
-          {
-            "text": "3rd term: r + 1 = 3 ⇒ r = 2",
-            "added": true
-          },
+          "3rd term: r + 1 = 3 ⇒ r = 2",
           "T₃ = ⁿC₂ aⁿ⁻² x² = 720 …(2)",
-          {
-            "text": "4th term: r + 1 = 4 ⇒ r = 3",
-            "added": true
-          },
+          "4th term: r + 1 = 4 ⇒ r = 3",
           "T₄ = ⁿC₃ aⁿ⁻³ x³ = 1080 …(3)"
         ],
         "recall": {
@@ -125,16 +110,6 @@
         "common_mistakes": [
           "Taking the 2nd term as r = 2 — the r-th power of x appears in the (r + 1)-th term.",
           "Writing xⁿ⁻ʳ aʳ: here a is the first entry of the bracket, so a carries n − r."
-        ],
-        "lines_compact": [
-          {
-            "text": "Sol:",
-            "style": "heading"
-          },
-          "In (a + x)ⁿ, Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ",
-          "T₂ = ⁿC₁ aⁿ⁻¹ x = 240 …(1)",
-          "T₃ = ⁿC₂ aⁿ⁻² x² = 720 …(2)",
-          "T₄ = ⁿC₃ aⁿ⁻³ x³ = 1080 …(3)"
         ]
       },
       {

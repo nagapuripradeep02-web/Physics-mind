@@ -46,7 +46,7 @@
      carries the examiner's clay because the founder asked for red; a literal,
      not var(--red), because the two are the same colour by DECISION, not by
      nature, and a second pen in its own hue (e.g. a ballpoint #2F5DA8) is one
-     edit here. Whatever it becomes, renderDetailBar's note names it. */
+     edit here. */
   --added: #B0552F;
   --paper: #FFFDF7;
   /* The chrome is the same stationery world as the page: a warm desk, warm
@@ -867,20 +867,6 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .notebook-col { display: flex; flex-direction: column; align-items: center; gap: 16px; min-width: 0; }
 .notebook { display: flex; flex-direction: column; gap: 26px; transform-origin: top center; }
 
-/* Simplify sits ABOVE the paper, not on it: anything inside a .step-block is
-   typed out and counts against the 32-rule page (notebook.js buildStepBlock). */
-.detail-bar {
-  width: var(--page-w); max-width: 100%;
-  display: flex; align-items: center; gap: 12px;
-}
-.btn-detail {
-  border-color: var(--accent); color: var(--accent);
-  background: var(--chrome-card); white-space: nowrap;
-}
-.btn-detail:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-.btn-detail[aria-pressed="true"] { background: var(--accent); color: #fff; }
-.detail-note { font-size: 12.5px; color: var(--chrome-dim); }
-
 .btn-next {
   position: sticky; bottom: 18px; z-index: 10;
   background: var(--accent); color: #fff; border: none;
@@ -1010,12 +996,28 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 @media print { .figure-caption { display: none; } }
 
 /* examiner's red marks — absolutely positioned into the right gutter */
-.red-mark {
+/* The red-pen gutter beside one step: the examiner's mark, and under it that
+   step's own Simplify button. It is positioned OUTSIDE the ruled page body, so
+   nothing in this column can push a written line off its rule. */
+.step-aside {
   position: absolute; top: 0; right: calc(-1 * var(--pad-right) + 12px);
   width: 76px; text-align: center;
+}
+.red-mark {
   font-family: Kalam, cursive; color: var(--red);
   pointer-events: none;
 }
+/* Small and quiet: the answer is the thing on this page, and a button that
+   competed with the mark beside it would read as part of the marking. */
+.step-simplify {
+  margin-top: 5px; width: 100%;
+  font-family: Inter, system-ui, sans-serif; font-size: 10.5px; font-weight: 600;
+  padding: 4px 2px; border-radius: 999px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card);
+  color: var(--chrome-dim); cursor: pointer; line-height: 1.2;
+}
+.step-simplify:hover { border-color: var(--accent); color: var(--accent); }
+.step-simplify.open { background: var(--accent); border-color: var(--accent); color: #fff; }
 .red-mark svg { display: block; margin: 0 auto; }
 .red-mark .red-num {
   display: inline-flex; align-items: center; justify-content: center;
@@ -1040,13 +1042,6 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 }
 
 /* ── responsive: scale, never reflow (pagination must not change) ──────── */
-
-@media (max-width: 720px) {
-  /* On a phone the button is the whole offer — the sentence beside it would
-     push the paper down a row for words a student can also read on the button. */
-  .detail-bar { justify-content: center; }
-  .detail-note { display: none; }
-}
 
 /* Three buttons do not fit a phone top bar. Keep the Test-myself entry — it is the
    point of the screen — and let the two utilities wrap under it. */
@@ -1074,7 +1069,10 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 @media print {
   @page { size: A4; margin: 0; }
   body { background: #fff; }
-  .topbar, .rail, .btn-next, .detail-bar, .question-card, .catalog, .vidi-fab, .vidi-win { display: none !important; }
+  .topbar, .rail, .btn-next, .question-card, .catalog, .vidi-fab, .vidi-win { display: none !important; }
+  /* The mark prints; the button does not. A printed page cannot be pressed, and
+     whatever is unfolded on screen is what the sheet should show. */
+  .step-simplify { display: none !important; }
   .layout { display: block; margin: 0; padding: 0; max-width: none; }
   .notebook { transform: none !important; gap: 0; }
   .page {
