@@ -97,6 +97,19 @@ a.ep-row:hover { border-color: var(--accent); }
   font-size: 16.5px; line-height: 1.55; padding: 12px 14px; margin: 14px 0;
   border-left: 3px solid var(--accent); background: var(--chrome-card); border-radius: 0 10px 10px 0;
 }
+.ep-shapes { display: flex; flex-direction: column; gap: 12px; }
+.ep-shape { border: 1px solid var(--chrome-line); border-radius: 12px; background: var(--chrome-card); padding: 10px 14px; }
+.ep-shape-label { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.ep-shape-item { padding: 8px 0 4px; border-top: 1px solid var(--chrome-line); }
+.ep-shape-item:first-of-type { border-top: 0; }
+.ep-outcome { font-size: 14px; font-weight: 600; line-height: 1.45; }
+.ep-shape-item[data-outcome="solid"] .ep-outcome { color: var(--sage-deep); }
+[data-group="fix"] .ep-outcome { color: var(--clay-deep); }
+.ep-reveal { margin: 22px 0 8px; padding: 16px; border-radius: 14px; background: var(--sage-wash); }
+.ep-reveal-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--sage-deep); margin-bottom: 6px; }
+.ep-reveal-body { font-size: 15px; line-height: 1.55; margin: 0 0 4px; }
+.ep-reveal .ep-h3 { margin-top: 12px; }
+.ep-reveal-paper { font-size: 14px; line-height: 1.5; }
 .ep-fix-list { display: flex; flex-direction: column; gap: 10px; }
 .ep-fix-item { border: 1px solid var(--chrome-line); border-radius: 12px; background: var(--chrome-card); padding: 12px 14px; }
 .ep-fix-row { font-weight: 600; font-size: 14px; }

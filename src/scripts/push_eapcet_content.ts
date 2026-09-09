@@ -92,7 +92,7 @@ function groundingCard(qid: string) {
 // ── the rows ────────────────────────────────────────────────────────────────
 type Row = {
     qid: string; chapter_key: string; question: Record<string, unknown>; solution: unknown;
-    grounding: unknown[]; verified: boolean; updated_at: string;
+    grounding: unknown[]; verified: boolean; shape: unknown; updated_at: string;
 };
 const byChapter = new Map<string, Row[]>();
 let missingCards = 0;
@@ -111,16 +111,19 @@ for (const q of Object.values(release.questions)) {
             options_en: q.options_en,
             answer: q.answer,
         },
+        // the release copy: right_route and per-mistake type/route ride along when the sidecar is verified
         solution: q.solution,
         grounding: cards,
         verified: true,
+        shape: q.shape ?? null,
         updated_at: now,
     };
     if (!byChapter.has(q.chapter_key)) byChapter.set(q.chapter_key, []);
     byChapter.get(q.chapter_key)!.push(row);
 }
 const verifiedIds = new Set([...byChapter.values()].flat().map((r) => r.qid));
-console.log(`release ${POOL}\n  verified solutions ${verifiedIds.size} in ${byChapter.size} chapters` +
+const routedCount = Object.values(release.questions).filter((q) => q.verified?.routes).length;
+console.log(`release ${POOL}\n  verified solutions ${verifiedIds.size} in ${byChapter.size} chapters, ${routedCount} with verified routes` +
     (missingCards ? `\n  ${missingCards} questions ground on a card missing from answer-book/questions (pushed without it)` : ''));
 
 if (DRY) {

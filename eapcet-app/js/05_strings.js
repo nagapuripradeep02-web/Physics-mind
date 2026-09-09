@@ -3,7 +3,11 @@
  * the Answer Book idiom scan over this file and refuses to build on a hit.
  *
  * Functions take the numbers they print so the sentence and the number can
- * never disagree. Nothing here is markdown; the page prints it as typed. */
+ * never disagree. Nothing here is markdown; the page prints it as typed.
+ *
+ * During a run the page never says where a question came from — a student
+ * who reads "TG EAPCET 2021" above a question panics. The paper is revealed
+ * on the result screen, as the reward. */
 var STR = {
   brand: 'Viditra',
   product: 'EAPCET Physics',
@@ -18,7 +22,7 @@ var STR = {
   door_soon: 'Being built',
 
   chapters_title: 'Physics',
-  chapters_sub: 'Pick a chapter. Ten real questions, about twelve minutes. Then you see what kind of mistake you make.',
+  chapters_sub: 'Pick a chapter. Ten questions, about twelve minutes. Then you see what kind of mistake you make.',
   share_line: function (pct, perExam) {
     return pct + '% of the physics questions asked · about ' + perExam + ' in every exam';
   },
@@ -26,12 +30,13 @@ var STR = {
   badge_closed: 'Not enough verified questions yet',
   badge_never: 'Asked once in 26 exams. Not enough to test.',
   badge_weak: function (type, score, total) { return 'Weak: ' + STR.type_name[type] + ' (' + score + '/' + total + ')'; },
-  badge_strong: function (type) { return 'Strong now: ' + STR.type_name[type]; },
+  badge_strong: function (label) { return 'Strong now: ' + label; },
+  badge_strong_similar: 'Strong now on similar questions',
   badge_score: function (score, total) { return 'Last run ' + score + '/' + total; },
   dev_open: 'Test build: unverified questions are shown. Do not give this build to a student.',
 
   run_head: function (chapter) { return 'Let’s find your mistakes and weaknesses in ' + chapter + '.'; },
-  run_intro: 'Ten real past questions. Answer each one, then tell me what happened. There is no skipping.',
+  run_intro: 'Ten questions. Answer each one, then tell me which way you went. There is no skipping.',
   run_resume: 'You left this run in the middle. It continues from where you stopped.',
   run_closed: 'This chapter is not ready yet. Its questions are still being verified.',
   run_progress: function (i, n) { return 'Question ' + i + ' of ' + n; },
@@ -39,38 +44,63 @@ var STR = {
 
   correct: 'Correct.',
   wrong: function (picked, key) { return 'You picked (' + picked + '). The key says (' + key + ').'; },
-  probe_correct_q: 'Were you sure?',
+  route_q: 'Which way did you go?',
+  route_guess: 'I guessed',
+  sure_q: 'Were you sure?',
   probe_sure: 'I was sure',
   probe_guessed: 'I guessed',
-  probe_wrong_q: 'What happened?',
-  probe_concept: 'I did not know the concept',
-  probe_calculation: 'I knew it, my calculation slipped',
-  probe_application: 'I could not see how to apply it',
-  probe_time: 'I guessed or ran out of time',
 
-  type_name: { concept: 'concept', calculation: 'calculation', application: 'application', time: 'time' },
-  bar_label: { concept: 'Concept', application: 'Application', calculation: 'Calculation', time: 'Guess or time' },
+  type_name: { concept: 'concept', calculation: 'calculation', application: 'application', guessed: 'guessing' },
+  param_label: { concept: 'Concept', application: 'Application', calculation: 'Calculation', guessed: 'Guessed', rushed: 'Rushed' },
 
   result_title: 'Your result',
   result_score: function (score, total) { return score + ' out of ' + total + ' correct'; },
-  result_guessed: function (n) { return n === 1 ? '1 of them was a guess' : n + ' of them were guesses'; },
-  result_hist_title: 'Where the wrong answers came from',
+  result_params_title: 'What the ten questions show',
+  result_confirmed: function (n, m) {
+    return n + ' of your ' + m + ' wrong ' + (m === 1 ? 'answer is' : 'answers are') + ' confirmed by the option you picked, not only by what you said.';
+  },
   result_timing: function (sec, exam) {
     return 'You took about ' + sec + (sec === 1 ? ' second' : ' seconds') + ' a question. The exam gives ' + exam + '.';
   },
+  result_group: { fix: 'To fix', check: 'Check these too', solid: 'Solid' },
   weakness: {
     concept: function (ch) { return 'In ' + ch + ', most of your wrong answers came from not knowing the concept. Learn the concept first, then the questions.'; },
     calculation: function (ch) { return 'In ' + ch + ', you know the concepts. Your calculation slips. Work each step on paper until three in a row are right.'; },
     application: function (ch) { return 'In ' + ch + ', you know the concepts but could not see which one the question needed. Read each question for the idea it is testing.'; },
-    time: function (ch) { return 'In ' + ch + ', you guessed or ran out of time on most wrong answers. Practise the same kind of question with a clock.'; }
+    guessed: function (ch) { return 'In ' + ch + ', you guessed on three or more questions. Work each question on paper before you pick an option.'; },
+    solid: function (ch) { return 'In ' + ch + ', you are solid: eight or more right, by the right route. Move to the next chapter.'; }
   },
-  no_weakness: 'Fewer than two wrong answers, so there is no weakness to name yet. Run it again for a second look.',
+  no_pattern: 'No clear pattern yet. Run it again for a second look.',
   all_correct: 'All ten correct. Run it again with fresh questions to be sure.',
-  wrong_list_title: 'Your wrong answers',
-  guessed_list_title: 'Check these too. You guessed right.',
-  wrong_row: function (n, picked, key) { return 'Q' + n + ' — you picked (' + picked + '), the key says (' + key + ')'; },
-  guessed_row: function (n, key) { return 'Q' + n + ' — the key is (' + key + ')'; },
+  q_label: function (n) { return 'Q' + n; },
+  outcome: {
+    solid: 'Right, by the right route.',
+    guessed_right: 'Right, but you guessed. Check the working.',
+    right_by_wrong_route: 'Right answer, but the route you tapped leads to a wrong option. Check the working.',
+    guessed_wrong: 'Wrong, and you guessed.',
+    wrong_unrouted: function (picked, key) { return 'Wrong. You picked (' + picked + '), the key says (' + key + ').'; },
+    wrong_belief: function (confirmed) {
+      return 'Wrong, and you were sure. The idea itself needs fixing.' + (confirmed ? ' The option you picked confirms it.' : '');
+    },
+    slip: 'You went the right way. The option you picked comes from a calculation slip.',
+    slip_unconfirmed: 'You say you went the right way. The option you picked does not say more, so this counts as a slip for now.',
+    slip_mismatch: function (claimed) { return 'You say you took “' + claimed + '”, but the option you picked comes from a calculation slip.'; },
+    wrong_route: function (claimed, type) { return 'You took a wrong route: “' + claimed + '”. The option you picked is where it leads. That is ' + STR.a_mistake(type) + '.'; },
+    wrong_route_unconfirmed: function (claimed, type) { return 'You say you took a wrong route: “' + claimed + '”. The option you picked does not say more. That counts as ' + STR.a_mistake(type) + ' for now.'; },
+    wrong_route_claimed_right: function (picked, type) { return 'You say you went the right way, but the option you picked is where a wrong route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
+    wrong_route_other: function (claimed, picked, type) { return 'You say you took “' + claimed + '”, but the option you picked is where a different route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
+    legacy: function (correct, picked, key) { return correct ? 'Right.' : 'Wrong. You picked (' + picked + '), the key says (' + key + ').'; }
+  },
+  a_mistake: function (type) { return (type === 'application' ? 'an ' : 'a ') + STR.type_name[type] + ' mistake'; },
+  rushed_suffix: ' Answered in under 15 seconds.',
   see_solution: 'See the worked solution',
+  reveal_title_won: 'Congratulations.',
+  reveal_title: 'One more thing.',
+  reveal_body: function (n, score) {
+    return 'Every one of these ' + n + ' questions was a real TG EAPCET question from a past paper, with its official key. You got ' + score + ' of them right.';
+  },
+  reveal_from: 'The papers they came from',
+  reveal_paper: function (label, qnos) { return label + ' — Q' + qnos.join(', Q'); },
   run_again: 'Run it again',
   back_chapters: 'All chapters',
   back_subjects: 'Subjects',
@@ -91,13 +121,15 @@ var STR = {
   fix_cards_title: 'The concept, from the Answer Book',
   fix_try_again: 'Try a similar question',
   fix_try_another: 'Try another one',
+  fix_sibling_head_same: 'A question of the same shape.',
   fix_sibling_head: 'A similar question from the same chapter.',
   fix_sibling_none: 'No unseen similar question is left in this chapter.',
   fix_sibling_solution: 'See its worked solution',
-  fix_streak: function (n, need) { return n + ' of ' + need + ' correct and sure in a row.'; },
-  fix_streak_reset: 'The streak starts again. Correct and sure, three in a row, makes this strong.',
-  fix_streak_none: 'A guessed question does not count toward a streak. It still helps to see the working.',
-  fix_strong: function (type) { return 'Strong now: ' + STR.type_name[type] + '. Three correct and sure in a row.'; },
+  fix_streak: function (n, need) { return n + ' of ' + need + ' right by the right route in a row.'; },
+  fix_streak_reset: 'The streak starts again. Right by the right route, three in a row, makes this strong.',
+  fix_streak_none: 'A guessed answer does not count toward a streak. It still helps to see the working.',
+  fix_strong: function (label) { return 'Strong now: ' + label + '. Three right by the right route in a row.'; },
+  fix_strong_similar: 'Strong now on similar questions. Three right by the right route in a row.',
   try_again: 'Try again',
 
   /* the chat panel */

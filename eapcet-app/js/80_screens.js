@@ -4,10 +4,13 @@
  *   #/                       subject door
  *   #/physics                chapter list
  *   #/physics/<key>          the run, as a thread
- *   #/physics/<key>/result   the diagnosis
+ *   #/physics/<key>/result   the diagnosis, and the reveal of the papers
  *   #/physics/<key>/fix/<id> the worked solution (paid: the lock wall for a locked device)
  *   #/unlock                 the plan, the price, sign-in, pay
- *   #/notastudent/<word>[/off]  team marking */
+ *   #/notastudent/<word>[/off]  team marking
+ *
+ * A question card in a run or a retry never names its paper; only the fix
+ * page and the result's reveal do. */
 var Screens = (function () {
   var VIEWS = ['doorView', 'chaptersView', 'runView', 'resultView', 'fixView', 'unlockView'];
   var currentView = null;
@@ -55,12 +58,17 @@ var Screens = (function () {
   }
 
   // ── chapters ────────────────────────────────────────────────────────────
+  function strongText(ch, key, sameShape, fixPage) {
+    var label = sameShape ? Data.shapeLabel(ch, key) : null;
+    if (fixPage) return label ? STR.fix_strong(label) : STR.fix_strong_similar;
+    return label ? STR.badge_strong(label) : STR.badge_strong_similar;
+  }
   function badgeNode(ch) {
     var never = ch.closed_because && /asked once/i.test(ch.closed_because);
     if (never) return el('span', 'ep-badge ep-badge-closed', STR.badge_never);
     if (!Data.canRun(ch)) return el('span', 'ep-badge ep-badge-closed', STR.badge_closed);
     var b = Run.badge(ch.key);
-    if (b.kind === 'strong') return el('span', 'ep-badge ep-badge-strong', STR.badge_strong(b.type));
+    if (b.kind === 'strong') return el('span', 'ep-badge ep-badge-strong', strongText(ch, b.shape_key, b.same_shape, false));
     if (b.kind === 'weak') return el('span', 'ep-badge ep-badge-weak', STR.badge_weak(b.type, b.score, b.total));
     if (b.kind === 'score') return el('span', 'ep-badge ep-badge-score', STR.badge_score(b.score, b.total));
     return el('span', 'ep-badge', STR.badge_untested);
@@ -101,33 +109,44 @@ var Screens = (function () {
     for (var i = 0; i < list.length; i++) (function (c) {
       var b = el('button', 'ep-chip', c.label);
       b.type = 'button';
-      b.setAttribute('data-probe', c.value);
+      b.setAttribute('data-route', c.value);
       b.onclick = function () { c.onTap(); };
       chips.appendChild(b);
     })(list[i]);
     chips.hidden = !list.length;
   }
-  function correctChips(onProbe_) {
-    return [
-      { label: STR.probe_sure, value: 'sure', onTap: function () { onProbe_('sure'); } },
-      { label: STR.probe_guessed, value: 'guessed', onTap: function () { onProbe_('guessed'); } }
-    ];
+
+  /** The menu after a pick: the question's routes (hash order) and "I guessed",
+      or "I was sure" / "I guessed" when the question has no audited routes. */
+  function hasMenu(q) { return !!(q.has_routes && !q.theory && q.routes && q.routes.length); }
+  function routeLabel(q, id) {
+    if (id === 'guess') return STR.route_guess;
+    if (id === 'sure') return STR.probe_sure;
+    var routes = q.routes || [];
+    for (var i = 0; i < routes.length; i++) if (routes[i].id === id) return routes[i].text;
+    return id;
   }
-  function wrongChips(onProbe_) {
-    return [
-      { label: STR.probe_concept, value: 'concept', onTap: function () { onProbe_('concept'); } },
-      { label: STR.probe_calculation, value: 'calculation', onTap: function () { onProbe_('calculation'); } },
-      { label: STR.probe_application, value: 'application', onTap: function () { onProbe_('application'); } },
-      { label: STR.probe_time, value: 'time', onTap: function () { onProbe_('time'); } }
-    ];
+  function routePrompt(q) { return hasMenu(q) ? STR.route_q : STR.sure_q; }
+  function routeChips(q, onRoute_) {
+    var ids = Run.routesOf(q);
+    var list = [];
+    for (var i = 0; i < ids.length; i++) (function (id) {
+      list.push({ label: routeLabel(q, id), value: id, onTap: function () { onRoute_(id); } });
+    })(ids[i]);
+    return list;
+  }
+  /** The route a wrong option is where of, when it has one. */
+  function routeOfOption(q, option) {
+    var routes = q.routes || [];
+    for (var i = 0; i < routes.length; i++) if (routes[i].id !== 'r' && routes[i].option === option) return routes[i].text;
+    return null;
   }
 
-  /** A question card: asked label, stem, four option buttons. onPick(card, n). */
+  /** A question card: stem and four option buttons, no paper label. onPick(card, n). */
   function questionCard(q, progressText, onPick_) {
     var card = el('div', 'ep-card');
     card.setAttribute('data-qid', q.id);
     if (progressText) card.appendChild(el('div', 'ep-progress', progressText));
-    card.appendChild(el('div', 'ep-asked', q.asked_label));
     card.appendChild(el('div', 'ep-stem', q.question_en));
     var opts = el('div', 'ep-opts');
     for (var n = 1; n <= 4; n++) (function (n) {
@@ -168,21 +187,16 @@ var Screens = (function () {
     var rec = Run.pick(n);
     if (!rec) return;
     markPicked(card, q, n, rec.correct);
-    if (rec.correct) {
-      say(STR.correct + ' ' + STR.probe_correct_q);
-      setChips(correctChips(onProbe));
-    } else {
-      say(STR.wrong(n, q.answer) + ' ' + STR.probe_wrong_q);
-      setChips(wrongChips(onProbe));
-    }
+    say((rec.correct ? STR.correct : STR.wrong(n, q.answer)) + ' ' + routePrompt(q));
+    setChips(routeChips(q, onRoute));
   }
 
-  function onProbe(type) {
-    var label = ({ sure: STR.probe_sure, guessed: STR.probe_guessed, concept: STR.probe_concept,
-                   calculation: STR.probe_calculation, application: STR.probe_application, time: STR.probe_time })[type];
-    say(label, 'student');
+  function onRoute(id) {
+    var q = Run.question();
+    var phase = Run.route(id);
+    if (!phase) return;
+    say(routeLabel(q, id), 'student');
     setChips([]);
-    var phase = Run.probe(type);
     if (phase === 'done') {
       location.hash = '#/physics/' + Run.current().chapterKey + '/result';
     } else {
@@ -210,90 +224,153 @@ var Screens = (function () {
       say(STR.run_intro);
       cur = Run.start(key);
     }
-    if (cur.phase === 'probing') {
-      // The tap was saved; the probe was not. Re-ask the probe for that record.
+    if (cur.phase === 'routing') {
+      // The pick was saved; the route was not. Show the pick and ask again.
       var rec = cur.run.records[cur.run.records.length - 1];
       var q = Data.question(rec.qid);
-      var card = el('div', 'ep-card');
-      card.appendChild(el('div', 'ep-progress', STR.run_progress(cur.i + 1, Run.total())));
-      card.appendChild(el('div', 'ep-asked', q.asked_label));
-      card.appendChild(el('div', 'ep-stem', q.question_en));
+      var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), function () {});
+      markPicked(card, q, rec.picked, rec.correct);
       thread.appendChild(card);
-      if (rec.correct) {
-        say(STR.correct + ' ' + STR.probe_correct_q);
-        setChips(correctChips(onProbe));
-      } else {
-        say(STR.wrong(rec.picked, q.answer) + ' ' + STR.probe_wrong_q);
-        setChips(wrongChips(onProbe));
-      }
+      say((rec.correct ? STR.correct : STR.wrong(rec.picked, q.answer)) + ' ' + routePrompt(q));
+      setChips(routeChips(q, onRoute));
     } else {
       askCard();
     }
   }
 
   // ── result ──────────────────────────────────────────────────────────────
+  /** The sentence for one record's outcome. Type words and public route
+      phrases only — never a mistake's text, which is paid. */
+  function outcomeText(o, q, rec) {
+    var claimed = rec.route && rec.route !== 'r' && rec.route !== 'sure' && rec.route !== 'guess' ? routeLabel(q, rec.route) : null;
+    var picked = routeOfOption(q, rec.picked);
+    var s;
+    switch (o.outcome) {
+      case 'solid': s = STR.outcome.solid; break;
+      case 'guessed_right': s = STR.outcome.guessed_right; break;
+      case 'right_by_wrong_route': s = STR.outcome.right_by_wrong_route; break;
+      case 'guessed_wrong': s = STR.outcome.guessed_wrong; break;
+      case 'wrong_unrouted': s = STR.outcome.wrong_unrouted(rec.picked, q.answer); break;
+      case 'wrong_belief': s = STR.outcome.wrong_belief(o.confirmed); break;
+      case 'slip': s = o.mismatch && claimed ? STR.outcome.slip_mismatch(claimed) : STR.outcome.slip; break;
+      case 'slip_unconfirmed': s = STR.outcome.slip_unconfirmed; break;
+      case 'wrong_route':
+        if (!o.confirmed) s = STR.outcome.wrong_route_unconfirmed(claimed || '', o.type);
+        else if (!o.mismatch) s = STR.outcome.wrong_route(claimed || '', o.type);
+        else if (rec.route === 'r') s = STR.outcome.wrong_route_claimed_right(picked, o.type);
+        else s = STR.outcome.wrong_route_other(claimed || '', picked, o.type);
+        break;
+      default: s = STR.outcome.legacy(rec.correct, rec.picked, q.answer);
+    }
+    return s + (o.rushed ? STR.rushed_suffix : '');
+  }
+
   function showResult(key) {
     var ch = Data.chapter(key);
     var run = ch && Run.lastFinished(key);
     if (!run) { location.hash = '#/physics/' + key; return; }
-    var d = run.diagnosis;
+    var d = Run.diagnosisOf(run);
     showView('resultView');
     setBack('#/physics', STR.back_chapters);
     var box = $('resultBody');
     clear(box);
     box.appendChild(el('h2', 'ep-h2', ch.name));
     box.appendChild(el('div', 'ep-score', STR.result_score(d.score, d.total)));
-    if (d.guessed_right) box.appendChild(el('div', 'ep-note', STR.result_guessed(d.guessed_right)));
-
-    if (d.total - d.score > 0) {
-      box.appendChild(el('div', 'ep-h3', STR.result_hist_title));
-      var bars = el('div', 'ep-bars');
-      var max = 1;
-      for (var t = 0; t < Diag.WRONG_TYPES.length; t++) max = Math.max(max, d.hist[Diag.WRONG_TYPES[t]]);
-      for (var u = 0; u < Diag.WRONG_TYPES.length; u++) {
-        var type = Diag.WRONG_TYPES[u];
-        var row = el('div', 'ep-bar' + (type === d.weakness ? ' ep-bar-weak' : ''));
-        row.setAttribute('data-type', type);
-        row.appendChild(el('span', 'ep-bar-label', STR.bar_label[type]));
-        var track = el('span', 'ep-bar-track');
-        var fill = el('span', 'ep-bar-fill');
-        fill.style.width = (100 * d.hist[type] / max) + '%';
-        track.appendChild(fill);
-        row.appendChild(track);
-        row.appendChild(el('span', 'ep-bar-n', String(d.hist[type])));
-        bars.appendChild(row);
-      }
-      box.appendChild(bars);
-    }
 
     var verdict = el('p', 'ep-verdict');
     verdict.id = 'resultVerdict';
-    verdict.textContent = d.weakness ? STR.weakness[d.weakness](ch.name)
-      : (d.score === d.total ? STR.all_correct : STR.no_weakness);
+    verdict.textContent = d.score === d.total ? STR.all_correct
+      : (d.weakness ? STR.weakness[d.weakness](ch.name) : STR.no_pattern);
     box.appendChild(verdict);
+    if (d.typed > 0) {
+      var conf = el('p', 'ep-note', STR.result_confirmed(d.confirmed, d.wrong));
+      conf.id = 'resultConfirmed';
+      box.appendChild(conf);
+    }
+
+    box.appendChild(el('div', 'ep-h3', STR.result_params_title));
+    var bars = el('div', 'ep-bars');
+    var max = 1;
+    for (var t = 0; t < Diag.PARAMS.length; t++) max = Math.max(max, d.params[Diag.PARAMS[t]]);
+    for (var u = 0; u < Diag.PARAMS.length; u++) {
+      var p = Diag.PARAMS[u];
+      var row = el('div', 'ep-bar' + (p === d.weakness ? ' ep-bar-weak' : ''));
+      row.setAttribute('data-param', p);
+      row.appendChild(el('span', 'ep-bar-label', STR.param_label[p]));
+      var track = el('span', 'ep-bar-track');
+      var fill = el('span', 'ep-bar-fill');
+      fill.style.width = (100 * d.params[p] / max) + '%';
+      track.appendChild(fill);
+      row.appendChild(track);
+      row.appendChild(el('span', 'ep-bar-n', String(d.params[p])));
+      bars.appendChild(row);
+    }
+    box.appendChild(bars);
+
+    var byQid = {};
+    for (var i = 0; i < d.outcomes.length; i++) byQid[d.outcomes[i].qid] = d.outcomes[i];
+    function recordOf_(qid) {
+      for (var j = 0; j < run.records.length; j++) if (run.records[j].qid === qid) return { rec: run.records[j], n: j + 1 };
+      return null;
+    }
+    function group(status) {
+      var shapes = [];
+      for (var s = 0; s < d.shapes.length; s++) if (d.shapes[s].status === status) shapes.push(d.shapes[s]);
+      if (!shapes.length) return;
+      box.appendChild(el('div', 'ep-h3', STR.result_group[status]));
+      var wrap = el('div', 'ep-shapes');
+      wrap.setAttribute('data-group', status);
+      for (var k = 0; k < shapes.length; k++) {
+        var sh = shapes[k];
+        var block = el('div', 'ep-shape');
+        block.setAttribute('data-shape', sh.key);
+        block.appendChild(el('div', 'ep-shape-label', sh.label || ch.name));
+        for (var m = 0; m < sh.qids.length; m++) (function (qid) {
+          var q = Data.question(qid);
+          var found = recordOf_(qid);
+          var o = byQid[qid] || {};
+          var item = el('div', 'ep-shape-item');
+          item.setAttribute('data-qid', qid);
+          item.setAttribute('data-outcome', o.outcome || 'legacy');
+          item.appendChild(el('div', 'ep-outcome', STR.q_label(found.n) + ' — ' + outcomeText(o, q, found.rec)));
+          item.appendChild(el('div', 'ep-fix-stem', q.question_en));
+          if (!found.rec.correct || o.outcome === 'guessed_right' || o.outcome === 'right_by_wrong_route') {
+            var a = el('a', 'btn ep-fix-btn', STR.see_solution);
+            a.href = '#/physics/' + key + '/fix/' + encodeURIComponent(qid);
+            item.appendChild(a);
+          }
+          block.appendChild(item);
+        })(sh.qids[m]);
+        wrap.appendChild(block);
+      }
+      box.appendChild(wrap);
+    }
+    group('fix');
+    group('check');
+    group('solid');
+
     if (d.sec_per_q !== null) box.appendChild(el('p', 'ep-note', STR.result_timing(Math.round(d.sec_per_q), d.exam_sec_per_q + ' s')));
 
-    function list(title, ids, rowText) {
-      if (!ids.length) return;
-      box.appendChild(el('div', 'ep-h3', title));
-      var ul = el('div', 'ep-fix-list');
-      for (var i = 0; i < ids.length; i++) (function (qid) {
-        var rec = null, n = 0;
-        for (var j = 0; j < run.records.length; j++) if (run.records[j].qid === qid) { rec = run.records[j]; n = j + 1; }
-        var q = Data.question(qid);
-        var item = el('div', 'ep-fix-item');
-        item.setAttribute('data-qid', qid);
-        item.appendChild(el('div', 'ep-fix-row', rowText(n, rec, q)));
-        item.appendChild(el('div', 'ep-fix-stem', q.question_en));
-        var a = el('a', 'btn ep-fix-btn', STR.see_solution);
-        a.href = '#/physics/' + key + '/fix/' + encodeURIComponent(qid);
-        item.appendChild(a);
-        ul.appendChild(item);
-      })(ids[i]);
-      box.appendChild(ul);
+    // The reward: only now does the student learn the ten were real papers.
+    var reveal = el('section', 'ep-reveal');
+    reveal.id = 'resultReveal';
+    reveal.appendChild(el('div', 'ep-reveal-title', d.score > 0 ? STR.reveal_title_won : STR.reveal_title));
+    reveal.appendChild(el('p', 'ep-reveal-body', STR.reveal_body(d.total, d.score)));
+    reveal.appendChild(el('div', 'ep-h3', STR.reveal_from));
+    var papers = {}, order = [];
+    for (var r = 0; r < run.ids.length; r++) {
+      var pq = Data.question(run.ids[r]);
+      if (!pq) continue;
+      var label = String(pq.asked_label || '').replace(/,\s*Q\d+$/, '');
+      if (!papers[label]) { papers[label] = []; order.push(label); }
+      papers[label].push(pq.q_no);
     }
-    list(STR.wrong_list_title, d.wrong_ids, function (n, rec, q) { return STR.wrong_row(n, rec.picked, q.answer); });
-    list(STR.guessed_list_title, d.guessed_ids, function (n, rec, q) { return STR.guessed_row(n, q.answer); });
+    for (var w = 0; w < order.length; w++) {
+      var line = el('div', 'ep-reveal-paper', STR.reveal_paper(order[w], papers[order[w]]));
+      line.setAttribute('data-paper', order[w]);
+      reveal.appendChild(line);
+    }
+    box.appendChild(reveal);
 
     var again = el('a', 'btn btn-primary ep-again', STR.run_again);
     again.href = '#/physics/' + key;
@@ -309,7 +386,7 @@ var Screens = (function () {
 
   // ── fix: the worked solution (paid) ─────────────────────────────────────
   /** The record of the run's last meeting with this question: what they
-      picked and what they said happened. Null when it was never in a run. */
+      picked and which way they said they went. Null when it was never in a run. */
   function recordOf(key, qid) {
     var cs = Run.chapterState(key);
     for (var i = cs.runs.length - 1; i >= 0; i--)
@@ -411,30 +488,37 @@ var Screens = (function () {
       box.appendChild(cl);
     }
 
-    // The sibling retry: a similar question, in this panel, counted toward
-    // "strong now" for the kind of mistake this question was probed as.
+    // The sibling retry: a question of the same shape when one is unseen,
+    // in this panel, counted toward "strong now" for this question's shape.
+    var shapeKey = Data.shapeKey(q);
     var retryBox = el('div', 'ep-retry');
     retryBox.id = 'retryBox';
-    var type = rec ? rec.probe : null;
-    var tryBtn = button('btn btn-primary ep-try', STR.fix_try_again, function () { sibling(retryBox, key, q.id, type); });
+    var tryBtn = button('btn btn-primary ep-try', STR.fix_try_again, function () { sibling(retryBox, key, q.id, shapeKey); });
     retryBox.appendChild(tryBtn);
     box.appendChild(retryBox);
 
     var cs = Run.chapterState(key);
+    var last = Run.lastFinished(key);
+    var dg = last ? Run.diagnosisOf(last) : null;
+    var solid = [], weak = [];
+    for (var s = 0; dg && s < dg.shapes.length; s++) {
+      if (dg.shapes[s].status === 'solid') solid.push(dg.shapes[s].key);
+      if (dg.shapes[s].status === 'fix') weak.push(dg.shapes[s].key);
+    }
     Panel.mount(box, {
-      chapterKey: key, qid: q.id, key: q.answer, picked: picked, probe: type,
-      weakness: (Run.lastFinished(key) || { diagnosis: {} }).diagnosis.weakness || null,
-      streak: type && cs.streak[type] ? cs.streak[type] : 0, steps: sol.steps.length
+      chapterKey: key, qid: q.id, key: q.answer, picked: picked, route: rec ? rec.route : null,
+      solid_shapes: solid, weak_shapes: weak,
+      streak: cs.streak[shapeKey] || 0, steps: sol.steps.length
     });
   }
 
-  function sibling(host, key, fromQid, type) {
+  function sibling(host, key, fromQid, shapeKey) {
     clear(host);
     var ch = Data.chapter(key);
     var sib = Data.sibling(fromQid, ch, Run.seenIds(key));
     if (!sib) { host.appendChild(el('p', 'ep-note', STR.fix_sibling_none)); return; }
-    var q = Data.question(sib);
-    host.appendChild(el('p', 'ep-note', STR.fix_sibling_head));
+    var q = Data.question(sib.qid);
+    host.appendChild(el('p', 'ep-note', sib.same_shape ? STR.fix_sibling_head_same : STR.fix_sibling_head));
     var shownAt = Date.now();
     var card = questionCard(q, null, function (card_, n) {
       var correct = n === q.answer;
@@ -442,12 +526,12 @@ var Screens = (function () {
       var ms = Date.now() - shownAt;
       var after = el('div', 'ep-retry-after');
       host.appendChild(after);
-      function settle(probe_) {
-        var streak = Run.retry(key, fromQid, type, q.id, n, correct, probe_, ms);
+      function settle(routeId) {
+        var streak = Run.retry(key, fromQid, shapeKey, q.id, n, correct, routeId, ms, sib.same_shape);
         var cs = Run.chapterState(key);
         var msg;
-        if (streak === null) msg = STR.fix_streak_none;
-        else if (cs.strong_now[type] && streak >= Diag.STRONG_AT) msg = STR.fix_strong(type);
+        if (routeId === 'guess') msg = STR.fix_streak_none;
+        else if (cs.strong_now[shapeKey] && streak >= Diag.STRONG_AT) msg = strongText(ch, shapeKey, Run.sameShape(key, shapeKey), true);
         else if (streak > 0) msg = STR.fix_streak(streak, Diag.STRONG_AT);
         else msg = STR.fix_streak_reset;
         var note = el('p', 'ep-verdict', msg);
@@ -457,23 +541,22 @@ var Screens = (function () {
         var link = el('a', 'btn', STR.fix_sibling_solution);
         link.href = '#/physics/' + key + '/fix/' + encodeURIComponent(q.id);
         row.appendChild(link);
-        row.appendChild(button('btn', STR.fix_try_another, function () { sibling(host, key, fromQid, type); }));
+        row.appendChild(button('btn', STR.fix_try_another, function () { sibling(host, key, fromQid, shapeKey); }));
         after.appendChild(row);
       }
-      if (correct) {
-        after.appendChild(el('p', 'ep-note', STR.correct + ' ' + STR.probe_correct_q));
-        var row = el('div', 'ep-chips ep-chips-inline');
-        row.appendChild(button('ep-chip', STR.probe_sure, function () { clear(row); settle('sure'); }));
-        row.appendChild(button('ep-chip', STR.probe_guessed, function () { clear(row); settle('guessed'); }));
-        after.appendChild(row);
-      } else {
-        after.appendChild(el('p', 'ep-note', STR.wrong(n, q.answer)));
-        settle(null);
-      }
+      after.appendChild(el('p', 'ep-note', (correct ? STR.correct : STR.wrong(n, q.answer)) + ' ' + routePrompt(q)));
+      var row = el('div', 'ep-chips ep-chips-inline');
+      var ids = Run.routesOf(q);
+      for (var i = 0; i < ids.length; i++) (function (id) {
+        var b = button('ep-chip', routeLabel(q, id), function () { clear(row); settle(id); });
+        b.setAttribute('data-route', id);
+        row.appendChild(b);
+      })(ids[i]);
+      after.appendChild(row);
     });
     host.appendChild(card);
     card.scrollIntoView({ block: 'end' });
-    Track.log('retry_start', { qid: q.id, from_qid: fromQid, type: type });
+    Track.log('retry_start', { qid: q.id, from_qid: fromQid, shape_key: shapeKey, same_shape: sib.same_shape });
   }
 
   function showFix(key, qid) {

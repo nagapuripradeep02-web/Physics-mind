@@ -16,7 +16,10 @@
  *      common mistakes, the grounded Answer Book cards — byte-stable per
  *      question so the prompt cache hits and the page can never feed the model
  *      a different answer. The page sends only the question id and where the
- *      student is (picked, probe, weakness, streak).
+ *      student is (the option picked, the route id tapped, the keys of the
+ *      shapes its last run found solid and weak, the streak); every phrase
+ *      is resolved here from the row, and the mismatch between the route the
+ *      student claims and the option they picked is derived here too.
  *   3. THE PERSONA is this product's: never contradict the official key, never
  *      state a different answer, never solve a question that is not the one
  *      open, say "the worked solution above".
@@ -79,7 +82,8 @@ const PERSONA = [
     '- THE OFFICIAL KEY IS THE ANSWER. The QUESTION FACTS below name the official key and the worked solution that reaches it. Never contradict the key, never say a different option is correct or "also correct", never say the key might be wrong. If the student insists another option is right, say plainly that the official key is the option named, and show which step of the worked solution decides it.',
     '- Ground every answer in the worked solution below: its approach, its steps, its final value, its common mistakes. Never invent a step, a number, a formula, or a value that is not in it. Say "the worked solution" or "step 3", never "the facts" or "my data".',
     '- The COMMON MISTAKES list what a student who picked a wrong option most likely did. When the student picked a wrong option, start from the mistake that names that option if there is one; if there is none, say which step their route left out.',
-    '- The situation block may name the KIND of mistake the student reported (concept, application, calculation, guessed or out of time) and their weakness in this chapter. Use it to pitch the answer: a calculation slip needs the arithmetic shown, a concept gap needs the idea in one sentence first, a guess needs the deciding step named.',
+    '- The situation block may say WHICH WAY the student went — the route they tapped, in the words they tapped — and whether the option they picked agrees with it. When it agrees, open with that route in their own words and name the step where it goes wrong. When it does not agree, say plainly that the option they picked comes from a different mistake, and explain that one. A calculation slip needs the arithmetic shown; a concept mistake needs the idea in one sentence first; an application mistake needs the quantity or interval the question actually asks about; a guess needs the deciding step named.',
+    '- The situation block may name the SHAPE of this question (the kind of question the exam asks) and the shapes the student is solid or weak on in this chapter. Use them to say what to practise next; never invent a shape.',
     '- The only question you can see is the one in the QUESTION FACTS. If the student asks about a DIFFERENT question — by number, by name, or by pasting one — say plainly that you can only see the question that is open, and that they can open the other one from its result screen. Then stop. Never sketch its steps, name its formula, guess its answer, or say which chapter holds it.',
     '- If the student pastes a NEW numerical problem for you to solve, do not solve it. Say which idea from this worked solution applies, in one or two sentences, and stop.',
     '- Write PLAIN TEXT only. No markdown, no asterisks for bold, no bullet characters, no headings. The page shows your words exactly as you type them.',
@@ -273,14 +277,16 @@ interface SolutionRow {
         approach?: string;
         steps?: { text?: string; equation?: string; why_this_step?: string }[];
         final_answer?: { option?: number; value?: string };
-        common_mistakes?: { option?: number | null; text?: string }[];
+        common_mistakes?: { option?: number | null; text?: string; type?: string; route?: string | null }[];
+        right_route?: string | null;
     };
     grounding: { question_id?: string; title?: string; text?: string }[];
     verified: boolean;
+    shape?: { key?: string; label?: string } | null;
 }
 
 async function solutionOf(qid: string): Promise<SolutionRow | null | undefined> {
-    const res = await rest(`ep_solutions?select=qid,chapter_key,question,solution,grounding,verified&qid=eq.${qid}&verified=is.true`);
+    const res = await rest(`ep_solutions?select=qid,chapter_key,question,solution,grounding,verified,shape&qid=eq.${qid}&verified=is.true`);
     if (!res.ok) return undefined;            // the read failed
     const rows = await res.json() as SolutionRow[];
     return rows[0] ?? null;                   // null = no verified solution for this id
@@ -300,8 +306,13 @@ function factsOf(row: SolutionRow): string {
     lines.push('');
     lines.push('OFFICIAL KEY: option ' + String(q.answer ?? s.final_answer?.option ?? '?') +
         (s.final_answer?.value ? ' — ' + s.final_answer.value : ''));
+    if (row.shape?.label) {
+        lines.push('');
+        lines.push('SHAPE (the kind of question the exam asks): ' + row.shape.label);
+    }
     lines.push('');
     lines.push('APPROACH: ' + String(s.approach ?? ''));
+    if (s.right_route) lines.push('THE RIGHT ROUTE, as a student would say it: "' + s.right_route + '"');
     lines.push('');
     lines.push('VERIFIED STEPS:');
     (s.steps ?? []).forEach((st, i) => {
@@ -314,7 +325,9 @@ function factsOf(row: SolutionRow): string {
         lines.push('');
         lines.push('COMMON MISTAKES:');
         for (const m of mistakes) {
-            lines.push(`- ${m.option ? 'leads to option ' + m.option + ': ' : ''}${m.text ?? ''}`);
+            lines.push(`- ${m.option ? 'leads to option ' + m.option + ': ' : ''}${m.text ?? ''}` +
+                (m.type ? ` (a ${m.type} mistake)` : '') +
+                (m.route ? ` — the student would say: "${m.route}"` : ''));
         }
     }
     const cards = Array.isArray(row.grounding) ? row.grounding.filter((c) => c && c.text) : [];
@@ -427,24 +440,57 @@ Deno.serve(async (req: Request) => {
 
     const picked = Number.isInteger(body.picked) && body.picked >= 1 && body.picked <= 4 ? Number(body.picked) : null;
     const key = Number(row.question?.answer ?? row.solution?.final_answer?.option ?? 0);
-    const PROBE_WORD: Record<string, string> = {
-        sure: 'answered correctly and was sure',
-        guessed: 'answered correctly but says they guessed',
-        concept: 'answered wrongly and says they did not know the concept',
-        application: 'answered wrongly and says they knew the concept but could not see how to apply it',
-        calculation: 'answered wrongly and says the calculation slipped',
-        time: 'answered wrongly and says they guessed or ran out of time',
-    };
-    const probe = typeof body.probe === 'string' && PROBE_WORD[body.probe] ? body.probe : '';
-    const weakness = typeof body.weakness === 'string' && /^(concept|application|calculation|time)$/.test(body.weakness) ? body.weakness : '';
+    const wrongPick = picked !== null && picked !== key;
+
+    // The route the page reports is an id; every phrase comes from the row.
+    // The option the student picked outranks the route they claim: when the
+    // two disagree the situation says so, and the ledger records `mismatch`.
+    const route = typeof body.route === 'string' && /^(r|m\d{1,2}|guess|sure)$/.test(body.route) ? body.route : '';
+    const KEY_RE = /^[a-z0-9_-]{1,40}$/;
+    const keysOf = (v: unknown): string[] => Array.isArray(v) ? v.filter((k) => typeof k === 'string' && KEY_RE.test(k)).slice(0, 20) : [];
+    const solidShapes = keysOf(body.solid_shapes);
+    const weakShapes = keysOf(body.weak_shapes);
     const streak = Number.isInteger(body.streak) ? Number(body.streak) : null;
+    const mistakes = row.solution?.common_mistakes ?? [];
+    const pickedEntry = wrongPick ? (mistakes.find((m) => m.option === picked) ?? null) : null;
+    const asKind = (t?: string) => (t ? ` (${t === 'application' ? 'an' : 'a'} ${t} mistake)` : '');
+    let routeLine = '';
+    let mismatch = false;
+    if (route === 'guess') {
+        routeLine = '- they say they guessed';
+    } else if (route === 'sure') {
+        routeLine = '- they say they were sure of their answer';
+    } else if (route === 'r') {
+        routeLine = '- they say they went the right way' + (row.solution?.right_route ? `: "${row.solution.right_route}"` : '');
+        if (pickedEntry) {
+            mismatch = true;
+            routeLine += `. But the option they picked is where this mistake leads: "${pickedEntry.text ?? ''}"${asKind(pickedEntry.type)}. Say so plainly, then explain that mistake and the step where the right route differs`;
+        } else if (wrongPick) {
+            routeLine += '. The option they picked is not one the worked solution explains, so treat it as a slip along the right route and show the arithmetic';
+        }
+    } else if (route.startsWith('m')) {
+        const claimed = mistakes[Number(route.slice(1))];
+        if (claimed) {
+            routeLine = `- they say they took this wrong route: "${claimed.route ?? claimed.text ?? ''}"${asKind(claimed.type)}`;
+            if (wrongPick && claimed.option === picked) {
+                routeLine += '. The option they picked is where it leads — confirmed. Open with that route in their words, then the step where it goes wrong';
+            } else if (wrongPick && pickedEntry) {
+                mismatch = true;
+                routeLine += `. But the option they picked is where a different mistake leads: "${pickedEntry.text ?? ''}"${asKind(pickedEntry.type)}. Say so plainly, then explain that one`;
+            } else if (wrongPick) {
+                routeLine += '. The option they picked is not one the worked solution explains, so take their word for the route';
+            }
+        }
+    }
+    const shapeWords = (keys: string[]) => keys.map((k) => k.replace(/[_-]+/g, ' ')).join(', ');
 
     const situation = [
         'Where the student is right now:',
         picked ? `- they picked option ${picked}; the official key is option ${key}` + (picked === key ? ' (correct)' : ' (wrong)') : '- they have not picked an option in this sitting',
-        probe ? `- they ${PROBE_WORD[probe]}` : '',
-        weakness ? `- in this chapter their weakness is: ${weakness}` : '',
-        streak !== null && streak > 0 ? `- on similar questions they are ${streak} correct-and-sure in a row (3 makes it "strong now")` : '',
+        routeLine,
+        solidShapes.length ? `- in this chapter their last run was solid on these kinds of question: ${shapeWords(solidShapes)}` : '',
+        weakShapes.length ? `- in this chapter their last run went wrong on these kinds of question: ${shapeWords(weakShapes)}` : '',
+        streak !== null && streak > 0 ? `- on questions of this shape they are ${streak} right-by-the-right-route in a row (3 makes it "strong now")` : '',
         '- the only question you can see is the one in the QUESTION FACTS. A different question, or a new problem to solve, gets the two-sentence answer the rules give, and then you stop.',
         walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the physics terms stay in English — velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, pressure, temperature, wavelength, frequency, charge, current, resistance, nucleus.' : '',
@@ -517,8 +563,11 @@ Deno.serve(async (req: Request) => {
             question_id: qid,
             chapter_key: row.chapter_key,
             picked,
-            probe: probe || null,
-            weakness: weakness || null,
+            route: route || null,
+            mismatch,
+            shape_key: row.shape?.key ?? null,
+            solid_shapes: solidShapes,
+            weak_shapes: weakShapes,
             question: question.slice(0, 500),
             question_chars: question.length,
             reply_chars: text.length,

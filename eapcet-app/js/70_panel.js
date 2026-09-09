@@ -4,11 +4,16 @@
  * reply renders under the tag "AI answer — check it against the worked
  * solution above". Deterministic text carries no tag.
  *
+ * The page sends ids and enums only — the option picked, the route id tapped,
+ * the keys of the shapes the last run found solid and weak, the streak — and
+ * the server resolves every phrase from its own row. Nothing the student can
+ * read about a solution ever travels up from here.
+ *
  * Inert without EP_CHAT_BASE: no input row, no chips, no request. */
 var Panel = (function () {
   var BASE = (window.EP_CHAT_BASE || '').trim();
   var box, thread, input, sendBtn, chipRow;
-  var ctx = null;                        // {chapterKey, qid, picked, probe, weakness, streak, steps}
+  var ctx = null;                        // {chapterKey, qid, key, picked, route, solid_shapes, weak_shapes, streak, steps}
   var history = [];
   var busy = false;
 
@@ -49,7 +54,8 @@ var Panel = (function () {
     var body = {
       question: text, question_id: ctx.qid, device_id: Sync.deviceId(),
       session_id: Track.session(), internal: Track.isInternal() || undefined,
-      picked: ctx.picked, probe: ctx.probe, weakness: ctx.weakness, streak: ctx.streak,
+      picked: ctx.picked, route: ctx.route || null,
+      solid_shapes: ctx.solid_shapes || [], weak_shapes: ctx.weak_shapes || [], streak: ctx.streak,
       recent_messages: history.slice(-6)
     };
     if (Auth.signedIn()) body.access_token = Auth.token();

@@ -11,6 +11,13 @@
  * official key, an "open" chapter with fewer verified questions than a run plus
  * three siblings needs, a sibling that names a question the pool does not hold.
  *
+ * Routes and shapes (docs/superpowers/specs/2026-09-09-eapcet-precise-diagnosis-design.md):
+ * a solution whose route sidecar passed its own gate and audit carries
+ * `verified.routes`, and only then its release copy carries `right_route` and a
+ * `type`/`route` on every common mistake. A question may carry a `shape` only
+ * from its chapter's authored list. Every one of these is optional so a chapter
+ * without the content still validates and runs, thinner.
+ *
  * Question-keyed and separate from answerBook.ts on purpose: the EAPCET question
  * ships verbatim from a government paper (corpus rule 5, EAPCET exception), the
  * IPE card is our own restatement.
@@ -19,6 +26,15 @@ import { z } from 'zod/v4';
 
 /** A chapter opens with a run's ten plus three unseen siblings for "strong now". */
 export const EAPCET_OPEN_AT = 13;
+/** At most this many shapes per chapter; the result screen lists them all. */
+export const EAPCET_MAX_SHAPES = 12;
+
+const HEX64 = /^[0-9a-f]{64}$/;
+const SHAPE_KEY = /^[a-z0-9_-]{1,40}$/;
+
+export const EapcetMistakeTypeSchema = z.enum(['concept', 'application', 'calculation', 'careless']);
+/** The two types whose mistake IS a route the student can claim. */
+export const EAPCET_ROUTE_TYPES = new Set<string>(['concept', 'application']);
 
 export const EapcetSolutionSchema = z.object({
     schema: z.literal('eapcet_solution_v1'),
@@ -37,10 +53,13 @@ export const EapcetSolutionSchema = z.object({
     common_mistakes: z.array(z.object({
         option: z.number().int().min(1).max(4).nullable(),
         text: z.string().min(1),
+        type: EapcetMistakeTypeSchema.optional(),
+        route: z.string().min(1).nullable().optional(),
     }).strict()).max(3),
     concept_tags: z.array(z.string().min(1)).min(1).max(4),
     difficulty: z.enum(['easy', 'medium', 'hard']),
     mistake_type_hint: z.enum(['concept', 'calculation', 'application']),
+    right_route: z.string().min(1).nullable().optional(),
     authored_by: z.object({
         model: z.string(),
         wave: z.number().int(),
@@ -49,11 +68,18 @@ export const EapcetSolutionSchema = z.object({
     }).strict(),
 }).strict();
 
+export const EapcetRoutesVerifiedSchema = z.object({
+    routes_sha: z.string().regex(HEX64),
+    audit_verdict: z.enum(['ok', 'weak']),
+    audited_by: z.string().min(1),
+}).strict();
+
 export const EapcetVerifiedSchema = z.object({
-    gate_sha: z.string().regex(/^[0-9a-f]{64}$/),
+    gate_sha: z.string().regex(HEX64),
     audit_verdict: z.enum(['ok', 'weak']),
     audited_by: z.string().min(1),
     spot_checked: z.boolean(),
+    routes: EapcetRoutesVerifiedSchema.nullable().optional(),
 }).strict();
 
 export const EapcetGroundingSchema = z.object({
@@ -65,6 +91,17 @@ export const EapcetGroundingSchema = z.object({
     concept_tags: z.array(z.string()).optional(),
     weak_match: z.boolean().optional(),
     unit_cards: z.number().int().optional(),
+}).strict();
+
+export const EapcetShapeRefSchema = z.object({
+    key: z.string().regex(SHAPE_KEY),
+    label: z.string().min(1).max(60),
+}).strict();
+
+export const EapcetShapeSchema = z.object({
+    key: z.string().regex(SHAPE_KEY),
+    label: z.string().min(1).max(60),
+    definition: z.string().optional(),
 }).strict();
 
 export const EapcetQuestionSchema = z.object({
@@ -82,19 +119,47 @@ export const EapcetQuestionSchema = z.object({
     recurrence: z.number().int().min(0),
     twin_of: z.array(z.string()),
     grounding: EapcetGroundingSchema,
+    shape: EapcetShapeRefSchema.optional(),
     solution: EapcetSolutionSchema.optional(),
     verified: EapcetVerifiedSchema.optional(),
 }).strict().superRefine((q, ctx) => {
     if ((q.solution === undefined) !== (q.verified === undefined)) {
         ctx.addIssue({ code: 'custom', message: `${q.id}: solution and verified must travel together` });
     }
-    if (q.solution) {
-        if (q.solution.question_id !== q.id) {
-            ctx.addIssue({ code: 'custom', message: `${q.id}: solution.question_id is ${q.solution.question_id}` });
+    if (!q.solution) return;
+    if (q.solution.question_id !== q.id) {
+        ctx.addIssue({ code: 'custom', message: `${q.id}: solution.question_id is ${q.solution.question_id}` });
+    }
+    if (q.solution.final_answer.option !== q.answer) {
+        ctx.addIssue({ code: 'custom', message: `${q.id}: solution says option ${q.solution.final_answer.option}, the key says ${q.answer}` });
+    }
+    const routed = !!q.verified?.routes;
+    const s = q.solution;
+    if (routed) {
+        if (s.right_route === undefined) ctx.addIssue({ code: 'custom', message: `${q.id}: routes are verified but right_route is missing` });
+        s.common_mistakes.forEach((m, i) => {
+            if (!m.type) { ctx.addIssue({ code: 'custom', message: `${q.id}: common_mistakes[${i}] has no type although routes are verified` }); return; }
+            const wantsRoute = EAPCET_ROUTE_TYPES.has(m.type);
+            if (wantsRoute && (typeof m.route !== 'string' || !m.route.trim())) {
+                ctx.addIssue({ code: 'custom', message: `${q.id}: common_mistakes[${i}] is ${m.type} and needs a route phrase` });
+            }
+            if (!wantsRoute && m.route) {
+                ctx.addIssue({ code: 'custom', message: `${q.id}: common_mistakes[${i}] is ${m.type} and must not carry a route` });
+            }
+            if (m.route && m.route === m.text) {
+                ctx.addIssue({ code: 'custom', message: `${q.id}: common_mistakes[${i}] route equals its text` });
+            }
+        });
+        if (s.mistake_type_hint !== 'concept' && s.right_route === null) {
+            ctx.addIssue({ code: 'custom', message: `${q.id}: hint is ${s.mistake_type_hint} but right_route is null` });
         }
-        if (q.solution.final_answer.option !== q.answer) {
-            ctx.addIssue({ code: 'custom', message: `${q.id}: solution says option ${q.solution.final_answer.option}, the key says ${q.answer}` });
-        }
+    } else {
+        if (s.right_route !== undefined) ctx.addIssue({ code: 'custom', message: `${q.id}: right_route present without verified routes` });
+        s.common_mistakes.forEach((m, i) => {
+            if (m.type !== undefined || m.route !== undefined) {
+                ctx.addIssue({ code: 'custom', message: `${q.id}: common_mistakes[${i}] carries type/route without verified routes` });
+            }
+        });
     }
 });
 
@@ -112,13 +177,14 @@ export const EapcetChapterSchema = z.object({
     verified_ids: z.array(z.string()),
     open: z.boolean(),
     closed_because: z.string().nullable(),
+    shapes: z.array(EapcetShapeSchema).max(EAPCET_MAX_SHAPES).optional(),
 }).strict();
 
 export const EapcetPoolReleaseSchema = z.object({
     schema: z.literal('eapcet_physics_pool_v1'),
     built_from: z.object({
         bank: z.string(),
-        bank_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+        bank_sha256: z.string().regex(HEX64),
         bank_rows: z.number().int(),
         selector_version: z.number().int(),
         built_at: z.string(),
@@ -126,6 +192,7 @@ export const EapcetPoolReleaseSchema = z.object({
         open_at: z.literal(EAPCET_OPEN_AT),
         gated: z.number().int(),
         verified: z.number().int(),
+        shapes_sha256: z.string().regex(HEX64).optional(),
     }).strict(),
     exam: z.object({ shifts: z.number().int(), physics_per_shift: z.number().int() }).strict(),
     rules: z.object({
@@ -168,6 +235,22 @@ export const EapcetPoolReleaseSchema = z.object({
         }
         if (c.open && c.closed_because !== null) {
             ctx.addIssue({ code: 'custom', message: `${c.key} is open but carries closed_because` });
+        }
+        // Shapes: every listed key unique and used by a pool question; every used key listed.
+        const listed = new Map<string, number>();
+        for (const s of c.shapes ?? []) {
+            if (listed.has(s.key)) ctx.addIssue({ code: 'custom', message: `${c.key} lists shape ${s.key} twice` });
+            listed.set(s.key, 0);
+        }
+        for (const id of c.pool_ids) {
+            const sh = rel.questions[id]?.shape;
+            if (!sh) continue;
+            if (!c.shapes) { ctx.addIssue({ code: 'custom', message: `${id} carries shape ${sh.key} but ${c.key} lists no shapes` }); continue; }
+            if (!listed.has(sh.key)) { ctx.addIssue({ code: 'custom', message: `${id} carries shape ${sh.key}, not in ${c.key}'s list` }); continue; }
+            listed.set(sh.key, listed.get(sh.key)! + 1);
+        }
+        for (const [k, n] of listed) {
+            if (n === 0) ctx.addIssue({ code: 'custom', message: `${c.key} lists shape ${k} that no pool question carries` });
         }
     }
     for (const [id, sibs] of Object.entries(rel.siblings)) {
