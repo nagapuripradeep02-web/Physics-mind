@@ -165,3 +165,5 @@ eapcet-app/dist-e2e/
 eapcet-app/dist-e2e-hosted/
 eapcet-app/dist-dev/
 eapcet-app/dist-students/
+eapcet-app/dist-preview/
+eapcet-app/dist-*/

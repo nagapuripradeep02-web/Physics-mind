@@ -1,0 +1,374 @@
+{
+  "key": "thrown_up",
+  "title": "A body thrown straight up",
+  "subtopics": [
+    {
+      "key": "throw_up",
+      "title": "Time up and the return speed",
+      "shapes": [
+        "vertical_projectile_up_and_down"
+      ],
+      "concept": {
+        "lines": [
+          "A ball thrown straight up slows down as it rises because gravity pulls it down.",
+          "Its speed falls by 10 m/s each second on the way up, until it becomes zero.",
+          "At the highest point, the ball is at rest for an instant before falling.",
+          "Time to reach the top is t = u/g, where u is the launch speed and g = 10 m/s².",
+          "The ball is at its maximum height at the instant its speed is zero.",
+          "Ignoring air resistance, the time taken to fall equals the time taken to rise: time up = time down.",
+          "The ball lands back at the throw point with the same speed it started with.",
+          "At any height, the speed on the way down equals the speed at that height on the way up."
+        ],
+        "formula": {
+          "text": "t = u/g",
+          "meaning": "t = time to the top, u = launch speed, g = 10 m/s²."
+        },
+        "example": {
+          "given": "u = 10 m/s thrown straight up, g = 10 m/s². Time to the top and total time in the air?",
+          "steps": [
+            {
+              "text": "Find the time to the top.",
+              "equation": "t = u/g = 10/10 = 1 s"
+            },
+            {
+              "text": "Time down equals time up; double it for the total.",
+              "equation": "T = 2 × 1 = 2 s"
+            }
+          ],
+          "answer": "1 s up, 2 s total"
+        }
+      },
+      "check": {
+        "stem": "A ball thrown straight up returns to the point it was thrown from. Ignoring air resistance, how does its speed there compare with the throw speed, and how does the time to fall compare with the time to rise?",
+        "options": [
+          "The return speed is greater; the fall takes longer than the rise.",
+          "The return speed equals the throw speed; the fall and rise take equal time.",
+          "The return speed is less than the throw speed; the fall takes longer.",
+          "The return speed equals the throw speed, but the fall takes less time."
+        ],
+        "answer": 2,
+        "why_right": "The same acceleration g acts going up and coming down, so both speed and time match.",
+        "why_wrong": {
+          "1": "Gravity acts the same on the way down as the way up, so speed cannot become greater.",
+          "3": "No air resistance means no speed is lost, so the return speed cannot be less than the throw speed.",
+          "4": "The same acceleration acts on both halves of the trip, so the fall cannot take less time than the rise."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_throw_up_01",
+              "stem": "A ball is thrown straight up with a speed of 30 m/s. Take g = 10 m/s². Find the time taken to reach the highest point.",
+              "options": [
+                "1.5 s",
+                "3 s",
+                "20 s",
+                "6 s"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I divided the given speed by g."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used twice the value of g in the formula.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "The time to the top uses g, not two times g. Redo using only g: t = u/g = 30/10 = 3 s."
+                },
+                {
+                  "id": "m1",
+                  "text": "I took g away from the given speed.",
+                  "type": "concept",
+                  "option": 3,
+                  "fix": "Time to the top comes from dividing the speed by g, not subtracting. Divide instead of subtract to get the right time."
+                },
+                {
+                  "id": "m2",
+                  "text": "I doubled the time to the top.",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "The time to the top is already t = u/g; the question does not ask for the total flight time, so do not double it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_throw_up_02",
+              "stem": "A ball is thrown straight up with a speed of 72 km/h. Take g = 10 m/s². Find the time taken to reach the highest point.",
+              "options": [
+                "4 s",
+                "1 s",
+                "2 s",
+                "7.2 s"
+              ],
+              "answer": 3,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I converted the speed to metres per second, then divided by g."
+                },
+                {
+                  "id": "m0",
+                  "text": "I doubled the answer after dividing by g.",
+                  "type": "application",
+                  "option": 1,
+                  "fix": "The time to the top is already t = u/g using the converted speed; the question does not ask for the total flight time, so do not double it."
+                },
+                {
+                  "id": "m1",
+                  "text": "I doubled g before dividing the speed by it.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "The time to the top uses g, not twice g: t = u/g = 20/10 = 2 s."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the given speed without converting its units first.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The speed was given in km per h; convert to m per s (multiply by 5/18) before using the time formula."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_throw_up_03",
+              "stem": "A ball thrown straight up returns to the throw point after 4 s. Take g = 10 m/s². Find the speed at which it was thrown.",
+              "options": [
+                "20 m/s",
+                "40 m/s",
+                "12 m/s",
+                "0.4 m/s"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I halved the total time, then multiplied by g."
+                },
+                {
+                  "id": "m0",
+                  "text": "I multiplied g by the total time.",
+                  "type": "application",
+                  "option": 2,
+                  "fix": "The 4 s given is the total time up and down. Halve it to get the time to the top before multiplying by g."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added g and the half time together.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Multiply g by the half-time to get the launch speed; adding them gives the wrong units and the wrong number."
+                },
+                {
+                  "id": "m2",
+                  "text": "I divided the total time by g.",
+                  "type": "concept",
+                  "option": 4,
+                  "fix": "Speed equals g multiplied by time, not time divided by g. Multiply instead: g × (half the total time)."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "zero_v_nonzero_a",
+      "title": "Zero velocity at the top, acceleration still g",
+      "shapes": [
+        "zero_velocity_nonzero_acceleration"
+      ],
+      "concept": {
+        "lines": [
+          "At the highest point of a throw, the velocity of the ball is zero for an instant.",
+          "Air resistance is ignored, so the only acceleration is g, acting downward the whole time.",
+          "A body can have zero velocity and a non-zero acceleration at the same instant.",
+          "On the way up, velocity and acceleration point in opposite directions, so the ball slows down.",
+          "On the way down, velocity and acceleration point in the same direction, so the ball speeds up.",
+          "Right before the top the ball is slowing down; right after, it is speeding up downward.",
+          "Acceleration describes how velocity is changing, not what velocity equals right now.",
+          "Zero velocity does not mean zero force; gravity still pulls the ball down at the top."
+        ],
+        "formula": {
+          "text": "v = u − gt",
+          "meaning": "v = velocity at time t, u = launch speed; up is positive, and the acceleration is g downward throughout."
+        },
+        "example": {
+          "given": "u = 20 m/s thrown straight up, g = 10 m/s². Find v at t = 2 s and the acceleration at that instant.",
+          "steps": [
+            {
+              "text": "Find v using v = u − gt.",
+              "equation": "v = 20 − 10 × 2 = 0"
+            },
+            {
+              "text": "The acceleration is still g downward, even though v = 0.",
+              "equation": "a = 10 m/s² (downward)"
+            }
+          ],
+          "answer": "v = 0 m/s; a = 10 m/s² downward"
+        }
+      },
+      "check": {
+        "stem": "At the highest point of a vertical throw, the velocity is zero for an instant. What is true about the acceleration at that same instant?",
+        "options": [
+          "The acceleration is zero too, since the velocity is zero.",
+          "The acceleration only starts acting once the body begins to fall.",
+          "The acceleration stays g, directed downward, the whole time.",
+          "The acceleration points upward while the velocity is zero."
+        ],
+        "answer": 3,
+        "why_right": "Gravity acts on the body at every instant of the flight, including the moment the velocity is zero.",
+        "why_wrong": {
+          "1": "Gravity never stops acting; the force and the acceleration g are present even when the velocity is zero.",
+          "2": "Gravity acts from the moment the body is thrown, not only after it starts to fall.",
+          "4": "Gravity always pulls the body down, so the acceleration points downward throughout, never upward."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_zero_v_nonzero_a_01",
+              "stem": "A ball is thrown straight up at 15 m/s. Take g = 10 m/s². Find its acceleration 1 s after it is thrown.",
+              "options": [
+                "0 m/s², since no force acts on the ball at that instant.",
+                "10 m/s², directed downward.",
+                "10 m/s², directed upward.",
+                "15 m/s², directed downward."
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I know the acceleration stays g downward throughout the flight."
+                },
+                {
+                  "id": "m0",
+                  "text": "I thought the acceleration becomes zero once the ball leaves the hand.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Gravity keeps acting on the ball throughout its flight; the acceleration stays 10 m/s² downward at every instant, even in the air."
+                },
+                {
+                  "id": "m1",
+                  "text": "I took the direction the ball moves as the acceleration direction.",
+                  "type": "concept",
+                  "option": 3,
+                  "fix": "Acceleration due to gravity always points downward on this body, no matter which way it happens to be moving at that instant."
+                },
+                {
+                  "id": "m2",
+                  "text": "I reported the given speed as the acceleration value.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The given speed is not the acceleration; the acceleration always stays 10 m/s² downward here, from g, not from the launch speed."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_zero_v_nonzero_a_02",
+              "stem": "A ball thrown straight up reaches its highest point 1.5 s after being thrown. Take g = 10 m/s². Find the launch speed, and state the acceleration at that instant.",
+              "options": [
+                "u = 0.15 m/s; acceleration = 10 m/s² downward.",
+                "u = 15 m/s; acceleration = 0 m/s².",
+                "u = 15 m/s; acceleration = 10 m/s² downward.",
+                "u = 10 m/s; acceleration = 15 m/s² downward."
+              ],
+              "answer": 3,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I multiplied g by the time to the top."
+                },
+                {
+                  "id": "m0",
+                  "text": "I divided the time to the top by g for the speed.",
+                  "type": "calculation",
+                  "option": 1,
+                  "fix": "Rearranging t = u/g for u means multiplying g by the time, not dividing the time by g."
+                },
+                {
+                  "id": "m1",
+                  "text": "I thought the acceleration becomes zero at the highest point.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "The acceleration stays g downward at the highest point too; only the velocity is zero there, not the acceleration."
+                },
+                {
+                  "id": "m2",
+                  "text": "I reported the acceleration as the launch speed in my answer.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "Check which number is the launch speed and which is the acceleration before writing the final answer; here u = 15 m/s and the acceleration stays 10 m/s² downward."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_zero_v_nonzero_a_03",
+              "stem": "A ball is thrown straight up at 30 m/s. Take g = 10 m/s². Find its velocity at t = 3 s and its acceleration at that same instant.",
+              "options": [
+                "v = 0, and acceleration is 0 m/s² at that instant.",
+                "v = 20 m/s upward, and acceleration is 10 m/s² downward at that instant.",
+                "v = 0, and acceleration is 10 m/s² upward at that instant.",
+                "v = 0, and acceleration is 10 m/s² downward at that instant."
+              ],
+              "answer": 4,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found v from the formula, then noted gravity still acts."
+                },
+                {
+                  "id": "m0",
+                  "text": "I assumed the acceleration is zero because the velocity is zero.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Even though v = 0 at that instant, gravity keeps pulling the ball down, so the acceleration stays 10 m/s², not zero."
+                },
+                {
+                  "id": "m1",
+                  "text": "I took g away from the launch speed.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Subtract g multiplied by the time, not only g, from the launch speed: v = u − g×t, using the full time value."
+                },
+                {
+                  "id": "m2",
+                  "text": "I took the acceleration direction as upward since the ball was slowing.",
+                  "type": "concept",
+                  "option": 3,
+                  "fix": "Gravity always points downward on this body; the acceleration is downward whether the ball is slowing or speeding up."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

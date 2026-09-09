@@ -29,6 +29,7 @@ import { join } from 'path';
 import {
     OPEN_KEY, PLAIN_KEY, CLOSED_KEY, STEP_TEXT, MISTAKE_APP, MISTAKE_CALC, ROUTE_RIGHT, ROUTE_APP, SHAPES,
     fixture, watchRequests, installClock, advance, open, currentCard, pickFor, menuOf, playRun, expectation,
+    writeLearnDir,
     type Intent,
 } from './eapcet_helpers';
 
@@ -41,7 +42,9 @@ const URL = 'file:///' + DIST.replace(/\\/g, '/');
 test.beforeAll(() => {
     mkdirSync(OUT, { recursive: true });
     writeFileSync(FIXTURE, JSON.stringify(fixture()));
-    execFileSync('npx', ['tsx', 'src/scripts/build_eapcet_app.ts', `--pool=${FIXTURE}`, `--out=${OUT}`], { cwd: ROOT, stdio: 'pipe', shell: true });
+    // The fixture pack, not the real one: the real p1-02 pack names shapes the fixture's closed p1-02 does not have.
+    const learn = writeLearnDir(join(OUT, 'learn'));
+    execFileSync('npx', ['tsx', 'src/scripts/build_eapcet_app.ts', `--pool=${FIXTURE}`, `--out=${OUT}`, `--learn=${learn}`], { cwd: ROOT, stdio: 'pipe', shell: true });
     if (!existsSync(DIST)) throw new Error('the e2e build produced no index.html');
 });
 
@@ -402,7 +405,8 @@ test.describe('EAPCET finder — hosted build against faked endpoints', () => {
     test.beforeAll(() => {
         mkdirSync(HOSTED_OUT, { recursive: true });
         writeFileSync(join(HOSTED_OUT, 'fixture_release.json'), JSON.stringify(fixture()));
-        execFileSync('npx', ['tsx', 'src/scripts/build_eapcet_app.ts', '--hosted', `--pool=${join(HOSTED_OUT, 'fixture_release.json')}`, `--out=${HOSTED_OUT}`], {
+        const learn = writeLearnDir(join(HOSTED_OUT, 'learn'));
+        execFileSync('npx', ['tsx', 'src/scripts/build_eapcet_app.ts', '--hosted', `--pool=${join(HOSTED_OUT, 'fixture_release.json')}`, `--out=${HOSTED_OUT}`, `--learn=${learn}`], {
             cwd: ROOT, stdio: 'pipe', shell: true,
             env: { ...process.env, EP_CHAT_BASE: CHAT, EP_STATE_BASE: STATE, EP_PAY_BASE: PAY, EP_AUTH_BASE: '', EP_AUTH_ANON: '', EP_STAFF_WORD: 'teamword' },
         });

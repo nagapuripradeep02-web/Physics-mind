@@ -10,6 +10,8 @@
  * closed. The strings below are what the leak tests look for.
  */
 import { expect, type Page } from '@playwright/test';
+import { mkdirSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 export const OPEN_KEY = 'p1-05';        // open; routes audited; shapes authored
 export const PLAIN_KEY = 'p1-08';       // open; no routes, no shapes
@@ -241,4 +243,75 @@ export function expectation(played: Played[], rushed = false) {
     for (const t of ['concept', 'application', 'calculation'] as const) if (params[t] > best) { best = params[t]; weakness = t; }
     if (best < 2) weakness = params.guessed >= 3 ? 'guessed' : (score >= 8 ? 'solid' : null);
     return { params, score, wrong, mismatches, confirmed, typed, weakness };
+}
+
+// ── the learn pack fixture ───────────────────────────────────────────────────
+// One pack for OPEN_KEY: two topics × two subtopics, one link per SHAPES key
+// (the fourth subtopic teaches no shape). Every phrase obeys the pack's own
+// rules and none equals STEP_TEXT / MISTAKE_* (the leak tests look for those).
+
+export const LEARN_LINE = 'Work is the force times the displacement along the force.';
+export const LEARN_FORMULA = 'W = F × s';
+export const LEARN_CHECK_STEM = 'A force acts at right angles to the motion. What is the work done by that force?';
+export const LEARN_ROUTE_RIGHT = 'I multiplied the force by the displacement';
+export const LEARN_ROUTE_CONCEPT = 'I added the force to the displacement';
+export const LEARN_FIX = 'Work is a product: the force times the displacement. Adding the two mixes their units.';
+export const LEARN_SUBS = ['work_from_force', 'work_sign', 'power_at_instant', 'energy_change'];
+
+function learnQuestion(sub: string, n: number) {
+    // n = 1, 2, 3 is the slot: 2 N × 3 m = 6 J, 4 N × 3 m = 12 J, 1 N × 9 m = 9 J.
+    const given = [['2 N', '3 m'], ['4 N', '3 m'], ['1 N', '9 m']][n - 1];
+    const answer = [2, 4, 3][n - 1];
+    const wrong = [1, 2, 3, 4].filter((o) => o !== answer);
+    return {
+        id: `lq_${OPEN_KEY}_${sub}_${String(n).padStart(2, '0')}`,
+        stem: `A force of ${given[0]} moves a box ${given[1]} along the force. The work done is`,
+        options: ['3 J', '6 J', '9 J', '12 J'], answer, difficulty: n,
+        routes: [
+            { id: 'r', text: LEARN_ROUTE_RIGHT },
+            { id: 'm0', text: LEARN_ROUTE_CONCEPT, type: 'concept', option: wrong[0], fix: LEARN_FIX },
+            { id: 'm1', text: 'I divided the displacement by the force', type: 'application', option: wrong[1], fix: 'Multiply the two numbers; do not divide them.' },
+            { id: 'm2', text: 'I doubled the product at the end', type: 'calculation', option: wrong[2], fix: 'Multiply once and stop. Check the last line.' },
+        ],
+    };
+}
+function learnSubtopic(key: string, title: string, shapes: string[]) {
+    return {
+        key, title, shapes,
+        concept: {
+            lines: [LEARN_LINE, 'A force at right angles to the motion does no work.', 'Work has the unit joule, written J.',
+                'A larger displacement along the force means more work.', 'Zero displacement means zero work.'],
+            formula: { text: LEARN_FORMULA, meaning: 'W is the work, F the force, s the displacement along the force.' },
+            example: { given: 'F = 5 N, s = 2 m along the force. Work?', steps: [{ text: 'Multiply the two.', equation: 'W = 5 × 2' }, { text: 'Write the unit.', equation: 'W = 10 J' }], answer: '10 J' },
+        },
+        check: {
+            stem: LEARN_CHECK_STEM,
+            options: ['The same as along the motion', 'Zero', 'Negative'], answer: 2,
+            why_right: 'No displacement along that force means no work by it.',
+            why_wrong: { '1': 'Only the part of the force along the motion does work.', '3': 'Negative work needs a force against the motion.' },
+        },
+        apply: [1, 2, 3].map((n) => ({ variants: [learnQuestion(key, n)] })),
+    };
+}
+export function learnFixture() {
+    return {
+        schema: 'eapcet_learn_pack_v1', chapter_key: OPEN_KEY, chapter_name: 'Work Power Energy', reviewed: false,
+        authored_by: { agent: 'e2e fixture', at: '2026-09-09T00:00:00+05:30' },
+        topics: [
+            { key: 'work', title: 'Work', subtopics: [learnSubtopic('work_from_force', 'Work from a constant force', ['work_from_force']), learnSubtopic('work_sign', 'The sign of work', [])] },
+            { key: 'power_energy', title: 'Power and energy', subtopics: [learnSubtopic('power_at_instant', 'Power at an instant', ['power_at_instant']), learnSubtopic('energy_change', 'Change in kinetic energy', ['energy_change'])] },
+        ],
+    };
+}
+/** Write the fixture pack where a build's --learn= can read it; returns the dir. */
+export function writeLearnDir(dir: string): string {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, `${OPEN_KEY}.json`), JSON.stringify(learnFixture()));
+    return dir;
+}
+/** The practice card on the lesson thread and the public question behind it. */
+export async function currentLearnCard(page: Page): Promise<PublicQuestion> {
+    const qid = (await page.locator('#learnThread .ep-card[data-qid]').last().getAttribute('data-qid')) || '';
+    expect(qid).toBeTruthy();
+    return await page.evaluate((id) => (window as any).LearnData.question(id), qid) as PublicQuestion;
 }

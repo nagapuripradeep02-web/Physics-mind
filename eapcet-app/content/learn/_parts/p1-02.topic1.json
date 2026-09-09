@@ -1,0 +1,735 @@
+{
+  "key": "position_velocity_acceleration",
+  "title": "Position, velocity and acceleration",
+  "subtopics": [
+    {
+      "key": "average_velocity",
+      "title": "Average velocity from two positions",
+      "shapes": [
+        "velocity_from_position_equation"
+      ],
+      "concept": {
+        "lines": [
+          "Average velocity is displacement divided by the time taken.",
+          "Displacement is the change in position, the final position minus the initial position.",
+          "Displacement can be positive or negative, depending on the direction of motion.",
+          "Average speed is total distance divided by total time.",
+          "Average speed and average velocity can differ when the object changes direction.",
+          "Average velocity depends only on the start and end positions, not on the path taken."
+        ],
+        "formula": {
+          "text": "v = Δx / Δt",
+          "meaning": "v = average velocity, Δx = displacement, Δt = time taken."
+        },
+        "example": {
+          "given": "x₁ = 2 m at t₁ = 0 s, x₂ = 12 m at t₂ = 5 s. Find the average velocity.",
+          "steps": [
+            {
+              "text": "Find the displacement.",
+              "equation": "Δx = 12 − 2 = 10 m"
+            },
+            {
+              "text": "Divide by the time taken.",
+              "equation": "v = 10 / 5 = 2 m/s"
+            }
+          ],
+          "answer": "2 m/s"
+        }
+      },
+      "check": {
+        "stem": "A student says average velocity depends on the actual path taken between two points. Which statement is correct?",
+        "options": [
+          "Average velocity depends on the path taken between the two points.",
+          "Average velocity depends only on the start and end positions, not the path.",
+          "Average velocity is always equal to average speed.",
+          "Average velocity cannot be negative."
+        ],
+        "answer": 2,
+        "why_right": "Average velocity uses only the start and end positions, not the path taken between them.",
+        "why_wrong": {
+          "1": "The path length does not enter this formula, only the start and end positions.",
+          "3": "Average speed equals the size of the average velocity when the direction never changes.",
+          "4": "Average velocity is negative whenever the displacement itself is negative."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_average_velocity_01",
+              "stem": "A particle moves from x = 3 m to x = 11 m in 4 s. Find its average velocity.",
+              "options": [
+                "-2 m/s",
+                "2.75 m/s",
+                "2 m/s",
+                "4 m/s"
+              ],
+              "answer": 3,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I divided the displacement by the time taken."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the final position as the displacement.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "Displacement is the change in position, the final position minus the initial position, not the final position alone."
+                },
+                {
+                  "id": "m1",
+                  "text": "I used the earlier position minus the later position.",
+                  "type": "careless",
+                  "option": 1,
+                  "fix": "Displacement is the final position minus the initial position; keep this order to get the correct sign."
+                },
+                {
+                  "id": "m2",
+                  "text": "I took the displacement minus the time.",
+                  "type": "calculation",
+                  "option": 4,
+                  "fix": "Once you have the displacement and the time, divide one by the other, not subtract them."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_average_velocity_02",
+              "stem": "A particle is at x = 5 m. It moves with average velocity 3 m/s for 4 s. Find its final position.",
+              "options": [
+                "12 m",
+                "17 m",
+                "21 m",
+                "-7 m"
+              ],
+              "answer": 2,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I rearranged the formula to find the final position."
+                },
+                {
+                  "id": "m0",
+                  "text": "I took velocity times time as the final position.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "The final position is the starting position plus velocity times time; add the starting position back in."
+                },
+                {
+                  "id": "m1",
+                  "text": "I multiplied the time by itself and added the start position.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Multiply the velocity by the time, three times four, not the time by itself, four times four; then add the start position to get the final position."
+                },
+                {
+                  "id": "m2",
+                  "text": "I subtracted velocity times time from the starting position.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The object moves forward, so displacement adds onto the starting position; add, do not subtract."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_average_velocity_03",
+              "stem": "A particle moves from x = 4 m to x = 64 m in 2 minutes. Find its average velocity in m/s.",
+              "options": [
+                "30 m/s",
+                "2 m/s",
+                "1 m/s",
+                "0.5 m/s"
+              ],
+              "answer": 4,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I converted the time to seconds and divided the displacement by it."
+                },
+                {
+                  "id": "m0",
+                  "text": "I divided the displacement by the time in minutes.",
+                  "type": "application",
+                  "option": 1,
+                  "fix": "Average velocity needs time in seconds here; convert 2 minutes to 120 seconds before dividing."
+                },
+                {
+                  "id": "m1",
+                  "text": "I divided the time in seconds by the displacement.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Average velocity is displacement divided by time; check which number belongs on top."
+                },
+                {
+                  "id": "m2",
+                  "text": "I converted only one minute to sixty seconds.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "Two minutes equals 120 seconds, not 60; multiply the number of minutes by 60 to convert to seconds."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "velocity_from_x_t",
+      "title": "Velocity from the position equation",
+      "shapes": [
+        "velocity_from_position_equation"
+      ],
+      "concept": {
+        "lines": [
+          "Velocity is the rate of change of position with time.",
+          "For position given as x = a + bt + ct², velocity is v = dx/dt = b + 2ct.",
+          "Put a value of t into this velocity equation to find the velocity at that instant.",
+          "The velocity is zero when b + 2ct = 0, which gives a special time value.",
+          "A constant term in x, like a, does not appear in the velocity equation.",
+          "Differentiating ct² gives 2ct, so the coefficient doubles in the velocity equation."
+        ],
+        "formula": {
+          "text": "v = dx/dt = b + 2ct",
+          "meaning": "v = velocity, x = a + bt + ct², b and c are constants, t = time."
+        },
+        "example": {
+          "given": "x = 2 + 3t + t² (m). Find the velocity at t = 2 s.",
+          "steps": [
+            {
+              "text": "Differentiate x with respect to t.",
+              "equation": "v = 3 + 2t"
+            },
+            {
+              "text": "Put t = 2 into the velocity equation.",
+              "equation": "v = 3 + 2×2 = 7 m/s"
+            }
+          ],
+          "answer": "7 m/s"
+        }
+      },
+      "check": {
+        "stem": "A position equation has a constant term added to it, such as x = a + bt, where a is a constant. Which statement about its effect on velocity is correct?",
+        "options": [
+          "The constant term makes the velocity keep changing with time.",
+          "The constant term shifts the starting position but does not appear in the velocity.",
+          "The constant term must always be added to the final velocity value.",
+          "The constant term makes the object move backward."
+        ],
+        "answer": 2,
+        "why_right": "A constant added to position only shifts the starting point; its derivative with respect to time is zero.",
+        "why_wrong": {
+          "1": "A constant term has a zero derivative, so it does not make the velocity change with time.",
+          "3": "The constant term does not appear after position is differentiated to get velocity.",
+          "4": "The sign of the constant alone does not decide the direction of motion."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_velocity_from_x_t_01",
+              "stem": "The position of a particle is x = 4 + 2t + t² (m). Find its velocity at t = 3 s.",
+              "options": [
+                "8 m/s",
+                "19 m/s",
+                "5 m/s",
+                "7 m/s"
+              ],
+              "answer": 1,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I differentiated the position equation, then put in the given time."
+                },
+                {
+                  "id": "m0",
+                  "text": "I put the given time directly into the position equation.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "Velocity comes from the position equation only after you differentiate it with respect to time."
+                },
+                {
+                  "id": "m1",
+                  "text": "I treated the square term as if it becomes only t.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "The derivative of ct² is 2ct; keep the factor of two that comes from the power rule."
+                },
+                {
+                  "id": "m2",
+                  "text": "I added all three numbers in the velocity equation.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "After finding v = 2 + 2t, multiply 2 by the time value before adding, not add all the numbers."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_velocity_from_x_t_02",
+              "stem": "The position of a particle is x = 3 + 2t + t² (m), t in seconds. Find its velocity at t = 0.5 minutes.",
+              "options": [
+                "3 m/s",
+                "34 m/s",
+                "62 m/s",
+                "12 m/s"
+              ],
+              "answer": 3,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I converted the time to seconds, then substituted into the velocity equation."
+                },
+                {
+                  "id": "m0",
+                  "text": "I substituted the time in minutes directly into the velocity equation.",
+                  "type": "application",
+                  "option": 1,
+                  "fix": "This velocity equation uses seconds; convert 0.5 minutes to 30 seconds before substituting."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added the two numbers to the time value.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "In v = 2 + 2t, multiply 2 by the time value first, then add the result to 2."
+                },
+                {
+                  "id": "m2",
+                  "text": "I read the given time value as five.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The given time is zero point five minutes, not five; read the decimal point carefully, then convert to thirty seconds."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_velocity_from_x_t_03",
+              "stem": "The position of a particle is x = 9 + 6t − t² (m). Find its position at the time when its velocity becomes zero.",
+              "options": [
+                "3 m",
+                "18 m",
+                "36 m",
+                "9 m"
+              ],
+              "answer": 2,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the zero-velocity time and substituted it into x."
+                },
+                {
+                  "id": "m0",
+                  "text": "I stopped after finding the time when velocity is zero.",
+                  "type": "application",
+                  "option": 1,
+                  "fix": "The question asks for the position; substitute the time value into the position equation as well."
+                },
+                {
+                  "id": "m1",
+                  "text": "I read the minus sign before the squared term as plus.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "The position equation has a minus sign before t²; keep it negative when you substitute the time value."
+                },
+                {
+                  "id": "m2",
+                  "text": "I added the two changing terms without the constant term.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "Add the constant starting term back into the position equation; do not drop it after substituting the time."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "acceleration_from_v",
+      "title": "Acceleration from the velocity equation",
+      "shapes": [
+        "velocity_from_position_equation"
+      ],
+      "concept": {
+        "lines": [
+          "Acceleration is the rate of change of velocity with time.",
+          "For velocity given as v = p + qt, acceleration is a = dv/dt = q, a constant.",
+          "For velocity given as v = p + qt², acceleration is a = dv/dt = 2qt, which changes with time.",
+          "Put a value of t into the acceleration equation to find the acceleration at that instant.",
+          "When velocity is given in terms of position x, acceleration equals v multiplied by dv/dx.",
+          "This second form, a = v dv/dx, is useful when time does not appear in the problem.",
+          "A constant acceleration means the velocity changes by the same amount every second."
+        ],
+        "formula": {
+          "text": "a = dv/dt",
+          "meaning": "a = acceleration, v = velocity, t = time; for v(x), a = v dv/dx."
+        },
+        "example": {
+          "given": "v = 4 + 5t (m/s). Find the acceleration at t = 2 s.",
+          "steps": [
+            {
+              "text": "Differentiate v with respect to t.",
+              "equation": "a = dv/dt = 5"
+            },
+            {
+              "text": "This acceleration is the same at every time.",
+              "equation": "a = 5 m/s²"
+            }
+          ],
+          "answer": "5 m/s²"
+        }
+      },
+      "check": {
+        "stem": "A particle has velocity v = p + qt, where p and q are constants. Which statement about its acceleration is correct?",
+        "options": [
+          "The acceleration depends on the value of t at that moment.",
+          "The acceleration equals q and stays the same at every time.",
+          "The acceleration equals p, the starting velocity.",
+          "The acceleration keeps increasing as t increases."
+        ],
+        "answer": 2,
+        "why_right": "Differentiating p + qt with respect to time gives q, a constant, so the acceleration does not change with time.",
+        "why_wrong": {
+          "1": "t does not appear in the acceleration, because the derivative of qt is the constant q.",
+          "3": "p is the starting velocity, not the rate of change of velocity.",
+          "4": "Acceleration here is the constant q; it does not grow as t increases."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_acceleration_from_v_01",
+              "stem": "The velocity of a particle is v = 6 + 4t (m/s). Find its acceleration at t = 1 s.",
+              "options": [
+                "10 m/s²",
+                "5 m/s²",
+                "6 m/s²",
+                "4 m/s²"
+              ],
+              "answer": 4,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I differentiated the velocity equation to find the acceleration."
+                },
+                {
+                  "id": "m0",
+                  "text": "I found the velocity value and used it as the acceleration.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Acceleration is the derivative of velocity with time, not the velocity value itself."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added the given time to the derivative of velocity.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Once you differentiate v to get a constant acceleration, the time value does not need to be added."
+                },
+                {
+                  "id": "m2",
+                  "text": "I read the constant term as the coefficient of t.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "Check which number multiplies t in the velocity equation; that number is the acceleration."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_acceleration_from_v_02",
+              "stem": "The velocity of a particle is v = 3t² + 2 (m/s). Find its acceleration at t = 2 s.",
+              "options": [
+                "14 m/s²",
+                "6 m/s²",
+                "12 m/s²",
+                "8 m/s²"
+              ],
+              "answer": 3,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I differentiated the velocity equation, then substituted the given time."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the velocity value at that time as the acceleration.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Acceleration is the derivative of velocity with time, not the velocity value at that time."
+                },
+                {
+                  "id": "m1",
+                  "text": "I treated the squared term as if it becomes only t.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "The derivative of 3t² is 6t; keep the factor of two that comes from the power rule."
+                },
+                {
+                  "id": "m2",
+                  "text": "I added six and the time value at the end.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "After finding a = 6t, multiply six by the time value; do not add the two numbers."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_acceleration_from_v_03",
+              "stem": "A particle has velocity v = 2x (m/s), where x is its position in metres. Find its acceleration when x = 3 m.",
+              "options": [
+                "12 m/s²",
+                "2 m/s²",
+                "8 m/s²",
+                "6 m/s²"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found dv/dx, then multiplied it by the velocity at that point."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used dv/dx alone as the acceleration.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "When velocity depends on position, acceleration is v times dv/dx, not dv/dx alone."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added the velocity to dv/dx.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Multiply the velocity value by dv/dx to get acceleration; do not add the two numbers."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the given position value as the velocity itself.",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "First use v = 2x to find the velocity at that position, then use this velocity in a = v dv/dx."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "position_from_v_t",
+      "title": "Position from the velocity equation",
+      "shapes": [
+        "position_from_velocity_equation"
+      ],
+      "concept": {
+        "lines": [
+          "Position is found by integrating velocity with respect to time.",
+          "For velocity v = p + qt, position is x = x₀ + pt + qt²/2.",
+          "The constant x₀ is the position at time t = 0.",
+          "Displacement between two times is the change in position, x(t₂) minus x(t₁).",
+          "If velocity changes sign, the particle reverses direction at that instant.",
+          "Total distance is found by splitting the motion at the reversal and adding the parts."
+        ],
+        "formula": {
+          "text": "x = x₀ + pt + qt²/2",
+          "meaning": "x₀ = initial position, p and q are the constants in v = p + qt."
+        },
+        "example": {
+          "given": "x₀ = 0 m, v = 4 + 2t (m/s). Find the position at t = 3 s.",
+          "steps": [
+            {
+              "text": "Integrate v to get the position equation.",
+              "equation": "x = 0 + 4t + t²"
+            },
+            {
+              "text": "Put t = 3 into the position equation.",
+              "equation": "x = 4×3 + 3² = 21 m"
+            }
+          ],
+          "answer": "21 m"
+        }
+      },
+      "check": {
+        "stem": "A particle's velocity is negative for part of a trip and positive for the rest. Which statement about the distance travelled is correct?",
+        "options": [
+          "Distance travelled equals the displacement, x(t₂) minus x(t₁).",
+          "Distance travelled is found by splitting the motion where velocity changes sign and adding each part.",
+          "Distance travelled is always zero when the particle returns to the start.",
+          "Distance travelled is the average velocity multiplied by the total time."
+        ],
+        "answer": 2,
+        "why_right": "When direction reverses, the parts before and after the reversal must be added separately to get the total distance.",
+        "why_wrong": {
+          "1": "Displacement can be smaller than distance when the particle changes direction and retraces part of its path.",
+          "3": "The particle can travel a large distance and still return to its starting position.",
+          "4": "Average velocity uses displacement, not distance, so this does not give the distance travelled."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_position_from_v_t_01",
+              "stem": "A particle starts at x₀ = 2 m. Its velocity is v = 3 + 2t (m/s). Find its position at t = 2 s.",
+              "options": [
+                "10 m",
+                "12 m",
+                "16 m",
+                "20 m"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I integrated the velocity equation, then added the starting position."
+                },
+                {
+                  "id": "m0",
+                  "text": "I added the two time terms without the starting position.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Add x₀ to the integrated terms; the position equation starts from the given starting position, not from zero."
+                },
+                {
+                  "id": "m1",
+                  "text": "I kept the full coefficient of t squared without dividing it.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Integrating qt gives qt² divided by two; keep this division step when you integrate the t term."
+                },
+                {
+                  "id": "m2",
+                  "text": "I substituted a time value one second larger.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "Check the time value given in the question and substitute that exact value into the position equation."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_position_from_v_t_02",
+              "stem": "A particle's velocity is v = 5 + 2t (m/s). Find the displacement between t = 1 s and t = 3 s.",
+              "options": [
+                "24 m",
+                "30 m",
+                "-18 m",
+                "18 m"
+              ],
+              "answer": 4,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the position at both times and subtracted them."
+                },
+                {
+                  "id": "m0",
+                  "text": "I found the position only at the later time.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Displacement between two times is the later position minus the earlier position, not a single position value."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added the two position values together.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Subtract the earlier position from the later position; do not add the two values together."
+                },
+                {
+                  "id": "m2",
+                  "text": "I subtracted the later position from the earlier one.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "Displacement is the later position minus the earlier position; keep this order to get the correct sign."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_position_from_v_t_03",
+              "stem": "A particle's velocity is v = 6 − 2t (m/s), starting at x₀ = 0. Find the total distance travelled between t = 0 s and t = 4 s.",
+              "options": [
+                "8 m",
+                "9 m",
+                "10 m",
+                "16 m"
+              ],
+              "answer": 3,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I split the trip where velocity is zero and added both distances."
+                },
+                {
+                  "id": "m0",
+                  "text": "I subtracted the starting position from the final position only.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "That subtraction gives the displacement; since the particle reverses, split the trip at the zero-velocity time and add both parts."
+                },
+                {
+                  "id": "m1",
+                  "text": "I multiplied the two part distances together.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Add the distance from the first part to the distance from the second part; do not multiply them."
+                },
+                {
+                  "id": "m2",
+                  "text": "I doubled the reversal time to square it.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "Squaring a number means multiplying it by itself, not doubling it; three squared is nine, so x = 6×3 − 3² = 9 m at the reversal. Redo the positions from there."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,547 @@
+{
+  "key": "uniform_acceleration",
+  "title": "Uniform acceleration",
+  "subtopics": [
+    {
+      "key": "three_equations",
+      "title": "The three equations of motion",
+      "shapes": [
+        "basic_equations_of_motion"
+      ],
+      "concept": {
+        "lines": [
+          "A body moving with constant acceleration follows three basic equations of motion.",
+          "v = u + at gives the final velocity v after a time t, when acceleration is constant.",
+          "s = ut + ½at² gives the displacement s covered in that time t.",
+          "v² = u² + 2as connects velocity and displacement without using time at all.",
+          "Pick the equation that already has your given values and the one value you must find.",
+          "If a question gives no time and asks for velocity, use v² = u² + 2as.",
+          "When a body slows down, its acceleration a is written as a negative value."
+        ],
+        "formula": {
+          "text": "v = u + at; s = ut + ½at²; v² = u² + 2as",
+          "meaning": "u = initial velocity, v = final velocity, a = acceleration, t = time, s = displacement (SI units)"
+        },
+        "example": {
+          "given": "u = 5 m/s, a = 2 m/s², t = 3 s. Find v.",
+          "steps": [
+            {
+              "text": "Use v = u + at since t is given and v is asked.",
+              "equation": "v = 5 + 2×3"
+            },
+            {
+              "text": "Work it out.",
+              "equation": "v = 5 + 6 = 11 m/s"
+            }
+          ],
+          "answer": "11 m/s"
+        }
+      },
+      "check": {
+        "stem": "A body slows down under constant acceleration. In the equations of motion, how should acceleration be written?",
+        "options": [
+          "As a positive value, since it is still acceleration",
+          "As a negative value, since it acts opposite to the velocity",
+          "It cannot be used in the equations of motion"
+        ],
+        "answer": 2,
+        "why_right": "Deceleration acts opposite to the velocity, so a takes a negative sign in the equations.",
+        "why_wrong": {
+          "1": "Acceleration is negative here because it opposes the motion, not positive.",
+          "3": "The equations of motion apply to any constant acceleration, including a negative one."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_three_equations_01",
+              "stem": "A car starts at u = 4 m/s and has a = 2 m/s². Find its velocity after t = 5 s.",
+              "options": [
+                "10 m/s",
+                "14 m/s",
+                "45 m/s",
+                "30 m/s"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I put the given values into v = u + at"
+                },
+                {
+                  "id": "m0",
+                  "text": "I multiplied acceleration by time only",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "v = u + at needs the initial speed added too; v = 4 + 2×5 = 14 m/s, not a×t alone."
+                },
+                {
+                  "id": "m1",
+                  "text": "I added u and a before multiplying by t",
+                  "type": "calculation",
+                  "option": 4,
+                  "fix": "Multiply a by t first, then add u: v = 4 + (2×5) = 14 m/s, not (u+a)×t."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the formula for distance here",
+                  "type": "application",
+                  "option": 3,
+                  "fix": "The question asks for velocity, so use v = u + at, not s = ut + ½at², which gives distance."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_three_equations_02",
+              "stem": "A stone starts at u = 6 m/s and reaches v = 16 m/s under a = 5 m/s². Find the displacement s.",
+              "options": [
+                "44 m",
+                "10 m",
+                "22 m",
+                "2 m"
+              ],
+              "answer": 3,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I solved v² = u² + 2as for s"
+                },
+                {
+                  "id": "m0",
+                  "text": "I divided by the acceleration alone",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "v² = u² + 2as has a 2 before as; s = (v²−u²)/(2a) = (256−36)/10 = 22 m, not dividing by a alone."
+                },
+                {
+                  "id": "m1",
+                  "text": "I subtracted the speeds before squaring",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Square v and u separately first: v² − u² = 256 − 36 = 220, then divide by 2a: s = 22 m."
+                },
+                {
+                  "id": "m2",
+                  "text": "I reported how long the motion took",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "You need the displacement s, not the time; use v² = u² + 2as and solve for s: s = 22 m."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_three_equations_03",
+              "stem": "A car starts at u = 4 m/s and accelerates at a = 3 m/s² for t = 2 s, reaching velocity v. Find the distance s covered in this time using v² = u² + 2as.",
+              "options": [
+                "14 m",
+                "20 m",
+                "28 m",
+                "10 m"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found v first, then solved for s"
+                },
+                {
+                  "id": "m0",
+                  "text": "I multiplied the final speed by the time",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "Displacement uses the average velocity over time, not the final velocity; average velocity × time = ((4+10)/2)×2 = 14 m."
+                },
+                {
+                  "id": "m1",
+                  "text": "I divided by a alone in the last step",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Divide by 2a, not a alone: s = (v²−u²)/(2a) = 84/6 = 14 m."
+                },
+                {
+                  "id": "m2",
+                  "text": "I stopped after finding the speed",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "Finding v is only the first step; use v² = u² + 2as to get s = 14 m from that speed."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "nth_second",
+      "title": "Distance in the nth second",
+      "shapes": [
+        "nth_second_distance"
+      ],
+      "concept": {
+        "lines": [
+          "The distance covered in the nth second is the distance during that one second only.",
+          "Sₙ = u + a(2n − 1)/2 gives the distance covered during the nth second alone.",
+          "Here u is the initial velocity, a is the acceleration, and n is the second number.",
+          "You can also get it by subtracting the total up to (n − 1) seconds from the total up to n seconds.",
+          "Sₙ is a distance measured in metres, never a speed in metres per second.",
+          "For constant acceleration, Sₙ changes by a fixed amount, a, from one second to the next."
+        ],
+        "formula": {
+          "text": "Sₙ = u + a(2n − 1)/2",
+          "meaning": "u = initial velocity, a = acceleration, n = the second number (1st, 2nd, 3rd, …)."
+        },
+        "example": {
+          "given": "u = 3 m/s, a = 4 m/s². Find the distance covered in the 4th second.",
+          "steps": [
+            {
+              "text": "Put n = 4 into the formula.",
+              "equation": "S₄ = 3 + 4(2×4 − 1)/2"
+            },
+            {
+              "text": "Work it out.",
+              "equation": "S₄ = 3 + 14 = 17 m"
+            }
+          ],
+          "answer": "17 m"
+        }
+      },
+      "check": {
+        "stem": "Sₙ from the nth-second formula stands for which of these?",
+        "options": [
+          "The total distance covered from the start up to n seconds",
+          "The distance covered only during the nth second",
+          "The average speed during the nth second"
+        ],
+        "answer": 2,
+        "why_right": "The formula gives the distance for that one second only, not the running total.",
+        "why_wrong": {
+          "1": "The total distance up to n seconds uses s = ut + ½at², not Sₙ.",
+          "3": "Sₙ is a distance in metres, not a speed."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_nth_second_01",
+              "stem": "A body starts at u = 2 m/s with a = 4 m/s². Find the distance covered in the 3rd second.",
+              "options": [
+                "8 m",
+                "12 m",
+                "24 m",
+                "9 m"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I put n into the nth-second formula"
+                },
+                {
+                  "id": "m0",
+                  "text": "I reported the total distance up to that second",
+                  "type": "concept",
+                  "option": 3,
+                  "fix": "That is s up to n seconds, not the nth-second distance; use Sₙ = u + a(2n−1)/2 = 12 m."
+                },
+                {
+                  "id": "m1",
+                  "text": "I used n by itself in the bracket",
+                  "type": "calculation",
+                  "option": 1,
+                  "fix": "The bracket is (2n − 1), not n alone: S₃ = 2 + 4(2×3−1)/2 = 2 + 10 = 12 m."
+                },
+                {
+                  "id": "m2",
+                  "text": "I took the second number as the initial velocity",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "u is the initial velocity (2 m/s) and a is the acceleration (4 m/s²); use 2 as u and 4 as a: S₃ = 2 + 4(5)/2 = 12 m."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_nth_second_02",
+              "stem": "A particle starts at u = 2 m/s. It covers S₂ = 8 m in the 2nd second. Find the acceleration a.",
+              "options": [
+                "2 m/s²",
+                "9 m/s²",
+                "12 m/s²",
+                "4 m/s²"
+              ],
+              "answer": 4,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I rearranged the formula to solve for a"
+                },
+                {
+                  "id": "m0",
+                  "text": "I treated the distance as the total up to that time",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "S₂ is the distance during the 2nd second only; use Sₙ = u + a(2n−1)/2 to get a = 4 m/s², not the total-distance formula."
+                },
+                {
+                  "id": "m1",
+                  "text": "I multiplied the difference by the bracket term",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Divide (S₂ − u) by the bracket-over-two term: a = 6 ÷ 1.5 = 4 m/s², not multiply."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the bracket for the first second",
+                  "type": "application",
+                  "option": 3,
+                  "fix": "This is the 2nd second, so use n = 2 in the bracket: a = 4 m/s², not n = 1."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_nth_second_03",
+              "stem": "A body starts at u = 5 m/s with a = 2 m/s². Find the distance covered in the 4th second by first finding the total distance at t = 4 s and at t = 3 s, then taking the difference.",
+              "options": [
+                "36 m",
+                "19 m",
+                "12 m",
+                "14 m"
+              ],
+              "answer": 3,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the total distance at each time, then subtracted"
+                },
+                {
+                  "id": "m0",
+                  "text": "I reported the total distance up to that time",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "That is the total up to t = 4 s; subtract the total up to t = 3 s to get the 4th-second distance: 36 − 24 = 12 m."
+                },
+                {
+                  "id": "m1",
+                  "text": "I used the acceleration term as at² in both totals",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Keep the half in both totals: s₄ = 20 + ½×2×16 = 36 m and s₃ = 15 + ½×2×9 = 24 m; the difference is 36 − 24 = 12 m, not 19 m from dropping it."
+                },
+                {
+                  "id": "m2",
+                  "text": "I subtracted the total for the next second",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "Subtract the total up to t = 3 s from the total up to t = 4 s, not t = 5 s: 36 − 24 = 12 m."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "two_stage_stopping",
+      "title": "Stopping in two parts",
+      "shapes": [
+        "deceleration_two_segment_ratio"
+      ],
+      "concept": {
+        "lines": [
+          "A body can slow down in two stages: first it loses part of its speed, then it stops.",
+          "In each stage the deceleration stays the same, so v² = u² + 2as applies to both.",
+          "The distance covered in a stage depends on how much speed squared is lost in it.",
+          "Compare the two stages by finding the drop in v² for each one.",
+          "The ratio of the two distances equals the ratio of their two drops in v².",
+          "Deceleration is written as negative in the equation, since it opposes the motion."
+        ],
+        "formula": {
+          "text": "v² = u² + 2as",
+          "meaning": "u = start speed of a stage, v = end speed of that stage, a = acceleration (negative if slowing), s = distance in it."
+        },
+        "example": {
+          "given": "A body moving at u = 12 m/s slows to v = 8 m/s over a distance of s = 8 m. Find a.",
+          "steps": [
+            {
+              "text": "Put the values into v² = u² + 2as.",
+              "equation": "8² = 12² + 2×a×8"
+            },
+            {
+              "text": "Work it out.",
+              "equation": "64 = 144 + 16a, so a = −5 m/s²"
+            }
+          ],
+          "answer": "a = −5 m/s² (deceleration)"
+        }
+      },
+      "check": {
+        "stem": "A body slows down over two stages with the same deceleration throughout. What decides how far it travels in each stage?",
+        "options": [
+          "The mass of the body",
+          "The drop in speed squared during that stage",
+          "The direction of motion in that stage"
+        ],
+        "answer": 2,
+        "why_right": "For constant deceleration, v² = u² + 2as, so the distance in a stage is set by how much v² drops in it.",
+        "why_wrong": {
+          "1": "Mass does not appear in v² = u² + 2as; the distance depends on speed and acceleration only.",
+          "3": "Direction does not change the size of the distance; the drop in speed squared does."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_stopping_01",
+              "stem": "A car moving at u = 10 m/s brakes with a deceleration of a = 3 m/s². Find its speed v after covering s = 16 m.",
+              "options": [
+                "14 m/s",
+                "2 m/s",
+                "4 m/s",
+                "0 m/s"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I put the values into v² = u² + 2as"
+                },
+                {
+                  "id": "m0",
+                  "text": "I added the acceleration term to u squared",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Deceleration is negative in the formula: v² = 100 − 96 = 4, so v = 2 m/s, not v² = 100 + 96."
+                },
+                {
+                  "id": "m1",
+                  "text": "I reported v squared as the final speed",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "v² = 4, so take the square root to get v: v = 2 m/s, not 4."
+                },
+                {
+                  "id": "m2",
+                  "text": "I assumed the body came to a complete stop",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "This question only asks for the speed after the first part of slowing, not a full stop; v² = 100 − 96 = 4, so v = 2 m/s."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_stopping_02",
+              "stem": "A motorbike slows from u = 12 m/s to v = 8 m/s over a distance of s = 10 m with constant deceleration. Find the deceleration a.",
+              "options": [
+                "8 m/s²",
+                "0.8 m/s²",
+                "2 m/s²",
+                "4 m/s²"
+              ],
+              "answer": 4,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I rearranged v² = u² + 2as to solve for a"
+                },
+                {
+                  "id": "m0",
+                  "text": "I wrote the formula as v² = u² + as",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "The formula has 2as, not as: a = (64−144)/20 = −4, so deceleration = 4 m/s²."
+                },
+                {
+                  "id": "m1",
+                  "text": "I subtracted before squaring the speeds",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Square v and u separately: v² − u² = 64 − 144 = −80, then divide by 2s = 20: a = −4, so deceleration = 4 m/s²."
+                },
+                {
+                  "id": "m2",
+                  "text": "I divided by four times the distance",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "The formula divides by 2s = 20 m, not by 4s = 40 m: a = (64−144)/20 = −4, so deceleration = 4 m/s²."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_stopping_03",
+              "stem": "A bus moving at u = 20 m/s brakes with a constant deceleration. In the first stage it slows to v = 16 m/s while covering a distance s₁ = 18 m. With the same deceleration, over what further distance s₂ does it come to rest from 16 m/s?",
+              "options": [
+                "32 m",
+                "72 m",
+                "16 m",
+                "50 m"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the deceleration first, then solved stage two"
+                },
+                {
+                  "id": "m0",
+                  "text": "I scaled the distance directly with the drop in speed",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "Distance scales with the drop in speed squared, not speed itself; find a from stage 1 (a = −4 m/s²), then s₂ = 32 m from v² = u² + 2as."
+                },
+                {
+                  "id": "m1",
+                  "text": "I divided by the distance alone to get the deceleration",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Divide by 2s, not s alone, in step 1: a = (256−400)/36 = −4 m/s². Step 2 with this a gives s₂ = 256/8 = 32 m."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the original starting speed again in the second stage",
+                  "type": "application",
+                  "option": 4,
+                  "fix": "Stage 2 starts at v = 16 m/s, not the original 20 m/s: 0 = 256 − 8s₂ gives s₂ = 32 m."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

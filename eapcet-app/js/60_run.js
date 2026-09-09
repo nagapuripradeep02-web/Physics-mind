@@ -228,5 +228,6 @@ var Run = (function () {
   return { start: start, resume: resume, current: current, question: question, total: total, shown: shown,
            pick: pick, route: route, routesOf: routesOf, lastFinished: lastFinished, diagnosisOf: diagnosisOf,
            retry: retry, badge: badge, seenIds: seenIds, chapterState: chapterStateOf, all: all, adopt: adopt,
-           sameShape: function (chapterKey, key) { return sameShapeStreak(chapterState(chapterKey), key); }, KEY: KEY };
+           sameShape: function (chapterKey, key) { return sameShapeStreak(chapterState(chapterKey), key); },
+           save: save, KEY: KEY };
 })();

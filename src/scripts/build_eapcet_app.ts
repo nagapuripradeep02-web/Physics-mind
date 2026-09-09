@@ -16,17 +16,25 @@
  *     mistake's text fails the build, and the string scan catches one that
  *     contains it;
  *   - --dev-open together with --hosted: the dogfood switch that shows
- *     unverified questions never ships.
+ *     unverified questions never ships;
+ *   - a learn pack (eapcet-app/content/learn/<chapter>.json) that fails its
+ *     schema, names a shape its chapter does not have, or copies a past-paper
+ *     stem. A pack a teacher has not reviewed is LEFT OUT of a --hosted build
+ *     (printed, never silent) and allowed in offline, --dev-open and
+ *     --preview builds.
  *
- *   npx tsx src/scripts/build_eapcet_app.ts [--hosted] [--dev-open] [--pool=<path>]
+ *   npx tsx src/scripts/build_eapcet_app.ts [--hosted | --preview] [--dev-open] [--pool=<path>] [--learn=<dir|none>]
  *
  * The default build bakes NO endpoint base: every network module is inert and
  * the page makes zero requests. --hosted bakes the EP_* bases from the
- * environment and fails if one is missing.
+ * environment and fails if one is missing. --preview is the same page for the
+ * preview worker (dist-preview, noindex), with unreviewed packs allowed.
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join, resolve, sep } from 'path';
 import { EAPCET_OPEN_AT, EapcetPoolReleaseSchema, type EapcetPoolRelease } from '../schemas/eapcetPool';
+import { EAPCET_LEARN_SCHEMA, EapcetLearnPackSchema, type EapcetLearnPack } from '../schemas/eapcetLearn';
+import { checkLearnPackAgainstRelease, fnv1a, foldLearnPack, learnLinks, learnPackSize } from '../lib/eapcet/learnPack';
 import { idiomsIn } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -35,11 +43,16 @@ const OUT = join(APP, 'dist');
 const args = process.argv.slice(2);
 const HOSTED = args.includes('--hosted');
 const DEV_OPEN = args.includes('--dev-open');
+const PREVIEW = args.includes('--preview');
 const poolArg = args.find((a) => a.startsWith('--pool='));
 const POOL = poolArg ? resolve(poolArg.slice('--pool='.length)) : join(ROOT, 'eapcet', 'pool', 'physics_pool_v1.release.json');
+// --learn=<dir> holds one <chapter_key>.json per chapter; --learn=none builds without lessons.
+const learnArg = args.find((a) => a.startsWith('--learn='));
+const learnVal = learnArg ? learnArg.slice('--learn='.length) : '';
+const LEARN_DIR = learnVal === 'none' ? null : (learnVal ? resolve(learnVal) : join(APP, 'content', 'learn'));
 // --out= exists for the e2e suite, which builds a fixture release beside dist/.
 const outArg = args.find((a) => a.startsWith('--out='));
-const OUT_DIR = outArg ? resolve(outArg.slice('--out='.length)) : OUT;
+const OUT_DIR = outArg ? resolve(outArg.slice('--out='.length)) : (PREVIEW ? join(APP, 'dist-preview') : OUT);
 
 function fail(msg: string): never {
     console.error('\nbuild:eapcet FAILED\n' + msg + '\n');
@@ -48,19 +61,10 @@ function fail(msg: string): never {
 function esc(s: string): string {
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-/** FNV-1a, the same as hashStr in 00_core.js: the route menu's order is a
-    function of the question id, so the right route is not always first and
-    the order is the same on every phone. */
-function fnv1a(s: string): number {
-    let h = 0x811c9dc5;
-    for (let i = 0; i < s.length; i++) {
-        h ^= s.charCodeAt(i);
-        h = Math.imul(h, 0x01000193) >>> 0;
-    }
-    return h >>> 0;
-}
 
 if (HOSTED && DEV_OPEN) fail('--dev-open shows unverified questions; it is a dogfood switch and never ships with --hosted');
+if (PREVIEW && DEV_OPEN) fail('--dev-open shows unverified questions; the preview is a hosted page and never carries it');
+if (PREVIEW && HOSTED) fail('--preview is its own build (dist-preview, noindex); do not combine it with --hosted');
 if (!existsSync(POOL)) fail(`no release file at ${POOL}\n  build it with scripts/eapcet/build_release.py, or pass --pool=<path>`);
 
 // ── 1. the release, validated ───────────────────────────────────────────────
@@ -132,6 +136,34 @@ const publicPool = {
     siblings: release.siblings,
 };
 
+// ── 1b. the learn packs, validated against their schema and this release ────
+const learnPacks: Record<string, EapcetLearnPack> = {};
+const learnLeftOut: string[] = [];
+if (LEARN_DIR && existsSync(LEARN_DIR)) {
+    for (const f of readdirSync(LEARN_DIR).filter((n) => /^p[12]-\d{2}\.json$/.test(n)).sort()) {
+        const pp = EapcetLearnPackSchema.safeParse(JSON.parse(readFileSync(join(LEARN_DIR, f), 'utf8')));
+        if (!pp.success) {
+            fail(`learn pack ${f} fails its schema:\n  ` + pp.error.issues.slice(0, 30).map((i) => `${i.path.join('.')}: ${i.message}`).join('\n  '));
+        }
+        const pack = pp.data;
+        if (`${pack.chapter_key}.json` !== f) fail(`learn pack ${f} says chapter_key ${pack.chapter_key}; the file is named by its chapter`);
+        const issues = checkLearnPackAgainstRelease(pack, release);
+        if (issues.length) fail(`learn pack ${f} does not fit the release:\n  ` + issues.join('\n  '));
+        const size = learnPackSize(pack);
+        if (size.fail) fail(`learn pack ${f} is ${(size.bytes / 1024).toFixed(0)} KB; the limit is 80 KB`);
+        if (size.warn) console.warn(`  learn pack ${f} is ${(size.bytes / 1024).toFixed(0)} KB (over the 40 KB warning line)`);
+        if (HOSTED && !pack.reviewed) { learnLeftOut.push(f); continue; }
+        learnPacks[pack.chapter_key] = pack;
+    }
+}
+const learnData: { schema: string; chapters: Record<string, unknown>; links: Record<string, Record<string, string[]>> } = {
+    schema: EAPCET_LEARN_SCHEMA, chapters: {}, links: {},
+};
+for (const [ck, pack] of Object.entries(learnPacks)) {
+    learnData.chapters[ck] = foldLearnPack(pack);
+    learnData.links[ck] = learnLinks(pack);
+}
+
 // ── 2. the engine files ─────────────────────────────────────────────────────
 const shell = readFileSync(join(APP, 'shell.html'), 'utf8');
 for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_AT__-->', '<!--__HEAD_META__-->']) {
@@ -150,10 +182,10 @@ if (idioms.length) fail(`05_strings.js carries idioms: ${idioms.join(', ')}`);
 // ── 3. the bases ────────────────────────────────────────────────────────────
 function envOrFail(name: string): string {
     const v = (process.env[name] || '').trim();
-    if (!v) fail(`--hosted needs ${name} in the environment`);
+    if (!v) fail(`${PREVIEW ? '--preview' : '--hosted'} needs ${name} in the environment`);
     return v;
 }
-const bases = HOSTED
+const bases = (HOSTED || PREVIEW)
     ? {
         EP_CHAT_BASE: envOrFail('EP_CHAT_BASE'),
         EP_STATE_BASE: envOrFail('EP_STATE_BASE'),
@@ -173,9 +205,10 @@ const routedCount = Object.values(release.questions).filter((q) => q.verified?.r
 const j = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 const dataJs =
     `window.EP_POOL = ${j(publicPool)};\n` +
+    `window.EP_LEARN = ${j(learnData)};\n` +
     Object.entries(bases).map(([k, v]) => `window.${k} = ${j(v)};`).join('\n') + '\n' +
     `window.EP_DEV_OPEN = ${DEV_OPEN};\n` +
-    `window.EP_BUILD = ${j({ at: builtAt, hosted: HOSTED, open: openChapters.length, verified: verifiedCount, routed: routedCount, open_at: EAPCET_OPEN_AT })};\n`;
+    `window.EP_BUILD = ${j({ at: builtAt, hosted: HOSTED, preview: PREVIEW, open: openChapters.length, verified: verifiedCount, routed: routedCount, open_at: EAPCET_OPEN_AT, learn: Object.keys(learnPacks) })};\n`;
 
 const metaTitle = 'EAPCET Physics | Viditra';
 const metaDesc = 'Ten real TG EAPCET physics questions per chapter, the official key, and the kind of mistake you make.';
@@ -187,18 +220,19 @@ const headMeta = [
     `<meta property="og:site_name" content="Viditra">`,
     `<meta property="og:title" content="${esc(metaTitle)}">`,
     `<meta property="og:description" content="${esc(metaDesc)}">`,
+    ...(PREVIEW ? ['<meta name="robots" content="noindex">'] : []),
 ].join('\n');
 
 const html = shell
     .replace('/*__CSS__*/', () => css)
     .replace('/*__DATA__*/', () => dataJs)
     .replace('/*__JS__*/', () => js)
-    .replace('<!--__BUILT_AT__-->', () => `<!-- built ${builtAt}${HOSTED ? ' hosted' : ''}${DEV_OPEN ? ' DEV-OPEN' : ''} -->`)
+    .replace('<!--__BUILT_AT__-->', () => `<!-- built ${builtAt}${HOSTED ? ' hosted' : ''}${PREVIEW ? ' preview' : ''}${DEV_OPEN ? ' DEV-OPEN' : ''} -->`)
     .replace('<!--__HEAD_META__-->', () => headMeta);
 
 // ── 4. the leak assertion ───────────────────────────────────────────────────
 for (const s of solutionStrings) {
-    if (s.length >= 12 && html.includes(s)) fail(`a solution string reached index.html: "${s.slice(0, 60)}"`);
+    if (s.length >= 12 && html.includes(s)) fail(`a solution string reached index.html: "${s.slice(0, 60)}"\n  (a learn pack line that copies a solution trips this too; rewrite the line)`);
 }
 for (const field of ['"approach"', '"why_this_step"', '"common_mistakes"', '"right_route"', '"mistake_type_hint"']) {
     if (html.includes(field)) fail(`a solution field name reached index.html: ${field}`);
@@ -207,11 +241,20 @@ for (const field of ['"approach"', '"why_this_step"', '"common_mistakes"', '"rig
 mkdirSync(OUT_DIR, { recursive: true });
 writeFileSync(join(OUT_DIR, 'index.html'), html);
 const outRel = join(OUT_DIR, 'index.html').slice(ROOT.length + 1).split(sep).join('/');
-console.log(`build:eapcet -> ${outRel} (${(html.length / 1024).toFixed(0)} KB)${HOSTED ? ' hosted' : ''}${DEV_OPEN ? ' DEV-OPEN' : ''}`);
+console.log(`build:eapcet -> ${outRel} (${(html.length / 1024).toFixed(0)} KB)${HOSTED ? ' hosted' : ''}${PREVIEW ? ' preview' : ''}${DEV_OPEN ? ' DEV-OPEN' : ''}`);
 console.log(`  pool ${POOL}`);
 console.log(`  chapters ${release.chapters.length}, open ${openChapters.length}, verified ${verifiedCount}, routed ${routedCount}, modules ${jsFiles.join(' ')}`);
 for (const c of openChapters) {
     const r = routed[c.key] ?? { routes: 0, total: 0 };
     console.log(`  ${c.key}  routes ${r.routes}/${r.total}  shapes ${(c.shapes ?? []).length}`);
 }
+const packKeys = Object.keys(learnPacks);
+console.log(`  learn ${LEARN_DIR ? LEARN_DIR : 'none'}: ${packKeys.length ? '' : 'no packs'}`);
+for (const ck of packKeys) {
+    const pack = learnPacks[ck];
+    let subs = 0, qs = 0;
+    for (const t of pack.topics) for (const s of t.subtopics) { subs++; for (const slot of s.apply) qs += slot.variants.length; }
+    console.log(`  ${ck}  ${pack.topics.length} topics, ${subs} lessons, ${qs} practice questions, ${(learnPackSize(pack).bytes / 1024).toFixed(0)} KB, ${pack.reviewed ? 'reviewed' : 'NOT REVIEWED (sample)'}`);
+}
+for (const f of learnLeftOut) console.log(`  LEFT OUT of the hosted page: learn pack ${f} is not reviewed by a teacher`);
 if (DEV_OPEN) console.log('  DEV-OPEN: chapters run on unverified pool questions; never give this build to a student');

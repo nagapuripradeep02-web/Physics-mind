@@ -21,7 +21,14 @@ var STR = {
   door_maths: 'Mathematics',
   door_soon: 'Being built',
 
-  chapters_title: 'Physics',
+  door_physics_line: function (packs, open) {
+    var test = 'A ten-question test on ' + open + (open === 1 ? ' chapter' : ' chapters') + '. A place to ask about your own problem.';
+    if (!packs) return test;
+    return 'Lessons for ' + packs + (packs === 1 ? ' chapter' : ' chapters') + ' so far. ' + test;
+  },
+
+  eyebrow_physics: 'Physics',
+  chapters_title: 'Find your weakness',
   chapters_sub: 'Pick a chapter. Ten questions, about twelve minutes. Then you see what kind of mistake you make.',
   share_line: function (pct, perExam) {
     return pct + '% of the physics questions asked · about ' + perExam + ' in every exam';
@@ -178,5 +185,116 @@ var STR = {
   pay_done: 'Your plan is active. Opening the worked solution…',
 
   team_marked: 'This phone is marked as a team phone. Its visits are not counted as a student.',
-  team_unmarked: 'This phone is no longer marked as a team phone.'
+  team_unmarked: 'This phone is no longer marked as a team phone.',
+
+  /* the tab bar and the small shared things */
+  tabbar_label: 'Sections',
+  tab_learn: 'Learn',
+  tab_weakness: 'Weakness',
+  tab_solutions: 'Solutions',
+  back_lessons: 'Lessons',
+  back_solutions: 'Solutions',
+  preview_note: 'Preview build. The lessons are samples, not yet checked by a teacher.',
+
+  /* mastery: the chapter list line and the pills on the result */
+  mpill: { strong: 'Strong now', fix: 'To fix', check: 'Check', solid: 'Solid', learned: 'Learned, not tested yet', none: 'Not tried' },
+  mastery_part: function (state, n) {
+    if (state === 'strong') return n + ' strong now';
+    if (state === 'fix') return n + ' to fix';
+    if (state === 'check') return n + ' to check';
+    if (state === 'solid') return n + ' solid';
+    if (state === 'learned') return n + ' learned, not tested yet';
+    return n + ' not tried';
+  },
+  mastery_join: ' · ',
+
+  /* the result hub */
+  hub_title: 'What to do next',
+  hub_fix: 'Fix this',
+  hub_fix_sub: function (label) { return 'The worked solution for ' + label; },
+  hub_nothing: 'Nothing to fix in this run.',
+  hub_learn: 'Learn this',
+  hub_learn_sub: function (title) { return 'The idea behind it: ' + title; },
+  hub_none: 'Lessons for this chapter are not written yet.',
+  hub_ask: 'Ask about a problem',
+  hub_ask_sub: 'Bring your own question, as a photo or typed.',
+  learn_this: 'Learn this',
+  fix_learn_first: 'Learn the idea first (free)',
+
+  /* learn and practice */
+  learn_title: 'Learn and practice',
+  learn_sub: 'Pick a chapter. Each lesson is one idea: a short card, one check question, then three practice questions.',
+  learn_sample: 'Sample lessons. Written by the team, not yet checked by a teacher.',
+  learn_sample_tag: 'Sample · not yet reviewed',
+  learn_badge_none: 'Not started',
+  learn_badge_done: function (n, m) { return n + ' of ' + m + ' done'; },
+  learn_no_pack: 'No lessons yet',
+  learn_empty: 'Lessons are not in this build.',
+  learn_open_weakness: 'Open Weakness',
+  learn_progress: function (n, m) { return n + ' of ' + m + (m === 1 ? ' lesson' : ' lessons') + ' done'; },
+  learn_topic: function (i, title) { return 'Topic ' + i + ' · ' + title; },
+  learn_tag_next: 'Next',
+  learn_tag_fix: 'To fix in Weakness',
+  learn_pill: { none: 'Not started', started: 'Started', green: 'Done' },
+  learn_unknown: 'That lesson is not in this chapter.',
+  learn_read: 'Read the card. Then check the idea.',
+  learn_formula_title: 'The formula',
+  learn_example_title: 'One example, with small numbers',
+  learn_answer: function (a) { return 'Answer: ' + a; },
+  learn_chip_check: 'Check it',
+  learn_chip_apply: 'Apply it',
+  learn_chip_reread: 'Read the card again',
+  learn_chip_retry: 'Try the three again',
+  learn_chip_all: 'All lessons in this chapter',
+  learn_chip_next: 'Next lesson',
+  learn_chip_test: 'Test this chapter in Weakness',
+  learn_check_head: 'One question about the idea. No numbers.',
+  learn_check_right: 'Right.',
+  learn_check_wrong: 'Not this one.',
+  learn_apply_intro: 'Three practice questions, each a little harder. After each one, tell which way you went.',
+  learn_apply_progress: function (i) { return 'Practice ' + i + ' of 3'; },
+  learn_resume: 'You left this lesson in the middle. It continues from where you stopped.',
+  learn_guess_reset: 'Right, but you guessed. A guess does not count here. The three start again.',
+  learn_wrong_route_reset: 'Right answer, but the route you tapped leads to a wrong option. The three start again.',
+  learn_fix_title: 'The fix',
+  learn_wrong_reset: 'The three start again after a wrong answer. Read the fix, then try again.',
+  learn_green_title: 'Done. Three right by the right route.',
+  learn_green_body: 'You hold this idea and used it on three basic questions. Real exam questions are in Weakness.',
+  learn_green_again: 'Still done. Three more right by the right route.',
+  learn_feel_q: 'How do you feel about this idea?',
+  learn_feel_confident: 'Confident',
+  learn_feel_not_yet: 'Not yet',
+  learn_feel_done: 'Recorded. This does not change any result.',
+
+  /* solutions: the doubt desk */
+  sol_title: 'Vidi · your own problem',
+  sol_hello: 'Bring a problem. Take a photo of it, pick one from your gallery, or type it.',
+  sol_from: function (chapter) { return 'You came from ' + chapter + '. Questions from that chapter are listed first.'; },
+  sol_chip_camera: 'Take a photo',
+  sol_chip_gallery: 'Pick from gallery',
+  sol_placeholder: 'Or type the question here',
+  sol_send: 'Send',
+  sol_photo_caption: 'Your photo. It stays on this phone. Nothing is sent.',
+  sol_retake: 'Retake',
+  sol_remove: 'Remove',
+  sol_too_large: function (mb) { return 'That photo is too large (' + mb + ' MB). Take it again.'; },
+  sol_bad_file: 'That file could not be opened as a photo.',
+  sol_what: 'What do you want for this one?',
+  sol_chip_tried: 'I tried, here is my work',
+  sol_chip_stuck: 'I am stuck at a step',
+  sol_chip_solution: 'Just show me the solution',
+  sol_work_photo: 'Take a photo of your working.',
+  sol_type_hint: 'If this is a past EAPCET question, type its first line. The app looks for it in the pool of past questions.',
+  sol_na_eyebrow: 'Not available yet',
+  sol_na_title: 'Reading a photo is not available yet.',
+  sol_na_body: 'This version cannot read what is in a photo. Your photo stayed on this phone and was not sent anywhere.',
+  sol_chip_type: 'Type the question',
+  sol_chip_weakness: 'Open Weakness',
+  sol_chip_lessons: 'Open lessons',
+  sol_match_q: 'Is it one of these?',
+  sol_match_yes: 'Yes, this one',
+  sol_chip_none: 'None of these',
+  sol_none_reply: 'Then type more of the question, or bring a photo of it.',
+  sol_no_match: 'No past question matches that text. Check the key words, or type more of the question.',
+  sol_more_words: 'Type a few more words of the question.'
 };

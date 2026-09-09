@@ -8,18 +8,44 @@
  *   #/physics/<key>/fix/<id> the worked solution (paid: the lock wall for a locked device)
  *   #/unlock                 the plan, the price, sign-in, pay
  *   #/notastudent/<word>[/off]  team marking
+ *   #/physics/learn[/<key>[/<sub>]]   learn and practice (82_learn_screens.js)
+ *   #/physics/solutions[/<key>]       the doubt desk (84_solutions.js)
+ *   #/physics/weakness       an alias of #/physics
  *
  * A question card in a run or a retry never names its paper; only the fix
  * page and the result's reveal do. */
 var Screens = (function () {
-  var VIEWS = ['doorView', 'chaptersView', 'runView', 'resultView', 'fixView', 'unlockView'];
+  var VIEWS = ['doorView', 'chaptersView', 'runView', 'resultView', 'fixView', 'unlockView',
+               'learnView', 'subtopicView', 'solutionsView'];
+  /* What each view builds per visit. Cleared when the router leaves the view,
+   * so a hidden view never keeps a card, a chip row or a chat behind it. */
+  var DYNAMIC = {
+    doorView: ['doorTiles'], chaptersView: ['chapterList'], runView: ['runThread', 'runChips'],
+    resultView: ['resultBody'], fixView: ['fixBody'], unlockView: ['unlockBody'],
+    learnView: ['learnBody'], subtopicView: ['subBody', 'learnThread', 'learnChips'],
+    solutionsView: ['solThread', 'solChips']
+  };
+  var leaveHooks = {};
   var currentView = null;
 
   function showView(id) {
+    if (currentView && currentView !== id) {
+      var ids = DYNAMIC[currentView] || [];
+      for (var k = 0; k < ids.length; k++) {
+        var n = $(ids[k]);
+        if (!n) continue;
+        clear(n);
+        if (n.classList.contains('ep-chips')) n.hidden = true;
+      }
+      if (leaveHooks[currentView]) leaveHooks[currentView]();
+    }
     for (var i = 0; i < VIEWS.length; i++) $(VIEWS[i]).hidden = VIEWS[i] !== id;
     currentView = id;
+    if (typeof Nav !== 'undefined') Nav.tabs();
     window.scrollTo(0, 0);
   }
+  /** A module's own clean-up when the router leaves its view (object URLs, timers). */
+  function onLeave(id, fn) { leaveHooks[id] = fn; }
   function setBack(href, label) {
     var b = $('btnBack');
     b.hidden = !href;
@@ -46,6 +72,10 @@ var Screens = (function () {
     live.setAttribute('data-subject', 'physics');
     live.appendChild(el('span', 'ep-tile-name', STR.door_physics));
     live.appendChild(el('span', 'ep-tile-sub', STR.door_physics_sub));
+    var openCount = 0, chs = Data.chapters();
+    for (var c = 0; c < chs.length; c++) if (Data.canRun(chs[c])) openCount++;
+    var packs = typeof LearnData !== 'undefined' ? LearnData.chapters().length : 0;
+    live.appendChild(el('span', 'ep-tile-line', STR.door_physics_line(packs, openCount)));
     tiles.appendChild(live);
     var soon = [STR.door_chemistry, STR.door_maths];
     for (var i = 0; i < soon.length; i++) {
@@ -76,6 +106,7 @@ var Screens = (function () {
   function showChapters() {
     showView('chaptersView');
     setBack('#/', STR.back_subjects);
+    $('chaptersEyebrow').textContent = STR.eyebrow_physics;
     $('chaptersTitle').textContent = STR.chapters_title;
     $('chaptersSub').textContent = STR.chapters_sub;
     var list = $('chapterList');
@@ -89,6 +120,7 @@ var Screens = (function () {
       var main = el('div', 'ep-row-main');
       main.appendChild(el('div', 'ep-row-name', ch.name));
       main.appendChild(el('div', 'ep-row-share', STR.share_line(ch.share_pct, ch.per_exam)));
+      masteryLine(main, ch);
       row.appendChild(main);
       row.appendChild(badgeNode(ch));
       list.appendChild(row);
@@ -96,24 +128,55 @@ var Screens = (function () {
     Track.log('subject_pick', { subject: 'physics' });
   }
 
+  /** One segment per shape under a chapter that has been tested or learned:
+      what the test hall found, and what the classroom claims (dashed). */
+  function masteryLine(host, ch) {
+    if (typeof Study === 'undefined' || !ch.shapes || !ch.shapes.length) return;
+    var m = Study.mastery(ch.key);
+    var sum = Learn.summary(m);
+    var any = !!Run.lastFinished(ch.key);
+    for (var i = 0; i < sum.length; i++) if (sum[i].state !== 'none') any = true;
+    if (!any) return;
+    var parts = [];
+    for (var k = 0; k < sum.length; k++) parts.push(STR.mastery_part(sum[k].state, sum[k].n));
+    var text = parts.join(STR.mastery_join);
+    var bar = el('div', 'ep-mastery');
+    bar.setAttribute('role', 'img');
+    bar.setAttribute('aria-label', text);
+    for (var s = 0; s < ch.shapes.length; s++) {
+      var seg = el('span', 'ep-mastery-seg');
+      seg.setAttribute('data-state', m[ch.shapes[s].key] || 'none');
+      seg.setAttribute('data-shape', ch.shapes[s].key);
+      bar.appendChild(seg);
+    }
+    host.appendChild(bar);
+    host.appendChild(el('div', 'ep-mastery-sum', text));
+  }
+
   // ── the run, as a thread ────────────────────────────────────────────────
   var thread, chips;
-  function say(text, who) {
+  /** A line in a thread. `target` lets another screen's thread reuse it. */
+  function say(text, who, target) {
+    var host = target || thread;
     var m = el('div', 'ep-msg ' + (who || 'tutor'), text);
-    thread.appendChild(m);
+    host.appendChild(m);
     m.scrollIntoView({ block: 'end' });
     return m;
   }
-  function setChips(list) {
-    clear(chips);
+  function setChips(list, target) {
+    var host = target || chips;
+    clear(host);
     for (var i = 0; i < list.length; i++) (function (c) {
       var b = el('button', 'ep-chip', c.label);
       b.type = 'button';
       b.setAttribute('data-route', c.value);
       b.onclick = function () { c.onTap(); };
-      chips.appendChild(b);
+      host.appendChild(b);
     })(list[i]);
-    chips.hidden = !list.length;
+    host.hidden = !list.length;
+    // The row is sticky at the bottom; at the page's end it sits in its own
+    // place, so the newest line of the thread is above it, not under it.
+    if (list.length) window.scrollTo(0, document.documentElement.scrollHeight);
   }
 
   /** The menu after a pick: the question's routes (hash order) and "I guessed",
@@ -277,7 +340,7 @@ var Screens = (function () {
     box.appendChild(el('h2', 'ep-h2', ch.name));
     box.appendChild(el('div', 'ep-score', STR.result_score(d.score, d.total)));
 
-    var verdict = el('p', 'ep-verdict');
+    var verdict = el('p', 'ep-verdict' + (d.score === d.total || d.weakness === 'solid' ? ' ep-verdict-ok' : ''));
     verdict.id = 'resultVerdict';
     verdict.textContent = d.score === d.total ? STR.all_correct
       : (d.weakness ? STR.weakness[d.weakness](ch.name) : STR.no_pattern);
@@ -287,6 +350,8 @@ var Screens = (function () {
       conf.id = 'resultConfirmed';
       box.appendChild(conf);
     }
+    box.appendChild(el('div', 'ep-h3', STR.hub_title));
+    box.appendChild(hub(key, ch, d));
 
     box.appendChild(el('div', 'ep-h3', STR.result_params_title));
     var bars = el('div', 'ep-bars');
@@ -324,7 +389,7 @@ var Screens = (function () {
         var sh = shapes[k];
         var block = el('div', 'ep-shape');
         block.setAttribute('data-shape', sh.key);
-        block.appendChild(el('div', 'ep-shape-label', sh.label || ch.name));
+        block.appendChild(shapeHead(key, ch, sh, status));
         for (var m = 0; m < sh.qids.length; m++) (function (qid) {
           var q = Data.question(qid);
           var found = recordOf_(qid);
@@ -382,6 +447,65 @@ var Screens = (function () {
     };
     box.appendChild(again);
     Track.log('diag_view', { chapter: key, run_no: run.run_no });
+  }
+
+  /** A shape's head row on the result: label, its state pill, and the free
+      door to its lesson when the classroom has one. */
+  function shapeHead(key, ch, sh, status) {
+    var head = el('div', 'ep-shape-head');
+    head.appendChild(el('div', 'ep-shape-label', sh.label || ch.name));
+    var cs = Run.chapterState(key);
+    var state = cs.strong_now && cs.strong_now[sh.key] ? 'strong' : status;
+    var pill = el('span', 'ep-mpill', STR.mpill[state] || STR.mpill.none);
+    pill.setAttribute('data-state', state);
+    head.appendChild(pill);
+    var lesson = typeof Study !== 'undefined' ? Study.linkFor(key, sh.key) : null;
+    if (lesson) {
+      var a = el('a', 'ep-learn-btn', STR.learn_this);
+      a.href = '#/physics/learn/' + key + '/' + lesson.sub;
+      a.setAttribute('data-sub', lesson.sub);
+      a.onclick = function () { Track.log('learn_link', { from: 'shape', shape: sh.key, sub: lesson.sub }); };
+      head.appendChild(a);
+    }
+    return head;
+  }
+
+  /** The hub: the three things a student can do with a result. Fix this
+      opens the first question of the first shape to fix; Learn this opens
+      that shape's lesson (else the chapter's next lesson); Ask opens the
+      doubt desk with this chapter in mind. */
+  function hub(key, ch, d) {
+    var wrap = el('div', 'ep-hub');
+    wrap.id = 'resultHub';
+    var firstFix = null;
+    for (var i = 0; i < d.shapes.length; i++) if (d.shapes[i].status === 'fix') { firstFix = d.shapes[i]; break; }
+    function card(kind, href, title, sub, primary) {
+      var a = el(href ? 'a' : 'div', 'ep-hub-btn' + (primary ? ' ep-hub-primary' : '') + (href ? '' : ' ep-hub-none'));
+      if (href) a.href = href;
+      a.setAttribute('data-hub', kind);
+      a.appendChild(el('div', 'ep-hub-title', title));
+      if (sub) a.appendChild(el('div', 'ep-hub-sub', sub));
+      return a;
+    }
+    if (firstFix) wrap.appendChild(card('fix', '#/physics/' + key + '/fix/' + encodeURIComponent(firstFix.qids[0]), STR.hub_fix, STR.hub_fix_sub(firstFix.label || ch.name), true));
+    else wrap.appendChild(card('fix', null, STR.hub_nothing, null, false));
+    var lesson = null;
+    if (typeof Study !== 'undefined') {
+      if (firstFix) lesson = Study.linkFor(key, firstFix.key);
+      if (!lesson && LearnData.pack(key)) {
+        var p = Study.progress(key);
+        if (p.next) lesson = { sub: p.next, title: LearnData.subtopic(key, p.next).subtopic.title };
+      }
+    }
+    if (lesson) {
+      var learn = card('learn', '#/physics/learn/' + key + '/' + lesson.sub, STR.hub_learn, STR.hub_learn_sub(lesson.title), false);
+      learn.onclick = function () { Track.log('learn_link', { from: 'result', sub: lesson.sub }); };
+      wrap.appendChild(learn);
+    } else {
+      wrap.appendChild(card('learn', null, STR.hub_none, null, false));
+    }
+    wrap.appendChild(card('ask', '#/physics/solutions/' + key, STR.hub_ask, STR.hub_ask_sub, false));
+    return wrap;
   }
 
   // ── fix: the worked solution (paid) ─────────────────────────────────────
@@ -563,7 +687,9 @@ var Screens = (function () {
     var q = Data.question(qid);
     if (!q) { location.hash = '#/physics/' + key + '/result'; return; }
     showView('fixView');
-    setBack('#/physics/' + key + '/result', STR.result_title);
+    // Opened from the doubt desk, Back returns there; otherwise to the result.
+    var fromSol = typeof Nav !== 'undefined' && Nav.fromSolutions();
+    setBack(fromSol ? '#/physics/solutions/' + key : '#/physics/' + key + '/result', fromSol ? STR.back_solutions : STR.result_title);
     var box = $('fixBody');
     clear(box);
     box.appendChild(el('div', 'ep-asked', q.asked_label));
@@ -571,6 +697,16 @@ var Screens = (function () {
     var opts = el('div', 'ep-fix-opts');
     for (var n = 1; n <= 4; n++) opts.appendChild(el('div', 'ep-fix-opt' + (n === q.answer ? ' right' : ''), STR.option_label(n) + ' ' + q.options_en[n - 1]));
     box.appendChild(opts);
+    // The free door to the classroom, when a lesson covers this question's shape.
+    var lesson = typeof Study !== 'undefined' ? Study.linkFor(key, Data.shapeKey(q)) : null;
+    if (lesson) {
+      var learnRow = el('div', 'ep-fix-learn');
+      var learnLink = el('a', 'ep-learn-btn', STR.fix_learn_first);
+      learnLink.href = '#/physics/learn/' + key + '/' + lesson.sub;
+      learnLink.onclick = function () { Track.log('learn_link', { from: 'fix', qid: qid, sub: lesson.sub }); };
+      learnRow.appendChild(learnLink);
+      box.appendChild(learnRow);
+    }
     var rec = recordOf(key, qid);
     Track.log('fix_open', { qid: qid, built: Sync.on(), locked: Gate.locked() });
 
@@ -580,10 +716,17 @@ var Screens = (function () {
     // Not known yet (a cold open straight to a fix route), or unlocked: ask.
     // The server refuses a locked device the bundle, so this branch can never
     // put a solution byte in front of one.
-    var wait = el('p', 'ep-note', STR.fix_loading);
+    var wait = el('div');
+    wait.appendChild(el('p', 'ep-note', STR.fix_loading));
+    wait.appendChild(el('div', 'ep-skel'));
+    wait.appendChild(el('div', 'ep-skel'));
+    wait.appendChild(el('div', 'ep-skel ep-skel-short'));
     box.appendChild(wait);
     Sync.bundle(key, function (out) {
-      if (box.contains(wait)) box.removeChild(wait);
+      // The student left this page (the router cleared it) or opened another
+      // question: nothing here may be appended to what is on screen now.
+      if (!box.contains(wait)) return;
+      box.removeChild(wait);
       if (!out) { box.appendChild(el('p', 'ep-note', STR.fix_offline)); box.appendChild(button('btn', STR.try_again, function () { showFix(key, qid); })); return; }
       if (out.locked) { Gate.refresh(); lockWall(box, key, qid); return; }
       var entry = out.solutions && out.solutions[qid];
@@ -655,7 +798,17 @@ var Screens = (function () {
     if (ns) { showTeamMark(decodeURIComponent(ns[1]), !!ns[2]); return; }
     if (h === '#/' || h === '#') { showDoor(); return; }
     if (h === '#/physics') { showChapters(); return; }
+    if (h === '#/physics/weakness') { location.hash = '#/physics'; return; }
     if (h === '#/unlock') { showUnlock(); return; }
+    var ln = h.match(/^#\/physics\/learn(?:\/(p[12]-\d{2})(?:\/([a-z0-9_]{1,50}))?)?$/);
+    if (ln) {
+      if (!ln[1]) { LearnScreens.list(); return; }
+      if (!Data.chapter(ln[1])) { location.hash = '#/physics/learn'; return; }
+      if (ln[2]) LearnScreens.subtopic(ln[1], ln[2]); else LearnScreens.chapter(ln[1]);
+      return;
+    }
+    var so = h.match(/^#\/physics\/solutions(?:\/(p[12]-\d{2}))?$/);
+    if (so) { Solutions.show(so[1] && Data.chapter(so[1]) ? so[1] : null); return; }
     var m = h.match(/^#\/physics\/(p[12]-\d{2})(?:\/(result|fix)(?:\/([^\/]+))?)?$/);
     if (!m) { location.hash = '#/'; return; }
     if (!Data.chapter(m[1])) { location.hash = '#/physics'; return; }
@@ -664,6 +817,15 @@ var Screens = (function () {
     showRun(m[1]);
   }
 
-  return { route: route, showView: showView };
+  /* The pieces the learn and solutions screens reuse, so a thread there looks
+   * and behaves exactly like the run's. */
+  var ui = {
+    say: say, setChips: setChips, questionCard: questionCard, markPicked: markPicked,
+    routeChips: routeChips, routeLabel: routeLabel, routePrompt: routePrompt, routeOfOption: routeOfOption,
+    outcomeText: outcomeText, button: button, clear: clear, setBack: setBack, showView: showView,
+    onLeave: onLeave, strongText: strongText
+  };
+
+  return { route: route, showView: showView, ui: ui };
 })();
 var route = Screens.route;

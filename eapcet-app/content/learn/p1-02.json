@@ -1,0 +1,2241 @@
+{
+  "schema": "eapcet_learn_pack_v1",
+  "chapter_key": "p1-02",
+  "chapter_name": "Motion in a Straight Line",
+  "reviewed": false,
+  "authored_by": {
+    "agent": "claude sonnet-5, four authors, one per topic (W01-L-p1-02); reworked once on four opus checks; eight round-2 corrections applied by the session",
+    "at": "2026-09-09T18:40:00+05:30"
+  },
+  "checked_by": [
+    {
+      "agent": "claude opus-5, four checkers, one per topic",
+      "at": "2026-09-09T17:35:00+05:30",
+      "verdict": "round 1: ok 130, weak 47, wrong 1, harmful 5; every answer key right; all findings reworked"
+    },
+    {
+      "agent": "claude opus-5, four re-checkers, one per topic",
+      "at": "2026-09-09T18:30:00+05:30",
+      "verdict": "round 2: ok 144, weak 7, wrong 0, harmful 1 (two_stage_stopping_02 m2, a step the correct working also does); every answer key right; all eight corrected in place, unreviewed by a teacher"
+    }
+  ],
+  "topics": [
+    {
+      "key": "position_velocity_acceleration",
+      "title": "Position, velocity and acceleration",
+      "subtopics": [
+        {
+          "key": "average_velocity",
+          "title": "Average velocity from two positions",
+          "shapes": [
+            "velocity_from_position_equation"
+          ],
+          "concept": {
+            "lines": [
+              "Average velocity is displacement divided by the time taken.",
+              "Displacement is the change in position, the final position minus the initial position.",
+              "Displacement can be positive or negative, depending on the direction of motion.",
+              "Average speed is total distance divided by total time.",
+              "Average speed and average velocity can differ when the object changes direction.",
+              "Average velocity depends only on the start and end positions, not on the path taken."
+            ],
+            "formula": {
+              "text": "v = Δx / Δt",
+              "meaning": "v = average velocity, Δx = displacement, Δt = time taken."
+            },
+            "example": {
+              "given": "x₁ = 2 m at t₁ = 0 s, x₂ = 12 m at t₂ = 5 s. Find the average velocity.",
+              "steps": [
+                {
+                  "text": "Find the displacement.",
+                  "equation": "Δx = 12 − 2 = 10 m"
+                },
+                {
+                  "text": "Divide by the time taken.",
+                  "equation": "v = 10 / 5 = 2 m/s"
+                }
+              ],
+              "answer": "2 m/s"
+            }
+          },
+          "check": {
+            "stem": "A student says average velocity depends on the actual path taken between two points. Which statement is correct?",
+            "options": [
+              "Average velocity depends on the path taken between the two points.",
+              "Average velocity depends only on the start and end positions, not the path.",
+              "Average velocity is always equal to average speed.",
+              "Average velocity cannot be negative."
+            ],
+            "answer": 2,
+            "why_right": "Average velocity uses only the start and end positions, not the path taken between them.",
+            "why_wrong": {
+              "1": "The path length does not enter this formula, only the start and end positions.",
+              "3": "Average speed equals the size of the average velocity when the direction never changes.",
+              "4": "Average velocity is negative whenever the displacement itself is negative."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_average_velocity_01",
+                  "stem": "A particle moves from x = 3 m to x = 11 m in 4 s. Find its average velocity.",
+                  "options": [
+                    "-2 m/s",
+                    "2.75 m/s",
+                    "2 m/s",
+                    "4 m/s"
+                  ],
+                  "answer": 3,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I divided the displacement by the time taken."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the final position as the displacement.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "Displacement is the change in position, the final position minus the initial position, not the final position alone."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I used the earlier position minus the later position.",
+                      "type": "careless",
+                      "option": 1,
+                      "fix": "Displacement is the final position minus the initial position; keep this order to get the correct sign."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I took the displacement minus the time.",
+                      "type": "calculation",
+                      "option": 4,
+                      "fix": "Once you have the displacement and the time, divide one by the other, not subtract them."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_average_velocity_02",
+                  "stem": "A particle is at x = 5 m. It moves with average velocity 3 m/s for 4 s. Find its final position.",
+                  "options": [
+                    "12 m",
+                    "17 m",
+                    "21 m",
+                    "-7 m"
+                  ],
+                  "answer": 2,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I rearranged the formula to find the final position."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I took velocity times time as the final position.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "The final position is the starting position plus velocity times time; add the starting position back in."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I multiplied the time by itself and added the start position.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Multiply the velocity by the time, three times four, not the time by itself, four times four; then add the start position to get the final position."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I subtracted velocity times time from the starting position.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The object moves forward, so displacement adds onto the starting position; add, do not subtract."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_average_velocity_03",
+                  "stem": "A particle moves from x = 4 m to x = 64 m in 2 minutes. Find its average velocity in m/s.",
+                  "options": [
+                    "30 m/s",
+                    "2 m/s",
+                    "1 m/s",
+                    "0.5 m/s"
+                  ],
+                  "answer": 4,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I converted the time to seconds and divided the displacement by it."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I divided the displacement by the time in minutes.",
+                      "type": "application",
+                      "option": 1,
+                      "fix": "Average velocity needs time in seconds here; convert 2 minutes to 120 seconds before dividing."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I divided the time in seconds by the displacement.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Average velocity is displacement divided by time; check which number belongs on top."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I converted only one minute to sixty seconds.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "Two minutes equals 120 seconds, not 60; multiply the number of minutes by 60 to convert to seconds."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "velocity_from_x_t",
+          "title": "Velocity from the position equation",
+          "shapes": [
+            "velocity_from_position_equation"
+          ],
+          "concept": {
+            "lines": [
+              "Velocity is the rate of change of position with time.",
+              "For position given as x = a + bt + ct², velocity is v = dx/dt = b + 2ct.",
+              "Put a value of t into this velocity equation to find the velocity at that instant.",
+              "The velocity is zero when b + 2ct = 0, which gives a special time value.",
+              "A constant term in x, like a, does not appear in the velocity equation.",
+              "Differentiating ct² gives 2ct, so the coefficient doubles in the velocity equation."
+            ],
+            "formula": {
+              "text": "v = dx/dt = b + 2ct",
+              "meaning": "v = velocity, x = a + bt + ct², b and c are constants, t = time."
+            },
+            "example": {
+              "given": "x = 2 + 3t + t² (m). Find the velocity at t = 2 s.",
+              "steps": [
+                {
+                  "text": "Differentiate x with respect to t.",
+                  "equation": "v = 3 + 2t"
+                },
+                {
+                  "text": "Put t = 2 into the velocity equation.",
+                  "equation": "v = 3 + 2×2 = 7 m/s"
+                }
+              ],
+              "answer": "7 m/s"
+            }
+          },
+          "check": {
+            "stem": "A position equation has a constant term added to it, such as x = a + bt, where a is a constant. Which statement about its effect on velocity is correct?",
+            "options": [
+              "The constant term makes the velocity keep changing with time.",
+              "The constant term shifts the starting position but does not appear in the velocity.",
+              "The constant term must always be added to the final velocity value.",
+              "The constant term makes the object move backward."
+            ],
+            "answer": 2,
+            "why_right": "A constant added to position only shifts the starting point; its derivative with respect to time is zero.",
+            "why_wrong": {
+              "1": "A constant term has a zero derivative, so it does not make the velocity change with time.",
+              "3": "The constant term does not appear after position is differentiated to get velocity.",
+              "4": "The sign of the constant alone does not decide the direction of motion."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_velocity_from_x_t_01",
+                  "stem": "The position of a particle is x = 4 + 2t + t² (m). Find its velocity at t = 3 s.",
+                  "options": [
+                    "8 m/s",
+                    "19 m/s",
+                    "5 m/s",
+                    "7 m/s"
+                  ],
+                  "answer": 1,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I differentiated the position equation, then put in the given time."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I put the given time directly into the position equation.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "Velocity comes from the position equation only after you differentiate it with respect to time."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I treated the square term as if it becomes only t.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "The derivative of ct² is 2ct; keep the factor of two that comes from the power rule."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I added all three numbers in the velocity equation.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "After finding v = 2 + 2t, multiply 2 by the time value before adding, not add all the numbers."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_velocity_from_x_t_02",
+                  "stem": "The position of a particle is x = 3 + 2t + t² (m), t in seconds. Find its velocity at t = 0.5 minutes.",
+                  "options": [
+                    "3 m/s",
+                    "34 m/s",
+                    "62 m/s",
+                    "12 m/s"
+                  ],
+                  "answer": 3,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I converted the time to seconds, then substituted into the velocity equation."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I substituted the time in minutes directly into the velocity equation.",
+                      "type": "application",
+                      "option": 1,
+                      "fix": "This velocity equation uses seconds; convert 0.5 minutes to 30 seconds before substituting."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added the two numbers to the time value.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "In v = 2 + 2t, multiply 2 by the time value first, then add the result to 2."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I read the given time value as five.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The given time is zero point five minutes, not five; read the decimal point carefully, then convert to thirty seconds."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_velocity_from_x_t_03",
+                  "stem": "The position of a particle is x = 9 + 6t − t² (m). Find its position at the time when its velocity becomes zero.",
+                  "options": [
+                    "3 m",
+                    "18 m",
+                    "36 m",
+                    "9 m"
+                  ],
+                  "answer": 2,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the zero-velocity time and substituted it into x."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I stopped after finding the time when velocity is zero.",
+                      "type": "application",
+                      "option": 1,
+                      "fix": "The question asks for the position; substitute the time value into the position equation as well."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I read the minus sign before the squared term as plus.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "The position equation has a minus sign before t²; keep it negative when you substitute the time value."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I added the two changing terms without the constant term.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "Add the constant starting term back into the position equation; do not drop it after substituting the time."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "acceleration_from_v",
+          "title": "Acceleration from the velocity equation",
+          "shapes": [
+            "velocity_from_position_equation"
+          ],
+          "concept": {
+            "lines": [
+              "Acceleration is the rate of change of velocity with time.",
+              "For velocity given as v = p + qt, acceleration is a = dv/dt = q, a constant.",
+              "For velocity given as v = p + qt², acceleration is a = dv/dt = 2qt, which changes with time.",
+              "Put a value of t into the acceleration equation to find the acceleration at that instant.",
+              "When velocity is given in terms of position x, acceleration equals v multiplied by dv/dx.",
+              "This second form, a = v dv/dx, is useful when time does not appear in the problem.",
+              "A constant acceleration means the velocity changes by the same amount every second."
+            ],
+            "formula": {
+              "text": "a = dv/dt",
+              "meaning": "a = acceleration, v = velocity, t = time; for v(x), a = v dv/dx."
+            },
+            "example": {
+              "given": "v = 4 + 5t (m/s). Find the acceleration at t = 2 s.",
+              "steps": [
+                {
+                  "text": "Differentiate v with respect to t.",
+                  "equation": "a = dv/dt = 5"
+                },
+                {
+                  "text": "This acceleration is the same at every time.",
+                  "equation": "a = 5 m/s²"
+                }
+              ],
+              "answer": "5 m/s²"
+            }
+          },
+          "check": {
+            "stem": "A particle has velocity v = p + qt, where p and q are constants. Which statement about its acceleration is correct?",
+            "options": [
+              "The acceleration depends on the value of t at that moment.",
+              "The acceleration equals q and stays the same at every time.",
+              "The acceleration equals p, the starting velocity.",
+              "The acceleration keeps increasing as t increases."
+            ],
+            "answer": 2,
+            "why_right": "Differentiating p + qt with respect to time gives q, a constant, so the acceleration does not change with time.",
+            "why_wrong": {
+              "1": "t does not appear in the acceleration, because the derivative of qt is the constant q.",
+              "3": "p is the starting velocity, not the rate of change of velocity.",
+              "4": "Acceleration here is the constant q; it does not grow as t increases."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_acceleration_from_v_01",
+                  "stem": "The velocity of a particle is v = 6 + 4t (m/s). Find its acceleration at t = 1 s.",
+                  "options": [
+                    "10 m/s²",
+                    "5 m/s²",
+                    "6 m/s²",
+                    "4 m/s²"
+                  ],
+                  "answer": 4,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I differentiated the velocity equation to find the acceleration."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I found the velocity value and used it as the acceleration.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Acceleration is the derivative of velocity with time, not the velocity value itself."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added the given time to the derivative of velocity.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Once you differentiate v to get a constant acceleration, the time value does not need to be added."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I read the constant term as the coefficient of t.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "Check which number multiplies t in the velocity equation; that number is the acceleration."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_acceleration_from_v_02",
+                  "stem": "The velocity of a particle is v = 3t² + 2 (m/s). Find its acceleration at t = 2 s.",
+                  "options": [
+                    "14 m/s²",
+                    "6 m/s²",
+                    "12 m/s²",
+                    "8 m/s²"
+                  ],
+                  "answer": 3,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I differentiated the velocity equation, then substituted the given time."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the velocity value at that time as the acceleration.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Acceleration is the derivative of velocity with time, not the velocity value at that time."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I treated the squared term as if it becomes only t.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "The derivative of 3t² is 6t; keep the factor of two that comes from the power rule."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I added six and the time value at the end.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "After finding a = 6t, multiply six by the time value; do not add the two numbers."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_acceleration_from_v_03",
+                  "stem": "A particle has velocity v = 2x (m/s), where x is its position in metres. Find its acceleration when x = 3 m.",
+                  "options": [
+                    "12 m/s²",
+                    "2 m/s²",
+                    "8 m/s²",
+                    "6 m/s²"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found dv/dx, then multiplied it by the velocity at that point."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used dv/dx alone as the acceleration.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "When velocity depends on position, acceleration is v times dv/dx, not dv/dx alone."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added the velocity to dv/dx.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Multiply the velocity value by dv/dx to get acceleration; do not add the two numbers."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the given position value as the velocity itself.",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "First use v = 2x to find the velocity at that position, then use this velocity in a = v dv/dx."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "position_from_v_t",
+          "title": "Position from the velocity equation",
+          "shapes": [
+            "position_from_velocity_equation"
+          ],
+          "concept": {
+            "lines": [
+              "Position is found by integrating velocity with respect to time.",
+              "For velocity v = p + qt, position is x = x₀ + pt + qt²/2.",
+              "The constant x₀ is the position at time t = 0.",
+              "Displacement between two times is the change in position, x(t₂) minus x(t₁).",
+              "If velocity changes sign, the particle reverses direction at that instant.",
+              "Total distance is found by splitting the motion at the reversal and adding the parts."
+            ],
+            "formula": {
+              "text": "x = x₀ + pt + qt²/2",
+              "meaning": "x₀ = initial position, p and q are the constants in v = p + qt."
+            },
+            "example": {
+              "given": "x₀ = 0 m, v = 4 + 2t (m/s). Find the position at t = 3 s.",
+              "steps": [
+                {
+                  "text": "Integrate v to get the position equation.",
+                  "equation": "x = 0 + 4t + t²"
+                },
+                {
+                  "text": "Put t = 3 into the position equation.",
+                  "equation": "x = 4×3 + 3² = 21 m"
+                }
+              ],
+              "answer": "21 m"
+            }
+          },
+          "check": {
+            "stem": "A particle's velocity is negative for part of a trip and positive for the rest. Which statement about the distance travelled is correct?",
+            "options": [
+              "Distance travelled equals the displacement, x(t₂) minus x(t₁).",
+              "Distance travelled is found by splitting the motion where velocity changes sign and adding each part.",
+              "Distance travelled is always zero when the particle returns to the start.",
+              "Distance travelled is the average velocity multiplied by the total time."
+            ],
+            "answer": 2,
+            "why_right": "When direction reverses, the parts before and after the reversal must be added separately to get the total distance.",
+            "why_wrong": {
+              "1": "Displacement can be smaller than distance when the particle changes direction and retraces part of its path.",
+              "3": "The particle can travel a large distance and still return to its starting position.",
+              "4": "Average velocity uses displacement, not distance, so this does not give the distance travelled."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_position_from_v_t_01",
+                  "stem": "A particle starts at x₀ = 2 m. Its velocity is v = 3 + 2t (m/s). Find its position at t = 2 s.",
+                  "options": [
+                    "10 m",
+                    "12 m",
+                    "16 m",
+                    "20 m"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I integrated the velocity equation, then added the starting position."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I added the two time terms without the starting position.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Add x₀ to the integrated terms; the position equation starts from the given starting position, not from zero."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I kept the full coefficient of t squared without dividing it.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Integrating qt gives qt² divided by two; keep this division step when you integrate the t term."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I substituted a time value one second larger.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "Check the time value given in the question and substitute that exact value into the position equation."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_position_from_v_t_02",
+                  "stem": "A particle's velocity is v = 5 + 2t (m/s). Find the displacement between t = 1 s and t = 3 s.",
+                  "options": [
+                    "24 m",
+                    "30 m",
+                    "-18 m",
+                    "18 m"
+                  ],
+                  "answer": 4,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the position at both times and subtracted them."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I found the position only at the later time.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Displacement between two times is the later position minus the earlier position, not a single position value."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added the two position values together.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Subtract the earlier position from the later position; do not add the two values together."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I subtracted the later position from the earlier one.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "Displacement is the later position minus the earlier position; keep this order to get the correct sign."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_position_from_v_t_03",
+                  "stem": "A particle's velocity is v = 6 − 2t (m/s), starting at x₀ = 0. Find the total distance travelled between t = 0 s and t = 4 s.",
+                  "options": [
+                    "8 m",
+                    "9 m",
+                    "10 m",
+                    "16 m"
+                  ],
+                  "answer": 3,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I split the trip where velocity is zero and added both distances."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I subtracted the starting position from the final position only.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "That subtraction gives the displacement; since the particle reverses, split the trip at the zero-velocity time and add both parts."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I multiplied the two part distances together.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Add the distance from the first part to the distance from the second part; do not multiply them."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I doubled the reversal time to square it.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "Squaring a number means multiplying it by itself, not doubling it; three squared is nine, so x = 6×3 − 3² = 9 m at the reversal. Redo the positions from there."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "uniform_acceleration",
+      "title": "Uniform acceleration",
+      "subtopics": [
+        {
+          "key": "three_equations",
+          "title": "The three equations of motion",
+          "shapes": [
+            "basic_equations_of_motion"
+          ],
+          "concept": {
+            "lines": [
+              "A body moving with constant acceleration follows three basic equations of motion.",
+              "v = u + at gives the final velocity v after a time t, when acceleration is constant.",
+              "s = ut + ½at² gives the displacement s covered in that time t.",
+              "v² = u² + 2as connects velocity and displacement without using time at all.",
+              "Pick the equation that already has your given values and the one value you must find.",
+              "If a question gives no time and asks for velocity, use v² = u² + 2as.",
+              "When a body slows down, its acceleration a is written as a negative value."
+            ],
+            "formula": {
+              "text": "v = u + at; s = ut + ½at²; v² = u² + 2as",
+              "meaning": "u = initial velocity, v = final velocity, a = acceleration, t = time, s = displacement (SI units)"
+            },
+            "example": {
+              "given": "u = 5 m/s, a = 2 m/s², t = 3 s. Find v.",
+              "steps": [
+                {
+                  "text": "Use v = u + at since t is given and v is asked.",
+                  "equation": "v = 5 + 2×3"
+                },
+                {
+                  "text": "Work it out.",
+                  "equation": "v = 5 + 6 = 11 m/s"
+                }
+              ],
+              "answer": "11 m/s"
+            }
+          },
+          "check": {
+            "stem": "A body slows down under constant acceleration. In the equations of motion, how should acceleration be written?",
+            "options": [
+              "As a positive value, since it is still acceleration",
+              "As a negative value, since it acts opposite to the velocity",
+              "It cannot be used in the equations of motion"
+            ],
+            "answer": 2,
+            "why_right": "Deceleration acts opposite to the velocity, so a takes a negative sign in the equations.",
+            "why_wrong": {
+              "1": "Acceleration is negative here because it opposes the motion, not positive.",
+              "3": "The equations of motion apply to any constant acceleration, including a negative one."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_three_equations_01",
+                  "stem": "A car starts at u = 4 m/s and has a = 2 m/s². Find its velocity after t = 5 s.",
+                  "options": [
+                    "10 m/s",
+                    "14 m/s",
+                    "45 m/s",
+                    "30 m/s"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I put the given values into v = u + at"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I multiplied acceleration by time only",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "v = u + at needs the initial speed added too; v = 4 + 2×5 = 14 m/s, not a×t alone."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added u and a before multiplying by t",
+                      "type": "calculation",
+                      "option": 4,
+                      "fix": "Multiply a by t first, then add u: v = 4 + (2×5) = 14 m/s, not (u+a)×t."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the formula for distance here",
+                      "type": "application",
+                      "option": 3,
+                      "fix": "The question asks for velocity, so use v = u + at, not s = ut + ½at², which gives distance."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_three_equations_02",
+                  "stem": "A stone starts at u = 6 m/s and reaches v = 16 m/s under a = 5 m/s². Find the displacement s.",
+                  "options": [
+                    "44 m",
+                    "10 m",
+                    "22 m",
+                    "2 m"
+                  ],
+                  "answer": 3,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I solved v² = u² + 2as for s"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I divided by the acceleration alone",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "v² = u² + 2as has a 2 before as; s = (v²−u²)/(2a) = (256−36)/10 = 22 m, not dividing by a alone."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I subtracted the speeds before squaring",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Square v and u separately first: v² − u² = 256 − 36 = 220, then divide by 2a: s = 22 m."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I reported how long the motion took",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "You need the displacement s, not the time; use v² = u² + 2as and solve for s: s = 22 m."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_three_equations_03",
+                  "stem": "A car starts at u = 4 m/s and accelerates at a = 3 m/s² for t = 2 s, reaching velocity v. Find the distance s covered in this time using v² = u² + 2as.",
+                  "options": [
+                    "14 m",
+                    "20 m",
+                    "28 m",
+                    "10 m"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found v first, then solved for s"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I multiplied the final speed by the time",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "Displacement uses the average velocity over time, not the final velocity; average velocity × time = ((4+10)/2)×2 = 14 m."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I divided by a alone in the last step",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Divide by 2a, not a alone: s = (v²−u²)/(2a) = 84/6 = 14 m."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I stopped after finding the speed",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "Finding v is only the first step; use v² = u² + 2as to get s = 14 m from that speed."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "nth_second",
+          "title": "Distance in the nth second",
+          "shapes": [
+            "nth_second_distance"
+          ],
+          "concept": {
+            "lines": [
+              "The distance covered in the nth second is the distance during that one second only.",
+              "Sₙ = u + a(2n − 1)/2 gives the distance covered during the nth second alone.",
+              "Here u is the initial velocity, a is the acceleration, and n is the second number.",
+              "You can also get it by subtracting the total up to (n − 1) seconds from the total up to n seconds.",
+              "Sₙ is a distance measured in metres, never a speed in metres per second.",
+              "For constant acceleration, Sₙ changes by a fixed amount, a, from one second to the next."
+            ],
+            "formula": {
+              "text": "Sₙ = u + a(2n − 1)/2",
+              "meaning": "u = initial velocity, a = acceleration, n = the second number (1st, 2nd, 3rd, …)."
+            },
+            "example": {
+              "given": "u = 3 m/s, a = 4 m/s². Find the distance covered in the 4th second.",
+              "steps": [
+                {
+                  "text": "Put n = 4 into the formula.",
+                  "equation": "S₄ = 3 + 4(2×4 − 1)/2"
+                },
+                {
+                  "text": "Work it out.",
+                  "equation": "S₄ = 3 + 14 = 17 m"
+                }
+              ],
+              "answer": "17 m"
+            }
+          },
+          "check": {
+            "stem": "Sₙ from the nth-second formula stands for which of these?",
+            "options": [
+              "The total distance covered from the start up to n seconds",
+              "The distance covered only during the nth second",
+              "The average speed during the nth second"
+            ],
+            "answer": 2,
+            "why_right": "The formula gives the distance for that one second only, not the running total.",
+            "why_wrong": {
+              "1": "The total distance up to n seconds uses s = ut + ½at², not Sₙ.",
+              "3": "Sₙ is a distance in metres, not a speed."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_nth_second_01",
+                  "stem": "A body starts at u = 2 m/s with a = 4 m/s². Find the distance covered in the 3rd second.",
+                  "options": [
+                    "8 m",
+                    "12 m",
+                    "24 m",
+                    "9 m"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I put n into the nth-second formula"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I reported the total distance up to that second",
+                      "type": "concept",
+                      "option": 3,
+                      "fix": "That is s up to n seconds, not the nth-second distance; use Sₙ = u + a(2n−1)/2 = 12 m."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I used n by itself in the bracket",
+                      "type": "calculation",
+                      "option": 1,
+                      "fix": "The bracket is (2n − 1), not n alone: S₃ = 2 + 4(2×3−1)/2 = 2 + 10 = 12 m."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I took the second number as the initial velocity",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "u is the initial velocity (2 m/s) and a is the acceleration (4 m/s²); use 2 as u and 4 as a: S₃ = 2 + 4(5)/2 = 12 m."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_nth_second_02",
+                  "stem": "A particle starts at u = 2 m/s. It covers S₂ = 8 m in the 2nd second. Find the acceleration a.",
+                  "options": [
+                    "2 m/s²",
+                    "9 m/s²",
+                    "12 m/s²",
+                    "4 m/s²"
+                  ],
+                  "answer": 4,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I rearranged the formula to solve for a"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I treated the distance as the total up to that time",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "S₂ is the distance during the 2nd second only; use Sₙ = u + a(2n−1)/2 to get a = 4 m/s², not the total-distance formula."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I multiplied the difference by the bracket term",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Divide (S₂ − u) by the bracket-over-two term: a = 6 ÷ 1.5 = 4 m/s², not multiply."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the bracket for the first second",
+                      "type": "application",
+                      "option": 3,
+                      "fix": "This is the 2nd second, so use n = 2 in the bracket: a = 4 m/s², not n = 1."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_nth_second_03",
+                  "stem": "A body starts at u = 5 m/s with a = 2 m/s². Find the distance covered in the 4th second by first finding the total distance at t = 4 s and at t = 3 s, then taking the difference.",
+                  "options": [
+                    "36 m",
+                    "19 m",
+                    "12 m",
+                    "14 m"
+                  ],
+                  "answer": 3,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the total distance at each time, then subtracted"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I reported the total distance up to that time",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "That is the total up to t = 4 s; subtract the total up to t = 3 s to get the 4th-second distance: 36 − 24 = 12 m."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I used the acceleration term as at² in both totals",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Keep the half in both totals: s₄ = 20 + ½×2×16 = 36 m and s₃ = 15 + ½×2×9 = 24 m; the difference is 36 − 24 = 12 m, not 19 m from dropping it."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I subtracted the total for the next second",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "Subtract the total up to t = 3 s from the total up to t = 4 s, not t = 5 s: 36 − 24 = 12 m."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "two_stage_stopping",
+          "title": "Stopping in two parts",
+          "shapes": [
+            "deceleration_two_segment_ratio"
+          ],
+          "concept": {
+            "lines": [
+              "A body can slow down in two stages: first it loses part of its speed, then it stops.",
+              "In each stage the deceleration stays the same, so v² = u² + 2as applies to both.",
+              "The distance covered in a stage depends on how much speed squared is lost in it.",
+              "Compare the two stages by finding the drop in v² for each one.",
+              "The ratio of the two distances equals the ratio of their two drops in v².",
+              "Deceleration is written as negative in the equation, since it opposes the motion."
+            ],
+            "formula": {
+              "text": "v² = u² + 2as",
+              "meaning": "u = start speed of a stage, v = end speed of that stage, a = acceleration (negative if slowing), s = distance in it."
+            },
+            "example": {
+              "given": "A body moving at u = 12 m/s slows to v = 8 m/s over a distance of s = 8 m. Find a.",
+              "steps": [
+                {
+                  "text": "Put the values into v² = u² + 2as.",
+                  "equation": "8² = 12² + 2×a×8"
+                },
+                {
+                  "text": "Work it out.",
+                  "equation": "64 = 144 + 16a, so a = −5 m/s²"
+                }
+              ],
+              "answer": "a = −5 m/s² (deceleration)"
+            }
+          },
+          "check": {
+            "stem": "A body slows down over two stages with the same deceleration throughout. What decides how far it travels in each stage?",
+            "options": [
+              "The mass of the body",
+              "The drop in speed squared during that stage",
+              "The direction of motion in that stage"
+            ],
+            "answer": 2,
+            "why_right": "For constant deceleration, v² = u² + 2as, so the distance in a stage is set by how much v² drops in it.",
+            "why_wrong": {
+              "1": "Mass does not appear in v² = u² + 2as; the distance depends on speed and acceleration only.",
+              "3": "Direction does not change the size of the distance; the drop in speed squared does."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_stopping_01",
+                  "stem": "A car moving at u = 10 m/s brakes with a deceleration of a = 3 m/s². Find its speed v after covering s = 16 m.",
+                  "options": [
+                    "14 m/s",
+                    "2 m/s",
+                    "4 m/s",
+                    "0 m/s"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I put the values into v² = u² + 2as"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I added the acceleration term to u squared",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Deceleration is negative in the formula: v² = 100 − 96 = 4, so v = 2 m/s, not v² = 100 + 96."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I reported v squared as the final speed",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "v² = 4, so take the square root to get v: v = 2 m/s, not 4."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I assumed the body came to a complete stop",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "This question only asks for the speed after the first part of slowing, not a full stop; v² = 100 − 96 = 4, so v = 2 m/s."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_stopping_02",
+                  "stem": "A motorbike slows from u = 12 m/s to v = 8 m/s over a distance of s = 10 m with constant deceleration. Find the deceleration a.",
+                  "options": [
+                    "8 m/s²",
+                    "0.8 m/s²",
+                    "2 m/s²",
+                    "4 m/s²"
+                  ],
+                  "answer": 4,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I rearranged v² = u² + 2as to solve for a"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I wrote the formula as v² = u² + as",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "The formula has 2as, not as: a = (64−144)/20 = −4, so deceleration = 4 m/s²."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I subtracted before squaring the speeds",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Square v and u separately: v² − u² = 64 − 144 = −80, then divide by 2s = 20: a = −4, so deceleration = 4 m/s²."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I divided by four times the distance",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "The formula divides by 2s = 20 m, not by 4s = 40 m: a = (64−144)/20 = −4, so deceleration = 4 m/s²."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_stopping_03",
+                  "stem": "A bus moving at u = 20 m/s brakes with a constant deceleration. In the first stage it slows to v = 16 m/s while covering a distance s₁ = 18 m. With the same deceleration, over what further distance s₂ does it come to rest from 16 m/s?",
+                  "options": [
+                    "32 m",
+                    "72 m",
+                    "16 m",
+                    "50 m"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the deceleration first, then solved stage two"
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I scaled the distance directly with the drop in speed",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "Distance scales with the drop in speed squared, not speed itself; find a from stage 1 (a = −4 m/s²), then s₂ = 32 m from v² = u² + 2as."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I divided by the distance alone to get the deceleration",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Divide by 2s, not s alone, in step 1: a = (256−400)/36 = −4 m/s². Step 2 with this a gives s₂ = 256/8 = 32 m."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the original starting speed again in the second stage",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "Stage 2 starts at v = 16 m/s, not the original 20 m/s: 0 = 256 − 8s₂ gives s₂ = 32 m."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "free_fall",
+      "title": "Free fall",
+      "subtopics": [
+        {
+          "key": "free_fall_distance",
+          "title": "Distance fallen in the first t seconds, and in an interval",
+          "shapes": [
+            "free_fall_interval_distance"
+          ],
+          "concept": {
+            "lines": [
+              "A body released from rest falls freely under gravity.",
+              "The distance fallen in t seconds from rest is h = ½gt².",
+              "Speed after t seconds is v = gt.",
+              "Distance in an interval is the total distance at the end minus the total distance at the start.",
+              "Total distance keeps growing; interval distance is the extra fallen in between two times.",
+              "Use g = 10 m/s² throughout."
+            ],
+            "formula": {
+              "text": "h = ½gt²",
+              "meaning": "h = distance fallen (m), g = 10 m/s², t = time from release (s)"
+            },
+            "example": {
+              "given": "u = 0, g = 10 m/s². Find the distance fallen in 4 s, and the distance fallen between t = 3 s and t = 4 s.",
+              "steps": [
+                {
+                  "text": "Find the total distance at t = 4 s.",
+                  "equation": "h₄ = ½ × 10 × 4² = 80 m"
+                },
+                {
+                  "text": "Find the total distance at t = 3 s.",
+                  "equation": "h₃ = ½ × 10 × 3² = 45 m"
+                },
+                {
+                  "text": "Subtract to get the distance in that interval.",
+                  "equation": "h₄ − h₃ = 80 − 45 = 35 m"
+                }
+              ],
+              "answer": "80 m; interval = 35 m"
+            }
+          },
+          "check": {
+            "stem": "A ball falls from rest for a fixed time. Which statement about the distance it falls is correct?",
+            "options": [
+              "The distance in the last second equals the total distance divided by time.",
+              "Interval distance is the difference between the two total distances.",
+              "The distance fallen each second is the same throughout the fall.",
+              "The total distance fallen is proportional to the time, not to time squared."
+            ],
+            "answer": 2,
+            "why_right": "Total distance at each time uses h = ½gt²; interval distance is the difference of the two totals.",
+            "why_wrong": {
+              "1": "That gives the average speed over the whole fall, not any one interval's distance.",
+              "3": "The distance each second increases because the speed increases; it is not constant.",
+              "4": "Total distance grows with time squared, not directly with time, since speed keeps increasing."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_free_fall_distance_01",
+                  "stem": "A stone is dropped from rest. Take g = 10 m/s². Find the distance it falls in the first 3 seconds.",
+                  "options": [
+                    "15 m",
+                    "30 m",
+                    "45 m",
+                    "90 m"
+                  ],
+                  "answer": 3,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I put the given time into the falling distance formula."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the time without squaring it.",
+                      "type": "calculation",
+                      "option": 1,
+                      "fix": "Square the time first: t² not t. Then multiply by g and by half to get the distance."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I found the speed after the given time.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "v = gt gives speed, not distance. Use h = ½gt² to find how far it fell."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I multiplied g by time squared without halving it.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The formula has a half in front. Multiply g by t², then divide the result by two."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_free_fall_distance_02",
+                  "stem": "A ball dropped from rest reaches a speed of 20 m/s. Take g = 10 m/s². Find the distance it has fallen so far.",
+                  "options": [
+                    "20 m",
+                    "10 m",
+                    "40 m",
+                    "2000 m"
+                  ],
+                  "answer": 1,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the time from the given speed, then found the distance."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the time value without squaring it in the formula.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Square the time before multiplying: t² not t. Then multiply by g and by half to get distance."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I multiplied g by the squared time without halving the result.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "There is a half in the distance formula. Divide g times t squared by two to get the right distance."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the given speed as the time in the formula.",
+                      "type": "concept",
+                      "option": 4,
+                      "fix": "Speed is not time. First find the time using t = v ÷ g, then use it in h = ½gt²."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_free_fall_distance_03",
+                  "stem": "A stone is dropped from rest. Take g = 10 m/s². Find the distance it falls between t = 2 s and t = 4 s.",
+                  "options": [
+                    "20 m",
+                    "70 m",
+                    "80 m",
+                    "60 m"
+                  ],
+                  "answer": 4,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the total distance at both times, then subtracted them."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I gave the distance fallen up to the earlier time.",
+                      "type": "application",
+                      "option": 1,
+                      "fix": "That is only the distance to the earlier time. Also find the distance to the later time, then subtract."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I did not square the earlier time before using it.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Square the earlier time too before using it: t² not t. Then subtract the two total distances."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I gave the total distance at the later time only.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "That is the distance at the later time alone. Subtract the distance at the earlier time to get the interval."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "odd_number_rule",
+          "title": "Distances in successive seconds",
+          "shapes": [
+            "free_fall_interval_distance"
+          ],
+          "concept": {
+            "lines": [
+              "A body released from rest falls a different distance in each second.",
+              "The distance fallen in the nth second is g(2n − 1)/2.",
+              "For the 1st, 2nd, 3rd second, this gives distances in the ratio 1 : 3 : 5.",
+              "This is found with a different formula from the total distance fallen up to that second; they agree only in the first second.",
+              "The total distances up to 1, 2, 3 seconds are in the ratio 1 : 4 : 9.",
+              "Use g = 10 m/s² throughout."
+            ],
+            "formula": {
+              "text": "hₙ = g(2n − 1)/2",
+              "meaning": "hₙ = distance fallen in the nth second; g = 10 m/s²; n = which second"
+            },
+            "example": {
+              "given": "Take g = 10 m/s². Find the distance fallen in the 3rd second, from rest.",
+              "steps": [
+                {
+                  "text": "Put n = 3 in the formula.",
+                  "equation": "h₃ = 10(2×3 − 1)/2"
+                },
+                {
+                  "text": "Work it out.",
+                  "equation": "h₃ = 10×5/2 = 25 m"
+                }
+              ],
+              "answer": "25 m"
+            }
+          },
+          "check": {
+            "stem": "A body falls freely from rest. Which statement about the distance it falls in each second is correct?",
+            "options": [
+              "The distance fallen in each second is the same throughout the fall.",
+              "The total distance fallen up to a second is never smaller than the distance fallen in that second.",
+              "The distances fallen in the first, second and third seconds are all equal.",
+              "The total distance fallen up to a second is always smaller than the distance fallen in that second."
+            ],
+            "answer": 2,
+            "why_right": "The one-second distance and the total up to that second come from different formulas: they are equal for the first second, and after that the total is larger.",
+            "why_wrong": {
+              "1": "The distance fallen each second increases because the body speeds up; it is not constant.",
+              "3": "These distances are in the ratio 1 : 3 : 5, not all equal.",
+              "4": "The total up to a second is never smaller than the distance in that one second; they are equal for the first second, then the total grows larger."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_odd_number_rule_01",
+                  "stem": "A ball is dropped from rest. Take g = 10 m/s². Find the distance it falls in the 2nd second.",
+                  "options": [
+                    "20 m",
+                    "15 m",
+                    "30 m",
+                    "5 m"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I put the given second number into the nth second formula."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the total distance formula with the given second as time.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "That formula gives the total distance fallen, not the distance in one second. Use hₙ = g(2n − 1)/2 instead."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I did not divide the result by two.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "The formula divides g(2n − 1) by two. Include that final division to get the right distance."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I found the distance for the first second every time.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "That is the distance for n = 1. This question asks about the 2nd second, so use n = 2 in the formula."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_odd_number_rule_02",
+                  "stem": "A ball is dropped from rest. Take g = 10 m/s². The distance fallen in the 4th second is how many times the distance fallen in the 1st second?",
+                  "options": [
+                    "6 times",
+                    "16 times",
+                    "4 times",
+                    "7 times"
+                  ],
+                  "answer": 4,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found both distances, then divided them to get the ratio."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I subtracted one before doubling it, but only for the fourth second.",
+                      "type": "calculation",
+                      "option": 1,
+                      "fix": "That slip only changes the fourth second's value: 2n − 1, not 2(n − 1). Recompute it, then divide by the first second's distance."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I compared the total distances.",
+                      "type": "application",
+                      "option": 2,
+                      "fix": "That ratio compares totals fallen up to each second. Use the distance fallen IN each single second instead."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I assumed the ratio equals the second number itself.",
+                      "type": "concept",
+                      "option": 3,
+                      "fix": "The distance in the nth second is not n times the first second's distance. Compute both distances and divide."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_odd_number_rule_03",
+                  "stem": "A ball is dropped from rest. Take g = 10 m/s². In which second does it fall a distance of 45 m?",
+                  "options": [
+                    "5th second",
+                    "3rd second",
+                    "9th second",
+                    "10th second"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I equated the nth second formula to the given distance and solved."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the total distance formula.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "That formula gives distance up to a time, not distance in one second. Use hₙ = g(2n − 1)/2 and solve for n."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I found the odd value but did not solve for the second.",
+                      "type": "careless",
+                      "option": 3,
+                      "fix": "That value equals 2n − 1, not n. Add one and divide by two to get n."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I found the doubled value but did not divide it by two.",
+                      "type": "calculation",
+                      "option": 4,
+                      "fix": "2n equals ten, so n equals five, not ten. Divide by two as the last step to find n."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "two_stage_fall",
+          "title": "Fall in two stages",
+          "shapes": [
+            "multi_phase_vertical_motion"
+          ],
+          "concept": {
+            "lines": [
+              "Sometimes a body falls freely first, then moves in a second stage.",
+              "In the free-fall stage, use v = gt and h = ½gt² as usual.",
+              "The speed at the end of the free-fall stage is the speed at the start of the second stage.",
+              "The second stage speed stays the same as stage one's end speed, unless something acts on the body and the question states the new speed.",
+              "Total time for the trip is the time for stage one plus the time for stage two.",
+              "Each stage is worked out on its own, then the results are combined.",
+              "Use g = 10 m/s² throughout."
+            ],
+            "formula": {
+              "text": "T = t₁ + t₂",
+              "meaning": "T = total time, t₁ = time for stage one, t₂ = time for stage two"
+            },
+            "example": {
+              "given": "A ball falls freely for 20 m, then moves down at the speed it reached for another 30 m at that constant speed. Take g = 10 m/s². Find the total time.",
+              "steps": [
+                {
+                  "text": "Find the time for the free-fall stage.",
+                  "equation": "20 = ½ × 10 × t₁² → t₁ = 2 s"
+                },
+                {
+                  "text": "Find the speed reached at the end of that stage.",
+                  "equation": "v = g × t₁ = 10 × 2 = 20 m/s"
+                },
+                {
+                  "text": "Find the time for the second stage, then add the two times.",
+                  "equation": "t₂ = 30 ÷ 20 = 1.5 s; T = 2 + 1.5 = 3.5 s"
+                }
+              ],
+              "answer": "3.5 s"
+            }
+          },
+          "check": {
+            "stem": "A ball falls freely, then moves at constant speed for the rest of the trip. Which statement about the two stages is correct?",
+            "options": [
+              "The total time is the time for the free-fall stage only.",
+              "The speed at the end of stage one becomes the speed at the start of stage two.",
+              "The two stages must always take the same amount of time.",
+              "The speed stays constant through both stages, including free fall."
+            ],
+            "answer": 2,
+            "why_right": "The body's speed does not change on its own; it stays the same as stage one's end speed unless something acts on the body and the question states the new speed.",
+            "why_wrong": {
+              "1": "The total time must include both stages, not just the first one.",
+              "3": "The two stages usually take different times; each is worked out from its own distance and speed.",
+              "4": "In the free-fall stage the speed keeps increasing; it becomes constant only in the second stage."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_fall_01",
+                  "stem": "A ball falls freely for 2 s, then moves at constant speed for another 3 s. Find the total time for the trip.",
+                  "options": [
+                    "6 s",
+                    "1 s",
+                    "5 s",
+                    "3 s"
+                  ],
+                  "answer": 3,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I added the time for each stage to get the total time."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I multiplied the two stage times.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Total time adds the two stage times; it does not multiply them. Add instead of multiplying."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I subtracted one stage time from the other.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "A time cannot be negative, so subtract the smaller stage time from the larger one. The total time adds both stage times; it does not subtract them."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used only the second stage's time for the total.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The total time must include the first stage too. Add both stage times together."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_fall_02",
+                  "stem": "A ball falls freely from rest for 2 s. It then moves at the speed it reached, covering another 60 m at that constant speed. Take g = 10 m/s². Find the total time for the trip.",
+                  "options": [
+                    "8 s",
+                    "5 s",
+                    "62 s",
+                    "3 s"
+                  ],
+                  "answer": 2,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the speed reached, then the second stage time, then added."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used g itself as the constant speed for the second stage.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "g is not the speed reached; find v = g × t₁ first, then use that speed for the second stage."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I used the given distance directly as the second stage's time.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Divide the distance by the speed to get the second stage's time; do not use the distance itself as time."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I reported only the second stage's time as the total.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The total time needs the first stage's time added too. Add both stage times together."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_two_stage_fall_03",
+                  "stem": "A ball is dropped from rest and falls freely through 45 m before it enters water. In the water it moves at a constant speed of 9 m/s for another 27 m. Take g = 10 m/s². Find the total time for the trip.",
+                  "options": [
+                    "6 s",
+                    "3.9 s",
+                    "12 s",
+                    "72 s"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found the time for each stage separately, then added them."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used the free-fall speed for the second stage.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "The question states 9 m/s as the water speed; use that value for the second stage, not the free-fall speed."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I used the squared time value directly without taking its square root.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "t₁² = 9 means t₁ = 3, not 9. Take the square root before using the time."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I added the two distances together.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "Distances are not times. Find each stage's time separately, then add the times, not the distances."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "thrown_up",
+      "title": "A body thrown straight up",
+      "subtopics": [
+        {
+          "key": "throw_up",
+          "title": "Time up and the return speed",
+          "shapes": [
+            "vertical_projectile_up_and_down"
+          ],
+          "concept": {
+            "lines": [
+              "A ball thrown straight up slows down as it rises because gravity pulls it down.",
+              "Its speed falls by 10 m/s each second on the way up, until it becomes zero.",
+              "At the highest point, the ball is at rest for an instant before falling.",
+              "Time to reach the top is t = u/g, where u is the launch speed and g = 10 m/s².",
+              "The ball is at its maximum height at the instant its speed is zero.",
+              "Ignoring air resistance, the time taken to fall equals the time taken to rise: time up = time down.",
+              "The ball lands back at the throw point with the same speed it started with.",
+              "At any height, the speed on the way down equals the speed at that height on the way up."
+            ],
+            "formula": {
+              "text": "t = u/g",
+              "meaning": "t = time to the top, u = launch speed, g = 10 m/s²."
+            },
+            "example": {
+              "given": "u = 10 m/s thrown straight up, g = 10 m/s². Time to the top and total time in the air?",
+              "steps": [
+                {
+                  "text": "Find the time to the top.",
+                  "equation": "t = u/g = 10/10 = 1 s"
+                },
+                {
+                  "text": "Time down equals time up; double it for the total.",
+                  "equation": "T = 2 × 1 = 2 s"
+                }
+              ],
+              "answer": "1 s up, 2 s total"
+            }
+          },
+          "check": {
+            "stem": "A ball thrown straight up returns to the point it was thrown from. Ignoring air resistance, how does its speed there compare with the throw speed, and how does the time to fall compare with the time to rise?",
+            "options": [
+              "The return speed is greater; the fall takes longer than the rise.",
+              "The return speed equals the throw speed; the fall and rise take equal time.",
+              "The return speed is less than the throw speed; the fall takes longer.",
+              "The return speed equals the throw speed, but the fall takes less time."
+            ],
+            "answer": 2,
+            "why_right": "The same acceleration g acts going up and coming down, so both speed and time match.",
+            "why_wrong": {
+              "1": "Gravity acts the same on the way down as the way up, so speed cannot become greater.",
+              "3": "No air resistance means no speed is lost, so the return speed cannot be less than the throw speed.",
+              "4": "The same acceleration acts on both halves of the trip, so the fall cannot take less time than the rise."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_throw_up_01",
+                  "stem": "A ball is thrown straight up with a speed of 30 m/s. Take g = 10 m/s². Find the time taken to reach the highest point.",
+                  "options": [
+                    "1.5 s",
+                    "3 s",
+                    "20 s",
+                    "6 s"
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I divided the given speed by g."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I used twice the value of g in the formula.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "The time to the top uses g, not two times g. Redo using only g: t = u/g = 30/10 = 3 s."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I took g away from the given speed.",
+                      "type": "concept",
+                      "option": 3,
+                      "fix": "Time to the top comes from dividing the speed by g, not subtracting. Divide instead of subtract to get the right time."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I doubled the time to the top.",
+                      "type": "application",
+                      "option": 4,
+                      "fix": "The time to the top is already t = u/g; the question does not ask for the total flight time, so do not double it."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_throw_up_02",
+                  "stem": "A ball is thrown straight up with a speed of 72 km/h. Take g = 10 m/s². Find the time taken to reach the highest point.",
+                  "options": [
+                    "4 s",
+                    "1 s",
+                    "2 s",
+                    "7.2 s"
+                  ],
+                  "answer": 3,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I converted the speed to metres per second, then divided by g."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I doubled the answer after dividing by g.",
+                      "type": "application",
+                      "option": 1,
+                      "fix": "The time to the top is already t = u/g using the converted speed; the question does not ask for the total flight time, so do not double it."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I doubled g before dividing the speed by it.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "The time to the top uses g, not twice g: t = u/g = 20/10 = 2 s."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I used the given speed without converting its units first.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The speed was given in km per h; convert to m per s (multiply by 5/18) before using the time formula."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_throw_up_03",
+                  "stem": "A ball thrown straight up returns to the throw point after 4 s. Take g = 10 m/s². Find the speed at which it was thrown.",
+                  "options": [
+                    "20 m/s",
+                    "40 m/s",
+                    "12 m/s",
+                    "0.4 m/s"
+                  ],
+                  "answer": 1,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I halved the total time, then multiplied by g."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I multiplied g by the total time.",
+                      "type": "application",
+                      "option": 2,
+                      "fix": "The 4 s given is the total time up and down. Halve it to get the time to the top before multiplying by g."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I added g and the half time together.",
+                      "type": "calculation",
+                      "option": 3,
+                      "fix": "Multiply g by the half-time to get the launch speed; adding them gives the wrong units and the wrong number."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I divided the total time by g.",
+                      "type": "concept",
+                      "option": 4,
+                      "fix": "Speed equals g multiplied by time, not time divided by g. Multiply instead: g × (half the total time)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "zero_v_nonzero_a",
+          "title": "Zero velocity at the top, acceleration still g",
+          "shapes": [
+            "zero_velocity_nonzero_acceleration"
+          ],
+          "concept": {
+            "lines": [
+              "At the highest point of a throw, the velocity of the ball is zero for an instant.",
+              "Air resistance is ignored, so the only acceleration is g, acting downward the whole time.",
+              "A body can have zero velocity and a non-zero acceleration at the same instant.",
+              "On the way up, velocity and acceleration point in opposite directions, so the ball slows down.",
+              "On the way down, velocity and acceleration point in the same direction, so the ball speeds up.",
+              "Right before the top the ball is slowing down; right after, it is speeding up downward.",
+              "Acceleration describes how velocity is changing, not what velocity equals right now.",
+              "Zero velocity does not mean zero force; gravity still pulls the ball down at the top."
+            ],
+            "formula": {
+              "text": "v = u − gt",
+              "meaning": "v = velocity at time t, u = launch speed; up is positive, and the acceleration is g downward throughout."
+            },
+            "example": {
+              "given": "u = 20 m/s thrown straight up, g = 10 m/s². Find v at t = 2 s and the acceleration at that instant.",
+              "steps": [
+                {
+                  "text": "Find v using v = u − gt.",
+                  "equation": "v = 20 − 10 × 2 = 0"
+                },
+                {
+                  "text": "The acceleration is still g downward, even though v = 0.",
+                  "equation": "a = 10 m/s² (downward)"
+                }
+              ],
+              "answer": "v = 0 m/s; a = 10 m/s² downward"
+            }
+          },
+          "check": {
+            "stem": "At the highest point of a vertical throw, the velocity is zero for an instant. What is true about the acceleration at that same instant?",
+            "options": [
+              "The acceleration is zero too, since the velocity is zero.",
+              "The acceleration only starts acting once the body begins to fall.",
+              "The acceleration stays g, directed downward, the whole time.",
+              "The acceleration points upward while the velocity is zero."
+            ],
+            "answer": 3,
+            "why_right": "Gravity acts on the body at every instant of the flight, including the moment the velocity is zero.",
+            "why_wrong": {
+              "1": "Gravity never stops acting; the force and the acceleration g are present even when the velocity is zero.",
+              "2": "Gravity acts from the moment the body is thrown, not only after it starts to fall.",
+              "4": "Gravity always pulls the body down, so the acceleration points downward throughout, never upward."
+            }
+          },
+          "apply": [
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_zero_v_nonzero_a_01",
+                  "stem": "A ball is thrown straight up at 15 m/s. Take g = 10 m/s². Find its acceleration 1 s after it is thrown.",
+                  "options": [
+                    "0 m/s², since no force acts on the ball at that instant.",
+                    "10 m/s², directed downward.",
+                    "10 m/s², directed upward.",
+                    "15 m/s², directed downward."
+                  ],
+                  "answer": 2,
+                  "difficulty": 1,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I know the acceleration stays g downward throughout the flight."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I thought the acceleration becomes zero once the ball leaves the hand.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Gravity keeps acting on the ball throughout its flight; the acceleration stays 10 m/s² downward at every instant, even in the air."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I took the direction the ball moves as the acceleration direction.",
+                      "type": "concept",
+                      "option": 3,
+                      "fix": "Acceleration due to gravity always points downward on this body, no matter which way it happens to be moving at that instant."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I reported the given speed as the acceleration value.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "The given speed is not the acceleration; the acceleration always stays 10 m/s² downward here, from g, not from the launch speed."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_zero_v_nonzero_a_02",
+                  "stem": "A ball thrown straight up reaches its highest point 1.5 s after being thrown. Take g = 10 m/s². Find the launch speed, and state the acceleration at that instant.",
+                  "options": [
+                    "u = 0.15 m/s; acceleration = 10 m/s² downward.",
+                    "u = 15 m/s; acceleration = 0 m/s².",
+                    "u = 15 m/s; acceleration = 10 m/s² downward.",
+                    "u = 10 m/s; acceleration = 15 m/s² downward."
+                  ],
+                  "answer": 3,
+                  "difficulty": 2,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I multiplied g by the time to the top."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I divided the time to the top by g for the speed.",
+                      "type": "calculation",
+                      "option": 1,
+                      "fix": "Rearranging t = u/g for u means multiplying g by the time, not dividing the time by g."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I thought the acceleration becomes zero at the highest point.",
+                      "type": "concept",
+                      "option": 2,
+                      "fix": "The acceleration stays g downward at the highest point too; only the velocity is zero there, not the acceleration."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I reported the acceleration as the launch speed in my answer.",
+                      "type": "careless",
+                      "option": 4,
+                      "fix": "Check which number is the launch speed and which is the acceleration before writing the final answer; here u = 15 m/s and the acceleration stays 10 m/s² downward."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variants": [
+                {
+                  "id": "lq_p1-02_zero_v_nonzero_a_03",
+                  "stem": "A ball is thrown straight up at 30 m/s. Take g = 10 m/s². Find its velocity at t = 3 s and its acceleration at that same instant.",
+                  "options": [
+                    "v = 0, and acceleration is 0 m/s² at that instant.",
+                    "v = 20 m/s upward, and acceleration is 10 m/s² downward at that instant.",
+                    "v = 0, and acceleration is 10 m/s² upward at that instant.",
+                    "v = 0, and acceleration is 10 m/s² downward at that instant."
+                  ],
+                  "answer": 4,
+                  "difficulty": 3,
+                  "routes": [
+                    {
+                      "id": "r",
+                      "text": "I found v from the formula, then noted gravity still acts."
+                    },
+                    {
+                      "id": "m0",
+                      "text": "I assumed the acceleration is zero because the velocity is zero.",
+                      "type": "concept",
+                      "option": 1,
+                      "fix": "Even though v = 0 at that instant, gravity keeps pulling the ball down, so the acceleration stays 10 m/s², not zero."
+                    },
+                    {
+                      "id": "m1",
+                      "text": "I took g away from the launch speed.",
+                      "type": "calculation",
+                      "option": 2,
+                      "fix": "Subtract g multiplied by the time, not only g, from the launch speed: v = u − g×t, using the full time value."
+                    },
+                    {
+                      "id": "m2",
+                      "text": "I took the acceleration direction as upward since the ball was slowing.",
+                      "type": "concept",
+                      "option": 3,
+                      "fix": "Gravity always points downward on this body; the acceleration is downward whether the ball is slowing or speeding up."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

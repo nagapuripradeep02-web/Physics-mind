@@ -1,5 +1,68 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📱 SESSION — EAPCET finder becomes a three-tab student app: Learn and practice · Weakness · Solutions, front end first, on a PREVIEW worker (2026-09-09, `feat/eapcet-app`)
+
+**Bottom line: the live finder is now one subject shell with three tabs, built in place on the
+same single-file engine, deployed to a preview URL and never to the student site.** The founder
+asked for the front end and UX first ("later, we start with building a strong back end and AI
+architecture"); the backend for lesson sync and photo reading is recorded as out of scope.
+
+- **Preview:** https://viditra-eapcet-preview.nagapuripradeep02.workers.dev (worker
+  `viditra-eapcet-preview`, `wrangler.eapcet-preview.toml`, `<meta name="robots"
+  content="noindex">`, banner "Preview build. The lessons are samples, not yet checked by a
+  teacher."). The student site `viditra-eapcet` is untouched. The preview origin was added to
+  `EP_ALLOWED_ORIGINS` and `ep-state` + `ep-vidi-chat` redeployed, so the paid half works there
+  for a granted device and fails closed for everyone else.
+- **Learn and practice** (`#/physics/learn[/<ck>[/<sub>]]`): chapter → topics → lessons. A lesson
+  is a text concept card (lines, the one formula, one worked example with small numbers — no
+  simulations), "Check it" (one belief question, never gates), "Apply it" (three basic questions,
+  each followed by the finder's "Which way did you go?" chips), then "How do you feel?" (recorded,
+  never the mark). Green = three right by the right route in one pass; a wrong pick, a guess or
+  right-by-a-wrong-route ends the pass and shows the pack's fix; green is sticky; pass n uses
+  variant n % len. State lives in `ep_state_v1.learn` beside `chapters`, device-local: `Sync.push`
+  sends only `chapters`, `Run.adopt` never touches `learn`.
+- **Weakness** (`#/physics…`, unchanged behaviour): the chapter row gains a mastery line per shape
+  (strong → last run's fix/check/solid → learned = every linked lesson green, dashed sage → none);
+  the result page is now the hub (Fix this · Learn this · Ask about a problem); each shape group
+  carries a mastery pill and a "Learn this" link; the fix page offers "Learn the idea first (free)".
+- **Solutions** (`#/physics/solutions[/<ck>]`): photo (camera or gallery, ≤ 15 MB, object-URL
+  preview, "It stays on this phone. Nothing is sent.") → three chips → an honest "Reading a photo
+  is not available yet" card; a typed question is matched client-side (`58_match.js`: NFKD, super/
+  subscript digits, stoplist, cosine over tokens with numerics ×2, ≥ 0.35 and 3 shared tokens) to
+  the public pool → up to three "Is it one of these?" cards → the existing fix page, with Back
+  returning to Solutions. The photo is never posted; the fix page is gated exactly as before.
+- **Design system** in `eapcet-app/eapcet.css` only (`app.css` stays the byte copy of
+  `notebook.css`): tokens, `.btn-primary` finally defined, 44 px targets, bottom tab bar
+  (`75_nav.js`, Learn · Weakness · Solutions, no clay on tabs), toast, mastery pills/segments,
+  hub, concept/check/fix cards, skeletons, photo/match/not-available cards, hover only under
+  `(hover: hover)`, motion off under `prefers-reduced-motion`.
+- **Content pack** `eapcet-app/content/learn/p1-02.json` — schema `eapcet_learn_pack_v1`
+  (`src/schemas/eapcetLearn.ts`, zod strict, 17 gate tests), 4 topics, 12 lessons, 36 practice
+  questions, 58 KB, **`reviewed: false`** — a sample until a teacher signs off. Loop: brief
+  `_BRIEF_LEARN.md` → four sonnet authors (`_parts/`) → merge → gate → four opus checkers
+  (`_checks/`, round 1: ok 130 · weak 47 · wrong 1 · harmful 5) → four sonnet rework authors →
+  four opus re-checks (round 2: ok 144 · weak 7 · wrong 0 · harmful 1) → the eight round-2
+  findings corrected in place by the session, re-gated, redeployed. A `--hosted` build LEAVES OUT
+  an unreviewed pack with a printed line (deviation from the plan's "refuse": the student-site
+  ship chain keeps working); offline, `--dev-open` and `--preview` builds carry it.
+- **Proof:** `npx vitest run src/lib/eapcet` 74/74 · `npm run smoke:eapcet` 13/13 ·
+  `npm run smoke:eapcet:learn` 9/9 (new `e2e/eapcet_learn.spec.ts` + `e2e/eapcet_solutions.spec.ts`)
+  · `npm run smoke:eapcet:students` 1/1 · `tsc` 0 · live Chrome walk of the preview: lesson
+  `nth_second` to green, `learn.nth_second.green_at` stored, chapter row "1 learned, not tested
+  yet · 8 not tried", typed "A stone falls freely under gravity…" → its 2021 question first, fix
+  page from Solutions keeps the Solutions tab and the lock wall on an ungranted device.
+- **Traps:** a module-level `var pack = …` shadowed `function pack()` in `52_learndata.js` and
+  broke every learn screen AND the result hub (renamed `chapterPack`); the students spec REWRITES
+  `docs/reports/eapcet_students/` (restore with `git checkout --` after every run); a Playwright
+  probe must live inside the worktree (`e2e/_probe/`, deleted after) — the scratchpad cannot
+  resolve `@playwright/test`; the route-phrase "harmful" test cuts both ways — a phrase naming a
+  step the CORRECT working also does (dividing by 2s) is claimable by a correct solver.
+- **Out of scope, recorded:** backend for `learn` sync (`ep_sync` is additive when it learns the
+  branch), photo reading (Mathpix/Gemini/DeepSeek routing, SymPy checker, BKT/FSRS planner),
+  chemistry and maths packs, sign-in deploy, the money path. Waiting on the founder: the p1-02
+  shape labels, the spot sheet, q092/q099, q101, domain, founding price, the auditor's brief
+  critiques, and the vault sync proposal (unwritten until confirmed).
+
 ## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
 **Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer

@@ -1,0 +1,17 @@
+# Cloudflare Worker (static assets) for the EAPCET PHYSICS FINDER — PREVIEW.
+# The same page as wrangler.eapcet.toml (the student site), built with
+# --preview: noindex, the sample learn packs allowed even when no teacher has
+# reviewed them, the EP_* bases baked from .env.local. Never a student's URL:
+# it exists for the founder's phone pass and for reviewers.
+#
+# Serves eapcet-app/dist-preview (npm run build:eapcet:preview). Always deploy
+# via `npm run deploy:eapcet:preview`, which builds that exact directory first.
+# Its origin must be listed in EP_ALLOWED_ORIGINS on ep-state and ep-vidi-chat,
+# or the paid half fails closed (403) while runs and lessons still work.
+#
+# Deploy:  npx wrangler deploy -c wrangler.eapcet-preview.toml
+name = "viditra-eapcet-preview"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./eapcet-app/dist-preview"

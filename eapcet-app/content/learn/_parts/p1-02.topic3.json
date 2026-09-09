@@ -1,0 +1,561 @@
+{
+  "key": "free_fall",
+  "title": "Free fall",
+  "subtopics": [
+    {
+      "key": "free_fall_distance",
+      "title": "Distance fallen in the first t seconds, and in an interval",
+      "shapes": [
+        "free_fall_interval_distance"
+      ],
+      "concept": {
+        "lines": [
+          "A body released from rest falls freely under gravity.",
+          "The distance fallen in t seconds from rest is h = ½gt².",
+          "Speed after t seconds is v = gt.",
+          "Distance in an interval is the total distance at the end minus the total distance at the start.",
+          "Total distance keeps growing; interval distance is the extra fallen in between two times.",
+          "Use g = 10 m/s² throughout."
+        ],
+        "formula": {
+          "text": "h = ½gt²",
+          "meaning": "h = distance fallen (m), g = 10 m/s², t = time from release (s)"
+        },
+        "example": {
+          "given": "u = 0, g = 10 m/s². Find the distance fallen in 4 s, and the distance fallen between t = 3 s and t = 4 s.",
+          "steps": [
+            {
+              "text": "Find the total distance at t = 4 s.",
+              "equation": "h₄ = ½ × 10 × 4² = 80 m"
+            },
+            {
+              "text": "Find the total distance at t = 3 s.",
+              "equation": "h₃ = ½ × 10 × 3² = 45 m"
+            },
+            {
+              "text": "Subtract to get the distance in that interval.",
+              "equation": "h₄ − h₃ = 80 − 45 = 35 m"
+            }
+          ],
+          "answer": "80 m; interval = 35 m"
+        }
+      },
+      "check": {
+        "stem": "A ball falls from rest for a fixed time. Which statement about the distance it falls is correct?",
+        "options": [
+          "The distance in the last second equals the total distance divided by time.",
+          "Interval distance is the difference between the two total distances.",
+          "The distance fallen each second is the same throughout the fall.",
+          "The total distance fallen is proportional to the time, not to time squared."
+        ],
+        "answer": 2,
+        "why_right": "Total distance at each time uses h = ½gt²; interval distance is the difference of the two totals.",
+        "why_wrong": {
+          "1": "That gives the average speed over the whole fall, not any one interval's distance.",
+          "3": "The distance each second increases because the speed increases; it is not constant.",
+          "4": "Total distance grows with time squared, not directly with time, since speed keeps increasing."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_free_fall_distance_01",
+              "stem": "A stone is dropped from rest. Take g = 10 m/s². Find the distance it falls in the first 3 seconds.",
+              "options": [
+                "15 m",
+                "30 m",
+                "45 m",
+                "90 m"
+              ],
+              "answer": 3,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I put the given time into the falling distance formula."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the time without squaring it.",
+                  "type": "calculation",
+                  "option": 1,
+                  "fix": "Square the time first: t² not t. Then multiply by g and by half to get the distance."
+                },
+                {
+                  "id": "m1",
+                  "text": "I found the speed after the given time.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "v = gt gives speed, not distance. Use h = ½gt² to find how far it fell."
+                },
+                {
+                  "id": "m2",
+                  "text": "I multiplied g by time squared without halving it.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The formula has a half in front. Multiply g by t², then divide the result by two."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_free_fall_distance_02",
+              "stem": "A ball dropped from rest reaches a speed of 20 m/s. Take g = 10 m/s². Find the distance it has fallen so far.",
+              "options": [
+                "20 m",
+                "10 m",
+                "40 m",
+                "2000 m"
+              ],
+              "answer": 1,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the time from the given speed, then found the distance."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the time value without squaring it in the formula.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Square the time before multiplying: t² not t. Then multiply by g and by half to get distance."
+                },
+                {
+                  "id": "m1",
+                  "text": "I multiplied g by the squared time without halving the result.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "There is a half in the distance formula. Divide g times t squared by two to get the right distance."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used the given speed as the time in the formula.",
+                  "type": "concept",
+                  "option": 4,
+                  "fix": "Speed is not time. First find the time using t = v ÷ g, then use it in h = ½gt²."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_free_fall_distance_03",
+              "stem": "A stone is dropped from rest. Take g = 10 m/s². Find the distance it falls between t = 2 s and t = 4 s.",
+              "options": [
+                "20 m",
+                "70 m",
+                "80 m",
+                "60 m"
+              ],
+              "answer": 4,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the total distance at both times, then subtracted them."
+                },
+                {
+                  "id": "m0",
+                  "text": "I gave the distance fallen up to the earlier time.",
+                  "type": "application",
+                  "option": 1,
+                  "fix": "That is only the distance to the earlier time. Also find the distance to the later time, then subtract."
+                },
+                {
+                  "id": "m1",
+                  "text": "I did not square the earlier time before using it.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "Square the earlier time too before using it: t² not t. Then subtract the two total distances."
+                },
+                {
+                  "id": "m2",
+                  "text": "I gave the total distance at the later time only.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "That is the distance at the later time alone. Subtract the distance at the earlier time to get the interval."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "odd_number_rule",
+      "title": "Distances in successive seconds",
+      "shapes": [
+        "free_fall_interval_distance"
+      ],
+      "concept": {
+        "lines": [
+          "A body released from rest falls a different distance in each second.",
+          "The distance fallen in the nth second is g(2n − 1)/2.",
+          "For the 1st, 2nd, 3rd second, this gives distances in the ratio 1 : 3 : 5.",
+          "This is found with a different formula from the total distance fallen up to that second; they agree only in the first second.",
+          "The total distances up to 1, 2, 3 seconds are in the ratio 1 : 4 : 9.",
+          "Use g = 10 m/s² throughout."
+        ],
+        "formula": {
+          "text": "hₙ = g(2n − 1)/2",
+          "meaning": "hₙ = distance fallen in the nth second; g = 10 m/s²; n = which second"
+        },
+        "example": {
+          "given": "Take g = 10 m/s². Find the distance fallen in the 3rd second, from rest.",
+          "steps": [
+            {
+              "text": "Put n = 3 in the formula.",
+              "equation": "h₃ = 10(2×3 − 1)/2"
+            },
+            {
+              "text": "Work it out.",
+              "equation": "h₃ = 10×5/2 = 25 m"
+            }
+          ],
+          "answer": "25 m"
+        }
+      },
+      "check": {
+        "stem": "A body falls freely from rest. Which statement about the distance it falls in each second is correct?",
+        "options": [
+          "The distance fallen in each second is the same throughout the fall.",
+          "The total distance fallen up to a second is never smaller than the distance fallen in that second.",
+          "The distances fallen in the first, second and third seconds are all equal.",
+          "The total distance fallen up to a second is always smaller than the distance fallen in that second."
+        ],
+        "answer": 2,
+        "why_right": "The one-second distance and the total up to that second come from different formulas: they are equal for the first second, and after that the total is larger.",
+        "why_wrong": {
+          "1": "The distance fallen each second increases because the body speeds up; it is not constant.",
+          "3": "These distances are in the ratio 1 : 3 : 5, not all equal.",
+          "4": "The total up to a second is never smaller than the distance in that one second; they are equal for the first second, then the total grows larger."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_odd_number_rule_01",
+              "stem": "A ball is dropped from rest. Take g = 10 m/s². Find the distance it falls in the 2nd second.",
+              "options": [
+                "20 m",
+                "15 m",
+                "30 m",
+                "5 m"
+              ],
+              "answer": 2,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I put the given second number into the nth second formula."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the total distance formula with the given second as time.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "That formula gives the total distance fallen, not the distance in one second. Use hₙ = g(2n − 1)/2 instead."
+                },
+                {
+                  "id": "m1",
+                  "text": "I did not divide the result by two.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "The formula divides g(2n − 1) by two. Include that final division to get the right distance."
+                },
+                {
+                  "id": "m2",
+                  "text": "I found the distance for the first second every time.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "That is the distance for n = 1. This question asks about the 2nd second, so use n = 2 in the formula."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_odd_number_rule_02",
+              "stem": "A ball is dropped from rest. Take g = 10 m/s². The distance fallen in the 4th second is how many times the distance fallen in the 1st second?",
+              "options": [
+                "6 times",
+                "16 times",
+                "4 times",
+                "7 times"
+              ],
+              "answer": 4,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found both distances, then divided them to get the ratio."
+                },
+                {
+                  "id": "m0",
+                  "text": "I subtracted one before doubling it, but only for the fourth second.",
+                  "type": "calculation",
+                  "option": 1,
+                  "fix": "That slip only changes the fourth second's value: 2n − 1, not 2(n − 1). Recompute it, then divide by the first second's distance."
+                },
+                {
+                  "id": "m1",
+                  "text": "I compared the total distances.",
+                  "type": "application",
+                  "option": 2,
+                  "fix": "That ratio compares totals fallen up to each second. Use the distance fallen IN each single second instead."
+                },
+                {
+                  "id": "m2",
+                  "text": "I assumed the ratio equals the second number itself.",
+                  "type": "concept",
+                  "option": 3,
+                  "fix": "The distance in the nth second is not n times the first second's distance. Compute both distances and divide."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_odd_number_rule_03",
+              "stem": "A ball is dropped from rest. Take g = 10 m/s². In which second does it fall a distance of 45 m?",
+              "options": [
+                "5th second",
+                "3rd second",
+                "9th second",
+                "10th second"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I equated the nth second formula to the given distance and solved."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the total distance formula.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "That formula gives distance up to a time, not distance in one second. Use hₙ = g(2n − 1)/2 and solve for n."
+                },
+                {
+                  "id": "m1",
+                  "text": "I found the odd value but did not solve for the second.",
+                  "type": "careless",
+                  "option": 3,
+                  "fix": "That value equals 2n − 1, not n. Add one and divide by two to get n."
+                },
+                {
+                  "id": "m2",
+                  "text": "I found the doubled value but did not divide it by two.",
+                  "type": "calculation",
+                  "option": 4,
+                  "fix": "2n equals ten, so n equals five, not ten. Divide by two as the last step to find n."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "two_stage_fall",
+      "title": "Fall in two stages",
+      "shapes": [
+        "multi_phase_vertical_motion"
+      ],
+      "concept": {
+        "lines": [
+          "Sometimes a body falls freely first, then moves in a second stage.",
+          "In the free-fall stage, use v = gt and h = ½gt² as usual.",
+          "The speed at the end of the free-fall stage is the speed at the start of the second stage.",
+          "The second stage speed stays the same as stage one's end speed, unless something acts on the body and the question states the new speed.",
+          "Total time for the trip is the time for stage one plus the time for stage two.",
+          "Each stage is worked out on its own, then the results are combined.",
+          "Use g = 10 m/s² throughout."
+        ],
+        "formula": {
+          "text": "T = t₁ + t₂",
+          "meaning": "T = total time, t₁ = time for stage one, t₂ = time for stage two"
+        },
+        "example": {
+          "given": "A ball falls freely for 20 m, then moves down at the speed it reached for another 30 m at that constant speed. Take g = 10 m/s². Find the total time.",
+          "steps": [
+            {
+              "text": "Find the time for the free-fall stage.",
+              "equation": "20 = ½ × 10 × t₁² → t₁ = 2 s"
+            },
+            {
+              "text": "Find the speed reached at the end of that stage.",
+              "equation": "v = g × t₁ = 10 × 2 = 20 m/s"
+            },
+            {
+              "text": "Find the time for the second stage, then add the two times.",
+              "equation": "t₂ = 30 ÷ 20 = 1.5 s; T = 2 + 1.5 = 3.5 s"
+            }
+          ],
+          "answer": "3.5 s"
+        }
+      },
+      "check": {
+        "stem": "A ball falls freely, then moves at constant speed for the rest of the trip. Which statement about the two stages is correct?",
+        "options": [
+          "The total time is the time for the free-fall stage only.",
+          "The speed at the end of stage one becomes the speed at the start of stage two.",
+          "The two stages must always take the same amount of time.",
+          "The speed stays constant through both stages, including free fall."
+        ],
+        "answer": 2,
+        "why_right": "The body's speed does not change on its own; it stays the same as stage one's end speed unless something acts on the body and the question states the new speed.",
+        "why_wrong": {
+          "1": "The total time must include both stages, not just the first one.",
+          "3": "The two stages usually take different times; each is worked out from its own distance and speed.",
+          "4": "In the free-fall stage the speed keeps increasing; it becomes constant only in the second stage."
+        }
+      },
+      "apply": [
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_fall_01",
+              "stem": "A ball falls freely for 2 s, then moves at constant speed for another 3 s. Find the total time for the trip.",
+              "options": [
+                "6 s",
+                "1 s",
+                "5 s",
+                "3 s"
+              ],
+              "answer": 3,
+              "difficulty": 1,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I added the time for each stage to get the total time."
+                },
+                {
+                  "id": "m0",
+                  "text": "I multiplied the two stage times.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "Total time adds the two stage times; it does not multiply them. Add instead of multiplying."
+                },
+                {
+                  "id": "m1",
+                  "text": "I subtracted one stage time from the other.",
+                  "type": "calculation",
+                  "option": 2,
+                  "fix": "A time cannot be negative, so subtract the smaller stage time from the larger one. The total time adds both stage times; it does not subtract them."
+                },
+                {
+                  "id": "m2",
+                  "text": "I used only the second stage's time for the total.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The total time must include the first stage too. Add both stage times together."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_fall_02",
+              "stem": "A ball falls freely from rest for 2 s. It then moves at the speed it reached, covering another 60 m at that constant speed. Take g = 10 m/s². Find the total time for the trip.",
+              "options": [
+                "8 s",
+                "5 s",
+                "62 s",
+                "3 s"
+              ],
+              "answer": 2,
+              "difficulty": 2,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the speed reached, then the second stage time, then added."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used g itself as the constant speed for the second stage.",
+                  "type": "concept",
+                  "option": 1,
+                  "fix": "g is not the speed reached; find v = g × t₁ first, then use that speed for the second stage."
+                },
+                {
+                  "id": "m1",
+                  "text": "I used the given distance directly as the second stage's time.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "Divide the distance by the speed to get the second stage's time; do not use the distance itself as time."
+                },
+                {
+                  "id": "m2",
+                  "text": "I reported only the second stage's time as the total.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "The total time needs the first stage's time added too. Add both stage times together."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variants": [
+            {
+              "id": "lq_p1-02_two_stage_fall_03",
+              "stem": "A ball is dropped from rest and falls freely through 45 m before it enters water. In the water it moves at a constant speed of 9 m/s for another 27 m. Take g = 10 m/s². Find the total time for the trip.",
+              "options": [
+                "6 s",
+                "3.9 s",
+                "12 s",
+                "72 s"
+              ],
+              "answer": 1,
+              "difficulty": 3,
+              "routes": [
+                {
+                  "id": "r",
+                  "text": "I found the time for each stage separately, then added them."
+                },
+                {
+                  "id": "m0",
+                  "text": "I used the free-fall speed for the second stage.",
+                  "type": "concept",
+                  "option": 2,
+                  "fix": "The question states 9 m/s as the water speed; use that value for the second stage, not the free-fall speed."
+                },
+                {
+                  "id": "m1",
+                  "text": "I used the squared time value directly without taking its square root.",
+                  "type": "calculation",
+                  "option": 3,
+                  "fix": "t₁² = 9 means t₁ = 3, not 9. Take the square root before using the time."
+                },
+                {
+                  "id": "m2",
+                  "text": "I added the two distances together.",
+                  "type": "careless",
+                  "option": 4,
+                  "fix": "Distances are not times. Find each stage's time separately, then add the times, not the distances."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
