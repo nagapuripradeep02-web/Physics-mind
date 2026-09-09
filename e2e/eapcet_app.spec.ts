@@ -98,7 +98,7 @@ test.describe('EAPCET finder — offline build', () => {
             await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Correct. Were you sure?');
             await page.locator('#runChips .ep-chip[data-route="sure"]').click();
         }
-        const played = [{ qid: first.id, theory: first.theory, intent: 'solid' as Intent, picked: first.answer, route: first.theory ? 'sure' : 'r' }];
+        const played = [{ qid: first.id, theory: first.theory, intent: 'solid' as Intent, picked: first.answer, route: first.theory ? 'sure' : 'r', label: null as string | null }];
         played.push(...await playRun(page, SCRIPT.slice(1)));
         await expect(page).toHaveURL(new RegExp(`#/physics/${OPEN_KEY}/result$`));
         expect(await page.locator('#runView .ep-asked').count()).toBe(0);

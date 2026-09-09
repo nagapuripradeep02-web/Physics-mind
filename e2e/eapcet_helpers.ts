@@ -174,7 +174,14 @@ export function resolveRoute(menu: string[], want: string): string {
 }
 
 export type Intent = 'solid' | 'slip' | 'wrong_route' | 'mismatch' | 'guess_right' | 'guess_wrong' | 'belief' | 'unlabelled';
-export type Played = { qid: string; theory: boolean; intent: Intent; picked: number; route: string };
+/** `label` is the type the release gives the option picked (careless counts as
+    calculation), null when the option is unexplained: it decides the type of a
+    wrong route, exactly as the engine reads it. */
+export type Played = { qid: string; theory: boolean; intent: Intent; picked: number; route: string; label: string | null };
+export function labelOf(q: PublicQuestion, picked: number): string | null {
+    const t = (q.option_types || {})[String(picked)];
+    return t ? (t === 'careless' ? 'calculation' : t) : null;
+}
 
 /** One step of a scripted run: what the student means to do, resolved against
     the card on screen. On a theory question every wrong intent becomes a sure
@@ -201,7 +208,7 @@ export async function playStep(page: Page, intent: Intent, wait = 40000, chips =
     await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${picked}"]`).click();
     await expect(page.locator(`${chips} .ep-chip`)).toHaveCount(menu.length);
     await page.locator(`${chips} .ep-chip[data-route="${route}"]`).click();
-    return { qid: q.id, theory: !routed, intent: want, picked, route };
+    return { qid: q.id, theory: !routed, intent: want, picked, route, label: labelOf(q, picked) };
 }
 
 export async function playRun(page: Page, intents: Intent[], wait = 40000): Promise<Played[]> {
@@ -222,7 +229,11 @@ export function expectation(played: Played[], rushed = false) {
         if (p.intent === 'guess_right' || p.intent === 'guess_wrong') params.guessed++;
         if (!right && rushed) params.rushed++;
         if (p.intent === 'slip' || p.intent === 'unlabelled') { params.calculation++; typed++; if (p.intent === 'slip') confirmed++; }
-        if (p.intent === 'wrong_route' || p.intent === 'mismatch') { params.application++; typed++; confirmed++; }
+        if (p.intent === 'wrong_route' || p.intent === 'mismatch') {
+            // the option decides the type: a concept-labelled option is a concept mistake whatever route was claimed
+            const t = p.label === 'concept' ? 'concept' : 'application';
+            params[t]++; typed++; confirmed++;
+        }
         if (p.intent === 'belief') { params.concept++; typed++; confirmed++; }
         if (p.intent === 'mismatch') mismatches++;
     }

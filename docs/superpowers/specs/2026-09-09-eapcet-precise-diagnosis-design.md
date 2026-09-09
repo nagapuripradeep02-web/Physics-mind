@@ -39,7 +39,7 @@ option is tinted, the pick is tinted.
 worked solution's route and two wrong routes, all first person, at most twelve words, in a
 stable shuffled order with nothing marked. Examples for the free-fall question:
 
-- "I found the distance by 12 s and took away the first 4 s"
+- "I subtracted the first four seconds from the total by twelve"
 - "I treated the next 8 seconds as a fresh fall from rest"
 - "I used the ratio of the squares of the times"
 - "I guessed"
@@ -427,3 +427,14 @@ the deterministic outcomes across many students, never by design.
 - "About 290 wrong routes to write" overstated the work. Wrong routes are phrases on existing
   concept and application mistakes; the count is closer to 150 phrases plus up to 146 right
   routes.
+- The example right route first written in section 2 ("I found the distance by 12 s and took
+  away the first 4 s") broke the phrase rules of section 4.1 — fourteen words and a two-digit
+  number; the gate caught it on its first run. Replaced by "I subtracted the first four seconds
+  from the total by twelve" (2026-09-09, build).
+- A question whose routes are not yet audited is not a theory question: its wrong answers are
+  outcome `wrong_unrouted` and count toward no parameter (score, guessed and rushed still
+  count). Only a verified sidecar with `right_route: null` makes a theory question. Without
+  this the nine chapters without routes would report every sure-wrong answer as a concept gap
+  (2026-09-09, plan).
+- Shape keys are at most 40 characters of `a-z 0-9 _ -`: the app schema, the chat guard and
+  `ep_retries.shape_key` all cap them there (2026-09-09, build).
