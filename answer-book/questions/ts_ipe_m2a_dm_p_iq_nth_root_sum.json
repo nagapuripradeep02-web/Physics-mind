@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 De Moivre's Theorem, answer 5. Printed appearances: AP 15,18. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] tags the book prints against answer 2 on book p.15, the same method over different numbers. The SAME split shape and the SAME step ids (s1_mod_amp, s2_de_moivre, s3_conjugate, s4_add) are used on answers 1.1, 1.2, 2 and 5 of this unit, deliberately: they are one method (mod-amp form → De Moivre → the conjugate pair → add) over different numbers. Answer 4 carries the same step names shifted by one because the book's own [1 Mark] roots step precedes them. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line on p.16 prints the left side as '(p+iq)^{1/n} + (p−q)^{1/n}' — the i is missing from the second bracket; it is (p − iq)^{1/n}, as the question and the book's own equation (2) say. The card writes it correctly. The 1/n power of a complex number has n values; the book, and this card, take the one value that De Moivre's theorem gives from the principal amplitude θ = Tan⁻¹(q/p) (p > 0 assumed, as the book assumes). Notation: (p+iq)^{1/n} and (p²+q²)^{1/2n} are typeset with KaTeX on the page per the notation ledger; in this plain-text question line they are written with a caret. Asked as Model Paper 4, Q18 (book p.118), whose answer-page index prints 'P 16(4)' although this answer is number 5."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 De Moivre's Theorem, answer 5. Printed appearances: AP 15,18. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] tags the book prints against answer 2 on book p.15, the same method over different numbers. The SAME split shape and the SAME step ids (s1_mod_amp, s2_de_moivre, s3_conjugate, s4_add) are used on answers 1.1, 1.2, 2 and 5 of this unit, deliberately: they are one method (mod-amp form → De Moivre → the conjugate pair → add) over different numbers. Answer 4 carries the same step names shifted by one because the book's own [1 Mark] roots step precedes them. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. CORRECTION TO THE BOOK, recorded not silently fixed: the book's last line on p.16 prints the left side as '(p+iq)^{1/n} + (p−q)^{1/n}' — the i is missing from the second bracket; it is (p − iq)^{1/n}, as the question and the book's own equation (2) say. The card writes it correctly. The 1/n power of a complex number has n values; the book, and this card, take the one value that De Moivre's theorem gives from the principal amplitude θ = Tan⁻¹(q/p) (p > 0 assumed, as the book assumes). Notation: (p+iq)^{1/n} and (p²+q²)^{1/2n} are typeset with KaTeX on the page per the notation ledger; in this plain-text question line they are written with a caret. Asked as Model Paper 4, Q18 (book p.118), whose answer-page index prints 'P 16(4)' although this answer is number 5. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — how you write p + iq in mod-amp form, what a 1/n power does to r and to θ, and how the two roots combine.",
   "insider_note": "Same method as the (1 + i)ⁿ questions, but with letters and a fractional power. The exponent on the modulus is 1/2n, not 1/n: the square root inside r is easy to forget.",
@@ -70,12 +70,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let p + iq = x + iy ⇒ x = p, y = q",
+          "Write p + iq in the modulus-amplitude form.",
+          "Let p + iq = x + iy, so x = p and y = q",
           "r = √(x² + y²) = √(p² + q²)",
-          "Take p > 0, so p + iq is in Q1 or Q4. Then",
+          "Take p > 0, so p + iq lies in the first or",
+          "the fourth quadrant and the amplitude is",
+          "the principal inverse tangent:",
           "tan θ = y/x = q/p ⇒ θ = Tan⁻¹(q/p)",
-          "∴ p + iq = √(p² + q²) (cos θ + i sin θ),",
-          "where θ = Tan⁻¹(q/p)"
+          "∴ p + iq = √(p² + q²)(cos θ + i sin θ)"
         ],
         "recall": {
           "credit": "say_it",
@@ -121,12 +123,14 @@
             "render": "katex",
             "style": "eq"
           },
+          "The modulus is raised to the power 1/n and,",
+          "by De Moivre's theorem, the angle is divided by n:",
           {
             "text": "= (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} + i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(1)",
             "render": "katex",
             "style": "eq"
           },
-          "(one value, by De Moivre's theorem)"
+          "(this is one of the n values)"
         ],
         "recall": {
           "credit": "say_it",
@@ -167,7 +171,8 @@
         "margin_note": "Fifth mark. p − iq is the conjugate of p + iq, so this root carries the same modulus factor with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "p − iq is the conjugate, so the same modulus factor with the sine sign reversed.",
         "lines": [
-          "Similarly,",
+          "p − iq is the conjugate of p + iq, so its",
+          "root is the same with the sin term negative:",
           {
             "text": "(p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\left(\\cos\\tfrac{\\theta}{n} - i\\sin\\tfrac{\\theta}{n}\\right)\\ \\dots(2)",
             "render": "katex",
@@ -212,12 +217,13 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2(p² + q²) to the power 1/2n, times cos(θ/n). Replace θ by Tan⁻¹(q/p), which is the form the question asks for.",
         "memory_tip": "Adding doubles the cosine. Replace θ by Tan⁻¹(q/p) — that is the form the question asks for.",
         "lines": [
-          "Adding (1) and (2):",
+          "Adding (1) and (2), the i sin terms cancel:",
           {
             "text": "(p+iq)^{1/n} + (p-iq)^{1/n} = (p^2+q^2)^{1/2n}\\cdot 2\\cos\\tfrac{\\theta}{n}",
             "render": "katex",
             "style": "eq"
           },
+          "Putting θ = Tan⁻¹(q/p) back in:",
           {
             "text": "= 2\\,(p^2+q^2)^{1/2n}\\cos\\!\\left(\\tfrac{1}{n}\\,\\mathrm{Tan}^{-1}\\tfrac{q}{p}\\right)",
             "render": "katex",

@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 11 Partial Fractions, answer 99 (a ★★★ SSP 66 Super Scoring Page). Printed appearances: AP 15; TS 18, 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not at Q15 in the five model papers, but the Bullet Model Paper re-solves it as the second Q15 question on book p.102; that second solution agrees with the chapter answer. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 2 in the identity gives 18 = A(6) + (2B + C)(1) = 18 + 0 = 18 with A = 3, B = −1, C = 2."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 11 Partial Fractions, answer 99 (a ★★★ SSP 66 Super Scoring Page). Printed appearances: AP 15; TS 18, 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not at Q15 in the five model papers, but the Bullet Model Paper re-solves it as the second Q15 question on book p.102; that second solution agrees with the chapter answer. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 2 in the identity gives 18 = A(6) + (2B + C)(1) = 18 + 0 = 18 with A = 3, B = −1, C = 2. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve (2x² + 3x + 4)/((x − 1)(x² + 2)) into partial fractions — name each move in order.",
   "insider_note": "x² + 2 has no real factors, so its numerator must be Bx + C, never a constant; after x = 1 gives A, the easy value x = 0 gives C, and only B needs a coefficient comparison.",
@@ -74,8 +74,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x² + 2 has no real factors.",
-          "Let (2x² + 3x + 4)/((x − 1)(x² + 2))",
+          "x² + 2 is never zero for real x,",
+          "so it has no real factors.",
+          "An irreducible quadratic gets",
+          "  a linear top (Bx + C):",
+          "(2x² + 3x + 4)/((x − 1)(x² + 2))",
           "= A/(x − 1) + (Bx + C)/(x² + 2)"
         ],
         "recall": {
@@ -117,8 +120,9 @@
         "margin_note": "Second mark. Multiply by (x − 1)(x² + 2). A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep Bx + C in a bracket.",
         "memory_tip": "A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep the bracket around Bx + C.",
         "lines": [
-          "Multiply by (x − 1)(x² + 2):",
-          "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)"
+          "Multiply both sides by (x − 1)(x² + 2):",
+          "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -158,9 +162,15 @@
         "margin_note": "Third mark. x = 1 gives A directly. x = 0 is not a root but it is an easy value: it gives 2A − C, hence C. Then compare x² for B. The book uses exactly these three lines.",
         "memory_tip": "x = 1 gives A. Then x = 0 is not a root but is easy: it gives 2A − C, so watch that minus.",
         "lines": [
-          "Put x = 1: 9 = A(3) ⇒ A = 3",
-          "Put x = 0: 4 = 2A − C ⇒ C = 2",
-          "Compare x²: A + B = 2 ⇒ B = −1"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 1: 2 + 3 + 4 = A(1 + 2)",
+          "9 = 3A, so A = 3",
+          "Put x = 0: 4 = A(2) + C(−1)",
+          "4 = 6 − C, so C = 2",
+          "Compare the x² terms on both sides:",
+          "left 2, right A + B, so A + B = 2",
+          "B = 2 − 3 = −1"
         ],
         "recall": {
           "credit": "say_it",

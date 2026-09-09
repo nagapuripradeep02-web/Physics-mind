@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 11 Partial Fractions, answer 97 (the book's 'SPECIAL TYPE'). Printed appearances: AP 18. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book solves this by the substitution x − 3 = y and never writes the A/(x − 3) + B/(x − 3)² + C/(x − 3)³ form; the card follows the book route because it is shorter and exact, and says in s1 why the general form would also work. On this card the four step ids mean: s1_form = the substitution, s2_identity = expanding the numerator in y, s3_constants = splitting into three fractions, s4_result = writing back in x. Truth check: putting x = 4 (y = 1) gives (16 + 20 + 7)/1 = 43 on the left and 1 + 11 + 31 = 43 on the right."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 11 Partial Fractions, answer 97 (the book's 'SPECIAL TYPE'). Printed appearances: AP 18. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book solves this by the substitution x − 3 = y and never writes the A/(x − 3) + B/(x − 3)² + C/(x − 3)³ form; the card follows the book route because it is shorter and exact, and says in s1 why the general form would also work. On this card the four step ids mean: s1_form = the substitution, s2_identity = expanding the numerator in y, s3_constants = splitting into three fractions, s4_result = writing back in x. Truth check: putting x = 4 (y = 1) gives (16 + 20 + 7)/1 = 43 on the left and 1 + 11 + 31 = 43 on the right. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve (x² + 5x + 7)/(x − 3)³ into partial fractions — name each move in order.",
   "insider_note": "One linear factor cubed means the substitution x − 3 = y does the whole question — expand, divide term by term, no constants to solve; the last mark is putting y = x − 3 back.",
@@ -66,6 +66,10 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The denominator is a single factor repeated",
+          "three times, so the substitution x − 3 = y",
+          "turns it into y³ and is quicker than",
+          "three unknown constants.",
           "Put x − 3 = y, so x = y + 3.",
           "(x² + 5x + 7)/(x − 3)³",
           "= ((y + 3)² + 5(y + 3) + 7)/y³"
@@ -109,8 +113,11 @@
         "margin_note": "Second mark. Expand (y + 3)² = y² + 6y + 9 and 5(y + 3) = 5y + 15, then add the 7. Collect like terms carefully: the constants 9 + 15 + 7 = 31.",
         "memory_tip": "(y + 3)² = y² + 6y + 9, and the constants add to 9 + 15 + 7 = 31.",
         "lines": [
-          "(y + 3)² + 5(y + 3) + 7",
-          "= y² + 6y + 9 + 5y + 15 + 7",
+          "Expand the numerator:",
+          "(y + 3)² = y² + 6y + 9",
+          "5(y + 3) = 5y + 15",
+          "Adding these and 7:",
+          "y² + 6y + 9 + 5y + 15 + 7",
           "= y² + 11y + 31"
         ],
         "recall": {
@@ -152,6 +159,7 @@
         "margin_note": "Third mark. Divide each term of the numerator by y³ separately. y²/y³ = 1/y, 11y/y³ = 11/y², 31/y³ stays. No constants to solve for.",
         "memory_tip": "Divide each term by y³ separately: y²/y³ = 1/y, not y. Then 11/y² and 31/y³.",
         "lines": [
+          "Divide each term by y³ separately:",
           "(y² + 11y + 31)/y³",
           "= y²/y³ + 11y/y³ + 31/y³",
           "= 1/y + 11/y² + 31/y³"

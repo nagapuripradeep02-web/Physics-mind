@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 11 Partial Fractions, answer 101 (the book's 'TYPE 3 [deg(Nr) ≥ deg(Dr)]', the first improper fraction). Printed appearances: AP 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book shows the long division in a boxed layout; the card writes the same division as two subtraction lines and the product-plus-remainder identity x³ = (x − 1)(x² + x − 2) + 3x − 2, which a student can check by expanding. Truth check: expanding (x − 1)(x² + x − 2) + 3x − 2 = x³ − 3x + 2 + 3x − 2 = x³, and putting x = 0 in the remainder identity gives −2 = A(2) + B(−1) = 2/3 − 8/3 = −2 with A = 1/3, B = 8/3."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 11 Partial Fractions, answer 101 (the book's 'TYPE 3 [deg(Nr) ≥ deg(Dr)]', the first improper fraction). Printed appearances: AP 19. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book shows the long division in a boxed layout; the card writes the same division as two subtraction lines and the product-plus-remainder identity x³ = (x − 1)(x² + x − 2) + 3x − 2, which a student can check by expanding. Truth check: expanding (x − 1)(x² + x − 2) + 3x − 2 = x³ − 3x + 2 + 3x − 2 = x³, and putting x = 0 in the remainder identity gives −2 = A(2) + B(−1) = 2/3 − 8/3 = −2 with A = 1/3, B = 8/3. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve x³/((x − 1)(x + 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "Degree 3 over degree 2 is improper, so divide FIRST — quotient x − 1, remainder 3x − 2 — because no A and B can resolve x³ directly; the quotient must also appear again in the final line.",
@@ -66,14 +66,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree 3 ≥ degree 2: improper, so divide.",
+          "The numerator's degree is not less than",
+          "the denominator's, so the fraction is",
+          "improper and a polynomial must come out first.",
+          "Numerator degree 3, denominator degree 2,",
+          "so divide. First expand the denominator:",
           "(x − 1)(x + 2) = x² + x − 2",
+          "x³ ÷ x² gives x:",
           "x³ − x(x² + x − 2) = −x² + 2x",
+          "−x² ÷ x² gives −1:",
           "−x² + 2x + (x² + x − 2) = 3x − 2",
-          "So x³ = (x − 1)(x² + x − 2) + 3x − 2",
+          "Quotient x − 1, remainder 3x − 2:",
+          "x³ = (x − 1)(x² + x − 2) + 3x − 2",
           "x³/((x − 1)(x + 2))",
           "= x − 1 + (3x − 2)/((x − 1)(x + 2))",
-          "Let (3x − 2)/((x − 1)(x + 2))",
+          "Now split the proper fraction:",
+          "(3x − 2)/((x − 1)(x + 2))",
           "= A/(x − 1) + B/(x + 2)"
         ],
         "recall": {
@@ -117,8 +125,9 @@
         "margin_note": "Second mark. Multiply the remainder fraction equation by (x − 1)(x + 2). The quotient x − 1 stays aside; it is not part of this identity.",
         "memory_tip": "The left side of the identity is the REMAINDER 3x − 2, not x³. The quotient stays aside.",
         "lines": [
-          "Multiply by (x − 1)(x + 2):",
-          "3x − 2 = A(x + 2) + B(x − 1)"
+          "Multiply both sides by (x − 1)(x + 2):",
+          "3x − 2 = A(x + 2) + B(x − 1)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -159,8 +168,12 @@
         "margin_note": "Third mark. x = 1 gives A = 1/3, x = −2 gives B = 8/3. Fractions with 3; keep them as fractions.",
         "memory_tip": "Substitute into 3x − 2, not into x³: x = 1 gives A = 1/3 and x = −2 gives B = 8/3.",
         "lines": [
-          "Put x = 1: 1 = A(3) ⇒ A = 1/3",
-          "Put x = −2: −8 = B(−3) ⇒ B = 8/3"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 1: 3 − 2 = A(3)",
+          "1 = 3A, so A = 1/3",
+          "Put x = −2: −6 − 2 = B(−3)",
+          "−8 = −3B, so B = 8/3"
         ],
         "recall": {
           "credit": "say_it",

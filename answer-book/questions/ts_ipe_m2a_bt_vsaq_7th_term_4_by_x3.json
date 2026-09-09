@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 156. Printed appearances: AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as ¹⁴C₆·4⁵/x¹²; the card does the same and adds that ¹⁴C₆ = 3003 if a number is wanted."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 156. Printed appearances: AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as ¹⁴C₆·4⁵/x¹²; the card does the same and adds that ¹⁴C₆ = 3003 if a number is wanted. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the 7th term — which r you use in the general term, and how the powers of 4, 2 and x combine.",
   "insider_note": "Take r = 6, and combine the constants through base 2: 4⁸/2⁶ is a single power of 2. The x-powers subtract to leave x¹² in the DENOMINATOR — subtracting the wrong way puts it on top.",
@@ -59,7 +59,10 @@
             "style": "heading"
           },
           "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
-          "T₇ = T₆₊₁ = ¹⁴C₆ (4/x³)¹⁴⁻⁶ (x²/2)⁶"
+          "7th term: r + 1 = 7 ⇒ r = 6",
+          "n = 14",
+          "T₇ = ¹⁴C₆ x¹⁴⁻⁶ y⁶",
+          "= ¹⁴C₆ (4/x³)⁸ (x²/2)⁶"
         ],
         "recall": {
           "credit": "say_it",
@@ -97,8 +100,16 @@
         "margin_note": "Second mark. 4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵, and x¹²/x²⁴ = 1/x¹².",
         "memory_tip": "Work the constants in base 2: 4⁸/2⁶ = 2¹⁰ = 4⁵. The x¹² lands in the DENOMINATOR.",
         "lines": [
-          "= ¹⁴C₆ · (4⁸/x²⁴) · (x¹²/2⁶) = ¹⁴C₆ · 4⁸/(2⁶ x¹²)",
-          "4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵",
+          {
+            "text": "= {}^{14}C_6 \\left(\\dfrac{4^8}{x^{3 \\cdot 8}}\\right)\\left(\\dfrac{x^{2 \\cdot 6}}{2^6}\\right)",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= ¹⁴C₆ (4⁸/x²⁴) (x¹²/2⁶)",
+          "= ¹⁴C₆ ((2²)⁸/2⁶) (x¹²/x²⁴)   [4 = 2²]",
+          "= ¹⁴C₆ (2¹⁶/2⁶) x¹²⁻²⁴",
+          "= ¹⁴C₆ · 2¹⁶⁻⁶ · x⁻¹² = ¹⁴C₆ · 2¹⁰ · x⁻¹²",
+          "2¹⁰ = (2²)⁵ = 4⁵ and x⁻¹² = 1/x¹²",
           {
             "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
             "style": "boxed"

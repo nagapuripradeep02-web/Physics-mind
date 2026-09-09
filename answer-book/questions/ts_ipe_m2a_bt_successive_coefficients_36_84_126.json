@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 203. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is the coefficient-ratio method of book answer 20 (two ratios of consecutive terms, then solve for n) and takes the same length, so it is classed as a 7-mark LAQ, not a VSAQ. Printed appearances: TS 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the seven [1 Mark] tags of book answer 20 (p.27), grouped: naming the coefficients (1), the first ratio and the relation it gives (2), the second ratio and its relation (2), solving the two relations for n and checking (2). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The card also finds r = 3 and checks ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126; the book stops at n = 9. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.94, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.84, the Binomial VSAQ chapter end prints “Few More VSAQ are in Page 94” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 203. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is the coefficient-ratio method of book answer 20 (two ratios of consecutive terms, then solve for n) and takes the same length, so it is classed as a 7-mark LAQ, not a VSAQ. Printed appearances: TS 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the seven [1 Mark] tags of book answer 20 (p.27), grouped: naming the coefficients (1), the first ratio and the relation it gives (2), the second ratio and its relation (2), solving the two relations for n and checking (2). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The card also finds r = 3 and checks ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126; the book stops at n = 9. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.94, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.84, the Binomial VSAQ chapter end prints “Few More VSAQ are in Page 94” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find n — how you name the three coefficients, what the two ratios of consecutive coefficients give, and how the two relations are solved for n.",
   "insider_note": "The two ratios use two different formulas: (n − r + 1)/r for 84/36 and (n − r)/(r + 1) for 126/84. The question asks for n — stopping at r = 3 answers the wrong question.",
@@ -66,8 +66,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Take the three successive coefficients as",
-          "ⁿCᵣ₋₁ = 36 …(1), ⁿCᵣ = 84 …(2), ⁿCᵣ₊₁ = 126 …(3)"
+          "In (1 + x)ⁿ, three successive coefficients",
+          "are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁ for some r",
+          "ⁿCᵣ₋₁ = 36 …(1)",
+          "ⁿCᵣ = 84 …(2)",
+          "ⁿCᵣ₊₁ = 126 …(3)"
         ],
         "recall": {
           "credit": "say_it",
@@ -105,9 +108,15 @@
         "margin_note": "Second and third marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. 84/36 = 7/3.",
         "memory_tip": "The LOWER ratio is ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. Here 84/36 = 7/3.",
         "lines": [
-          "(2)/(1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+          "Dividing (2) by (1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+          "= (n − r + 1)/r   [r! = r(r − 1)!]",
           "(n − r + 1)/r = 7/3",
-          "3n − 3r + 3 = 7r ⇒ 3n − 10r = −3 …(4)"
+          "3(n − r + 1) = 7r",
+          "3n − 3r + 3 = 7r",
+          "3n − 10r = −3 …(4)"
         ],
         "recall": {
           "credit": "say_it",
@@ -145,9 +154,14 @@
         "margin_note": "Fourth and fifth marks. ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). 126/84 = 3/2.",
         "memory_tip": "The UPPER ratio has a different formula: ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). Here 126/84 = 3/2.",
         "lines": [
-          "(3)/(2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+          "Dividing (3) by (2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+          "Replace r by r + 1 in the ratio above:",
+          "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1)",
+          "= (n − r)/(r + 1)",
           "(n − r)/(r + 1) = 3/2",
-          "2n − 2r = 3r + 3 ⇒ 2n − 5r = 3 …(5)"
+          "2(n − r) = 3(r + 1)",
+          "2n − 2r = 3r + 3",
+          "2n − 5r = 3 …(5)"
         ],
         "recall": {
           "credit": "say_it",
@@ -185,9 +199,12 @@
         "margin_note": "Sixth and seventh marks. Double (5) so the r-terms match, subtract (4), and n appears alone. Then r = 3 and the check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126 costs one line.",
         "memory_tip": "Double (5) so the r terms match, then subtract. Check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126.",
         "lines": [
-          "2 × (5): 4n − 10r = 6 …(6)",
-          "(6) − (4): n = 9",
-          "From (5): 18 − 5r = 3 ⇒ r = 3",
+          "Multiply (5) by 2: 4n − 10r = 6 …(6)",
+          "Subtract (4) from (6):",
+          "(4n − 10r) − (3n − 10r) = 6 − (−3)",
+          "n = 9",
+          "Put n = 9 in (5): 18 − 5r = 3",
+          "5r = 18 − 3 = 15 ⇒ r = 3",
           "Check: ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126",
           {
             "text": "∴ n = 9",

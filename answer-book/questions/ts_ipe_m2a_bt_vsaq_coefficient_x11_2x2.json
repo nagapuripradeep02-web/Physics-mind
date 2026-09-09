@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 161. Printed appearances: TS 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the coefficient as (286)(2¹⁰)(3³); the card does the same and states the product 7907328 as a check."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 17 Binomial Theorem, answer 161. Printed appearances: TS 20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the coefficient as (286)(2¹⁰)(3³); the card does the same and states the product 7907328 as a check. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the coefficient of x¹¹ — the power of x in the general term, the r that gives 11, and the coefficient.",
   "insider_note": "Write the general term first and collect the powers of x into 26 − 5r; set it equal to 11, not to zero — the term independent of x is not what is asked. The coefficient is everything except the x¹¹.",
@@ -58,9 +58,15 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
+          "Here n = 13:",
           "Tᵣ₊₁ = ¹³Cᵣ (2x²)¹³⁻ʳ (3/x³)ʳ",
-          "= ¹³Cᵣ 2¹³⁻ʳ 3ʳ x²⁶⁻⁵ʳ",
-          "For x¹¹: 26 − 5r = 11 ⇒ 5r = 15 ⇒ r = 3"
+          "= ¹³Cᵣ · 2¹³⁻ʳ (x²)¹³⁻ʳ · 3ʳ/(x³)ʳ",
+          "= ¹³Cᵣ · 2¹³⁻ʳ · 3ʳ · x²⁶⁻²ʳ · x⁻³ʳ",
+          "= ¹³Cᵣ · 2¹³⁻ʳ · 3ʳ · x²⁶⁻²ʳ⁻³ʳ",
+          "= ¹³Cᵣ · 2¹³⁻ʳ · 3ʳ · x²⁶⁻⁵ʳ",
+          "For x¹¹, put 26 − 5r = 11",
+          "5r = 26 − 11 = 15 ⇒ r = 3"
         ],
         "recall": {
           "credit": "say_it",
@@ -97,9 +103,14 @@
         "margin_note": "Second mark. r = 3: ¹³C₃ = 286, 2¹⁰ = 1024, 3³ = 27.",
         "memory_tip": "r = 3: the coefficient is ¹³C₃ · 2¹⁰ · 3³ — everything except the x¹¹.",
         "lines": [
-          "Coefficient = ¹³C₃ · 2¹⁰ · 3³ = 286 × 1024 × 27",
+          "Put r = 3: coefficient = ¹³C₃ · 2¹³⁻³ · 3³",
+          "= ¹³C₃ · 2¹⁰ · 3³",
+          "¹³C₃ = (13·12·11)/(1·2·3) = 1716/6 = 286",
+          "2¹⁰ = 1024, 3³ = 27",
+          "= 286 × 1024 × 27",
+          "286 × 1024 = 292864, 292864 × 27 = 7907328",
           {
-            "text": "∴ coefficient of x¹¹ = ¹³C₃·2¹⁰·3³",
+            "text": "∴ coefficient = ¹³C₃·2¹⁰·3³ = 7907328",
             "style": "boxed"
           }
         ],

@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 4 Probability, answer 40 (PDF p.40: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 40. Patterned on the weighting of answer 36 on book p.37 (set-up light, the main computation heavy): the principle 1, one mark for each of the three single-event bounds, 2 for the sum bound (the only place 'mutually exclusive' is used), 1 for the intersection. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: the four ranges are −1/3 ≤ p ≤ 2/3, −3 ≤ p ≤ 1, −1/2 ≤ p ≤ 1/2 and 1/3 ≤ p ≤ 13/3; the common part is 1/3 ≤ p ≤ 1/2 — agrees with the book. The sum simplifies as (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12 = (13 − 3p)/12, which the book also has."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.39 — LAQ chapter 4 Probability, answer 40 (PDF p.40: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 40. Patterned on the weighting of answer 36 on book p.37 (set-up light, the main computation heavy): the principle 1, one mark for each of the three single-event bounds, 2 for the sum bound (the only place 'mutually exclusive' is used), 1 for the intersection. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: the four ranges are −1/3 ≤ p ≤ 2/3, −3 ≤ p ≤ 1, −1/2 ≤ p ≤ 1/2 and 1/3 ≤ p ≤ 13/3; the common part is 1/3 ≤ p ≤ 1/2 — agrees with the book. The sum simplifies as (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12 = (13 − 3p)/12, which the book also has. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove the bounds on p — the fact about every probability, the three separate inequalities, the inequality from the sum, and how the four combine.",
   "insider_note": "The sum inequality is the only step that uses \"mutually exclusive\", and it is the step that gives the lower bound 1/3. The single-event bounds alone give only p ≤ 1/2.",
@@ -67,15 +67,23 @@
             "style": "heading"
           },
           {
-            "text": "The probability of any event lies between 0 and 1.",
+            "text": "The probability of any event lies between",
             "style": "normal"
           },
           {
-            "text": "So 0 ≤ (1 + 3p)/3 ≤ 1, 0 ≤ (1 − p)/4 ≤ 1,",
+            "text": "0 and 1, so each of the three must satisfy it:",
+            "style": "normal"
+          },
+          {
+            "text": "0 ≤ (1 + 3p)/3 ≤ 1",
             "style": "eq"
           },
           {
-            "text": "0 ≤ (1 − 2p)/2 ≤ 1.",
+            "text": "0 ≤ (1 − p)/4 ≤ 1",
+            "style": "eq"
+          },
+          {
+            "text": "0 ≤ (1 − 2p)/2 ≤ 1",
             "style": "eq"
           }
         ],
@@ -117,27 +125,59 @@
         "memory_tip": "Multiply through by the denominator, then isolate p. Dividing by a negative REVERSES the signs.",
         "lines": [
           {
-            "text": "0 ≤ (1 + 3p)/3 ≤ 1 ⇒ 0 ≤ 1 + 3p ≤ 3",
+            "text": "Take them one at a time.",
+            "style": "normal"
+          },
+          {
+            "text": "Multiply the first through by 3:",
+            "style": "normal"
+          },
+          {
+            "text": "0 ≤ 1 + 3p ≤ 3",
             "style": "eq"
           },
           {
-            "text": "⇒ −1 ≤ 3p ≤ 2 ⇒ −1/3 ≤ p ≤ 2/3  …(1)",
+            "text": "−1 ≤ 3p ≤ 2 ⇒ −1/3 ≤ p ≤ 2/3  …(1)",
             "style": "eq"
           },
           {
-            "text": "0 ≤ (1 − p)/4 ≤ 1 ⇒ 0 ≤ 1 − p ≤ 4",
+            "text": "Multiply the second through by 4:",
+            "style": "normal"
+          },
+          {
+            "text": "0 ≤ 1 − p ≤ 4",
             "style": "eq"
           },
           {
-            "text": "⇒ −1 ≤ −p ≤ 3 ⇒ −3 ≤ p ≤ 1  …(2)",
+            "text": "−1 ≤ −p ≤ 3",
             "style": "eq"
           },
           {
-            "text": "0 ≤ (1 − 2p)/2 ≤ 1 ⇒ 0 ≤ 1 − 2p ≤ 2",
+            "text": "Multiplying by −1 flips the inequality:",
+            "style": "normal"
+          },
+          {
+            "text": "−3 ≤ p ≤ 1  …(2)",
             "style": "eq"
           },
           {
-            "text": "⇒ −1 ≤ −2p ≤ 1 ⇒ −1/2 ≤ p ≤ 1/2  …(3)",
+            "text": "Multiply the third through by 2:",
+            "style": "normal"
+          },
+          {
+            "text": "0 ≤ 1 − 2p ≤ 2",
+            "style": "eq"
+          },
+          {
+            "text": "−1 ≤ −2p ≤ 1",
+            "style": "eq"
+          },
+          {
+            "text": "Dividing by −2 flips the inequality:",
+            "style": "normal"
+          },
+          {
+            "text": "−1/2 ≤ p ≤ 1/2  …(3)",
             "style": "eq"
           }
         ],
@@ -181,15 +221,15 @@
         "memory_tip": "Mutually exclusive means the union's probability is the SUM, and it is still ≤ 1 — not = 1.",
         "lines": [
           {
-            "text": "The three events are mutually exclusive, so the",
+            "text": "The three events are mutually exclusive, so",
             "style": "normal"
           },
           {
-            "text": "probability of their union is the sum, which",
+            "text": "the probability of their union is the sum,",
             "style": "normal"
           },
           {
-            "text": "is again a probability:",
+            "text": "and that is itself a probability:",
             "style": "normal"
           },
           {
@@ -197,19 +237,39 @@
             "style": "eq"
           },
           {
-            "text": "⇒ 0 ≤ (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12 ≤ 1",
+            "text": "The common denominator of 3, 4 and 2 is 12:",
+            "style": "normal"
+          },
+          {
+            "text": "= (4(1 + 3p) + 3(1 − p) + 6(1 − 2p))/12",
             "style": "eq"
           },
           {
-            "text": "⇒ 0 ≤ (13 − 3p)/12 ≤ 1 ⇒ 0 ≤ 13 − 3p ≤ 12",
+            "text": "= (4 + 12p + 3 − 3p + 6 − 12p)/12",
             "style": "eq"
           },
           {
-            "text": "⇒ −13 ≤ −3p ≤ −1 ⇒ 1 ≤ 3p ≤ 13",
+            "text": "= (13 − 3p)/12",
             "style": "eq"
           },
           {
-            "text": "⇒ 1/3 ≤ p ≤ 13/3  …(4)",
+            "text": "0 ≤ (13 − 3p)/12 ≤ 1",
+            "style": "eq"
+          },
+          {
+            "text": "0 ≤ 13 − 3p ≤ 12",
+            "style": "eq"
+          },
+          {
+            "text": "−13 ≤ −3p ≤ −1",
+            "style": "eq"
+          },
+          {
+            "text": "Multiplying by −1 flips the inequality:",
+            "style": "normal"
+          },
+          {
+            "text": "1 ≤ 3p ≤ 13 ⇒ 1/3 ≤ p ≤ 13/3  …(4)",
             "style": "eq"
           }
         ],
@@ -257,7 +317,19 @@
             "style": "normal"
           },
           {
-            "text": "Largest lower bound 1/3, smallest upper bound 1/2:",
+            "text": "The lower bounds are −1/3, −3, −1/2, 1/3;",
+            "style": "normal"
+          },
+          {
+            "text": "the largest of them is 1/3.",
+            "style": "normal"
+          },
+          {
+            "text": "The upper bounds are 2/3, 1, 1/2, 13/3;",
+            "style": "normal"
+          },
+          {
+            "text": "the smallest of them is 1/2.",
             "style": "normal"
           },
           {

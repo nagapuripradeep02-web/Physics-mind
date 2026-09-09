@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Probability, answer 36 (PDF p.38: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 17,19. The book prints [1 Mark] · [2 Marks] · [4 Marks] against answer 36 (define the events · the priors and the colour probabilities · Bayes' computation). The card keeps that 1 + 2 + 4 and refines it as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark; the refinement is OURS. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 3 (book p.116) and is re-solved in the Bullet Model Paper Q23 block (book p.109) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: numerator (1/2)(3/5) = 3/10; denominator 3/10 + 2/7 = 41/70; ratio (3/10)·(70/41) = 21/41 — agrees with the book."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Probability, answer 36 (PDF p.38: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 17,19. The book prints [1 Mark] · [2 Marks] · [4 Marks] against answer 36 (define the events · the priors and the colour probabilities · Bayes' computation). The card keeps that 1 + 2 + 4 and refines it as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark; the refinement is OURS. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 3 (book p.116) and is re-solved in the Bullet Model Paper Q23 block (book p.109) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: numerator (1/2)(3/5) = 3/10; denominator 3/10 + 2/7 = 41/70; ratio (3/10)·(70/41) = 21/41 — agrees with the book. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the probability that the black ball came from B₁ — the events, the priors, the two black-ball probabilities, the total, and Bayes.",
   "insider_note": "The urn is chosen first and the colour is seen second; the question asks the REVERSE direction, which is exactly what Bayes is for. The denominator 41/70 is where arithmetic slips happen.",
@@ -84,6 +84,14 @@
           },
           {
             "text": "event that the ball drawn is black.",
+            "style": "normal"
+          },
+          {
+            "text": "B₁ has 2 white and 3 black, so 5 balls.",
+            "style": "normal"
+          },
+          {
+            "text": "B₂ has 3 white and 4 black, so 7 balls.",
             "style": "normal"
           }
         ],
@@ -126,7 +134,11 @@
         "memory_tip": "The URN is chosen at random, not a ball, so each urn is 1/2 — not 5/12 and 7/12.",
         "lines": [
           {
-            "text": "The urn is chosen at random, so",
+            "text": "One of the two urns is chosen at random,",
+            "style": "normal"
+          },
+          {
+            "text": "so each has the same chance:",
             "style": "normal"
           },
           {
@@ -172,11 +184,19 @@
         "memory_tip": "Read each urn separately: 3 black of 5, and 4 black of 7.",
         "lines": [
           {
-            "text": "P(B|E₁) = 3/5   (3 black of 5 in B₁)",
+            "text": "If urn B₁ is chosen, 3 of its 5 balls are black:",
+            "style": "normal"
+          },
+          {
+            "text": "P(B|E₁) = 3/5",
             "style": "eq"
           },
           {
-            "text": "P(B|E₂) = 4/7   (4 black of 7 in B₂)",
+            "text": "If urn B₂ is chosen, 4 of its 7 balls are black:",
+            "style": "normal"
+          },
+          {
+            "text": "P(B|E₂) = 4/7",
             "style": "eq"
           }
         ],
@@ -218,7 +238,11 @@
         "memory_tip": "Keep the fractions exact: 3/10 + 2/7 over 70 is (21 + 20)/70 = 41/70.",
         "lines": [
           {
-            "text": "By total probability,",
+            "text": "A black ball can come from either urn, so add",
+            "style": "normal"
+          },
+          {
+            "text": "the two ways by the law of total probability:",
             "style": "normal"
           },
           {
@@ -230,7 +254,15 @@
             "style": "eq"
           },
           {
-            "text": "= 3/10 + 2/7 = (21 + 20)/70 = 41/70",
+            "text": "= 3/10 + 2/7",
+            "style": "eq"
+          },
+          {
+            "text": "The common denominator of 10 and 7 is 70:",
+            "style": "normal"
+          },
+          {
+            "text": "= 21/70 + 20/70 = 41/70",
             "style": "eq"
           }
         ],
@@ -273,7 +305,11 @@
         "memory_tip": "The forward direction 3/5 is not the answer. Divide by multiplying by the reciprocal: (3/10)(70/41) = 21/41.",
         "lines": [
           {
-            "text": "By Bayes' theorem,",
+            "text": "Bayes' theorem turns the known",
+            "style": "normal"
+          },
+          {
+            "text": "P(ball | box) into the wanted P(box | ball):",
             "style": "normal"
           },
           {
@@ -281,7 +317,15 @@
             "style": "eq"
           },
           {
-            "text": "= (3/10) / (41/70) = (3/10)·(70/41)",
+            "text": "= (1/2)(3/5) ÷ (41/70)",
+            "style": "eq"
+          },
+          {
+            "text": "= (3/10) × (70/41)",
+            "style": "eq"
+          },
+          {
+            "text": "= 210/410",
             "style": "eq"
           },
           {

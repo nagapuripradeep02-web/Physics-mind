@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, the 'PQ' practice question printed between answers 103 and 104, which the book gives with its final answer only ([Ans: 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3))]) and no working — the full solution on this card is OURS, and it reaches the book's printed answer. Printed appearances: none — the practice question carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 0 in the identity gives 0 = (1/2)(−1)(2)(−3) + A(2)(−3) + B(−1)(−3) + C(−1)(2) = 3 − 6A + 3B − 2C = 3 + 3/25 − 24/25 − 54/25 = 3 − 75/25 = 0 with A = −1/50, B = −8/25, C = 27/25, so the book's printed answer is confirmed."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, the 'PQ' practice question printed between answers 103 and 104, which the book gives with its final answer only ([Ans: 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3))]) and no working — the full solution on this card is OURS, and it reaches the book's printed answer. Printed appearances: none — the practice question carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 0 in the identity gives 0 = (1/2)(−1)(2)(−3) + A(2)(−3) + B(−1)(−3) + C(−1)(2) = 3 − 6A + 3B − 2C = 3 + 3/25 − 24/25 − 54/25 = 3 − 75/25 = 0 with A = −1/50, B = −8/25, C = 27/25, so the book's printed answer is confirmed. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve x³/((2x − 1)(x + 2)(x − 3)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "Write the constant 1/2 before the three fractions — the degrees are equal, so the fraction is improper; and fractions with 25 and 50 are expected here: A = −1/50 is correct, not a sign of an error.",
@@ -61,12 +61,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree 3 = degree 3: improper.",
-          "Leading coefficients 1 and 2, so the",
-          "quotient is the constant 1/2.",
-          "Let x³/((2x − 1)(x + 2)(x − 3))",
+          "The numerator's degree is not less than",
+          "the denominator's, so the fraction is",
+          "improper and a polynomial must come out first.",
+          "Numerator degree 3, denominator degree 3.",
+          "The denominator's leading term is 2x³,",
+          "so the quotient is the constant 1/2.",
+          "The three factors are linear and different:",
+          "x³/((2x − 1)(x + 2)(x − 3))",
           "= 1/2 + A/(2x − 1) + B/(x + 2)",
-          "+ C/(x − 3)"
+          "  + C/(x − 3)"
         ],
         "recall": {
           "credit": "say_it",
@@ -110,8 +114,9 @@
         "lines": [
           "Multiply by (2x − 1)(x + 2)(x − 3):",
           "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
-          "+ A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
-          "+ C(2x − 1)(x + 2)"
+          "  + A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
+          "  + C(2x − 1)(x + 2)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -153,10 +158,15 @@
         "margin_note": "Third mark. Three roots: x = 1/2 for A, x = −2 for B, x = 3 for C. At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = (1/8)(−4/25) = −1/50. Fractions with 25 and 50 are expected here.",
         "memory_tip": "At x = 1/2 the brackets are (5/2)(−5/2) = −25/4, so A = −1/50. Fractions with 25 and 50 are expected.",
         "lines": [
-          "Put x = 1/2: 1/8 = A(5/2)(−5/2)",
-          "⇒ 1/8 = −25A/4 ⇒ A = −1/50",
-          "Put x = −2: −8 = B(−5)(−5) ⇒ B = −8/25",
-          "Put x = 3: 27 = C(5)(5) ⇒ C = 27/25"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 1/2: (1/2)³ = A(1/2 + 2)(1/2 − 3)",
+          "1/8 = A(5/2)(−5/2) = −25A/4",
+          "A = −4/(8 × 25) = −1/50",
+          "Put x = −2: (−2)³ = B(−4 − 1)(−2 − 3)",
+          "−8 = B(−5)(−5) = 25B, so B = −8/25",
+          "Put x = 3: 3³ = C(6 − 1)(3 + 2)",
+          "27 = C(5)(5) = 25C, so C = 27/25"
         ],
         "recall": {
           "credit": "say_it",
@@ -200,7 +210,7 @@
         "lines": [
           "∴ x³/((2x − 1)(x + 2)(x − 3))",
           "= 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2))",
-          "+ 27/(25(x − 3))",
+          "  + 27/(25(x − 3))",
           {
             "text": "∴ A = −1/50, B = −8/25, C = 27/25",
             "style": "boxed"

@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Probability, answer 34 (PDF p.37: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 34. It is patterned on answer 36 on book p.37 (1 + 2 + 4): set-up 1, the values 2, the computation 4 (split here as 3 for the addition-theorem line + 1 for the simplified answer). This is a short question for 7 marks; the book lists it in the LAQ chapter and Section C is where it would sit, but a teacher may also treat it as a 4-mark question. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper; it is Section-C material by the book's chapter placement only. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: 13/52 + 4/52 − 1/52 = 16/52 = 4/13 — agrees with the book."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Probability, answer 34 (PDF p.37: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 34. It is patterned on answer 36 on book p.37 (1 + 2 + 4): set-up 1, the values 2, the computation 4 (split here as 3 for the addition-theorem line + 1 for the simplified answer). This is a short question for 7 marks; the book lists it in the LAQ chapter and Section C is where it would sit, but a teacher may also treat it as a 4-mark question. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question appears in no model paper and not in the Bullet Model Paper; it is Section-C material by the book's chapter placement only. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: 13/52 + 4/52 − 1/52 = 16/52 = 4/13 — agrees with the book. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the probability of an ace or a spade — what you count, which theorem you use, and the answer.",
   "insider_note": "The overlap card (the ace of spades) is what this question tests: forget it and the answer is 17/52, which is wrong.",
@@ -67,7 +67,11 @@
             "style": "heading"
           },
           {
-            "text": "One card is drawn from 52 cards:",
+            "text": "One card is drawn from a pack of 52 cards,",
+            "style": "normal"
+          },
+          {
+            "text": "so the number of equally likely outcomes is",
             "style": "normal"
           },
           {
@@ -80,6 +84,14 @@
           },
           {
             "text": "E₂ = the card is an ace.",
+            "style": "normal"
+          },
+          {
+            "text": "The two events can happen together, so they",
+            "style": "normal"
+          },
+          {
+            "text": "are not mutually exclusive.",
             "style": "normal"
           }
         ],
@@ -122,15 +134,27 @@
         "memory_tip": "13 spades, 4 aces, and ONE card that is both — the ace of spades. n(E₁ ∩ E₂) = 1, never 0.",
         "lines": [
           {
-            "text": "n(E₁) = ¹³C₁ = 13   (13 spades)",
+            "text": "A pack has 13 spades:",
+            "style": "normal"
+          },
+          {
+            "text": "n(E₁) = ¹³C₁ = 13",
             "style": "eq"
           },
           {
-            "text": "n(E₂) = ⁴C₁ = 4   (4 aces)",
+            "text": "A pack has 4 aces:",
+            "style": "normal"
+          },
+          {
+            "text": "n(E₂) = ⁴C₁ = 4",
             "style": "eq"
           },
           {
-            "text": "One card, the ace of spades, is both:",
+            "text": "Exactly one card, the ace of spades,",
+            "style": "normal"
+          },
+          {
+            "text": "is both a spade and an ace:",
             "style": "normal"
           },
           {
@@ -138,7 +162,15 @@
             "style": "eq"
           },
           {
-            "text": "P(E₁) = 13/52, P(E₂) = 4/52, P(E₁ ∩ E₂) = 1/52",
+            "text": "Dividing each count by n(S) = 52:",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁) = 13/52, P(E₂) = 4/52,",
+            "style": "eq"
+          },
+          {
+            "text": "P(E₁ ∩ E₂) = 1/52",
             "style": "eq"
           }
         ],
@@ -190,7 +222,19 @@
             "style": "eq"
           },
           {
+            "text": "The ace of spades is counted in both E₁ and E₂,",
+            "style": "normal"
+          },
+          {
+            "text": "so it is subtracted once to avoid counting twice.",
+            "style": "normal"
+          },
+          {
             "text": "= 13/52 + 4/52 − 1/52",
+            "style": "eq"
+          },
+          {
+            "text": "= (13 + 4 − 1)/52",
             "style": "eq"
           },
           {
@@ -236,7 +280,15 @@
         "memory_tip": "16/52 reduces by 4 to 4/13. Leave it as a reduced fraction.",
         "lines": [
           {
-            "text": "∴ P(ace or spade) = 16/52 = 4/13",
+            "text": "Divide the top and bottom by 4:",
+            "style": "normal"
+          },
+          {
+            "text": "16/52 = 4/13",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(ace or spade) = 4/13",
             "style": "boxed"
           }
         ],

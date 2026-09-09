@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 103. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book multiplies its identity through by 2 (2x³ = (2x − 1)(x − 1)² + 2A(x − 1)² + …) to avoid the 1/2; the card keeps the plain identity x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)² + B(2x − 1)(x − 1) + C(2x − 1), which gives the same A = 1/2, B = 1, C = 1. Both are correct. Truth check: putting x = 2 in the identity gives 8 = (1/2)(3)(1) + A(1) + B(3)(1) + C(3) = 3/2 + 1/2 + 3 + 3 = 8 with A = 1/2, B = 1, C = 1."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Partial Fractions, answer 103. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book multiplies its identity through by 2 (2x³ = (2x − 1)(x − 1)² + 2A(x − 1)² + …) to avoid the 1/2; the card keeps the plain identity x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)² + B(2x − 1)(x − 1) + C(2x − 1), which gives the same A = 1/2, B = 1, C = 1. Both are correct. Truth check: putting x = 2 in the identity gives 8 = (1/2)(3)(1) + A(1) + B(3)(1) + C(3) = 3/2 + 1/2 + 3 + 3 = 8 with A = 1/2, B = 1, C = 1. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve x³/((2x − 1)(x − 1)²) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "The fraction is improper, so the constant 1/2 from the leading coefficients 1 and 2 must stand in front of the form; and the substitution for A uses x = 1/2, the root of 2x − 1, not x = 1.",
@@ -61,12 +61,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree 3 = degree 3: improper.",
-          "Leading coefficients 1 and 2, so the",
-          "quotient is the constant 1/2.",
-          "Let x³/((2x − 1)(x − 1)²)",
+          "The numerator's degree is not less than",
+          "the denominator's, so the fraction is",
+          "improper and a polynomial must come out first.",
+          "Numerator degree 3, denominator degree 3.",
+          "The denominator's leading term is 2x³,",
+          "so the quotient is the constant 1/2.",
+          "(x − 1) is repeated, so it gets two terms:",
+          "x³/((2x − 1)(x − 1)²)",
           "= 1/2 + A/(2x − 1) + B/(x − 1)",
-          "+ C/(x − 1)²"
+          "  + C/(x − 1)²"
         ],
         "recall": {
           "credit": "say_it",
@@ -109,9 +113,10 @@
         "margin_note": "Second mark. Multiply by (2x − 1)(x − 1)². The 1/2 keeps the whole denominator, A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
         "memory_tip": "The 1/2 keeps the whole denominator; A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
         "lines": [
-          "Multiply by (2x − 1)(x − 1)²:",
+          "Multiply both sides by (2x − 1)(x − 1)²:",
           "x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)²",
-          "+ B(2x − 1)(x − 1) + C(2x − 1)"
+          "  + B(2x − 1)(x − 1) + C(2x − 1)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -153,10 +158,16 @@
         "margin_note": "Third mark. x = 1/2 makes every term except A zero: 1/8 = A/4. x = 1 leaves only C: 1 = C. Then x = 0 gives one equation in A, B, C, which is B once A and C are known.",
         "memory_tip": "The root of 2x − 1 is x = 1/2, not 1. There (1/2 − 1)² = 1/4, so 1/8 = A/4.",
         "lines": [
-          "Put x = 1/2: 1/8 = A(1/4) ⇒ A = 1/2",
-          "Put x = 1: 1 = C(1) ⇒ C = 1",
-          "Put x = 0: 0 = −1/2 + A + B − C",
-          "⇒ B = 1/2 − A + C = 1"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 1/2: (1/2)³ = A(1/2 − 1)²",
+          "1/8 = A(1/4), so A = 1/2",
+          "Put x = 1: 1 = C(2 − 1)",
+          "C = 1",
+          "Neither root gives B, so put x = 0:",
+          "0 = (1/2)(−1)(1) + A(1) + B(−1)(−1) + C(−1)",
+          "0 = −1/2 + A + B − C",
+          "B = 1/2 − A + C = 1/2 − 1/2 + 1 = 1"
         ],
         "recall": {
           "credit": "say_it",
@@ -200,9 +211,10 @@
         "memory_tip": "Four terms: 1/2 first, then A = 1/2 over (2x − 1) written as 1/(2(2x − 1)).",
         "lines": [
           "∴ x³/((2x − 1)(x − 1)²)",
-          "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1) + 1/(x − 1)²",
+          "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1)",
+          "  + 1/(x − 1)²",
           {
-            "text": "∴ A = 1/2, B = 1, C = 1 in the form above",
+            "text": "∴ A = 1/2, B = 1, C = 1",
             "style": "boxed"
           }
         ],

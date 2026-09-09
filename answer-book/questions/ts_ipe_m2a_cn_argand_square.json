@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 22 · TS 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 1 (book p.111) and the Q11 of the Bullet Model Paper (book p.100), whose re-solution gives the same six distances. The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.48 — SAQ chapter 7 Complex Numbers, answer 54.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 22 · TS 17. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2); the three Argand-polygon SAQs of this unit (54.1, 54.2, 55) share the same split and step ids deliberately. The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot, and this question IS Q11 of the book's Model Paper 1 (book p.111) and the Q11 of the Bullet Model Paper (book p.100), whose re-solution gives the same six distances. The figure carries no mark — the question does not ask for a drawing. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show that the four points make a square — what you compute, how many distances there are, and what two facts you need at the end.",
   "insider_note": "Six distances, not four — equal sides alone only prove a rhombus, so the two diagonals must also be computed and shown equal. And read 3i as the point (0, 3): taking it as (3, 0) breaks every distance that uses D.",
@@ -66,13 +66,15 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The numbers 2 + i, 4 + 3i, 2 + 5i, 3i are the",
-          "points A(2, 1), B(4, 3), C(2, 5), D(0, 3).",
-          "Distance between two points:",
-          {
-            "text": "d = √((x₁ − x₂)² + (y₁ − y₂)²)",
-            "style": "eq"
-          }
+          "In the Argand plane, a + ib is the point (a, b).",
+          "2 + i is A(2, 1)",
+          "4 + 3i is B(4, 3)",
+          "2 + 5i is C(2, 5)",
+          "3i = 0 + 3i is D(0, 3)",
+          "A square has four equal sides AND",
+          "two equal diagonals, so find both.",
+          "The distance between two points is",
+          "d = √((x₁ − x₂)² + (y₁ − y₂)²)"
         ],
         "recall": {
           "credit": "say_it",
@@ -296,30 +298,15 @@
         "margin_note": "Half the marks, six short distances. Every side is √8 and every diagonal is √16 = 4. Do all six — four equal sides alone would only show a rhombus.",
         "memory_tip": "Six distances: every side √8, every diagonal 4. Four equal sides alone would only show a rhombus.",
         "lines": [
-          {
-            "text": "AB = √((2 − 4)² + (1 − 3)²) = √(4 + 4) = √8",
-            "style": "eq"
-          },
-          {
-            "text": "BC = √((4 − 2)² + (3 − 5)²) = √(4 + 4) = √8",
-            "style": "eq"
-          },
-          {
-            "text": "CD = √((2 − 0)² + (5 − 3)²) = √(4 + 4) = √8",
-            "style": "eq"
-          },
-          {
-            "text": "DA = √((0 − 2)² + (3 − 1)²) = √(4 + 4) = √8",
-            "style": "eq"
-          },
-          {
-            "text": "AC = √((2 − 2)² + (1 − 5)²) = √16 = 4",
-            "style": "eq"
-          },
-          {
-            "text": "BD = √((4 − 0)² + (3 − 3)²) = √16 = 4",
-            "style": "eq"
-          }
+          "The four sides:",
+          "AB = √((2 − 4)² + (1 − 3)²)",
+          "= √((−2)² + (−2)²) = √(4 + 4) = √8",
+          "BC = √((4 − 2)² + (3 − 5)²) = √(4 + 4) = √8",
+          "CD = √((2 − 0)² + (5 − 3)²) = √(4 + 4) = √8",
+          "DA = √((0 − 2)² + (3 − 1)²) = √(4 + 4) = √8",
+          "The two diagonals:",
+          "AC = √((2 − 2)² + (1 − 5)²) = √(0 + 16) = 4",
+          "BD = √((4 − 0)² + (3 − 3)²) = √(16 + 0) = 4"
         ],
         "recall": {
           "credit": "say_it",
@@ -361,8 +348,11 @@
         "margin_note": "Last mark. Two sentences: sides equal, diagonals equal. Then name the shape.",
         "memory_tip": "A square needs equal sides AND equal diagonals. State both, then name it.",
         "lines": [
-          "AB = BC = CD = DA = √8 — the four sides are equal.",
-          "AC = BD = 4 — the two diagonals are equal.",
+          "AB = BC = CD = DA = √8, so the four",
+          "sides are equal.",
+          "AC = BD = 4, so the two diagonals are equal.",
+          "Equal sides alone would give a rhombus;",
+          "the equal diagonals make it a square.",
           {
             "text": "∴ A, B, C, D form a square.",
             "style": "boxed"

@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 117. Printed appearances: TS 16 · AP 17,19,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: x⁶ = cis 6θ, 1/x⁶ = cis(−6θ), sum 2cos 6θ; the book's answer is correct. Asked as Model Paper 2, Q3 (book p.113); re-solved in the Bullet Model Paper Q3 (book p.96)."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 117. Printed appearances: TS 16 · AP 17,19,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: x⁶ = cis 6θ, 1/x⁶ = cis(−6θ), sum 2cos 6θ; the book's answer is correct. Asked as Model Paper 2, Q3 (book p.113); re-solved in the Bullet Model Paper Q3 (book p.96). LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this — what De Moivre gives for x⁶, what its reciprocal is, and what their sum is.",
   "insider_note": "The second mark depends on |x| = 1: only then is 1/x⁶ the conjugate of x⁶, so the sines cancel. The answer is 2cos 6θ — a stray i means the two were subtracted, and 2cos⁶ θ means the power was left on the cosine instead of the angle.",
@@ -70,7 +70,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "x = cos θ + i sin θ",
+          "By De Moivre's theorem the angle is multiplied:",
           "x⁶ = (cos θ + i sin θ)⁶ = cos 6θ + i sin 6θ",
+          "1/x⁶ = (cos θ + i sin θ)⁻⁶",
+          "= cos(−6θ) + i sin(−6θ)",
+          "cos is even and sin is odd, so",
           "1/x⁶ = cos 6θ − i sin 6θ"
         ],
         "recall": {
@@ -112,8 +117,10 @@
         "margin_note": "Second mark. Adding the two cancels the sines and doubles the cosine: x⁶ + 1/x⁶ = 2cos 6θ. No i is left, and the angle stays 6θ.",
         "memory_tip": "Adding cancels the sines and doubles the cosine: 2cos 6θ. Not 2cos⁶θ, and no i left.",
         "lines": [
+          "Adding the two, the i sin 6θ terms cancel:",
+          "x⁶ + 1/x⁶ = 2cos 6θ",
           {
-            "text": "x⁶ + 1/x⁶ = 2cos 6θ",
+            "text": "∴ x⁶ + 1/x⁶ = 2cos 6θ",
             "style": "boxed"
           }
         ],
@@ -123,7 +130,6 @@
           "accept": [
             "evaluate the reduced form and get 2cos 6θ",
             "the answer comes to 2cos 6θ",
-            "simplify the powers of omega and the value is 2cos 6θ",
             "reduce chesaka value 2cos 6θ vasthundi",
             "finally it equals 2cos 6θ"
           ],

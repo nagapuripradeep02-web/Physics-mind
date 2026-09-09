@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 50. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 3 (book p.116, index P45(50)). Every column and every sum was recomputed for this card: cumulative frequencies 6, 14, 28, 44, 48, 50; N/2 = 25 falls in 20–30; M = 20 + (10/14)(25 − 14) = 27.857…, printed 27.86; the deviation column uses the rounded 27.86 (22.86, 12.86, 2.86, 7.14, 17.14, 27.14) and Σfᵢ|xᵢ − M| = 517.16, 517.16/50 = 10.3432, printed 10.34 — the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 50. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 3 (book p.116, index P45(50)). Every column and every sum was recomputed for this card: cumulative frequencies 6, 14, 28, 44, 48, 50; N/2 = 25 falls in 20–30; M = 20 + (10/14)(25 − 14) = 27.857…, printed 27.86; the deviation column uses the rounded 27.86 (22.86, 12.86, 2.86, 7.14, 17.14, 27.14) and Σfᵢ|xᵢ − M| = 517.16, 517.16/50 = 10.3432, printed 10.34 — the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for grouped data — how you find the median class, what the median formula needs, and what you divide at the end.",
   "insider_note": "In the median formula m is the cumulative frequency of the class BEFORE the median class — here 14, not 28; that single number is where this question is most often lost.",
@@ -66,6 +66,9 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "The class mark xᵢ is the middle of each class.",
+          "For the median we also need the running total",
+          "of the frequencies (the c.f.).",
           {
             "text": "Class      fᵢ     c.f.     xᵢ",
             "style": "indent"
@@ -138,12 +141,19 @@
         "margin_note": "Next two marks. N/2 = 25; the first c.f. that reaches 25 is 28, so 20–30 is the median class. In the formula l = lower limit 20, C = width 10, f = frequency of the median class 14, m = c.f. of the class BEFORE it, 14. 110/14 = 7.857…, written 7.86.",
         "memory_tip": "M = l + (C/f)·(N/2 − m), where m is the c.f. of the class BEFORE the median class — 14 here, not 28.",
         "lines": [
-          "N/2 = 25. The first c.f. ≥ 25 is 28,",
+          "N/2 = 50/2 = 25",
+          "The c.f. values are 6, 14, 28, 44, …",
+          "The first one that is 25 or more is 28,",
           "so the median class is 20–30.",
-          "l = 20, C = 10, f = 14,",
-          "m = 14 (the c.f. before the median class)",
-          "Median M = l + (C/f)·(N/2 − m)",
-          "= 20 + (10/14)·(25 − 14) = 20 + 110/14",
+          "l = 20 (its lower limit), C = 10 (its width),",
+          "f = 14 (its frequency),",
+          "m = 14 (the c.f. of the class before it)",
+          {
+            "text": "Median M = l + (C/f)·(N/2 − m)",
+            "style": "eq"
+          },
+          "= 20 + (10/14)(25 − 14)",
+          "= 20 + (10/14)(11) = 20 + 110/14",
           "= 20 + 7.86 = 27.86"
         ],
         "recall": {
@@ -185,7 +195,9 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 27.86|, and the product with fᵢ. Every deviation has two decimals because M does. The products are 6 × 22.86 = 137.16 and so on; the sum is 517.16.",
         "memory_tip": "Subtract the median 27.86, not the mean. Two decimals in M means two decimals in every deviation.",
         "lines": [
-          "With M = 27.86:",
+          "Now take each class mark's distance from 27.86,",
+          "always as a positive number, and multiply",
+          "by its frequency:",
           {
             "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
             "style": "indent"
@@ -258,8 +270,12 @@
         "margin_note": "Last mark. 517.16/50 = 10.3432, written 10.34.",
         "memory_tip": "517.16/50 = 10.34. Write 'about the median' in the answer line; 'about the mean' loses the mark.",
         "lines": [
-          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
-          "= 517.16/50 = 10.34",
+          {
+            "text": "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+            "style": "eq"
+          },
+          "= 517.16/50",
+          "= 10.34",
           {
             "text": "∴ M.D. about the median = 10.34",
             "style": "boxed"

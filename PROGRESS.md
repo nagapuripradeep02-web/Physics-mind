@@ -1,5 +1,91 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — MATHS-2A IS COMPLETE: all ten chapters written out in full, 257 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder said "no need to show the samples… go ahead, most cards to least cards", and the remaining seven chapters were authored in one run. The whole paper now reads at the level he set: 257 cards, 3,400 written lines → 5,158. Steps, marks and mark splits never changed.**
+
+| chapter | cards | lines |
+|---|---|---|
+| Permutations and Combinations | 49 | 353 → 774 |
+| Complex Numbers | 38 | 332 → 626 |
+| Binomial Theorem | 34 | 296 → 750 |
+| Quadratic Expressions | 24 | 264 → 452 |
+| Theory of Equations | 24 | 356 → 606 |
+| Probability | 23 | 306 → 502 |
+| De Moivre's Theorem | 22 | 250 → 414 |
+| Partial Fractions | 15 | 205 → 369 |
+| Random Variables | 14 | 223 → 330 |
+| Measures of Dispersion | 14 | 216 → 337 |
+
+### Verified
+tsc 0 · `check:cards` 257/257 (65 KaTeX lines) · `measure:wrap` 5158/5158 lines on ONE ruled row (0.0%) · vitest 85/85 · both builds green · a walk of ALL 257 cards: every one completes on full marks, zero console errors · `find_label_clashes` fleet-wide: 117 figures, no collisions (the pre-existing e2e figure failure is fixed and the sweep PASSES fleet-wide — 43.8 min, confirmed in a full smoke run).
+
+### Examination
+**Eight independent Opus examiners across the session re-derived all 257 cards.** Partial fractions recombined with sympy; every root substituted back; every transformed equation rebuilt from its roots; ranges re-derived from critical points rather than the card's algebra; probabilities as exact Fractions; ω powers numerically with exp(2πi/3); dispersion tables recomputed cell by cell from raw data; word ranks brute-forced against sorted permutations.
+
+**Real defects found and fixed: 9 across 257 cards.** Four malformed radicands (`√(1 + 3 = √4)`), one locus that included the point where it is undefined, one over-claiming validity condition, one rank card that never justified its own count, one mistake-note whose arithmetic contradicted itself, one deviation list described in the wrong order.
+
+### The lesson that repeated
+**A generated batch needs the same sweep applied to EVERY card the generator touched.** The `√(… = …)` bug was caught by eye on two cards, fixed there, and left on four others until an examiner found them. Later in the session a regex sweep of my own work over all 257 cards caught six ASCII exponents (`2^(1/2)`) BEFORE any examiner ran — that is the discipline, and it should be run after every generated batch, not after a defect is reported.
+
+## 📗 SESSION — Complex Numbers written out in full, and the figure sweep is green again (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the third chapter, 38 cards, 332 written lines → 626. Three chapters and 121 cards now sit on one branch and one PR (#202). The pre-existing figure-label collision that had been failing the e2e sweep on master is also fixed here.**
+
+### What this chapter adds
+i² = −1 applied on its OWN line with the term written before and after, never as a "(since i² = −1)" aside · every conjugate multiplication names (a + ib)(a − ib) = a² + b² and evaluates numerator and denominator separately · the both-parts-must-match rule stated before any comparison · modulus-amplitude cards give the form and both formulas, then the quadrant, then BUILD the amplitude from the acute angle (θ = −π + π/4) instead of asserting it · the half-angle and Pythagorean identities cited where used, with the fraction split before tan(θ/2) appears · the Argand cards say what the shape REQUIRES before measuring (rhombus = equal sides + UNEQUAL diagonals; square = both equal).
+
+### The figure fix
+`ts_ipe_m2a_cn_argand_equilateral_triangle` — the y-axis label and "C(−2√3, 2√3)" overlapped by ~6px each way. **Measured in the browser, not guessed**: a script printing every `<text>` rect showed y at x 167.7–176.1 / y −8–19 and C at x 8–173.6 / y 13–53. Moving C's label from (8, 40) to (6, 66) gives 20px of clearance. `find_label_clashes` over the built book: 117 figures, no collisions anywhere.
+
+### Verified
+tsc 0 · `check:cards` 38/38 · `measure:wrap` 626/626 on one ruled row · both builds green · walk of all 38 cards on full marks, no console errors.
+
+**Two Opus examiners, 5 real defects found and fixed:**
+- FOUR modulus lines read `√(1 + 3 = √4)` — my generator interpolated "1 + 3 = √4" as one string, so the page literally asserted 4 = 2. **The same template bug had produced `√(49 + 576 = √625)` on the two square-root cards, which I caught by eye and rewrote — without checking whether other cards built from that template had inherited it.** They had. A regex sweep for `√(… = …)` now covers the whole paper.
+- ONE locus (`(z − i)/(z − 1)` purely imaginary) boxed x² + y² − x − y = 0 while (1, 0) is on that circle and makes the denominator 0. Its sibling card excludes z = −i correctly; this one now excludes z ≠ 1 and says why.
+
+### Lesson worth keeping
+A generated batch needs the SAME sweep applied to every card the generator touched, not just the one whose output happened to look wrong. Fixing the visible instance and moving on is what let four bad lines reach an examiner.
+
+## 📗 SESSION — Permutations and Combinations written out in full: the second chapter, 49 cards (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder approved the level on a sample and said "do it". All 49 cards of Maths-2A Unit 5 now read at the same level as the Binomial chapter — 353 written lines → 774. Two chapters, 83 cards, on one branch and one PR (#202).**
+
+### The finding that shaped the plan
+**Permutations and Combinations has NO long answers.** In Maths-2A only six units carry Section C (bt, dm, md, pb, rv, te); this unit is 12 SAQ at 4 marks and 37 VSAQ at 2. So the founder's "take a LAQ" was answered with the chapter's richest 4-mark card (sum of all four-digit numbers from 0, 2, 4, 7, 8 — the one whose old lines hid `⁴P₃ = 24`, `504 · 1111` and the leading-zero logic behind single lines), and the 2-mark cards took the same treatment at their own size.
+
+### What the pass adds, beyond the Binomial rules
+- every ⁿCᵣ and ⁿPᵣ evaluated on the page from its product form — `⁶C₃ = (6·5·4)/(1·2·3) = 120/6 = 20`, never a bare `= 20`;
+- WHY the count is a permutation or a combination, stated before the symbol is written;
+- case lists DERIVED ("at least 4 bowlers and only 6 exist, so bowlers are 4, 5 or 6"), plus why adding them is right;
+- the three word-rank cards walk prefix by prefix, naming the free letters at each step and the reason for the ÷2! when a letter repeats;
+- the telescoping Pascal sums expand r = 0..4, reorder, and name the identity's requirement before each collapse;
+- every large division carried out — `12!/(4!·4!·4!)` shows `24·24·24 = 13824` then `479001600/13824`.
+
+### Verified
+tsc 0 · `check:cards` 49/49 · `measure:wrap` 774/774 lines on one ruled row (0.0%) · both builds green · headless walk of all 49 cards: each completes on full marks, no console errors.
+
+**Two independent Opus examiners re-derived every card: 0 defects.** The SAQ one brute-forced all three word ranks against sorted permutations (133 / 257 / 438) and both digit-sums by enumeration (5,45,958 / 6,66,600); the VSAQ one recomputed every value, re-substituted every root, brute-forced D₄, and checked the four identities exhaustively for n ≤ 40. Two fixes came out of their non-defect observations: EAMCET's rank never said WHY no word starting with E precedes EA, and the derangement card's mistake-note described an error whose arithmetic did not match its own wording.
+
+### Next
+Founder verdict at the review link. Cost is now measured across two chapters: roughly 2.2× the written lines, about 15 lines of working per mark, ~0 defects when two examiners are run per chapter.
+
+## 📗 SESSION — the Binomial Theorem chapter written out in full: 34 cards at the founder's own level (2026-09-08, `feat/answerbook-binomial-worked-in-full`)
+
+**Bottom line: the founder rejected the rail-card explanation layer built on 2026-09-04 ("this is not the way I wanted to do this") and instead HANDWROTE the answer he wanted, to `ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3`. The detail belongs INSIDE the written answer on the page. One LAQ was expanded to that level for his approval, he approved it, and the whole chapter followed: 34 cards, 296 written lines → 750. Steps, marks and mark splits never changed.**
+
+### The level, taken from his page
+r and n named on their own lines before any substitution · the general term substituted symbolically first and with the real entries second · every index law, ratio and substitution on its own line with the arithmetic shown BEFORE it is evaluated (3·8 before 24, (2²)⁸ before 2¹⁶, x¹²⁻²⁴ before x⁻¹²) · identities the source book merely cited (ⁿCᵣ/ⁿCᵣ₋₁, ((n+1)/(r+1))ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁) derived from the factorial formula on the page · every infinite series' denominators split into 3ᵏ·k! explicitly before the standard expansion is matched, and the match checks the third numerator before moving on · a numeric evaluation wherever the book stopped at a product.
+
+### Verified
+tsc 0 · `check:cards` 34/34 (45 KaTeX lines typeset) · `measure:wrap` 750/750 lines on one rule each, after reflowing two · the e2e typeset measurement replayed over all 45 typeset lines: 0 clipped, 0 raw TeX · a headless walk of all 34 cards: every card completes on full marks, no console errors · full build 22.6 MB and `--stream=mpc_2` 8.1 MB both green.
+
+**Two independent examiners (Opus, one per section) re-derived every card line by line — the LAQ one summed each infinite series to 30 digits against its boxed value. 34 cards, 0 mathematical defects.** Three fixes came out of reading the built pages rather than any gate: nine series cards had "(negative power: invert)" glued inside the KaTeX line, both validity cards claimed |y| < 1 is needed "for any n" (false for a positive integer n), and one line transcribed a power in ASCII.
+
+### Next
+Founder verdict on the chapter at the review link. The same treatment is now a known, measured cost per chapter (about 15 lines of working per mark) if he wants it rolled out to the rest of Maths-2A.
+
 ## 🔬 SESSION — BiPC second year gets the MPC treatment: 314 cards examiner-audited, 3,140 chatbot calls, 24 harmful + 230 of 244 wrong findings repaired (2026-09-04/05, `feat/ipe-answerbook-zoology-2`, PR #173 + platform PR #200)
 
 **Bottom line: Botany-II and Zoology-II — the two BiPC second-year papers where only the answer

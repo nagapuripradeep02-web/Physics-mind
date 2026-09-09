@@ -63,7 +63,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 Random Variables, answer 45. (In this part of the scan book page = PDF page − 1: book p.42 was read at PDF p.43, not p.44 as the −2 rule predicts.) Printed appearances: AP 15, 20 · TS 15, 17. THE SPLIT IS THE BOOK'S: this is the only answer in the chapter that prints [N Marks] tags — [1 Mark] against the cubic 3c³ − 10c² + 9c − 2 = 0, [1 Mark] against the factorisation (c − 1)(c − 2)(3c − 1), [1 Mark] against 'c = 1/3 is the only possible value', [2 Marks] against (ii), [1 Mark] against (iii), [1 Mark] against (iv) — 1 + 1 + 1 + 2 + 1 + 1 = 7. The book rejects c = 1 and c = 2 with the bare remark '∵ 0 ≤ p ≤ 1'; the card shows WHICH probability breaks for each rejected root (P(X = 2) = 4 and 9), which is what the mark is for. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 2 (book p.114). Book's printed values recompute: c = 1/3, 8/9, 2/3, 1/9. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 Random Variables, answer 45. (In this part of the scan book page = PDF page − 1: book p.42 was read at PDF p.43, not p.44 as the −2 rule predicts.) Printed appearances: AP 15, 20 · TS 15, 17. THE SPLIT IS THE BOOK'S: this is the only answer in the chapter that prints [N Marks] tags — [1 Mark] against the cubic 3c³ − 10c² + 9c − 2 = 0, [1 Mark] against the factorisation (c − 1)(c − 2)(3c − 1), [1 Mark] against 'c = 1/3 is the only possible value', [2 Marks] against (ii), [1 Mark] against (iii), [1 Mark] against (iv) — 1 + 1 + 1 + 2 + 1 + 1 = 7. The book rejects c = 1 and c = 2 with the bare remark '∵ 0 ≤ p ≤ 1'; the card shows WHICH probability breaks for each rejected root (P(X = 2) = 4 and 9), which is what the mark is for. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot, and this question IS Q24 of the book's Model Paper 2 (book p.114). Book's printed values recompute: c = 1/3, 8/9, 2/3, 1/9. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find c and the three probabilities — what equation c satisfies, how you solve it, why two roots are rejected, and which values of X each probability covers.",
   "insider_note": "One full mark is the rejection line: test c = 1 and c = 2 against P(X = 2) = 5c − 1, show the values 4 and 9 cannot be probabilities, and only then keep c = 1/3 — a bare c = 1/3 with no reason is a half answer.",
@@ -89,13 +89,16 @@
           "X takes the values 0, 1, 2 with",
           "P(X = 0) = 3c³, P(X = 1) = 4c − 10c²,",
           "P(X = 2) = 5c − 1",
-          "The probabilities add to 1:",
+          "A probability distribution must have all",
+          "its probabilities adding up to 1:",
           {
             "text": "ΣP(X = xᵢ) = 1",
             "style": "eq"
           },
-          "⇒ 3c³ + 4c − 10c² + 5c − 1 = 1",
-          "⇒ 3c³ − 10c² + 9c − 2 = 0"
+          "3c³ + (4c − 10c²) + (5c − 1) = 1",
+          "Collect like terms:",
+          "3c³ − 10c² + 9c − 1 = 1",
+          "3c³ − 10c² + 9c − 2 = 0"
         ],
         "recall": {
           "credit": "say_it",
@@ -136,13 +139,17 @@
         "margin_note": "Second mark (book's [1 Mark]). The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Synthetic division by 1 gives the quotient 3c² − 7c + 2, which factors as (c − 2)(3c − 1). Three roots: 1, 2, 1/3.",
         "memory_tip": "The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Divide it out, then factor the quadratic.",
         "lines": [
-          "Sum of the coefficients: 3 − 10 + 9 − 2 = 0,",
-          "so c = 1 is a root.",
-          "Divide by (c − 1) by synthetic division",
-          "(quotient 3, −7, 2; remainder 0):",
+          "Try c = 1: the sum of the coefficients is",
+          "3 − 10 + 9 − 2 = 0, so c = 1 is a root",
+          "and (c − 1) is a factor.",
+          "Dividing by (c − 1) gives the quotient",
+          "3c² − 7c + 2:",
           "3c³ − 10c² + 9c − 2 = (c − 1)(3c² − 7c + 2)",
-          "= (c − 1)(c − 2)(3c − 1)",
-          "⇒ c = 1, 2 or 1/3"
+          "Split −7c as −6c − c:",
+          "3c² − 6c − c + 2 = 3c(c − 2) − 1(c − 2)",
+          "= (c − 2)(3c − 1)",
+          "So (c − 1)(c − 2)(3c − 1) = 0",
+          "c = 1, c = 2 or c = 1/3"
         ],
         "recall": {
           "credit": "say_it",
@@ -183,11 +190,13 @@
         "memory_tip": "Test each root against a probability: c = 1 gives 4 and c = 2 gives 9, both impossible. Write the reason.",
         "lines": [
           "Every probability must lie between 0 and 1.",
-          "c = 1 gives P(X = 2) = 5 − 1 = 4 > 1 — rejected.",
-          "c = 2 gives P(X = 2) = 10 − 1 = 9 > 1 — rejected.",
-          "c = 1/3 gives P(X = 0) = 1/9, P(X = 1) = 2/9,",
-          "P(X = 2) = 2/3 — all between 0 and 1,",
-          "and they add to 1.",
+          "c = 1: P(X = 2) = 5(1) − 1 = 4 > 1 — rejected.",
+          "c = 2: P(X = 2) = 5(2) − 1 = 9 > 1 — rejected.",
+          "c = 1/3: P(X = 0) = 3(1/27) = 1/9,",
+          "P(X = 1) = 4/3 − 10/9 = 2/9,",
+          "P(X = 2) = 5/3 − 1 = 2/3",
+          "All three lie between 0 and 1 and add to",
+          "1/9 + 2/9 + 6/9 = 1.",
           "(i) ∴ c = 1/3"
         ],
         "recall": {
@@ -228,10 +237,14 @@
         "margin_note": "Two marks (book's [2 Marks]). 0 < X < 3 with range {0, 1, 2} means X = 1 or 2. Add the two expressions first — (4c − 10c²) + (5c − 1) = 9c − 10c² − 1 — then put c = 1/3: 3 − 10/9 − 1 = 8/9.",
         "memory_tip": "0 < X < 3 on {0, 1, 2} keeps X = 1 and 2. Add the expressions first, then put c = 1/3.",
         "lines": [
-          "(ii) P(0 < X < 3) = P(X = 1) + P(X = 2)",
-          "= (4c − 10c²) + (5c − 1) = 9c − 10c² − 1",
-          "= 9(1/3) − 10(1/3)² − 1 = 3 − 10/9 − 1",
-          "= 2 − 10/9 = 8/9"
+          "(ii) 0 < X < 3 means X = 1 or X = 2:",
+          "P(0 < X < 3) = P(X = 1) + P(X = 2)",
+          "= (4c − 10c²) + (5c − 1)",
+          "= 9c − 10c² − 1",
+          "Put c = 1/3:",
+          "= 9(1/3) − 10(1/9) − 1",
+          "= 3 − 10/9 − 1 = 2 − 10/9",
+          "= 18/9 − 10/9 = 8/9"
         ],
         "recall": {
           "credit": "say_it",
@@ -271,8 +284,9 @@
         "margin_note": "One mark (book's [1 Mark]). 1 < X ≤ 2 keeps only X = 2 — the left end is excluded, the right end included. P(X = 2) = 5c − 1 = 5/3 − 1 = 2/3.",
         "memory_tip": "1 < X ≤ 2 keeps only X = 2 — left end excluded, right end included.",
         "lines": [
-          "(iii) P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
-          "= 5(1/3) − 1 = 5/3 − 1 = 2/3"
+          "(iii) 1 < X ≤ 2 means X = 2 only:",
+          "P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
+          "= 5(1/3) − 1 = 5/3 − 3/3 = 2/3"
         ],
         "recall": {
           "credit": "say_it",
@@ -312,8 +326,9 @@
         "margin_note": "Last mark (book's [1 Mark]). X < 1 keeps only X = 0. P(X = 0) = 3c³ = 3(1/27) = 1/9. As a check, the three probabilities 1/9, 2/9, 2/3 add to 1.",
         "memory_tip": "X < 1 keeps only X = 0. 3(1/3)³ = 3/27 = 1/9; the three probabilities should add to 1.",
         "lines": [
-          "(iv) P(X < 1) = P(X = 0) = 3c³",
-          "= 3(1/3)³ = 3 · 1/27 = 1/9",
+          "(iv) X < 1 means X = 0 only:",
+          "P(X < 1) = P(X = 0) = 3c³",
+          "= 3(1/3)³ = 3(1/27) = 1/9",
           {
             "text": "∴ c = 1/3; (ii) 8/9 (iii) 2/3 (iv) 1/9",
             "style": "boxed"

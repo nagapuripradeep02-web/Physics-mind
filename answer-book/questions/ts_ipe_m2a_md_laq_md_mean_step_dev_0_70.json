@@ -55,7 +55,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Measures of Dispersion, answer 49 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 18,18 · TS 17,18 (the AP 18 chip is printed twice — March and May sittings; both are kept). ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the four Cramer answers 18.1–18.4: the bulk computation carries most of the marks, the finish carries the rest): 2 for the first table (midpoints, dᵢ, fᵢdᵢ and the two sums), 2 for the mean by the step-deviation formula, 2 for the deviation columns and their sum, 1 for the mean deviation. The two step-deviation mean-deviation LAQs of this unit (answers 48 and 49) share the same split and the same step ids deliberately, because they are one method over different numbers. The book prints one seven-column table; the card writes it in two passes (the last two columns need x̄, which is only known after the mean step) and the margin note says so. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 2 (book p.114), whose answer-page index prints 'P 45(50)' — that index entry is WRONG: the question is answer 49 on book p.44 (answer 50 on p.45 is the median question with the 0–60 boys data). CORRECTION TO THE BOOK, recorded not silently fixed: the printed table header reads dᵢ = (xᵢ − 25)/10, copied from answer 48, while the text and every number in the column use A = 35 — the card writes dᵢ = (xᵢ − 35)/10. Every column and every sum was recomputed for this card: Σfᵢdᵢ = −8, x̄ = 33.4, Σfᵢ|xᵢ − x̄| = 659.2 and 659.2/50 = 13.184, printed 13.18 — all correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Measures of Dispersion, answer 49 (lower half of the page). (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 18,18 · TS 17,18 (the AP 18 chip is printed twice — March and May sittings; both are kept). ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the four Cramer answers 18.1–18.4: the bulk computation carries most of the marks, the finish carries the rest): 2 for the first table (midpoints, dᵢ, fᵢdᵢ and the two sums), 2 for the mean by the step-deviation formula, 2 for the deviation columns and their sum, 1 for the mean deviation. The two step-deviation mean-deviation LAQs of this unit (answers 48 and 49) share the same split and the same step ids deliberately, because they are one method over different numbers. The book prints one seven-column table; the card writes it in two passes (the last two columns need x̄, which is only known after the mean step) and the margin note says so. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 2 (book p.114), whose answer-page index prints 'P 45(50)' — that index entry is WRONG: the question is answer 49 on book p.44 (answer 50 on p.45 is the median question with the 0–60 boys data). CORRECTION TO THE BOOK, recorded not silently fixed: the printed table header reads dᵢ = (xᵢ − 25)/10, copied from answer 48, while the text and every number in the column use A = 35 — the card writes dᵢ = (xᵢ − 35)/10. Every column and every sum was recomputed for this card: Σfᵢdᵢ = −8, x̄ = 33.4, Σfᵢ|xᵢ − x̄| = 659.2 and 659.2/50 = 13.184, printed 13.18 — all correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean by the step deviation method — what you put in the table, how you get the mean from dᵢ, and what you divide at the end.",
   "insider_note": "Seven classes put the assumed mean at A = 35, not the 25 of the five-class version; Σfᵢdᵢ = −8 keeps its minus sign, so the mean comes out below 35, at 33.4.",
@@ -78,8 +78,13 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Assumed mean A = 35, class width C = 10.",
-          "dᵢ = (xᵢ − A)/C = (xᵢ − 35)/10",
+          "The class mark xᵢ is the middle of each class,",
+          "for example (0 + 10)/2 = 5.",
+          "The class marks are large, so use an assumed",
+          "mean A and the step deviation dᵢ = (xᵢ − A)/C.",
+          "Dividing by the class width C keeps the",
+          "numbers small; the mean formula puts C back.",
+          "Take A = 35 (a middle class mark) and C = 10.",
           {
             "text": "Class      fᵢ     xᵢ     dᵢ     fᵢdᵢ",
             "style": "indent"
@@ -158,8 +163,13 @@
         "margin_note": "Next two marks. Σfᵢdᵢ is negative, so the true mean is BELOW the assumed mean: 10·(−8/50) = −1.6 and x̄ = 33.4. Keep the sign.",
         "memory_tip": "Σfᵢdᵢ is negative, so the mean lands below A: 35 − 1.6 = 33.4. Keep the sign.",
         "lines": [
-          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
-          "= 35 + 10·(−8/50) = 35 − 1.6 = 33.4"
+          {
+            "text": "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
+            "style": "eq"
+          },
+          "= 35 + 10 · (−8/50)",
+          "= 35 + 10(−0.16)",
+          "= 35 − 1.6 = 33.4"
         ],
         "recall": {
           "credit": "say_it",
@@ -200,7 +210,9 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 33.4|, and its product with fᵢ. Because x̄ = 33.4 is not a whole number every deviation carries a decimal; the products are 6 × 28.4 = 170.4 and so on. The sum is 659.2.",
         "memory_tip": "x̄ = 33.4 is not whole, so every deviation carries the .4. Subtract before rounding, not after.",
         "lines": [
-          "With x̄ = 33.4, fill the last two columns:",
+          "Now take each class mark's distance from 33.4,",
+          "always as a positive number, and multiply",
+          "by its frequency:",
           {
             "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
             "style": "indent"
@@ -277,8 +289,12 @@
         "margin_note": "Last mark. 659.2/50 = 13.184; the book writes 13.18. Two decimal places is the book's convention for this chapter.",
         "memory_tip": "659.2/50 = 13.184, written 13.18. This chapter keeps two decimals and does not round up to 13.2.",
         "lines": [
-          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
-          "= (1/50)·659.2 = 13.18",
+          {
+            "text": "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
+            "style": "eq"
+          },
+          "= 659.2/50",
+          "= 13.18",
           {
             "text": "∴ M.D. about the mean = 13.18",
             "style": "boxed"

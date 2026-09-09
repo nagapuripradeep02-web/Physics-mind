@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 11 Partial Fractions, answer 92. Printed appearances: a plain 'IPE 14' chip with no board letter, so it is recorded here and not as an appearance. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers; the (x + 4)/((x² − 4)(x + 1)) question on the same page is. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book also prints the answer as 10/(1 − x) + 13/(x − 2), which is the same thing with the sign moved into the denominator; the card keeps −10/(x − 1) so the constant A = −10 is visible. Truth check: recombining −10/(x − 1) + 13/(x − 2) gives (−10(x − 2) + 13(x − 1))/((x − 1)(x − 2)) = (3x + 7)/((x − 1)(x − 2)), the given fraction."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 11 Partial Fractions, answer 92. Printed appearances: a plain 'IPE 14' chip with no board letter, so it is recorded here and not as an appearance. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers; the (x + 4)/((x² − 4)(x + 1)) question on the same page is. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book also prints the answer as 10/(1 − x) + 13/(x − 2), which is the same thing with the sign moved into the denominator; the card keeps −10/(x − 1) so the constant A = −10 is visible. Truth check: recombining −10/(x − 1) + 13/(x − 2) gives (−10(x − 2) + 13(x − 1))/((x − 1)(x − 2)) = (3x + 7)/((x − 1)(x − 2)), the given fraction. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve (3x + 7)/(x² − 3x + 2) into partial fractions — name each move in order.",
   "insider_note": "Factorise x² − 3x + 2 as (x − 1)(x − 2) first; then one substitution gives one constant — x = 2 makes the A term zero, x = 1 makes the B term zero — and no simultaneous equations are needed.",
@@ -61,8 +61,13 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Factorise the denominator. Split −3x as −x − 2x:",
+          "x² − x − 2x + 2 = x(x − 1) − 2(x − 1)",
           "x² − 3x + 2 = (x − 1)(x − 2)",
-          "Let (3x + 7)/((x − 1)(x − 2))",
+          "Both factors are linear and different.",
+          "Each distinct linear factor gets",
+          "  a constant over it:",
+          "(3x + 7)/((x − 1)(x − 2))",
           "= A/(x − 1) + B/(x − 2)"
         ],
         "recall": {
@@ -107,7 +112,8 @@
         "memory_tip": "Each fraction loses its own factor and keeps the other. A sits over (x − 1), so A keeps (x − 2).",
         "lines": [
           "Multiply both sides by (x − 1)(x − 2):",
-          "3x + 7 = A(x − 2) + B(x − 1)"
+          "3x + 7 = A(x − 2) + B(x − 1)",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -148,10 +154,12 @@
         "margin_note": "Third mark. Put x = 2 to make the A term zero, then x = 1 to make the B term zero. One substitution gives one constant; there are no simultaneous equations here.",
         "memory_tip": "One substitution gives one constant: x = 2 kills the A term, x = 1 kills the B term. No simultaneous equations.",
         "lines": [
-          "Put x = 2: 6 + 7 = A(0) + B(1)",
-          "⇒ B = 13",
-          "Put x = 1: 3 + 7 = A(−1) + B(0)",
-          "⇒ A = −10"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 2: 3(2) + 7 = A(0) + B(1)",
+          "13 = B, so B = 13",
+          "Put x = 1: 3(1) + 7 = A(−1) + B(0)",
+          "10 = −A, so A = −10"
         ],
         "recall": {
           "credit": "say_it",

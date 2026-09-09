@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 3 Binomial Theorem, answer 31. Printed appearances: TS 17. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.35) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 4 (book p.118). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as 5√5/(3√3) − 8/5; the card also gives the rationalised form 5√15/9 − 8/5. Both are the same number."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 3 Binomial Theorem, answer 31. Printed appearances: TS 17. THE 2+1+2+1+1 SPLIT IS THE BOOK'S SHAPE: answer 27 on book p.33 prints [2 Marks] against rewriting the series with factorials, [1 Mark] against the comparison with the standard expansion, [2 Marks] against finding p, q and x, [1 Mark] against evaluating the power, and [1 Mark] against the final line. Every infinite-series answer in this unit is one method over different numbers, so the SAME split and the SAME step ids (s1_rewrite, s2_compare, s3_p_q_x, s4_evaluate, s5_final) are used on all of them, deliberately; where this answer's own page prints no tags the split is patterned on p.33 and is OURS there. This page (book p.35) prints no tags, so here the split is patterned on p.33. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 4 (book p.118). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book leaves the answer as 5√5/(3√3) − 8/5; the card also gives the rationalised form 5√15/9 − 8/5. Both are the same number. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find this sum — how you rewrite the terms, what you add to both sides and why, what you compare with, how you find p, q and x, and how you get S back at the end.",
   "insider_note": "Here p = 3, so the missing start is 1 + 3/5 = 8/5, not just 1. The same 8/5 must be subtracted at the end — reporting 5√5/(3√3) as the sum loses the last mark.",
@@ -71,11 +71,17 @@
             "style": "heading"
           },
           "Let S = (3·5)/(5·10) + (3·5·7)/(5·10·15) + …",
-          "= (3·5/2!)(1/5)² + (3·5·7/3!)(1/5)³ + …",
-          "The 1 and the (3/1!)(1/5) terms are missing,",
-          "so add 1 + (3/1!)(1/5) on both sides:",
-          "1 + 3/5 + S = 1 + (3/1!)(1/5)",
-          "  + (3·5/2!)(1/5)² + …"
+          "Look at the denominators:",
+          "5·10 = (5·1)(5·2) = 5²·(1·2) = 5²·2!",
+          "5·10·15 = (5·1)(5·2)(5·3) = 5³·3!",
+          "So (3·5)/(5·10) = (3·5)/(5²·2!) = (3·5/2!)(1/5)²",
+          "(3·5·7)/(5·10·15) = (3·5·7/3!)(1/5)³",
+          "S = (3·5/2!)(1/5)² + (3·5·7/3!)(1/5)³ + …",
+          "The numerators 3·5, 3·5·7, … start at 3, so",
+          "the first two terms, 1 and (3/1!)(1/5), are missing",
+          "Adding 1 + (3/1!)(1/5) = 1 + 3/5 on both sides:",
+          "1 + 3/5 + S = 1 + (3/1!)(1/5) + (3·5/2!)(1/5)²",
+          "  + (3·5·7/3!)(1/5)³ + …"
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +124,9 @@
             "text": "(1 - x)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{x}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{x}{q}\\right)^2 + \\cdots",
             "render": "katex",
             "style": "eq"
-          }
+          },
+          "All the terms are added, so it is the (1 − x) form",
+          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
         ],
         "recall": {
           "credit": "say_it",
@@ -156,8 +164,12 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (3), p + q is the second (5) so q = 2, and x/q equals the common ratio 1/5 so x = q/5 = 2/5.",
         "memory_tip": "p = 3 from the first factor, p + q = 5 so q = 2, and x/q = 1/5 gives x = 2/5.",
         "lines": [
-          "p = 3, p + q = 5 ⇒ q = 2",
-          "x/q = 1/5 ⇒ x = q/5 = 2/5"
+          "Match the first numerator: p = 3",
+          "Match the second: p(p + q) = 3·5 ⇒ p + q = 5",
+          "q = 5 − 3 = 2",
+          "Check the third: p + 2q = 3 + 4 = 7, which matches",
+          "Match the bracket: x/q = 1/5",
+          "x = q · 1/5 = 2 · (1/5) = 2/5"
         ],
         "recall": {
           "credit": "say_it",
@@ -196,7 +208,19 @@
         "memory_tip": "The index is −3/2, so invert to (5/3) and raise to 3/2: 5√5/(3√3).",
         "lines": [
           {
-            "text": "1 + \\tfrac{3}{5} + S = \\left(1 - \\tfrac{2}{5}\\right)^{-3/2} = \\left(\\tfrac{5}{3}\\right)^{3/2} = \\dfrac{5\\sqrt{5}}{3\\sqrt{3}}",
+            "text": "1 + \\tfrac{3}{5} + S = (1 - x)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "1 − 2/5 = (5 − 2)/5 = 3/5",
+          "A negative power inverts the fraction:",
+          {
+            "text": "= \\left(\\tfrac{3}{5}\\right)^{-3/2} = \\left(\\tfrac{5}{3}\\right)^{3/2}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\dfrac{5^{3/2}}{3^{3/2}} = \\dfrac{5\\sqrt{5}}{3\\sqrt{3}}   \\left[a^{3/2} = a\\sqrt{a}\\right]",
             "render": "katex",
             "style": "eq"
           }
@@ -236,8 +260,10 @@
         "margin_note": "Seventh mark. The 1 + 3/5 = 8/5 that was added must come off again. 5√5/(3√3) = 5√15/9 if a rational denominator is required.",
         "memory_tip": "Take the added 1 + 3/5 = 8/5 back off. The bare 5√5/(3√3) is not the sum.",
         "lines": [
+          "1 + 3/5 = (5 + 3)/5 = 8/5",
           "8/5 + S = 5√5/(3√3)",
-          "5√5/(3√3) = 5√15/9",
+          "S = 5√5/(3√3) − 8/5",
+          "5√5/(3√3) = (5√5 · √3)/(3√3 · √3) = 5√15/9",
           {
             "text": "∴ S = 5√5/(3√3) − 8/5",
             "style": "boxed"

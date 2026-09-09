@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 Binomial Theorem, answer 24. Printed appearances: AP 18 · TS 15, 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — book p.30 prints no [N Marks] tags (the page holds two methods and no margin). It is patterned on the one-mark-per-idea tagging on p.27: the two expansions written (2), their product formed and identified as (1 + x)²ⁿ (2), the coefficient of xⁿ⁺ʳ compared on both sides (2), the two deductions (1). The card follows the book's Method I; Method II (replace x by 1/x) is printed on the same page and reaches the same line. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 4 (book p.118) and is re-solved in the Bullet Model Paper Q20 & 21 block (book p.106, labelled \"22.\" there) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Notation: the book prints ²ⁿC₍ₙ₊ᵣ₎ with brackets round the lower index; the bracket subscripts are not in the measured glyph set, so the card writes ²ⁿCₙ₊ᵣ without brackets — the meaning is the same, \"C with upper index 2n and lower index n + r\"."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 Binomial Theorem, answer 24. Printed appearances: AP 18 · TS 15, 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — book p.30 prints no [N Marks] tags (the page holds two methods and no margin). It is patterned on the one-mark-per-idea tagging on p.27: the two expansions written (2), their product formed and identified as (1 + x)²ⁿ (2), the coefficient of xⁿ⁺ʳ compared on both sides (2), the two deductions (1). The card follows the book's Method I; Method II (replace x by 1/x) is printed on the same page and reaches the same line. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q20 of Model Paper 4 (book p.118) and is re-solved in the Bullet Model Paper Q20 & 21 block (book p.106, labelled \"22.\" there) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Notation: the book prints ²ⁿC₍ₙ₊ᵣ₎ with brackets round the lower index; the bracket subscripts are not in the measured glyph set, so the card writes ²ⁿCₙ₊ᵣ without brackets — the meaning is the same, \"C with upper index 2n and lower index n + r\". LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — the two expansions you multiply, why their product is (1 + x)²ⁿ, which power of x you compare on both sides, and how r = 0 and r = 1 give the two deductions.",
   "insider_note": "Write the SAME expansion twice, once in rising and once in falling powers, so the product is (1 + x)²ⁿ. The deductions cost one mark only as substitutions — r = 0 for (i), r = 1 for (ii) — never as fresh proofs.",
@@ -74,8 +74,11 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Write (1 + x)ⁿ in rising powers of x:",
           "(1 + x)ⁿ = C₀ + C₁x + C₂x² + … + Cᵣxʳ",
           "  + Cᵣ₊₁xʳ⁺¹ + … + Cₙxⁿ …(1)",
+          "Write the same expansion as (x + 1)ⁿ,",
+          "in falling powers of x:",
           "(x + 1)ⁿ = C₀xⁿ + C₁xⁿ⁻¹ + C₂xⁿ⁻² + …",
           "  + Cₙ₋ᵣxʳ + … + Cₙ …(2)"
         ],
@@ -117,8 +120,10 @@
         "lines": [
           "Multiplying (2) and (1):",
           "(C₀xⁿ + C₁xⁿ⁻¹ + … + Cₙ₋ᵣxʳ + … + Cₙ)",
-          "  × (C₀ + C₁x + … + Cᵣxʳ + Cᵣ₊₁xʳ⁺¹ + … + Cₙxⁿ)",
-          "= (x + 1)ⁿ(1 + x)ⁿ = (1 + x)²ⁿ …(3)"
+          "  × (C₀ + C₁x + … + Cᵣxʳ + … + Cₙxⁿ)",
+          "= (x + 1)ⁿ(1 + x)ⁿ",
+          "= (1 + x)ⁿ(1 + x)ⁿ   [x + 1 = 1 + x]",
+          "= (1 + x)ⁿ⁺ⁿ = (1 + x)²ⁿ …(3)"
         ],
         "recall": {
           "credit": "say_it",
@@ -157,9 +162,16 @@
         "lines": [
           "Compare the coefficient of xⁿ⁺ʳ",
           "on both sides of (3):",
-          "Left: C₀xⁿ·Cᵣxʳ, C₁xⁿ⁻¹·Cᵣ₊₁xʳ⁺¹, …, Cₙ₋ᵣxʳ·Cₙxⁿ",
-          "Right: the coefficient of xⁿ⁺ʳ in (1 + x)²ⁿ",
-          "  is ²ⁿCₙ₊ᵣ",
+          "Left side: pick one term from each bracket",
+          "whose powers of x add up to n + r:",
+          "C₀xⁿ · Cᵣxʳ = C₀Cᵣ xⁿ⁺ʳ",
+          "C₁xⁿ⁻¹ · Cᵣ₊₁xʳ⁺¹ = C₁Cᵣ₊₁ xⁿ⁺ʳ",
+          "C₂xⁿ⁻² · Cᵣ₊₂xʳ⁺² = C₂Cᵣ₊₂ xⁿ⁺ʳ",
+          "… Cₙ₋ᵣxʳ · Cₙxⁿ = Cₙ₋ᵣCₙ xⁿ⁺ʳ",
+          "Coefficient on the left",
+          "= C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ",
+          "Right side: in (1 + x)²ⁿ the coefficient",
+          "of xᵏ is ²ⁿCₖ, so the coefficient of xⁿ⁺ʳ is ²ⁿCₙ₊ᵣ",
           "∴ C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ = ²ⁿCₙ₊ᵣ"
         ],
         "recall": {
@@ -197,7 +209,9 @@
         "margin_note": "Seventh mark. r = 0 makes every product a square; r = 1 makes the indices consecutive.",
         "memory_tip": "Both deductions are substitutions, not new proofs: r = 0 for (i), r = 1 for (ii).",
         "lines": [
-          "(i) Put r = 0: C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
+          "(i) Put r = 0:",
+          "C₀C₀ + C₁C₁ + C₂C₂ + … + CₙCₙ = ²ⁿCₙ₊₀",
+          "∴ C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
           "(ii) Put r = 1:",
           {
             "text": "C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁",

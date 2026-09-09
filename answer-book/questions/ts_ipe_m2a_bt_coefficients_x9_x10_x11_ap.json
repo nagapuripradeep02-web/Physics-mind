@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 204. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is book answer 22 (the r-th, (r + 1)-th, (r + 2)-th coefficients in A.P.) with r = 10, and the general result gives n² − 41n + 398 = 0 directly. Printed appearances: AP 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the SAME split with the SAME step ids as book answer 22 (the general A.P.-coefficients proof), deliberately: one method, once general and once numeric. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.94, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.84, the Binomial VSAQ chapter end prints “Few More VSAQ are in Page 94” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.94 — Star Questions Plus, Binomial Theorem banner, answer 204. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — it is book answer 22 (the r-th, (r + 1)-th, (r + 2)-th coefficients in A.P.) with r = 10, and the general result gives n² − 41n + 398 = 0 directly. Printed appearances: AP 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is the SAME split with the SAME step ids as book answer 22 (the general A.P.-coefficients proof), deliberately: one method, once general and once numeric. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.94, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Against our classing, the book ROUTES readers into that page from a VSAQ chapter — book p.84, the Binomial VSAQ chapter end prints “Few More VSAQ are in Page 94” — which is evidence the page is VSAQ-flavoured. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — what the three coefficients are, what being in A.P. means once you divide by the middle one, the two ratio formulas you substitute, and how the algebra reaches n² − 41n + 398 = 0.",
   "insider_note": "The coefficient of x⁹ is ⁿC₉ — here the power IS the index, and shifting to ⁿC₈ proves a different equation. Write 2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁ and divide by the middle coefficient so the two ratios appear. The question asks only for the equation, and that is the whole answer: n² − 41n + 398 = 0 has discriminant 89, which is not a perfect square, so there is no whole number n for which those three coefficients are in A.P. Do not lose time trying to solve it.",
@@ -66,7 +66,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The coefficients of x⁹, x¹⁰, x¹¹ in (1 + x)ⁿ are",
+          "In (1 + x)ⁿ, the coefficient of xʳ is ⁿCᵣ",
+          "So the coefficients of x⁹, x¹⁰, x¹¹ are",
           "ⁿC₉, ⁿC₁₀, ⁿC₁₁ and they are in A.P."
         ],
         "recall": {
@@ -104,8 +105,9 @@
         "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
         "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the two ratios appear.",
         "lines": [
+          "Three numbers a, b, c are in A.P. when 2b = a + c",
           "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
-          "Dividing by ⁿC₁₀:",
+          "Dividing both sides by ⁿC₁₀:",
           "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
         ],
         "recall": {
@@ -143,8 +145,13 @@
         "margin_note": "Third and fourth marks. With r = 10: ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11.",
         "memory_tip": "ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11. Do not invert either one.",
         "lines": [
-          "ⁿC₁₀/ⁿC₉ = (n − 9)/10",
-          "and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11",
+          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+          "= (n − r + 1)/r   [r! = r(r − 1)!]",
+          "Put r = 10: ⁿC₁₀/ⁿC₉ = (n − 10 + 1)/10 = (n − 9)/10",
+          "so ⁿC₉/ⁿC₁₀ = 10/(n − 9)",
+          "Put r = 11: ⁿC₁₁/ⁿC₁₀ = (n − 11 + 1)/11 = (n − 10)/11",
           "2 = 10/(n − 9) + (n − 10)/11"
         ],
         "recall": {
@@ -183,9 +190,13 @@
         "margin_note": "Fifth to seventh marks. Multiply through by 11(n − 9). The right side is 110 + (n − 10)(n − 9) = n² − 19n + 200.",
         "memory_tip": "Multiply through by 11(n − 9). Watch (n − 10)(n − 9) = n² − 19n + 90, with a PLUS 90.",
         "lines": [
-          "2·11(n − 9) = 110 + (n − 10)(n − 9)",
+          "Multiplying both sides by 11(n − 9):",
+          "2 · 11(n − 9) = 11 · 10 + (n − 10)(n − 9)",
+          "22n − 198 = 110 + (n² − 9n − 10n + 90)",
           "22n − 198 = 110 + n² − 19n + 90",
+          "22n − 198 = n² − 19n + 200",
           "0 = n² − 19n + 200 − 22n + 198",
+          "0 = n² − 41n + 398",
           {
             "text": "∴ n² − 41n + 398 = 0",
             "style": "boxed"

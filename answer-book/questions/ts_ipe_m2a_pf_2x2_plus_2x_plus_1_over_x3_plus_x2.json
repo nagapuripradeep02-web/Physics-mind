@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 11 Partial Fractions, answer 95. Printed appearances: AP 17, TS 17. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 1 in the identity gives 5 = A(1)(2) + B(2) + C(1) = 2 + 2 + 1 = 5 with A = 1, B = 1, C = 1."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 11 Partial Fractions, answer 95. Printed appearances: AP 17, TS 17. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Not asked at Q15 in any of the five model papers. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Truth check: putting x = 1 in the identity gives 5 = A(1)(2) + B(2) + C(1) = 2 + 2 + 1 = 5 with A = 1, B = 1, C = 1. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would resolve (2x² + 2x + 1)/(x³ + x²) into partial fractions — name each move in order.",
   "insider_note": "The first mark is the form: x² is the factor x repeated, so it needs a fraction over x AND one over x² — three fractions in all, and a form with only two cannot be made to match.",
@@ -70,8 +70,12 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Take x² out of the denominator:",
           "x³ + x² = x²(x + 1)",
-          "Let (2x² + 2x + 1)/(x²(x + 1))",
+          "x is a repeated factor and (x + 1) is linear.",
+          "A repeated factor gets one term",
+          "  for each power:",
+          "(2x² + 2x + 1)/(x²(x + 1))",
           "= A/x + B/x² + C/(x + 1)"
         ],
         "recall": {
@@ -114,8 +118,9 @@
         "margin_note": "Second mark. Multiply by x²(x + 1). A keeps x(x + 1), B keeps (x + 1), C keeps x². Every term on the right is a polynomial.",
         "memory_tip": "A keeps x(x + 1), B keeps (x + 1), C keeps x². Each term on the right is a polynomial.",
         "lines": [
-          "Multiply by x²(x + 1):",
-          "2x² + 2x + 1 = Ax(x + 1) + B(x + 1) + Cx²"
+          "Multiply both sides by x²(x + 1):",
+          "2x² + 2x + 1 = Ax(x + 1) + B(x + 1) + Cx²",
+          "This holds for every value of x."
         ],
         "recall": {
           "credit": "say_it",
@@ -156,9 +161,16 @@
         "margin_note": "Third mark. x = 0 gives B, x = −1 gives C, and A comes from the x² coefficient: A + C = 2. The repeated factor has one root, so one constant must come from a coefficient.",
         "memory_tip": "x = 0 gives B and x = −1 gives C. A must come from the x² coefficient: A + C = 2.",
         "lines": [
-          "Put x = 0: 1 = B ⇒ B = 1",
-          "Put x = −1: 2 − 2 + 1 = C(1) ⇒ C = 1",
-          "Compare x²: A + C = 2 ⇒ A = 1"
+          "Substituting a root of one factor",
+          "  makes the other terms 0:",
+          "Put x = 0: 1 = A(0) + B(1) + C(0)",
+          "B = 1",
+          "Put x = −1: 2 − 2 + 1 = C(1)",
+          "C = 1",
+          "The two roots do not give A, so compare",
+          "the x² terms on both sides:",
+          "left 2, right A + C, so A + C = 2",
+          "A = 2 − 1 = 1"
         ],
         "recall": {
           "credit": "say_it",

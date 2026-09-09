@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Probability, answer 38 (PDF p.39: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 18 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 38. It is the book's own 1 + 2 + 4 split printed against answer 36 on book p.37 (define the events · the priors and the colour probabilities · Bayes' computation), refined as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 4 (book p.118); it is not in the Bullet Model Paper. The book prints the box contents as a table; the card writes them in words in the question text. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: P(R|B₁) = 2/5, P(R|B₂) = 4/9, P(R|B₃) = 2/9; P(R) = (1/3)(2/5 + 4/9 + 2/9) = (1/3)(16/15) = 16/45; P(B₂|R) = (4/27)/(16/45) = 5/12 — agrees with the book, which reaches 5/12 through 48/45 and 20/48. The book's \"(18 + 20 + 10)/(5 × 9)\" is the same bracket 2/5 + 4/9 + 2/9 = 48/45 = 16/15 written over 45."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.38 — LAQ chapter 4 Probability, answer 38 (PDF p.39: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: AP 18 · TS 17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 38. It is the book's own 1 + 2 + 4 split printed against answer 36 on book p.37 (define the events · the priors and the colour probabilities · Bayes' computation), refined as 1 + (1 + 1) + (2 + 2) so that each of the five steps carries its own mark. The SAME five step ids and the SAME split are used on all four urn/box Bayes answers of this unit (36, 37, 38, 39), deliberately: they are one method over different numbers. The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 4 (book p.118); it is not in the Bullet Model Paper. The book prints the box contents as a table; the card writes them in words in the question text. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answer checked: P(R|B₁) = 2/5, P(R|B₂) = 4/9, P(R|B₃) = 2/9; P(R) = (1/3)(2/5 + 4/9 + 2/9) = (1/3)(16/15) = 16/45; P(B₂|R) = (4/27)/(16/45) = 5/12 — agrees with the book, which reaches 5/12 through 48/45 and 20/48. The book's \"(18 + 20 + 10)/(5 × 9)\" is the same bracket 2/5 + 4/9 + 2/9 = 48/45 = 16/15 written over 45. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the probability that the red ball came from B₂ — the events, why each box has prior 1/3, the three red-ball probabilities, the total, and Bayes.",
   "insider_note": "The die changes nothing: two faces out of six for each box is 1/3, the same as choosing a box at random. The fractions 2/5, 4/9, 2/9 have two different denominators, so the total needs the common denominator 45.",
@@ -84,6 +84,18 @@
           },
           {
             "text": "event that the ball drawn is red.",
+            "style": "normal"
+          },
+          {
+            "text": "B₁: 2 white, 1 black, 2 red, so 5 balls.",
+            "style": "normal"
+          },
+          {
+            "text": "B₂: 3 white, 2 black, 4 red, so 9 balls.",
+            "style": "normal"
+          },
+          {
+            "text": "B₃: 4 white, 3 black, 2 red, so 9 balls.",
             "style": "normal"
           }
         ],
@@ -125,11 +137,11 @@
         "memory_tip": "The die changes nothing: 2 faces of 6 for each box is 2/6 = 1/3. Write that reason.",
         "lines": [
           {
-            "text": "Each box is chosen when 2 of the 6 faces",
+            "text": "A die has 6 faces. Each box is chosen when",
             "style": "normal"
           },
           {
-            "text": "turn up, so",
+            "text": "2 named faces turn up, so",
             "style": "normal"
           },
           {
@@ -174,6 +186,10 @@
         "margin_note": "Third mark. B₁: 2 red of 5. B₂: 4 red of 9. B₃: 2 red of 9.",
         "memory_tip": "Each box over its OWN total: 2 of 5, 4 of 9, 2 of 9. Never the grand total 23.",
         "lines": [
+          {
+            "text": "Red balls out of the total in each box:",
+            "style": "normal"
+          },
           {
             "text": "P(R|B₁) = 2/5",
             "style": "eq"
@@ -225,7 +241,11 @@
         "memory_tip": "Factor out the 1/3, then add over 45: 18 + 20 + 10 = 48, so P(R) = 16/45.",
         "lines": [
           {
-            "text": "By total probability,",
+            "text": "A red ball can come from any of the three,",
+            "style": "normal"
+          },
+          {
+            "text": "so add the three ways:",
             "style": "normal"
           },
           {
@@ -233,19 +253,31 @@
             "style": "eq"
           },
           {
-            "text": "+ P(B₃)P(R|B₃)",
+            "text": "  + P(B₃)P(R|B₃)",
             "style": "eq"
+          },
+          {
+            "text": "= (1/3)(2/5) + (1/3)(4/9) + (1/3)(2/9)",
+            "style": "eq"
+          },
+          {
+            "text": "Each term has the factor 1/3:",
+            "style": "normal"
           },
           {
             "text": "= (1/3)(2/5 + 4/9 + 2/9)",
             "style": "eq"
           },
           {
-            "text": "= (1/3)·(18 + 20 + 10)/45 = (1/3)(48/45)",
+            "text": "The common denominator of 5 and 9 is 45:",
+            "style": "normal"
+          },
+          {
+            "text": "= (1/3)(18/45 + 20/45 + 10/45)",
             "style": "eq"
           },
           {
-            "text": "= 16/45",
+            "text": "= (1/3)(48/45) = 48/135 = 16/45",
             "style": "eq"
           }
         ],
@@ -287,7 +319,11 @@
         "memory_tip": "The question asks the REVERSE of 4/9. Cancel carefully: 45/27 = 5/3 and 4/16 = 1/4, giving 5/12.",
         "lines": [
           {
-            "text": "By Bayes' theorem,",
+            "text": "Bayes' theorem turns the known",
+            "style": "normal"
+          },
+          {
+            "text": "P(ball | box) into the wanted P(box | ball):",
             "style": "normal"
           },
           {
@@ -295,7 +331,15 @@
             "style": "eq"
           },
           {
-            "text": "= (1/3)(4/9) / (16/45) = (4/27)·(45/16)",
+            "text": "= (1/3)(4/9) ÷ (16/45)",
+            "style": "eq"
+          },
+          {
+            "text": "= (4/27) × (45/16)",
+            "style": "eq"
+          },
+          {
+            "text": "= 180/432",
             "style": "eq"
           },
           {

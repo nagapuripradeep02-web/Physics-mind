@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 109.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots; the Bullet Model Paper re-solves this question on book p.96 with the same arithmetic. The card adds a one-line check (2 + 3i)² = −5 + 12i that the book does not print. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 109.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots; the Bullet Model Paper re-solves this question on book p.96 with the same arithmetic. The card adds a one-line check (2 + 3i)² = −5 + 12i that the book does not print. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the square root of a complex number — what you compute first and what formula you put it into.",
   "insider_note": "Keep the sign on a = −5 all the way through: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, which halve to 4 and 9. Then say the sign choice — b = 12 is positive, so both parts take the same sign — and keep the ±.",
@@ -58,8 +58,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let −5 + 12i = a + ib ⇒ a = −5, b = 12",
-          "r = √(a² + b²) = √(25 + 144) = √169 = 13"
+          "Let −5 + 12i = a + ib, so a = −5 and b = 12",
+          "The square-root formula needs the modulus r:",
+          "r = √(a² + b²) = √((−5)² + 12²)",
+          "= √(25 + 144)",
+          "= √169 = 13"
         ],
         "recall": {
           "credit": "say_it",
@@ -98,21 +101,17 @@
         "margin_note": "Second mark. b > 0, so the two parts share a sign. r + a = 13 + (−5) = 8 and r − a = 13 − (−5) = 18; halved, 4 and 9.",
         "memory_tip": "Carry the sign on a: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, halving to 4 and 9.",
         "lines": [
-          "For b > 0:",
-          {
-            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
-            "style": "eq"
-          },
-          {
-            "text": "√(−5 + 12i) = ±(√((13 − 5)/2) + i·√((13 + 5)/2))",
-            "style": "eq"
-          },
-          "= ±(√4 + i√9)",
+          "Here b = 12, which is positive, and for b > 0",
+          "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
+          "(r + a)/2 = (13 − 5)/2 = 8/2 = 4",
+          "(r − a)/2 = (13 + 5)/2 = 18/2 = 9",
+          "√(−5 + 12i) = ±(√4 + i√9)",
           {
             "text": "∴ √(−5 + 12i) = ±(2 + 3i)",
             "style": "boxed"
           },
-          "Check: (2 + 3i)² = 4 + 12i − 9 = −5 + 12i"
+          "Check: (2 + 3i)² = 4 + 12i + 9i²",
+          "= 4 + 12i − 9 = −5 + 12i   [i² = −1]"
         ],
         "recall": {
           "credit": "say_it",

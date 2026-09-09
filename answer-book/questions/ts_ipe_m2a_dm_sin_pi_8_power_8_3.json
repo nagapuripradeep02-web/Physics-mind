@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 De Moivre's Theorem, answer 6. Printed appearances: AP 18 · TS 16,20. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] shape the book prints against answer 2 on book p.15: two marks each for the two algebraic reductions (1/z, and the fraction collapsing to z), one for writing z as cis 3π/8, two for the final power. The same step names (s1_de_moivre / s2 … / final) are used across the 'x = cis α' identity answers 3 and 7 of this unit as far as their shapes allow; answer 6 is a single evaluation and stands alone. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: with z = sin π/8 + i cos π/8 the fraction is z itself, z = cis(3π/8), and z^(8/3) has cis π = −1 as one value; the book's answer is correct. The 8/3 power is many-valued; the question asks for ONE value, and the card says so. Notation: the 8/3 exponent is typeset with KaTeX on the page per the notation ledger; in this plain-text question line it is written with a caret. Asked as Model Paper 5, Q18 (book p.120)."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 De Moivre's Theorem, answer 6. Printed appearances: AP 18 · TS 16,20. ⚠ THE 2+2+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is patterned on the [2 Marks] · [2 Marks] · [1 Mark] · [2 Marks] shape the book prints against answer 2 on book p.15: two marks each for the two algebraic reductions (1/z, and the fraction collapsing to z), one for writing z as cis 3π/8, two for the final power. The same step names (s1_de_moivre / s2 … / final) are used across the 'x = cis α' identity answers 3 and 7 of this unit as far as their shapes allow; answer 6 is a single evaluation and stands alone. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: with z = sin π/8 + i cos π/8 the fraction is z itself, z = cis(3π/8), and z^(8/3) has cis π = −1 as one value; the book's answer is correct. The 8/3 power is many-valued; the question asks for ONE value, and the card says so. Notation: the 8/3 exponent is typeset with KaTeX on the page per the notation ledger; in this plain-text question line it is written with a caret. Asked as Model Paper 5, Q18 (book p.120). LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would show this — what you call z, why the fraction is just z, how you write z in cis form, and what the 8/3 power does to the angle.",
   "insider_note": "The question looks long and is short: the fraction is z itself. Students who convert both brackets to mod-amp form separately run out of time.",
@@ -75,9 +75,12 @@
             "style": "heading"
           },
           "Let z = sin π/8 + i cos π/8",
-          "1/z = 1/(sin π/8 + i cos π/8)",
-          "= (sin π/8 − i cos π/8)/(sin² π/8 + cos² π/8)",
-          "= sin π/8 − i cos π/8  (∵ sin² θ + cos² θ = 1)"
+          "Find 1/z by multiplying above and below by",
+          "the conjugate sin π/8 − i cos π/8:",
+          "1/z = (sin π/8 − i cos π/8)",
+          "  ÷ (sin²π/8 + cos²π/8)",
+          "sin²θ + cos²θ = 1, so the bottom is 1:",
+          "1/z = sin π/8 − i cos π/8"
         ],
         "recall": {
           "credit": "say_it",
@@ -118,9 +121,17 @@
         "margin_note": "Third and fourth marks. 1 + 1/z = (z + 1)/z, so (1 + z) divided by it leaves z. The whole expression is z to the power 8/3 and nothing more.",
         "memory_tip": "1 + 1/z = (z + 1)/z, so (1 + z) divided by it leaves z. The whole expression is z^(8/3).",
         "lines": [
-          "The given expression",
+          "The numerator of the given fraction is 1 + z,",
+          "and its denominator is 1 + 1/z.",
           {
-            "text": "= \\left[\\frac{1+z}{1+\\frac{1}{z}}\\right]^{8/3} = \\left[\\frac{1+z}{\\frac{z+1}{z}}\\right]^{8/3} = z^{8/3}",
+            "text": "\\left[\\frac{1+z}{1+\\frac{1}{z}}\\right]^{8/3} = \\left[\\frac{1+z}{\\frac{z+1}{z}}\\right]^{8/3}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Dividing by (z + 1)/z is multiplying by z/(z + 1),",
+          "and (1 + z) cancels with (z + 1):",
+          {
+            "text": "= z^{8/3}",
             "render": "katex",
             "style": "eq"
           }
@@ -163,9 +174,12 @@
         "margin_note": "Fifth mark. z is written sine first, so use cos(π/2 − π/8) = sin π/8 and sin(π/2 − π/8) = cos π/8 to swap them: z = cos(3π/8) + i sin(3π/8). De Moivre needs the cosine first and the sine second.",
         "memory_tip": "z is written sine first. Swap with cos(π/2 − π/8), so the angle becomes 3π/8.",
         "lines": [
+          "Write z as a cis. Using",
+          "sin A = cos(π/2 − A) and cos A = sin(π/2 − A):",
           "z = sin π/8 + i cos π/8",
           "= cos(π/2 − π/8) + i sin(π/2 − π/8)",
-          "= cos(3π/8) + i sin(3π/8)"
+          "π/2 − π/8 = 4π/8 − π/8 = 3π/8, so",
+          "z = cos(3π/8) + i sin(3π/8)"
         ],
         "recall": {
           "credit": "say_it",
@@ -205,17 +219,16 @@
         "margin_note": "Sixth and seventh marks. The angle becomes (8/3) · (3π/8) = π, so the value is cos π + i sin π = −1 + i(0). A fractional power has several values; this is the one the question asks for.",
         "memory_tip": "(8/3) · (3π/8) = π, so the value is cos π + i sin π = −1.",
         "lines": [
+          "By De Moivre's theorem the angle is multiplied:",
           {
-            "text": "z^{8/3} = \\left[\\cos\\tfrac{3\\pi}{8} + i\\sin\\tfrac{3\\pi}{8}\\right]^{8/3}",
+            "text": "z^{8/3} = \\cos\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right) + i\\sin\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right)",
             "render": "katex",
             "style": "eq"
           },
-          {
-            "text": "= \\cos\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right) + i\\sin\\!\\left(\\tfrac{8}{3}\\cdot\\tfrac{3\\pi}{8}\\right)",
-            "render": "katex",
-            "style": "eq"
-          },
-          "= cos π + i sin π = −1 + i(0)",
+          "(8/3) × (3π/8) = π, so",
+          "= cos π + i sin π",
+          "cos π = −1 and sin π = 0",
+          "= −1 + i(0)",
           {
             "text": "∴ one value of the expression is −1",
             "style": "boxed"

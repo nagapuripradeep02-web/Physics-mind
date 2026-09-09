@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 18 Measures of Dispersion, answer 172.1. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: none — this answer carries no year chip. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers or the Bullet Model Paper; Q9 is its slot. The book's working lists the absolute deviations ('Absolute values of these deviations: 3, 2, 1, 3, 4, 5, 1, 3') before squaring; the card squares the signed deviations directly, since a square does not need the absolute value. Recomputed: sum 72, x̄ = 9, deviations −3, −2, 1, 3, 4, −5, −1, 3, squares 9, 4, 1, 9, 16, 25, 1, 9, total 74, 74/8 = 9.25 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 18 Measures of Dispersion, answer 172.1. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: none — this answer carries no year chip. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers or the Bullet Model Paper; Q9 is its slot. The book's working lists the absolute deviations ('Absolute values of these deviations: 3, 2, 1, 3, 4, 5, 1, 3') before squaring; the card squares the signed deviations directly, since a square does not need the absolute value. Recomputed: sum 72, x̄ = 9, deviations −3, −2, 1, 3, 4, −5, −1, 3, squares 9, 4, 1, 9, 16, 25, 1, 9, total 74, 74/8 = 9.25 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would find the variance of eight numbers — what you find first, what you square, and what you divide.",
   "insider_note": "The deviations are squared here — the sum is 74, not the 22 the unsquared deviations give — and the question stops at the variance 9.25: adding a square root at the end makes the answer wrong.",
@@ -53,8 +53,12 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "n = 8",
-          "Mean x̄ = (6 + 7 + 10 + 12 + 13 + 4 + 8 + 12)/8",
+          "Variance measures the spread using SQUARED",
+          "gaps from the mean, so the signs disappear",
+          "without taking sizes.",
+          "There are n = 8 values.",
+          "Mean x̄ = (sum of the values)/n",
+          "= (6 + 7 + 10 + 12 + 13 + 4 + 8 + 12)/8",
           "= 72/8 = 9"
         ],
         "recall": {
@@ -93,9 +97,16 @@
         "margin_note": "Second mark. Deviations from 9 (signs kept), squared: 9, 4, 1, 9, 16, 25, 1, 9. Sum 74, divide by n = 8. 74/8 = 9.25. Only the variance is asked — no square root.",
         "memory_tip": "Square the deviations, so 74 and not the 22 the unsquared ones give. Variance only — no square root here.",
         "lines": [
+          "Subtract the mean from each value:",
           "xᵢ − x̄ : −3, −2, 1, 3, 4, −5, −1, 3",
+          "Square each of them:",
           "(xᵢ − x̄)² : 9, 4, 1, 9, 16, 25, 1, 9",
-          "Variance σ² = Σ(xᵢ − x̄)²/n = 74/8 = 9.25",
+          "Σ(xᵢ − x̄)² = 74",
+          {
+            "text": "Variance σ² = Σ(xᵢ − x̄)²/n",
+            "style": "eq"
+          },
+          "= 74/8 = 9.25",
           {
             "text": "∴ Variance σ² = 9.25",
             "style": "boxed"

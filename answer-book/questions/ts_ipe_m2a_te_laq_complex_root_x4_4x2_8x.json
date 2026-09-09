@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Theory of Equations, answer 19. Printed appearances: AP 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — p.26 prints no [N Marks] tags against this answer. 1+2+2+2 follows the weight the book's other Section-C pages give to the stages (one mark for the identifying statement, two for each block of computation, as on p.20 and p.24). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Correction to the book, recorded not silently fixed: p.26 prints 'the equation with roots 2 + √3, 2 − √3 is x² − (sum of roots)x + product = 0' — the i is dropped in that one line; the roots are 2 ± i√3 and the book's own sum (4), product (7) and factor x² − 4x + 7 are the correct ones for 2 ± i√3 (for 2 ± √3 the product would be 1). The book divides by the two-row synthetic method with 4 and −7; the card shows the same division long-hand. Truth check: (x² − 4x + 7)(x² + 4x + 5) expands to x⁴ − 4x² + 8x + 35; the four roots add to 0 (no x³ term) and multiply to 7 · 5 = 35, the constant term. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Theory of Equations, answer 19. Printed appearances: AP 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — p.26 prints no [N Marks] tags against this answer. 1+2+2+2 follows the weight the book's other Section-C pages give to the stages (one mark for the identifying statement, two for each block of computation, as on p.20 and p.24). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Correction to the book, recorded not silently fixed: p.26 prints 'the equation with roots 2 + √3, 2 − √3 is x² − (sum of roots)x + product = 0' — the i is dropped in that one line; the roots are 2 ± i√3 and the book's own sum (4), product (7) and factor x² − 4x + 7 are the correct ones for 2 ± i√3 (for 2 ± √3 the product would be 1). The book divides by the two-row synthetic method with 4 and −7; the card shows the same division long-hand. Truth check: (x² − 4x + 7)(x² + 4x + 5) expands to x⁴ − 4x² + 8x + 35; the four roots add to 0 (no x³ term) and multiply to 7 · 5 = 35, the constant term. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this — what the given root tells you about a second root, how the pair becomes a factor, and how you find the other two roots.",
   "insider_note": "The product of the conjugate pair is 4 + 3 = 7, not 4 − 3 = 1; the i² = −1 is where this question is most often lost.",
@@ -67,9 +67,11 @@
             "style": "heading"
           },
           "Let f(x) = x⁴ − 4x² + 8x + 35.",
-          "The coefficients are real, so complex roots",
-          "come in conjugate pairs:",
-          "2 + i√3 is a root ⇒ 2 − i√3 is also a root."
+          "All its coefficients are real numbers.",
+          "For such an equation complex roots always",
+          "come in conjugate pairs.",
+          "2 + i√3 is a root,",
+          "so 2 − i√3 is a root as well."
         ],
         "recall": {
           "credit": "say_it",
@@ -108,11 +110,14 @@
         "margin_note": "Two marks. The pair's sum is 4 and product is 4 − 3i² = 7 (i² = −1, so −3i² = +3). The quadratic with these roots, x² − 4x + 7, divides f(x).",
         "memory_tip": "Sum 4, product 4 − 3i² = 4 + 3 = 7. The factor x² − 4x + 7 has real coefficients.",
         "lines": [
-          "Sum of the pair = (2 + i√3) + (2 − i√3) = 4",
-          "Product = (2 + i√3)(2 − i√3) = 4 − 3i²",
-          "= 4 + 3 = 7",
-          "So x² − (sum)x + product = x² − 4x + 7",
-          "is a factor of f(x)."
+          "Build the quadratic having those two roots.",
+          "Sum = (2 + i√3) + (2 − i√3) = 4",
+          "  (the i√3 terms cancel)",
+          "Product = (2 + i√3)(2 − i√3)",
+          "= 2² − (i√3)²   [(a + b)(a − b) = a² − b²]",
+          "= 4 − 3i² = 4 − 3(−1) = 4 + 3 = 7",
+          "The quadratic is x² − (sum)x + product:",
+          "x² − 4x + 7, and it is a factor of f(x)."
         ],
         "recall": {
           "credit": "say_it",
@@ -153,13 +158,15 @@
         "margin_note": "Two marks. Divide x⁴ + 0x³ − 4x² + 8x + 35 by x² − 4x + 7. Each line: take the leading term, multiply the divisor, subtract. The remainder must be 0; the quotient is x² + 4x + 5.",
         "memory_tip": "Write the missing 0x³ so the columns line up. The remainder must come out 0.",
         "lines": [
-          "Divide f(x) by x² − 4x + 7:",
-          "x² · (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
-          "left: 4x³ − 11x² + 8x + 35",
-          "4x · (x² − 4x + 7) = 4x³ − 16x² + 28x",
-          "left: 5x² − 20x + 35",
-          "5 · (x² − 4x + 7) = 5x² − 20x + 35, left: 0",
-          "So f(x) = (x² − 4x + 7)(x² + 4x + 5)"
+          "Divide f(x) by x² − 4x + 7.",
+          "x² × (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
+          "Subtracting leaves 4x³ − 11x² + 8x + 35",
+          "4x × (x² − 4x + 7) = 4x³ − 16x² + 28x",
+          "Subtracting leaves 5x² − 20x + 35",
+          "5 × (x² − 4x + 7) = 5x² − 20x + 35",
+          "Subtracting leaves 0, so the division is exact.",
+          "The quotient is x² + 4x + 5, so",
+          "f(x) = (x² − 4x + 7)(x² + 4x + 5)"
         ],
         "recall": {
           "credit": "say_it",
@@ -200,7 +207,9 @@
         "memory_tip": "√(−4) = 2i, so the last pair is −2 ± i. Box all four; they add to 0, matching the absent x³.",
         "lines": [
           "The other two roots solve x² + 4x + 5 = 0:",
-          "x = (−4 ± √(16 − 20))/2 = (−4 ± √(−4))/2",
+          "x = (−4 ± √(16 − 20))/2   [quadratic formula]",
+          "= (−4 ± √(−4))/2",
+          "√(−4) = 2i, so",
           "= (−4 ± 2i)/2 = −2 ± i",
           {
             "text": "∴ roots: 2 ± i√3, −2 ± i",

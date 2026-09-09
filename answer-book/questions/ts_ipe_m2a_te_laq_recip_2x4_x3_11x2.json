@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Theory of Equations, answer 11. Printed appearances: TS 15. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] [1 Mark] [1 Mark] [2 Marks] [2 Marks] against the five stages and the card follows it exactly. The SAME step ids (s1_identify, s2_substitute, s3_solve_t, s4_first_t, s5_second_t) and the same 1+1+1+2+2 shape are used on answers 10, 11 and 12, deliberately: they are one method — divide by x², put x + 1/x = t — over different numbers. The book writes the substitution letter as y; the card writes t, the letter the Telugu Akademi textbook uses. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: the roots 2, 1/2, (−3 ± √5)/2 add to −1/2 = −a₁/a₀ and multiply to 1 = a₄/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Theory of Equations, answer 11. Printed appearances: TS 15. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] [1 Mark] [1 Mark] [2 Marks] [2 Marks] against the five stages and the card follows it exactly. The SAME step ids (s1_identify, s2_substitute, s3_solve_t, s4_first_t, s5_second_t) and the same 1+1+1+2+2 shape are used on answers 10, 11 and 12, deliberately: they are one method — divide by x², put x + 1/x = t — over different numbers. The book writes the substitution letter as y; the card writes t, the letter the Telugu Akademi textbook uses. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: the roots 2, 1/2, (−3 ± √5)/2 add to −1/2 = −a₁/a₀ and multiply to 1 = a₄/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would solve this reciprocal equation — what you divide by, what you substitute, and how each value of t gives two roots.",
   "insider_note": "The t = 5/2 ending factorises; students who reach for the quadratic formula there waste time they need for the surd ending.",
@@ -70,11 +70,14 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Degree n = 4 is even, and aₖ = aₙ₋ₖ for every k",
-          "(2, 1, −11, 1, 2 read the same both ways).",
-          "So this is a standard reciprocal equation.",
-          "x ≠ 0, so divide every term by x²:",
+          "The coefficients are 2, 1, −11, 1, 2.",
+          "Read end to end they are the same, so",
+          "aₖ = aₙ₋ₖ for every k: this is a standard",
+          "reciprocal equation, and n = 4 is even.",
+          "x = 0 is not a root (the constant is 2 ≠ 0),",
+          "so divide every term by x²:",
           "2x² + x − 11 + 1/x + 2/x² = 0",
+          "Group the pairs that match:",
           "2(x² + 1/x²) + (x + 1/x) − 11 = 0 … (1)"
         ],
         "recall": {
@@ -116,8 +119,12 @@
         "margin_note": "Second mark. Replace x² + 1/x² by t² − 2 and x + 1/x by t. The 2 in front multiplies the whole bracket: 2(t² − 2) = 2t² − 4.",
         "memory_tip": "x² + 1/x² is t² − 2, never t². The 2 in front multiplies the whole bracket.",
         "lines": [
-          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "Put x + 1/x = t.",
+          "Squaring both sides: (x + 1/x)² = t²",
+          "x² + 2 + 1/x² = t²",
+          "So x² + 1/x² = t² − 2",
           "(1) becomes 2(t² − 2) + t − 11 = 0",
+          "2t² − 4 + t − 11 = 0",
           "2t² + t − 15 = 0"
         ],
         "recall": {
@@ -159,6 +166,7 @@
         "margin_note": "Third mark. Split the middle term: 1 = 6 − 5 with (6)(−5) = −30 = 2 × (−15).",
         "memory_tip": "Split 1 = 6 − 5, since (6)(−5) = −30 = 2 × (−15).",
         "lines": [
+          "Split t as 6t − 5t:",
           "2t² + 6t − 5t − 15 = 0",
           "2t(t + 3) − 5(t + 3) = 0",
           "(2t − 5)(t + 3) = 0",
@@ -203,7 +211,11 @@
         "memory_tip": "Multiply x + 1/x = 5/2 by 2x: 2x² − 5x + 2 = 0 factorises, so no formula is needed.",
         "lines": [
           "If t = 5/2: x + 1/x = 5/2",
-          "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
+          "Multiply by 2x: 2x² + 2 = 5x",
+          "2x² − 5x + 2 = 0",
+          "Split −5x as −4x − x:",
+          "2x² − 4x − x + 2 = 0",
+          "2x(x − 2) − 1(x − 2) = 0",
           "(2x − 1)(x − 2) = 0",
           "x = 2 or x = 1/2"
         ],
@@ -247,8 +259,10 @@
         "memory_tip": "x² + 3x + 1 = 0 has discriminant 5, so this pair stays as surds. Box all four roots.",
         "lines": [
           "If t = −3: x + 1/x = −3",
-          "x² + 1 = −3x, so x² + 3x + 1 = 0",
-          "x = (−3 ± √(9 − 4))/2 = (−3 ± √5)/2",
+          "Multiply by x: x² + 1 = −3x",
+          "x² + 3x + 1 = 0",
+          "x = (−3 ± √(9 − 4))/2   [quadratic formula]",
+          "= (−3 ± √5)/2",
           {
             "text": "∴ roots: 2, 1/2, (−3 ± √5)/2",
             "style": "boxed"

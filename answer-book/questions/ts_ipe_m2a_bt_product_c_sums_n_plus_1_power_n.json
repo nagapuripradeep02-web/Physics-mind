@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 206. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — a prove-that identity of LAQ length and the standard 7-mark shape for this chapter. Printed appearances: AP 16. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the one-mark-per-idea tagging on p.27: each bracket factored as Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁) (2), the ratio Cᵣ/Cᵣ₋₁ = (n − r + 1)/r making each bracket (n + 1)/r (2), the product of the n brackets and of the C's (2), the final line with C₀ = Cₙ = 1 (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.95, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 206. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — a prove-that identity of LAQ length and the standard 7-mark shape for this chapter. Printed appearances: AP 16. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the one-mark-per-idea tagging on p.27: each bracket factored as Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁) (2), the ratio Cᵣ/Cᵣ₋₁ = (n − r + 1)/r making each bracket (n + 1)/r (2), the product of the n brackets and of the C's (2), the final line with C₀ = Cₙ = 1 (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.95, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true. LINES EXPANDED 2026-09-08 (founder direction, modelled on his handwritten answer to ts_ipe_m2a_bt_vsaq_7th_term_4_by_x3): every index-law, ratio and substitution step is written on its own line, with the arithmetic shown before it is evaluated; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this — how you take Cᵣ₋₁ out of each bracket, what 1 + Cᵣ/Cᵣ₋₁ simplifies to, what the product of all the (n + 1)/r factors is, and why C₀C₁…Cₙ₋₁ can be written as C₁C₂…Cₙ.",
   "insider_note": "Take Cᵣ₋₁ out of every bracket, not Cᵣ — the inverted ratio never simplifies. The last mark is the line C₀ = Cₙ = 1, which turns C₀C₁…Cₙ₋₁ into the C₁C₂…Cₙ the right side shows.",
@@ -67,8 +67,12 @@
             "style": "heading"
           },
           "L.H.S. = (C₀ + C₁)(C₁ + C₂)(C₂ + C₃)…(Cₙ₋₁ + Cₙ)",
-          "= C₀(1 + C₁/C₀)·C₁(1 + C₂/C₁)·…·Cₙ₋₁(1 + Cₙ/Cₙ₋₁)",
-          "= C₀C₁…Cₙ₋₁·(1 + C₁/C₀)(1 + C₂/C₁)…(1 + Cₙ/Cₙ₋₁)"
+          "Take the first C out of each bracket:",
+          "C₀ + C₁ = C₀(1 + C₁/C₀)",
+          "C₁ + C₂ = C₁(1 + C₂/C₁)",
+          "… Cₙ₋₁ + Cₙ = Cₙ₋₁(1 + Cₙ/Cₙ₋₁)",
+          "L.H.S. = C₀C₁C₂…Cₙ₋₁",
+          "  × (1 + C₁/C₀)(1 + C₂/C₁)…(1 + Cₙ/Cₙ₋₁)"
         ],
         "recall": {
           "credit": "say_it",
@@ -105,9 +109,14 @@
         "margin_note": "Third and fourth marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + (n − r + 1)/r = (n + 1)/r.",
         "memory_tip": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + that is (n + 1)/r. The same numerator every time.",
         "lines": [
-          "Cᵣ/Cᵣ₋₁ = ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
-          "1 + Cᵣ/Cᵣ₋₁ = (r + n − r + 1)/r = (n + 1)/r",
-          "So the n brackets are",
+          "The r-th bracket is 1 + Cᵣ/Cᵣ₋₁, where Cᵣ = ⁿCᵣ",
+          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+          "= (n − r + 1)/r   [r! = r(r − 1)!]",
+          "1 + Cᵣ/Cᵣ₋₁ = 1 + (n − r + 1)/r",
+          "= (r + n − r + 1)/r = (n + 1)/r",
+          "Put r = 1, 2, …, n: the n brackets are",
           "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
         ],
         "recall": {
@@ -146,9 +155,10 @@
         "memory_tip": "Count the brackets: exactly n of them, so (n + 1)ⁿ on top and 1·2·…·n = n! below.",
         "lines": [
           "L.H.S. = C₀C₁…Cₙ₋₁",
-          "  × ((n + 1)/1)((n + 1)/2)…((n + 1)/n)",
-          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/(1·2·…·n)",
-          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/n!"
+          "  × ((n + 1)/1) · ((n + 1)/2) · … · ((n + 1)/n)",
+          "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/(1 · 2 · … · n)",
+          "  [(n + 1) appears n times on top]",
+          "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/n!"
         ],
         "recall": {
           "credit": "say_it",
@@ -185,7 +195,8 @@
         "margin_note": "Seventh mark. C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ. That is the only difference between the two sides.",
         "memory_tip": "C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ equals C₁C₂…Cₙ. That is the only difference between the two sides.",
         "lines": [
-          "Since C₀ = Cₙ = 1, C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ",
+          "Now C₀ = ⁿC₀ = 1 and Cₙ = ⁿCₙ = 1, so C₀ = Cₙ",
+          "C₀C₁C₂…Cₙ₋₁ = C₁C₂…Cₙ₋₁ · Cₙ = C₁C₂…Cₙ",
           {
             "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
             "style": "boxed"
