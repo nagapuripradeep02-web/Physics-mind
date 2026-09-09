@@ -3023,3 +3023,105 @@ test('the offline build bakes no staff word and no ask endpoint', async () => {
     expect(/PM_STAFF_WORD\s*=\s*""/.test(src)).toBe(true);
     expect(/PM_VIDI_BASE\s*=\s*""/.test(src)).toBe(true);
 });
+
+/* ── Simplify: the same answer short, then written out in full ──────────────
+   A card written out in full carries both lengths (step.lines_compact) and
+   flags the working the expansion added. These gates pin the three things that
+   can silently break: the SHORT answer is what a student meets, the button
+   actually swaps the working, and the added lines are visibly a different pen.
+   The pagination invariant is re-checked at the longer length, because the
+   fuller working is exactly what pushes a block over a page break. */
+
+const EXPANDED_CARD = 'ts_ipe_m2a_bt_terms_240_720_1080';
+
+test('Simplify writes the answer out in full, and the added working is a second pen', async ({ page }) => {
+    await openFirst(page);
+    await openQ(page, EXPANDED_CARD);
+
+    // 1. a student meets the SHORT answer, with the offer to unfold it
+    expect(await page.evaluate(() => (window as any).PM_ANSWER.getState().detail)).toBe('compact');
+    await expect(page.locator('#detailBar')).toBeVisible();
+    expect((await page.locator('#btnSimplify').textContent())!.trim()).toBe('Simplify');
+
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    const short = await page.evaluate(() => ({
+        lines: document.querySelectorAll('.step-block .line').length,
+        added: document.querySelectorAll('.line.added').length,
+        marks: (window as any).PM_ANSWER.getState().marksEarned,
+    }));
+    expect(short.added).toBe(0);                    // nothing is flagged in the short answer
+
+    // 2. the button — not the API — swaps the working
+    await page.click('#btnSimplify');
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    const full = await page.evaluate(() => {
+        const added = Array.from(document.querySelectorAll('.line.added')) as HTMLElement[];
+        const ink = Array.from(document.querySelectorAll('.step-block .line:not(.added)')) as HTMLElement[];
+        const straddle: string[] = [];
+        document.querySelectorAll('.page-body').forEach((body) => {
+            body.querySelectorAll('.step-block').forEach((bl) => {
+                const b = bl as HTMLElement;
+                if (b.offsetTop + b.offsetHeight > (body as HTMLElement).clientHeight) {
+                    straddle.push(b.getAttribute('data-step-id') || '?');
+                }
+            });
+        });
+        return {
+            detail: (window as any).PM_ANSWER.getState().detail,
+            marks: (window as any).PM_ANSWER.getState().marksEarned,
+            lines: document.querySelectorAll('.step-block .line').length,
+            addedCount: added.length,
+            addedColours: Array.from(new Set(added.map((el) => getComputedStyle(el).color))),
+            inkColours: Array.from(new Set(ink.map((el) => getComputedStyle(el).color))),
+            // The second pen must not MOVE a line: every metric on this page is
+            // shared, so `added` may change colour and nothing else. Measured
+            // against a probe wearing the same classes minus `added`, because the
+            // ink lines legitimately differ from each other (a heading and a boxed
+            // final are not indented like an equation) and a set comparison would
+            // fail on that alone.
+            drift: added.filter((el) => {
+                const probe = document.createElement('div');
+                probe.className = el.className.replace(/\badded\b/, '').trim();
+                el.parentNode!.appendChild(probe);
+                const a = getComputedStyle(el), b = getComputedStyle(probe);
+                const same = a.paddingLeft === b.paddingLeft && a.fontSize === b.fontSize
+                    && a.lineHeight === b.lineHeight && a.fontWeight === b.fontWeight;
+                probe.remove();
+                return !same;
+            }).map((el) => (el.textContent || '').slice(0, 30)),
+            straddle,
+        };
+    });
+
+    expect(full.detail).toBe('full');
+    expect(full.lines).toBeGreaterThan(short.lines);           // it really is more working
+    expect(full.addedCount).toBeGreaterThan(0);
+    expect(full.straddle).toEqual([]);                          // still no split block
+    expect(full.marks).toBe(short.marks);                       // the marks are the answer's, not the length's
+    expect((await page.locator('#btnSimplify').textContent())!.trim()).toBe('Back to the short answer');
+
+    // 3. the added working is a DIFFERENT pen from the ink, and only a pen
+    expect(full.addedColours).toHaveLength(1);
+    expect(full.inkColours).not.toContain(full.addedColours[0]);
+    expect(full.drift).toEqual([]);                             // colour only, never metric
+
+    // 4. and back again
+    await page.click('#btnSimplify');
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    expect(await page.evaluate(() => (window as any).PM_ANSWER.getState().detail)).toBe('compact');
+    expect(await page.locator('.line.added').count()).toBe(0);
+    expect(await page.evaluate(() => document.querySelectorAll('.step-block .line').length)).toBe(short.lines);
+});
+
+test('a card with no fuller version offers no Simplify button', async ({ page }) => {
+    await openFirst(page);
+    // PM_QUESTIONS[0] is alphabetical and carries no lines_compact — the state
+    // every card in the book is in until it is written out in full.
+    const has = await page.evaluate(() => {
+        const q = (window as any).PM_ANSWER.question;
+        return q.answer.steps.some((s: any) => s.lines_compact);
+    });
+    expect(has).toBe(false);
+    await expect(page.locator('#detailBar')).toBeHidden();
+    expect(await page.evaluate(() => (window as any).PM_ANSWER.setDetail('full'))).toBe(false);
+});

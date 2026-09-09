@@ -43,6 +43,19 @@
 
   var cuts, cutIndex = 0, cut, steps, marksTotal;
 
+  // ═══ detail — the same answer written short or written out in full ═══════
+  // A card written out in full carries BOTH: `lines` is the full working and
+  // `lines_compact` the short answer it grew from, with every line the
+  // expansion added flagged. This selects between them. It is orthogonal to a
+  // cut: a cut chooses WHICH STEPS are answered, detail chooses how much of
+  // each step is written down.
+  //
+  // 'compact' is the default so a student meets the answer at the length the
+  // paper wants; Simplify unfolds it. A card with no lines_compact anywhere
+  // has nothing to unfold, reads identically at both levels, and shows no
+  // button — which is every card authored before 2026-09-09.
+  var detail = 'compact';
+
   function loadCuts() {
     cuts = question.cuts && question.cuts.length ? question.cuts : [{
       key: 'full', label: 'Full answer', qtype: question.qtype,
@@ -70,6 +83,12 @@
         merged.marks = o.marks;
         if (o.label) merged.label = o.label;
         if (o.lines) merged.lines = o.lines;
+        // Resolve the short answer for THIS cut. A cut that substitutes its own
+        // shorter `lines` for a step has replaced the working wholesale, so the
+        // base step's compact copy no longer describes what is on the page — that
+        // step simply reads the same at both levels unless the cut supplies its own.
+        merged.lines_compact = o.lines ? o.lines_compact : s.lines_compact;
+        if (detail === 'compact' && merged.lines_compact) merged.lines = merged.lines_compact;
         if (o.margin_note) merged.margin_note = o.margin_note;
         if (o.why) merged.why = o.why;
         if (o.memory_tip) merged.memory_tip = o.memory_tip;
@@ -230,6 +249,7 @@
     renderMeta();
     renderMarkSplit();
     renderStepList();
+    renderDetailBar();
   }
 
   /** Switching cut restarts the answer: it is a different answer, not a filter.
@@ -242,6 +262,42 @@
     initTestPaths();          // photo/mic are only honest on the default cut
     VidiPanel.onQuestion();
     syncHash();
+  }
+
+  /** Does the answer on screen have a fuller version to unfold? */
+  function hasExpansion() {
+    for (var i = 0; i < steps.length; i++) if (steps[i].lines_compact) return true;
+    return false;
+  }
+
+  /** Switching detail KEEPS the student's place: it is the same answer at the
+      same step, written at a different length, so re-reading from the top would
+      be a punishment for asking for more detail. Everything up to the current
+      step is re-laid instantly — pagination is decided fresh, because the fuller
+      working is taller and will not sit on the same pages. */
+  function setDetail(level) {
+    if (level === detail) return;
+    detail = level;
+    var at = stepIndex;
+    applyCut(cutIndex);
+    renderStepList();
+    renderUpTo(at, false);
+    renderDetailBar();
+    Vidi.log('detail', { qid: question.question_id, level: level, step: at + 1 });
+  }
+
+  function renderDetailBar() {
+    var bar = $('detailBar');
+    if (!bar) return;                     // an older shell — the button is optional
+    var on = hasExpansion();
+    bar.hidden = !on;
+    if (!on) return;
+    var full = detail === 'full';
+    $('btnSimplify').textContent = full ? 'Back to the short answer' : 'Simplify';
+    $('btnSimplify').setAttribute('aria-pressed', full ? 'true' : 'false');
+    $('detailNote').textContent = full
+      ? 'Every step written out. The added steps are in red.'
+      : 'The answer at exam length. Simplify writes out every step.';
   }
 
   /** Full question load — the mechanism behind the router. Always re-renders,
@@ -257,6 +313,8 @@
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
+    // Every question opens at exam length, whatever the last one was left on.
+    detail = 'compact';
     loadCuts();
     var ci = 0;
     if (cutKey) {
@@ -1271,8 +1329,21 @@
 
   // ═══ block construction (full final content) ═════════════════════════════
 
+  // A line's style, with ONE default for both authored forms. A plain string has
+  // always resolved to 'normal' here, so an object line that names no style must
+  // resolve to 'normal' too — otherwise merely ADDING A KEY to a line moves it
+  // 56px right on an `equation` step, which is exactly what marking a line
+  // `added` does. Every authored line in the bank is a string or names its style,
+  // so nothing that shipped renders differently.
   function lineSpec(raw) {
-    return typeof raw === 'string' ? { text: raw, style: 'normal' } : raw;
+    if (typeof raw === 'string') return { text: raw, style: 'normal' };
+    if (raw.style) return raw;
+    // Copy, never rebuild from a known key list: the build adds `html` to a
+    // typeset line, and a rebuild would drop whatever it did not think to name.
+    var o = {};
+    for (var k in raw) if (Object.prototype.hasOwnProperty.call(raw, k)) o[k] = raw[k];
+    o.style = 'normal';
+    return o;
   }
 
   function buildStepBlock(step) {
@@ -1285,12 +1356,14 @@
     if (step.kind === 'diagram') {
       block.appendChild(buildFigure(step.figure));
     } else {
-      var defaultStyle = step.kind === 'equation' ? 'eq' : 'normal';
       step.lines.forEach(function (raw, li) {
         var spec = lineSpec(raw);
-        var style = spec.style || defaultStyle;
+        var style = spec.style;
         var el = document.createElement('div');
         el.className = 'line ' + style;
+        // Working the expansion added, shown only when the expansion is on screen.
+        // In the short answer the flag is meaningless — those lines are not there.
+        if (spec.added && detail === 'full') el.classList.add('added');
         el.setAttribute('data-line-index', String(li));
         if (spec.render === 'katex' && spec.html) {
           // Typeset by the BUILD (never here — Rule 18). A typeset tree has no
@@ -1836,6 +1909,9 @@
   $('btnRestart').addEventListener('click', function () {
     Vidi.log('restart', { qid: question.question_id });
     renderUpTo(-1, false);
+  });
+  $('btnSimplify').addEventListener('click', function () {
+    setDetail(detail === 'full' ? 'compact' : 'full');
   });
   $('doorBack').addEventListener('click', function () { Door.show(); });
   var searchLogTimer = null;
@@ -5967,6 +6043,8 @@
         // know what it is a total OF.
         cutKey: cut.key,
         cutIndex: cutIndex,
+        // 'compact' = the short answer, 'full' = every step written out.
+        detail: detail,
         stepIds: steps.map(function (s) { return s.id; })
       };
     },
@@ -6002,6 +6080,14 @@
     },
     revealNext: advance,
     revealAll: function () { renderUpTo(steps.length - 1, false); },
+    /** Write the answer short or in full. False when this card has no fuller
+        version to unfold — which is every card that was never expanded. */
+    setDetail: function (level) {
+      if (level !== 'compact' && level !== 'full') return false;
+      if (!hasExpansion()) return false;
+      setDetail(level);
+      return true;
+    },
     /** The exact ANSWER FACTS string the model is grounded in for the question and
         cut currently on screen. Read-only, and the reason it exists: the offline
         shakedown must probe with the SAME grounding a student's chat sends, and a
