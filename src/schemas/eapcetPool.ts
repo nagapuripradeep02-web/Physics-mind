@@ -90,6 +90,7 @@ export const EapcetGroundingSchema = z.object({
         question_id: z.string().min(1),
         score: z.number().nullable(),
         anchor: z.boolean().optional(),
+        shape: z.string().regex(SHAPE_KEY).optional(),   // grounded by the question's shape, not by text
     }).strict()),
     concept_tags: z.array(z.string()).optional(),
     weak_match: z.boolean().optional(),
@@ -105,6 +106,7 @@ export const EapcetShapeSchema = z.object({
     key: z.string().regex(SHAPE_KEY),
     label: z.string().min(1).max(60),
     definition: z.string().optional(),
+    cards: z.array(z.string().min(1)).max(3).optional(),   // the Answer Book cards a teacher opens for this shape
 }).strict();
 
 export const EapcetQuestionSchema = z.object({
