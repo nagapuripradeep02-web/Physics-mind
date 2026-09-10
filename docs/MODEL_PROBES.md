@@ -204,3 +204,29 @@ The founder supplied a second Google key (a new project with $300 of credit). Ge
 **Cost, measured:** Gemini 3.6 Flash reads a question photo for ~1,100 image tokens in and 3,000–7,000 out (it thinks while transcribing) ≈ $0.02 per photo at $0.75/$3.75 per million — **7× a DeepSeek solve**, and the transcript then costs a full DeepSeek `high` solve on top (16,000–21,000 tokens on these hard items). A cheaper reader (3.5 Flash-Lite at $0.30/$2.50, or capping the reader's thinking) is the obvious next lever.
 
 **To finish:** link the key's project to the billing account (AI Studio names the project on the key's page; that exact project must be the one linked), then `GEMINI_MODEL=gemini-3.6-flash python scripts/model_probes/gemini_probe.py run 3` — it resumes from `results.jsonl` — and `... report --list`.
+
+## 16. Run 7 — Gemini 3.5 Flash-Lite as reader and as solver, all 118 questions (2026-09-10)
+
+The free daily quota is **per model**, so with 3.6 Flash exhausted the same three arms ran end to end on **gemini-3.5-flash-lite** ($0.30 in / $2.50 out per million): 118 questions × 3 calls = 354, one error. Data `data/chem_reader_lite/` with `hand.json` (39 hand grades, 4 disputed). Baseline for the same questions is DeepSeek from the photo in Runs 2–4.
+
+| Set | Subject | DeepSeek photo (best level) | Flash-Lite alone | Flash-Lite reads → DeepSeek solves |
+|---|---|---|---|---|
+| JEE Main 2024 (Run 2 sample) | chemistry /29 | 25 | 26 (+1 disputed) | 26 (+1 disputed) |
+| JEE Main figures (Run 4 sample) | chemistry /29 | 25 | 21 | **25** |
+| EAPCET figures | chemistry /30 | 28 | **29** | 27 |
+| EAPCET figures | physics /30 | 26 | 24 (+1 disputed) | 24 (+1 disputed) |
+| **Total** | | **104 /118** | **100** | **102** |
+
+Cost per question: Flash-Lite alone $0.0033, the split $0.0046–$0.0069 (reader plus a full DeepSeek `high` solve). DeepSeek alone from the photo is $0.0026–$0.0037 on the same questions. So **the split costs about 1.8× DeepSeek alone and buys nothing overall at this reader quality**.
+
+**The finding is about the reader, not the pipeline.** On the ten hardest chemistry items (the ones DeepSeek fails from the photo), the two readers separate sharply:
+
+| | DeepSeek photo | 3.6 Flash direct | 3.6 Flash split | Flash-Lite direct | Flash-Lite split |
+|---|---|---|---|---|---|
+| right of 10 | 4 | 8 | **7 of 8** | 6 of 9 | 5 of 9 |
+
+3.6 Flash writes a 4,000–7,000-token transcript that names what is actually drawn ("bicyclic, 4 C=C, two sp³ CH₂"); Flash-Lite writes 200–800 tokens and loses exactly the detail that matters, so DeepSeek then reproduces its original error (the symmetric-triene isomer count is 8 again). **A cheap reader reads less, and the saving comes straight out of accuracy.**
+
+**Where the split still clearly wins:** JEE chemistry *figure* questions, 21 → 25 of 29. That is the set that is nothing but drawings.
+
+**Standing conclusion for the router:** transcribe-then-solve is worth it only with a strong reader, and only on figure/structure questions. The 3.6 Flash arm must be finished on the paid tier before this becomes a design decision — 9 questions is not a number.

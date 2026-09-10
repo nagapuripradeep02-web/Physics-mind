@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 ARGV = sys.argv[1:]; sys.argv = ['x']
 import ds_probe as P
 
-RUN = 'chem_reader'
+RUN = os.environ.get('READER_RUN', 'chem_reader')   # one directory per reader model, so arms never mix
 OUT = os.path.join(P.REPO, 'docs', 'reports', 'model_probes', 'data', RUN)
 GEMINI = os.environ.get('GEMINI_MODEL', 'gemini-3.8-flash')   # 3.6 / 3.7 / 3.8 Flash share one price
 GPRICE = {'in': 0.75, 'out': 3.75}
