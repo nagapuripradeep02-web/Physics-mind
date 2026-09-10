@@ -348,3 +348,34 @@ Six toughest, OFF → ON: capacitor error ✗→✗ (still 0.01), He curve ✗�
 **What the sandbox was actually used for** (114 of 208 code-ON calls ran code): on physics and chemistry, **42 image-zoom/plot snippets (OpenCV/PIL crops of the figure) against 10 computations** — the model uses code to *look closer*, not to calculate; on maths, 49 computations (SymPy/NumPy checks) against 11 zooms — and maths was already 59/59 without it.
 
 **Reading.** Code execution does not move accuracy: +1 of 148 on the hard set, 0 of 59 on maths, at +55% cost and +12–60% latency. The three items that defeat every configuration are unchanged — an exam convention (which error formula), a drawing-slope read, and an organic mechanism — and none of them is a computation. Gemini 3.7 Flash alone is 59/59 on maths from the photo, so maths does not need the tool either. **Decision: do not turn on code execution by default.** Two narrower uses survive: (a) a deterministic *exam-convention* library (error propagation the EAPCET way, sig-fig rounding, g = 10) applied *after* the model — that is the only thing that would have caught the capacitor question, and it is our code, not the model's; (b) showing the model's own numeric check in the working when it ran one, as a trust signal. Both are product features, not accuracy fixes.
+
+## 22. Product cost model from the runs — agreement gate, the review loop, usage personas (2026-09-10/11)
+
+Computed in the session from the committed data; kept here so the decisions have their numbers.
+
+**The two-solver agreement gate (from Run 9 data).** On the 148 hard questions where both Gemini 3.7 Flash (direct) and DeepSeek V4.1 Flash (`high`) answered from the photo, disputed keys aside:
+
+| | questions | agreed answer right |
+|---|---|---|
+| both give the same answer | 129 (88%) | **129 / 129** |
+| they disagree | 17 (12%) | Gemini right 15, DeepSeek right 2, both wrong 0 |
+
+So agreement delivered a verdict on 88% of the hardest questions with zero measured errors, and disagreement flagged every case where one model was wrong. The known hole (Run 10): both can agree on the same wrong *convention* (the EAPCET capacitor error 0.01 vs 0.023) — a convention library after the model, not a third model, is the fix.
+
+**Per-question costs used for the product model** (measured, off-peak): Gemini 3.7 Flash direct $0.004 text / $0.005–0.007 figure; DeepSeek `high` $0.001–0.003 text / $0.003–0.004 figure; the pair ≈ $0.006 text / $0.010 figure. 1,000 non-bank questions a month: pair on everything ≈ $7 (₹600; ≈ $9 at DeepSeek peak 11:30–15:30 IST weekdays); Gemini on all + DeepSeek on figures only ≈ $5.5; Gemini alone ≈ $5; routed single solver ≈ $2.5–3.
+
+**The review loop** (question photo → hidden solve → student uploads a handwritten solution up to 3× → AI reviews → similar question): solve with gate $0.008; each handwritten-solution review **~$0.008 on 3.7 Flash (estimate — not measured; ~$0.003 on Flash-Lite)**; similar question **$0 from the bank** (generated + verified would be $0.004). Worst case per question ≈ $0.036 → 1,000 questions × 3 uploads ≈ **$36 ≈ ₹3,000 a month**; at the 20/day cap ≈ $22.
+
+**Usage personas** (time-budget estimates, not measurements; a doubt costs 4–6 min, so ~30 photo doubts a day is the physical ceiling):
+
+| user | photos/day | questions/month | solution uploads/month | cost (3.7 Flash reviews) | cost (Flash-Lite reviews) |
+|---|---|---|---|---|---|
+| obsessed average JEE aspirant (30–40% wrong, uploads on half) | 18 | ~540 | ~220 | ≈ $6.1 ≈ ₹520 | ≈ $5.0 ≈ ₹420 |
+| heavy user | 15 | ~450 | ~90 | ≈ $4.3 ≈ ₹370 | ≈ $3.9 ≈ ₹330 |
+| AIR-1 calibre student (90%+ right, few hard doubts, mock-day spikes) | 8 | ~250 | ~45 | ≈ $2.4 ≈ ₹200 | ≈ $2.1 ≈ ₹180 |
+| moderate | 5, five days a week | ~110 | ~20 | ≈ $1.0 ≈ ₹90 | ≈ ₹80 |
+| low | 1–2, some days | ~20 | ~3 | ≈ ₹17 | ≈ ₹15 |
+
+The topper is cheap, the struggler is expensive, and the struggler is the customer. A blended base of 5% obsessed / 15% heavy / 40% moderate / 40% low costs ≈ ₹120–130 per user per month against ₹199 — viable, carried by the light users, and the margin shrinks as the product succeeds. JEE aspirants are nearly all non-bank (the bank is EAPCET past papers).
+
+**Levers, in order:** similar question from the bank (free, verified); review on a cheaper model *after measuring it on real handwriting*; a monthly allowance (e.g. 400 photos + 100 solution reviews) instead of a daily cap that blocks mock-review days; one solve per question ever (cache by transcribed-question fingerprint — students in one batch send the same material); price the coaching loop as its own tier. The reviewer itself is designed in `docs/SOLUTION_REVIEWER_ARCHITECTURE.md`.
