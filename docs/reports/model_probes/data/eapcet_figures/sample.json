@@ -1,0 +1,1562 @@
+[
+ {
+  "id": "tg_eapcet_2021_20210805_an_q101",
+  "subject": "physics",
+  "chapter": "Thermodynamics",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 101,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "The following figure shows a Carnot engine that works between temperatures T₁ = 400 K and T₂ = 200 K and drives a Carnot refrigeration that works between temperatures T₃ = 350 K and T₄ = 250 K. The quantity Q₃/Q₁ will be",
+  "options_en": [
+   "1.5",
+   "2.0",
+   "2.25",
+   "1.75"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q101.jpg",
+  "parts": 3,
+  "size": [
+   1321,
+   2769
+  ],
+  "bytes": 178483,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q090",
+  "subject": "physics",
+  "chapter": "Laws of Motion",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210804_an",
+  "q_no": 90,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210804_an",
+  "question_en": "Consider two masses m₁ and m₂ are connected through a pully. Mass 'm₂' starts from rest at height 'h' and falls down. With what speed it hits the ground? (Assume no friction and massless strings & pulleys)",
+  "options_en": [
+   "√((m₂/(m₁+m₂))gh)",
+   "√(2gh)",
+   "√((m₂/(m₁+m₂))2gh)",
+   "√((m₁/(m₁+m₂))2gh)"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210804_an_q090.jpg",
+  "parts": 3,
+  "size": [
+   1312,
+   2473
+  ],
+  "bytes": 150636,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_an_q107",
+  "subject": "physics",
+  "chapter": "Current Electricity",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240509_an",
+  "q_no": 107,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240509_an",
+  "question_en": "The potential difference V across the filament of the bulb shown in the given Wheatstone bridge varies as V = i(2i+1), where 'i' is the current in ampere through the filament of the bulb. The emf of the battery (Vₐ) so that the bridge becomes balanced is",
+  "options_en": [
+   "10 V",
+   "15 V",
+   "20 V",
+   "25 V"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240509_an_q107.jpg",
+  "parts": 2,
+  "size": [
+   1371,
+   1672
+  ],
+  "bytes": 161016,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q084",
+  "subject": "physics",
+  "chapter": "Motion in a Plane",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210804_fn",
+  "q_no": 84,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210804_fn",
+  "question_en": "A car driver is trying to jump across a path as shown in figure by driving horizontally off a cliff 'X' at the speed 10 m/s. When he touches peak Z (ignore air resistance), what would be speed? (use g = 10 m/s²)",
+  "options_en": [
+   "30 m/s",
+   "40 m/s",
+   "15 m/s",
+   "50 m/s"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210804_fn_q084.jpg",
+  "parts": 2,
+  "size": [
+   1288,
+   2401
+  ],
+  "bytes": 136552,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q097",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Fluids",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_fn",
+  "q_no": 97,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_fn",
+  "question_en": "In a horizontal tube the water pressure changes by 1500 Nm⁻² between A and B as shown in figure below. The cross sectional areas at A and B of the tube are 40 cm² and 20 cm² respectively. Find the rate of flow of water through the tube",
+  "options_en": [
+   "1000 cm³s⁻¹",
+   "2000 cm³s⁻¹",
+   "4000 cm³s⁻¹",
+   "6000 cm³s⁻¹"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_fn_q097.jpg",
+  "parts": 2,
+  "size": [
+   1345,
+   2280
+  ],
+  "bytes": 179353,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_an_q095",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Solids",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_an",
+  "q_no": 95,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_an",
+  "question_en": "The graph below represents a typical stress-strain curve for a metal. Identify the point on the graph that is the ultimate tensile strength of the material.",
+  "options_en": [
+   "P",
+   "Q",
+   "R",
+   "S"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_an_q095.jpg",
+  "parts": 2,
+  "size": [
+   1355,
+   1936
+  ],
+  "bytes": 127523,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q108",
+  "subject": "physics",
+  "chapter": "Moving Charges and Magnetism",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_fn",
+  "q_no": 108,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_fn",
+  "question_en": "Three long, straight, parallel wires carrying different currents are arranged as shown in the diagram. In the given arrangement, let the net force per unit length on the wire 'C' be F⃗. If the wire 'B' is removed without disturbing the other two wires, then the force per unit length on wire 'A' is",
+  "options_en": [
+   "−F⃗",
+   "3F⃗",
+   "2F⃗",
+   "−3F⃗"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_fn_q108.jpg",
+  "parts": 2,
+  "size": [
+   1375,
+   2351
+  ],
+  "bytes": 187879,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q083",
+  "subject": "physics",
+  "chapter": "Motion in a Straight Line",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_fn",
+  "q_no": 83,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_fn",
+  "question_en": "For the following velocity-time graph, the average speed for the motion during first 80 seconds is:",
+  "options_en": [
+   "0",
+   "5 m/s",
+   "10 m/s",
+   "0.25 m/s"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_fn_q083.jpg",
+  "parts": 2,
+  "size": [
+   1343,
+   1879
+  ],
+  "bytes": 125212,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q105",
+  "subject": "physics",
+  "chapter": "Electric Potential and Capacitance",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_fn",
+  "q_no": 105,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_fn",
+  "question_en": "The following figure shows a 9 V battery and 3 uncharged capacitors of capacitances C₁ = C₂ = C₃ = 1 μF. The switch is thrown to the right side until capacitor C₁ is fully charged, then the switch is thrown to the left. The final charge on capacitor C₂ is\n[Diagram: a circuit with a two-position switch S. C₂ and C₃ are connected in series on the left branch. C₁ is in the middle branch below the switch. The 9 V battery is on the right branch. Throwing the switch right connects C₁ to the battery; throwing it left connects C₁ to the C₂–C₃ branch.]",
+  "options_en": [
+   "1 μC",
+   "2 μC",
+   "3 μC",
+   "4 μC"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_fn_q105.jpg",
+  "parts": 2,
+  "size": [
+   1290,
+   1359
+  ],
+  "bytes": 104770,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q096",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Fluids",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_fn",
+  "q_no": 96,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_fn",
+  "question_en": "A metal sheet 4 cm on a side and of negligible thickness is attached to a balance and inserted into container fluid. The balance to which metal sheet is attached read 0.50 N and the contact angle is found to be zero. A small amount of oil is then spread over the metal sheet. The contact angle now becomes 180° and the balance now reads 0.49 N. The surface tension of the fluid is",
+  "options_en": [
+   "6.25×10⁻² N/m",
+   "1.25×10⁻¹ N/m",
+   "4.25×10⁻² N/m",
+   "0.1 N/m"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_fn_q096.jpg",
+  "parts": 2,
+  "size": [
+   1342,
+   2082
+  ],
+  "bytes": 161025,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q099",
+  "subject": "physics",
+  "chapter": "Waves",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 99,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "A heavy uniform rope is suspended vertically from a ceiling and is in equilibrium. A pulse is generated at the bottom end of the rope as shown. As the pulse travels up the rope, its acceleration at any instant is (g is acceleration due to gravity)",
+  "options_en": [
+   "Constant and equal to g/2",
+   "Variable but equal to g/2 when the pulse is exactly at the middle of the string",
+   "Constant and equal to g",
+   "Variable but equal to g when the pulse is exactly at the middle of the string"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q099.jpg",
+  "parts": 2,
+  "size": [
+   1343,
+   2306
+  ],
+  "bytes": 221975,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q108",
+  "subject": "physics",
+  "chapter": "Moving Charges and Magnetism",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220720_fn",
+  "q_no": 108,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220720_fn",
+  "question_en": "A current carrying loop ABCD has two circular arcs AD and BC with radius 1 cm and 2 cm respectively as shown in the figure. The two arcs AD and BC subtend a common angle 30° at the centre O. If the current flowing in the loop is 1.2/π A, then the magnitude of net magnetic field at O is (Given μ₀ = 4π×10⁻⁷)",
+  "options_en": [
+   "0.5 μT",
+   "3 μT",
+   "1 μT",
+   "1.5 μT"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220720_fn_q108.jpg",
+  "parts": 2,
+  "size": [
+   1305,
+   1614
+  ],
+  "bytes": 116851,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q119",
+  "subject": "physics",
+  "chapter": "Semiconductor Electronics",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_fn",
+  "q_no": 119,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_fn",
+  "question_en": "What is output of the logic circuit shown below? [cascade of four OR gates: first gate takes inputs 1 and X; each subsequent OR gate takes the previous gate's output and X again; final output Y]",
+  "options_en": [
+   "Y = 0",
+   "Y = 1",
+   "Y = X",
+   "Y = X̄"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_fn_q119.jpg",
+  "parts": 1,
+  "size": [
+   1335,
+   1427
+  ],
+  "bytes": 95528,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_an_q112",
+  "subject": "physics",
+  "chapter": "Electromagnetic Induction",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_an",
+  "q_no": 112,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_an",
+  "question_en": "A long straight wire carrying current I and a rectangular frame with side lengths a and b lie in the same plane as shown in the figure. The mutual inductance of the wire and frame is",
+  "options_en": [
+   "(μ₀/2π) ab",
+   "(μ/4π)(b/a)",
+   "(μ₀a/2π) ln 2",
+   "(μ₀b/2π) ln 2"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_an_q112.jpg",
+  "parts": 3,
+  "size": [
+   1371,
+   2765
+  ],
+  "bytes": 160331,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q090",
+  "subject": "physics",
+  "chapter": "System of Particles and Rotational Motion",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_fn",
+  "q_no": 90,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_fn",
+  "question_en": "Four masses are arranged along a circle of radius 1 m as shown in the figure. The center of mass of this system of masses is at\n[Figure: a circle of radius 1 m centered at the origin (0, 0). Mass 2M sits on the circle on the positive y-axis, mass M sits on the circle on the positive x-axis, mass 3M sits on the circle on the negative x-axis, and mass 4M sits on the circle on the negative y-axis.]",
+  "options_en": [
+   "−(1/5)î − (1/5)ĵ",
+   "(1/5)î + ĵ",
+   "î − (1/5)ĵ",
+   "(1/5)î + (1/5)ĵ"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_fn_q090.jpg",
+  "parts": 2,
+  "size": [
+   1318,
+   1952
+  ],
+  "bytes": 105321,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q085",
+  "subject": "physics",
+  "chapter": "Laws of Motion",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230513_fn",
+  "q_no": 85,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230513_fn",
+  "question_en": "A body of weight 50 N is placed on a horizontal surface as shown in the figure. The minimum force required to move the body is 28.28 N. The frictional force and the normal reaction are respectively",
+  "options_en": [
+   "10 N, 15 N",
+   "20 N, 30 N",
+   "2 N, 3 N",
+   "5 N, 6 N"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230513_fn_q085.jpg",
+  "parts": 1,
+  "size": [
+   1352,
+   1461
+  ],
+  "bytes": 144944,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q107",
+  "subject": "physics",
+  "chapter": "Electric Potential and Capacitance",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 107,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "A circuit is shown in the following figure for which C₁ = (3 ± 0.011) μF, C₂ = (5 ± 0.01) μF and C₃ = (1 ± 0.01) μF. If C is the equivalent capacitance across AB, then C is given by:",
+  "options_en": [
+   "(0.9 ± 0.114) μF",
+   "(0.9 ± 0.01) μF",
+   "(0.9 ± 0.023) μF",
+   "(0.9 ± 0.09) μF"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q107.jpg",
+  "parts": 2,
+  "size": [
+   1327,
+   1888
+  ],
+  "bytes": 151100,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q119",
+  "subject": "physics",
+  "chapter": "Semiconductor Electronics",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220720_fn",
+  "q_no": 119,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220720_fn",
+  "question_en": "Identify the logic operation performed by the following circuit.",
+  "options_en": [
+   "OR",
+   "AND",
+   "NOT",
+   "NAND"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220720_fn_q119.jpg",
+  "parts": 1,
+  "size": [
+   1304,
+   1124
+  ],
+  "bytes": 75989,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q106",
+  "subject": "physics",
+  "chapter": "Current Electricity",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_an",
+  "q_no": 106,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_an",
+  "question_en": "In the given circuit, the equivalent resistance between A and B is",
+  "options_en": [
+   "3 Ω",
+   "4 Ω",
+   "4.5 Ω",
+   "5 Ω"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_an_q106.jpg",
+  "parts": 2,
+  "size": [
+   1349,
+   1372
+  ],
+  "bytes": 109637,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q106",
+  "subject": "physics",
+  "chapter": "Current Electricity",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 106,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "In the given part of a circuit, the potential at point B is zero. Then the potentials at A and C respectively are",
+  "options_en": [
+   "−1.5 V, +2 V",
+   "+1.5 V, +2 V",
+   "+1.5 V, +0.5 V",
+   "+1.5 V, −0.5 V"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q106.jpg",
+  "parts": 2,
+  "size": [
+   1357,
+   1471
+  ],
+  "bytes": 122290,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q105",
+  "subject": "physics",
+  "chapter": "Electric Potential and Capacitance",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_an",
+  "q_no": 105,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_an",
+  "question_en": "The equivalent capacitance between points A and B is",
+  "options_en": [
+   "5/6 C",
+   "11/5 C",
+   "6 C",
+   "5/11 C"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_an_q105.jpg",
+  "parts": 2,
+  "size": [
+   1265,
+   1733
+  ],
+  "bytes": 94233,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q119",
+  "subject": "physics",
+  "chapter": "Semiconductor Electronics",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_an",
+  "q_no": 119,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_an",
+  "question_en": "5 logic gates are connected as shown in the figure. If A and B are the inputs, Y is the output then the truth table of the circuit is",
+  "options_en": [
+   "A=0,B=0→Y=0; A=1,B=0→Y=0; A=0,B=1→Y=0; A=1,B=1→Y=0",
+   "A=0,B=0→Y=1; A=1,B=0→Y=0; A=0,B=1→Y=0; A=1,B=1→Y=1",
+   "A=0,B=0→Y=0; A=1,B=0→Y=1; A=0,B=1→Y=1; A=1,B=1→Y=1",
+   "A=0,B=0→Y=1; A=1,B=0→Y=1; A=0,B=1→Y=1; A=1,B=1→Y=1"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_an_q119.jpg",
+  "parts": 2,
+  "size": [
+   1363,
+   2415
+  ],
+  "bytes": 175664,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q119",
+  "subject": "physics",
+  "chapter": "Semiconductor Electronics",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_fn",
+  "q_no": 119,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_fn",
+  "question_en": "If in a p-n junction diode, a square input signal of 10 V is applied as shown (a square wave switching between +5 V and −5 V is applied to the diode in series with a load resistor RL). Then, the output signal across RL will be:",
+  "options_en": [
+   "Square wave switching between 0 V and +10 V",
+   "Square wave switching between 0 V and −10 V",
+   "Square wave switching between 0 V and −5 V",
+   "Square wave switching between 0 V and +5 V"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_fn_q119.jpg",
+  "parts": 3,
+  "size": [
+   1389,
+   3578
+  ],
+  "bytes": 181796,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q088",
+  "subject": "physics",
+  "chapter": "Motion in a Plane",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_an",
+  "q_no": 88,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_an",
+  "question_en": "A small object slides down with initial velocity equal to zero from the top of a smooth hill of height H. The other end of the hill is horizontal and is at height H/2 as shown in the figure. The horizontal distance covered by the object from the end of the hill to the ground is",
+  "options_en": [
+   "2H",
+   "H",
+   "H/2",
+   "3H/2"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_an_q088.jpg",
+  "parts": 2,
+  "size": [
+   1282,
+   2205
+  ],
+  "bytes": 154015,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q105",
+  "subject": "physics",
+  "chapter": "Current Electricity",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 105,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "When a potentiometer is connected between the points A and B as shown in the circuit, balance point is obtained at 64 cm. When it is connected between A and C, the balance point is 8 cm. If the potentiometer is connected between B and C the balance point will be",
+  "options_en": [
+   "8 cm",
+   "56 cm",
+   "64 cm",
+   "72 cm"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q105.jpg",
+  "parts": 1,
+  "size": [
+   1345,
+   1381
+  ],
+  "bytes": 140654,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q089",
+  "subject": "physics",
+  "chapter": "Laws of Motion",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_fn",
+  "q_no": 89,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_fn",
+  "question_en": "A time varying force acts on a ball of mass 100 g for 2 ms. The force versus time curve is shown below. If the initial speed of the ball is 10 m/s, then the speed of ball after 2 ms is\n[Graph: F(t) in kN on the vertical axis, t in ms on the horizontal axis. The force rises linearly from 0 at t = 0 to a peak of 20 kN at t = 1 ms, then falls linearly back to 0 at t = 2 ms, forming a triangle.]",
+  "options_en": [
+   "210 m/s",
+   "410 m/s",
+   "200 m/s",
+   "400 m/s"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_fn_q089.jpg",
+  "parts": 2,
+  "size": [
+   1290,
+   1800
+  ],
+  "bytes": 108323,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q108",
+  "subject": "physics",
+  "chapter": "Moving Charges and Magnetism",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_an",
+  "q_no": 108,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_an",
+  "question_en": "A current carrying loop is placed in a uniform magnetic field 'B' in different orientations I, II, III and IV as shown in the figure. The correct order of decreasing potential energy is (n̂ − unit vector normal to the plane of the loop)",
+  "options_en": [
+   "I, III, II, IV",
+   "I, II, III, IV",
+   "I, IV, II, III",
+   "III, IV, I, II"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_an_q108.jpg",
+  "parts": 2,
+  "size": [
+   1365,
+   1934
+  ],
+  "bytes": 183122,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q094",
+  "subject": "physics",
+  "chapter": "Gravitation",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 94,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "A point mass 'm' is located at a distance r from a uniform thin rod of mass M and length L as shown in the figure. The magnitude of gravitational force of attraction is.",
+  "options_en": [
+   "GMm/r²",
+   "GMm/(r+L)²",
+   "GMm/r(r+L)",
+   "GMm/(r+L/2)²"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q094.jpg",
+  "parts": 2,
+  "size": [
+   1306,
+   2194
+  ],
+  "bytes": 154379,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q118",
+  "subject": "physics",
+  "chapter": "Semiconductor Electronics",
+  "year": 2025,
+  "paper_id": "tg_eapcet_2025_20250503_an",
+  "q_no": 118,
+  "crops": "eapcet/crops/tg_eapcet_2025_20250503_an",
+  "question_en": "The graph between the input voltage (Vᵢ) and the output voltage (Vₒ) of a transistor connected in common emitter configuration is shown in the figure. The active, saturation and cutoff regions of the transistor are respectively",
+  "options_en": [
+   "I, II and III",
+   "II, III and I",
+   "I, III and II",
+   "III, I and II"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2025_20250503_an_q118.jpg",
+  "parts": 2,
+  "size": [
+   1227,
+   1561
+  ],
+  "bytes": 136517,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q107",
+  "subject": "physics",
+  "chapter": "Current Electricity",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_an",
+  "q_no": 107,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_an",
+  "question_en": "Find the current in the three resistors as shown in the following figure?",
+  "options_en": [
+   "i₁ = 0, i₂ = 4V/R, i₃ = 2V/R",
+   "i₁ = 0, i₂ = 0, i₃ = 0",
+   "i₁ = 0, i₂ = 2V/R, i₃ = 4V/R",
+   "i₁ = 0, i₂ = 2V/R, i₃ = 2V/R"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_an_q107.jpg",
+  "parts": 2,
+  "size": [
+   1247,
+   1656
+  ],
+  "bytes": 110575,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q136",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 136,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "In which of the following hyper conjugation is not possible?",
+  "options_en": [
+   "C₆H₅–C(CH₃)₃",
+   "C₆H₅–CH(CH₃)₂",
+   "C₆H₅–CH₂–CH₃",
+   "CH₃–CH₂–CH₂⁻ (carbanion)"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q136.jpg",
+  "parts": 2,
+  "size": [
+   1341,
+   1242
+  ],
+  "bytes": 105226,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220719_fn_q154",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220719_fn",
+  "q_no": 154,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220719_fn",
+  "question_en": "The major product of the following reactions is\nBenzene, treated with (i) Br₂, FeBr₃ (anhyd.) (ii) CH₃Cl, AlCl₃ (anhyd.) (iii) Mg / dry ether (iv) CH₃CHO (v) H₂O",
+  "options_en": [
+   "4-CH₃-C₆H₄-C(CH₃)₂-OH",
+   "4-CH₃-C₆H₄-CH(OH)-CH₃",
+   "2-CH₃-C₆H₄-C(CH₃)₂-OH (with an extra 3-CH₃ substituent)",
+   "2-CH₃-C₆H₄-CH(OH)-CH₃ (with an extra 3-CH₃ substituent)"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220719_fn_q154.jpg",
+  "parts": 2,
+  "size": [
+   1313,
+   1701
+  ],
+  "bytes": 112044,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q157",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210804_fn",
+  "q_no": 157,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210804_fn",
+  "question_en": "The major product of the following reactions is [structure: cyclopentane ring with an exocyclic =CH₂ group] i) B₂H₆ ii) H₂O₂ / NaOH iii) PCC iv) PhMgBr v) H₂O",
+  "options_en": [
+   "(1-phenylcyclopentyl)methanol — a cyclopentane ring whose C1 bears both a phenyl group and a CH₂OH group (quaternary ring carbon)",
+   "Cyclopentyl phenyl ketone — cyclopentane ring bonded to C(=O)-C₆H₅",
+   "Cyclopentyl(phenyl)methanol — cyclopentane ring bonded to CH(OH)-C₆H₅",
+   "Cyclopentylmethylbenzene — cyclopentane ring bonded via CH₂ to C₆H₅ (no OH)"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210804_fn_q157.jpg",
+  "parts": 2,
+  "size": [
+   1351,
+   2599
+  ],
+  "bytes": 147927,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q136",
+  "subject": "chemistry",
+  "chapter": "Environmental Chemistry",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240509_fn",
+  "q_no": 136,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240509_fn",
+  "question_en": "The common components of photochemical smog are",
+  "options_en": [
+   "O₃, CH₄, CO₂",
+   "O₃, CO₂, CO",
+   "O₂, SO₃, PAN",
+   "O₃, NO, PAN"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240509_fn_q136.jpg",
+  "parts": 1,
+  "size": [
+   1341,
+   908
+  ],
+  "bytes": 92178,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q136",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230513_fn",
+  "q_no": 136,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230513_fn",
+  "question_en": "The correct IUPAC name of the given structure is",
+  "options_en": [
+   "4-Amino-5-(2,2-Dimethylpropyl) non-5-en-7-ol",
+   "6-Amino-3-hydroxy-5-(2,2-Dimethylpropyl) non-4-ene",
+   "7-Hydroxy-5-(2,2-Dimethylpropyl) non-5-en-4-amine",
+   "6-Amino-5-(2,2-Dimethylpropyl) non-4-en-3-ol"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230513_fn_q136.jpg",
+  "parts": 2,
+  "size": [
+   1361,
+   1642
+  ],
+  "bytes": 174059,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q157",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240511_fn",
+  "q_no": 157,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240511_fn",
+  "question_en": "What is the % of carbon in the product 'Z' formed in the reaction?\nPhenol —(i) NaOH (ii) CO₂ (iii) H⁺→ X —(CH₃CO)₂O, H⁺→ Z + CH₃CO₂H",
+  "options_en": [
+   "40",
+   "50",
+   "70",
+   "60"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240511_fn_q157.jpg",
+  "parts": 1,
+  "size": [
+   1343,
+   1131
+  ],
+  "bytes": 106420,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q159",
+  "subject": "chemistry",
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 159,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "Identify the product 'Y' in the following sequence of reactions.\n4-methylbenzamide (p-toluamide) --NaOH | Br₂--> X --C₆H₅COCl--> Y",
+  "options_en": [
+   "4-CH₃–C₆H₄–CO–NH–CO–C₆H₅",
+   "4-CH₃–C₆H₄–CO–O–CO–C₆H₅",
+   "4-CH₃–C₆H₄–NH–CO–C₆H₅",
+   "4-CH₃–C₆H₄–NH–CO–C₆H₄–CH₃-4"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q159.jpg",
+  "parts": 3,
+  "size": [
+   1359,
+   2983
+  ],
+  "bytes": 183040,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q128",
+  "subject": "chemistry",
+  "chapter": "States of Matter",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 128,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "The figure represents PV vs P relation for CO, CH₄, H₂ and He gases under identical conditions. Which curve, shown in the figure, represents He gas?",
+  "options_en": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q128.jpg",
+  "parts": 1,
+  "size": [
+   1345,
+   1725
+  ],
+  "bytes": 130928,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q160",
+  "subject": "chemistry",
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240511_fn",
+  "q_no": 160,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240511_fn",
+  "question_en": "What is 'C' in the given sequence of reactions?\n4-Bromo-2-ethylaniline (C₂H₅ and Br on ring, NH₂ on ring) —NaNO₂/HCl, 273 K→ A —H₂O/H₃PO₂→ B —(1) KMnO₄/OH⁻ (2) H₃O⁺→ C",
+  "options_en": [
+   "4-Bromo-3-methylbenzoic acid (CH₃ and Br on ring, COOH on ring)",
+   "2-Bromobenzoic acid (COOH and Br adjacent on ring)",
+   "2-Bromophenylacetic acid (CH₂COOH and Br on ring)",
+   "Bromobenzene"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240511_fn_q160.jpg",
+  "parts": 2,
+  "size": [
+   1369,
+   1647
+  ],
+  "bytes": 128045,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q158",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240511_fn",
+  "q_no": 158,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240511_fn",
+  "question_en": "Match the following\nList – I (Reactants)  List – II (Product)\nA. Phenol + Zn, Δ   I. Benzoquinone\nB. Phenol + Na₂Cr₂O₇/H₂SO₄   II. Benzene\nC. Phenol + (i) CHCl₃/NaOH, Δ (ii) H⁺   III. Salicylic acid\nD. Phenol + (i) NaOH (ii) CO₂/H⁺   IV. Salicylaldehyde\nThe correct answer is",
+  "options_en": [
+   "A-II; B-I; C-IV; D-III",
+   "A-II; B-III; C-I; D-IV",
+   "A-III; B-II; C-IV; D-I",
+   "A-III; B-IV; C-I; D-II"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240511_fn_q158.jpg",
+  "parts": 3,
+  "size": [
+   1341,
+   2041
+  ],
+  "bytes": 187658,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q159",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210804_fn",
+  "q_no": 159,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210804_fn",
+  "question_en": "Match the following. Column-1 (Acid): A) CH₃COOH B) F₃CCOOH C) benzoic acid (benzene ring with COOH) D) 4-nitrobenzoic acid (benzene ring with COOH and para-NO₂). Column-2 (pKa value): I) 0.23 II) 3.41 III) 4.19 IV) 4.76. The correct match is",
+  "options_en": [
+   "A-IV, B-I, C-III, D-II",
+   "A-I, B-IV, C-II, D-III",
+   "A-IV, B-I, C-II, D-III",
+   "A-IV, B-III, C-II, D-I"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210804_fn_q159.jpg",
+  "parts": 2,
+  "size": [
+   1331,
+   2620
+  ],
+  "bytes": 158175,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q143",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2025,
+  "paper_id": "tg_eapcet_2025_20250503_fn",
+  "q_no": 143,
+  "crops": "eapcet/crops/tg_eapcet_2025_20250503_fn",
+  "question_en": "Which of the following can undergo Hell-Volhard-Zelinsky reaction?",
+  "options_en": [
+   "C₆H₅−CH₂−CHO (phenylacetaldehyde)",
+   "C₆H₅−CO₂H (benzoic acid)",
+   "C₆H₅−CH₂−CO₂H (phenylacetic acid)",
+   "C₆H₅−CH₂−C(=O)−CH₃ (phenylacetone)"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2025_20250503_fn_q143.jpg",
+  "parts": 2,
+  "size": [
+   1324,
+   1503
+  ],
+  "bytes": 90201,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q131",
+  "subject": "chemistry",
+  "chapter": "Thermodynamics",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_an",
+  "q_no": 131,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_an",
+  "question_en": "A certain mass of a gas was brought from state A to B by following three different paths, namely 1, 2 and 3, respectively. Which of the following relations is correct for the work done? (P–V diagram: a closed loop from A at top to B at bottom with three paths 1, 2, 3 drawn between them, path 3 outermost/topmost and path 1 innermost/bottommost)",
+  "options_en": [
+   "W₁ = W₂ = W₃",
+   "W₁ < W₂ < W₃",
+   "W₁ > W₂ > W₃",
+   "W₁ = W₃ < W₂"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_an_q131.jpg",
+  "parts": 2,
+  "size": [
+   1273,
+   1529
+  ],
+  "bytes": 121963,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q158",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2025,
+  "paper_id": "tg_eapcet_2025_20250503_an",
+  "q_no": 158,
+  "crops": "eapcet/crops/tg_eapcet_2025_20250503_an",
+  "question_en": "Which of the following can undergo Hell-Volhard-Zelinsky reaction?",
+  "options_en": [
+   "C₆H₅–CO₂H",
+   "C₆H₅–CH₂–CO₂H",
+   "C₆H₅–CH₂–CHO",
+   "C₆H₅–CH₂–CO–CH₃"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2025_20250503_an_q158.jpg",
+  "parts": 2,
+  "size": [
+   1203,
+   1103
+  ],
+  "bytes": 76421,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q128",
+  "subject": "chemistry",
+  "chapter": "Haloalkanes and Haloarenes",
+  "year": 2025,
+  "paper_id": "tg_eapcet_2025_20250503_fn",
+  "q_no": 128,
+  "crops": "eapcet/crops/tg_eapcet_2025_20250503_fn",
+  "question_en": "Identify the product 'Y' in the given sequence of reactions.\nChlorobenzene → (HNO₃ / Conc. H₂SO₄) → X (Major) → (i) NaOH, 443 K (ii) H⁺ → Y",
+  "options_en": [
+   "4-Nitrophenol (OH and NO₂ para to each other)",
+   "2-Nitrophenol (OH and NO₂ ortho to each other)",
+   "4-Hydroxybenzenesulfonic acid (OH and SO₃H para to each other)",
+   "2,4-Dinitrophenol (OH with NO₂ at ortho and para positions)"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2025_20250503_fn_q128.jpg",
+  "parts": 1,
+  "size": [
+   1326,
+   1232
+  ],
+  "bytes": 91071,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_an_q135",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230513_an",
+  "q_no": 135,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230513_an",
+  "question_en": "The IUPAC name of the following compound is\n[skeletal structure: a hexane chain with an ethyl branch at C3 and a methyl branch at C4]",
+  "options_en": [
+   "3-(2-Butyl) Pentane",
+   "2-(3-Pentyl) butane",
+   "3-Ethyl-4-methylhexane",
+   "3-Methyl-4-ethylhexane"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230513_an_q135.jpg",
+  "parts": 2,
+  "size": [
+   1356,
+   1486
+  ],
+  "bytes": 127491,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2025_20250504_fn_q124",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2025,
+  "paper_id": "tg_eapcet_2025_20250504_fn",
+  "q_no": 124,
+  "crops": "eapcet/crops/tg_eapcet_2025_20250504_fn",
+  "question_en": "The condensed, bond line and complete formulae of n-butane are respectively (I: CH₃CH₂CH₂CH₃, condensed formula; II: zigzag skeletal bond-line structure; III: complete structural formula showing every C and H atom)",
+  "options_en": [
+   "II, III, I",
+   "I, III, II",
+   "II, I, III",
+   "I, II, III"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2025_20250504_fn_q124.jpg",
+  "parts": 1,
+  "size": [
+   1328,
+   569
+  ],
+  "bytes": 61592,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240510_fn_q157",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240510_fn",
+  "q_no": 157,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240510_fn",
+  "question_en": "Arrange the following in the increasing order of pKa values\nI. Phenol (C₆H₅OH)  II. p-Nitrophenol (4-NO₂-C₆H₄-OH)  III. C₂H₅OH  IV. p-Nitrobenzoic acid (4-NO₂-C₆H₄-COOH)",
+  "options_en": [
+   "III < IV < II < I",
+   "II < III < IV < I",
+   "IV < II < I < III",
+   "IV < III < II < I"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240510_fn_q157.jpg",
+  "parts": 1,
+  "size": [
+   1363,
+   1282
+  ],
+  "bytes": 123086,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q135",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 135,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "The correct IUPAC name of the compound given under is\n(a benzene ring with NO₂ at position 1, Br at position 3, and C₂H₅ at position 4)",
+  "options_en": [
+   "4-Ethyl-2-bromo-4-nitrobenzene",
+   "2-Bromo-1-ethyl-4-nitrobenzene",
+   "3-Bromo-4-ethyl-1-nitrobenzene",
+   "1-Ethyl-2-bromo-4-nitrobenzene"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q135.jpg",
+  "parts": 2,
+  "size": [
+   1362,
+   1429
+  ],
+  "bytes": 141426,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220719_fn_q159",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220719_fn",
+  "q_no": 159,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220719_fn",
+  "question_en": "Which of the following set of compounds react with NaHCO₃?\nI) benzene ring bearing one OH and two NH₂ groups (2,4,6- pattern; 2-amino-4-hydroxy-6-amino type triaminophenol) II) Phenol, C₆H₅OH III) Benzoic acid, C₆H₅COOH IV) p-Nitrobenzoic acid, 4-O₂N-C₆H₄-COOH",
+  "options_en": [
+   "I, II, III, IV",
+   "I, II, III only",
+   "III, IV only",
+   "I, III, IV only"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220719_fn_q159.jpg",
+  "parts": 1,
+  "size": [
+   1303,
+   1207
+  ],
+  "bytes": 91262,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q128",
+  "subject": "chemistry",
+  "chapter": "Thermodynamics",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210806_fn",
+  "q_no": 128,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210806_fn",
+  "question_en": "The following graph indicates the system containing 1 mole of gas involving various steps. When it moves from z to x, the type of undergoing process is\n\n[Graph: V (L) on y-axis, T (K) on x-axis. Point x = (300K, 20L); point y = (300K, 40L); point z = (600K, 40L). Path shown: x→y is a vertical arrow (up), y→z is a horizontal arrow (right), z→x is a diagonal arrow back down to x.]",
+  "options_en": [
+   "Cyclic",
+   "Isothermal",
+   "Isochoric",
+   "Isobaric"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210806_fn_q128.jpg",
+  "parts": 2,
+  "size": [
+   1377,
+   2414
+  ],
+  "bytes": 163505,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q138",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220720_fn",
+  "q_no": 138,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220720_fn",
+  "question_en": "Which of the following lacks hyperconjugative stability? A = H₃C–CH₂⁺ ; B = H₃C–C⁺(CH₃)(CH₃), with one CH₃ group attached above and one below the central carbon; C = H₃C–CH⁺–CH₃, with a CH₃ group attached below the central carbon; D = ⁺CH₃",
+  "options_en": [
+   "B",
+   "A",
+   "D",
+   "C"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220720_fn_q138.jpg",
+  "parts": 1,
+  "size": [
+   1307,
+   1263
+  ],
+  "bytes": 79167,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q135",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230513_fn",
+  "q_no": 135,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230513_fn",
+  "question_en": "In the following reaction 'C' is an aromatic compound having substituents D & E. What are D & E? A branched-chain hydrocarbon is treated with Cr₂O₃ at 773 K, 10-20 atm to give (A); (A) is treated with (i) KMnO₄/OH⁻ (ii) H₃O⁺ to give (B); (B) is treated with conc. HNO₃ + H₂SO₄ to give (C).",
+  "options_en": [
+   "−OH, −SO₃H",
+   "−CHO, −NO₂",
+   "−COOH, −NO₂",
+   "−SO₃H, −NO₂"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230513_fn_q135.jpg",
+  "parts": 2,
+  "size": [
+   1341,
+   1324
+  ],
+  "bytes": 124696,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q160",
+  "subject": "chemistry",
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_fn",
+  "q_no": 160,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_fn",
+  "question_en": "What is B in the given reaction?\nC₂H₅Br --excess NH₃--> A ←(Br₂/KOH)-- B",
+  "options_en": [
+   "CH₃CH₂CONH₂",
+   "CH₃CONH₂",
+   "CH₃CH₂CONHCH₃",
+   "CH₃COCH₂NH₂"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_fn_q160.jpg",
+  "parts": 2,
+  "size": [
+   1357,
+   1536
+  ],
+  "bytes": 111124,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q155",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2022,
+  "paper_id": "tg_eapcet_2022_20220718_an",
+  "q_no": 155,
+  "crops": "eapcet/crops/tg_eapcet_2022_20220718_an",
+  "question_en": "A, B, C, D in the following reactions are: salicylic acid (2-hydroxybenzoic acid) treated with sodalime under heat gives [A]; [A] treated with zinc dust gives [B]; salicylic acid treated with Br₂/H₂O gives [C]; salicylic acid heated at 200–230 °C gives [D].",
+  "options_en": [
+   "[A] = phenol, [B] = benzene, [C] = 1,3,5-tribromobenzene, [D] = phenol",
+   "[A] = phenol, [B] = benzene, [C] = 2,4,6-tribromophenol, [D] = phenol",
+   "[A] = phenol, [B] = benzene, [C] = 3,5-dibromosalicylic acid, [D] = phenol",
+   "[A] = phenol, [B] = phenol, [C] = 3-bromosalicylic acid, [D] = phenol"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2022_20220718_an_q155.jpg",
+  "parts": 2,
+  "size": [
+   1249,
+   2173
+  ],
+  "bytes": 158812,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q156",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_an",
+  "q_no": 156,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_an",
+  "question_en": "[Benzene] + CH₃COCl →(Anhy. AlCl₃) X →(Zn-Hg | conc. HCl) Y. Conversion of X into Y is an example of the reaction",
+  "options_en": [
+   "Rosenmund reduction",
+   "Clemmensen reduction",
+   "Wolff-Kishner reduction",
+   "Stephen reduction"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_an_q156.jpg",
+  "parts": 2,
+  "size": [
+   1359,
+   1627
+  ],
+  "bytes": 144813,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q140",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240509_fn",
+  "q_no": 140,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240509_fn",
+  "question_en": "X and Z respectively in the following reaction sequence are C₃H₆ →(X) Y →(C₆H₆/AlCl₃) Z (major product)",
+  "options_en": [
+   "HBr, propylbenzene (straight-chain propyl group on benzene)",
+   "HBr, 1-isopropyl-4-propylbenzene",
+   "HBr / ROOR, isopropylbenzene (cumene)",
+   "HBr / ROOR, propylbenzene (straight-chain propyl group on benzene)"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240509_fn_q140.jpg",
+  "parts": 2,
+  "size": [
+   1372,
+   1584
+  ],
+  "bytes": 132212,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q155",
+  "subject": "chemistry",
+  "chapter": "Haloalkanes and Haloarenes",
+  "year": 2024,
+  "paper_id": "tg_eapcet_2024_20240511_fn",
+  "q_no": 155,
+  "crops": "eapcet/crops/tg_eapcet_2024_20240511_fn",
+  "question_en": "The organic halide, which does not undergo hydrolysis by SN1 mechanism is",
+  "options_en": [
+   "C₆H₅CH₂Cl (benzyl chloride)",
+   "CH₂=CH-CH₂Cl",
+   "(CH₃)₃C-Cl",
+   "CH₃-CH=CH-Cl"
+  ],
+  "answer": 4,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2024_20240511_fn_q155.jpg",
+  "parts": 2,
+  "size": [
+   1362,
+   1149
+  ],
+  "bytes": 105054,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q156",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230512_fn",
+  "q_no": 156,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230512_fn",
+  "question_en": "Identify A and B from the following reactions\nI) CH₃–CH=CH–CH₃ --(i) O₃ (ii) Zn-H₂O--> 2X\nII) 2X --1. NaOH(dil) 2. Δ--> Z --(i) O₃ (ii) Zn-H₂O--> A + B",
+  "options_en": [
+   "CH₃CHO + HCHO",
+   "CH₃CHO + OHC–CHO (glyoxal)",
+   "CH₃CH₂CHO + CH₂O",
+   "CH₃COCH₃ + OHC–CHO"
+  ],
+  "answer": 2,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230512_fn_q156.jpg",
+  "parts": 2,
+  "size": [
+   1354,
+   1492
+  ],
+  "bytes": 123903,
+  "labels": 4,
+  "icons_removed": 4
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q145",
+  "subject": "chemistry",
+  "chapter": "VA Group Elements",
+  "year": 2023,
+  "paper_id": "tg_eapcet_2023_20230514_fn",
+  "q_no": 145,
+  "crops": "eapcet/crops/tg_eapcet_2023_20230514_fn",
+  "question_en": "P₄ + 3NaOH + 3H₂O →(CO₂)→ 3X + PH₃↑\nX →(HCl(aq))→ Y + NaCl\nThe incorrect statement about Y is",
+  "options_en": [
+   "It is also called phosphonic acid",
+   "It is a monobasic acid",
+   "It is a reducing agent",
+   "Oxidation state of the central atom in it is +1"
+  ],
+  "answer": 1,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2023_20230514_fn_q145.jpg",
+  "parts": 2,
+  "size": [
+   1363,
+   1292
+  ],
+  "bytes": 131058,
+  "labels": 4,
+  "icons_removed": 4
+ }
+]

@@ -1,0 +1,1442 @@
+[
+ {
+  "id": "tg_eapcet_2022_20220719_fn_q111",
+  "subject": "physics",
+  "chapter": "Electromagnetic Induction",
+  "year": 2022,
+  "question_en": "A wire loop of area 0.2m² has a resistance of 20 Ω. A magnetic field pointing normal to the loop has a magnitude of 0.25 T and is reduced to zero at a uniform rate in 10⁻⁴ sec. What is induced emf and resulting current?",
+  "options_en": [
+   "50 V, 2.5 A",
+   "500 V, 25 A",
+   "250 V, 12.5 A",
+   "500 V, 2.5 A"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220719_fn_q111.jpg",
+  "bytes": 64591
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_an_q082",
+  "subject": "physics",
+  "chapter": "Physical World and Measurement",
+  "year": 2023,
+  "question_en": "The number of significant figures in 3.78×10²² kg is",
+  "options_en": [
+   "19",
+   "25",
+   "3",
+   "22"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230512_an_q082.jpg",
+  "bytes": 30717
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q083",
+  "subject": "physics",
+  "chapter": "Motion in a Straight Line",
+  "year": 2023,
+  "question_en": "The displacement-time graphs of two moving particles make angles of 30° and 45° with the time axis. The ratio of their velocities is",
+  "options_en": [
+   "√3:2",
+   "1:1",
+   "1:2",
+   "1:√3"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q083.jpg",
+  "bytes": 44977
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q088",
+  "subject": "physics",
+  "chapter": "System of Particles and Rotational Motion",
+  "year": 2024,
+  "question_en": "A metre scale is balanced on a knife edge at its centre. When two coins, each of mass 9 g are kept one above the other at the 10 cm mark, the scale is found to be balanced at 35 cm. The mass of the metre scale is",
+  "options_en": [
+   "15 g",
+   "30 g",
+   "45 g",
+   "60 g"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240511_fn_q088.jpg",
+  "bytes": 57835
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q082",
+  "subject": "physics",
+  "chapter": "Physical World and Measurement",
+  "year": 2025,
+  "question_en": "A piece of length 3.532 m is cut from a rod of length 43.4 m. The length of the remaining rod in metre is (up to correct significant figures)",
+  "options_en": [
+   "39.9",
+   "39.8",
+   "39.868",
+   "39.87"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_an_q082.jpg",
+  "bytes": 47627
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q089",
+  "subject": "physics",
+  "chapter": "Work Power Energy",
+  "year": 2021,
+  "question_en": "A water pump rated 600 W, has an efficiency of 95 %. If it is used to raise water through vertical distance of 60 m. The volume of water drawn in 20 minutes, is. [Use density of water = 1000 kg m⁻³, g = 10 m/s²]",
+  "options_en": [
+   "1.14 m³",
+   "2.24 m³",
+   "11.4 m³",
+   "22.4 m³"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_an_q089.jpg",
+  "bytes": 58203
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q111",
+  "subject": "physics",
+  "chapter": "Magnetism and Matter",
+  "year": 2021,
+  "question_en": "A magnetic dipole is placed horizontally with the north pole pointing towards north. The horizontal component of earth's magnetic field is 20μT. If the neutral point is found at a distance of 20 cm in the plane bisecting the dipole then the magnetic moment of the dipole is: (Assume μ₀ = 4π×10⁻⁷ S.I. units)",
+  "options_en": [
+   "1.2 Am²",
+   "2.2 Am²",
+   "1.4 Am²",
+   "1.6 Am²"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_an_q111.jpg",
+  "bytes": 78013
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q100",
+  "subject": "physics",
+  "chapter": "Waves",
+  "year": 2023,
+  "question_en": "An observer moves towards a stationary source of sound, with a speed of one-fifth of the speed of sound. The apparent increase in the frequency heard by the observer is",
+  "options_en": [
+   "16.67%",
+   "2%",
+   "25%",
+   "20%"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_fn_q100.jpg",
+  "bytes": 52924
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q095",
+  "subject": "physics",
+  "chapter": "Ray Optics and Optical Instruments",
+  "year": 2025,
+  "question_en": "A convex lens of radii of curvature 6 cm and 12 cm is immersed in a liquid of refractive index 1.3. If the refractive index of the material of the lens is 1.5, then the focal length of the lens when immersed in the liquid is",
+  "options_en": [
+   "26 cm",
+   "39 cm",
+   "13 cm",
+   "52 cm"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_fn_q095.jpg",
+  "bytes": 59461
+ },
+ {
+  "id": "tg_eapcet_2022_20220719_an_q094",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Fluids",
+  "year": 2022,
+  "question_en": "Consider an increase of 1% in each of radius of artery, viscosity of blood and density of blood respectively. The percentage change in flow rate of blood in artery is",
+  "options_en": [
+   "0.25 %",
+   "0.50 %",
+   "1.0 %",
+   "3.0 %"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220719_an_q094.jpg",
+  "bytes": 52974
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q097",
+  "subject": "physics",
+  "chapter": "Thermodynamics",
+  "year": 2023,
+  "question_en": "In a process, the work done by the system is equal to the decrease in its internal energy. The process that the system undergoes is",
+  "options_en": [
+   "isothermal process",
+   "adiabatic process",
+   "isobaric process",
+   "isochoric process"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q097.jpg",
+  "bytes": 53825
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q081",
+  "subject": "physics",
+  "chapter": "Waves",
+  "year": 2025,
+  "question_en": "Two tuning forks of frequencies 320 Hz and 323 Hz are vibrated together. The time interval between a maximum sound and its adjacent minimum sound heard by an observer is",
+  "options_en": [
+   "1/6 s",
+   "1/3 s",
+   "1/9 s",
+   "1/12 s"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_fn_q081.jpg",
+  "bytes": 54309
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q093",
+  "subject": "physics",
+  "chapter": "Oscillations",
+  "year": 2021,
+  "question_en": "A body of mass 1 kg is executing simple harmonic motion (SHM). Its displacement y (in cm) at time t given by y = [6 sin(100t + π/4)] cm. Its maximum kinetic energy is",
+  "options_en": [
+   "1.8 J",
+   "18 J",
+   "180 J",
+   "0.18 J"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_fn_q093.jpg",
+  "bytes": 52255
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q094",
+  "subject": "physics",
+  "chapter": "Thermal Properties of Matter",
+  "year": 2023,
+  "question_en": "Two objects made of the same material have masses 'm' and '2m' and are at temperatures '2T' and 'T' respectively. When heat 'Q' is supplied to the object of mass '2m', its temperature raises to '2T'. If the same heat is supplied to the object of mass 'm', its temperature raises to",
+  "options_en": [
+   "2T",
+   "3T/2",
+   "4T",
+   "3T"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230512_fn_q094.jpg",
+  "bytes": 68040
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q114",
+  "subject": "physics",
+  "chapter": "Dual Nature of Radiation and Matter",
+  "year": 2022,
+  "question_en": "Statement I: By increasing the potential difference between cathode and anode continuously in a photoelectric experiment, the photo current always increases continuously. Statement II: If two photons A and B of energies 2.5 eV and 3.5 eV respectively fall on a metal surface of work function 2.0 eV, then the ratio of maximum kinetic energies emitted between A and B is 3. Statement III: The maximum energy needed by an electron to come out from a metal surface is called the work function of the metal. Which of the following is correct?",
+  "options_en": [
+   "Statements I, II and III are true",
+   "Statements I, II true, but statement III is false",
+   "Statements II, III are true, but statement I is false",
+   "Statements I, II and III are false"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q114.jpg",
+  "bytes": 138309
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q088",
+  "subject": "physics",
+  "chapter": "Work Power Energy",
+  "year": 2022,
+  "question_en": "The potential energy of an object is U(x) = (5x² − 4x³) J, where x is the position in meter. The position at which the force becomes zero is",
+  "options_en": [
+   "1/2 m",
+   "5/6 m",
+   "1/3 m",
+   "2/3 m"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q088.jpg",
+  "bytes": 46468
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_an_q093",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Fluids",
+  "year": 2023,
+  "question_en": "The angle of contact is 120° when a cylindrical rod is vertically placed in a liquid. If the same rod is placed horizontally in the liquid, then the angle of contact is",
+  "options_en": [
+   "60°",
+   "30°",
+   "90°",
+   "120°"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_an_q093.jpg",
+  "bytes": 49382
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q117",
+  "subject": "physics",
+  "chapter": "Nuclei",
+  "year": 2024,
+  "question_en": "An element consists of a mixture of three isotopes A, B and C of masses m₁, m₂ and m₃ respectively. If the relative abundances of the three isotopes A, B and C is in the ratio 2:3:5, the average mass of the element is",
+  "options_en": [
+   "0.2m₁ + 0.3m₂ + 0.5m₃",
+   "2m₁ + 3m₂ + 5m₃",
+   "0.4m₁ + 0.6m₂ + m₃",
+   "4m₁ + 6m₂ + 10m₃"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_fn_q117.jpg",
+  "bytes": 66720
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q095",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Solids",
+  "year": 2021,
+  "question_en": "Consider a rod of length 1.0 m with a cross-sectional area of 0.50 cm². The rod supports a 500-kg platform that hangs attached to the rod's lower end. What is elongation of the rod under the stress ignoring the weight of the rod? Consider the Young's modulus to be 10¹¹ Pa and g = 10 m/s².",
+  "options_en": [
+   "2 mm",
+   "0.5 mm",
+   "1.5 mm",
+   "1 mm"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_fn_q095.jpg",
+  "bytes": 73081
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q103",
+  "subject": "physics",
+  "chapter": "Waves",
+  "year": 2021,
+  "question_en": "A second wave of frequency 200 Hz is travelling in air. The speed of sound in the air is 340 m/s. What is the phase difference at a given instant between two points separated by a distance of 85 cm along the direction of propagation?",
+  "options_en": [
+   "π",
+   "2π",
+   "π/2",
+   "π/4"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_fn_q103.jpg",
+  "bytes": 62977
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q093",
+  "subject": "physics",
+  "chapter": "Mechanical Properties of Fluids",
+  "year": 2023,
+  "question_en": "A solid metal sphere released in a vertical liquid column has attained terminal velocity in the downward direction. The magnitudes of viscous force, buoyant force and gravitational force acting on it are F_V, F_B and F_W respectively. Then the correct relation between them is",
+  "options_en": [
+   "F_B > F_V = F_W",
+   "F_W = F_V + F_B",
+   "F_B = F_W + F_V",
+   "F_V = F_B + F_W"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230512_fn_q093.jpg",
+  "bytes": 74622
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q113",
+  "subject": "physics",
+  "chapter": "Nuclei",
+  "year": 2023,
+  "question_en": "Energy released in the fission of a single uranium nucleus is 200 MeV. Then the number of fissions per second to produce 5 mW power is",
+  "options_en": [
+   "1.56×10⁸",
+   "1.56×10¹³",
+   "3.12×10⁸",
+   "3.12×10¹³"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q113.jpg",
+  "bytes": 48899
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q087",
+  "subject": "physics",
+  "chapter": "Work Power Energy",
+  "year": 2023,
+  "question_en": "A ball falls freely from a height h on a rigid horizontal plane. If the coefficient of restitution is e, then the total distance travelled by the ball before hitting the plane second time is",
+  "options_en": [
+   "he²",
+   "h(1+2e²)",
+   "h(1-2e²)",
+   "h(1+e²)"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q087.jpg",
+  "bytes": 54650
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q113",
+  "subject": "physics",
+  "chapter": "Electromagnetic Waves",
+  "year": 2022,
+  "question_en": "An electromagnetic wave is propagating in vacuum along −ĵ direction. The magnetic field of the wave is given by B⃗ = (2 × 10⁻⁸)cos[π × 10¹⁵(t + y/c)]k̂ T. The electric field E⃗ of this wave is\n(c ≡ speed of light)",
+  "options_en": [
+   "E⃗ = (4)cos[π × 10¹⁵(t + y/c)]ĵ V/m",
+   "E⃗ = (6)cos[π × 10¹⁵(t + y/c)]î V/m",
+   "E⃗ = (6)cos[π × 10¹⁵(t − y/c)]ĵ V/m",
+   "E⃗ = (4)cos[π × 10¹⁵(t − y/c)]î V/m"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q113.jpg",
+  "bytes": 73909
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q101",
+  "subject": "physics",
+  "chapter": "Ray Optics and Optical Instruments",
+  "year": 2023,
+  "question_en": "Refractive index of a medium is μ. If the angle of incidence is twice that of the angle of refraction, then the angle of incidence is",
+  "options_en": [
+   "cos⁻¹(μ/2)",
+   "sin⁻¹(μ/2)",
+   "2cos⁻¹(μ/2)",
+   "sin⁻¹(μ)"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_fn_q101.jpg",
+  "bytes": 47963
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q104",
+  "subject": "physics",
+  "chapter": "Electric Charges and Fields",
+  "year": 2022,
+  "question_en": "A large metal plate has a surface charge density of 8.85×10⁻⁶ C/m². An electron having initial kinetic energy of 8×10⁻¹⁷ J is moving towards the center of the plate. If the electron stops just before reaching the plate then the initial distance between the electron and the plate is [Take ε₀ = 8.85 × 10⁻¹² C²/Nm²]",
+  "options_en": [
+   "0.5 mm",
+   "0.1 mm",
+   "0.2 cm",
+   "0.02 cm"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_an_q104.jpg",
+  "bytes": 78262
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q089",
+  "subject": "physics",
+  "chapter": "Work Power Energy",
+  "year": 2022,
+  "question_en": "An object is moving in a straight line under the influence of a source of constant power. If v and t are velocity and time respectively, then",
+  "options_en": [
+   "v ∝ t²",
+   "v ∝ t¹⁄²",
+   "v ∝ t",
+   "v ∝ t³⁄²"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q089.jpg",
+  "bytes": 47294
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q100",
+  "subject": "physics",
+  "chapter": "Waves",
+  "year": 2024,
+  "question_en": "The speed of a transverse wave in a stretched string 'A' is 'v'. Another string 'B' of same length and same radius is subjected to same tension. If the density of the material of the string 'B' is 2% more than that of 'A', then the speed of the transverse wave in string 'B' is",
+  "options_en": [
+   "√1.04 v",
+   "√1.02 v",
+   "v/√1.04",
+   "v/√1.02"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_fn_q100.jpg",
+  "bytes": 70289
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q112",
+  "subject": "physics",
+  "chapter": "Alternating Current",
+  "year": 2022,
+  "question_en": "An AC current is given by the expression, I(t) = 50 sin(200πt) in amperes. The frequency and r.m.s value of the current respectively are",
+  "options_en": [
+   "100 Hz, 50√2 A",
+   "100 Hz, 25√2 A",
+   "200 Hz, 50√2 A",
+   "200 Hz, 25√2 A"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q112.jpg",
+  "bytes": 52512
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q085",
+  "subject": "physics",
+  "chapter": "Motion in a Plane",
+  "year": 2021,
+  "question_en": "Car A is moving to the east with a speed of 30 km/hr, and car B is moving to the north with the same speed. What is the velocity of car B as measured in car A?",
+  "options_en": [
+   "42 km/hr, 45° north of west",
+   "42 km/hr, 45° east of north",
+   "60 km/hr, 45° south of east",
+   "42 km/hr, 45° south of east"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210806_fn_q085.jpg",
+  "bytes": 63224
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_fn_q139",
+  "subject": "chemistry",
+  "chapter": "Solid State",
+  "year": 2023,
+  "question_en": "At T(K), copper (atomic mass = 63.5 u) has fcc structure with an edge length of x Å. The density of copper (in g cm⁻³) at that temperature approximately is (Nₐ = 6.0×10²³ mol⁻¹)",
+  "options_en": [
+   "423/x",
+   "4.23/x³",
+   "423/x³",
+   "212.5/x³"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230512_fn_q139.jpg",
+  "bytes": 52450
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q136",
+  "subject": "chemistry",
+  "chapter": "Environmental Chemistry",
+  "year": 2025,
+  "question_en": "Which of the following is a lung irritant that can lead to an acute respiratory disease in children?",
+  "options_en": [
+   "SO₂",
+   "CO₂",
+   "CO",
+   "NO₂"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_an_q136.jpg",
+  "bytes": 39527
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q137",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "question_en": "An alkene (X) on ozonolysis gives propanal and ethanal. What is X?",
+  "options_en": [
+   "Pent-2-ene",
+   "Pent-1-ene",
+   "But-1-ene",
+   "But-2-ene"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_fn_q137.jpg",
+  "bytes": 37909
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q159",
+  "subject": "chemistry",
+  "chapter": "Atomic Structure",
+  "year": 2025,
+  "question_en": "Work functions of four metals M₁, M₂, M₃ and M₄ are 4.8, 4.3, 4.75 and 3.75 eV respectively. The metals which do not show photoelectric effect when light of wavelength 310 nm falls on the metals are",
+  "options_en": [
+   "M₁, M₃ only",
+   "M₁, M₂, M₃ only",
+   "M₁, M₂, M₄ only",
+   "M₁, M₂ only"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_fn_q159.jpg",
+  "bytes": 61941
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q134",
+  "subject": "chemistry",
+  "chapter": "p-Block Elements: Group 14",
+  "year": 2023,
+  "question_en": "Identify the incorrect statement about the oxidation states of group 14 elements",
+  "options_en": [
+   "Carbon and Silicon mostly exhibit +4 oxidation state",
+   "Tin in +2 oxidation state is a reducing agent",
+   "Lead in +2 oxidation state is a reducing agent",
+   "The order of stability of +2 oxidation state follow the sequence Ge<Sn<Pb"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q134.jpg",
+  "bytes": 65805
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q152",
+  "subject": "chemistry",
+  "chapter": "Biomolecules",
+  "year": 2023,
+  "question_en": "The deficiency of which vitamin causes pernicious anaemia?",
+  "options_en": [
+   "Vitamin B₂",
+   "Vitamin B₆",
+   "Vitamin E",
+   "Vitamin B₁₂"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q152.jpg",
+  "bytes": 37066
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q142",
+  "subject": "chemistry",
+  "chapter": "Solid State",
+  "year": 2021,
+  "question_en": "The number of voids in 1 mole of a compounds forming a hcp structure are",
+  "options_en": [
+   "1.8 × 10²⁴",
+   "3.6 × 10²⁴",
+   "6.0 × 10²³",
+   "7.2 × 10²⁴"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_an_q142.jpg",
+  "bytes": 37711
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q138",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2024,
+  "question_en": "Consider the following carbocations\nI. C₆H₅CH₂⁺   II. CH₂=CH⁺   III. CH₃–C⁺H–CH₃ (i.e., (CH₃)₂CH⁺)   IV. CH₃–CH₂⁺   V. HC≡C⁺\nArrange the above carbocations in the order of decreasing stability",
+  "options_en": [
+   "I > III > IV > II > V",
+   "V > II > IV > III > I",
+   "V > II > III > I > IV",
+   "II > III > IV > V > I"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240511_fn_q138.jpg",
+  "bytes": 56616
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_an_q140",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2024,
+  "question_en": "What is the percentage of carbon in the product 'X' formed in the given reaction?\nBenzene + C₂H₅Cl →(Anhydrous AlCl₃) X",
+  "options_en": [
+   "85.6",
+   "80.6",
+   "90.6",
+   "70.6"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_an_q140.jpg",
+  "bytes": 43554
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_fn_q153",
+  "subject": "chemistry",
+  "chapter": "Chemical Kinetics",
+  "year": 2025,
+  "question_en": "The half-life of a zero order reaction A → products, is 0.5 hour. The initial concentration of A is 4 mol L⁻¹. How much time (in hr) does it take for its concentration to come from 2.0 mol L⁻¹ to 1.0 mol L⁻¹?",
+  "options_en": [
+   "1/6",
+   "1/8",
+   "1/4",
+   "1/2"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_fn_q153.jpg",
+  "bytes": 54061
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q137",
+  "subject": "chemistry",
+  "chapter": "Thermodynamics",
+  "year": 2022,
+  "question_en": "The correct order of \"ΔfH°\" values of Diamond (I), Graphite (II) and Fullerene (III) is",
+  "options_en": [
+   "I > II > III",
+   "II > I > III",
+   "III > I > II",
+   "III > II > I"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q137.jpg",
+  "bytes": 38135
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q156",
+  "subject": "chemistry",
+  "chapter": "Alcohols, Phenols and Ethers",
+  "year": 2021,
+  "question_en": "Match the following.\nColumn-1 (Compound/reagent): A) Methanol  B) ZnCl₂ / Conc. HCl  C) Rectified spirit  D) Dil. KMnO₄\nColumn-2 (Other name/Chemical/Name of the process): I) Lucas reagent  II) Baeyer's reagent  III) Wood spirit  IV) 95% C₂H₅OH  V) 75% C₂H₅OH  VI) 90% C₃H₇OH\nThe correct match is",
+  "options_en": [
+   "A-IV, B-I, C-III, D-II",
+   "A-III, B-I, C-VI, D-II",
+   "A-III, B-I, C-IV, D-II",
+   "A-III, B-II, C-V, D-I"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_fn_q156.jpg",
+  "bytes": 84745
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q134",
+  "subject": "chemistry",
+  "chapter": "s-Block Elements",
+  "year": 2021,
+  "question_en": "The major products during the removal of temporary hardness of water are",
+  "options_en": [
+   "Mg(OH)₂ ; Ca(OH)₂",
+   "MgCO₃ ; CaCO₃",
+   "Mg(OH)₂ ; CaCO₃",
+   "MgCO₃ ; Ca(OH)₂"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q134.jpg",
+  "bytes": 44915
+ },
+ {
+  "id": "tg_eapcet_2024_20240510_fn_q155",
+  "subject": "chemistry",
+  "chapter": "Haloalkanes and Haloarenes",
+  "year": 2024,
+  "question_en": "Aniline →(1. NaNO₂|HCl, 0°C  2. Cu₂Cl₂|HCl) X + CH₃Cl →(Na/dry ether) Y\nConversion of X to Y in the above reaction is",
+  "options_en": [
+   "Wurtz reaction",
+   "Fittig reaction",
+   "Wurtz-Fittig reaction",
+   "Sandmeyer reaction"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240510_fn_q155.jpg",
+  "bytes": 50045
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q146",
+  "subject": "chemistry",
+  "chapter": "VIA Group Elements",
+  "year": 2023,
+  "question_en": "Among the hydrides of group 16 elements, the hydride X has lowest boiling point and the hydride Y has highest boiling point. X and Y respectively are",
+  "options_en": [
+   "H₂Te, H₂Se",
+   "H₂O, H₂Te",
+   "H₂S, H₂Te",
+   "H₂S, H₂O"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q146.jpg",
+  "bytes": 52532
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_fn_q150",
+  "subject": "chemistry",
+  "chapter": "Noble Gases",
+  "year": 2021,
+  "question_en": "Complete hydrolysis of XeF₄ and XeF₆ gives its oxides P and Q, respectively. Identify P and Q",
+  "options_en": [
+   "P = XeO₂, Q = XeO₃",
+   "P = XeO, Q = XeO₂",
+   "P = XeO₃, Q = XeO₃",
+   "P = XeO₂, Q = XeO₂"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_fn_q150.jpg",
+  "bytes": 47231
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q133",
+  "subject": "chemistry",
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "year": 2021,
+  "question_en": "For the reaction A(g) ⇌ B(g) + C(g), A is 33 % dissociated at a total pressure P. The correct relation between P and Kp is",
+  "options_en": [
+   "P = Kp",
+   "P = (1/4) Kp",
+   "P = 8 Kp",
+   "P = 2 Kp"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q133.jpg",
+  "bytes": 44966
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q123",
+  "subject": "chemistry",
+  "chapter": "Classification of Elements and Periodic Properties",
+  "year": 2021,
+  "question_en": "Starting from the 1st, the successive ionization potentials of an element are respectively 5.98, 18.8, 28.4, 120.1, 154 eV. The element is",
+  "options_en": [
+   "B",
+   "Al",
+   "P",
+   "Mg"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_fn_q123.jpg",
+  "bytes": 44535
+ },
+ {
+  "id": "tg_eapcet_2025_20250504_fn_q144",
+  "subject": "chemistry",
+  "chapter": "Atomic Structure",
+  "year": 2025,
+  "question_en": "In hydrogen atom, an electron is transferred from an orbit of radius 1.3225 nm to another orbit of radius 0.2116 nm. What is the energy (in J) of emitted radiation?",
+  "options_en": [
+   "3.027×10⁻¹⁹",
+   "1.635×10⁻¹⁸",
+   "0.4578×10⁻¹⁸",
+   "4.087×10⁻¹⁹"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250504_fn_q144.jpg",
+  "bytes": 54589
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_an_q153",
+  "subject": "chemistry",
+  "chapter": "Biomolecules",
+  "year": 2024,
+  "question_en": "Cellulose is a polysaccharide and is made of",
+  "options_en": [
+   "β-D-glucose units joined through 1,4-glycosidic linkages",
+   "α-D-glucose units joined through 1,4-glycosidic linkages",
+   "α-D-glucose units joined through 1,6-glycosidic linkages",
+   "β-D-glucose units joined through 1,6-glycosidic linkages"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_an_q153.jpg",
+  "bytes": 62818
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_an_q130",
+  "subject": "chemistry",
+  "chapter": "Stoichiometry",
+  "year": 2022,
+  "question_en": "Which of the following are disproportionation reactions?\nA) Cl₂ + 2 NaOH → NaCl + NaOCl + H₂O\nB) H₂O₂ → 2H₂O + O₂\nC) 2 KMnO₄ → K₂MnO₄ + MnO₂ + O₂\nD) 3 MnO₄²⁻ + 4 H⁺ → 2 MnO₄⁻ + MnO₂ + 2 H₂O",
+  "options_en": [
+   "A, B, C only",
+   "A, B, D only",
+   "A, C only",
+   "A, B, C, D"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_an_q130.jpg",
+  "bytes": 59382
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q146",
+  "subject": "chemistry",
+  "chapter": "Surface Chemistry",
+  "year": 2022,
+  "question_en": "10 g of a gas is adsorbed on 500 g of solid at 10 bar. If the pressure is increased at 20 bar, 14 g of the gas is adsorbed by the same solid at the same temperature. What is the slope of Freundlich adsorption isotherm?",
+  "options_en": [
+   "1.0",
+   "4/3",
+   "3",
+   "0.5"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q146.jpg",
+  "bytes": 59241
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_an_q123",
+  "subject": "chemistry",
+  "chapter": "Classification of Elements and Periodic Properties",
+  "year": 2022,
+  "question_en": "The correct order of decreasing acidic nature of oxides",
+  "options_en": [
+   "Li₂O > BeO > CO₂ > B₂O₃ > N₂O₃",
+   "CO₂ > N₂O₃ > B₂O₃ > Li₂O > BeO",
+   "CO₂ > BeO > Li₂O > B₂O₃ > N₂O₃",
+   "N₂O₃ > CO₂ > B₂O₃ > BeO > Li₂O"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_an_q123.jpg",
+  "bytes": 47719
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q157",
+  "subject": "chemistry",
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "year": 2021,
+  "question_en": "Ethane can be obtained from ethanal in one step by",
+  "options_en": [
+   "Na – Hg + water",
+   "Zn – Hg + conc. HCl",
+   "Aluminium isopropoxide and isopropyl alcohol",
+   "LiAlH₄ + ether"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q157.jpg",
+  "bytes": 43135
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q132",
+  "subject": "chemistry",
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "year": 2021,
+  "question_en": "The degree of dissociation of 0.1 M acid HA is 5 %. The value of Kc of HA is",
+  "options_en": [
+   "1.3 × 10⁻⁴",
+   "2.6 × 10⁻³",
+   "2.6 × 10⁻⁴",
+   "1.3 × 10⁻²"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q132.jpg",
+  "bytes": 38074
+ },
+ {
+  "id": "tg_eapcet_2025_20250504_fn_q128",
+  "subject": "chemistry",
+  "chapter": "Solid State",
+  "year": 2025,
+  "question_en": "A metal (M), crystallizes in fcc lattice with edge length of 4.242 Å. What is the radius of M atom (in Å)?",
+  "options_en": [
+   "1.5",
+   "1.0",
+   "1.75",
+   "1.25"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250504_fn_q128.jpg",
+  "bytes": 40457
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q125",
+  "subject": "chemistry",
+  "chapter": "Chemical Bonding",
+  "year": 2021,
+  "question_en": "The total number of dative bonds present in all the following CO, NH₄Cl, Al₂Cl₆, Al(H₂O)₆, HNO₃ and CO₂ is",
+  "options_en": [
+   "11",
+   "10",
+   "9",
+   "12"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q125.jpg",
+  "bytes": 39828
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q141",
+  "subject": "chemistry",
+  "chapter": "Solid State",
+  "year": 2025,
+  "question_en": "The incorrect statement about crystals with Schottky defect is",
+  "options_en": [
+   "It is due to missing of equal number of cations and anions from lattice points",
+   "On the whole crystal is electrically neutral",
+   "It is shown by ionic compounds in which cation and anion are of almost same size",
+   "Density of the crystal increases"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_an_q141.jpg",
+  "bytes": 63822
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q148",
+  "subject": "chemistry",
+  "chapter": "VIIA Group Elements",
+  "year": 2023,
+  "question_en": "Identify the incorrect statement about the interhalogen compounds",
+  "options_en": [
+   "ICl is more reactive than I₂",
+   "They are diamagnetic in nature",
+   "The products of ICl and water are HI + HOCl",
+   "They act as fluorinating agents"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q148.jpg",
+  "bytes": 51817
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q137",
+  "subject": "chemistry",
+  "chapter": "General Organic Chemistry",
+  "year": 2023,
+  "question_en": "Addition of HBr to propene in presence of a peroxide takes place contrary to Markovnikov rule. This can be explained by the mechanism involving",
+  "options_en": [
+   "electrophile",
+   "free radical",
+   "nucleophile",
+   "carbene"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q137.jpg",
+  "bytes": 52377
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q052",
+  "subject": "maths",
+  "chapter": "Circle",
+  "year": 2021,
+  "question_en": "If the points (2,3) and (K,−2) are conjugate with respect to the circle x² + y² − 2x + 4y − 2 = 0 then K =",
+  "options_en": [
+   "8",
+   "6",
+   "4",
+   "3"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_an_q052.jpg",
+  "bytes": 37819
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q076",
+  "subject": "maths",
+  "chapter": "Definite Integrals",
+  "year": 2022,
+  "question_en": "∫₁⁴ (x + √x + 1/x) dx - ∫₁^(2 log 2) dx =",
+  "options_en": [
+   "79/6",
+   "643/6",
+   "321/5",
+   "64"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q076.jpg",
+  "bytes": 30067
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q051",
+  "subject": "maths",
+  "chapter": "Circle",
+  "year": 2023,
+  "question_en": "Let S ≡ x² + y² - 8x + 10y + 5 = 0 be a circle. Let P(1, 1) and Q(1, -1) be two points. Then the point of intersection of the polar of P with respect to S = 0 and the chord with Q as mid-point to S = 0 is",
+  "options_en": [
+   "(2, 2)",
+   "(11, 13/2)",
+   "(-4, -1)",
+   "(5, 7/2)"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_fn_q051.jpg",
+  "bytes": 55287
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_an_q019",
+  "subject": "maths",
+  "chapter": "Permutations and Combinations",
+  "year": 2023,
+  "question_en": "The number of ways in which 6 men and 4 women can be seated around a table so that a particular man and a particular woman never sit adjacent to each other is",
+  "options_en": [
+   "9!",
+   "7 × 8!",
+   "8 × 8!",
+   "6 × 7!"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_an_q019.jpg",
+  "bytes": 50093
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q006",
+  "subject": "maths",
+  "chapter": "Matrices",
+  "year": 2022,
+  "question_en": "If (α β γ)[1 2 3; 2 3 −5; 1 2 5] = (3 5 2) then α³ + β³ + γ³ =",
+  "options_en": [
+   "8",
+   "−6",
+   "6",
+   "−10"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q006.jpg",
+  "bytes": 30264
+ },
+ {
+  "id": "tg_eapcet_2022_20220718_fn_q038",
+  "subject": "maths",
+  "chapter": "Probability",
+  "year": 2022,
+  "question_en": "3 balls are drawn one after the other without replacement from an urn containing 4 red, 5 blue and 6 yellow balls. The probability of getting three different coloured balls is",
+  "options_en": [
+   "12/91",
+   "24/91",
+   "8/225",
+   "8/75"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220718_fn_q038.jpg",
+  "bytes": 53843
+ },
+ {
+  "id": "tg_eapcet_2025_20250504_fn_q022",
+  "subject": "maths",
+  "chapter": "Permutations and Combinations",
+  "year": 2025,
+  "question_en": "The number of positive integral solutions of 1/x + 1/y = 1/2025 is",
+  "options_en": [
+   "105",
+   "25",
+   "135",
+   "45"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250504_fn_q022.jpg",
+  "bytes": 33408
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_an_q001",
+  "subject": "maths",
+  "chapter": "Functions",
+  "year": 2023,
+  "question_en": "Which one of the following functions is a bijection?",
+  "options_en": [
+   "f : ℝ − ℤ → [0,1] defined by f(x) = √(x − [x]). (Here [x] represents the greatest integer function)",
+   "f : ℝ → (−∞, 2) defined by f(x) = 4x − x² − 3",
+   "f : (5, ∞) → ℝ − {0} defined by f(x) = 1/√(x − 5)",
+   "f : [0, 4] → [0, 4] defined by f(x) = √(16 − x²)"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_an_q001.jpg",
+  "bytes": 59703
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q008",
+  "subject": "maths",
+  "chapter": "Quadratic Expressions",
+  "year": 2021,
+  "question_en": "If α, β are the roots of the equation 1+x+x²=0, then (2-α)(2-β)(2-α¹⁰)(2-α²⁰) =",
+  "options_en": [
+   "36",
+   "64",
+   "49",
+   "81"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_an_q008.jpg",
+  "bytes": 33426
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q079",
+  "subject": "maths",
+  "chapter": "Differential Equations",
+  "year": 2023,
+  "question_en": "If the solution of the differential equation dy/dx = (2x + 3y)/(3x - 2y) is y = x tan(f(x)) + c then f(x) =",
+  "options_en": [
+   "(1/3)log(x² + y²)",
+   "(2x + 3y) log x",
+   "x log(y/x) + y²",
+   "sin(x + y²)"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q079.jpg",
+  "bytes": 45252
+ },
+ {
+  "id": "tg_eapcet_2023_20230512_an_q077",
+  "subject": "maths",
+  "chapter": "Definite Integrals",
+  "year": 2023,
+  "question_en": "The area (in sq. units) bounded by the curve y = 2x − x² and the line y = −x is",
+  "options_en": [
+   "9/2",
+   "11/2",
+   "16/3",
+   "22/5"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230512_an_q077.jpg",
+  "bytes": 35300
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q049",
+  "subject": "maths",
+  "chapter": "Pair of Straight Lines",
+  "year": 2022,
+  "question_en": "The line x + 2y = k meets the curve 2x² − 2xy + 3y² + 2x − y − 1 = 0 at two points A and B. Let O be the origin. If the line segments OA and OB are perpendicular to each other, then k =",
+  "options_en": [
+   "±1",
+   "±2",
+   "±3",
+   "4"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q049.jpg",
+  "bytes": 51130
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_an_q040",
+  "subject": "maths",
+  "chapter": "Random Variables and Probability Distributions",
+  "year": 2022,
+  "question_en": "If X is a Poisson variate such that (5/3)k = P(X=2) = P(X=3), then P(X=5) =",
+  "options_en": [
+   "k",
+   "(1/4)k",
+   "(1/2)k",
+   "(3/4)k"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_an_q040.jpg",
+  "bytes": 36536
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_an_q015",
+  "subject": "maths",
+  "chapter": "Theory of Equations",
+  "year": 2024,
+  "question_en": "α,β,γ,2,ε are the roots of the equation x⁵+4x⁴-13x³-52x²+36x+144=0. If α<β<γ<2<ε, then α+2β+3γ+5ε =",
+  "options_en": [
+   "-1",
+   "25",
+   "-36",
+   "48"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_an_q015.jpg",
+  "bytes": 40254
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_an_q011",
+  "subject": "maths",
+  "chapter": "Quadratic Expressions",
+  "year": 2021,
+  "question_en": "If the minimum value of the quadratic expression x²+5x-2 is M and it exists at a then M/a =",
+  "options_en": [
+   "3.3",
+   "33/5",
+   "2.5",
+   "-0.25"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210806_an_q011.jpg",
+  "bytes": 37820
+ },
+ {
+  "id": "tg_eapcet_2024_20240511_fn_q014",
+  "subject": "maths",
+  "chapter": "Theory of Equations",
+  "year": 2024,
+  "question_en": "If α, β, γ are the roots of the equation 4x³ − 3x² + 2x − 1 = 0, then α³ + β³ + γ³ =",
+  "options_en": [
+   "2/27",
+   "1/8",
+   "3/64",
+   "27/128"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240511_fn_q014.jpg",
+  "bytes": 36259
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q075",
+  "subject": "maths",
+  "chapter": "Integration",
+  "year": 2024,
+  "question_en": "∫ (x⁵+x)/(x⁸+1) dx =",
+  "options_en": [
+   "(1/(2√2)) Tan⁻¹((x⁴−1)/(√2x²)) + c",
+   "log(x⁵+x²) − log(x³+x) + log(x+1) + c",
+   "(2/9)x⁸ − (4/9)x⁶ + (1/9)x⁴ − (1/3)x² + c",
+   "(1/√2) Tan⁻¹((x⁵−1)/(√2x³)) + c"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_fn_q075.jpg",
+  "bytes": 43237
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q067",
+  "subject": "maths",
+  "chapter": "Differentiation",
+  "year": 2022,
+  "question_en": "Let f(x) be a differentiable function such that f(0) = 0 and f′(0) = 20. For x ∈ (0, π/2], if A(x) = 2f(x)cosec 4x + 4f(x)(cos²x + 1) − 4cos²x then lim(x→0) A(x) =",
+  "options_en": [
+   "0",
+   "4",
+   "6",
+   "8"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q067.jpg",
+  "bytes": 47394
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q058",
+  "subject": "maths",
+  "chapter": "Ellipse",
+  "year": 2022,
+  "question_en": "The length of the latus rectum of an ellipse is 6 units and the distance between a focus and its nearest vertex on the major axis is 5/3 units. If e is the eccentricity of this ellipse, then e satisfies the equation",
+  "options_en": [
+   "25x² − 40x + 16 = 0",
+   "25x² + 40x − 16 = 0",
+   "25x² − 40x − 16 = 0",
+   "25x² + 40x − 32 = 0"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q058.jpg",
+  "bytes": 64727
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_an_q013",
+  "subject": "maths",
+  "chapter": "Theory of Equations",
+  "year": 2023,
+  "question_en": "Let the equations ax² − 7x + c = 0 and ax² + 5x − c = 0 have a common root and ac ≠ 0. If 3 is a root of ax² − 7x + c = 0 other than the common root, then the common root of the given equations is",
+  "options_en": [
+   "3",
+   "1/2",
+   "2",
+   "1/3"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_an_q013.jpg",
+  "bytes": 52534
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_fn_q028",
+  "subject": "maths",
+  "chapter": "Properties of Triangles",
+  "year": 2021,
+  "question_en": "If 4 times the area of a ΔABC is c²-(a-b)², then sin C =",
+  "options_en": [
+   "√3/2",
+   "1/√2",
+   "1/2",
+   "1"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210805_fn_q028.jpg",
+  "bytes": 31990
+ },
+ {
+  "id": "tg_eapcet_2022_20220720_fn_q014",
+  "subject": "maths",
+  "chapter": "Theory of Equations",
+  "year": 2022,
+  "question_en": "The sum of all distinct roots of the equation x⁵ − 3x⁴ + 5x³ − 5x² + 3x − 1 = 0 is",
+  "options_en": [
+   "1",
+   "2",
+   "3",
+   "2√3"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2022_20220720_fn_q014.jpg",
+  "bytes": 33752
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_fn_q008",
+  "subject": "maths",
+  "chapter": "Complex Numbers",
+  "year": 2024,
+  "question_en": "If √5−i√15 = r(cosθ+isinθ), −π<θ<π, then r²(secθ+3cosec²θ) =",
+  "options_en": [
+   "40",
+   "60",
+   "120",
+   "180"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_fn_q008.jpg",
+  "bytes": 33444
+ },
+ {
+  "id": "tg_eapcet_2021_20210806_fn_q079",
+  "subject": "maths",
+  "chapter": "Definite Integrals",
+  "year": 2021,
+  "question_en": "∫ (from 0 to π) x f(sin x) dx =",
+  "options_en": [
+   "2π ∫ (from 0 to π/4) f(sin x) dx",
+   "π ∫ (from 0 to π/4) f(sin x) dx",
+   "2π ∫ (from 0 to π/2) f(sin x) dx",
+   "π ∫ (from 0 to π/2) f(sin x) dx"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210806_fn_q079.jpg",
+  "bytes": 42241
+ },
+ {
+  "id": "tg_eapcet_2025_20250503_an_q033",
+  "subject": "maths",
+  "chapter": "Product of Vectors",
+  "year": 2025,
+  "question_en": "Let a = i+2j+3k, b = 2i−3j+k and c = 3i+j−2k be three vectors. If r is a vector such that r.a = 0, r.b = −2 and r.c = 6 then r.(3i+j+k) =",
+  "options_en": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "answer": 4,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2025_20250503_an_q033.jpg",
+  "bytes": 40593
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q026",
+  "subject": "maths",
+  "chapter": "Trigonometric Ratios and Transformations",
+  "year": 2023,
+  "question_en": "If cos θ = −3/5 and π < θ < 3π/2, then tan(θ/2) + sin(θ/2) + 2cos(θ/2) =",
+  "options_en": [
+   "-1",
+   "1",
+   "-2",
+   "2"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q026.jpg",
+  "bytes": 33621
+ },
+ {
+  "id": "tg_eapcet_2024_20240509_an_q035",
+  "subject": "maths",
+  "chapter": "Measures of Dispersion",
+  "year": 2024,
+  "question_en": "The variance of the following continuous frequency distribution is: Class interval: 0-4, 4-8, 8-12, 12-16; Frequency: 2, 3, 2, 1",
+  "options_en": [
+   "128/7",
+   "15",
+   "19",
+   "130/7"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240509_an_q035.jpg",
+  "bytes": 44518
+ },
+ {
+  "id": "tg_eapcet_2021_20210804_an_q014",
+  "subject": "maths",
+  "chapter": "Permutations and Combinations",
+  "year": 2021,
+  "question_en": "If there are 5 letters written to 5 different people and 5 envelopes addressed to them, then the number of ways in which these letters can be arranged so that no letter goes into its corresponding envelope is",
+  "options_en": [
+   "9",
+   "24",
+   "44",
+   "119"
+  ],
+  "answer": 3,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2021_20210804_an_q014.jpg",
+  "bytes": 57242
+ },
+ {
+  "id": "tg_eapcet_2023_20230514_fn_q030",
+  "subject": "maths",
+  "chapter": "Properties of Triangles",
+  "year": 2023,
+  "question_en": "The perimeter of a ΔABC is 6 times the arithmetic mean of the values of the sine of its angles. If its side BC is of unit length, then ∠A =",
+  "options_en": [
+   "π/6",
+   "π/3",
+   "π/2",
+   "π"
+  ],
+  "answer": 1,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230514_fn_q030.jpg",
+  "bytes": 42985
+ },
+ {
+  "id": "tg_eapcet_2024_20240510_fn_q075",
+  "subject": "maths",
+  "chapter": "Integration",
+  "year": 2024,
+  "question_en": "∫(log x)³ dx =",
+  "options_en": [
+   "(log x)³ − 3(log x)² + 6log x − 6 + c",
+   "x[(log x)³ − 3(log x)² + 6(log x) − 6] + c",
+   "(x log x)³ − 3(x log x)² + 6x(log x) − 6 + c",
+   "(1/x)[(log x)³ − 3(log x)² + 6log x − 6] + c"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2024_20240510_fn_q075.jpg",
+  "bytes": 43667
+ }
+]

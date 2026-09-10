@@ -1,0 +1,29 @@
+{
+ "hand": {
+  "jm2024-01-feb-shift-1_che_q72|off": 4,
+  "jm2024-06-apr-shift-1_che_q80|high": 2,
+  "jm2024-09-apr-shift-1_che_q64|off": 1,
+  "jm2024-27-jan-shift-1_che_q64|max": 4,
+  "jm2024-27-jan-shift-1_che_q66|high": 4,
+  "jm2024-08-apr-shift-1_phy_q53|high": "3",
+  "jm2024-08-apr-shift-1_phy_q53|low": "3",
+  "jm2024-08-apr-shift-1_phy_q53|max": "3",
+  "jm2024-08-apr-shift-1_phy_q53|off": "3",
+  "jm2024-30-jan-shift-1_phy_q33|low": 3,
+  "jm2024-31-jan-shift-1_phy_q53|high": "1",
+  "jm2024-31-jan-shift-1_phy_q53|low": "1",
+  "jm2024-31-jan-shift-1_phy_q53|max": "1",
+  "jm2024-08-apr-shift-2_phy_q34|off": 3,
+  "jm2024-30-jan-shift-1_che_q69|off": 3,
+  "jm2024-31-jan-shift-2_che_q67|off": 1,
+  "jm2024-30-jan-shift-1_che_q65|max": 4
+ },
+ "disputed": {},
+ "excluded": {
+  "jm2024-29-jan-shift-1_che_q68": "crop cut off the Br at the bottom of options (3) and (4)"
+ },
+ "notes": {
+  "empty_replies": "04-apr-shift-2_che_q62 high/max hit the 32000-token cap while thinking (counted as wrong)",
+  "integers": "3.24 and 18/17 graded as the exam integers 3 and 1"
+ }
+}

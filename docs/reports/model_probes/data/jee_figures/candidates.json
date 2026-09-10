@@ -1,0 +1,2641 @@
+[
+ {
+  "paper": "jee-mains-2024-29-jan-shift-2",
+  "page": 13,
+  "col": 0,
+  "qno": 42,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   366.2133483886719
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 376,
+  "bytes": 74230,
+  "id": "jm2024-29-jan-shift-2_phy_q42",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-2_phy_q42.jpg",
+  "size": [
+   880,
+   942
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-1",
+  "page": 13,
+  "col": 1,
+  "qno": 46,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   59.90251922607422,
+   589.3200073242188,
+   556.3325805664062
+  ],
+  "figure": true,
+  "vec_clusters": 3,
+  "ras_clusters": 0,
+  "text_len": 419,
+  "bytes": 95997,
+  "id": "jm2024-04-apr-shift-1_phy_q46",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-1_phy_q46.jpg",
+  "size": [
+   896,
+   1531
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-1",
+  "page": 14,
+  "col": 0,
+  "qno": 34,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   220.98336791992188
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 211,
+  "bytes": 42209,
+  "id": "jm2024-01-feb-shift-1_phy_q34",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_phy_q34.jpg",
+  "size": [
+   878,
+   501
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-1",
+  "page": 13,
+  "col": 1,
+  "qno": 43,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   427.1533508300781,
+   589.3200073242188,
+   705.38330078125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 476,
+  "bytes": 89989,
+  "id": "jm2024-31-jan-shift-1_phy_q43",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-1_phy_q43.jpg",
+  "size": [
+   890,
+   867
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 16,
+  "col": 0,
+  "qno": 58,
+  "subject": "physics",
+  "qtype": "integer",
+  "answer": "3",
+  "clip": [
+   6.0,
+   566.0433349609375,
+   291.6600036621094,
+   715.223388671875
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 191,
+  "bytes": 39219,
+  "id": "jm2024-08-apr-shift-1_phy_q58",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_phy_q58.jpg",
+  "size": [
+   876,
+   461
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 13,
+  "col": 0,
+  "qno": 39,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   536.1533203125
+  ],
+  "figure": true,
+  "vec_clusters": 3,
+  "ras_clusters": 0,
+  "text_len": 456,
+  "bytes": 103166,
+  "id": "jm2024-04-apr-shift-2_phy_q39",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_phy_q39.jpg",
+  "size": [
+   880,
+   1460
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-1",
+  "page": 13,
+  "col": 0,
+  "qno": 35,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   566.0333251953125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 779,
+  "bytes": 140371,
+  "id": "jm2024-05-apr-shift-1_phy_q35",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-1_phy_q35.jpg",
+  "size": [
+   900,
+   1561
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-1",
+  "page": 12,
+  "col": 0,
+  "qno": 32,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   380.4533386230469,
+   291.6600036621094,
+   624.623291015625
+  ],
+  "figure": true,
+  "vec_clusters": 2,
+  "ras_clusters": 0,
+  "text_len": 367,
+  "bytes": 64789,
+  "id": "jm2024-05-apr-shift-1_phy_q32",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-1_phy_q32.jpg",
+  "size": [
+   880,
+   753
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 16,
+  "col": 0,
+  "qno": 60,
+  "subject": "physics",
+  "qtype": "integer",
+  "answer": "2",
+  "clip": [
+   6.0,
+   60.003326416015625,
+   291.6600036621094,
+   325.0533447265625
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 453,
+  "bytes": 85307,
+  "id": "jm2024-08-apr-shift-2_phy_q60",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_phy_q60.jpg",
+  "size": [
+   878,
+   815
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-1",
+  "page": 14,
+  "col": 1,
+  "qno": 41,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   162.86337280273438,
+   589.3200073242188,
+   416.61334228515625
+  ],
+  "figure": true,
+  "vec_clusters": 2,
+  "ras_clusters": 0,
+  "text_len": 286,
+  "bytes": 66138,
+  "id": "jm2024-05-apr-shift-1_phy_q41",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-1_phy_q41.jpg",
+  "size": [
+   878,
+   780
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 10,
+  "col": 1,
+  "qno": 33,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   261.9848327636719,
+   589.3200073242188,
+   413.0048522949219
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 186,
+  "bytes": 42222,
+  "id": "jm2024-30-jan-shift-1_phy_q33",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_phy_q33.jpg",
+  "size": [
+   880,
+   472
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-1",
+  "page": 16,
+  "col": 0,
+  "qno": 48,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   135.88238525390625,
+   291.6600036621094,
+   351.0933532714844
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 314,
+  "bytes": 52389,
+  "id": "jm2024-06-apr-shift-1_phy_q48",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-1_phy_q48.jpg",
+  "size": [
+   876,
+   660
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 13,
+  "col": 0,
+  "qno": 44,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   241.14334106445312
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 218,
+  "bytes": 48865,
+  "id": "jm2024-30-jan-shift-1_phy_q44",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_phy_q44.jpg",
+  "size": [
+   882,
+   566
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 12,
+  "col": 0,
+  "qno": 41,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   167.18331909179688,
+   291.6600036621094,
+   494.87335205078125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 385,
+  "bytes": 72564,
+  "id": "jm2024-08-apr-shift-1_phy_q41",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_phy_q41.jpg",
+  "size": [
+   892,
+   1019
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-2",
+  "page": 14,
+  "col": 0,
+  "qno": 46,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   393.8933410644531,
+   291.6600036621094,
+   569.0633544921875
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 171,
+  "bytes": 39127,
+  "id": "jm2024-29-jan-shift-2_phy_q46",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-2_phy_q46.jpg",
+  "size": [
+   880,
+   546
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-2",
+  "page": 15,
+  "col": 0,
+  "qno": 43,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   259.7733459472656
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 291,
+  "bytes": 49906,
+  "id": "jm2024-09-apr-shift-2_phy_q43",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-2_phy_q43.jpg",
+  "size": [
+   884,
+   625
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-1",
+  "page": 15,
+  "col": 0,
+  "qno": 43,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   350.37335205078125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 279,
+  "bytes": 66293,
+  "id": "jm2024-06-apr-shift-1_phy_q43",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-1_phy_q43.jpg",
+  "size": [
+   892,
+   906
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-1",
+  "page": 11,
+  "col": 1,
+  "qno": 35,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6600036621094,
+   466.3933410644531,
+   589.3200073242188,
+   686.5433349609375
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 323,
+  "bytes": 66932,
+  "id": "jm2024-31-jan-shift-1_phy_q35",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-1_phy_q35.jpg",
+  "size": [
+   888,
+   691
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-2",
+  "page": 14,
+  "col": 0,
+  "qno": 39,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   245.94332885742188
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 567,
+  "bytes": 59219,
+  "id": "jm2024-27-jan-shift-2_phy_q39",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-2_phy_q39.jpg",
+  "size": [
+   878,
+   573
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-2",
+  "page": 12,
+  "col": 0,
+  "qno": 35,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   523.393310546875,
+   291.6600036621094,
+   713.9033203125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 309,
+  "bytes": 56794,
+  "id": "jm2024-01-feb-shift-2_phy_q35",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-2_phy_q35.jpg",
+  "size": [
+   880,
+   591
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 9,
+  "col": 1,
+  "qno": 34,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   303.6600036621094,
+   418.1333312988281,
+   589.3200073242188,
+   600.11328125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 311,
+  "bytes": 58094,
+  "id": "jm2024-08-apr-shift-2_phy_q34",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_phy_q34.jpg",
+  "size": [
+   886,
+   575
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-1",
+  "page": 14,
+  "col": 1,
+  "qno": 46,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   484.2733459472656,
+   589.3200073242188,
+   711.86328125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 4,
+  "text_len": 244,
+  "bytes": 55050,
+  "id": "jm2024-31-jan-shift-1_phy_q46",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-1_phy_q46.jpg",
+  "size": [
+   884,
+   709
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-1",
+  "page": 10,
+  "col": 1,
+  "qno": 40,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   60.123321533203125,
+   589.3200073242188,
+   408.23333740234375
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 483,
+  "bytes": 96387,
+  "id": "jm2024-29-jan-shift-1_phy_q40",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-1_phy_q40.jpg",
+  "size": [
+   892,
+   1081
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 14,
+  "col": 1,
+  "qno": 50,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   60.123321533203125,
+   589.3200073242188,
+   249.06332397460938
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 198,
+  "bytes": 41955,
+  "id": "jm2024-05-apr-shift-2_phy_q50",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_phy_q50.jpg",
+  "size": [
+   878,
+   585
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 11,
+  "col": 1,
+  "qno": 38,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   63.06297302246094,
+   589.3200073242188,
+   220.38333129882812
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 276,
+  "bytes": 47107,
+  "id": "jm2024-05-apr-shift-2_phy_q38",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_phy_q38.jpg",
+  "size": [
+   884,
+   498
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-1",
+  "page": 17,
+  "col": 0,
+  "qno": 53,
+  "subject": "physics",
+  "qtype": "integer",
+  "answer": "1",
+  "clip": [
+   6.0,
+   483.0733337402344,
+   291.6600036621094,
+   595.943359375
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 80,
+  "bytes": 28610,
+  "id": "jm2024-31-jan-shift-1_phy_q53",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-1_phy_q53.jpg",
+  "size": [
+   876,
+   349
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-2",
+  "page": 10,
+  "col": 0,
+  "qno": 32,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   342.8359375,
+   291.6600036621094,
+   602.365966796875
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 382,
+  "bytes": 72451,
+  "id": "jm2024-30-jan-shift-2_phy_q32",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-2_phy_q32.jpg",
+  "size": [
+   880,
+   802
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 12,
+  "col": 0,
+  "qno": 42,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   347.5733337402344,
+   291.6600036621094,
+   488.6333312988281
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 175,
+  "bytes": 34329,
+  "id": "jm2024-05-apr-shift-2_phy_q42",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_phy_q42.jpg",
+  "size": [
+   878,
+   440
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-1",
+  "page": 13,
+  "col": 1,
+  "qno": 39,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   504.7933654785156,
+   589.3200073242188,
+   715.8233642578125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 254,
+  "bytes": 59993,
+  "id": "jm2024-06-apr-shift-1_phy_q39",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-1_phy_q39.jpg",
+  "size": [
+   878,
+   650
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 15,
+  "col": 0,
+  "qno": 53,
+  "subject": "physics",
+  "qtype": "integer",
+  "answer": "3",
+  "clip": [
+   6.0,
+   387.5333557128906,
+   291.6600036621094,
+   619.8233642578125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 472,
+  "bytes": 60812,
+  "id": "jm2024-08-apr-shift-1_phy_q53",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_phy_q53.jpg",
+  "size": [
+   880,
+   718
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 10,
+  "col": 0,
+  "qno": 37,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   540.0733642578125,
+   291.6600036621094,
+   716.42333984375
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 305,
+  "bytes": 65335,
+  "id": "jm2024-08-apr-shift-2_phy_q37",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_phy_q37.jpg",
+  "size": [
+   878,
+   546
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 13,
+  "col": 0,
+  "qno": 44,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   59.883331298828125,
+   291.6600036621094,
+   191.70333862304688
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 133,
+  "bytes": 32776,
+  "id": "jm2024-08-apr-shift-1_phy_q44",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_phy_q44.jpg",
+  "size": [
+   878,
+   412
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-1",
+  "page": 11,
+  "col": 1,
+  "qno": 40,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   59.90251922607422,
+   589.3200073242188,
+   558.37255859375
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 308,
+  "bytes": 80238,
+  "id": "jm2024-04-apr-shift-1_phy_q40",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-1_phy_q40.jpg",
+  "size": [
+   882,
+   1530
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-2",
+  "page": 16,
+  "col": 0,
+  "qno": 51,
+  "subject": "physics",
+  "qtype": "integer",
+  "answer": "3",
+  "clip": [
+   6.0,
+   80.18331909179688,
+   291.6600036621094,
+   294.9333190917969
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 173,
+  "bytes": 50813,
+  "id": "jm2024-31-jan-shift-2_phy_q51",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-2_phy_q51.jpg",
+  "size": [
+   876,
+   661
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-2",
+  "page": 14,
+  "col": 1,
+  "qno": 42,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   60.123321533203125,
+   589.3200073242188,
+   273.0933532714844
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 196,
+  "bytes": 54607,
+  "id": "jm2024-09-apr-shift-2_phy_q42",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-2_phy_q42.jpg",
+  "size": [
+   884,
+   666
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-2",
+  "page": 13,
+  "col": 0,
+  "qno": 35,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   395.37335205078125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 240,
+  "bytes": 54083,
+  "id": "jm2024-27-jan-shift-2_phy_q35",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-2_phy_q35.jpg",
+  "size": [
+   894,
+   1042
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 12,
+  "col": 0,
+  "qno": 41,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   509.8333740234375,
+   291.6600036621094,
+   706.8233642578125
+  ],
+  "figure": true,
+  "vec_clusters": 2,
+  "ras_clusters": 0,
+  "text_len": 352,
+  "bytes": 69856,
+  "id": "jm2024-30-jan-shift-1_phy_q41",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_phy_q41.jpg",
+  "size": [
+   878,
+   609
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-1",
+  "page": 16,
+  "col": 1,
+  "qno": 49,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6600036621094,
+   146.12477111816406,
+   589.3200073242188,
+   338.85333251953125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 359,
+  "bytes": 60650,
+  "id": "jm2024-05-apr-shift-1_phy_q49",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-1_phy_q49.jpg",
+  "size": [
+   884,
+   604
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-1",
+  "page": 12,
+  "col": 0,
+  "qno": 41,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   59.90251922607422,
+   291.6600036621094,
+   476.8925476074219
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 295,
+  "bytes": 72487,
+  "id": "jm2024-04-apr-shift-1_phy_q41",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-1_phy_q41.jpg",
+  "size": [
+   900,
+   1293
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-2",
+  "page": 16,
+  "col": 0,
+  "qno": 47,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   381.4533386230469
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 327,
+  "bytes": 70364,
+  "id": "jm2024-09-apr-shift-2_phy_q47",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-2_phy_q47.jpg",
+  "size": [
+   882,
+   991
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 18,
+  "col": 1,
+  "qno": 73,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6000061035156,
+   436.3233337402344,
+   589.2000122070312,
+   646.413330078125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 688,
+  "bytes": 100972,
+  "id": "jm2024-27-jan-shift-1_che_q73",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q73.jpg",
+  "size": [
+   880,
+   651
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 21,
+  "col": 1,
+  "qno": 78,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6600036621094,
+   419.3333435058594,
+   589.3200073242188,
+   698.663330078125
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 316,
+  "bytes": 78044,
+  "id": "jm2024-30-jan-shift-1_che_q78",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_che_q78.jpg",
+  "size": [
+   888,
+   870
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 19,
+  "col": 1,
+  "qno": 69,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   303.6600036621094,
+   60.243316650390625,
+   589.3200073242188,
+   193.26333618164062
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 147,
+  "bytes": 28552,
+  "id": "jm2024-30-jan-shift-1_che_q69",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_che_q69.jpg",
+  "size": [
+   880,
+   417
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-1",
+  "page": 22,
+  "col": 0,
+  "qno": 66,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   60.003326416015625,
+   291.6600036621094,
+   318.5733337402344
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 277,
+  "bytes": 67829,
+  "id": "jm2024-01-feb-shift-1_che_q66",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_che_q66.jpg",
+  "size": [
+   884,
+   803
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 20,
+  "col": 1,
+  "qno": 67,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   61.624481201171875,
+   589.3200073242188,
+   283.1733703613281
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 1,
+  "text_len": 358,
+  "bytes": 61010,
+  "id": "jm2024-04-apr-shift-2_che_q67",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q67.jpg",
+  "size": [
+   884,
+   690
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 23,
+  "col": 0,
+  "qno": 86,
+  "subject": "chemistry",
+  "qtype": "integer",
+  "answer": "1",
+  "clip": [
+   6.0,
+   274.8533630371094,
+   291.6600036621094,
+   374.9733581542969
+  ],
+  "figure": true,
+  "vec_clusters": 3,
+  "ras_clusters": 1,
+  "text_len": 156,
+  "bytes": 33165,
+  "id": "jm2024-08-apr-shift-2_che_q86",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_che_q86.jpg",
+  "size": [
+   878,
+   317
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-1",
+  "page": 20,
+  "col": 1,
+  "qno": 78,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   445.87335205078125,
+   589.3200073242188,
+   547.103271484375
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 273,
+  "bytes": 43324,
+  "id": "jm2024-29-jan-shift-1_che_q78",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-1_che_q78.jpg",
+  "size": [
+   878,
+   318
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-1",
+  "page": 24,
+  "col": 0,
+  "qno": 80,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   136.10336303710938,
+   291.6600036621094,
+   416.1533508300781
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 435,
+  "bytes": 88903,
+  "id": "jm2024-06-apr-shift-1_che_q80",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-1_che_q80.jpg",
+  "size": [
+   884,
+   869
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 17,
+  "col": 1,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   133.82333374023438,
+   589.3200073242188,
+   331.2933349609375
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 143,
+  "bytes": 34132,
+  "id": "jm2024-08-apr-shift-1_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_che_q62.jpg",
+  "size": [
+   878,
+   609
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 22,
+  "col": 0,
+  "qno": 80,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   479.11334228515625,
+   291.6600036621094,
+   639.143310546875
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 176,
+  "bytes": 39672,
+  "id": "jm2024-08-apr-shift-1_che_q80",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_che_q80.jpg",
+  "size": [
+   880,
+   502
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 19,
+  "col": 0,
+  "qno": 65,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   192.54336547851562
+  ],
+  "figure": true,
+  "vec_clusters": 3,
+  "ras_clusters": 0,
+  "text_len": 114,
+  "bytes": 30428,
+  "id": "jm2024-30-jan-shift-1_che_q65",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_che_q65.jpg",
+  "size": [
+   882,
+   424
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-2",
+  "page": 23,
+  "col": 0,
+  "qno": 71,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   60.243316650390625,
+   291.6600036621094,
+   243.81332397460938
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 261,
+  "bytes": 51439,
+  "id": "jm2024-09-apr-shift-2_che_q71",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-2_che_q71.jpg",
+  "size": [
+   882,
+   571
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-1",
+  "page": 20,
+  "col": 1,
+  "qno": 77,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   303.6600036621094,
+   59.883331298828125,
+   589.3200073242188,
+   322.413330078125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 133,
+  "bytes": 53345,
+  "id": "jm2024-29-jan-shift-1_che_q77",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-1_che_q77.jpg",
+  "size": [
+   880,
+   810
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 18,
+  "col": 0,
+  "qno": 67,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   452.99334716796875
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 2,
+  "text_len": 550,
+  "bytes": 111710,
+  "id": "jm2024-08-apr-shift-2_che_q67",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_che_q67.jpg",
+  "size": [
+   882,
+   1208
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 17,
+  "col": 0,
+  "qno": 66,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   59.663360595703125,
+   291.6000061035156,
+   280.7933654785156
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 100,
+  "bytes": 41917,
+  "id": "jm2024-27-jan-shift-1_che_q66",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q66.jpg",
+  "size": [
+   887,
+   694
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-2",
+  "page": 21,
+  "col": 0,
+  "qno": 67,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   420.7933349609375,
+   291.6600036621094,
+   718.6033935546875
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 124,
+  "bytes": 48157,
+  "id": "jm2024-31-jan-shift-2_che_q67",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-2_che_q67.jpg",
+  "size": [
+   894,
+   931
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 21,
+  "col": 0,
+  "qno": 70,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   443.7133483886719,
+   291.6600036621094,
+   554.9932861328125
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 206,
+  "bytes": 32973,
+  "id": "jm2024-04-apr-shift-2_che_q70",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q70.jpg",
+  "size": [
+   878,
+   351
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-2",
+  "page": 22,
+  "col": 1,
+  "qno": 83,
+  "subject": "chemistry",
+  "qtype": "integer",
+  "answer": "1",
+  "clip": [
+   303.6600036621094,
+   378.7733459472656,
+   589.3200073242188,
+   500.6333312988281
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 252,
+  "bytes": 41712,
+  "id": "jm2024-08-apr-shift-2_che_q83",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-2_che_q83.jpg",
+  "size": [
+   878,
+   383
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 19,
+  "col": 1,
+  "qno": 77,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6000061035156,
+   59.663360595703125,
+   589.2000122070312,
+   207.09335327148438
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 220,
+  "bytes": 44168,
+  "id": "jm2024-27-jan-shift-1_che_q77",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q77.jpg",
+  "size": [
+   880,
+   461
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 19,
+  "col": 0,
+  "qno": 68,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   428.8333435058594,
+   291.6600036621094,
+   601.3433837890625
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 295,
+  "bytes": 44208,
+  "id": "jm2024-08-apr-shift-1_che_q68",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_che_q68.jpg",
+  "size": [
+   878,
+   534
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 18,
+  "col": 0,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   60.003326416015625,
+   291.6600036621094,
+   321.3333435058594
+  ],
+  "figure": true,
+  "vec_clusters": 9,
+  "ras_clusters": 2,
+  "text_len": 329,
+  "bytes": 73050,
+  "id": "jm2024-08-apr-shift-1_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_che_q64.jpg",
+  "size": [
+   886,
+   813
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 21,
+  "col": 0,
+  "qno": 86,
+  "subject": "chemistry",
+  "qtype": "integer",
+  "answer": "3",
+  "clip": [
+   6.0,
+   59.903350830078125,
+   291.6000061035156,
+   259.4333190917969
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 4,
+  "text_len": 136,
+  "bytes": 40651,
+  "id": "jm2024-27-jan-shift-1_che_q86",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q86.jpg",
+  "size": [
+   881,
+   622
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-1",
+  "page": 23,
+  "col": 0,
+  "qno": 72,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   496.75335693359375,
+   291.6600036621094,
+   647.5433349609375
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 145,
+  "bytes": 39001,
+  "id": "jm2024-01-feb-shift-1_che_q72",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_che_q72.jpg",
+  "size": [
+   882,
+   478
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-2",
+  "page": 19,
+  "col": 1,
+  "qno": 73,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   61.083343505859375,
+   589.3200073242188,
+   311.3733215332031
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 1,
+  "text_len": 148,
+  "bytes": 46092,
+  "id": "jm2024-06-apr-shift-2_che_q73",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-2_che_q73.jpg",
+  "size": [
+   888,
+   780
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-1",
+  "page": 18,
+  "col": 1,
+  "qno": 68,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   231.17337036132812,
+   589.3200073242188,
+   400.1933288574219
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 4,
+  "text_len": 123,
+  "bytes": 39080,
+  "id": "jm2024-29-jan-shift-1_che_q68",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-1_che_q68.jpg",
+  "size": [
+   876,
+   521
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 16,
+  "col": 1,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6000061035156,
+   80.83517456054688,
+   589.2000122070312,
+   343.5051574707031
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 109,
+  "bytes": 38745,
+  "id": "jm2024-27-jan-shift-1_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q64.jpg",
+  "size": [
+   886,
+   816
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-1",
+  "page": 21,
+  "col": 1,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   303.6600036621094,
+   297.2933654785156,
+   589.3200073242188,
+   434.3933410644531
+  ],
+  "figure": true,
+  "vec_clusters": 3,
+  "ras_clusters": 0,
+  "text_len": 406,
+  "bytes": 49750,
+  "id": "jm2024-09-apr-shift-1_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-1_che_q64.jpg",
+  "size": [
+   878,
+   428
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-2",
+  "page": 17,
+  "col": 1,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   198.62484741210938,
+   589.3200073242188,
+   514.2847900390625
+  ],
+  "figure": true,
+  "vec_clusters": 8,
+  "ras_clusters": 0,
+  "text_len": 203,
+  "bytes": 80448,
+  "id": "jm2024-30-jan-shift-2_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-2_che_q64.jpg",
+  "size": [
+   888,
+   980
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 18,
+  "col": 1,
+  "qno": 72,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6000061035156,
+   59.903350830078125,
+   589.2000122070312,
+   335.3033447265625
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 344,
+  "bytes": 71539,
+  "id": "jm2024-27-jan-shift-1_che_q72",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q72.jpg",
+  "size": [
+   886,
+   854
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 17,
+  "col": 1,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   536.8329467773438,
+   589.3200073242188,
+   705.4659423828125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 263,
+  "bytes": 51184,
+  "id": "jm2024-05-apr-shift-2_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_che_q64.jpg",
+  "size": [
+   880,
+   526
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": false
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 20,
+  "col": 0,
+  "qno": 65,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   6.0,
+   346.2513427734375,
+   291.6600036621094,
+   498.5933532714844
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 242,
+  "bytes": 49006,
+  "id": "jm2024-04-apr-shift-2_che_q65",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q65.jpg",
+  "size": [
+   876,
+   469
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 19,
+  "col": 1,
+  "qno": 73,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   303.6600036621094,
+   524.3509521484375,
+   589.3200073242188,
+   640.6649780273438
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 188,
+  "bytes": 35002,
+  "id": "jm2024-05-apr-shift-2_che_q73",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_che_q73.jpg",
+  "size": [
+   882,
+   374
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 19,
+  "col": 0,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   395.933349609375,
+   291.6600036621094,
+   712.5833740234375
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 1,
+  "text_len": 187,
+  "bytes": 53419,
+  "id": "jm2024-04-apr-shift-2_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q62.jpg",
+  "size": [
+   878,
+   973
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-2",
+  "page": 22,
+  "col": 1,
+  "qno": 76,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 1,
+  "clip": [
+   303.6600036621094,
+   554.38330078125,
+   589.3200073242188,
+   647.9033203125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 143,
+  "bytes": 28730,
+  "id": "jm2024-27-jan-shift-2_che_q76",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-2_che_q76.jpg",
+  "size": [
+   880,
+   307
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-1",
+  "page": 24,
+  "col": 1,
+  "qno": 77,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   497.7133483886719,
+   589.3200073242188,
+   713.3033447265625
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 2,
+  "text_len": 338,
+  "bytes": 64883,
+  "id": "jm2024-09-apr-shift-1_che_q77",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-1_che_q77.jpg",
+  "size": [
+   876,
+   662
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 20,
+  "col": 1,
+  "qno": 73,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   240.98336791992188,
+   589.3200073242188,
+   434.61334228515625
+  ],
+  "figure": true,
+  "vec_clusters": 2,
+  "ras_clusters": 0,
+  "text_len": 295,
+  "bytes": 49621,
+  "id": "jm2024-30-jan-shift-1_che_q73",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_che_q73.jpg",
+  "size": [
+   876,
+   596
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 20,
+  "col": 1,
+  "qno": 78,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   233.59593200683594,
+   589.3200073242188,
+   609.8379516601562
+  ],
+  "figure": true,
+  "vec_clusters": 10,
+  "ras_clusters": 0,
+  "text_len": 257,
+  "bytes": 80222,
+  "id": "jm2024-05-apr-shift-2_che_q78",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_che_q78.jpg",
+  "size": [
+   898,
+   1169
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-2",
+  "page": 20,
+  "col": 1,
+  "qno": 71,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   488.0787658691406,
+   589.3200073242188,
+   639.5933837890625
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 0,
+  "text_len": 176,
+  "bytes": 43413,
+  "id": "jm2024-29-jan-shift-2_che_q71",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-2_che_q71.jpg",
+  "size": [
+   878,
+   470
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-2",
+  "page": 20,
+  "col": 0,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   358.64349365234375,
+   291.6600036621094,
+   584.468017578125
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 336,
+  "bytes": 61004,
+  "id": "jm2024-27-jan-shift-2_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-2_che_q62.jpg",
+  "size": [
+   878,
+   695
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-2",
+  "page": 17,
+  "col": 1,
+  "qno": 63,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   205.27964782714844,
+   589.3200073242188,
+   470.5079650878906
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 0,
+  "text_len": 170,
+  "bytes": 46575,
+  "id": "jm2024-05-apr-shift-2_che_q63",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-2_che_q63.jpg",
+  "size": [
+   888,
+   827
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-2",
+  "page": 20,
+  "col": 0,
+  "qno": 65,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   59.9687614440918,
+   291.6600036621094,
+   153.30331420898438
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 439,
+  "bytes": 33175,
+  "id": "jm2024-29-jan-shift-2_che_q65",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-29-jan-shift-2_che_q65.jpg",
+  "size": [
+   876,
+   292
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-05-apr-shift-1",
+  "page": 20,
+  "col": 1,
+  "qno": 63,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   133.82333374023438,
+   589.3200073242188,
+   377.9733581542969
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 0,
+  "text_len": 211,
+  "bytes": 50845,
+  "id": "jm2024-05-apr-shift-1_che_q63",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-05-apr-shift-1_che_q63.jpg",
+  "size": [
+   888,
+   763
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-1",
+  "page": 20,
+  "col": 1,
+  "qno": 66,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   303.6600036621094,
+   82.82333374023438,
+   589.3200073242188,
+   434.99334716796875
+  ],
+  "figure": true,
+  "vec_clusters": 9,
+  "ras_clusters": 0,
+  "text_len": 257,
+  "bytes": 96117,
+  "id": "jm2024-04-apr-shift-1_che_q66",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-1_che_q66.jpg",
+  "size": [
+   894,
+   1093
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-27-jan-shift-1",
+  "page": 16,
+  "col": 0,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   342.98516845703125,
+   291.6000061035156,
+   503.6051330566406
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 4,
+  "text_len": 94,
+  "bytes": 31318,
+  "id": "jm2024-27-jan-shift-1_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-27-jan-shift-1_che_q62.jpg",
+  "size": [
+   877,
+   497
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-09-apr-shift-2",
+  "page": 20,
+  "col": 0,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   524.953369140625,
+   291.6600036621094,
+   698.0633544921875
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 277,
+  "bytes": 46210,
+  "id": "jm2024-09-apr-shift-2_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-09-apr-shift-2_che_q62.jpg",
+  "size": [
+   876,
+   531
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-06-apr-shift-1",
+  "page": 20,
+  "col": 0,
+  "qno": 64,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   293.0133361816406
+  ],
+  "figure": true,
+  "vec_clusters": 4,
+  "ras_clusters": 0,
+  "text_len": 496,
+  "bytes": 48699,
+  "id": "jm2024-06-apr-shift-1_che_q64",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-06-apr-shift-1_che_q64.jpg",
+  "size": [
+   876,
+   715
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-30-jan-shift-1",
+  "page": 19,
+  "col": 0,
+  "qno": 66,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   252.98336791992188,
+   291.6600036621094,
+   309.8133239746094
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 453,
+  "bytes": 22353,
+  "id": "jm2024-30-jan-shift-1_che_q66",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-30-jan-shift-1_che_q66.jpg",
+  "size": [
+   876,
+   186
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-31-jan-shift-2",
+  "page": 23,
+  "col": 0,
+  "qno": 73,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   198.74331665039062,
+   291.6600036621094,
+   339.6933288574219
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 198,
+  "bytes": 43574,
+  "id": "jm2024-31-jan-shift-2_che_q73",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-31-jan-shift-2_che_q73.jpg",
+  "size": [
+   882,
+   447
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-1",
+  "page": 26,
+  "col": 0,
+  "qno": 86,
+  "subject": "chemistry",
+  "qtype": "integer",
+  "answer": "2",
+  "clip": [
+   6.0,
+   59.883331298828125,
+   291.6600036621094,
+   152.82333374023438
+  ],
+  "figure": true,
+  "vec_clusters": 2,
+  "ras_clusters": 0,
+  "text_len": 188,
+  "bytes": 31643,
+  "id": "jm2024-01-feb-shift-1_che_q86",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_che_q86.jpg",
+  "size": [
+   880,
+   299
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-2",
+  "page": 21,
+  "col": 0,
+  "qno": 69,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 4,
+  "clip": [
+   6.0,
+   59.883331298828125,
+   291.6600036621094,
+   186.06332397460938
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 209,
+  "bytes": 34448,
+  "id": "jm2024-01-feb-shift-2_che_q69",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-2_che_q69.jpg",
+  "size": [
+   876,
+   389
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ },
+ {
+  "paper": "jee-mains-2024-08-apr-shift-1",
+  "page": 20,
+  "col": 0,
+  "qno": 72,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   523.5133056640625,
+   291.6600036621094,
+   626.7833251953125
+  ],
+  "figure": true,
+  "vec_clusters": 0,
+  "ras_clusters": 1,
+  "text_len": 166,
+  "bytes": 29852,
+  "id": "jm2024-08-apr-shift-1_che_q72",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-08-apr-shift-1_che_q72.jpg",
+  "size": [
+   880,
+   331
+  ],
+  "question_en": "",
+  "options_en": [],
+  "spare": true
+ }
+]
