@@ -15,11 +15,12 @@
  "final_answer": {"option": 2, "value": "4 m"},
  "confidence": "sure",
  "common_mistakes": [
-  {"option": null, "text": "Integrating v(t) directly from 0 to 4 seconds without splitting at the reversal point, which gives a net displacement of 0 m because the two stages cancel."},
-  {"option": 1, "text": "Computing only the distance covered up to the moment of reversal, 2 m, and stopping there without adding the return-direction distance from t = 2 s to t = 4 s."}
+  {"option": 1, "text": "Computing only the distance covered up to the moment of reversal, 2 m, and stopping there without adding the return-direction distance from t = 2 s to t = 4 s."},
+  {"option": 3, "text": "Treating the second stage as constant velocity at 2 m s⁻¹ for 2 s, giving 2 × 2 = 4 m instead of 2 m; adding the correct first stage gives 6 m."},
+  {"option": 4, "text": "Using the start and end speeds, both 2 m s⁻¹, as a constant average speed over the whole 4 s: 2 × 4 = 8 m, ignoring the reversal in between."}
  ],
  "concept_tags": ["velocity as a function of time", "distance vs displacement"],
  "difficulty": "medium",
  "mistake_type_hint": "concept",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:36:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-c", "at": "2026-09-10T12:00:00+05:30"}
 }

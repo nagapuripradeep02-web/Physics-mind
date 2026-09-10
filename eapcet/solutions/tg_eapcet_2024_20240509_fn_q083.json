@@ -13,10 +13,12 @@
  "final_answer": {"option": 2, "value": "36"},
  "confidence": "sure",
  "common_mistakes": [
-  {"option": 1, "text": "Computing the last-second distance as the difference of squares of the times, 5² − 4² = 9, forgetting to multiply by ½g, and mistaking this raw number for the percentage."}
+  {"option": 1, "text": "Computing the last-second distance as the difference of squares of the times, 5² − 4² = 9, forgetting to multiply by ½g, and mistaking this raw number for the percentage."},
+  {"option": 3, "text": "Using (n+1)² = 36 in the denominator of the last-second fraction (2n−1)/n² instead of n² = 25, as if the fall lasted one second longer, gives 25% instead of the correct 36%."},
+  {"option": 4, "text": "No slip reaches 49%: subtracting the first four seconds' distance from the height gives 64%, and using the final speed alone as a fraction of the height gives 40%; nothing lands on 49%.", "distractor": true}
  ],
  "concept_tags": ["free fall", "distance in last second", "percentage of total height"],
  "difficulty": "medium",
  "mistake_type_hint": "calculation",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:24:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-b", "at": "2026-09-10T15:45:00+05:30"}
 }

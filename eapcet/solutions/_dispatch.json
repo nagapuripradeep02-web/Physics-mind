@@ -1453,5 +1453,32 @@
   "files_expected": 1,
   "files_present": 1,
   "audited_disk_at": "2026-09-09T03:29:22+02:00"
+ },
+ {
+  "wave": 2,
+  "role": "rework",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2021_20210804_an_q083",
+   "tg_eapcet_2022_20220718_an_q084",
+   "tg_eapcet_2025_20250503_fn_q110",
+   "tg_eapcet_2021_20210804_an_q084",
+   "tg_eapcet_2022_20220718_fn_q083",
+   "tg_eapcet_2023_20230512_fn_q083",
+   "tg_eapcet_2024_20240509_fn_q083",
+   "tg_eapcet_2021_20210804_fn_q083",
+   "tg_eapcet_2022_20220718_fn_q084",
+   "tg_eapcet_2023_20230513_an_q083",
+   "tg_eapcet_2024_20240510_an_q083"
+  ],
+  "model": "sonnet",
+  "agent_label": "W02-K-p1-02",
+  "slice_path": "eapcet/solutions/_slices/W02_p1-02_rework.json",
+  "planned_at": "2026-09-10T02:26:03+02:00",
+  "dispatched_at": "2026-09-10T02:26:17+02:00",
+  "status": "dispatched",
+  "files_expected": 11,
+  "files_present": 0
  }
 ]

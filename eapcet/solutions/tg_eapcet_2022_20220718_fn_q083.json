@@ -11,10 +11,12 @@
  "final_answer": {"option": 1, "value": "5 m/s² and 10 m"},
  "confidence": "sure",
  "common_mistakes": [
-  {"option": 2, "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."}
+  {"option": 2, "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."},
+  {"option": 3, "text": "No slip reaches 6 m alongside 5 m/s²: dropping the square in s = ½at² gives 5 m, and forgetting the half gives 20 m; no route lands on 6 m.", "distractor": true},
+  {"option": 4, "text": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling either v or t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m.", "distractor": true}
  ],
  "concept_tags": ["uniformly accelerated motion", "kinematics from rest"],
  "difficulty": "easy",
  "mistake_type_hint": "calculation",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:18:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-b", "at": "2026-09-10T15:45:00+05:30"}
 }

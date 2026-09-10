@@ -47,6 +47,13 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
      produce that number at all (a "wrong sign" that gives 10¹⁶ tagged to the 10¹⁰ option).
      An entry with `option: null` is legitimate when its slip lands on no printed option; it is
      a finding only if the text's number does match a printed option after all.
+   - **In a STRICT chapter (your dispatch says so; today p1-02)** every wrong option carries an
+     entry, so the list has exactly three, and an entry may be marked `"distractor": true`,
+     meaning no method reaches that option. Audit a distractor entry the other way round: it
+     is WRONG if you can find a plausible student slip that DOES land on that option (the
+     author should have described it), and its text must say what the option is not. A
+     fabricated slip on a non-distractor entry — a route no student takes, written to fill the
+     option — is WRONG: the app would tell a student they made an error nobody makes.
    - For options made of statements ("b and d are true"), the entry must account for every
      statement the wrong option asserts; a route that explains one of two is WEAK.
    - A slip that lands on a printed option UP TO SIGN (the route gives −2av², option 4 prints

@@ -15,11 +15,12 @@
  "final_answer": {"option": 3, "value": "4/5"},
  "confidence": "sure",
  "common_mistakes": [
+  {"option": 1, "text": "Taking the remaining velocity fraction after the first stage, v/u = 2/3, and treating it directly as the distance ratio x′/x, instead of applying v² = u² − 2as to each stage."},
   {"option": 2, "text": "Reading the one-third velocity loss stated in the question and mistaking that fraction directly for the distance ratio x′/x, without using v² = u² − 2as at all."},
   {"option": 4, "text": "Taking the ratio of the squared velocities, (2u/3)²/u² = 4/9, and mistaking that fraction directly for x′/x without separately relating each stage to the constant retardation."}
  ],
  "concept_tags": ["uniform retardation", "v² = u² − 2as"],
  "difficulty": "medium",
  "mistake_type_hint": "application",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:33:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-c", "at": "2026-09-10T12:00:00+05:30"}
 }

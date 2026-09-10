@@ -53,9 +53,19 @@ with a wrong rule — equal steps, a constant ratio, a symmetry), it is not a ro
      went wrong (dropping the ½; squaring the wrong term).
    - `careless` — the question or the options were misread (distance for displacement; the
      ratio inverted at the last line; the option's unit missed).
-   A `concept` or `application` entry IS a route and gets a `route` phrase. A `calculation` or
-   `careless` entry means the route was right, so its `route` is `null`.
+   - `distractor` — ONLY for an entry the solution marks `"distractor": true`: an option no
+     method reaches. The type is forced by that flag (the machine refuses any other type on a
+     flagged entry, and `distractor` on an unflagged one). Its `route` is `null`.
+   A `concept` or `application` entry IS a route and gets a `route` phrase. A `calculation`,
+   `careless` or `distractor` entry means no route describes it, so its `route` is `null`.
 3. Write each `route` from the entry's `text`: the same error, in the student's voice.
+   **Student words (a machine enforces this in a STRICT chapter — your dispatch says so):** at
+   most NINE words, and only words a Class-11 student says about their own working. Say what
+   was done with the quantities the question names: "I found v at t = 3 s and at t = 4 s",
+   "I took the ratio of the two times", "I used ½gt² with t = 8". Never "evaluated",
+   "integrated the function", "differentiated the expression", "the reversal point" — a
+   student who did that says "I found v from the x equation" or "I split it where v = 0".
+   Symbols (v, t, g, ½gt²) and single digits are welcome; two-digit numbers stay banned.
 4. Write `right_route`: the approach of step 1 in the student's voice. `null` only for a theory
    or recall question that has no route — one answered by knowing, not by working. When
    `mistake_type_hint` is `calculation` or `application` the question has a route by
@@ -108,7 +118,8 @@ Field by field — every one is used by the product or by the gate, and **no oth
 Every `route` and every non-null `right_route`:
 
 1. starts with `I ` — first person, the student speaking;
-2. has at most twelve words;
+2. has at most twelve words — at most NINE in a strict chapter, where the teacher words listed
+   above are also rejected;
 3. carries **no number of two or more digits** — a single digit is fine ("the next 8 seconds");
    "12 s" or "32g" is not. The menu is shown before the answer is revealed, and a number can
    hand it over. Write the quantity in words when you must ("the first four seconds");

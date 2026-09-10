@@ -13,11 +13,12 @@
  "final_answer": {"option": 2, "value": "2 m"},
  "confidence": "sure",
  "common_mistakes": [
+  {"option": 1, "text": "Leaving the constant term of the velocity unintegrated, writing its contribution as 1 instead of t, while integrating the other two terms correctly, which gives 1 m."},
   {"option": 3, "text": "Making a power-rule slip while integrating the −3t² term, treating its antiderivative as −3t instead of −t³, which changes the answer to 4 m."},
-  {"option": null, "text": "Substituting t = 2 s directly into the velocity expression and treating that value as the position, instead of integrating velocity to get displacement first."}
+  {"option": 4, "text": "Dropping the minus sign while integrating the −3t² term, so it contributes +t³ instead of −t³, which gives 2 + 8 + 8 = 18 m."}
  ],
  "concept_tags": ["kinematics", "position from velocity function"],
  "difficulty": "medium",
  "mistake_type_hint": "calculation",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:15:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-a", "at": "2026-09-10T12:00:00+05:30"}
 }

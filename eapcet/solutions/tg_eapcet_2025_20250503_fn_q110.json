@@ -13,11 +13,12 @@
  "final_answer": {"option": 1, "value": "2.2 s"},
  "confidence": "sure",
  "common_mistakes": [
+  {"option": 2, "text": "No single slip reaches 2.5 s: the average-speed route gives 2.2 s, the naive v = gt route gives 1.8 s, and ignoring the given final speed gives 2.0 s.", "distractor": true},
   {"option": 3, "text": "Applying v = gt directly with the given final speed and g = 10 ms⁻², ignoring that air resistance means the acceleration was not g throughout the fall, which gives 1.8 s."},
   {"option": 4, "text": "Ignoring the given final speed of 18 ms⁻¹ and computing the ordinary free-fall time for 20 m using g = 10 ms⁻², which gives 2 s and misses the effect of air resistance."}
  ],
  "concept_tags": ["kinematics with variable acceleration", "average velocity method"],
  "difficulty": "medium",
  "mistake_type_hint": "application",
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-p1-02", "at": "2026-09-08T15:12:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-a", "at": "2026-09-10T12:00:00+05:30"}
 }

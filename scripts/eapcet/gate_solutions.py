@@ -37,17 +37,29 @@ SCHEMA = "eapcet_solution_v1"
 REQUIRED = {"schema", "question_id", "approach", "steps", "final_answer", "confidence",
             "common_mistakes", "concept_tags", "difficulty", "mistake_type_hint", "authored_by"}
 STEP_KEYS = {"text", "equation", "why_this_step"}
-MISTAKE_KEYS = {"option", "text"}
+# `distractor` (optional, boolean) marks a wrong option no method reaches: the entry's text says
+# why, and the routes sidecar types it `distractor`. It exists so a STRICT chapter can map every
+# wrong option honestly instead of inventing a slip that lands there.
+MISTAKE_KEYS = {"option", "text", "distractor"}
 LIMITS = {"approach": 30, "step_text": 60, "mistake": 35, "steps_min": 2, "steps_max": 8, "mistakes_max": 3}
 DIFFICULTY = {"easy", "medium", "hard"}
 MISTAKE_TYPES = {"concept", "calculation", "application"}
+
+# STRICT chapters: every wrong option carries a common_mistakes entry that names it (no
+# `option: null`, no option twice, none missing), and every route phrase is in student words.
+# The app then never has to say "the option you picked does not say more". A chapter joins
+# this set when its evidence is being completed, never by momentum.
+STRICT_CHAPTERS = {"p1-02"}
+# words a student does not say about their own working; the phrase says what was DONE
+STUDENT_WORD_BAN = ["evaluated", "evaluate", "integrated the", "differentiated the", "reversal", "expression"]
+STRICT_ROUTE_MAX_WORDS = 9
 
 # the routes sidecar: what a student can claim they did, typed per common mistake
 ROUTES = os.path.join(SOL, "_routes")
 ROUTES_SCHEMA = "eapcet_routes_v1"
 ROUTES_REQUIRED = {"schema", "question_id", "right_route", "mistakes", "authored_by"}
 ROUTE_MISTAKE_KEYS = {"index", "type", "route"}
-ROUTE_TYPES = {"concept", "application", "calculation", "careless"}
+ROUTE_TYPES = {"concept", "application", "calculation", "careless", "distractor"}
 ROUTED_TYPES = {"concept", "application"}          # the mistake IS a route; the others keep the right route
 ROUTE_MAX_WORDS = 12
 ROUTE_NEEDS_RIGHT = {"calculation", "application"}  # a hint that means the question has a route
@@ -153,20 +165,46 @@ def routes_sha(side):
     return sha_of(side)
 
 
-def phrase_problem(s, against_text=None):
+def phrase_problem(s, against_text=None, strict=False):
     """Why a route phrase fails, or None. A route is what a student would say they did: first
-    person, short, and free of any number that could hand over the answer."""
+    person, short, and free of any number that could hand over the answer. In a strict chapter
+    it is also in student words: at most nine, none from the teacher's register."""
     if not isinstance(s, str) or not s.strip():
         return "empty"
     if not s.startswith("I "):
         return "not first person"
-    if words(s) > ROUTE_MAX_WORDS:
+    if words(s) > (STRICT_ROUTE_MAX_WORDS if strict else ROUTE_MAX_WORDS):
         return "%d words" % words(s)
     if re.search(r"\d{2,}", s):
         return "a number of two or more digits"
     if against_text is not None and s.strip().lower() == str(against_text).strip().lower():
         return "equals the mistake text"
+    if strict:
+        low = s.lower()
+        for w in STUDENT_WORD_BAN:
+            if re.search(r"\b" + re.escape(w) + r"\b", low):
+                return "teacher word %r" % w
     return None
+
+
+def strict_options_problem(sol):
+    """Why a strict chapter's solution fails the every-wrong-option rule, or (None, None)."""
+    fa = sol["final_answer"]
+    wrong = {1, 2, 3, 4} - {fa["option"]}
+    opts = [m.get("option") for m in sol["common_mistakes"]]
+    if any(o is None for o in opts):
+        return "option_null", "a common_mistakes entry names no option; in a strict chapter every entry maps a wrong option"
+    if fa["option"] in opts:
+        return "option_is_key", "a common_mistakes entry names the key"
+    if len(set(opts)) != len(opts):
+        return "option_dup", "two common_mistakes entries name the same option"
+    missing = sorted(wrong - set(opts))
+    if missing:
+        return "option_missing", "wrong option(s) %s carry no common_mistakes entry" % missing
+    for m in sol["common_mistakes"]:
+        if m.get("distractor") is True and words(m["text"]) < 6:
+            return "distractor_unexplained", "a distractor entry must say why no method lands on option %s" % m["option"]
+    return None, None
 
 
 def check(sol, q, idioms):
@@ -205,11 +243,19 @@ def check(sol, q, idioms):
     if not isinstance(cm, list) or len(cm) > LIMITS["mistakes_max"]:
         return "mistakes_shape", "", checks, warn
     for m in cm:
-        if not isinstance(m, dict) or set(m) - MISTAKE_KEYS or not str(m.get("text", "")).strip() \
+        if not isinstance(m, dict) or set(m) - MISTAKE_KEYS or not {"option", "text"} <= set(m) \
+                or not str(m.get("text", "")).strip() \
                 or (m.get("option") is not None and m["option"] not in (1, 2, 3, 4)):
             return "bad_mistake", repr(m)[:80], checks, warn
+        if "distractor" in m and (m["distractor"] is not True or m.get("option") is None):
+            return "bad_distractor", "distractor is either absent or true, and names an option", checks, warn
         if words(m["text"]) > LIMITS["mistake"]:
             return "mistake_length", "%d words" % words(m["text"]), checks, warn
+    if q["chapter_key"] in STRICT_CHAPTERS:
+        reason, detail = strict_options_problem(sol)
+        if reason:
+            return reason, detail, checks, warn
+        checks["strict_options"] = True
     if not isinstance(sol["concept_tags"], list) or not all(isinstance(t, str) for t in sol["concept_tags"]):
         return "bad_tags", "", checks, warn
     if sol["difficulty"] not in DIFFICULTY or sol["mistake_type_hint"] not in MISTAKE_TYPES:
@@ -309,18 +355,23 @@ def check_routes(side, sol, q, idioms, gated_sha):
     have = sorted(m.get("index") for m in ms if isinstance(m.get("index"), int) and not isinstance(m.get("index"), bool))
     if have != list(range(len(cm))) or len(have) != len(ms):
         return "index_coverage", "have %s, need every index 0..%d exactly once" % (have, len(cm) - 1), checks, warn
+    strict = q["chapter_key"] in STRICT_CHAPTERS
     for m in ms:
         if set(m) != ROUTE_MISTAKE_KEYS:
             return "bad_mistake_keys", ", ".join(sorted(set(m) ^ ROUTE_MISTAKE_KEYS)), checks, warn
         if m["type"] not in ROUTE_TYPES:
             return "bad_type", "mistakes[%d]: %r" % (m["index"], m["type"]), checks, warn
+        # the solution's own `distractor` flag and the sidecar's type say the same thing, or the gate refuses
+        if (cm[m["index"]].get("distractor") is True) != (m["type"] == "distractor"):
+            return "distractor_mismatch", "mistakes[%d]: the solution %s the entry a distractor, the sidecar types it %r" % (
+                m["index"], "marks" if cm[m["index"]].get("distractor") else "does not mark", m["type"]), checks, warn
         routed = m["type"] in ROUTED_TYPES
         if routed and m["route"] is None:
             return "route_missing", "mistakes[%d] is %s, so the mistake is a route and needs its phrase" % (m["index"], m["type"]), checks, warn
         if not routed and m["route"] is not None:
             return "route_forbidden", "mistakes[%d] is %s: the route was right, so it carries no route phrase" % (m["index"], m["type"]), checks, warn
         if routed:
-            p = phrase_problem(m["route"], cm[m["index"]].get("text"))
+            p = phrase_problem(m["route"], cm[m["index"]].get("text"), strict)
             if p:
                 return "bad_route", "mistakes[%d]: %s" % (m["index"], p), checks, warn
     checks["mistakes"] = True
@@ -331,7 +382,7 @@ def check_routes(side, sol, q, idioms, gated_sha):
             return "right_route_missing", "hint is %s, so the question has a route" % sol["mistake_type_hint"], checks, warn
         warn.append("theory: no right route; the run asks 'were you sure?' on this question")
     else:
-        p = phrase_problem(rr)
+        p = phrase_problem(rr, None, strict)
         if p:
             return "bad_right_route", p, checks, warn
     checks["right_route"] = True

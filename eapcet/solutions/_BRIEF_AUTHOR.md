@@ -142,6 +142,15 @@ Field by field — every one is used by the product or by the gate, and **no oth
   2av²) has found the distractor the examiner built for it, so name that option. For
   options made of statements ("a and c are true"), the entry must account for every
   statement the wrong option asserts, not one of them.
+  **In a STRICT chapter (your dispatch says so; today p1-02) the rule is harder: exactly three
+  entries, one per wrong option, no `option: null`, no option twice.** The app reads the option
+  a student picked as evidence, and an option with no entry leaves it saying "the option you
+  picked does not say more". Where a wrong option is reached by a real slip, describe that
+  slip and compute it. Where NO method reaches it — the examiner printed a number no working
+  produces — write the entry with `"distractor": true` and a text (at least six words) that
+  says what the option is NOT: which nearby slips miss it and by how much. Never invent a
+  slip to fill an option: a fabricated route is worse than an honest distractor, because the
+  app would then tell a student they made an error nobody makes.
 - `concept_tags` — 1 to 4 short strings naming the physics used.
 - `difficulty` — `"easy"`, `"medium"` or `"hard"` for a student who has learnt the chapter.
 - `mistake_type_hint` — where most students go wrong on it: `"concept"` (they do not know the

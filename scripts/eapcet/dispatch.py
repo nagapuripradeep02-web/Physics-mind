@@ -38,7 +38,7 @@ AUDIT_ROUTES = os.path.join(SOL, "_audit_routes")
 AUDIT_IN_ROUTES = os.path.join(SOL, "_audit_input_routes")
 RELEASE = POOL.replace(".json", ".release.json")
 SHOWN = ("approach", "steps", "final_answer", "common_mistakes", "concept_tags", "difficulty", "mistake_type_hint")
-LETTER = {"author": "A", "audit": "U", "routes": "R", "routes_audit": "V"}
+LETTER = {"author": "A", "audit": "U", "routes": "R", "routes_audit": "V", "rework": "K"}
 
 
 def now():
@@ -82,9 +82,58 @@ def routes_view(q, sol):
             "solution": {k: sol[k] for k in SHOWN if k in sol}}
 
 
+def rework_view(q, sol):
+    """What a rework author sees: the question, its own gate-passed solution, and which wrong
+    options still carry no mistake entry. Sighted on the solution (its option passed the key
+    gate, so the author effectively knows the answer) - the audit that follows is still blind,
+    and the key gate still runs on the file that comes back."""
+    named = {m.get("option") for m in sol.get("common_mistakes", []) if m.get("option")}
+    wrong = [o for o in (1, 2, 3, 4) if o != sol["final_answer"]["option"]]
+    v = routes_view(q, sol)
+    v["unmapped_options"] = [o for o in wrong if o not in named]
+    return v
+
+
 def label(wave, role, chapter_key, k=None):
     base = "W%02d-%s-%s" % (wave, LETTER.get(role, "U"), chapter_key)
     return base if k is None else base + "-R%d" % k
+
+
+def plan_rework(ledger, wave, chapter_keys, model):
+    """One rework slice per STRICT chapter over its gate-passed solutions that leave a wrong option
+    unmapped: the author fills the missing common_mistakes entries and touches nothing else. A
+    changed file moves its content_sha, so the solution audit runs again on what comes back."""
+    pool, byid, bych = pool_index()
+    planned = {(r["wave"], r["role"], r["chapter_key"]) for r in ledger if not r.get("redispatch_of")}
+    rows = []
+    for ck in chapter_keys:
+        c = bych.get(ck)
+        if not c:
+            sys.exit("unknown chapter key %r" % ck)
+        if (wave, "rework", ck) in planned:
+            sys.exit("chapter %s rework already planned in wave %d" % (ck, wave))
+        ids, views = [], []
+        for i in c["question_ids"]:
+            sol = load(os.path.join(SOL, i + ".json"))
+            if not sol:
+                continue
+            v = rework_view(byid[i], sol)
+            if v["unmapped_options"]:
+                ids.append(i)
+                views.append(v)
+        if not ids:
+            print("  %s has no half-mapped solutions - skipped" % ck)
+            continue
+        slice_path = os.path.join(SLICES, "W%02d_%s_rework.json" % (wave, ck))
+        save(slice_path, {"wave": wave, "role": "rework", "chapter_key": ck, "chapter": c["name"], "questions": views})
+        rows.append({"wave": wave, "role": "rework", "chapter_key": ck, "chapter": c["name"],
+                     "question_ids": ids, "model": model, "agent_label": label(wave, "rework", ck),
+                     "slice_path": os.path.relpath(slice_path, ROOT).replace(os.sep, "/"),
+                     "planned_at": now(), "dispatched_at": None, "status": "planned",
+                     "files_expected": len(ids), "files_present": 0})
+        print("  planned %-14s %-40s %2d half-mapped solutions -> %s" % (rows[-1]["agent_label"], c["name"][:40],
+                                                                        len(ids), rows[-1]["slice_path"]))
+    return rows
 
 
 def plan_authors(ledger, wave, chapter_keys, model):
@@ -119,7 +168,7 @@ def plan_audits(ledger, wave, model):
     pool, byid, bych = pool_index()
     wave_ids = set()
     for r in ledger:
-        if r["wave"] == wave and r["role"] == "author":
+        if r["wave"] == wave and r["role"] in ("author", "rework"):
             wave_ids.update(r["question_ids"])
     if not wave_ids:
         sys.exit("wave %d has no author rows" % wave)
@@ -294,7 +343,16 @@ def redispatch(ledger, wave, ids, reason, model, role="author"):
 def audit_disk(ledger):
     """What is actually on disk, per row. A refusal counts as written: the agent did its job."""
     for r in ledger:
-        if r["role"] == "author":
+        if r["role"] == "rework":
+            # a rework is written when the file's sha moved past the slice's copy of it
+            sl = load(os.path.join(ROOT, r["slice_path"])) or {"questions": []}
+            before = {v["id"]: v["solution"] for v in sl.get("questions", [])}
+            present = []
+            for i in r["question_ids"]:
+                sol = load(os.path.join(SOL, i + ".json"))
+                if sol and {k: sol.get(k) for k in SHOWN} != {k: before.get(i, {}).get(k) for k in SHOWN}:
+                    present.append(i)
+        elif r["role"] == "author":
             present = [i for i in r["question_ids"]
                        if os.path.exists(os.path.join(SOL, i + ".json"))
                        or os.path.exists(os.path.join(SOL, "_refusals", i + ".json"))]
@@ -333,7 +391,7 @@ def main():
     ap.add_argument("--unplan", action="store_true", help="drop rows still 'planned' (never dispatched) for --wave/--role, and their slices")
     ap.add_argument("--status", action="store_true")
     ap.add_argument("--wave", type=int)
-    ap.add_argument("--role", default="author", choices=["author", "audit", "routes", "routes_audit"])
+    ap.add_argument("--role", default="author", choices=["author", "audit", "routes", "routes_audit", "rework"])
     ap.add_argument("--chapter-keys", nargs="*", default=[])
     ap.add_argument("--ids", nargs="*", default=[])
     ap.add_argument("--reason", default="")
@@ -356,6 +414,10 @@ def main():
             ledger += plan_routes(ledger, a.wave, a.chapter_keys, model)
         elif a.role == "routes_audit":
             ledger += plan_route_audits(ledger, a.wave, model)
+        elif a.role == "rework":
+            if not a.chapter_keys:
+                sys.exit("--plan --role rework needs --chapter-keys")
+            ledger += plan_rework(ledger, a.wave, a.chapter_keys, model)
         else:
             ledger += plan_audits(ledger, a.wave, model)
         save(LEDGER, ledger)

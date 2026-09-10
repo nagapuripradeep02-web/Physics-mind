@@ -48,11 +48,18 @@ measurement — that is what you are here to catch.
    - `type` by the definitions — `concept`: the physics belief behind the entry is wrong;
      `application`: the concept is known but applied to the wrong quantity, interval, body or
      frame; `calculation`: the route was right and a number, sign, unit or algebra step went
-     wrong; `careless`: the question or options were misread. A `route` must be present
-     exactly when the type is `concept` or `application`; the machine has already checked
-     that, so your question is whether the type itself is right.
+     wrong; `careless`: the question or options were misread; `distractor`: the solution's
+     entry is flagged `"distractor": true` (no method reaches that option) — the machine
+     forces this pairing, so your question there is only whether the flag itself is honest. A
+     `route` must be present exactly when the type is `concept` or `application`; the machine
+     has already checked that, so your question is whether the type itself is right.
    - `route` describes THIS entry's `text` — the same error, in the student's voice — and no
      other error, and not the correct method.
+   - **In a STRICT chapter (your dispatch says so; today p1-02)** a route is also in student
+     words: at most nine, none of "evaluated / integrated the / differentiated the / reversal /
+     expression". The machine rejects those; you judge the rest — a phrase a Class-11 student
+     would not say about their own working ("I applied the kinematic relation") is WEAK, and
+     a phrase that needs the solution to be understood is WEAK.
 3. **Then `right_route`.** It must be step 1 of the solution in the student's voice: the first
    move, not a later step, not a generic "I used the formula". `null` is right only for a
    theory or recall question that has no working; on a question with steps that compute, a

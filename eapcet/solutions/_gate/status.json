@@ -2,8 +2,9 @@
  "tg_eapcet_2021_20210804_an_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "794d413736871672a3a0e9e43c8e3b79f02ade8368132d4445f7b2761d3cb8d2",
+  "content_sha": "1155100a0a16b017885acc7b5280b3b0efe9641e9e56c97a0322463e749d6f55",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -14,13 +15,14 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q084": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "66d2b568423adf85615e0c15c835f28ecfc00afb58079429bac481860ac45de3",
+  "content_sha": "c1ecff19b42e6c7181afc4e5b6f920db812611a2861be611c2f30d10ec771f73",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -31,7 +33,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q085": {
   "verdict": "pass",
@@ -48,7 +50,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q086": {
   "verdict": "pass",
@@ -65,7 +67,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q089": {
   "verdict": "pass",
@@ -82,7 +84,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q094": {
   "verdict": "pass",
@@ -99,7 +101,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q096": {
   "verdict": "pass",
@@ -118,7 +120,7 @@
    "ending_unverified: symbolic value 'Vₜ = 0.5 mm/s' not found in the last two steps"
   ],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q098": {
   "verdict": "pass",
@@ -135,7 +137,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q100": {
   "verdict": "pass",
@@ -152,7 +154,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q102": {
   "verdict": "pass",
@@ -169,7 +171,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q103": {
   "verdict": "pass",
@@ -186,7 +188,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q116": {
   "verdict": "pass",
@@ -203,7 +205,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_an_q117": {
   "verdict": "pass",
@@ -220,13 +222,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "b65e2d3ef5fe16586966cd6015be52cdabbfb5617c04705a81f4c08dc2ae1351",
+  "content_sha": "69e2520a8087de485557e237cc97cb3d23d9ec04212d5ce3cf7cd68f3232c825",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -237,7 +240,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q085": {
   "verdict": "pass",
@@ -254,7 +257,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q089": {
   "verdict": "pass",
@@ -271,7 +274,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q096": {
   "verdict": "pass",
@@ -288,7 +291,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q097": {
   "verdict": "pass",
@@ -305,7 +308,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q098": {
   "verdict": "pass",
@@ -322,7 +325,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q100": {
   "verdict": "pass",
@@ -339,7 +342,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q102": {
   "verdict": "pass",
@@ -358,7 +361,7 @@
    "ending_unverified: symbolic value 'a & c are true' not found in the last two steps"
   ],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q103": {
   "verdict": "pass",
@@ -375,7 +378,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210804_fn_q117": {
   "verdict": "pass",
@@ -394,7 +397,7 @@
    "ending_unverified: symbolic value 'Slow down the fast neutrons' not found in the last two steps"
   ],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_an_q085": {
   "verdict": "pass",
@@ -411,7 +414,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_an_q090": {
   "verdict": "pass",
@@ -430,7 +433,7 @@
    "ending_unverified: symbolic value 'v_Q/v_P = 4' not found in the last two steps"
   ],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_an_q100": {
   "verdict": "pass",
@@ -447,7 +450,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_an_q102": {
   "verdict": "pass",
@@ -464,7 +467,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_fn_q094": {
   "verdict": "pass",
@@ -483,7 +486,7 @@
    "ending_unverified: symbolic value 'R^(3/2)' not found in the last two steps"
   ],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210805_fn_q101": {
   "verdict": "pass",
@@ -500,7 +503,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2021_20210806_an_q094": {
   "verdict": "pass",
@@ -519,7 +522,7 @@
    "ending_unverified: symbolic value 'A-II, B-II, C-I, D-III' not found in the last two steps"
   ],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q081": {
   "verdict": "pass",
@@ -536,13 +539,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q084": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "a5bb1392f9187452c5bd79b2e4c379db1395e6a9bda47e1051f7331edaf5241d",
+  "content_sha": "01b3f6fdacf6d8a8da580fb2950db9c41b8f2ccfe8d3904171fdad234a26d6d9",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -553,7 +557,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q085": {
   "verdict": "pass",
@@ -570,7 +574,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q086": {
   "verdict": "pass",
@@ -587,7 +591,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q089": {
   "verdict": "pass",
@@ -604,7 +608,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q092": {
   "verdict": "pass",
@@ -621,7 +625,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q094": {
   "verdict": "pass",
@@ -638,7 +642,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q095": {
   "verdict": "pass",
@@ -655,7 +659,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q096": {
   "verdict": "pass",
@@ -672,7 +676,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q099": {
   "verdict": "pass",
@@ -689,7 +693,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q100": {
   "verdict": "pass",
@@ -708,7 +712,7 @@
    "ending_unverified: symbolic value 'Statements II, III are true, but statement I is false' not found in the last two steps"
   ],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q101": {
   "verdict": "pass",
@@ -725,7 +729,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_an_q117": {
   "verdict": "pass",
@@ -742,13 +746,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "c1aa3bc34beb28b22f746ede3de5eebd8794756c62ea741ae1d9c6f8dc3a27c0",
+  "content_sha": "7c0bea8c2955eac6f6034eb4b49e2f1621c3843bde00b37f4d564d23dce41c81",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -759,13 +764,14 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q084": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "44c29c4db0f0825702f97978f667b683b84e49f8054bb9679b8d4f23b1c4acea",
+  "content_sha": "948fb1ffdc0ec6475c8eb434b9458347697fad7b2895b5943d0d984ff4c830a3",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -776,7 +782,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q085": {
   "verdict": "pass",
@@ -793,7 +799,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q088": {
   "verdict": "pass",
@@ -810,7 +816,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q092": {
   "verdict": "pass",
@@ -827,7 +833,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q094": {
   "verdict": "pass",
@@ -844,7 +850,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q096": {
   "verdict": "pass",
@@ -861,7 +867,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q097": {
   "verdict": "pass",
@@ -878,7 +884,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q098": {
   "verdict": "pass",
@@ -895,7 +901,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q099": {
   "verdict": "pass",
@@ -912,7 +918,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q100": {
   "verdict": "pass",
@@ -929,7 +935,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220718_fn_q101": {
   "verdict": "pass",
@@ -946,7 +952,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220719_an_q081": {
   "verdict": "pass",
@@ -963,7 +969,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220719_an_q088": {
   "verdict": "pass",
@@ -980,7 +986,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220719_an_q092": {
   "verdict": "reject",
@@ -992,7 +998,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00",
+  "gate_run": "2026-09-10T02:40:28+02:00",
   "reason": "key_miss",
   "detail": "author 2, key 3"
  },
@@ -1011,7 +1017,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2022_20220719_fn_q101": {
   "verdict": "pass",
@@ -1028,13 +1034,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
   "content_sha": "a182bf7ef28fb726a82ed155b868377c246c3c8ae622663dc2260461932255e6",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1045,7 +1052,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q084": {
   "verdict": "pass",
@@ -1062,7 +1069,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q091": {
   "verdict": "pass",
@@ -1079,7 +1086,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q093": {
   "verdict": "pass",
@@ -1096,7 +1103,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q094": {
   "verdict": "pass",
@@ -1115,7 +1122,7 @@
    "ending_unverified: symbolic value 'Equal in all vessels' not found in the last two steps"
   ],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q095": {
   "verdict": "pass",
@@ -1132,7 +1139,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q096": {
   "verdict": "pass",
@@ -1149,7 +1156,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q097": {
   "verdict": "pass",
@@ -1166,7 +1173,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q098": {
   "verdict": "pass",
@@ -1183,7 +1190,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q100": {
   "verdict": "pass",
@@ -1200,7 +1207,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q116": {
   "verdict": "pass",
@@ -1217,7 +1224,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_an_q117": {
   "verdict": "pass",
@@ -1236,13 +1243,14 @@
    "ending_unverified: symbolic value 'Einstein mass-energy equation' not found in the last two steps"
   ],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "362ae0127b057b0adb7932f3d915dc366a2c8b3f4db49b2d1d0d37f5d315376d",
+  "content_sha": "3fe544c55dc065edcf86ce0e0e75927f1808cdaaece27eaa0e39d9d385b4a83d",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1253,7 +1261,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q084": {
   "verdict": "pass",
@@ -1272,7 +1280,7 @@
    "ending_unverified: symbolic value '(500/3) m' not found in the last two steps"
   ],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q085": {
   "verdict": "pass",
@@ -1289,7 +1297,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q087": {
   "verdict": "pass",
@@ -1306,7 +1314,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q092": {
   "verdict": "pass",
@@ -1323,7 +1331,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q094": {
   "verdict": "pass",
@@ -1340,7 +1348,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q096": {
   "verdict": "pass",
@@ -1357,7 +1365,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q098": {
   "verdict": "pass",
@@ -1374,7 +1382,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230512_fn_q100": {
   "verdict": "pass",
@@ -1391,13 +1399,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_an_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "580d9ff7e26817c65434977e19d9bc54f41ec3dc802940304930762a32feb35d",
+  "content_sha": "a19a70e188a0f749f6d7dc43a4fe3487cb78e1b6030e2a00281f7ce4885595a3",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1408,7 +1417,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_an_q087": {
   "verdict": "pass",
@@ -1425,7 +1434,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_an_q091": {
   "verdict": "pass",
@@ -1442,7 +1451,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_an_q095": {
   "verdict": "pass",
@@ -1459,7 +1468,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_an_q097": {
   "verdict": "pass",
@@ -1476,7 +1485,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_fn_q087": {
   "verdict": "pass",
@@ -1495,7 +1504,7 @@
    "ending_unverified: symbolic value 'h[(1+e²)/(1−e²)]' not found in the last two steps"
   ],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230513_fn_q100": {
   "verdict": "pass",
@@ -1512,7 +1521,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230514_an_q098": {
   "verdict": "pass",
@@ -1529,7 +1538,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2023_20230514_an_q113": {
   "verdict": "pass",
@@ -1546,13 +1555,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
   "content_sha": "8aeccebc343daea8291a6bcc88754f83e02bbb3c4983c055cc9c044a9cd7e9d9",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1563,7 +1573,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q084": {
   "verdict": "pass",
@@ -1580,7 +1590,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q091": {
   "verdict": "pass",
@@ -1597,7 +1607,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q093": {
   "verdict": "pass",
@@ -1614,7 +1624,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q094": {
   "verdict": "pass",
@@ -1631,7 +1641,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q095": {
   "verdict": "pass",
@@ -1648,7 +1658,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q096": {
   "verdict": "pass",
@@ -1665,7 +1675,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q097": {
   "verdict": "pass",
@@ -1682,7 +1692,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q098": {
   "verdict": "pass",
@@ -1699,7 +1709,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q099": {
   "verdict": "reject",
@@ -1711,7 +1721,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00",
+  "gate_run": "2026-09-10T02:40:28+02:00",
   "reason": "key_miss",
   "detail": "author 1, key 2"
  },
@@ -1730,7 +1740,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q116": {
   "verdict": "pass",
@@ -1747,7 +1757,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_an_q117": {
   "verdict": "pass",
@@ -1764,13 +1774,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "80f65d924c975602744b7a056c9c93994c79e301f36ef259acb81fad098a5a6c",
+  "content_sha": "b9e4c61924c6ba2426e7cdd53f2125d4e3d8b7fb00c14ca31086cf154a852140",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1781,7 +1792,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q084": {
   "verdict": "pass",
@@ -1798,7 +1809,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q087": {
   "verdict": "pass",
@@ -1815,7 +1826,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q091": {
   "verdict": "pass",
@@ -1832,7 +1843,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q097": {
   "verdict": "pass",
@@ -1849,7 +1860,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q098": {
   "verdict": "pass",
@@ -1866,7 +1877,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q099": {
   "verdict": "pass",
@@ -1885,7 +1896,7 @@
    "ending_unverified: symbolic value 'Zero' not found in the last two steps"
   ],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240509_fn_q116": {
   "verdict": "pass",
@@ -1902,13 +1913,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q083": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "92ed5ff8c423be6a87a4984b04cec68f6f52e615f61ada28eafc55ff06732f39",
+  "content_sha": "2cfe20e0c9ab085cecd5890dada547cd21f9e56766863f85ae5306c1b1297d81",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -1919,7 +1931,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q084": {
   "verdict": "pass",
@@ -1936,7 +1948,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q086": {
   "verdict": "pass",
@@ -1953,7 +1965,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q087": {
   "verdict": "pass",
@@ -1970,7 +1982,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q091": {
   "verdict": "pass",
@@ -1987,7 +1999,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q094": {
   "verdict": "pass",
@@ -2006,7 +2018,7 @@
    "ending_unverified: symbolic value 'maximum in vessel containing liquid A' not found in the last two steps"
   ],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q097": {
   "verdict": "pass",
@@ -2023,7 +2035,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_an_q098": {
   "verdict": "pass",
@@ -2040,7 +2052,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2024_20240510_fn_q095": {
   "verdict": "pass",
@@ -2057,7 +2069,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_an_q081": {
   "verdict": "pass",
@@ -2074,7 +2086,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_an_q097": {
   "verdict": "pass",
@@ -2091,7 +2103,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q081": {
   "verdict": "pass",
@@ -2108,7 +2120,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q084": {
   "verdict": "pass",
@@ -2127,7 +2139,7 @@
    "ending_unverified: symbolic value '−K/2a' not found in the last two steps"
   ],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q091": {
   "verdict": "pass",
@@ -2144,7 +2156,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q097": {
   "verdict": "pass",
@@ -2161,7 +2173,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q098": {
   "verdict": "pass",
@@ -2178,7 +2190,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q100": {
   "verdict": "pass",
@@ -2195,7 +2207,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q102": {
   "verdict": "pass",
@@ -2212,7 +2224,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-14",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q106": {
   "verdict": "pass",
@@ -2229,7 +2241,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q108": {
   "verdict": "pass",
@@ -2246,13 +2258,14 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q110": {
   "verdict": "pass",
   "answer_matches_key": true,
-  "content_sha": "c145e157ada6300b3a5f7157a55e730a2a96fc7526d363ef41257bd02b1d8ae7",
+  "content_sha": "e89788b1ee7c3e074c09cd0538961c52ec2b2ed6e023f4d2d4027192c35fa6c8",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -2263,7 +2276,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q112": {
   "verdict": "pass",
@@ -2280,7 +2293,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q114": {
   "verdict": "pass",
@@ -2297,13 +2310,14 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q116": {
   "verdict": "pass",
   "answer_matches_key": true,
   "content_sha": "b2840239a28fa69406db4b618cb51e7435b9d52d2708bd027c9e0dc65c66f67e",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -2314,7 +2328,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q117": {
   "verdict": "pass",
@@ -2331,7 +2345,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250503_fn_q119": {
   "verdict": "pass",
@@ -2348,13 +2362,14 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q081": {
   "verdict": "pass",
   "answer_matches_key": true,
   "content_sha": "6e0f880fa233d7b568c4a4769783df950440d2365791b9b36ae738ce7a83c103",
   "checks": {
+   "strict_options": true,
    "schema": true,
    "key": true,
    "value": true,
@@ -2365,7 +2380,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-02",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q082": {
   "verdict": "pass",
@@ -2382,7 +2397,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q089": {
   "verdict": "pass",
@@ -2399,7 +2414,7 @@
   },
   "warnings": [],
   "chapter_key": "p2-01",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q090": {
   "verdict": "pass",
@@ -2416,7 +2431,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q092": {
   "verdict": "pass",
@@ -2433,7 +2448,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-05",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q099": {
   "verdict": "pass",
@@ -2450,7 +2465,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-11",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q103": {
   "verdict": "pass",
@@ -2467,7 +2482,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-10",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q108": {
   "verdict": "pass",
@@ -2484,7 +2499,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-12",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q111": {
   "verdict": "pass",
@@ -2501,7 +2516,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-13",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q113": {
   "verdict": "pass",
@@ -2518,7 +2533,7 @@
   },
   "warnings": [],
   "chapter_key": "p1-08",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  },
  "tg_eapcet_2025_20250504_fn_q115": {
   "verdict": "pass",
@@ -2535,6 +2550,6 @@
   },
   "warnings": [],
   "chapter_key": "p1-03",
-  "gate_run": "2026-09-09T03:29:22+02:00"
+  "gate_run": "2026-09-10T02:40:28+02:00"
  }
 }

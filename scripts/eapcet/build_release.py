@@ -21,7 +21,7 @@ import os, io, sys, json, glob, copy, hashlib, datetime, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
-from gate_solutions import POOL, SOL, GATE, ROUTES, content_sha, routes_sha, idioms_from_ts, idioms_in
+from gate_solutions import POOL, SOL, GATE, ROUTES, STRICT_CHAPTERS, content_sha, routes_sha, idioms_from_ts, idioms_in
 
 AUDIT = os.path.join(SOL, "_audit")
 AUDIT_ROUTES = os.path.join(SOL, "_audit_routes")
@@ -260,6 +260,25 @@ def main():
             k = sh["assignments"][q["id"]]
             row["shape"] = {"key": k, "label": next((s["label"] for s in sh["shapes"] if s["key"] == k), k)}
         questions[q["id"]] = row
+
+    # the strict gate: a strict chapter ships only with every solution passing and every wrong
+    # option mapped. Refuse to write the release otherwise - the live one stays until the wave
+    # that completes the evidence is done, and the app never sees a half-mapped chapter.
+    strict_bad = []
+    for ck in sorted(STRICT_CHAPTERS):
+        rejected = sorted(qid for qid, st in status.items() if st.get("chapter_key") == ck and st["verdict"] != "pass")
+        vids = [i for i in byid if byid[i]["chapter_key"] == ck and i in verified]
+        labelled = sum(1 for i in vids for m in verified[i]["solution"].get("common_mistakes", []) if m.get("option"))
+        wrong = 3 * len(vids)
+        if rejected:
+            strict_bad.append("%s: %d solution(s) fail the gate: %s" % (ck, len(rejected), ", ".join(rejected[:4])))
+        if labelled < wrong:
+            strict_bad.append("%s: %d of %d wrong options carry a mapped mistake" % (ck, labelled, wrong))
+    if strict_bad:
+        print("STRICT GATE FAILED - refusing to write a release while a strict chapter is half-mapped:")
+        for b in strict_bad:
+            print("  " + b)
+        sys.exit(1)
 
     rel = {"schema": "eapcet_physics_pool_v1",
            "built_from": dict(pool["built_from"], release_at=now(), open_at=OPEN_AT,
