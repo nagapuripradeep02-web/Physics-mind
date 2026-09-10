@@ -230,3 +230,26 @@ Cost per question: Flash-Lite alone $0.0033, the split $0.0046–$0.0069 (reader
 **Where the split still clearly wins:** JEE chemistry *figure* questions, 21 → 25 of 29. That is the set that is nothing but drawings.
 
 **Standing conclusion for the router:** transcribe-then-solve is worth it only with a strong reader, and only on figure/structure questions. The 3.6 Flash arm must be finished on the paid tier before this becomes a design decision — 9 questions is not a number.
+
+## 17. Run 8 — Gemini 3.7 Flash as reader, 5 questions before its own cap (2026-09-10)
+
+The free daily cap is per model and small, so a second strong reader was tried: **gemini-3.7-flash** (same $0.75/$3.75 tier as 3.6/3.8). It reached 5 of the hardest chemistry questions before its own `GenerateRequestsPerDayPerProjectPerModel-FreeTier` cap. Data `data/chem_reader_37/`.
+
+| Question (DeepSeek fails all four levels from the photo) | key | 3.7 Flash alone | 3.7 Flash reads → DeepSeek |
+|---|---|---|---|
+| aromatic set, fake naphthalene (08-apr-1 q73) | 1 | ✓ | **✓** |
+| geometrical isomers, symmetric triene (30-jan-2 q86) | 4 | ✓ | **✓** |
+| Friedel–Crafts count (09-apr-2 q88) | 4 | ✓ | **✓** |
+| bromobenzene sequence (31-jan-2 q63) | 1 | ✓ | quota |
+| glucose/ribose match list (04-apr-2 q75) | 3 | ✓ | quota |
+| Fehling count (29-jan-1 q89) | 3 | ✓ | ✗ (4 — the knowledge miss, not a reading one) |
+
+**Strong readers pooled (3.6 + 3.7 Flash), on the hardest chemistry items only:**
+
+| | DeepSeek from photo | strong Flash alone | strong Flash reads → DeepSeek | Flash-Lite alone | Flash-Lite reads → DeepSeek |
+|---|---|---|---|---|---|
+| right | 4 / 10 | **13 / 15** | **10 / 11** | 6 / 9 | 5 / 9 |
+
+Both strong Flash models also solve the fake-naphthalene and symmetric-triene questions **directly from the photo**, which DeepSeek never does at any effort. The one item neither fixes is the Fehling count, where the model believes 4-nitrobenzaldehyde reacts — genuine chemistry, exactly as the typed-text retest (Run 5) predicted.
+
+**Free-tier reality:** each Gemini model grants only a handful of requests per project per day, so the strong-reader arm cannot be completed without billing. Flash-Lite alone had a large enough allowance to finish all 118 (Run 7).
