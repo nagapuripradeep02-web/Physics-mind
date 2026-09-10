@@ -1656,5 +1656,66 @@
   "status": "dispatched",
   "files_expected": 10,
   "files_present": 0
+ },
+ {
+  "wave": 2,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2021_20210804_an_q083",
+   "tg_eapcet_2022_20220718_fn_q084",
+   "tg_eapcet_2023_20230512_an_q083",
+   "tg_eapcet_2023_20230512_fn_q083",
+   "tg_eapcet_2024_20240509_fn_q083",
+   "tg_eapcet_2025_20250503_fn_q116",
+   "tg_eapcet_2025_20250504_fn_q081"
+  ],
+  "model": "opus",
+  "agent_label": "W02-V-p1-02-R2",
+  "slice_path": "eapcet/solutions/_audit_slices/W02_p1-02_routes_R2.json",
+  "planned_at": "2026-09-10T03:29:36+02:00",
+  "dispatched_at": "2026-09-10T03:29:52+02:00",
+  "status": "dispatched",
+  "files_expected": 7,
+  "files_present": 0
+ },
+ {
+  "wave": 2,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2022_20220718_fn_q084",
+   "tg_eapcet_2023_20230512_an_q083",
+   "tg_eapcet_2024_20240509_an_q083",
+   "tg_eapcet_2025_20250504_fn_q081"
+  ],
+  "model": "opus",
+  "agent_label": "W02-V-p1-02-R3",
+  "slice_path": "eapcet/solutions/_audit_slices/W02_p1-02_routes_R3.json",
+  "planned_at": "2026-09-10T03:38:07+02:00",
+  "dispatched_at": "2026-09-10T03:38:07+02:00",
+  "status": "dispatched",
+  "files_expected": 4,
+  "files_present": 0
+ },
+ {
+  "wave": 2,
+  "role": "routes_audit",
+  "chapter_key": "p1-02",
+  "chapter": "Motion in a Straight Line",
+  "question_ids": [
+   "tg_eapcet_2024_20240509_an_q083",
+   "tg_eapcet_2025_20250504_fn_q081"
+  ],
+  "model": "opus",
+  "agent_label": "W02-V-p1-02-R4",
+  "slice_path": "eapcet/solutions/_audit_slices/W02_p1-02_routes_R4.json",
+  "planned_at": "2026-09-10T03:43:59+02:00",
+  "dispatched_at": "2026-09-10T03:43:59+02:00",
+  "status": "dispatched",
+  "files_expected": 2,
+  "files_present": 0
  }
 ]

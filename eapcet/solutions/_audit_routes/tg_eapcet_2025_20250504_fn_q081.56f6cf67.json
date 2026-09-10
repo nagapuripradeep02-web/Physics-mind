@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "56f6cf672a8effb54f3c7633b0aa678aec42dbec5fdb4ef344c0e45edddbf174",
+ "findings": [
+  {"grade": "harmful",
+   "field": "right_route",
+   "quote": "I took v as 2at",
+   "note": "This is the wrong method, not the right one: v = 2at is exactly mistakes[0], the route that gives 32 ms-1, and the sidecar prints the identical phrase in both places. A student who really used v = u + at at t = 4 s and got 16 has nothing truthful to tap, while the student who doubled at taps the right route and is told they solved it correctly, so the menu diagnoses both of them backwards.",
+   "fix": "I used v=u+at at t = 4 s"}
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "Verified the working: S3 = u + 2.5a = 10 and S5 = u + 4.5a = 18 give a = 4 m/s2 and u = 0, so v(4) = 16 ms-1 (option 3); the mistakes reproduce 32, 12 and 8 exactly and the index-to-option alignment is right. Types are right as written - v = 2at and v = at/2 are wrong beliefs about the formula, so concept, while t = 3 s is the right formula on the wrong instant, so application. The three wrong routes are 5, 8 and 7 tokens, first person, distinguishable from each other, and none names an option's value. My fix is step 4 rather than step 1 on purpose: all three wrong students also found a = 4 and u = 0 from the nth-second formula, so a right route naming step 1 would be a step every listed mistake shares; 'I used v=u+at at t = 4 s' is 8 tokens, differs from mistakes[1] only in the value of t the student knows they used, and gives no answer away.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R4", "at": "2026-09-10T18:45:00+05:30"}
+}

@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "aa89d1d6ee0d41c2401bba13f5a6e02dedb3967f1d9f5054793139343d65b3c0",
+ "findings": [
+  {"grade": "wrong",
+   "field": "mistakes[1].route",
+   "quote": "I counted the distances as one, two, three",
+   "note": "It spells out option 3's value, 1:2:3, in words. A student who picked that option can match it to their own choice without recalling any reasoning, so the tap stops measuring the route and only echoes the option. The other two routes on this menu describe their belief without naming their ratio, so this one is out of line with them as well.",
+   "fix": "I took each second's distance as proportional to time"}
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "right_route 'I used the nth second formula for free fall' is step 1 of the solution, 8 tokens, student words, and no wrong route shares it, so both the step-1 rule and the separation rule are satisfied. mistakes[0] concept is right (equal distance each second is a wrong belief about accelerated motion) and its route matches. mistakes[2] application is right by the definition: the student knows distance grows with the square of time but attaches it to the wrong quantity, the total fallen rather than the distance during that second; its route matches and does not spell out 1:4:9. Indices 0/1/2 align. My proposed fix was checked against the phrase tests: first person, 9 tokens, no two-digit number, no idiom, and it stays distinct from mistakes[0]'s 'equal distance each second'.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T15:47:00+05:30"}
+}

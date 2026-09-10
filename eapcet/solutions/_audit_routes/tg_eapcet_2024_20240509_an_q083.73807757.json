@@ -1,0 +1,36 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "738077570382a72e22e374e4fe10a270b9b28cf681d78fe1217fe9e479743792",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "mistakes[0].type",
+   "quote": "calculation",
+   "note": "The entry is \"computing the time to reach the highest point, u/g = 0.8 s, and mistaking it for the time to cross the window\": the arithmetic u/g is exact, nothing slipped. The student knows vertical motion under gravity but applies it to the wrong interval, the rise to the top instead of the fall across the window, which is the application definition; calculation requires the route to have been right.",
+   "fix": "application"
+  },
+  {
+   "grade": "wrong",
+   "field": "mistakes[0].route",
+   "quote": "null",
+   "note": "Consequence of the type above: option 1 is a real method a student took, so once the entry is typed application it needs a route, otherwise the commonest wrong answer has nothing to tap and those students fall through to \"I guessed\".",
+   "fix": "I found the time to reach the top"
+  },
+  {
+   "grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I used the total up and down time",
+   "note": "2u/g = 1.6 s is also step 1 of the correct working, so a student who worked it right and slipped in the quadratic could honestly say they used the total up and down time; the route needs to say that time was given as the answer, not merely used.",
+   "fix": "I took the whole flight time as the answer"
+  }
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "Re-derived: 5t² + 8t − 1.8 = 0 gives t = 0.2 s (other root −1.8 s), speed at the window bottom is 10 m/s, so 0.8, 1.6 and 1.0 are each reachable as the entries describe. Checked and not filed: right_route \"I used symmetry for speed at the window\" is the earliest step no wrong route shares, because mistakes[1] uses the same symmetry for a TIME while the right route uses it for the downward SPEED at the window top, and mistakes[2] does not use symmetry at all; it names no option value and is in student words. mistakes[2].route \"I divided the bottom speed by g\" matches its entry and its type application is right, the bottom speed being found correctly and then applied as if the stone started from rest.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02-R3",
+  "at": "2026-09-10T15:20:00+05:30"
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "e1a3ae1705edcfd322aaf3d8249c46dc46a78cab1319846e5202dc24a0c248a3",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I used the earlier time value in the formula",
+   "note": "No Class-11 student describes their own working as using an 'earlier time value' - they would name the number they substituted. It also needs the solution to decode, since 'earlier' only means 3 s if you already know which of the question's numbers were times, and the two neighbouring routes both name their quantity concretely.",
+   "fix": "I put t as three seconds"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "right_route 'I used v=u+at at four seconds' is step 4, not step 1, and that is correct under the separation rule: all three wrong routes presuppose the nth-second work of steps 1 to 3 (they all need a = 4 and u = 0 to land on 32, 12 and 8), so the earliest unshared move is evaluating v = u + at at t = 4 s, and 'at four seconds' is exactly what separates it from the option-2 route. mistakes[0] and mistakes[2] are concept, correctly - v = 2at and v = ½at are wrong formulas, not slips in a right one - and their routes are short, first person, and easy to tell apart from each other. Indices 0/1/2 align, and no route names a two-digit number or an option value. I considered typing mistakes[1] careless rather than application, since the entry describes confusing the question's third second with t = 4; I left it as application because the definition covers applying a known relation at the wrong instant, and the boundary is not clear enough to file. My fix was checked against the phrase tests: first person, 6 tokens, no two-digit number, no idiom, and 'three seconds' is not any option's value.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T16:05:00+05:30"}
+}

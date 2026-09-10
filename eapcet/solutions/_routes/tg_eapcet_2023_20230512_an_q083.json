@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2023_20230512_an_q083",
- "right_route": "I used the nth second formula for free fall",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "concept",
-   "route": "I thought it covers equal distance each second"
-  },
-  {
-   "index": 1,
-   "type": "concept",
-   "route": "I assumed the distance grows by a fixed step"
-  },
-  {
-   "index": 2,
-   "type": "application",
-   "route": "I used the total distance at each second"
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2023_20230512_an_q083",
+  "right_route": "I used the nth second formula for free fall",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "concept",
+      "route": "I thought it covers equal distance each second"
+    },
+    {
+      "index": 1,
+      "type": "concept",
+      "route": "I took the nth second distance proportional to n"
+    },
+    {
+      "index": 2,
+      "type": "application",
+      "route": "I used the total distance at each second"
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R3",
+    "at": "2026-09-10T07:08:06+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

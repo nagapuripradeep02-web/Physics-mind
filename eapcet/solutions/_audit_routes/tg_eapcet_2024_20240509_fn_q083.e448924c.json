@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "e448924c3adea32ba8cc9a661e4409d6c6e07ec61709e2d495e0fbad6009830b",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": "common_mistakes[0] (option 9) is compound: it needs two independent errors to reach 9, dropping ½g from the difference of squares AND skipping the percentage step altogether. Dropping ½g alone gives 9 m, which as a percentage of 125 m is 7.2, not 9. One entry should carry one error.",
+ "notes": "right_route 'I used the last second distance formula' is step 2, not step 1, and that is correct here: step 1 (find the total fall time from h = ½gt²) is shared by the option-3 wrong route, which computes t = 5 s and then reports t², so the separation rule puts the right route at the last-second formula. mistakes[1] application is right (the percentage concept is known but attached to the wrong quantity, t² instead of the last-second distance over the height) and the route matches its entry without spelling out 25. mistakes[2] distractor flag is honest - I confirmed the two near misses it names (first four seconds 80/125 = 64%, final speed 50/125 = 40%) and found no slip reaching 49. Indices 0/1/2 align. I considered typing mistakes[0] application rather than calculation, because the half of that entry which actually reaches option 1 is reporting a raw number as a percentage; I did not file it. The entry leads with the dropped ½g, which is a calculation slip on a correct approach, the ambiguity comes from the solution entry rather than the routes author, and promoting it to application would put a route on the menu ('I gave the difference of the squared times') that sits uncomfortably close to mistakes[1]'s 'I gave the square of the fall time'. No route names a two-digit number or an option value.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T15:56:00+05:30"}
+}

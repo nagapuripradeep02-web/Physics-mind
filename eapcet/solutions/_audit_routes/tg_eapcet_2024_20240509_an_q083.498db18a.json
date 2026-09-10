@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "498db18a46f96995b3d398f6262827bee5791dd2b7fe76022c66b8a70b37a257",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "right_route 'I used symmetry for speed at the window' is step 1 in the student's voice and separates: mistakes[1] computes the same 2u/g but reads it as the answer, not as the speed at the window top. All three wrong entries are application (the formulas are right, the interval or the starting speed is wrong) and each route describes its own entry - top of the throw, whole up-and-down trip, bottom speed over g - with no two alike and no option value named. Numbers re-checked: u/g = 0.8, 2u/g = 1.6, speed at the window bottom 10, and the quadratic 5t squared + 8t - 1.8 = 0 has roots 0.2 and -1.8.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:41:00+05:30"}
+}

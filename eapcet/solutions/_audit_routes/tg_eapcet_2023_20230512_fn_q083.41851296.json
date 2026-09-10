@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "4185129625369d66d1c8369682b54e3ed08930184ebebfd58bc8c7046ee284b9",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "right_route 'I used v times dv over dx' is the move that separates the right solver from mistakes[2] (who stopped at dv/dx), is seven words, carries no banned token, and is a phrase a Class-11 student says. Every route differentiates first, so naming step 1 instead would have been a shared step. mistakes[0] distractor: the flag looks honest - dropping the v factor gives plus or minus 2av squared and swapping the coefficients gives plus or minus 2bv cubed, so no slip mixes a with b. mistakes[1] calculation with route null accepted: the route (differentiate, invert, times v) was right and the differentiation and the sign went wrong - I checked that a + 2bx does lead to 2bv cubed. mistakes[2] concept with a route that describes its own entry.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:34:00+05:30"}
+}

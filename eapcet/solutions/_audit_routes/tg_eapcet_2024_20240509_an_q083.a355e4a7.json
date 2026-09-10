@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "a355e4a744fc5a24178e5e2b3ddd8804df25b91d07c7b51077ca0e87c6488f85",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Checked arithmetic: 2u/g = 1.6 s, u/g = 0.8 s, v at window bottom = 10 m/s so v/g = 1.0 s while (v-u)/g = 0.2 s, and 5t^2+8t-1.8=0 gives t = 0.2 s (option 4) - every listed mistake reproduces its own option and the index-to-option alignment is right. Types: all three are the correct relation applied to the wrong interval or quantity, so application is right for each; mistakes[2] (dividing the full bottom speed by g instead of the change in speed) is the one boundary I weighed against concept, and 'applied to the wrong quantity' in the definition puts it at application, so I did not file it. Route wording: 8, 8, 9 and 7 tokens, first person, no verdict words, no two-digit numbers, none of them names an option's value, and each describes only its own entry. Separation: mistakes[2] would also have used the same-speed-on-the-way-down idea to get 10 m/s, so the right route is not a perfectly clean first fork, but mistakes[0] does not share it and both wrong students have a much closer match on the menu ('I took the whole flight time as the answer', 'I divided the bottom speed by g'), so it is not a step every listed mistake starts with and I did not file it.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R4", "at": "2026-09-10T18:40:00+05:30"}
+}

@@ -1,0 +1,328 @@
+{
+ "wave": 2,
+ "role": "routes_audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q084",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q084.103f97fc.json",
+   "item_sha": "103f97fc93c835b5d9310abb63ac65a764596753dbbd01cacac07318d2c0c2c1",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A bullet fired into a target losses one-third of its velocity after travelling a distance x meter into the target. If the bullet comes to rest by travelling a further distance x′, then the ratio x′/x is",
+   "options_en": [
+    "2/3",
+    "1/3",
+    "4/5",
+    "4/9"
+   ],
+   "solution": {
+    "approach": "Apply v² = u² − 2as for uniform retardation, once over distance x where v drops to (2/3)u, then again over x′ until it stops.",
+    "steps": [
+     {
+      "text": "Write the velocity after travelling distance x, given that it drops to two-thirds of the initial value.",
+      "equation": "v = (2/3)u"
+     },
+     {
+      "text": "Apply v² = u² − 2ax for the first stage to relate the retardation a to u and x.",
+      "equation": "(2u/3)² = u² − 2ax; a = 5u²/(18x)"
+     },
+     {
+      "text": "Apply the same equation for the second stage, where the bullet slows from v = 2u/3 to rest over distance x′.",
+      "equation": "0 = (2u/3)² − 2ax′"
+     },
+     {
+      "text": "Substitute a and solve for x′, then form the ratio x′/x.",
+      "equation": "x′ = 4x/5; x′/x = 4/5"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4/5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking the remaining velocity fraction after the first stage, v/u = 2/3, and treating it directly as the distance ratio x′/x, instead of applying v² = u² − 2as to each stage."
+     },
+     {
+      "option": 2,
+      "text": "Reading the one-third velocity loss stated in the question and mistaking that fraction directly for the distance ratio x′/x, without using v² = u² − 2as at all."
+     },
+     {
+      "option": 4,
+      "text": "Taking the ratio of the squared velocities, (2u/3)²/u² = 4/9, and mistaking that fraction directly for x′/x without separately relating each stage to the constant retardation."
+     }
+    ],
+    "concept_tags": [
+     "uniform retardation",
+     "v² = u² − 2as"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2022_20220718_fn_q084",
+    "right_route": "I used v²=u²−2as for each stage",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "application",
+      "route": "I used the speed left as the distance ratio"
+     },
+     {
+      "index": 1,
+      "type": "application",
+      "route": "I used the speed lost as the distance ratio"
+     },
+     {
+      "index": 2,
+      "type": "application",
+      "route": "I used the squared speed ratio for distance"
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_an_q083",
+   "audit_file": "tg_eapcet_2023_20230512_an_q083.0c867c1f.json",
+   "item_sha": "0c867c1f9f01a9bbff293c561cd0c224876d4ed58981492f9462c9795bf90828",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The ratio of the displacements of a freely falling body during first, second and third seconds of its motion is",
+   "options_en": [
+    "1:1:1",
+    "1:3:5",
+    "1:2:3",
+    "1:4:9"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, displacement in the nth second is proportional to (2n − 1), giving the first three seconds in ratio 1:3:5.",
+    "steps": [
+     {
+      "text": "Write the distance covered in the nth second of free fall starting from rest.",
+      "equation": "Sₙ = g/2 × (2n − 1)"
+     },
+     {
+      "text": "Evaluate this for n = 1, 2 and 3, using g = 10 m s⁻².",
+      "equation": "S₁ = 5 m, S₂ = 15 m, S₃ = 25 m"
+     },
+     {
+      "text": "Write the ratio of these three distances in lowest terms.",
+      "equation": "S₁ : S₂ : S₃ = 5 : 15 : 25 = 1 : 3 : 5"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1:3:5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming a falling body covers equal distances each second, which would only be true if it moved at constant velocity, not while accelerating."
+     },
+     {
+      "option": 3,
+      "text": "Assuming the distances grow in a simple linear count 1, 2, 3 instead of computing them from the odd-number rule for the nth second of free fall."
+     },
+     {
+      "option": 4,
+      "text": "Using the ratio of the squares of the times, 1:4:9, which gives the total distance fallen by each second, not the distance fallen during each second."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in nth second"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2023_20230512_an_q083",
+    "right_route": "I used the nth second formula for free fall",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "concept",
+      "route": "I thought it covers equal distance each second"
+     },
+     {
+      "index": 1,
+      "type": "concept",
+      "route": "I took the nth second distance proportional to n"
+     },
+     {
+      "index": 2,
+      "type": "application",
+      "route": "I used the total distance at each second"
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_an_q083",
+   "audit_file": "tg_eapcet_2024_20240509_an_q083.73807757.json",
+   "item_sha": "738077570382a72e22e374e4fe10a270b9b28cf681d78fe1217fe9e479743792",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A stone is thrown vertically up from the top end of a window of height 1.8 m with a velocity of 8 ms⁻¹. The time taken by the stone to cross the window during its downward journey is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "0.8 s",
+    "1.6 s",
+    "1.0 s",
+    "0.2 s"
+   ],
+   "solution": {
+    "approach": "Find the stone's downward speed when it returns to the window's top, then use that as the starting speed for falling through the window's height.",
+    "steps": [
+     {
+      "text": "Find the time for the stone to return to the level of the window's top on its way down, where its downward speed equals the launch speed by symmetry.",
+      "equation": "2u/g = 2 × 8/10 = 1.6 s",
+      "why_this_step": "In vertical motion under gravity, the speed at a given height on the way down equals the speed at that height on the way up."
+     },
+     {
+      "text": "From that instant the stone moves down with speed 8 m/s and covers the window's height of 1.8 m to reach the window's bottom.",
+      "equation": "1.8 = 8t + ½ × 10 × t²"
+     },
+     {
+      "text": "Solve the quadratic equation for the crossing time and keep the positive root.",
+      "equation": "5t² + 8t − 1.8 = 0, so t = 0.2 s",
+      "why_this_step": "The other root, t = −1.8 s, is negative and has no physical meaning here."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "0.2 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the time to reach the highest point of the throw, u/g = 8/10 = 0.8 s, and mistaking it for the time to cross the window."
+     },
+     {
+      "option": 2,
+      "text": "Computing the total time to return to the release point, 2u/g = 1.6 s, and mistaking it for the time to cross the window."
+     },
+     {
+      "option": 3,
+      "text": "Finding the speed at the window's bottom correctly as 10 m/s, then dividing by g to get 10/10 = 1.0 s, forgetting to subtract the initial 8 m/s already present at the window's top."
+     }
+    ],
+    "concept_tags": [
+     "vertical motion under gravity",
+     "symmetry of speed in projectile motion",
+     "quadratic equation for time"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2024_20240509_an_q083",
+    "right_route": "I used symmetry for speed at the window",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "calculation",
+      "route": null
+     },
+     {
+      "index": 1,
+      "type": "application",
+      "route": "I used the total up and down time"
+     },
+     {
+      "index": 2,
+      "type": "application",
+      "route": "I divided the bottom speed by g"
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250504_fn_q081",
+   "audit_file": "tg_eapcet_2025_20250504_fn_q081.1fa66dc8.json",
+   "item_sha": "1fa66dc84c62d429f487db39f5c49ac52c09b67cfaee1cfefb616828f3d99fa7",
+   "chapter": "Motion in a Straight Line",
+   "year": 2025,
+   "question_en": "For a particle moving along a straight line path, the displacements in third and fifth seconds of its motion are 10 m and 18 m respectively. The speed of the particle at time t = 4s is",
+   "options_en": [
+    "32 ms⁻¹",
+    "12 ms⁻¹",
+    "16 ms⁻¹",
+    "8 ms⁻¹"
+   ],
+   "solution": {
+    "approach": "Use the nth-second formula at n = 3 and n = 5 to find u and a, then use them to get the speed at t = 4 s.",
+    "steps": [
+     {
+      "text": "Write the nth-second displacement formula and apply it for n = 3 and n = 5.",
+      "equation": "Sₙ = u + a/2(2n−1); S₃ = u + 2.5a = 10; S₅ = u + 4.5a = 18"
+     },
+     {
+      "text": "Subtract the two equations to find the acceleration.",
+      "equation": "2a = 8; a = 4 m/s²"
+     },
+     {
+      "text": "Substitute back to find the initial velocity.",
+      "equation": "u = 10 − 2.5×4 = 0"
+     },
+     {
+      "text": "Use v = u + at to find the speed at t = 4 s.",
+      "equation": "v = 0 + 4×4 = 16 ms⁻¹"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "16 ms⁻¹"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Using v = 2at instead of v = u + at, effectively doubling the correct product of acceleration and time, which gives 32 ms⁻¹."
+     },
+     {
+      "option": 2,
+      "text": "Evaluating v = u + at at t = 3 s instead of t = 4 s, confusing the value of t with the third second mentioned earlier in the question, which gives 12 ms⁻¹."
+     },
+     {
+      "option": 4,
+      "text": "Using v = ½at, wrongly carrying over the one-half from the distance formula s = ut + ½at² into the velocity formula, which gives 8 ms⁻¹."
+     }
+    ],
+    "concept_tags": [
+     "nth-second displacement formula",
+     "uniformly accelerated motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   },
+   "routes": {
+    "schema": "eapcet_routes_v1",
+    "question_id": "tg_eapcet_2025_20250504_fn_q081",
+    "right_route": "I used v=u+at at four seconds",
+    "mistakes": [
+     {
+      "index": 0,
+      "type": "concept",
+      "route": "I took v as 2at"
+     },
+     {
+      "index": 1,
+      "type": "application",
+      "route": "I put t = 3 s into v=u+at"
+     },
+     {
+      "index": 2,
+      "type": "concept",
+      "route": "I took v as half of at"
+     }
+    ]
+   }
+  }
+ ]
+}

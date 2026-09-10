@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "90cf795d64f464a90fa2e573a84058c6d92ebb491cdd3b5e020eaac01d1d197b",
+ "findings": [
+  {"grade": "weak",
+   "field": "right_route",
+   "quote": "I used the same equation for both stages",
+   "note": "It never names the equation, so it reads close to a generic 'I used the formula' while the three wrong routes all name a concrete quantity; a student scanning the menu has to guess which equation is meant. The 'both stages' half is the correct separator and should be kept.",
+   "fix": "I used v²=u²−2as for each stage"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Right route is deliberately not step 1 and that is correct here: step 1 (v = 2u/3) is shared by the option-1 and option-4 wrong routes, so under the separation rule the earliest unshared step is applying v²=u²−2as to each stage. All three types are application by the definition (the concept is known but is attached to the wrong quantity, a speed fraction instead of a distance ratio); concept is arguable for all three, but this is a boundary I did not file. Each route matches its own entry and indices 0/1/2 align. I checked mistakes[0] 'the speed left' against mistakes[1] 'the speed lost' as a possible cannot-tell-apart pair and did not file it: the student knows whether they wrote 2/3 or 1/3, and left/lost is a one-word difference a Class-11 student reads correctly - but it is the thinnest pair in this slice. No route names a two-digit number or an option value (2/3, 1/3, 4/9, 4/5 all absent).",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T15:44:00+05:30"}
+}

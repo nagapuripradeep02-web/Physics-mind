@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2024_20240509_fn_q083",
- "right_route": "I found the total fall time from the height",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "calculation",
-   "route": null
-  },
-  {
-   "index": 1,
-   "type": "application",
-   "route": "I added an extra second to the fall time"
-  },
-  {
-   "index": 2,
-   "type": "distractor",
-   "route": null
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2024_20240509_fn_q083",
+  "right_route": "I used the last second distance formula",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "calculation",
+      "route": null
+    },
+    {
+      "index": 1,
+      "type": "application",
+      "route": "I gave the square of the fall time"
+    },
+    {
+      "index": 2,
+      "type": "distractor",
+      "route": null
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R2",
+    "at": "2026-09-10T06:57:03+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

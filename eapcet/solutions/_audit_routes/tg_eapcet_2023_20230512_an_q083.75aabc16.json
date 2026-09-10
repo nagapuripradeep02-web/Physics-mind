@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "75aabc16b173e9b0de215515959cef94dde0051992be22d72fc84ccfcdb6c3b1",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I assumed the distance grows by a fixed step",
+   "note": "The entry is the linear count 1, 2, 3, but the correct ratio 1:3:5 also grows by a fixed step (of two), so the phrase does not pin the wrong pattern and reads as true of the right answer as well. A student who tapped it could have meant either, which blurs the diagnosis.",
+   "fix": "I counted the distances as one, two, three"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Types accepted: mistakes[0] concept (equal distances each second is a wrong belief about accelerated motion), mistakes[1] concept (a wrong belief about how the distances grow), mistakes[2] application (the t squared rule is known but applied to totals rather than to each single second - the definition's 'wrong interval'). right_route names the nth-second rule, which none of the three wrong entries uses, so it separates properly. Values re-checked: 5, 15, 25 m, ratio 1:3:5.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:27:00+05:30"}
+}

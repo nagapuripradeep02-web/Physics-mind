@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2022_20220718_fn_q084",
- "right_route": "I used the same equation for both stages",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "application",
-   "route": "I took the speed fraction as the distance ratio"
-  },
-  {
-   "index": 1,
-   "type": "application",
-   "route": "I used the speed lost as the distance ratio"
-  },
-  {
-   "index": 2,
-   "type": "application",
-   "route": "I used the squared speed ratio for distance"
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2022_20220718_fn_q084",
+  "right_route": "I used v²=u²−2as for each stage",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "application",
+      "route": "I used the speed left as the distance ratio"
+    },
+    {
+      "index": 1,
+      "type": "application",
+      "route": "I used the speed lost as the distance ratio"
+    },
+    {
+      "index": 2,
+      "type": "application",
+      "route": "I used the squared speed ratio for distance"
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R3",
+    "at": "2026-09-10T07:08:06+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "97eb203b3fcc7a66089826afd966b6a8d33ad6ecfe2ad4928252867c36182be0",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Checked: right_route 'I wrote the fall distance as ½gt²' is step 1 verbatim, 7 tokens, student words, and the only wrong route on the menu (mistakes[0]) does not share it, so the separation rule is satisfied too. mistakes[0] type concept is right (the belief distance grows with time itself is a wrong physics belief) and its route matches the entry (ratio of the two intervals 8/4). mistakes[1] typed calculation with null route: the entry's route was correct (difference of the two total distances) and only the factor ½ was dropped, so calculation fits; I considered application and rejected it because the interval chosen was the right one. mistakes[2] distractor flag is honest - I computed every slip that could land on 12 and found none (proportional gives 2, dropped ½ gives 16, whole 12 s over d₁ gives 9, next-8-s alone over d₁ gives 4). Indices 0/1/2 align with the three common_mistakes entries. No route names a two-digit number or an option value.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T15:40:00+05:30"}
+}

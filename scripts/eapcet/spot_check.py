@@ -45,7 +45,7 @@ def audit_at(qid, sha):
 def wave_ids(wave):
     ids = set()
     for r in load(LEDGER, []):
-        if r["wave"] == wave and r["role"] == "author":
+        if r["wave"] == wave and r["role"] in ("author", "rework"):
             ids.update(r["question_ids"])
     return ids
 

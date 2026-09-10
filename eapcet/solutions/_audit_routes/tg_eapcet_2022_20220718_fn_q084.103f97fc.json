@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "103f97fc93c835b5d9310abb63ac65a764596753dbbd01cacac07318d2c0c2c1",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I used the speed lost as the distance ratio",
+   "note": "It differs from mistakes[0].route (\"I used the speed left as the distance ratio\") by one word, left vs lost, in the same sentence frame; at the moment of tapping a student cannot reliably tell which of the two twin routes was theirs, so the two most-likely wrong answers (2/3 and 1/3) are not separable.",
+   "fix": "I used the one-third drop as the distance ratio"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Checked and not filed: right_route \"I used v²=u²−2as for each stage\" is the earliest step no wrong route shares (all three wrong entries skip the relation entirely and read a velocity fraction as a distance fraction), it is in student words and names no option value; index alignment is correct (0 to option 2/3, 1 to option 1/3, 2 to option 4/9) and each route describes its own entry; arithmetic re-derived, x'=4x/5. All three types are the same boundary call between application and concept (a known relation applied to the wrong quantity, a distance ratio); I would have typed them application too, so no type finding.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02-R3",
+  "at": "2026-09-10T15:05:00+05:30"
+ }
+}

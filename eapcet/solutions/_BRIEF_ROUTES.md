@@ -66,7 +66,11 @@ with a wrong rule — equal steps, a constant ratio, a symmetry), it is not a ro
    "integrated the function", "differentiated the expression", "the reversal point" — a
    student who did that says "I found v from the x equation" or "I split it where v = 0".
    Symbols (v, t, g, ½gt²) and single digits are welcome; two-digit numbers stay banned.
-4. Write `right_route`: the approach of step 1 in the student's voice. `null` only for a theory
+4. Write `right_route`: the EARLIEST step of the solution that the wrong routes do not share,
+   in the student's voice — usually step 1. When every listed mistake begins the same way (all
+   three find a and u first, then slip), the right route names the move where the right solver
+   parts from them ("I used v=u+at at four seconds"), because a right route every wrong solver
+   could also tap separates nobody. `null` only for a theory
    or recall question that has no route — one answered by knowing, not by working. When
    `mistake_type_hint` is `calculation` or `application` the question has a route by
    definition and `right_route` must be a phrase; when it is `concept`, decide: an
@@ -129,7 +133,7 @@ Every `route` and every non-null `right_route`:
 6. holds no markdown: no `**bold**`, no backticks, no `- bullets`.
 
 And, read by the auditor rather than the machine: the route describes ITS entry's error and no
-other; the right route matches step 1 and not a later step; the wrong routes read in the same
+other; the right route names the earliest step the wrong routes do not share (usually step 1); the wrong routes read in the same
 voice and confidence as the right one; two routes on one question are distinguishable by a
 student who has not seen the answer.
 

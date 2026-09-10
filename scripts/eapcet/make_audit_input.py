@@ -166,6 +166,9 @@ def main_routes(a):
             sys.exit("wave %d has no routes rows" % a.wave)
 
     cands = collections.defaultdict(list)
+    # a sidecar already audited at its current sha is the best HOST for a control: its
+    # corrupted copy measures the auditor and its real sha needs no later round
+    hosts = collections.defaultdict(list)
     skipped = collections.Counter()
     for qid in sorted(scope):
         st = rstatus.get(qid)
@@ -177,6 +180,7 @@ def main_routes(a):
             continue
         if st["routes_sha"][:8] in audited_route_shas(qid):
             skipped["already audited at this sha"] += 1
+            hosts[byid[qid]["chapter_key"]].append(qid)
             continue
         cands[byid[qid]["chapter_key"]].append(qid)
 
@@ -188,9 +192,11 @@ def main_routes(a):
     written, planted, no_control = 0, [], []
     for ck, ids in sorted(cands.items()):
         control_qid, h = None, 0
-        if not a.no_controls and len(ids) >= 2 and ck not in pending:
+        if not a.no_controls and (len(ids) >= 2 or hosts.get(ck)) and ck not in pending:
             h = int(hashlib.sha256(("routes" + str(a.wave) + ck + "|".join(ids)).encode()).hexdigest(), 16)
-            order = sorted(ids, key=lambda i: hashlib.sha256((str(h) + i).encode()).hexdigest())
+            seeded = lambda i: hashlib.sha256((str(h) + i).encode()).hexdigest()
+            # audited hosts first (their real sha is already covered), then the batch itself
+            order = sorted(hosts.get(ck, []), key=seeded) + sorted(ids, key=seeded)
             for cand in order:
                 if cand in controlled_qids:
                     continue
@@ -200,6 +206,8 @@ def main_routes(a):
                 if probe and (corrupt_routes(probe, "type_swap")[0] is not None or corrupt_routes(probe, "right_route_swap")[0] is not None):
                     control_qid = cand
                     break
+        if control_qid and control_qid not in ids:
+            ids = ids + [control_qid]
         for qid in ids:
             q = byid[qid]
             sol = load(os.path.join(SOL, qid + ".json"))

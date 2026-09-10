@@ -1,0 +1,20 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "68f793891cb27459b13984d63e830733405e5f3646f6896fcb71a64cff9fc4f6",
+ "findings": [
+  {"grade": "wrong",
+   "field": "mistakes[2].type",
+   "quote": "calculation",
+   "note": "The entry is using v = half at, that is carrying the half from s = ut + half at squared into the velocity relation. That is a wrong belief about which formula gives the speed, not a number or algebra slip inside a right route, and the sidecar already types the twin entry mistakes[0] ('v = 2at') as concept. Typing it calculation also strips it of a route, so a student who used the wrong velocity formula this way has nothing to tap.",
+   "fix": "concept, with route 'I took v as half of at'"},
+  {"grade": "wrong",
+   "field": "right_route",
+   "quote": "I found u and a from both seconds",
+   "note": "Every listed mistake starts from exactly this step - all three need a = 4 (and mistakes[1] needs u as well) before their slip - so the phrase does not separate the right solver from the wrong ones. What separates is using v = u + at at the asked time.",
+   "fix": "I used v = u + at at four seconds"}
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "mistakes[0] concept with 'I took v as 2at' and mistakes[1] application with 'I used the earlier time value in the formula' are both right for their entries; mistakes[1]'s wording is a little stiff for a student but understandable without the solution, so I did not file it. Numbers re-checked: a = 4, u = 0, v at 4 s = 16, and the three wrong values 32, 12 and 8 all reproduce.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T16:11:00+05:30"}
+}

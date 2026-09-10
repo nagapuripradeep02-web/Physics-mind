@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "item_sha": "ff811ea63ed7829baca524be2a9b8051984c8448adfaeaed21c0be847201c848",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "right_route 'I integrated v to get x' is step 1 in the student's voice, seven words, no banned phrase (the machine bans 'integrated the', not 'integrated v'). All three entries are genuine slips inside a correct route (constant term left as 1 gives 1 m; power-rule slip gives 4 m; dropped minus gives 18 m - all three re-computed and they match their options), so calculation with route null is right and the student who slipped correctly taps the right route. Boundary I decided and did not file: mistakes[0] could be argued as concept (not knowing the antiderivative of a constant), but the definition puts an antiderivative step inside a right route in calculation.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:12:00+05:30"}
+}

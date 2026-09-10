@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "0c867c1f9f01a9bbff293c561cd0c224876d4ed58981492f9462c9795bf90828",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Re-derived: S1,S2,S3 = 5,15,25 m so 1:3:5, and the squares of the times give 1:4:9 as totals, so every mistake entry's arithmetic is honest. right_route \"I used the nth second formula for free fall\" is step 1 and no wrong route uses that formula, so it separates; nine tokens, student words (Indian Class-11 students say \"nth second formula\"), no option value named. Index alignment correct: 0 to 1:1:1, 1 to 1:2:3, 2 to 1:4:9, and each route describes its own entry. Types: 0 and 1 are wrong beliefs about how a falling body's per-second distance grows, so concept; 2 knows s is proportional to t squared but applies it to the total distance instead of the distance during each second, which is the application definition, so the split from the concept hint is right. Boundaries decided and not filed: \"I took the nth second distance proportional to n\" is slightly formal but a student would say \"proportional to\", and \"I thought it covers equal distance each second\" reads as a plain belief, not as a verdict word like \"I wrongly\". The three wrong routes are clearly distinguishable from each other.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02-R3",
+  "at": "2026-09-10T15:12:00+05:30"
+ }
+}

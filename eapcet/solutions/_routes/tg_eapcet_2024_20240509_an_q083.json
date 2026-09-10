@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2024_20240509_an_q083",
- "right_route": "I used symmetry for speed at the window",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "application",
-   "route": "I found the time to reach the top"
-  },
-  {
-   "index": 1,
-   "type": "application",
-   "route": "I used the total up and down time"
-  },
-  {
-   "index": 2,
-   "type": "application",
-   "route": "I divided the bottom speed by g"
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2024_20240509_an_q083",
+  "right_route": "I used symmetry for speed at the window",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "application",
+      "route": "I found the time to reach the top"
+    },
+    {
+      "index": 1,
+      "type": "application",
+      "route": "I took the whole flight time as the answer"
+    },
+    {
+      "index": 2,
+      "type": "application",
+      "route": "I divided the bottom speed by g"
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R4",
+    "at": "2026-09-10T07:13:58+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "item_sha": "abdc2c4f3ddbd5164546c79e7e502ca1bd91fc37bcdde1b0841d9547b2e342b1",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "right_route 'I used the average of the given speeds' is the move of the solution and is used by none of the wrong entries, so it separates. mistakes[1] and mistakes[2] are both application - the free-fall formulas are known but applied to a body that was not in free fall - and their routes ('v equal to gt' versus 'time from height alone using g') describe their own entries and are easy to tell apart. mistakes[0] distractor flag looks honest: I re-computed the three reachable values, 20/9 = 2.2, 18/10 = 1.8 and the square root of 2x20/10 = 2.0, and none is 2.5. No route names an option value or a two-digit number.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:56:00+05:30"}
+}

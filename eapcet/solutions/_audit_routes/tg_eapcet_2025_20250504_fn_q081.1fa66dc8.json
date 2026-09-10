@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "1fa66dc84c62d429f487db39f5c49ac52c09b67cfaee1cfefb616828f3d99fa7",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Re-derived: u + 2.5a = 10 and u + 4.5a = 18 give a = 4 and u = 0, so v at 4 s is 16, and 2at = 32, v at 3 s = 12, at/2 = 8, so each entry's arithmetic is honest. right_route: all three wrong entries reach the last step with a and u already found, so they share steps 1 to 3; the earliest step they do not share is the final one, and \"I used v=u+at at four seconds\" is exactly that, in student words, naming no option value. Types: 0 and 2 substitute a wrong relation (v = 2at, v = at/2), a wrong belief about the velocity formula, so concept; 1 uses the right relation at the wrong time, so application. Boundary decided and not filed: mistakes[1] could be argued careless, since the entry says the student confused t with the third second mentioned in the question, but the brief's own boundary example puts \"right concept, wrong interval\" in application, and typing it careless would strip a route from a real method. mistakes[0] and mistakes[2] share the frame \"I took v as\" but 2at against half of at is a clear tell apart, and mistakes[1] is separated from the right route by the time value.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02-R3",
+  "at": "2026-09-10T15:27:00+05:30"
+ }
+}

@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2025_20250504_fn_q081",
- "right_route": "I found u and a from both seconds",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "concept",
-   "route": "I took v as 2at"
-  },
-  {
-   "index": 1,
-   "type": "application",
-   "route": "I used the earlier time value in the formula"
-  },
-  {
-   "index": 2,
-   "type": "calculation",
-   "route": null
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2025_20250504_fn_q081",
+  "right_route": "I used v=u+at at four seconds",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "concept",
+      "route": "I took v as 2at"
+    },
+    {
+      "index": 1,
+      "type": "application",
+      "route": "I put t = 3 s into v=u+at"
+    },
+    {
+      "index": 2,
+      "type": "concept",
+      "route": "I took v as half of at"
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R3",
+    "at": "2026-09-10T07:08:06+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

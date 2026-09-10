@@ -39,7 +39,8 @@ measurement — that is what you are here to catch.
 
 ## Method — in this order, per item
 
-1. **Read the solution first**: step 1 (the right route's content), then every
+1. **Read the solution first**: the steps (the right route is the earliest step the wrong
+   routes do not share — usually step 1), then every
    `common_mistakes` entry. Decide for yourself, before reading the sidecar, what type each
    entry is and what the right route is. Write these down in a scratch file named with your
    agent label (`W01-V-p1-02_types.txt` — the scratchpad is shared, a generic name gets
@@ -48,7 +49,9 @@ measurement — that is what you are here to catch.
    - `type` by the definitions — `concept`: the physics belief behind the entry is wrong;
      `application`: the concept is known but applied to the wrong quantity, interval, body or
      frame; `calculation`: the route was right and a number, sign, unit or algebra step went
-     wrong; `careless`: the question or options were misread; `distractor`: the solution's
+     wrong (an entry that compounds a wrong formula with a later skipped step is typed by its
+     FIRST departure from the right route: the wrong formula makes it `concept` or
+     `application`, never `calculation`); `careless`: the question or options were misread; `distractor`: the solution's
      entry is flagged `"distractor": true` (no method reaches that option) — the machine
      forces this pairing, so your question there is only whether the flag itself is honest. A
      `route` must be present exactly when the type is `concept` or `application`; the machine
@@ -60,14 +63,19 @@ measurement — that is what you are here to catch.
      expression". The machine rejects those; you judge the rest — a phrase a Class-11 student
      would not say about their own working ("I applied the kinematic relation") is WEAK, and
      a phrase that needs the solution to be understood is WEAK.
-3. **Then `right_route`.** It must be step 1 of the solution in the student's voice: the first
-   move, not a later step, not a generic "I used the formula". `null` is right only for a
+3. **Then `right_route`.** It must be the earliest step of the solution that the wrong routes
+   do not share, in the student's voice — usually step 1, never a generic "I used the
+   formula". Where the step-1 reading and the separation reading pull apart, separation wins:
+   a `right_route` naming a step every listed mistake also starts with is WRONG, because the
+   right solver and the wrong ones would all tap it. `null` is right only for a
    theory or recall question that has no working; on a question with steps that compute, a
    `null` is a finding.
 4. **Then the menu as a whole.** Read the right route and the wrong routes together as the
    student would: same voice, same confidence, no route marked as wrong by its wording, no two
    routes a student could not tell apart, no number of two or more digits, no phrase that names
-   an option's value.
+   an option's value. A route that spells out the value an option prints ("I got 2", "I took
+   the ratio as 4/9") hands the student an answer at the moment of tapping: WRONG, and a
+   `fix` is required.
 
 ## Grades
 
@@ -93,7 +101,8 @@ measurement — that is what you are here to catch.
   instead of the interval"). Disagree only when the definition clearly puts it elsewhere, and
   say which definition; a boundary case you would have typed differently is WEAK at most.
 - Before proposing replacement wording, run the phrase tests on it: first person, at most
-  twelve words, no number of two or more digits, no idiom. A fix that fails them is worse
+  twelve words (NINE whitespace tokens in a STRICT chapter — apply the stricter limit to every
+  fix you propose), no number of two or more digits, no idiom. A fix that fails them is worse
   than no fix.
 
 ## Output — one file per item, exact shape

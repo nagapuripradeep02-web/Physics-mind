@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "d73b31aa560a46f2ac52f85b4e1534ab381b416138061e784a615b879ee4ffdf",
+ "findings": [
+  {"grade": "harmful",
+   "field": "right_route",
+   "quote": "I took the ratio of the two times directly",
+   "note": "This is the WRONG method: taking 8/4 = 2 is exactly mistakes[0], and the sidecar repeats the same phrase verbatim as that mistake's route. A student who took the ratio of times taps it and is told they went the right way, while the student who used d = half g t squared has no route that fits. It also puts two identical phrases on the same menu.",
+   "fix": "I used that distance grows with time squared"}
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "Types checked and accepted: mistakes[0] concept (the belief that fall distance is proportional to time is a wrong physics belief, so concept over the entry's 'application' hint); mistakes[1] calculation (the route was right, the factor half was dropped, 128g/8g = 16); mistakes[2] distractor, flag looks honest since 2, 16 and 9 are the reachable wrong values and none is 12. Arithmetic re-checked: d1 = 8g, d2 = 64g, ratio 8.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:05:00+05:30"}
+}

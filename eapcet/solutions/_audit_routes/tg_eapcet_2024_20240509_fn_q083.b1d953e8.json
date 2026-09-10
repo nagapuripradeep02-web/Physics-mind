@@ -1,0 +1,20 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "b1d953e8b56fbb4558e7a42e9dd3a89a9826f464973886299d1a4f5ab36cae77",
+ "findings": [
+  {"grade": "wrong",
+   "field": "mistakes[1].route",
+   "quote": "I added an extra second to the fall time",
+   "note": "The entry it points at is 'computing the total fall time t = 5 s and then reporting t squared as the percentage'. Nothing in it adds a second, and a six-second fall time would not produce that option at all, so the route describes an error the entry does not contain. A student who reported the square of the time has no route that fits, and one who did mis-count the seconds would be routed to the wrong option.",
+   "fix": "I gave the square of the fall time"},
+  {"grade": "wrong",
+   "field": "right_route",
+   "quote": "I found the total fall time from the height",
+   "note": "Both non-distractor entries start from exactly this step - mistakes[0] needs t = 5 to form the difference of squares and mistakes[1] states it outright - so the phrase does not separate the right solver from the wrong ones. The step that does separate is taking the distance in the last second from the nth-second rule.",
+   "fix": "I used the nth second distance formula"}
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "mistakes[0] typed calculation with route null accepted as a boundary: the route (difference of the distances at 5 s and 4 s) was right and the half-g factor was dropped, though the entry also mistakes the raw number for a percentage, which leans application; I would not fail it on the definition. mistakes[2] distractor flag looks honest - 64 and 40 are the near misses named and neither is 49. Numbers re-checked: t = 5 s, S5 = 45 m, 45/125 x 100 = 36; the two wrong values 9 and 25 also reproduce.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:49:00+05:30"}
+}

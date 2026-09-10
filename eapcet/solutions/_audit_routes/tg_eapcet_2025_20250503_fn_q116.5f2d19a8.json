@@ -1,0 +1,9 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "item_sha": "5f2d19a8b81b57ee5e8b1d1ae9d11d79308816298b98f1194914b8e7d301a25e",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "right_route 'I added the free fall time and the rest' is not step 1, and that is correct: all three wrong routes reach the 20 ms⁻¹ speed of step 1, the option-1 route also uses the leftover 1980 m of step 3, and the option-4 route also performs an addition, so the earliest move no wrong route shares is adding the free-fall time to the time for the REST of the height. It carries both separating acts (the remainder and the addition) in 8 student-sounding tokens. All three types are application by the definition - the concept is known in each case and is applied to the wrong interval (only the parachute stage, the whole height at one speed, the whole height plus the free-fall time). Each route matches its own entry and indices 0/1/2 align; no route names a two-digit number, so 99, 100, 101 and 102 stay off the menu. Two closenesses I checked and did not file: mistakes[1] 'I divided the whole height by the speed' is also a true partial description of the option-4 student's working, but mistakes[2] states the addition explicitly so a truthful student still has the exact match; and the right route shares 'I added the ... time' with mistakes[2], separated by 'the rest' against 'the whole time' - that contrast is precisely the physics at issue, and every replacement I drafted was either over nine tokens or no clearer, so no fix was worth proposing.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T16:01:00+05:30"}
+}

@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "item_sha": "843db25015ad76e76e91391414f833429dfacca204d01fd820120f2bb1bbbbac",
+ "findings": [
+  {"grade": "weak",
+   "field": "right_route",
+   "quote": "I used the height left after the free fall",
+   "note": "The student in mistakes[0] also used the height left - that is where 99 s comes from - and only forgot to add the two seconds, so at the moment of tapping both this and 'I used only the constant speed part' are true of him. The right route should name what actually separates the right solver, which is adding the two stage times together.",
+   "fix": "I added the free fall time and the rest"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "All three entries typed application, which I agree with - the constant-speed idea is right and the height or the stage it is applied to is wrong. mistakes[1] and mistakes[2] routes are distinct from each other (dividing the whole height, versus dividing the whole height and then adding the fall time) and neither names an option value. Numbers re-checked: v = 20, t1 = 2 s, 1980/20 = 99 s, total 101 s, and the wrong values 99, 100 and 102 all reproduce.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T16:03:00+05:30"}
+}

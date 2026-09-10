@@ -1,28 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2025_20250503_fn_q116",
- "right_route": "I used the height left after the free fall",
- "mistakes": [
-  {
-   "index": 0,
-   "type": "application",
-   "route": "I used only the constant speed part"
-  },
-  {
-   "index": 1,
-   "type": "application",
-   "route": "I divided the whole height by the speed"
-  },
-  {
-   "index": 2,
-   "type": "application",
-   "route": "I added the fall time to the whole time"
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2025_20250503_fn_q116",
+  "right_route": "I added the free fall time and the rest",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "application",
+      "route": "I used only the constant speed part"
+    },
+    {
+      "index": 1,
+      "type": "application",
+      "route": "I divided the whole height by the speed"
+    },
+    {
+      "index": 2,
+      "type": "application",
+      "route": "I added the fall time to the whole time"
+    }
+  ],
+  "authored_by": {
+    "model": "opus+fable",
+    "wave": 2,
+    "agent": "W02-R-p1-02-R2",
+    "at": "2026-09-10T06:57:03+05:30"
   }
- ],
- "authored_by": {
-  "model": "sonnet+fable",
-  "wave": 2,
-  "agent": "W02-R-p1-02-R1",
-  "at": "2026-09-10T06:48:36+05:30"
- }
 }

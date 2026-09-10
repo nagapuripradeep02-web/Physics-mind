@@ -94,5 +94,11 @@
   "chapter": "Thermodynamics",
   "auditor": "W01-U-p1-12",
   "note": "The stem never says the processes are isobaric. The relation Q = (Cp/R)W holds only at constant pressure; for a general process the ratio Q1:Q2 is not fixed by the data, and for an isothermal process Q equals W for both gases, giving 1:2. The printed options fix the intended reading as constant pressure, but the stem does not state it."
+ },
+ {
+  "question_id": "tg_eapcet_2025_20250503_fn_q110",
+  "chapter": "Motion in a Straight Line",
+  "auditor": "W02-U-p1-02",
+  "note": "The stem gives air resistance but the data fix an answer only if the retardation is taken as uniform, an assumption the question leaves unstated."
  }
 ]

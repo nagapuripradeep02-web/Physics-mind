@@ -34,5 +34,32 @@
   "real_sha": "97eb203b3fcc7a66089826afd966b6a8d33ad6ecfe2ad4928252867c36182be0",
   "expected": "wrong",
   "planted_at": "2026-09-10T03:19:01+02:00"
+ },
+ "c9230b1c5d0adf05a8d84c009374f68177a366ac5ede22cd9ef69ebe33142279": {
+  "question_id": "tg_eapcet_2023_20230512_fn_q083",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "right_route replaced by the wrong route of mistakes[2]",
+  "real_sha": "4185129625369d66d1c8369682b54e3ed08930184ebebfd58bc8c7046ee284b9",
+  "expected": "wrong",
+  "planted_at": "2026-09-10T03:29:35+02:00"
+ },
+ "738077570382a72e22e374e4fe10a270b9b28cf681d78fe1217fe9e479743792": {
+  "question_id": "tg_eapcet_2024_20240509_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "mistakes[0] retyped application -> calculation and its route dropped",
+  "real_sha": "498db18a46f96995b3d398f6262827bee5791dd2b7fe76022c66b8a70b37a257",
+  "expected": "wrong",
+  "planted_at": "2026-09-10T03:38:07+02:00"
+ },
+ "56f6cf672a8effb54f3c7633b0aa678aec42dbec5fdb4ef344c0e45edddbf174": {
+  "question_id": "tg_eapcet_2025_20250504_fn_q081",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "right_route replaced by the wrong route of mistakes[0]",
+  "real_sha": "1fa66dc84c62d429f487db39f5c49ac52c09b67cfaee1cfefb616828f3d99fa7",
+  "expected": "wrong",
+  "planted_at": "2026-09-10T03:43:58+02:00"
  }
 }

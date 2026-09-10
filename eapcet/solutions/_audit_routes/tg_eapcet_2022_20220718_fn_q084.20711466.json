@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "207114669b32418c601afc4789b17ddf20c8e9c1251bd8f7372612b0ea8e3cf9",
+ "findings": [
+  {"grade": "weak",
+   "field": "mistakes[0].route",
+   "quote": "I took the speed fraction as the distance ratio",
+   "note": "This entry is the speed that is LEFT (v/u = 2/3) read as the distance ratio, but 'the speed fraction' does not say left or lost, so it covers mistakes[1] ('I used the speed lost as the distance ratio') just as well. At the moment of tapping, a student who used either fraction cannot tell the two routes apart, so the two wrong options are not separated.",
+   "fix": "I used the speed left as the distance ratio"}
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Types accepted: all three are application - the retardation idea is known but a velocity ratio is applied as a distance ratio (wrong quantity). mistakes[2] route names the squared ratio and is clearly separate. right_route 'I used the same equation for both stages' is the discriminating move (none of the three wrong entries uses v squared = u squared - 2as at all) and I did not file it, though it does not name which equation; step 1 of the solution (v = 2u/3) would have been a poor right_route because mistakes[0] shares it. Ratio re-checked: x'/x = (4/9)/(5/9) = 4/5.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R1", "at": "2026-09-10T15:20:00+05:30"}
+}

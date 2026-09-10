@@ -54,6 +54,12 @@ verdict it wrote is discarded. Read every item as if it were the planted one.
      author should have described it), and its text must say what the option is not. A
      fabricated slip on a non-distractor entry — a route no student takes, written to fill the
      option — is WRONG: the app would tell a student they made an error nobody makes.
+     Prose on an UNFLAGGED entry that reads like a distractor ("no slip reaches…") is audited
+     as a distractor entry whose flag is missing: WRONG. Inside a distractor text, grade the
+     supporting arithmetic: a near-miss slip whose stated value is false (the text says a slip
+     gives 64% and it gives 40%) is WRONG; a text that merely says "nothing lands here"
+     without naming the near-miss slips is WEAK; a right label on right arithmetic that reads
+     awkwardly is WEAK at most.
    - For options made of statements ("b and d are true"), the entry must account for every
      statement the wrong option asserts; a route that explains one of two is WEAK.
    - A slip that lands on a printed option UP TO SIGN (the route gives −2av², option 4 prints

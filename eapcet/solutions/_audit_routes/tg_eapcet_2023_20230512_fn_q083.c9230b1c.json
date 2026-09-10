@@ -1,0 +1,15 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "c9230b1c5d0adf05a8d84c009374f68177a366ac5ede22cd9ef69ebe33142279",
+ "findings": [
+  {"grade": "harmful",
+   "field": "right_route",
+   "quote": "I took dv over dx as acceleration",
+   "note": "This is the wrong method, not the right one: taking dv/dx as the acceleration is exactly common_mistakes[2], the option-4 slip, and the sidecar repeats the identical string as mistakes[2].route. A student who solved it correctly (multiplied dv/dx by v to get −2av³) sees only this phrase, taps it, and is diagnosed with the very error they avoided, while a student who really made that error cannot be separated from them at all.",
+   "fix": "I multiplied v by dv/dx to get acceleration"}
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "The menu is broken in two directions at once: the right route describes a wrong method, and it is character-for-character the same as the only wrong route on the menu, so no tap can distinguish anybody. I filed it once, on right_route, because mistakes[2].route is correct for its own entry and should stay. The fix is the separating step: step 1 (dt/dx = 2ax + b) and the inversion are both shared by the option-4 student, so the earliest unshared move is multiplying dv/dx by v; checked as first person, 8 tokens, no two-digit number, and free of the machine-rejected wording. mistakes[0] distractor flag is honest - I confirmed that dropping the v-factor gives ±2av², swapping the coefficients gives ±2bv³, and nothing produces the mixed ab form. mistakes[1] typed calculation with a null route is right: the approach was correct and the coefficients and a sign went wrong. mistakes[2] concept is right - treating a distance-derivative as acceleration is a wrong belief, not a slip. Indices align.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-V-p1-02-R2", "at": "2026-09-10T15:51:00+05:30"}
+}
