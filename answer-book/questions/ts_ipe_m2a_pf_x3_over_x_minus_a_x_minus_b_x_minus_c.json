@@ -127,7 +127,10 @@
           "x³ = (x − a)(x − b)(x − c)",
           "  + A(x − b)(x − c) + B(x − a)(x − c)",
           "  + C(x − a)(x − b)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,6 +161,12 @@
           "Dropping the (x − a)(x − b)(x − c) term that comes from the 1.",
           "Giving A the factor (x − a) that it sits over.",
           "Writing lowercase c for the constant C, which the book does in its own final line."
+        ],
+        "lines_compact": [
+          "Multiply by (x − a)(x − b)(x − c):",
+          "x³ = (x − a)(x − b)(x − c)",
+          "+ A(x − b)(x − c) + B(x − a)(x − c)",
+          "+ C(x − a)(x − b)"
         ]
       },
       {
@@ -169,16 +178,43 @@
         "margin_note": "Third mark. x = a makes the product and the B and C terms zero: a³ = A(a − b)(a − c). The same pattern with x = b and x = c. Each constant is that letter cubed over its differences from the other two letters.",
         "memory_tip": "One pattern: each letter CUBED over its differences from the other two. B's denominator is (b − a)(b − c).",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = a. The first, third and fourth",
-          "terms all carry (x − a) and vanish:",
-          "a³ = A(a − b)(a − c)",
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = a. The first, third and fourth",
+            "added": true
+          },
+          {
+            "text": "terms all carry (x − a) and vanish:",
+            "added": true
+          },
+          {
+            "text": "a³ = A(a − b)(a − c)",
+            "added": true
+          },
           "A = a³/((a − b)(a − c))",
-          "Put x = b in the same way:",
-          "B = b³/((b − a)(b − c))",
-          "Put x = c in the same way:",
-          "C = c³/((c − a)(c − b))"
+          {
+            "text": "Put x = b in the same way:",
+            "added": true
+          },
+          {
+            "text": "B = b³/((b − a)(b − c))",
+            "added": true
+          },
+          {
+            "text": "Put x = c in the same way:",
+            "added": true
+          },
+          {
+            "text": "C = c³/((c − a)(c − b))",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,6 +246,12 @@
           "Writing A = a³/((a − b)(a − c)) and then B with the same denominator instead of (b − a)(b − c).",
           "Forgetting that at x = a the product (x − a)(x − b)(x − c) is zero and keeping it on the right.",
           "Writing a² instead of a³ in the numerator; the left side is x³ at x = a."
+        ],
+        "lines_compact": [
+          "Put x = a: a³ = A(a − b)(a − c)",
+          "⇒ A = a³/((a − b)(a − c))",
+          "Put x = b: B = b³/((b − a)(b − c))",
+          "Put x = c: C = c³/((c − a)(c − b))"
         ]
       },
       {

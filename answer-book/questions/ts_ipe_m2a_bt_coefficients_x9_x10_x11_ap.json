@@ -105,9 +105,15 @@
         "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
         "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the two ratios appear.",
         "lines": [
-          "Three numbers a, b, c are in A.P. when 2b = a + c",
+          {
+            "text": "Three numbers a, b, c are in A.P. when 2b = a + c",
+            "added": true
+          },
           "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
-          "Dividing both sides by ⁿC₁₀:",
+          {
+            "text": "Dividing both sides by ⁿC₁₀:",
+            "added": true
+          },
           "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
         ],
         "recall": {
@@ -134,6 +140,11 @@
         "common_mistakes": [
           "Writing the A.P. condition as first + middle = last.",
           "Not dividing by the middle term and trying to expand the factorials."
+        ],
+        "lines_compact": [
+          "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
+          "Dividing by ⁿC₁₀:",
+          "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
         ]
       },
       {
@@ -145,13 +156,34 @@
         "margin_note": "Third and fourth marks. With r = 10: ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11.",
         "memory_tip": "ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11. Do not invert either one.",
         "lines": [
-          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
-          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
-          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
-          "= (n − r + 1)/r   [r! = r(r − 1)!]",
-          "Put r = 10: ⁿC₁₀/ⁿC₉ = (n − 10 + 1)/10 = (n − 9)/10",
-          "so ⁿC₉/ⁿC₁₀ = 10/(n − 9)",
-          "Put r = 11: ⁿC₁₁/ⁿC₁₀ = (n − 11 + 1)/11 = (n − 10)/11",
+          {
+            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "added": true
+          },
+          {
+            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "added": true
+          },
+          {
+            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "added": true
+          },
+          {
+            "text": "Put r = 10: ⁿC₁₀/ⁿC₉ = (n − 10 + 1)/10 = (n − 9)/10",
+            "added": true
+          },
+          {
+            "text": "so ⁿC₉/ⁿC₁₀ = 10/(n − 9)",
+            "added": true
+          },
+          {
+            "text": "Put r = 11: ⁿC₁₁/ⁿC₁₀ = (n − 11 + 1)/11 = (n − 10)/11",
+            "added": true
+          },
           "2 = 10/(n − 9) + (n − 10)/11"
         ],
         "recall": {
@@ -179,6 +211,11 @@
         "common_mistakes": [
           "Inverting one of the two ratios.",
           "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
+        ],
+        "lines_compact": [
+          "ⁿC₁₀/ⁿC₉ = (n − 9)/10",
+          "and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11",
+          "2 = 10/(n − 9) + (n − 10)/11"
         ]
       },
       {
@@ -190,13 +227,25 @@
         "margin_note": "Fifth to seventh marks. Multiply through by 11(n − 9). The right side is 110 + (n − 10)(n − 9) = n² − 19n + 200.",
         "memory_tip": "Multiply through by 11(n − 9). Watch (n − 10)(n − 9) = n² − 19n + 90, with a PLUS 90.",
         "lines": [
-          "Multiplying both sides by 11(n − 9):",
+          {
+            "text": "Multiplying both sides by 11(n − 9):",
+            "added": true
+          },
           "2 · 11(n − 9) = 11 · 10 + (n − 10)(n − 9)",
-          "22n − 198 = 110 + (n² − 9n − 10n + 90)",
+          {
+            "text": "22n − 198 = 110 + (n² − 9n − 10n + 90)",
+            "added": true
+          },
           "22n − 198 = 110 + n² − 19n + 90",
-          "22n − 198 = n² − 19n + 200",
+          {
+            "text": "22n − 198 = n² − 19n + 200",
+            "added": true
+          },
           "0 = n² − 19n + 200 − 22n + 198",
-          "0 = n² − 41n + 398",
+          {
+            "text": "0 = n² − 41n + 398",
+            "added": true
+          },
           {
             "text": "∴ n² − 41n + 398 = 0",
             "style": "boxed"
@@ -228,6 +277,15 @@
           "Expanding (n − 10)(n − 9) as n² − 19n − 90.",
           "Multiplying only one side by 11(n − 9).",
           "Getting +41n by moving terms to the wrong side."
+        ],
+        "lines_compact": [
+          "2·11(n − 9) = 110 + (n − 10)(n − 9)",
+          "22n − 198 = 110 + n² − 19n + 90",
+          "0 = n² − 19n + 200 − 22n + 198",
+          {
+            "text": "∴ n² − 41n + 398 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

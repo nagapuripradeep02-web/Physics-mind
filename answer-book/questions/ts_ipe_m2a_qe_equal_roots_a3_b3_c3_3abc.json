@@ -113,10 +113,16 @@
         "margin_note": "Second mark. Equal roots means the discriminant is exactly zero, not ≥ 0. Squaring B removes its minus sign, and every term carries a factor 4 that can be divided out at once.",
         "memory_tip": "Equal roots means Δ is exactly 0, not ≥ 0. Every term carries a 4 — divide it out at once.",
         "lines": [
-          "Equal roots means Δ = B² − 4AC = 0:",
+          {
+            "text": "Equal roots means Δ = B² − 4AC = 0:",
+            "added": true
+          },
           "[−2(a² − bc)]² − 4(c² − ab)(b² − ac) = 0",
           "4(a² − bc)² − 4(c² − ab)(b² − ac) = 0",
-          "Divide throughout by 4:",
+          {
+            "text": "Divide throughout by 4:",
+            "added": true
+          },
           "(a² − bc)² − (c² − ab)(b² − ac) = 0"
         ],
         "recall": {
@@ -147,6 +153,12 @@
           "Writing Δ ≥ 0 or Δ > 0 — 'equal roots' means exactly zero.",
           "Keeping the minus sign on B after squaring.",
           "Not dividing by 4 and carrying large coefficients into the expansion."
+        ],
+        "lines_compact": [
+          "Roots are equal ⇒ Δ = B² − 4AC = 0",
+          "⇒ [−2(a² − bc)]² − 4(c² − ab)(b² − ac) = 0",
+          "⇒ 4(a² − bc)² − 4(c² − ab)(b² − ac) = 0",
+          "⇒ (a² − bc)² − (c² − ab)(b² − ac) = 0"
         ]
       },
       {
@@ -158,16 +170,34 @@
         "margin_note": "Third mark. (a² − bc)² = a⁴ − 2a²bc + b²c². The product (c² − ab)(b² − ac) = b²c² − ac³ − ab³ + a²bc. The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every surviving term has a factor a.",
         "memory_tip": "The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every survivor has a factor a.",
         "lines": [
-          "(a² − bc)² = a⁴ − 2a²bc + b²c²",
-          "(c² − ab)(b² − ac)",
+          {
+            "text": "(a² − bc)² = a⁴ − 2a²bc + b²c²",
+            "added": true
+          },
+          {
+            "text": "(c² − ab)(b² − ac)",
+            "added": true
+          },
           "= b²c² − ac³ − ab³ + a²bc",
-          "Subtracting the second from the first:",
+          {
+            "text": "Subtracting the second from the first:",
+            "added": true
+          },
           "a⁴ − 2a²bc + b²c²",
           "  − b²c² + ac³ + ab³ − a²bc = 0",
-          "The b²c² terms cancel:",
-          "a⁴ − 2a²bc + ac³ + ab³ − a²bc = 0",
+          {
+            "text": "The b²c² terms cancel:",
+            "added": true
+          },
+          {
+            "text": "a⁴ − 2a²bc + ac³ + ab³ − a²bc = 0",
+            "added": true
+          },
           "a⁴ + ab³ + ac³ − 3a²bc = 0",
-          "Every term has a factor a:",
+          {
+            "text": "Every term has a factor a:",
+            "added": true
+          },
           "a(a³ + b³ + c³ − 3abc) = 0"
         ],
         "recall": {
@@ -198,6 +228,14 @@
           "Sign error in the product: (c² − ab)(b² − ac) has −ac³ and −ab³, and +a²bc.",
           "Combining −2a²bc − a²bc as −a²bc or −2a²bc.",
           "Dividing through by a — that silently throws away the case a = 0."
+        ],
+        "lines_compact": [
+          "⇒ a⁴ − 2a²bc + b²c²",
+          "   − (b²c² − ac³ − ab³ + a²bc) = 0",
+          "⇒ a⁴ − 2a²bc + b²c² − b²c²",
+          "   + ac³ + ab³ − a²bc = 0",
+          "⇒ a⁴ + ab³ + ac³ − 3a²bc = 0",
+          "⇒ a(a³ + b³ + c³ − 3abc) = 0"
         ]
       },
       {
@@ -209,7 +247,10 @@
         "margin_note": "Last mark. A product is zero when either factor is zero, and BOTH cases are part of the answer: a = 0, or the bracket is zero, which is a³ + b³ + c³ = 3abc. Write both.",
         "memory_tip": "A product is zero when either factor is, so both cases are the answer. Never divide by a.",
         "lines": [
-          "A product is 0 only when a factor is 0:",
+          {
+            "text": "A product is 0 only when a factor is 0:",
+            "added": true
+          },
           "a = 0 or a³ + b³ + c³ − 3abc = 0",
           {
             "text": "∴ a³ + b³ + c³ = 3abc or a = 0",
@@ -244,6 +285,13 @@
           "Dropping the case a = 0.",
           "Writing a³ + b³ + c³ = −3abc.",
           "Ending without the sentence that states the result."
+        ],
+        "lines_compact": [
+          "⇒ a = 0 or a³ + b³ + c³ − 3abc = 0",
+          {
+            "text": "∴ a³ + b³ + c³ = 3abc or a = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

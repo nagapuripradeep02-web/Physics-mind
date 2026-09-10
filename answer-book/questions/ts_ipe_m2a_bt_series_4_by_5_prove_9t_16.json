@@ -127,8 +127,14 @@
             "render": "katex",
             "style": "eq"
           },
-          "All the terms are added, so it is the (1 − x) form",
-          "The numerators are p, p(p + q), p(p + q)(p + 2q), …"
+          {
+            "text": "All the terms are added, so it is the (1 − x) form",
+            "added": true
+          },
+          {
+            "text": "The numerators are p, p(p + q), p(p + q)(p + 2q), …",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,6 +161,14 @@
         "common_mistakes": [
           "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
           "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ],
+        "lines_compact": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - x)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{x}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{x}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -166,12 +180,30 @@
         "margin_note": "Fourth and fifth marks. p is the first factor (4), p + q is the second (6) so q = 2, and x/q equals the common ratio 1/5 so x = q/5 = 2/5.",
         "memory_tip": "p = 4, p + q = 6 so q = 2, and x/q = 1/5 gives x = 2/5.",
         "lines": [
-          "Match the first numerator: p = 4",
-          "Match the second: p(p + q) = 4·6 ⇒ p + q = 6",
-          "q = 6 − 4 = 2",
-          "Check the third: p + 2q = 4 + 4 = 8, which matches",
-          "Match the bracket: x/q = 1/5",
-          "x = q · 1/5 = 2 · (1/5) = 2/5"
+          {
+            "text": "Match the first numerator: p = 4",
+            "added": true
+          },
+          {
+            "text": "Match the second: p(p + q) = 4·6 ⇒ p + q = 6",
+            "added": true
+          },
+          {
+            "text": "q = 6 − 4 = 2",
+            "added": true
+          },
+          {
+            "text": "Check the third: p + 2q = 4 + 4 = 8, which matches",
+            "added": true
+          },
+          {
+            "text": "Match the bracket: x/q = 1/5",
+            "added": true
+          },
+          {
+            "text": "x = q · 1/5 = 2 · (1/5) = 2/5",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -198,6 +230,10 @@
         "common_mistakes": [
           "Taking x = 1/5 directly — the bracket holds x/q, so x = q × 1/5.",
           "Reading q from the second factor as a whole instead of as p + q."
+        ],
+        "lines_compact": [
+          "p = 4, p + q = 6 ⇒ q = 2",
+          "x/q = 1/5 ⇒ x = q/5 = 2/5"
         ]
       },
       {
@@ -212,19 +248,28 @@
           {
             "text": "1 + t = (1 - x)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-4/2} = \\left(\\tfrac{3}{5}\\right)^{-2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "1 − 2/5 = 3/5, and −4/2 = −2",
-          "A negative power inverts the fraction:",
+          {
+            "text": "1 − 2/5 = 3/5, and −4/2 = −2",
+            "added": true
+          },
+          {
+            "text": "A negative power inverts the fraction:",
+            "added": true
+          },
           {
             "text": "= \\left(\\tfrac{5}{3}\\right)^{2}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= \\dfrac{5^2}{3^2} = \\dfrac{25}{9}",
             "render": "katex",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -251,6 +296,13 @@
         "common_mistakes": [
           "Inverting the exponent instead of the fraction when the index is negative.",
           "Leaving a root in the denominator without a clear final value."
+        ],
+        "lines_compact": [
+          {
+            "text": "1 + t = \\left(1 - \\tfrac{2}{5}\\right)^{-4/2} = \\left(\\tfrac{3}{5}\\right)^{-2} = \\left(\\tfrac{5}{3}\\right)^{2} = \\dfrac{25}{9}",
+            "render": "katex",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -262,9 +314,18 @@
         "margin_note": "Seventh mark. Multiply by 9 and the 16 appears: 9 + 9t = 25.",
         "memory_tip": "Multiply by 9: 9 + 9t = 25, so 9t = 16.",
         "lines": [
-          "Multiplying both sides by 9: 9(1 + t) = 25",
-          "9 + 9t = 25",
-          "9t = 25 − 9",
+          {
+            "text": "Multiplying both sides by 9: 9(1 + t) = 25",
+            "added": true
+          },
+          {
+            "text": "9 + 9t = 25",
+            "added": true
+          },
+          {
+            "text": "9t = 25 − 9",
+            "added": true
+          },
           {
             "text": "∴ 9t = 16",
             "style": "boxed"
@@ -294,6 +355,13 @@
         "common_mistakes": [
           "Writing (3/5) to the power −2 as 9/25 instead of 25/9.",
           "Reading q as 6 instead of p + q = 6."
+        ],
+        "lines_compact": [
+          "9(1 + t) = 25 ⇒ 9 + 9t = 25",
+          {
+            "text": "∴ 9t = 16",
+            "style": "boxed"
+          }
         ]
       }
     ]

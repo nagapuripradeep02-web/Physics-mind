@@ -106,13 +106,31 @@
         "margin_note": "Third mark. Replace a by −a: even powers of a are unchanged, odd powers change sign.",
         "memory_tip": "Replace a by −a: even powers keep their sign, odd powers flip. So (x − a)ⁿ = P − Q.",
         "lines": [
-          "Replace a by −a:",
+          {
+            "text": "Replace a by −a:",
+            "added": true
+          },
           "(x − a)ⁿ = ⁿC₀xⁿ + ⁿC₁xⁿ⁻¹(−a) + ⁿC₂xⁿ⁻²(−a)²",
-          "  + ⁿC₃xⁿ⁻³(−a)³ + ⁿC₄xⁿ⁻⁴(−a)⁴ + …",
-          "(−a)² = a², (−a)⁴ = a⁴, … even powers keep sign",
-          "(−a)¹ = −a, (−a)³ = −a³, … odd powers change sign",
-          "(x − a)ⁿ = (ⁿC₀xⁿ + ⁿC₂xⁿ⁻²a² + …)",
-          "  − (ⁿC₁xⁿ⁻¹a + ⁿC₃xⁿ⁻³a³ + …)",
+          {
+            "text": "  + ⁿC₃xⁿ⁻³(−a)³ + ⁿC₄xⁿ⁻⁴(−a)⁴ + …",
+            "added": true
+          },
+          {
+            "text": "(−a)² = a², (−a)⁴ = a⁴, … even powers keep sign",
+            "added": true
+          },
+          {
+            "text": "(−a)¹ = −a, (−a)³ = −a³, … odd powers change sign",
+            "added": true
+          },
+          {
+            "text": "(x − a)ⁿ = (ⁿC₀xⁿ + ⁿC₂xⁿ⁻²a² + …)",
+            "added": true
+          },
+          {
+            "text": "  − (ⁿC₁xⁿ⁻¹a + ⁿC₃xⁿ⁻³a³ + …)",
+            "added": true
+          },
           "∴ (x − a)ⁿ = P − Q …(2)"
         ],
         "recall": {
@@ -139,6 +157,13 @@
         "common_mistakes": [
           "Writing (x − a)ⁿ = Q − P.",
           "Re-expanding from scratch and grouping again."
+        ],
+        "lines_compact": [
+          "(x − a)ⁿ = ⁿC₀xⁿ − ⁿC₁xⁿ⁻¹a + ⁿC₂xⁿ⁻²a²",
+          "  − ⁿC₃xⁿ⁻³a³ + … + ⁿCₙ(−a)ⁿ",
+          "Even powers of a keep their sign,",
+          "odd powers of a change sign:",
+          "∴ (x − a)ⁿ = P − Q …(2)"
         ]
       },
       {
@@ -152,9 +177,18 @@
         "lines": [
           "(i) P² − Q² = (P + Q)(P − Q)",
           "= (x + a)ⁿ · (x − a)ⁿ   [from (1), (2)]",
-          "= [(x + a)(x − a)]ⁿ   [aⁿbⁿ = (ab)ⁿ]",
-          "= (x² − ax + ax − a²)ⁿ",
-          "∴ P² − Q² = (x² − a²)ⁿ"
+          {
+            "text": "= [(x + a)(x − a)]ⁿ   [aⁿbⁿ = (ab)ⁿ]",
+            "added": true
+          },
+          {
+            "text": "= (x² − ax + ax − a²)ⁿ",
+            "added": true
+          },
+          {
+            "text": "∴ P² − Q² = (x² − a²)ⁿ",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -180,6 +214,11 @@
         "common_mistakes": [
           "Writing (x + a)ⁿ(x − a)ⁿ = (x² − a²)²ⁿ.",
           "Trying to square P and Q term by term."
+        ],
+        "lines_compact": [
+          "(i) P² − Q² = (P + Q)(P − Q)",
+          "= (x + a)ⁿ(x − a)ⁿ   [from (1), (2)]",
+          "= [(x + a)(x − a)]ⁿ = (x² − a²)ⁿ"
         ]
       },
       {
@@ -192,11 +231,26 @@
         "memory_tip": "(P + Q)² − (P − Q)² = 4PQ. Squaring (x + a)ⁿ doubles the index to 2n.",
         "lines": [
           "(ii) (P + Q)² − (P − Q)²",
-          "= (P² + 2PQ + Q²) − (P² − 2PQ + Q²)",
-          "= 4PQ",
-          "So 4PQ = (P + Q)² − (P − Q)²",
-          "= [(x + a)ⁿ]² − [(x − a)ⁿ]²   [from (1), (2)]",
-          "= (x + a)²ⁿ − (x − a)²ⁿ   [(aᵐ)ⁿ = aᵐⁿ]",
+          {
+            "text": "= (P² + 2PQ + Q²) − (P² − 2PQ + Q²)",
+            "added": true
+          },
+          {
+            "text": "= 4PQ",
+            "added": true
+          },
+          {
+            "text": "So 4PQ = (P + Q)² − (P − Q)²",
+            "added": true
+          },
+          {
+            "text": "= [(x + a)ⁿ]² − [(x − a)ⁿ]²   [from (1), (2)]",
+            "added": true
+          },
+          {
+            "text": "= (x + a)²ⁿ − (x − a)²ⁿ   [(aᵐ)ⁿ = aᵐⁿ]",
+            "added": true
+          },
           {
             "text": "∴ 4PQ = (x + a)²ⁿ − (x − a)²ⁿ",
             "style": "boxed"
@@ -226,6 +280,14 @@
         "common_mistakes": [
           "Writing [(x + a)ⁿ]² as (x + a)ⁿ².",
           "Getting 2PQ from (P + Q)² − (P − Q)²."
+        ],
+        "lines_compact": [
+          "(ii) 4PQ = (P + Q)² − (P − Q)²",
+          "= [(x + a)ⁿ]² − [(x − a)ⁿ]²",
+          {
+            "text": "∴ 4PQ = (x + a)²ⁿ − (x − a)²ⁿ",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -103,8 +103,14 @@
         "margin_note": "Second mark. ⁿP₃ = ¹²P₃, so n = 12.",
         "memory_tip": "n is the largest factor, 12, not the smallest.",
         "lines": [
-          "n(n − 1)(n − 2) = 12 · 11 · 10",
-          "The largest factor on each side is the same,",
+          {
+            "text": "n(n − 1)(n − 2) = 12 · 11 · 10",
+            "added": true
+          },
+          {
+            "text": "The largest factor on each side is the same,",
+            "added": true
+          },
           {
             "text": "∴ n = 12",
             "style": "boxed"
@@ -134,6 +140,13 @@
         "common_mistakes": [
           "Answering n = 10, the smallest factor, instead of the largest.",
           "Leaving the answer as ¹²P₃ without stating n."
+        ],
+        "lines_compact": [
+          "Comparing ⁿP₃ with ¹²P₃:",
+          {
+            "text": "∴ n = 12",
+            "style": "boxed"
+          }
         ]
       }
     ]

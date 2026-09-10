@@ -118,11 +118,23 @@
         "memory_tip": "Two separate n's: the one on cos(θ/2) sits outside the bracket, the one on the angle sits inside.",
         "lines": [
           "(1 + cos θ + i sin θ)ⁿ",
-          "= [2cos(θ/2)]ⁿ [cos(θ/2) + i sin(θ/2)]ⁿ",
+          {
+            "text": "= [2cos(θ/2)]ⁿ [cos(θ/2) + i sin(θ/2)]ⁿ",
+            "added": true
+          },
           "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
-          "By De Moivre's theorem the angle is multiplied:",
-          "[cos(θ/2) + i sin(θ/2)]ⁿ",
-          "= cos(nθ/2) + i sin(nθ/2)",
+          {
+            "text": "By De Moivre's theorem the angle is multiplied:",
+            "added": true
+          },
+          {
+            "text": "[cos(θ/2) + i sin(θ/2)]ⁿ",
+            "added": true
+          },
+          {
+            "text": "= cos(nθ/2) + i sin(nθ/2)",
+            "added": true
+          },
           "= 2ⁿ cosⁿ(θ/2)[cos(nθ/2) + i sin(nθ/2)] …(1)"
         ],
         "recall": {
@@ -153,6 +165,12 @@
           "Raising the bracket by De Moivre but forgetting to raise 2cos(θ/2) to n as well.",
           "Writing cos(nθ/2) as cosⁿ(θ/2) inside the bracket; the power on cos(θ/2) is outside, the n on the angle is inside.",
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ],
+        "lines_compact": [
+          "(1 + cos θ + i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) + i sin(nθ/2)] …(1)",
+          "(by De Moivre's theorem)"
         ]
       },
       {
@@ -164,9 +182,18 @@
         "margin_note": "Fifth mark. The second bracket is the conjugate of the first, so it carries the same 2ⁿ cosⁿ(θ/2) with the sine sign reversed. Label it (2); nothing is recomputed.",
         "memory_tip": "Same 2ⁿ cosⁿ(θ/2), only the sine sign flips. Nothing is recomputed.",
         "lines": [
-          "1 + cos θ − i sin θ is the conjugate of the",
-          "first number, so its expansion is the same",
-          "with the sin term negative:",
+          {
+            "text": "1 + cos θ − i sin θ is the conjugate of the",
+            "added": true
+          },
+          {
+            "text": "first number, so its expansion is the same",
+            "added": true
+          },
+          {
+            "text": "with the sin term negative:",
+            "added": true
+          },
           "(1 + cos θ − i sin θ)ⁿ",
           "= 2ⁿ cosⁿ(θ/2)[cos(nθ/2) − i sin(nθ/2)] …(2)"
         ],
@@ -197,6 +224,11 @@
           "Changing the sign of the cosine as well as the sine.",
           "Recomputing r and θ from scratch and losing time.",
           "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ],
+        "lines_compact": [
+          "Similarly,",
+          "(1 + cos θ − i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) − i sin(nθ/2)] …(2)"
         ]
       },
       {
@@ -208,10 +240,16 @@
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2). Combine 2ⁿ · 2 into 2ⁿ⁺¹.",
         "memory_tip": "Conjugates add to twice the real part. Combine 2ⁿ · 2 into 2ⁿ⁺¹.",
         "lines": [
-          "Adding (1) and (2), the i sin terms cancel:",
+          {
+            "text": "Adding (1) and (2), the i sin terms cancel:",
+            "added": true
+          },
           "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",
           "= 2ⁿ cosⁿ(θ/2) · 2cos(nθ/2)",
-          "2ⁿ · 2 = 2ⁿ⁺¹",
+          {
+            "text": "2ⁿ · 2 = 2ⁿ⁺¹",
+            "added": true
+          },
           {
             "text": "= 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
             "style": "boxed"
@@ -245,6 +283,15 @@
           "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
           "Leaving the answer as 2ⁿ · 2 cos instead of combining into one power of 2.",
           "Dropping the factor that comes from r, which is the whole reason the answer has a power of 2."
+        ],
+        "lines_compact": [
+          "Adding (1) and (2):",
+          "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2)",
+          {
+            "text": "= 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
+            "style": "boxed"
+          }
         ]
       }
     ]

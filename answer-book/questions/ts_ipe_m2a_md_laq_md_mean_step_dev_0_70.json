@@ -167,9 +167,18 @@
             "text": "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
             "style": "eq"
           },
-          "= 35 + 10 · (−8/50)",
-          "= 35 + 10(−0.16)",
-          "= 35 − 1.6 = 33.4"
+          {
+            "text": "= 35 + 10 · (−8/50)",
+            "added": true
+          },
+          {
+            "text": "= 35 + 10(−0.16)",
+            "added": true
+          },
+          {
+            "text": "= 35 − 1.6 = 33.4",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,6 +208,10 @@
           "Dropping the minus sign and getting 36.6.",
           "Forgetting to multiply by C, which gives 35 − 0.16.",
           "Dividing by 7 (the number of classes) instead of by N = 50."
+        ],
+        "lines_compact": [
+          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
+          "= 35 + 10·(−8/50) = 35 − 1.6 = 33.4"
         ]
       },
       {
@@ -210,9 +223,18 @@
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 33.4|, and its product with fᵢ. Because x̄ = 33.4 is not a whole number every deviation carries a decimal; the products are 6 × 28.4 = 170.4 and so on. The sum is 659.2.",
         "memory_tip": "x̄ = 33.4 is not whole, so every deviation carries the .4. Subtract before rounding, not after.",
         "lines": [
-          "Now take each class mark's distance from 33.4,",
-          "always as a positive number, and multiply",
-          "by its frequency:",
+          {
+            "text": "Now take each class mark's distance from 33.4,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number, and multiply",
+            "added": true
+          },
+          {
+            "text": "by its frequency:",
+            "added": true
+          },
           {
             "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
             "style": "indent"
@@ -278,6 +300,45 @@
           "Rounding 33.4 to 33 before subtracting.",
           "Keeping the signs, so the column adds to about 0.",
           "An addition slip in the seven products: 170.4 + 92 + 67.2 + 24 + 81.2 + 129.6 + 94.8 = 659.2."
+        ],
+        "lines_compact": [
+          "With x̄ = 33.4, fill the last two columns:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − x̄|     fᵢ|xᵢ − x̄|",
+            "style": "indent"
+          },
+          {
+            "text": "5      6      28.4         170.4",
+            "style": "indent"
+          },
+          {
+            "text": "15     5      18.4         92",
+            "style": "indent"
+          },
+          {
+            "text": "25     8      8.4          67.2",
+            "style": "indent"
+          },
+          {
+            "text": "35     15     1.6          24",
+            "style": "indent"
+          },
+          {
+            "text": "45     7      11.6         81.2",
+            "style": "indent"
+          },
+          {
+            "text": "55     6      21.6         129.6",
+            "style": "indent"
+          },
+          {
+            "text": "65     3      31.6         94.8",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − x̄| = 659.2",
+            "style": "indent"
+          }
         ]
       },
       {
@@ -293,8 +354,14 @@
             "text": "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
             "style": "eq"
           },
-          "= 659.2/50",
-          "= 13.18",
+          {
+            "text": "= 659.2/50",
+            "added": true
+          },
+          {
+            "text": "= 13.18",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the mean = 13.18",
             "style": "boxed"
@@ -327,6 +394,14 @@
           "Dividing by 7 (the number of classes) instead of 50.",
           "Stopping at 659.2 without dividing.",
           "Writing 13.184 as 13.2."
+        ],
+        "lines_compact": [
+          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
+          "= (1/50)·659.2 = 13.18",
+          {
+            "text": "∴ M.D. about the mean = 13.18",
+            "style": "boxed"
+          }
         ]
       }
     ]

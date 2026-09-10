@@ -101,9 +101,18 @@
         "margin_note": "Second mark. No letter repeated means an arrangement of 4 of the 6 letters: ⁶P₄ = 360.",
         "memory_tip": "No repeat means an arrangement, so ⁶P₄ = 360, not ⁶C₄ — a word has an order.",
         "lines": [
-          "Now count the words with NO letter repeated.",
-          "The first place has 6 choices, the second 5,",
-          "the third 4 and the fourth 3:",
+          {
+            "text": "Now count the words with NO letter repeated.",
+            "added": true
+          },
+          {
+            "text": "The first place has 6 choices, the second 5,",
+            "added": true
+          },
+          {
+            "text": "the third 4 and the fourth 3:",
+            "added": true
+          },
           "⁶P₄ = 6 · 5 · 4 · 3 = 360"
         ],
         "recall": {
@@ -131,6 +140,10 @@
         "common_mistakes": [
           "Using ⁶C₄ = 15 — a word is an arrangement, so order matters and it is ⁶P₄.",
           "Computing 6 · 5 · 4 = 120 (three factors) instead of four."
+        ],
+        "lines_compact": [
+          "4-letter words with no letter repeated:",
+          "ⁿPᵣ = ⁶P₄ = 6 · 5 · 4 · 3 = 360"
         ]
       },
       {
@@ -142,14 +155,24 @@
         "margin_note": "Two marks. All words minus words with no repeat: 1296 − 360 = 936.",
         "memory_tip": "All words minus no-repeat words: 1296 − 360 = 936. Say in words what is taken from what.",
         "lines": [
-          "Every word either repeats a letter or does not,",
-          "so subtract:",
+          {
+            "text": "Every word either repeats a letter or does not,",
+            "added": true
+          },
+          {
+            "text": "so subtract:",
+            "added": true
+          },
           "Words with at least one repeated letter",
           "= all words − words with no repetition",
-          "= 1296 − 360",
+          {
+            "text": "= 1296 − 360",
+            "added": true
+          },
           {
             "text": "∴ number of words = 936",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -178,6 +201,14 @@
           "Adding 1296 and 360 instead of subtracting.",
           "Answering 360 — that is the count of words with NO repeat.",
           "Writing the subtraction without the line that says what is being subtracted from what."
+        ],
+        "lines_compact": [
+          "Words with at least one repeated letter",
+          "= all words − words with no repetition",
+          {
+            "text": "= 1296 − 360 = 936",
+            "style": "boxed"
+          }
         ]
       }
     ]

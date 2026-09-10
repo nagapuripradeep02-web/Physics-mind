@@ -98,9 +98,18 @@
         "margin_note": "Second mark. 5 + 9 = 14. Separate the real and imaginary parts.",
         "memory_tip": "5 + 9 = 14. The √5 stays in the numerator; it does not simplify further.",
         "lines": [
-          "= 14",
-          "So the inverse is (√5 − 3i)/14",
-          "Split into a real and an imaginary term:",
+          {
+            "text": "= 14",
+            "added": true
+          },
+          {
+            "text": "So the inverse is (√5 − 3i)/14",
+            "added": true
+          },
+          {
+            "text": "Split into a real and an imaginary term:",
+            "added": true
+          },
           {
             "text": "∴ inverse = √5/14 − (3/14)i",
             "style": "boxed"
@@ -131,6 +140,13 @@
         "common_mistakes": [
           "Adding 5 + 9 as 15.",
           "Trying to 'rationalise' the √5 in the numerator — it is already in simplest form."
+        ],
+        "lines_compact": [
+          "= (√5 − 3i)/14",
+          {
+            "text": "∴ inverse = √5/14 − (3/14)i",
+            "style": "boxed"
+          }
         ]
       }
     ]

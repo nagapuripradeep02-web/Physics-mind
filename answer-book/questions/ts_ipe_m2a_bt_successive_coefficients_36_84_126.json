@@ -108,15 +108,39 @@
         "margin_note": "Second and third marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. 84/36 = 7/3.",
         "memory_tip": "The LOWER ratio is ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. Here 84/36 = 7/3.",
         "lines": [
-          "Dividing (2) by (1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
-          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
-          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
-          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
-          "= (n − r + 1)/r   [r! = r(r − 1)!]",
+          {
+            "text": "Dividing (2) by (1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+            "added": true
+          },
+          {
+            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "added": true
+          },
+          {
+            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "added": true
+          },
+          {
+            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "added": true
+          },
           "(n − r + 1)/r = 7/3",
-          "3(n − r + 1) = 7r",
-          "3n − 3r + 3 = 7r",
-          "3n − 10r = −3 …(4)"
+          {
+            "text": "3(n − r + 1) = 7r",
+            "added": true
+          },
+          {
+            "text": "3n − 3r + 3 = 7r",
+            "added": true
+          },
+          {
+            "text": "3n − 10r = −3 …(4)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -143,6 +167,11 @@
         "common_mistakes": [
           "Using (n − r)/r for this ratio.",
           "Simplifying 84/36 to 7/3 wrongly as 2/1."
+        ],
+        "lines_compact": [
+          "(2)/(1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+          "(n − r + 1)/r = 7/3",
+          "3n − 3r + 3 = 7r ⇒ 3n − 10r = −3 …(4)"
         ]
       },
       {
@@ -154,14 +183,35 @@
         "margin_note": "Fourth and fifth marks. ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). 126/84 = 3/2.",
         "memory_tip": "The UPPER ratio has a different formula: ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). Here 126/84 = 3/2.",
         "lines": [
-          "Dividing (3) by (2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
-          "Replace r by r + 1 in the ratio above:",
-          "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1)",
-          "= (n − r)/(r + 1)",
+          {
+            "text": "Dividing (3) by (2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+            "added": true
+          },
+          {
+            "text": "Replace r by r + 1 in the ratio above:",
+            "added": true
+          },
+          {
+            "text": "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1)",
+            "added": true
+          },
+          {
+            "text": "= (n − r)/(r + 1)",
+            "added": true
+          },
           "(n − r)/(r + 1) = 3/2",
-          "2(n − r) = 3(r + 1)",
-          "2n − 2r = 3r + 3",
-          "2n − 5r = 3 …(5)"
+          {
+            "text": "2(n − r) = 3(r + 1)",
+            "added": true
+          },
+          {
+            "text": "2n − 2r = 3r + 3",
+            "added": true
+          },
+          {
+            "text": "2n − 5r = 3 …(5)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -188,6 +238,11 @@
         "common_mistakes": [
           "Cross-multiplying as 2(n − r) = 3r and dropping the +3.",
           "Reducing 126/84 to 3/1."
+        ],
+        "lines_compact": [
+          "(3)/(2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+          "(n − r)/(r + 1) = 3/2",
+          "2n − 2r = 3r + 3 ⇒ 2n − 5r = 3 …(5)"
         ]
       },
       {
@@ -199,12 +254,30 @@
         "margin_note": "Sixth and seventh marks. Double (5) so the r-terms match, subtract (4), and n appears alone. Then r = 3 and the check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126 costs one line.",
         "memory_tip": "Double (5) so the r terms match, then subtract. Check ⁹C₂, ⁹C₃, ⁹C₄ = 36, 84, 126.",
         "lines": [
-          "Multiply (5) by 2: 4n − 10r = 6 …(6)",
-          "Subtract (4) from (6):",
-          "(4n − 10r) − (3n − 10r) = 6 − (−3)",
-          "n = 9",
-          "Put n = 9 in (5): 18 − 5r = 3",
-          "5r = 18 − 3 = 15 ⇒ r = 3",
+          {
+            "text": "Multiply (5) by 2: 4n − 10r = 6 …(6)",
+            "added": true
+          },
+          {
+            "text": "Subtract (4) from (6):",
+            "added": true
+          },
+          {
+            "text": "(4n − 10r) − (3n − 10r) = 6 − (−3)",
+            "added": true
+          },
+          {
+            "text": "n = 9",
+            "added": true
+          },
+          {
+            "text": "Put n = 9 in (5): 18 − 5r = 3",
+            "added": true
+          },
+          {
+            "text": "5r = 18 − 3 = 15 ⇒ r = 3",
+            "added": true
+          },
           "Check: ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126",
           {
             "text": "∴ n = 9",
@@ -236,6 +309,16 @@
         "common_mistakes": [
           "Subtracting in the wrong order and getting n = −9.",
           "Reporting r = 3 as the answer — the question asks for n."
+        ],
+        "lines_compact": [
+          "2 × (5): 4n − 10r = 6 …(6)",
+          "(6) − (4): n = 9",
+          "From (5): 18 − 5r = 3 ⇒ r = 3",
+          "Check: ⁹C₂ = 36, ⁹C₃ = 84, ⁹C₄ = 126",
+          {
+            "text": "∴ n = 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

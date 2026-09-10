@@ -102,9 +102,18 @@
         "margin_note": "Second mark. n(n − 1) is not zero (n ≥ 2), so divide it out: 10 = n + 1 and n = 9.",
         "memory_tip": "n ≥ 2 so n(n − 1) ≠ 0 and may be divided out. Then 10 = n + 1 gives n = 9.",
         "lines": [
-          "n is the top of ⁿC₂, so n ≥ 2",
-          "and n(n − 1) ≠ 0. Divide both sides by it:",
-          "5 = (n + 1)/2",
+          {
+            "text": "n is the top of ⁿC₂, so n ≥ 2",
+            "added": true
+          },
+          {
+            "text": "and n(n − 1) ≠ 0. Divide both sides by it:",
+            "added": true
+          },
+          {
+            "text": "5 = (n + 1)/2",
+            "added": true
+          },
           "10 = n + 1",
           {
             "text": "∴ n = 9",
@@ -136,6 +145,14 @@
         "common_mistakes": [
           "Cancelling without noting n(n − 1) ≠ 0.",
           "Answering n = 10 from \"10 = n + 1\" by not subtracting 1."
+        ],
+        "lines_compact": [
+          "n(n − 1) ≠ 0, so divide it out:",
+          "10 = n + 1",
+          {
+            "text": "∴ n = 9",
+            "style": "boxed"
+          }
         ]
       }
     ]

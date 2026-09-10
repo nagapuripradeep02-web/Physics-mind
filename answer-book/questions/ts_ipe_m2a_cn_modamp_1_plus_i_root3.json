@@ -102,9 +102,18 @@
         "memory_tip": "First quadrant, so the acute angle stands: θ = π/3 with no adjustment. Keep the r = 2 in front.",
         "lines": [
           "tan θ = y/x = √3/1 = √3",
-          "The point (1, √3) lies in the first quadrant,",
-          "where θ is positive and tan θ = √3,",
-          "so θ = π/3",
+          {
+            "text": "The point (1, √3) lies in the first quadrant,",
+            "added": true
+          },
+          {
+            "text": "where θ is positive and tan θ = √3,",
+            "added": true
+          },
+          {
+            "text": "so θ = π/3",
+            "added": true
+          },
           {
             "text": "∴ 1 + i√3 = 2(cos(π/3) + i sin(π/3))",
             "style": "boxed"
@@ -136,6 +145,14 @@
         "common_mistakes": [
           "Writing θ = 60° when the paper expects radians (both are accepted, but be consistent).",
           "Forgetting the r = 2 in front of the bracket."
+        ],
+        "lines_compact": [
+          "tan θ = y/x = √3/1 = √3",
+          "(1, √3) lies in the first quadrant ⇒ θ = π/3",
+          {
+            "text": "∴ 1 + i√3 = 2(cos(π/3) + i sin(π/3))",
+            "style": "boxed"
+          }
         ]
       }
     ]

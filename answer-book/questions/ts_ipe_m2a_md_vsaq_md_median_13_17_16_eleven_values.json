@@ -107,16 +107,29 @@
         "margin_note": "Second mark. Absolute deviations from 13, written in the GIVEN order as the book does: 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4. Sum 27, divide by n = 11. 27/11 = 2.4545…, written 2.45.",
         "memory_tip": "The two zero deviations still count: divide 27 by n = 11, not by 9. 27/11 = 2.45.",
         "lines": [
-          "Take each value's distance from 13,",
-          "always as a positive number:",
+          {
+            "text": "Take each value's distance from 13,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number:",
+            "added": true
+          },
           "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
-          "  (in the order the data was given)",
+          {
+            "text": "  (in the order the data was given)",
+            "added": true
+          },
           "Σ|xᵢ − M| = 27",
           {
             "text": "M.D. = Σ|xᵢ − M|/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= 27/11 = 2.45",
+          {
+            "text": "= 27/11 = 2.45",
+            "added": true
+          },
           {
             "text": "∴ M.D. about the median = 2.45",
             "style": "boxed"
@@ -150,6 +163,15 @@
           "Dividing 27 by 9 after leaving out the two zero terms — the divisor is n = 11.",
           "Subtracting from the mean 14 instead of from the median 13.",
           "Writing 2.46 — the book rounds 2.4545… to 2.45."
+        ],
+        "lines_compact": [
+          "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
+          "Σ|xᵢ − M| = 27",
+          "M.D. = Σ|xᵢ − M|/n = 27/11 = 2.45",
+          {
+            "text": "∴ M.D. about the median = 2.45",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -131,15 +131,18 @@
         "lines": [
           {
             "text": "Aᶜ and Bᶜ are the events that they fail:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Aᶜ) = 1 − 1/3 = 2/3",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(Bᶜ) = 1 − 1/4 = 3/4",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -165,6 +168,12 @@
         "why": "\"Not solved\" means both fail, and each failure is a complement.",
         "common_mistakes": [
           "Writing P(Aᶜ) = 1/3 (the same as P(A))."
+        ],
+        "lines_compact": [
+          {
+            "text": "P(Aᶜ) = 1 − 1/3 = 2/3,  P(Bᶜ) = 1 − 1/4 = 3/4",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -182,27 +191,33 @@
           },
           {
             "text": "solves it, which is the opposite of BOTH failing:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B) = 1 − P(Aᶜ ∩ Bᶜ)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Aᶜ and Bᶜ are independent too, so",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= 1 − P(Aᶜ)·P(Bᶜ)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 1 − (2/3)(3/4)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 1 − 6/12 = 1 − 1/2",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(problem is solved) = 1/2",
@@ -233,6 +248,24 @@
         "common_mistakes": [
           "Adding 1/3 + 1/4 = 7/12 and stopping — that double counts both solving.",
           "Multiplying (1/3)(1/4) = 1/12, which is P(both solve), not P(solved)."
+        ],
+        "lines_compact": [
+          {
+            "text": "The problem is solved if at least one solves it:",
+            "style": "normal"
+          },
+          {
+            "text": "P(A ∪ B) = 1 − P(Aᶜ ∩ Bᶜ) = 1 − P(Aᶜ)·P(Bᶜ)",
+            "style": "eq"
+          },
+          {
+            "text": "= 1 − (2/3)(3/4) = 1 − 1/2",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(problem is solved) = 1/2",
+            "style": "boxed"
+          }
         ]
       }
     ]

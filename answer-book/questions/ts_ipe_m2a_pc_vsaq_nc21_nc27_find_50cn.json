@@ -100,13 +100,26 @@
         "margin_note": "Second mark. ⁵⁰C₄₈ = ⁵⁰C₂ = (50 · 49)/(1 · 2) = 1225.",
         "memory_tip": "The question asked for ⁵⁰Cₙ, not n. ⁵⁰C₄₈ = ⁵⁰C₂ = 1225.",
         "lines": [
-          "⁵⁰Cₙ = ⁵⁰C₄₈",
-          "= ⁵⁰C₅₀₋₄₈ = ⁵⁰C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
-          "= (50 · 49)/(1 · 2)",
-          "= 2450/2",
+          {
+            "text": "⁵⁰Cₙ = ⁵⁰C₄₈",
+            "added": true
+          },
+          {
+            "text": "= ⁵⁰C₅₀₋₄₈ = ⁵⁰C₂   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+            "added": true
+          },
+          {
+            "text": "= (50 · 49)/(1 · 2)",
+            "added": true
+          },
+          {
+            "text": "= 2450/2",
+            "added": true
+          },
           {
             "text": "∴ ⁵⁰Cₙ = 1225",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -134,6 +147,13 @@
         "common_mistakes": [
           "Leaving the answer as ⁵⁰C₄₈.",
           "Computing 50 · 49 = 2450 and forgetting to halve it."
+        ],
+        "lines_compact": [
+          "⁵⁰Cₙ = ⁵⁰C₄₈ = ⁵⁰C₂",
+          {
+            "text": "= (50 · 49)/(1 · 2) = 1225",
+            "style": "boxed"
+          }
         ]
       }
     ]

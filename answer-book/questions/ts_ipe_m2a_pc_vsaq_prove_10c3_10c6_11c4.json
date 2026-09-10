@@ -104,9 +104,18 @@
         "margin_note": "Second mark. With n = 10 and r = 3 the identity gives ¹¹C₄, which is the right-hand side.",
         "memory_tip": "ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁ with n = 10, r = 3 gives ¹¹C₄. End at '= R.H.S.'.",
         "lines": [
-          "Now ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁",
-          "Put n = 10 and r = 3:",
-          "¹⁰C₃ + ¹⁰C₄ = ¹¹C₄",
+          {
+            "text": "Now ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁",
+            "added": true
+          },
+          {
+            "text": "Put n = 10 and r = 3:",
+            "added": true
+          },
+          {
+            "text": "¹⁰C₃ + ¹⁰C₄ = ¹¹C₄",
+            "added": true
+          },
           {
             "text": "∴ ¹⁰C₃ + ¹⁰C₆ = ¹¹C₄ = R.H.S.",
             "style": "boxed"
@@ -137,6 +146,13 @@
         "common_mistakes": [
           "Writing the identity as ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ, with the wrong lower number on the right.",
           "Not ending with \"= R.H.S.\" on a \"prove that\" question."
+        ],
+        "lines_compact": [
+          "ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁ with n = 10, r = 3:",
+          {
+            "text": "∴ ¹⁰C₃ + ¹⁰C₆ = ¹¹C₄ = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]

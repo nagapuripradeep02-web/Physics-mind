@@ -107,12 +107,22 @@
         "margin_note": "Second mark. −12i² = +12, so the real part is 6 + 12 = 18. The i terms combine to −i.",
         "memory_tip": "−12i² = +12, so A = 18. B is the real number −1, never −i.",
         "lines": [
-          "i² = −1, so −12i² = −12(−1) = 12",
-          "= 6 − i + 12",
-          "= 18 − i",
+          {
+            "text": "i² = −1, so −12i² = −12(−1) = 12",
+            "added": true
+          },
+          {
+            "text": "= 6 − i + 12",
+            "added": true
+          },
+          {
+            "text": "= 18 − i",
+            "added": true
+          },
           {
             "text": "∴ A = 18, B = −1",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -140,6 +150,13 @@
         "common_mistakes": [
           "Using i² = +1 and getting 6 − 12 = −6.",
           "Writing B = −i instead of B = −1."
+        ],
+        "lines_compact": [
+          "= 6 − i + 12        (since i² = −1)",
+          {
+            "text": "= 18 − i, so A = 18, B = −1",
+            "style": "boxed"
+          }
         ]
       }
     ]

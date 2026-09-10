@@ -104,9 +104,15 @@
         "margin_note": "Second mark. cos² + sin² of the same angle is 1.",
         "memory_tip": "cos² + sin² of the SAME angle is 1. A cis value has modulus 1, so the answer had to be 1.",
         "lines": [
-          "Square both and add:",
+          {
+            "text": "Square both and add:",
+            "added": true
+          },
           "x² + y² = cos²(α + β) + sin²(α + β)",
-          "= 1   [cos²A + sin²A = 1]",
+          {
+            "text": "= 1   [cos²A + sin²A = 1]",
+            "added": true
+          },
           {
             "text": "∴ x² + y² = 1",
             "style": "boxed"
@@ -137,6 +143,13 @@
         "common_mistakes": [
           "Writing cos² α + sin² β and being unable to simplify.",
           "Giving the answer as cos(α + β) + sin(α + β)."
+        ],
+        "lines_compact": [
+          "x² + y² = cos²(α + β) + sin²(α + β)",
+          {
+            "text": "∴ x² + y² = 1",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -102,8 +102,14 @@
         "margin_note": "Second mark. (1 + 2)ⁿ = 3ⁿ.",
         "memory_tip": "Write the (1 + 2)ⁿ line before 3ⁿ; that written substitution is the mark.",
         "lines": [
-          "(1 + 2)ⁿ = C₀ + C₁·2 + C₂·2² + C₃·2³ + … + Cₙ·2ⁿ",
-          "3ⁿ = C₀ + 2C₁ + 4C₂ + 8C₃ + … + 2ⁿCₙ",
+          {
+            "text": "(1 + 2)ⁿ = C₀ + C₁·2 + C₂·2² + C₃·2³ + … + Cₙ·2ⁿ",
+            "added": true
+          },
+          {
+            "text": "3ⁿ = C₀ + 2C₁ + 4C₂ + 8C₃ + … + 2ⁿCₙ",
+            "added": true
+          },
           {
             "text": "∴ C₀ + 2C₁ + 4C₂ + … + 2ⁿCₙ = 3ⁿ",
             "style": "boxed"
@@ -133,6 +139,13 @@
         "common_mistakes": [
           "Writing 2ⁿ on the right.",
           "Not writing the (1 + 2)ⁿ step and jumping to 3ⁿ."
+        ],
+        "lines_compact": [
+          "C₀ + C₁·2 + C₂·2² + … + Cₙ·2ⁿ = (1 + 2)ⁿ",
+          {
+            "text": "∴ C₀ + 2C₁ + 4C₂ + … + 2ⁿCₙ = 3ⁿ",
+            "style": "boxed"
+          }
         ]
       }
     ]

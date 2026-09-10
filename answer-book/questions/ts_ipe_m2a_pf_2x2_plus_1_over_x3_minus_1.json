@@ -118,7 +118,10 @@
         "lines": [
           "Multiply both sides by (x − 1)(x² + x + 1):",
           "2x² + 1 = A(x² + x + 1) + (Bx + C)(x − 1)",
-          "This holds for every value of x."
+          {
+            "text": "This holds for every value of x.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,6 +150,10 @@
           "Writing Bx + C(x − 1) without the bracket, so only C is multiplied by (x − 1).",
           "Giving A the factor (x − 1) instead of the quadratic.",
           "Dropping the left side 2x² + 1."
+        ],
+        "lines_compact": [
+          "Multiply by (x − 1)(x² + x + 1):",
+          "2x² + 1 = A(x² + x + 1) + (Bx + C)(x − 1)"
         ]
       },
       {
@@ -158,16 +165,46 @@
         "margin_note": "Third mark. Only one real root, x = 1, which gives A. B and C come from comparing coefficients: x² gives A + B, the constant term gives A − C.",
         "memory_tip": "Only one real root, x = 1, gives A. The constant term on the right is A − C, not A + C.",
         "lines": [
-          "Substituting a root of one factor",
-          "  makes the other terms 0:",
-          "Put x = 1: 2 + 1 = A(1 + 1 + 1)",
-          "3 = 3A, so A = 1",
-          "Compare the x² terms on both sides:",
-          "left 2, right A + B, so A + B = 2",
-          "B = 2 − 1 = 1",
-          "Compare the constant terms:",
-          "left 1, right A − C, so A − C = 1",
-          "C = A − 1 = 0"
+          {
+            "text": "Substituting a root of one factor",
+            "added": true
+          },
+          {
+            "text": "  makes the other terms 0:",
+            "added": true
+          },
+          {
+            "text": "Put x = 1: 2 + 1 = A(1 + 1 + 1)",
+            "added": true
+          },
+          {
+            "text": "3 = 3A, so A = 1",
+            "added": true
+          },
+          {
+            "text": "Compare the x² terms on both sides:",
+            "added": true
+          },
+          {
+            "text": "left 2, right A + B, so A + B = 2",
+            "added": true
+          },
+          {
+            "text": "B = 2 − 1 = 1",
+            "added": true
+          },
+          {
+            "text": "Compare the constant terms:",
+            "added": true
+          },
+          {
+            "text": "left 1, right A − C, so A − C = 1",
+            "added": true
+          },
+          {
+            "text": "C = A − 1 = 0",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,6 +236,11 @@
           "Reading the constant term on the right as A + C instead of A − C; (Bx + C)(x − 1) ends in −C.",
           "Writing B = 2 by forgetting that A also contributes to the x² coefficient.",
           "Finding C = 0 and thinking a mistake was made; C = 0 is a correct value."
+        ],
+        "lines_compact": [
+          "Put x = 1: 3 = A(3) ⇒ A = 1",
+          "Compare x²: A + B = 2 ⇒ B = 1",
+          "Compare constants: A − C = 1 ⇒ C = 0"
         ]
       },
       {

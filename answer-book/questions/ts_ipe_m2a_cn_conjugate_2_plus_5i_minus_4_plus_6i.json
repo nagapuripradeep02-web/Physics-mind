@@ -98,7 +98,10 @@
         "memory_tip": "Keep the real part, flip only the i term: −38 − 8i becomes −38 + 8i.",
         "lines": [
           "The conjugate of a + ib is a − ib.",
-          "Here a = −38 and b = −8,",
+          {
+            "text": "Here a = −38 and b = −8,",
+            "added": true
+          },
           {
             "text": "∴ conjugate of −38 − 8i is −38 + 8i",
             "style": "boxed"
@@ -129,6 +132,13 @@
         "common_mistakes": [
           "Writing 38 + 8i, flipping both signs.",
           "Stopping at the product −38 − 8i."
+        ],
+        "lines_compact": [
+          "The conjugate of a + ib is a − ib.",
+          {
+            "text": "∴ conjugate of −38 − 8i is −38 + 8i",
+            "style": "boxed"
+          }
         ]
       }
     ]

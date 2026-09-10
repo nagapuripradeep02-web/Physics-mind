@@ -298,13 +298,25 @@
         "margin_note": "Half the marks, six short distances. Every side is √8 and every diagonal is √16 = 4. Do all six — four equal sides alone would only show a rhombus.",
         "memory_tip": "Six distances: every side √8, every diagonal 4. Four equal sides alone would only show a rhombus.",
         "lines": [
-          "The four sides:",
-          "AB = √((2 − 4)² + (1 − 3)²)",
-          "= √((−2)² + (−2)²) = √(4 + 4) = √8",
+          {
+            "text": "The four sides:",
+            "added": true
+          },
+          {
+            "text": "AB = √((2 − 4)² + (1 − 3)²)",
+            "added": true
+          },
+          {
+            "text": "= √((−2)² + (−2)²) = √(4 + 4) = √8",
+            "added": true
+          },
           "BC = √((4 − 2)² + (3 − 5)²) = √(4 + 4) = √8",
           "CD = √((2 − 0)² + (5 − 3)²) = √(4 + 4) = √8",
           "DA = √((0 − 2)² + (3 − 1)²) = √(4 + 4) = √8",
-          "The two diagonals:",
+          {
+            "text": "The two diagonals:",
+            "added": true
+          },
           "AC = √((2 − 2)² + (1 − 5)²) = √(0 + 16) = 4",
           "BD = √((4 − 0)² + (3 − 3)²) = √(16 + 0) = 4"
         ],
@@ -337,6 +349,32 @@
           "Stopping after the four sides — that proves only a rhombus.",
           "Computing AC and BD as sides and reporting 'the sides are not equal'.",
           "Writing √8 as 2√2 in some lines and √8 in others, then doubting they are equal."
+        ],
+        "lines_compact": [
+          {
+            "text": "AB = √((2 − 4)² + (1 − 3)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "BC = √((4 − 2)² + (3 − 5)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "CD = √((2 − 0)² + (5 − 3)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "DA = √((0 − 2)² + (3 − 1)²) = √(4 + 4) = √8",
+            "style": "eq"
+          },
+          {
+            "text": "AC = √((2 − 2)² + (1 − 5)²) = √16 = 4",
+            "style": "eq"
+          },
+          {
+            "text": "BD = √((4 − 0)² + (3 − 3)²) = √16 = 4",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -348,11 +386,23 @@
         "margin_note": "Last mark. Two sentences: sides equal, diagonals equal. Then name the shape.",
         "memory_tip": "A square needs equal sides AND equal diagonals. State both, then name it.",
         "lines": [
-          "AB = BC = CD = DA = √8, so the four",
-          "sides are equal.",
+          {
+            "text": "AB = BC = CD = DA = √8, so the four",
+            "added": true
+          },
+          {
+            "text": "sides are equal.",
+            "added": true
+          },
           "AC = BD = 4, so the two diagonals are equal.",
-          "Equal sides alone would give a rhombus;",
-          "the equal diagonals make it a square.",
+          {
+            "text": "Equal sides alone would give a rhombus;",
+            "added": true
+          },
+          {
+            "text": "the equal diagonals make it a square.",
+            "added": true
+          },
           {
             "text": "∴ A, B, C, D form a square.",
             "style": "boxed"
@@ -383,6 +433,14 @@
         "common_mistakes": [
           "Concluding 'square' from equal sides only.",
           "Ending on the last distance with no sentence."
+        ],
+        "lines_compact": [
+          "AB = BC = CD = DA = √8 — the four sides are equal.",
+          "AC = BD = 4 — the two diagonals are equal.",
+          {
+            "text": "∴ A, B, C, D form a square.",
+            "style": "boxed"
+          }
         ]
       }
     ]

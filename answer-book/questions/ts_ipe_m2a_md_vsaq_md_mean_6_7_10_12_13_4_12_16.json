@@ -110,14 +110,24 @@
         "margin_note": "Second mark. Write the eight absolute deviations from 10, add them (26), divide by n = 8. 26/8 = 3.25 exactly.",
         "memory_tip": "The value 10 equals the mean, so its deviation is 0 — but it still counts in n = 8. 26/8 = 3.25.",
         "lines": [
-          "Take each value's distance from 10,",
-          "always as a positive number:",
+          {
+            "text": "Take each value's distance from 10,",
+            "added": true
+          },
+          {
+            "text": "always as a positive number:",
+            "added": true
+          },
           "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
           {
             "text": "M.D. = Σ|xᵢ − x̄|/n",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
-          "= (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
+          {
+            "text": "= (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
+            "added": true
+          },
           "= 26/8 = 3.25",
           {
             "text": "∴ M.D. about the mean = 3.25",
@@ -152,6 +162,15 @@
           "Keeping the signs: −4 − 3 + 0 + 2 + 3 − 6 + 2 + 6 = 0.",
           "Forgetting the value 10 itself, which contributes 0 but still counts in n = 8.",
           "Dividing by 7 instead of 8."
+        ],
+        "lines_compact": [
+          "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
+          "M.D. = Σ|xᵢ − x̄|/n = (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
+          "= 26/8 = 3.25",
+          {
+            "text": "∴ M.D. about the mean = 3.25",
+            "style": "boxed"
+          }
         ]
       }
     ]

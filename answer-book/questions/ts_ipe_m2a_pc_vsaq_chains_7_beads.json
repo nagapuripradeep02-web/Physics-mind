@@ -104,13 +104,23 @@
         "margin_note": "Second mark. (7 − 1)!/2 = 6!/2 = 720/2 = 360.",
         "memory_tip": "6!/2 = 720/2 = 360. The halving is the mark.",
         "lines": [
-          "Here n = 7:",
+          {
+            "text": "Here n = 7:",
+            "added": true
+          },
           "Number of chains = (7 − 1)!/2 = 6!/2",
-          "6! = 720",
-          "= 720/2",
+          {
+            "text": "6! = 720",
+            "added": true
+          },
+          {
+            "text": "= 720/2",
+            "added": true
+          },
           {
             "text": "∴ number of chains = 360",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -138,6 +148,13 @@
         "common_mistakes": [
           "Answering 720 (forgetting the halving).",
           "Answering 2520 (using 7!/2)."
+        ],
+        "lines_compact": [
+          "Number of chains = (7 − 1)!/2 = 6!/2 = 720/2",
+          {
+            "text": "= 360",
+            "style": "boxed"
+          }
         ]
       }
     ]

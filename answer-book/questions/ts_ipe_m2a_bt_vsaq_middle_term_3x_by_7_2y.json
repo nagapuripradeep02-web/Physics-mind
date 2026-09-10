@@ -101,11 +101,26 @@
         "margin_note": "Second mark. (−2y)⁵ = −2⁵y⁵ — an odd power keeps the minus. (3/7)⁵ · 2⁵ = (6/7)⁵.",
         "memory_tip": "(−2y)⁵ keeps its minus — an odd power preserves the sign. (3/7)⁵ · 2⁵ = (6/7)⁵.",
         "lines": [
-          "(3x/7)⁵ = 3⁵x⁵/7⁵",
-          "(−2y)⁵ = (−1)⁵ · 2⁵ · y⁵ = −2⁵y⁵",
-          "T₆ = ¹⁰C₅ · (3⁵/7⁵) · (−2⁵) · x⁵y⁵",
-          "= −¹⁰C₅ · (3⁵ · 2⁵/7⁵) · x⁵y⁵",
-          "= −¹⁰C₅ · ((3 · 2)/7)⁵ · x⁵y⁵   [aⁿbⁿ = (ab)ⁿ]",
+          {
+            "text": "(3x/7)⁵ = 3⁵x⁵/7⁵",
+            "added": true
+          },
+          {
+            "text": "(−2y)⁵ = (−1)⁵ · 2⁵ · y⁵ = −2⁵y⁵",
+            "added": true
+          },
+          {
+            "text": "T₆ = ¹⁰C₅ · (3⁵/7⁵) · (−2⁵) · x⁵y⁵",
+            "added": true
+          },
+          {
+            "text": "= −¹⁰C₅ · (3⁵ · 2⁵/7⁵) · x⁵y⁵",
+            "added": true
+          },
+          {
+            "text": "= −¹⁰C₅ · ((3 · 2)/7)⁵ · x⁵y⁵   [aⁿbⁿ = (ab)ⁿ]",
+            "added": true
+          },
           {
             "text": "∴ T₆ = −¹⁰C₅ (6/7)⁵ x⁵y⁵",
             "style": "boxed"
@@ -136,6 +151,13 @@
         "common_mistakes": [
           "Writing the term positive.",
           "Leaving (3/7)⁵ · 2⁵ uncombined when the paper expects (6/7)⁵."
+        ],
+        "lines_compact": [
+          "= −¹⁰C₅ (3/7)⁵ · 2⁵ · x⁵y⁵",
+          {
+            "text": "∴ T₆ = −¹⁰C₅ (6/7)⁵ x⁵y⁵",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -125,9 +125,18 @@
         "margin_note": "Second mark. Set the power equal to 10.",
         "memory_tip": "Set the power equal to 10, not to 0 — the term independent of x is not what is asked.",
         "lines": [
-          "For the coefficient of x¹⁰, put 22 − 3r = 10",
-          "3r = 22 − 10 = 12",
-          "r = 4"
+          {
+            "text": "For the coefficient of x¹⁰, put 22 − 3r = 10",
+            "added": true
+          },
+          {
+            "text": "3r = 22 − 10 = 12",
+            "added": true
+          },
+          {
+            "text": "r = 4",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -152,6 +161,9 @@
         "why": "Only one value of r gives x¹⁰, so only one term contributes to the coefficient.",
         "common_mistakes": [
           "Solving 22 − 3r = 0 (the term independent of x) by habit."
+        ],
+        "lines_compact": [
+          "For x¹⁰: 22 − 3r = 10 ⇒ 3r = 12 ⇒ r = 4"
         ]
       },
       {
@@ -163,10 +175,22 @@
         "margin_note": "Third mark. Put r = 4 into (1) and drop the x.",
         "memory_tip": "Keep ¹¹C₄ unevaluated. It is going to cancel, so turning it into 330 wastes the chance.",
         "lines": [
-          "Put r = 4 in (1):",
-          "T₅ = ¹¹C₄ (a¹¹⁻⁴/b⁴) x²²⁻¹²",
-          "= ¹¹C₄ (a⁷/b⁴) x¹⁰",
-          "∴ coefficient of x¹⁰ = ¹¹C₄ a⁷/b⁴ …(2)"
+          {
+            "text": "Put r = 4 in (1):",
+            "added": true
+          },
+          {
+            "text": "T₅ = ¹¹C₄ (a¹¹⁻⁴/b⁴) x²²⁻¹²",
+            "added": true
+          },
+          {
+            "text": "= ¹¹C₄ (a⁷/b⁴) x¹⁰",
+            "added": true
+          },
+          {
+            "text": "∴ coefficient of x¹⁰ = ¹¹C₄ a⁷/b⁴ …(2)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -191,6 +215,10 @@
         "why": "The coefficient is everything in the term except the power of x; keeping ¹¹C₄ symbolic lets it cancel later.",
         "common_mistakes": [
           "Evaluating ¹¹C₄ = 330 now and losing the chance to cancel it against ¹¹C₇."
+        ],
+        "lines_compact": [
+          "From (1), the coefficient of x¹⁰ is",
+          "¹¹C₄ a⁷/b⁴ …(2)"
         ]
       },
       {
@@ -204,9 +232,18 @@
         "lines": [
           "In (ax − 1/(bx²))¹¹, the general term is",
           "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
-          "= ¹¹Cᵣ · a¹¹⁻ʳ x¹¹⁻ʳ · (−1)ʳ/(bʳ(x²)ʳ)",
-          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ · x⁻²ʳ",
-          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ⁻²ʳ",
+          {
+            "text": "= ¹¹Cᵣ · a¹¹⁻ʳ x¹¹⁻ʳ · (−1)ʳ/(bʳ(x²)ʳ)",
+            "added": true
+          },
+          {
+            "text": "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ · x⁻²ʳ",
+            "added": true
+          },
+          {
+            "text": "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ⁻²ʳ",
+            "added": true
+          },
           "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
         ],
         "recall": {
@@ -233,6 +270,11 @@
         "common_mistakes": [
           "Dropping the (−1)ʳ.",
           "Writing the power as 11 − 2r."
+        ],
+        "lines_compact": [
+          "In (ax − 1/(bx²))¹¹, the general term is",
+          "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
+          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
         ]
       },
       {
@@ -244,9 +286,18 @@
         "margin_note": "Fifth mark. Set the power equal to −10.",
         "memory_tip": "A negative power needs a LARGER r: 11 − 3r = −10 gives r = 7.",
         "lines": [
-          "For the coefficient of x⁻¹⁰, put 11 − 3r = −10",
-          "3r = 11 + 10 = 21",
-          "r = 7"
+          {
+            "text": "For the coefficient of x⁻¹⁰, put 11 − 3r = −10",
+            "added": true
+          },
+          {
+            "text": "3r = 11 + 10 = 21",
+            "added": true
+          },
+          {
+            "text": "r = 7",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -271,6 +322,9 @@
         "why": "A negative power of x is reached by a larger r, because each step of r lowers the power by 3.",
         "common_mistakes": [
           "Solving 11 − 3r = 10 and getting a fraction."
+        ],
+        "lines_compact": [
+          "For x⁻¹⁰: 11 − 3r = −10 ⇒ 3r = 21 ⇒ r = 7"
         ]
       },
       {
@@ -282,10 +336,22 @@
         "margin_note": "Sixth mark. r = 7 is odd, so (−1)⁷ = −1.",
         "memory_tip": "r = 7 is odd, so (−1)⁷ = −1. That minus is what makes the answer ab = −1.",
         "lines": [
-          "Put r = 7 in (3):",
-          "T₈ = (−1)⁷ ¹¹C₇ (a¹¹⁻⁷/b⁷) x¹¹⁻²¹",
-          "= −¹¹C₇ (a⁴/b⁷) x⁻¹⁰   [(−1)⁷ = −1]",
-          "∴ coefficient of x⁻¹⁰ = −¹¹C₇ a⁴/b⁷ …(4)"
+          {
+            "text": "Put r = 7 in (3):",
+            "added": true
+          },
+          {
+            "text": "T₈ = (−1)⁷ ¹¹C₇ (a¹¹⁻⁷/b⁷) x¹¹⁻²¹",
+            "added": true
+          },
+          {
+            "text": "= −¹¹C₇ (a⁴/b⁷) x⁻¹⁰   [(−1)⁷ = −1]",
+            "added": true
+          },
+          {
+            "text": "∴ coefficient of x⁻¹⁰ = −¹¹C₇ a⁴/b⁷ …(4)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -312,6 +378,10 @@
         "common_mistakes": [
           "Writing (−1)⁷ = +1.",
           "Forgetting a¹¹⁻⁷ = a⁴."
+        ],
+        "lines_compact": [
+          "From (3), the coefficient of x⁻¹⁰ is",
+          "(−1)⁷ ¹¹C₇ a⁴/b⁷ = −¹¹C₇ a⁴/b⁷ …(4)"
         ]
       },
       {
@@ -323,14 +393,38 @@
         "margin_note": "Seventh mark. ¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so they cancel. Then a³b³ = −1 and, for real a and b, ab = −1.",
         "memory_tip": "¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so both cancel. Then a³b³ = −1 gives ab = −1.",
         "lines": [
-          "Given: coefficient of x¹⁰ = coefficient of x⁻¹⁰",
-          "From (2) and (4): ¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷",
-          "Now ¹¹C₇ = ¹¹C₁₁₋₇ = ¹¹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
-          "Cancelling ¹¹C₄: a⁷/b⁴ = −a⁴/b⁷",
-          "Cross-multiplying: a⁷ · b⁷ = −a⁴ · b⁴",
-          "Dividing by a⁴b⁴: a⁷⁻⁴ · b⁷⁻⁴ = −1",
-          "a³b³ = −1",
-          "(ab)³ = −1 = (−1)³",
+          {
+            "text": "Given: coefficient of x¹⁰ = coefficient of x⁻¹⁰",
+            "added": true
+          },
+          {
+            "text": "From (2) and (4): ¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷",
+            "added": true
+          },
+          {
+            "text": "Now ¹¹C₇ = ¹¹C₁₁₋₇ = ¹¹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
+            "added": true
+          },
+          {
+            "text": "Cancelling ¹¹C₄: a⁷/b⁴ = −a⁴/b⁷",
+            "added": true
+          },
+          {
+            "text": "Cross-multiplying: a⁷ · b⁷ = −a⁴ · b⁴",
+            "added": true
+          },
+          {
+            "text": "Dividing by a⁴b⁴: a⁷⁻⁴ · b⁷⁻⁴ = −1",
+            "added": true
+          },
+          {
+            "text": "a³b³ = −1",
+            "added": true
+          },
+          {
+            "text": "(ab)³ = −1 = (−1)³",
+            "added": true
+          },
           {
             "text": "∴ ab = −1",
             "style": "boxed"
@@ -361,6 +455,15 @@
           "Mishandling the b powers when cross-multiplying: writing a³ = −b³, which gives a = −b, instead of a³ = −1/b³.",
           "Stopping at a³b³ = −1.",
           "Writing ab = 1 after losing the sign in step 6."
+        ],
+        "lines_compact": [
+          "Given the two coefficients are equal, from (2), (4):",
+          "¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷   [¹¹C₄ = ¹¹C₇]",
+          "a⁷/b⁴ = −a⁴/b⁷ ⇒ a³ = −1/b³ ⇒ a³b³ = −1",
+          {
+            "text": "∴ ab = −1",
+            "style": "boxed"
+          }
         ]
       }
     ]

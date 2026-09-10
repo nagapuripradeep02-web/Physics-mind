@@ -134,12 +134,30 @@
         "margin_note": "Second mark. The distribution is P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ. P(X ≥ 1) is 1 − P(X = 0), and P(X = 0) = qⁿ = (3/4)¹⁶. Leave the power as it is.",
         "memory_tip": "Write the distribution itself — it is asked for. P(X ≥ 1) = 1 − qⁿ = 1 − (3/4)¹⁶, one subtraction.",
         "lines": [
-          "The distribution is",
-          "P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ,",
-          "for r = 0, 1, 2, …, 16",
-          "X ≥ 1 is the opposite of X = 0, so",
-          "P(X ≥ 1) = 1 − P(X = 0)",
-          "P(X = 0) = ¹⁶C₀ (3/4)¹⁶ (1/4)⁰ = (3/4)¹⁶",
+          {
+            "text": "The distribution is",
+            "added": true
+          },
+          {
+            "text": "P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ,",
+            "added": true
+          },
+          {
+            "text": "for r = 0, 1, 2, …, 16",
+            "added": true
+          },
+          {
+            "text": "X ≥ 1 is the opposite of X = 0, so",
+            "added": true
+          },
+          {
+            "text": "P(X ≥ 1) = 1 − P(X = 0)",
+            "added": true
+          },
+          {
+            "text": "P(X = 0) = ¹⁶C₀ (3/4)¹⁶ (1/4)⁰ = (3/4)¹⁶",
+            "added": true
+          },
           {
             "text": "∴ P(X ≥ 1) = 1 − (3/4)¹⁶",
             "style": "boxed"
@@ -172,6 +190,15 @@
           "Computing P(X = 1) instead of P(X ≥ 1).",
           "Writing P(X = 0) = pⁿ = (1/4)¹⁶.",
           "Never writing the distribution, which the question asks for."
+        ],
+        "lines_compact": [
+          "The distribution is P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
+          "= ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ, r = 0, 1, 2, …, 16",
+          "P(X ≥ 1) = 1 − P(X = 0) = 1 − qⁿ",
+          {
+            "text": "∴ P(X ≥ 1) = 1 − (3/4)¹⁶",
+            "style": "boxed"
+          }
         ]
       }
     ]

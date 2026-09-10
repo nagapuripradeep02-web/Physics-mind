@@ -108,9 +108,15 @@
         "margin_note": "Second mark. |3x/2| < 1 gives |x| < 2/3.",
         "memory_tip": "|x| < 2/3, an OPEN interval — square brackets lose the mark.",
         "lines": [
-          "|3x/2| < 1 ⇒ |3x| < 2 ⇒ 3|x| < 2",
+          {
+            "text": "|3x/2| < 1 ⇒ |3x| < 2 ⇒ 3|x| < 2",
+            "added": true
+          },
           "|x| < 2/3",
-          "−2/3 < x < 2/3",
+          {
+            "text": "−2/3 < x < 2/3",
+            "added": true
+          },
           {
             "text": "∴ x ∈ (−2/3, 2/3)",
             "style": "boxed"
@@ -141,6 +147,13 @@
         "common_mistakes": [
           "Writing a closed interval.",
           "Getting (−3/2, 3/2) by inverting the fraction."
+        ],
+        "lines_compact": [
+          "|x| < 2/3",
+          {
+            "text": "∴ x ∈ (−2/3, 2/3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -125,9 +125,18 @@
         "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 34: ³⁴C₄ + ³⁴C₅ = ³⁵C₅.",
         "memory_tip": "The two lower numbers must differ by ONE. Only the pair with top number 34 has a C₅ partner.",
         "lines": [
-          "The identity ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
-          "joins two terms with the SAME top number.",
-          "Take the first two, both with top 34:",
+          {
+            "text": "The identity ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
+            "added": true
+          },
+          {
+            "text": "joins two terms with the SAME top number.",
+            "added": true
+          },
+          {
+            "text": "Take the first two, both with top 34:",
+            "added": true
+          },
           "³⁴C₄ + ³⁴C₅ = ³⁵C₅"
         ],
         "recall": {
@@ -155,6 +164,11 @@
         "common_mistakes": [
           "Writing the identity as ⁿCᵣ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ — the two lower numbers must differ by one.",
           "Starting from ³⁸C₄ instead of the smallest pair; only the pair 34 has a C₅ partner."
+        ],
+        "lines_compact": [
+          "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
+          "on the pair with the smallest top number:",
+          "³⁴C₅ + ³⁴C₄ = ³⁵C₅"
         ]
       },
       {
@@ -166,13 +180,22 @@
         "margin_note": "Two marks. The new ³⁵C₅ joins ³⁵C₄ to make ³⁶C₅, and so on up to ³⁹C₅. Show each line; the examiner is paying for the chain, not the last symbol.",
         "memory_tip": "The lower number stays 5 the whole way up to ³⁹C₅. The marks are for the chain, not the last symbol.",
         "lines": [
-          "Now ³⁵C₅ meets ³⁵C₄, the next term:",
+          {
+            "text": "Now ³⁵C₅ meets ³⁵C₄, the next term:",
+            "added": true
+          },
           "³⁵C₅ + ³⁵C₄ = ³⁶C₅",
           "³⁶C₅ + ³⁶C₄ = ³⁷C₅",
           "³⁷C₅ + ³⁷C₄ = ³⁸C₅",
           "³⁸C₅ + ³⁸C₄ = ³⁹C₅",
-          "Each step uses the same identity, and",
-          "every term is used exactly once.",
+          {
+            "text": "Each step uses the same identity, and",
+            "added": true
+          },
+          {
+            "text": "every term is used exactly once.",
+            "added": true
+          },
           {
             "text": "∴ ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄ = ³⁹C₅",
             "style": "boxed"
@@ -204,6 +227,16 @@
           "Stopping at ³⁸C₅ — the last term ³⁸C₄ still has to be absorbed.",
           "Changing the lower number to 4 along the way; it stays 5 at every step.",
           "Jumping to ³⁹C₅ with no lines between — the two marks are for the chain."
+        ],
+        "lines_compact": [
+          "³⁵C₅ + ³⁵C₄ = ³⁶C₅",
+          "³⁶C₅ + ³⁶C₄ = ³⁷C₅",
+          "³⁷C₅ + ³⁷C₄ = ³⁸C₅",
+          "³⁸C₅ + ³⁸C₄ = ³⁹C₅",
+          {
+            "text": "∴ ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄ = ³⁹C₅",
+            "style": "boxed"
+          }
         ]
       }
     ]

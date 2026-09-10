@@ -119,8 +119,14 @@
         "margin_note": "Second mark. Synthetic division by 1: bring down 1, add each column. Remainder 0; quotient x⁴ − 4x³ + 5x² − 4x + 1, which is reciprocal (1, −4, 5, −4, 1).",
         "memory_tip": "Synthetic division by 1, remainder 0. The quotient 1, −4, 5, −4, 1 is reciprocal again.",
         "lines": [
-          "So (x − 1) is a factor. Divide f(x) by it",
-          "using synthetic division with 1:",
+          {
+            "text": "So (x − 1) is a factor. Divide f(x) by it",
+            "added": true
+          },
+          {
+            "text": "using synthetic division with 1:",
+            "added": true
+          },
           {
             "text": "1 |  1   −5    9   −9    5   −1",
             "style": "indent"
@@ -133,10 +139,19 @@
             "text": "     1   −4    5   −4    1    0",
             "style": "indent"
           },
-          "The last entry 0 is the remainder, as expected.",
+          {
+            "text": "The last entry 0 is the remainder, as expected.",
+            "added": true
+          },
           "Quotient: x⁴ − 4x³ + 5x² − 4x + 1,",
-          "which reads the same end to end,",
-          "so it is reciprocal too."
+          {
+            "text": "which reads the same end to end,",
+            "added": true
+          },
+          {
+            "text": "so it is reciprocal too.",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -165,6 +180,22 @@
           "A sign slip in the synthetic division row, so the remainder is not 0 and the quotient is wrong.",
           "Writing the quotient with one coefficient too many or too few (degree must drop by exactly 1 per division).",
           "Dividing by (x − 1) when the root is −1, or the reverse."
+        ],
+        "lines_compact": [
+          "Divide f(x) by (x − 1) (synthetic division):",
+          {
+            "text": "1 |  1   −5    9   −9    5   −1",
+            "style": "indent"
+          },
+          {
+            "text": "  |       1   −4    5   −4    1",
+            "style": "indent"
+          },
+          {
+            "text": "     1   −4    5   −4    1    0",
+            "style": "indent"
+          },
+          "Quotient: x⁴ − 4x³ + 5x² − 4x + 1, reciprocal."
         ]
       },
       {
@@ -175,13 +206,31 @@
         "margin_note": "No separate mark on the page for this step — its [1 Mark] sits beside the t values in the next step. Divide the quotient by x², group, substitute: (t² − 2) − 4t + 5 = t² − 4t + 3.",
         "memory_tip": "Work on the quotient: (t² − 2) − 4t + 5 = t² − 4t + 3.",
         "lines": [
-          "x = 0 is not a root, so divide the quotient by x²:",
-          "x² − 4x + 5 − 4/x + 1/x² = 0",
-          "Group the pairs that match:",
+          {
+            "text": "x = 0 is not a root, so divide the quotient by x²:",
+            "added": true
+          },
+          {
+            "text": "x² − 4x + 5 − 4/x + 1/x² = 0",
+            "added": true
+          },
+          {
+            "text": "Group the pairs that match:",
+            "added": true
+          },
           "(x² + 1/x²) − 4(x + 1/x) + 5 = 0 … (1)",
-          "Put x + 1/x = t.",
-          "Squaring both sides: x² + 2 + 1/x² = t²",
-          "So x² + 1/x² = t² − 2",
+          {
+            "text": "Put x + 1/x = t.",
+            "added": true
+          },
+          {
+            "text": "Squaring both sides: x² + 2 + 1/x² = t²",
+            "added": true
+          },
+          {
+            "text": "So x² + 1/x² = t² − 2",
+            "added": true
+          },
           "(1) becomes (t² − 2) − 4t + 5 = 0",
           "t² − 4t + 3 = 0"
         ],
@@ -212,6 +261,13 @@
           "Writing x² + 1/x² = t² and losing the −2.",
           "Forgetting to multiply the leading coefficient into the −2.",
           "Substituting in the ORIGINAL equation instead of the quotient."
+        ],
+        "lines_compact": [
+          "Divide x⁴ − 4x³ + 5x² − 4x + 1 = 0 by x²:",
+          "(x² + 1/x²) − 4(x + 1/x) + 5 = 0 … (1)",
+          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "(1) becomes (t² − 2) − 4t + 5 = 0",
+          "t² − 4t + 3 = 0"
         ]
       },
       {
@@ -223,9 +279,18 @@
         "margin_note": "Third mark. t² − 4t + 3 = (t − 3)(t − 1).",
         "memory_tip": "t² − 4t + 3 = (t − 3)(t − 1), so t = 3 or t = 1.",
         "lines": [
-          "Split −4t as −3t − t:",
-          "t² − 3t − t + 3 = 0",
-          "t(t − 3) − 1(t − 3) = 0",
+          {
+            "text": "Split −4t as −3t − t:",
+            "added": true
+          },
+          {
+            "text": "t² − 3t − t + 3 = 0",
+            "added": true
+          },
+          {
+            "text": "t(t − 3) − 1(t − 3) = 0",
+            "added": true
+          },
           "(t − 3)(t − 1) = 0",
           "t = 3 or t = 1"
         ],
@@ -256,6 +321,10 @@
           "A sign slip when splitting the middle term.",
           "Stopping at the two t values as if they were the roots.",
           "Solving the t-quadratic with the formula and making an arithmetic slip a factorisation would have avoided."
+        ],
+        "lines_compact": [
+          "(t − 3)(t − 1) = 0",
+          "t = 3 or t = 1"
         ]
       },
       {
@@ -268,10 +337,22 @@
         "memory_tip": "x² − 3x + 1 = 0 has discriminant 9 − 4 = 5; the roots stay as surds.",
         "lines": [
           "If t = 3: x + 1/x = 3",
-          "Multiply by x: x² + 1 = 3x",
-          "x² − 3x + 1 = 0",
-          "x = (3 ± √(9 − 4))/2   [quadratic formula]",
-          "= (3 ± √5)/2"
+          {
+            "text": "Multiply by x: x² + 1 = 3x",
+            "added": true
+          },
+          {
+            "text": "x² − 3x + 1 = 0",
+            "added": true
+          },
+          {
+            "text": "x = (3 ± √(9 − 4))/2   [quadratic formula]",
+            "added": true
+          },
+          {
+            "text": "= (3 ± √5)/2",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -301,6 +382,11 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 9 − 4 = 5.",
           "Not simplifying the surd form of the roots at the end."
+        ],
+        "lines_compact": [
+          "If t = 3: x + 1/x = 3",
+          "x² + 1 = 3x, so x² − 3x + 1 = 0",
+          "x = (3 ± √(9 − 4))/2 = (3 ± √5)/2"
         ]
       },
       {
@@ -313,11 +399,23 @@
         "memory_tip": "x² − x + 1 = 0 has discriminant 1 − 4 = −3, so write √(−3) as i√3.",
         "lines": [
           "If t = 1: x + 1/x = 1",
-          "Multiply by x: x² + 1 = x",
-          "x² − x + 1 = 0",
+          {
+            "text": "Multiply by x: x² + 1 = x",
+            "added": true
+          },
+          {
+            "text": "x² − x + 1 = 0",
+            "added": true
+          },
           "x = (1 ± √(1 − 4))/2 = (1 ± √(−3))/2",
-          "√(−3) = i√3, so",
-          "x = (1 ± i√3)/2"
+          {
+            "text": "√(−3) = i√3, so",
+            "added": true
+          },
+          {
+            "text": "x = (1 ± i√3)/2",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -347,6 +445,11 @@
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 1 − 4 = −3, so the root is i√3, not √3.",
           "Dropping this pair because the discriminant is negative — the equation has five roots, and the complex pair (1 ± i√3)/2 belongs in the final answer."
+        ],
+        "lines_compact": [
+          "If t = 1: x + 1/x = 1",
+          "x² + 1 = x, so x² − x + 1 = 0",
+          "x = (1 ± √(1 − 4))/2 = (1 ± i√3)/2"
         ]
       },
       {

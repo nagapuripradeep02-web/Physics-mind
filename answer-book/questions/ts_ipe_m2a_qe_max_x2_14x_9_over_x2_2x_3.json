@@ -119,15 +119,33 @@
         "margin_note": "Second mark. Pull the 4 out first: (2y − 14)² = 4(y − 7)² and 3y − 9 = 3(y − 3). Then 3(y − 1)(y − 3) = 3y² − 12y + 9, subtracted. The numbers stay small and the arithmetic stays checkable.",
         "memory_tip": "Pull the 4 out first: (2y − 14)² = 4(y − 7)² and 3y − 9 = 3(y − 3). The numbers stay checkable.",
         "lines": [
-          "Here x is real, so this quadratic in x has",
-          "real roots, which needs Δ = b² − 4ac ≥ 0:",
-          "Here a = y − 1, b = 2y − 14, c = 3y − 9",
+          {
+            "text": "Here x is real, so this quadratic in x has",
+            "added": true
+          },
+          {
+            "text": "real roots, which needs Δ = b² − 4ac ≥ 0:",
+            "added": true
+          },
+          {
+            "text": "Here a = y − 1, b = 2y − 14, c = 3y − 9",
+            "added": true
+          },
           "Δ = (2y − 14)² − 4(y − 1)(3y − 9) ≥ 0",
-          "2y − 14 = 2(y − 7) and 3y − 9 = 3(y − 3):",
+          {
+            "text": "2y − 14 = 2(y − 7) and 3y − 9 = 3(y − 3):",
+            "added": true
+          },
           "4(y − 7)² − 4(y − 1)·3(y − 3) ≥ 0",
-          "Divide throughout by 4:",
+          {
+            "text": "Divide throughout by 4:",
+            "added": true
+          },
           "(y − 7)² − 3(y − 1)(y − 3) ≥ 0",
-          "y² − 14y + 49 − 3(y² − 4y + 3) ≥ 0",
+          {
+            "text": "y² − 14y + 49 − 3(y² − 4y + 3) ≥ 0",
+            "added": true
+          },
           "y² − 14y + 49 − 3y² + 12y − 9 ≥ 0",
           "−2y² − 2y + 40 ≥ 0"
         ],
@@ -160,6 +178,14 @@
           "Expanding (2y − 14)² and 4(y − 1)(3y − 9) in full and slipping on a coefficient.",
           "Writing 3(y − 1)(y − 3) as 3y² − 4y + 3 — the 3 multiplies every term.",
           "Using Δ > 0, which drops the maximum itself."
+        ],
+        "lines_compact": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (2y − 14)² − 4(y − 1)(3y − 9) ≥ 0",
+          "⇒ 4(y − 7)² − 4(y − 1)·3(y − 3) ≥ 0",
+          "⇒ (y − 7)² − 3(y − 1)(y − 3) ≥ 0",
+          "⇒ y² − 14y + 49 − 3y² + 12y − 9 ≥ 0",
+          "⇒ −2y² − 2y + 40 ≥ 0"
         ]
       },
       {
@@ -171,13 +197,28 @@
         "margin_note": "Third mark. Dividing by −2 REVERSES the inequality. Then y² + y − 20 = (y + 5)(y − 4), and a product ≤ 0 means y is between the roots: from −5 to 4.",
         "memory_tip": "Dividing by −2 REVERSES the inequality. A product ≤ 0 puts y between the roots.",
         "lines": [
-          "Divide by −2 and flip the inequality:",
+          {
+            "text": "Divide by −2 and flip the inequality:",
+            "added": true
+          },
           "y² + y − 20 ≤ 0",
-          "Split y as 5y − 4y:",
-          "y² + 5y − 4y − 20 ≤ 0",
-          "y(y + 5) − 4(y + 5) ≤ 0",
+          {
+            "text": "Split y as 5y − 4y:",
+            "added": true
+          },
+          {
+            "text": "y² + 5y − 4y − 20 ≤ 0",
+            "added": true
+          },
+          {
+            "text": "y(y + 5) − 4(y + 5) ≤ 0",
+            "added": true
+          },
           "(y + 5)(y − 4) ≤ 0",
-          "A product is ≤ 0 BETWEEN its roots:",
+          {
+            "text": "A product is ≤ 0 BETWEEN its roots:",
+            "added": true
+          },
           "−5 ≤ y ≤ 4"
         ],
         "recall": {
@@ -212,6 +253,11 @@
           "Keeping ≥ after dividing by −2 and answering y ≤ −5 or y ≥ 4.",
           "Factorising as (y − 5)(y + 4).",
           "Reporting −5 as the maximum because it was found first."
+        ],
+        "lines_compact": [
+          "⇒ y² + y − 20 ≤ 0",
+          "⇒ (y + 5)(y − 4) ≤ 0",
+          "⇒ −5 ≤ y ≤ 4"
         ]
       },
       {
@@ -224,7 +270,10 @@
         "memory_tip": "The maximum is the RIGHT end, 4, reached at x = 1. The left end −5 is the minimum.",
         "lines": [
           "So y takes every value from −5 to 4,",
-          "and the largest of them is 4.",
+          {
+            "text": "and the largest of them is 4.",
+            "added": true
+          },
           {
             "text": "∴ maximum value = 4",
             "style": "boxed"
@@ -257,6 +306,13 @@
           "Answering with the whole interval when only the maximum was asked.",
           "Giving 4 without the sentence saying it is the maximum value.",
           "Answering −5."
+        ],
+        "lines_compact": [
+          "y takes every value from −5 to 4.",
+          {
+            "text": "∴ maximum value = 4",
+            "style": "boxed"
+          }
         ]
       }
     ]

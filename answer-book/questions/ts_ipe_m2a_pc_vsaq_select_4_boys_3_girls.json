@@ -101,15 +101,34 @@
         "margin_note": "Second mark. 70 × 10 = 700.",
         "memory_tip": "70 × 10 = 700. Adding gives 80, and ¹³C₇ ignores the split the question fixes.",
         "lines": [
-          "⁸C₄ = (8 · 7 · 6 · 5)/(1 · 2 · 3 · 4)",
-          "= 1680/24 = 70",
-          "⁵C₃ = ⁵C₂ = (5 · 4)/(1 · 2) = 10",
-          "Both choices are made together,",
-          "so multiply them:",
-          "Required = 70 · 10",
+          {
+            "text": "⁸C₄ = (8 · 7 · 6 · 5)/(1 · 2 · 3 · 4)",
+            "added": true
+          },
+          {
+            "text": "= 1680/24 = 70",
+            "added": true
+          },
+          {
+            "text": "⁵C₃ = ⁵C₂ = (5 · 4)/(1 · 2) = 10",
+            "added": true
+          },
+          {
+            "text": "Both choices are made together,",
+            "added": true
+          },
+          {
+            "text": "so multiply them:",
+            "added": true
+          },
+          {
+            "text": "Required = 70 · 10",
+            "added": true
+          },
           {
             "text": "∴ number of ways = 700",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -135,6 +154,13 @@
         "common_mistakes": [
           "Computing ⁸C₄ as 8·7·6·5 = 1680 without dividing by 4!.",
           "Computing ⁵C₃ as 60 (forgetting to divide by 3!)."
+        ],
+        "lines_compact": [
+          "Required = ⁸C₄ · ⁵C₃ = 70 · 10",
+          {
+            "text": "= 700",
+            "style": "boxed"
+          }
         ]
       }
     ]

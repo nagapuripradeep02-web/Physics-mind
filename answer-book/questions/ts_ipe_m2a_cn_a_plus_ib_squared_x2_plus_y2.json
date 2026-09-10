@@ -105,7 +105,10 @@
         "memory_tip": "Square to clear the root. The answer is (a² + b²)², not a² + b².",
         "lines": [
           "Square both sides:",
-          "(a² + b²)² = x² + y²",
+          {
+            "text": "(a² + b²)² = x² + y²",
+            "added": true
+          },
           {
             "text": "∴ x² + y² = (a² + b²)²",
             "style": "boxed"
@@ -136,6 +139,13 @@
         "common_mistakes": [
           "Stopping at a² + b² = √(x² + y²) and reporting a² + b² as the answer.",
           "Writing (a² + b²)² as a⁴ + b⁴."
+        ],
+        "lines_compact": [
+          "Squaring both sides:",
+          {
+            "text": "∴ x² + y² = (a² + b²)²",
+            "style": "boxed"
+          }
         ]
       }
     ]

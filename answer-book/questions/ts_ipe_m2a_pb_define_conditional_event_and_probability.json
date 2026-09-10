@@ -132,15 +132,18 @@
           },
           {
             "text": "the event B|A. Since only the outcomes inside A",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "remain possible, the favourable outcomes are",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "those in A ∩ B and the total is A, so for P(A) ≠ 0",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(B|A) = P(A ∩ B) / P(A)",
@@ -171,6 +174,20 @@
         "common_mistakes": [
           "Dividing by P(B) instead of P(A).",
           "Omitting P(A) ≠ 0."
+        ],
+        "lines_compact": [
+          {
+            "text": "Conditional probability: the probability of the",
+            "style": "normal"
+          },
+          {
+            "text": "conditional event B|A is, for P(A) ≠ 0,",
+            "style": "normal"
+          },
+          {
+            "text": "P(B|A) = P(A ∩ B) / P(A)",
+            "style": "boxed"
+          }
         ]
       }
     ]

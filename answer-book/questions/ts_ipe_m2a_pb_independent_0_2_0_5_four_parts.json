@@ -117,15 +117,18 @@
         "lines": [
           {
             "text": "(i) A conditional probability is unchanged",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "by an independent condition:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A|B) = P(A) = 0.2",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -151,6 +154,12 @@
         "common_mistakes": [
           "Writing P(A|B) = P(B) = 0.5.",
           "Computing P(A ∩ B)/P(B) and mis-dividing."
+        ],
+        "lines_compact": [
+          {
+            "text": "(i) A, B independent ⇒ P(A|B) = P(A) = 0.2",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -164,7 +173,8 @@
         "lines": [
           {
             "text": "(ii) The same holds the other way round:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(B|A) = P(B) = 0.5",
@@ -193,6 +203,12 @@
         "why": "Same reason as part (i) with the roles swapped.",
         "common_mistakes": [
           "Writing P(B|A) = P(A) = 0.2."
+        ],
+        "lines_compact": [
+          {
+            "text": "(ii) P(B|A) = P(B) = 0.5",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -206,11 +222,13 @@
         "lines": [
           {
             "text": "(iii) For independent events the",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "intersection is the product:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∩ B) = P(A)·P(B) = 0.2 × 0.5 = 0.1",
@@ -240,6 +258,12 @@
         "common_mistakes": [
           "Adding 0.2 + 0.5 = 0.7.",
           "Writing 0.2 × 0.5 = 0.01."
+        ],
+        "lines_compact": [
+          {
+            "text": "(iii) P(A ∩ B) = P(A)·P(B) = 0.2 × 0.5 = 0.1",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -253,7 +277,8 @@
         "lines": [
           {
             "text": "(iv) By the addition theorem,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
@@ -265,7 +290,8 @@
           },
           {
             "text": "= 0.7 − 0.1",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(A ∪ B) = 0.6",
@@ -295,6 +321,20 @@
         "common_mistakes": [
           "Writing P(A ∪ B) = 0.7, the plain sum.",
           "Subtracting 0.1 twice."
+        ],
+        "lines_compact": [
+          {
+            "text": "(iv) P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.2 + 0.5 − 0.1",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A ∪ B) = 0.6",
+            "style": "boxed"
+          }
         ]
       }
     ]

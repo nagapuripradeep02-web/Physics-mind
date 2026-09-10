@@ -114,9 +114,15 @@
         "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
         "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the ratios appear.",
         "lines": [
-          "Three numbers a, b, c are in A.P. when 2b = a + c",
+          {
+            "text": "Three numbers a, b, c are in A.P. when 2b = a + c",
+            "added": true
+          },
           "2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁",
-          "Dividing both sides by ⁿCᵣ:",
+          {
+            "text": "Dividing both sides by ⁿCᵣ:",
+            "added": true
+          },
           "2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ"
         ],
         "recall": {
@@ -143,6 +149,11 @@
         "common_mistakes": [
           "Writing the A.P. condition as first + middle = last.",
           "Not dividing by the middle term and trying to expand the factorials."
+        ],
+        "lines_compact": [
+          "2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁",
+          "Dividing by ⁿCᵣ:",
+          "2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ"
         ]
       },
       {
@@ -154,13 +165,34 @@
         "margin_note": "Third and fourth marks. ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
         "memory_tip": "ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
         "lines": [
-          "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
-          "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
-          "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
-          "= (n − r + 1)/r   [r! = r(r − 1)!]",
-          "so ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1)",
-          "Replace r by r + 1:",
-          "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1) = (n − r)/(r + 1)",
+          {
+            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "added": true
+          },
+          {
+            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "added": true
+          },
+          {
+            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "added": true
+          },
+          {
+            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "added": true
+          },
+          {
+            "text": "so ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1)",
+            "added": true
+          },
+          {
+            "text": "Replace r by r + 1:",
+            "added": true
+          },
+          {
+            "text": "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1) = (n − r)/(r + 1)",
+            "added": true
+          },
           "2 = r/(n − r + 1) + (n − r)/(r + 1)"
         ],
         "recall": {
@@ -188,6 +220,11 @@
         "common_mistakes": [
           "Inverting one of the two ratios.",
           "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
+        ],
+        "lines_compact": [
+          "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
+          "and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)",
+          "2 = r/(n − r + 1) + (n − r)/(r + 1)"
         ]
       },
       {
@@ -199,16 +236,43 @@
         "margin_note": "Fifth to seventh marks. Multiply out both sides fully before collecting — the r² terms cancel on one side and the n² term appears on the other.",
         "memory_tip": "Expand both sides fully before collecting: the r² terms cancel on one side and n² appears on the other.",
         "lines": [
-          "Multiplying both sides by (n − r + 1)(r + 1):",
-          "2(n − r + 1)(r + 1)",
-          "  = r(r + 1) + (n − r)(n − r + 1)",
-          "Left: 2(nr + n − r² − r + r + 1)",
-          "  = 2(nr + n − r² + 1) = 2nr + 2n − 2r² + 2",
-          "Right: r² + r + (n² − nr + n − nr + r² − r)",
-          "  = r² + r + n² − 2nr + n + r² − r",
-          "  = n² − 2nr + 2r² + n",
+          {
+            "text": "Multiplying both sides by (n − r + 1)(r + 1):",
+            "added": true
+          },
+          {
+            "text": "2(n − r + 1)(r + 1)",
+            "added": true
+          },
+          {
+            "text": "  = r(r + 1) + (n − r)(n − r + 1)",
+            "added": true
+          },
+          {
+            "text": "Left: 2(nr + n − r² − r + r + 1)",
+            "added": true
+          },
+          {
+            "text": "  = 2(nr + n − r² + 1) = 2nr + 2n − 2r² + 2",
+            "added": true
+          },
+          {
+            "text": "Right: r² + r + (n² − nr + n − nr + r² − r)",
+            "added": true
+          },
+          {
+            "text": "  = r² + r + n² − 2nr + n + r² − r",
+            "added": true
+          },
+          {
+            "text": "  = n² − 2nr + 2r² + n",
+            "added": true
+          },
           "2nr + 2n − 2r² + 2 = n² − 2nr + 2r² + n",
-          "0 = n² − 2nr − 2nr + 2r² + 2r² + n − 2n − 2",
+          {
+            "text": "0 = n² − 2nr − 2nr + 2r² + 2r² + n − 2n − 2",
+            "added": true
+          },
           "0 = n² − 4nr − n + 4r² − 2",
           {
             "text": "∴ n² − (4r + 1)n + 4r² − 2 = 0",
@@ -241,6 +305,16 @@
           "Expanding (n − r)(n − r + 1) as n² − r² + n − r.",
           "Losing the −2 that comes from 2·1 on the left.",
           "Writing +(4r + 1)n instead of −(4r + 1)n."
+        ],
+        "lines_compact": [
+          "2(n − r + 1)(r + 1) = r(r + 1) + (n − r)(n − r + 1)",
+          "2(nr + n − r² + 1) = r² + r + n² − 2nr + r² + n − r",
+          "2nr + 2n − 2r² + 2 = n² − 2nr + 2r² + n",
+          "0 = n² − 4nr − n + 4r² − 2",
+          {
+            "text": "∴ n² − (4r + 1)n + 4r² − 2 = 0",
+            "style": "boxed"
+          }
         ]
       }
     ]

@@ -135,27 +135,33 @@
         "lines": [
           {
             "text": "A pack has 13 spades:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "n(E₁) = ¹³C₁ = 13",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "A pack has 4 aces:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "n(E₂) = ⁴C₁ = 4",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "Exactly one card, the ace of spades,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "is both a spade and an ace:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "n(E₁ ∩ E₂) = 1",
@@ -163,15 +169,18 @@
           },
           {
             "text": "Dividing each count by n(S) = 52:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(E₁) = 13/52, P(E₂) = 4/52,",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "P(E₁ ∩ E₂) = 1/52",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -202,6 +211,28 @@
           "Taking n(E₁ ∩ E₂) = 0 because \"an ace is not a spade\".",
           "Counting 12 spades to \"avoid double counting\" — the theorem does the correction, not the count.",
           "Writing 13 + 4 = 17 outcomes and dividing by 52."
+        ],
+        "lines_compact": [
+          {
+            "text": "n(E₁) = ¹³C₁ = 13   (13 spades)",
+            "style": "eq"
+          },
+          {
+            "text": "n(E₂) = ⁴C₁ = 4   (4 aces)",
+            "style": "eq"
+          },
+          {
+            "text": "One card, the ace of spades, is both:",
+            "style": "normal"
+          },
+          {
+            "text": "n(E₁ ∩ E₂) = 1",
+            "style": "eq"
+          },
+          {
+            "text": "P(E₁) = 13/52, P(E₂) = 4/52, P(E₁ ∩ E₂) = 1/52",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -223,11 +254,13 @@
           },
           {
             "text": "The ace of spades is counted in both E₁ and E₂,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "so it is subtracted once to avoid counting twice.",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "= 13/52 + 4/52 − 1/52",
@@ -235,7 +268,8 @@
           },
           {
             "text": "= (13 + 4 − 1)/52",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 16/52",
@@ -268,6 +302,24 @@
         "common_mistakes": [
           "Substituting numbers without first writing the theorem in symbols.",
           "Forgetting the minus term and getting 17/52."
+        ],
+        "lines_compact": [
+          {
+            "text": "By the addition theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(E₁ ∪ E₂) = P(E₁) + P(E₂) − P(E₁ ∩ E₂)",
+            "style": "eq"
+          },
+          {
+            "text": "= 13/52 + 4/52 − 1/52",
+            "style": "eq"
+          },
+          {
+            "text": "= 16/52",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -281,11 +333,13 @@
         "lines": [
           {
             "text": "Divide the top and bottom by 4:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "16/52 = 4/13",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(ace or spade) = 4/13",
@@ -317,6 +371,12 @@
         "common_mistakes": [
           "Leaving 16/52 unreduced.",
           "Reducing to 8/26 and stopping."
+        ],
+        "lines_compact": [
+          {
+            "text": "∴ P(ace or spade) = 16/52 = 4/13",
+            "style": "boxed"
+          }
         ]
       }
     ]

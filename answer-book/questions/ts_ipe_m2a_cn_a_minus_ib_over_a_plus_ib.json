@@ -102,12 +102,30 @@
         "margin_note": "Second mark. Expand (a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi, then split over the common denominator.",
         "memory_tip": "i²b² = −b², so (a − ib)² = (a² − b²) − 2abi. The minus belongs to B, not to the denominator.",
         "lines": [
-          "(a − ib)² = a² − 2abi + i²b²",
-          "= a² − 2abi − b²   [i² = −1]",
-          "= (a² − b²) − 2abi",
-          "So (a − ib)/(a + ib)",
-          "= [(a² − b²) − 2abi]/(a² + b²)",
-          "Split into a real and an imaginary term:",
+          {
+            "text": "(a − ib)² = a² − 2abi + i²b²",
+            "added": true
+          },
+          {
+            "text": "= a² − 2abi − b²   [i² = −1]",
+            "added": true
+          },
+          {
+            "text": "= (a² − b²) − 2abi",
+            "added": true
+          },
+          {
+            "text": "So (a − ib)/(a + ib)",
+            "added": true
+          },
+          {
+            "text": "= [(a² − b²) − 2abi]/(a² + b²)",
+            "added": true
+          },
+          {
+            "text": "Split into a real and an imaginary term:",
+            "added": true
+          },
           {
             "text": "= (a² − b²)/(a² + b²) + i·(−2ab)/(a² + b²)",
             "style": "boxed"
@@ -140,6 +158,18 @@
         "common_mistakes": [
           "Writing i²b² as +b² and getting A = (a² + b²)/(a² + b²) = 1.",
           "Leaving the answer as one fraction without naming A and B."
+        ],
+        "lines_compact": [
+          "(a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi",
+          {
+            "text": "∴ (a − ib)/(a + ib) = [(a² − b²) − 2abi]/(a² + b²)",
+            "style": "eq"
+          },
+          {
+            "text": "= (a² − b²)/(a² + b²) + i·(−2ab)/(a² + b²)",
+            "style": "boxed"
+          },
+          "so A = (a² − b²)/(a² + b²), B = −2ab/(a² + b²)."
         ]
       }
     ]

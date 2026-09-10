@@ -43,6 +43,21 @@
 
   var cuts, cutIndex = 0, cut, steps, marksTotal;
 
+  // ═══ detail — PER MARK, the working short or written out in full ═════════
+  // A step written out in full carries BOTH: `lines` is the full working and
+  // `lines_compact` the short answer it grew from, with every line the
+  // expansion added flagged. Each such step gets its OWN Simplify button in the
+  // red-pen gutter beside its mark, so a student unfolds the ONE mark they are
+  // stuck on and the rest of the answer stays at exam length (founder,
+  // 2026-09-09). This is orthogonal to a cut: a cut chooses WHICH STEPS are
+  // answered, this chooses how much of one step is written down.
+  //
+  // Step id -> true while that step is written out in full. Empty is the default,
+  // so a card opens at exam length; a step with no lines_compact — the setup step
+  // that writes the given and the formula, and every step of every card authored
+  // before 2026-09-09 — has nothing to unfold and shows no button.
+  var expandedSteps = {};
+
   function loadCuts() {
     cuts = question.cuts && question.cuts.length ? question.cuts : [{
       key: 'full', label: 'Full answer', qtype: question.qtype,
@@ -70,6 +85,12 @@
         merged.marks = o.marks;
         if (o.label) merged.label = o.label;
         if (o.lines) merged.lines = o.lines;
+        // Resolve the short answer for THIS cut. A cut that substitutes its own
+        // shorter `lines` for a step has replaced the working wholesale, so the
+        // base step's compact copy no longer describes what is on the page — that
+        // step simply reads the same at both levels unless the cut supplies its own.
+        merged.lines_compact = o.lines ? o.lines_compact : s.lines_compact;
+        if (!expandedSteps[s.id] && merged.lines_compact) merged.lines = merged.lines_compact;
         if (o.margin_note) merged.margin_note = o.margin_note;
         if (o.why) merged.why = o.why;
         if (o.memory_tip) merged.memory_tip = o.memory_tip;
@@ -236,12 +257,47 @@
       The hash is kept truthful so the current view is always shareable. */
   function switchCut(i) {
     if (i === cutIndex) return;
+    // A different length is a different answer, so it starts folded too.
+    expandedSteps = {};
     applyCut(i);
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();          // photo/mic are only honest on the default cut
     VidiPanel.onQuestion();
     syncHash();
+  }
+
+  /** Can this step be written out in full? */
+  function stepHasExpansion(step) { return !!(step && step.lines_compact); }
+
+  /** One mark's working, short or written out in full. Everything ELSE on the
+      page is left exactly as it was — the point of a per-mark button is that a
+      student unfolds the step they are stuck on, not the whole answer.
+
+      It KEEPS the reading position: the same step is re-laid instantly, and
+      pagination is decided fresh because the fuller working is taller and will
+      not sit on the same pages. Steps ABOVE the toggled one do not move. */
+  /** Start this answer over: nothing revealed, and nothing unfolded either.
+      Restart is a student asking to meet the answer again from the top, so the
+      marks they had written out in full go back to exam length with it —
+      otherwise Restart hands back a page that is not the one the card opens
+      with, and the button beside an already-expanded mark still says Simplify
+      (founder, 2026-09-10). */
+  function restartAnswer() {
+    expandedSteps = {};
+    applyCut(cutIndex);
+    renderUpTo(-1, false);
+  }
+
+  function toggleStep(stepId) {
+    expandedSteps[stepId] = !expandedSteps[stepId];
+    var at = stepIndex;
+    applyCut(cutIndex);
+    renderUpTo(at, false);
+    Vidi.log('step_detail', {
+      qid: question.question_id, step: stepId,
+      level: expandedSteps[stepId] ? 'full' : 'compact'
+    });
   }
 
   /** Full question load — the mechanism behind the router. Always re-renders,
@@ -257,6 +313,8 @@
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
+    // Every question opens at exam length, whatever was unfolded on the last one.
+    expandedSteps = {};
     loadCuts();
     var ci = 0;
     if (cutKey) {
@@ -1271,8 +1329,21 @@
 
   // ═══ block construction (full final content) ═════════════════════════════
 
+  // A line's style, with ONE default for both authored forms. A plain string has
+  // always resolved to 'normal' here, so an object line that names no style must
+  // resolve to 'normal' too — otherwise merely ADDING A KEY to a line moves it
+  // 56px right on an `equation` step, which is exactly what marking a line
+  // `added` does. Every authored line in the bank is a string or names its style,
+  // so nothing that shipped renders differently.
   function lineSpec(raw) {
-    return typeof raw === 'string' ? { text: raw, style: 'normal' } : raw;
+    if (typeof raw === 'string') return { text: raw, style: 'normal' };
+    if (raw.style) return raw;
+    // Copy, never rebuild from a known key list: the build adds `html` to a
+    // typeset line, and a rebuild would drop whatever it did not think to name.
+    var o = {};
+    for (var k in raw) if (Object.prototype.hasOwnProperty.call(raw, k)) o[k] = raw[k];
+    o.style = 'normal';
+    return o;
   }
 
   function buildStepBlock(step) {
@@ -1285,12 +1356,15 @@
     if (step.kind === 'diagram') {
       block.appendChild(buildFigure(step.figure));
     } else {
-      var defaultStyle = step.kind === 'equation' ? 'eq' : 'normal';
       step.lines.forEach(function (raw, li) {
         var spec = lineSpec(raw);
-        var style = spec.style || defaultStyle;
+        var style = spec.style;
         var el = document.createElement('div');
         el.className = 'line ' + style;
+        // Working the expansion added, shown only while THIS step is written out
+        // in full. In the short answer the flag is meaningless — those lines are
+        // not on the page at all.
+        if (spec.added && expandedSteps[step.id]) el.classList.add('added');
         el.setAttribute('data-line-index', String(li));
         if (spec.render === 'katex' && spec.html) {
           // Typeset by the BUILD (never here — Rule 18). A typeset tree has no
@@ -1326,18 +1400,54 @@
       });
     }
 
-    if (step.marks > 0) {
-      var red = document.createElement('div');
-      red.className = 'red-mark';
-      red.innerHTML =
-        '<svg width="40" height="30" viewBox="0 0 40 30">' +
-        // The examiner's tick. style=, not stroke=, because var() is invalid in
-        // an SVG presentation attribute — the same trap that kept the figure
-        // pens navy through a full sweep of notebook.css.
-        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
-        'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '<span class="red-num">' + step.marks + '</span>';
-      block.appendChild(red);
+    // The gutter column: the examiner's mark, and under it this step's own
+    // Simplify button. Both sit in the red-pen margin OUTSIDE the ruled page —
+    // nothing here is typed, and nothing here moves a line off its rule.
+    if (step.marks > 0 || stepHasExpansion(step)) {
+      var aside = document.createElement('div');
+      aside.className = 'step-aside';
+
+      if (step.marks > 0) {
+        var red = document.createElement('div');
+        red.className = 'red-mark';
+        red.innerHTML =
+          '<svg width="40" height="30" viewBox="0 0 40 30">' +
+          // The examiner's tick. style=, not stroke=, because var() is invalid in
+          // an SVG presentation attribute — the same trap that kept the figure
+          // pens navy through a full sweep of notebook.css.
+          '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
+          'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '<span class="red-num">' + step.marks + '</span>';
+        aside.appendChild(red);
+      }
+
+      if (stepHasExpansion(step)) {
+        var open = !!expandedSteps[step.id];
+        var sb = document.createElement('button');
+        sb.type = 'button';
+        sb.className = 'step-simplify' + (open ? ' open' : '');
+        sb.setAttribute('data-step-id', step.id);
+        sb.setAttribute('aria-pressed', open ? 'true' : 'false');
+        sb.textContent = open ? 'Shorten' : 'Simplify';
+        sb.title = open
+          ? 'Show this step at exam length'
+          : 'Write this step out, line by line';
+        sb.addEventListener('click', function (e) {
+          // The notebook advances on click. Without this, asking for more detail
+          // would ALSO write the next step.
+          e.stopPropagation();
+          toggleStep(step.id);
+        });
+        aside.appendChild(sb);
+        // The gutter column is ~3 rules tall (tick, mark number, button) and a
+        // step can be ONE line. Without this the column overhangs its own step
+        // and lands on the next step's gutter — which both reads as the wrong
+        // step's button and, being later in the DOM, swallows its clicks. The
+        // class (not :has()) so the rule is explicit and testable.
+        block.classList.add('has-simplify');
+      }
+
+      block.appendChild(aside);
     }
     return block;
   }
@@ -1688,12 +1798,16 @@
 
     // arm the figure while layout is live (getTotalLength needs it)
     var figWrap = block.querySelector('.figure-wrap');
+    var aside = block.querySelector('.step-aside');
     var redMark = block.querySelector('.red-mark');
-    if (redMark) redMark.style.visibility = 'hidden';
+    // The whole gutter column waits for the step to be written — the mark is not
+    // earned until then, and offering to expand working that is still appearing
+    // reads as an error. visibility, not display: it must keep its box.
+    if (aside) aside.style.visibility = 'hidden';
 
     function complete() {
+      if (aside) aside.style.visibility = '';
       if (redMark) {
-        redMark.style.visibility = '';
         var tick = redMark.querySelector('.tick');
         if (animate && !REDUCED) {
           var L = tick.getTotalLength();
@@ -1835,7 +1949,7 @@
   btnNext.addEventListener('click', advance);
   $('btnRestart').addEventListener('click', function () {
     Vidi.log('restart', { qid: question.question_id });
-    renderUpTo(-1, false);
+    restartAnswer();
   });
   $('doorBack').addEventListener('click', function () { Door.show(); });
   var searchLogTimer = null;
@@ -5967,6 +6081,11 @@
         // know what it is a total OF.
         cutKey: cut.key,
         cutIndex: cutIndex,
+        // The step ids currently written out in full, in authored order.
+        expandedSteps: steps.filter(function (st) { return expandedSteps[st.id]; })
+                            .map(function (st) { return st.id; }),
+        // The step ids that COULD be — the ones with a Simplify button.
+        expandableSteps: steps.filter(stepHasExpansion).map(function (st) { return st.id; }),
         stepIds: steps.map(function (s) { return s.id; })
       };
     },
@@ -6002,6 +6121,18 @@
     },
     revealNext: advance,
     revealAll: function () { renderUpTo(steps.length - 1, false); },
+    /** Write ONE step short or in full. False when that step has no fuller
+        version — the setup step, and every step of a card never expanded. */
+    setStepDetail: function (stepId, level) {
+      if (level !== 'compact' && level !== 'full') return false;
+      for (var i = 0; i < steps.length; i++) {
+        if (steps[i].id !== stepId) continue;
+        if (!stepHasExpansion(steps[i])) return false;
+        if (!!expandedSteps[stepId] !== (level === 'full')) toggleStep(stepId);
+        return true;
+      }
+      return false;
+    },
     /** The exact ANSWER FACTS string the model is grounded in for the question and
         cut currently on screen. Read-only, and the reason it exists: the offline
         shakedown must probe with the SAME grounding a student's chat sends, and a

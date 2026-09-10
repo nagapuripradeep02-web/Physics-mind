@@ -167,10 +167,22 @@
           "= 0(0) + 1(k) + 2(2k) + 3(2k) + 4(3k)",
           "  + 5(k²) + 6(2k²) + 7(7k² + k)",
           "= k + 4k + 6k + 12k + 5k² + 12k² + 49k² + 7k",
-          "Collect the k² terms and the k terms:",
-          "= 66k² + 30k",
-          "Put k = 1/10:",
-          "= 66(1/100) + 30(1/10) = 0.66 + 3",
+          {
+            "text": "Collect the k² terms and the k terms:",
+            "added": true
+          },
+          {
+            "text": "= 66k² + 30k",
+            "added": true
+          },
+          {
+            "text": "Put k = 1/10:",
+            "added": true
+          },
+          {
+            "text": "= 66(1/100) + 30(1/10) = 0.66 + 3",
+            "added": true
+          },
           "(ii) μ = 3.66"
         ],
         "recall": {
@@ -200,6 +212,18 @@
           "Forgetting the 7·k part of 7(7k² + k), so the k terms add to 23k.",
           "Writing 66k² = 66/10 instead of 66/100.",
           "Including the x = 0 term as something other than zero."
+        ],
+        "lines_compact": [
+          {
+            "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
+            "style": "eq"
+          },
+          "= 0(0) + 1(k) + 2(2k) + 3(2k) + 4(3k)",
+          "   + 5(k²) + 6(2k²) + 7(7k² + k)",
+          "= k + 4k + 6k + 12k + 5k² + 12k² + 49k² + 7k",
+          "= 30k + 66k²",
+          "= 30(1/10) + 66(1/100) = 3 + 0.66",
+          "(ii) μ = 3.66"
         ]
       },
       {
@@ -211,8 +235,14 @@
         "margin_note": "Last two marks. 0 < X < 5 means X = 1, 2, 3, 4 — both ends are EXCLUDED. Add those four probabilities: k + 2k + 2k + 3k = 8k = 4/5. Including X = 0 changes nothing here (its probability is 0), but including X = 5 is wrong.",
         "memory_tip": "0 < X < 5 means X = 1, 2, 3, 4 — BOTH ends excluded. That is k + 2k + 2k + 3k = 8k.",
         "lines": [
-          "(iii) 0 < X < 5 means X = 1, 2, 3 or 4:",
-          "P(0 < X < 5)",
+          {
+            "text": "(iii) 0 < X < 5 means X = 1, 2, 3 or 4:",
+            "added": true
+          },
+          {
+            "text": "P(0 < X < 5)",
+            "added": true
+          },
           "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",
           "= k + 2k + 2k + 3k = 8k",
           "= 8(1/10) = 8/10 = 4/5",
@@ -248,6 +278,16 @@
           "Including X = 5 (k²) because 5 appears in the question.",
           "Reading 0 < X < 5 as 0 ≤ X ≤ 5.",
           "Leaving the answer as 8k."
+        ],
+        "lines_compact": [
+          "(iii) P(0 < X < 5)",
+          "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",
+          "= k + 2k + 2k + 3k = 8k",
+          "= 8(1/10) = 8/10 = 4/5",
+          {
+            "text": "∴ k = 1/10, μ = 3.66, P(0 < X < 5) = 4/5",
+            "style": "boxed"
+          }
         ]
       }
     ]

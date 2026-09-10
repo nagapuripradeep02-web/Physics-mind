@@ -110,8 +110,14 @@
         "memory_tip": "The cos terms cancel and the sin terms add: 2i sin θ. It is z + 1/z that gives 2cos θ.",
         "lines": [
           "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
-          "= cos θ + i sin θ − cos θ + i sin θ",
-          "The cos θ terms cancel:",
+          {
+            "text": "= cos θ + i sin θ − cos θ + i sin θ",
+            "added": true
+          },
+          {
+            "text": "The cos θ terms cancel:",
+            "added": true
+          },
           {
             "text": "∴ z − 1/z = 2i sin θ",
             "style": "boxed"
@@ -142,6 +148,13 @@
         "common_mistakes": [
           "Getting 2cos θ — that is z + 1/z.",
           "Dropping the i and answering 2 sin θ."
+        ],
+        "lines_compact": [
+          "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
+          {
+            "text": "∴ z − 1/z = 2i sin θ",
+            "style": "boxed"
+          }
         ]
       }
     ]

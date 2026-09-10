@@ -95,11 +95,26 @@
         "margin_note": "Second mark. ⁸C₃ = 56, 5⁵ = 3125, 2³ = 8; 56 × 3125 × 8 = 1400000.",
         "memory_tip": "⁸C₃ = 56, 5⁵ = 3125, 2³ = 8, and 56 × 3125 × 8 = 1400000.",
         "lines": [
-          "= ⁸C₃ · 5⁵ b⁵ · 2³ a³",
-          "⁸C₃ = (8·7·6)/(1·2·3) = 336/6 = 56",
-          "5⁵ = 3125, 2³ = 8",
-          "= 56 × 3125 × 8 · a³b⁵",
-          "56 × 3125 = 175000, 175000 × 8 = 1400000",
+          {
+            "text": "= ⁸C₃ · 5⁵ b⁵ · 2³ a³",
+            "added": true
+          },
+          {
+            "text": "⁸C₃ = (8·7·6)/(1·2·3) = 336/6 = 56",
+            "added": true
+          },
+          {
+            "text": "5⁵ = 3125, 2³ = 8",
+            "added": true
+          },
+          {
+            "text": "= 56 × 3125 × 8 · a³b⁵",
+            "added": true
+          },
+          {
+            "text": "56 × 3125 = 175000, 175000 × 8 = 1400000",
+            "added": true
+          },
           {
             "text": "∴ T₄ = ⁸C₃·2³·5⁵·a³b⁵ = 1400000 a³b⁵",
             "style": "boxed"
@@ -130,6 +145,13 @@
         "common_mistakes": [
           "Writing a⁵b³ — the power on b is 5 because b came first in the reversed bracket.",
           "Forgetting the 2³ on a."
+        ],
+        "lines_compact": [
+          "= ⁸C₃ · 5⁵ · 2³ · a³b⁵ = 56 × 3125 × 8 · a³b⁵",
+          {
+            "text": "∴ ⁸C₃·2³·5⁵·a³b⁵ = 1400000 a³b⁵",
+            "style": "boxed"
+          }
         ]
       }
     ]

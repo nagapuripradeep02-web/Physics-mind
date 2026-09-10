@@ -125,11 +125,13 @@
         "lines": [
           {
             "text": "(i) For independent events the",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "intersection is the product:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∩ B) = P(A)·P(B) = 0.6 × 0.7 = 0.42",
@@ -159,6 +161,12 @@
         "common_mistakes": [
           "Adding 0.6 + 0.7 instead of multiplying.",
           "Writing 0.6 × 0.7 = 4.2 or 0.042."
+        ],
+        "lines_compact": [
+          {
+            "text": "(i) P(A ∩ B) = P(A)·P(B) = 0.6 × 0.7 = 0.42",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -172,7 +180,8 @@
         "lines": [
           {
             "text": "(ii) By the addition theorem,",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
@@ -180,11 +189,13 @@
           },
           {
             "text": "= 0.6 + 0.7 − 0.42",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 1.3 − 0.42 = 0.88",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -210,6 +221,16 @@
         "common_mistakes": [
           "Leaving the answer as 1.3, which is more than 1 and cannot be a probability.",
           "Subtracting P(A)·P(B) written as 0.42 but then adding it."
+        ],
+        "lines_compact": [
+          {
+            "text": "(ii) P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.6 + 0.7 − 0.42 = 1.3 − 0.42 = 0.88",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -223,15 +244,18 @@
         "lines": [
           {
             "text": "(iii) A conditional probability is unchanged",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "by an independent condition:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(B|A) = P(B) = 0.7",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           }
         ],
         "recall": {
@@ -257,6 +281,12 @@
         "common_mistakes": [
           "Writing P(B|A) = P(A) = 0.6.",
           "Writing P(B|A) = P(A ∩ B) = 0.42."
+        ],
+        "lines_compact": [
+          {
+            "text": "(iii) A, B independent ⇒ P(B|A) = P(B) = 0.7",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -270,23 +300,28 @@
         "lines": [
           {
             "text": "(iv) If A and B are independent, so are",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "their complements Aᶜ and Bᶜ. Hence",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Aᶜ ∩ Bᶜ) = P(Aᶜ)·P(Bᶜ)",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= [1 − P(A)]·[1 − P(B)]",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= (1 − 0.6)(1 − 0.7) = 0.4 × 0.3",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(Aᶜ ∩ Bᶜ) = 0.12",
@@ -317,6 +352,24 @@
         "common_mistakes": [
           "Writing P(Aᶜ ∩ Bᶜ) = 1 − P(A ∩ B) = 0.58.",
           "Using 0.6 and 0.7 instead of their complements."
+        ],
+        "lines_compact": [
+          {
+            "text": "(iv) Aᶜ, Bᶜ are also independent, so",
+            "style": "normal"
+          },
+          {
+            "text": "P(Aᶜ ∩ Bᶜ) = P(Aᶜ)·P(Bᶜ) = [1 − P(A)][1 − P(B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.4 × 0.3",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ ∩ Bᶜ) = 0.12",
+            "style": "boxed"
+          }
         ]
       }
     ]

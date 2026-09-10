@@ -108,9 +108,15 @@
         "margin_note": "Second mark. |4x/3| < 1 gives |x| < 3/4, an open interval.",
         "memory_tip": "|4x/3| < 1 gives |x| < 3/4. The end points are excluded.",
         "lines": [
-          "|4x/3| < 1 ⇒ |4x| < 3 ⇒ 4|x| < 3",
+          {
+            "text": "|4x/3| < 1 ⇒ |4x| < 3 ⇒ 4|x| < 3",
+            "added": true
+          },
           "|x| < 3/4",
-          "−3/4 < x < 3/4",
+          {
+            "text": "−3/4 < x < 3/4",
+            "added": true
+          },
           {
             "text": "∴ E = (−3/4, 3/4)",
             "style": "boxed"
@@ -141,6 +147,13 @@
         "common_mistakes": [
           "Writing a closed interval [−3/4, 3/4].",
           "Getting (−4/3, 4/3) by inverting the fraction."
+        ],
+        "lines_compact": [
+          "|x| < 3/4",
+          {
+            "text": "∴ E = (−3/4, 3/4)",
+            "style": "boxed"
+          }
         ]
       }
     ]

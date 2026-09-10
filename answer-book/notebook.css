@@ -40,6 +40,16 @@
   --ink-rgb: 43, 38, 32;     /* for the page's rules, tints and shadows */
   --red-rgb: 176, 85, 47;
   --pencil: #9B9080;         /* construction-line pencil */
+  /* The SECOND PEN: the working a "Simplify" press unfolds. A third voice on
+     the page — not the pen the answer is written in, not the examiner's mark
+     in the gutter — so it is set once, here.
+
+     Ballpoint blue, not red (founder, 2026-09-10). Red is the examiner's, and
+     the tick sits directly above the button that reveals this working: two
+     reds in one gutter read as one thing, and unfolded working is not a
+     correction. Blue is the only hue on the page that belongs to neither pen,
+     so it reads as what it is — the same student, writing more. */
+  --added: #2F5DA8;
   --paper: #FFFDF7;
   /* The chrome is the same stationery world as the page: a warm desk, warm
      hairlines, one serif voice for headings. The page owns Kalam; the chrome
@@ -902,6 +912,10 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   white-space: pre-wrap; word-break: break-word;
   min-height: var(--rule);
 }
+/* Working the expansion added. Colour only — the metric is untouched, because
+   every vertical measure on this page is a multiple of --rule. */
+.line.added { color: var(--added); }
+.line.added.boxed .boxed-inner { border-color: var(--added); }
 .line.heading { font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
 .line.indent { padding-left: 40px; }
 .line.eq { padding-left: 56px; }
@@ -984,12 +998,37 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 @media print { .figure-caption { display: none; } }
 
 /* examiner's red marks — absolutely positioned into the right gutter */
-.red-mark {
+/* The red-pen gutter beside one step: the examiner's mark, and under it that
+   step's own Simplify button. It is positioned OUTSIDE the ruled page body, so
+   nothing in this column can push a written line off its rule. */
+.step-aside {
   position: absolute; top: 0; right: calc(-1 * var(--pad-right) + 12px);
   width: 76px; text-align: center;
+  /* Transparent column: only the button takes a click. The mark already opts
+     out, and an overhanging empty column must never intercept anything. */
+  pointer-events: none;
+}
+/* A step carrying a button reserves the rules its gutter column needs — THREE,
+   the tick plus the mark number plus the button. A whole number of rules, so
+   the page's one vertical invariant holds; placeStep measures the block after
+   building it, so pagination follows this by itself. */
+.step-block.has-simplify { min-height: calc(3 * var(--rule)); }
+.red-mark {
   font-family: Kalam, cursive; color: var(--red);
   pointer-events: none;
 }
+/* Small and quiet: the answer is the thing on this page, and a button that
+   competed with the mark beside it would read as part of the marking. */
+.step-simplify {
+  margin-top: 5px; width: 100%;
+  font-family: Inter, system-ui, sans-serif; font-size: 10.5px; font-weight: 600;
+  padding: 4px 2px; border-radius: 999px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card);
+  color: var(--chrome-dim); cursor: pointer; line-height: 1.2;
+  pointer-events: auto;
+}
+.step-simplify:hover { border-color: var(--accent); color: var(--accent); }
+.step-simplify.open { background: var(--accent); border-color: var(--accent); color: #fff; }
 .red-mark svg { display: block; margin: 0 auto; }
 .red-mark .red-num {
   display: inline-flex; align-items: center; justify-content: center;
@@ -1042,6 +1081,9 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   @page { size: A4; margin: 0; }
   body { background: #fff; }
   .topbar, .rail, .btn-next, .question-card, .catalog, .vidi-fab, .vidi-win { display: none !important; }
+  /* The mark prints; the button does not. A printed page cannot be pressed, and
+     whatever is unfolded on screen is what the sheet should show. */
+  .step-simplify { display: none !important; }
   .layout { display: block; margin: 0; padding: 0; max-width: none; }
   .notebook { transform: none !important; gap: 0; }
   .page {

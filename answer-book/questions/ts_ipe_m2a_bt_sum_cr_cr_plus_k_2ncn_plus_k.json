@@ -121,9 +121,18 @@
           "Multiplying (2) and (1):",
           "(C₀xⁿ + C₁xⁿ⁻¹ + … + Cₙ₋ᵣxʳ + … + Cₙ)",
           "  × (C₀ + C₁x + … + Cᵣxʳ + … + Cₙxⁿ)",
-          "= (x + 1)ⁿ(1 + x)ⁿ",
-          "= (1 + x)ⁿ(1 + x)ⁿ   [x + 1 = 1 + x]",
-          "= (1 + x)ⁿ⁺ⁿ = (1 + x)²ⁿ …(3)"
+          {
+            "text": "= (x + 1)ⁿ(1 + x)ⁿ",
+            "added": true
+          },
+          {
+            "text": "= (1 + x)ⁿ(1 + x)ⁿ   [x + 1 = 1 + x]",
+            "added": true
+          },
+          {
+            "text": "= (1 + x)ⁿ⁺ⁿ = (1 + x)²ⁿ …(3)",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -149,6 +158,12 @@
         "common_mistakes": [
           "Writing the product as (1 + x)ⁿ² or (1 + x²)ⁿ.",
           "Trying to expand the bracket product fully instead of picking one power of x."
+        ],
+        "lines_compact": [
+          "Multiplying (2) and (1):",
+          "(C₀xⁿ + C₁xⁿ⁻¹ + … + Cₙ₋ᵣxʳ + … + Cₙ)",
+          "  × (C₀ + C₁x + … + Cᵣxʳ + Cᵣ₊₁xʳ⁺¹ + … + Cₙxⁿ)",
+          "= (x + 1)ⁿ(1 + x)ⁿ = (1 + x)²ⁿ …(3)"
         ]
       },
       {
@@ -162,16 +177,46 @@
         "lines": [
           "Compare the coefficient of xⁿ⁺ʳ",
           "on both sides of (3):",
-          "Left side: pick one term from each bracket",
-          "whose powers of x add up to n + r:",
-          "C₀xⁿ · Cᵣxʳ = C₀Cᵣ xⁿ⁺ʳ",
-          "C₁xⁿ⁻¹ · Cᵣ₊₁xʳ⁺¹ = C₁Cᵣ₊₁ xⁿ⁺ʳ",
-          "C₂xⁿ⁻² · Cᵣ₊₂xʳ⁺² = C₂Cᵣ₊₂ xⁿ⁺ʳ",
-          "… Cₙ₋ᵣxʳ · Cₙxⁿ = Cₙ₋ᵣCₙ xⁿ⁺ʳ",
-          "Coefficient on the left",
-          "= C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ",
-          "Right side: in (1 + x)²ⁿ the coefficient",
-          "of xᵏ is ²ⁿCₖ, so the coefficient of xⁿ⁺ʳ is ²ⁿCₙ₊ᵣ",
+          {
+            "text": "Left side: pick one term from each bracket",
+            "added": true
+          },
+          {
+            "text": "whose powers of x add up to n + r:",
+            "added": true
+          },
+          {
+            "text": "C₀xⁿ · Cᵣxʳ = C₀Cᵣ xⁿ⁺ʳ",
+            "added": true
+          },
+          {
+            "text": "C₁xⁿ⁻¹ · Cᵣ₊₁xʳ⁺¹ = C₁Cᵣ₊₁ xⁿ⁺ʳ",
+            "added": true
+          },
+          {
+            "text": "C₂xⁿ⁻² · Cᵣ₊₂xʳ⁺² = C₂Cᵣ₊₂ xⁿ⁺ʳ",
+            "added": true
+          },
+          {
+            "text": "… Cₙ₋ᵣxʳ · Cₙxⁿ = Cₙ₋ᵣCₙ xⁿ⁺ʳ",
+            "added": true
+          },
+          {
+            "text": "Coefficient on the left",
+            "added": true
+          },
+          {
+            "text": "= C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ",
+            "added": true
+          },
+          {
+            "text": "Right side: in (1 + x)²ⁿ the coefficient",
+            "added": true
+          },
+          {
+            "text": "of xᵏ is ²ⁿCₖ, so the coefficient of xⁿ⁺ʳ is ²ⁿCₙ₊ᵣ",
+            "added": true
+          },
           "∴ C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ = ²ⁿCₙ₊ᵣ"
         ],
         "recall": {
@@ -198,6 +243,14 @@
         "common_mistakes": [
           "Comparing xⁿ when the question has a general r.",
           "Writing the right side as ²ⁿCᵣ."
+        ],
+        "lines_compact": [
+          "Compare the coefficient of xⁿ⁺ʳ",
+          "on both sides of (3):",
+          "Left: C₀xⁿ·Cᵣxʳ, C₁xⁿ⁻¹·Cᵣ₊₁xʳ⁺¹, …, Cₙ₋ᵣxʳ·Cₙxⁿ",
+          "Right: the coefficient of xⁿ⁺ʳ in (1 + x)²ⁿ",
+          "  is ²ⁿCₙ₊ᵣ",
+          "∴ C₀Cᵣ + C₁Cᵣ₊₁ + C₂Cᵣ₊₂ + … + Cₙ₋ᵣCₙ = ²ⁿCₙ₊ᵣ"
         ]
       },
       {
@@ -209,9 +262,18 @@
         "margin_note": "Seventh mark. r = 0 makes every product a square; r = 1 makes the indices consecutive.",
         "memory_tip": "Both deductions are substitutions, not new proofs: r = 0 for (i), r = 1 for (ii).",
         "lines": [
-          "(i) Put r = 0:",
-          "C₀C₀ + C₁C₁ + C₂C₂ + … + CₙCₙ = ²ⁿCₙ₊₀",
-          "∴ C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
+          {
+            "text": "(i) Put r = 0:",
+            "added": true
+          },
+          {
+            "text": "C₀C₀ + C₁C₁ + C₂C₂ + … + CₙCₙ = ²ⁿCₙ₊₀",
+            "added": true
+          },
+          {
+            "text": "∴ C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
+            "added": true
+          },
           "(ii) Put r = 1:",
           {
             "text": "C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁",
@@ -243,6 +305,14 @@
         "common_mistakes": [
           "Re-proving (i) from scratch instead of substituting r = 0.",
           "Writing (ii) with ²ⁿCₙ on the right."
+        ],
+        "lines_compact": [
+          "(i) Put r = 0: C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
+          "(ii) Put r = 1:",
+          {
+            "text": "C₀C₁ + C₁C₂ + C₂C₃ + … + Cₙ₋₁Cₙ = ²ⁿCₙ₊₁",
+            "style": "boxed"
+          }
         ]
       }
     ]

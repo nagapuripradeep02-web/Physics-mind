@@ -113,11 +113,26 @@
         "memory_tip": "Name the two pair-sums p and q. Each pair gives x² − (sum)x + product, and the quartic is their product.",
         "lines": [
           "Let α + β = p and γ + δ = q.",
-          "The quadratic with roots α, β is",
-          "x² − (α + β)x + αβ = x² − px + 6",
-          "The quadratic with roots γ, δ is",
-          "x² − (γ + δ)x + γδ = x² − qx + 8",
-          "Together they account for all four roots, so",
+          {
+            "text": "The quadratic with roots α, β is",
+            "added": true
+          },
+          {
+            "text": "x² − (α + β)x + αβ = x² − px + 6",
+            "added": true
+          },
+          {
+            "text": "The quadratic with roots γ, δ is",
+            "added": true
+          },
+          {
+            "text": "x² − (γ + δ)x + γδ = x² − qx + 8",
+            "added": true
+          },
+          {
+            "text": "Together they account for all four roots, so",
+            "added": true
+          },
           "x⁴ + x³ − 16x² − 4x + 48",
           "= (x² − px + 6)(x² − qx + 8)"
         ],
@@ -147,6 +162,13 @@
         "common_mistakes": [
           "Putting the products in the wrong factors (6 goes with p, 8 with q).",
           "Writing x² + px + 6 (the middle sign is minus the sum)."
+        ],
+        "lines_compact": [
+          "Let α + β = p and γ + δ = q.",
+          "The quadratic with roots α, β: x² − px + 6",
+          "The quadratic with roots γ, δ: x² − qx + 8",
+          "So x⁴ + x³ − 16x² − 4x + 48",
+          "= (x² − px + 6)(x² − qx + 8)"
         ]
       },
       {
@@ -159,21 +181,63 @@
         "memory_tip": "Match x³ (p + q = −1) and x (8p + 6q = 4). The x² coefficient is a free check: pq + 14 = −16.",
         "lines": [
           "Expand the right side:",
-          "= x⁴ − qx³ + 8x² − px³ + pqx² − 8px",
-          "  + 6x² − 6qx + 48",
-          "= x⁴ − (p + q)x³ + (pq + 14)x²",
-          "  − (8p + 6q)x + 48",
-          "Compare the x³ terms: −(p + q) = 1",
+          {
+            "text": "= x⁴ − qx³ + 8x² − px³ + pqx² − 8px",
+            "added": true
+          },
+          {
+            "text": "  + 6x² − 6qx + 48",
+            "added": true
+          },
+          {
+            "text": "= x⁴ − (p + q)x³ + (pq + 14)x²",
+            "added": true
+          },
+          {
+            "text": "  − (8p + 6q)x + 48",
+            "added": true
+          },
+          {
+            "text": "Compare the x³ terms: −(p + q) = 1",
+            "added": true
+          },
           "p + q = −1 … (1)",
-          "Compare the x terms: −(8p + 6q) = −4",
-          "8p + 6q = 4, and dividing by 2:",
-          "4p + 3q = 2 … (2)",
-          "From (1), q = −1 − p. Put it in (2):",
-          "4p + 3(−1 − p) = 2",
-          "4p − 3 − 3p = 2",
-          "p = 5, so q = −1 − 5 = −6",
-          "Check the x² terms: pq + 14",
-          "= 5(−6) + 14 = −30 + 14 = −16 ✓"
+          {
+            "text": "Compare the x terms: −(8p + 6q) = −4",
+            "added": true
+          },
+          {
+            "text": "8p + 6q = 4, and dividing by 2:",
+            "added": true
+          },
+          {
+            "text": "4p + 3q = 2 … (2)",
+            "added": true
+          },
+          {
+            "text": "From (1), q = −1 − p. Put it in (2):",
+            "added": true
+          },
+          {
+            "text": "4p + 3(−1 − p) = 2",
+            "added": true
+          },
+          {
+            "text": "4p − 3 − 3p = 2",
+            "added": true
+          },
+          {
+            "text": "p = 5, so q = −1 − 5 = −6",
+            "added": true
+          },
+          {
+            "text": "Check the x² terms: pq + 14",
+            "added": true
+          },
+          {
+            "text": "= 5(−6) + 14 = −30 + 14 = −16 ✓",
+            "added": true
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -203,6 +267,15 @@
           "A sign slip: the x³ coefficient of the product is −(p + q), so p + q = −1, not +1.",
           "The x coefficient is −(8p + 6q) (each sum times the OTHER pair's product).",
           "Solving for p and never checking with the x² coefficient."
+        ],
+        "lines_compact": [
+          "Expand the right side:",
+          "x⁴ − (p + q)x³ + (pq + 14)x² − (8p + 6q)x + 48",
+          "x³: p + q = −1 … (1)",
+          "x: 8p + 6q = 4, so 4p + 3q = 2 … (2)",
+          "(1) gives q = −1 − p; put in (2):",
+          "4p − 3 − 3p = 2, so p = 5 and q = −6",
+          "Check x²: pq + 14 = −30 + 14 = −16"
         ]
       },
       {
@@ -214,14 +287,38 @@
         "margin_note": "Last two marks. x² − 5x + 6 factorises as (x − 2)(x − 3) and x² + 6x + 8 as (x + 2)(x + 4). The pair 2, 3 has product 6 as required; all four add to −1.",
         "memory_tip": "x² − 5x + 6 = (x − 2)(x − 3) and x² + 6x + 8 = (x + 2)(x + 4). Check 2 × 3 = 6, the given product.",
         "lines": [
-          "First quadratic: x² − 5x + 6 = 0",
-          "Split −5x as −2x − 3x:",
-          "x(x − 2) − 3(x − 2) = 0",
-          "(x − 2)(x − 3) = 0, so x = 2 or 3",
-          "Second quadratic: x² + 6x + 8 = 0",
-          "Split 6x as 2x + 4x:",
-          "x(x + 2) + 4(x + 2) = 0",
-          "(x + 2)(x + 4) = 0, so x = −2 or −4",
+          {
+            "text": "First quadratic: x² − 5x + 6 = 0",
+            "added": true
+          },
+          {
+            "text": "Split −5x as −2x − 3x:",
+            "added": true
+          },
+          {
+            "text": "x(x − 2) − 3(x − 2) = 0",
+            "added": true
+          },
+          {
+            "text": "(x − 2)(x − 3) = 0, so x = 2 or 3",
+            "added": true
+          },
+          {
+            "text": "Second quadratic: x² + 6x + 8 = 0",
+            "added": true
+          },
+          {
+            "text": "Split 6x as 2x + 4x:",
+            "added": true
+          },
+          {
+            "text": "x(x + 2) + 4(x + 2) = 0",
+            "added": true
+          },
+          {
+            "text": "(x + 2)(x + 4) = 0, so x = −2 or −4",
+            "added": true
+          },
           {
             "text": "∴ roots: 2, 3, −2, −4",
             "style": "boxed"
@@ -255,6 +352,14 @@
           "Solving only one of the two quadratics.",
           "Not checking that one pair really multiplies to 6.",
           "Not checking the sum: 2 + 3 − 2 − 4 = −1 = −a₁/a₀."
+        ],
+        "lines_compact": [
+          "x² − 5x + 6 = 0 ⇒ (x − 2)(x − 3) = 0 ⇒ x = 2, 3",
+          "x² + 6x + 8 = 0 ⇒ (x + 2)(x + 4) = 0 ⇒ x = −2, −4",
+          {
+            "text": "∴ roots: 2, 3, −2, −4",
+            "style": "boxed"
+          }
         ]
       }
     ]

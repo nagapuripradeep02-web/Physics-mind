@@ -112,14 +112,32 @@
         "margin_note": "Second and third marks. cos 2nθ − 1 = −2 sin² nθ and sin 2nθ = 2 sin nθ cos nθ. Write the −2 as 2i², and 2i sin nθ comes out leaving cos nθ + i sin nθ inside — the same bracket the denominator will produce.",
         "memory_tip": "Write the −2 as 2i². Then 2i sin nθ comes out, leaving cos nθ + i sin nθ inside.",
         "lines": [
-          "Use the double-angle identities",
-          "cos 2A = 1 − 2sin²A, so cos 2nθ − 1 = −2sin²nθ",
-          "sin 2A = 2 sin A cos A, so",
+          {
+            "text": "Use the double-angle identities",
+            "added": true
+          },
+          {
+            "text": "cos 2A = 1 − 2sin²A, so cos 2nθ − 1 = −2sin²nθ",
+            "added": true
+          },
+          {
+            "text": "sin 2A = 2 sin A cos A, so",
+            "added": true
+          },
           "sin 2nθ = 2 sin nθ cos nθ",
           "Numerator = −2sin²nθ + 2i sin nθ cos nθ",
-          "Now −1 = i², so −2sin²nθ = 2i² sin²nθ:",
-          "= 2i² sin²nθ + 2i sin nθ cos nθ",
-          "Take 2i sin nθ out of both terms:",
+          {
+            "text": "Now −1 = i², so −2sin²nθ = 2i² sin²nθ:",
+            "added": true
+          },
+          {
+            "text": "= 2i² sin²nθ + 2i sin nθ cos nθ",
+            "added": true
+          },
+          {
+            "text": "Take 2i sin nθ out of both terms:",
+            "added": true
+          },
           "= 2i sin nθ (i sin nθ + cos nθ)",
           "= 2i sin nθ (cos nθ + i sin nθ)"
         ],
@@ -151,6 +169,14 @@
           "Using cos 2nθ − 1 = 2cos² nθ − 2, which does not factor with the sine term.",
           "Taking out 2 sin nθ instead of 2i sin nθ and leaving a bracket that does not match the denominator's.",
           "Writing the bracket as (i sin nθ + cos nθ) and not recognising it as cis nθ."
+        ],
+        "lines_compact": [
+          "cos 2nθ − 1 = −2 sin² nθ,",
+          "sin 2nθ = 2 sin nθ cos nθ",
+          "Numerator = −2 sin² nθ + 2i sin nθ cos nθ",
+          "= 2i² sin² nθ + 2i sin nθ cos nθ  (∵ i² = −1)",
+          "= 2i sin nθ (i sin nθ + cos nθ)",
+          "= 2i sin nθ (cos nθ + i sin nθ)"
         ]
       },
       {
@@ -162,10 +188,16 @@
         "margin_note": "Fourth and fifth marks. cos 2nθ + 1 = 2 cos² nθ, so the denominator is 2 cos² nθ + 2i sin nθ cos nθ = 2 cos nθ (cos nθ + i sin nθ). Take out the 2 as well as cos nθ, or it will not cancel.",
         "memory_tip": "cos 2nθ + 1 = 2cos²nθ. Take out the 2 as well as cos nθ, or it will not cancel.",
         "lines": [
-          "Use cos 2A = 2cos²A − 1, so",
+          {
+            "text": "Use cos 2A = 2cos²A − 1, so",
+            "added": true
+          },
           "cos 2nθ + 1 = 2cos²nθ",
           "Denominator = 2cos²nθ + 2i sin nθ cos nθ",
-          "Take 2 cos nθ out of both terms:",
+          {
+            "text": "Take 2 cos nθ out of both terms:",
+            "added": true
+          },
           "= 2 cos nθ (cos nθ + i sin nθ)"
         ],
         "recall": {
@@ -195,6 +227,11 @@
           "Using 1 + cos 2nθ = 2 sin² nθ, the wrong identity.",
           "Taking out only cos nθ and leaving a 2 that then does not cancel.",
           "Writing the bracket as (cos nθ − i sin nθ) by copying the wrong sign."
+        ],
+        "lines_compact": [
+          "cos 2nθ + 1 = 2 cos² nθ",
+          "Denominator = 2 cos² nθ + 2i sin nθ cos nθ",
+          "= 2 cos nθ (cos nθ + i sin nθ)"
         ]
       },
       {
@@ -211,13 +248,23 @@
             "render": "katex",
             "style": "eq"
           },
-          "The factor (cos nθ + i sin nθ) cancels,",
-          "and so does the 2:",
+          {
+            "text": "The factor (cos nθ + i sin nθ) cancels,",
+            "added": true
+          },
+          {
+            "text": "and so does the 2:",
+            "added": true
+          },
           "= i sin nθ / cos nθ",
-          "tan nθ = sin nθ / cos nθ, so",
+          {
+            "text": "tan nθ = sin nθ / cos nθ, so",
+            "added": true
+          },
           {
             "text": "∴ L.H.S. = i tan nθ = R.H.S.",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -247,6 +294,18 @@
           "Cancelling the bracket but forgetting to cancel the 2, leaving 2i tan nθ.",
           "Dropping the i and writing tan nθ.",
           "Writing sin nθ / cos nθ = cot nθ."
+        ],
+        "lines_compact": [
+          {
+            "text": "\\text{L.H.S.} = \\frac{2i\\sin n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}{2\\cos n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i sin nθ / cos nθ",
+          {
+            "text": "= i tan nθ = R.H.S.",
+            "style": "boxed"
+          }
         ]
       }
     ]

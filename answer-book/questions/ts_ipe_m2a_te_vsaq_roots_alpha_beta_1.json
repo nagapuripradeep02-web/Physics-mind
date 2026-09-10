@@ -109,12 +109,30 @@
         "margin_note": "Second mark. Numbers with sum 1 and product −6 are 3 and −2, the roots of y² − y − 6 = 0. Either order is correct.",
         "memory_tip": "Sum 1 and product −6 are the roots of y² − y − 6 = (y − 3)(y + 2). Either order is right.",
         "lines": [
-          "Two numbers with sum 1 and product −6 are",
-          "the roots of y² − (sum)y + product = 0:",
-          "y² − y − 6 = 0",
-          "Split −y as −3y + 2y:",
-          "y(y − 3) + 2(y − 3) = 0",
-          "(y − 3)(y + 2) = 0, so y = 3 or −2",
+          {
+            "text": "Two numbers with sum 1 and product −6 are",
+            "added": true
+          },
+          {
+            "text": "the roots of y² − (sum)y + product = 0:",
+            "added": true
+          },
+          {
+            "text": "y² − y − 6 = 0",
+            "added": true
+          },
+          {
+            "text": "Split −y as −3y + 2y:",
+            "added": true
+          },
+          {
+            "text": "y(y − 3) + 2(y − 3) = 0",
+            "added": true
+          },
+          {
+            "text": "(y − 3)(y + 2) = 0, so y = 3 or −2",
+            "added": true
+          },
           {
             "text": "∴ α = 3, β = −2 (or α = −2, β = 3)",
             "style": "boxed"
@@ -145,6 +163,14 @@
         "common_mistakes": [
           "Giving 3 and 2 (sum 5) or −3 and 2 (sum −1) — check both sum and product.",
           "Not substituting one root back: f(3) = 27 − 18 − 15 + 6 = 0."
+        ],
+        "lines_compact": [
+          "α + β = 1 and αβ = −6, so α, β are the roots of",
+          "y² − y − 6 = 0 ⇒ (y − 3)(y + 2) = 0",
+          {
+            "text": "∴ α = 3, β = −2 (or α = −2, β = 3)",
+            "style": "boxed"
+          }
         ]
       }
     ]

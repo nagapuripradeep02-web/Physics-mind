@@ -97,14 +97,27 @@
         "margin_note": "Second mark. 10 × 3 = 30. (The question asks for selections, not words, so no arrangement factor.)",
         "memory_tip": "⁵C₃ · ³C₂ = 10 × 3 = 30. Selecting only, so no 5! for arranging.",
         "lines": [
-          "⁵C₃ = ⁵C₂ = (5 · 4)/(1 · 2) = 10",
-          "³C₂ = ³C₁ = 3",
-          "The two choices are made together,",
-          "so multiply them:",
+          {
+            "text": "⁵C₃ = ⁵C₂ = (5 · 4)/(1 · 2) = 10",
+            "added": true
+          },
+          {
+            "text": "³C₂ = ³C₁ = 3",
+            "added": true
+          },
+          {
+            "text": "The two choices are made together,",
+            "added": true
+          },
+          {
+            "text": "so multiply them:",
+            "added": true
+          },
           "Required = ⁵C₃ · ³C₂ = 10 · 3",
           {
             "text": "∴ number of ways = 30",
-            "style": "boxed"
+            "style": "boxed",
+            "added": true
           }
         ],
         "recall": {
@@ -130,6 +143,13 @@
         "common_mistakes": [
           "Multiplying by 5! to arrange the chosen letters — that answers a different question (words).",
           "Adding 10 + 3 = 13."
+        ],
+        "lines_compact": [
+          "Required = ⁵C₃ · ³C₂ = 10 · 3",
+          {
+            "text": "= 30",
+            "style": "boxed"
+          }
         ]
       }
     ]

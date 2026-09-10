@@ -113,10 +113,22 @@
         "margin_note": "Second mark. Expand (y + 3)² = y² + 6y + 9 and 5(y + 3) = 5y + 15, then add the 7. Collect like terms carefully: the constants 9 + 15 + 7 = 31.",
         "memory_tip": "(y + 3)² = y² + 6y + 9, and the constants add to 9 + 15 + 7 = 31.",
         "lines": [
-          "Expand the numerator:",
-          "(y + 3)² = y² + 6y + 9",
-          "5(y + 3) = 5y + 15",
-          "Adding these and 7:",
+          {
+            "text": "Expand the numerator:",
+            "added": true
+          },
+          {
+            "text": "(y + 3)² = y² + 6y + 9",
+            "added": true
+          },
+          {
+            "text": "5(y + 3) = 5y + 15",
+            "added": true
+          },
+          {
+            "text": "Adding these and 7:",
+            "added": true
+          },
           "y² + 6y + 9 + 5y + 15 + 7",
           "= y² + 11y + 31"
         ],
@@ -148,6 +160,11 @@
           "Expanding (y + 3)² as y² + 9 and dropping the 6y.",
           "Adding 9 + 15 + 7 as 21 or 41 instead of 31.",
           "Adding 6y + 5y as 30y instead of 11y."
+        ],
+        "lines_compact": [
+          "(y + 3)² + 5(y + 3) + 7",
+          "= y² + 6y + 9 + 5y + 15 + 7",
+          "= y² + 11y + 31"
         ]
       },
       {
@@ -159,7 +176,10 @@
         "margin_note": "Third mark. Divide each term of the numerator by y³ separately. y²/y³ = 1/y, 11y/y³ = 11/y², 31/y³ stays. No constants to solve for.",
         "memory_tip": "Divide each term by y³ separately: y²/y³ = 1/y, not y. Then 11/y² and 31/y³.",
         "lines": [
-          "Divide each term by y³ separately:",
+          {
+            "text": "Divide each term by y³ separately:",
+            "added": true
+          },
           "(y² + 11y + 31)/y³",
           "= y²/y³ + 11y/y³ + 31/y³",
           "= 1/y + 11/y² + 31/y³"
@@ -192,6 +212,11 @@
           "Cancelling y²/y³ to y instead of 1/y.",
           "Writing 11/y instead of 11/y² for the middle term.",
           "Leaving the answer as one fraction over y³; the question asks for it split."
+        ],
+        "lines_compact": [
+          "(y² + 11y + 31)/y³",
+          "= y²/y³ + 11y/y³ + 31/y³",
+          "= 1/y + 11/y² + 31/y³"
         ]
       },
       {

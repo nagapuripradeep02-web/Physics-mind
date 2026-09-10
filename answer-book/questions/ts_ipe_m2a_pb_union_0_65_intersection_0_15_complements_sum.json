@@ -122,7 +122,8 @@
         "lines": [
           {
             "text": "Rearranging to get the sum of the two:",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(A) + P(B) = P(A ∪ B) + P(A ∩ B)",
@@ -155,6 +156,16 @@
         "why": "Rearranging the theorem gives the sum directly; no individual value is needed.",
         "common_mistakes": [
           "Subtracting: 0.65 − 0.15 = 0.5."
+        ],
+        "lines_compact": [
+          {
+            "text": "⇒ P(A) + P(B) = P(A ∪ B) + P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.65 + 0.15 = 0.8",
+            "style": "eq"
+          }
         ]
       },
       {
@@ -168,7 +179,8 @@
         "lines": [
           {
             "text": "Each complement satisfies P(Xᶜ) = 1 − P(X):",
-            "style": "normal"
+            "style": "normal",
+            "added": true
           },
           {
             "text": "P(Aᶜ) + P(Bᶜ) = [1 − P(A)] + [1 − P(B)]",
@@ -176,11 +188,13 @@
           },
           {
             "text": "= 2 − [P(A) + P(B)]",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "= 2 − 0.8",
-            "style": "eq"
+            "style": "eq",
+            "added": true
           },
           {
             "text": "∴ P(Aᶜ) + P(Bᶜ) = 1.2",
@@ -211,6 +225,20 @@
         "common_mistakes": [
           "Writing 1 − 0.8 = 0.2 (one complement, not two).",
           "Rejecting 1.2 as impossible and changing it."
+        ],
+        "lines_compact": [
+          {
+            "text": "P(Aᶜ) + P(Bᶜ) = [1 − P(A)] + [1 − P(B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= 2 − [P(A) + P(B)] = 2 − 0.8",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ) + P(Bᶜ) = 1.2",
+            "style": "boxed"
+          }
         ]
       }
     ]

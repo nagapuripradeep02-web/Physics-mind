@@ -117,18 +117,48 @@
         "memory_tip": "1 < X ≤ 4 keeps X = 2, 3, 4 — three terms. Put everything over 5⁶ = 15625.",
         "lines": [
           "P(X = r) = ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ",
-          "1 < X ≤ 4 means X = 2, 3 or 4:",
-          "P(1 < X ≤ 4)",
-          "= P(X = 2) + P(X = 3) + P(X = 4)",
+          {
+            "text": "1 < X ≤ 4 means X = 2, 3 or 4:",
+            "added": true
+          },
+          {
+            "text": "P(1 < X ≤ 4)",
+            "added": true
+          },
+          {
+            "text": "= P(X = 2) + P(X = 3) + P(X = 4)",
+            "added": true
+          },
           "= ⁶C₂ (3/5)⁴(2/5)² + ⁶C₃ (3/5)³(2/5)³",
           "  + ⁶C₄ (3/5)²(2/5)⁴",
-          "⁶C₂ = 15, ⁶C₃ = 20, ⁶C₄ = 15",
-          "Every term has 5⁶ = 15625 underneath:",
-          "= (15 · 81 · 4 + 20 · 27 · 8",
-          "  + 15 · 9 · 16)/15625",
-          "= (4860 + 4320 + 2160)/15625",
-          "= 11340/15625",
-          "Divide the top and bottom by 5:",
+          {
+            "text": "⁶C₂ = 15, ⁶C₃ = 20, ⁶C₄ = 15",
+            "added": true
+          },
+          {
+            "text": "Every term has 5⁶ = 15625 underneath:",
+            "added": true
+          },
+          {
+            "text": "= (15 · 81 · 4 + 20 · 27 · 8",
+            "added": true
+          },
+          {
+            "text": "  + 15 · 9 · 16)/15625",
+            "added": true
+          },
+          {
+            "text": "= (4860 + 4320 + 2160)/15625",
+            "added": true
+          },
+          {
+            "text": "= 11340/15625",
+            "added": true
+          },
+          {
+            "text": "Divide the top and bottom by 5:",
+            "added": true
+          },
           {
             "text": "∴ P(1 < X ≤ 4) = 2268/3125",
             "style": "boxed"
@@ -162,6 +192,18 @@
           "Including X = 1 or leaving out X = 4.",
           "Writing ⁶C₂ = 30 or ⁶C₃ = 15.",
           "Forgetting to reduce 11340/15625 by 5."
+        ],
+        "lines_compact": [
+          "P(X = r) = ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ",
+          "P(1 < X ≤ 4) = P(X = 2) + P(X = 3) + P(X = 4)",
+          "= ⁶C₂ (3/5)⁴ (2/5)² + ⁶C₃ (3/5)³ (2/5)³",
+          "   + ⁶C₄ (3/5)² (2/5)⁴",
+          "= (15 · 81 · 4 + 20 · 27 · 8 + 15 · 9 · 16)/5⁶",
+          "= (4860 + 4320 + 2160)/15625 = 11340/15625",
+          {
+            "text": "∴ P(1 < X ≤ 4) = 2268/3125",
+            "style": "boxed"
+          }
         ]
       }
     ]

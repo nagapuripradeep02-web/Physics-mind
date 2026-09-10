@@ -102,9 +102,18 @@
         "margin_note": "Second mark. r = 4, and also r = 10 − 4 = 6, because ¹⁰C₄ = ¹⁰C₆. The book prints only r = 4.",
         "memory_tip": "¹⁰C₄ = ¹⁰C₆, so r = 4 OR r = 6. The book prints only r = 4.",
         "lines": [
-          "So ¹⁰C₄ = ¹⁰Cᵣ",
-          "By ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n:",
-          "r = 4, or r = 10 − 4 = 6",
+          {
+            "text": "So ¹⁰C₄ = ¹⁰Cᵣ",
+            "added": true
+          },
+          {
+            "text": "By ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n:",
+            "added": true
+          },
+          {
+            "text": "r = 4, or r = 10 − 4 = 6",
+            "added": true
+          },
           {
             "text": "∴ r = 4 or r = 6",
             "style": "boxed"
@@ -135,6 +144,14 @@
         "common_mistakes": [
           "Answering r = 4 only, as the book does.",
           "Answering r = 6 only."
+        ],
+        "lines_compact": [
+          "¹⁰Cᵣ = ¹⁰C₄ ⇒ r = 4",
+          "or r = 10 − 4 = 6, since ¹⁰C₄ = ¹⁰C₆",
+          {
+            "text": "∴ r = 4 or r = 6",
+            "style": "boxed"
+          }
         ]
       }
     ]
