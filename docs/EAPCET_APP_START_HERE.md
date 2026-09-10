@@ -93,27 +93,30 @@ correct method, not only against the mistake it describes.
 
 ## 5. Commands
 
-Run these from the app worktree. The npm scripts that pass `--env-file=.env.local` cannot resolve
-that file from a worktree, because it exists only in `C:\Tutor\physics-mind` and holds no `EP_*`
-names anyway. Pass the bases inline instead.
+Run these from the app worktree. `.env.local` here is a HARD LINK to `C:\Tutor\physics-mind\.env.local`
+(made with `mklink /H`, 2026-09-10) and that file now carries the non-secret bases `EP_CHAT_BASE`,
+`EP_STATE_BASE`, `EP_PHOTO_BASE`, `EP_STAFF_WORD`, so the npm scripts that pass `--env-file=.env.local`
+work from this worktree.
 
 ```
 npx tsx src/scripts/build_eapcet_app.ts --pool=<release> --out=<dir>   # offline build = the content gate
-npx vitest run src/lib/eapcet                                          # 74 unit tests
+npx vitest run src/lib/eapcet                                          # 101 unit tests
 npm run smoke:eapcet                                                   # 13 e2e, the finder
 npm run smoke:eapcet:learn                                             # 9 e2e, lessons and solutions
-npm run smoke:eapcet:students                                          # the three-student spec
+npx playwright test e2e/eapcet_photo.spec.ts                           # 2 e2e, show me your working
+npm run smoke:eapcet:students                                          # the three-student spec (3003 draws each)
 npx tsc --noEmit -p tsconfig.json
+npm run content:push:eapcet -- --pool=<release>                        # verified solutions + routes -> ep_solutions
+npx tsx --env-file=.env.local src/scripts/build_eapcet_app.ts --preview --pool=<release>
+npx wrangler deploy -c wrangler.eapcet-preview.toml                     # the preview worker, never the student site
 ```
 
 The pool release lives in the corpus worktree at
-`C:/Tutor/physics-mind-eapcet-corpus/eapcet/pool/physics_pool_v1.release.json`.
-
-Deploying the preview needs `EP_CHAT_BASE`, `EP_STATE_BASE` and `EP_STAFF_WORD` inline followed by
-`npx wrangler deploy -c wrangler.eapcet-preview.toml`. The session scratchpad holds ready scripts:
-`ep_ship_preview.sh` builds, deploys and curls a proof of which tokens are present and absent;
-`ep_ship.sh` does the student site; `ep_deploy_functions.sh` sets the allowed origins and redeploys
-the two Edge Functions.
+`C:/Tutor/physics-mind-eapcet-corpus/eapcet/pool/physics_pool_v1.release.json`. Edge Functions deploy
+with `npx supabase functions deploy <name> --no-verify-jwt --use-api --project-ref dxwpkjfypzxrzgbevfnx`
+(`SUPABASE_ACCESS_TOKEN` from `.env.local` in the environment). Migrations are applied ONCE through the
+Supabase MCP `apply_migration`; `supabase_2026_09_10_eapcet_finder.sql`, `_09_11_eapcet_shapes.sql` and
+`_09_12_eapcet_photos.sql` are applied — never re-run them.
 
 ## 6. Traps that cost time in this session
 
@@ -133,19 +136,25 @@ the two Edge Functions.
 
 ## 7. Next session, in order
 
-1. **Get the pack reviewed by a teacher.** Everything else in Learn is blocked behind it. Until
-   then it is a sample and cannot go to the student worker.
-2. **Decide whether to author more packs now or after the review.** Writing eleven more chapters
-   against a brief a teacher has not validated risks eleven reworks.
-3. **Then the backend**, which the founder explicitly deferred: sync for the `learn` branch, and
-   photo reading for Solutions. The photo path today is honest but empty.
-4. **Corpus work continues independently** on `feat/eapcet-solutions`: routes and shapes for
-   p1-03 and p1-05 are the next chapters in the plan.
+1. **Founder: enable billing on the Google AI project behind `GOOGLE_GENERATIVE_AI_API_KEY`.** It is
+   on the free tier (20 requests per day per model for gemini-2.5-flash), so the photo step answers
+   "could not be read just now" for everyone once 20 photos have been read. Nothing else in the
+   photo path is blocked: the function, the migration, the client and the caps are live and proven.
+2. **Founder walk on the preview** (https://viditra-eapcet-preview.nagapuripradeep02.workers.dev,
+   his Chrome's preview-origin device `d6e474ca-…` is granted): a number question asks for the
+   number first; chips come before the verdict; every wrong answer names its mistake; the result
+   leads with shapes; a photo of working on a fix page returns a tick-list (after item 1).
+3. **One real student walks it**, then the founder decides on the student-site deploy
+   (`npm run deploy:eapcet`). No second chapter before that walk and the first week's photo ledger
+   (`ai_usage_log` where `task_type = 'eapcet_photo_read'`).
+4. **Then expand**: p1-03 and p1-05 through the same strict corpus loop (45/45, student-word
+   routes, hosted controls), one chapter at a time.
+5. **Learn tab** still waits on a teacher review of the p1-02 pack; sync of the `learn` branch is
+   still unbuilt.
 
-Blocked on the founder: the p1-02 shape labels, which are student-facing text; the spot sheet
-`_spot/wave_01.md`; escalations q092 and q099; the q101 exclusion; the domain; the founding price;
-the auditor's brief critiques; a teacher review of the lesson pack; and the Obsidian vault sync
-proposal, which stays unwritten until confirmed.
+Blocked on the founder: Google billing (above); the p1-02 shape labels; the spot sheets
+`_spot/wave_01.md` and `_spot/wave_02.md`; escalations q092 and q099; the q101 exclusion; the
+domain; the founding price; a teacher review of the lesson pack; the Obsidian vault sync proposal.
 
 ## 8. Related documents
 

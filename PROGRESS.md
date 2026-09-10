@@ -1,5 +1,63 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📱 SESSION — EAPCET Weakness tab measures what the student WROTE: number first, chips before the verdict, a ledger across runs, and a photo of the working (2026-09-10, p1-02 only)
+
+**Desk: worktree `C:\Tutor\physics-mind-eapcet-app`, branch `feat/eapcet-app`, tip `5389870c`.**
+Corpus half: `C:\Tutor\physics-mind-eapcet-corpus` on `feat/eapcet-solutions`, tip `96edf02b`. Both
+committed, neither pushed; no PR open. Plan: `~/.claude/plans/so-please-plan-well-fuzzy-elephant.md`
+(founder-approved; photo step included and gated; chips English only in simpler words).
+**Handoff for a new session: `docs/EAPCET_APP_START_HERE.md`.**
+
+**Bottom line: on Motion in a Straight Line the diagnosis now rests on evidence in this order —
+the number the student typed before the options, the option picked, a photo of the working, and
+only last the student's own claim. Deployed to the PREVIEW worker and walked live; the student
+site is untouched. The photo step is built, deployed and curl-proven, but the Google AI project
+is on the free tier (20 requests/day/model), so it is a founder billing decision before any
+student can use it.**
+
+- **App (commits cf329223, b9bb0adf, 095f897b, 5389870c):** `answer_kind` derived at build from
+  `options_en` (`56_number.js`; p1-02 = 10 number-first, 5 choice-first); options hidden until the
+  student types a number or taps "I have no answer yet"; chips "Which way did you go?" BEFORE the
+  verdict on run, resume, sibling retry and Learn practice; `Diag.outcomeOf` gains `anchored` and
+  `wrong_distractor`; `Diag.ledger` folds every run, retry and confirmed photo into per-shape
+  EPISODES (strong → solid → fix → check → solid → none) and the type headline needs ≥ 3 confirmed
+  (`HEADLINE_AT`); result order verdict → confirmed → hub → shapes → bars → timing → papers;
+  `86_photo.js` + Edge Function `ep-photo-read` (Gemini 2.5 Flash, JSON+base64, 1.5 MB cap,
+  20/day/device, $1/day, image never stored) + migration `supabase_2026_09_12_eapcet_photos.sql`
+  (`ep_photos`, `ep_sync` merges photos like retries); the pool schema accepts the release's
+  shape-first grounding and per-shape cards.
+- **Corpus (commits 2533b305, 96edf02b):** p1-02 is STRICT — every wrong option carries a typed
+  mistake (`distractor` for an option no method reaches); `build_release.py` prints
+  `labelled wrong options 45/45 (100%)` and refuses below it; routes rewritten in student words
+  (≤ 9 tokens) and audited blind in four rounds (W02-V, R1–R4) with planted controls — 7/7 routes
+  controls and 20/20 solution controls caught; every sidecar audited ok/weak at its current sha;
+  shapes carry the Answer Book cards a teacher would open; `make_audit_input` hosts a control on
+  an already-audited item; `spot_check` counts rework rows (`_spot/wave_02.md` for the founder).
+- **Backend live:** migration applied once via MCP; `ep-photo-read` deployed with
+  `GOOGLE_GENERATIVE_AI_API_KEY` set as a project secret (it never was before); `ep_solutions`
+  re-pushed (146 verified rows, 15 p1-02 with routes). Curl proof: foreign origin 403 · ungranted
+  `{locked:true}` with no ledger row · granted device + image of working → `4.56 m/s`, no option,
+  `diverges_at 2`, one `ai_usage_log` row at $0.001 · sync accepts/dedupes/returns photos · the
+  21st read of a day refused (`cap`), the per-IP cap answers `busy`, a Gemini 503 answers `down`
+  and consumes no read. Ledger: 21 reads, $0.0216.
+- **Proof:** vitest 101/101 · `smoke:eapcet` 13/13 · `smoke:eapcet:learn` 9/9 · `eapcet_photo.spec`
+  2/2 · students spec Pradeep 3003/3003, Rahul 3003/3003, Yashwanth 3003/3003 (report restored) ·
+  tsc 0 · preview build 848 KB with `EP_PHOTO_BASE` baked · LIVE walk on the preview as a student:
+  Q1 hid its options and asked for the number, "You wrote: 4.56 m/s", chips before the verdict on
+  all ten, a distractor pick read "No working reaches the option you picked. It counts as a guess."
+  (never "does not say more"), four confirmed application wrongs earned the headline, "5 of your 6
+  wrong answers are confirmed by the option you picked", shapes before bars. The photo block sat on
+  the fix page and posted a real file; Gemini answered 429 (free-tier daily quota spent by the curl
+  proof) and the page said "could not be read just now" — honest, nothing consumed.
+- **Env:** `.env.local` in this worktree is a hard link to the main repo's and now carries the
+  `EP_*` bases; the founder's Chrome preview-origin device `d6e474ca-…` is granted (`ep_entitlements`
+  id 6). Three memory files written (photo backend, ledger design, strict corpus lessons).
+- **Founder decisions waiting:** Google AI billing (blocks the photo step for everyone); walk the
+  preview; then one real student; then the student-site deploy; the spot sheets wave_01/wave_02.
+- **Out of scope, unchanged:** other chapters, Telugu chips, JEE pool, Solutions-tab photo, Learn
+  sync, sign-in and money deploy. The anchored outcome ("You worked out (3) and then picked (1)")
+  cannot fire in a 45/45 chapter because every wrong option is labelled; it serves the other chapters.
+
 ## 📱 SESSION — EAPCET finder becomes a three-tab student app: Learn and practice · Weakness · Solutions, front end first, on a PREVIEW worker (2026-09-09, `feat/eapcet-app`)
 
 **Desk: worktree `C:\Tutor\physics-mind-eapcet-app`, branch `feat/eapcet-app`, tip `a5f70cc6`.**
