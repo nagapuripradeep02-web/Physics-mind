@@ -57,8 +57,8 @@ export const PRADEEP: Persona = {
         if (calc && hasMenu(q)) return { picked: calc, route: 'r', intent: 'slip', why: 'the calculation-typed option, then the right route' };
         return { picked: q.answer, route: rightRoute(q), intent: 'solid', why: 'no calculation-typed option here: the key, then the right route' };
     },
-    truth: 'weakness = calculation (when two or more of his slips are drawn); no mismatches; every wrong answer confirmed by its option',
-    holds: (e) => e.mismatches === 0 && e.confirmed === e.wrong && (e.params.calculation >= 2 ? e.weakness === 'calculation' : e.weakness !== 'concept' && e.weakness !== 'application'),
+    truth: 'weakness = calculation when three or more of his slips are drawn (each confirmed by its option), else no type is named; no mismatches; every wrong answer confirmed by its option',
+    holds: (e) => e.mismatches === 0 && e.confirmed === e.wrong && (e.confirmedTypes.calculation >= 3 ? e.weakness === 'calculation' : e.weakness !== 'concept' && e.weakness !== 'application' && e.weakness !== 'calculation'),
 };
 
 export const RAHUL: Persona = {
@@ -73,8 +73,9 @@ export const RAHUL: Persona = {
         if (i % 2 === 0 && honest) return { picked: target, route: honest, intent: 'wrong_route', why: 'the wrong-route option, and he admits that route (even position in the pool)' };
         return { picked: target, route: 'r', intent: 'mismatch', why: 'the wrong-route option, but he claims the right route (odd position in the pool): the option contradicts him' };
     },
-    truth: 'weakness = concept or application (whichever his picks make larger; a tie goes to concept); at least one mismatch; zero calculation',
-    holds: (e) => (e.weakness === 'concept' || e.weakness === 'application') && e.params.calculation === 0 && e.mismatches >= 1,
+    truth: 'weakness = concept or application (whichever his picks make larger; a tie goes to concept) once three of his wrong-route picks are drawn, else no type is named; at least one mismatch; zero calculation',
+    holds: (e) => e.params.calculation === 0 && e.mismatches >= 1
+        && (Math.max(e.confirmedTypes.concept, e.confirmedTypes.application) >= 3 ? (e.weakness === 'concept' || e.weakness === 'application') : e.weakness !== 'calculation'),
 };
 
 export const YASHWANTH: Persona = {

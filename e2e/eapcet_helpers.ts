@@ -240,25 +240,28 @@ export async function playRun(page: Page, intents: Intent[], wait = 40000): Prom
     else guessing at three; else solid at eight right; else nothing). */
 export function expectation(played: Played[], rushed = false) {
     const params = { concept: 0, application: 0, calculation: 0, guessed: 0, rushed: 0 };
+    const confirmedTypes = { concept: 0, application: 0, calculation: 0 };
     let score = 0, wrong = 0, mismatches = 0, confirmed = 0, typed = 0;
     for (const p of played) {
         const right = p.intent === 'solid' || p.intent === 'guess_right';
         if (right) score++; else wrong++;
         if (p.intent === 'guess_right' || p.intent === 'guess_wrong') params.guessed++;
         if (!right && rushed) params.rushed++;
-        if (p.intent === 'slip' || p.intent === 'unlabelled') { params.calculation++; typed++; if (p.intent === 'slip') confirmed++; }
+        if (p.intent === 'slip' || p.intent === 'unlabelled') { params.calculation++; typed++; if (p.intent === 'slip') { confirmed++; confirmedTypes.calculation++; } }
         if (p.intent === 'wrong_route' || p.intent === 'mismatch') {
             // the option decides the type: a concept-labelled option is a concept mistake whatever route was claimed
             const t = p.label === 'concept' ? 'concept' : 'application';
-            params[t]++; typed++; confirmed++;
+            params[t]++; typed++; confirmed++; confirmedTypes[t]++;
         }
-        if (p.intent === 'belief') { params.concept++; typed++; confirmed++; }
+        if (p.intent === 'belief') { params.concept++; typed++; confirmed++; confirmedTypes.concept++; }
         if (p.intent === 'mismatch') mismatches++;
     }
     let weakness: string | null = null, best = 0;
     for (const t of ['concept', 'application', 'calculation'] as const) if (params[t] > best) { best = params[t]; weakness = t; }
-    if (best < 2) weakness = params.guessed >= 3 ? 'guessed' : (score >= 8 ? 'solid' : null);
-    return { params, score, wrong, mismatches, confirmed, typed, weakness };
+    // the headline needs the option's evidence: three confirmed wrong answers of that type (one run here)
+    const evidence = weakness ? confirmedTypes[weakness as keyof typeof confirmedTypes] : 0;
+    if (best < 2 || evidence < 3) weakness = params.guessed >= 3 ? 'guessed' : (score >= 8 ? 'solid' : null);
+    return { params, score, wrong, mismatches, confirmed, typed, weakness, confirmedTypes };
 }
 
 // ── the learn pack fixture ───────────────────────────────────────────────────

@@ -391,7 +391,16 @@ var Screens = (function () {
     var ch = Data.chapter(key);
     var run = ch && Run.lastFinished(key);
     if (!run) { location.hash = '#/physics/' + key; return; }
-    var d = Run.diagnosisOf(run);
+    var d = Run.diagnosisOf(run, key);
+    // The run's shapes, each with the LEDGER's state (every run and retry),
+    // so the page, the pills and the chapter list say one thing.
+    var led = Run.ledger(key);
+    var view = { shapes: [] };
+    for (var v = 0; v < d.shapes.length; v++) {
+      var sv = d.shapes[v], lv = led.by[sv.key];
+      var lst = lv && lv.status !== 'none' ? lv.status : sv.status;
+      view.shapes.push({ key: sv.key, label: sv.label, qids: sv.qids, status: lst === 'strong' ? 'solid' : lst, pill: lst });
+    }
     showView('resultView');
     setBack('#/physics', STR.back_chapters);
     var box = $('resultBody');
@@ -399,10 +408,15 @@ var Screens = (function () {
     box.appendChild(el('h2', 'ep-h2', ch.name));
     box.appendChild(el('div', 'ep-score', STR.result_score(d.score, d.total)));
 
+    // The headline: a type only when three confirmed wrong answers of it
+    // exist across the ledger; else the shapes to fix; else no pattern.
+    var fixLabels = [];
+    for (var fl = 0; fl < view.shapes.length; fl++) if (view.shapes[fl].status === 'fix' && view.shapes[fl].label) fixLabels.push(view.shapes[fl].label);
     var verdict = el('p', 'ep-verdict' + (d.score === d.total || d.weakness === 'solid' ? ' ep-verdict-ok' : ''));
     verdict.id = 'resultVerdict';
     verdict.textContent = d.score === d.total ? STR.all_correct
-      : (d.weakness ? STR.weakness[d.weakness](ch.name) : STR.no_pattern);
+      : d.weakness ? STR.weakness[d.weakness](ch.name)
+      : fixLabels.length ? STR.shapes_headline(fixLabels) : STR.no_pattern;
     box.appendChild(verdict);
     if (d.typed > 0) {
       var conf = el('p', 'ep-note', STR.result_confirmed(d.confirmed, d.wrong));
@@ -410,9 +424,7 @@ var Screens = (function () {
       box.appendChild(conf);
     }
     box.appendChild(el('div', 'ep-h3', STR.hub_title));
-    box.appendChild(hub(key, ch, d));
-
-    box.appendChild(el('div', 'ep-h3', STR.result_params_title));
+    box.appendChild(hub(key, ch, view));
     var bars = el('div', 'ep-bars');
     var max = 1;
     for (var t = 0; t < Diag.PARAMS.length; t++) max = Math.max(max, d.params[Diag.PARAMS[t]]);
@@ -429,7 +441,6 @@ var Screens = (function () {
       row.appendChild(el('span', 'ep-bar-n', String(d.params[p])));
       bars.appendChild(row);
     }
-    box.appendChild(bars);
 
     var byQid = {};
     for (var i = 0; i < d.outcomes.length; i++) byQid[d.outcomes[i].qid] = d.outcomes[i];
@@ -439,7 +450,7 @@ var Screens = (function () {
     }
     function group(status) {
       var shapes = [];
-      for (var s = 0; s < d.shapes.length; s++) if (d.shapes[s].status === status) shapes.push(d.shapes[s]);
+      for (var s = 0; s < view.shapes.length; s++) if (view.shapes[s].status === status) shapes.push(view.shapes[s]);
       if (!shapes.length) return;
       box.appendChild(el('div', 'ep-h3', STR.result_group[status]));
       var wrap = el('div', 'ep-shapes');
@@ -448,7 +459,7 @@ var Screens = (function () {
         var sh = shapes[k];
         var block = el('div', 'ep-shape');
         block.setAttribute('data-shape', sh.key);
-        block.appendChild(shapeHead(key, ch, sh, status));
+        block.appendChild(shapeHead(key, ch, sh, sh.pill));
         for (var m = 0; m < sh.qids.length; m++) (function (qid) {
           var q = Data.question(qid);
           var found = recordOf_(qid);
@@ -472,6 +483,10 @@ var Screens = (function () {
     group('fix');
     group('check');
     group('solid');
+
+    // The four bars come after the shapes: they are the pattern, not the headline.
+    box.appendChild(el('div', 'ep-h3', STR.result_params_title));
+    box.appendChild(bars);
 
     if (d.sec_per_q !== null) box.appendChild(el('p', 'ep-note', STR.result_timing(Math.round(d.sec_per_q), d.exam_sec_per_q + ' s')));
 
@@ -514,7 +529,7 @@ var Screens = (function () {
     var head = el('div', 'ep-shape-head');
     head.appendChild(el('div', 'ep-shape-label', sh.label || ch.name));
     var cs = Run.chapterState(key);
-    var state = cs.strong_now && cs.strong_now[sh.key] ? 'strong' : status;
+    var state = cs.strong_now && cs.strong_now[sh.key] ? 'strong' : (status || sh.status);
     var pill = el('span', 'ep-mpill', STR.mpill[state] || STR.mpill.none);
     pill.setAttribute('data-state', state);
     head.appendChild(pill);
@@ -538,6 +553,8 @@ var Screens = (function () {
     wrap.id = 'resultHub';
     var firstFix = null;
     for (var i = 0; i < d.shapes.length; i++) if (d.shapes[i].status === 'fix') { firstFix = d.shapes[i]; break; }
+    // nothing confirmed wrong: the first shape to check still has a question to open
+    for (var i2 = 0; !firstFix && i2 < d.shapes.length; i2++) if (d.shapes[i2].status === 'check') { firstFix = d.shapes[i2]; break; }
     function card(kind, href, title, sub, primary) {
       var a = el(href ? 'a' : 'div', 'ep-hub-btn' + (primary ? ' ep-hub-primary' : '') + (href ? '' : ' ep-hub-none'));
       if (href) a.href = href;

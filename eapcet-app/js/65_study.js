@@ -122,17 +122,15 @@ var Study = (function () {
     var keys = [];
     for (var i = 0; ch && ch.shapes && i < ch.shapes.length; i++) keys.push(ch.shapes[i].key);
     var cs = Run.all().chapters[ck] || {};
-    var last = Run.lastFinished(ck);
-    var d = last ? Run.diagnosisOf(last) : null;
-    return Learn.masteryOf(keys, cs.strong_now || {}, d ? d.shapes : null, root(), LearnData.links(ck));
+    var led = Run.ledger(ck);
+    return Learn.masteryOf(keys, cs.strong_now || {}, led.shapes, root(), LearnData.links(ck));
   }
 
-  /** Shape keys the last run found "fix", for the chapter page's tags. */
+  /** Shape keys the ledger reads "fix", for the chapter page's tags. */
   function fixShapes(ck) {
-    var last = Run.lastFinished(ck);
-    var d = last ? Run.diagnosisOf(last) : null;
+    var led = Run.ledger(ck);
     var out = [];
-    for (var i = 0; d && i < d.shapes.length; i++) if (d.shapes[i].status === 'fix') out.push(d.shapes[i].key);
+    for (var i = 0; i < led.shapes.length; i++) if (led.shapes[i].status === 'fix') out.push(led.shapes[i].key);
     return out;
   }
 

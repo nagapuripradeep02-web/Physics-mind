@@ -8,8 +8,9 @@
  * decides the type); a wrong answer on an option nobody explained rests on the
  * claim alone (`confirmed: false`); a question with no audited routes names no
  * type at all; the weakness is the largest type count at two or more, ties
- * concept > application > calculation, then guessing at three, then solid at
- * eight right; the streak toward "strong now" survives only right-by-the-right-
+ * concept > application > calculation, and it is the HEADLINE only with three
+ * confirmed wrong answers of that type across the ledger (this run plus the
+ * history handed in), then guessing at three, then solid at eight right; the streak toward "strong now" survives only right-by-the-right-
  * route retries.
  *
  * Extract-and-evaluate, like syncMerge.test.ts: a reimplementation would pass
@@ -29,18 +30,18 @@ type Outcome = { qid?: string; outcome: string | null; type: string | null; conf
 type Verdict = {
     score: number; total: number; outcomes: Outcome[];
     params: Record<string, number>; weakness: string | null;
-    wrong: number; typed: number; confirmed: number; confirmed_share: number | null; mismatches: number;
+    wrong: number; typed: number; confirmed: number; confirmed_share: number | null; confirmed_types: Record<string, number>; evidence: number; mismatches: number;
     guessed_right: number; legacy: number; wrong_ids: string[]; check_ids: string[]; guessed_ids: string[];
     shapes: { key: string; label: string | null; qids: string[]; status: string }[];
     sec_per_q: number | null; exam_sec_per_q: number;
 };
 type DiagApi = {
-    diagnose(records: Rec[], facts?: Record<string, Fact>): Verdict;
+    diagnose(records: Rec[], facts?: Record<string, Fact>, history?: Record<string, number> | null): Verdict;
     outcomeOf(rec: Rec, fact?: Fact): Outcome;
     probeOf(route: string, correct: boolean): string;
     streakAfter(streak: Record<string, number> | null, key: string, retry: { correct: boolean; probe: string }): number;
     strongNow(n: number): boolean;
-    TYPES: string[]; PARAMS: string[]; STRONG_AT: number; MIN_TYPE: number; MIN_GUESSED: number; SOLID_AT: number;
+    TYPES: string[]; PARAMS: string[]; STRONG_AT: number; MIN_TYPE: number; HEADLINE_AT: number; LEDGER_WINDOW: number; MIN_GUESSED: number; SOLID_AT: number;
     RUSHED_MS: number; EXAM_SEC_PER_Q: number;
 };
 
@@ -183,17 +184,28 @@ describe('Diag.diagnose — tallies and the verdict', () => {
         expect(v.shapes).toEqual([]);
     });
 
-    it('a type names the weakness at two, and ties break concept > application > calculation', () => {
+    it('a type names the weakness at two, with three CONFIRMED of it; ties break concept > application > calculation', () => {
         expect(Diag.TYPES).toEqual(['concept', 'application', 'calculation']);
         expect(Diag.MIN_TYPE).toBe(2);
+        expect(Diag.HEADLINE_AT).toBe(3);
         expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 2, true, 'r')], FACTS).weakness).toBeNull();
-        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r')], FACTS).weakness).toBe('calculation');
-        // two calculation, two application → application
-        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0')], FACTS).weakness).toBe('application');
-        // two application, two concept → concept
-        expect(Diag.diagnose([rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0'), rec('c', 2, false, 'sure'), rec('c', 2, false, 'sure')], FACTS).weakness).toBe('concept');
-        // the unconfirmed count too — the option could not refute the claim
-        expect(Diag.diagnose([rec('a', 1, false, 'r'), rec('a', 1, false, 'r')], FACTS).weakness).toBe('calculation');
+        // two confirmed slips: the pattern is there, the headline is not earned yet
+        const two = Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r')], FACTS);
+        expect(two.weakness).toBeNull();
+        expect(two.confirmed_types).toEqual({ concept: 0, application: 0, calculation: 2 });
+        expect(two.evidence).toBe(2);
+        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 4, false, 'r')], FACTS).weakness).toBe('calculation');
+        // the ledger's history counts: two here and one confirmed earlier make three
+        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r')], FACTS, { calculation: 1 }).weakness).toBe('calculation');
+        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r')], FACTS, { application: 5 }).weakness).toBeNull();
+        // three calculation, three application → application
+        expect(Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0')], FACTS).weakness).toBe('application');
+        // three application, three concept → concept
+        expect(Diag.diagnose([rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0'), rec('a', 3, false, 'm0'), rec('c', 2, false, 'sure'), rec('c', 2, false, 'sure'), rec('c', 2, false, 'sure')], FACTS).weakness).toBe('concept');
+        // the unconfirmed count toward the pattern, never toward the headline
+        const claimed = Diag.diagnose([rec('a', 1, false, 'r'), rec('a', 1, false, 'r'), rec('a', 1, false, 'r')], FACTS);
+        expect(claimed.params.calculation).toBe(3);
+        expect(claimed.weakness).toBeNull();
     });
 
     it('with no type at two: guessing at three, else solid at eight right, else nothing', () => {
@@ -209,8 +221,8 @@ describe('Diag.diagnose — tallies and the verdict', () => {
         expect(solid.weakness).toBe('solid');
         const seven = Diag.diagnose(Array.from({ length: 7 }, () => rec('a', 2, true, 'r')).concat([rec('d', 1, false, 'sure')]), FACTS);
         expect(seven.weakness).toBeNull();
-        // a type at two beats three guesses; three guesses beat eight right
-        const mixed = Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 2, true, 'guess'), rec('a', 2, true, 'guess'), rec('a', 2, true, 'guess')], FACTS);
+        // a type at three confirmed beats three guesses; three guesses beat eight right
+        const mixed = Diag.diagnose([rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 4, false, 'r'), rec('a', 2, true, 'guess'), rec('a', 2, true, 'guess'), rec('a', 2, true, 'guess')], FACTS);
         expect(mixed.weakness).toBe('calculation');
         const guessedSolid = Diag.diagnose(Array.from({ length: 8 }, () => rec('a', 2, true, 'r')).concat([rec('a', 2, true, 'guess'), rec('a', 2, true, 'guess'), rec('a', 1, false, 'guess')]), FACTS);
         expect(guessedSolid.weakness).toBe('guessed');

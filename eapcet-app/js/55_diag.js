@@ -28,7 +28,9 @@ var Diag = (function () {
   var TYPES = ['concept', 'application', 'calculation'];
   var PARAMS = ['concept', 'application', 'calculation', 'guessed', 'rushed'];
   var STRONG_AT = 3;              // consecutive right-by-the-right-route siblings
-  var MIN_TYPE = 2;               // a type names the weakness at this many
+  var MIN_TYPE = 2;               // a type names the weakness at this many...
+  var HEADLINE_AT = 3;            // ...and only with this many CONFIRMED wrong answers of it, across the ledger
+  var LEDGER_WINDOW = 3;          // a shape's state is read from its last attempts
   var MIN_GUESSED = 3;
   var SOLID_AT = 8;
   var RUSHED_MS = 15000;          // a wrong answer faster than this was rushed
@@ -98,10 +100,14 @@ var Diag = (function () {
     return o;
   }
 
-  function diagnose(records, facts) {
+  /* history: confirmed wrong answers per type from every OTHER attempt in the
+   * chapter (Diag.ledger(...).types without this run), so the headline is
+   * earned across runs and retries, never from one run's two slips. */
+  function diagnose(records, facts, history) {
     facts = facts || {};
-    var params = {};
+    var params = {}, confirmed_types = {};
     for (var p = 0; p < PARAMS.length; p++) params[PARAMS[p]] = 0;
+    for (var c = 0; c < TYPES.length; c++) confirmed_types[TYPES[c]] = 0;
     var score = 0, wrong = 0, legacy = 0, typed = 0, confirmed = 0, mismatches = 0, guessed_right = 0, ms = [];
     var anchored = 0, typed_first = 0;
     var outcomes = [], wrong_ids = [], check_ids = [], guessed_ids = [];
@@ -129,7 +135,7 @@ var Diag = (function () {
       if (o.outcome === 'guessed_right' || o.outcome === 'right_by_wrong_route') check_ids.push(r.qid);
       if (o.outcome === 'guessed_right' || o.outcome === 'guessed_wrong' || o.outcome === 'wrong_distractor') params.guessed++;
       if (o.rushed) params.rushed++;
-      if (o.type) { params[o.type]++; typed++; if (o.confirmed) confirmed++; }
+      if (o.type) { params[o.type]++; typed++; if (o.confirmed) { confirmed++; confirmed_types[o.type]++; } }
       if (o.mismatch) mismatches++;
       if (o.anchored) anchored++;
       if (typeof r.typed === 'string' && r.typed) typed_first++;
@@ -138,7 +144,10 @@ var Diag = (function () {
     for (var t = 0; t < TYPES.length; t++) {
       if (params[TYPES[t]] > best) { best = params[TYPES[t]]; weakness = TYPES[t]; }
     }
-    if (best < MIN_TYPE) weakness = params.guessed >= MIN_GUESSED ? 'guessed' : (score >= SOLID_AT ? 'solid' : null);
+    // The largest type at two names the run's pattern; the HEADLINE needs the
+    // option's evidence, three confirmed of that type across the ledger.
+    var evidence = weakness ? confirmed_types[weakness] + ((history && history[weakness]) || 0) : 0;
+    if (best < MIN_TYPE || evidence < HEADLINE_AT) weakness = params.guessed >= MIN_GUESSED ? 'guessed' : (score >= SOLID_AT ? 'solid' : null);
     var med = median(ms);
     return {
       score: score,
@@ -150,6 +159,8 @@ var Diag = (function () {
       typed: typed,
       confirmed: confirmed,
       confirmed_share: typed ? Math.round(100 * confirmed / typed) / 100 : null,
+      confirmed_types: confirmed_types,
+      evidence: evidence,
       mismatches: mismatches,
       anchored: anchored,
       typed_first: typed_first,
@@ -181,8 +192,93 @@ var Diag = (function () {
 
   function strongNow(n) { return n >= STRONG_AT; }
 
+  /* The ledger: every attempt in the chapter — each routed record of every
+   * run and every sibling retry — folded per shape in time order. A shape's
+   * state is read from its last attempts, so one run never has the last word:
+   *   strong  strong_now says so (sticky, as the streak rule sets it)
+   *   solid   the last two attempts were right by the right route
+   *   fix     a wrong answer confirmed by its option in the last three
+   *   check   a wrong answer resting on the claim, a guess, or a right
+   *           answer by a wrong route in the last three
+   *   solid   nothing wrong seen (a single clean attempt)
+   *   none    never attempted
+   * types: confirmed wrong answers per type over the whole ledger (the
+   * headline's evidence); opts.without_run leaves that run out of the count. */
+  function ledger(cs, facts, opts) {
+    cs = cs || {}; facts = facts || {}; opts = opts || {};
+    var attempts = [];
+    function push(rec, at, kind, run_no) {
+      var f = facts[rec.qid] || {};
+      var o = outcomeOf(rec, f);
+      if (!o.outcome && !o.legacy) return;            // never routed: not an attempt
+      var wrong = !rec.correct;
+      // A wrong answer in a chapter with no audited routes has nothing to
+      // confirm it and nothing to excuse it: it is plainly wrong (fix).
+      var mark = wrong ? (o.confirmed ? 'wrong_confirmed' : o.outcome === 'wrong_unrouted' ? 'wrong_plain' : 'wrong_claimed')
+        : o.outcome ? (o.outcome === 'solid' ? 'solid' : 'check')
+        : (rec.probe === 'guessed' ? 'check' : 'solid');
+      var key = rec.shape_key || (f.shape && f.shape.key) || 'other';
+      attempts.push({ qid: rec.qid, at: at || '', order: attempts.length, kind: kind, run_no: run_no,
+                      correct: !!rec.correct, mark: mark, type: o.type, confirmed: !!o.confirmed,
+                      key: key, label: f.shape && f.shape.label ? f.shape.label : null });
+    }
+    var runs = cs.runs || [];
+    for (var i = 0; i < runs.length; i++) {
+      var recs = runs[i].records || [];
+      for (var j = 0; j < recs.length; j++) push(recs[j], runs[i].finished_at || runs[i].started_at, 'run', runs[i].run_no);
+    }
+    var rets = cs.retries || [];
+    for (var k = 0; k < rets.length; k++) push(rets[k], rets[k].at, 'retry', null);
+    attempts.sort(function (a, b) { return a.at < b.at ? -1 : a.at > b.at ? 1 : a.order - b.order; });
+
+    var types = {};
+    for (var t = 0; t < TYPES.length; t++) types[TYPES[t]] = 0;
+    var RANK = ['wrong_confirmed', 'wrong_plain', 'wrong_claimed', 'check', 'solid'];   // worst first
+    var by = {}, shapes = [];
+    for (var n = 0; n < attempts.length; n++) {
+      var a = attempts[n];
+      if (!a.correct && a.confirmed && a.type && !(opts.without_run != null && a.kind === 'run' && a.run_no === opts.without_run)) types[a.type]++;
+      var g = by[a.key];
+      if (!g) {
+        g = { key: a.key, label: a.label, attempts: 0, solid: 0, wrong_confirmed: 0, wrong_plain: 0, wrong_claimed: 0, last_at: null, status: 'none', marks: [] };
+        by[a.key] = g; shapes.push(g);
+      }
+      g.attempts++;
+      if (a.mark === 'solid') g.solid++;
+      if (a.mark === 'wrong_confirmed') g.wrong_confirmed++;
+      if (a.mark === 'wrong_plain') g.wrong_plain++;
+      if (a.mark === 'wrong_claimed') g.wrong_claimed++;
+      g.last_at = a.at || g.last_at;
+      if (!g.label && a.label) g.label = a.label;
+      // One episode per run (its worst mark for the shape) or per retry, so a
+      // run with three questions of one shape is one attempt at that shape.
+      var ep = a.kind === 'run' ? 'run:' + a.run_no : 'retry:' + a.order;
+      var lastEp = g.marks.length ? g.marks[g.marks.length - 1] : null;
+      if (lastEp && lastEp.ep === ep) { if (RANK.indexOf(a.mark) < RANK.indexOf(lastEp.mark)) lastEp.mark = a.mark; }
+      else g.marks.push({ ep: ep, mark: a.mark });
+    }
+    var strong = cs.strong_now || {};
+    for (var s = 0; s < shapes.length; s++) {
+      var sh = shapes[s];
+      var marks = [];
+      for (var m = 0; m < sh.marks.length; m++) marks.push(sh.marks[m].mark);
+      var last = marks.slice(-LEDGER_WINDOW);
+      var two = marks.slice(-2);
+      var st;
+      if (strong[sh.key]) st = 'strong';
+      else if (two.length === 2 && two[0] === 'solid' && two[1] === 'solid') st = 'solid';
+      else if (last.indexOf('wrong_confirmed') >= 0 || last.indexOf('wrong_plain') >= 0) st = 'fix';
+      else if (last.indexOf('wrong_claimed') >= 0 || last.indexOf('check') >= 0) st = 'check';
+      else st = sh.attempts ? 'solid' : 'none';
+      sh.status = st;
+      delete sh.marks;
+    }
+    return { shapes: shapes, by: by, types: types, attempts: attempts.length };
+  }
+
   return {
     diagnose: diagnose,
+    ledger: ledger,
     outcomeOf: outcomeOf,
     probeOf: probeOf,
     streakAfter: streakAfter,
@@ -191,6 +287,8 @@ var Diag = (function () {
     PARAMS: PARAMS,
     STRONG_AT: STRONG_AT,
     MIN_TYPE: MIN_TYPE,
+    HEADLINE_AT: HEADLINE_AT,
+    LEDGER_WINDOW: LEDGER_WINDOW,
     MIN_GUESSED: MIN_GUESSED,
     SOLID_AT: SOLID_AT,
     RUSHED_MS: RUSHED_MS,

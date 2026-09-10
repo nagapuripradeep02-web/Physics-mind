@@ -84,7 +84,7 @@ async function wire(page: Page, posts: Post[]): Promise<void> {
 
 const VERDICT_WORDS: Record<string, string> = {
     concept: 'not knowing the concept', application: 'could not see which one', calculation: 'Your calculation slips',
-    guessed: 'you guessed on three or more', solid: 'you are solid', none: 'No clear pattern yet',
+    guessed: 'you guessed on three or more', solid: 'you are solid', none: 'to fix: ',
 };
 
 interface Sat {

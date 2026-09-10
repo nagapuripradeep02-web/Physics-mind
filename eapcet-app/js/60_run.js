@@ -120,10 +120,21 @@ var Run = (function () {
     return cur.phase;
   }
 
+  /* The chapter's ledger (Diag.ledger) over every run and retry it holds;
+   * withoutRunNo keeps that run's own records out of the headline evidence. */
+  function ledgerOf(chapterKey, withoutRunNo) {
+    var cs = chapterState(chapterKey);
+    var ids = [], seen = {};
+    function add(id) { if (id && !seen[id]) { seen[id] = true; ids.push(id); } }
+    for (var i = 0; i < cs.runs.length; i++) for (var j = 0; j < (cs.runs[i].ids || []).length; j++) add(cs.runs[i].ids[j]);
+    for (var k = 0; k < cs.retries.length; k++) add(cs.retries[k].qid);
+    return Diag.ledger(cs, Data.facts(ids), { without_run: withoutRunNo });
+  }
+
   function finish() {
     var run = cur.run;
     run.finished_at = new Date().toISOString();
-    run.diagnosis = Diag.diagnose(run.records, Data.facts(run.ids));
+    run.diagnosis = Diag.diagnose(run.records, Data.facts(run.ids), ledgerOf(cur.chapterKey, run.run_no).types);
     cur.phase = 'done';
     save();
     var d = run.diagnosis;
@@ -141,9 +152,10 @@ var Run = (function () {
   /** A run's diagnosis in the engine's current shape: the stored one, or a
       fresh read of its records when it predates the engine (no params) or
       came back from the server reduced. */
-  function diagnosisOf(run) {
+  function diagnosisOf(run, chapterKey) {
     if (run.diagnosis && run.diagnosis.params) return run.diagnosis;
-    return Diag.diagnose(run.records || [], Data.facts(run.ids || []));
+    var history = chapterKey ? ledgerOf(chapterKey, run.run_no).types : null;
+    return Diag.diagnose(run.records || [], Data.facts(run.ids || []), history);
   }
 
   /** The last STRONG_AT retries for this shape were all of the same shape. */
@@ -186,7 +198,7 @@ var Run = (function () {
     }
     var run = lastFinished(chapterKey);
     if (!run) return { kind: 'untested' };
-    var d = diagnosisOf(run);
+    var d = diagnosisOf(run, chapterKey);
     if (d.weakness && d.weakness !== 'solid') return { kind: 'weak', type: d.weakness, score: d.score, total: d.total };
     return { kind: 'score', score: d.score, total: d.total };
   }
@@ -237,6 +249,7 @@ var Run = (function () {
   return { start: start, resume: resume, current: current, question: question, total: total, shown: shown,
            pick: pick, route: route, routesOf: routesOf, lastFinished: lastFinished, diagnosisOf: diagnosisOf,
            retry: retry, badge: badge, seenIds: seenIds, chapterState: chapterStateOf, all: all, adopt: adopt,
+           ledger: ledgerOf,
            sameShape: function (chapterKey, key) { return sameShapeStreak(chapterState(chapterKey), key); },
            save: save, KEY: KEY };
 })();

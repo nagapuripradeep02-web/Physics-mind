@@ -210,9 +210,13 @@ test.describe('EAPCET finder — offline build', () => {
         await expect(page.locator('.ep-bar[data-param="calculation"] .ep-bar-n')).toHaveText('3');
         await expect(page.locator('.ep-bar[data-param="guessed"] .ep-bar-n')).toHaveText('1');
         await expect(page.locator('.ep-bar[data-param="rushed"] .ep-bar-n')).toHaveText('1');
-        await expect(page.locator('.ep-bar[data-param="calculation"]')).toHaveClass(/ep-bar-weak/);
-        await expect(page.locator('#resultVerdict')).toContainText('Your calculation slips');
+        // two confirmed slips do not earn the type headline (three do): the shapes lead
+        expect(await page.locator('.ep-bar-weak').count()).toBe(0);
+        await expect(page.locator('#resultVerdict')).toContainText('to fix: ');
         await expect(page.locator('#resultConfirmed')).toHaveText('2 of your 3 wrong answers are confirmed by the option you picked, not only by what you said.');
+        // the shapes come before the bars
+        const order = await page.evaluate(() => Array.from(document.querySelectorAll('#resultBody .ep-shapes, #resultBody .ep-bars')).map((e) => e.className));
+        expect(order[order.length - 1]).toBe('ep-bars');
         await expect(page.locator(`.ep-shape-item[data-qid="${a}"] .ep-outcome`)).toHaveText('Q1 — Right route. The option you picked comes from a calculation slip.');
         await expect(page.locator(`.ep-shape-item[data-qid="${c}"] .ep-outcome`)).toHaveText('Q3 — You say the right route. The option you picked says nothing more. It counts as a slip for now. Answered in under 15 seconds.');
         await expect(page.locator(`.ep-shape-item[data-qid="${e}"]`)).toHaveAttribute('data-outcome', 'guessed_right');

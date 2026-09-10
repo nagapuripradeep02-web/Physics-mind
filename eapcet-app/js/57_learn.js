@@ -64,12 +64,12 @@ var Learn = (function () {
     return { done: done, total: (subs || []).length, next: nextFor(subs, learn) };
   }
 
-  /* One state per shape, the test hall first: strong (strong_now) → the last
-   * run's fix | check | solid → learned (every linked lesson green, the shape
-   * not in the last run) → none. */
-  function masteryOf(shapeKeys, strongNow, lastShapes, learn, links) {
+  /* One state per shape, the test hall first: strong (strong_now) → the
+   * ledger's fix | check | solid (Diag.ledger, every run and retry) → learned
+   * (every linked lesson green, the shape never attempted) → none. */
+  function masteryOf(shapeKeys, strongNow, ledgerShapes, learn, links) {
     var last = {};
-    for (var i = 0; i < (lastShapes || []).length; i++) last[lastShapes[i].key] = lastShapes[i].status;
+    for (var i = 0; i < (ledgerShapes || []).length; i++) if (ledgerShapes[i].status !== 'none') last[ledgerShapes[i].key] = ledgerShapes[i].status;
     var out = {};
     for (var k = 0; k < (shapeKeys || []).length; k++) {
       var key = shapeKeys[k];

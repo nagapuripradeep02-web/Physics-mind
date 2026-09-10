@@ -85,6 +85,12 @@ var STR = {
     solid: function (ch) { return 'In ' + ch + ', you are solid: eight or more right, by the right route. Move to the next chapter.'; }
   },
   no_pattern: 'No clear pattern yet. Run it again for a second look.',
+  /* no type has three confirmed wrong answers yet: the shapes are the headline */
+  shapes_headline: function (labels) {
+    var words = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+    var n = labels.length;
+    return (n === 1 ? 'One shape' : (words[n] || String(n)) + ' shapes') + ' to fix: ' + labels.join(', ') + '.';
+  },
   all_correct: 'All ten correct. Run it again with fresh questions to be sure.',
   q_label: function (n) { return 'Q' + n; },
   outcome: {
