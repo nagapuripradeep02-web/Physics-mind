@@ -1,5 +1,41 @@
 {
- "hand": {},
- "disputed": {},
+ "hand": {
+  "jm2024-01-feb-shift-2_che_q87|gem_direct": "2",
+  "jm2024-01-feb-shift-2_che_q87|ds_on_read": "2",
+  "jm2024-27-jan-shift-1_che_q86|gem_direct": 3,
+  "jm2024-31-jan-shift-2_che_q67|gem_direct": 3,
+  "jm2024-09-apr-shift-1_che_q64|gem_direct": 1,
+  "jm2024-31-jan-shift-1_phy_q46|gem_direct": 2,
+  "jm2024-08-apr-shift-1_phy_q53|gem_direct": "3",
+  "jm2024-08-apr-shift-1_phy_q53|ds_on_read": "3",
+  "tg_eapcet_2021_20210805_an_q128|gem_direct": 3,
+  "tg_eapcet_2023_20230512_fn_q159|gem_direct": 3,
+  "tg_eapcet_2023_20230514_fn_q160|gem_direct": 1,
+  "tg_eapcet_2023_20230514_fn_q160|ds_on_read": 1,
+  "tg_eapcet_2021_20210804_fn_q159|gem_direct": 1,
+  "tg_eapcet_2022_20220720_fn_q138|ds_on_read": 3,
+  "tg_eapcet_2023_20230513_fn_q136|ds_on_read": 4,
+  "tg_eapcet_2023_20230513_fn_q135|ds_on_read": 3,
+  "tg_eapcet_2023_20230514_fn_q145|ds_on_read": 1,
+  "tg_eapcet_2023_20230514_an_q119|gem_direct": 1,
+  "tg_eapcet_2023_20230514_an_q119|ds_on_read": 1,
+  "tg_eapcet_2022_20220720_fn_q119|gem_direct": 2,
+  "tg_eapcet_2021_20210806_an_q095|gem_direct": 3,
+  "tg_eapcet_2023_20230514_fn_q108|gem_direct": 4,
+  "tg_eapcet_2023_20230514_fn_q108|ds_on_read": 4,
+  "tg_eapcet_2021_20210805_fn_q096|gem_direct": 1,
+  "tg_eapcet_2023_20230512_fn_q105|gem_direct": 2,
+  "tg_eapcet_2024_20240509_an_q107|ds_on_read": 4,
+  "tg_eapcet_2023_20230514_an_q106|ds_on_read": 2,
+  "tg_eapcet_2023_20230512_fn_q106|ds_on_read": 4,
+  "tg_eapcet_2022_20220718_an_q107|gem_direct": 1,
+  "tg_eapcet_2021_20210805_an_q107|ds_on_read": 2
+ },
+ "disputed": {
+  "jm2024-01-feb-shift-1_che_q74|gem_direct": "Pauling dEN puts ClF3 (0.82) below SO2 (0.86); key says option 3",
+  "jm2024-01-feb-shift-1_che_q74|ds_on_read": "same",
+  "tg_eapcet_2022_20220718_fn_q089|gem_direct": "key says 410 m/s; the 20 kN triangle over 2 ms is 20 N s on 0.1 kg = +200 m/s -> 210",
+  "tg_eapcet_2022_20220718_fn_q089|ds_on_read": "same"
+ },
  "excluded": {}
 }

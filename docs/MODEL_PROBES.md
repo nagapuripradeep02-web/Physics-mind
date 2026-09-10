@@ -253,3 +253,46 @@ The free daily cap is per model and small, so a second strong reader was tried: 
 Both strong Flash models also solve the fake-naphthalene and symmetric-triene questions **directly from the photo**, which DeepSeek never does at any effort. The one item neither fixes is the Fehling count, where the model believes 4-nitrobenzaldehyde reacts — genuine chemistry, exactly as the typed-text retest (Run 5) predicted.
 
 **Free-tier reality:** each Gemini model grants only a handful of requests per project per day, so the strong-reader arm cannot be completed without billing. Flash-Lite alone had a large enough allowance to finish all 118 (Run 7).
+
+## 18. Run 9 — Gemini 3.7 Flash on ALL 148 figure + organic questions, paid tier (2026-09-10)
+
+Billing landed on the key's project (the founder re-issued the first new key; it now answers past every free cap). The same three arms ran end to end on **gemini-3.7-flash** ($0.75 in / $3.75 out per million, its own default thinking — no thinking level was set), and the JEE Main physics figures (Run 4 sample) were added as a fifth set so physics is covered on both corpora. 148 questions × 3 calls = 444 rows, zero errors, three workers, ~25 min. Data `data/chem_reader_37/` (`hand.json`: 30 hand grades, 4 disputed — the two known wrong keys, each seen by both arms). Baseline = DeepSeek V4.1 Flash from the photo at `high` on the SAME questions (Runs 2–4).
+
+| Set | Subject | DeepSeek photo `high` | **3.7 Flash alone** | 3.7 Flash reads → DeepSeek `high` |
+|---|---|---|---|---|
+| JEE Main 2024 text/organic (Run 2 sample) | chemistry /29 | 22 (+1 disputed) | **28 (+1 disputed)** | 27 (+1 disputed) |
+| JEE Main figures (Run 4 sample) | chemistry /29 | 25 | **29** | 27 |
+| EAPCET figures | chemistry /30 | 28 | **30** | 29 |
+| EAPCET figures | physics /30 | 26 (+1 disputed) | 27 (+1 disputed) | **28 (+1 disputed)** |
+| JEE Main figures (Run 4 sample) | physics /30 | **30** | **30** | 29 |
+| **Total /148** | | **131** | **144** | 140 |
+
+(DeepSeek at `low`/`max` on the same 148: 126 / 125. Flash-Lite alone on its 118: 100.)
+
+**3.7 Flash alone misses 2 of 148.** Both are EAPCET physics circuit readings: the three-battery loop (2022-07-18 an q107 — it reads i₁ = 0, the same misread DeepSeek makes at every level) and a clipper output waveform (2021-08-06 fn q119, option 3 for 4). Every organic-chemistry question in all three chemistry sets is right, including the five "traps" DeepSeek fails at every effort (fake naphthalene, symmetric triene, Friedel–Crafts count, bromobenzene sequence, cyclohexadiene-as-benzene) **and the Fehling count** (the one item Run 5 called a knowledge miss — 3.7 Flash gets it right from the photo; DeepSeek still counts 4-nitrobenzaldehyde when given the transcript).
+
+**The split is now the weaker arm.** With a strong reader the transcript is good, but DeepSeek adds its own failures on top: two runaway-thinking blanks (q86 aromatic count, q62 — 32,000 tokens, no answer), the Fehling belief, an uncertainty-propagation slip on the capacitor network, and two transcript ambiguities it could not recover (the He curve, a voltmeter placement). 140 vs 144, at 1.2–1.7× the cost and 2–6× the latency. **Transcribe-then-solve is dead as a design: solve directly on the strong model.**
+
+**Cost and speed, measured on this run:**
+
+| | thinking tokens | out tokens | avg latency | $/question |
+|---|---|---|---|---|
+| 3.7 Flash alone — chemistry | 650–790 | 1,100–1,220 | **5 s** | $0.0049–0.0054 |
+| 3.7 Flash alone — physics figures | 750–1,150 | 1,220–1,660 | 5–6 s | $0.0054–0.0071 |
+| 3.7 reads → DeepSeek `high` | 1,100–6,200 (DeepSeek) | 1,300–6,400 | 6–29 s | $0.0049–0.0093 |
+| DeepSeek `high` from photo (Runs 2–4) | 1,300–5,800 | 1,500–6,000 | 10–32 s | $0.0010–0.0037 |
+
+Whole run: 296 Gemini calls $1.55, 148 DeepSeek calls $0.30. Per question 3.7 Flash is **1.5–5× DeepSeek's price and 4–6× faster**; on figure questions specifically it is about 2× the price (DeepSeek's thinking balloons on figures, Gemini's does not).
+
+**Disputed keys, third opinion:** 3.7 Flash also answers 210 m/s on the impulse graph and puts ClF₃ below SO₂ — three independent models against the key on both. Treat those two keys as wrong.
+
+**Decision this supports (see §19):** route every question that carries a drawing, a structure, or a circuit to Gemini 3.7 Flash directly; keep DeepSeek `low`/`max` for text-only questions where it is 97–100% at a third of the price. Caveats: ±5 points per 30-question cell; typeset crops with a photo effect, not phone photos; one model version on one day; Gemini's 3.x Flash promotional price runs to 2026-12-31.
+
+## 19. Decisions after Run 9
+
+1. **Photo with a drawing/structure/circuit → Gemini 3.7 Flash, direct, default thinking.** 144/148 on the hardest sets, 5 s, ~$0.005–0.007. This replaces the "chemistry needs an alternative" open question from §8: the alternative is a stronger reader, and a strong *solver* on the photo beats any reader→solver split.
+2. **Text-only photo → DeepSeek V4.1 Flash** (`low` physics/chemistry, `max` maths) — unchanged; ~$0.001–0.002, 97–100%.
+3. **Drop the transcribe-then-solve pipeline.** Measured worse than direct at higher cost and latency with the best reader available.
+4. **Runaway thinking is DeepSeek-specific** (8 blanks across Runs 3–9; Gemini 0 of 296). Any DeepSeek call needs a lower thinking cap and a Gemini fallback.
+5. **Power-user cost with this routing** (600 photos/month, one fifth with figures): ≈ $1.2–1.5 ≈ ₹100–125; all-Gemini would be ≈ $3.3 ≈ ₹280. The 20/day cap and the bank-first path keep the ₹99–199 price viable.
+6. Still unmeasured: a question-type classifier that decides the route (or send everything with an image cluster to Gemini and let the crop detector decide); real phone photos; JEE Advanced; Gemini 3.8 Flash (503 "high demand" today) and whether 3.6 vs 3.7 differ at scale.

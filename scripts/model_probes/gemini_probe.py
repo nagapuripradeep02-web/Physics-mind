@@ -1,11 +1,11 @@
-"""Run 6: a stronger READER for drawings. Gemini 3.8 Flash on the chemistry crops (and the EAPCET physics
+"""Runs 6-9: a stronger READER/SOLVER for drawings. A Gemini Flash model on the chemistry crops (and the physics
 figures) three ways:
   gem_direct  - Gemini solves from the photo with the one-line student ask (its own default thinking)
   gem_read    - Gemini only TRANSCRIBES the photo: question text, every structure as SMILES + name exactly as
                 drawn, every option (no solving)
   ds_on_read  - DeepSeek V4.1 Flash at `high` solves the g38_read transcript with the student ask
 
-Same sets as Runs 2-4 (chemistry from jee_main / jee_figures / eapcet_figures, physics from eapcet_figures),
+Same sets as Runs 2-4 (chemistry from jee_main / jee_figures / eapcet_figures, physics from eapcet_figures + jee_figures),
 same asks, same grading (regex + hand.json). Resumable JSONL. Prices: Gemini 3.8 Flash $0.75 in / $3.75 out
 per million (thinking billed as output; through 2026-12-31), DeepSeek as in ds_probe.PRICE.
 
@@ -21,7 +21,7 @@ RUN = os.environ.get('READER_RUN', 'chem_reader')   # one directory per reader m
 OUT = os.path.join(P.REPO, 'docs', 'reports', 'model_probes', 'data', RUN)
 GEMINI = os.environ.get('GEMINI_MODEL', 'gemini-3.8-flash')   # 3.6 / 3.7 / 3.8 Flash share one price
 GPRICE = {'in': 0.75, 'out': 3.75}
-SETS = [('jee_main_2026_09_10', 'chemistry'), ('jee_figures', 'chemistry'), ('eapcet_figures', 'chemistry'), ('eapcet_figures', 'physics')]
+SETS = [('jee_main_2026_09_10', 'chemistry'), ('jee_figures', 'chemistry'), ('eapcet_figures', 'chemistry'), ('eapcet_figures', 'physics'), ('jee_figures', 'physics')]
 CONDS = ['gem_direct', 'gem_read', 'ds_on_read']
 STOP = threading.Event()
 # the items DeepSeek missed from the photo go first, so a small free-tier quota still answers the question
