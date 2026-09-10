@@ -151,3 +151,20 @@ Against Run 2 (JEE text-mostly crops): physics is unchanged with thinking on (30
 - **Chemistry stays 23–28 of 30 regardless of figures or effort**, and the misses are the same organic traps as Run 2 (non-aromatic isomers drawn to look aromatic, counting conventions, misread ring structures). The chemistry alternative-model question stands.
 - **Runaway thinking is a real failure mode on figures**: 4 of 240 EAPCET calls and 2 of 240 JEE calls hit the 32,000-token cap and returned nothing (Run 1: 0 of 360, Run 2: 1 of 360). A product must set a lower `max_tokens` and fall back (retry at `low`, or another model) instead of waiting two minutes for nothing.
 - **Per-600 cost for a power user is therefore a mix**: text questions $0.65 (max) / figures ~$1.8 (high) per 600 off-peak; double at peak. Still under ₹350 per power-user-month at the worst mix.
+
+## 13. Run 5 — Is it the picture or the chemistry? The missed items re-asked as TYPED TEXT (2026-09-10)
+
+Six JEE chemistry items DeepSeek V4.1 Flash missed from the photo were typed out (structures as names / SMILES) and asked again at `high`, two draws each (`scripts/model_probes/chem_text_vs_image.py`, data `data/chem_text_vs_image/`). Two of them were already pure text in the photo, so they are controls.
+
+| Item | From the photo | From typed text (2 draws) | Verdict |
+|---|---|---|---|
+| Aromatic set (08-apr-1 q73): the "naphthalene" drawn with four C=C | wrong at all 4 levels | **right, right** | picture: reads the drawn skeleton as naphthalene |
+| Most stable species (30-jan-1 q65): option 4 is cyclohexa-1,3-diene | wrong at all 4 levels | **right, right** | picture: reads a two-double-bond hexagon as benzene |
+| Bromobenzene → conc. HNO₃ → NaOH/HCl (31-jan-2 q63) | wrong at all 4 levels | **right, right** | picture: the option structures are not matched correctly |
+| Geometrical isomers of the symmetric triene (30-jan-2 q86) | 8 at all 4 levels (key 4) | 2 runaway draws, then **4, 4** (24–30k thinking tokens) | picture + heavy reasoning: from the drawing it never sees the symmetry |
+| Friedel–Crafts count (09-apr-2 q88, text-only question) | 5 at high/max, 4 at off/low | **4, 4** | unstable, not a reading problem |
+| Fehling count (29-jan-1 q89, text-only question) | 4 at low/max | **4, 4** (key 3) | chemistry: it believes 4-nitrobenzaldehyde gives Fehling's test |
+
+**Reading:** four of the six recurring misses disappear once the structure is given as text. The bottleneck on JEE organic chemistry is **reading drawn structures** (where the double bonds are, whether a ring is saturated, matching a derived product to the drawn options), not the organic chemistry itself. One miss is genuine chemistry knowledge (aromatic aldehydes and Fehling's), and one is run-to-run instability. This is the same class of failure as the physics figure misses (loop orientations, gate shapes): **the model solves what it reads, and it misreads drawings.**
+
+**What this points to:** a separate *reader* for drawings — a stronger vision model (Gemini 2.5 Flash/Pro, Claude) or a chemistry structure recogniser (OCSR → SMILES) that turns the photo into text plus SMILES — with DeepSeek V4.1 Flash as the *solver*. The next measurement is the split pipeline on the same 60 chemistry crops: (a) transcribe with a stronger vision model, (b) solve the transcription with DeepSeek at `high`, (c) compare with the stronger model solving directly. Needs either Google billing (Gemini) or the Anthropic key (Claude). Not run yet — founder's call.
