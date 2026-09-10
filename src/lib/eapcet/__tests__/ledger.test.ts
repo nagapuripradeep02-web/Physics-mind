@@ -97,6 +97,24 @@ describe('Diag.ledger: a shape state across runs and retries', () => {
         expect(l.attempts).toBe(1);
         expect(l.by.two_stage_fall.status).toBe('check');
     });
+    it('a confirmed photo whose final number is a labelled wrong option confirms a claim-only wrong answer of its run', () => {
+        const runs = [run(1, '2026-09-10T10:00:00Z', [rec('a', 1, false, 'r')])];        // option 1: explained by nobody
+        const photo = (read_option: number | null, confirmed: boolean, run_no: number | null = 1) =>
+            ({ qid: 'a', run_no, at: '2026-09-10T10:20:00Z', read_value: '4.56 m', read_option, diverges_at: 2, confidence: 0.9, confirmed, evidence: [] });
+        expect(Diag.ledger({ runs, retries: [] }, FACTS).by.two_stage_fall.status).toBe('check');
+        // the number on paper is the calculation option: confirmed, and the evidence counts for the headline
+        const l = Diag.ledger({ runs, retries: [], photos: [photo(4, true)] }, FACTS);
+        expect(l.by.two_stage_fall).toMatchObject({ wrong_confirmed: 1, wrong_claimed: 0, status: 'fix' });
+        expect(l.types).toEqual({ concept: 0, application: 0, calculation: 1 });
+        // an unconfirmed photo, a photo of another run, a distractor or the key change nothing
+        expect(Diag.ledger({ runs, retries: [], photos: [photo(4, false)] }, FACTS).by.two_stage_fall.status).toBe('check');
+        expect(Diag.ledger({ runs, retries: [], photos: [photo(4, true, 2)] }, FACTS).by.two_stage_fall.status).toBe('check');
+        expect(Diag.ledger({ runs, retries: [], photos: [photo(KEY_A, true)] }, FACTS).by.two_stage_fall.status).toBe('check');
+        expect(Diag.ledger({ runs, retries: [], photos: [photo(null, true)] }, FACTS).by.two_stage_fall.status).toBe('check');
+        // the option the student tapped, when it IS explained, is never overruled by the photo
+        const l2 = Diag.ledger({ runs: [run(1, '2026-09-10T10:00:00Z', [rec('a', 3, false, 'm0')])], retries: [], photos: [photo(4, true)] }, FACTS);
+        expect(l2.types).toEqual({ concept: 0, application: 1, calculation: 0 });
+    });
     it('the headline evidence counts confirmed wrong answers per type over every attempt, and can leave one run out', () => {
         const cs = {
             runs: [run(1, '2026-09-08T10:00:00Z', [rec('a', 4, false, 'r'), rec('a2', 3, false, 'r')]), run(2, '2026-09-09T10:00:00Z', [rec('a', 4, false, 'r'), rec('b', 1, false, 'r')])],

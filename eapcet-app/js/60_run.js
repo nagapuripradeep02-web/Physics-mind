@@ -189,6 +189,19 @@ var Run = (function () {
     return cs.streak[key];
   }
 
+  /* A photo of the working, read and CONFIRMED by the student on the fix
+   * page: {qid, run_no, at, read_value, read_option, diverges_at, confidence,
+   * confirmed, evidence}. Its own row because the run it belongs to is already
+   * finished (frozen on the server); synced and merged like a retry. */
+  function photo(chapterKey, entry) {
+    var cs = chapterState(chapterKey);
+    if (!cs.photos) cs.photos = [];
+    cs.photos.push(entry);
+    save();
+    Track.log('photo_confirm', { chapter: chapterKey, qid: entry.qid, read_option: entry.read_option, diverges_at: entry.diverges_at });
+    return entry;
+  }
+
   /* What the chapter list shows: the newest fact first. */
   function badge(chapterKey) {
     var cs = state.chapters[chapterKey];
@@ -235,6 +248,14 @@ var Run = (function () {
         if (seen[rets[m].qid + '|' + rets[m].at]) continue;
         cs.retries.push(rets[m]); changed = true;
       }
+      var seenPh = {};
+      if (!cs.photos) cs.photos = [];
+      for (var p = 0; p < cs.photos.length; p++) seenPh[cs.photos[p].qid + '|' + cs.photos[p].at] = true;
+      var phs = theirs.photos || [];
+      for (var n = 0; n < phs.length; n++) {
+        if (!phs[n] || seenPh[phs[n].qid + '|' + phs[n].at]) continue;
+        cs.photos.push(phs[n]); changed = true;
+      }
       if (theirs.streak && typeof theirs.streak === 'object') { cs.streak = theirs.streak; changed = true; }
       if (theirs.strong_now && typeof theirs.strong_now === 'object') {
         for (var t in theirs.strong_now) if (Object.prototype.hasOwnProperty.call(theirs.strong_now, t) && !cs.strong_now[t]) {
@@ -249,7 +270,7 @@ var Run = (function () {
   return { start: start, resume: resume, current: current, question: question, total: total, shown: shown,
            pick: pick, route: route, routesOf: routesOf, lastFinished: lastFinished, diagnosisOf: diagnosisOf,
            retry: retry, badge: badge, seenIds: seenIds, chapterState: chapterStateOf, all: all, adopt: adopt,
-           ledger: ledgerOf,
+           ledger: ledgerOf, photo: photo,
            sameShape: function (chapterKey, key) { return sameShapeStreak(chapterState(chapterKey), key); },
            save: save, KEY: KEY };
 })();

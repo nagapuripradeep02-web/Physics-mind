@@ -207,11 +207,25 @@ var Diag = (function () {
   function ledger(cs, facts, opts) {
     cs = cs || {}; facts = facts || {}; opts = opts || {};
     var attempts = [];
+    // The latest CONFIRMED photo per question whose final number is one of
+    // the options: the number the student actually reached on paper, ranked
+    // above the option they tapped.
+    var photoBy = {};
+    var phs = cs.photos || [];
+    for (var pi = 0; pi < phs.length; pi++) {
+      var ph = phs[pi];
+      if (!ph || !ph.confirmed || !ph.read_option) continue;
+      if (!photoBy[ph.qid] || String(ph.at || '') > String(photoBy[ph.qid].at || '')) photoBy[ph.qid] = ph;
+    }
     function push(rec, at, kind, run_no) {
       var f = facts[rec.qid] || {};
       var o = outcomeOf(rec, f);
       if (!o.outcome && !o.legacy) return;            // never routed: not an attempt
       var wrong = !rec.correct;
+      if (wrong && !o.confirmed && kind === 'run' && photoBy[rec.qid] && (run_no == null || photoBy[rec.qid].run_no == null || photoBy[rec.qid].run_no === run_no)) {
+        var plabel = (f.option_types || {})[String(photoBy[rec.qid].read_option)] || null;
+        if (plabel && plabel !== 'distractor') { o.confirmed = true; o.type = paramOf(plabel); o.evidence = 'photo'; }
+      }
       // A wrong answer in a chapter with no audited routes has nothing to
       // confirm it and nothing to excuse it: it is plainly wrong (fix).
       var mark = wrong ? (o.confirmed ? 'wrong_confirmed' : o.outcome === 'wrong_unrouted' ? 'wrong_plain' : 'wrong_claimed')

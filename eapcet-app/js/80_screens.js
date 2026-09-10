@@ -676,6 +676,12 @@ var Screens = (function () {
       box.appendChild(ul);
     }
 
+    // Show me your working: a photo of the page, read once, confirmed here.
+    if (typeof Photo !== 'undefined' && Photo.on() && rec && !rec.correct) {
+      var lastRun = Run.lastFinished(key);
+      Photo.mount(box, { chapterKey: key, q: q, rec: rec, steps: sol.steps, run_no: lastRun ? lastRun.run_no : null });
+    }
+
     if (cards.length) {
       box.appendChild(el('div', 'ep-h3', STR.fix_cards_title));
       var cl = el('div', 'ep-cards');

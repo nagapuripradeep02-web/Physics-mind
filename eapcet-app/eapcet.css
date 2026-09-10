@@ -368,3 +368,20 @@
   background: none; border: 0; color: var(--chrome-dim); text-decoration: underline; cursor: pointer;
 }
 .ep-typed-said { font-size: 14px; color: var(--chrome-dim); margin-bottom: 8px; }
+
+/* ── show me your working: the photo tick-list on the fix page ───────────── */
+.ep-photo-block { margin: 22px 0 8px; display: flex; flex-direction: column; gap: 8px; }
+.ep-photo-privacy { font-size: 12.5px; color: var(--chrome-dim); margin: 0; }
+.ep-photo-out { display: flex; flex-direction: column; gap: 8px; }
+.ep-photo-wait { font-style: italic; }
+.ep-ticks { display: flex; flex-direction: column; gap: 8px; }
+.ep-tick { border: 1px solid var(--chrome-line); border-radius: var(--r-opt); background: var(--chrome-card); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.ep-tick-head { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; line-height: 1.45; }
+.ep-tick-mark { flex: none; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; padding: 2px 8px; border-radius: var(--r-pill); border: 1px solid var(--chrome-line); }
+.ep-tick[data-state="found"] .ep-tick-mark { color: #1f6b3a; border-color: #1f6b3a; }
+.ep-tick[data-state="not_found"] .ep-tick-mark { color: var(--clay-deep); border-color: var(--clay-deep); }
+.ep-tick[data-state="unsure"] .ep-tick-mark { color: var(--chrome-dim); }
+.ep-tick-ev { font-size: 13px; color: var(--chrome-dim); }
+.ep-tick-btn { align-self: flex-start; font: inherit; font-size: 13px; min-height: 32px; padding: 4px 0; background: none; border: 0; color: var(--chrome-dim); text-decoration: underline; cursor: pointer; }
+.ep-photo-final, .ep-photo-diverges { font-size: 14.5px; margin: 4px 0; line-height: 1.5; }
+.ep-photo-diverges { font-weight: 600; }

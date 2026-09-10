@@ -206,11 +206,12 @@ const bases = (HOSTED || PREVIEW)
         EP_CHAT_BASE: envOrFail('EP_CHAT_BASE'),
         EP_STATE_BASE: envOrFail('EP_STATE_BASE'),
         EP_PAY_BASE: (process.env.EP_PAY_BASE || '').trim(),
+        EP_PHOTO_BASE: (process.env.EP_PHOTO_BASE || '').trim(),
         EP_AUTH_BASE: (process.env.EP_AUTH_BASE || '').trim(),
         EP_AUTH_ANON: (process.env.EP_AUTH_ANON || '').trim(),
         EP_STAFF_WORD: (process.env.EP_STAFF_WORD || '').trim(),
     }
-    : { EP_CHAT_BASE: '', EP_STATE_BASE: '', EP_PAY_BASE: '', EP_AUTH_BASE: '', EP_AUTH_ANON: '', EP_STAFF_WORD: '' };
+    : { EP_CHAT_BASE: '', EP_STATE_BASE: '', EP_PAY_BASE: '', EP_PHOTO_BASE: '', EP_AUTH_BASE: '', EP_AUTH_ANON: '', EP_STAFF_WORD: '' };
 
 const builtAt = new Date().toISOString();
 const openChapters = release.chapters.filter((c) => c.open);
