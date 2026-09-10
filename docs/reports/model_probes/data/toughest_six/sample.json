@@ -1,0 +1,169 @@
+[
+ {
+  "id": "tg_eapcet_2021_20210805_an_q107",
+  "subject": "physics",
+  "chapter": "Electric Potential and Capacitance",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 107,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "A circuit is shown in the following figure for which C₁ = (3 ± 0.011) μF, C₂ = (5 ± 0.01) μF and C₃ = (1 ± 0.01) μF. If C is the equivalent capacitance across AB, then C is given by:",
+  "options_en": [
+   "(0.9 ± 0.114) μF",
+   "(0.9 ± 0.01) μF",
+   "(0.9 ± 0.023) μF",
+   "(0.9 ± 0.09) μF"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q107.jpg",
+  "parts": 2,
+  "size": [
+   1327,
+   1888
+  ],
+  "bytes": 151100,
+  "labels": 4,
+  "icons_removed": 4,
+  "exam": "EAPCET",
+  "set": "eapcet_figures",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q107.jpg"
+ },
+ {
+  "id": "tg_eapcet_2021_20210805_an_q128",
+  "subject": "chemistry",
+  "chapter": "States of Matter",
+  "year": 2021,
+  "paper_id": "tg_eapcet_2021_20210805_an",
+  "q_no": 128,
+  "crops": "eapcet/crops/tg_eapcet_2021_20210805_an",
+  "question_en": "The figure represents PV vs P relation for CO, CH₄, H₂ and He gases under identical conditions. Which curve, shown in the figure, represents He gas?",
+  "options_en": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "answer": 3,
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q128.jpg",
+  "parts": 1,
+  "size": [
+   1345,
+   1725
+  ],
+  "bytes": 130928,
+  "labels": 4,
+  "icons_removed": 4,
+  "exam": "EAPCET",
+  "set": "eapcet_figures",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_figures\\photos\\tg_eapcet_2021_20210805_an_q128.jpg"
+ },
+ {
+  "id": "tg_eapcet_2023_20230513_fn_q051",
+  "subject": "maths",
+  "chapter": "Circle",
+  "year": 2023,
+  "question_en": "Let S ≡ x² + y² - 8x + 10y + 5 = 0 be a circle. Let P(1, 1) and Q(1, -1) be two points. Then the point of intersection of the polar of P with respect to S = 0 and the chord with Q as mid-point to S = 0 is",
+  "options_en": [
+   "(2, 2)",
+   "(11, 13/2)",
+   "(-4, -1)",
+   "(5, 7/2)"
+  ],
+  "answer": 2,
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe\\photos\\tg_eapcet_2023_20230513_fn_q051.jpg",
+  "bytes": 55287,
+  "exam": "EAPCET",
+  "set": "eapcet_text_2026_09_10",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\eapcet_text_2026_09_10\\photos\\tg_eapcet_2023_20230513_fn_q051.jpg"
+ },
+ {
+  "paper": "jee-mains-2024-01-feb-shift-1",
+  "page": 14,
+  "col": 0,
+  "qno": 34,
+  "subject": "physics",
+  "qtype": "mcq",
+  "answer": 3,
+  "clip": [
+   6.0,
+   60.123321533203125,
+   291.6600036621094,
+   220.98336791992188
+  ],
+  "figure": true,
+  "vec_clusters": 1,
+  "ras_clusters": 0,
+  "text_len": 211,
+  "bytes": 42209,
+  "id": "jm2024-01-feb-shift-1_phy_q34",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_phy_q34.jpg",
+  "size": [
+   878,
+   501
+  ],
+  "question_en": "",
+  "options_en": [],
+  "exam": "JEE Main 2024",
+  "set": "jee_figures",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-01-feb-shift-1_phy_q34.jpg"
+ },
+ {
+  "paper": "jee-mains-2024-04-apr-shift-2",
+  "page": 19,
+  "col": 0,
+  "qno": 62,
+  "subject": "chemistry",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   6.0,
+   395.933349609375,
+   291.6600036621094,
+   712.5833740234375
+  ],
+  "figure": true,
+  "vec_clusters": 5,
+  "ras_clusters": 1,
+  "text_len": 187,
+  "bytes": 53419,
+  "id": "jm2024-04-apr-shift-2_che_q62",
+  "photo": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q62.jpg",
+  "size": [
+   878,
+   973
+  ],
+  "question_en": "",
+  "options_en": [],
+  "exam": "JEE Main 2024",
+  "set": "jee_figures",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_figures\\photos\\jm2024-04-apr-shift-2_che_q62.jpg"
+ },
+ {
+  "paper": "jee-mains-2024-29-jan-shift-1",
+  "page": 3,
+  "col": 1,
+  "qno": 15,
+  "subject": "maths",
+  "qtype": "mcq",
+  "answer": 2,
+  "clip": [
+   303.6600036621094,
+   63.377349853515625,
+   589.3200073242188,
+   159.89736938476562
+  ],
+  "text_len": 71,
+  "bytes": 21901,
+  "id": "jm2024-29-jan-shift-1_mat_q15",
+  "photo": "C:\\Users\\PRADEEEP\\AppData\\Local\\Temp\\claude\\C--Tutor-physics-mind\\2fe340e8-9d4e-4829-949d-a4238a366d88\\scratchpad\\ds_probe_jee\\photos\\jm2024-29-jan-shift-1_mat_q15.jpg",
+  "size": [
+   876,
+   302
+  ],
+  "question_en": "",
+  "options_en": [],
+  "exam": "JEE Main 2024",
+  "set": "jee_main_2026_09_10",
+  "photo_path": "C:\\Tutor\\physics-mind\\pdfs\\probes\\jee_main_2026_09_10\\photos\\jm2024-29-jan-shift-1_mat_q15.jpg"
+ }
+]

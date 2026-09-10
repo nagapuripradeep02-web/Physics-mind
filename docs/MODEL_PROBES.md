@@ -296,3 +296,31 @@ Whole run: 296 Gemini calls $1.55, 148 DeepSeek calls $0.30. Per question 3.7 Fl
 4. **Runaway thinking is DeepSeek-specific** (8 blanks across Runs 3–9; Gemini 0 of 296). Any DeepSeek call needs a lower thinking cap and a Gemini fallback.
 5. **Power-user cost with this routing** (600 photos/month, one fifth with figures): ≈ $1.2–1.5 ≈ ₹100–125; all-Gemini would be ≈ $3.3 ≈ ₹280. The 20/day cap and the bank-first path keep the ₹99–199 price viable.
 6. Still unmeasured: a question-type classifier that decides the route (or send everything with an image cluster to Gemini and let the crop detector decide); real phone photos; JEE Advanced; Gemini 3.8 Flash (503 "high demand" today) and whether 3.6 vs 3.7 differ at scale.
+
+## 20. Run 10 — the six toughest questions, every worked solution in full (2026-09-10)
+
+Founder ask: solve the single toughest question per subject of EAPCET and JEE Main with DeepSeek V4.1 Flash at every level and with Gemini 3.7 Flash. "Toughest" is measured: per (exam, subject) the item the most model conditions missed across Runs 1–9 (disputed keys and defective crops out; tiebreak = most thinking tokens). The JEE maths top pick (`06-apr-shift-1 mat_q03`) turned out to be a **cut-off crop** (integral limits clipped) — that, not difficulty, is why it failed — so the next item was used. Same ask for all five calls (`Please solve this question`), fresh draws. Script `scripts/model_probes/toughest_six.py`; data `data/toughest_six/` (+ `hand.json`, 3 hand grades); every solution verbatim in **`docs/reports/model_probes/toughest_six_2026_09_10.md`**.
+
+| Exam | Subject | Question | key | DS off | DS low | DS high | DS max | Gemini 3.7 |
+|---|---|---|---|---|---|---|---|---|
+| EAPCET 2021 | physics | capacitor network, (0.9 ± ?) µF | 3 | ✗ 2 | ✗ 2 | ∅ | ∅ | ✗ 2 (hedges "or 3") |
+| EAPCET 2021 | chemistry | PV–P curves, which is He | 3 | ✗ 2 | ✗ 2 | ✗ 1 | ✗ 2 | ✗ 4 |
+| EAPCET 2023 | maths | polar of P ∩ chord bisected at Q | 2 | ✓ | ✓ | ∅ | ✓ | ✓ |
+| JEE Main 2024 | physics | 8-cell loop, ideal voltmeter | 3 (0 V) | ✗ 1 | ✗ 1 | ✓ | ✓ | ✓ |
+| JEE Main 2024 | chemistry | 3,5-dibromocyclopentene + 2 Me₂NH | 2 | ✗ 4 | ✗ 3 | ✓ (cut mid-reason) | ∅ | ✗ 3 |
+| JEE Main 2024 | maths | ‖2A‖³ = 2²¹, find α | 2 | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **right of 6** | | | | **2** | **2** | **3** | **3** | **3** |
+
+∅ = the 32,000-token thinking budget ran out with no answer (DeepSeek `high` twice, `max` twice; a fifth call answered then ran out).
+
+| | $ for the six | avg latency |
+|---|---|---|
+| DeepSeek off | $0.018 | 28 s |
+| DeepSeek low | $0.076 | 90 s |
+| DeepSeek high | $0.081 | 97 s |
+| DeepSeek max | $0.086 | 110 s |
+| Gemini 3.7 Flash | $0.080 | 11 s |
+
+**Reading.** On questions selected *because* models fail them, nobody is reliable: the best single condition is 3 of 6. Two questions defeat everything — the EAPCET capacitor network (every model computes the nominal 0.9 µF and then picks the quadrature error 0.01 instead of the exam's summed relative error 0.023; Gemini even names 0.023 as "the EAMCET convention" and still commits to 0.01) and the He-curve question (four different answers across five calls; the drawing's slope order is what nobody reads consistently). The voltmeter loop is a thinking-level effect on DeepSeek: off/low reason from a wrong picture ("no current in that branch"), high/max find the 25 A loop current and the 0 V terminal voltage. The organic question is run-to-run unstable on both models (Gemini had it right in Run 9, wrong here; DeepSeek right only at `high`). On these hard items DeepSeek's thinking balloons to the cap and the call takes 2–2.5 minutes — the runaway problem is worst exactly where the question is hardest, and Gemini answers the same items in 5–22 s at the same total cost. Maths, both exams, is solved by everything.
+
+**What this changes:** nothing in the routing decision (§19) — a six-item tail is not a benchmark — but it sharpens the product rule: the AI's answer on a figure question the bank does not hold must be shown as *working to check*, never as the verdict, and any DeepSeek call needs a hard thinking cap with a fallback.
