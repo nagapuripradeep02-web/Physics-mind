@@ -1,7 +1,7 @@
 """Run 6: a stronger READER for drawings. Gemini 3.8 Flash on the chemistry crops (and the EAPCET physics
 figures) three ways:
-  g38_direct  - Gemini solves from the photo with the one-line student ask (its own default thinking)
-  g38_read    - Gemini only TRANSCRIBES the photo: question text, every structure as SMILES + name exactly as
+  gem_direct  - Gemini solves from the photo with the one-line student ask (its own default thinking)
+  gem_read    - Gemini only TRANSCRIBES the photo: question text, every structure as SMILES + name exactly as
                 drawn, every option (no solving)
   ds_on_read  - DeepSeek V4.1 Flash at `high` solves the g38_read transcript with the student ask
 
@@ -19,10 +19,10 @@ import ds_probe as P
 
 RUN = 'chem_reader'
 OUT = os.path.join(P.REPO, 'docs', 'reports', 'model_probes', 'data', RUN)
-GEMINI = 'gemini-3.8-flash'
+GEMINI = os.environ.get('GEMINI_MODEL', 'gemini-3.8-flash')   # 3.6 / 3.7 / 3.8 Flash share one price
 GPRICE = {'in': 0.75, 'out': 3.75}
 SETS = [('jee_main_2026_09_10', 'chemistry'), ('jee_figures', 'chemistry'), ('eapcet_figures', 'chemistry'), ('eapcet_figures', 'physics')]
-CONDS = ['g38_direct', 'g38_read', 'ds_on_read']
+CONDS = ['gem_direct', 'gem_read', 'ds_on_read']
 STOP = threading.Event()
 # the items DeepSeek missed from the photo go first, so a small free-tier quota still answers the question
 PRIORITY = ['08-apr-shift-1_che_q73', '30-jan-shift-2_che_q86', '09-apr-shift-2_che_q88', '29-jan-shift-1_che_q89', '31-jan-shift-2_che_q63',
@@ -139,14 +139,14 @@ def cmd_run(workers):
         ask = P.ASKS[idx % len(P.ASKS)]
         image = {'inline_data': {'mime_type': 'image/jpeg', 'data': img}}
         rows = []
-        if (q['id'], 'g38_direct') not in done:
+        if (q['id'], 'gem_direct') not in done:
             r = gemini(gk, [{'text': ask}, image], 16000)
-            rows.append(dict(id=q['id'], set=q['set'], subject=q['subject'], cond='g38_direct', ask=ask, answer=q['answer'], **r))
-        if (q['id'], 'g38_read') in done:
-            transcript = done[(q['id'], 'g38_read')]['content']
+            rows.append(dict(id=q['id'], set=q['set'], subject=q['subject'], cond='gem_direct', ask=ask, answer=q['answer'], reader=GEMINI, **r))
+        if (q['id'], 'gem_read') in done:
+            transcript = done[(q['id'], 'gem_read')]['content']
         else:
             r = gemini(gk, [{'text': READ_PROMPT}, image], 8000)
-            rows.append(dict(id=q['id'], set=q['set'], subject=q['subject'], cond='g38_read', answer=q['answer'], **r))
+            rows.append(dict(id=q['id'], set=q['set'], subject=q['subject'], cond='gem_read', answer=q['answer'], reader=GEMINI, **r))
             transcript = r.get('content')
         if transcript and (q['id'], 'ds_on_read') not in done:
             r = deepseek(dk, ask + '\n\n' + transcript)
@@ -176,7 +176,7 @@ def cmd_report():
     listing = '--list' in ARGV
     print('%-22s %-9s %-11s %3s %5s %5s %4s | %6s %6s | %6s | %8s' % ('set', 'subject', 'cond', 'n', 'right', 'wrong', 'disp', 'think', 'out', 'avg s', '$/q'))
     for run, subj in SETS:
-        for c in ('g38_direct', 'ds_on_read'):
+        for c in ('gem_direct', 'ds_on_read'):
             rs = [r for r in rows if r['set'] == run and r['subject'] == subj and r['cond'] == c]
             if not rs:
                 continue
@@ -190,11 +190,11 @@ def cmd_report():
                 right += ok; wrong += (not ok)
                 if listing and not ok:
                     print('   NONRIGHT %-36s %-11s key=%-4s got=%-6s | %s' % (r['id'], c, q['answer'], got, (r.get('content') or '')[-170:].replace('\n', ' ')))
-            think = sum((r['usage'].get('thoughts') if c == 'g38_direct' else r['usage'].get('completion_tokens_details', {}).get('reasoning_tokens', 0)) or 0 for r in rs) / len(rs)
+            think = sum((r['usage'].get('thoughts') if c == 'gem_direct' else r['usage'].get('completion_tokens_details', {}).get('reasoning_tokens', 0)) or 0 for r in rs) / len(rs)
             outt = sum(r['usage']['completion_tokens'] for r in rs) / len(rs)
-            cost = sum(gcost(r['usage']) if c == 'g38_direct' else P.cost_usd(r['usage'], 'off') for r in rs) / len(rs)
+            cost = sum(gcost(r['usage']) if c == 'gem_direct' else P.cost_usd(r['usage'], 'off') for r in rs) / len(rs)
             if c == 'ds_on_read':   # add the reader's cost
-                reads = [r for r in rows if r['set'] == run and r['subject'] == subj and r['cond'] == 'g38_read']
+                reads = [r for r in rows if r['set'] == run and r['subject'] == subj and r['cond'] == 'gem_read']
                 cost += sum(gcost(r['usage']) for r in reads) / max(1, len(reads))
             print('%-22s %-9s %-11s %3d %5d %5d %4d | %6.0f %6.0f | %6.1f | %8.5f' % (run, subj, c, len(rs), right, wrong, disp, think, outt, sum(r['ms'] for r in rs) / len(rs) / 1000, cost))
 

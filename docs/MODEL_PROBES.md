@@ -178,3 +178,29 @@ The founder created a new Google API key. What the key taught us before any meas
 - **The new project is ALSO on the free tier**: every quota in the 429 carries the `FreeTier` suffix; `gemini-3.1-pro-preview` has zero free requests; the 3.8 Flash daily cap was exhausted after a handful of calls, and the model returned `503 high demand` on the first question. The run (`scripts/model_probes/gemini_probe.py`, resumable, known misses first) stopped itself with 0 usable rows.
 
 **To unblock:** in Google AI Studio link an active billing account to this new project (Google: "tier upgrades from Free to Tier 1 typically take effect instantly"), then `python scripts/model_probes/gemini_probe.py run 2` and `... report --list`. Budget for the full run (118 questions × direct solve + transcription, plus DeepSeek on the transcripts): about $2–3.
+
+## 15. Run 6 (first light) — Gemini 3.6 Flash as the READER, DeepSeek as the solver (2026-09-10)
+
+The founder supplied a second Google key (a new project with $300 of credit). Gemini 2.5 is gone for new projects, so the harness now takes `GEMINI_MODEL` and this run used **gemini-3.6-flash**. Three arms per question, same student ask, same grading: `gem_direct` (Gemini answers from the photo), `gem_read` (Gemini only transcribes: question text, every structure as SMILES plus a name of exactly what is drawn, every option, forbidden to solve), `ds_on_read` (DeepSeek V4.1 Flash at `high` solves that transcript, never sees the image). The question order puts **the items DeepSeek got wrong from the photo first**, so a small quota still answers the question.
+
+**The free tier stopped the run at 9 of 118 questions** (`GenerateRequestsPerDayPerProjectPerModel-FreeTier`; the second key's project is not on the paid tier yet either — a `gemini-3.1-pro-preview` tier check reported free-tier quotas every minute from 15:23 to 15:29). Nine questions is not a result, but all nine are questions DeepSeek previously failed from the photo, so the direction is informative:
+
+| Question (all previously WRONG for DeepSeek from the photo) | key | Gemini direct | Gemini reads → DeepSeek solves |
+|---|---|---|---|
+| aromatic set, fake naphthalene (08-apr-1 q73) | 1 | 3 ✗ | **1 ✓** |
+| geometrical isomers, symmetric triene (30-jan-2 q86) | 4 | 4 ✓ | **4 ✓** |
+| Friedel–Crafts count (09-apr-2 q88) | 4 | 4 ✓ | **4 ✓** |
+| bromobenzene → HNO₃ → NaOH/HCl (31-jan-2 q63) | 1 | 1 ✓ | **1 ✓** |
+| glucose/ribose match list (04-apr-2 q75) | 3 | 3 ✓ | **3 ✓** |
+| optical isomerism count (30-jan-2 q81) | 4 | 4 ✓ | **4 ✓** |
+| electricity for 1 mol H₂O → O₂ (01-feb-2 q87) | 2 | 1.93 ✓* | **1.93 ✓*** |
+| ionic character order (01-feb-1 q74) | 3 | 4 (disputed key) | 4 (disputed key) |
+| aromatic count (08-apr-2 q86) | 1 | 1 ✓ | quota stopped |
+
+\* both give 1.93 × 10⁵ C, which is right; the exam wants the nearest integer 2. Hand-graded right, as in Run 2.
+
+**Reading:** the split pipeline solved **8 of 8** items that DeepSeek had failed from the photo (one disputed key aside), and Gemini alone solved 7 of 9 — it repeated DeepSeek's mistake on the fake-naphthalene question, which the reader-then-solver split got right. This is the strongest evidence yet that **the JEE organic failures are drawing-reading failures, and a transcription step fixes them**. It is 9 questions, so it is a direction, not a number.
+
+**Cost, measured:** Gemini 3.6 Flash reads a question photo for ~1,100 image tokens in and 3,000–7,000 out (it thinks while transcribing) ≈ $0.02 per photo at $0.75/$3.75 per million — **7× a DeepSeek solve**, and the transcript then costs a full DeepSeek `high` solve on top (16,000–21,000 tokens on these hard items). A cheaper reader (3.5 Flash-Lite at $0.30/$2.50, or capping the reader's thinking) is the obvious next lever.
+
+**To finish:** link the key's project to the billing account (AI Studio names the project on the key's page; that exact project must be the one linked), then `GEMINI_MODEL=gemini-3.6-flash python scripts/model_probes/gemini_probe.py run 3` — it resumes from `results.jsonl` — and `... report --list`.
