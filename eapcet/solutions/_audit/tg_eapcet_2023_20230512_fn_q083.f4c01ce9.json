@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "f4c01ce933a55de3b021be4c4ad0ce66258a9fdb4b11db555afd4b8a6c7322b0",
+ "auditor_option": 3,
+ "auditor_value": "−2av³",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently (and re-checked symbolically): dt/dx = 2ax + b, v = 1/(2ax+b), dv/dx = -2a/(2ax+b)^2 = -2av^2, acceleration = v dv/dx = -2av^3. Cross-checked by the explicit route x = (-b + sqrt(b^2+4at))/(2a), which gives v = (b^2+4at)^(-1/2) and dv/dt = -2a(b^2+4at)^(-3/2) = -2av^3. Every step equation follows from the one above, and the step-3 why_this_step ((2ax+b) = 1/v, so its square is 1/v^2) is true of its own equation. common_mistakes[1] recomputes exactly: dt/dx = a + 2bx gives v = 1/(a+2bx), dv/dx = -2bv^2, times v = -2bv^3, sign dropped = 2bv^3 = option 2. common_mistakes[2] (dv/dx read as the acceleration, sign dropped) gives 2av^2 = option 4. For the option-1 distractor I hunted for any route producing the mixed ab product (implicit differentiation, the quadratic-solution route, d^2t/dx^2 = 2a) and found none; its supporting claims (-2av^2 without the v factor, +/-2bv^3 from swapped coefficients) are both true.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R2", "at": "2026-09-10T00:00:00+05:30"}
+}

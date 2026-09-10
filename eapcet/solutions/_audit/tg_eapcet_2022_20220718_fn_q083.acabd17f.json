@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "acabd17f6ee28825c4881f318062ef98d99289e1ffbaa6fe7f434319f0f30364",
+ "auditor_option": 1,
+ "auditor_value": "5 m/s² and 10 m",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "No method a student would use lands on this option; it is a filler value.",
+   "note": "Option 2 is 5 m/s² and 5 m, and the standard slip of writing s = ½at instead of s = ½at² gives ½ × 5 × 2 = 5 m alongside the correct acceleration, landing exactly on it. The next entry in this same list states that very route, so the solution contradicts itself.",
+   "fix": "Dropping the square on the time in s = ½at² and computing ½ × 5 × 2 = 5 m, while getting the acceleration right, which gives 5 m/s² and 5 m."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "a = 10/2 = 5 m/s² and s = ½ × 5 × 2² = 10 m, which is also v_avg × t = 5 × 2. The distractor claims for options 3 and 4 hold: a pairwise search over v, t, a, ½at², at², ½at and v²/2a found no route to 6 m or to 6 m/s². The supporting numbers inside the entry for option 3 (5 m from dropping the square, 20 m from forgetting the half) are both correct.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

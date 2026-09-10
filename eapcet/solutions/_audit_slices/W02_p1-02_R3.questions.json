@@ -1,0 +1,21 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 3,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "3 : 4",
+    "1 : 1",
+    "2 : 1",
+    "3 : 2"
+   ]
+  }
+ ]
+}

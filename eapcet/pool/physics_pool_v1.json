@@ -1694,12 +1694,19 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
-      "score": 0.142
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "free_fall_interval_distance"
      },
      {
-      "question_id": "ts_ipe_p1_msl_speed_vs_velocity",
-      "score": 0.141
+      "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
+      "score": null,
+      "shape": "free_fall_interval_distance"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
+      "score": null,
+      "shape": "free_fall_interval_distance"
      }
     ],
     "concept_tags": [],
@@ -1730,12 +1737,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
-      "score": 0.224
+      "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
+      "score": null,
+      "shape": "zero_velocity_nonzero_acceleration"
      },
      {
-      "question_id": "ts_ipe_p1_msl_rest_and_motion_relative",
-      "score": 0.223
+      "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+      "score": null,
+      "shape": "zero_velocity_nonzero_acceleration"
      }
     ],
     "concept_tags": [],
@@ -1766,12 +1775,19 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
-      "score": 0.163
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "free_fall_interval_distance"
      },
      {
-      "question_id": "ts_ipe_p1_msl_speed_vs_velocity",
-      "score": 0.138
+      "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
+      "score": null,
+      "shape": "free_fall_interval_distance"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
+      "score": null,
+      "shape": "free_fall_interval_distance"
      }
     ],
     "concept_tags": [],
@@ -1802,12 +1818,19 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
-      "score": 0.213
+      "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
      },
      {
-      "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
-      "score": 0.212
+      "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
      }
     ],
     "concept_tags": [],
@@ -1840,12 +1863,19 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
-      "score": 0.188
+      "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+      "score": null,
+      "shape": "basic_equations_of_motion"
      },
      {
-      "question_id": "ts_ipe_p1_msl_roof_jump_range",
-      "score": 0.145
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "basic_equations_of_motion"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+      "score": null,
+      "shape": "basic_equations_of_motion"
      }
     ],
     "concept_tags": [],
@@ -1876,12 +1906,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_average_velocity_uniform_acceleration",
-      "score": 0.145
+      "question_id": "ts_ipe_p1_msl_distance_vs_displacement",
+      "score": null,
+      "shape": "position_from_velocity_equation"
      },
      {
-      "question_id": "ts_ipe_p1_mp_average_instantaneous_velocity",
-      "score": 0.141
+      "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+      "score": null,
+      "shape": "position_from_velocity_equation"
      }
     ],
     "concept_tags": [],
@@ -1913,11 +1945,18 @@
     "answer_book_cards": [
      {
       "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
-      "score": 0.172
+      "score": null,
+      "shape": "basic_equations_of_motion"
      },
      {
-      "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
-      "score": 0.168
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "basic_equations_of_motion"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+      "score": null,
+      "shape": "basic_equations_of_motion"
      }
     ],
     "concept_tags": [],
@@ -1948,12 +1987,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_uniform_vs_nonuniform_motion",
-      "score": 0.178
+      "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+      "score": null,
+      "shape": "velocity_from_position_equation"
      },
      {
-      "question_id": "ts_ipe_p1_msl_roof_jump_range",
-      "score": 0.169
+      "question_id": "ts_ipe_p1_msl_average_velocity_uniform_acceleration",
+      "score": null,
+      "shape": "velocity_from_position_equation"
      }
     ],
     "concept_tags": [],
@@ -1984,12 +2025,19 @@
    "grounding": {
     "answer_book_cards": [
      {
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "free_fall_interval_distance"
+     },
+     {
       "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
-      "score": 0.215
+      "score": null,
+      "shape": "free_fall_interval_distance"
      },
      {
       "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
-      "score": 0.196
+      "score": null,
+      "shape": "free_fall_interval_distance"
      }
     ],
     "concept_tags": [],
@@ -2023,11 +2071,13 @@
     "answer_book_cards": [
      {
       "question_id": "ts_ipe_p1_msl_parachutist_motion",
-      "score": 0.244
+      "score": null,
+      "shape": "multi_phase_vertical_motion"
      },
      {
-      "question_id": "ts_ipe_p1_msl_roof_jump_range",
-      "score": 0.223
+      "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+      "score": null,
+      "shape": "multi_phase_vertical_motion"
      }
     ],
     "concept_tags": [],
@@ -2058,12 +2108,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_average_speed_equals_velocity_when",
-      "score": 0.206
+      "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+      "score": null,
+      "shape": "velocity_from_position_equation"
      },
      {
-      "question_id": "ts_ipe_p1_msl_uniform_vs_nonuniform_motion",
-      "score": 0.192
+      "question_id": "ts_ipe_p1_msl_average_velocity_uniform_acceleration",
+      "score": null,
+      "shape": "velocity_from_position_equation"
      }
     ],
     "concept_tags": [],
@@ -2095,11 +2147,13 @@
     "answer_book_cards": [
      {
       "question_id": "ts_ipe_p1_msl_stopping_distance",
-      "score": 0.176
+      "score": null,
+      "shape": "deceleration_two_segment_ratio"
      },
      {
-      "question_id": "ts_ipe_p1_msl_average_speed_equals_velocity_when",
-      "score": 0.166
+      "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+      "score": null,
+      "shape": "deceleration_two_segment_ratio"
      }
     ],
     "concept_tags": [],
@@ -2130,12 +2184,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_half_distance_average_velocity",
-      "score": 0.175
+      "question_id": "ts_ipe_p1_msl_distance_vs_displacement",
+      "score": null,
+      "shape": "position_from_velocity_equation"
      },
      {
-      "question_id": "ts_ipe_p1_msl_average_speed_equals_velocity_when",
-      "score": 0.171
+      "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+      "score": null,
+      "shape": "position_from_velocity_equation"
      }
     ],
     "concept_tags": [],
@@ -2167,11 +2223,18 @@
     "answer_book_cards": [
      {
       "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
-      "score": 0.237
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
      },
      {
-      "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
-      "score": 0.23
+      "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
+     },
+     {
+      "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+      "score": null,
+      "shape": "vertical_projectile_up_and_down"
      }
     ],
     "concept_tags": [],
@@ -2202,12 +2265,14 @@
    "grounding": {
     "answer_book_cards": [
      {
-      "question_id": "ts_ipe_p1_msl_distance_vs_displacement",
-      "score": 0.192
+      "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+      "score": null,
+      "shape": "nth_second_distance"
      },
      {
-      "question_id": "ts_ipe_p1_msl_half_distance_average_velocity",
-      "score": 0.186
+      "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+      "score": null,
+      "shape": "nth_second_distance"
      }
     ],
     "concept_tags": [],

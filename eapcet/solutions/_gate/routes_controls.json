@@ -16,5 +16,23 @@
   "real_sha": "573914808b2b25586f2c90078c5b1fce7f4b25f2420bd52b84a389a12398665b",
   "expected": "wrong",
   "planted_at": "2026-09-09T03:10:04+02:00"
+ },
+ "4b71ed6a8474b31700be641968073aa4f67a70a709d5d40a2429a428112bb2af": {
+  "question_id": "tg_eapcet_2025_20250503_fn_q110",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "right_route replaced by the wrong route of mistakes[1]",
+  "real_sha": "abdc2c4f3ddbd5164546c79e7e502ca1bd91fc37bcdde1b0841d9547b2e342b1",
+  "expected": "wrong",
+  "planted_at": "2026-09-10T03:05:29+02:00"
+ },
+ "d73b31aa560a46f2ac52f85b4e1534ab381b416138061e784a615b879ee4ffdf": {
+  "question_id": "tg_eapcet_2021_20210804_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "right_route replaced by the wrong route of mistakes[0]",
+  "real_sha": "97eb203b3fcc7a66089826afd966b6a8d33ad6ecfe2ad4928252867c36182be0",
+  "expected": "wrong",
+  "planted_at": "2026-09-10T03:19:01+02:00"
  }
 }

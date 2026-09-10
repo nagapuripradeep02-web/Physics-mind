@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "948fb1ffdc0ec6475c8eb434b9458347697fad7b2895b5943d0d984ff4c830a3",
+ "auditor_option": 3,
+ "auditor_value": "4/5",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "With v = 2u/3 after distance x, 2ax = (5/9)u² and 2ax′ = (4/9)u², so x′/x = 4/5, and a = 5u²/(18x) as printed. All three mistake entries name fractions read straight off the stem or off the squared-velocity ratio (2/3, 1/3, 4/9) and each matches the option it is tagged to; none of them condemns the correct method.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

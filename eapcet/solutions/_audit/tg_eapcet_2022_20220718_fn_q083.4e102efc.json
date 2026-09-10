@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "4e102efc479e08ca2d236ffdc666448a4a142a3226a82c7f72ebeff04c543089",
+ "auditor_option": 1,
+ "auditor_value": "5 m/s² and 10 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: a = (10-0)/2 = 5 m/s^2; s = 1/2 (5)(2)^2 = 10 m, cross-checked with s = (u+v)t/2 = 10 m. Both step equations are correct. common_mistakes[0] (square dropped, 1/2 x 5 x 2 = 5 m) lands exactly on option 2. For both distractor entries I searched for routes: 6 m from 5 m/s^2 and 2 s (a t = 10, a t^2 = 20, 1/2 a t = 5, average-velocity 10) reaches nothing, and 6 m/s^2 from 10 m/s in 2 s reaches nothing; each supporting claim inside the two distractor texts (5 m, 20 m, 5 m/s^2, 10 m/s^2 from doubling v or halving t) recomputes exactly. Three entries for three wrong options, as the strict chapter requires.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R2", "at": "2026-09-10T00:00:00+05:30"}
+}

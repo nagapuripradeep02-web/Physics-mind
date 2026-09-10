@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "5b7eac5bcc276cb044e34c44a3273f6da980cb535cf3f701cb3637893b736f80",
+ "auditor_option": 2,
+ "auditor_value": "36",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Using (n+1)² = 36 in the denominator of the last-second fraction (2n−1)/n² instead of n² = 25, as if the fall lasted one second longer, gives 25% instead of the correct 36%.",
+   "note": "The arithmetic lands on the named option (9/36 = 25%), but the justification clause does not match the substitution it describes: if the fall really lasted one second longer, n = 6 and the numerator would become 2n − 1 = 11, giving 11/36 = 30.6%, not 25%. The route as described changes only the denominator, which is a contrived slip rather than the natural one for this option (a student who computes t = 5 s and reports t² = 25 as the percentage, the same confusion the entry for option 1 already describes).",
+   "fix": "Computing the total fall time t = 5 s and then reporting t² = 25 as the percentage, instead of dividing the last-second distance 45 m by the height 125 m."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently: 125 = ½(10)t² gives t = 5 s; distance in the fifth second = (g/2)(2×5 − 1) = 45 m; x = 45/125 × 100 = 36, option 2. All three steps and the final answer are correct. common_mistakes[0] recomputed: 5² − 4² = 9, matching option 1 exactly. The distractor label on option 4 was tested: (2n − 1)/n² = 0.49 has no integer solution, 49% of 125 m is 61.25 m which no single slip reaches, and both supporting figures quoted in that entry are true (first four seconds 80 m = 64%, final speed 50 as a fraction of 125 = 40%).",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:33:00+05:30"}
+}

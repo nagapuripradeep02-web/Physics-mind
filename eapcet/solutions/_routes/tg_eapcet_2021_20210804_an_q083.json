@@ -1,9 +1,28 @@
 {
- "schema": "eapcet_routes_v1",
- "question_id": "tg_eapcet_2021_20210804_an_q083",
- "right_route": "I subtracted the first four seconds from the total by twelve",
- "mistakes": [
-  {"index": 0, "type": "application", "route": "I treated the next 8 seconds as a fresh fall from rest"}
- ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+  "schema": "eapcet_routes_v1",
+  "question_id": "tg_eapcet_2021_20210804_an_q083",
+  "right_route": "I wrote the fall distance as ½gt²",
+  "mistakes": [
+    {
+      "index": 0,
+      "type": "concept",
+      "route": "I took the ratio of the two times directly"
+    },
+    {
+      "index": 1,
+      "type": "calculation",
+      "route": null
+    },
+    {
+      "index": 2,
+      "type": "distractor",
+      "route": null
+    }
+  ],
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 2,
+    "agent": "W02-R-p1-02-a",
+    "at": "2026-09-10T06:33:00+05:30"
+  }
 }

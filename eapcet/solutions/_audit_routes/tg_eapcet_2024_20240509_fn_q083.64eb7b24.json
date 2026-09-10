@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "64eb7b2494f222345fe66597e75f19ffefe7dfe0b87e3528dbfb880a0d6dd2d8",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "right_route",
+   "quote": "I found the last second's distance as a percent",
+   "note": "That is the question restated, and it is the solution's last step, not step 1 (find the total fall time from h = half g t squared). It also names nothing that separates: mistakes[1]'s student did exactly this too - found the last second's distance as a percentage - and only used the wrong denominator, so a truthful wrong-answer student could tap the right route.",
+   "fix": "I found the total fall time from the height"
+  }
+ ],
+ "verdict": "wrong",
+ "solution_defect": "The option-3 entry glosses its own algebra loosely: using (n+1) squared only in the denominator gives 25%, but the gloss 'as if the fall lasted one second longer' would, applied throughout, give about 31%, not 25%. The routes author followed the entry's own wording, so this is the entry's defect, not theirs.",
+ "notes": "Checked: t = 5 s, S5 = 45 m, 45/125 = 36%. The option-1 entry's 25 - 16 = 9 reproduces and calculation is a fair type (the difference-of-distances route was right, half g was dropped). The option-3 entry's 9/36 = 25% reproduces and application fits (right fraction, wrong denominator). The option-4 distractor flag is honest: 80/125 = 64% and 50/125 = 40%, and nothing I tried lands on 49%.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

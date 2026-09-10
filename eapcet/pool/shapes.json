@@ -5,47 +5,86 @@
    {
     "key": "free_fall_interval_distance",
     "label": "Distance in a free-fall interval",
-    "definition": "A body falls from rest; the distance or ratio of distances covered in named seconds or intervals."
+    "definition": "A body falls from rest; the distance or ratio of distances covered in named seconds or intervals.",
+    "cards": [
+     "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+     "ts_ipe_p1_msl_free_fall_acceleration_value",
+     "ts_ipe_p1_msl_free_fall_independent_of_mass"
+    ]
    },
    {
     "key": "position_from_velocity_equation",
     "label": "Position from a velocity equation",
-    "definition": "v(t) is given as a polynomial; integrate for position or distance over an interval."
+    "definition": "v(t) is given as a polynomial; integrate for position or distance over an interval.",
+    "cards": [
+     "ts_ipe_p1_msl_distance_vs_displacement",
+     "ts_ipe_p1_msl_instantaneous_speed_equals_velocity"
+    ]
    },
    {
     "key": "velocity_from_position_equation",
     "label": "Velocity or acceleration from position equation",
-    "definition": "The position x is given as an equation in time t, or time as an equation in x; differentiate to find the velocity or acceleration, or evaluate the average velocity between two times."
+    "definition": "The position x is given as an equation in time t, or time as an equation in x; differentiate to find the velocity or acceleration, or evaluate the average velocity between two times.",
+    "cards": [
+     "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+     "ts_ipe_p1_msl_average_velocity_uniform_acceleration"
+    ]
    },
    {
     "key": "nth_second_distance",
     "label": "Distance in the nth second",
-    "definition": "A body moves with constant acceleration; use the distance covered in a named second of its motion, or a ratio of such distances, to find another quantity of the motion."
+    "definition": "A body moves with constant acceleration; use the distance covered in a named second of its motion, or a ratio of such distances, to find another quantity of the motion.",
+    "cards": [
+     "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+     "ts_ipe_p1_msl_derive_v_equals_u_plus_at"
+    ]
    },
    {
     "key": "multi_phase_vertical_motion",
     "label": "Fall in two stages",
-    "definition": "A body's vertical motion changes from one phase to another, such as acceleration into free flight or free fall into constant velocity; find the velocity or height linking the phases, then the time or another asked quantity."
+    "definition": "A body's vertical motion changes from one phase to another, such as acceleration into free flight or free fall into constant velocity; find the velocity or height linking the phases, then the time or another asked quantity.",
+    "cards": [
+     "ts_ipe_p1_msl_parachutist_motion",
+     "ts_ipe_p1_msl_derive_v2_u2_2as"
+    ]
    },
    {
     "key": "vertical_projectile_up_and_down",
     "label": "A body thrown straight up",
-    "definition": "A body is thrown vertically upward; find a height, time, speed, or distance at or between named times, taking into account whether it has already reached its highest point and started to fall back."
+    "definition": "A body is thrown vertically upward; find a height, time, speed, or distance at or between named times, taking into account whether it has already reached its highest point and started to fall back.",
+    "cards": [
+     "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
+     "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+     "ts_ipe_p1_msl_derive_v_equals_u_plus_at"
+    ]
    },
    {
     "key": "zero_velocity_nonzero_acceleration",
     "label": "Zero velocity without zero acceleration",
-    "definition": "A direct or assertion-reason question testing that a body having zero velocity at an instant does not mean it also has zero acceleration at that instant, as at the top of a vertical throw or the moment it reverses direction."
+    "definition": "A direct or assertion-reason question testing that a body having zero velocity at an instant does not mean it also has zero acceleration at that instant, as at the top of a vertical throw or the moment it reverses direction.",
+    "cards": [
+     "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
+     "ts_ipe_p1_msl_velocity_direction_other_than_acceleration"
+    ]
    },
    {
     "key": "basic_equations_of_motion",
     "label": "Basic equations of straight-line motion",
-    "definition": "A body moves with constant acceleration along a straight line; given some of the initial velocity, final velocity, time, and distance, find the remaining quantity directly from the equations of motion."
+    "definition": "A body moves with constant acceleration along a straight line; given some of the initial velocity, final velocity, time, and distance, find the remaining quantity directly from the equations of motion.",
+    "cards": [
+     "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+     "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+     "ts_ipe_p1_msl_derive_v2_u2_2as"
+    ]
    },
    {
     "key": "deceleration_two_segment_ratio",
     "label": "Stopping distance in two parts",
-    "definition": "A body decelerates uniformly and loses a stated fraction of its velocity while covering one distance, then covers a further distance before stopping; find the ratio of the two distances."
+    "definition": "A body decelerates uniformly and loses a stated fraction of its velocity while covering one distance, then covers a further distance before stopping; find the ratio of the two distances.",
+    "cards": [
+     "ts_ipe_p1_msl_stopping_distance",
+     "ts_ipe_p1_msl_derive_v2_u2_2as"
+    ]
    }
   ],
   "assignments": {

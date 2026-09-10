@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "item_sha": "d1ed2792043090e5ca9845c81ca44b62048ca291c92c47b35de9cf56e7837b9f",
+ "auditor_option": 2,
+ "auditor_value": "1 : 1",
+ "findings": [
+  {"grade": "weak",
+   "field": "common_mistakes[2].text",
+   "quote": "No single slip reaches 3:2 either: the only routes any method gives are the time ratio 3:4 and the correct equal-speed ratio 1:1, both different from 3:2.",
+   "note": "The conclusion is right, but the supporting claim that those are the only routes any method gives is not true: using g = 9.8 ms⁻² gives 5.6:4.2 = 4:3, and comparing average speeds over the two intervals gives 20:15 = 4:3. Neither is a printed option, so the distractor label on option 4 still stands.",
+   "fix": "No single slip reaches 3:2 either: the time-ratio route gives 3:4, the correct symmetric-speed route gives 1:1, and comparing average speeds gives 4:3; nothing lands on 3:2."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently: v(t) = 35 − 10t, v(3) = +5 ms⁻¹, v(4) = −5 ms⁻¹, speeds 5:5 = 1:1, option 2 (the body reaches the top at t = 3.5 s, so both instants are 0.5 s from the top, and it lands at t = 7 s so both instants are in flight). All three steps and the final answer are correct. common_mistakes[0] is a real slip landing on option 1 exactly. Both distractor labels were tested with python: routes examined were g = 9.8 (4:3), average speeds (4:3), heights at the two instants (60 m and 60 m, so 1:1) and path lengths (60:62.5); none reaches 2:1 or 3:2.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:40:00+05:30"}
+}

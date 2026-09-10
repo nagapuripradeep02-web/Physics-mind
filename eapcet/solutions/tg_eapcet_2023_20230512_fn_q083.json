@@ -1,27 +1,57 @@
 {
- "schema": "eapcet_solution_v1",
- "question_id": "tg_eapcet_2023_20230512_fn_q083",
- "approach": "Differentiate the relation between time and distance to get the velocity in terms of distance, then use acceleration equals velocity times its own derivative with distance.",
- "steps": [
-  {"text": "Differentiate the given relation between time and distance to find how t changes with x.",
-   "equation": "dt/dx = 2ax + b"},
-  {"text": "Invert this derivative to write the velocity, since velocity is the rate of change of distance with time.",
-   "equation": "v = dx/dt = 1/(2ax + b)"},
-  {"text": "Differentiate the velocity with respect to distance.",
-   "equation": "dv/dx = −2a/(2ax + b)² = −2av²",
-   "why_this_step": "The denominator (2ax + b) equals 1/v, so squaring it is the same as dividing by v²."},
-  {"text": "Acceleration is the rate of change of velocity with time, so multiply dv/dx by dx/dt, which is v, to convert it.",
-   "equation": "a = v × dv/dx = v × (−2av²) = −2av³"}
- ],
- "final_answer": {"option": 3, "value": "−2av³"},
- "confidence": "sure",
- "common_mistakes": [
-  {"option": 1, "text": "No slip multiplies a and b together here: forgetting the v-factor gives −2av² or 2av² depending on sign, and swapping the coefficients gives ±2bv³; nothing produces the mixed ab combination.", "distractor": true},
-  {"option": 2, "text": "Applying the derivative rules to the two terms in the wrong order, writing dt/dx = a + 2bx, and then dropping the negative sign that differentiating 1/(dt/dx) produces, gives 2bv³ instead of −2av³."},
-  {"option": 4, "text": "Treating dv/dx itself as the acceleration, without the extra factor of v needed to convert a distance-derivative into a time-derivative, and dropping its negative sign, gives 2av² instead of −2av³."}
- ],
- "concept_tags": ["kinematics with t as a function of x", "chain rule", "velocity-acceleration relation a = v dv/dx"],
- "difficulty": "hard",
- "mistake_type_hint": "concept",
- "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-b", "at": "2026-09-10T15:45:00+05:30"}
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2023_20230512_fn_q083",
+  "approach": "Differentiate the relation between time and distance to get the velocity in terms of distance, then use acceleration equals velocity times its own derivative with distance.",
+  "steps": [
+    {
+      "text": "Differentiate the given relation between time and distance to find how t changes with x.",
+      "equation": "dt/dx = 2ax + b"
+    },
+    {
+      "text": "Invert this derivative to write the velocity, since velocity is the rate of change of distance with time.",
+      "equation": "v = dx/dt = 1/(2ax + b)"
+    },
+    {
+      "text": "Differentiate the velocity with respect to distance.",
+      "equation": "dv/dx = −2a/(2ax + b)² = −2av²",
+      "why_this_step": "The denominator (2ax + b) equals 1/v, so (2ax + b)² equals 1/v², and dividing by it is the same as multiplying by v²."
+    },
+    {
+      "text": "Acceleration is the rate of change of velocity with time, so multiply dv/dx by dx/dt, which is v, to convert it.",
+      "equation": "acceleration = v × dv/dx = v × (−2av²) = −2av³"
+    }
+  ],
+  "final_answer": {
+    "option": 3,
+    "value": "−2av³"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "No slip multiplies a and b together here: forgetting the v-factor gives −2av² or 2av² depending on sign, and swapping the coefficients gives ±2bv³; nothing produces the mixed ab combination.",
+      "distractor": true
+    },
+    {
+      "option": 2,
+      "text": "Applying the derivative rules to the two terms in the wrong order, writing dt/dx = a + 2bx, and then dropping the negative sign that differentiating 1/(dt/dx) produces, gives 2bv³ instead of −2av³."
+    },
+    {
+      "option": 4,
+      "text": "Treating dv/dx itself as the acceleration, without the extra factor of v needed to convert a distance-derivative into a time-derivative, and dropping its negative sign, gives 2av² instead of −2av³."
+    }
+  ],
+  "concept_tags": [
+    "kinematics with t as a function of x",
+    "chain rule",
+    "velocity-acceleration relation a = v dv/dx"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 2,
+    "agent": "W02-K-p1-02-b",
+    "at": "2026-09-10T15:45:00+05:30"
+  }
 }

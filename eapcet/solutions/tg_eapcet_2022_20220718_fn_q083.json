@@ -1,22 +1,48 @@
 {
- "schema": "eapcet_solution_v1",
- "question_id": "tg_eapcet_2022_20220718_fn_q083",
- "approach": "Find the acceleration from the change in velocity over the given time, then use it to find the distance travelled from rest.",
- "steps": [
-  {"text": "Compute the acceleration from the initial and final velocities and the time taken.",
-   "equation": "a = (v−u)/t = (10−0)/2 = 5 m/s²"},
-  {"text": "Use this acceleration to find the distance travelled from rest in the same time.",
-   "equation": "s = ½at² = ½×5×2² = 10 m"}
- ],
- "final_answer": {"option": 1, "value": "5 m/s² and 10 m"},
- "confidence": "sure",
- "common_mistakes": [
-  {"option": 2, "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."},
-  {"option": 3, "text": "No slip reaches 6 m alongside 5 m/s²: dropping the square in s = ½at² gives 5 m, and forgetting the half gives 20 m; no route lands on 6 m.", "distractor": true},
-  {"option": 4, "text": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling either v or t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m.", "distractor": true}
- ],
- "concept_tags": ["uniformly accelerated motion", "kinematics from rest"],
- "difficulty": "easy",
- "mistake_type_hint": "calculation",
- "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-b", "at": "2026-09-10T15:45:00+05:30"}
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2022_20220718_fn_q083",
+  "approach": "Find the acceleration from the change in velocity over the given time, then use it to find the distance travelled from rest.",
+  "steps": [
+    {
+      "text": "Compute the acceleration from the initial and final velocities and the time taken.",
+      "equation": "a = (v−u)/t = (10−0)/2 = 5 m/s²"
+    },
+    {
+      "text": "Use this acceleration to find the distance travelled from rest in the same time.",
+      "equation": "s = ½at² = ½×5×2² = 10 m"
+    }
+  ],
+  "final_answer": {
+    "option": 1,
+    "value": "5 m/s² and 10 m"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 2,
+      "text": "Forgetting to square the time in s = ½at², computing ½×5×2 = 5 m instead of ½×5×2² = 10 m."
+    },
+    {
+      "option": 3,
+      "text": "No slip reaches 6 m alongside 5 m/s²: dropping the square in s = ½at² gives 5 m, and forgetting the half gives 20 m; no route lands on 6 m.",
+      "distractor": true
+    },
+    {
+      "option": 4,
+      "text": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling v or halving t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m.",
+      "distractor": true
+    }
+  ],
+  "concept_tags": [
+    "uniformly accelerated motion",
+    "kinematics from rest"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 2,
+    "agent": "W02-K-p1-02-b",
+    "at": "2026-09-10T15:45:00+05:30"
+  }
 }

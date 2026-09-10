@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "0aa5fcf98466b00fe73c2c4af381d5c914faafc89d4edb8196054a92999daa98",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "a = 5 m/s2 and s = 10 m reproduce; the option-2 entry's half times 5 times 2 = 5 reproduces, and it is correctly typed calculation (the route s = half a t squared was right, only the square was dropped). Both distractor flags are honest: from rest nothing reaches 6 m alongside 5 m/s2 (dropping the square gives 5, dropping the half gives 20, v squared = 2as gives 10) and nothing reaches a = 6 m/s2. right_route (I found a using v minus u over t) is step 1, student voice, 8 words.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

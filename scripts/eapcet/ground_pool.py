@@ -21,6 +21,7 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 POOL = os.path.join(ROOT, "eapcet", "pool", "physics_pool_v1.json")
 SOL = os.path.join(ROOT, "eapcet", "solutions")
 CARDS = os.path.join(ROOT, "answer-book", "questions")
+SHAPES = os.path.join(ROOT, "eapcet", "pool", "shapes.json")
 TOP = 2
 WEAK = 0.12
 
@@ -95,6 +96,17 @@ def main():
     pool = load(POOL)
     bych = {c["key"]: c for c in pool["chapters"]}
     cards = load_cards()
+    # shape-first: a question whose shape names its cards (shapes.json `cards`) is grounded
+    # by the shape — the two or three cards a teacher would open — and the trigram picks only
+    # fill the list when the shape has fewer than TOP
+    shapes = load(SHAPES) if os.path.exists(SHAPES) else {}
+    shape_cards = {}
+    for ck, entry in (shapes or {}).items():
+        by_key = {s["key"]: s.get("cards") or [] for s in entry.get("shapes", [])}
+        for qid, k in (entry.get("assignments") or {}).items():
+            if by_key.get(k):
+                shape_cards[qid] = (k, by_key[k])
+    by_shape = 0
 
     per = collections.defaultdict(list)
     for q in pool["questions"]:
@@ -108,6 +120,16 @@ def main():
         picks = [{"question_id": i, "score": round(s, 3)} for s, i in scored[:TOP]]
         if weak and anchors.get(q["chapter_key"]):
             picks = [{"question_id": i, "score": None, "anchor": True} for i in anchors[q["chapter_key"]][:3]]
+        if q["id"] in shape_cards:
+            k, ids = shape_cards[q["id"]]
+            picks = [{"question_id": i, "score": None, "shape": k} for i in ids]
+            for s, i in scored:
+                if len(picks) >= TOP:
+                    break
+                if i not in ids:
+                    picks.append({"question_id": i, "score": round(s, 3)})
+            weak = False
+            by_shape += 1
         q["grounding"]["answer_book_cards"] = picks
         q["grounding"]["weak_match"] = weak
         q["grounding"]["unit_cards"] = len(cands)
@@ -124,7 +146,7 @@ def main():
     total = sum(len(v) for v in per.values())
     weak = sum(1 for v in per.values() for x in v if x < WEAK)
     print("")
-    print("grounded %d questions; weak_match on %d (%.0f%%); pool rewritten" % (total, weak, 100.0 * weak / max(1, total)))
+    print("grounded %d questions; weak_match on %d (%.0f%%); %d grounded by shape; pool rewritten" % (total, weak, 100.0 * weak / max(1, total), by_shape))
 
 
 if __name__ == "__main__":

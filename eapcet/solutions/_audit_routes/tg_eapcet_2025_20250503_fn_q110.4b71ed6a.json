@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "item_sha": "4b71ed6a8474b31700be641968073aa4f67a70a709d5d40a2429a428112bb2af",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "right_route",
+   "quote": "I used v equal to gt for the fall",
+   "note": "The right route describes a wrong method: v = gt with the given final speed gives 1.8 s, which is option 3, not the 2.2 s answer. It is also the identical string used as mistakes[1].route, so the menu offers one phrase as both the right way and a wrong way - the student who used the average-speed method has no honest route to tap, and the student who used v = gt taps a phrase the menu scores as correct.",
+   "fix": "I divided the height by the average speed"
+  }
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "Recomputed: 20 divided by the mean of 0 and 18 gives 2.22, so 2.2 s is right; 18/10 = 1.8 s and the plain free-fall time 2 s reproduce the option-3 and option-4 entries, and both are correctly typed application with routes that describe their own entries. The option-2 distractor flag is honest (2.5 s would need a divisor of 8 that nothing here supplies). mistakes[1].route itself is fine - the defect is that right_route copies it.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

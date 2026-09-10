@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "item_sha": "2cfe20e0c9ab085cecd5890dada547cd21f9e56766863f85ae5306c1b1297d81",
+ "auditor_option": 2,
+ "auditor_value": "1 : 1",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "without checking that the body has already reversed direction and slowed back to the same speed by symmetry",
+   "note": "After the reversal at t = 3.5 s the body speeds up, it does not slow: it accelerates from rest back to 5 m s⁻¹ at t = 4 s. The numerical consequence is nil but the description of the motion is wrong.",
+   "fix": "without checking that the body has already reversed direction and returned to the same speed by symmetry, since t = 3 s and t = 4 s are equally far from the highest point at t = 3.5 s"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "v(3) = +5 and v(4) = −5 m s⁻¹, so the speeds are 5 and 5 and the ratio is 1 : 1; the highest point is at t = 3.5 s and both instants are 0.5 s from it. The distractor flags on options 3 and 4 stand: a pairwise search over the two velocities, their magnitudes, the g = 9.8 values, the heights at 3 s and 4 s and the distances covered in the third and fourth seconds produced no plausible route to 2 : 1 or 3 : 2.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

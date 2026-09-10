@@ -1,9 +1,28 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2024_20240509_fn_q083",
- "right_route": "I used the nth-second formula including the g factor",
+ "right_route": "I found the total fall time from the height",
  "mistakes": [
-  {"index": 0, "type": "calculation", "route": null}
+  {
+   "index": 0,
+   "type": "calculation",
+   "route": null
+  },
+  {
+   "index": 1,
+   "type": "application",
+   "route": "I added an extra second to the fall time"
+  },
+  {
+   "index": 2,
+   "type": "distractor",
+   "route": null
+  }
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {
+  "model": "sonnet+fable",
+  "wave": 2,
+  "agent": "W02-R-p1-02-R1",
+  "at": "2026-09-10T06:48:36+05:30"
+ }
 }

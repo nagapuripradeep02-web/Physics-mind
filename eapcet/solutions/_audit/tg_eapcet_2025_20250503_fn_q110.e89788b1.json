@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q110",
+ "item_sha": "e89788b1ee7c3e074c09cd0538961c52ec2b2ed6e023f4d2d4027192c35fa6c8",
+ "auditor_option": 1,
+ "auditor_value": "2.2 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The stem gives air resistance but the data fix an answer only if the retardation is taken as uniform, an assumption the question leaves unstated.",
+ "notes": "t = 2s/(u + v) = 40/18 = 2.22 s, which is the printed 2.2 s; the nearest other option, 2.5 s, is far enough away for the rounding to be safe, and the solution declares the uniform-acceleration assumption in its approach rather than importing it silently. The entries for options 3 and 4 land exactly: 18/10 = 1.8 s and √(2 × 20/10) = 2 s. On the 2.5 s distractor I searched combinations of h, v, g, the derived retardation 8.1 m s⁻² and the three candidate times; the only near hit is h/a = 20/8.1 = 2.47, which divides a distance by an acceleration and is not a route a student takes, so the distractor flag stands.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

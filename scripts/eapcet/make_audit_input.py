@@ -24,7 +24,7 @@ import os, io, re, sys, json, copy, glob, hashlib, argparse, datetime, collectio
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from gate_solutions import content_sha, routes_sha, POOL, SOL, GATE, ROUTES     # one sha function, one place
+from gate_solutions import content_sha, routes_sha, POOL, SOL, GATE, ROUTES, STRICT_CHAPTERS     # one sha function, one place
 
 AUDIT = os.path.join(SOL, "_audit")
 AUDIT_IN = os.path.join(SOL, "_audit_input")
@@ -78,6 +78,22 @@ def corrupt(sol, q, kind):
                 new = str(int(v) * 2) if v.isdigit() else "%g" % (float(v) * 2)
                 st["equation"] = eq[:m.start()] + new + eq[m.end():]
                 return s, "a number in a printed line doubled (%s -> %s); final answer untouched" % (v, new)
+        return None, None
+    if kind == "mistake_swap":
+        # the strict-chapter control: the mistakes are what a rework wave changed, so the planted
+        # error lives there. Two computed slips trade options (each text now lands on the other's
+        # option), or, with one computed slip only, that slip is relabelled a distractor.
+        ms = s.get("common_mistakes") or []
+        real = [m for m in ms if m.get("option") and not m.get("distractor")]
+        if len(real) >= 2:
+            a_, b_ = real[0], real[1]
+            a_["option"], b_["option"] = b_["option"], a_["option"]
+            return s, "two mistake entries swapped options (%d <-> %d); each text now names the wrong option" % (b_["option"], a_["option"])
+        if len(real) == 1:
+            m = real[0]
+            m["distractor"] = True
+            m["text"] = "No method a student would use lands on this option; it is a filler value."
+            return s, "a computed slip on option %d relabelled as a distractor with a filler reason" % m["option"]
         return None, None
     opt = s["final_answer"]["option"]
     new_opt = opt % 4 + 1
@@ -176,7 +192,12 @@ def main_routes(a):
             h = int(hashlib.sha256(("routes" + str(a.wave) + ck + "|".join(ids)).encode()).hexdigest(), 16)
             order = sorted(ids, key=lambda i: hashlib.sha256((str(h) + i).encode()).hexdigest())
             for cand in order:
-                if cand not in controlled_qids:
+                if cand in controlled_qids:
+                    continue
+                # a sidecar with nothing to corrupt (every route null) cannot carry the
+                # control: the next candidate in the seeded order takes it
+                probe = load(os.path.join(ROUTES, cand + ".json"))
+                if probe and (corrupt_routes(probe, "type_swap")[0] is not None or corrupt_routes(probe, "right_route_swap")[0] is not None):
                     control_qid = cand
                     break
         for qid in ids:
@@ -252,10 +273,10 @@ def main():
     if a.wave is not None:
         scope = set()
         for r in load(LEDGER, []):
-            if r["wave"] == a.wave and r["role"] == "author":
+            if r["wave"] == a.wave and r["role"] in ("author", "rework"):
                 scope.update(r["question_ids"])
         if not scope:
-            sys.exit("wave %d has no author rows" % a.wave)
+            sys.exit("wave %d has no author or rework rows" % a.wave)
 
     # a candidate: gate-pass now, and no audit file at this exact sha
     cands = collections.defaultdict(list)
@@ -297,6 +318,8 @@ def main():
                 sys.exit("%s changed since the last gate run - run gate_solutions.py first" % qid)
             if qid == control_qid:
                 kind = "line" if (h // 7) % 2 == 0 else "final_option"
+                if ck in STRICT_CHAPTERS:
+                    kind = "mistake_swap"
                 bad, how = corrupt(sol, q, kind)
                 if bad is None:
                     bad, how = corrupt(sol, q, "final_option")

@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "3276bb62be8680a77453d224737e27457d256d551133470366da81ffb07aea45",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "right_route",
+   "quote": "I found how t changes with x",
+   "note": "Every route on this question begins by differentiating t with respect to x - including mistakes[2], whose student got dt/dx, v and dv/dx right and only stopped one step early. So the right route names a step it shares with the one wrong route on the menu, and a truthful mistakes[2] student could tap it and be recorded as having gone the right way. The step that actually separates the right solver is multiplying dv/dx by v.",
+   "fix": "I used v times dv over dx"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Re-derived: v = 1 over (2ax+b), dv/dx = minus 2av squared, acceleration = v dv/dx = minus 2av cubed, so option 3 is right. Checked the option-2 entry: with dt/dx = a + 2bx the same working gives minus 2bv cubed, so dropping the sign gives 2bv cubed - the entry is arithmetically sound and calculation is a fair type for it (a derivative slip inside a right route). The option-1 distractor flag is honest: no route mixes a and b. mistakes[2] typed concept is right - treating dv/dx as the acceleration is a wrong belief, not a slip. The right_route as written does obey the brief's step-1 rule literally, which is why this is weak and not wrong.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

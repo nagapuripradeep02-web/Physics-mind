@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "9fe0b1c6cc63540ba184dece3b9f79208309faefdb8cda05b309450289724aab",
+ "auditor_option": 4,
+ "auditor_value": "(A) is false but (R) is true",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Decided independently before reading the solution: (A) is false (a ball at the top of a vertical throw has v = 0 and a = g), (R) is true (a body moving continuously must pass through zero velocity to reverse direction), so option 4. Steps agree and contain no false line; steps 3 and 4 carry no equation, which is legitimate on a statement item. All three common_mistakes account for BOTH statements of the option they name: entry 0 uses (R) to justify (A) = option 1, entry 1 holds (A) true and (R) true but unrelated = option 2, entry 2 holds (A) true and (R) false = option 3. Three entries for three wrong options, as the strict chapter requires; none needed a distractor flag because all three are genuinely reachable.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R2", "at": "2026-09-10T00:00:00+05:30"}
+}

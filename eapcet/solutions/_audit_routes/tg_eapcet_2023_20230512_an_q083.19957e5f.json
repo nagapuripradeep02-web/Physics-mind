@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_an_q083",
+ "item_sha": "19957e5f36628dcfd2e9444e257535451e39ca13805e77e1b1fa6b0eff72826d",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "mistakes[1].route",
+   "quote": "I assumed the ratio counts one two three",
+   "note": "The phrase spells out option 3's own value, 1:2:3, in words. The brief bans a route that names the value of an option: a student who circled that option can match the route to the answer they picked instead of recalling how they got there, and a guesser is then recorded as having made a concept error.",
+   "fix": "I assumed the distance grows by a fixed step"
+  }
+ ],
+ "verdict": "wrong",
+ "solution_defect": null,
+ "notes": "S1:S2:S3 = 5:15:25 = 1:3:5 confirmed, and 1:4:9 is indeed the ratio of the totals, so mistakes[2] typed application (right concept, wrong quantity - totals instead of per-second) is right and its route matches. mistakes[0] concept is right. right_route (I used the nth second formula for free fall) is step 1, 9 words, and 'nth second formula' is ordinary Class-11 vocabulary. The proposed fix stays distinguishable from mistakes[0].route (equal distance each second is no growth at all, versus growth by a fixed step).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

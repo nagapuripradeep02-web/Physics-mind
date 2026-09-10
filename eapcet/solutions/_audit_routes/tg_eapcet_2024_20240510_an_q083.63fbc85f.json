@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2024_20240510_an_q083",
+ "item_sha": "63fbc85fcbc167c56289016269962789eb7f5d4c99ad00a27e2357d81ddebad4",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "v(3) = +5, v(4) = -5, so the speeds are equal and 1:1 is right; the option-1 entry (time ratio) is a wrong belief, so concept is right, and its route names no option value since 3 and 4 are the question's own times. Both distractor flags are honest - I could not reach 2:1 or 3:2 by any route (even g = 9.8 gives 4:3, not 3:2). right_route (I compared the speed sizes at both times) is the discriminating move (magnitudes, not signed velocities) in plain words and is clearly apart from the one wrong route.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

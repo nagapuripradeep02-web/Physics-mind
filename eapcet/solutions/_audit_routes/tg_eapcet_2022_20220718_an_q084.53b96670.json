@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "53b966700e02435297fa025c7e90c61e51e8629cca3c1a915f609322393bdc8e",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Assertion-reason with worked reasoning, so a non-null right_route is right; (I tested it with a ball thrown up) is step 1 in the student's voice, 8 words. All three entries are wrong beliefs, so concept three times is right. Index alignment checked against the option each entry names: 0 -> option 1 (R explains A), 1 -> option 2 (both true but separate), 2 -> option 3 (R false), and each route carries the half that distinguishes its own option. No verdict wording, no option value named, and the three wrong routes are mutually distinguishable.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

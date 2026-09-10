@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q084",
+ "item_sha": "cfaae5a2469b52d53a3fc35bae8b4b6b90e2a31ab68e3fd0e795a422938ec97d",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "mistakes[1].route",
+   "quote": "I used the lost speed fraction as the ratio",
+   "note": "Too close to mistakes[0].route ('I took the speed fraction as the distance ratio'): the only thing separating them is the word 'lost', and a student who took some speed fraction as the distance ratio will not reliably remember whether it was the fraction kept or the fraction lost. Two routes a student cannot tell apart break the tap.",
+   "fix": "I used the speed lost as the distance ratio"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Physics re-derived: a = 5u squared over 18x, x' = 4x/5, so 4/5 is right; the three entries' 2/3, 1/3 and 4/9 all reproduce and each route describes its own entry with no option value spelled out. Considered and did not file: right_route (I used the same equation for both stages) never names the equation, which is slightly vague, but the two-stage move is the real identity of the method and it separates cleanly from all three wrong routes, which are all 'I read a ratio straight off'.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

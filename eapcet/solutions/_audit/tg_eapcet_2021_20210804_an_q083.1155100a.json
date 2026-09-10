@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "1155100a0a16b017885acc7b5280b3b0efe9641e9e56c97a0322463e749d6f55",
+ "auditor_option": 1,
+ "auditor_value": "8",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Finding d₁ correctly as 8g but computing d₂ from the shortcut d₂ = t₂² − t₁² = 144 − 16 = 128, forgetting the ½g factor, giving 128g/8g = 16.",
+   "note": "The stated cause contradicts its own arithmetic: if the whole ½g factor is dropped, d₂ = 128 while d₁ = 8g, and dropping ½g in both lines gives 128/16 = 8, the correct answer. Only dropping the factor ½ while keeping g gives the printed 128g/8g = 16.",
+   "fix": "Finding d₁ correctly as 8g but writing d₂ = g(t₂² − t₁²) = g(144 − 16) = 128g, forgetting the factor ½, giving 128g/8g = 16."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Solved independently: d₁ = ½g(4)² = 8g, d₂ = ½g(144 − 16) = 64g, ratio 8. Checked every entry numerically: 8/4 = 2 lands on option 2. A brute-force search over the times, their squares and the two distances found no route to option 4 (12) other than 4 + 8, so the entry describing 12 as the summed time is honest and needs no distractor flag. Steps and approach are correct as printed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

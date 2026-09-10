@@ -1,11 +1,28 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2025_20250504_fn_q081",
- "right_route": "I used v equals u plus at, evaluated at the fourth second",
+ "right_route": "I found u and a from both seconds",
  "mistakes": [
-  {"index": 0, "type": "application", "route": "I used twice the product of acceleration and time"},
-  {"index": 1, "type": "application", "route": "I evaluated the velocity formula at the third second"},
-  {"index": 2, "type": "application", "route": "I carried the one-half from the distance formula into velocity"}
+  {
+   "index": 0,
+   "type": "concept",
+   "route": "I took v as 2at"
+  },
+  {
+   "index": 1,
+   "type": "application",
+   "route": "I used the earlier time value in the formula"
+  },
+  {
+   "index": 2,
+   "type": "calculation",
+   "route": null
+  }
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {
+  "model": "sonnet+fable",
+  "wave": 2,
+  "agent": "W02-R-p1-02-R1",
+  "at": "2026-09-10T06:48:36+05:30"
+ }
 }

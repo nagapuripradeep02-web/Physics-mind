@@ -1,9 +1,11 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2024_20240510_an_q083",
- "right_route": "I evaluated the velocity at both times and compared their sizes",
+ "right_route": "I compared the speed sizes at both times",
  "mistakes": [
-  {"index": 0, "type": "concept", "route": "I assumed the speed ratio equals the ratio of the times"}
+  {"index": 0, "type": "concept", "route": "I used the times as the speed ratio"},
+  {"index": 1, "type": "distractor", "route": null},
+  {"index": 2, "type": "distractor", "route": null}
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-R-p1-02-b", "at": "2026-09-10T15:35:00+05:30"}
 }

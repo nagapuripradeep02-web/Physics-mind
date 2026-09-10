@@ -151,5 +151,32 @@
   "real_sha": "5935e7872f2db4decce9cbac9c96b8d0b7013603e3d9b45865c20e8b83fcd7dc",
   "expected": "harmful",
   "planted_at": "2026-09-08T03:09:56+02:00"
+ },
+ "acabd17f6ee28825c4881f318062ef98d99289e1ffbaa6fe7f434319f0f30364": {
+  "question_id": "tg_eapcet_2022_20220718_fn_q083",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "a computed slip on option 2 relabelled as a distractor with a filler reason",
+  "real_sha": "7c0bea8c2955eac6f6034eb4b49e2f1621c3843bde00b37f4d564d23dce41c81",
+  "expected": "harmful",
+  "planted_at": "2026-09-10T02:42:18+02:00"
+ },
+ "599bd12ce7ab383d11186029f71b2cedefc3917ddec974a19c7d81bfae532d78": {
+  "question_id": "tg_eapcet_2022_20220718_an_q084",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "two mistake entries swapped options (1 <-> 2); each text now names the wrong option",
+  "real_sha": "9fe0b1c6cc63540ba184dece3b9f79208309faefdb8cda05b309450289724aab",
+  "expected": "harmful",
+  "planted_at": "2026-09-10T02:58:26+02:00"
+ },
+ "d0d15fe59901ac9e188d6d6ae88ff33db44b91c487bb9ccdec3c9b42f62b5ca0": {
+  "question_id": "tg_eapcet_2024_20240510_an_q083",
+  "chapter_key": "p1-02",
+  "wave": 2,
+  "corruption": "a computed slip on option 1 relabelled as a distractor with a filler reason",
+  "real_sha": "0c17d3a5186bb9af264bf4eec4eef65b55da731e6e3eeabe395434e9d8658462",
+  "expected": "harmful",
+  "planted_at": "2026-09-10T03:08:24+02:00"
  }
 }

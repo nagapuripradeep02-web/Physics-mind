@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "3fe544c55dc065edcf86ce0e0e75927f1808cdaaece27eaa0e39d9d385b4a83d",
+ "auditor_option": 3,
+ "auditor_value": "−2av³",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "a = v × dv/dx = v × (−2av²) = −2av³",
+   "note": "The symbol a is already the constant in t = ax² + bx, so this line reads as an equation in a, a = −2av³, which would give 1 = −2v³. The result is right but the printed line is inconsistent with the question's own notation.",
+   "fix": "acceleration = v × dv/dx = v × (−2av²) = −2av³"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "dt/dx = 2ax + b, v = 1/(2ax + b), dv/dx = −2a/(2ax + b)² = −2av², acceleration = v dv/dx = −2av³. Both non-distractor entries land exactly where they claim: dt/dx miswritten as a + 2bx with the sign dropped gives 2bv³ (option 2), and taking dv/dx itself as the acceleration with the sign dropped gives 2av² (option 4), which is the option built up to sign for that slip. I could find no route producing the mixed ab combination of option 1, so its distractor flag stands; it is also the only one of the four that does not match the dimensions of the other three.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

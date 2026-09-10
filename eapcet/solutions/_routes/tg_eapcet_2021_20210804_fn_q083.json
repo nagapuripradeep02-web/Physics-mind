@@ -1,9 +1,11 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2021_20210804_fn_q083",
- "right_route": "I divided the change in position by the change in time",
+ "right_route": "I divided the change in x by time",
  "mistakes": [
-  {"index": 0, "type": "calculation", "route": null}
+  {"index": 0, "type": "distractor", "route": null},
+  {"index": 1, "type": "distractor", "route": null},
+  {"index": 2, "type": "distractor", "route": null}
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-R-p1-02-b", "at": "2026-09-10T15:32:00+05:30"}
 }

@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_fn_q083",
+ "item_sha": "b9e4c61924c6ba2426e7cdd53f2125d4e3d8b7fb00c14ca31086cf154a852140",
+ "auditor_option": 2,
+ "auditor_value": "36",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "common_mistakes[2].text",
+   "quote": "No slip reaches 49%: subtracting the first four seconds' distance from the height gives 64%, and using the final speed alone as a fraction of the height gives 40%; nothing lands on 49%.",
+   "note": "Subtracting the first four seconds' distance from the height is the correct method: 125 − 80 = 45 m, which is 36%, the right answer. The entry attaches 64% to it (that is 80/125, the first four seconds' distance itself) and lists it among the mistakes, so a student who used the correct route is told it fails.",
+   "fix": "No slip reaches 49%: taking the first four seconds' distance itself as the fraction gives 64%, and using the final speed alone as a fraction of the height gives 40%; nothing lands on 49%."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "t = 5 s, last-second distance = 5(25 − 16) = 45 m, x = 45/125 × 100 = 36. The 40% figure in the same entry is right, since the final speed is 50 m s⁻¹ and 50/125 = 40%. The entry for option 1 lands on 9 exactly (5² − 4² read as the percentage) and the entry for option 3 lands on 25 exactly (9/36 in place of 9/25). A pairwise search over the fall time, the height, the last-second and first-four-second distances, the nth-second numbers and the g = 9.8 variants found no route to 49, so that part of the entry is sound.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

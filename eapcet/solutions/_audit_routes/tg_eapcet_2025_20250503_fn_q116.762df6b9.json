@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250503_fn_q116",
+ "item_sha": "762df6b91e47d126955b0a906067e1b8e6076283fe1693235091ace86268afca",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "right_route",
+   "quote": "I added the two stage times together",
+   "note": "mistakes[2]'s student also added two stage times - the 2 s of free fall plus a time for the second stage - and differs only in using the whole height instead of the height left. The two phrases are hard to tell apart at the moment of tapping, and the move that really separates the right solver is subtracting the 20 m already fallen.",
+   "fix": "I used the height left after the free fall"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Checked: v = 20 m/s, t1 = 2 s, 1980/20 = 99 s, total 101 s; the 99 s, 100 s and 102 s entries all reproduce, all three are correctly typed application, and routes[0] and [1] are clearly distinct from each other. No route names a two-or-more-digit number, which matters here since every option is a three-digit value.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

@@ -1,11 +1,28 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2024_20240509_an_q083",
- "right_route": "I used the return speed to time the fall through the window",
+ "right_route": "I used symmetry for speed at the window",
  "mistakes": [
-  {"index": 0, "type": "application", "route": "I found the time to reach the highest point instead"},
-  {"index": 1, "type": "application", "route": "I found the time to return to the release point"},
-  {"index": 2, "type": "calculation", "route": null}
+  {
+   "index": 0,
+   "type": "application",
+   "route": "I found the time to reach the top"
+  },
+  {
+   "index": 1,
+   "type": "application",
+   "route": "I used the total up and down time"
+  },
+  {
+   "index": 2,
+   "type": "application",
+   "route": "I divided the bottom speed by g"
+  }
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {
+  "model": "sonnet+fable",
+  "wave": 2,
+  "agent": "W02-R-p1-02-R1",
+  "at": "2026-09-10T06:48:36+05:30"
+ }
 }

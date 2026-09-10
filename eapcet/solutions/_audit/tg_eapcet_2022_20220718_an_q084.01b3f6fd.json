@@ -1,0 +1,24 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "01b3f6fdacf6d8a8da580fb2950db9c41b8f2ccfe8d3904171fdad234a26d6d9",
+ "auditor_option": 4,
+ "auditor_value": "(A) is false but (R) is true",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[2].text",
+   "quote": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest.",
+   "note": "Option 3 asserts two things, that (A) is true and that (R) is false, and the entry accounts only for the second. A student who reaches option 3 must also hold the belief that zero velocity forces zero acceleration, which the entry never names.",
+   "fix": "Believing that zero velocity forces zero acceleration, so treating the assertion as true, and at the same time doubting that a body must pass through zero velocity to reverse direction, when any continuous reversal does pass through an instant of rest."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "The assertion is false, since at the top of a vertical throw v = 0 while a = g, and the reason is a true statement, so option 4. The entries for options 1 and 2 each account for both halves of the option they name and are sound.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

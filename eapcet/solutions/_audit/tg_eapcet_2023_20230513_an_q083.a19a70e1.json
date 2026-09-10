@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "item_sha": "a19a70e188a0f749f6d7dc43a4fe3487cb78e1b6030e2a00281f7ce4885595a3",
+ "auditor_option": 2,
+ "auditor_value": "4 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Distance is the integral of the speed: 2 m from t = 0 to 2 s plus 2 m from t = 2 to 4 s, so 4 m; the displacement is zero, which is not an option. Both bracket evaluations printed in the steps are correct. The three mistake routes recompute exactly: stopping at the reversal gives 2 m, treating the second stage as a constant 2 m s⁻¹ gives 4 + 2 = 6 m, and treating 2 m s⁻¹ as an average over the whole 4 s gives 8 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

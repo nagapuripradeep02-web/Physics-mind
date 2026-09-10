@@ -1,0 +1,81 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": 1,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "A stone falls freely under gravity. It covers distance d₁ and d₂ in the first 4 seconds, and the next 8 seconds respectively. The ratio d₂/d₁ is",
+   "options_en": [
+    "8",
+    "2",
+    "16",
+    "12"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q084",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "Assertion(A) : The zero velocity of a particle at any instant always implies zero acceleration at that instant. Reason(R) : A body is momentarily at rest when reverses its direction of motion. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A body starts from the rest and acquires a velocity of 10 m/s in 2s. What is the acceleration of the body and the distance travelled",
+   "options_en": [
+    "5 m/s² and 10 m",
+    "5 m/s² and 5 m",
+    "5 m/s² and 6 m",
+    "6 m/s² and 5 m"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is falling freely from the top of a tower of height 125 m. The distance covered by the body during the last second of its motion is x% of the height of the tower. Then x is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9",
+    "36",
+    "25",
+    "49"
+   ]
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q083",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "3 : 4",
+    "1 : 1",
+    "2 : 1",
+    "3 : 2"
+   ]
+  }
+ ]
+}

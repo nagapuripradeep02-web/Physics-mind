@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2023_20230513_an_q083",
+ "item_sha": "4e81f5d068bcdc2d0707c7f469d3b33ae7070dbd646c152d34b3a5a4142438ea",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Both stages give 2 m, total 4 m; the option-3 entry's 2 + (2 x 2) = 6 and the option-4 entry's 2 x 4 = 8 both reproduce, and each route describes its own entry. Boundary I decided and did not file: mistakes[0] (stopped at the reversal) is typed concept where the application definition's word 'interval' would also fit - the brief names this exact pair as a boundary, and concept is defensible since the student believes the motion ends at the turn. Routes[1] and [2] stay apart (the second part versus the whole time). right_route (I added the distances of both stages separately) is the approach's identifying move rather than the literal step 1 (noticing the sign change), but it separates from all three wrong routes and is what a student would say.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

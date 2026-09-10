@@ -1,0 +1,29 @@
+{
+ "question_id": "tg_eapcet_2024_20240509_an_q083",
+ "item_sha": "9306eed255e99dd41786701bafbd9fa3a41715516758ebe7229867055500d9e1",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "mistakes[1].route",
+   "quote": "I found the time to return to launch",
+   "note": "The stone is thrown from the top of the window, so returning to the window's top IS returning to the launch point: step 1 of the correct solution is exactly 2u/g = 1.6 s, the time to return to launch. A student who worked the question correctly could honestly tap this route and be told they went wrong - the misdiagnosis the brief calls harmful.",
+   "fix": "I used the total up and down time"
+  },
+  {
+   "grade": "weak",
+   "field": "mistakes[2].type",
+   "quote": "calculation",
+   "note": "Dividing the bottom speed by g instead of subtracting the 8 m/s already there is applying v = u + at with u taken as zero - the concept applied to the wrong quantity, which the definitions put under application (it would then need a route, e.g. 'I divided the bottom speed by g'). Reading it as a dropped term makes calculation defensible, so this is a boundary and weak only.",
+   "fix": "application"
+  }
+ ],
+ "verdict": "harmful",
+ "solution_defect": null,
+ "notes": "Re-derived: 2u/g = 1.6 s, then 5t squared + 8t - 1.8 = 0 gives t = 0.2 s (other root -1.8), and the bottom speed is 10 m/s, so the option-1 (0.8 s), option-2 (1.6 s) and option-3 (1.0 s) entries all reproduce. right_route (I used symmetry for speed at the window) is step 1's insight in student words, 8 words - it is not itself defective; the overlap sits on the wrong side of the menu.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

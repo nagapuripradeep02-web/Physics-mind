@@ -1,0 +1,14 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q083",
+ "item_sha": "cf6d503c2d980f4b8650976253842052d931838ec2fad24a0cb0bb2ea325a19c",
+ "findings": [],
+ "verdict": "ok",
+ "solution_defect": null,
+ "notes": "Recomputed x(2) = 4.08, x(4) = 8.64, v_avg = 2.28. Tested every claim in the three distractor flags: no-division 4.56, mean of the instantaneous speeds 2.30, v(2) = 2.12, dividing by t = 4 gives 1.14, v(4) = 2.48 - all correct, and I could not reach 4.94, 3.34 or 4.12 by any single slip I tried (x(4)/2 = 4.32, mean of the two positions 6.36, twice v(4) = 4.96), so all three flags are honest and the forced distractor/null pairing is right. Considered and did not file: right_route (I divided the change in x by time) is the solution's step 2 rather than step 1 (step 1 is computing the two positions), but it is the approach's own identifying move, it is what a student would actually say, and with three distractors there is no wrong route it could be confused with.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

@@ -1,10 +1,28 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2022_20220718_fn_q084",
- "right_route": "I applied the same speed-distance equation to both stages",
+ "right_route": "I used the same equation for both stages",
  "mistakes": [
-  {"index": 0, "type": "application", "route": "I treated the one-third velocity drop as the distance ratio"},
-  {"index": 1, "type": "application", "route": "I treated the squared velocity ratio as the distance ratio"}
+  {
+   "index": 0,
+   "type": "application",
+   "route": "I took the speed fraction as the distance ratio"
+  },
+  {
+   "index": 1,
+   "type": "application",
+   "route": "I used the speed lost as the distance ratio"
+  },
+  {
+   "index": 2,
+   "type": "application",
+   "route": "I used the squared speed ratio for distance"
+  }
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {
+  "model": "sonnet+fable",
+  "wave": 2,
+  "agent": "W02-R-p1-02-R1",
+  "at": "2026-09-10T06:48:36+05:30"
+ }
 }

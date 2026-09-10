@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "eb2f46d9c4972938a6afe0cad3cfd484f2be9b51fd62040fc92d062976a94866",
+ "auditor_option": 1,
+ "auditor_value": "8",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[2].text",
+   "quote": "Adding the two given time intervals, 4 + 8 = 12 seconds, and mistaking that total time for the required ratio instead of computing either distance.",
+   "note": "Option 4 is a pure distractor: no slip lands on 12. A student is asked for a dimensionless ratio of two distances and does not answer with the sum of the two times, so this is a fabricated route written to fill the option. The entry should carry distractor: true and say what the option is not.",
+   "fix": "No slip reaches 12: taking distance as proportional to time gives 2, dropping the factor one half in the interval distance gives 16, and dividing the total distance fallen in 12 s by d1 gives 9; nothing lands on 12."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently: d1 = 0.5 g (4)^2 = 8g, d(12) = 72g, d2 = 64g, d2/d1 = 8, independent of g (checked for g = 9.8 and g = 10). Steps 1-4 and the final answer are correct. common_mistakes[0] (8/4 = 2) and common_mistakes[1] (g(144-16) = 128g over 8g = 16) were recomputed and both land exactly on the option they name; the half-forgotten-in-one-place route for 16 is asymmetric but forgetting the factor one half is a real slip, so it was not filed. A python search over the plausible d1 and d2 slip values found routes to 2, 4, 9 and 16 but none to 12.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:05:00+05:30"}
+}

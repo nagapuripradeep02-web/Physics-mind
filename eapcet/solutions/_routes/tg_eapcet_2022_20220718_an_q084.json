@@ -1,10 +1,11 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2022_20220718_an_q084",
- "right_route": "I tested it on a ball at the top of its throw",
+ "right_route": "I tested it with a ball thrown up",
  "mistakes": [
-  {"index": 0, "type": "concept", "route": "I assumed being momentarily at rest means zero acceleration too"},
-  {"index": 1, "type": "concept", "route": "I doubted that reversing direction requires passing through zero velocity"}
+  {"index": 0, "type": "concept", "route": "I thought rest explains why acceleration is zero"},
+  {"index": 1, "type": "concept", "route": "I thought both statements were true but separate"},
+  {"index": 2, "type": "concept", "route": "I thought a body never really stops to turn"}
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-R-p1-02-a", "at": "2026-09-10T06:33:00+05:30"}
 }

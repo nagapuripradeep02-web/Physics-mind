@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "item_sha": "c1ecff19b42e6c7181afc4e5b6f920db812611a2861be611c2f30d10ec771f73",
+ "auditor_option": 2,
+ "auditor_value": "2 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "x(t) = t − t³ + t⁴/2, so x(2) = 2 − 8 + 8 = 2 m. All three mistake routes recomputed and each lands exactly on the option it names: the constant term left unintegrated gives 1 − 8 + 8 = 1 m (option 1); −3t² integrated as −3t gives 2 − 6 + 8 = 4 m (option 3); the sign dropped gives 2 + 8 + 8 = 18 m (option 4).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

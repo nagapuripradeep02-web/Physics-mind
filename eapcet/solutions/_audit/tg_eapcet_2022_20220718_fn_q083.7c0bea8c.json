@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_fn_q083",
+ "item_sha": "7c0bea8c2955eac6f6034eb4b49e2f1621c3843bde00b37f4d564d23dce41c81",
+ "auditor_option": 1,
+ "auditor_value": "5 m/s² and 10 m",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[2].text",
+   "quote": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling either v or t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m.",
+   "note": "Doubling t does not give 10 m/s²: a = 10/4 = 2.5 m/s². Only doubling v (20/2 = 10) or halving t (10/1 = 10) reaches 10 m/s². The supporting arithmetic inside the entry is false, although the conclusion that option 4 is unreachable is correct.",
+   "fix": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling v or halving t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently: a = (10−0)/2 = 5 m/s², s = ½at² = ½×5×4 = 10 m, option 1. Both steps and the final answer are correct. common_mistakes[0] recomputed: ½×5×2 = 5 m, which is option 2 exactly. Both distractor labels were tested: with a = 5 m/s² and t = 2 s the reachable distances are 10 (correct), 5 (square dropped), 20 (half dropped) and 10 again via v²/2a or average velocity × time, so 6 m is genuinely unreachable; and no single slip in a = (v−u)/t produces 6 m/s². The supporting claims in common_mistakes[1] (5 m and 20 m) were both verified true.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:18:00+05:30"}
+}

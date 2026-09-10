@@ -1,11 +1,28 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2025_20250503_fn_q116",
- "right_route": "I added the free-fall time to the constant-speed time",
+ "right_route": "I used the height left after the free fall",
  "mistakes": [
-  {"index": 0, "type": "application", "route": "I only counted the constant-speed stage's time"},
-  {"index": 1, "type": "application", "route": "I divided the whole height by the constant speed"},
-  {"index": 2, "type": "application", "route": "I used the full drop height for the constant-speed stage"}
+  {
+   "index": 0,
+   "type": "application",
+   "route": "I used only the constant speed part"
+  },
+  {
+   "index": 1,
+   "type": "application",
+   "route": "I divided the whole height by the speed"
+  },
+  {
+   "index": 2,
+   "type": "application",
+   "route": "I added the fall time to the whole time"
+  }
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {
+  "model": "sonnet+fable",
+  "wave": 2,
+  "agent": "W02-R-p1-02-R1",
+  "at": "2026-09-10T06:48:36+05:30"
+ }
 }

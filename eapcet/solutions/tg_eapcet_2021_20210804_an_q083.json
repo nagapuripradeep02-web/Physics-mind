@@ -1,26 +1,55 @@
 {
- "schema": "eapcet_solution_v1",
- "question_id": "tg_eapcet_2021_20210804_an_q083",
- "approach": "For free fall from rest, distance from the start grows with the square of time, so subtract the total distances at the two times to get each interval.",
- "steps": [
-  {"text": "Write the distance fallen from rest as a function of time.",
-   "equation": "d(t) = ½gt²"},
-  {"text": "Find the distance covered in the first 4 seconds.",
-   "equation": "d₁ = d(4) = ½g(4)² = 8g"},
-  {"text": "Find the total distance fallen by t = 12 s and subtract the first part to get the distance in the next 8 seconds.",
-   "equation": "d(12) = ½g(12)² = 72g; d₂ = 72g − 8g = 64g"},
-  {"text": "Divide the two distances.",
-   "equation": "d₂/d₁ = 64g/8g = 8"}
- ],
- "final_answer": {"option": 1, "value": "8"},
- "confidence": "sure",
- "common_mistakes": [
-  {"option": 2, "text": "Assuming distance is proportional to time and taking the ratio of the two intervals directly, 8/4 = 2, instead of using that distance grows with the square of time."},
-  {"option": 3, "text": "Finding d₁ correctly as 8g but computing d₂ from the shortcut d₂ = t₂² − t₁² = 144 − 16 = 128, forgetting the ½g factor, giving 128g/8g = 16."},
-  {"option": 4, "text": "Adding the two given time intervals, 4 + 8 = 12 seconds, and mistaking that total time for the required ratio instead of computing either distance."}
- ],
- "concept_tags": ["free fall", "distance in a given time interval"],
- "difficulty": "medium",
- "mistake_type_hint": "application",
- "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-a", "at": "2026-09-10T12:00:00+05:30"}
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2021_20210804_an_q083",
+  "approach": "For free fall from rest, distance from the start grows with the square of time, so subtract the total distances at the two times to get each interval.",
+  "steps": [
+    {
+      "text": "Write the distance fallen from rest as a function of time.",
+      "equation": "d(t) = ½gt²"
+    },
+    {
+      "text": "Find the distance covered in the first 4 seconds.",
+      "equation": "d₁ = d(4) = ½g(4)² = 8g"
+    },
+    {
+      "text": "Find the total distance fallen by t = 12 s and subtract the first part to get the distance in the next 8 seconds.",
+      "equation": "d(12) = ½g(12)² = 72g; d₂ = 72g − 8g = 64g"
+    },
+    {
+      "text": "Divide the two distances.",
+      "equation": "d₂/d₁ = 64g/8g = 8"
+    }
+  ],
+  "final_answer": {
+    "option": 1,
+    "value": "8"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 2,
+      "text": "Assuming distance is proportional to time and taking the ratio of the two intervals directly, 8/4 = 2, instead of using that distance grows with the square of time."
+    },
+    {
+      "option": 3,
+      "text": "Finding d₁ correctly as 8g but writing d₂ = g(t₂² − t₁²) = g(144 − 16) = 128g, forgetting the factor ½, giving 128g/8g = 16."
+    },
+    {
+      "option": 4,
+      "text": "No slip reaches 12: distance taken as proportional to time gives 2, dropping the half in the interval distance gives 16, and the whole 12 s fall over d₁ gives 9; nothing lands on 12.",
+      "distractor": true
+    }
+  ],
+  "concept_tags": [
+    "free fall",
+    "distance in a given time interval"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 2,
+    "agent": "W02-K-p1-02-a",
+    "at": "2026-09-10T12:00:00+05:30"
+  }
 }

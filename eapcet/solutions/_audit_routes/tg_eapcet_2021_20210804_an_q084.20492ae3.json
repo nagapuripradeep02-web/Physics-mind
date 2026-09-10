@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q084",
+ "item_sha": "20492ae37a2726c574013e6351fa6addc20f416bbbd952c9d7ca67fe21f9dacc",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "right_route",
+   "quote": "I found x from the v equation",
+   "note": "This is close to the generic 'I used the formula' the brief rules out: it never names the move (integrating the velocity, or taking the area under the v-t graph). All three wrong entries are typed calculation with null routes, so this phrase plus 'I guessed' is the entire menu and its specificity is all the measurement has.",
+   "fix": "I integrated v to get x"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Checked the three slips: 1 - 8 + 8 = 1, 2 - 6 + 8 = 4, 2 + 8 + 8 = 18, all matching their options, so index alignment is right. All three typed calculation is defensible - the route (get x from v) was right in each and only an antiderivative step went wrong. The banned string is 'integrated the', not 'integrated', so the fix passes the strict-chapter word list; it is 5 words.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

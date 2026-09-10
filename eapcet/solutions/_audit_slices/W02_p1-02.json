@@ -1,0 +1,638 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter_key": "p1-02",
+ "chapter": "Motion in a Straight Line",
+ "round": null,
+ "items": [
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q083",
+   "audit_file": "tg_eapcet_2021_20210804_an_q083.1155100a.json",
+   "item_sha": "1155100a0a16b017885acc7b5280b3b0efe9641e9e56c97a0322463e749d6f55",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "A stone falls freely under gravity. It covers distance d₁ and d₂ in the first 4 seconds, and the next 8 seconds respectively. The ratio d₂/d₁ is",
+   "options_en": [
+    "8",
+    "2",
+    "16",
+    "12"
+   ],
+   "solution": {
+    "approach": "For free fall from rest, distance from the start grows with the square of time, so subtract the total distances at the two times to get each interval.",
+    "steps": [
+     {
+      "text": "Write the distance fallen from rest as a function of time.",
+      "equation": "d(t) = ½gt²"
+     },
+     {
+      "text": "Find the distance covered in the first 4 seconds.",
+      "equation": "d₁ = d(4) = ½g(4)² = 8g"
+     },
+     {
+      "text": "Find the total distance fallen by t = 12 s and subtract the first part to get the distance in the next 8 seconds.",
+      "equation": "d(12) = ½g(12)² = 72g; d₂ = 72g − 8g = 64g"
+     },
+     {
+      "text": "Divide the two distances.",
+      "equation": "d₂/d₁ = 64g/8g = 8"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "8"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Assuming distance is proportional to time and taking the ratio of the two intervals directly, 8/4 = 2, instead of using that distance grows with the square of time."
+     },
+     {
+      "option": 3,
+      "text": "Finding d₁ correctly as 8g but computing d₂ from the shortcut d₂ = t₂² − t₁² = 144 − 16 = 128, forgetting the ½g factor, giving 128g/8g = 16."
+     },
+     {
+      "option": 4,
+      "text": "Adding the two given time intervals, 4 + 8 = 12 seconds, and mistaking that total time for the required ratio instead of computing either distance."
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in a given time interval"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_an_q084",
+   "audit_file": "tg_eapcet_2021_20210804_an_q084.c1ecff19.json",
+   "item_sha": "c1ecff19b42e6c7181afc4e5b6f920db812611a2861be611c2f30d10ec771f73",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "The velocity of a particle moving along the x - axis varies as a function of time t as v(t) = (1 − 3t² + 2t³) m/s. If its position at t = 0 is x = 0 then at t = 2 s, its position is",
+   "options_en": [
+    "1 m",
+    "2 m",
+    "4 m",
+    "18 m"
+   ],
+   "solution": {
+    "approach": "Integrate the velocity function with respect to time, using the given position at t = 0 to fix the constant, then evaluate at t = 2 s.",
+    "steps": [
+     {
+      "text": "Integrate v(t) to get x(t), since velocity is the derivative of position.",
+      "equation": "x(t) = ∫(1 − 3t² + 2t³) dt = t − t³ + t⁴/2 + C"
+     },
+     {
+      "text": "Use the condition x(0) = 0 to find the constant of integration.",
+      "equation": "x(0) = C = 0"
+     },
+     {
+      "text": "Substitute t = 2 s.",
+      "equation": "x(2) = 2 − 8 + 8 = 2 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "2 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Leaving the constant term of the velocity unintegrated, writing its contribution as 1 instead of t, while integrating the other two terms correctly, which gives 1 m."
+     },
+     {
+      "option": 3,
+      "text": "Making a power-rule slip while integrating the −3t² term, treating its antiderivative as −3t instead of −t³, which changes the answer to 4 m."
+     },
+     {
+      "option": 4,
+      "text": "Dropping the minus sign while integrating the −3t² term, so it contributes +t³ instead of −t³, which gives 2 + 8 + 8 = 18 m."
+     }
+    ],
+    "concept_tags": [
+     "kinematics",
+     "position from velocity function"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2021_20210804_fn_q083",
+   "audit_file": "tg_eapcet_2021_20210804_fn_q083.69e2520a.json",
+   "item_sha": "69e2520a8087de485557e237cc97cb3d23d9ec04212d5ce3cf7cd68f3232c825",
+   "chapter": "Motion in a Straight Line",
+   "year": 2021,
+   "question_en": "A car travels in a straight line along a road. Its distance 'x' from a stop sign is given as a function of 't' by the equation x(t) = αt + βt³, where α = 2.0 m/s, β = 0.01 m/s³. Calculate the average velocity of the car in the time interval t = 2.00 sec to 4.00 sec.",
+   "options_en": [
+    "2.28 m/s",
+    "4.94 m/s",
+    "3.34 m/s",
+    "4.12 m/s"
+   ],
+   "solution": {
+    "approach": "Average velocity over an interval equals the change in position divided by the change in time, using the given x(t).",
+    "steps": [
+     {
+      "text": "Compute the position at the two given times using x(t) = αt + βt³ with α = 2.0 m/s and β = 0.01 m/s³.",
+      "equation": "x(2) = 2×2 + 0.01×2³ = 4.08 m; x(4) = 2×4 + 0.01×4³ = 8.64 m"
+     },
+     {
+      "text": "Divide the change in position by the change in time.",
+      "equation": "v_avg = (8.64 − 4.08)/(4 − 2) = 4.56/2 = 2.28 m/s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2.28 m/s"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "No slip reaches 4.94 m/s: forgetting to divide by the 2 s interval gives 4.56 m/s, and averaging the instantaneous velocities at the two times gives 2.30 m/s.",
+      "distractor": true
+     },
+     {
+      "option": 3,
+      "text": "No slip reaches 3.34 m/s: using the instantaneous velocity at t = 2 s alone gives 2.12 m/s, and dividing the position change by t = 4 s alone gives 1.14 m/s.",
+      "distractor": true
+     },
+     {
+      "option": 4,
+      "text": "No slip reaches 4.12 m/s: dropping the interval and using x(4) − x(2) alone gives 4.56 m/s, and the instantaneous velocity at t = 4 s gives 2.48 m/s.",
+      "distractor": true
+     }
+    ],
+    "concept_tags": [
+     "average velocity",
+     "position as a function of time"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_an_q084",
+   "audit_file": "tg_eapcet_2022_20220718_an_q084.01b3f6fd.json",
+   "item_sha": "01b3f6fdacf6d8a8da580fb2950db9c41b8f2ccfe8d3904171fdad234a26d6d9",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "Assertion(A) : The zero velocity of a particle at any instant always implies zero acceleration at that instant. Reason(R) : A body is momentarily at rest when reverses its direction of motion. The correct option among the following is",
+   "options_en": [
+    "(A) is true, (R) is true and (R) is the correct explanation for (A)",
+    "(A) is true, (R) is true but (R) is not the correct explanation for (A)",
+    "(A) is true but (R) is false",
+    "(A) is false but (R) is true"
+   ],
+   "solution": {
+    "approach": "Zero velocity does not force zero acceleration; check each statement using a case such as a ball at the top of its vertical throw.",
+    "steps": [
+     {
+      "text": "Test the assertion using a ball thrown straight up: at its highest point the velocity is momentarily zero.",
+      "equation": "at the highest point, v = 0"
+     },
+     {
+      "text": "At that same instant gravity is still acting on the ball, so the acceleration is not zero. This makes the assertion false.",
+      "equation": "a = g ≠ 0"
+     },
+     {
+      "text": "Test the reason using the same example: after being momentarily at rest, the ball reverses direction and moves downward."
+     },
+     {
+      "text": "A body must pass through zero velocity to reverse direction, so the reason is a true general statement. So (A) is false but (R) is true."
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "(A) is false but (R) is true"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming that because a body is briefly at rest when it reverses direction, its acceleration must also be zero there, wrongly treating rest as the same as no acceleration."
+     },
+     {
+      "option": 2,
+      "text": "Believing zero velocity always means zero acceleration and treating the momentary-rest fact as a separate true statement, not seeing that it is the very case that shows the assertion is false."
+     },
+     {
+      "option": 3,
+      "text": "Doubting that a body must pass through zero velocity to reverse direction, when in fact any continuous reversal must pass through an instant of rest."
+     }
+    ],
+    "concept_tags": [
+     "velocity and acceleration",
+     "instantaneous rest"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q083",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q083.acabd17f.json",
+   "item_sha": "acabd17f6ee28825c4881f318062ef98d99289e1ffbaa6fe7f434319f0f30364",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A body starts from the rest and acquires a velocity of 10 m/s in 2s. What is the acceleration of the body and the distance travelled",
+   "options_en": [
+    "5 m/s² and 10 m",
+    "5 m/s² and 5 m",
+    "5 m/s² and 6 m",
+    "6 m/s² and 5 m"
+   ],
+   "solution": {
+    "approach": "Find the acceleration from the change in velocity over the given time, then use it to find the distance travelled from rest.",
+    "steps": [
+     {
+      "text": "Compute the acceleration from the initial and final velocities and the time taken.",
+      "equation": "a = (v−u)/t = (10−0)/2 = 5 m/s²"
+     },
+     {
+      "text": "Use this acceleration to find the distance travelled from rest in the same time.",
+      "equation": "s = ½at² = ½×5×2² = 10 m"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "5 m/s² and 10 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "No method a student would use lands on this option; it is a filler value.",
+      "distractor": true
+     },
+     {
+      "option": 3,
+      "text": "No slip reaches 6 m alongside 5 m/s²: dropping the square in s = ½at² gives 5 m, and forgetting the half gives 20 m; no route lands on 6 m.",
+      "distractor": true
+     },
+     {
+      "option": 4,
+      "text": "No slip reaches an acceleration of 6 m/s²: a = (v−u)/t gives 5 m/s², and doubling either v or t gives 10 m/s²; nothing lands on 6 m/s² paired with 5 m.",
+      "distractor": true
+     }
+    ],
+    "concept_tags": [
+     "uniformly accelerated motion",
+     "kinematics from rest"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2022_20220718_fn_q084",
+   "audit_file": "tg_eapcet_2022_20220718_fn_q084.948fb1ff.json",
+   "item_sha": "948fb1ffdc0ec6475c8eb434b9458347697fad7b2895b5943d0d984ff4c830a3",
+   "chapter": "Motion in a Straight Line",
+   "year": 2022,
+   "question_en": "A bullet fired into a target losses one-third of its velocity after travelling a distance x meter into the target. If the bullet comes to rest by travelling a further distance x′, then the ratio x′/x is",
+   "options_en": [
+    "2/3",
+    "1/3",
+    "4/5",
+    "4/9"
+   ],
+   "solution": {
+    "approach": "Apply v² = u² − 2as for uniform retardation, once over distance x where v drops to (2/3)u, then again over x′ until it stops.",
+    "steps": [
+     {
+      "text": "Write the velocity after travelling distance x, given that it drops to two-thirds of the initial value.",
+      "equation": "v = (2/3)u"
+     },
+     {
+      "text": "Apply v² = u² − 2ax for the first stage to relate the retardation a to u and x.",
+      "equation": "(2u/3)² = u² − 2ax; a = 5u²/(18x)"
+     },
+     {
+      "text": "Apply the same equation for the second stage, where the bullet slows from v = 2u/3 to rest over distance x′.",
+      "equation": "0 = (2u/3)² − 2ax′"
+     },
+     {
+      "text": "Substitute a and solve for x′, then form the ratio x′/x.",
+      "equation": "x′ = 4x/5; x′/x = 4/5"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "4/5"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Taking the remaining velocity fraction after the first stage, v/u = 2/3, and treating it directly as the distance ratio x′/x, instead of applying v² = u² − 2as to each stage."
+     },
+     {
+      "option": 2,
+      "text": "Reading the one-third velocity loss stated in the question and mistaking that fraction directly for the distance ratio x′/x, without using v² = u² − 2as at all."
+     },
+     {
+      "option": 4,
+      "text": "Taking the ratio of the squared velocities, (2u/3)²/u² = 4/9, and mistaking that fraction directly for x′/x without separately relating each stage to the constant retardation."
+     }
+    ],
+    "concept_tags": [
+     "uniform retardation",
+     "v² = u² − 2as"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230512_fn_q083",
+   "audit_file": "tg_eapcet_2023_20230512_fn_q083.3fe544c5.json",
+   "item_sha": "3fe544c55dc065edcf86ce0e0e75927f1808cdaaece27eaa0e39d9d385b4a83d",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "The relation between time t and distance x of a particle is t = ax² + bx, where a and b are constants. If v is the velocity of the particle, then its acceleration is",
+   "options_en": [
+    "−2abv²",
+    "2bv³",
+    "−2av³",
+    "2av²"
+   ],
+   "solution": {
+    "approach": "Differentiate the relation between time and distance to get the velocity in terms of distance, then use acceleration equals velocity times its own derivative with distance.",
+    "steps": [
+     {
+      "text": "Differentiate the given relation between time and distance to find how t changes with x.",
+      "equation": "dt/dx = 2ax + b"
+     },
+     {
+      "text": "Invert this derivative to write the velocity, since velocity is the rate of change of distance with time.",
+      "equation": "v = dx/dt = 1/(2ax + b)"
+     },
+     {
+      "text": "Differentiate the velocity with respect to distance.",
+      "equation": "dv/dx = −2a/(2ax + b)² = −2av²",
+      "why_this_step": "The denominator (2ax + b) equals 1/v, so squaring it is the same as dividing by v²."
+     },
+     {
+      "text": "Acceleration is the rate of change of velocity with time, so multiply dv/dx by dx/dt, which is v, to convert it.",
+      "equation": "a = v × dv/dx = v × (−2av²) = −2av³"
+     }
+    ],
+    "final_answer": {
+     "option": 3,
+     "value": "−2av³"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "No slip multiplies a and b together here: forgetting the v-factor gives −2av² or 2av² depending on sign, and swapping the coefficients gives ±2bv³; nothing produces the mixed ab combination.",
+      "distractor": true
+     },
+     {
+      "option": 2,
+      "text": "Applying the derivative rules to the two terms in the wrong order, writing dt/dx = a + 2bx, and then dropping the negative sign that differentiating 1/(dt/dx) produces, gives 2bv³ instead of −2av³."
+     },
+     {
+      "option": 4,
+      "text": "Treating dv/dx itself as the acceleration, without the extra factor of v needed to convert a distance-derivative into a time-derivative, and dropping its negative sign, gives 2av² instead of −2av³."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with t as a function of x",
+     "chain rule",
+     "velocity-acceleration relation a = v dv/dx"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2023_20230513_an_q083",
+   "audit_file": "tg_eapcet_2023_20230513_an_q083.a19a70e1.json",
+   "item_sha": "a19a70e188a0f749f6d7dc43a4fe3487cb78e1b6030e2a00281f7ce4885595a3",
+   "chapter": "Motion in a Straight Line",
+   "year": 2023,
+   "question_en": "A bird flies with a velocity (t−2) ms⁻¹ along a straight line, where t is the time in seconds. The distance covered by it in a time of 4 seconds is",
+   "options_en": [
+    "2 m",
+    "4 m",
+    "6 m",
+    "8 m"
+   ],
+   "solution": {
+    "approach": "Since the velocity changes sign at t = 2 s, find the distance covered in each of the two stages separately and add them, rather than the net displacement.",
+    "steps": [
+     {
+      "text": "Note that v(t) = t − 2 is negative for t less than 2 s and positive for t greater than 2 s, so the bird reverses direction at t = 2 s.",
+      "equation": "v(t) = t − 2; v = 0 at t = 2 s"
+     },
+     {
+      "text": "Find the distance covered while moving in the first direction, from t = 0 to t = 2 s.",
+      "equation": "∫₀² (2 − t) dt = [2t − t²/2]₀² = 4 − 2 = 2 m"
+     },
+     {
+      "text": "Find the distance covered after it reverses, from t = 2 s to t = 4 s.",
+      "equation": "∫₂⁴ (t − 2) dt = [t²/2 − 2t]₂⁴ = 0 − (−2) = 2 m"
+     },
+     {
+      "text": "Add the two distances.",
+      "equation": "2 + 2 = 4 m"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "4 m"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing only the distance covered up to the moment of reversal, 2 m, and stopping there without adding the return-direction distance from t = 2 s to t = 4 s."
+     },
+     {
+      "option": 3,
+      "text": "Treating the second stage as constant velocity at 2 m s⁻¹ for 2 s, giving 2 × 2 = 4 m instead of 2 m; adding the correct first stage gives 6 m."
+     },
+     {
+      "option": 4,
+      "text": "Using the start and end speeds, both 2 m s⁻¹, as a constant average speed over the whole 4 s: 2 × 4 = 8 m, ignoring the reversal in between."
+     }
+    ],
+    "concept_tags": [
+     "velocity as a function of time",
+     "distance vs displacement"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240509_fn_q083",
+   "audit_file": "tg_eapcet_2024_20240509_fn_q083.b9e4c619.json",
+   "item_sha": "b9e4c61924c6ba2426e7cdd53f2125d4e3d8b7fb00c14ca31086cf154a852140",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is falling freely from the top of a tower of height 125 m. The distance covered by the body during the last second of its motion is x% of the height of the tower. Then x is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "9",
+    "36",
+    "25",
+    "49"
+   ],
+   "solution": {
+    "approach": "Find the total fall time, the distance covered in the last second from the nth-second formula, and express it as a percentage of the height.",
+    "steps": [
+     {
+      "text": "Use h = ½gt² to find the total time to fall the full height of the tower from rest.",
+      "equation": "125 = ½×10×t²; t = 5 s"
+     },
+     {
+      "text": "Find the distance covered during the last, that is fifth, second using the nth-second formula for free fall from rest.",
+      "equation": "S₅ = g/2 × (2×5−1) = 5×9 = 45 m"
+     },
+     {
+      "text": "Express this distance as a percentage of the tower's height.",
+      "equation": "x = 45/125 × 100 = 36"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "36"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Computing the last-second distance as the difference of squares of the times, 5² − 4² = 9, forgetting to multiply by ½g, and mistaking this raw number for the percentage."
+     },
+     {
+      "option": 3,
+      "text": "Using (n+1)² = 36 in the denominator of the last-second fraction (2n−1)/n² instead of n² = 25, as if the fall lasted one second longer, gives 25% instead of the correct 36%."
+     },
+     {
+      "option": 4,
+      "text": "No slip reaches 49%: subtracting the first four seconds' distance from the height gives 64%, and using the final speed alone as a fraction of the height gives 40%; nothing lands on 49%.",
+      "distractor": true
+     }
+    ],
+    "concept_tags": [
+     "free fall",
+     "distance in last second",
+     "percentage of total height"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2024_20240510_an_q083",
+   "audit_file": "tg_eapcet_2024_20240510_an_q083.2cfe20e0.json",
+   "item_sha": "2cfe20e0c9ab085cecd5890dada547cd21f9e56766863f85ae5306c1b1297d81",
+   "chapter": "Motion in a Straight Line",
+   "year": 2024,
+   "question_en": "A body is thrown vertically upwards with a velocity of 35 ms⁻¹ from the ground. The ratio of the speeds of the body at times 3 s and 4 s of its motion is (Acceleration due to gravity = 10 ms⁻²)",
+   "options_en": [
+    "3 : 4",
+    "1 : 1",
+    "2 : 1",
+    "3 : 2"
+   ],
+   "solution": {
+    "approach": "Write the velocity as a function of time for vertical projectile motion, evaluate it at both instants, and compare the magnitudes since speed is asked, not velocity.",
+    "steps": [
+     {
+      "text": "Write the velocity at time t, taking the upward direction as positive.",
+      "equation": "v(t) = 35 − 10t"
+     },
+     {
+      "text": "Evaluate the velocity at t = 3 s and t = 4 s.",
+      "equation": "v(3) = 35 − 30 = 5 ms⁻¹; v(4) = 35 − 40 = −5 ms⁻¹"
+     },
+     {
+      "text": "Take the magnitudes, since speed does not carry a sign, and form the ratio.",
+      "equation": "speed(3) : speed(4) = 5 : 5 = 1 : 1"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "1 : 1"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the ratio of times, 3:4, directly gives the ratio of speeds, without checking that the body has already reversed direction and slowed back to the same speed by symmetry."
+     },
+     {
+      "option": 3,
+      "text": "No single slip reaches 2:1: the time-ratio route gives 3:4, and the correct symmetric-speed route gives 1:1; nothing here doubles one speed over the other.",
+      "distractor": true
+     },
+     {
+      "option": 4,
+      "text": "No single slip reaches 3:2 either: the only routes any method gives are the time ratio 3:4 and the correct equal-speed ratio 1:1, both different from 3:2.",
+      "distractor": true
+     }
+    ],
+    "concept_tags": [
+     "vertically thrown body",
+     "speed vs velocity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "tg_eapcet_2025_20250503_fn_q110",
+   "audit_file": "tg_eapcet_2025_20250503_fn_q110.e89788b1.json",
+   "item_sha": "e89788b1ee7c3e074c09cd0538961c52ec2b2ed6e023f4d2d4027192c35fa6c8",
+   "chapter": "Motion in a Straight Line",
+   "year": 2025,
+   "question_en": "Due to the presence of air resistance, if a body dropped from a height of 20 m reaches the ground with a speed of 18 ms⁻¹, then the time taken by the body to reach the ground is nearly",
+   "options_en": [
+    "2.2 s",
+    "2.5 s",
+    "1.8 s",
+    "2 s"
+   ],
+   "solution": {
+    "approach": "Treat the fall as roughly uniformly accelerated and use the average of the initial and final speeds to estimate the time taken.",
+    "steps": [
+     {
+      "text": "Take the distance fallen as 20 m, the initial speed as zero, and the final speed as 18 m s⁻¹.",
+      "equation": "s = 20 m, u = 0, v = 18 ms⁻¹"
+     },
+     {
+      "text": "Estimate the time from the distance and the average of the initial and final speeds.",
+      "equation": "t = s / ((u+v)/2) = 20/9"
+     },
+     {
+      "text": "Evaluate.",
+      "equation": "t ≈ 2.2 s"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2.2 s"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "No single slip reaches 2.5 s: the average-speed route gives 2.2 s, the naive v = gt route gives 1.8 s, and ignoring the given final speed gives 2.0 s.",
+      "distractor": true
+     },
+     {
+      "option": 3,
+      "text": "Applying v = gt directly with the given final speed and g = 10 ms⁻², ignoring that air resistance means the acceleration was not g throughout the fall, which gives 1.8 s."
+     },
+     {
+      "option": 4,
+      "text": "Ignoring the given final speed of 18 ms⁻¹ and computing the ordinary free-fall time for 20 m using g = 10 ms⁻², which gives 2 s and misses the effect of air resistance."
+     }
+    ],
+    "concept_tags": [
+     "kinematics with variable acceleration",
+     "average velocity method"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

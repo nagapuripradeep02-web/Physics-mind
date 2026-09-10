@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2022_20220718_an_q084",
+ "item_sha": "599bd12ce7ab383d11186029f71b2cedefc3917ddec974a19c7d81bfae532d78",
+ "auditor_option": 4,
+ "auditor_value": "(A) is false but (R) is true",
+ "findings": [
+  {"grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Assuming that because a body is briefly at rest when it reverses direction, its acceleration must also be zero there, wrongly treating rest as the same as no acceleration.",
+   "note": "This entry is filed against option 2, but the route it describes derives the assertion FROM the reason (because the body is at rest when reversing, its acceleration is zero), which is exactly the student who says the reason explains the assertion. That is option 1, not option 2. This entry and common_mistakes[1] have their option numbers swapped.",
+   "fix": "Set this entry's option to 1: believing that because a body is briefly at rest when it reverses direction its acceleration must also be zero there, so treating (A) as true and (R) as its explanation."},
+  {"grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Believing zero velocity always means zero acceleration and treating the momentary-rest fact as a separate true statement, not seeing that it is the very case that shows the assertion is false.",
+   "note": "This entry is filed against option 1, but its own text says the student treats (R) as a SEPARATE true statement, that is, true but not the explanation of (A). That is option 2, not option 1. The option numbers of common_mistakes[0] and common_mistakes[1] are interchanged.",
+   "fix": "Set this entry's option to 2: believing zero velocity always means zero acceleration and accepting the momentary-rest statement as a separate true fact, so choosing true, true, not the explanation."}
+ ],
+ "verdict": "wrong",
+ "question_defect": "The reason is printed with a grammatical omission, \"A body is momentarily at rest when reverses its direction of motion\" (a missing \"it\"); the meaning is still unambiguous.",
+ "notes": "Solved independently: at the top of a vertical throw v = 0 while a = g, so (A) is false; a body moving continuously in one dimension must pass through v = 0 to reverse, so (R) is true; option 4. The approach, all four steps and the final answer are correct. common_mistakes[2] (option 3) matches its own text correctly. Both filed findings are option-assignment errors, not physics errors, so the verdict is wrong, not harmful.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:12:00+05:30"}
+}

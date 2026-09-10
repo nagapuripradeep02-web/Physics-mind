@@ -1,0 +1,17 @@
+{
+ "question_id": "tg_eapcet_2023_20230512_fn_q083",
+ "item_sha": "3f37e5ecb6b6fddb2b928b6f8c30ec6015620e0e2d493fa5a4fde814d56cce5b",
+ "auditor_option": 3,
+ "auditor_value": "−2av³",
+ "findings": [
+  {"grade": "wrong",
+   "field": "steps[2].why_this_step",
+   "quote": "The denominator (2ax + b) equals 1/v, so squaring it is the same as dividing by v².",
+   "note": "The reason inverts the step it is explaining. Since (2ax + b)² = 1/v², dividing by that denominator is the same as MULTIPLYING by v², which is what the equation −2a/(2ax + b)² = −2av² does. A student who follows the prose literally writes −2a/v² and then reaches −2a/v, contradicting the correct equation printed beside it.",
+   "fix": "The denominator (2ax + b) equals 1/v, so (2ax + b)² equals 1/v², and dividing by it is the same as multiplying by v²."}
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Solved independently with sympy: dt/dx = 2ax + b, v = 1/(2ax + b), dv/dx = −2a/(2ax + b)² = −2av², acceleration = v dv/dx = −2a/(2ax + b)³ = −2av³, option 3. The approach, all four equations and the final answer are correct. common_mistakes[1] was recomputed symbolically: with dt/dx read as a + 2bx the acceleration is −2b/(a + 2bx)³ = −2bv³, so the sign-dropped value 2bv³ is option 2 exactly. common_mistakes[2] is correct: dv/dx = −2av², sign dropped gives 2av², option 4. The distractor label on option 1 was tested; no single slip produces the mixed ab coefficient, and the two supporting routes quoted in that entry (±2av², ±2bv³) are both true.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R1", "at": "2026-09-10T14:26:00+05:30"}
+}

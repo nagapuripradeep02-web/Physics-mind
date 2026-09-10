@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "fb49564e07f074ae0a2382b13bc1b3f7efc7a27c9e76ce59053f033db2038968",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "mistakes[2].type",
+   "quote": "application",
+   "note": "Entry 2 adds 4 + 8 and reads the total time as the ratio: no physics concept is being applied to a wrong quantity, interval, body or frame, so the application definition does not fit; misreading what the question asks for is careless, which would carry route null. Boundary judgement, so weak only.",
+   "fix": "careless (route would then be null)"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Checked: d1 = 8g, d2 = 64g, ratio 8; the option-3 entry's 128g/8g = 16 and the option-2 entry's 8/4 = 2 both reproduce. Index alignment 0/1/2 -> options 2/3/4 is right and each route describes its own entry. right_route (I wrote the fall distance as half g t squared) is step 1 verbatim, student voice, 8 words, and separates from both wrong routes. mistakes[1] typed calculation is right: the subtract-the-totals route was correct and only the factor half was dropped.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_fn_q083",
+ "item_sha": "69e2520a8087de485557e237cc97cb3d23d9ec04212d5ce3cf7cd68f3232c825",
+ "auditor_option": 1,
+ "auditor_value": "2.28 m/s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "x(2) = 4.08 m, x(4) = 8.64 m, average velocity = 4.56/2 = 2.28 m/s. All three wrong options are marked distractors; I ran a brute-force search over x(2), x(4), their difference and sum, the instantaneous velocities at t = 2, 3 and 4 s and the misread β = 0.1 variants, combined pairwise by +, −, × and ÷, and nothing lands on 4.94, 3.34 or 4.12 by any route a student would take (the single hit, 4.12 = v(2) + 2, is not a method). Every supporting number quoted inside the three entries checks out: 4.56, 2.30, 2.12, 1.14 and 2.48.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-p1-02",
+  "at": "2026-09-10T06:21:00+05:30"
+ }
+}

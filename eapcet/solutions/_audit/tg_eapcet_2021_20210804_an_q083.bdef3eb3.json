@@ -1,0 +1,11 @@
+{
+ "question_id": "tg_eapcet_2021_20210804_an_q083",
+ "item_sha": "bdef3eb32bac192c4d3778ccb5a3cc93397614ce886b152b33d6823ee279be3a",
+ "auditor_option": 1,
+ "auditor_value": "8",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: d1 = 1/2 g (4)^2 = 8g, d(12) = 72g, d2 = 64g, d2/d1 = 8 (g cancels, so the 9.8 vs 10 choice is irrelevant here). Every step equation follows from the one above. common_mistakes[0] (proportional-to-time, 8/4 = 2) lands exactly on option 2. common_mistakes[1] (half dropped only in the interval term, 128g/8g = 16) lands exactly on option 3; the slip is asymmetric but dropping the 1/2 from the d = 1/2 g (t2^2 - t1^2) interval form is a real student error, so I did not file it. For the option-4 distractor I searched for a route to 12 (d(12)/d1 = 9, d(8)/d1 = 4, v(12)/v(4) = 3, 2g-forms, sqrt of 128/8 = 4) and found none; its three supporting claims (2, 16, and 72g/8g = 9) are all arithmetically true.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-p1-02-R2", "at": "2026-09-10T00:00:00+05:30"}
+}

@@ -1,24 +1,52 @@
 {
- "schema": "eapcet_solution_v1",
- "question_id": "tg_eapcet_2024_20240510_an_q083",
- "approach": "Write the velocity as a function of time for vertical projectile motion, evaluate it at both instants, and compare the magnitudes since speed is asked, not velocity.",
- "steps": [
-  {"text": "Write the velocity at time t, taking the upward direction as positive.",
-   "equation": "v(t) = 35 − 10t"},
-  {"text": "Evaluate the velocity at t = 3 s and t = 4 s.",
-   "equation": "v(3) = 35 − 30 = 5 ms⁻¹; v(4) = 35 − 40 = −5 ms⁻¹"},
-  {"text": "Take the magnitudes, since speed does not carry a sign, and form the ratio.",
-   "equation": "speed(3) : speed(4) = 5 : 5 = 1 : 1"}
- ],
- "final_answer": {"option": 2, "value": "1 : 1"},
- "confidence": "sure",
- "common_mistakes": [
-  {"option": 1, "text": "Assuming the ratio of times, 3:4, directly gives the ratio of speeds, without checking that the body has already reversed direction and slowed back to the same speed by symmetry."},
-  {"option": 3, "text": "No single slip reaches 2:1: the time-ratio route gives 3:4, and the correct symmetric-speed route gives 1:1; nothing here doubles one speed over the other.", "distractor": true},
-  {"option": 4, "text": "No single slip reaches 3:2 either: the only routes any method gives are the time ratio 3:4 and the correct equal-speed ratio 1:1, both different from 3:2.", "distractor": true}
- ],
- "concept_tags": ["vertically thrown body", "speed vs velocity"],
- "difficulty": "easy",
- "mistake_type_hint": "concept",
- "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-K-p1-02-c", "at": "2026-09-10T12:00:00+05:30"}
+  "schema": "eapcet_solution_v1",
+  "question_id": "tg_eapcet_2024_20240510_an_q083",
+  "approach": "Write the velocity as a function of time for vertical projectile motion, evaluate it at both instants, and compare the magnitudes since speed is asked, not velocity.",
+  "steps": [
+    {
+      "text": "Write the velocity at time t, taking the upward direction as positive.",
+      "equation": "v(t) = 35 − 10t"
+    },
+    {
+      "text": "Evaluate the velocity at t = 3 s and t = 4 s.",
+      "equation": "v(3) = 35 − 30 = 5 ms⁻¹; v(4) = 35 − 40 = −5 ms⁻¹"
+    },
+    {
+      "text": "Take the magnitudes, since speed does not carry a sign, and form the ratio.",
+      "equation": "speed(3) : speed(4) = 5 : 5 = 1 : 1"
+    }
+  ],
+  "final_answer": {
+    "option": 2,
+    "value": "1 : 1"
+  },
+  "confidence": "sure",
+  "common_mistakes": [
+    {
+      "option": 1,
+      "text": "Assuming the ratio of times, 3:4, gives the ratio of speeds, not noticing the body has reversed and returned to the same speed: 3 s and 4 s are both 0.5 s from the top."
+    },
+    {
+      "option": 3,
+      "text": "No single slip reaches 2:1: the time-ratio route gives 3:4, and the correct symmetric-speed route gives 1:1; nothing here doubles one speed over the other.",
+      "distractor": true
+    },
+    {
+      "option": 4,
+      "text": "No single slip reaches 3:2 either: the time-ratio route gives 3:4, the correct symmetric-speed route gives 1:1, and comparing the sizes of the average velocities gives 4:3; nothing lands on 3:2.",
+      "distractor": true
+    }
+  ],
+  "concept_tags": [
+    "vertically thrown body",
+    "speed vs velocity"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept",
+  "authored_by": {
+    "model": "sonnet",
+    "wave": 2,
+    "agent": "W02-K-p1-02-c",
+    "at": "2026-09-10T12:00:00+05:30"
+  }
 }

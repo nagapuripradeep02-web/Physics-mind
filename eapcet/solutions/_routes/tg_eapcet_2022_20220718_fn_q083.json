@@ -1,9 +1,11 @@
 {
  "schema": "eapcet_routes_v1",
  "question_id": "tg_eapcet_2022_20220718_fn_q083",
- "right_route": "I found the acceleration first and then the distance",
+ "right_route": "I found a using v minus u over t",
  "mistakes": [
-  {"index": 0, "type": "calculation", "route": null}
+  {"index": 0, "type": "calculation", "route": null},
+  {"index": 1, "type": "distractor", "route": null},
+  {"index": 2, "type": "distractor", "route": null}
  ],
- "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-R-p1-02", "at": "2026-09-09T15:00:00+05:30"}
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-R-p1-02-a", "at": "2026-09-10T06:33:00+05:30"}
 }

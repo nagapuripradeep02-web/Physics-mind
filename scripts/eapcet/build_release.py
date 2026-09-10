@@ -27,6 +27,8 @@ AUDIT = os.path.join(SOL, "_audit")
 AUDIT_ROUTES = os.path.join(SOL, "_audit_routes")
 SHAPES = os.path.join(ROOT, "eapcet", "pool", "shapes.json")
 SHAPES_MAX = 12
+CARDS_DIR = os.path.join(ROOT, "answer-book", "questions")
+SHAPE_CARDS = (2, 3)          # a shape's grounding cards: the two or three a teacher would open
 SPOT = os.path.join(SOL, "_spot", "status.json")
 ATTEMPTS = os.path.join(SOL, "_attempts")
 RELEASE = POOL.replace(".json", ".release.json")
@@ -34,6 +36,25 @@ ESCALATE = os.path.join(SOL, "_escalate.json")
 OPEN_AT = 13
 NEVER_OPEN = {"p1-14": "asked once in 26 exams - not enough to test"}
 OK = ("ok", "weak")
+
+
+_UNIT_CARDS = {}
+def unit_cards(unit):
+    """The live Answer Book card ids of one unit (subject, number), read once."""
+    if unit not in _UNIT_CARDS:
+        ids = set()
+        for f in glob.glob(os.path.join(CARDS_DIR, "*.json")):
+            try:
+                card = json.load(io.open(f, encoding="utf-8"))
+            except Exception:
+                continue
+            if card.get("status") == "retired":
+                continue
+            u = card.get("unit") or {}
+            if (card.get("subject"), int(u.get("number", 0) or 0)) == unit:
+                ids.add(card.get("question_id"))
+        _UNIT_CARDS[unit] = ids
+    return _UNIT_CARDS[unit]
 
 
 def load(p, default=None):
@@ -202,6 +223,19 @@ def main():
                     bad.append("%s: shape %s label carries an idiom" % (ck, s["key"]))
                 if not any(v == s["key"] for v in asg.values()):
                     bad.append("%s: shape %s has no pool question" % (ck, s["key"]))
+                # cards: two or three Answer Book cards of the chapter's unit, every id real and
+                # live; required on every shape of a STRICT chapter (the fix page grounds by shape)
+                cards = s.get("cards")
+                if cards is None and ck in STRICT_CHAPTERS and s["key"] != "other":
+                    bad.append("%s: shape %s has no cards (a strict chapter grounds by shape)" % (ck, s["key"]))
+                if cards is not None:
+                    unit = (c["answer_book_unit"]["subject"], int(c["answer_book_unit"]["number"]))
+                    live = unit_cards(unit)
+                    if not isinstance(cards, list) or not (SHAPE_CARDS[0] <= len(cards) <= SHAPE_CARDS[1]):
+                        bad.append("%s: shape %s needs %d-%d cards, has %s" % (ck, s["key"], SHAPE_CARDS[0], SHAPE_CARDS[1], len(cards) if isinstance(cards, list) else "?"))
+                    for cid in (cards if isinstance(cards, list) else []):
+                        if cid not in live:
+                            bad.append("%s: shape %s card %s is not a live card of unit %s %d" % (ck, s["key"], cid, unit[0], unit[1]))
             for qid, k in asg.items():
                 if qid not in c["question_ids"]:
                     bad.append("%s: assignment %s is not in the pool" % (ck, qid))
@@ -246,7 +280,7 @@ def main():
               "closed_because": never or ("spot-check blocked" if blocked else
                                           None if len(vids) >= OPEN_AT else "%d of %d verified" % (len(vids), OPEN_AT))}
         if c["key"] in shapes:
-            ch["shapes"] = [{"key": s["key"], "label": s["label"]} for s in shapes[c["key"]]["shapes"]]
+            ch["shapes"] = [dict({"key": s["key"], "label": s["label"]}, **({"cards": s["cards"]} if s.get("cards") else {})) for s in shapes[c["key"]]["shapes"]]
         chapters.append(ch)
 
     questions = {}

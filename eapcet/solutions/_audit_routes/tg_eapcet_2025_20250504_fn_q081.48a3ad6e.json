@@ -1,0 +1,22 @@
+{
+ "question_id": "tg_eapcet_2025_20250504_fn_q081",
+ "item_sha": "48a3ad6ef1e8dd24bf85ecd4f89ed865205e99fdcc73bd243eeff8c01371a94a",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "mistakes[0].type",
+   "quote": "calculation",
+   "note": "The entry as written is 'Using v = 2at instead of v = u + at' - a different relation, not a slip inside a right route, which the definitions put under concept (the belief about the velocity relation is wrong). mistakes[2] (v = half a t, carrying the half over from s = ut + half a t squared) is the same case. Reading either as simply doubling or halving a correct product makes calculation defensible, so this is a boundary and weak only.",
+   "fix": "concept"
+  }
+ ],
+ "verdict": "weak",
+ "solution_defect": null,
+ "notes": "Solved independently: a = 4, u = 0, v = 16 at t = 4; the 32, 12 and 8 entries all reproduce. right_route (I found u and a from both seconds) is step 1, 8 words, and separates cleanly from the final-step errors. Considered and did not file: mistakes[1] (used t = 3 instead of t = 4, confusing it with the third second) sits on the application/careless boundary - careless would demand route null - and its route (I used the earlier time value in the formula) reads a little more like a marker's phrase than a student's, but it is understandable and within nine words.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-V-p1-02",
+  "at": "2026-09-10T18:40:00+05:30"
+ }
+}
