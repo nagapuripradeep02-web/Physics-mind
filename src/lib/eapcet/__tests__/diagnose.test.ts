@@ -304,3 +304,52 @@ describe('Diag.probeOf / streakAfter / strongNow', () => {
         expect(Diag.strongNow(n)).toBe(false);
     });
 });
+
+// ── the number typed before the options, and an option no method reaches ──────
+// A routed question, key 2, whose option 3 is a distractor and option 4 a
+// calculation slip; option 1 is explained by nobody.
+const STRICTQ: Fact = {
+    has_routes: true, theory: false, route_key: 'r',
+    option_types: { '3': 'distractor', '4': 'calculation' },
+    routes: [{ id: 'r', text: 'I found the distance by 12 s and took away the first 4 s', type: null, option: 2 }],
+    shape: { key: 'two_stage_fall', label: 'Fall in two stages' },
+};
+const FACTS2: Record<string, Fact> = { a: ROUTED, s: STRICTQ };
+type TypedRec = Rec & { typed?: string | null; typed_option?: number | null; ms_typed?: number | null };
+function typedRec(qid: string, picked: number, correct: boolean, route: string, typed: string | null, typedOption: number | null): TypedRec {
+    return { qid, picked, correct, ms: 60000, route, typed, typed_option: typedOption, ms_typed: 20000 };
+}
+
+describe('Diag.outcomeOf — the typed number and the distractor option', () => {
+    it('a wrong pick on an unexplained option is confirmed by the number typed before the options, and marked anchored', () => {
+        // typed the calculation option's value (4), then picked the unexplained option 1
+        const o = Diag.diagnose([typedRec('a', 1, false, 'r', '4.56', 4)], FACTS2).outcomes[0] as Outcome & { anchored: boolean };
+        expect(o).toMatchObject({ outcome: 'slip', type: 'calculation', confirmed: true, anchored: true });
+    });
+    it('the picked option outranks the typed number when both are explained; typing the key and then picking wrong is not anchored', () => {
+        const a = Diag.diagnose([typedRec('a', 3, false, 'r', '4.56', 4)], FACTS2).outcomes[0] as Outcome & { anchored: boolean };
+        expect(a).toMatchObject({ outcome: 'wrong_route', type: 'application', confirmed: true, mismatch: true, anchored: false });
+        const b = Diag.diagnose([typedRec('a', 1, false, 'r', '8', 2)], FACTS2).outcomes[0] as Outcome & { anchored: boolean };
+        expect(b).toMatchObject({ outcome: 'slip_unconfirmed', confirmed: false, anchored: false });
+    });
+    it('a typed number that matches no option changes nothing; a record without the fields is read as before', () => {
+        const o = Diag.diagnose([typedRec('a', 1, false, 'r', '2.3', null)], FACTS2).outcomes[0] as Outcome & { anchored: boolean };
+        expect(o).toMatchObject({ outcome: 'slip_unconfirmed', anchored: false });
+        expect(Diag.diagnose([rec('a', 1, false, 'r')], FACTS2).outcomes[0]).toMatchObject({ outcome: 'slip_unconfirmed', anchored: false });
+    });
+    it('a pick on a distractor option is a guess, not a physics error, whatever route was claimed', () => {
+        expect(one({ ...rec('s', 3, false, 'r') })).toBeDefined();
+        const v = Diag.diagnose([rec('s', 3, false, 'r'), rec('s', 3, false, 'sure'), rec('s', 4, false, 'r')], FACTS2);
+        expect(v.outcomes[0]).toMatchObject({ outcome: 'wrong_distractor', type: null, confirmed: false });
+        expect(v.outcomes[1]).toMatchObject({ outcome: 'wrong_distractor', type: null });
+        expect(v.outcomes[2]).toMatchObject({ outcome: 'slip', type: 'calculation', confirmed: true });
+        expect(v.params).toEqual({ concept: 0, application: 0, calculation: 1, guessed: 2, rushed: 0 });
+        expect(v.wrong_ids).toEqual(['s', 's', 's']);
+        expect(v.shapes[0].status).toBe('fix');
+    });
+    it('counts anchored records and records with a typed number', () => {
+        const v = Diag.diagnose([typedRec('a', 1, false, 'r', '4.56', 4), typedRec('a', 2, true, 'r', '8', 2), typedRec('a', 2, true, 'r', null, null)], FACTS2);
+        expect((v as unknown as { anchored: number; typed_first: number }).anchored).toBe(1);
+        expect((v as unknown as { anchored: number; typed_first: number }).typed_first).toBe(2);
+    });
+});

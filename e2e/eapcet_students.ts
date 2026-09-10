@@ -20,7 +20,10 @@
 import { labelOf, type PublicQuestion, type Intent, type Played } from './eapcet_helpers';
 
 export type Fact = PublicQuestion & { question_en: string; options_en: string[]; difficulty?: string | null };
-export type Decision = { picked: number; route: string; intent: Intent; why: string };
+/** `typed`: what the student types before the options on a number question —
+    absent = the printed value of the option they then pick; null = "I have no
+    answer yet". */
+export type Decision = { picked: number; route: string; intent: Intent; why: string; typed?: string | null };
 export type Persona = {
     name: string;
     who: string;
@@ -79,7 +82,7 @@ export const YASHWANTH: Persona = {
     who: 'guesses under time pressure',
     wait: 6000,
     decide(q) {
-        return { picked: 3, route: 'guess', intent: q.answer === 3 ? 'guess_right' : 'guess_wrong', why: 'option 3 every time, and "I guessed"' };
+        return { picked: 3, route: 'guess', intent: q.answer === 3 ? 'guess_right' : 'guess_wrong', why: 'option 3 every time, and "I guessed"', typed: null };
     },
     truth: 'weakness = guessed; rushed = every wrong answer; no type named; his score is the number of drawn questions whose key is (3)',
     holds: (e) => e.weakness === 'guessed' && e.params.concept + e.params.application + e.params.calculation === 0 && e.params.rushed === e.wrong,

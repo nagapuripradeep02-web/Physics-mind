@@ -32,7 +32,9 @@ export const EAPCET_MAX_SHAPES = 12;
 const HEX64 = /^[0-9a-f]{64}$/;
 const SHAPE_KEY = /^[a-z0-9_-]{1,40}$/;
 
-export const EapcetMistakeTypeSchema = z.enum(['concept', 'application', 'calculation', 'careless']);
+/** `distractor`: a wrong option no method reaches (the entry is flagged `distractor: true`
+    in the solution and typed so in its sidecar); a student who picks it guessed or misread. */
+export const EapcetMistakeTypeSchema = z.enum(['concept', 'application', 'calculation', 'careless', 'distractor']);
 /** The two types whose mistake IS a route the student can claim. */
 export const EAPCET_ROUTE_TYPES = new Set<string>(['concept', 'application']);
 
@@ -53,6 +55,7 @@ export const EapcetSolutionSchema = z.object({
     common_mistakes: z.array(z.object({
         option: z.number().int().min(1).max(4).nullable(),
         text: z.string().min(1),
+        distractor: z.literal(true).optional(),
         type: EapcetMistakeTypeSchema.optional(),
         route: z.string().min(1).nullable().optional(),
     }).strict()).max(3),

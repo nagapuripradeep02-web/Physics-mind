@@ -205,12 +205,19 @@ var Screens = (function () {
     return null;
   }
 
-  /** A question card: stem and four option buttons, no paper label. onPick(card, n). */
-  function questionCard(q, progressText, onPick_) {
+  /** A question card: stem, then — on a question whose answer is one number —
+      a "your answer first" row that hides the options until the student has
+      typed a number or said they have none; then the four option buttons. No
+      paper label. onPick(card, n, typed) with typed = {typed, ms_typed} or
+      null; hooks.onTyped(typed) fires when the options appear (the run re-arms
+      its clock there); hooks.noTyped skips the row (a resumed pick). */
+  function questionCard(q, progressText, onPick_, hooks) {
+    hooks = hooks || {};
     var card = el('div', 'ep-card');
     card.setAttribute('data-qid', q.id);
     if (progressText) card.appendChild(el('div', 'ep-progress', progressText));
     card.appendChild(el('div', 'ep-stem', q.question_en));
+    var typedInfo = null;
     var opts = el('div', 'ep-opts');
     for (var n = 1; n <= 4; n++) (function (n) {
       var b = el('button', 'ep-opt');
@@ -218,47 +225,97 @@ var Screens = (function () {
       b.setAttribute('data-option', String(n));
       b.appendChild(el('span', 'ep-opt-n', STR.option_label(n)));
       b.appendChild(el('span', 'ep-opt-t', q.options_en[n - 1]));
-      b.onclick = function () { onPick_(card, n); };
+      b.onclick = function () { onPick_(card, n, typedInfo); };
       opts.appendChild(b);
     })(n);
+    if (q.answer_kind === 'number' && !hooks.noTyped) {
+      var shownAt = Date.now();
+      var box = el('div', 'ep-typed');
+      box.appendChild(el('div', 'ep-typed-label', STR.typed_prompt));
+      var row = el('div', 'ep-typed-row');
+      var input = document.createElement('input');
+      input.className = 'ep-typed-input';
+      input.type = 'text';
+      input.setAttribute('inputmode', 'decimal');
+      input.setAttribute('autocomplete', 'off');
+      input.setAttribute('aria-label', STR.typed_prompt);
+      input.placeholder = STR.typed_placeholder;
+      var go = button('btn btn-primary ep-typed-go', STR.typed_done, function () { done(input.value.trim() || null); });
+      row.appendChild(input);
+      row.appendChild(go);
+      box.appendChild(row);
+      box.appendChild(button('ep-typed-none', STR.typed_none, function () { done(null); }));
+      input.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); go.click(); } };
+      card.appendChild(box);
+      opts.hidden = true;
+    }
+    function done(text) {
+      typedInfo = { typed: text, ms_typed: Date.now() - shownAt };
+      var said = el('div', 'ep-typed-said', text ? STR.typed_said(text) : STR.typed_said_none);
+      card.replaceChild(said, box);
+      opts.hidden = false;
+      if (hooks.onTyped) hooks.onTyped(typedInfo);
+    }
     card.appendChild(opts);
     return card;
   }
-  function markPicked(card, q, n, correct) {
+  /** The pick: every option locks and the picked one is marked. The key is
+      NOT shown yet — the student says which way they went first (revealKey). */
+  function markPicked(card, n) {
     var buttons = card.querySelectorAll('.ep-opt');
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
+      if (Number(buttons[i].getAttribute('data-option')) === n) buttons[i].classList.add('picked');
+    }
+  }
+  /** After the route tap: the key goes green, a wrong pick goes red. */
+  function revealKey(card, q, n, correct) {
+    var buttons = card.querySelectorAll('.ep-opt');
+    for (var i = 0; i < buttons.length; i++) {
       var k = Number(buttons[i].getAttribute('data-option'));
       if (k === q.answer) buttons[i].classList.add('right');
       if (k === n && !correct) buttons[i].classList.add('wrong');
-      if (k === n) buttons[i].classList.add('picked');
     }
+  }
+  function lastCardOf(host, qid) {
+    var cards = host.querySelectorAll('.ep-card[data-qid="' + qid + '"]');
+    return cards.length ? cards[cards.length - 1] : null;
   }
 
   function askCard() {
     var cur = Run.current();
     var q = Run.question();
-    var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), onPick);
+    var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), onPick, {
+      onTyped: function (t) {
+        Run.shown();                                    // ms stays render-to-tap of the OPTION
+        Track.log('q_typed', { qid: q.id, typed: !!t.typed, ms_typed: t.ms_typed });
+      }
+    });
     thread.appendChild(card);
     card.scrollIntoView({ block: 'end' });
     Run.shown();
     Track.log('q_show', { qid: q.id, i: cur.i + 1 });
   }
 
-  function onPick(card, n) {
+  function onPick(card, n, typed) {
     var q = Run.question();
-    var rec = Run.pick(n);
+    var rec = Run.pick(n, typed);
     if (!rec) return;
-    markPicked(card, q, n, rec.correct);
-    say((rec.correct ? STR.correct : STR.wrong(n, q.answer)) + ' ' + routePrompt(q));
+    markPicked(card, n);
+    say(routePrompt(q));
     setChips(routeChips(q, onRoute));
   }
 
   function onRoute(id) {
     var q = Run.question();
+    var records = Run.current().run.records;
+    var rec = records[records.length - 1];
     var phase = Run.route(id);
     if (!phase) return;
     say(routeLabel(q, id), 'student');
+    var card = lastCardOf(thread, q.id);
+    if (card) revealKey(card, q, rec.picked, rec.correct);
+    say(rec.correct ? STR.correct : STR.wrong(rec.picked, q.answer));
     setChips([]);
     if (phase === 'done') {
       location.hash = '#/physics/' + Run.current().chapterKey + '/result';
@@ -291,10 +348,10 @@ var Screens = (function () {
       // The pick was saved; the route was not. Show the pick and ask again.
       var rec = cur.run.records[cur.run.records.length - 1];
       var q = Data.question(rec.qid);
-      var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), function () {});
-      markPicked(card, q, rec.picked, rec.correct);
+      var card = questionCard(q, STR.run_progress(cur.i + 1, Run.total()), function () {}, { noTyped: true });
+      markPicked(card, rec.picked);
       thread.appendChild(card);
-      say((rec.correct ? STR.correct : STR.wrong(rec.picked, q.answer)) + ' ' + routePrompt(q));
+      say(routePrompt(q));
       setChips(routeChips(q, onRoute));
     } else {
       askCard();
@@ -323,8 +380,10 @@ var Screens = (function () {
         else if (rec.route === 'r') s = STR.outcome.wrong_route_claimed_right(picked, o.type);
         else s = STR.outcome.wrong_route_other(claimed || '', picked, o.type);
         break;
+      case 'wrong_distractor': s = STR.outcome.wrong_distractor; break;
       default: s = STR.outcome.legacy(rec.correct, rec.picked, q.answer);
     }
+    if (o.anchored) s = STR.outcome.anchored(rec.typed_option, rec.picked) + ' ' + s;
     return s + (o.rushed ? STR.rushed_suffix : '');
   }
 
@@ -646,11 +705,13 @@ var Screens = (function () {
     var shownAt = Date.now();
     var card = questionCard(q, null, function (card_, n) {
       var correct = n === q.answer;
-      markPicked(card_, q, n, correct);
+      markPicked(card_, n);
       var ms = Date.now() - shownAt;
       var after = el('div', 'ep-retry-after');
       host.appendChild(after);
       function settle(routeId) {
+        revealKey(card_, q, n, correct);
+        after.appendChild(el('p', 'ep-note', correct ? STR.correct : STR.wrong(n, q.answer)));
         var streak = Run.retry(key, fromQid, shapeKey, q.id, n, correct, routeId, ms, sib.same_shape);
         var cs = Run.chapterState(key);
         var msg;
@@ -668,7 +729,7 @@ var Screens = (function () {
         row.appendChild(button('btn', STR.fix_try_another, function () { sibling(host, key, fromQid, shapeKey); }));
         after.appendChild(row);
       }
-      after.appendChild(el('p', 'ep-note', (correct ? STR.correct : STR.wrong(n, q.answer)) + ' ' + routePrompt(q)));
+      after.appendChild(el('p', 'ep-note', routePrompt(q)));
       var row = el('div', 'ep-chips ep-chips-inline');
       var ids = Run.routesOf(q);
       for (var i = 0; i < ids.length; i++) (function (id) {
@@ -677,7 +738,7 @@ var Screens = (function () {
         row.appendChild(b);
       })(ids[i]);
       after.appendChild(row);
-    });
+    }, { onTyped: function () { shownAt = Date.now(); } });
     host.appendChild(card);
     card.scrollIntoView({ block: 'end' });
     Track.log('retry_start', { qid: q.id, from_qid: fromQid, shape_key: shapeKey, same_shape: sib.same_shape });
@@ -820,7 +881,7 @@ var Screens = (function () {
   /* The pieces the learn and solutions screens reuse, so a thread there looks
    * and behaves exactly like the run's. */
   var ui = {
-    say: say, setChips: setChips, questionCard: questionCard, markPicked: markPicked,
+    say: say, setChips: setChips, questionCard: questionCard, markPicked: markPicked, revealKey: revealKey,
     routeChips: routeChips, routeLabel: routeLabel, routePrompt: routePrompt, routeOfOption: routeOfOption,
     outcomeText: outcomeText, button: button, clear: clear, setBack: setBack, showView: showView,
     onLeave: onLeave, strongText: strongText

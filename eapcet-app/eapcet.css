@@ -352,3 +352,19 @@
 
 /* The dogfood banner: unverified questions on screen, or a preview build. Never on a hosted build. */
 .ep-devnote { background: #FFF3C4; color: #6B4E00; font-size: 13px; padding: 8px 14px; text-align: center; }
+
+/* ── your answer first: the number before the options (Weakness, retry) ───── */
+.ep-typed { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.ep-typed-label { font-size: 14px; color: var(--chrome-dim); }
+.ep-typed-row { display: flex; gap: 8px; }
+.ep-typed-input {
+  flex: 1; min-width: 0; font: inherit; font-size: 16px; min-height: var(--tap); padding: 8px 12px;
+  border: 1px solid var(--chrome-line); border-radius: var(--r-opt); background: var(--chrome-card); color: var(--chrome-ink);
+}
+.ep-typed-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ep-typed-go { flex: none; }
+.ep-typed-none {
+  align-self: flex-start; font: inherit; font-size: 14px; min-height: var(--tap); padding: 6px 0;
+  background: none; border: 0; color: var(--chrome-dim); text-decoration: underline; cursor: pointer;
+}
+.ep-typed-said { font-size: 14px; color: var(--chrome-dim); margin-bottom: 8px; }

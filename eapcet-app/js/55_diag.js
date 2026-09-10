@@ -50,7 +50,7 @@ var Diag = (function () {
   function outcomeOf(rec, fact) {
     var f = fact || {};
     var route = rec.route || null;
-    var o = { outcome: null, type: null, confirmed: false, mismatch: false, rushed: false, legacy: false };
+    var o = { outcome: null, type: null, confirmed: false, mismatch: false, rushed: false, legacy: false, anchored: false };
     if (!route) { o.legacy = !!rec.probe; return o; }
     if (rec.correct) {
       o.outcome = isGuess(route) ? 'guessed_right' : (isRight(route) ? 'solid' : 'right_by_wrong_route');
@@ -60,6 +60,17 @@ var Diag = (function () {
     if (isGuess(route)) { o.outcome = 'guessed_wrong'; return o; }
     if (!f.has_routes) { o.outcome = 'wrong_unrouted'; return o; }
     var label = (f.option_types || {})[String(rec.picked)] || null;
+    // The number typed before the options is evidence too: when the picked
+    // option says nothing and the typed number is a labelled wrong option, that
+    // label confirms the record, marked `anchored` (worked out one value, then
+    // switched to another option once the menu appeared).
+    if (!label && rec.typed_option && rec.typed_option !== rec.picked) {
+      var tlabel = (f.option_types || {})[String(rec.typed_option)] || null;
+      if (tlabel && tlabel !== 'distractor') { label = tlabel; o.anchored = true; }
+    }
+    // An option no method reaches: a pick there is a guess or a misread, never
+    // a physics error the student can be told they made.
+    if (label === 'distractor') { o.outcome = 'wrong_distractor'; return o; }
     if (f.theory || route === 'sure') {
       o.outcome = 'wrong_belief'; o.type = 'concept'; o.confirmed = !!label;
       return o;
@@ -92,6 +103,7 @@ var Diag = (function () {
     var params = {};
     for (var p = 0; p < PARAMS.length; p++) params[PARAMS[p]] = 0;
     var score = 0, wrong = 0, legacy = 0, typed = 0, confirmed = 0, mismatches = 0, guessed_right = 0, ms = [];
+    var anchored = 0, typed_first = 0;
     var outcomes = [], wrong_ids = [], check_ids = [], guessed_ids = [];
     var shapeIndex = {}, shapes = [];
     for (var i = 0; i < records.length; i++) {
@@ -115,10 +127,12 @@ var Diag = (function () {
       if (!o.outcome) { if (o.legacy) legacy++; continue; }
       if (o.outcome === 'guessed_right') { guessed_right++; guessed_ids.push(r.qid); }
       if (o.outcome === 'guessed_right' || o.outcome === 'right_by_wrong_route') check_ids.push(r.qid);
-      if (o.outcome === 'guessed_right' || o.outcome === 'guessed_wrong') params.guessed++;
+      if (o.outcome === 'guessed_right' || o.outcome === 'guessed_wrong' || o.outcome === 'wrong_distractor') params.guessed++;
       if (o.rushed) params.rushed++;
       if (o.type) { params[o.type]++; typed++; if (o.confirmed) confirmed++; }
       if (o.mismatch) mismatches++;
+      if (o.anchored) anchored++;
+      if (typeof r.typed === 'string' && r.typed) typed_first++;
     }
     var weakness = null, best = 0;
     for (var t = 0; t < TYPES.length; t++) {
@@ -137,6 +151,8 @@ var Diag = (function () {
       confirmed: confirmed,
       confirmed_share: typed ? Math.round(100 * confirmed / typed) / 100 : null,
       mismatches: mismatches,
+      anchored: anchored,
+      typed_first: typed_first,
       guessed_right: guessed_right,
       legacy: legacy,
       wrong_ids: wrong_ids,

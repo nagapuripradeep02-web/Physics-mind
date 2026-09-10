@@ -70,15 +70,24 @@ var Run = (function () {
 
   function shown() { if (cur) cur.shownAt = Date.now(); }
 
-  function pick(option) {
+  /* `typed` is {typed, ms_typed} from the number-first row, or null/absent on
+   * a question that has none. typed_option is the option the typed number
+   * equals within one percent (Num), or null; absent fields mean no number step. */
+  function pick(option, typed) {
     if (!cur || cur.phase !== 'asking') return null;
     var q = question();
     var rec = { qid: q.id, picked: option, correct: option === q.answer,
                 ms: cur.shownAt ? Date.now() - cur.shownAt : 0, route: null };
+    if (typed) {
+      rec.typed = typeof typed.typed === 'string' && typed.typed ? typed.typed : null;
+      rec.typed_option = rec.typed && typeof Num !== 'undefined' ? Num.matchOption(rec.typed, q.options_en) : null;
+      rec.ms_typed = typeof typed.ms_typed === 'number' ? typed.ms_typed : null;
+    }
     cur.run.records.push(rec);
     cur.phase = 'routing';
     save();
-    Track.log('q_pick', { qid: q.id, picked: option, correct: rec.correct, ms: rec.ms });
+    Track.log('q_pick', { qid: q.id, picked: option, correct: rec.correct, ms: rec.ms,
+                          typed: typed ? !!rec.typed : undefined, typed_option: typed ? rec.typed_option : undefined });
     return rec;
   }
 

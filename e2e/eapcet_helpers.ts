@@ -9,7 +9,7 @@
  * open with neither (the other nine chapters of the real release), and one
  * closed. The strings below are what the leak tests look for.
  */
-import { expect, type Page } from '@playwright/test';
+import { expect, type Page, type Locator } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -33,7 +33,21 @@ export type PublicQuestion = {
     id: string; answer: number; asked_label: string; q_no: number; has_routes: boolean; theory: boolean;
     option_types: Record<string, string>; routes?: { id: string; text: string; type: string | null; option: number | null }[];
     shape?: { key: string; label: string };
+    options_en?: string[]; answer_kind?: 'number' | 'choice';
 };
+
+/** The number-first row, when the card on screen has one: type `text` and
+    press Done, or say there is no answer yet (`null`). `undefined` types the
+    printed value of the option about to be picked, so a script that only
+    names an option keeps its meaning. No-op on a card without the row. */
+export async function typeFirst(page: Page, card: Locator, text: string | null | undefined, q?: PublicQuestion, picked?: number): Promise<void> {
+    const box = card.locator('.ep-typed-input');
+    if (!(await box.count())) return;
+    if (text === null) { await card.locator('.ep-typed-none').click(); return; }
+    const value = text ?? (q && picked ? (q.options_en || [])[picked - 1] : '');
+    await box.fill(value || '');
+    await card.locator('.ep-typed-go').click();
+}
 
 function solution(id: string, option: number, i: number, routed: boolean, theory: boolean) {
     const app = option % 4 + 1;
@@ -188,7 +202,7 @@ export function labelOf(q: PublicQuestion, picked: number): string | null {
 /** One step of a scripted run: what the student means to do, resolved against
     the card on screen. On a theory question every wrong intent becomes a sure
     wrong belief. `wait` moves the clock before the pick. */
-export async function playStep(page: Page, intent: Intent, wait = 40000, chips = '#runChips'): Promise<Played> {
+export async function playStep(page: Page, intent: Intent, wait = 40000, chips = '#runChips', typed?: string | null): Promise<Played> {
     const q = await currentCard(page);
     const menu = await menuOf(page, q.id);
     const routed = menu.includes('r');
@@ -206,8 +220,10 @@ export async function playStep(page: Page, intent: Intent, wait = 40000, chips =
         default: picked = pickFor(q, 'app'); route = 'sure';                     // belief
     }
     route = resolveRoute(menu, route);
+    const card = page.locator('.ep-card[data-qid]').last();
+    await typeFirst(page, card, typed, q, picked);
     if (wait) await advance(page, wait);
-    await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${picked}"]`).click();
+    await card.locator(`.ep-opt[data-option="${picked}"]`).click();
     await expect(page.locator(`${chips} .ep-chip`)).toHaveCount(menu.length);
     await page.locator(`${chips} .ep-chip[data-route="${route}"]`).click();
     return { qid: q.id, theory: !routed, intent: want, picked, route, label: labelOf(q, picked) };

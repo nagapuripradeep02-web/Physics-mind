@@ -75,20 +75,35 @@ if (!parsed.success) {
 }
 const release: EapcetPoolRelease = parsed.data;
 
+// The number reader the page ships, evaluated here so the build and the page
+// decide "is this answer one number?" with the SAME code: a question whose
+// four options are four distinct numbers in one unit asks for the number
+// before it shows them. It reads options_en only — never a solution field.
+const Num = new Function(`${readFileSync(join(APP, 'js', '56_number.js'), 'utf8')}\n; return Num;`)() as {
+    answerKind(options: string[]): 'number' | 'choice';
+};
+
 // Every reader-facing string from every solution — the leak assertion below
 // looks for each of them in the finished HTML.
 const solutionStrings: string[] = [];
 const publicQuestions: Record<string, unknown> = {};
 const routed: Record<string, { routes: number; total: number }> = {};
+const kinds: Record<string, { number: number; choice: number }> = {};
 for (const [id, q] of Object.entries(release.questions)) {
     const { solution, verified, ...pub } = q;
     const hasRoutes = !!(verified && verified.routes);
+    const answerKind = Num.answerKind(q.options_en);
+    if (verified) {
+        if (!kinds[q.chapter_key]) kinds[q.chapter_key] = { number: 0, choice: 0 };
+        kinds[q.chapter_key][answerKind]++;
+    }
     const publicQ: Record<string, unknown> = {
         ...pub,
         verified: !!verified,
         has_routes: hasRoutes,
         theory: hasRoutes && solution?.right_route === null,
         difficulty: solution?.difficulty ?? null,
+        answer_kind: answerKind,
     };
     if (solution) {
         solutionStrings.push(solution.approach);
@@ -127,6 +142,7 @@ for (const [id, q] of Object.entries(release.questions)) {
     }
     publicQuestions[id] = publicQ;
 }
+for (const [ck, k] of Object.entries(kinds)) console.log(`  ${ck}: ${k.number} number-first, ${k.choice} choice-first (verified questions)`);
 const publicPool = {
     schema: release.schema,
     built_from: release.built_from,

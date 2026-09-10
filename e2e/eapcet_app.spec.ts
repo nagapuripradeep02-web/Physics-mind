@@ -29,7 +29,7 @@ import { join } from 'path';
 import {
     OPEN_KEY, PLAIN_KEY, CLOSED_KEY, STEP_TEXT, MISTAKE_APP, MISTAKE_CALC, ROUTE_RIGHT, ROUTE_APP, SHAPES,
     fixture, watchRequests, installClock, advance, open, currentCard, pickFor, menuOf, playRun, expectation,
-    writeLearnDir,
+    writeLearnDir, typeFirst,
     type Intent,
 } from './eapcet_helpers';
 
@@ -83,8 +83,18 @@ test.describe('EAPCET finder — offline build', () => {
         const menu = await menuOf(page, first.id);
         if (!first.theory) {
             expect(menu.sort()).toEqual(['guess', 'm0', 'r']);
-            await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${first.answer}"]`).click();
-            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Correct. Which way did you go?');
+            // a number question asks for the number first: the options are hidden until then
+            const card = page.locator('.ep-card[data-qid]').last();
+            if (first.answer_kind === 'number') {
+                await expect(card.locator('.ep-opt').first()).toBeHidden();
+                await typeFirst(page, card, '4.56');
+                await expect(card.locator('.ep-typed-said')).toHaveText('You wrote: 4.56');
+            }
+            await expect(card.locator('.ep-opt').first()).toBeVisible();
+            await card.locator(`.ep-opt[data-option="${first.answer}"]`).click();
+            // the pick locks the options but shows no key yet: the student says which way first
+            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Which way did you go?');
+            expect(await card.locator('.ep-opt.right').count()).toBe(0);
             const chips = page.locator('#runChips .ep-chip');
             await expect(chips).toHaveCount(3);
             const labels = await chips.allTextContents();
@@ -94,12 +104,18 @@ test.describe('EAPCET finder — offline build', () => {
             for (let i = 0; i < 3; i++) expect(await chips.nth(i).getAttribute('class')).toBe('ep-chip');
             await page.reload();                                          // start the scripted run from the owed route
             await expect(page.locator('.ep-msg.tutor').nth(1)).toContainText('continues from where you stopped');
+            await expect(page.locator('.ep-card[data-qid]').last().locator('.ep-opt').first()).toBeVisible();   // no number row on a resumed pick
             await page.locator('#runChips .ep-chip[data-route="r"]').click();
+            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Correct.');
+            await expect(page.locator('.ep-card[data-qid]').first().locator(`.ep-opt[data-option="${first.answer}"]`)).toHaveClass(/right/);
         } else {
             expect(menu).toEqual(['sure', 'guess']);
-            await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${first.answer}"]`).click();
-            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Correct. Were you sure?');
+            const card = page.locator('.ep-card[data-qid]').last();
+            await typeFirst(page, card, undefined, first, first.answer);
+            await card.locator(`.ep-opt[data-option="${first.answer}"]`).click();
+            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Were you sure?');
             await page.locator('#runChips .ep-chip[data-route="sure"]').click();
+            await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Correct.');
         }
         const played = [{ qid: first.id, theory: first.theory, intent: 'solid' as Intent, picked: first.answer, route: first.theory ? 'sure' : 'r', label: null as string | null }];
         played.push(...await playRun(page, SCRIPT.slice(1)));
@@ -147,7 +163,7 @@ test.describe('EAPCET finder — offline build', () => {
         await expect(page.locator('.ep-fix-btn')).toHaveCount(10 - played.filter((p) => p.intent === 'solid').length);
         const mismatch = played.find((p) => p.intent === 'mismatch');
         if (mismatch) {
-            await expect(page.locator(`.ep-shape-item[data-qid="${mismatch.qid}"] .ep-outcome`)).toContainText(`You say you went the right way, but the option you picked is where a wrong route leads: “${ROUTE_APP}”. That is an application mistake.`);
+            await expect(page.locator(`.ep-shape-item[data-qid="${mismatch.qid}"] .ep-outcome`)).toContainText(`You say the right route. The option you picked is where a wrong route leads: “${ROUTE_APP}”. That is an application mistake.`);
         }
         await expect(page.locator('[data-group="fix"] .ep-shape-label').first()).toHaveText(/Work from a force equation|Power at an instant|Change in kinetic energy/);
         // the reveal: only now, and exactly the papers drawn
@@ -197,8 +213,8 @@ test.describe('EAPCET finder — offline build', () => {
         await expect(page.locator('.ep-bar[data-param="calculation"]')).toHaveClass(/ep-bar-weak/);
         await expect(page.locator('#resultVerdict')).toContainText('Your calculation slips');
         await expect(page.locator('#resultConfirmed')).toHaveText('2 of your 3 wrong answers are confirmed by the option you picked, not only by what you said.');
-        await expect(page.locator(`.ep-shape-item[data-qid="${a}"] .ep-outcome`)).toHaveText('Q1 — You went the right way. The option you picked comes from a calculation slip.');
-        await expect(page.locator(`.ep-shape-item[data-qid="${c}"] .ep-outcome`)).toHaveText('Q3 — You say you went the right way. The option you picked does not say more, so this counts as a slip for now. Answered in under 15 seconds.');
+        await expect(page.locator(`.ep-shape-item[data-qid="${a}"] .ep-outcome`)).toHaveText('Q1 — Right route. The option you picked comes from a calculation slip.');
+        await expect(page.locator(`.ep-shape-item[data-qid="${c}"] .ep-outcome`)).toHaveText('Q3 — You say the right route. The option you picked says nothing more. It counts as a slip for now. Answered in under 15 seconds.');
         await expect(page.locator(`.ep-shape-item[data-qid="${e}"]`)).toHaveAttribute('data-outcome', 'guessed_right');
         await expect(page.locator(`.ep-shape-item[data-qid="${ids[6]}"]`)).toHaveAttribute('data-outcome', 'legacy');
         await expect(page.locator(`.ep-shape-item[data-qid="${ids[6]}"] .ep-outcome`)).toHaveText('Q5 — Right.');
@@ -233,11 +249,13 @@ test.describe('EAPCET finder — offline build', () => {
         const q = await currentCard(page);
         expect(q.has_routes).toBe(false);
         expect(await menuOf(page, q.id)).toEqual(['sure', 'guess']);
+        await typeFirst(page, page.locator('.ep-card[data-qid]').last(), undefined, q, (q.answer % 4) + 1);
         await advance(page, 40000);
         await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${(q.answer % 4) + 1}"]`).click();
-        await expect(page.locator('.ep-msg.tutor').last()).toHaveText(`You picked (${(q.answer % 4) + 1}). The key says (${q.answer}). Were you sure?`);
+        await expect(page.locator('.ep-msg.tutor').last()).toHaveText('Were you sure?');
         await expect(page.locator('#runChips .ep-chip')).toHaveText(['I was sure', 'I guessed']);
         await page.locator('#runChips .ep-chip[data-route="sure"]').click();
+        await expect(page.locator('.ep-msg.tutor').last()).toHaveText(`You picked (${(q.answer % 4) + 1}). The key says (${q.answer}).`);
         await playRun(page, ['belief', 'belief', 'solid', 'solid', 'guess_wrong', 'solid', 'solid', 'solid', 'solid']);
         const d = await page.evaluate((k) => JSON.parse(localStorage.getItem('ep_state_v1')!).chapters[k].runs[0].diagnosis, PLAIN_KEY);
         expect(d.params).toEqual({ concept: 0, application: 0, calculation: 0, guessed: 1, rushed: 0 });
@@ -257,6 +275,7 @@ test.describe('EAPCET finder — offline build', () => {
         await playRun(page, SCRIPT.slice(0, 3));
         const q = await currentCard(page);
         const menu = await menuOf(page, q.id);
+        await typeFirst(page, page.locator('.ep-card[data-qid]').last(), undefined, q, q.answer);
         await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${q.answer}"]`).click();
         await expect(page.locator('#runChips .ep-chip')).toHaveCount(menu.length);
         await page.goto(URL + `#/physics/${OPEN_KEY}/result`);
@@ -479,10 +498,12 @@ test.describe('EAPCET finder — hosted build against faked endpoints', () => {
         const sibId = (await sib.getAttribute('data-qid')) || '';
         expect(sibId).toBeTruthy();
         expect(sibId).not.toBe(slip.qid);
-        const [fromShape, sibShape, answer] = await page.evaluate(([a, b]) => {
+        const [fromShape, sibShape, answer, answerText] = await page.evaluate(([a, b]) => {
             const w = window as any;
-            return [w.Data.shapeKey(w.Data.question(a)), w.Data.shapeKey(w.Data.question(b)), w.Data.question(b).answer];
+            const sq = w.Data.question(b);
+            return [w.Data.shapeKey(w.Data.question(a)), w.Data.shapeKey(sq), sq.answer, sq.options_en[sq.answer - 1]];
         }, [slip.qid, sibId]);
+        await typeFirst(page, sib, answerText);                       // the sibling asks for the number first too
         await sib.locator(`.ep-opt[data-option="${answer}"]`).click();
         const menu = await menuOf(page, sibId);
         await expect(page.locator('#retryBox .ep-chip')).toHaveCount(menu.length);

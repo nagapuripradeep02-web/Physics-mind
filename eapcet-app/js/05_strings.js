@@ -51,6 +51,13 @@ var STR = {
 
   correct: 'Correct.',
   wrong: function (picked, key) { return 'You picked (' + picked + '). The key says (' + key + ').'; },
+  /* the number before the options, on a question whose answer is one number */
+  typed_prompt: 'Your answer first. Type the number, with its unit if it has one.',
+  typed_placeholder: 'Your answer',
+  typed_done: 'Done',
+  typed_none: 'I have no answer yet',
+  typed_said: function (text) { return 'You wrote: ' + text; },
+  typed_said_none: 'No answer written. Pick an option.',
   route_q: 'Which way did you go?',
   route_guess: 'I guessed',
   sure_q: 'Were you sure?',
@@ -89,13 +96,15 @@ var STR = {
     wrong_belief: function (confirmed) {
       return 'Wrong, and you were sure. The idea itself needs fixing.' + (confirmed ? ' The option you picked confirms it.' : '');
     },
-    slip: 'You went the right way. The option you picked comes from a calculation slip.',
-    slip_unconfirmed: 'You say you went the right way. The option you picked does not say more, so this counts as a slip for now.',
-    slip_mismatch: function (claimed) { return 'You say you took “' + claimed + '”, but the option you picked comes from a calculation slip.'; },
-    wrong_route: function (claimed, type) { return 'You took a wrong route: “' + claimed + '”. The option you picked is where it leads. That is ' + STR.a_mistake(type) + '.'; },
-    wrong_route_unconfirmed: function (claimed, type) { return 'You say you took a wrong route: “' + claimed + '”. The option you picked does not say more. That counts as ' + STR.a_mistake(type) + ' for now.'; },
-    wrong_route_claimed_right: function (picked, type) { return 'You say you went the right way, but the option you picked is where a wrong route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
-    wrong_route_other: function (claimed, picked, type) { return 'You say you took “' + claimed + '”, but the option you picked is where a different route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
+    slip: 'Right route. The option you picked comes from a calculation slip.',
+    slip_unconfirmed: 'You say the right route. The option you picked says nothing more. It counts as a slip for now.',
+    slip_mismatch: function (claimed) { return 'You say “' + claimed + '”. The option you picked comes from a calculation slip.'; },
+    wrong_route: function (claimed, type) { return 'Wrong route: “' + claimed + '”. It leads to the option you picked. That is ' + STR.a_mistake(type) + '.'; },
+    wrong_route_unconfirmed: function (claimed, type) { return 'You say “' + claimed + '”. The option you picked says nothing more. It counts as ' + STR.a_mistake(type) + ' for now.'; },
+    wrong_route_claimed_right: function (picked, type) { return 'You say the right route. The option you picked is where a wrong route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
+    wrong_route_other: function (claimed, picked, type) { return 'You say “' + claimed + '”. The option you picked is where another route leads' + (picked ? ': “' + picked + '”' : '') + '. That is ' + STR.a_mistake(type) + '.'; },
+    wrong_distractor: 'Wrong. No working reaches the option you picked. It counts as a guess.',
+    anchored: function (typedOption, picked) { return 'You worked out (' + typedOption + '), then picked (' + picked + ').'; },
     legacy: function (correct, picked, key) { return correct ? 'Right.' : 'Wrong. You picked (' + picked + '), the key says (' + key + ').'; }
   },
   a_mistake: function (type) { return (type === 'application' ? 'an ' : 'a ') + STR.type_name[type] + ' mistake'; },

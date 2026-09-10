@@ -232,7 +232,7 @@ var LearnScreens = (function () {
   // ── the three practice questions ────────────────────────────────────────
   function askApply(slot) {
     var q = Study.variant(ctx.ck, ctx.sub, slot);
-    var card = ui.questionCard(q, STR.learn_apply_progress(slot + 1), onPick);
+    var card = ui.questionCard(q, STR.learn_apply_progress(slot + 1), onPick, { noTyped: true });   // Learn drills small numbers: no number-first row here
     thread.appendChild(card);
     card.scrollIntoView({ block: 'end' });
     shownAt = Date.now();
@@ -241,8 +241,8 @@ var LearnScreens = (function () {
     var qid = card.getAttribute('data-qid');
     var q = LearnData.question(qid);
     var rec = Study.pick(ctx.ck, ctx.sub, qid, n, Date.now() - shownAt);
-    ui.markPicked(card, q, n, rec.correct);
-    say((rec.correct ? STR.correct : STR.wrong(n, q.answer)) + ' ' + ui.routePrompt(q));
+    ui.markPicked(card, n);
+    say(ui.routePrompt(q));
     setChips(ui.routeChips(q, onRoute));
   }
   function onRoute(id) {
@@ -252,6 +252,9 @@ var LearnScreens = (function () {
     var q = LearnData.question(rec.qid);
     var r = Study.route(ctx.ck, ctx.sub, id);
     say(ui.routeLabel(q, id), 'student');
+    var cards = thread.querySelectorAll('.ep-card[data-qid="' + rec.qid + '"]');
+    if (cards.length) ui.revealKey(cards[cards.length - 1], q, rec.picked, rec.correct);
+    say(rec.correct ? STR.correct : STR.wrong(rec.picked, q.answer));
     setChips([]);
     setPill(Study.stateOf(ctx.sub));
     if (r.ended === 'green') { showGreen(); return; }
@@ -369,15 +372,19 @@ var LearnScreens = (function () {
       for (var i = 0; i < st.pass.records.length; i++) {
         var rec = st.pass.records[i];
         var q = LearnData.question(rec.qid);
-        var qc = ui.questionCard(q, STR.learn_apply_progress(i + 1), function () {});
-        ui.markPicked(qc, q, rec.picked, rec.correct);
+        var qc = ui.questionCard(q, STR.learn_apply_progress(i + 1), function () {}, { noTyped: true });
+        ui.markPicked(qc, rec.picked);
+        if (rec.route) ui.revealKey(qc, q, rec.picked, rec.correct);   // the key shows only once the route was said
         thread.appendChild(qc);
-        if (rec.route) say(ui.routeLabel(q, rec.route), 'student');
+        if (rec.route) {
+          say(ui.routeLabel(q, rec.route), 'student');
+          say(rec.correct ? STR.correct : STR.wrong(rec.picked, q.answer));
+        }
       }
       if (status.owed) {
         var owed = st.pass.records[st.pass.records.length - 1];
         var oq = LearnData.question(owed.qid);
-        say((owed.correct ? STR.correct : STR.wrong(owed.picked, oq.answer)) + ' ' + ui.routePrompt(oq));
+        say(ui.routePrompt(oq));
         setChips(ui.routeChips(oq, onRoute));
       } else {
         askApply(status.i);

@@ -21,7 +21,7 @@ import { test, expect, type Browser, type Page } from '@playwright/test';
 import { execFileSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { installClock, advance, pinSeed, currentCard, menuOf, resolveRoute, expectation, labelOf, type Played } from './eapcet_helpers';
+import { installClock, advance, pinSeed, currentCard, menuOf, resolveRoute, expectation, labelOf, typeFirst, type Played } from './eapcet_helpers';
 import { STUDENTS, OUTCOME_OF, routeText, combinations, playedFor, type Fact, type Persona } from './eapcet_students';
 
 const ROOT = process.cwd();
@@ -115,6 +115,7 @@ async function sit(browser: Browser, persona: Persona, pool: Fact[]): Promise<Sa
         const d = persona.decide(pool[idx], idx);
         const menu = await menuOf(page, q.id);
         const route = resolveRoute(menu, d.route);
+        await typeFirst(page, page.locator('.ep-card[data-qid]').last(), d.typed, pool[idx], d.picked);
         await advance(page, persona.wait);
         await page.locator('.ep-card[data-qid]').last().locator(`.ep-opt[data-option="${d.picked}"]`).click();
         await expect(page.locator('#runChips .ep-chip')).toHaveCount(menu.length);
@@ -164,6 +165,7 @@ async function sit(browser: Browser, persona: Persona, pool: Fact[]): Promise<Sa
         const sidx = pool.findIndex((x) => x.id === sibId);
         const d = persona.decide(pool[sidx], sidx);
         const menu = await menuOf(page, sibId);
+        await typeFirst(page, sib, d.typed, pool[sidx], d.picked);
         await sib.locator(`.ep-opt[data-option="${d.picked}"]`).click();
         await page.locator(`#retryBox .ep-chip[data-route="${resolveRoute(menu, d.route)}"]`).click();
         retryVerdict = await page.locator('#retryVerdict').innerText();
@@ -218,14 +220,15 @@ function report(chapterName: string, pool: Fact[], sats: Sat[]): string {
         L.push('');
         L.push('### Answer sheet (every pool question, in pool order)');
         L.push('');
-        L.push('| # | Question (first words) | Tap option | Then tap | Expected outcome |');
-        L.push('|---|---|---|---|---|');
+        L.push('| # | Question (first words) | Type first | Tap option | Then tap | Expected outcome |');
+        L.push('|---|---|---|---|---|---|');
         pool.forEach((q, i) => {
             const d = p.decide(q, i);
             const menuLess = !(q.has_routes && !q.theory && q.routes && q.routes.length);
             const route = menuLess && d.route === 'r' ? 'sure' : d.route;
             const drawn = s.ids.includes(q.id) ? ' ◀ drawn' : '';
-            L.push(`| ${i + 1} | ${firstWords(q.question_en)}${drawn} | (${d.picked}) ${q.options_en[d.picked - 1]} | “${routeText(q, route)}” | ${OUTCOME_OF[d.intent]} |`);
+            const typed = q.answer_kind !== 'number' ? '—' : d.typed === null ? '“I have no answer yet”' : (d.typed ?? q.options_en[d.picked - 1]);
+            L.push(`| ${i + 1} | ${firstWords(q.question_en)}${drawn} | ${typed} | (${d.picked}) ${q.options_en[d.picked - 1]} | “${routeText(q, route)}” | ${OUTCOME_OF[d.intent]} |`);
         });
         L.push('');
         L.push(`### What the app said (seed \`${s.seed}\`, draw ${s.ids.map((id) => pool.findIndex((q) => q.id === id) + 1).join(', ')})`);

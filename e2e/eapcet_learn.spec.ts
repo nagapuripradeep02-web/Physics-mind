@@ -163,7 +163,7 @@ test.describe('EAPCET — the tab bar and the classroom', () => {
         const app = pickFor(q, 'app');
         const route = (q.routes || []).find((r) => r.option === app)!.id;
         await lastCard(page).locator(`.ep-opt[data-option="${app}"]`).click();
-        await expect(page.locator('#learnThread .ep-msg.tutor').last()).toContainText(`You picked (${app}). The key says (${q.answer}). Which way did you go?`);
+        await expect(page.locator('#learnThread .ep-msg.tutor').last()).toHaveText('Which way did you go?');
         await page.locator(`#learnChips .ep-chip[data-route="${route}"]`).click();
         await expect(page.locator('#learnThread .ep-lfix .ep-lfix-text')).toHaveText('Multiply the two numbers; do not divide them.');
         await expect(page.locator('#learnThread .ep-msg.tutor').last()).toHaveText('The three start again after a wrong answer. Read the fix, then try again.');
