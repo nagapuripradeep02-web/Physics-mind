@@ -324,3 +324,27 @@ Founder ask: solve the single toughest question per subject of EAPCET and JEE Ma
 **Reading.** On questions selected *because* models fail them, nobody is reliable: the best single condition is 3 of 6. Two questions defeat everything — the EAPCET capacitor network (every model computes the nominal 0.9 µF and then picks the quadrature error 0.01 instead of the exam's summed relative error 0.023; Gemini even names 0.023 as "the EAMCET convention" and still commits to 0.01) and the He-curve question (four different answers across five calls; the drawing's slope order is what nobody reads consistently). The voltmeter loop is a thinking-level effect on DeepSeek: off/low reason from a wrong picture ("no current in that branch"), high/max find the 25 A loop current and the 0 V terminal voltage. The organic question is run-to-run unstable on both models (Gemini had it right in Run 9, wrong here; DeepSeek right only at `high`). On these hard items DeepSeek's thinking balloons to the cap and the call takes 2–2.5 minutes — the runaway problem is worst exactly where the question is hardest, and Gemini answers the same items in 5–22 s at the same total cost. Maths, both exams, is solved by everything.
 
 **What this changes:** nothing in the routing decision (§19) — a six-item tail is not a benchmark — but it sharpens the product rule: the AI's answer on a figure question the bank does not hold must be shown as *working to check*, never as the verdict, and any DeepSeek call needs a hard thinking cap with a fallback.
+
+## 21. Run 11 — does a Python sandbox fix the misses? Gemini 3.7 Flash with `code_execution` ON (2026-09-11)
+
+Founder question: can backend code solve these questions? A general solver cannot exist (the input is free text plus a drawing), but a model that can *write and run* code is the practical version. Measured: Gemini 3.7 Flash with its built-in `code_execution` tool, same photos, same ask, on the 148 hard figure/organic questions (code-OFF baseline = Run 9), the 60 maths questions (Gemini never ran on maths — both OFF and ON here), and the six toughest (OFF = Run 10). 268 calls, zero errors, $2.16. Script `scripts/model_probes/code_exec_probe.py`; data `data/code_exec/` (`hand.json`: 15 hand grades, 1 disputed, 1 excluded — the cut-off `mat_q03` crop). Tool re-fed context (`toolUsePromptTokenCount`, ~4,000 tokens/call) is billed at the input rate and is in the $ column.
+
+| Set | code OFF | **code ON** | $/q OFF → ON | avg s OFF → ON |
+|---|---|---|---|---|
+| EAPCET physics figures /30 | 27 (+1 disputed) | 28 (+1 disputed) | $0.0071 → $0.0105 | 6.3 → 6.7 |
+| EAPCET chemistry figures /30 | 30 | 30 | $0.0050 → $0.0067 | 4.7 → 5.2 |
+| JEE physics figures /30 | 30 | 30 | $0.0054 → $0.0108 | 5.0 → 6.2 |
+| JEE chemistry figures /29 | 29 | 28 | $0.0054 → $0.0081 | 5.0 → 5.7 |
+| JEE chemistry text/organic /29 | 28 (+1 disputed) | 29 | $0.0049 → $0.0073 | 5.1 → 5.4 |
+| **hard 148** | **144** | **145** | $0.0056 → $0.0087 (+55%) | 5.2 → 5.8 |
+| EAPCET maths /30 | 30 | 30 | $0.0060 → $0.0080 | 4.8 → 7.5 |
+| JEE maths /29 | 29 | 29 | $0.0069 → $0.0089 | 5.3 → 8.7 |
+| **maths 59** | **59** | **59** | +32% | +60% |
+
+Six toughest, OFF → ON: capacitor error ✗→✗ (still 0.01), He curve ✗→**✓** (it cropped and re-read the graph), EAPCET maths ✓→✓, voltmeter loop ✓→✓, organic product ✗→✗, JEE maths ✓→✓.
+
+**Flips on the 148:** fixed by code — the clipper waveform and the three-battery circuit (both figure reads); broken by code — the capacitor error convention and the organic product (both run-to-run unstable on this model anyway). Net +1.
+
+**What the sandbox was actually used for** (114 of 208 code-ON calls ran code): on physics and chemistry, **42 image-zoom/plot snippets (OpenCV/PIL crops of the figure) against 10 computations** — the model uses code to *look closer*, not to calculate; on maths, 49 computations (SymPy/NumPy checks) against 11 zooms — and maths was already 59/59 without it.
+
+**Reading.** Code execution does not move accuracy: +1 of 148 on the hard set, 0 of 59 on maths, at +55% cost and +12–60% latency. The three items that defeat every configuration are unchanged — an exam convention (which error formula), a drawing-slope read, and an organic mechanism — and none of them is a computation. Gemini 3.7 Flash alone is 59/59 on maths from the photo, so maths does not need the tool either. **Decision: do not turn on code execution by default.** Two narrower uses survive: (a) a deterministic *exam-convention* library (error propagation the EAPCET way, sig-fig rounding, g = 10) applied *after* the model — that is the only thing that would have caught the capacitor question, and it is our code, not the model's; (b) showing the model's own numeric check in the working when it ran one, as a trust signal. Both are product features, not accuracy fixes.

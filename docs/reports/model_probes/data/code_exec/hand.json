@@ -1,0 +1,25 @@
+{
+ "hand": {
+  "tg_eapcet_2021_20210806_an_q095|gem_code": 3,
+  "tg_eapcet_2023_20230512_fn_q099|gem_code": 1,
+  "tg_eapcet_2021_20210805_fn_q096|gem_code": 1,
+  "tg_eapcet_2023_20230514_an_q106|gem_code": 2,
+  "tg_eapcet_2023_20230514_an_q119|gem_code": 1,
+  "tg_eapcet_2021_20210806_fn_q119|gem_code": 4,
+  "tg_eapcet_2024_20240509_fn_q136|gem_code": 4,
+  "tg_eapcet_2024_20240511_fn_q158|gem_code": 1,
+  "tg_eapcet_2022_20220720_fn_q138|gem_code": 3,
+  "tg_eapcet_2023_20230513_fn_q135|gem_code": 3,
+  "tg_eapcet_2023_20230514_fn_q160|gem_code": 1,
+  "tg_eapcet_2024_20240511_fn_q155|gem_code": 4,
+  "jm2024-08-apr-shift-1_phy_q53|gem_code": "3",
+  "jm2024-31-jan-shift-2_che_q67|gem_code": 3,
+  "jm2024-01-feb-shift-2_che_q87|gem_code": "2"
+ },
+ "disputed": {
+  "tg_eapcet_2022_20220718_fn_q089|gem_code": "key says 410 m/s; the impulse graph gives 210"
+ },
+ "excluded": {
+  "jm2024-06-apr-shift-1_mat_q03": "crop cut off at the top (integral limits and exponents clipped)"
+ }
+}
