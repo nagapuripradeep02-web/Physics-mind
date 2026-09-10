@@ -40,14 +40,16 @@
   --ink-rgb: 43, 38, 32;     /* for the page's rules, tints and shadows */
   --red-rgb: 176, 85, 47;
   --pencil: #9B9080;         /* construction-line pencil */
-  /* The SECOND PEN: the working a "Simplify" press unfolds. It is a third
-     voice on the page — not the pen the answer is written in, not the
-     examiner's mark in the gutter — so it is set once, here. It currently
-     carries the examiner's clay because the founder asked for red; a literal,
-     not var(--red), because the two are the same colour by DECISION, not by
-     nature, and a second pen in its own hue (e.g. a ballpoint #2F5DA8) is one
-     edit here. */
-  --added: #B0552F;
+  /* The SECOND PEN: the working a "Simplify" press unfolds. A third voice on
+     the page — not the pen the answer is written in, not the examiner's mark
+     in the gutter — so it is set once, here.
+
+     Ballpoint blue, not red (founder, 2026-09-10). Red is the examiner's, and
+     the tick sits directly above the button that reveals this working: two
+     reds in one gutter read as one thing, and unfolded working is not a
+     correction. Blue is the only hue on the page that belongs to neither pen,
+     so it reads as what it is — the same student, writing more. */
+  --added: #2F5DA8;
   --paper: #FFFDF7;
   /* The chrome is the same stationery world as the page: a warm desk, warm
      hairlines, one serif voice for headings. The page owns Kalam; the chrome
