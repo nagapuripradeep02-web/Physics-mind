@@ -38,7 +38,9 @@ Product numbers computed from the runs (§22): routed single solver ≈ $2.5–3
 
 ### ▶ Next session's first task
 
-Measure the intake classifier: `has_figure` + subject accuracy of a Flash-Lite structured call on the 238 labelled probe photos already on disk (148 figure, 90 text) — needs nothing from the founder and is gate (a) of the generator doc §8. Then, on the app desk `physics-mind-eapcet-app`, the `ep_solve_cache` migration and the `ep-solve` function from the `ep-photo-read` skeleton, in the order of generator doc §9. The reviewer measurement (Run 14) starts the day the handwriting photos arrive.
+**Done 2026-09-11 on the app desk (`feat/eapcet-app`, local commit):** the `ep_solve_cache`/`ep_solve_reports` migration, the `ep-solve` function and the Solutions-tab photo flow are built to generator doc §9, curl-proved (lock, three official keys matched, cache hit, report, the 20/day cap) and deployed to the preview worker — details in the app desk's `PROGRESS.md` and memory `project_eapcet_solver_v1_deployed`. Two lessons: the intake transcript of the same photo differs between reads (the cache is trigram similarity + every number equal), and Gemini 3.x rejects `thinkingBudget: 0`.
+
+Next, measure the intake classifier: `has_figure` + subject accuracy of a Flash-Lite structured call on the 238 labelled probe photos already on disk (148 figure, 90 text) — needs nothing from the founder and is gate (a) of the generator doc §8. Then, on the app desk `physics-mind-eapcet-app`, the `ep_solve_cache` migration and the `ep-solve` function from the `ep-photo-read` skeleton, in the order of generator doc §9. The reviewer measurement (Run 14) starts the day the handwriting photos arrive.
 
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
