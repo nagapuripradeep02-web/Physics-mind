@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a8d2834a",
+ "approach": "Write each bead's tangential equation of motion on the ring, then use the fact that the string's length along AB cannot change at the first instant.",
+ "steps": [
+  {"text": "At A, gravity points straight along the radius, so only the string's part along the ring's direction can start A moving.", "equation": "m a_A = T/√2"},
+  {"text": "At B, gravity points straight along the ring's own direction, while the string pulls partly against it.", "equation": "m a_B = mg − T/√2"},
+  {"text": "Since the string cannot stretch, the two beads must move toward or away from each other along the string at matching rates; at the first instant this makes their along-the-ring accelerations equal.", "equation": "a_A = a_B"},
+  {"text": "Solve the two equations together for the tension and for the acceleration of B.", "equation": "T/√2 = mg − T/√2 → T = mg/√2, a_B = g/2"}
+ ],
+ "final_answer": {"option": null, "value": "T = mg/√2 ≈ 0.71mg, acceleration of B = g/2, directed along the ring, straight down"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring the string and treating B as a free bead on the ring gives an acceleration of g, missing that the string's pull reduces it to g/2."}
+ ],
+ "concept_tags": ["beads on a ring", "tangential acceleration", "string constraint"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:55:00+05:30"}
+}

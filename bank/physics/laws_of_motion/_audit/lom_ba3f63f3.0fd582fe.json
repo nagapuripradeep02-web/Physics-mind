@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ba3f63f3",
+ "item_sha": "0fd582fe2bde2bf3a36e762cf594e7dc8bcdada355fd4c47bcbf63b3119f469b",
+ "auditor_option": null,
+ "auditor_value": "0 ≤ t ≤ 7.5 s: a_A = a_B = t/3 (reaching 2.5 m/s²); t > 7.5 s: a_B = 2.5 m/s² constant, a_A = t − 5 (slope 1)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Slip condition 4t/3 = μ m_A g = 10 N gives t = 7.5 s; the piecewise graph is continuous at 2.5 m/s². Mistake entry 2's cause reproduces 30 N and 22.5 s.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:29:24+05:30"
+ }
+}

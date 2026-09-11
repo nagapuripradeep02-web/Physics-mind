@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6546a1b6",
+ "item_sha": "85c495c283bff73abd1a71b6b1c55ecbe8908c9448c105f57b4c6cff79c0ec4b",
+ "auditor_option": null,
+ "auditor_value": "Three forces: weight w down at the centre; normal reaction N at A, perpendicular to the wall (horizontal, away from the wall), through the centre; tension T at B along BC, whose line also passes through the centre (three concurrent forces)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. No friction since the wall is smooth; the concurrency argument in step 4 is correct for three non-parallel coplanar forces.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:39+05:30"
+ }
+}

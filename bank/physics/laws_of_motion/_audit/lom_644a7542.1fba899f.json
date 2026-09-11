@@ -1,0 +1,52 @@
+{
+ "question_id": "lom_644a7542",
+ "item_sha": "1fba899f4e3723be250dd4b8f253af6480ae2bd286f5af97b430dfc47e04cb25",
+ "auditor_option": null,
+ "auditor_value": "F₁ = (2√3, 2) N; F₂ = (−2, 2√3) N ≈ (−2, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].text",
+   "quote": "F₂ = 4 N is at 60° from oy, on the left side",
+   "note": "The served figure states F₂ is 60° above the −x direction and 30° from +y. The solution resolves a different vector from the one served.",
+   "fix": "F₂ = 4 N is at 60° above the −ox direction (30° from oy), so its ox-component is negative and its oy-component is positive."
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "F₂ₓ = −4sin60° = −2√3 N, F₂ᵧ = 4cos60° = 2 N",
+   "note": "With the 60° measured from the leftward horizontal, the ox-component is −4cos60° = −2 N and the oy-component is 4sin60° = 2√3 N. The printed components are swapped.",
+   "fix": "F₂ₓ = −4cos60° = −2 N, F₂ᵧ = 4sin60° = 2√3 N"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[4].equation",
+   "quote": "F₂ = (−2√3, 2) N",
+   "note": "Carries the swapped F₂ components into the collected result.",
+   "fix": "F₁ = (2√3, 2) N, F₂ = (−2, 2√3) N, F₃ = (0, −6) N, F₄ = (4, 0) N"
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "F₂ = (−2√3, 2) N ≈ (−3.46, 2) N",
+   "note": "Wrong for the figure as served; the correct F₂ is (−2, 2√3) N ≈ (−2, 3.46) N.",
+   "fix": "F₁ = (2√3, 2) N ≈ (3.46, 2) N; F₂ = (−2, 2√3) N ≈ (−2, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N"
+  },
+  {
+   "grade": "harmful",
+   "field": "common_mistakes[0].text",
+   "quote": "Measuring F₂'s angle from ox instead of from oy, giving F₂ₓ = −4cos60° and F₂ᵧ = 4sin60° instead of the correct −4sin60° and 4cos60°.",
+   "note": "This condemns the correct resolution. For the served figure the 60° IS measured from the horizontal (−ox), so F₂ₓ = −4cos60° and F₂ᵧ = 4sin60° are right.",
+   "fix": "Measuring F₂'s 60° from oy instead of from the −ox direction, giving F₂ₓ = −4sin60° = −2√3 N and F₂ᵧ = 4cos60° = 2 N instead of the correct −2 N and 2√3 N."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "F₁, F₃, F₄ agree. The whole defect is one angle read from the wrong axis for F₂; the figure description is explicit and unambiguous about it.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:58:25+05:30"
+ }
+}

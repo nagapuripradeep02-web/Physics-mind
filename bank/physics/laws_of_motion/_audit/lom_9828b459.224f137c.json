@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_9828b459",
+ "item_sha": "224f137c953176439ae21cc3f2603f6c4786d4b425f911534a91dbad37ea2941",
+ "auditor_option": null,
+ "auditor_value": "(a) bananas move up; (b) gap stays constant; (c) gap stays constant (both in free fall, rope slack); (d) bananas also decelerate/stop exactly as the monkey does",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].text",
+   "quote": "the bananas also move up, matching the monkey step for step.",
+   "note": "'step for step' is an idiom; the plain statement is that the bananas rise by the same amount at the same time.",
+   "fix": "the bananas also move up, rising by the same amount at the same time as the monkey."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Physics of all four parts agrees with my solution: equal tension on both sides of a light rope over a frictionless pulley and equal masses give equal accelerations at every instant, so bananas rise in (a), the gap is constant in (b) and (c) (T = 0 during free fall), and in (d) the bananas decelerate exactly as the monkey does. Qualitative item, no numbers.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:57:46+05:30"
+ }
+}

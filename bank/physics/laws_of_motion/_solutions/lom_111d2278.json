@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_111d2278",
+ "approach": "Check whether block and plank decelerate together; since they cannot, find each deceleration and use their relative motion to find when the block has moved l relative to the plank.",
+ "steps": [
+  {"text": "If A and B moved together, deceleration would need 0.5mg of friction between them on A alone; but the maximum available is only μ₁mg = (1/4)mg, where μ₁ = 1/4 is the block-plank coefficient (μ₂ = 1/2 is the road-plank coefficient, M = 2m the plank mass), so A and B slide on each other.", "equation": "required 0.5mg > available μ₁mg = 0.25mg  →  A and B move separately",
+   "why_this_step": "This confirms the block genuinely separates from the plank, matching the question."},
+  {"text": "Block A is decelerated only by kinetic friction from the plank.", "equation": "a_A = μ₁g = g/4 (deceleration)"},
+  {"text": "Plank B is decelerated by road friction (backward, on its total weight (M+m)g) and pushed forward by the reaction friction from A.", "equation": "M a_B = μ₂(M+m)g − μ₁mg = (1/2)(3m)g − (1/4)mg = (5/4)mg  →  a_B = 5g/8 (deceleration)"},
+  {"text": "Since B decelerates faster than A, A keeps sliding forward relative to B at a relative acceleration equal to the difference of the two decelerations.", "equation": "a_rel = a_B − a_A = 5g/8 − g/4 = 3g/8"},
+  {"text": "Both start with the same velocity v, so their relative velocity starts at zero; the block separates once it has moved a length l relative to the plank.", "equation": "l = ½(3g/8)t²  →  t = √(16l/3g) = 4√(l/3g)"},
+  {"text": "Use this time in each block's own equation of motion to get the two ground displacements.", "equation": "s_A = vt − ½(g/4)t² = vt − 2l/3;  s_B = vt − ½(5g/8)t² = vt − 5l/3"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 4√(l/3g) = √(16l/3g). (b) displacement of block A = vt − 2l/3, displacement of plank B = vt − 5l/3, with t as above"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming A and B decelerate together without checking the friction needed against the friction available, missing that separation ever happens."},
+  {"option": null, "text": "Using the plank's own deceleration 5g/8 as the relative deceleration instead of subtracting the block's deceleration g/4, gives the wrong t = 4√(l/5g)."}
+ ],
+ "concept_tags": ["friction", "relative motion", "kinematics", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:17:00+05:30"}
+}

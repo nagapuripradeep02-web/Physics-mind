@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_197ab779",
+ "approach": "The man shares the belt's acceleration since he does not slip; the net force on him is mass times acceleration, supplied by static friction up to its limiting value.",
+ "steps": [
+  {"text": "Since the man does not slip on the belt, his acceleration equals the belt's acceleration, so apply Newton's second law with the given acceleration.", "equation": "F_net = m a = 65 × 1 = 65 N"},
+  {"text": "This net force is supplied entirely by static friction between the man's shoes and the belt, since there is no other horizontal force on him.", "equation": "f = F_net = 65 N"},
+  {"text": "The belt can accelerate the man only as long as the needed friction does not exceed the limiting static friction, so set the required force equal to the maximum static friction.", "equation": "μₛ m g = m a_max"},
+  {"text": "Solve for the maximum acceleration, using g = 9.8 m/s².", "equation": "a_max = μₛ g = 0.2 × 9.8 = 1.96 m/s²",
+   "why_this_step": "Beyond this acceleration, the required friction would exceed the maximum the shoes can supply, so the man's feet slide on the belt."}
+ ],
+ "final_answer": {"option": null, "value": "Net force on the man = 65 N (in the direction of the belt's acceleration); maximum acceleration = 1.96 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using g = 10 m/s² instead of the given 9.8 m/s² gives a maximum acceleration of 2.0 m/s²."},
+  {"option": null, "text": "Forgetting that the maximum friction force is μₛ m g = 0.2 × 65 × 9.8 = 127.4 N, and instead reporting the net force 65 N as the maximum friction the belt can supply."}
+ ],
+ "concept_tags": ["static friction", "Newton's second law", "relative rest", "limiting friction"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:04:00+05:30"}
+}

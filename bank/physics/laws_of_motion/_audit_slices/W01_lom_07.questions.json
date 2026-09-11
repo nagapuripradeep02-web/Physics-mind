@@ -1,0 +1,237 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 7,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_d7876306",
+   "question_text": "A monkey slides down a rope whose breaking strength is only 2/3 of the monkey's weight. What is the least downward acceleration with which the monkey must slide so that the rope does not break?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2g/3"
+    },
+    {
+     "label": "(b)",
+     "text": "g"
+    },
+    {
+     "label": "(c)",
+     "text": "g/3"
+    },
+    {
+     "label": "(d)",
+     "text": "zero"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_d571430d",
+   "question_text": "Block A rests on top of block B, which itself rests on top of block C, and block C sits on the ground below. Sketch separate free-body diagrams showing the forces acting on each of the three blocks, A, B and C.",
+   "options": [],
+   "figure_description": "Three rectangular blocks stacked vertically: block A on top, block B in the middle, block C at the bottom, with block C resting on a horizontal hatched ground surface."
+  },
+  {
+   "question_id": "lom_ca7f0b1f",
+   "question_text": "A single string runs over a pulley that is fixed to a ceiling. On one side, the string carries a 2 kg block, and a second string hangs a 1 kg block below that 2 kg block; call the tension in this lower string T₃. On the other side, the string carries a 3 kg block, and a second string hangs a 4 kg block below that 3 kg block; call the tension in this lower string T₁. Call the tension in the main string over the pulley T₂. Taking g = 10 m/s², work out the system's acceleration and the tension values T₁, T₂ and T₃.",
+   "options": [],
+   "figure_description": "A pulley is fixed to a ceiling. A single string passes over this pulley. On the left, this string is tied to a 2 kg block; a second string, T₃, hangs from the 2 kg block down to a 1 kg block below it. On the right, the string is tied to a 3 kg block; a second string, T₁, hangs from the 3 kg block down to a 4 kg block below it. The tension in the main string over the pulley, on either side, is called T₂."
+  },
+  {
+   "question_id": "lom_c7d776b7",
+   "question_text": "A 4 kg block and a 2 kg block rest next to each other on a frictionless horizontal table, touching along one face. A push of 20 N acts sideways on the 4 kg block, directed toward the 2 kg block.\n(a) Work out how quickly the two blocks speed up together.\n(b) Work out the size of the push each block exerts on the other.",
+   "options": [],
+   "figure_description": "Two blocks touch each other on a flat, frictionless surface. Block A (4 kg) is on the left, block B (2 kg) is on the right, sharing a vertical contact face. A horizontal force of 20 N pushes block A to the right, toward block B."
+  },
+  {
+   "question_id": "lom_be0cf9bd",
+   "question_text": "A ball weighing 1 kg is held motionless, suspended by two strings OA and OB, with the geometry described below. Taking g = 10 m/s², work out the tension carried by each of the strings OA and OB.",
+   "options": [],
+   "figure_description": "Two fixed points A and B lie on a common horizontal line, A to the left and B to the right. Point O lies below and between them. String OA connects O to A, sloping up and to the left, and makes a 30° angle with the horizontal line at A. String OB connects O to B, sloping up and to the right, and makes a 60° angle with the horizontal line at B. The ball hangs directly below O on a vertical string, its weight w = 10 N pulling straight down. At O, going around: the angle from string OA to the downward vertical is 120°, the angle from the downward vertical to string OB is 150°, and the angle between OA and OB (measured the other way, over the top) is 90°."
+  },
+  {
+   "question_id": "lom_bf5e9fde",
+   "question_text": "Two identical particles, each of mass m, are joined by an inextensible string. The string is pulled at its midpoint by a steady force F. The entire arrangement rests on a frictionless horizontal surface. Find the acceleration with which each particle approaches the other.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "(√3/2)(F/m)"
+    },
+    {
+     "label": "(b)",
+     "text": "(1/(2√3))(F/m)"
+    },
+    {
+     "label": "(c)",
+     "text": "(2/√3)(F/m)"
+    },
+    {
+     "label": "(d)",
+     "text": "√3(F/m)"
+    }
+   ],
+   "figure_description": "Two particles sit at the ends of a V formed by a single string that runs from one particle to a central point and then to the other particle. At that central point a constant, steady force F pulls horizontally, exactly along the line that bisects the V. Each half of the string makes a 30° angle with this bisecting line, so the two string halves together enclose a 60° angle."
+  },
+  {
+   "question_id": "lom_b7f5a792",
+   "question_text": "A uniform, smooth solid sphere of mass 50 kg is held in place by two smooth contact surfaces: an incline, named A, tilted at 30° to the horizontal, and a vertical wall, named B. Work out the contact force the sphere receives at A and the contact force it receives at B.",
+   "options": [],
+   "figure_description": "A circular sphere is wedged between two surfaces. On its lower-left, a smooth incline named A rises at 30° to the horizontal (the incline meets a horizontal reference line at 30°, shown near the bottom-left). On its right, a smooth vertical wall named B touches the sphere; the wall has a horizontal ledge at the sphere's base."
+  },
+  {
+   "question_id": "lom_bc127eb0",
+   "question_text": "A wedge in the shape of a right triangle stands with its incline surface tilted 30° above the horizontal. A pulley is fixed at the top of the incline, and another pulley is fixed at the bottom of the incline, at the edge of the surface the wedge sits on. A 2 kg block rests on the incline. A string ties this block, runs up the slope, passes over the top pulley, and goes straight down the vertical face of the wedge to block A, which hangs freely. A second string ties the same 2 kg block, runs down the slope, passes over the bottom pulley, and hangs straight down over the edge to a second 2 kg block. Friction and the mass of the strings are both negligible. What mass must block A have for the whole system to stay at rest?",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle sits on a horizontal surface. Its incline (hypotenuse) rises at 30° from the bottom-left to a pulley fixed at the top-right apex; its vertical right face runs straight down from that apex to the base. A 2 kg block rests on the incline. One string from this block runs up the slope, over the top pulley, then straight down the vertical face to block A, which hangs in the air on the right. A second pulley is fixed at the bottom-left, at the foot of the incline, right at the edge of the base surface. A second string from the same 2 kg block runs down the slope, around this bottom pulley, and then straight down past the edge to a second 2 kg block hanging below."
+  },
+  {
+   "question_id": "lom_cff4c285",
+   "question_text": "A rod is hinged to a wall at one end. Its mass is 2 kg and it is 4 m long. The other end of the rod is held up by a string that runs from a point on the wall above the hinge down to the rod, meeting it at an angle of 37°. With the rod in equilibrium, find the force the hinge exerts on the rod — either as horizontal and vertical components, or as a single resultant — and find the tension in the string. Assume g = 10 m/s² throughout, with sin 37° equal to 3/5 and cos 37° equal to 4/5.",
+   "options": [],
+   "figure_description": "A rod is hinged to a vertical wall at its left end (the hinge). A string runs from a point on the wall above the hinge down to the right end of the rod, meeting the rod at an angle of 37°."
+  },
+  {
+   "question_id": "lom_ba3f63f3",
+   "question_text": "Two blocks, A (2 kg) on top and B (4 kg) below, are stacked on a smooth horizontal floor. A horizontal force is applied on the top block A, with magnitude in newtons F = 2t, where t is time in seconds. The coefficient of friction between A and B is μ = ½; the floor beneath B is frictionless. Using g = 10 m/s², sketch how the accelerations of A and of B individually change with time, with acceleration on the vertical axis and time on the horizontal axis.",
+   "options": [],
+   "figure_description": "Block A (2 kg) sits on top of block B (4 kg); B rests on a smooth horizontal floor. A horizontal force is applied to A, with magnitude F = 2t newtons where t is time in seconds."
+  },
+  {
+   "question_id": "lom_c71f0f3b",
+   "question_text": "A string runs over a single fixed pulley; block 1 hangs from one end and block 2 hangs from the other end.\n(a) Using the constraint (string-length) method, work out how the acceleration of block 1 relates to the acceleration of block 2.",
+   "options": [],
+   "figure_description": "A single fixed pulley is mounted at a fixed point. A string passes over it, with block 1 hanging from one end and block 2 hanging from the other end. Taking a fixed horizontal reference line at the level of the pulley, x₁ is the distance block 1 hangs below this line and x₂ is the distance block 2 hangs below this line; because the total string length is fixed, as one block moves down the other moves up by the same amount."
+  },
+  {
+   "question_id": "lom_d4988964",
+   "question_text": "Block A (mass 2 kg) lies on top of block B (mass 8 kg), and B lies on a horizontal floor. Friction coefficients: 0.2 for the A–B contact and 0.5 for the B–floor contact. A horizontal force F = 25 N is applied to B. Find the friction force that acts between A and B.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "3 N"
+    },
+    {
+     "label": "(b)",
+     "text": "4 N"
+    },
+    {
+     "label": "(c)",
+     "text": "2 N"
+    },
+    {
+     "label": "(d)",
+     "text": "zero"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_ce0e0662",
+   "question_text": "A block of mass m hangs from two strings: one runs horizontally to a fixed wall, and the other runs diagonally upward to a ceiling support, making angle θ with the horizontal. Sketch the free-body diagram of the block.",
+   "options": [],
+   "figure_description": "A block is connected by two strings: one horizontal string running to a fixed wall on one side, and another string running diagonally up to a ceiling support on the other side, making angle θ with the horizontal."
+  },
+  {
+   "question_id": "lom_c97e9ba8",
+   "question_text": "A small ball of mass m hangs by a light string tied to the roof of a railway carriage. The carriage speeds up horizontally with a steady acceleration a, and the ball comes to rest at a fixed tilt relative to the vertical, as the figure shows. Work out this equilibrium tilt angle θ.",
+   "options": [],
+   "figure_description": "A carriage rolling on wheels accelerates horizontally, shown by an arrow marked a pointing in the direction of motion. A ball hangs on a string from the carriage roof; a vertical dashed reference line drops straight down from the roof attachment, and the actual string leans away from this line by angle θ, with the ball sitting toward the rear of the carriage (the side opposite to the direction the arrow a points)."
+  },
+  {
+   "question_id": "lom_bd0bd1c7",
+   "question_text": "A block of mass M sits on a horizontal, frictionless table and is joined by a light string to a second block of the same mass M that hangs vertically below the table's edge. The string runs from the block on the table to one light, frictionless pulley fixed at the table's corner, then straight down to the hanging block. Work out how much each block accelerates and the tension the string carries.",
+   "options": [],
+   "figure_description": "A block of mass M rests on a smooth horizontal table. A light string tied to the block runs LEFT along the table to a small fixed pulley mounted on a post at the table's left end, wraps around it, comes back to the right above the block, passes over a second fixed pulley at the table's right-hand corner, and hangs straight down to a second block of the same mass M. Both pulleys are fixed; when the hanging block descends a distance x, the table block moves left by the same distance x."
+  },
+  {
+   "question_id": "lom_cdf11451",
+   "question_text": "A plumb bob of mass 1 kg hangs by a string from the ceiling inside a train compartment. The train now moves up an inclined plane of angle 30° with acceleration a = g/2 (directed up the incline), instead of at constant velocity. Taking g = 10 m/s², find the angle the string makes with the normal to the ceiling, and find the tension in the string.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_d372dbb1",
+   "question_text": "A smooth (frictionless) horizontal wire carries a sliding ring A of mass 1 kg. A string runs from this ring, over a fixed pulley positioned below the wire, down to a hanging block B of mass 2 kg. The whole system starts from rest at the moment the string makes an angle θ = 60° with the wire. Work out the following.\n(a) an equation relating the ring's speed to the block's speed, expressed in terms of θ\n(b) an equation relating the ring's acceleration to the block's acceleration, evaluated right after release, when θ = 60°\n(c) the string tension at that instant, together with the numerical value of each acceleration",
+   "options": [],
+   "figure_description": "A fixed horizontal wire, smooth and frictionless, runs between two fixed points; a ring of mass 1 kg slides along it. A fixed pulley hangs a constant vertical distance below a point on the wire. A string of fixed length connects the ring, runs diagonally down to this fixed pulley, and then straight down to a block of mass 2 kg. The angle between the wire and the diagonal part of the string, measured at the ring, is θ. As the block falls, the ring slides along the wire toward the point directly above the pulley."
+  },
+  {
+   "question_id": "lom_dc06911f",
+   "question_text": "Assertion: A person walking on a rough road receives a friction force from the road that acts backward, against the walking direction. Reason: The motion of the walking person is produced by the force that the road exerts on the person.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_bd0bd1c7",
+   "question_text": "A block of mass M sits on a horizontal, frictionless table and is joined by a light string to a second block of the same mass M that hangs vertically below the table's edge. The string runs from the block on the table to one light, frictionless pulley fixed at the table's corner, then straight down to the hanging block. Work out how much each block accelerates and the tension the string carries.",
+   "options": [],
+   "figure_description": "A block of mass M rests on a smooth horizontal table. A light string tied to the block runs LEFT along the table to a small fixed pulley mounted on a post at the table's left end, wraps around it, comes back to the right above the block, passes over a second fixed pulley at the table's right-hand corner, and hangs straight down to a second block of the same mass M. Both pulleys are fixed; when the hanging block descends a distance x, the table block moves left by the same distance x."
+  },
+  {
+   "question_id": "lom_b8fc61ff",
+   "question_text": "A man of mass m climbs down a rope hanging from an elevator's ceiling, and relative to the rope his downward motion is slowing at rate a. Meanwhile the elevator itself accelerates upward at rate a, measured relative to the ground. What is the tension in the rope?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg"
+    },
+    {
+     "label": "(b)",
+     "text": "m(g + 2a)"
+    },
+    {
+     "label": "(c)",
+     "text": "m(g + a)"
+    },
+    {
+     "label": "(d)",
+     "text": "zero"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_d45c2f65",
+   "question_text": "A block that weighs 25 kg sits on a flat horizontal surface, and the coefficient of friction between the block and the surface is μ = 1/√3. Given 1 kgf = 9.8 N, what is the smallest possible force that can pull the block along the surface?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "25 kgf"
+    },
+    {
+     "label": "(b)",
+     "text": "2.5 kgf"
+    },
+    {
+     "label": "(c)",
+     "text": "12.5 kgf"
+    },
+    {
+     "label": "(d)",
+     "text": "6.25 kgf"
+    }
+   ],
+   "figure_description": ""
+  }
+ ]
+}

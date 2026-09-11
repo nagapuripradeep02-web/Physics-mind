@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_13fc307f",
+ "item_sha": "31da2e3d5dbc6f47049b99c14c1b52190d9ab59249fc690230f7234a3707c591",
+ "auditor_option": null,
+ "auditor_value": "tension in the cord pulley-to-m2: T2 = 12/35 N = 0.343 N; acceleration of m2 = 2/7 m/s^2 = 0.286 m/s^2 (m1: a1 = 4/7 m/s^2, T1 = 6/35 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Constraint a1 = 2 a2 from the two strands of cord 1; massless pulley gives T2 = 2 T1; T1 = m1 a1; F - T2 = m2 a2; a2 = F/(m2 + 4 m1) = 0.40/1.40 = 2/7. Common-mistake number 0.5 m/s^2 follows from a1 = a2 with T2 = 2T1 kept. No g involved.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:02:14+05:30"
+ }
+}

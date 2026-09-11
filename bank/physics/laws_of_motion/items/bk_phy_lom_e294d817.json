@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e294d817",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass 5 kg sits on a horizontal table. A pulley is fixed at each edge of the table, one on the left and one on the right. A string from the block goes left over the left pulley and down to a hanging block of mass 15 kg; call its tension T₂. Another string from the block goes right over the right pulley and down to a hanging block of mass 5 kg; call its tension T₁. The coefficient of friction between the table and the 5 kg block on it is 0.2. What is the ratio T₁ : T₂ (tension in the right string to tension in the left string)?",
+  "options": {
+   "1": "17 : 24",
+   "2": "34 : 12",
+   "3": "2 : 3",
+   "4": "3 : 2"
+  },
+  "parts": null,
+  "conditions": [
+   "coefficient of friction between the 5 kg block and the table is 0.2",
+   "5 kg block sits on the table, connected by strings over pulleys at each edge",
+   "left string (T₂) hangs a 15 kg block",
+   "right string (T₁) hangs a 5 kg block"
+  ],
+  "figure": {
+   "description": "A block of mass 5 kg rests on a horizontal table. A pulley sits fixed at the left edge of the table and another at the right edge. The string on the left, labeled T₂, runs from the block over the left pulley and down to a hanging 15 kg block. The string on the right, labeled T₁, runs from the block over the right pulley and down to a hanging 5 kg block."
+  }
+ },
+ "solution": {
+  "approach": "Write Newton's second law for all three blocks with one common acceleration, include friction on the table block, and solve the three equations together.",
+  "steps": [
+   {
+    "text": "The 15 kg block is heavier than the 5 kg block, so the system accelerates with the 15 kg block going down, the table block sliding toward the left pulley, and the 5 kg block on the right going up. Call this common acceleration a.",
+    "equation": "a is the same size for all three blocks"
+   },
+   {
+    "text": "Write Newton's second law for the 15 kg block (falling) and the 5 kg block (rising).",
+    "equation": "15g − T₂ = 15a; T₁ − 5g = 5a"
+   },
+   {
+    "text": "Write Newton's second law for the table block. Friction opposes its leftward slide, so it acts to the right; its size is the coefficient of friction times the block's own weight.",
+    "equation": "T₂ − T₁ − μ(5)g = 5a, with μ = 0.2"
+   },
+   {
+    "text": "Substitute the first two equations into the third and solve for a, then get T₁ and T₂.",
+    "equation": "with g = 10 m/s²: a = (150 − 50 − 10)/25 = 3.6 m/s²; T₂ = 150 − 15(3.6) = 96 N; T₁ = 50 + 5(3.6) = 68 N"
+   },
+   {
+    "text": "The ratio of the right tension to the left tension is T₁ to T₂.",
+    "equation": "68 : 96 = 17 : 24"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "17 : 24"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the system as staying at rest and setting each tension equal to the weight it holds gives T₁ = 50 N and T₂ = 150 N, a ratio of 1 : 3."
+   },
+   {
+    "option": null,
+    "text": "Leaving out friction on the table block and solving the same three equations with μ = 0 gives T₁ = 70 N and T₂ = 90 N, a ratio of 7 : 9."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "connected blocks",
+   "kinetic friction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1060d2f4d9adc40791ffd086df3591e6b8e1d489c1d3607af081a46813b60dee"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d7d6f286b875aed261afb742dd5719604433c0a6ff10215d94c6f863cb3348a3",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:02:00+05:30"
+ }
+}

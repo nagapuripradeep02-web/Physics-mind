@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_3df038da",
+ "item_sha": "2d7af6c402332f0e47a093e0c377f0ebabcdabc0c32041f2bd3d366027af466c",
+ "auditor_option": 2,
+ "auditor_value": "13 N (T_BC = m_C(g - a), a = g/3, g = 9.8)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solution uses g = 9.8, matching option (d) 19.6 N = 2(9.8). Every line follows; both mistake entries name a real error that produces the option they point at.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:57:09+05:30"
+ }
+}

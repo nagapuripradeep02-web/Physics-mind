@@ -1,0 +1,186 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 6,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_9cee07f6",
+   "question_text": "A rod of mass m is held between two frictionless walls that let it slide only along one fixed straight line; as it slides, it keeps touching the sloped face of a wedge of mass M at a constant right angle to that face, as the figure shows. Every contact surface here is smooth, with no friction anywhere. Compute the magnitude of the rod's acceleration, then compute the magnitude of the wedge's acceleration.",
+   "options": [],
+   "figure_description": "A wall fixed in space is mounted at an angle in the upper-left region. A rod is held in a channel between two smooth walls so it can only slide along this fixed line; it slides down-and-right or up-and-left along this direction. The rod's lower tip presses against the sloped face of a wedge sitting on the ground, whose base angle with the horizontal is α; the rod stays exactly perpendicular to this sloped face at all times. The wedge itself can slide horizontally."
+  },
+  {
+   "question_id": "lom_a8d2834a",
+   "question_text": "A smooth circular ring of radius a stands in a vertical plane with its centre at C. Two beads, each of mass m, sit on the ring: bead A at the topmost point (directly above C) and bead B at the point level with C on one side (so CB is horizontal), joined to each other by a string of length √2 a stretched along the chord AB. The beads are released from rest and can slide along the ring. Just after release, find the tension in the string and the acceleration of bead B.",
+   "options": [],
+   "figure_description": "Circle of radius a, centre C, vertical plane. Point A is the topmost point of the circle, directly above C. Point B is the leftmost point of the circle, at the same height as C, so CB is horizontal and CA is vertical. A straight string connects A and B (the chord), length √2 a."
+  },
+  {
+   "question_id": "lom_adb64b1d",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else."
+  },
+  {
+   "question_id": "lom_9954af95",
+   "question_text": "A 2 kg block sits on a ramp inclined at 37° to the horizontal. A 4 N force pushes the block up along the ramp's surface. Between the block and the ramp, the coefficients of friction are μₛ = 0.4 (static) and μₖ = 0.3 (kinetic).\n(a) Work out the friction force acting on the block.\n(b) Decide whether the block starts moving, and if it does, work out its acceleration.",
+   "options": [],
+   "figure_description": "A 2 kg block rests on a ramp tilted at 37° to the horizontal, with friction coefficients μₛ = 0.4 and μₖ = 0.3 between the block and the ramp. A 4 N force pushes the block up the slope, along the ramp's surface."
+  },
+  {
+   "question_id": "lom_af1bfccc",
+   "question_text": "A block of mass m sits on a smooth (frictionless) horizontal surface, and a time-dependent horizontal force F = at is applied to it, where a is a constant and t is time. A second, identical block of mass m rests on top of the first block, and the coefficient of friction between the two blocks is μ. Find the time at which the upper block first starts sliding relative to the lower block.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2mg/a"
+    },
+    {
+     "label": "(b)",
+     "text": "2μmg/a"
+    },
+    {
+     "label": "(c)",
+     "text": "μmg/a"
+    },
+    {
+     "label": "(d)",
+     "text": "2μ mga"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_ac6d8f03",
+   "question_text": "Block A has a mass of 1 kg and block B has a mass of 2 kg. Block A's acceleration is (2î) m/s² and block B's acceleration is (−4ĵ) m/s², measured in the ground frame.\n(a) Find the pseudo force on block A, as measured in a reference frame attached to block B.\n(b) Find the pseudo force on block B, as measured in a reference frame attached to block A.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_a567393c",
+   "question_text": "A frame that moves at constant velocity is inertial, so the pseudo force needed in it is always zero. State whether this claim is true or false.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_a9fb6916",
+   "question_text": "A wedge with an incline angle θ is fixed to the floor of an elevator that moves upward with acceleration a. A block of mass m rests on the frictionless inclined surface of the wedge. Find the acceleration of the block relative to the wedge.",
+   "options": [],
+   "figure_description": "An elevator box accelerates straight upward with acceleration a. Fixed to its floor is a wedge whose sloped surface rises from the floor at angle θ to the horizontal. A block of mass m sits on this sloped surface."
+  },
+  {
+   "question_id": "lom_adb64b1d",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else."
+  },
+  {
+   "question_id": "lom_a7f3cdc4",
+   "question_text": "Block A (4 kg) and block C (20 kg) are joined by a string that runs over a pulley fixed at the left edge of a tabletop; block B (8 kg) and the same block C are joined by a second string running over another pulley fixed at the right edge of the tabletop, with C hanging between the two pulleys. Block A slides on a tabletop where the coefficient of friction is 0.2, whereas block B slides on a tabletop with no friction at all. Using g = 10 m/s², work out the common acceleration of the three blocks and the tension in each of the two strings.",
+   "options": [],
+   "figure_description": "A horizontal tabletop has a rectangular opening cut through its middle. A small pulley is fixed at each of the two facing edges of this opening: a left pulley at the edge of the left part of the table and a right pulley at the edge of the right part. Block A (4 kg) rests on the left part of the tabletop, to the left of the opening. Block B (8 kg) rests on the right part of the tabletop, to the right of the opening. Block C (20 kg) hangs inside the opening, below table level, between the two pulleys. One string is tied to block A, runs horizontally to the right along the table to the left pulley, passes over the top of that pulley, and drops vertically down its inner (right) side to the top of block C. A second string is tied to block B, runs horizontally to the left along the table to the right pulley, passes over the top of that pulley, and drops vertically down its inner (left) side to the top of the same block C. So block C is held by two vertical string segments and, as it falls, block A slides right and block B slides left, both toward the opening. Call the tension in the string on A's side T₁ and in the string on B's side T₂. Block A's surface has coefficient of friction 0.2; block B's surface is frictionless."
+  },
+  {
+   "question_id": "lom_9cef0abc",
+   "question_text": "A box car starts from rest (v = 0) and accelerates horizontally at a = 5 m/s² along the î direction. Take g = 10 m/s². Inside the car, on its frictionless floor, a 2 kg object is slid with an initial velocity of 10 m/s along î, measured relative to the car. (a) Describe how the object moves relative to the car. (b) Find when the object returns to its original position relative to the box car.\n(a) Describe the motion of the object relative to the car.\n(b) Find when the object reaches its original position relative to the box car.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_b34b6154",
+   "question_text": "A block of mass m stays motionless on a rough, wedge-shaped inclined surface, as pictured. Find the single net force that the wedge exerts on this block.",
+   "options": [],
+   "figure_description": "A triangular wedge rests on flat ground, its slanted face going up from left to right, with the base angle θ marked at the bottom-left where the slope meets the ground. A block m sits on this slanted face, somewhere partway up the slope."
+  },
+  {
+   "question_id": "lom_b6fd9b1c",
+   "question_text": "Assertion: Two blocks of the same size and mass sit on a rough inclined plane. One of them is set moving up the slope with some initial speed, while the other is set moving down the slope with some initial speed. Given μ = 1/3 and an incline angle θ = 45°, the magnitudes of their accelerations come out in the ratio 2 : 1. Reason: This ratio should equal (1 + μ) over (1 − μ).",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_a65a3261",
+   "question_text": "A block of mass 6 kg lies on a rough inclined surface, as pictured. Work out the applied force F, directed up along the slope, that is needed in each situation below. Take g = 10 m/s².\n(a) the force so that the block remains at rest on the slope\n(b) the force so that the block travels down the slope at a steady, unchanging speed\n(c) the force so that the block travels up the slope while gaining speed at a rate of 4 m/s²",
+   "options": [],
+   "figure_description": "A slope rises from left to right at 60° above the horizontal ground. A 6 kg block sits on this slope. A force F acts on the block along the slope's surface, pointing up and away from it, up the incline. Between the block and the slope, the static friction coefficient is 0.6 and the kinetic friction coefficient is 0.4."
+  },
+  {
+   "question_id": "lom_aeff097e",
+   "question_text": "Three blocks of masses 6 kg, 4 kg and 10 kg touch each other in a line on a frictionless horizontal floor, arranged in that order from left to right. A horizontal force of 100 N pushes on the outer face of the 6 kg block, directed rightward toward the other blocks, and a horizontal force of 40 N pushes on the outer face of the 10 kg block, directed leftward toward the other blocks. All surfaces, including the floor, are smooth.\n(a) Find the acceleration of each of the three blocks.\n(b) Find the net force acting on the 6 kg block, on the 4 kg block, and on the 10 kg block.\n(c) Find the contact force between the 4 kg block and the 10 kg block.",
+   "options": [],
+   "figure_description": "Three blocks rest touching each other on a horizontal frictionless floor, arranged left to right as 6 kg, 4 kg, 10 kg, with no gaps between them. A 100 N horizontal force pushes on the left (outer) face of the 6 kg block, directed rightward into the row of blocks. A 40 N horizontal force pushes on the right (outer) face of the 10 kg block, directed leftward into the row of blocks. Every contact surface, block-to-block and block-to-floor, is frictionless."
+  },
+  {
+   "question_id": "lom_9dbebb4d",
+   "question_text": "A 1 kg ball hangs motionlessly at point P, held there by two thin, weightless strings: one, OP, running up to a fixed point O, and another, RP, running horizontally to a wall anchor. At this position, string OP is inclined at θ = 45° to the vertical. String RP is then snipped, and the ball swings along a circular arc to a new point Q, where the remaining string (call it OQ) again makes a 45° angle with the vertical, on the far side. Taking g = 10 m/s², compute the tension in the string at position P (before RP was cut) and the tension in the string at position Q (once RP has been cut).",
+   "options": [],
+   "figure_description": "A fixed support point O sits at the top. A ball hangs from O by a string; at its first position P, this string is tilted 45° from the vertical line through O, and a separate horizontal string ties the ball to a wall anchor, holding it at that tilt. A dashed curved path shows the ball's swing once the horizontal string is released, arcing down and across to a second position Q, symmetric to P, where the string from O is again tilted 45° from vertical but on the opposite side."
+  },
+  {
+   "question_id": "lom_aadb9898",
+   "question_text": "Three blocks of masses m₁ = 10 kg, m₂ = 20 kg and m₃ = 30 kg rest on a smooth horizontal table and are joined in a line by light, horizontal strings: one string of tension T₁ between m₁ and m₂, and another string of tension T₂ between m₂ and m₃. A horizontal pull of F = 60 N acts on m₃, directed away from m₂.\n(a) Find the tensions T₁ and T₂ in the two strings.\n(b) Find the tension T₂ immediately after the string between m₁ and m₂ suddenly breaks.",
+   "options": [],
+   "figure_description": "Three blocks m₁, m₂, m₃ sit in a row on a horizontal frictionless table, ordered left to right as m₁, m₂, m₃. A light string of tension T₁ joins m₁ to m₂, and a light string of tension T₂ joins m₂ to m₃. A horizontal force F acts on the right (outer) face of m₃, pulling the whole line to the right, away from m₂."
+  },
+  {
+   "question_id": "lom_a85f8814",
+   "question_text": "Assertion: Suppose three forces F₁, F₂ and F₃ all act through one point, with F₁ making 30° with F₂ and 120° with F₃. Under these conditions the forces are unable to balance one another. Reason: For this to happen, at least one of the angles between the forces has to be greater than 180°.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_b7c1ba7e",
+   "question_text": "In the pulley arrangement shown, find how the acceleration of block A is related to the acceleration of block B.",
+   "options": [],
+   "figure_description": "A pulley P₁ is fixed to the ceiling. One string runs over P₁: its left end goes straight down to block A, its right end goes down to the axle hanger of a second, movable pulley P₂ that hangs below P₁ and to the right of A. A second string runs over P₂: its left end also goes straight down to block A (so two strands rise from A, one to P₁ and one to P₂), and its right end hangs down to block B. Block B hangs higher than block A. All strings are vertical; pulleys and strings are light. Taking positions downward from the ceiling, string 1 gives y_A + y_P₂ = constant and string 2 gives (y_A − y_P₂) + (y_B − y_P₂) = constant."
+  },
+  {
+   "question_id": "lom_99315daa",
+   "question_text": "A stick, labelled AB and having weight w₁, leans across a ball of weight w₂ as pictured; the ball also touches a vertical wall and the ground. The ground beneath is rough, but no friction acts at either the stick-and-ball contact or the ball-and-wall contact. Produce separate free-body force diagrams for the ball and for the stick. Also work out why no friction can act at the ball-ground contact.",
+   "options": [],
+   "figure_description": "A vertical wall (brick) stands on the left, meeting a horizontal, rough ground at a right angle. A rod runs from point A (high on the wall) down to point B (on the ground, off to the right), like the hypotenuse of a right triangle. A sphere sits in the corner between the wall and the ground, touching both, and also touching the underside of the rod at a point C on the rod; C lies closer to A than to B (AC < CB)."
+  },
+  {
+   "question_id": "lom_b09b2021",
+   "question_text": "A vertical assembly hangs together: a 2 kg block sits at the top and is pulled upward by a force F = 100 N. Below this block is a string of mass 2 kg, whose upper end is named A, whose lower end is named B, and whose exact midpoint is named C. A 4 kg block is tied to the string's lower end B. Work out the string tension at each of the points A, B and C.",
+   "options": [],
+   "figure_description": "A dashed outline encloses a vertical setup: at the top, a force of 100 N pulls upward, acting on a 2 kg block. Beneath that block hangs a string of mass 2 kg; its top end is A, its bottom end is B, and its midpoint is C. A 4 kg block hangs from end B. An upward arrow marks the acceleration a of the whole system."
+  }
+ ]
+}

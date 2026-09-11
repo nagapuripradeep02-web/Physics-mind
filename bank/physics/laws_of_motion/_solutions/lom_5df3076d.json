@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5df3076d",
+ "approach": "Write Newton's second law for each block along the string, then add the two equations to eliminate the tension.",
+ "steps": [
+  {"text": "For the 1 kg block, its own weight and the applied force F both act downward, opposed by the string tension T.", "equation": "1×g + F − T = 1×a"},
+  {"text": "For the 2 kg block, its weight acts downward and the tension pulls it upward, and it moves the same distance as the 1 kg block since the string is inextensible.", "equation": "T − 2×g = 2×a"},
+  {"text": "Add the two equations to eliminate T, using g = 10 m/s² and F = 20 N.", "equation": "(10+20) − 2×10 = 3a, so 10 = 3a"},
+  {"text": "Solve for a.", "equation": "a = 10/3 ≈ 3.33 m/s²"}
+ ],
+ "final_answer": {"option": null, "value": "a = 10/3 m/s² ≈ 3.33 m/s² (the 1 kg block accelerates down, the 2 kg block accelerates up)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the 1 kg block as free under F alone, ignoring the string and the 2 kg block, giving a = F/1 = 20 m/s²."},
+  {"option": null, "text": "Leaving out the 1 kg block's own weight and keeping only F, then adding the two equations to get 0 = 3a, a wrong zero acceleration."}
+ ],
+ "concept_tags": ["Newton's second law", "Atwood machine", "connected bodies"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:35:00+05:30"}
+}

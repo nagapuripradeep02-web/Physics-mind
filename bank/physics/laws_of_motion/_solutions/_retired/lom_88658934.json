@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_88658934",
+ "approach": "Since the two pulleys only redirect the string, treat M on the frictionless incline and the hanging 2M as one system joined by a single tension.",
+ "steps": [
+  {"text": "Write Newton's second law for M along the incline, taking motion up the incline as positive.", "equation": "T − Mg sin30° = Ma"},
+  {"text": "Write Newton's second law for the hanging 2M, taking its downward motion as positive.", "equation": "2Mg − T = 2Ma"},
+  {"text": "Add the two equations; T and M cancel out.", "equation": "2Mg − Mg sin30° = 3Ma, so a = g(2 − sin30°)/3"},
+  {"text": "Simplify using sin30° = 1/2.", "equation": "a = g(2 − 0.5)/3 = g/2 ≈ 5 m/s² (using g = 10 m/s²)"}
+ ],
+ "final_answer": {"option": null, "value": "a = g/2 ≈ 5 m/s² (using g = 10 m/s²); M accelerates up the incline while 2M descends"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring the incline component of M's weight and treating 2M as pulling against only M's inertia gives a = 2g/3, larger than the correct value."}
+ ],
+ "concept_tags": ["inclined plane", "pulley system", "Newton's second law"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:12:00+05:30"}
+}

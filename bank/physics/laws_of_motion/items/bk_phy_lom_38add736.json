@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_38add736",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: A person walking on a rough road receives a friction force from the road that acts backward, against the walking direction. Reason: The motion of the walking person is produced by the force that the road exerts on the person.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "surface is rough",
+   "person is walking (in motion)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Identify which real force actually drives a walking person forward, using Newton's third law on the foot's push against the ground.",
+  "steps": [
+   {
+    "text": "While walking, a person's foot pushes backward on the ground through muscular effort."
+   },
+   {
+    "text": "By Newton's third law, the ground pushes back on the foot with an equal and opposite force — this reaction is the static friction from the ground, and it points forward, in the same direction as the person's motion.",
+    "equation": "friction on person = −(push on ground) ⇒ forward"
+   },
+   {
+    "text": "This makes the Assertion false: the friction is not opposite to the motion, it is what drives the motion forward.",
+    "equation": "Assertion false"
+   },
+   {
+    "text": "Internal muscular forces alone cannot move the person's centre of mass; only an external force can, and that external force is exactly this forward friction from the road, so the Reason is true.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If the Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Assuming friction always opposes motion, as with ordinary sliding friction, which makes the Assertion look true, while doubting that the road's force truly causes the motion, so the Reason is read as false."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "Newton's third law",
+   "walking"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "dc06911f3b995fd4a22fa9341a0f2f4ebfc8e0dd2b19c46d259557c4a15e0250"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4acf8227fc711fc792b05ca65fb01e68277cb948c44355d191bf0888eefafeea",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

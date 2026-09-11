@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_9954af95",
+ "item_sha": "f7217956da2ef2f75a71083a94c72a86a36bf1acbcb061d68cda48489c8a88eb",
+ "auditor_option": null,
+ "auditor_value": "(a) kinetic friction 4.8 N up the incline (g = 10 m/s²); (b) block slides down with a = 1.6 m/s²",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "The weight components along and perpendicular to the incline are already resolved: 12 N down the slope and 16 N into the slope.",
+   "note": "Nothing in the question as served resolves the weight; the 12 N and 16 N come from W = mg = 20 N with g = 10 m/s², a choice the solution never states. The line claims a given that does not exist instead of doing the resolution.",
+   "fix": "Take g = 10 m/s², so W = 20 N. Resolve the weight along and perpendicular to the incline: W sin37° = 20×0.6 = 12 N down the slope and W cos37° = 20×0.8 = 16 N into the slope."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "g is not fixed by the question; the solution silently uses g = 10 m/s² (with g = 9.8 the answers are 4.70 N and 1.53 m/s²). Both common-mistakes entries reproduce the numbers they name (3.6 and 5.6 m/s²).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:01:08+05:30"
+ }
+}

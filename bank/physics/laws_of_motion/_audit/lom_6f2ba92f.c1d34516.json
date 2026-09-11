@@ -1,0 +1,15 @@
+{
+ "question_id": "lom_6f2ba92f",
+ "item_sha": "c1d34516aa23986714db1446232451a3c0d00c1a8f0b1414875b3d27fa95f11f",
+ "auditor_option": 1,
+ "auditor_value": "F_min = μmg/(cosθ + μ sinθ) = mg sinφ / cos(θ − φ), option (a)",
+ "findings": [
+  {"grade": "weak", "field": "steps[0].text", "quote": "a vertical part that lifts it slightly, reducing the normal force from the surface",
+   "note": "The block does not rise; the upward component F sinθ carries part of the weight so the surface pushes less. 'Lifts it slightly' suggests motion off the surface that does not happen.",
+   "fix": "a vertical part that supports part of the block's weight, reducing the normal force from the surface"}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently: N = mg − F sinθ, F cosθ = μN, F = μmg/(cosθ + μ sinθ); with μ = tanφ this is mg sinφ/(cosθ cosφ + sinθ sinφ) = mg sinφ/cos(θ − φ) — sympy confirms the two forms are identical. Both common_mistakes entries are genuine: option (d) mg sinφ is the minimum over θ (at θ = φ), and option (b) is the sinφ/cosφ swap.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:11:00+05:30"}
+}

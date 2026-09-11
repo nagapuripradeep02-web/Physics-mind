@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9cee07f6",
+ "item_sha": "ebd30f543365aacbdcd1283c05190d1661cc5e42fc3135ef5c26cdce181fe3a3",
+ "auditor_option": null,
+ "auditor_value": "a_rod = mg sin²α cosα/(M + m sin²α); a_wedge = mg sinα cosα/(M + m sin²α)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent check by energy: with s = x sinα the kinetic energy is ½(M + m sin²α)ẋ² and the potential drop is mg x sinα cosα, giving the same a_wedge; a_rod = a_wedge sinα. The mistake entry's alternative formula follows from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:29:52+05:30"
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_0a1222f8",
+ "item_sha": "2568975a8556c7f3cf0883fbecd97dda5c5da9a20f458b341eb2628298c4e822",
+ "auditor_option": 1,
+ "auditor_value": "g/2 (a₁ = g cos30°(sin30°, cos30°) = g(√3/4, 3/4), a₂ = g cos60°(sin60°, cos60°) = g(√3/4, 1/4); a₂ − a₁ = (0, −g/2) ⇒ magnitude g/2)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "a_rel = √3g/2",
+   "note": "The vertical parts of the solution's own vectors in steps[1] are g cos²30° = 3g/4 and g cos²60° = g/4; their difference is g/2, not √3g/2. This line does not follow from the line above it.",
+   "fix": "a₁ᵧ = (3/4)g, a₂ᵧ = (1/4)g ⇒ a_rel = (3/4 − 1/4)g = g/2"
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "√3g/2",
+   "note": "Wrong answer and wrong option. Relative acceleration of the second particle with respect to the first is g/2 in magnitude (directed vertically), which is option (a), index 1.",
+   "fix": "option 1, value g/2"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Computed with python: a₂ − a₁ = (0, 0.5)g exactly. Steps 1–3 are correct; the error is confined to the last line and the final answer.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:26:46+05:30"
+ }
+}

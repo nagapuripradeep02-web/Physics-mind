@@ -1,0 +1,190 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 8,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_ec6cec62",
+   "question_text": "Assertion: Suppose reference frames S₁ and S₂ are both non-inertial; then an observer in S₁ would find S₂ to be an inertial frame. Reason: A frame being in motion does not by itself make it non-inertial.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "both Assertion and Reason are true and the Reason is the correct explanation of the Assertion"
+    },
+    {
+     "label": "(b)",
+     "text": "both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion"
+    },
+    {
+     "label": "(c)",
+     "text": "Assertion is true, but the Reason is false"
+    },
+    {
+     "label": "(d)",
+     "text": "Assertion is false, but the Reason is true"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_e17ca7fd",
+   "question_text": "A 2 kg cube, 20 cm on each edge, is pressed flat against a rough vertical wall by a horizontal force F of 40 N that passes through the cube's centre, point C. Taking g = 10 m/s², find how far the wall's normal reaction acts from point C, measured perpendicular to F.",
+   "options": [],
+   "figure_description": "A cube (drawn as a square in side view) is pressed against a vertical wall on its right-hand side by a horizontal force F applied at its left face, acting through the cube's centre C. The wall's surface is rough (frictional) and vertical."
+  },
+  {
+   "question_id": "lom_ec6cec62",
+   "question_text": "Assertion: Suppose reference frames S₁ and S₂ are both non-inertial; then an observer in S₁ would find S₂ to be an inertial frame. Reason: A frame being in motion does not by itself make it non-inertial.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "both Assertion and Reason are true and the Reason is the correct explanation of the Assertion"
+    },
+    {
+     "label": "(b)",
+     "text": "both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion"
+    },
+    {
+     "label": "(c)",
+     "text": "Assertion is true, but the Reason is false"
+    },
+    {
+     "label": "(d)",
+     "text": "Assertion is false, but the Reason is true"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_eef1b653",
+   "question_text": "For the same pulley system, with block 1 hanging from the fixed pulley and blocks 2 and 3 hanging from the two ends of the movable pulley, block 3 accelerates downward at 6 m/s² and block 2 accelerates upward at 4 m/s². Determine the acceleration of block 1.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_f6f75d80",
+   "question_text": "A frictionless pulley is fixed to a ceiling. A light string that does not stretch passes over it: a 2 kg block hangs from one end. From the other end the string leads down to a 4 kg block; a second light string then connects the 4 kg block to a 6 kg block hanging below it. Taking g = 10 m/s², find the acceleration of the system and the tension in each of the two strings.",
+   "options": [],
+   "figure_description": "A single fixed pulley hangs from the ceiling. A string over the pulley holds a 2 kg block on one side, moving upward with acceleration a. On the other side, the string (tension T₁) runs down to a 4 kg block; a second string (tension T₂) hangs below the 4 kg block and connects it to a 6 kg block. The 4 kg and 6 kg blocks move downward together with acceleration a."
+  },
+  {
+   "question_id": "lom_ed0cdc1e",
+   "question_text": "A student claims that in a non-inertial (accelerating) reference frame, the only way to analyse a mechanics problem is by bringing in a pseudo force. Decide whether this claim is correct or incorrect.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_e15fdd5b",
+   "question_text": "A straight rod AB lies inside a spherical shell whose inner surface is rough. The shell rests on the ground below it. The rod's two ends, A and B, touch this rough inner surface at two different points. Draw a diagram of the rod on its own, showing all the forces that act on it.",
+   "options": [],
+   "figure_description": "A circle represents the cross-section of a spherical shell resting on a horizontal ground below it. A straight rod lies inside the circle as a chord, touching the shell's rough inner surface at two points: end A near the bottom-left of the circle, close to where the shell meets the ground, and end B on the right side of the circle, above the mid-height."
+  },
+  {
+   "question_id": "lom_def442f0",
+   "question_text": "A 4 kilogram block rests on a rough horizontal surface. A force that varies with time, F = kt, acts horizontally on it, where k = 2 N·s⁻¹. Given μ = 0.2, work out the friction acting between block and surface exactly when t = 2 s.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "4 N"
+    },
+    {
+     "label": "(b)",
+     "text": "8 N"
+    },
+    {
+     "label": "(c)",
+     "text": "12 N"
+    },
+    {
+     "label": "(d)",
+     "text": "10 N"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_fa5544ef",
+   "question_text": "In the figure, three massless strings meet at a common knot. A horizontal string connects the knot to a fixed wall; the tension in this string is 30 N. A second string runs from the knot up to a fixed support, making a 45° angle with the vertical. A third string hangs straight down from the knot and supports a block of weight W. Find W.",
+   "options": [],
+   "figure_description": "Three massless strings are tied together at one knot. A horizontal string runs from the knot to a fixed vertical wall. An inclined string runs from the same knot up to a fixed support, making a 45° angle with the vertical direction. A third string hangs straight down from the knot, with a block of weight W tied to its lower end."
+  },
+  {
+   "question_id": "lom_e10f7638",
+   "question_text": "A rope, of mass M and length L, lies on a rough horizontal floor. A steady force drags it horizontally, with magnitude F = Mg, applied at one end and pointing along the rope's own length. Between rope and floor, the coefficient of kinetic friction is 1/2. Find the tension exactly at the rope's midpoint.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "Mg/4"
+    },
+    {
+     "label": "(b)",
+     "text": "2Mg/5"
+    },
+    {
+     "label": "(c)",
+     "text": "Mg/8"
+    },
+    {
+     "label": "(d)",
+     "text": "Mg/2"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_fc0661ef",
+   "question_text": "In the arrangement shown, take g = 10 m/s² and find (a) the accelerations of the 1 kg, 2 kg and 3 kg blocks, and (b) the tensions T₁ and T₂.\n(a) the acceleration of each of the 1 kg, 2 kg and 3 kg blocks\n(b) the tensions T₁ and T₂",
+   "options": [],
+   "figure_description": "A 1 kg block rests on a smooth horizontal table. A string of tension T₂ runs from the block to the right, over a small pulley fixed at the table's edge, then straight down, passes UNDER a movable pulley P₁ (wrapping around its lower half) and rises vertically to a fixed anchor on the ceiling; P₁ therefore hangs in the loop of the T₂ string. From the axle of P₁ a short vertical string hangs down to the axle of a second movable pulley P₂ directly below it. A string of tension T₁ passes over P₂: a 2 kg block hangs from its left end and a 3 kg block from its right end. All pulleys and strings are light and frictionless. When the 1 kg block moves right by x, P₁ and P₂ descend by x/2."
+  },
+  {
+   "question_id": "lom_fe82272a",
+   "question_text": "A block of mass 2 kg sits on a rough horizontal floor whose friction coefficient is μ = 0.8. A horizontal force that grows with time, F = 2t newton (with t in seconds), pushes the block, as pictured. Using g = 10 m/s², sketch how the block's acceleration changes with time.",
+   "options": [],
+   "figure_description": "A 2 kg block rests on a rough horizontal floor with friction coefficient μ = 0.8. A horizontal force F = 2t (F in newton, t in seconds) pushes the block to the right, increasing with time."
+  },
+  {
+   "question_id": "lom_df3cf5c7",
+   "question_text": "Three blocks with masses 4 kg, 2 kg and 1 kg, placed in that order, sit in a row on a frictionless surface. Two light strings that do not stretch join consecutive blocks — one between the 4 kg and 2 kg blocks, another between the 2 kg and 1 kg blocks. A horizontal pull of 14 N is applied to the 1 kg block, directed away from the other two blocks.\n(a) Determine how fast each block accelerates.\n(b) Determine the pulling force transmitted through each string.",
+   "options": [],
+   "figure_description": "Three blocks lie in a row on a horizontal frictionless surface, left to right: 4 kg, then 2 kg, then 1 kg. A light inextensible string (tension T₂) connects the 4 kg and 2 kg blocks; another light inextensible string (tension T₁) connects the 2 kg and 1 kg blocks. A horizontal force of 14 N pulls the 1 kg block to the right, away from the other two blocks."
+  },
+  {
+   "question_id": "lom_f9420a41",
+   "question_text": "A knot is held in place by three strings. String C runs horizontally from the knot to a wall. String B runs from the knot up to the ceiling, making a 30° angle with the vertical. String A hangs vertically down from the knot and supports a block of mass 10 kg. The whole system is in equilibrium. Which string has zero tension?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "B"
+    },
+    {
+     "label": "(b)",
+     "text": "C"
+    },
+    {
+     "label": "(c)",
+     "text": "A"
+    },
+    {
+     "label": "(d)",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": "A vertical wall on the left and a horizontal ceiling meet at a corner. From a common knot below and to the right of the corner, string C runs horizontally to the left to the wall, string B runs up and to the right to the ceiling making a 30° angle with the vertical dashed line through the knot (so 60° with the ceiling), and string A hangs straight down from the knot, holding a 10 kg block at its bottom end."
+  },
+  {
+   "question_id": "lom_fd3acebd",
+   "question_text": "Two blocks are in contact with each other and are sliding down an incline that makes 30° with the horizontal. Between the 2.0 kg block and the incline surface, the friction coefficient is μ₁ = 0.20; between the 4.0 kg block and the incline surface, it is μ₂ = 0.30. The 2.0 kg block sits higher up the slope, pressing against the 4.0 kg block, which sits lower down. Using g = 10 m/s², work out the acceleration of the 2.0 kg block.",
+   "options": [],
+   "figure_description": "Two blocks touch each other on an incline of 30° to the horizontal: the 2.0 kg block sits higher up the slope, in contact with the 4.0 kg block which sits lower down; both slide down together."
+  },
+  {
+   "question_id": "lom_e797d355",
+   "question_text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it."
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_70d95562",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A ladder that weighs 250 N rests against a vertical wall that is smooth (frictionless). Between the ladder and the floor, the coefficient of friction is 0.3. What is the greatest friction force that can act where the ladder touches the floor?",
+  "options": {
+   "1": "75 N",
+   "2": "50 N",
+   "3": "35 N",
+   "4": "25 N"
+  },
+  "parts": null,
+  "conditions": [
+   "wall is smooth (frictionless)",
+   "coefficient of friction between ladder and floor = 0.3",
+   "ladder weight = 250 N"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Since the wall is smooth, the floor alone carries the ladder's full weight, so the maximum friction at the floor is the coefficient of friction times that weight.",
+  "steps": [
+   {
+    "text": "The wall is smooth, so it pushes only sideways on the ladder and supplies no vertical support. The floor must therefore carry the ladder's entire weight vertically.",
+    "equation": "N (floor, vertical) = weight of ladder = 250 N"
+   },
+   {
+    "text": "The maximum friction force the floor can supply is the coefficient of friction times this normal force.",
+    "equation": "f_max = μN = 0.3 × 250 N = 75 N"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "75 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Misreading the ladder's weight of 250 N as a mass of 250 kg and multiplying by g again gives f_max = 0.3 × 250 × 10 = 750 N."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "ladder equilibrium",
+   "normal force"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "082319490da04c0e335c9ec54ccb366831623bb2cf3b233f9833046ec55a434c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "12c11213dfa3bdddc9d3f040ce115bebd4ebcb5152527c9dedb8eb0d1427dfdf",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:26:00+05:30"
+ }
+}

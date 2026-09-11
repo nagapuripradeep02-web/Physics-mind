@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_dc06911f",
+ "item_sha": "4acf8227fc711fc792b05ca65fb01e68277cb948c44355d191bf0888eefafeea",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false (friction from the road on the walker points forward); Reason true (the external force from the road is what accelerates the person) ⇒ option (d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent reading agrees. The third-law argument in steps[1] and the external-force argument in steps[3] are both correct; the mistake entry describes a genuine misreading and points at the option it produces.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:03:28+05:30"
+ }
+}

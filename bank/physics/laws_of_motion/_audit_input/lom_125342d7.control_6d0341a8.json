@@ -1,0 +1,46 @@
+{
+ "question_id": "lom_125342d7",
+ "audit_file": "lom_125342d7.6d0341a8.json",
+ "item_sha": "6d0341a8ef56f16d4e7faff6fdee26ee49a2d25a2116fc4398ddb3902c97187a",
+ "question_text": "A ramp rises from level ground at 60°, the angle being marked at the bottom vertex where the ramp starts. At one point on the ramp's surface four forces act together: an unknown force F directed up along the ramp (parallel to the slope), an unknown force R directed perpendicular to the ramp's surface, away from it, a known force of 6 N pulling horizontally to the left, and a known force of 10 N pulling straight downward. These four forces balance exactly. Work out the values of R and F.",
+ "options": [],
+ "figure_description": "A ramp rises from a vertex at the lower left toward the upper right, making the marked angle of 60° with the horizontal ground. At one point on the ramp's surface four forces act: F points up the ramp, along the surface toward the upper right; R points perpendicular to the ramp's surface, away from it (up and to the left); a 3 N force points horizontally to the left; a 10 N force points vertically downward.",
+ "solution": {
+  "approach": "Resolve F, along the incline, and R, perpendicular to it, into horizontal and vertical parts, and balance them against the 3 N and 10 N forces.",
+  "steps": [
+   {
+    "text": "Write the directions of F and R measured from the horizontal ground; F runs along the incline and R stands perpendicular to it.",
+    "equation": "F at 60° above horizontal, R at 150° above horizontal"
+   },
+   {
+    "text": "Balance the horizontal forces at the point: the 3 N force pulls left, while F and R each contribute a horizontal part.",
+    "equation": "F cos60° − R sin60° = 3"
+   },
+   {
+    "text": "Balance the vertical forces at the point: the 10 N force pulls down, while F and R each contribute a vertical part.",
+    "equation": "F sin60° + R cos60° = 10"
+   },
+   {
+    "text": "Solve the two equations together for F and R.",
+    "equation": "F = 3/2 + 5√3 ≈ 10.16 N, R = 5 − (3√3)/2 ≈ 2.40 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "F ≈ 10.16 N, R ≈ 2.40 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Matching F directly to the 3 N force and R directly to the 10 N force, without resolving their actual 60° and 150° directions, gives F = 3 N and R = 10 N."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of concurrent forces",
+   "resolving forces",
+   "incline"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ }
+}

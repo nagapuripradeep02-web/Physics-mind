@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_93a6ffa1",
+ "item_sha": "2c6e1c90f47511abbe325b86126b7435caec4711ebb519e1236b794d7286c820",
+ "auditor_option": 2,
+ "auditor_value": "h = R(1 - cos30) = (1 - sqrt(3)/2)R = 0.134 R, from tan(theta) = mu = 1/sqrt(3) at the limiting position",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine. Both common_mistakes entries point at the option their stated error produces (R cos30 -> option 3; R sin30 -> option 1).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:02:29+05:30"
+ }
+}

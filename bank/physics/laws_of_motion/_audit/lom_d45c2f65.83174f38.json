@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_d45c2f65",
+ "item_sha": "83174f389cf715a17d2b39385e0785a88550302638984fe86d624bc8a6084cd4",
+ "auditor_option": 3,
+ "auditor_value": "F_min = μmg/√(1+μ²) = mg sinλ with tanλ = μ = 1/√3 (λ = 30°) ⇒ 25 × 0.5 = 12.5 kgf (≈ 122.5 N)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Writing mg sin²θ in the last step instead of mg sinθ gives 6.25 kgf instead of the correct 12.5 kgf.",
+   "note": "This solution's last step is F_min = μmg/√(1+μ²); it never writes the form mg sinθ, so 'in the last step' points at a step that is not in the served solution. The number 6.25 kgf (25 × sin²30°) is correct for the error described in the alternative form F_min = mg sinθ.",
+   "fix": "Using the alternative form F_min = mg sinθ (with tanθ = μ, so θ = 30°) but squaring the sine, mg sin²θ = 25 × 1/4 = 6.25 kgf, instead of mg sinθ = 12.5 kgf."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent solve agrees with option (c). Every equation line follows; μmg/√(1+μ²) evaluates to exactly 12.5 kgf. common_mistakes[2] (horizontal pull μmg = 25/√3 ≈ 14.4 kgf) computes as stated. The given 1 kgf = 9.8 N is not needed because the options are in kgf.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:04:14+05:30"
+ }
+}

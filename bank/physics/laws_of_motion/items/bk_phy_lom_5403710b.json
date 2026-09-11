@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_5403710b",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Two blocks of the same size and mass sit on a rough inclined plane. One of them is set moving up the slope with some initial speed, while the other is set moving down the slope with some initial speed. Given μ = 1/3 and an incline angle θ = 45°, the magnitudes of their accelerations come out in the ratio 2 : 1. Reason: This ratio should equal (1 + μ) over (1 − μ).",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "two identical blocks on a rough inclined plane",
+   "one block moving up the slope, the other moving down the slope",
+   "μ = 1/3",
+   "incline angle θ = 45°"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the deceleration of the block moving up and the acceleration of the block moving down on the same rough incline, then compare them with the given μ and θ.",
+  "steps": [
+   {
+    "text": "For the block moving up the incline, both gravity and kinetic friction act down the incline, opposing the upward motion, so its deceleration is their sum.",
+    "equation": "a(up) = g(sinθ + μcosθ)"
+   },
+   {
+    "text": "For the block moving down the incline, kinetic friction acts up the incline, opposing the downward motion, so its acceleration is gravity's component minus friction.",
+    "equation": "a(down) = g(sinθ − μcosθ)"
+   },
+   {
+    "text": "Divide the two expressions and cancel g cosθ, then use tanθ = 1 at θ = 45°.",
+    "equation": "a(up)/a(down) = (tanθ+μ)/(tanθ−μ) = (1+μ)/(1−μ)"
+   },
+   {
+    "text": "Substitute μ = 1/3 into the ratio.",
+    "equation": "a(up)/a(down) = (1+1/3)/(1−1/3) = (4/3)/(2/3) = 2"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "(a) Both the Assertion and the Reason are true, and the Reason correctly explains the Assertion — the ratio is 2:1."
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Not checking that tanθ = 1 is exactly what turns the general ratio (tanθ+μ)/(tanθ−μ) into (1+μ)/(1−μ), a student might doubt the reason explains it and pick option (b) instead of (a)."
+   }
+  ],
+  "concept_tags": [
+   "inclined plane friction",
+   "kinetic friction",
+   "assertion reason"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b6fd9b1c6f3d1713dd0cc4d9c86e35ac194f164950969c0f0611a3d9108ac849"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "de1c279a14f40040988879a2f42a64885df8e7de96140e0879b681d10875829d",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:28:00+05:30"
+ }
+}

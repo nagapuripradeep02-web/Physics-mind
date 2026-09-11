@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6f2ba92f",
+ "item_sha": "fc375bef04eb0864dd651a2c4540bd6021532c19a00b930511cbabd871b62dd7",
+ "auditor_option": 1,
+ "auditor_value": "F_min = μmg/(cosθ + μ sinθ) with μ = tanφ → mg sinφ / cos(θ − φ), option (a); verified symbolically and numerically",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "N = mg − F sinθ, F cosθ = μN, and the tanφ substitution with the cosine-difference identity all check. Mistake entries map correctly: minimising over θ gives mg sinφ at θ = φ (option d); swapped numerator gives option b. Final answer agrees with mine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:44:52+05:30"
+ }
+}

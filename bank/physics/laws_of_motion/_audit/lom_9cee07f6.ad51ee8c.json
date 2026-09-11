@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_9cee07f6",
+ "item_sha": "ad51ee8cf5b93fec10de0500727480f6b62cab225e778444880008f870d7a78f",
+ "auditor_option": null,
+ "auditor_value": "rod: a1 = mg sin²α cosα/(M + m sin²α) along its guide; wedge: a2 = mg sinα cosα/(M + m sin²α) horizontal",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[3].text",
+   "quote": "From the previous part, the rod's motion along its guide and the wedge's horizontal motion are linked by a1 = a2 sinα.",
+   "note": "There is no previous part in the question as served; the constraint is asserted by citing something that does not exist, so the step carries no justification for its equation.",
+   "fix": "The rod's tip must stay on the wedge face, so the rod's velocity relative to the wedge has no component perpendicular to the face. The rod moves along the face normal at speed v1 and the wedge moves horizontally at v2, whose component along that normal is v2 sinα; hence v1 = v2 sinα and a1 = a2 sinα."
+  },
+  {
+   "grade": "weak",
+   "field": "approach",
+   "quote": "combine with the constraint aA = aB sinα",
+   "note": "The approach names the accelerations aA and aB while every step and the final answer use a1 and a2; the symbols are never tied together.",
+   "fix": "combine with the constraint a1 = a2 sinα, where a1 is the rod's acceleration along its guide and a2 the wedge's horizontal acceleration"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "My derivation (relative velocity along the face, N along the rod, M a2 = N sinα) gives exactly the solution's two formulas. The common-mistakes entry reproduces its stated wrong result correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T22:59:06+05:30"
+ }
+}

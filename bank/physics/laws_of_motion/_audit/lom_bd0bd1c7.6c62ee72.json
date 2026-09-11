@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_bd0bd1c7",
+ "item_sha": "6c62ee72adf9d713b21cc17f38135431c883d7aba55f6b5fcfbb8e47b3950e44",
+ "auditor_option": null,
+ "auditor_value": "Mg − T = Ma and T = Ma ⇒ Mg = 2Ma ⇒ a = g/2 (5 m/s² at g = 10); T = Mg/2",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "approach",
+   "quote": "joined by a light string over a single pulley",
+   "note": "The served text says one pulley at the table's corner, but the figure description says two fixed pulleys (one on a post at the left end, one at the right corner) with the table block moving LEFT; the solution follows the text's layout without naming the conflict. The equations and the numbers are the same under either layout (same string tension, 1:1 constraint), so the answer is unaffected.",
+   "fix": "The text describes one pulley at the corner while the figure shows two fixed pulleys; in both layouts the string has one tension T and the blocks share one acceleration a, so apply Newton's second law to each block."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "Question text (one pulley at the corner, block pulled toward the edge) and figure description (two fixed pulleys, table block moves left, away from the hanging side) describe different apparatus. Both give the same constraint |a_table| = |a_hang| and a single string tension, so the result a = g/2, T = Mg/2 holds for either.",
+ "notes": "Independent solve agrees with a = g/2, T = Mg/2; every equation line follows (this copy prints the correct Mg = 2Ma in steps[2]). Same question_id as item lom_bd0bd1c7.afead73c with a different item_sha; the two solutions differ only in steps[2]'s coefficient.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:03:41+05:30"
+ }
+}

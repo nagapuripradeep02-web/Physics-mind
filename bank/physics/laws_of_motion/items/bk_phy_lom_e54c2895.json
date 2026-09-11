@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e54c2895",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rod is hinged to a wall at one end and held horizontal. Its mass is 2 kg and it is 4 m long. The other end of the rod is held up by a string that runs from a point on the wall above the hinge down to the rod's far end, meeting the rod at an angle of 37°. With the rod in equilibrium, find the force the hinge exerts on the rod — either as horizontal and vertical components, or as a single resultant — and find the tension in the string. Assume g = 10 m/s² throughout, with sin 37° equal to 3/5 and cos 37° equal to 4/5.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "rod is hinged to a wall at one end",
+   "rod mass = 2 kg",
+   "rod length = 4 m",
+   "string runs from a point on the wall above the hinge to the far end of the rod, meeting it at 37°",
+   "g = 10 m/s²",
+   "sin 37° = 3/5",
+   "cos 37° = 4/5"
+  ],
+  "figure": {
+   "description": "A rod is hinged to a vertical wall at its left end (the hinge) and lies horizontal. A string runs from a point on the wall above the hinge down to the right end of the rod, meeting the rod at an angle of 37°."
+  }
+ },
+ "solution": {
+  "approach": "Take moments about the hinge to find the string tension, then balance horizontal and vertical forces to find the hinge force.",
+  "steps": [
+   {
+    "text": "The rod is horizontal, hinged at A, weight mg acting at its midpoint (2 m from A). The string pulls at B (4 m from A), at 37° to the rod, so its vertical part is T sin37°.",
+    "equation": "mg = 2 × 10 = 20 N"
+   },
+   {
+    "text": "The string's horizontal part passes through the same height as the hinge, so it has no moment about A. Only its vertical part and the weight create moments about A.",
+    "equation": "T sin37° × 4 = mg × 2"
+   },
+   {
+    "text": "Put in sin37° = 3/5 and solve for T.",
+    "equation": "T × (3/5) × 4 = 20 × 2 → T = 40 / (12/5) = 16.67 N"
+   },
+   {
+    "text": "Balance horizontal forces: the hinge's horizontal push balances the string's horizontal pull toward the wall.",
+    "equation": "H_x = T cos37° = 16.67 × 0.8 = 13.33 N"
+   },
+   {
+    "text": "Balance vertical forces: the hinge's vertical push, the string's vertical pull, and the weight together balance.",
+    "equation": "H_y = mg − T sin37° = 20 − 16.67 × 0.6 = 10 N",
+    "why_this_step": "The vertical part of the tension helps hold up the rod, so the hinge only needs to supply the rest of the weight."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = 16.67 N; hinge force components H_x = 13.33 N (horizontal), H_y = 10 N (vertical), resultant hinge force = 16.67 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the full rod length 4 m as the moment arm for the weight instead of the midpoint distance 2 m, which doubles the found tension to 33.33 N."
+   },
+   {
+    "option": null,
+    "text": "Swapping sin37° and cos37° when finding the hinge components, giving H_x = 10 N and H_y = 6.67 N."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a rigid body",
+   "moment of a force",
+   "hinge reaction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cff4c285ab113ee0e198cf8f4ed8f3de269bb25138286cb52995c16e6501dfd0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c9cb6decdd447d705aaa4043dc60a9bc27865d3b0c5312e6b0f07b24be39adbe",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:55:00+05:30"
+ }
+}

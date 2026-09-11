@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6512249a",
+ "item_sha": "107389e440498a43f1310601d2f897bf8d2df3429477550af842351de5c4a18b",
+ "auditor_option": null,
+ "auditor_value": "f_s,max = 16 N < mg = 20 N, so the block slides down; a = (20 − 12)/2 = 4 m/s² downward; friction = kinetic, 12 N upward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The first mistake entry's number checks: (20 − 16)/2 = 2 m/s².",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:39+05:30"
+ }
+}

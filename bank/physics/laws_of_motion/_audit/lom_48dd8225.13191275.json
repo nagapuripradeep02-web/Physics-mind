@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_48dd8225",
+ "item_sha": "131912758721101a44a1ddf66ea2e17017feeab3690126fe815fe430fd2b50a6",
+ "auditor_option": null,
+ "auditor_value": "(a) F1 = F2 = 60 cos45 = 30 sqrt2 = 42.4 N; (b) W = 60 sin45 = 30 sqrt2 = 42.4 N",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[1].equation",
+   "quote": "F4 = T cos45° ≈ 42.43 N",
+   "note": "The line is meant to give F2 (the step text says F2), but it prints a symbol F4 that does not exist in the question. The number is right; the label is not.",
+   "fix": "F2 = T cos45° = 60×(√2/2) ≈ 42.43 N"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Independent solve: at B the string pulls up-left at 45 degrees, so F2 = T cos45 and W = T sin45; at A the string pulls down-right, so F1 = T cos45 and the vertical link carries T sin45. All three values 30 sqrt2 = 42.4 N, as the solution prints. The one finding is the mislabeled symbol in step 2.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:25:02+05:30"
+ }
+}

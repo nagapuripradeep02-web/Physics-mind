@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_5c1668bc",
+ "item_sha": "f16bccc089438d4c4ac2bc17386adfb93c4fab592caa0a4d80590fb0fd4adb5c",
+ "auditor_option": null,
+ "auditor_value": "(a) a = (200 − 16×9.8)/16 = 2.7 m/s² upward; (b) T_top = 11×(9.8 + 2.7) = 137.5 N; (c) T_mid = 9×12.5 = 112.5 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation follows: 16×9.8 = 156.8, 43.2/16 = 2.7, g + a = 12.5. Both common_mistakes entries reproduce the numbers they name (11×9.8 = 107.8 N and 9×9.8 = 88.2 N with g alone; 7×12.5 = 87.5 N without the half rope). g = 9.8 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:20:00+05:30"}
+}

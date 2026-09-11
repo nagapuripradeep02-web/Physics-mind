@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_eef3bcf4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Sliding down a smooth incline set at angle θ to the horizontal, a body reaches the bottom in time t. When that same incline is instead made rough, the body now needs 2t to get to the bottom. Find the coefficient of friction of that rough surface.",
+  "options": {
+   "1": "(3/4) tanθ",
+   "2": "(2/3) tanθ",
+   "3": "(1/4) tanθ",
+   "4": "(1/2) tanθ"
+  },
+  "parts": null,
+  "conditions": [
+   "incline is smooth in the first case",
+   "the same incline is made rough in the second case",
+   "incline angle is unchanged, θ"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Distance from rest grows as time squared, so doubling the time on the rough incline means the acceleration drops to a quarter; use that to find the friction coefficient.",
+  "steps": [
+   {
+    "text": "On the smooth incline, the body starts from rest and covers the length L in time t.",
+    "equation": "L = ½(g sinθ)t² ⇒ acceleration = g sinθ"
+   },
+   {
+    "text": "On the rough incline, the same length L is covered in time 2t. Since distance from rest goes as the square of time, doubling the time means the acceleration is one quarter of the smooth-incline value.",
+    "equation": "L = ½ a_rough(2t)² ⇒ a_rough = (g sinθ)/4"
+   },
+   {
+    "text": "On the rough incline, friction reduces the acceleration below g sinθ by the friction term. Set this equal to the value found above and solve for μ.",
+    "equation": "g sinθ − μg cosθ = (g sinθ)/4 ⇒ μg cosθ = (3/4)g sinθ ⇒ μ = (3/4)tanθ"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "(3/4) tanθ"
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Assuming acceleration drops in direct proportion to time instead of its square, so a_rough = (g sinθ)/2, gives μ = (1/2)tanθ."
+   }
+  ],
+  "concept_tags": [
+   "kinematics on an incline",
+   "kinetic friction",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "90108702bf65e4beffd556e83fabe4a21b2c46b28de8966bacd32762913a7c4d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b9bb1972a83c905c8dd4376a9bd3ba213b5b311290b8a0db91ffc9b59ba0d7ca",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:18:00+05:30"
+ }
+}

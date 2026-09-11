@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_e17ca7fd",
+ "item_sha": "e6865c5d7f71f770dd0fee0583f699aae1ce8c552be932c5f4c061f772370d5a",
+ "auditor_option": null,
+ "auditor_value": "0.05 m (5 cm) below C",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Forgetting that F and the weight pass through C (so they cannot be left out of the torque count as if they contributed) leads to setting up the wrong torque equation.",
+   "note": "The parenthetical states the opposite of the fact it is trying to teach: F and the weight pass through C, so their torque about C is zero and they are correctly left out of the torque equation. As written the entry tells the student they must be included.",
+   "fix": "Forgetting that F and the weight both pass through C, and so produce zero torque about C, leads to a wrong torque equation with extra terms in it."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "N = 40 N, f = 20 N, torque about C with h measured upward: 40h + 20(0.10) = 0 gives h = -0.05 m, i.e. 5 cm below C. All five equation lines are consistent with this. Mistake entry [1] correctly produces 0.10 m.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:58:31+05:30"
+ }
+}

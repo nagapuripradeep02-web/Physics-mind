@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_f9420a41",
+ "approach": "Balance the knot vertically and horizontally to find all three string tensions, then check whether any of them actually comes out zero.",
+ "steps": [
+  {"text": "At the knot, three strings pull: A straight down carrying the 10 kg block, B up to the ceiling at 30° from the vertical, and C straight toward the wall (horizontal).", "equation": "T(A) = (10 kg)(9.8 m/s²) = 98 N"},
+  {"text": "Balance the vertical direction; only T(A) and the vertical part of T(B) act vertically.", "equation": "T(B) cos30° = T(A)"},
+  {"text": "Solve for T(B).", "equation": "T(B) = 98 / 0.866 ≈ 113.2 N"},
+  {"text": "Balance the horizontal direction; only T(C) and the horizontal part of T(B) act horizontally.", "equation": "T(C) = T(B) sin30° = 113.2 × 0.5 ≈ 56.6 N"},
+  {"text": "All three tensions come out clearly positive, so none of the strings carries zero tension.", "equation": "T(A) = 98 N, T(B) ≈ 113.2 N, T(C) ≈ 56.6 N"}
+ ],
+ "final_answer": {"option": 4, "value": "None of the above"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming a horizontal string like C carries no load since it does not hold up any weight directly, missing that it must balance the horizontal pull of the angled string B."}
+ ],
+ "concept_tags": ["static equilibrium", "tension", "resolving forces"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e85827e9",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A small particle is put at rest on the inner surface of a hollow hemispherical bowl whose radius is R. Friction between particle and bowl has coefficient μ = 1/√3. Measured from the lowest point of the bowl, what is the greatest height at which the particle can stay at rest without sliding?",
+  "options": {
+   "1": "R/2",
+   "2": "(1 − √3/2)R",
+   "3": "(√3/2)R",
+   "4": "3R/8"
+  },
+  "parts": null,
+  "conditions": [
+   "particle is at rest on the inner surface of the hemisphere",
+   "radius of the hemisphere is R",
+   "coefficient of friction is μ = 1/√3"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The particle slips once the weight's component along the bowl's curved surface exceeds the maximum friction; that condition fixes the angle and hence the height.",
+  "steps": [
+   {
+    "text": "At the point where the particle rests, the surface makes angle θ with the horizontal, measured from the bottom of the bowl. Split the weight into a part along the surface and a part perpendicular to it.",
+    "equation": "along surface: mg sinθ, perpendicular: mg cosθ"
+   },
+   {
+    "text": "Balance forces perpendicular to the surface and along it: the normal force matches the perpendicular part of the weight, and friction matches the part along the surface.",
+    "equation": "N = mg cosθ, f = mg sinθ"
+   },
+   {
+    "text": "The particle stays still as long as the needed friction does not exceed the maximum friction available. The greatest height is reached exactly when friction reaches this maximum.",
+    "equation": "f = μN ⇒ mg sinθ = μ·mg cosθ ⇒ tanθ = μ"
+   },
+   {
+    "text": "Use μ = 1/√3 to get the angle, then find the height above the bottom of the bowl from the bowl's radius.",
+    "equation": "tanθ = 1/√3 ⇒ θ = 30°; h = R(1 − cosθ) = (1 − √3/2)R"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "(1 − √3/2)R"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Taking the height as R cosθ, the vertical drop from the sphere's centre to the particle, instead of R(1 − cosθ), the height measured from the bottom of the bowl, gives (√3/2)R."
+   },
+   {
+    "option": 1,
+    "text": "Mixing up sinθ and cosθ while finding the height gives R sinθ = R/2 instead of R(1 − cosθ)."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "circular surface",
+   "angle of friction"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "93a6ffa1c6f417952a6223c564afbaca3811654aba562a0ca9aa4df4aa3e4154"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2c6e1c90f47511abbe325b86126b7435caec4711ebb519e1236b794d7286c820",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:00:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a8d2834a",
+ "item_sha": "8ab14e73fd7e8c6583273f5d98d60e41d663f1f78fc5a6b82a0e587aa129f880",
+ "auditor_option": null,
+ "auditor_value": "T = mg/√2; a_B = g/2 vertically downward (tangent at B); a_A = g/2 horizontally toward B's side",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Verified by projecting both tangential accelerations onto the chord (each at 45° to its tangent), which gives a_A = a_B and T = mg/√2. String stays taut (without it B would fall at g and the chord would lengthen).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:28:58+05:30"
+ }
+}

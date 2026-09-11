@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_2dc239ae",
+ "item_sha": "8de4c5e3f5d002dcf7084d13bf6a7dc064730bff3b7c51c6075037b27fcfe183",
+ "auditor_option": null,
+ "auditor_value": "F_min = (M + m) g / μ  (common a = F/(M+m), N = ma, μN = mg gives a = g/μ)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: ground-frame analysis N = ma on block m, limiting friction μN = mg, so a ≥ g/μ and F ≥ (M+m)g/μ. Every step follows; the mistake entry (dropping m from the accelerating mass) is a genuine error. The 'pseudo force' tag names the usual wedge-frame method rather than the ground-frame method used here; not graded.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:02:32+05:30"
+ }
+}

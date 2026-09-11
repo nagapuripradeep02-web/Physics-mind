@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b34b6154",
+ "approach": "Since the block is at rest, only two forces act on it overall, gravity and the wedge's contact force, so the contact force must exactly cancel gravity.",
+ "steps": [
+  {"text": "Only two forces act on the block: its weight mg straight down, and the total contact force from the wedge, which is the normal force and friction combined into one force.", "equation": "Forces on block: mg (down), R (from wedge)"},
+  {"text": "The block is at rest, so the net force on it is zero, meaning R must be equal and opposite to mg.", "equation": "R = mg",
+   "why_this_step": "With only two forces on the block, equilibrium forces them to be exactly equal and opposite, whatever the incline angle or the friction coefficient."},
+  {"text": "So the wedge pushes on the block with a force of size mg, directed straight up.", "equation": "R = mg, vertically upward"}
+ ],
+ "final_answer": {"option": null, "value": "R = mg, directed vertically upward (independent of the angle θ)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the force from the wedge as only the normal force, R = mg cosθ, and leaving out the friction force needed to keep the block at rest."}
+ ],
+ "concept_tags": ["normal force", "friction", "equilibrium"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T11:10:00+05:30"}
+}

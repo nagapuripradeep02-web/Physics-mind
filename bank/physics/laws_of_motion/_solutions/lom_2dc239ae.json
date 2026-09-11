@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_2dc239ae",
+ "approach": "The block m is held up only by friction against the wedge's vertical face, and that friction comes from the normal force created by the sideways acceleration.",
+ "steps": [
+  {"text": "Since M and m move together, they share one horizontal acceleration.", "equation": "a = F / (M+m)"},
+  {"text": "The wedge pushes block m sideways, so the normal force N between them equals m times that acceleration.", "equation": "N = m a"},
+  {"text": "The block has nothing below it, so friction alone must support its weight; for the minimum F, friction is at its maximum value.", "equation": "μN = mg"},
+  {"text": "Put N = ma into this and solve for a.", "equation": "μ m a = mg ⇒ a = g/μ",
+   "why_this_step": "This is the smallest sideways acceleration at which the available friction is exactly enough to hold the block up."},
+  {"text": "Put a = g/μ into the system equation and solve for F.", "equation": "F = (M+m) a = (M+m) g/μ"}
+ ],
+ "final_answer": {"option": null, "value": "F = (M+m) g / μ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Leaving block m's own mass out of the accelerating system and writing F = M g / μ instead of (M+m) g / μ."}
+ ],
+ "concept_tags": ["friction", "pseudo force", "wedge"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T11:00:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_448a4b3c",
+ "item_sha": "0c512e0d3e0ef9ab97169e3ccefc72b2f4bd477c7104cd9a61978e0592650ea5",
+ "auditor_option": null,
+ "auditor_value": "mu = 1. (a) 30: f = 0.5mg, net 0, a 0. (b) 45: f = 0.707mg, net 0, a 0. (c) 60: f = mu mg cos60 = 0.5mg, net = 0.366mg, a = 0.366g = 3.66 m/s^2 (g = 10)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "gives a negative net force of size 3.66mg",
+   "note": "Kinetic friction at 30° is μmg cos30° = 0.866mg against a weight component of 0.5mg, so the net force is −0.366mg, of size 0.366mg. 3.66 is the acceleration in m/s² for the 60° case, not a force in units of mg; the stated cause cannot produce 3.66mg.",
+   "fix": "gives a negative net force of size 0.366mg (an acceleration of 3.66 m/s² up the incline with g = 10 m/s²), showing the block cannot actually be sliding there."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Question does not fix g; the solution states g = 10 for the one numeric acceleration. The kinetic case takes μ_k = μ_s = 1, the standard reading when only the angle of repose is given.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:01:13+05:30"
+ }
+}

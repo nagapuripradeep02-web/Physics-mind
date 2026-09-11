@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_000837d5",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 1 kg particle sits on a rough inclined plane that makes an angle of 30° with the horizontal ground. The particle is right at the point of sliding down. Determine the coefficient of friction acting between the particle and the incline.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "particle mass is 1 kg",
+   "incline makes an angle of 30° with the horizontal",
+   "particle is on the verge of slipping (limiting friction condition)"
+  ],
+  "figure": {
+   "description": "A ramp rises from left to right, making an angle of 30° with the horizontal ground at its base. A small block sits on the slope. The block feels a normal push N perpendicular to the slope surface, a friction force f pointing up along the slope, and its own weight split into two parts: one part pulling it down along the slope surface and the other pressing it into the slope surface."
+  }
+ },
+ "solution": {
+  "approach": "At the point of slipping, the friction force reaches its maximum value and exactly balances the weight component along the incline.",
+  "steps": [
+   {
+    "text": "On the incline, the weight component along the surface pulls the particle down, and friction resists it, reaching its maximum since the particle is about to slip.",
+    "equation": "mg sinθ = μ mg cosθ"
+   },
+   {
+    "text": "The common factor mg cancels from both sides, leaving a relation that depends only on the angle.",
+    "equation": "μ = sinθ / cosθ = tanθ"
+   },
+   {
+    "text": "Put in θ = 30°.",
+    "equation": "μ = tan30° = 1/√3 = 0.58",
+    "why_this_step": "tan30° is the ratio of the weight's component along the slope, mg sin30°, to the normal force, mg cos30°; at the point of slipping the limiting friction μN equals mg sin30°, so this ratio is μ, whatever the particle's mass."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "μ = tan30° ≈ 0.58"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using sinθ instead of tanθ and taking μ = sin30° = 0.5."
+   },
+   {
+    "option": null,
+    "text": "Using cosθ instead of tanθ and taking μ = cos30° = 0.87."
+   }
+  ],
+  "concept_tags": [
+   "limiting friction",
+   "coefficient of friction",
+   "inclined plane"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8fc83d1a61f8c001c6846d75073f87de650c1af4d82791f5044a05b9952ebdc5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "cddde2ccbb809910eb5a08e69d6072d1cdde097e1a0ebf261b30ca7db4281937",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:55:00+05:30"
+ }
+}

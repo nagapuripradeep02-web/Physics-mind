@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_e15fdd5b",
+ "approach": "At each contact point the rough shell gives a normal force toward its centre and a friction force along its surface, plus the rod's own weight.",
+ "steps": [
+  {"text": "Mark the weight of the rod, Mg, acting vertically downward at its midpoint.", "equation": "Mg ↓ at the midpoint of AB"},
+  {"text": "At end A, mark the normal reaction N(A) directed from A toward the centre of the shell, and a friction force f(A) tangent to the shell surface at A, since the shell is rough.", "equation": "N(A) toward centre, f(A) tangent, both at A"},
+  {"text": "At end B, mark the normal reaction N(B) directed from B toward the centre of the shell, and a friction force f(B) tangent to the shell surface at B.", "equation": "N(B) toward centre, f(B) tangent, both at B"},
+  {"text": "The free body diagram of the rod carries five forces in total.", "equation": "Mg at the midpoint; N(A) and f(A) at A; N(B) and f(B) at B",
+   "why_this_step": "Each contact with a rough curved surface gives a normal part toward the centre and a friction part along the surface."}
+ ],
+ "final_answer": {"option": null, "value": "Five forces act on the rod: weight Mg at its midpoint, normal reaction N(A) and friction f(A) at A, and normal reaction N(B) and friction f(B) at B, each normal force pointing toward the shell's centre and each friction force along the shell surface."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing only a normal force at A and B and leaving out friction, forgetting that the shell is stated to be rough."},
+  {"option": null, "text": "Directing the normal forces along the rod instead of toward the shell's centre; a normal force from a curved surface always acts along the radius."}
+ ],
+ "concept_tags": ["free body diagram", "normal and friction force", "rigid body equilibrium"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:05:00+05:30"}
+}

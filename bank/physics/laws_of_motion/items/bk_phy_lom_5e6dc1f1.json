@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_5e6dc1f1",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A 4 kilogram block rests on a rough horizontal surface. A force that varies with time, F = kt, acts horizontally on it, where k = 2 N·s⁻¹. Given μ = 0.2, work out the friction acting between block and surface exactly when t = 2 s.",
+  "options": {
+   "1": "4 N",
+   "2": "8 N",
+   "3": "12 N",
+   "4": "10 N"
+  },
+  "parts": null,
+  "conditions": [
+   "a time-varying horizontal force F = kt acts on the block",
+   "the surface is rough and horizontal"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the applied force at t = 2 s and the maximum friction the surface can supply, then check that the applied force has not yet reached that maximum.",
+  "steps": [
+   {
+    "text": "Find the size of the applied force at t = 2 s.",
+    "equation": "F = kt = 2 × 2 = 4 N"
+   },
+   {
+    "text": "Find the maximum friction force the surface can supply, using the normal force, which equals the block's weight on this horizontal plane.",
+    "equation": "f_max = μmg = 0.2 × 4 × 10 = 8 N"
+   },
+   {
+    "text": "Since the applied force, 4 N, is smaller than the maximum friction, 8 N, the block is still at rest, and friction matches the applied force to keep it still.",
+    "equation": "f = F = 4 N"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "4 N"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Assuming friction is always at its maximum value once any force is applied, without checking whether the block has actually started moving, gives f = μmg = 8 N."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "time-dependent force",
+   "friction limit"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "def442f0dcaa8313e13101e786aec751ccb58e6c7b0ba687daf1cfa073e0c79b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ecf49e736a31b492f6b47be84627198e9c1df011c7dafbdb1cb339ab3ebe693e",
+  "audited_by": "W01-U-lom-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:16:00+05:30"
+ }
+}

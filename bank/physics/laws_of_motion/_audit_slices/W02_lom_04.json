@@ -1,0 +1,423 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 4,
+ "round": 0,
+ "agent_label": "W02-U-lom-04",
+ "items": [
+  {
+   "question_id": "lom_fa5544ef",
+   "audit_file": "lom_fa5544ef.7097f466.json",
+   "item_sha": "7097f46640d641d543907680f83103608789009959477ace752c6781820d06a9",
+   "question_text": "In the figure, three massless strings meet at a common knot. A horizontal string connects the knot to a fixed wall; the tension in this string is 30 N. A second string runs from the knot up to a fixed support, making a 45° angle with the vertical. A third string hangs straight down from the knot and supports a block of weight W. Find W.",
+   "options": [],
+   "figure_description": "Three massless strings are tied together at one knot. A horizontal string runs from the knot to a fixed vertical wall. An inclined string runs from the same knot up to a fixed support, making a 45° angle with the vertical direction. A third string hangs straight down from the knot, with a block of weight W tied to its lower end.",
+   "solution": {
+    "approach": "At the knot, resolve the diagonal string's tension along the horizontal and vertical directions and balance each against the known tension and the hanging weight.",
+    "steps": [
+     {
+      "text": "At the knot, three strings pull: the diagonal string at 45° from the vertical, the horizontal string with tension 30 N, and the vertical string carrying weight W."
+     },
+     {
+      "text": "Balance the horizontal direction: the diagonal string's horizontal component equals the horizontal string's tension.",
+      "equation": "T sin45° = 30 N"
+     },
+     {
+      "text": "Solve for the diagonal string's tension T.",
+      "equation": "T = 30/sin45° = 30√2 N"
+     },
+     {
+      "text": "Balance the vertical direction: the diagonal string's vertical component supports the weight W.",
+      "equation": "W = T cos45° = 30√2 × cos45° = 30 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "W = 30 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Resolving the 45° string's components the wrong way round (using cos45° for the horizontal part) still gives 30 N here only because sin45° = cos45°; at any other angle this swap gives a wrong W."
+     },
+     {
+      "option": null,
+      "text": "Setting W equal to the full diagonal tension T = 30√2 N ≈ 42.4 N, instead of only its vertical component."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium of a particle",
+     "resolution of tension"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_e15fdd5b",
+   "audit_file": "lom_e15fdd5b.530865a7.json",
+   "item_sha": "530865a7d838e396fd5e53640c5d373a8e79d5b56a961bec74930bf437344645",
+   "question_text": "A straight rod AB lies inside a spherical shell whose inner surface is rough. The shell rests on the ground below it. The rod's two ends, A and B, touch this rough inner surface at two different points. Draw a diagram of the rod on its own, showing all the forces that act on it.",
+   "options": [],
+   "figure_description": "A circle represents the cross-section of a spherical shell resting on a horizontal ground below it. A straight rod lies inside the circle as a chord, touching the shell's rough inner surface at two points: end A near the bottom-left of the circle, close to where the shell meets the ground, and end B on the right side of the circle, above the mid-height.",
+   "solution": {
+    "approach": "At each contact point the rough shell gives a normal force toward its centre and a friction force along its surface, plus the rod's own weight.",
+    "steps": [
+     {
+      "text": "Mark the weight of the rod, Mg, acting vertically downward at its midpoint.",
+      "equation": "Mg ↓ at the midpoint of AB"
+     },
+     {
+      "text": "At end A, mark the normal reaction N(A) directed from A toward the centre of the shell, and a friction force f(A) tangent to the shell surface at A, since the shell is rough.",
+      "equation": "N(A) toward centre, f(A) tangent, both at A"
+     },
+     {
+      "text": "At end B, mark the normal reaction N(B) directed from B toward the centre of the shell, and a friction force f(B) tangent to the shell surface at B.",
+      "equation": "N(B) toward centre, f(B) tangent, both at B"
+     },
+     {
+      "text": "The free body diagram of the rod carries five forces in total.",
+      "equation": "Mg at the midpoint; N(A) and f(A) at A; N(B) and f(B) at B",
+      "why_this_step": "Each contact with a rough curved surface gives a normal part toward the centre and a friction part along the surface."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Five forces act on the rod: weight Mg at its midpoint, normal reaction N(A) and friction f(A) at A, and normal reaction N(B) and friction f(B) at B, each normal force pointing toward the shell's centre and each friction force along the shell surface."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing only a normal force at A and B and leaving out friction, forgetting that the shell is stated to be rough."
+     },
+     {
+      "option": null,
+      "text": "Directing the normal forces along the rod instead of toward the shell's centre; a normal force from a curved surface always acts along the radius."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal and friction force",
+     "rigid body equilibrium"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_e17ca7fd",
+   "audit_file": "lom_e17ca7fd.867e7e8f.json",
+   "item_sha": "867e7e8fed63e4d4375d1bb77bbcb5f3169f927cf0cf04d777d23aec7039894e",
+   "question_text": "A 2 kg cube, 20 cm on each edge, is pressed flat against a rough vertical wall by a horizontal force F of 40 N that passes through the cube's centre, point C. Taking g = 10 m/s², find how far the wall's normal reaction acts from point C, measured perpendicular to F.",
+   "options": [],
+   "figure_description": "A cube (drawn as a square in side view) is pressed against a vertical wall on its right-hand side by a horizontal force F applied at its left face, acting through the cube's centre C. The wall's surface is rough (frictional) and vertical.",
+   "solution": {
+    "approach": "Find the wall's normal force and the friction from equilibrium, then balance torques about C to find how far below C the wall's contact force must act.",
+    "steps": [
+     {
+      "text": "Since F passes through C and is horizontal, horizontal equilibrium gives the wall's normal reaction equal to F.",
+      "equation": "N = F = 40 N"
+     },
+     {
+      "text": "Vertical equilibrium requires friction from the wall to support the cube's weight.",
+      "equation": "f = mg = 2 × 10 = 20 N"
+     },
+     {
+      "text": "Both F and the weight act through C, so they create no torque about C. The wall's normal force and friction act together at the contact point, a horizontal distance of half a side from C.",
+      "equation": "horizontal distance from C to wall face = 0.20/2 = 0.10 m"
+     },
+     {
+      "text": "Let the contact point be a distance h above C. Balance the torques of N and f about C.",
+      "equation": "N·h + f·(0.10) = 0"
+     },
+     {
+      "text": "Solve for h and take its magnitude as the perpendicular distance.",
+      "equation": "h = −(20×0.10)/40 = −0.05 m, so the distance is 0.05 m (below C)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "0.05 m (5 cm), below the centre C"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting that F and the weight both pass through C, and so produce zero torque about C, leads to a wrong torque equation with extra terms in it."
+     },
+     {
+      "option": null,
+      "text": "Using the full side length instead of half the side for the horizontal distance from C to the wall face gives 0.10 m instead of 0.05 m."
+     }
+    ],
+    "concept_tags": [
+     "torque balance",
+     "friction",
+     "equilibrium of a rigid body"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_eef1b653",
+   "audit_file": "lom_eef1b653.440a11f6.json",
+   "item_sha": "440a11f63f0219b2f9b2c554f3cb91c28203b776db44631a8d3409ac440a033b",
+   "question_text": "In the pulley system pictured, block 1 hangs from the fixed pulley and blocks 2 and 3 hang from the two ends of the string over the movable pulley. Block 3 accelerates downward at 6 m/s² and block 2 accelerates upward at 4 m/s². Determine the acceleration of block 1.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end.",
+   "solution": {
+    "approach": "Use the movable-pulley constraint to find the pulley's acceleration from blocks 2 and 3, then use the fixed-pulley constraint to find block 1's acceleration.",
+    "steps": [
+     {
+      "text": "Take downward as positive. Block 3's acceleration is 6 m/s² downward and block 2's is 4 m/s² upward, so its downward value is −4 m/s².",
+      "equation": "a₂ = −4 m/s², a₃ = 6 m/s²"
+     },
+     {
+      "text": "The movable-pulley constraint makes the pulley's downward acceleration the average of the two.",
+      "equation": "a(pulley) = (a₂+a₃)/2 = (−4+6)/2 = 1 m/s² (downward)"
+     },
+     {
+      "text": "The fixed-pulley constraint makes block 1's downward acceleration the negative of the movable pulley's.",
+      "equation": "a₁ = −a(pulley) = −1 m/s²"
+     },
+     {
+      "text": "A negative downward acceleration means block 1 actually accelerates upward.",
+      "equation": "a₁ = 1 m/s² (upward)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "1 m/s² upward"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking block 1's acceleration in the same direction as the movable pulley instead of the opposite direction gives 1 m/s² downward, the wrong direction."
+     }
+    ],
+    "concept_tags": [
+     "pulley constraint",
+     "movable pulley",
+     "relative acceleration"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_f9420a41",
+   "audit_file": "lom_f9420a41.3293cf32.json",
+   "item_sha": "3293cf32ec2c8f5793f5e93533e78e4ec071a20283bb315ed26385e298374628",
+   "question_text": "A knot is held in place by three strings. String C runs horizontally from the knot to a wall. String B runs from the knot up to the ceiling, making a 30° angle with the vertical. String A hangs vertically down from the knot and supports a block of mass 10 kg. The whole system is in equilibrium. Which string has zero tension?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "B"
+    },
+    {
+     "label": "(b)",
+     "text": "C"
+    },
+    {
+     "label": "(c)",
+     "text": "A"
+    },
+    {
+     "label": "(d)",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": "A vertical wall on the left and a horizontal ceiling meet at a corner. From a common knot below and to the right of the corner, string C runs horizontally to the left to the wall, string B runs up and to the right to the ceiling making a 30° angle with the vertical dashed line through the knot (so 60° with the ceiling), and string A hangs straight down from the knot, holding a 10 kg block at its bottom end.",
+   "solution": {
+    "approach": "Balance the knot vertically and horizontally to find all three string tensions, then check whether any of them actually comes out zero.",
+    "steps": [
+     {
+      "text": "At the knot, three strings pull: A straight down carrying the 10 kg block, B up to the ceiling at 30° from the vertical, and C straight toward the wall (horizontal).",
+      "equation": "T(A) = (10 kg)(9.8 m/s²) = 98 N"
+     },
+     {
+      "text": "Balance the vertical direction; only T(A) and the vertical part of T(B) act vertically.",
+      "equation": "T(B) cos30° = T(A)"
+     },
+     {
+      "text": "Solve for T(B).",
+      "equation": "T(B) = 98 / 0.866 ≈ 113.2 N"
+     },
+     {
+      "text": "Balance the horizontal direction; only T(C) and the horizontal part of T(B) act horizontally.",
+      "equation": "T(C) = T(B) sin30° = 113.2 × 0.5 ≈ 56.6 N"
+     },
+     {
+      "text": "All three tensions come out clearly positive, so none of the strings carries zero tension.",
+      "equation": "T(A) = 98 N, T(B) ≈ 113.2 N, T(C) ≈ 56.6 N"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "None of the above"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Assuming a horizontal string like C carries no load since it does not hold up any weight directly, missing that it must balance the horizontal pull of the angled string B."
+     }
+    ],
+    "concept_tags": [
+     "static equilibrium",
+     "tension",
+     "resolving forces"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_e797d355",
+   "audit_file": "lom_e797d355.6af9b54a.json",
+   "item_sha": "6af9b54a4de7b12604fcfccf2a388bad5ddae2769b51b6fbf8615ff796355f49",
+   "question_text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it.",
+   "solution": {
+    "approach": "With no applied force besides gravity and a frictionless incline, both blocks would accelerate at the same rate on their own, so they need no push from each other.",
+    "steps": [
+     {
+      "text": "On a smooth incline with no applied force, a block's acceleration along the slope depends only on gravity and the incline angle, not on its mass.",
+      "equation": "a = g sin30°, the same value for both blocks"
+     },
+     {
+      "text": "Since both blocks would accelerate at the same rate even if they were separate, neither block needs to push on the other to keep pace."
+     },
+     {
+      "text": "The normal contact force between the two blocks is therefore zero.",
+      "equation": "N = 0 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "0 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the heavier 4 kg block pushes on the lighter 2 kg block because it sits lower on the slope, missing that acceleration on a smooth incline does not depend on mass."
+     },
+     {
+      "option": null,
+      "text": "Computing a contact force from the mass difference, such as (4−2)g sin30° = 10 N; no such formula exists — a contact force appears only when the two blocks would accelerate at different rates."
+     }
+    ],
+    "concept_tags": [
+     "motion on an incline",
+     "contact force",
+     "Newton's second law"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_fc0661ef",
+   "audit_file": "lom_fc0661ef.62e2bbb5.json",
+   "item_sha": "62e2bbb524ef52ce0bc2b2f899dbd64194d3e6a663b682dc8cebb531e416fa85",
+   "question_text": "In the arrangement shown, take g = 10 m/s² and find (a) the accelerations of the 1 kg, 2 kg and 3 kg blocks, and (b) the tensions T₁ and T₂.\n(a) the acceleration of each of the 1 kg, 2 kg and 3 kg blocks\n(b) the tensions T₁ and T₂",
+   "options": [],
+   "figure_description": "A 1 kg block rests on a smooth horizontal table. A string of tension T₂ runs from the block to the right, over a small pulley fixed at the table's edge, then straight down, passes UNDER a movable pulley P₁ (wrapping around its lower half) and rises vertically to a fixed anchor on the ceiling; P₁ therefore hangs in the loop of the T₂ string. From the axle of P₁ a short vertical string hangs down to the axle of a second movable pulley P₂ directly below it. A string of tension T₁ passes over P₂: a 2 kg block hangs from its left end and a 3 kg block from its right end. All pulleys and strings are light and frictionless. When the 1 kg block moves right by x, P₁ and P₂ descend by x/2.",
+   "solution": {
+    "approach": "Use the two given string constraints to relate all four accelerations, note the two movable pulleys make T1 equal T2, then solve the three block equations together.",
+    "steps": [
+     {
+      "text": "The 1 kg block's string loops under the movable pulley P1, so P1 (and P2, joined rigidly below it) descend at half the 1 kg block's speed; this is given directly: when the 1 kg block moves x, P1 and P2 descend x/2.",
+      "equation": "a1 = 2 aP",
+      "why_this_step": "This is the first constraint relation, fixed by the string geometry, written before any force equation."
+     },
+     {
+      "text": "The 2 kg and 3 kg blocks hang from a string over the movable pulley P2, so their accelerations add up to twice P2's own acceleration.",
+      "equation": "a2 + a3 = 2 aP",
+      "why_this_step": "This is the second constraint relation, from treating P2 as an ordinary pulley that itself accelerates at aP."
+     },
+     {
+      "text": "P1 is massless: the two upward pulls of the T2 cord (looped under it) must balance the one downward pull of the short link to P2, and P2 is massless too: that link's pull upward must balance the two downward pulls of the T1 cord.",
+      "equation": "2T2 = Tlink = 2T1, so T1 = T2"
+     },
+     {
+      "text": "Write Newton's second law for the 1 kg block on the frictionless table.",
+      "equation": "T2 = m1 a1 = m1(2aP)"
+     },
+     {
+      "text": "Write Newton's second law for the 2 kg and the 3 kg blocks, taking downward as positive.",
+      "equation": "m2 g − T1 = m2 a2,   m3 g − T1 = m3 a3"
+     },
+     {
+      "text": "Using T1 = T2 = 2m1 aP, express a2 and a3 in terms of aP, substitute into a2 + a3 = 2aP, and solve.",
+      "equation": "a2 = 10 − aP, a3 = 10 − (2/3)aP → (10 − aP) + (10 − (2/3)aP) = 2aP → 20 = (11/3)aP → aP = 60/11 m/s²"
+     },
+     {
+      "text": "Use aP to find the remaining accelerations and the common tension.",
+      "equation": "a1 = 2aP = 120/11 ≈ 10.9 m/s², a2 = 50/11 ≈ 4.5 m/s², a3 = 70/11 ≈ 6.4 m/s², T1 = T2 = 120/11 ≈ 10.9 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "acceleration of 1 kg block = 120/11 ≈ 10.9 m/s²; of 2 kg block = 50/11 ≈ 4.5 m/s² downward; of 3 kg block = 70/11 ≈ 6.4 m/s² downward; T1 = T2 = 120/11 ≈ 10.9 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating P2 as fixed and solving the 2 kg-3 kg pair as an ordinary Atwood machine, giving accelerations of 2 m/s² each way instead of the correct 4.5 and 6.4 m/s²."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "movable pulley",
+     "Newton's second law"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_48dd8225",
+   "audit_file": "lom_48dd8225.13191275.json",
+   "item_sha": "131912758721101a44a1ddf66ea2e17017feeab3690126fe815fe430fd2b50a6",
+   "question_text": "The diagonal string shown in the figure below carries a tension of 60 N.\n(a) Work out the size of the horizontal forces F₁ and F₂ needed to keep the whole system fixed in the position drawn.\n(b) Work out the weight of the block that hangs from the system.",
+   "options": [],
+   "figure_description": "A horizontal ceiling runs along the top. A short vertical link hangs from the ceiling down to point A. At A, force F₁ points horizontally to the left. From A, a diagonal string runs down and to the right to point B, making a 45° angle with the horizontal (measured at A between a horizontal reference line and the diagonal string). At B, force F₂ points horizontally to the right, and directly below B a block of weight W hangs on a vertical string.",
+   "solution": {
+    "approach": "At each end of the diagonal string, the horizontal force balances the string's horizontal part, and at B the string's vertical part supports the hanging weight.",
+    "steps": [
+     {
+      "text": "At point A, the diagonal string pulls toward B; F1 balances the horizontal part of this pull.",
+      "equation": "F1 = T cos45° = 60×(√2/2) ≈ 42.43 N"
+     },
+     {
+      "text": "At point B, the diagonal string pulls toward A; F2 balances the horizontal part of this pull.",
+      "equation": "F4 = T cos45° ≈ 42.43 N"
+     },
+     {
+      "text": "The weight hanging from B is supported by the vertical part of the string's tension.",
+      "equation": "W = T sin45° ≈ 42.43 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) F1 ≈ 42.43 N, F2 ≈ 42.43 N, (b) W ≈ 42.43 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking F1 and F2 equal to the full string tension of 60 N, without resolving the 45° angle, ignores that only part of the tension acts horizontally."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium at a point",
+     "tension",
+     "resolving forces at 45 degrees"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

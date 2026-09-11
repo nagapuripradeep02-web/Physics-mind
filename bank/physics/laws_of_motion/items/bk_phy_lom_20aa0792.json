@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_20aa0792",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A rope, of mass M and length L, lies on a rough horizontal floor. A steady force drags it horizontally, with magnitude F = Mg, applied at one end and pointing along the rope's own length. Between rope and floor, the coefficient of kinetic friction is 1/2. Find the tension exactly at the rope's midpoint.",
+  "options": {
+   "1": "Mg/4",
+   "2": "2Mg/5",
+   "3": "Mg/8",
+   "4": "Mg/2"
+  },
+  "parts": null,
+  "conditions": [
+   "floor is rough",
+   "force is applied at one end of the rope, pointing along its length",
+   "coefficient of kinetic friction between rope and floor = 1/2",
+   "force magnitude F equals Mg"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the rope's overall acceleration from the pull and the friction, then apply Newton's second law to the trailing half of the rope to find the tension at its midpoint.",
+  "steps": [
+   {
+    "text": "The whole rope has the pulling force F on one end and friction, spread evenly along its length, resisting the motion. Find the acceleration from the net force on the whole rope.",
+    "equation": "F − μMg = Ma, with F = Mg and μ = 1/2 ⇒ a = g(1 − μ) = g/2"
+   },
+   {
+    "text": "Look at the trailing half of the rope, the half farther from where F is pulled. The only forces on it are the tension T pulling it forward from the midpoint and friction on its own weight holding it back.",
+    "equation": "trailing half has mass M/2 and friction μ(M/2)g"
+   },
+   {
+    "text": "Apply Newton's second law to this half and solve for T.",
+    "equation": "T − μ(M/2)g = (M/2)a ⇒ T = (M/2)(a + μg) = (M/2)(g/2 + g/2) = Mg/2"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "Mg/2"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Wrongly assuming all the friction acts only under the half being pulled, leaving none on the trailing half, gives T = (M/2)a = Mg/4."
+   }
+  ],
+  "concept_tags": [
+   "kinetic friction",
+   "non-rigid body dynamics",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e10f7638994f18cbc1b0f8ae774939e0f480fafad8b664acfdc2a53f7d5b92ac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c029a5ad078df708b09c5479ea7d0fc6148a073cd768fafe242ebc102a1bd995",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:28:00+05:30"
+ }
+}

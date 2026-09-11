@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_d571430d",
+ "approach": "Take each block on its own, and list its weight plus the contact push from whatever touches it above and below.",
+ "steps": [
+  {"text": "Block A sits only on block B. Two forces act on A: its own weight W_A downward, and the normal reaction from B, N₁, upward.", "equation": "N₁ = W_A"},
+  {"text": "Block B sits on block C and carries block A on top. Three forces act on B: its own weight W_B downward, the push from A on B (reaction to N₁, so it is N₁ downward), and the normal reaction from C, N₂, upward.", "equation": "N₂ = W_A + W_B", "why_this_step": "By Newton's third law, if B pushes A up with N₁, A pushes B down with the same N₁."},
+  {"text": "Block C sits on the ground and carries B (and, through B, A) on top. Three forces act on C: its own weight W_C downward, the push from B on C (reaction to N₂, so it is N₂ downward), and the normal reaction from the ground, N₃, upward.", "equation": "N₃ = W_A + W_B + W_C"}
+ ],
+ "final_answer": {"option": null, "value": "A: weight W_A down, reaction N₁ = W_A up from B. B: weight W_B down, reaction N₁ down (from A), reaction N₂ = W_A + W_B up from C. C: weight W_C down, reaction N₂ down (from B), ground reaction N₃ = W_A + W_B + W_C up."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Giving block C's ground reaction as only W_C, forgetting it also carries the weight of A and B resting on top of it."},
+  {"option": null, "text": "Leaving out the downward push that each upper block exerts on the block beneath it."}
+ ],
+ "concept_tags": ["free body diagram", "Newton's third law", "normal reaction"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:15:00+05:30"}
+}

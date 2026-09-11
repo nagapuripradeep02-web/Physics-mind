@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_f9420a41",
+ "item_sha": "3293cf32ec2c8f5793f5e93533e78e4ec071a20283bb315ed26385e298374628",
+ "auditor_option": 4,
+ "auditor_value": "None of the above (all three tensions are non-zero: T_A = mg, T_B = mg/cos30, T_C = mg tan30)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: T_A = mg, T_B = mg/cos30, T_C = T_B sin30 = mg tan30 (about 57.7 N with g = 10, 56.6 N with g = 9.8); none is zero, option (d) = 4. The solution uses g = 9.8 m/s^2; nothing in the question or options fixes g and the answer is the same for either value. The mistake entry points at option 2 = C, which is the option its cause would produce.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:24:02+05:30"
+ }
+}

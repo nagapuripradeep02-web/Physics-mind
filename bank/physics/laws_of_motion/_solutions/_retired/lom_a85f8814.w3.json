@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a85f8814",
+ "approach": "Test whether the given angles allow equilibrium by solving for positive force magnitudes, then test the Reason as a general rule with a standard counterexample.",
+ "steps": [
+  {"text": "Place F1 along a reference direction. Since the angle between F1 and F2 is 30°, F2 can point 30° to either side of F1; since the angle between F1 and F3 is 120°, F3 can point 120° to either side. This gives four possible arrangements.", "equation": "θ2 = ±30°, θ3 = ±120°"},
+  {"text": "For equilibrium, the sum of the three force vectors along the reference direction and across it must both be zero, with every magnitude positive.", "equation": "F1 + F2cosθ2 + F3cosθ3 = 0,  F2 sinθ2 + F3 sinθ3 = 0"},
+  {"text": "Solving these two equations for each of the four arrangements always forces one magnitude to come out negative when the other two are taken positive, which a real force magnitude cannot be.", "equation": "e.g. F1 = −F3, or F2 = −√3 F3"},
+  {"text": "So no positive F1, F2 and F3 satisfy equilibrium with these two given angles: the Assertion is true."},
+  {"text": "Test the Reason as a general rule using a standard case: three equal forces at 0°, 120° and 240° add to zero, so they are in equilibrium.", "equation": "F(cos0°+cos120°+cos240°) = 0,  F(sin0°+sin120°+sin240°) = 0"},
+  {"text": "Every pair of these three equilibrium forces is 120° apart, so none of the angles between them is greater than 180°. The Reason's claim, that equilibrium needs at least one angle greater than 180°, is therefore false as a general statement."},
+  {"text": "The Assertion is true and the Reason is false, so the correct choice is (c): the Assertion is true, but the Reason is false."}
+ ],
+ "final_answer": {"option": 3, "value": "(c) The Assertion is true, but the Reason is false."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Treating the Reason as a valid general rule, since a third angle greater than 180° would indeed be needed here, without testing a counterexample, leads to picking option (a) instead of (c)."}
+ ],
+ "concept_tags": ["equilibrium of concurrent forces", "vector addition", "assertion-reason"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 3, "agent": "W03-A-lom-01", "at": "2026-09-11T21:10:00+05:30"}
+}

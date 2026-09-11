@@ -1,0 +1,108 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d75da4ce",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block rests on top of a 1 kg block, and the 1 kg block rests on a smooth (frictionless) horizontal surface. The friction coefficient between the two blocks is μ = 0.6. The 2 kg block is given an initial velocity of 3 m/s to the right, while the 1 kg block is given an initial velocity of 18 m/s to the left. Assume the lower block is long enough that the upper block never slides off it. Taking g = 10 m/s²,",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out the time at which the relative sliding between the two blocks stops."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the common velocity the two blocks share at that instant."
+   },
+   {
+    "label": "c",
+    "asks": "Work out how far the 1 kg block and the 2 kg block each travel up to that instant."
+   }
+  ],
+  "conditions": [
+   "2 kg block on top of a 1 kg block",
+   "1 kg block rests on a smooth horizontal surface",
+   "μ = 0.6 between the two blocks",
+   "initial velocity of the 2 kg block = 3 m/s to the right",
+   "initial velocity of the 1 kg block = 18 m/s to the left",
+   "lower block assumed long enough that the upper block does not fall off",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 2 kg block sits on top of a 1 kg block; the 1 kg block rests on a smooth horizontal floor. The 2 kg (upper) block moves at 3 m/s to the right, and the 1 kg (lower) block moves at 18 m/s to the left."
+  }
+ },
+ "solution": {
+  "approach": "Find the kinetic friction between the blocks from the top block's weight, get each block's constant acceleration, then find when their velocities become equal.",
+  "steps": [
+   {
+    "text": "The friction between the blocks depends on the normal force at their interface, which equals the weight of the top block alone.",
+    "equation": "f = μ(m_top)g = 0.6×2×10 = 12 N"
+   },
+   {
+    "text": "The top block moves right relative to the bottom block, so friction acts left on the top block and right on the bottom block, by Newton's third law.",
+    "equation": "a(top) = −f/m_top = −6 m/s², a(bottom) = f/m_bottom = 12 m/s²"
+   },
+   {
+    "text": "Write each block's velocity as a function of time and set them equal to find when relative motion stops.",
+    "equation": "3 − 6t = −18 + 12t"
+   },
+   {
+    "text": "Solve for the time and the common velocity.",
+    "equation": "t = 21/18 = 7/6 s ≈ 1.17 s; v = 3 − 6(7/6) = −4 m/s"
+   },
+   {
+    "text": "Use the same time in each block's displacement equation to find how far each one moved.",
+    "equation": "s(top) = 3(7/6) − 3(7/6)² = −7/12 m ≈ −0.58 m; s(bottom) = −18(7/6) + 6(7/6)² = −77/6 m ≈ −12.83 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 7/6 s ≈ 1.17 s; (b) common velocity = 4 m/s, in the direction the 1 kg block first moved; (c) the 2 kg block displaces 7/12 m ≈ 0.58 m and the 1 kg block displaces 77/6 m ≈ 12.83 m, both in the direction the 1 kg block first moved"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the combined weight of both blocks for friction instead of only the top block's weight gives friction = 18 N and a wrong stopping time of 7/9 s ≈ 0.78 s."
+   },
+   {
+    "option": null,
+    "text": "Taking the bottom block's initial speed as +18 m/s, the same direction as the top block, instead of −18 m/s, gives a negative, impossible time of −5/6 s."
+   }
+  ],
+  "concept_tags": [
+   "kinetic friction between two blocks",
+   "relative velocity",
+   "equations of motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "39473919de78be95a2e9f9db26999b15d9d34ac6984a02d09c76b51a46e0ab20"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3c7331dba0523936c6141565ae1362350c849f54a75c8ca17263667144737d57",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_465c3777",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "incline is smooth (frictionless)",
+   "angle of incline is 30°",
+   "4 kg block is lower on the slope, 2 kg block is higher, touching each other",
+   "both blocks released from rest at the same time"
+  ],
+  "figure": {
+   "description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it."
+  }
+ },
+ "solution": {
+  "approach": "With no applied force besides gravity and a frictionless incline, both blocks would accelerate at the same rate on their own, so they need no push from each other.",
+  "steps": [
+   {
+    "text": "On a smooth incline with no applied force, a block's acceleration along the slope depends only on gravity and the incline angle, not on its mass.",
+    "equation": "a = g sin30°, the same value for both blocks"
+   },
+   {
+    "text": "Since both blocks would accelerate at the same rate even if they were separate, no contact force is needed for them to move together."
+   },
+   {
+    "text": "The normal contact force between the two blocks is therefore zero.",
+    "equation": "N = 0 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "0 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the heavier 4 kg block pushes on the lighter 2 kg block because it sits lower on the slope, missing that acceleration on a smooth incline does not depend on mass."
+   },
+   {
+    "option": null,
+    "text": "Computing a contact force from the mass difference, such as (4−2)g sin30° = 10 N; no such formula exists — a contact force appears only when the two blocks would accelerate at different rates."
+   }
+  ],
+  "concept_tags": [
+   "motion on an incline",
+   "contact force",
+   "Newton's second law"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e797d355fffdd39792a41c8b216d120741cd7b4221bf5bad37dd17ec74d3f9d2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "76473784b7d00fc4424f6c1a602808343ceb638725c007a74a32bdb4f5e799eb",
+  "audited_by": "W03-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:45:00+05:30"
+ }
+}

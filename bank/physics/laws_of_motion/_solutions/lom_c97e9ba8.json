@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_c97e9ba8",
+ "approach": "Inside the accelerating train, a backward pseudo force acts on the bob along with gravity, and the string settles along their combined direction.",
+ "steps": [
+  {"text": "In the train's frame, the bob feels its weight mg straight down and a pseudo force ma directed backward, opposite to the train's acceleration a.", "equation": "Forces on bob: mg (down), ma (backward)"},
+  {"text": "At equilibrium the string lies along the direction of the combined force, so the string tension balances both parts.", "equation": "T sinθ = ma, T cosθ = mg"},
+  {"text": "Divide the two equations to remove T.", "equation": "tanθ = a/g",
+   "why_this_step": "The angle the string makes with the vertical depends only on the ratio of the pseudo force to gravity, not on the mass of the bob."},
+  {"text": "Write θ using the inverse tangent.", "equation": "θ = tan⁻¹(a/g)"}
+ ],
+ "final_answer": {"option": null, "value": "θ = tan⁻¹(a/g)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Inverting the ratio and writing θ = tan⁻¹(g/a) instead of tan⁻¹(a/g)."}
+ ],
+ "concept_tags": ["pseudo force", "pendulum in accelerating frame"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:45:00+05:30"}
+}

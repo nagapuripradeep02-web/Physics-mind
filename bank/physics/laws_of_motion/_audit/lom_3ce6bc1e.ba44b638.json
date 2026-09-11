@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_3ce6bc1e",
+ "item_sha": "ba44b63871f9368458d440889797f387697433528ee956bebcfa4b23c9becef5",
+ "auditor_option": null,
+ "auditor_value": "3 m/s downward (pulley moves down at 1 m/s; v₂ + v₃ = 2v_pulley with downward positive gives −1 + v₃ = 2)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Sign convention stated (downward positive), both constraints correct, arithmetic checks. The common-mistakes entry's stated cause does give v₃ = 1 m/s upward (v_p = −1, v₃ = −2 + 1 = −1). Final answer agrees with mine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:44:52+05:30"
+ }
+}

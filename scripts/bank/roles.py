@@ -76,6 +76,10 @@ def plan_reader(led, wave, size, model, only):
     open_labels = {i for r in _open_rows(led, "reader") for i in r["question_ids"]}
     # a context block ("Directions" shared by several items) is labelled "<block> DIRECTIONS", e.g. "L1 AR DIRECTIONS"
     ctx = [(c["label"], os.path.join(L.EVIDENCE, c["crop"]).replace("/", os.sep)) for c in man["markers"] if c["kind"] == "context" and c.get("crop")]
+    # context_overrides.json (evidence folder): [{"applies": [labels], "crop_of": label}] - a note printed inside one
+    # item's crop that later items depend on ("in exercises 16 to 18 ..."), or the item a "repeat the above" refers to
+    crop_of = {m["label"]: os.path.join(L.EVIDENCE, m["crop"]).replace("/", os.sep) for m in man["markers"] if m.get("crop")}
+    over = {lab: crop_of[o["crop_of"]] for o in (L.load(os.path.join(L.EVIDENCE, "context_overrides.json")) or []) for lab in o["applies"]}
     views = []
     for m in sorted([m for m in man["markers"] if m["kind"] == "item" and m.get("crop")], key=_tier_key):
         out = os.path.join(out_dir("reader"), I.slug(m["label"]) + ".json")
@@ -83,7 +87,7 @@ def plan_reader(led, wave, size, model, only):
             continue
         if not only and (m["label"] in done or m["label"] in open_labels or os.path.exists(out)):
             continue
-        cc = next((p for lab, p in ctx if m["tier"].startswith("L1") and lab.startswith(m["tier"])), None)
+        cc = over.get(m["label"]) or next((p for lab, p in ctx if m["tier"].startswith("L1") and lab.startswith(m["tier"])), None)
         views.append({"label": m["label"], "tier": m["tier"], "page": m["page"], "worked_example": m["tier"] == "EX",
                       "crop": os.path.join(L.EVIDENCE, m["crop"]).replace("/", os.sep), "context_crop": cc, "out": out})
     return _rows(wave, "reader", model, _chunks(views, size), "label")

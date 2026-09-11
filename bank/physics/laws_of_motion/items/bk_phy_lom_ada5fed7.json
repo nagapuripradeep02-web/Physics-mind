@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_ada5fed7",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A body sliding down a rough inclined plane set at 45° takes twice as long to reach the bottom as the same body sliding down a smooth (frictionless) 45° inclined plane of the same length. What is the coefficient of kinetic friction between the body and the rough plane?",
+  "options": {
+   "1": "1/3",
+   "2": "3/4",
+   "3": "√(3/4)",
+   "4": "√(2/3)"
+  },
+  "parts": null,
+  "conditions": [
+   "angle of incline is 45° in both cases",
+   "time on the rough plane is twice the time on the smooth plane",
+   "same plane length in both cases"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the acceleration on the smooth and rough 45° inclines, use the given time ratio to relate them, and solve for the coefficient of kinetic friction.",
+  "steps": [
+   {
+    "text": "On the smooth 45° incline, the block's acceleration equals the gravity component along the incline, with nothing else acting.",
+    "equation": "a(smooth) = g sin45°"
+   },
+   {
+    "text": "On the rough 45° incline, kinetic friction subtracts from this.",
+    "equation": "a(rough) = g(sin45° − μcos45°)"
+   },
+   {
+    "text": "Both blocks start from rest and cover the same incline length L, and time for a fixed distance from rest goes as the inverse square root of the acceleration.",
+    "equation": "t = √(2L/a)"
+   },
+   {
+    "text": "The rough time is twice the smooth time, so squaring this ratio gives the rough acceleration as one quarter of the smooth acceleration.",
+    "equation": "t(rough) = 2t(smooth) ⇒ a(rough) = a(smooth)/4"
+   },
+   {
+    "text": "Substitute and solve for μ at θ = 45°, where sin45° = cos45° so they cancel.",
+    "equation": "sin45° − μcos45° = (1/4)sin45° ⇒ μ = 3/4"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "3/4"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "kinematics on an incline",
+   "kinetic friction",
+   "equations of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6ce8778bf97912c3a4de948d397027d88d7630ea9281e60c73ce608f5d573613"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "01b64405ad0b4713dd5ca38baf49bb0b90a19670df721b948eb2e1a360fbee22",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

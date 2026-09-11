@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_33c59164",
+ "item_sha": "af7c24fb86e394d9a32dbfa92b3135c4b5ab2378e1fd9b14a3510bd1914d1e5a",
+ "auditor_option": null,
+ "auditor_value": "a₁ = 130/99 ≈ 1.31 m/s² upward; a₂ = 910/99 ≈ 9.19 m/s² downward; T(S₃) = 160/99 ≈ 1.62 N, T(S₂) = 320/99 ≈ 3.23 N, T(S₁) = 640/99 ≈ 6.46 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently re-derived the constraint a₂ = −7a₁ from the three string lengths and solved 7T − 10 = a, 20 − T = 14a exactly; every printed line and the common-mistake number (Atwood 3.33 m/s²) check out. g = 10 as the question fixes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:25:20+05:30"
+ }
+}

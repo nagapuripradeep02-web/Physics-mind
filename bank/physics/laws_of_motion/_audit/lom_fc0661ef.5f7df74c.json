@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_fc0661ef",
+ "item_sha": "5f7df74cd17aff36d9cd8017678882bbac544d5da1899956863721bc3e97b295",
+ "auditor_option": null,
+ "auditor_value": "a(1 kg) = 120/11 ≈ 10.9 m/s² along the table; a(2 kg) = 50/11 ≈ 4.55 m/s² down; a(3 kg) = 70/11 ≈ 6.36 m/s² down; T₁ = T₂ = 120/11 ≈ 10.9 N",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[5].equation",
+   "quote": "a2 = 10 − 2aP, a3 = 10 − (4/3)aP → (10 − 2aP) + (10 − (4/3)aP) = 2aP → aP = 60/11 m/s²",
+   "note": "With T1 = T2 = 2m1·aP = 2aP, the block equations of step 4 give a2 = (20 − 2aP)/2 = 10 − aP and a3 = (30 − 2aP)/3 = 10 − (2/3)aP. The printed coefficients are both doubled; the line as printed solves to aP = 15/4, not 60/11, and at aP = 60/11 it gives a2 = −10/11 instead of the 50/11 stated in the next line.",
+   "fix": "a2 = 10 − aP, a3 = 10 − (2/3)aP → (10 − aP) + (10 − (2/3)aP) = 2aP → 20 = (11/3)aP → aP = 60/11 m/s²"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Final answer agrees with my independent solve (120/11, 50/11, 70/11, T = 120/11). Constraint lines, T1 = T2 argument and the common_mistakes Atwood figure (2 m/s²) are all correct; only the step-5 intermediate line is false.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:00:50+05:30"
+ }
+}

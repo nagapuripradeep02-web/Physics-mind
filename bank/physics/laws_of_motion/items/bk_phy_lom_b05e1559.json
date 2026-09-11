@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_b05e1559",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Three separate blocks — masses 3 kg, 2 kg and 1 kg — are lined up touching each other on a smooth flat surface, in that order. A horizontal push of 12 N is exerted on the 3 kg block.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Calculate the overall force acting on the 2 kg block."
+   }
+  ],
+  "conditions": [
+   "smooth (frictionless) surface",
+   "three blocks touch in a row: 3 kg, then 2 kg, then 1 kg",
+   "12 N horizontal force applied on the 3 kg block"
+  ],
+  "figure": {
+   "description": "Three blocks touch each other in a row on a horizontal frictionless surface: a 3 kg block, then a 2 kg block, then a 1 kg block, arranged left to right. A horizontal force of 12 N pushes on the outer (left) face of the 3 kg block, directed toward the other two blocks."
+  }
+ },
+ "solution": {
+  "approach": "Find the common acceleration of all three blocks together, then apply Newton's second law to the 2 kg block alone.",
+  "steps": [
+   {
+    "text": "All three blocks touch and move together on the smooth surface, so treat them as one combined mass to find the acceleration.",
+    "equation": "a = F / (m₁ + m₂ + m₃) = 12 / (3 + 2 + 1) = 2 m/s²"
+   },
+   {
+    "text": "This acceleration is the same for every block, including the 2 kg block in the middle.",
+    "equation": "a = 2 m/s²"
+   },
+   {
+    "text": "The net force on the 2 kg block is its mass times this acceleration.",
+    "equation": "net force = m × a = 2 × 2 = 4 N",
+    "why_this_step": "Newton's second law gives the net force on a block directly from its own mass and the common acceleration, without needing to know the individual contact forces on it."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "4 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only the 2 kg and 1 kg blocks' combined mass to find the acceleration, forgetting the 3 kg block is also part of the system being pushed."
+   },
+   {
+    "option": null,
+    "text": "Taking the net force on the 2 kg block as the full applied 12 N instead of scaling it down by mass."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "blocks in contact",
+   "system of bodies"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "941901587402503f5aca8182bd39821fea2c9030ef2d63ec863b38d4251c5563"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6fb6514f39c488b94bad5170595a13a91d664557a7a9d1d3df4b887f85256b81",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T01:05:00+05:30"
+ }
+}

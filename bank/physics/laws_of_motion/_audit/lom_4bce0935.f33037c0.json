@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_4bce0935",
+ "item_sha": "f33037c09db551415ef65ca340faa75f4bec296a24cfaa65cf77b291040bafa8",
+ "auditor_option": 2,
+ "auditor_value": "a_A = g - R/m_A > a_B = g - R/m_B, so the heavier ball A lands first -> option 2 (b)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:59:39+05:30"
+ }
+}

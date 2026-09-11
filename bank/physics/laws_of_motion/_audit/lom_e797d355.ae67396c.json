@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_e797d355",
+ "item_sha": "ae67396c5f2bc6a7c7869d721c9eab2c85ed57f533f36271be8851ed49055b90",
+ "auditor_option": null,
+ "auditor_value": "0 N (both blocks accelerate at g sin30° = 5 m/s² on the smooth incline, independent of mass)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "a method that only applies when an outside force acts on the pair",
+   "note": "The expression (m₁ − m₂)g sinθ is not a contact-force formula under any condition. When an outside force F acts on the pair the contact force is F times the pushed block's share of the total mass, F·m/(m₁+m₂), not a mass difference. Telling the student the method 'applies' in that case teaches a second wrong formula.",
+   "fix": "Computing a contact force from the mass difference, such as (4−2)g sin30° = 10 N; no such formula exists, and a contact force appears only when the two blocks would accelerate at different rates if separated."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Physics and final answer agree: on a smooth incline a = g sinθ for any mass, so the blocks stay in contact with zero force between them. The 'from rest' condition is not needed and its absence would not change the answer.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:02:16+05:30"
+ }
+}

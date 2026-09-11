@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_f6f75d80",
+ "item_sha": "80b1945bb6989dcada453594f37405677b33e5ec90d8a4e3b854b6af1125ec6d",
+ "auditor_option": null,
+ "auditor_value": "a = 20/3 = 6.67 m/s², T₁ = 100/3 = 33.3 N, T₂ = 20 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g = 10 fixed by the question. a = 8×10/12 = 20/3; T₁ = 2(10 + 20/3) = 100/3; T₂ = 6(10 − 20/3) = 20 N. Both common_mistakes entries reproduce the numbers they name (5 m/s², 60 N).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:59:01+05:30"
+ }
+}

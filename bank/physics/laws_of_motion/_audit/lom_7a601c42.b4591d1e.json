@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_7a601c42",
+ "item_sha": "b4591d1e22ecdf1fb7b9fb0488f53ec58a4fc7bfb245af2fdb5edae8398aaf80",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 10 m/s² rightward; (b) N = 110 N; (c) net force on the 2 kg block = 20 N",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[1].equation",
+   "quote": "directed toward the 120 N force",
+   "note": "The 120 N push is applied on the left face and points right; the acceleration is in the direction the force points (rightward), not toward the place where it acts. Read literally this names the wrong direction.",
+   "fix": "a = 70/7 = 10 m/s², rightward, in the direction of the 120 N force"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. All equations check: N on the 4 kg–2 kg face would be 70 N; both mistake entries produce the numbers they name (170/7 = 24.3; 6×10 = 60).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:58:25+05:30"
+ }
+}

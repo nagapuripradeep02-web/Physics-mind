@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_e5cfe9a4",
+ "approach": "Resolve the 10√2 N force into horizontal and vertical parts, find the normal reaction, compare the net horizontal force with the maximum static friction, then compute kinetic friction and acceleration.",
+ "steps": [
+  {
+   "text": "Resolve the 10√2 N force into horizontal and vertical components at 45°.",
+   "equation": "10√2 cos45° = 10 N (horizontal), 10√2 sin45° = 10 N (vertical, upward)"
+  },
+  {
+   "text": "Find the normal reaction from the vertical balance: weight and the 6 N force act down, the vertical part of the 10√2 N force acts up.",
+   "equation": "R = W + 6 − 10 = 20 + 6 − 10 = 16 N"
+  },
+  {
+   "text": "Find the total applied horizontal force and compare it with the maximum static friction.",
+   "equation": "F = 4 + 10 = 14 N; f(max static) = μₛR = 0.6×16 = 9.6 N"
+  },
+  {
+   "text": "Since 14 N exceeds 9.6 N, the block moves, so kinetic friction acts instead.",
+   "equation": "f(kinetic) = μₖR = 0.4×16 = 6.4 N"
+  },
+  {
+   "text": "Find the acceleration from the net horizontal force.",
+   "equation": "a = (14 − 6.4)/2 = 3.8 m/s²"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) friction = 6.4 N, kinetic; (b) the block moves, with acceleration 3.8 m/s²"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Taking the normal reaction as only the weight, R = 20 N, instead of adjusting for the 6 N and 10 N vertical forces, gives friction = 8 N and a = 3 m/s²."
+  },
+  {
+   "option": null,
+   "text": "Adding the 10 N vertical component instead of subtracting it gives R = 36 N and friction = 14.4 N, close to canceling the applied force entirely."
+  }
+ ],
+ "concept_tags": [
+  "kinetic friction",
+  "normal reaction",
+  "resolving forces"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_385c202d",
+ "item_sha": "261da611b875d75adb97337e11d24da8ec751097e6e3d041f5d86c048ea9483f",
+ "auditor_option": null,
+ "auditor_value": "4 : 1 (system balanced, a = 0; T over pulley = 4g, T on the 1 kg block = 1g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: 4 kg vs 3 + 1 kg gives a = 0, so the upper string carries 4g and the lower string carries 1g; ratio 4. Every line and both mistake entries are correct for this question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:00:25+05:30"
+ }
+}

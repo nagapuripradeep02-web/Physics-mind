@@ -1,0 +1,56 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_9dbebb4d",
+ "approach": "At P, balance the string OP against gravity and the horizontal string RP. At Q, the ball is momentarily at rest, so only the weight component along OQ acts.",
+ "steps": [
+  {
+   "text": "At P, resolve the ball's weight against the tension in OP and the horizontal tension in RP.",
+   "equation": "T(OP)cosθ = mg, T(OP)sinθ = T(RP)"
+  },
+  {
+   "text": "Solve the vertical equation for the tension in OP, using θ = 45° and g = 10 m/s².",
+   "equation": "T(OP) = mg/cosθ = 10/cos45° = 10√2 N"
+  },
+  {
+   "text": "After RP is cut, the ball swings on OP and rises to Q, which sits at the same height as P, so its speed there is zero.",
+   "why_this_step": "The swing is smooth, and P and Q lie at equal height above the lowest point of the arc."
+  },
+  {
+   "text": "At Q the speed is zero, so the centripetal term is zero and only the weight component along OQ balances the tension.",
+   "equation": "T(OQ) − mg cosθ = 0"
+  },
+  {
+   "text": "The tensions are T(OP) = 10√2 N and T(OQ) = 5√2 N.",
+   "equation": "T(OP) ≈ 14.1 N, T(OQ) = mg cosθ = 10cos45° = 5√2 N ≈ 7.1 N"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "T(OP) = 10√2 N ≈ 14.1 N; T(OQ) = 5√2 N ≈ 7.1 N"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using T(OP) = mg cosθ, the formula that belongs to OQ, gives 5√2 N ≈ 7.1 N instead of 10√2 N ≈ 14.1 N."
+  },
+  {
+   "option": null,
+   "text": "Assuming the string tension stays the same after RP is cut gives T(OQ) = 10√2 N ≈ 14.1 N instead of 5√2 N ≈ 7.1 N."
+  }
+ ],
+ "concept_tags": [
+  "equilibrium of forces",
+  "tension in a string",
+  "vertical circular motion",
+  "energy conservation"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

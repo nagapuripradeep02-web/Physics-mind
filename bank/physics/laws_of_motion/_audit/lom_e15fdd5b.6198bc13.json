@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_e15fdd5b",
+ "item_sha": "6198bc13390ac15402f6461160f62d927bd9c6004b4e3360f616ea2f845c6dc4",
+ "auditor_option": null,
+ "auditor_value": "Five forces: weight at the centre (down); normal reactions at A and B along the radii toward the shell's centre; friction forces at A and B tangent to the shell surface",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "normal reaction Nₐ and friction fₐ at A, and normal reaction N_B and friction f_B at B",
+   "note": "The two contact points use two different subscript notations for the same kind of symbol: a Unicode subscript for A (Nₐ, fₐ) and an underscore for B (N_B, f_B). A student reads Nₐ and N_B as differently styled quantities. The same mix appears in steps[1], steps[2] and steps[3].equation.",
+   "fix": "normal reaction N(A) and friction f(A) at A, and normal reaction N(B) and friction f(B) at B"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Physics agrees: weight at the midpoint (uniform rod assumed, standard), normals along the radius toward the centre, friction tangent at each end. Both mistake entries are genuine student errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:59:33+05:30"
+ }
+}

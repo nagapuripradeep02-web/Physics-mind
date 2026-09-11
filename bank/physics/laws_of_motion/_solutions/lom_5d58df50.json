@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5d58df50",
+ "approach": "Write Newton's second law for each of the three blocks, use the massless movable pulley to fix the tension ratio, then use the string-length constraint to link the three accelerations.",
+ "steps": [
+  {"text": "The string over the fixed pulley has tension 2T throughout; taking downward as positive, for the 1 kg block gravity acts down and 2T acts up.", "equation": "10 − 2T = 1×a₁"},
+  {"text": "The string over the movable pulley P has tension T on each side, since pulley P is massless the string tied to its axle must carry exactly 2T to balance the two T's pulling down on it.", "equation": "Pulley P: 2T (up) = T + T (down)"},
+  {"text": "For the 2 kg and 3 kg blocks, gravity acts down and T acts up on each.", "equation": "20 − T = 2a₂, 30 − T = 3a₃"},
+  {"text": "The main string's constant length links block 1's motion to pulley P's motion; the secondary string's constant length (measured from P) links blocks 2 and 3 to P.", "equation": "a₁ = −a_P, a₂ + a₃ = 2a_P ⇒ a₂ + a₃ = −2a₁"},
+  {"text": "Write a₂ and a₃ in terms of T from the block equations, add them, and set the sum equal to −2a₁ = −2(10−2T).", "equation": "(10−T/2) + (10−T/3) = −2(10−2T)"},
+  {"text": "Collect terms and solve for T.", "equation": "20 − 5T/6 = −20 + 4T ⇒ 40 = 29T/6 ⇒ T = 240/29 = 8.28 N",
+   "why_this_step": "This is the only tension value consistent with all three blocks' equations and the pulley's string constraint together."},
+  {"text": "Put T back to get every acceleration.", "equation": "a₁ = 10−2T = −6.55 m/s² (i.e. 6.55 m/s² upward), a₂ = 5.86 m/s² down, a₃ = 7.24 m/s² down"}
+ ],
+ "final_answer": {"option": null, "value": "T = 8.28 N (2T = 16.55 N); the 1 kg block accelerates upward at 6.55 m/s²; the 2 kg block accelerates downward at 5.86 m/s²; the 3 kg block accelerates downward at 7.24 m/s²."},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["movable pulley", "Newton's second law", "tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:35:00+05:30"}
+}

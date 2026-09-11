@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9cef0abc",
+ "item_sha": "c18033733dd218c02a73e32ac3c8f6b438a3ccca5ab7317a2a4583d4c965df54",
+ "auditor_option": null,
+ "auditor_value": "(a) relative to the car: uniform deceleration 5 m/s² opposite to î (pseudo-force view), stops at t = 2 s after 10 m, then moves backward; (b) returns at t = 4 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solution uses the ground-frame subtraction route (x_rel = 10t − 2.5t²), equivalent to the pseudo-force route. The mass and g are not needed; the solution correctly does not use them.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:31:01+05:30"
+ }
+}

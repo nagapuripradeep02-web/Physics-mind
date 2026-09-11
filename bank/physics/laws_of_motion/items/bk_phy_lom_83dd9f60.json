@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_83dd9f60",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two blocks rest on a rough horizontal floor, each pulled by a horizontal force F applied to it. Case A: a 4 kg block is pulled by a horizontal force of 20 N; the coefficient of static friction between the block and the floor is 0.6 and the coefficient of kinetic friction is 0.4. Case B: a 2 kg block is pulled by a horizontal force of 20 N; the coefficient of static friction is 0.6 and the coefficient of kinetic friction is 0.4. For each case, determine the block's acceleration and the friction force acting on it.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the acceleration and friction force for the 4 kg block (Case A)."
+   },
+   {
+    "label": "b",
+    "asks": "Find the acceleration and friction force for the 2 kg block (Case B)."
+   }
+  ],
+  "conditions": [
+   "force is applied horizontally to a block on a horizontal rough floor",
+   "μs = 0.6 and μk = 0.4 in both cases",
+   "Case A block mass = 4 kg",
+   "Case B block mass = 2 kg",
+   "applied force F = 20 N in both cases"
+  ],
+  "figure": {
+   "description": "Two separate cases, each a single block sitting on a horizontal rough floor. A horizontal force F pulls the block to the right (arrow drawn pointing right from the block). Case A: block mass 4 kg, F = 20 N, μs = 0.6, μk = 0.4. Case B: block mass 2 kg, F = 20 N, μs = 0.6, μk = 0.4."
+  }
+ },
+ "solution": {
+  "approach": "In each case compare F to the maximum static friction; if F is smaller the block stays still and friction matches F, otherwise the block slides and kinetic friction applies.",
+  "steps": [
+   {
+    "text": "Case (a): find the maximum static friction the 4 kg block can have.",
+    "equation": "fs,max = μs mg = 0.6 × 4 × 10 = 24 N"
+   },
+   {
+    "text": "Compare this to the applied force. Since F = 20 N is less than 24 N, the block does not move, and friction equals F.",
+    "equation": "F = 20 N < 24 N, so a = 0, f = F = 20 N"
+   },
+   {
+    "text": "Case (b): find the maximum static friction the 2 kg block can have.",
+    "equation": "fs,max = μs mg = 0.6 × 2 × 10 = 12 N"
+   },
+   {
+    "text": "Compare this to the applied force. Since F = 20 N exceeds 12 N, the block slides, so kinetic friction acts instead.",
+    "equation": "fk = μk mg = 0.4 × 2 × 10 = 8 N"
+   },
+   {
+    "text": "Apply Newton's second law to the sliding block using kinetic friction.",
+    "equation": "a = (F − fk)/m = (20 − 8)/2 = 6 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) block stays still: acceleration = 0, friction = 20 N. (b) block slides: acceleration = 6 m/s², friction = 8 N (kinetic)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming case (a) also slides and using kinetic friction anyway, giving f = 16 N and a = 1 m/s² instead of the correct rest state."
+   },
+   {
+    "option": null,
+    "text": "Using the static maximum 12 N as the friction force in case (b) instead of the kinetic value 8 N, giving a = 4 m/s² instead of 6 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "Newton's second law"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1375254e566264c1432bf62fb025d97d61ff2abbfe9c41b98075d405ab153c1a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b07afe8c895aeceac4d46f9d92dc9a41d64bf8c43a3d644a1a2d9cf83ac667c9",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

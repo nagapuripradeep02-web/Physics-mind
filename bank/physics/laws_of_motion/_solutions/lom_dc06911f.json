@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_dc06911f",
+ "approach": "Identify which real force actually drives a walking person forward, using Newton's third law on the foot's push against the ground.",
+ "steps": [
+  {"text": "While walking, a person's foot pushes backward on the ground through muscular effort."},
+  {"text": "By Newton's third law, the ground pushes back on the foot with an equal and opposite force — this reaction is the static friction from the ground, and it points forward, in the same direction as the person's motion.", "equation": "friction on person = −(push on ground) ⇒ forward"},
+  {"text": "This makes the Assertion false: the friction is not opposite to the motion, it is what drives the motion forward.", "equation": "Assertion false"},
+  {"text": "Internal muscular forces alone cannot move the person's centre of mass; only an external force can, and that external force is exactly this forward friction from the road, so the Reason is true.", "equation": "Assertion false, Reason true"}
+ ],
+ "final_answer": {"option": 4, "value": "If the Assertion is false but the Reason is true."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Assuming friction always opposes motion, as with ordinary sliding friction, which makes the Assertion look true, while doubting that the road's force truly causes the motion, so the Reason is read as false."}
+ ],
+ "concept_tags": ["friction", "Newton's third law", "walking"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

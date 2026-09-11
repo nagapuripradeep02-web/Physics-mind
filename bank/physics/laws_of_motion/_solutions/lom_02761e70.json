@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_02761e70",
+ "approach": "Write the one string's total length as the sum of its four segments over the two fixed pulleys and the movable pulley, and use that this length never changes.",
+ "steps": [
+  {"text": "The single string runs from A, up and over the left fixed pulley, down and under the movable middle pulley, up and over the right fixed pulley, and down to C. Block B hangs from the movable middle pulley.", "equation": "length = yA + yB + yB + yC"},
+  {"text": "Here yA and yC are how far A and C hang below their fixed pulleys, and yB is how far the movable pulley (with B) hangs below the fixed pulleys, since both fixed pulleys sit at the same height.", "equation": "yA + 2yB + yC = constant"},
+  {"text": "Differentiate this length equation twice with respect to time; the constant term vanishes.", "equation": "d²yA/dt² + 2 d²yB/dt² + d²yC/dt² = 0"},
+  {"text": "This is the required relation between the three accelerations, all measured with the same downward-positive convention.", "equation": "aA + 2aB + aC = 0"}
+ ],
+ "final_answer": {"option": null, "value": "aA + 2aB + aC = 0 (all three accelerations measured positive in the same direction, say downward)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing aA + aB + aC = 0, missing the factor of 2 on B that comes from B hanging on the movable pulley with two string segments."},
+  {"option": null, "text": "Writing aA = aC without the aB term, treating the two fixed pulleys as if they were connected by one straight string with no movable pulley in between."}
+ ],
+ "concept_tags": ["string constraint", "movable pulley", "length conservation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:13:00+05:30"}
+}

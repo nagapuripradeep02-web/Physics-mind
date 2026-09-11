@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_111d2278",
+ "item_sha": "a9c8275592c0fd49602eb516dfc5dc90603b4d6caade4b2caa266b9ffd0bbbf3",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 4√(l/(3g)) (a_A = g/4, a_B = 5g/8, relative 3g/8); (b) s_A = vt − 2l/3, s_B = vt − 5l/3, i.e. 4v√(l/(3g)) − 2l/3 and 4v√(l/(3g)) − 5l/3",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation re-derived and equal. The answer implicitly assumes the plank is still moving when the block leaves (true when v ≥ (5/2)√(gl/3)); the question gives v only symbolically, so this is the standard intended answer and is not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:28:18+05:30"
+ }
+}

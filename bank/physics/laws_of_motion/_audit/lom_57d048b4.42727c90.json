@@ -1,0 +1,15 @@
+{
+ "question_id": "lom_57d048b4",
+ "item_sha": "42727c907d22dfdd8d60a2e8972d1e164c7a8db2af32a986738cc31ec34a7740",
+ "auditor_option": null,
+ "auditor_value": "a₂ = −7a₁ (block 2 accelerates 7 times as much as block 1, in the opposite direction); intermediate a₃ = −a₁, a₄ = −3a₁",
+ "findings": [
+  {"grade": "weak", "field": "common_mistakes[0].text", "quote": "Treating the chain of movable pulleys as a single ordinary pulley and taking a₂ = a₁ instead of a₂ = 7a₁.",
+   "note": "Vague, and written without the sign convention the solution itself uses: with all positions measured downward the final answer is a₂ = −7a₁, and a single fixed pulley would give a₂ = −a₁, not a₂ = a₁. The entry names no actual step a student gets wrong.",
+   "fix": "Writing only the top string's constraint (x₁ + x₃ = constant) and stopping there, which gives |a₂| = |a₁|; each movable pulley below adds its own constraint, and combining all three gives a₂ = −7a₁."}
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently, with x measured downward from the line through P₁: S₁ gives a₁ + a₃ = 0; S₂ gives a₁ + a₄ − 2a₃ = 0; S₃ gives a₁ + a₂ − 2a₄ = 0; hence a₃ = −a₁, a₄ = −3a₁, a₂ = −7a₁. Every printed equation follows from the one above it. The why_this_step on the last step is informal ('multiplies the effect') but not false.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:01:00+05:30"}
+}

@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_df835800",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A string passes over a pulley fixed to a ceiling support. One end of this string holds a 4 kg block. The other end holds a 3 kg block, and a second string ties a 1 kg block below that 3 kg block. Work out the ratio of the tension in the string holding the 4 kg block to the tension in the string holding the 1 kg block.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "pulley is fixed to the ceiling",
+   "4 kg block hangs from one end of the string over the pulley",
+   "3 kg block hangs from the other end of the string over the pulley",
+   "1 kg block hangs below the 3 kg block, tied to it by a second string"
+  ],
+  "figure": {
+   "description": "A pulley hangs fixed from a ceiling support. A string runs over this pulley: its left end carries a 4 kg block, hanging straight down. Its right end carries a 3 kg block, also hanging straight down. A separate string then connects downward from the 3 kg block to a 1 kg block beneath it."
+  }
+ },
+ "solution": {
+  "approach": "Since the total mass on each side of the pulley is equal, the system stays at rest, and each string tension equals the weight it directly supports.",
+  "steps": [
+   {
+    "text": "Add the masses on each side of the fixed pulley.",
+    "equation": "left side = 4 kg, right side = 3+1 = 4 kg"
+   },
+   {
+    "text": "Equal masses on each side mean the system has zero acceleration.",
+    "equation": "a = 0",
+    "why_this_step": "With no acceleration, each string tension can be found from plain equilibrium instead of a full Atwood-machine equation."
+   },
+   {
+    "text": "The tension in the string over the pulley, attached to the 4 kg block, supports the whole 4 kg block in equilibrium.",
+    "equation": "T(4 kg) = 4g"
+   },
+   {
+    "text": "The tension in the string attached to the 1 kg block supports only the 1 kg block, since it hangs below the 3 kg block.",
+    "equation": "T(1 kg) = 1g"
+   },
+   {
+    "text": "Take the ratio of the two tensions.",
+    "equation": "T(4 kg) : T(1 kg) = 4g : g = 4 : 1"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "4 : 1"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the system accelerates because the two sides look different, missing that 3 kg + 1 kg on the right equals the 4 kg on the left."
+   },
+   {
+    "option": null,
+    "text": "Taking the tension in the string attached to the 1 kg block as the same main tension over the pulley, instead of the smaller tension in the separate lower string."
+   }
+  ],
+  "concept_tags": [
+   "pulley system",
+   "equilibrium",
+   "tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "385c202d9a6a61062e7080e6d9237f5eb18ffdf894ca9e05a3bebc9654c8bfe1"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "261da611b875d75adb97337e11d24da8ec751097e6e3d041f5d86c048ea9483f",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:30:00+05:30"
+ }
+}

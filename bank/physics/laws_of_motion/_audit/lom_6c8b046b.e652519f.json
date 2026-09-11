@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_6c8b046b",
+ "item_sha": "e652519fca6befea464b3dbd6918068e32be59b8b025fa3026121645e3137ce1",
+ "auditor_option": null,
+ "auditor_value": "(a) 20 N, (b) 50 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: T_mid(lower) = (1.9 + 0.1)(9.8 + 0.2) = 20 N; upper wire massless so T is uniform = (2.9 + 0.2 + 1.9)(10.0) = 50 N. Every step equation follows; both common_mistakes entries produce the numbers they name (19.6/49 N with g alone; 19 N without the half-wire mass). g = 9.8 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T19:54:00+05:30"}
+}

@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_35193317",
+ "item_sha": "7b2bb503b84431f52a6437fff841a0e03cb75ac07bd1867ac4fec10fa352c661",
+ "auditor_option": null,
+ "auditor_value": "(a) T = 100 tan15° = 100(2−√3) ≈ 26.8 N; (b) f = T ≈ 26.8 N up the incline; (c) N = 100 N (cord tangent at the top point of the ball, torque about C gives f = T)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[5].text",
+   "quote": "Solving these two equations together gives clean values.",
+   "note": "Informal register: 'clean values' is colloquial and carries no content; the step should say what is solved for.",
+   "fix": "Solve the two equations for T and N."
+  },
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Missing that T and f have equal moment arms about the centre and instead assuming f = 0 without justification, then trying to solve two equations for three unknowns.",
+   "note": "Internally inconsistent: once f = 0 is assumed there are only two unknowns (T and N) and the two force equations solve them; the 'three unknowns' clause cannot follow from the stated cause. It also duplicates common_mistakes[0], which already covers the f = 0 error.",
+   "fix": "Writing only the two force-balance equations and stopping, because T, f and N are three unknowns; the third equation is the moment balance about the centre, which gives f = T."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "The attachment point A is under-specified: the text says only 'a point A on the ball' and the figure says 'on the ball's surface (upper side, facing up the slope)'. If the cord's line of action passed through the centre C, moment balance would give f = 0, T = 100 tan30° ≈ 57.7 N and N = 100/cos30° ≈ 115.5 N instead. The solution states its choice (A at the topmost point, cord tangent) explicitly in steps[0], so it is not graded as a finding.",
+ "notes": "Checked every line under the solution's stated geometry: torque signs (T clockwise, f anticlockwise about C) are consistent; T(1+cos30°) = N sin30° and N cos30° + T sin30° = w give T = w tan15°, N = w exactly. The numbers in common_mistakes[0] (N ≈ 115.5 N, T ≈ 57.7 N) do follow from f = 0.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T22:59:49+05:30"
+ }
+}

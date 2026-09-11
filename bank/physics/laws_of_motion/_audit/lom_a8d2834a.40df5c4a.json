@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_a8d2834a",
+ "item_sha": "40df5c4a342db390c4b86012debb0c6226dd0e9e3fa6481b3a3db81a96b0e6ac",
+ "auditor_option": null,
+ "auditor_value": "T = mg/√2; a_B = g/2 tangentially (vertically downward at B)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[3].equation",
+   "quote": "T/√2 = g − T/√2 → T = mg/√2, a_B = g/2",
+   "note": "The first equality drops the mass: equating the two tangential equations gives T/√2 = mg − T/√2 (forces), or T/(√2 m) = g − T/(√2 m) (accelerations). As printed, T/√2 = g − T/√2 is dimensionally false and would give T = g/√2, not the mg/√2 that follows it.",
+   "fix": "T/√2 = mg − T/√2 → T = mg/√2, a_B = g/2"
+  },
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "missing that the string's pull cuts it down to g/2",
+   "note": "Idiomatic phrasing (cuts it down); the rest of the entry is a genuine error with the right consequence.",
+   "fix": "missing that the string's pull reduces it to g/2"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Independent check: with zero velocities the inextensible chord gives (r_B − r_A)·(a_B − a_A) = 0, i.e. a_A = a_B; then T = mg/√2 and a_B = g/2, matching the solution.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T22:59:36+05:30"
+ }
+}

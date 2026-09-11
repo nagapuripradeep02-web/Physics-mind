@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_8fc83d1a",
+ "approach": "At the point of slipping, the friction force reaches its maximum value and exactly balances the weight component along the incline.",
+ "steps": [
+  {"text": "On the incline, the weight component along the surface pulls the particle down, and friction resists it, reaching its maximum since the particle is about to slip.", "equation": "mg sinθ = μ mg cosθ"},
+  {"text": "The common factor mg cancels from both sides, leaving a relation that depends only on the angle.", "equation": "μ = sinθ / cosθ = tanθ"},
+  {"text": "Put in θ = 30°.", "equation": "μ = tan30° = 1/√3 = 0.58",
+   "why_this_step": "tan30° is the ratio of the weight's component along the slope, mg sin30°, to the normal force, mg cos30°; at the point of slipping the limiting friction μN equals mg sin30°, so this ratio is μ, whatever the particle's mass."}
+ ],
+ "final_answer": {"option": null, "value": "μ = tan30° ≈ 0.58"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using sinθ instead of tanθ and taking μ = sin30° = 0.5."},
+  {"option": null, "text": "Using cosθ instead of tanθ and taking μ = cos30° = 0.87."}
+ ],
+ "concept_tags": ["limiting friction", "coefficient of friction", "inclined plane"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:55:00+05:30"}
+}

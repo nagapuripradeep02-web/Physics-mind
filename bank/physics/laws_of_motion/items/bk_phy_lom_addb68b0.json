@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_addb68b0",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A monkey slides down a rope whose breaking strength is only 2/3 of the monkey's weight. What is the least downward acceleration with which the monkey must slide so that the rope does not break?",
+  "options": {
+   "1": "2g/3",
+   "2": "g",
+   "3": "g/3",
+   "4": "zero"
+  },
+  "parts": null,
+  "conditions": [
+   "the rope's breaking strength is two-thirds of the monkey's weight"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the rope tension while the monkey slides down with acceleration a, then find the smallest a that keeps this tension at or below the rope's breaking strength.",
+  "steps": [
+   {
+    "text": "If the monkey grips the rope and stays still, the tension equals its full weight, which is more than the rope's breaking strength, so the monkey must slide down to lower the tension.",
+    "equation": "breaking strength = (2/3) mg"
+   },
+   {
+    "text": "Write Newton's second law for the monkey sliding down with acceleration a: weight acts down, tension acts up.",
+    "equation": "mg − T = ma ⇒ T = m(g − a)"
+   },
+   {
+    "text": "The rope survives only while its tension stays at or below the breaking strength.",
+    "equation": "m(g − a) ≤ (2/3) mg"
+   },
+   {
+    "text": "Solve this inequality for the smallest acceleration that keeps the rope from breaking.",
+    "equation": "g − a ≤ (2/3)g ⇒ a ≥ g/3"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "g/3"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Setting the tension to zero instead of to the breaking strength, giving a = g."
+   },
+   {
+    "option": 1,
+    "text": "Using the fraction 2/3 directly as the coefficient of g without solving the inequality, giving a = 2g/3."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "tension",
+   "breaking strength"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d787630603adb7e08ef76804ee0b6f21cd0a8b4164aa2906427e6f1a312cb602"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ec8ac043a6bff02a6c706f68b242626b30f8c332c7c83049f46d105414638e44",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

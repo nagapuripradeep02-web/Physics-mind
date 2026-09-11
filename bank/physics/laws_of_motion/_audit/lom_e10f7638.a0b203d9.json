@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_e10f7638",
+ "item_sha": "a0b203d90ae11c03fcb340989433b46ae3db12f4dbd9fb4f8d6333fd6d7086f8",
+ "auditor_option": 4,
+ "auditor_value": "Mg/2",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Wrongly assuming all the friction acts only under the far half of the rope, leaving none on the trailing half, gives T = (M/2)a = Mg/4.",
+   "note": "Step 1 defines the trailing half as 'the half farther from where F is pulled', so 'the far half' and 'the trailing half' name the same half and the sentence contradicts itself. Only the reading 'friction only under the pulled half, none under the trailing half' produces T = (M/2)(g/2) = Mg/4.",
+   "fix": "Wrongly assuming all the friction acts only under the half being pulled, leaving none on the trailing half, gives T = (M/2)a = Mg/4."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "a = (Mg − Mg/2)/M = g/2; trailing half: T − (1/2)(M/2)g = (M/2)(g/2) gives T = Mg/2. Cross-check on the pulled half: Mg − T − Mg/4 = Mg/4 also gives Mg/2.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:00:17+05:30"
+ }
+}

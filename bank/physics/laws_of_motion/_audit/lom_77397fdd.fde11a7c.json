@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_77397fdd",
+ "item_sha": "fde11a7cb6b514e158552eb747661628c95926e6860522b664c8b9579a70fb87",
+ "auditor_option": null,
+ "auditor_value": "a(m₂) = 2g(2η − sinθ)/(1 + 4η), downward when 2η > sinθ (m₁ moves up the incline with half this magnitude; wedge taken as fixed)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The question never says the wedge is fixed and says no surface has friction, yet gives no wedge mass; the only workable reading is a wedge that stays at rest, which the solution assumes without saying so. Standard for this problem type, so not filed against the solution.",
+ "notes": "Constraint a₂ = 2a₁, pulley balance T₁ = 2T₂, both force equations and the algebra a₁(1+4η) = g(2η − sinθ) all check; the common-mistakes entry's wrong denominator (1+2η) does follow from a₂ = a₁ with T₁ = 2T₂ kept. Final answer agrees with mine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:44:07+05:30"
+ }
+}

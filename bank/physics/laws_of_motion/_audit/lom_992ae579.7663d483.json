@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_992ae579",
+ "item_sha": "7663d48311a4223157c2c9ab83a8db4e5d7bce2f9112c564b535ea7a0a1d8591",
+ "auditor_option": null,
+ "auditor_value": "f = m g sin37 - m a cos37 = 6m - 2.4m = 3.6m newton (m in kg), directed up the slope; equivalently 0.36 mg; N = 9.8m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine, including the direction: the wedge accelerates toward the low (right) end, so the pseudo-force in the wedge frame points left, i.e. up the slope, reducing the friction needed from 6m to 3.6m. Both common_mistakes entries are genuine and produce the numbers named (6m, 8.4m).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:11+05:30"
+ }
+}

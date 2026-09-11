@@ -1,0 +1,106 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_52a07cd2",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A vertical chain, from top to bottom, consists of a 5 kg block, then a uniform rope of mass 4 kg, then a 7 kg block, with the rope connecting the two blocks. An upward force F of 200 N is applied at the very top of the 5 kg block. Taking g = 9.8 m/s², answer the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the acceleration of the system."
+   },
+   {
+    "label": "b",
+    "asks": "Find the tension at the top of the rope."
+   },
+   {
+    "label": "c",
+    "asks": "Find the tension at the mid-point of the rope."
+   }
+  ],
+  "conditions": [
+   "top block mass = 5 kg",
+   "bottom block mass = 7 kg",
+   "rope connecting them is uniform, mass = 4 kg (not massless)",
+   "upward force F = 200 N applied at the top",
+   "g = 9.8 m/s²"
+  ],
+  "figure": {
+   "description": "From top to bottom in a vertical line: an upward force F = 200 N pulls a 5 kg block; a uniform rope of mass 4 kg hangs below the 5 kg block; a 7 kg block hangs at the bottom of the rope."
+  }
+ },
+ "solution": {
+  "approach": "Find the acceleration of the whole chain from the net upward force, then cut the rope at each point and apply Newton's second law to everything hanging below that cut.",
+  "steps": [
+   {
+    "text": "The total mass of the top block, rope and bottom block is 16 kg. Apply Newton's second law to the whole system under the applied force and total weight.",
+    "equation": "a = (F − Mg)/M = (200 − 16×9.8)/16"
+   },
+   {
+    "text": "Compute the acceleration.",
+    "equation": "a = (200 − 156.8)/16 = 43.2/16 = 2.7 m/s²"
+   },
+   {
+    "text": "For the tension at the top of the rope, apply Newton's second law to everything below that point: the rope plus the 7 kg block, total 11 kg.",
+    "equation": "T_top = (m_rope + m_bottom)(g + a) = 11 × (9.8 + 2.7)"
+   },
+   {
+    "text": "Compute this tension.",
+    "equation": "T_top = 11 × 12.5 = 137.5 N"
+   },
+   {
+    "text": "For the tension at the mid-point of the rope, the hanging mass below that cut is the 7 kg block plus half the rope's mass.",
+    "equation": "T_mid = (m_bottom + m_rope/2)(g + a) = (7 + 2) × 12.5 = 112.5 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 2.7 m/s², (b) 137.5 N, (c) 112.5 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using g alone instead of g + a for the tension cuts gives 107.8 N and 88.2 N, ignoring the system's own acceleration."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to include half the rope's mass below the mid-point gives 7 × 12.5 = 87.5 N there instead of 112.5 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "tension in a rope with distributed mass",
+   "accelerating system"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5c1668bcd58c1b4004989a4796db0008464106e97ed3a1a0c46d5eb2d8008aa7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f16bccc089438d4c4ac2bc17386adfb93c4fab592caa0a4d80590fb0fd4adb5c",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

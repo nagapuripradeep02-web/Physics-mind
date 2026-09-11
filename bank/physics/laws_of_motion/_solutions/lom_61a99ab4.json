@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_61a99ab4",
+ "approach": "While the object slides relative to the car, kinetic friction decelerates it; find when its velocity matches the car's, then check that static friction can then keep them moving together.",
+ "steps": [
+  {"text": "While there is relative sliding, kinetic friction acts on the object, opposing the sliding. Its ground-frame deceleration follows from this friction alone.", "equation": "f = μₖmg = 0.3×2×10 = 6 N,  a_object = −f/m = −3 m/s²"},
+  {"text": "Write the velocities of the object and the car and set them equal to find when the sliding stops.", "equation": "v_object = 10 − 3t,  v_car = 5t,  10 − 3t = 5t"},
+  {"text": "Solve for the time and the common speed reached.", "equation": "t = 1.25 s,  v_common = 5×1.25 = 6.25 m/s"},
+  {"text": "Check whether static friction can then keep the object moving with the car, which needs a force equal to ma_car; compare this to the maximum static friction available.", "equation": "required force = 2×5 = 10 N, needs μₛ ≥ 10/(2×10) = 0.5"},
+  {"text": "Since μₛ is given greater than 0.5, static friction is enough, so after t = 1.25 s the object moves with the car with no further sliding, having drifted 6.25 m forward relative to the car during the sliding phase.", "equation": "relative displacement during sliding = 10(1.25) − 4(1.25)² = 6.25 m"}
+ ],
+ "final_answer": {"option": null, "value": "the object slides forward relative to the car for 1.25 s, drifting 6.25 m forward relative to it, reaches the car's speed of 6.25 m/s, and then moves with the car with no further relative sliding"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the object slides backward relative to the car once the speeds match, since the car keeps accelerating, and missing that static friction is strong enough to hold it with the car."},
+  {"option": null, "text": "Using μₛ instead of μₖ to find the initial deceleration during the sliding phase gives the wrong deceleration, since kinetic friction (not static) governs while there is relative motion."}
+ ],
+ "concept_tags": ["kinetic friction", "static friction", "relative motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

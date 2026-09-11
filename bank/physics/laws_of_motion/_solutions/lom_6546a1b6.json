@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6546a1b6",
+ "approach": "The sphere feels its weight, the wall's normal reaction, and the string's tension; since the first two act through the centre, the string's line must too.",
+ "steps": [
+  {"text": "The sphere's weight acts at its centre, downward.", "equation": "W (down, at the centre)"},
+  {"text": "The wall is smooth, so it can only push perpendicular to itself at the contact point A; for a sphere this direction always points along the radius, so its line of action passes through the centre.", "equation": "N (horizontal, away from the wall, its line passing through the centre)"},
+  {"text": "The string pulls at point B with tension T, directed from B toward C.", "equation": "T (along BC, applied at B)"},
+  {"text": "Since the weight and the normal reaction both pass through the centre, they create no turning effect about it; for the sphere to be in rotational equilibrium the string's line, extended, must also pass through the centre.", "equation": "line BC extended passes through the centre O",
+   "why_this_step": "With only three forces on a rigid body in equilibrium, all three lines of action must meet at one point, or two of them being through the centre forces the third to pass through it as well."}
+ ],
+ "final_answer": {"option": null, "value": "Three forces act on the sphere: its weight W downward at the centre, the wall's normal reaction N horizontal at A (its line through the centre), and the string's tension T along BC at B, whose line — because the other two pass through the centre — must also pass through the centre."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing the tension only along the visible segment BC without recognising that its line of action, extended, must pass through the sphere's centre for equilibrium."},
+  {"option": null, "text": "Drawing friction from the wall on the sphere, even though the wall is stated to be smooth."}
+ ],
+ "concept_tags": ["free body diagram", "three-force equilibrium", "normal reaction", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:24:00+05:30"}
+}

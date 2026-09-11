@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_61a99ab4",
+ "item_sha": "5f5f50be3d066042ba7c5ab98a69bdda2bd562f72f3d44abad36b790fd674691",
+ "auditor_option": null,
+ "auditor_value": "Relative to the car: decelerates at 8 m/s² (pseudo 10 N + kinetic friction 6 N), stops relative to the car after 1.25 s having moved 6.25 m forward relative to it (common ground speed 6.25 m/s); then static friction needed = 10 N < μₛ×20 N, so it stays at rest relative to the car",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Assuming the object keeps sliding forever at constant relative velocity once friction has acted once ignores that static friction locks the object to the car after the speeds match.",
+   "note": "Vague: nothing in the working leads a student to a 'constant relative velocity' (the relative velocity falls to zero). The genuine error is assuming the object begins to slide backward once the speeds match because the car keeps accelerating. 'locks' is a metaphor.",
+   "fix": "Assuming that once the speeds match the object begins to slide backward relative to the car because the car keeps accelerating, ignoring that the available static friction (μₛ × 20 N > 10 N) is enough to make the object move with the car."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Ground-frame working checks: 10 − 3t = 5t gives 1.25 s; relative displacement 10t − 4t² = 6.25 m at that time.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:02:08+05:30"
+ }
+}

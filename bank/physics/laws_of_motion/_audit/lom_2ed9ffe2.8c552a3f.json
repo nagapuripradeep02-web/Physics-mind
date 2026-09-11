@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_2ed9ffe2",
+ "item_sha": "8c552a3ff84bfe6c6986667e5450f97749cae28659b633269ef55561da23e201",
+ "auditor_option": 1,
+ "auditor_value": "Setup (i): pull = Mg (single strand); setup (ii): pull = Mg/2 (two strands hold the block's pulley) — greater force in setup (i)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Both mistake entries point at the option a student with that belief would pick (2 and 3). Two steps carry text without an equation; each has content, so not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:27:43+05:30"
+ }
+}

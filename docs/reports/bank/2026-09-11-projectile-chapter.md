@@ -164,3 +164,14 @@ transcripts (question, parts, options, printed solutions) over the same files an
   $0 paid compute, ~65 subscription sub-agents (8 readers, 3 key readers, 8 authors, 9 second
   readers, ~15 re-solvers, ~10 judge/syllabus batches, ~11 auditors, ~5 rework), one session of gate
   and audit reading. The subscription cap is the real limit: plan waves of ≤ 8 agents.
+
+---
+
+**Correction (2026-09-11, found while building the laws-of-motion chapter):** "0 API calls" above
+was wrong by 27 calls. `audit.py release` re-checks each WEAK audit by comparing the auditor's answer
+with the author's, and when the comparator could not decide it asked the paid DeepSeek judge — the
+`BANK_ALLOW_API` switch covered only `gate.py run`. The 27 calls are a few hundred tokens each with no
+reasoning (well under a cent in total); every one of them agreed with the auditor, so no item changed.
+The guard now lives in the HTTP helper every paid call passes through and `hygiene.py` counts an
+unsigned judge verdict as a metered row. The 27 verdicts stay in the (gitignored) evidence file; a
+Sonnet judge batch can re-decide them on request. Details: the laws-of-motion report, §5.

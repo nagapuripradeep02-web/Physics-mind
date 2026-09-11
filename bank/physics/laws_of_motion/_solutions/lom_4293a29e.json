@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_4293a29e",
+ "approach": "Relate the rope's free end to the block through the pulley fixed to the block, then apply Newton's second law to the block using both rope tensions.",
+ "steps": [
+  {"text": "Let x be the distance of the block, and the pulley fixed to it, from the wall, decreasing as the block moves toward the wall. The rope's wall-anchored strand has this same length x."},
+  {"text": "Since the pulley is fixed to the block, both strands, the one to the wall and the one to the free end, shorten together as the block moves; the free end must be pulled in twice as fast as the block moves.", "equation": "a(free end) = 2 a(block)"},
+  {"text": "The rope is light and the pulley is frictionless, so the tension is the same, T, all along the rope, and it equals the force F the free end is pulled with.", "equation": "T = F"},
+  {"text": "Both strands pull the pulley, and so the block, toward the wall with tension T each. Apply Newton's second law to the block.", "equation": "2T = Ma"},
+  {"text": "Substitute T = F and solve for F.", "equation": "2F = Ma  →  F = Ma/2"},
+  {"text": "Put in the numbers.", "equation": "F = (200 kg)(1 m/s²)/2 = 100 N"}
+ ],
+ "final_answer": {"option": null, "value": "F = 100 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the pulley as if only one strand pulls the block and writing F = Ma directly, missing the second strand's contribution, gives 200 N."},
+  {"option": null, "text": "Doubling instead of halving, writing F = 2Ma from the two strands instead of 2F = Ma, gives 400 N."}
+ ],
+ "concept_tags": ["constraint relation", "movable pulley", "Newton's second law", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 3, "agent": "W03-A-lom-01", "at": "2026-09-11T21:30:00+05:30"}
+}

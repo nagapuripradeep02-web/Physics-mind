@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_22c836df",
+ "approach": "The block's weight is held up by the vertical part of T1, and the horizontal part of T1 is balanced by T2 pulling toward the wall.",
+ "steps": [
+  {"text": "The weight hangs from the junction, so the vertical part of T1 must support the full weight.", "equation": "T1 sin60° = W = 4×9.8 = 39.2 N"},
+  {"text": "Solve for T1.", "equation": "T1 = 39.2/sin60° ≈ 45.26 N"},
+  {"text": "The horizontal part of T1 is balanced by T2 pulling toward the wall.", "equation": "T2 = T1 cos60° ≈ 22.63 N"}
+ ],
+ "final_answer": {"option": null, "value": "T1 ≈ 45.26 N, T2 ≈ 22.63 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using cos60° in place of sin60° to find the vertical part of T1 gives T1 = 78.4 N instead of the correct 45.26 N."}
+ ],
+ "concept_tags": ["equilibrium of a hanging block", "tension", "resolving forces"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:38:00+05:30"}
+}

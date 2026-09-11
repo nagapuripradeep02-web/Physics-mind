@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_8bee1b8c",
+ "approach": "Derive the force F(θ) needed to move the block and minimize it over θ, then separately check whether the angle-of-repose fact actually explains that minimum.",
+ "steps": [
+  {"text": "Write the force balance for the block on the verge of sliding under a pull F at angle θ above the horizontal, with friction at its limiting value.", "equation": "F cosθ = μN, N = mg − F sinθ"},
+  {"text": "Combine these into F as a function of θ alone.", "equation": "F(θ) = μmg / (cosθ + μ sinθ)"},
+  {"text": "F(θ) is smallest when cosθ + μ sinθ is largest, which calculus shows happens exactly when tanθ equals the coefficient ratio μ.", "equation": "tanθ = μ"},
+  {"text": "tanθ = μ is exactly the definition of the angle of friction λ, so the minimum force does occur at θ = λ, confirming the Assertion.", "equation": "θ_min = arctan μ = λ"},
+  {"text": "The angle of repose is the incline angle at which a block on that incline starts to slide under gravity alone, and this also works out to arctan μ — the Reason is true on its own.", "equation": "angle of repose = arctan μ"},
+  {"text": "This equality between angle of repose and angle of friction is a separate fact about a different setup (an incline) and is not what makes F(θ) minimum in this horizontal-pull problem, so the Reason is true but does not explain the Assertion.", "equation": "Assertion true, Reason true, not the explanation"}
+ ],
+ "final_answer": {"option": 2, "value": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming the Reason must be the explanation whenever both statements happen to be true, without checking that the repose-friction equality is not what produces the minimum in F(θ)."}
+ ],
+ "concept_tags": ["friction", "angle of friction", "minimum applied force"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

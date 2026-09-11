@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a85f8814",
+ "approach": "Check whether three forces at the given fixed angles can ever sum to zero for any positive magnitudes, by testing whether their directions surround the origin.",
+ "steps": [
+  {"text": "Place F₁ along 0°. F₂ is 30° from F₁, so place it at 30°. F₃ is 120° from F₁, and this angle alone does not say on which side, so try F₃ at 120° or at −120°.", "equation": "directions: 0°, 30°, and 120° or −120°"},
+  {"text": "Three concurrent forces can balance to zero only if no gap between consecutive directions, going around the full circle, exceeds 180°."},
+  {"text": "For F₃ at 120°, the directions are 0°, 30°, 120°; the gaps between them are 30°, 90°, and 240°, and the 240° gap exceeds 180°, so equilibrium is impossible.", "equation": "gaps = 30°, 90°, 240°"},
+  {"text": "For F₃ at −120° (same as 240°), the directions are 0°, 30°, 240°; the gaps are 30°, 210°, and 120°, and the 210° gap also exceeds 180°, so equilibrium is impossible here too.", "equation": "gaps = 30°, 210°, 120°"},
+  {"text": "Both possible placements fail, so the assertion is true: the forces cannot be in equilibrium. The reason describes this as one pairwise angle between two of the forces exceeding 180°, but a pairwise angle between two forces is always taken between 0° and 180° by convention and never exceeds it, so the reason's stated criterion is false."}
+ ],
+ "final_answer": {"option": 3, "value": "(c) The Assertion is true, but the Reason is false."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Accepting the reason's claim that one pairwise angle must exceed 180° as the correct explanation, even though such an angle is always kept within 0° to 180°, leads to picking option (a) instead of (c)."}
+ ],
+ "concept_tags": ["equilibrium of concurrent forces", "Lami's theorem", "vector addition"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:26:00+05:30"}
+}

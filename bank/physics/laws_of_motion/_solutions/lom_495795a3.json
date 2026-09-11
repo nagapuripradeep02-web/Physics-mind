@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_495795a3",
+ "approach": "Each rope carries one tension throughout its length; add the upward pull on the platform and on the man's hands, then compare it to their total weight.",
+ "steps": [
+  {"text": "Each rope has one tension throughout, equal to the force the man pulls with, which is half his weight.", "equation": "T = mg/2 per rope"},
+  {"text": "Two ropes each pull up on the platform at one end and up on the man's hands at the other end, giving four upward pulls of size T in total.", "equation": "Total upward force = 4T = 4×(mg/2) = 2mg"},
+  {"text": "The total weight of the man and the platform together is also 2mg.", "equation": "Total weight = mg + mg = 2mg"},
+  {"text": "The upward pull equals the total weight, so the net force, and the acceleration, is zero.", "equation": "Net force = 2mg − 2mg = 0, so a = 0"}
+ ],
+ "final_answer": {"option": 4, "value": "zero"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Counting all four upward pulls, 2mg, but comparing them to the man's own weight mg alone, forgetting the platform's mass, gives a net force mg on mass m and an acceleration of g."}
+ ],
+ "concept_tags": ["pulley system", "tension", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:20:00+05:30"}
+}

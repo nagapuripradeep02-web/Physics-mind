@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4825bf15",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the pulley system pictured (block 1 hanging from the fixed pulley, blocks 2 and 3 from the two ends of the string over the movable pulley), at one instant blocks 1 and 2 are each moving upward at a speed of 1 m/s. Determine the velocity of block 3 at this same instant.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "fixed pulley at top with block 1 hanging from it",
+   "movable pulley hangs below the fixed pulley, with blocks 2 and 3 hanging from its two ends",
+   "block 1 moves upward at 1 m/s at the given instant",
+   "block 2 moves upward at 1 m/s at the given instant"
+  ],
+  "figure": {
+   "description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  }
+ },
+ "solution": {
+  "approach": "Use the string-length constraint twice, once at the fixed pulley and once at the movable pulley, to relate the three velocities.",
+  "steps": [
+   {
+    "text": "Take downward as positive for every velocity. Block 1 moves upward at 1 m/s, so its downward velocity is −1 m/s.",
+    "equation": "v₁ = −1 m/s"
+   },
+   {
+    "text": "The fixed-pulley string constraint makes the movable pulley's downward velocity the negative of block 1's downward velocity.",
+    "equation": "v(pulley) = −v₁ = −(−1) = 1 m/s"
+   },
+   {
+    "text": "Block 2 moves upward at 1 m/s, so its downward velocity is −1 m/s. The movable-pulley constraint makes the sum of the downward velocities of blocks 2 and 3 equal to twice the pulley's downward velocity.",
+    "equation": "v₂ + v₃ = 2 v(pulley)"
+   },
+   {
+    "text": "Substitute the known values and solve for v₃.",
+    "equation": "−1 + v₃ = 2(1) = 2, so v₃ = 3 m/s (downward)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "3 m/s downward"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the movable pulley's downward velocity equal to block 1's downward velocity, instead of its negative, gives v₃ = 1 m/s upward instead of 3 m/s downward."
+   }
+  ],
+  "concept_tags": [
+   "pulley constraint",
+   "movable pulley",
+   "relative velocity"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3ce6bc1ebbd2a04bd904231fad3b42f9fc95232c37b45a089e7d38815cb18b72"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ba44b63871f9368458d440889797f387697433528ee956bebcfa4b23c9becef5",
+  "audited_by": "W03-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

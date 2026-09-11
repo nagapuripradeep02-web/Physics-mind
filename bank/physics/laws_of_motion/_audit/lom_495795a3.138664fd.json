@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_495795a3",
+ "item_sha": "138664fd87d585a94632f4104179883fe4a5f3e92a6866568fa4fa607b4198ce",
+ "auditor_option": 4,
+ "auditor_value": "zero acceleration, option (d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: each rope carries T = mg/2 and has two downward-running ends inside the man + platform system (one on the platform edge, one in his hand), so the upward force is 4T = 2mg, equal to the system weight 2mg; a = 0. Every step follows. The common_mistakes entry reproduces its option (c): 2mg − mg = mg on mass m gives g.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:14:00+05:30"}
+}

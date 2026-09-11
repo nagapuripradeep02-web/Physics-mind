@@ -1,0 +1,52 @@
+{
+ "question_id": "lom_f9420a41",
+ "item_sha": "649b1eba7e7d6729d6c5a4098e3cc186bbc6b9b080a46cbe86555956ed2e3eed",
+ "auditor_option": 4,
+ "auditor_value": "None of the above (T(A) = 98 N, T(B) = 98/cos30° ≈ 113.2 N, T(C) = T(B) sin30° ≈ 56.6 N with g = 9.8; all non-zero)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "T(B) sin30° = T(A)",
+   "note": "String B makes 30° with the VERTICAL (question text and figure both say so), so its vertical component is T(B) cos30°, not T(B) sin30°. This is the wrong formula for the served geometry; a student who copies it loses the mark on any numeric version of this problem.",
+   "fix": "T(B) cos30° = T(A)"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "T(C) = T(B) cos30° = 196 × 0.866 ≈ 169.7 N",
+   "note": "The horizontal component of a string at 30° to the vertical is T(B) sin30°, not T(B) cos30°. With the correct T(B) ≈ 113.2 N this gives T(C) ≈ 56.6 N, not 169.7 N.",
+   "fix": "T(C) = T(B) sin30° = 113.2 × 0.5 ≈ 56.6 N"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[2].equation",
+   "quote": "T(B) = 98 / 0.5 = 196 N",
+   "note": "Follows from the swapped component in step 1. The correct value is T(B) = 98 / cos30° = 98 / 0.866 ≈ 113.2 N.",
+   "fix": "T(B) = 98 / 0.866 ≈ 113.2 N"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[4].equation",
+   "quote": "T(A) = 98 N, T(B) = 196 N, T(C) ≈ 169.7 N",
+   "note": "Two of the three listed tensions are wrong (consequence of the swapped sin/cos). The conclusion that none is zero still holds with the correct values.",
+   "fix": "T(A) = 98 N, T(B) ≈ 113.2 N, T(C) ≈ 56.6 N"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "B up along 30° to the ceiling",
+   "note": "The question states B makes 30° with the vertical, which is 60° with the ceiling. Describing it as 30° to the ceiling misstates the geometry and is the likely origin of the swapped components in steps 1 and 3.",
+   "fix": "B up to the ceiling at 30° from the vertical"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "The question does not fix g; the solution uses g = 9.8 visibly (T(A) = 98 N), which is acceptable. My answer and the solution's option agree (4, None), but the printed resolution is for a string at 30° to the horizontal, not the served 30° to the vertical. Mistake entry (option 2, string C) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:01:45+05:30"
+ }
+}

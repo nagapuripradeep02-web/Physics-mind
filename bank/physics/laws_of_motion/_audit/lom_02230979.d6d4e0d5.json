@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_02230979",
+ "item_sha": "d6d4e0d518a717cdb654af77db6f7cfe322e4319e317f27ede47965367054c61",
+ "auditor_option": null,
+ "auditor_value": "t = sqrt(2 l (4 + eta) / (3 g (2 - eta))), valid for eta < 2; ball acceleration g(2 - eta)/(4 + eta) upward, rod top moves down at twice that",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[1].text",
+   "quote": "since the rod hangs from one side of cord 2 looped under that pulley and a fixed bracket sits on the other side",
+   "note": "The figure has the second string passing over the top of the hanging pulley with both segments running downward; it is not looped under it (a cord looped under the pulley would have its segments running upward and could not hold the rod below). The constraint (rod moves twice the pulley) and T1 = 2T2 are unaffected, but the description of the apparatus is false.",
+   "fix": "since the rod hangs from one side of cord 2, which passes over the top of that pulley, and a fixed bracket holds the other side"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[6].text",
+   "quote": "the gap closes at a constant rate found from the relative acceleration of the ball toward the rod's top",
+   "note": "The gap closes with constant relative acceleration (3/2)|ab|, not at a constant rate; a constant closing rate would mean constant relative speed, which contradicts the t-squared equation that follows.",
+   "fix": "the gap closes with constant relative acceleration, equal to the acceleration of the ball toward the rod's top"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer agrees. Verified: ball down x gives pulley up x and rod up 2x; T1 = 2T2; ball: eta m g - T1 = eta m ab; rod: m g - T2 = -2 m ab; eliminating gives ab = g(eta - 2)/(eta + 4) downward. Gap l closes as l + (3/2) ab t^2 = 0, giving the stated t. Common-mistake entry is a genuine constraint error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:01:37+05:30"
+ }
+}

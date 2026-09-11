@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_f6f75d80",
+ "approach": "The 4 kg and 6 kg blocks move together as one 10 kg mass on the heavier side of the pulley, giving a plain two-mass pulley problem.",
+ "steps": [
+  {"text": "The 2 kg block goes up and the combined 4 kg + 6 kg = 10 kg goes down with the same acceleration a.", "equation": "a = (10−2)g / (10+2)"},
+  {"text": "Put in g = 10 m/s² and solve.", "equation": "a = 80/12 = 20/3 = 6.67 m/s²"},
+  {"text": "T₁ is the tension pulling the 2 kg block up, so apply Newton's second law to it.", "equation": "T₁ − 2g = 2a"},
+  {"text": "Put in a = 20/3 m/s² and solve for T₁.", "equation": "T₁ = 2×(10+20/3) = 100/3 = 33.3 N"},
+  {"text": "T₂ is the tension pulling the 6 kg block up from below the 4 kg block, so apply Newton's second law to the 6 kg block.", "equation": "6g − T₂ = 6a"},
+  {"text": "Put in a = 20/3 m/s² and solve for T₂.", "equation": "T₂ = 6×(10−20/3) = 20 N",
+   "why_this_step": "The 6 kg block feels only its own weight down and T₂ up, since nothing hangs below it."}
+ ],
+ "final_answer": {"option": null, "value": "a = 6.67 m/s², T₁ = 33.3 N, T₂ = 20 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the 4 kg block and taking the heavier side as only 6 kg, giving a = (6−2)×10/8 = 5 m/s²."},
+  {"option": null, "text": "Treating the 6 kg block as not accelerating and taking T₂ = 6g = 60 N."}
+ ],
+ "concept_tags": ["Atwood machine", "connected bodies", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:05:00+05:30"}
+}

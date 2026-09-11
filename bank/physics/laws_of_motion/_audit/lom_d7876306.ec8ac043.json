@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_d7876306",
+ "item_sha": "ec8ac043a6bff02a6c706f68b242626b30f8c332c7c83049f46d105414638e44",
+ "auditor_option": 3,
+ "auditor_value": "a_min = g/3 (from T = m(g − a) ≤ 2mg/3)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: a ≥ g/3, option (c). Every equation follows; both common_mistakes entries name a real slip and reach the option they point at.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:57:58+05:30"
+ }
+}

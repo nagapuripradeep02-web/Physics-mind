@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_eef1b653",
+ "item_sha": "bc1e4718f09b3a5b91bbbb27fe70d990774ccffbee3fe9d8ad72dc8cbb3ea036",
+ "auditor_option": null,
+ "auditor_value": "1 m/s² upward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The opening words 'For the same pulley system' refer to an earlier problem, but the figure description fully specifies the arrangement, so the question is answerable as served.",
+ "notes": "Downward positive: a(pulley) = (-4 + 6)/2 = +1 m/s² down; block 1 on the other end of the fixed-pulley string: a1 = -1 m/s², i.e. 1 m/s² upward. Agrees with the solution.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:58:52+05:30"
+ }
+}

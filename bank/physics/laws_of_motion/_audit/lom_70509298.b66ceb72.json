@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_70509298",
+ "item_sha": "b66ceb72806001e2f86d5d100f863fcf571c5da566c8cef2c5bc99c268b22d45",
+ "auditor_option": null,
+ "auditor_value": "F = (M + m) g tan θ",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. N cosθ = mg, N sinθ = ma give a = g tanθ; system equation gives F.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:39+05:30"
+ }
+}

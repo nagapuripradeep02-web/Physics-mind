@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_f2a70ad3",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m rests on an inclined plane. For the surface of this incline, the angle of repose is 45°. Work out the friction force on the block, the net force acting on it, and its acceleration, when the incline's angle θ is set to (a) 30°, (b) 45°, and (c) 60°.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the friction force, the net force, and the acceleration of the block when θ = 30°."
+   },
+   {
+    "label": "b",
+    "asks": "Find the friction force, the net force, and the acceleration of the block when θ = 45°."
+   },
+   {
+    "label": "c",
+    "asks": "Find the friction force, the net force, and the acceleration of the block when θ = 60°."
+   }
+  ],
+  "conditions": [
+   "block of mass m placed on an inclined plane",
+   "angle of repose of the incline surface = 45°",
+   "incline angle θ is evaluated separately at 30°, 45°, 60°"
+  ],
+  "figure": {
+   "description": "A block of mass m sits on the sloped surface of an inclined plane that rises from a horizontal base; the incline makes an angle θ with the horizontal, measured at the base of the slope. The angle of repose of this surface is 45°, and θ is then set to 30°, 45°, and 60° in turn."
+  }
+ },
+ "solution": {
+  "approach": "Compare each angle to the 45° angle of repose, where μ = tan45° = 1, to decide if the block stays still or slides, then apply the matching friction law.",
+  "steps": [
+   {
+    "text": "The angle of repose is 45°, so the coefficient of friction equals tan45°.",
+    "equation": "μ = tan45° = 1"
+   },
+   {
+    "text": "For θ = 30°, which is less than the angle of repose, the block stays at rest: static friction exactly balances the weight component along the incline.",
+    "equation": "friction = mg sin30° = 0.5mg up the incline; net force = 0; a = 0"
+   },
+   {
+    "text": "For θ = 45°, equal to the angle of repose, the block is on the verge of sliding but still stays at rest.",
+    "equation": "friction = mg sin45° = mg/√2 ≈ 0.707mg up the incline; net force = 0; a = 0"
+   },
+   {
+    "text": "For θ = 60°, greater than the angle of repose, the block slides down, so kinetic friction now acts up the incline.",
+    "equation": "friction = μmg cos60° = 0.5mg up the incline"
+   },
+   {
+    "text": "Find the net force and acceleration for θ = 60° from the weight component along the incline minus the kinetic friction.",
+    "equation": "net force = mg sin60° − 0.5mg = mg(√3−1)/2 ≈ 0.366mg down the incline; a = g(√3−1)/2 ≈ 3.66 m/s² down the incline (using g = 10 m/s²)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) θ=30°: friction = 0.5mg up the incline, net force = 0, a = 0. (b) θ=45°: friction ≈ 0.707mg up the incline, net force = 0, a = 0. (c) θ=60°: friction = 0.5mg up the incline, net force ≈ 0.366mg down the incline, a ≈ 3.66 m/s² down the incline"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Applying kinetic friction at θ = 30°, below the angle of repose, gives a negative net force of size 0.366mg (3.66 m/s² with g = 10), showing the block cannot actually be sliding there."
+   }
+  ],
+  "concept_tags": [
+   "angle of repose",
+   "static friction",
+   "kinetic friction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "448a4b3c1c2c265579dfe9179385d7ef83792a42589b1a7c69b5bac3f964c2e6"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "afa5f285ac92c4523466a428e360f7f5ebd719eedc8a69c31cfdaf0db9ccaaf5",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:22:00+05:30"
+ }
+}

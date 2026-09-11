@@ -1,0 +1,43 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_25dc78be",
+ "approach": "Find the common acceleration of the whole three-part system, then apply Newton's second law to each end block to get the tension at each end of the string.",
+ "steps": [
+  {
+   "text": "Find the acceleration of the whole system: the two blocks plus the string.",
+   "equation": "a = F/(m_A+m_B+m_string) = 8/(2+1+1) = 2 m/s²"
+  },
+  {
+   "text": "Apply Newton's second law to the 2 kg block alone; only the tension at A pulls it.",
+   "equation": "T_A = m_A×a = 2×2 = 4 N"
+  },
+  {
+   "text": "Apply Newton's second law to the 1 kg block alone; F pulls it forward and the tension at B pulls it back.",
+   "equation": "F − T_B = m_1×a → T_B = 8 − 1×2 = 6 N"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "T_A = 4 N, T_B = 6 N"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Treating the string as massless makes the tension equal at both ends, giving a = 8/3 m/s² and one tension of 5.33 N instead of the two different values 4 N and 6 N."
+  }
+ ],
+ "concept_tags": [
+  "Newton's second law",
+  "connected blocks",
+  "string with mass"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:59:00+05:30"
+ }
+}

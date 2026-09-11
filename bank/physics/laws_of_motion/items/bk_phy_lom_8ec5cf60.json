@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_8ec5cf60",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass 2 kg sits on a rough horizontal floor whose friction coefficient is μ = 0.8. A horizontal force that grows with time, F = 2t newton (with t in seconds), pushes the block, as pictured. Using g = 10 m/s², sketch how the block's acceleration changes with time.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "floor is rough",
+   "coefficient of friction μ = 0.8",
+   "applied force is horizontal and time-varying, F = 2t newton",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 2 kg block rests on a rough horizontal floor with friction coefficient μ = 0.8. A horizontal force F = 2t (F in newton, t in seconds) pushes the block to the right, increasing with time."
+  }
+ },
+ "solution": {
+  "approach": "The block stays still until the growing force F = 2t exceeds the maximum friction, then it accelerates according to Newton's second law with that same friction opposing it.",
+  "steps": [
+   {
+    "text": "With only one μ given, the same value acts as both the static limit and the kinetic value once the block moves.",
+    "equation": "f(max) = μmg = 0.8 × 2 × 10 = 16 N"
+   },
+   {
+    "text": "Find the time at which F first reaches this value; before that time the block does not move, so a = 0.",
+    "equation": "2t = 16 → t = 8 s"
+   },
+   {
+    "text": "For t ≥ 8 s, the block slides, and kinetic friction (16 N, same value) opposes F; apply Newton's second law.",
+    "equation": "a = (2t − 16)/2 = (t − 8) m/s²"
+   },
+   {
+    "text": "The full acceleration-time graph is flat at zero up to t = 8 s, then rises as a straight line of slope 1 starting from a = 0 at t = 8 s.",
+    "equation": "a = 0 for 0 ≤ t < 8 s; a = (t − 8) m/s² for t ≥ 8 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 0 for 0 ≤ t < 8 s; for t ≥ 8 s, a = (t − 8) m/s², a straight line starting at a = 0 when t = 8 s and rising with slope 1 m/s³ (no jump at t = 8 s, since the same μ gives the same friction immediately before and immediately after motion starts)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming motion starts at t = 0 and writing a = t − 8 for all t, giving a wrongly negative acceleration before t = 8 s."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to subtract the friction force after motion starts and writing a = t (using F = 2t directly divided by mass without subtracting 16 N of friction)."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "time-varying force",
+   "graph of motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "fe82272a22259f94a0dad7eb1befb8a978a28e0787b10845e4543034236e10cd"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1e906ae27988b3d91c797f32cd7afff9e20cb76b159e197cfd2297bd725d0228",
+  "audited_by": "W01-U-lom-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:31:00+05:30"
+ }
+}

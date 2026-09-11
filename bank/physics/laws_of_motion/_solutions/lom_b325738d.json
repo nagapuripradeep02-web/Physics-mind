@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b325738d",
+ "approach": "Check whether the smooth wall and floor can each supply the exact push block A needs to share the box's acceleration; a rigid wall can only push, never pull.",
+ "steps": [
+  {"text": "The smooth box can only push block A: a horizontal push N₁ from the left wall and a vertical push N₂ from the floor, plus its own weight mg downward.", "equation": "N₁ (horizontal), N₂ (vertical), mg (down)"},
+  {"text": "Apply Newton's second law to block A along each axis using the box's given acceleration.", "equation": "a = (−2î + 3ĵ) ms⁻²"},
+  {"text": "Along x, only N₁ acts, so it alone must supply the whole x-acceleration.", "equation": "N₁ = m(−2) = −2m"},
+  {"text": "A wall can only push away from itself, so N₁ must come out zero or positive, never negative.", "equation": "N₁ ≥ 0 required",
+   "why_this_step": "A negative N₁ would mean the wall pulls block A toward it, which a rigid contact cannot do."},
+  {"text": "Since the required N₁ is negative, the wall cannot supply it, so block A slides away from the left wall and cannot stay in the corner shown — the Assertion is true. This shortfall is exactly a missing ma force, so the Reason correctly explains it.", "equation": "Assertion true, Reason true and explains it"}
+ ],
+ "final_answer": {"option": 1, "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Treating the negative required N₁ = −2m as an acceptable leftward pull from the wall, concluding block A does stay in place, and picking Assertion false, Reason true."}
+ ],
+ "concept_tags": ["Newton's second law", "non-inertial frame", "normal reaction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

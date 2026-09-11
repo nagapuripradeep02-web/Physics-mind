@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6ce8778b",
+ "item_sha": "01b64405ad0b4713dd5ca38baf49bb0b90a19670df721b948eb2e1a360fbee22",
+ "auditor_option": 2,
+ "auditor_value": "μ = 3/4",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees: a_rough = a_smooth/4 and at 45° sin = cos, so 1 − μ = 1/4.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:58:25+05:30"
+ }
+}

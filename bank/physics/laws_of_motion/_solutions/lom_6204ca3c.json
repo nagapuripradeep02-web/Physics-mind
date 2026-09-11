@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6204ca3c",
+ "approach": "Take torques about the hinge to find the string tension, then balance forces on the rod to find the hinge force.",
+ "steps": [
+  {"text": "The rod's weight acts at its center, 1 m from the hinge; the string's vertical part acts at the far end, 2 m from the hinge.", "equation": "T sin60° × 2 = mg × 1"},
+  {"text": "Solve for the tension.", "equation": "T = 40/√3 ≈ 23.09 N"},
+  {"text": "Balance the horizontal and vertical forces on the rod to find the two parts of the hinge force.", "equation": "H_x = T cos60° ≈ 11.55 N, H_y = mg − T sin60° = 20 N"},
+  {"text": "Combine the two parts to get the size of the net hinge force.", "equation": "H = √(H_x² + H_y²) ≈ 23.09 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) T ≈ 23.09 N, (b) net hinge force ≈ 23.09 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the rod's full length, 2 m, as the weight's distance from the hinge instead of 1 m gives T ≈ 46.19 N, twice the correct value."}
+ ],
+ "concept_tags": ["torque about a hinge", "equilibrium of a rigid rod", "tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:50:00+05:30"}
+}

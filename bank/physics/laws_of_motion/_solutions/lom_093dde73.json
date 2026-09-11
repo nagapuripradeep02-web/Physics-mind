@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_093dde73",
+ "approach": "Split the force into horizontal and vertical parts using the cosine and sine of the given angle.",
+ "steps": [
+  {"text": "The force F makes 45° with the horizontal, so its horizontal part is F cos 45° and its vertical part is F sin 45°.", "equation": "F_H = F cos 45°, F_V = F sin 45°"},
+  {"text": "Put in F = 8 N and cos 45° = sin 45° = 0.7071.", "equation": "F_H = 8 × 0.7071 = 5.66 N"},
+  {"text": "The vertical part comes out the same, since sin 45° equals cos 45°.", "equation": "F_V = 8 × 0.7071 = 5.66 N", "why_this_step": "At 45°, the two right-angle components of any force are always equal."}
+ ],
+ "final_answer": {"option": null, "value": "F_H = 5.66 N, F_V = 5.66 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking F_H = F and F_V = 0 by ignoring that the force is tilted, instead of resolving it."}
+ ],
+ "concept_tags": ["resolution of forces", "components of a vector"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:05:00+05:30"}
+}

@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d9576046",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A conveyor belt runs at a steady 6 m/s. A small block, initially at rest, is placed gently onto the moving belt. The friction coefficient between block and belt is μ = 0.3. Taking g = 10 m/s², work out:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "how much time passes before the block and the belt move at the same speed (no more sliding between them)"
+   },
+   {
+    "label": "b",
+    "asks": "how far the block travels (its displacement) up to that moment"
+   }
+  ],
+  "conditions": [
+   "belt moves at a constant 6 m/s",
+   "block starts at rest when dropped on the belt",
+   "friction coefficient between block and belt is 0.3",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A conveyor belt loops around two rollers, its top surface moving in one direction and its lower return stretch labeled with a speed of 6 m/s in the opposite direction. A small block is shown just above the belt, about to be placed on its top surface."
+  }
+ },
+ "solution": {
+  "approach": "The block starts at rest while the belt surface under it moves at 6 m/s, so kinetic friction accelerates the block until its speed matches the belt.",
+  "steps": [
+   {
+    "text": "The block is slower than the belt, so kinetic friction acts forward on the block, along the belt's direction of motion.",
+    "equation": "f = μmg, a = μg"
+   },
+   {
+    "text": "Compute the block's acceleration.",
+    "equation": "a = 0.3 × 10 = 3 m/s²"
+   },
+   {
+    "text": "The block speeds up from rest until it matches the belt's speed of 6 m/s; find that time.",
+    "equation": "t = v/a = 6/3 = 2 s"
+   },
+   {
+    "text": "Find the block's displacement in that time using s = ½at².",
+    "equation": "s = ½ × 3 × 2² = 6 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 2 s, (b) displacement of the block = 6 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the belt's displacement (v×t = 12 m) instead of the block's own displacement, which is asked for."
+   },
+   {
+    "option": null,
+    "text": "Forgetting that the mass cancels in a = μg and instead trying to use an unstated mass value."
+   }
+  ],
+  "concept_tags": [
+   "kinetic friction",
+   "relative motion",
+   "conveyor belt"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "51df50e9ed809ddefc1b5a3e158fdda11a504c599fb88bf8e14f98ef4e6a628d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "22620f2b26ffd60aa3292c81fdfc4b1f795b46c0b28cd3481285d395cb098df8",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:25:00+05:30"
+ }
+}

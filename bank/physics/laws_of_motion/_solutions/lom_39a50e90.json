@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_39a50e90",
+ "approach": "Take torque about the foot of the ladder to find the wall's push, then use horizontal equilibrium to find the friction needed to balance it.",
+ "steps": [
+  {"text": "The wall is smooth, so it pushes the ladder horizontally with a normal force N. The ground gives a vertical normal force equal to the ladder's weight and a horizontal friction force f.", "equation": "N_ground = W = mg"},
+  {"text": "Take torques about the foot of the ladder. The weight acts at the midpoint and the wall's push acts at the top.", "equation": "N × L sinθ = W × (L/2) cosθ"},
+  {"text": "Solve for the wall's push N.", "equation": "N = W / (2 tanθ)"},
+  {"text": "Horizontal equilibrium requires the ground friction to equal the wall's push, so the minimum coefficient of friction is this ratio to the weight.", "equation": "μ_min = N/W = 1/(2 tanθ)"},
+  {"text": "Substitute θ = 60° and compute.", "equation": "μ_min = 1/(2 × 1.732) = 0.29"}
+ ],
+ "final_answer": {"option": null, "value": "0.29"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the full length L instead of L/2 as the moment arm of the weight gives μ = 1/tanθ = 0.58, double the correct value."},
+  {"option": null, "text": "Using sinθ in place of tanθ in the final ratio gives μ = 1/(2 sin60°) = 0.58."}
+ ],
+ "concept_tags": ["equilibrium of a rigid body", "torque balance", "friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

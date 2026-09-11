@@ -36,7 +36,7 @@ def _ie_sections():
 
 
 SEQ_SECTIONS = ["IE " + s for s in _ie_sections()] + ["L1 AR", "L1 SC", "L1 SUB", "L2 SC", "L2 MC", "L2 CB", "L2 MT", "L2 SUB"]
-OFFLINE_JUDGE = False                   # True: never call the paid judge; queue the pair for a judge sub-agent
+OFFLINE_JUDGE = os.environ.get("BANK_ALLOW_API") != "1"   # default offline: every caller of same() queues undecided pairs for a judge sub-agent
 PENDING = os.path.join(L.GATE, "_judge_pending.jsonl")
 _pending_seen = set()
 
@@ -61,9 +61,9 @@ def hint_index(hints):
         elif "match" in s:
             jump = SEQ_SECTIONS.index("L2 MT")
         elif "single correct" in s or "objective" in s:
-            jump = SEQ_SECTIONS.index("L1 SC") if cur < SEQ_SECTIONS.index("L1 SC") else SEQ_SECTIONS.index("L2 SC")
+            jump = SEQ_SECTIONS.index("L1 SC") if cur <= SEQ_SECTIONS.index("L1 SC") else SEQ_SECTIONS.index("L2 SC")
         elif "subjective" in s:
-            jump = SEQ_SECTIONS.index("L1 SUB") if cur < SEQ_SECTIONS.index("L1 SUB") else SEQ_SECTIONS.index("L2 SUB")
+            jump = SEQ_SECTIONS.index("L1 SUB") if cur <= SEQ_SECTIONS.index("L1 SUB") else SEQ_SECTIONS.index("L2 SUB")
         n = e.get("item_no") or 0
         if jump is not None and jump >= cur:
             if jump != cur:
@@ -384,12 +384,17 @@ def run(a):
             key_val = None                       # the printed "answer" is the statement to be proved; B and the auditor are the readers
             row["warnings"].append("prove/show item: the printed key is not a reader")
         row["chapter"] = (CH.get(wid) or {}).get("chapter") or (L.CFG["syllabus"][0] if len(L.CFG["syllabus"]) == 1 else None)
+        defer = bool(key_val) and re.fullmatch(r"\[?\s*see (?:the )?hints?\s*\]?\.?", key_val.strip(), re.I) is not None
         if key_val and re.fullmatch(r"\[?\s*(?:graph|sketch|see (?:the )?hints?|figure)\s*\]?\.?", key_val.strip(), re.I):
             row["warnings"].append("printed answer is a sketch (%s): only the second reader confirms" % key_val.strip())
             key_val = None
         sec, n = label_section(t["label"])
         hint = hints.get((sec, n)) if sec else None
         hint_val = (hint or {}).get("final_value") or None
+        if defer and hint_val:
+            # the Answers page points at the hint: the hint's final value is the printed key for this item
+            key_val, hint_val = hint_val, None
+            row["warnings"][-1] = "printed answer defers to the hint: the hint's final value is the key"
         b = B.get(wid) or {}
         k_ok, k_how = same(a_opt, a_val, None, key_val, kind, cache) if key_val else (None, "no_key")
         b_ok, b_how = same(a_opt, a_val, b.get("final_option") or None, b.get("final_value"), kind, cache) if b else (None, "no_B")
@@ -430,7 +435,9 @@ def run(a):
         else:
             bucket = "undecided"
         row["bucket"] = bucket
-        if hint_val and key_val:
+        if hint_val and key_val and not (k_ok is True and h_ok is True):
+            # a printed letter against the hint's value cannot be compared without the options; when both
+            # already agree with the author they agree with each other
             hk, _ = same(None, hint_val, None, key_val, kind, cache)
             if hk is False:
                 row["warnings"].append("hint disagrees with printed answer")
@@ -439,7 +446,10 @@ def run(a):
         if rt and rt.get("question_text"):
             if rt.get("figure_required"):
                 row["figure_required"] = True
-            rr, rw, facts = restatement_checks(wid, t, rt, GV.get(wid), FD.get(wid), sol, cache)
+            fd = FD.get(wid)
+            if fd and fd.get("restatement_sha") != S.restatement_sha(rt):
+                fd = None                    # a crossed re-solve of an OLDER restatement says nothing about this text
+            rr, rw, facts = restatement_checks(wid, t, rt, GV.get(wid), fd, sol, cache)
             row["warnings"] += rw
             row["restatement"] = facts
             row["restatement_sha"] = S.restatement_sha(rt)

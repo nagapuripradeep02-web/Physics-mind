@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_10908738",
+ "item_sha": "a65c3d963f8e4a0999774355c8546588e820f60508c0af31ace9e965b8400479",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 0 for t < 6 s, then a = t - 6 m/s^2 (straight line of slope 1 from (6 s, 0)); (b) f = 4 N at t = 2 s, f = 12 N at t = 8 s",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. f_max = 0.6 x 2 x 10 = 12 N reached at t = 6 s; static phase f = 2t; sliding phase f = 12 N, a = (2t - 12)/2. Only one coefficient is given, so kinetic = static = 0.6 is the standard reading. Both common-mistake numbers follow from their stated causes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:00:54+05:30"
+ }
+}

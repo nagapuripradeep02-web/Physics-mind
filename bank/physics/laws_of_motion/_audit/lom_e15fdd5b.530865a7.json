@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_e15fdd5b",
+ "item_sha": "530865a7d838e396fd5e53640c5d373a8e79d5b56a961bec74930bf437344645",
+ "auditor_option": null,
+ "auditor_value": "Five forces: weight Mg at the rod's centre (down); normal reactions N(A), N(B) along the radii from A and B toward the shell's centre; friction forces f(A), f(B) tangent to the shell at A and B",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "No number to compute. Solution's five-force diagram matches mine. Weight at the midpoint assumes a uniform rod, which the question does not state but which is the standard reading. Friction directions are left as 'tangent' without a sense; the question asks only for the forces, so acceptable.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:23:21+05:30"
+ }
+}

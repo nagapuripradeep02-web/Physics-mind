@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_def442f0",
+ "item_sha": "ecf49e736a31b492f6b47be84627198e9c1df011c7dafbdb1cb339ab3ebe693e",
+ "auditor_option": 1,
+ "auditor_value": "4 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The question does not fix g; the solution uses g = 10 visibly in its equation (f_max = 0.2×4×10 = 8 N), and option (b) 8 N confirms that value. With g = 9.8 the limit is 7.84 N and the conclusion (static, f = 4 N) is unchanged. Mistake entry correctly maps to option 2.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:59:44+05:30"
+ }
+}

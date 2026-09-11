@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_08e0c793",
+ "item_sha": "e17db0c1be6c4b535f9387548c05d3bea4e7e1219f39b3e09fcbbe3629f38c2f",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true: moment of concurrent forces about O = (r_P − r_O) × R, which depends on O unless R = 0",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Checked the solution's numeric example: P = (1,0), R = (3,0) gives 0 about the origin and (1,−5)×(3,0) = 15 N·m about (0,5), as printed. The zero-resultant case gives zero moment everywhere, so the Reason is true and does not rescue the Assertion.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:25:07+05:30"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_cdc8bf37",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m lies at rest on a slope inclined at angle θ to the horizontal; the coefficient of friction between block and slope is μ. Find the magnitude of the resultant contact force (normal reaction and friction combined) that the slope applies to the block.",
+  "options": {
+   "1": "mg",
+   "2": "μ mg cos θ",
+   "3": "mg sin θ",
+   "4": "μ mg tan θ"
+  },
+  "parts": null,
+  "conditions": [
+   "block is at rest on the incline",
+   "angle of incline is θ",
+   "coefficient of friction is μ"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The block is in equilibrium with only two forces on it, so the incline's total push (normal plus friction combined) must be equal and opposite to gravity.",
+  "steps": [
+   {
+    "text": "The block is at rest, so only two forces act on it: gravity mg straight down, and everything the incline exerts on it — its normal push and its friction — combined into one net contact force.",
+    "equation": "F(incline) + mg(down) = 0"
+   },
+   {
+    "text": "Since these are the only two forces and the block is in equilibrium, the incline's net force must be equal and opposite to gravity.",
+    "equation": "F(incline) = mg (upward)"
+   },
+   {
+    "text": "This holds for any θ and μ as long as the block truly stays at rest; the normal and friction parts individually depend on θ and μ, but their combined vector always equals mg.",
+    "equation": "|F(incline)| = mg"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "mg"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Reporting only the along-incline friction component, mg sinθ, as the total force from the incline, forgetting to combine it with the perpendicular normal component."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium",
+   "inclined plane",
+   "friction"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1b1da148268ee16d7e9ce336053cfecdb4834f1d23ff8a0d6155657c6e11b3b7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c69b02325307a09d5c161bc16ac7ade297fe77be83ab7e65d8eeb22c31721e0e",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

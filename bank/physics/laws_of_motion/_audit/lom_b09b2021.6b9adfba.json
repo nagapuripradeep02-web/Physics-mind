@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b09b2021",
+ "item_sha": "6b9adfbac8ba8e4dc3d1dc375cbe8af5cdcfee1eee855cf2cb2aa25ebd119668",
+ "auditor_option": null,
+ "auditor_value": "a = 2.5 m/s² up; T_A = 75 N, T_C = 62.5 N, T_B = 50 N (g = 10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g is not stated in the question; the solution uses g = 10 m/s² (visible in its first equation) and the round numbers confirm that choice. Top-block check: 100 − 20 − 75 = 5 = 2×2.5. Both mistake entries yield the numbers they name.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:06:01+05:30"
+ }
+}

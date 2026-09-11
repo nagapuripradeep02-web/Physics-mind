@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_7f407823",
+ "item_sha": "04a688af3ebb7166398e566efce3d774f80ced11f1f2ef32550a41cb5aea9964",
+ "auditor_option": null,
+ "auditor_value": "w∥ = 10 sin30° = 5 N down the slope; w⊥ = 10 cos30° = 5√3 ≈ 8.66 N into the slope",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line follows; the why_this_step correctly places the 30° between the weight and its perpendicular component, matching the figure description. The single common_mistakes entry is the genuine sine/cosine swap and reproduces its numbers.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:23:00+05:30"}
+}

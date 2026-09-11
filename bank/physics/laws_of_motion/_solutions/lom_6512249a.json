@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6512249a",
+ "approach": "The push force sets the normal force against the wall; compare the block's weight to the maximum static friction that normal force can supply to see whether the block slides.",
+ "steps": [
+  {"text": "The block does not accelerate into the wall, so the wall's normal reaction equals the push.", "equation": "N = F = 20 N"},
+  {"text": "Find the maximum static friction available and compare it with the block's weight.", "equation": "f(s,max) = μₛN = 0.8 × 20 = 16 N, weight = mg = 2 × 10 = 20 N"},
+  {"text": "Since the weight (20 N) exceeds the maximum static friction (16 N), the block slides down, so kinetic friction applies instead, directed upward.", "equation": "f(k) = μₖN = 0.6 × 20 = 12 N"},
+  {"text": "Apply Newton's second law along the vertical, weight down and kinetic friction up.", "equation": "20 − 12 = 2a → a = 4 m/s²"}
+ ],
+ "final_answer": {"option": null, "value": "The block slides down with acceleration 4 m/s²; the friction acting on it is kinetic friction, 12 N, directed upward."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the static friction limit (16 N) as the actual friction force even after checking that the block slides, giving a = 2 m/s² instead of 4 m/s²."},
+  {"option": null, "text": "Not checking whether the block slides at all and assuming it stays at rest because the wall is rough."}
+ ],
+ "concept_tags": ["static friction", "kinetic friction", "normal force"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:29:00+05:30"}
+}

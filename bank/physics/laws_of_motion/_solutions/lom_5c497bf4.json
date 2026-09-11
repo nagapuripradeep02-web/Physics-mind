@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5c497bf4",
+ "approach": "Blocks A and B move together down the 60° face while C is pulled up the 30° face at the same speed, so treat A+B as one mass against C.",
+ "steps": [
+  {"text": "A and B (1 kg + 3 kg = 4 kg) slide down the 60° incline; C (2 kg) is pulled up the 30° incline; all three share one acceleration a.", "equation": "(mA+mB)g sin60° − mC g sin30° = (mA+mB+mC) a"},
+  {"text": "Put in the masses and angles with g = 10 m/s².", "equation": "4×10×0.8660 − 2×10×0.5 = 6a"},
+  {"text": "Solve for a.", "equation": "34.64 − 10 = 6a, a = 24.64/6 = 4.11 m/s²"},
+  {"text": "For block C alone, the string tension T_BC pulls it up the 30° incline against its weight component.", "equation": "T_BC − mC g sin30° = mC a"},
+  {"text": "Put in mC = 2 kg, a = 4.11 m/s² and solve.", "equation": "T_BC = 2×(5+4.11) = 18.2 N"},
+  {"text": "For block A alone, its weight component pulls it down the 60° incline while the string to B (tension T_AB) holds it back.", "equation": "mA g sin60° − T_AB = mA a"},
+  {"text": "Put in mA = 1 kg, a = 4.11 m/s² and solve.", "equation": "T_AB = 1×(8.66−4.11) = 4.55 N",
+   "why_this_step": "Block A is at the bottom of the A–B pair, so only its own weight component and the string to B act on it along the incline."}
+ ],
+ "final_answer": {"option": null, "value": "(a) a = 4.11 m/s², (b) T_AB = 4.55 N (string between A and B), T_BC = 18.2 N (string over the pulley to C)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Leaving out block C's weight component on the 30° side and taking a = (mA+mB)g sin60°/(mA+mB+mC) = 5.77 m/s²."}
+ ],
+ "concept_tags": ["double incline", "connected bodies", "tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:15:00+05:30"}
+}

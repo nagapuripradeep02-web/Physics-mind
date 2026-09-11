@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_88658934",
+ "item_sha": "23efe61e8f12491dc38209cf4307bfaf137b04fcbc16a177e2b112ab54e68df7",
+ "auditor_option": null,
+ "auditor_value": "a_M = g/3 up the incline (about 3.3 m/s^2 with g = 10, 3.27 with g = 9.8); a_2M = g/6 downward, T = 5Mg/6",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Constraint a_M = 2 a_2M, both force equations, the substitution and the final value all agree with my sympy solution. The common_mistakes sign error (2T - 2Mg = 2M a_2M) does give a_M = g as the entry states. g is not fixed by the question; the solution states its choice g = 10.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

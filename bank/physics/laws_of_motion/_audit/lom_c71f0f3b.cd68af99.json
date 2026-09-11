@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_c71f0f3b",
+ "item_sha": "cd68af991dbe60dfe66a456c1bf2db381f04857f14e6cfb25b4caa91e3a82aff",
+ "auditor_option": null,
+ "auditor_value": "x₁ + x₂ = constant ⇒ v₁ + v₂ = 0 ⇒ a₁ = −a₂ (equal magnitude, opposite direction)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[1].text",
+   "quote": "so the sum of the speeds is zero",
+   "note": "Speeds are magnitudes and cannot sum to zero while the blocks move; the quantities that sum to zero are the signed rates dx₁/dt and dx₂/dt (velocities along the chosen downward-positive axis).",
+   "fix": "so the sum of the two velocities dx₁/dt + dx₂/dt is zero, and the sum of the accelerations is zero too."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent constraint derivation agrees: a₁ = −a₂. The equation lines are all correct; the only defect is the word 'speeds' in steps[1].",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:00:33+05:30"
+ }
+}

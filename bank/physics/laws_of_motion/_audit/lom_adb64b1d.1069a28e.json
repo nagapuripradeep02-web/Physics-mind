@@ -1,0 +1,45 @@
+{
+ "question_id": "lom_adb64b1d",
+ "item_sha": "1069a28e9cd2141454b8eeb791d2f0263f6da82d78607507059cf5bf0697484a",
+ "auditor_option": null,
+ "auditor_value": "Plank: weight at its centre; ground normal and ground friction at the lower end; cylinder's normal perpendicular to the plank at the contact. Cylinder: weight; plank's normal (perpendicular to the plank, along the radius through the centre); ground normal (vertical, through the centre); ground friction (horizontal, at the ground contact).",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[4].why_this_step",
+   "quote": "since the plank meets the cylinder at an angle, that push has a sideways part, so the rough ground must supply a matching sideways friction force.",
+   "note": "A friction force equal to the horizontal part of the plank's push cannot exist with the cylinder at rest: weight, the ground normal and the plank normal all pass through the centre, so friction is the only force with a torque about it and equilibrium would force it to zero. Friction is present because the ground is rough and the cylinder tends to move; its size is set by the cylinder's motion, not by a horizontal balance.",
+   "fix": "since the plank meets the cylinder at an angle, that push has a sideways part, so the cylinder tends to move along the ground and the rough ground exerts a friction force at the contact opposing that tendency; its size is fixed by the cylinder's motion, not by a simple balance."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "while ignoring that the plank's normal force also needs a horizontal balance.",
+   "note": "The corrective offered is false: horizontal balance of the plank's push by ground friction is impossible for a cylinder at rest (see the torque about the centre), so the entry replaces a correct observation with a wrong one. The genuine error is only that the question states friction exists at the ground contacts.",
+   "fix": "Leaving out the ground's friction on the cylinder, although the question states that friction acts at the ground contacts and the plank's push has a horizontal part that makes the cylinder tend to move along the ground."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[4].equation",
+   "quote": "N_ground2 (vertical, through centre) + f_ground_cyl (horizontal, at the ground contact, balances the horizontal part of N_plank)",
+   "note": "This step repeats the previous step's list of the cylinder's ground forces, and again asserts a balance that cannot hold.",
+   "fix": "N_ground,cyl (vertical, through centre) + f_ground,cyl (horizontal, at the ground contact, opposing the sideways tendency caused by N_plank)"
+  },
+  {
+   "grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "N_ground4 (from ground, vertical, through centre)",
+   "note": "The cylinder's ground normal is labelled N_ground4 here and N_ground2 in the next step; the digit in the label has been changed so the same force carries two names. A label, so no physics is altered, but a reader cannot tell whether two different normals are meant.",
+   "fix": "N_ground,cyl (from ground, vertical, through centre)"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "The question does not state whether the bodies are at rest; with a smooth plank-cylinder contact the cylinder cannot in fact stay at rest on rough ground, so 'balance' language is inconsistent with the setup.",
+ "notes": "The force lists themselves (four on each body, plank normal on the cylinder radial through its centre) are correct and match my own. This item appears twice in the slice (item_sha fd86b1ff… is byte-identical except that the label here reads N_ground4 where the twin reads N_ground2).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:02:28+05:30"
+ }
+}

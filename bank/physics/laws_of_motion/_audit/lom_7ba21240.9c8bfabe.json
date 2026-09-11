@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_7ba21240",
+ "item_sha": "9c8bfabecd3323f23089f960269194631a8e365e0b87aa6b1a5b7747a7e0aa0f",
+ "auditor_option": null,
+ "auditor_value": "t_min = 2√(s/μg) = 20 s with g = 10 (20.2 s with g = 9.8)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The question does not fix g; the solution uses g = 10. Both mistake entries produce the numbers they name (√200 = 14.1 s; 10 s).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

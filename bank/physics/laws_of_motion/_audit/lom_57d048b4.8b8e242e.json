@@ -1,0 +1,38 @@
+{
+ "question_id": "lom_57d048b4",
+ "item_sha": "8b8e242e5b1105c941416ea4725060baf50360a5a5ad1f8c31e98f042c089714",
+ "auditor_option": null,
+ "auditor_value": "a1 + a3 = 0; a1 + a4 - 2a3 = 0; a1 + a2 - 2a4 = 0 -> a3 = -a1, a4 = -3a1, a2 = -7a1",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "The string over the top fixed pulley runs from point 1 to the pulley labelled 3",
+   "note": "In the served figure the string S₁ over P₁ runs to the axle of P₂, whose position is x₃; the pulley labelled P₃ is the small one at x₄. \"The pulley labelled 3\" names the wrong pulley; the equation beside it (x₁ + x₃) is right.",
+   "fix": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant."
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[1].text",
+   "quote": "The string over pulley 3 runs from point 1 to pulley 4, both measured relative to pulley 3's own position.",
+   "note": "The served figure has pulleys P₂ (axle x₃) and P₃ (axle x₄); the string meant here is S₂ over P₂, running to the axle of P₃. \"Pulley 3\" and \"pulley 4\" do not match the figure's labels, and \"pulley 3\" reads as P₃, the wrong pulley.",
+   "fix": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position."
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[2].text",
+   "quote": "The string over pulley 4 runs from point 1 to block 2, both measured relative to pulley 4's own position.",
+   "note": "There is no pulley 4 in the served figure; the string meant is S₃ over P₃ (axle at x₄).",
+   "fix": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "All three constraint equations, the substitutions and the final relation are correct; the defect is only that the prose numbers the pulleys by their position index (3, 4) instead of the figure's labels (P₂, P₃).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:00:36+05:30"
+ }
+}

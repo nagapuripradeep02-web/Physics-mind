@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_2897c874",
+ "item_sha": "1abfad1c860294f58f29240c90ac580a45c48c2b43e89c4ca29e4bb139958423",
+ "auditor_option": null,
+ "auditor_value": "1/3 s (a = g/3, v at 1 s = g/3; after the stop, string taut again when v t' − ½g t'² = ½g t'², so t' = v/g = 1/3 s, independent of g)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Assuming the string stays taut and the 1 kg block also stops instantly gives a time of 0 s, missing that unequal speeds on a taut string are impossible.",
+   "note": "Vague: the clause after 'missing' does not name what the student actually misses, which is that a string can only pull, so stopping the 2 kg block cannot stop the 1 kg block and the string must go slack; as written the reader cannot tell why 'both stop' is wrong.",
+   "fix": "Assuming the string stays taut so the 1 kg block also stops instantly gives a time of 0 s; this misses that a string cannot push, so the 1 kg block keeps its upward speed and the string goes slack."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently: relative displacement −v t' + g t'² = 0 gives t' = v/g = (g/3)/g = 1/3 s for any g. Every equation follows. Mistake entry [1]'s value 2v/g = 2/3 s is computed correctly for the error it names.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:05:52+05:30"
+ }
+}

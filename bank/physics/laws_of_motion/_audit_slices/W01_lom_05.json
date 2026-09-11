@@ -1,0 +1,1179 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 5,
+ "round": 0,
+ "agent_label": "W01-U-lom-05",
+ "items": [
+  {
+   "question_id": "lom_9828b459",
+   "audit_file": "lom_9828b459.224f137c.json",
+   "item_sha": "224f137c953176439ae21cc3f2603f6c4786d4b425f911534a91dbad37ea2941",
+   "question_text": "A rope with negligible weight runs over a frictionless pulley. On one end, a 20 kg monkey grips the rope tightly; tied to the other end is a hanging bundle of bananas that also weighs 20 kg. The monkey spots the bananas above and begins climbing up the rope toward them.\n(a) While the monkey is climbing, do the bananas rise, fall, or stay where they are?\n(b) While the monkey is climbing, does the space separating her from the bananas shrink, grow, or stay the same?\n(c) If the monkey then lets go of the rope and falls freely, what then happens to the gap between her and the bananas as she falls?\n(d) If, before hitting the ground, the monkey catches hold of the rope again to stop falling, what happens to the bananas at that moment?",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The rope is light and the pulley is frictionless, so the tension is the same on both sides at every instant, and the monkey and the bunch have equal mass.",
+    "steps": [
+     {
+      "text": "Write Newton's second law for the monkey and for the bananas, taking upward as positive.",
+      "equation": "T − mg = m aₘ (monkey), T − mg = m a_b (bananas)"
+     },
+     {
+      "text": "Both equations use the same tension T and the same mass m (20 kg each), so the two equations are identical at every instant.",
+      "why_this_step": "A single string over a frictionless, massless pulley carries the same tension throughout, and equal masses under equal tension get equal acceleration."
+     },
+     {
+      "text": "So aₘ = a_b always, whatever the monkey does. Starting from rest, this makes their velocity and displacement equal at every instant too.",
+      "equation": "aₘ = a_b for all t"
+     },
+     {
+      "text": "(a) The monkey climbs upward, so aₘ is upward; since a_b = aₘ, the bananas also move up, matching the monkey step for step.",
+      "equation": "bananas move up"
+     },
+     {
+      "text": "(b) Since the monkey and the bananas share the same velocity at every instant (both start at rest with equal acceleration), the gap between them does not change.",
+      "equation": "distance stays constant"
+     },
+     {
+      "text": "(c) When the monkey lets go, her hand exerts no force on the rope, so T = 0 there; with T = 0 the bananas obey −mg = m a_b, i.e. a_b = −g, the same as the monkey's free-fall acceleration, so the constant-distance result of (b) continues unchanged while she falls.",
+      "equation": "T = 0, aₘ = a_b = −g, distance stays constant"
+     },
+     {
+      "text": "(d) When the monkey grips the rope again, the tension she generates to slow her fall is the same tension felt by the bananas, so the bananas decelerate exactly as she does; the bananas do the same thing the monkey does, and the gap between them stays the same throughout.",
+      "equation": "aₘ = a_b again, bananas slow down like the monkey does"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) Move up. (b) Distance remains constant. (c) Distance remains constant while she is falling. (d) The bananas do exactly what the monkey does (they also decelerate the same way), so the distance between them stays constant."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the bananas stay still because the monkey is doing the climbing, ignoring that the pulley makes the tension pull the bananas up too."
+     },
+     {
+      "option": null,
+      "text": "Thinking the gap closes because the monkey is climbing toward the bananas, forgetting the bananas rise by the same amount at the same time."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "pulley constraint",
+     "equal tension both sides"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_8bee1b8c",
+   "audit_file": "lom_8bee1b8c.a2e30b2b.json",
+   "item_sha": "a2e30b2b6c41b5d0304a50eb1ee34f88e31725c11378a10c4b79543f4cd648b8",
+   "question_text": "Assertion: To start sliding a block along a rough surface, the smallest possible applied force is required precisely when the force is applied at an angle θ equal to the angle of friction of that surface. Reason: The angle of friction has the same numerical value as the angle of repose.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "A block sits on a rough horizontal surface. A force F is applied to the block, directed up and away from the surface at angle θ measured from a horizontal reference line drawn at the top of the block (the dashed line runs horizontally from the block's top corner, and F points up and to the right, making angle θ with it).",
+   "solution": {
+    "approach": "Derive the force F(θ) needed to move the block and minimize it over θ, then separately check whether the angle-of-repose fact actually explains that minimum.",
+    "steps": [
+     {
+      "text": "Write the force balance for the block on the verge of sliding under a pull F at angle θ above the horizontal, with friction at its limiting value.",
+      "equation": "F cosθ = μN, N = mg − F sinθ"
+     },
+     {
+      "text": "Combine these into F as a function of θ alone.",
+      "equation": "F(θ) = μmg / (cosθ + μ sinθ)"
+     },
+     {
+      "text": "F(θ) is smallest when cosθ + μ sinθ is largest, which calculus shows happens exactly when tanθ equals the coefficient ratio μ.",
+      "equation": "tanθ = μ"
+     },
+     {
+      "text": "tanθ = μ is exactly the definition of the angle of friction λ, so the minimum force does occur at θ = λ, confirming the Assertion.",
+      "equation": "θ_min = arctan μ = λ"
+     },
+     {
+      "text": "The angle of repose is the incline angle at which a block on that incline starts to slide under gravity alone, and this also works out to arctan μ — the Reason is true on its own.",
+      "equation": "angle of repose = arctan μ"
+     },
+     {
+      "text": "This equality between angle of repose and angle of friction is a separate fact about a different setup (an incline) and is not what makes F(θ) minimum in this horizontal-pull problem, so the Reason is true but does not explain the Assertion.",
+      "equation": "Assertion true, Reason true, not the explanation"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming the Reason must be the explanation whenever both statements happen to be true, without checking that the repose-friction equality is not what produces the minimum in F(θ)."
+     }
+    ],
+    "concept_tags": [
+     "friction",
+     "angle of friction",
+     "minimum applied force"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_94190158",
+   "audit_file": "lom_94190158.6fb6514f.json",
+   "item_sha": "6fb6514f39c488b94bad5170595a13a91d664557a7a9d1d3df4b887f85256b81",
+   "question_text": "Three separate blocks — masses 3 kg, 2 kg and 1 kg — are lined up touching each other on a smooth flat surface, in that order. A horizontal push of 12 N is exerted on the 3 kg block.\n(a) Calculate the overall force acting on the 2 kg block.",
+   "options": [],
+   "figure_description": "Three blocks touch each other in a row on a horizontal frictionless surface: a 3 kg block, then a 2 kg block, then a 1 kg block, arranged left to right. A horizontal force of 12 N pushes on the outer (left) face of the 3 kg block, directed toward the other two blocks.",
+   "solution": {
+    "approach": "Find the common acceleration of all three blocks together, then apply Newton's second law to the 2 kg block alone.",
+    "steps": [
+     {
+      "text": "All three blocks touch and move together on the smooth surface, so treat them as one combined mass to find the acceleration.",
+      "equation": "a = F / (m₁ + m₂ + m₃) = 12 / (3 + 2 + 1) = 2 m/s²"
+     },
+     {
+      "text": "This acceleration is the same for every block, including the 2 kg block in the middle.",
+      "equation": "a = 2 m/s²"
+     },
+     {
+      "text": "The net force on the 2 kg block is its mass times this acceleration.",
+      "equation": "net force = m × a = 2 × 2 = 4 N",
+      "why_this_step": "Newton's second law gives the net force on a block directly from its own mass and the common acceleration, without needing to know the individual contact forces on it."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "4 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using only the 2 kg and 1 kg blocks' combined mass to find the acceleration, forgetting the 3 kg block is also part of the system being pushed."
+     },
+     {
+      "option": null,
+      "text": "Taking the net force on the 2 kg block as the full applied 12 N instead of scaling it down by mass."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "blocks in contact",
+     "system of bodies"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_8c269e6a",
+   "audit_file": "lom_8c269e6a.dcc541f3.json",
+   "item_sha": "dcc541f3df57306abea94df0e8646f030ee8bb9915e61451462fbd282b4f9ec8",
+   "question_text": "For the setup pictured, work out how the size of aA is related to the size of aB.",
+   "options": [],
+   "figure_description": "A wedge (a right-triangular ramp) sits on the ground, its slanted face climbing from the ground at a fixed angle θ to the horizontal, up to a vertical right-hand edge. A straight rod, marked A, runs through a fixed guide bracket mounted above and to the left, so it can move only along its own straight axis. The rod's lower tip touches the wedge's slanted face, and right where they meet, the rod's axis is perpendicular to that slanted face (a 90° angle is marked there). B labels the slanted face itself, measured from that contact point up toward the top of the wedge.",
+   "solution": {
+    "approach": "The rod moves only along a line that is the normal to the incline, so its speed equals the component of the wedge's horizontal speed along that normal.",
+    "steps": [
+     {
+      "text": "The rod can move only along its guide's fixed line, which is the normal to the incline at the point where rod and wedge touch."
+     },
+     {
+      "text": "The incline's face makes angle θ with the horizontal, so its normal makes angle θ with the vertical, or (90° − θ) with the horizontal.",
+      "equation": "normal direction makes angle θ with the vertical"
+     },
+     {
+      "text": "For the rod's end to stay on the moving incline face, the rod's speed along the normal must equal the component of the wedge's horizontal speed along that same normal.",
+      "equation": "vA = vB cos(90° − θ)"
+     },
+     {
+      "text": "Simplify the component, and the same relation holds for acceleration.",
+      "equation": "vA = vB sinθ, so aA = aB sinθ"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "aA = aB sinθ"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using cosθ instead of sinθ gives aA = aB cosθ, mixing up the angle the incline makes with the horizontal and the angle its normal makes with the horizontal."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "relative velocity along common normal",
+     "wedge and rod contact"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_82fde00e",
+   "audit_file": "lom_82fde00e.8ce83fa6.json",
+   "item_sha": "8ce83fa65ec6d8fc169cb2cc8ea48ebaeb81fc5c56cd22833d98238512c0ccae",
+   "question_text": "A 6 kg block rests on a rough horizontal floor where the static friction coefficient is μₛ = 0.6 and the kinetic friction coefficient is μₖ = 0.4. A horizontal force that increases with time, F = 4t newton (with t in seconds), acts on the block, as pictured. Taking g = 10 m/s², draw how the block's acceleration varies with time.",
+   "options": [],
+   "figure_description": "A 6 kg block rests on a rough horizontal surface with static friction coefficient μₛ = 0.6 and kinetic friction coefficient μₖ = 0.4. A horizontal force F = 4t (in newton, t in seconds) pushes the block to the right, increasing with time.",
+   "solution": {
+    "approach": "The block stays still until F = 4t exceeds the static limit; once moving, friction drops to the lower kinetic value, so the acceleration jumps upward.",
+    "steps": [
+     {
+      "text": "Find the maximum static friction, which the growing force must exceed before the block moves.",
+      "equation": "f(s,max) = μₛmg = 0.6 × 6 × 10 = 36 N"
+     },
+     {
+      "text": "Find the time at which F first reaches this value; before that time the block does not move, so a = 0.",
+      "equation": "4t = 36 → t = 9 s"
+     },
+     {
+      "text": "Once the block starts moving, kinetic friction takes over, and it is smaller than the static limit that was needed to start motion.",
+      "equation": "f(k) = μₖmg = 0.4 × 6 × 10 = 24 N"
+     },
+     {
+      "text": "For t ≥ 9 s, apply Newton's second law with this smaller kinetic friction opposing F.",
+      "equation": "a = (4t − 24)/6 m/s²"
+     },
+     {
+      "text": "At t = 9 s this gives a jump: a = (36 − 24)/6 = 2 m/s², so the acceleration jumps from 0 to 2 m/s² at t = 9 s, then keeps rising with slope 2/3.",
+      "equation": "a = 0 for 0 ≤ t < 9 s; a jumps to 2 m/s² at t = 9 s and then a = (4t − 24)/6 m/s² for t ≥ 9 s"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a = 0 for 0 ≤ t < 9 s; at t = 9 s the acceleration jumps discontinuously to 2 m/s² (because kinetic friction, 24 N, is less than the static limit, 36 N, that was needed to start motion); for t ≥ 9 s, a = (4t − 24)/6 m/s², a straight line of slope 2/3 m/s³ starting from 2 m/s² at t = 9 s."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the static friction value 36 N in the formula for t ≥ 9 s instead of the kinetic value 24 N, giving a = 0 at t = 9 s and missing the jump."
+     },
+     {
+      "option": null,
+      "text": "Missing the discontinuity and drawing the graph as one smooth straight line through a = 0 at t = 9 s, instead of a jump to a = 2 m/s²."
+     }
+    ],
+    "concept_tags": [
+     "static friction",
+     "kinetic friction",
+     "time-varying force",
+     "graph of motion"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_90108702",
+   "audit_file": "lom_90108702.b9bb1972.json",
+   "item_sha": "b9bb1972a83c905c8dd4376a9bd3ba213b5b311290b8a0db91ffc9b59ba0d7ca",
+   "question_text": "Sliding down a smooth incline set at angle θ to the horizontal, a body reaches the bottom in time t. When that same incline is instead made rough, the body now needs 2t to get to the bottom. Find the coefficient of friction of that rough surface.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "(3/4) tanθ"
+    },
+    {
+     "label": "(b)",
+     "text": "(2/3) tanθ"
+    },
+    {
+     "label": "(c)",
+     "text": "(1/4) tanθ"
+    },
+    {
+     "label": "(d)",
+     "text": "(1/2) tanθ"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Distance from rest grows as time squared, so doubling the time on the rough incline means the acceleration drops to a quarter; use that to find the friction coefficient.",
+    "steps": [
+     {
+      "text": "On the smooth incline, the body starts from rest and covers the length L in time t.",
+      "equation": "L = ½(g sinθ)t² ⇒ acceleration = g sinθ"
+     },
+     {
+      "text": "On the rough incline, the same length L is covered in time 2t. Since distance from rest goes as the square of time, doubling the time means the acceleration is one quarter of the smooth-incline value.",
+      "equation": "L = ½ a_rough(2t)² ⇒ a_rough = (g sinθ)/4"
+     },
+     {
+      "text": "On the rough incline, friction reduces the acceleration below g sinθ by the friction term. Set this equal to the value found above and solve for μ.",
+      "equation": "g sinθ − μg cosθ = (g sinθ)/4 ⇒ μg cosθ = (3/4)g sinθ ⇒ μ = (3/4)tanθ"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "(3/4) tanθ"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Assuming acceleration drops in direct proportion to time instead of its square, so a_rough = (g sinθ)/2, gives μ = (1/2)tanθ."
+     }
+    ],
+    "concept_tags": [
+     "kinematics on an incline",
+     "kinetic friction",
+     "equations of motion"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_88658934",
+   "audit_file": "lom_88658934.23efe61e.json",
+   "item_sha": "23efe61e8f12491dc38209cf4307bfaf137b04fcbc16a177e2b112ab54e68df7",
+   "question_text": "For the arrangement pictured, work out how fast block M accelerates. Every surface in the picture is frictionless.",
+   "options": [],
+   "figure_description": "A fixed wedge has a sloped face rising from left (low) to right (high) at 30° to the horizontal. A block of mass M rests on the slope. A string tied to M runs up along the slope to a pulley fixed at the wedge's top corner, passes over it, then goes straight down, passes UNDER a second, movable pulley (wrapping round its lower half) and rises vertically to a fixed anchor on a horizontal support above. The block of mass 2M hangs directly from the axle of that movable pulley. So the movable pulley hangs in a loop of the single string, and 2M descends half as far as M moves along the slope. All surfaces, pulleys and the string are frictionless and light.",
+   "solution": {
+    "approach": "Link M's motion up the slope to 2M's fall through the single string over the movable pulley, then apply Newton's second law to M and to the pulley-plus-2M system.",
+    "steps": [
+     {
+      "text": "One string runs from M up the slope, over the fixed pulley at the top, straight down, under the movable pulley carrying 2M, and up to a fixed anchor above.",
+      "equation": "single string, tension T throughout"
+     },
+     {
+      "text": "If 2M descends a distance x, both the segment above it going to the fixed pulley and the segment going to the fixed anchor shorten by x each, so 2x of string must come from M's side, meaning M moves 2x up the slope.",
+      "equation": "aM = 2 a(2M)",
+      "why_this_step": "This is the constraint relation, fixed purely by the string geometry, and it holds before any force equation is written."
+     },
+     {
+      "text": "Write Newton's second law for M along the frictionless incline, taking up the slope as positive.",
+      "equation": "T − Mg sin30° = M aM = M(2a2M)"
+     },
+     {
+      "text": "Write Newton's second law for the 2M-plus-movable-pulley system, taking downward as positive; two string segments pull it up with tension T each.",
+      "equation": "2Mg − 2T = 2M a2M"
+     },
+     {
+      "text": "From the second equation, T = Mg − M a2M. Substitute into the first equation and solve for a2M.",
+      "equation": "Mg − M a2M − Mg sin30° = 2M a2M → Mg(1 − sin30°) = 3M a2M → a2M = g(1 − sin30°)/3 = g/6"
+     },
+     {
+      "text": "Use aM = 2 a2M to get M's acceleration up the slope.",
+      "equation": "aM = 2(g/6) = g/3, directed up the incline"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "acceleration of block M = g/3, directed up the incline (≈ 3.3 m/s² taking g = 10 m/s²)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the pulley-and-2M equation as 2T − 2Mg = 2M a2M instead of 2Mg − 2T = 2M a2M, which gives the wrong answer a = g instead of the correct g/3."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "movable pulley",
+     "inclined plane",
+     "Newton's second law"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "lom_892cab31",
+   "audit_file": "lom_892cab31.3a4fefe7.json",
+   "item_sha": "3a4fefe7a8bb87fd53c30f2e7f8c588054e47cd489d3c740b5f7e62d7e25bc41",
+   "question_text": "A ball of weight w and radius a rests against a smooth, vertical wall, touching it at one point on its surface. A string of length a, equal to the ball's radius, runs from a second point on the ball's surface to a point on the wall, holding the ball in place. Find the tension in this string.",
+   "options": [],
+   "figure_description": "A ball of radius a touches a smooth vertical wall at one point on its surface. A string of length a runs from a different point on the ball's surface up to a point on the wall, and this string holds the ball against gravity.",
+   "solution": {
+    "approach": "Since the weight and normal reaction pass through the sphere's centre, the string's line must too; this fixes its angle, and a force balance then gives the tension.",
+    "steps": [
+     {
+      "text": "As in the earlier part, the string's line, extended, must pass through the centre O for the sphere to be in rotational equilibrium, so O, B and C lie on one straight line.",
+      "equation": "O, B, C colinear"
+     },
+     {
+      "text": "B is on the sphere's surface, so OB equals the radius a; since the string has length a, C lies a further distance a beyond B along the same line.",
+      "equation": "OC = OB + BC = a + a = 2a"
+     },
+     {
+      "text": "C is a point on the wall, at the same perpendicular distance a from O as the contact point A (since the wall is a flat vertical plane), so in the right triangle formed by O, A and C, cos(angle AOC) = OA/OC.",
+      "equation": "cos(angle AOC) = a/2a = 1/2  →  angle AOC = 60°",
+      "why_this_step": "OA is horizontal (the radius to the wall contact point) and OC has length 2a, so this ratio fixes the string's direction from the horizontal."
+     },
+     {
+      "text": "The string, along OC, makes 60° with the horizontal. Resolve forces on the sphere: weight w down, normal reaction N horizontal (away from the wall), tension T along OC toward the wall.",
+      "equation": "horizontal: N = T cos60°;  vertical: T sin60° = w"
+     },
+     {
+      "text": "Solve the vertical equation for the tension.",
+      "equation": "T = w / sin60° = 2w/√3 ≈ 1.155w"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T = 2w/√3 (≈ 1.15w)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Swapping the two angles of the right triangle and taking the string's angle from the horizontal as 30° instead of 60° gives the wrong T = w/sin30° = 2w."
+     },
+     {
+      "option": null,
+      "text": "Assuming the string is horizontal, like the wall's normal reaction, leaves no way to balance the sphere's weight vertically."
+     }
+    ],
+    "concept_tags": [
+     "three-force equilibrium",
+     "geometry of a sphere in contact",
+     "tension",
+     "normal reaction"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_953e2438",
+   "audit_file": "lom_953e2438.d277e5e9.json",
+   "item_sha": "d277e5e9c72e211a64df86cbfb9e4de504571c6940f54e0cc723fd07ed104738",
+   "question_text": "A block sits motionless on a rough incline tilted at 30° from the horizontal. Between the block and the incline, the static friction coefficient equals 0.8, and the friction force acting on the block measures 10 N. Using g = 10 m/s², determine the block's mass, in kilograms.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2.0"
+    },
+    {
+     "label": "(b)",
+     "text": "4.0"
+    },
+    {
+     "label": "(c)",
+     "text": "1.6"
+    },
+    {
+     "label": "(d)",
+     "text": "2.5"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Since the block is not sliding, friction exactly balances the pull of gravity along the incline, so set that friction force equal to 10 N and solve for the mass.",
+    "steps": [
+     {
+      "text": "The block rests without sliding, so along the incline the only two forces are gravity's component down the slope and friction up the slope; these must balance.",
+      "equation": "f = mg sinθ"
+     },
+     {
+      "text": "Put in the given friction force, the angle, and g, then solve for the mass.",
+      "equation": "10 = m(10)sin30° = 5m ⇒ m = 2.0 kg"
+     },
+     {
+      "text": "Check that this friction is within what the surface can supply, using the given coefficient of static friction.",
+      "equation": "μₛN = 0.8 × 2.0 × 10 × cos30° ≈ 13.9 N, which is more than 10 N, so the block can indeed stay still"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "2.0"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the friction formula μmg instead of the balance mg sinθ, ignoring that the incline reduces the normal force, gives m = 10/(0.8 × 10) = 1.25 kg."
+     },
+     {
+      "option": null,
+      "text": "Mixing up sinθ and cosθ in the balance equation gives m = 10/(10cos30°) ≈ 1.15 kg."
+     }
+    ],
+    "concept_tags": [
+     "static friction",
+     "inclined plane",
+     "force balance"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "lom_8fc83d1a",
+   "audit_file": "lom_8fc83d1a.0a43502c.json",
+   "item_sha": "0a43502cd2e1c52066255814e12f7b7cde6bd8bc7b4a475a2e4235e4b1dc54a4",
+   "question_text": "A 1 kg particle sits on a rough inclined plane that makes an angle of 30° with the horizontal ground. The particle is right at the point of sliding down. Determine the coefficient of friction acting between the particle and the incline.",
+   "options": [],
+   "figure_description": "A ramp rises from left to right, making an angle of 30° with the horizontal ground at its base. A small block sits on the slope. The block feels a normal push N perpendicular to the slope surface, a friction force f pointing up along the slope, and its own weight split into two parts: one part pulling it down along the slope surface and the other pressing it into the slope surface.",
+   "solution": {
+    "approach": "At the point of slipping, the friction force reaches its maximum value and exactly balances the weight component along the incline.",
+    "steps": [
+     {
+      "text": "On the incline, the weight component along the surface pulls the particle down, and friction resists it, reaching its maximum since the particle is about to slip.",
+      "equation": "mg sinθ = μ mg cosθ"
+     },
+     {
+      "text": "The mass mg cancels from both sides, leaving a relation that depends only on the angle.",
+      "equation": "μ = sinθ / cosθ = tanθ"
+     },
+     {
+      "text": "Put in θ = 30°.",
+      "equation": "μ = tan30° = 1/√3 = 0.58",
+      "why_this_step": "At 30 degrees, tan gives the exact ratio of the sliding force to the holding force, independent of the particle's mass."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "μ = tan30° ≈ 0.58"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using sinθ instead of tanθ and taking μ = sin30° = 0.5."
+     },
+     {
+      "option": null,
+      "text": "Using cosθ instead of tanθ and taking μ = cos30° = 0.87."
+     }
+    ],
+    "concept_tags": [
+     "limiting friction",
+     "coefficient of friction",
+     "inclined plane"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_97c46dfd",
+   "audit_file": "lom_97c46dfd.de413847.json",
+   "item_sha": "de413847c7f911b4497f462fb0d12503ff510725a71d767c64e89c1c4c56ffd6",
+   "question_text": "A frictionless inclined plane of length L, set at angle θ to the horizontal, stands inside a lift. The lift is moving downward but slowing down, with retardation a. A body starts from rest at the top of the incline and slides down its length. How much time does it take to slide down?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "√(2L / ((g + a) sin θ))"
+    },
+    {
+     "label": "(b)",
+     "text": "√(2L / ((g − a) sin θ))"
+    },
+    {
+     "label": "(c)",
+     "text": "√(2L / (a sin θ))"
+    },
+    {
+     "label": "(d)",
+     "text": "√(2L / (g sin θ))"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Work in the lift's frame: its upward retardation adds a downward pseudo force, so the body slides down with effective gravity g + a instead of g.",
+    "steps": [
+     {
+      "text": "The lift moves down but is slowing down, so its acceleration points upward, with size a. In the lift's frame, this adds a pseudo force on the body, directed downward.",
+      "equation": "pseudo force = ma, downward"
+     },
+     {
+      "text": "The effective downward pull on the body is now gravity plus the pseudo force, so the effective gravity is g + a.",
+      "equation": "g_eff = g + a"
+     },
+     {
+      "text": "The incline is smooth, so the only force along the incline is the component of the effective weight along it. Find the acceleration down the incline.",
+      "equation": "a_incline = (g + a) sinθ"
+     },
+     {
+      "text": "Use the equation for distance from rest to find the time to slide the full length L.",
+      "equation": "L = ½(g + a)sinθ · t² ⇒ t = √(2L / ((g + a) sinθ))"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "√(2L / ((g + a) sin θ))"
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Treating the lift's retardation as making the effective gravity smaller instead of larger gives g − a in place of g + a."
+     },
+     {
+      "option": 4,
+      "text": "Ignoring the lift's motion entirely and using plain gravity gives the answer for a stationary lift, √(2L / (g sinθ))."
+     }
+    ],
+    "concept_tags": [
+     "pseudo force",
+     "non-inertial frame",
+     "inclined plane"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_7f407823",
+   "audit_file": "lom_7f407823.f5d880cb.json",
+   "item_sha": "f5d880cbae0d7ab85f41bfce23a7487ded4d22c184ef0b6596fd96b51e04b3a4",
+   "question_text": "A weight of 10 N is to be split into two components: one directed parallel to a slope, and one directed perpendicular to it. The slope makes an angle of 30° with the horizontal. Find both components.",
+   "options": [],
+   "figure_description": "An inclined slope rising to the right at 30° to the horizontal ground. A weight w = 10 N acts vertically downward at a point on the slope. It is split into w∥, directed up along the slope surface, and w⊥, directed into the slope surface, perpendicular to it. The angle between the vertical weight and the perpendicular component is 30°, and the angle between the slope surface and the vertical is 60°.",
+   "solution": {
+    "approach": "Split the weight into a component along the slope and a component into the slope using the incline angle.",
+    "steps": [
+     {
+      "text": "The weight acts vertically downward. The angle between the weight and the perpendicular to the slope equals the slope angle, 30°.",
+      "equation": "θ = 30°"
+     },
+     {
+      "text": "The component along the slope (parallel to the surface) is the weight times the sine of the slope angle.",
+      "equation": "w∥ = w sin θ = 10 × sin 30° = 5 N"
+     },
+     {
+      "text": "The component into the slope (perpendicular to the surface) is the weight times the cosine of the slope angle.",
+      "equation": "w⊥ = w cos θ = 10 × cos 30° = 8.66 N",
+      "why_this_step": "The two components are at right angles to each other, so sine gives the along-slope part and cosine gives the into-slope part."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "component parallel to the slope = 5 N (up the slope); component perpendicular to the slope = 8.66 N (into the slope)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Swapping sine and cosine gives 8.66 N along the slope and 5 N perpendicular to it."
+     }
+    ],
+    "concept_tags": [
+     "resolution of forces",
+     "inclined plane"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_8fc83d1a",
+   "audit_file": "lom_8fc83d1a.72184822.json",
+   "item_sha": "7218482282ebbe44867ba1323b446399db49de918df012bc728fb57a58834081",
+   "question_text": "A 1 kg particle sits on a rough inclined plane that makes an angle of 60° with the horizontal ground. The particle is right at the point of sliding down. Determine the coefficient of friction acting between the particle and the incline.",
+   "options": [],
+   "figure_description": "A ramp rises from left to right, making an angle of 30° with the horizontal ground at its base. A small block sits on the slope. The block feels a normal push N perpendicular to the slope surface, a friction force f pointing up along the slope, and its own weight split into two parts: one part pulling it down along the slope surface and the other pressing it into the slope surface.",
+   "solution": {
+    "approach": "At the point of slipping, the friction force reaches its maximum value and exactly balances the weight component along the incline.",
+    "steps": [
+     {
+      "text": "On the incline, the weight component along the surface pulls the particle down, and friction resists it, reaching its maximum since the particle is about to slip.",
+      "equation": "mg sinθ = μ mg cosθ"
+     },
+     {
+      "text": "The mass mg cancels from both sides, leaving a relation that depends only on the angle.",
+      "equation": "μ = sinθ / cosθ = tanθ"
+     },
+     {
+      "text": "Put in θ = 30°.",
+      "equation": "μ = tan30° = 1/√3 = 0.58",
+      "why_this_step": "At 30 degrees, tan gives the exact ratio of the sliding force to the holding force, independent of the particle's mass."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "μ = tan30° ≈ 0.58"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using sinθ instead of tanθ and taking μ = sin30° = 0.5."
+     },
+     {
+      "option": null,
+      "text": "Using cosθ instead of tanθ and taking μ = cos30° = 0.87."
+     }
+    ],
+    "concept_tags": [
+     "limiting friction",
+     "coefficient of friction",
+     "inclined plane"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_992ae579",
+   "audit_file": "lom_992ae579.7663d483.json",
+   "item_sha": "7663d48311a4223157c2c9ab83a8db4e5d7bce2f9112c564b535ea7a0a1d8591",
+   "question_text": "A wedge with a slope angled 37° above the horizontal (use sin 37° = 3/5) carries a small block of mass m resting on its slanted face. The wedge itself is driven so that it gains speed toward the right at a steady 3 m/s² (take g = 10 m/s²). What frictional force, acting between the block and the wedge's surface, is needed to keep the block from sliding down or up the slope while this happens?",
+   "options": [],
+   "figure_description": "A triangular wedge stands on level ground with its vertical face on the LEFT. Its sloped face runs from the top of that vertical face down to the right, meeting the ground at the wedge's bottom-right tip, where the 37° angle between slope and ground is marked; so the slope is high on the left and low on the right. A block of mass m rests on the sloped face. The whole wedge accelerates horizontally to the RIGHT (toward the low end of the slope) at 3 m/s², shown by an arrow beside the wedge.",
+   "solution": {
+    "approach": "In the wedge's accelerating frame the block is held by gravity, a leftward pseudo-force, the normal force and friction; resolve along the slope to isolate friction directly.",
+    "steps": [
+     {
+      "text": "Since the block does not slide relative to the incline, it shares the wedge's acceleration exactly.",
+      "equation": "a(block) = a(wedge) = 3 m/s², horizontal, to the right"
+     },
+     {
+      "text": "Work in the wedge's own frame, where the block is at rest under an added pseudo-force equal to its mass times the wedge's acceleration, directed opposite to that acceleration.",
+      "equation": "pseudo-force = m × 3 = 3m N, directed left, opposite the rightward acceleration"
+     },
+     {
+      "text": "Resolve gravity and the pseudo-force along the slope, which rises to the left at 37° to the horizontal, taking up-slope as positive.",
+      "equation": "gravity along slope = −m g sin37° = −6m N (down-slope); pseudo-force along slope = +m × 3 × cos37° = +2.4m N (up-slope)"
+     },
+     {
+      "text": "For the block to stay at rest in this frame, friction must balance the sum of these two along-slope components.",
+      "equation": "f = m g sin37° − m × 3 × cos37° = 6m − 2.4m = 3.6m N, directed up the slope"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "f = 3.6m N, directed up the incline, where m is the block's mass in kg (equivalently f = 0.36mg)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring that the incline itself is accelerating and treating it like a stationary incline gives friction as only the gravity component along the slope, m g sin37° = 6m N, instead of 3.6m N."
+     },
+     {
+      "option": null,
+      "text": "Adding the pseudo-force's along-slope component to gravity's instead of subtracting it gives m g sin37° + m × 3 × cos37° = 8.4m N instead of the correct 3.6m N."
+     }
+    ],
+    "concept_tags": [
+     "pseudo force",
+     "non-inertial frame",
+     "friction",
+     "inclined plane"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_87408b28",
+   "audit_file": "lom_87408b28.226ff72d.json",
+   "item_sha": "226ff72d7194b8561b8eec4a5c3e7204c88b6fdcb7beee1a89d4e1716750ec70",
+   "question_text": "Two fixed pulleys, A and B, are mounted on a rigid horizontal support. A single string runs over both pulleys; its two free ends, marked P and Q, are each pulled straight downward at the same constant speed U, as the figure shows. This action makes a mass M, hanging from the string midway between the two pulleys, rise steadily upward. At what speed does M move upward?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2U cos θ"
+    },
+    {
+     "label": "(b)",
+     "text": "U/cos θ"
+    },
+    {
+     "label": "(c)",
+     "text": "2U/cos θ"
+    },
+    {
+     "label": "(d)",
+     "text": "U cos θ"
+    }
+   ],
+   "figure_description": "A fixed horizontal support at the top holds two pulleys, A on the left and B on the right, a constant distance apart. Over pulley A, a string has one part hanging straight down to a free end P, and another part running diagonally down and inward to mass M, which hangs centered below, between the pulleys. Over pulley B, symmetrically, a string has one part hanging straight down to a free end Q, and another part running diagonally down and inward to the same mass M. Each diagonal segment makes angle θ with the vertical line drawn through the midpoint between A and B. Ends P and Q both move straight down at speed U.",
+   "solution": {
+    "approach": "Write the string's constant total length as the P-to-pulley part plus the pulley-to-M part, then differentiate to relate the speeds.",
+    "steps": [
+     {
+      "text": "The total length of each string (from P to pulley A, then A to mass M) stays constant, since the string is unstretchable.",
+      "equation": "length(P→A) + length(A→M) = constant"
+     },
+     {
+      "text": "As P moves down at speed U, the P-to-A part grows at rate U, so the A-to-M part must shrink at the same rate.",
+      "equation": "d[length(A→M)]/dt = −U"
+     },
+     {
+      "text": "The rate at which the A-to-M segment shortens equals the component of M's upward velocity along that segment.",
+      "equation": "d[length(A→M)]/dt = −v cosθ"
+     },
+     {
+      "text": "Equate the two expressions and solve for the speed of M.",
+      "equation": "U = v cosθ, so v = U/cosθ"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "U/cosθ"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Multiplying by cosθ instead of dividing, and doubling for the two strings, gives 2U cosθ."
+     },
+     {
+      "option": 3,
+      "text": "Doubling U/cosθ because two strings pull on M, instead of recognizing the same relation holds independently on each side, gives 2U/cosθ."
+     },
+     {
+      "option": 4,
+      "text": "Multiplying by cosθ instead of dividing by it gives U cosθ."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "pulley system",
+     "rate of change of string length"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_86ae4582",
+   "audit_file": "lom_86ae4582.661c86c8.json",
+   "item_sha": "661c86c8345d144e2e5a895f0038cc2c42e2f10a99a641f72bb6ee02e6fb34a7",
+   "question_text": "Four forces meet at one point of a body and the body does not move, so it is in equilibrium. Two of the forces are known, 8 N and 4 N; the other two, F₁ and F₂, are not. Using the directions drawn in the figure, work out how large F₁ and F₂ are.",
+   "options": [],
+   "figure_description": "Four forces act on an object at a single point O. One force of 8 N points horizontally to the right. A second force of 4 N points up and to the right, making a 60° angle with the 8 N force. A third force, F₁, points nearly straight up, making a further 30° angle with the 4 N force (so F₁ is 90° from the 8 N force). A fourth force, F₂, points down and to the left, making a 30° angle with the horizontal line extending to the left (opposite to the 8 N force).",
+   "solution": {
+    "approach": "Write each force by its angle from the 8 N force, then set the horizontal sum and the vertical sum each to zero.",
+    "steps": [
+     {
+      "text": "Measure every angle from the 8 N force. The 4 N force is at 60°. F₁ is a further 30° from the 4 N force, so F₁ is at 90°. F₂ is 30° below the line opposite the 8 N force, so F₂ is at 210°.",
+      "equation": "8 N at 0°, 4 N at 60°, F₁ at 90°, F₂ at 210°"
+     },
+     {
+      "text": "For equilibrium the horizontal parts of all four forces add to zero.",
+      "equation": "8 cos0° + 4 cos60° + F₁ cos90° + F₂ cos210° = 0"
+     },
+     {
+      "text": "cos90° = 0, so F₁ drops out of this equation. Solve for F₂.",
+      "equation": "8 + 2 + 0 − F₂(0.866) = 0 → F₂ = 10 / 0.866 = 11.55 N"
+     },
+     {
+      "text": "For equilibrium the vertical parts of all four forces also add to zero.",
+      "equation": "8 sin0° + 4 sin60° + F₁ sin90° + F₂ sin210° = 0"
+     },
+     {
+      "text": "Put in the values found so far and solve for F₁.",
+      "equation": "0 + 3.46 + F₁ − 11.55(0.5) = 0 → F₁ = 5.77 − 3.46 = 2.31 N",
+      "why_this_step": "sin210° = −0.5, so the F₂ term is −5.77, leaving F₁ = 5.77 − 3.46."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "F₁ = 2.31 N, F₂ = 11.55 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking F₂'s angle from the horizontal as 30° instead of 210°, which flips the sign of its components and gives the wrong values."
+     },
+     {
+      "option": null,
+      "text": "Placing F₁ at 30° from the 8 N force instead of 90°, missing that the 30° is measured from the 4 N force, which is itself already at 60°."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium of concurrent forces",
+     "resolution of forces"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_800ec4d3",
+   "audit_file": "lom_800ec4d3.1c6cc438.json",
+   "item_sha": "1c6cc4382c67545f2365316c2400b57aa23e4427b510791e3c6e2c6100daaff5",
+   "question_text": "A box, open at the top, moves with a downward acceleration a, as shown in the figure. A block of mass m sits on the floor inside this box. What value must a have so that the block presses on the box's floor with a force of mg/4?",
+   "options": [],
+   "figure_description": "A square box, open at the top, accelerates downward; a downward arrow labelled a is drawn just to the left of the box, outside it. Inside the box, a block (of mass m) rests on the box's floor.",
+   "solution": {
+    "approach": "In the ground frame, apply Newton's second law to the block along the vertical, using the given floor reaction to find the box's acceleration.",
+    "steps": [
+     {
+      "text": "The block accelerates downward with the box, so its weight minus the floor's normal push equals mass times acceleration.",
+      "equation": "mg − N = ma"
+     },
+     {
+      "text": "Substitute the given floor reaction, N = mg/4.",
+      "equation": "mg − mg/4 = ma"
+     },
+     {
+      "text": "Divide by m and solve for a.",
+      "equation": "g − g/4 = a, so a = 3g/4"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a = 3g/4, directed downward (≈ 7.5 m/s² for g = 10 m/s²)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing the equation as N − mg = ma, treating the floor force as larger than the weight, which gives the wrong sign a = −3g/4."
+     },
+     {
+      "option": null,
+      "text": "Setting the acceleration equal to N/m directly, a = g/4, instead of first subtracting N from the weight."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "normal force",
+     "accelerating frame"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_9237b855",
+   "audit_file": "lom_9237b855.686d7b16.json",
+   "item_sha": "686d7b16389d513a3f78ccfb5510bed24828fc6b3ec2d0bc914dd2fdd98ed0ca",
+   "question_text": "For the pulley arrangement shown in the figure, write the equation connecting the accelerations a₁, a₂ and a₃ of blocks 1, 2 and 3, using the string-length (constraint) method.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end.",
+   "solution": {
+    "approach": "Write the total length of each string as constant, then differentiate twice to relate the accelerations of the three blocks.",
+    "steps": [
+     {
+      "text": "Let the fixed pulley be the reference. If block 1 moves down by x₁, the string over the fixed pulley shortens on the movable-pulley side by the same amount, so the movable pulley moves up by x₁.",
+      "equation": "x₁ + x_p = constant"
+     },
+     {
+      "text": "Differentiate this length relation twice to relate the accelerations, taking downward as positive for all bodies.",
+      "equation": "a₁ + a_p = 0"
+     },
+     {
+      "text": "For the movable pulley's own string, the sum of the two segments to blocks 2 and 3 stays constant as the pulley moves.",
+      "equation": "(x₂ − x_p) + (x₃ − x_p) = constant"
+     },
+     {
+      "text": "Differentiate this relation twice.",
+      "equation": "a₂ + a₃ − 2a_p = 0",
+      "why_this_step": "The movable pulley's own displacement enters this length twice, once for each side of its string."
+     },
+     {
+      "text": "Combine the two results by substituting a_p from the first relation.",
+      "equation": "a_p = −a₁, so 2a₁ + a₂ + a₃ = 0"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "2a₁ + a₂ + a₃ = 0, with all three accelerations measured downward as positive"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating the movable pulley as fixed and writing a₂ + a₃ = 0 directly, missing that the movable pulley itself accelerates when block 1 moves."
+     },
+     {
+      "option": null,
+      "text": "Writing a₁ + a₂ + a₃ = 0 instead of 2a₁ + a₂ + a₃ = 0, missing that the movable pulley's own motion enters its string's length twice, once for each side."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "pulley system",
+     "kinematics of connected bodies"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_7f786374",
+   "audit_file": "lom_7f786374.d2d1f04c.json",
+   "item_sha": "d2d1f04cc770cf775818146bbb2347b8b4443b5bde1ec578a325f4925295521a",
+   "question_text": "Two blocks lie one on top of the other on a frictionless floor: a 1 kg block sits on a 2 kg block. The friction coefficient between the two blocks themselves is μ = 0.4. The 1 kg block starts out moving at 2 m/s and the 2 kg block starts out moving at 8 m/s, both toward the same side, as pictured. Take g = 10 m/s² and answer the following.\n(a) Find the time after which the two blocks stop sliding relative to each other.\n(b) Find the common speed the two blocks share at that instant.\n(c) Find how far each block, the 1 kg block and the 2 kg block, has travelled by that instant.",
+   "options": [],
+   "figure_description": "A 1 kg block sits on top of a 2 kg block, which itself rests on a frictionless (smooth) floor. The 1 kg block moves to the right at 2 m/s and the 2 kg block moves to the right at 8 m/s. Friction, with coefficient μ = 0.4, acts only between the 1 kg block and the 2 kg block; there is no friction between the 2 kg block and the floor.",
+   "solution": {
+    "approach": "The ground is smooth, so only friction between the two blocks acts; the faster bottom block drags the top one forward while it itself slows down.",
+    "steps": [
+     {
+      "text": "The bottom (2 kg) block moves faster (8 m/s) than the top (1 kg) block (2 m/s), so kinetic friction from the 1 kg block acts backward on the 2 kg block and forward on the 1 kg block.",
+      "equation": "f = μ × m(1kg) × g = 0.4 × 1 × 10 = 4 N"
+     },
+     {
+      "text": "Find each block's acceleration. The 1 kg block feels only this forward friction; the 2 kg block feels only the equal, opposite friction (the ground beneath it is smooth).",
+      "equation": "a(1kg) = 4/1 = 4 m/s², a(2kg) = −4/2 = −2 m/s²"
+     },
+     {
+      "text": "Set the two velocities equal to find when they reach a common speed.",
+      "equation": "2 + 4t = 8 − 2t → t = 1 s"
+     },
+     {
+      "text": "Find the common velocity at that time.",
+      "equation": "v = 2 + 4(1) = 6 m/s"
+     },
+     {
+      "text": "Find each block's displacement in that 1 s using s = v₀t + ½at².",
+      "equation": "s(1kg) = 2(1) + ½(4)(1)² = 4 m, s(2kg) = 8(1) + ½(−2)(1)² = 7 m"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) t = 1 s, (b) common velocity = 6 m/s, (c) displacement of 1 kg block = 4 m, displacement of 2 kg block = 7 m"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Applying friction to the 2 kg block from the ground as well, even though the ground is stated to be smooth, which changes its acceleration and the final time."
+     },
+     {
+      "option": null,
+      "text": "Swapping which block speeds up and which slows down, giving friction the wrong direction on each block."
+     }
+    ],
+    "concept_tags": [
+     "kinetic friction",
+     "relative motion",
+     "blocks in contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_7d765ebc",
+   "audit_file": "lom_7d765ebc.08109fb4.json",
+   "item_sha": "08109fb40f559b20682ac426432a65e56c3caac7fe5cf371bea3ae88d50ce626",
+   "question_text": "A rough wedge has its sloped face tilted at 60° to the horizontal. A block of mass 6 kg sits on this slope, with the static friction coefficient between block and slope μs = 0.6 and the kinetic friction coefficient μk = 0.4. A force F is applied to the block, directed up along the slope's surface. Taking g = 10 m/s², work out the size of F needed in each of these situations:\n(a) F keeps the block completely still on the slope.\n(b) F makes the block slide down the slope at a steady (constant) speed.\n(c) F makes the block move up the slope while speeding up at 4 m/s².",
+   "options": [],
+   "figure_description": "A wedge stands with its slope rising from a 60° angle at the base. A 6 kg block rests on this slanted surface. A force F is applied to the block along the slope, pointing up and away from the base. The friction coefficients printed beside the incline are μs = 0.6 and μk = 0.4.",
+   "solution": {
+    "approach": "Write Newton's second law along the incline for each case, using static friction at its limit for the stationary range and kinetic friction, opposing motion, for the moving cases.",
+    "steps": [
+     {
+      "text": "The normal force is unaffected by F since F acts along the incline, so N = mg cos60°.",
+      "equation": "N = 6×10×0.5 = 30 N"
+     },
+     {
+      "text": "To keep the block stationary, F must lie between the value that barely stops it sliding down (friction at its maximum, acting up the slope) and the value that barely stops it sliding up (friction at its maximum, acting down the slope).",
+      "equation": "F_min = mg sin60° − μₛmg cos60°,  F_max = mg sin60° + μₛmg cos60°"
+     },
+     {
+      "text": "Compute both limits.",
+      "equation": "F_min = 60×0.866 − 0.6×30 = 51.96 − 18 ≈ 34.0 N,  F_max = 51.96 + 18 ≈ 70.0 N"
+     },
+     {
+      "text": "To move the block down at constant velocity, kinetic friction acts up the slope (opposing the downward slide) and the net force is zero.",
+      "equation": "F = mg sin60° − μₖmg cos60° = 51.96 − 0.4×30 ≈ 40.0 N"
+     },
+     {
+      "text": "To move the block up with acceleration 4 m/s², kinetic friction acts down the slope (opposing the upward slide), and Newton's second law along the incline gives F.",
+      "equation": "F = mg sin60° + μₖmg cos60° + ma = 51.96 + 12 + 24 ≈ 88.0 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 34.0 N ≤ F ≤ 70.0 N, (b) F ≈ 40.0 N, (c) F ≈ 88.0 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using kinetic friction instead of static friction for part (a) gives a narrower, incorrect range of 40.0 N to 64.0 N."
+     },
+     {
+      "option": null,
+      "text": "Reversing the direction of kinetic friction in part (c) (treating it as helping instead of opposing the upward motion) gives F ≈ 64.0 N instead of 88.0 N."
+     }
+    ],
+    "concept_tags": [
+     "friction on an incline",
+     "static and kinetic friction",
+     "Newton's second law"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_93a6ffa1",
+   "audit_file": "lom_93a6ffa1.2c6e1c90.json",
+   "item_sha": "2c6e1c90f47511abbe325b86126b7435caec4711ebb519e1236b794d7286c820",
+   "question_text": "A small particle is put at rest on the inner surface of a hollow hemispherical bowl whose radius is R. Friction between particle and bowl has coefficient μ = 1/√3. Measured from the lowest point of the bowl, what is the greatest height at which the particle can stay at rest without sliding?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "R/2"
+    },
+    {
+     "label": "(b)",
+     "text": "(1 − √3/2)R"
+    },
+    {
+     "label": "(c)",
+     "text": "(√3/2)R"
+    },
+    {
+     "label": "(d)",
+     "text": "3R/8"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "The particle slips once the weight's component along the bowl's curved surface exceeds the maximum friction; that condition fixes the angle and hence the height.",
+    "steps": [
+     {
+      "text": "At the point where the particle rests, the surface makes angle θ with the horizontal, measured from the bottom of the bowl. Split the weight into a part along the surface and a part perpendicular to it.",
+      "equation": "along surface: mg sinθ, perpendicular: mg cosθ"
+     },
+     {
+      "text": "Balance forces perpendicular to the surface and along it: the normal force matches the perpendicular part of the weight, and friction matches the part along the surface.",
+      "equation": "N = mg cosθ, f = mg sinθ"
+     },
+     {
+      "text": "The particle stays still as long as the needed friction does not exceed the maximum friction available. The greatest height is reached exactly when friction reaches this maximum.",
+      "equation": "f = μN ⇒ mg sinθ = μ·mg cosθ ⇒ tanθ = μ"
+     },
+     {
+      "text": "Use μ = 1/√3 to get the angle, then find the height above the bottom of the bowl from the bowl's radius.",
+      "equation": "tanθ = 1/√3 ⇒ θ = 30°; h = R(1 − cosθ) = (1 − √3/2)R"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "(1 − √3/2)R"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Taking the height as R cosθ, the vertical drop from the sphere's centre to the particle, instead of R(1 − cosθ), the height measured from the bottom of the bowl, gives (√3/2)R."
+     },
+     {
+      "option": 1,
+      "text": "Mixing up sinθ and cosθ while finding the height gives R sinθ = R/2 instead of R(1 − cosθ)."
+     }
+    ],
+    "concept_tags": [
+     "static friction",
+     "circular surface",
+     "angle of friction"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

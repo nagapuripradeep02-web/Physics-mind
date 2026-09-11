@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ac6d8f03",
+ "item_sha": "22d639c9c36e73453bf41fea4de07f1a62dc0a8030aa2024602774c9967e725e",
+ "auditor_option": null,
+ "auditor_value": "(a) +4ĵ N on A in B's frame; (b) −4î N on B in A's frame",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "F_pseudo = −m·a_frame: −(1)(−4ĵ) = 4ĵ N and −(2)(2î) = −4î N; the sign-drop mistake entry gives the reversed vectors it names.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:01:26+05:30"
+ }
+}

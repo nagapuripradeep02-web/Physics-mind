@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b34b6154",
+ "item_sha": "81f36aa36b32a2e1e730297baac67c0c5a0ed23bcf455b57a0e8a265e09c911f",
+ "auditor_option": null,
+ "auditor_value": "mg, vertically upward (resultant of normal force and static friction)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Two-force equilibrium: the wedge's total contact force cancels the weight; magnitude mg, direction vertical, independent of θ and μ.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:09+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6ce8778b",
+ "approach": "Write the acceleration on the smooth and rough 45° inclines, use the given time ratio to relate them, and solve for the coefficient of kinetic friction.",
+ "steps": [
+  {"text": "On the smooth 45° incline, the block's acceleration equals the gravity component along the incline, with nothing else acting.", "equation": "a(smooth) = g sin45°"},
+  {"text": "On the rough 45° incline, kinetic friction subtracts from this.", "equation": "a(rough) = g(sin45° − μcos45°)"},
+  {"text": "Both blocks start from rest and cover the same incline length L, and time for a fixed distance from rest goes as the inverse square root of the acceleration.", "equation": "t = √(2L/a)"},
+  {"text": "The rough time is twice the smooth time, so squaring this ratio gives the rough acceleration as one quarter of the smooth acceleration.", "equation": "t(rough) = 2t(smooth) ⇒ a(rough) = a(smooth)/4"},
+  {"text": "Substitute and solve for μ at θ = 45°, where sin45° = cos45° so they cancel.", "equation": "sin45° − μcos45° = (1/4)sin45° ⇒ μ = 3/4"}
+ ],
+ "final_answer": {"option": 2, "value": "3/4"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["kinematics on an incline", "kinetic friction", "equations of motion"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

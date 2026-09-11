@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_2ed9ffe2",
+ "approach": "In both setups every pulley is fixed to the overhead bracket, so each pulley only changes the direction of the pull, never the size of the force needed.",
+ "steps": [
+  {"text": "In figure (i), a single fixed pulley redirects the string from the block to the person's hand; the tension in the string equals the block's weight.", "equation": "T = weight of block"},
+  {"text": "In figure (ii), both pulleys are also fixed to the bracket and neither is attached to the block, so one string still carries a single tension from the block to the person's hand.", "equation": "T = weight of block"},
+  {"text": "A fixed pulley only changes the direction of a force, never its size, so the person pulls with the same force in both cases.", "why_this_step": "Only a pulley attached to the moving load, not fixed to a support, can reduce the force needed."}
+ ],
+ "final_answer": {"option": 3, "value": "Same in both"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming the two pulleys in figure (ii) form a movable-pulley system that halves the force needed, when neither pulley is attached to the block."}
+ ],
+ "concept_tags": ["fixed pulley", "tension", "mechanical advantage"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:16:00+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_7f786374",
+ "approach": "The ground is smooth, so only friction between the two blocks acts; the faster bottom block drags the top one forward while it itself slows down.",
+ "steps": [
+  {"text": "The bottom (2 kg) block moves faster (8 m/s) than the top (1 kg) block (2 m/s), so kinetic friction from the 1 kg block acts backward on the 2 kg block and forward on the 1 kg block.", "equation": "f = μ × m(1kg) × g = 0.4 × 1 × 10 = 4 N"},
+  {"text": "Find each block's acceleration. The 1 kg block feels only this forward friction; the 2 kg block feels only the equal, opposite friction (the ground beneath it is smooth).", "equation": "a(1kg) = 4/1 = 4 m/s², a(2kg) = −4/2 = −2 m/s²"},
+  {"text": "Set the two velocities equal to find when they reach a common speed.", "equation": "2 + 4t = 8 − 2t → t = 1 s"},
+  {"text": "Find the common velocity at that time.", "equation": "v = 2 + 4(1) = 6 m/s"},
+  {"text": "Find each block's displacement in that 1 s using s = v₀t + ½at².", "equation": "s(1kg) = 2(1) + ½(4)(1)² = 4 m, s(2kg) = 8(1) + ½(−2)(1)² = 7 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 1 s, (b) common velocity = 6 m/s, (c) displacement of 1 kg block = 4 m, displacement of 2 kg block = 7 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Applying friction to the 2 kg block from the ground as well, even though the ground is stated to be smooth, which changes its acceleration and the final time."},
+  {"option": null, "text": "Swapping which block speeds up and which slows down, giving friction the wrong direction on each block."}
+ ],
+ "concept_tags": ["kinetic friction", "relative motion", "blocks in contact"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:27:00+05:30"}
+}

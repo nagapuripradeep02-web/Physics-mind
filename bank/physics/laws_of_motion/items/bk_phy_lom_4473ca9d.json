@@ -1,0 +1,108 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4473ca9d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A plank called B, with mass 2m and length l, lies on a horizontal road. A block called A, with mass m, rests on top of plank B at its left-hand edge. The block and the plank are both given the same initial rightward speed v and then move together as a system. Friction acts at two surfaces: road against plank, with coefficient 1/2, and plank against block, with coefficient 1/4. Determine the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the time that passes before block A slides completely off plank B."
+   },
+   {
+    "label": "b",
+    "asks": "Find how far block A and plank B each travel relative to the ground up to that moment."
+   }
+  ],
+  "conditions": [
+   "A (mass m) sits at B's (mass 2m, length l) left end",
+   "B rests on a horizontal road",
+   "A and B start together with rightward speed v",
+   "friction coefficient road–plank = 1/2",
+   "friction coefficient plank–block = 1/4"
+  ],
+  "figure": {
+   "description": "Block A rests on top of plank B, positioned at B's left-hand end; plank B in turn rests on the horizontal road below it. The plank's length, l, runs the full length of B, shown by a measurement arrow beneath it. Both A and B move together to the right with the same initial speed v; the road exerts friction against the plank (coefficient 1/2), and the plank exerts friction against the block (coefficient 1/4)."
+  }
+ },
+ "solution": {
+  "approach": "Check whether block and plank decelerate together; since they cannot, find each deceleration and use their relative motion to find when the block has moved l relative to the plank.",
+  "steps": [
+   {
+    "text": "If A and B moved together, deceleration would need 0.5mg of friction between them on A alone; but the maximum available is only μ₁mg = (1/4)mg, where μ₁ = 1/4 is the block-plank coefficient (μ₂ = 1/2 is the road-plank coefficient, M = 2m the plank mass), so A and B slide on each other.",
+    "equation": "required 0.5mg > available μ₁mg = 0.25mg  →  A and B move separately",
+    "why_this_step": "This confirms the block genuinely separates from the plank, matching the question."
+   },
+   {
+    "text": "Block A is decelerated only by kinetic friction from the plank.",
+    "equation": "a_A = μ₁g = g/4 (deceleration)"
+   },
+   {
+    "text": "Plank B is decelerated by road friction (backward, on its total weight (M+m)g) and pushed forward by the reaction friction from A.",
+    "equation": "M a_B = μ₂(M+m)g − μ₁mg = (1/2)(3m)g − (1/4)mg = (5/4)mg  →  a_B = 5g/8 (deceleration)"
+   },
+   {
+    "text": "Since B decelerates faster than A, A keeps sliding forward relative to B at a relative acceleration equal to the difference of the two decelerations.",
+    "equation": "a_rel = a_B − a_A = 5g/8 − g/4 = 3g/8"
+   },
+   {
+    "text": "Both start with the same velocity v, so their relative velocity starts at zero; the block separates once it has moved a length l relative to the plank.",
+    "equation": "l = ½(3g/8)t²  →  t = √(16l/3g) = 4√(l/3g)"
+   },
+   {
+    "text": "Use this time in each block's own equation of motion to get the two ground displacements.",
+    "equation": "s_A = vt − ½(g/4)t² = vt − 2l/3;  s_B = vt − ½(5g/8)t² = vt − 5l/3"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 4√(l/3g) = √(16l/3g). (b) displacement of block A = vt − 2l/3, displacement of plank B = vt − 5l/3, with t as above"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming A and B decelerate together without checking the friction needed against the friction available, missing that separation ever happens."
+   },
+   {
+    "option": null,
+    "text": "Using the plank's own deceleration 5g/8 as the relative deceleration instead of subtracting the block's deceleration g/4, gives the wrong t = 4√(l/5g)."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "relative motion",
+   "kinematics",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "111d2278158aa3c84dd5392181e873a8d483f4d3e31e0b277801f92cf562afca"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a9c8275592c0fd49602eb516dfc5dc90603b4d6caade4b2caa266b9ffd0bbbf3",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:17:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_1b1da148",
+ "item_sha": "c69b02325307a09d5c161bc16ac7ade297fe77be83ab7e65d8eeb22c31721e0e",
+ "auditor_option": 1,
+ "auditor_value": "mg",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Block at rest under weight and the single resultant contact force, so the contact force equals mg in magnitude for any θ and μ. The mistake entry (option 3, mg sin θ = the friction part alone) is a real error and correctly attributed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:24:55+05:30"
+ }
+}

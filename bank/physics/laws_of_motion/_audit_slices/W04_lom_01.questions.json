@@ -1,0 +1,44 @@
+{
+ "wave": 4,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_adb64b1d",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else."
+  },
+  {
+   "question_id": "lom_57d048b4",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure.\n(a) Using string-constraint equations, determine how the acceleration of point 2 is related to the acceleration of point 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2."
+  },
+  {
+   "question_id": "lom_0b110c6e",
+   "question_text": "Starting from rest, a particle is sped up to a velocity v by a force F₁. Afterwards, the same particle is slowed from that same velocity v back down to rest by a different force F₂. Which of these statements about F₁ and F₂ must be true?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "F₁ and F₂ are always equal in magnitude"
+    },
+    {
+     "label": "(b)",
+     "text": "F₂ must be larger than F₁"
+    },
+    {
+     "label": "(c)",
+     "text": "F₂ could be smaller than, larger than, or equal to F₁"
+    },
+    {
+     "label": "(d)",
+     "text": "F₂ can never equal F₁"
+    }
+   ],
+   "figure_description": ""
+  }
+ ]
+}

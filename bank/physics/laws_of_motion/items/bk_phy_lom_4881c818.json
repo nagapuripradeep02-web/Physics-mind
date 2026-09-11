@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4881c818",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block lies on a rough horizontal floor with coefficient of friction μ = 0.6. A horizontal force, whose value in newtons is F = 2t with t measured in seconds, is applied on the block. Take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Sketch how the block's acceleration changes with time."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the friction force on the block at t = 2 s and at t = 8 s."
+   }
+  ],
+  "conditions": [
+   "block mass = 2 kg",
+   "μ = 0.6 between block and floor",
+   "applied force F = 2t newtons, with t in seconds",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 2 kg block rests on a rough horizontal floor with coefficient of friction μ = 0.6. A horizontal force F = 2t (in newtons, t in seconds) pulls the block along the floor."
+  }
+ },
+ "solution": {
+  "approach": "Find the time when the applied force equals the maximum static friction; before that the block stays still, after that kinetic friction acts and gives the acceleration.",
+  "steps": [
+   {
+    "text": "Find the maximum static friction and the time at which the applied force reaches it.",
+    "equation": "f(max static) = μmg = 0.6×2×10 = 12 N; F = 2t = 12 N at t = 6 s"
+   },
+   {
+    "text": "For t < 6 s the applied force is less than the maximum static friction, so the block stays still and friction equals the applied force.",
+    "equation": "friction = F = 2t, a = 0"
+   },
+   {
+    "text": "For t > 6 s the block slides, so kinetic friction takes its constant maximum value and the net force gives the acceleration.",
+    "equation": "friction = μmg = 12 N, a = (2t − 12)/2 = t − 6"
+   },
+   {
+    "text": "At t = 2 s the block is still in the static phase.",
+    "equation": "friction = 2×2 = 4 N, a = 0"
+   },
+   {
+    "text": "At t = 8 s the block is in the sliding phase.",
+    "equation": "friction = 12 N, a = 8 − 6 = 2 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 0 for 0 ≤ t ≤ 6 s, then a = t − 6 for t > 6 s, a straight line through (6 s, 0) with slope 1; (b) friction = 4 N at t = 2 s, friction = 12 N at t = 8 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using a = t − 6 at t = 2 s, before the block actually slides, gives friction = 12 N and a = −4 m/s², impossible for a block still at rest."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to divide the net force by the mass gives a = 2t − 12 directly, so a = 4 m/s² at t = 8 s instead of the correct 2 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "static and kinetic friction",
+   "time-varying force",
+   "acceleration graph"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "10908738d2059bfdb8c1813e2e02fc00e18aa320abf44cdbc26fa1753b7b79f7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a65c3d963f8e4a0999774355c8546588e820f60508c0af31ace9e965b8400479",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

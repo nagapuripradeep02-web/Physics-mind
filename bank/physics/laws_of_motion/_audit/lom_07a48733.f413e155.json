@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_07a48733",
+ "item_sha": "f413e15558ad059a8b65f34f93d3e8b5588a024b022687d0293a637a16b94a7e",
+ "auditor_option": null,
+ "auditor_value": "f = mg sin(theta) rising for theta < theta_s (tan theta_s = mu_s), reaching mu_s mg cos theta_s, then a sudden drop to mu_k mg cos theta_s and a fall as mu_k mg cos theta to 0 at 90 degrees",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Static branch f = mg sin(theta) up to tan(theta_s) = mu_s; kinetic branch mu_k mg cos(theta) after, with the drop at theta_s because mu_k < mu_s (the standard assumption, stated in the solution). Both common-mistake entries describe genuine sketch errors. No g or numbers involved.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T22:59:50+05:30"
+ }
+}

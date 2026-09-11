@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_37df6b14",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A smooth circular ring of radius a stands in a vertical plane with its centre at C. Two beads, each of mass m, sit on the ring: bead A at the topmost point (directly above C) and bead B at the point level with C on one side (so CB is horizontal), joined to each other by a string of length √2 a stretched along the chord AB. The beads are released from rest and can slide along the ring. Just after release, find the tension in the string and the acceleration of bead B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ring is smooth (frictionless) and circular, radius a, fixed in a vertical plane",
+   "two beads of equal mass m, free to slide along the ring",
+   "string joining the beads has length √2 a, along chord AB",
+   "bead A is at the top of the ring (directly above centre C)",
+   "bead B is at the point on the ring level with C (CB horizontal)",
+   "beads released from rest"
+  ],
+  "figure": {
+   "description": "Circle of radius a, centre C, vertical plane. Point A is the topmost point of the circle, directly above C. Point B is the leftmost point of the circle, at the same height as C, so CB is horizontal and CA is vertical. A straight string connects A and B (the chord), length √2 a."
+  }
+ },
+ "solution": {
+  "approach": "Write each bead's tangential equation of motion on the ring, then use the fact that the string's length along AB cannot change at the first instant.",
+  "steps": [
+   {
+    "text": "At A, gravity points straight along the radius, so only the string's part along the ring's direction can start A moving.",
+    "equation": "m a_A = T/√2"
+   },
+   {
+    "text": "At B, gravity points straight along the ring's own direction, while the string pulls partly against it.",
+    "equation": "m a_B = mg − T/√2"
+   },
+   {
+    "text": "Since the string cannot stretch, the two beads must move toward or away from each other along the string at matching rates; at the first instant this makes their along-the-ring accelerations equal.",
+    "equation": "a_A = a_B"
+   },
+   {
+    "text": "Solve the two equations together for the tension and for the acceleration of B.",
+    "equation": "T/√2 = mg − T/√2 → T = mg/√2, a_B = g/2"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = mg/√2 ≈ 0.71mg, acceleration of B = g/2, directed along the ring, straight down"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Ignoring the string and treating B as a free bead on the ring gives an acceleration of g, missing that the string's pull reduces it to g/2."
+   }
+  ],
+  "concept_tags": [
+   "beads on a ring",
+   "tangential acceleration",
+   "string constraint"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a8d2834a607a8e7755083c0cd9e2a5c46c41bcc58f5e48b4787daa882947aaeb"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8ab14e73fd7e8c6583273f5d98d60e41d663f1f78fc5a6b82a0e587aa129f880",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:55:00+05:30"
+ }
+}

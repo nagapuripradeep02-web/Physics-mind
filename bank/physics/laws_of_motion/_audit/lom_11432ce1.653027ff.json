@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_11432ce1",
+ "item_sha": "653027ffe119027aecf774da62ed539a287c877baacda463cb466fb251369c6f",
+ "auditor_option": 2,
+ "auditor_value": "250 N (3T = (50 + 25) kg x 10 m/s^2 = 750 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Two strands at the platform pulley plus the strand at the person's hand give 3T upward on the person-plus-platform system; constant speed means 3T = 750 N. g = 10 is the only value that lands on an option. The common-mistake number (375 N from 2T) follows from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:04:26+05:30"
+ }
+}

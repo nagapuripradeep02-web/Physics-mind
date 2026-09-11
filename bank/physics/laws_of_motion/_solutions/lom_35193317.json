@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_35193317",
+ "approach": "Weight and normal reaction pass through the sphere's centre, so balancing moments there for the tension and friction gives one relation, and force balance gives the rest.",
+ "steps": [
+  {"text": "The string AB is horizontal and tied where it touches the sphere without cutting into it, so A is the topmost point of the sphere; there the radius to A is vertical, at height r above the centre C.", "equation": "moment arm of T about C = r"},
+  {"text": "Friction f acts at the contact point with the incline, tangent to the sphere there, which is also always at a perpendicular distance r from the centre.", "equation": "moment arm of f about C = r"},
+  {"text": "The weight acts at the centre and the normal reaction acts along the radius through the contact point, so both pass through C and add no moment; balancing the moments of T and f about C then requires them to be equal.", "equation": "T·r = f·r  →  f = T",
+   "why_this_step": "With only T and f having a nonzero moment arm about the centre, and the sphere in equilibrium, their moments must cancel, which — since both arms equal r — makes the two forces equal."},
+  {"text": "Resolve all forces horizontally and vertically: weight w down, normal reaction N perpendicular to the 30° incline, friction f up the incline, tension T horizontal.", "equation": "horizontal: T − N sin30° + f cos30° = 0;  vertical: N cos30° + f sin30° = w"},
+  {"text": "Substitute f = T into both equations and solve.", "equation": "T(1+cos30°) = N sin30°;  N cos30° + T sin30° = w"},
+  {"text": "Solve the two equations for T and N.", "equation": "T = f = w tan15° = 100×(2−√3) ≈ 26.8 N;  N = w = 100 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) tension T = 100(2−√3) N ≈ 26.8 N. (b) friction f = 100(2−√3) N ≈ 26.8 N, acting up the incline. (c) normal reaction N = 100 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the sphere as frictionless and solving only T − N sin30° = 0 and N cos30° = w gives the wrong N ≈ 115.5 N and T ≈ 57.7 N, missing the incline's friction."},
+  {"option": null, "text": "Writing only the two force-balance equations and stopping, because T, f and N are three unknowns; the third equation is the moment balance about the centre, which gives f = T."}
+ ],
+ "concept_tags": ["torque balance", "friction", "normal reaction", "sphere on an incline"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:30:00+05:30"}
+}

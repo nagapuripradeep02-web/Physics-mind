@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_778d98f2",
+ "item_sha": "be88bda265d863473f16532772ffa3084106986e928b4ed58811940ea1da681b",
+ "auditor_option": null,
+ "auditor_value": "A: 2g/7 downward (20/7 ≈ 2.86 m/s² with g = 10; 2.8 m/s² with g = 9.8); B: g/7 upward (10/7 ≈ 1.43 m/s²; 1.4 m/s²); T = 20g/7",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[4].text",
+   "quote": "twice as small in magnitude, as the constraint requires",
+   "note": "'Twice as small' is not literal textbook English; the magnitude of B's acceleration is half that of A's.",
+   "fix": "aA is positive, so A accelerates downward at 20/7 m/s²; aB is negative, so B accelerates upward at 10/7 m/s², half the magnitude of aA, as the constraint requires."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. The question does not fix g; the solution uses g = 10 (with g = 9.8 the values are 2.8 and 1.4 m/s²). Solving the three printed equations gives aB = −10/7, aA = 20/7, T = 200/7 exactly as printed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

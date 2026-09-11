@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_da7faac0",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m is pressed flat against the vertical side face of a much larger block of mass M (the wedge), as the figure shows; block m has no surface beneath it and stays in place purely because of friction against the wedge's face, with a friction coefficient μ between the two surfaces. A horizontal push F drives the wedge (and the smaller block moves along with it). What is the least value F can take so that the smaller block does not slide down relative to the wedge?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "wedge has mass M, block has mass m",
+   "friction coefficient between wedge and block is μ",
+   "block m has no support underneath it, held up only by friction against the wedge's vertical face",
+   "block m must stay stationary relative to the wedge, i.e. move together with it"
+  ],
+  "figure": {
+   "description": "A large block of mass M (the wedge) stands on the ground. A horizontal force F pushes it from the left, shown by an arrow. A smaller block of mass m touches the wedge's right-hand vertical face; this smaller block has nothing beneath it and is kept from falling only by friction against the wedge's surface. As F acts, the wedge and the smaller block accelerate together horizontally."
+  }
+ },
+ "solution": {
+  "approach": "The block m is held up only by friction against the wedge's vertical face, and that friction comes from the normal force created by the sideways acceleration.",
+  "steps": [
+   {
+    "text": "Since M and m move together, they share one horizontal acceleration.",
+    "equation": "a = F / (M+m)"
+   },
+   {
+    "text": "The wedge pushes block m sideways, so the normal force N between them equals m times that acceleration.",
+    "equation": "N = m a"
+   },
+   {
+    "text": "The block has nothing below it, so friction alone must support its weight; for the minimum F, friction is at its maximum value.",
+    "equation": "μN = mg"
+   },
+   {
+    "text": "Put N = ma into this and solve for a.",
+    "equation": "μ m a = mg ⇒ a = g/μ",
+    "why_this_step": "This is the smallest sideways acceleration at which the available friction is exactly enough to hold the block up."
+   },
+   {
+    "text": "Put a = g/μ into the system equation and solve for F.",
+    "equation": "F = (M+m) a = (M+m) g/μ"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "F = (M+m) g / μ"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving block m's own mass out of the accelerating system and writing F = M g / μ instead of (M+m) g / μ."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "pseudo force",
+   "wedge"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2dc239aee416b1eab954dc9a4488f7c6c6ebdc4de91572298bac61f15df9883c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8de4c5e3f5d002dcf7084d13bf6a7dc064730bff3b7c51c6075037b27fcfe183",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T11:00:00+05:30"
+ }
+}

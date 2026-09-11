@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_6065698b",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball of weight w and radius a rests against a smooth, vertical wall, touching it at one point on its surface. A string of length a, equal to the ball's radius, runs from a second point on the ball's surface to a point on the wall, holding the ball in place. Find the tension in this string.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball's weight is w",
+   "ball's radius is a",
+   "wall is smooth and vertical",
+   "string length equals a (same as the radius)",
+   "string runs from a point on the ball's surface to a point on the wall"
+  ],
+  "figure": {
+   "description": "A ball of radius a touches a smooth vertical wall at one point on its surface. A string of length a runs from a different point on the ball's surface up to a point on the wall, and this string holds the ball against gravity."
+  }
+ },
+ "solution": {
+  "approach": "Since the weight and normal reaction pass through the sphere's centre, the string's line must too; this fixes its angle, and a force balance then gives the tension.",
+  "steps": [
+   {
+    "text": "Let O be the ball's centre, A where it touches the wall, B where the string ties to the ball, and C where the string ties to the wall. The weight and normal reaction pass through O, so for rotational equilibrium the string's line, extended, must also pass through O; hence O, B and C lie on one straight line.",
+    "equation": "O, B, C colinear"
+   },
+   {
+    "text": "B is on the sphere's surface, so OB equals the radius a; since the string has length a, C lies a further distance a beyond B along the same line.",
+    "equation": "OC = OB + BC = a + a = 2a"
+   },
+   {
+    "text": "C is a point on the wall, at the same perpendicular distance a from O as the contact point A (since the wall is a flat vertical plane), so in the right triangle formed by O, A and C, cos(angle AOC) = OA/OC.",
+    "equation": "cos(angle AOC) = a/2a = 1/2  →  angle AOC = 60°",
+    "why_this_step": "OA is horizontal (the radius to the wall contact point) and OC has length 2a, so this ratio fixes the string's direction from the horizontal."
+   },
+   {
+    "text": "The string, along OC, makes 60° with the horizontal. Resolve forces on the sphere: weight w down, normal reaction N horizontal (away from the wall), tension T along OC toward the wall.",
+    "equation": "horizontal: N = T cos60°;  vertical: T sin60° = w"
+   },
+   {
+    "text": "Solve the vertical equation for the tension.",
+    "equation": "T = w / sin60° = 2w/√3 ≈ 1.155w"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = 2w/√3 (≈ 1.15w)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping the two angles of the right triangle and taking the string's angle from the horizontal as 30° instead of 60° gives the wrong T = w/sin30° = 2w."
+   },
+   {
+    "option": null,
+    "text": "Assuming the string is horizontal, like the wall's normal reaction, leaves no way to balance the sphere's weight vertically."
+   }
+  ],
+  "concept_tags": [
+   "three-force equilibrium",
+   "geometry of a sphere in contact",
+   "tension",
+   "normal reaction"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "892cab3150dda5b43828d739ae9ef4a216cfea2987011eeb7c1f1b344248c690"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e9295d564cacd387c6de342e1b8b12b5227786149a332743b013fd1d13a09b67",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:28:00+05:30"
+ }
+}

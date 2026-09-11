@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_abe50bea",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Suppose reference frames S₁ and S₂ are both non-inertial; then an observer in S₁ would find S₂ to be an inertial frame. Reason: A frame being in motion does not by itself make it non-inertial.",
+  "options": {
+   "1": "both Assertion and Reason are true and the Reason is the correct explanation of the Assertion",
+   "2": "both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion",
+   "3": "Assertion is true, but the Reason is false",
+   "4": "Assertion is false, but the Reason is true"
+  },
+  "parts": null,
+  "conditions": [
+   "S₁ and S₂ are both non-inertial frames",
+   "S₂ is viewed from S₁"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the relative acceleration of S₂ with respect to S₁ must vanish merely because both are non-inertial, then judge the general truth of the Reason on its own.",
+  "steps": [
+   {
+    "text": "A frame is non-inertial only if it has some acceleration relative to an inertial (ground) frame; being non-inertial is about acceleration, not about motion in general."
+   },
+   {
+    "text": "Viewed from S₁, the relative acceleration of S₂ is the difference of their accelerations relative to the ground.",
+    "equation": "a(S₂ relative to S₁) = a(S₂) − a(S₁)"
+   },
+   {
+    "text": "This difference is zero only in the special case that S₁ and S₂ happen to share the same acceleration, which is not stated here, so in general S₂ stays non-inertial even when viewed from S₁ — the Assertion is false as a general claim.",
+    "equation": "a(S₂) − a(S₁) ≠ 0 in general ⇒ Assertion false"
+   },
+   {
+    "text": "The Reason is a true, separate statement: a frame moving at constant velocity is still inertial, so mere motion does not make a frame non-inertial — only acceleration does.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If the Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming that viewing one non-inertial frame from another non-inertial frame always cancels out the acceleration completely, making S₂ look inertial from S₁ in every case, and picking both statements true."
+   }
+  ],
+  "concept_tags": [
+   "inertial frame",
+   "relative acceleration",
+   "frames of reference"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ec6cec626b5448c5075b7996915f8b3490a23ed4a7baec161e8cded35cc6a2cc"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "801f2f4b46754626fd75b1abde1c156709fbc408ead0414d18744eec52a09bc5",
+  "audited_by": "W01-U-lom-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

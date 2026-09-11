@@ -76,13 +76,13 @@ def previous_item(t):
     return None
 
 
-def plan_authors(led, wave, size, model):
+def plan_authors(led, wave, size, model, only=None):
     tr = S.transcripts()
     if any(r["wave"] == wave and r["role"] == "author" and not r.get("redispatch_of") for r in led):
         sys.exit("wave %d authors already planned - use --redispatch" % wave)
     have = S.solutions()
     order = sorted(tr, key=lambda w: (TIER_ORDER.index(tr[w]["tier"]) if tr[w]["tier"] in TIER_ORDER else 9, tr[w]["page"], tr[w]["label"]))
-    order = [w for w in order if w not in have]
+    order = [w for w in order if w not in have and (not only or w in only)]
     rows, k = [], 0
     for i in range(0, len(order), size):
         k += 1
@@ -110,8 +110,29 @@ def item_for(wid, rt, sol, sha):
             "solution": {k: sol[k] for k in SHOWN if k in sol}}
 
 
-def audited_shas(wid):
-    return {os.path.basename(f).split(".")[1] for f in glob.glob(os.path.join(AUDIT, wid + ".*.json"))}
+def audited_shas(wid, restated_at=None):
+    """Audit shas on file for an item - only those written AFTER its latest restatement row, since the figure
+    description the auditor read is served text that the item sha does not cover."""
+    out = set()
+    for f in glob.glob(os.path.join(AUDIT, wid + ".*.json")):
+        if restated_at and _written_before(f, restated_at):
+            continue
+        out.add(os.path.basename(f).split(".")[1])
+    return out
+
+
+def _written_before(path, iso):
+    """File mtime against an ISO timestamp - the auditors fill their own `at` field and some wrote it wrong."""
+    import datetime
+    try:
+        return os.path.getmtime(path) < datetime.datetime.fromisoformat(iso).timestamp()
+    except (ValueError, OSError):
+        return False
+
+
+def audit_is_stale(au, rt):
+    f = os.path.join(AUDIT, "%s.%s.json" % (au.get("question_id"), (au.get("item_sha") or "")[:8]))
+    return bool(rt and rt.get("at") and os.path.exists(f) and _written_before(f, rt["at"]))
 
 
 def corrupt(rt, sol, kind):
@@ -124,8 +145,8 @@ def corrupt(rt, sol, kind):
             eq = st.get("equation") or ""
             for m in NUM.finditer(eq):
                 v = m.group(1)
-                if float(v) == 0:
-                    continue
+                if float(v) == 0 or (m.start() > 0 and (eq[m.start() - 1].isalpha() or eq[m.start() - 1] == "_")):
+                    continue                # a digit inside a label (F2, N_ground2) is not a number in the working
                 new = str(int(v) * 2) if v.isdigit() else "%g" % (float(v) * 2)
                 st["equation"] = eq[:m.start()] + new + eq[m.end():]
                 return q, opts, s, "a number in a printed line doubled (%s -> %s); final answer untouched" % (v, new)
@@ -192,7 +213,7 @@ def queue(a):
             continue
         rt, sol = RS.get(wid), sols.get(wid)
         sha = item_sha(S.restatement_text(rt, with_options=False, with_figure=False), rt.get("options") or [], sol)
-        if sha[:8] in audited_shas(wid):
+        if sha[:8] in audited_shas(wid, rt.get("at")):
             hosts.append(wid)
             skipped["already audited at this sha"] += 1
             continue
@@ -345,7 +366,7 @@ def release(a):
         rt, sol = RS.get(wid), sols.get(wid)
         sha = item_sha(S.restatement_text(rt, with_options=False, with_figure=False), rt.get("options") or [], sol)
         au = audits.get(sha)
-        if not au:
+        if not au or audit_is_stale(au, rt):
             unaudited.append(wid)
             continue
         agent = (au.get("audited_by") or {}).get("agent", "?")
@@ -420,7 +441,7 @@ def main():
     led = ledger()
     if a.cmd == "plan":
         if a.role == "author":
-            rows = plan_authors(led, a.wave, a.size or 15, a.model or "sonnet")
+            rows = plan_authors(led, a.wave, a.size or 15, a.model or "sonnet", a.only or None)
         elif a.role == "audit":
             rows = plan_audits(led, a.wave, a.size or 15, a.model or "opus")
         elif a.role in roles.ROLES:

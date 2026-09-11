@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_892cab31",
+ "approach": "Since the weight and normal reaction pass through the sphere's centre, the string's line must too; this fixes its angle, and a force balance then gives the tension.",
+ "steps": [
+  {"text": "Let O be the ball's centre, A where it touches the wall, B where the string ties to the ball, and C where the string ties to the wall. The weight and normal reaction pass through O, so for rotational equilibrium the string's line, extended, must also pass through O; hence O, B and C lie on one straight line.", "equation": "O, B, C colinear"},
+  {"text": "B is on the sphere's surface, so OB equals the radius a; since the string has length a, C lies a further distance a beyond B along the same line.", "equation": "OC = OB + BC = a + a = 2a"},
+  {"text": "C is a point on the wall, at the same perpendicular distance a from O as the contact point A (since the wall is a flat vertical plane), so in the right triangle formed by O, A and C, cos(angle AOC) = OA/OC.", "equation": "cos(angle AOC) = a/2a = 1/2  →  angle AOC = 60°",
+   "why_this_step": "OA is horizontal (the radius to the wall contact point) and OC has length 2a, so this ratio fixes the string's direction from the horizontal."},
+  {"text": "The string, along OC, makes 60° with the horizontal. Resolve forces on the sphere: weight w down, normal reaction N horizontal (away from the wall), tension T along OC toward the wall.", "equation": "horizontal: N = T cos60°;  vertical: T sin60° = w"},
+  {"text": "Solve the vertical equation for the tension.", "equation": "T = w / sin60° = 2w/√3 ≈ 1.155w"}
+ ],
+ "final_answer": {"option": null, "value": "T = 2w/√3 (≈ 1.15w)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Swapping the two angles of the right triangle and taking the string's angle from the horizontal as 30° instead of 60° gives the wrong T = w/sin30° = 2w."},
+  {"option": null, "text": "Assuming the string is horizontal, like the wall's normal reaction, leaves no way to balance the sphere's weight vertically."}
+ ],
+ "concept_tags": ["three-force equilibrium", "geometry of a sphere in contact", "tension", "normal reaction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:28:00+05:30"}
+}

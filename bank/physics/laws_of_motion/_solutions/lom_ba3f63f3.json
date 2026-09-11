@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_ba3f63f3",
+ "approach": "Check whether the friction needed to move both blocks together stays within the maximum available friction; find when it is exceeded, then treat each block separately after that.",
+ "steps": [
+  {
+   "text": "While the blocks move together, both share the same acceleration from the total applied force.",
+   "equation": "a(common) = F/(mA+mB) = 2t/6 = t/3"
+  },
+  {
+   "text": "The friction needed to accelerate block B at this common rate must not exceed the maximum available friction between A and B.",
+   "equation": "f(needed) = mB × a(common) = 4t/3; f(max) = μmAg = 0.5×2×10 = 10 N"
+  },
+  {
+   "text": "Find the time when the needed friction reaches the maximum, which is when the blocks start to slip on each other.",
+   "equation": "4t/3 = 10, so t = 7.5 s"
+  },
+  {
+   "text": "For t < 7.5 s, both blocks move together, reaching 2.5 m/s² at t = 7.5 s.",
+   "equation": "a_A = a_B = t/3"
+  },
+  {
+   "text": "For t > 7.5 s, friction on B stays fixed at its maximum, so B's acceleration is constant while A speeds up under the growing force minus this fixed friction.",
+   "equation": "a_B = f(max)/mB = 10/4 = 2.5 m/s² (constant); a_A = (2t − 10)/2 = t − 5"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "For 0 ≤ t ≤ 7.5 s, a_A = a_B = t/3, both rising together from 0 to 2.5 m/s². For t > 7.5 s, a_B stays constant at 2.5 m/s², while a_A = t − 5 rises from 2.5 m/s² with slope 1 m/s² per second and is greater than a_B."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Assuming the blocks move together for all time without checking the friction limit gives a_A = a_B = t/3 throughout, missing the point where they slip."
+  },
+  {
+   "option": null,
+   "text": "Using the combined weight of both blocks instead of only block A's weight for the maximum friction gives f(max) = 30 N and a much later, wrong slip time of 22.5 s."
+  }
+ ],
+ "concept_tags": [
+  "friction between stacked blocks",
+  "slipping condition",
+  "piecewise acceleration"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

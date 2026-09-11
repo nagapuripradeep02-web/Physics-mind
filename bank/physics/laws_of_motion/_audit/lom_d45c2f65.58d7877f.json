@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_d45c2f65",
+ "item_sha": "58d7877f4c93f40e39acfc4ba54a137f423050432ff65c8b6d3e3b017ca6ec05",
+ "auditor_option": 3,
+ "auditor_value": "F_min = μmg/√(1+μ²) = mg sin30° = 12.5 kgf (≈ 122.5 N), pulled at 30° above the horizontal",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "All three mistake entries produce the numbers they name (25 kgf; 6.25 kgf; 14.4 kgf for a horizontal pull). Working in kgf directly is valid since 1 kgf is the weight of 1 kg; the 9.8 N conversion is not needed for the options.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:31:19+05:30"
+ }
+}

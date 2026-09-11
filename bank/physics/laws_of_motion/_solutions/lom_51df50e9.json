@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_51df50e9",
+ "approach": "The block starts at rest while the belt surface under it moves at 6 m/s, so kinetic friction accelerates the block until its speed matches the belt.",
+ "steps": [
+  {"text": "The block is slower than the belt, so kinetic friction acts forward on the block, along the belt's direction of motion.", "equation": "f = μmg, a = μg"},
+  {"text": "Compute the block's acceleration.", "equation": "a = 0.3 × 10 = 3 m/s²"},
+  {"text": "The block speeds up from rest until it matches the belt's speed of 6 m/s; find that time.", "equation": "t = v/a = 6/3 = 2 s"},
+  {"text": "Find the block's displacement in that time using s = ½at².", "equation": "s = ½ × 3 × 2² = 6 m"}
+ ],
+ "final_answer": {"option": null, "value": "(a) t = 2 s, (b) displacement of the block = 6 m"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the belt's displacement (v×t = 12 m) instead of the block's own displacement, which is asked for."},
+  {"option": null, "text": "Forgetting that the mass cancels in a = μg and instead trying to use an unstated mass value."}
+ ],
+ "concept_tags": ["kinetic friction", "relative motion", "conveyor belt"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:25:00+05:30"}
+}

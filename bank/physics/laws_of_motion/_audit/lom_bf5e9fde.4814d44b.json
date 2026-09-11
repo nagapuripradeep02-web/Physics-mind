@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_bf5e9fde",
+ "item_sha": "4814d44bcda71742b9f1f8a1f73a5aa1c33ff9eae5413ca99aba077e17a865e0",
+ "auditor_option": 2,
+ "auditor_value": "T = F/(2cos30°) = F/√3; a toward the other particle = T sin30°/m = F/(2√3 m)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees with option (b). Checked common_mistakes[0]: using 60° in both places gives T = F and a = (√3/2)F/m, which is option (a) as stated. common_mistakes[1]: T cos30°/m = F/(2m), as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:59:11+05:30"
+ }
+}

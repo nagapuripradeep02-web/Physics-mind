@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_c97e9ba8",
+ "item_sha": "8da19cca62a5df3bfb3f8674e2a2758e3a96abec8277f1c36e0de86c711c3f21",
+ "auditor_option": null,
+ "auditor_value": "T sinθ = ma, T cosθ = mg ⇒ tanθ = a/g ⇒ θ = tan⁻¹(a/g) (string tilts toward the rear)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees. The pseudo-force direction (backward, opposite to a) matches the figure's ball-toward-the-rear description. The mistake entry (inverted ratio) is a genuine slip.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:01:01+05:30"
+ }
+}

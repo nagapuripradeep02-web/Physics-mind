@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_476ce2a2",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A wedge with a slope angled 37° above the horizontal (use sin 37° = 3/5) carries a small block of mass m resting on its slanted face. The wedge itself is driven so that it gains speed toward the right at a steady 3 m/s² (take g = 10 m/s²). What frictional force, acting between the block and the wedge's surface, is needed to keep the block from sliding down or up the slope while this happens?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "incline angle is 37° from the horizontal",
+   "sin 37° = 3/5",
+   "the wedge (incline) accelerates horizontally to the right at 3 m/s²",
+   "block does not slide relative to the incline",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A triangular wedge stands on level ground with its vertical face on the LEFT. Its sloped face runs from the top of that vertical face down to the right, meeting the ground at the wedge's bottom-right tip, where the 37° angle between slope and ground is marked; so the slope is high on the left and low on the right. A block of mass m rests on the sloped face. The whole wedge accelerates horizontally to the RIGHT (toward the low end of the slope) at 3 m/s², shown by an arrow beside the wedge."
+  }
+ },
+ "solution": {
+  "approach": "In the wedge's accelerating frame the block is held by gravity, a leftward pseudo-force, the normal force and friction; resolve along the slope to isolate friction directly.",
+  "steps": [
+   {
+    "text": "Since the block does not slide relative to the incline, it shares the wedge's acceleration exactly.",
+    "equation": "a(block) = a(wedge) = 3 m/s², horizontal, to the right"
+   },
+   {
+    "text": "Work in the wedge's own frame, where the block is at rest under an added pseudo-force equal to its mass times the wedge's acceleration, directed opposite to that acceleration.",
+    "equation": "pseudo-force = m × 3 = 3m N, directed left, opposite the rightward acceleration"
+   },
+   {
+    "text": "Resolve gravity and the pseudo-force along the slope, which rises to the left at 37° to the horizontal, taking up-slope as positive.",
+    "equation": "gravity along slope = −m g sin37° = −6m N (down-slope); pseudo-force along slope = +m × 3 × cos37° = +2.4m N (up-slope)"
+   },
+   {
+    "text": "For the block to stay at rest in this frame, friction must balance the sum of these two along-slope components.",
+    "equation": "f = m g sin37° − m × 3 × cos37° = 6m − 2.4m = 3.6m N, directed up the slope"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "f = 3.6m N, directed up the incline, where m is the block's mass in kg (equivalently f = 0.36mg)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Ignoring that the incline itself is accelerating and treating it like a stationary incline gives friction as only the gravity component along the slope, m g sin37° = 6m N, instead of 3.6m N."
+   },
+   {
+    "option": null,
+    "text": "Adding the pseudo-force's along-slope component to gravity's instead of subtracting it gives m g sin37° + m × 3 × cos37° = 8.4m N instead of the correct 3.6m N."
+   }
+  ],
+  "concept_tags": [
+   "pseudo force",
+   "non-inertial frame",
+   "friction",
+   "inclined plane"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "992ae5798c6eb195b7778b294156b943e1c20529c75043ad42017d645b24abf7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7663d48311a4223157c2c9ab83a8db4e5d7bce2f9112c564b535ea7a0a1d8591",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 4,
+  "agent": "W04-A-lom-01",
+  "at": "2026-09-11T14:30:00+05:30"
+ }
+}

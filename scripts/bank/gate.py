@@ -106,6 +106,7 @@ def to_sympy_src(s):
     s = re.sub(r"([⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+)", lambda m: "^(" + m.group(1).translate(_SUPTR) + ")", s)
     s = re.sub(r"([a-zA-Z])([₀₁₂₃₄₅₆₇₈₉]+)", lambda m: m.group(1) + "_" + m.group(2).translate(_SUBTR), s)
     s = re.sub(r"(_\d+)(?=[a-zA-Z(])", r"\1 ", s)
+    s = re.sub(r"\b([a-zA-Z])_([A-Za-z]{1,3})\b", r"\1\2", s)                  # v_B and vB are the same symbol
     s = re.sub(r"(?<![a-zA-Z_\d])([a-zA-Z])(\d+)(?![\d.])", r"\1_\2", s)       # u0 -> u_0 (never u*0)
     s = s.replace("√", "sqrt")
     s = re.sub(r"sqrt(?!\()\s*([0-9a-zA-Z_.]+)", r"sqrt(\1)", s)
@@ -336,6 +337,25 @@ def _qualifier_split(s):
     return None
 
 
+def _strip_explanation(s):
+    """'(M + m)g/μ (block needs a ≥ g/μ so that μN ≥ mg)' -> '(M + m)g/μ': a bracketed sentence after the value is working, not a reading."""
+    return _split_explanation(s)[0]
+
+
+def _split_explanation(s):
+    """(value, bracketed explanation or ''): the bracket counts as an explanation only when it holds three or more real words."""
+    m = re.search(r"\s*\(([^()]*)\)\s*\.?$", s or "")
+    if m and len(re.findall(r"[A-Za-z]{3,}", m.group(1))) >= 3 and s[:m.start()].strip():
+        return s[:m.start()].strip(), m.group(1)
+    return s, ""
+
+
+def _explanations_contradict(a, b):
+    """'(directed to the left)' against '(directed to the right)': the values may agree, the brackets do not - undecided."""
+    ea, eb = _split_explanation(a)[1], _split_explanation(b)[1]
+    return bool(ea and eb and _contradict(re.findall(r"[a-z]+", ea.lower()), re.findall(r"[a-z]+", eb.lower())))
+
+
 def _core(s):
     """'5x − 4x² (parabola)' -> ('5x − 4x²', ['parabola']): the maths with its bracketed or trailing words removed."""
     s = re.sub(r"\s*\(([A-Za-z][A-Za-z\s\-]*)\)\s*\.?$", r" \1", s).strip()
@@ -377,7 +397,9 @@ def _scalar_equal(a, b, kind):
         a = _WORDNUM[a.lower()]
     if b.lower() in _WORDNUM:
         b = _WORDNUM[b.lower()]
-    a, b = _drop_unknown_unit(a), _drop_unknown_unit(b)
+    if _explanations_contradict(a, b):
+        return None, "explanation_contradicts"
+    a, b = _drop_unknown_unit(_strip_explanation(a)), _drop_unknown_unit(_strip_explanation(b))
     qa, qb = _qualifier_split(a), _qualifier_split(b)
     if qa and qb:
         approx = approx or qa[2] or qb[2]
@@ -389,7 +411,7 @@ def _scalar_equal(a, b, kind):
         a, b = qa[0], qb[0]
     else:
         ca, cb = _core(a), _core(b)
-        if ca[0] and cb[0] and (ca[1] or cb[1]) and not (looks_like_words(ca[0]) or looks_like_words(cb[0])):
+        if ca[0] and cb[0] and (ca[1] or cb[1]) and not (looks_like_words(ca[0]) or looks_like_words(cb[0])) and not (looks_like_words(a) and looks_like_words(b)):
             if _contradict(ca[1], cb[1]):
                 return False, "qualifier_contradiction"
             a, b = ca[0], cb[0]
@@ -408,12 +430,17 @@ def _scalar_equal(a, b, kind):
         ua, ub = split_unit(a)[1], split_unit(b)[1]
         if ua and ub and _U[ua][0] != _U[ub][0]:
             return False, "unit_dimension"
-        return expr_equal(ea, eb), "expression"
+        eq = expr_equal(ea, eb)
+        if not eq and {str(x) for x in ea.free_symbols} != {str(x) for x in eb.free_symbols}:
+            return None, "expression_symbols"       # v_B = v_A cos θ vs v₂ = v₁ cos θ: the same claim may hide behind other names - the judge decides
+        return eq, "expression"
     if kind in ("words", "auto"):
         ta, tb = _wordseq(a), _wordseq(b)
         if ta == tb:
             return True, "words"
         if not (set(ta) & set(tb)) and not (re.search(r"\d", a) or re.search(r"\d", b)):
+            if min(len(ta), len(tb)) <= 2 and max(len(ta), len(tb)) >= 4:
+                return None, "words_short"        # 'Move up' against 'The bananas rise ...': too few words to call disjoint - the judge reads it
             return False, "words_disjoint"
         return None, "words_judge"
     return None, "undecided"
@@ -469,7 +496,7 @@ def _single_equal(a, b, kind):
             if ok is False:
                 saw_false = True
             hows.append(how)
-    if saw_false and all(h not in ("words_judge", "undecided", "words") for h in hows):
+    if saw_false and all(h not in ("words_judge", "words_short", "undecided", "words") for h in hows):
         return False, hows[0]
     return None, hows[0] if hows else "undecided"
 
@@ -549,6 +576,14 @@ def _answers_equal(a, b, kind):
             if v and answers_equal(v, single, "auto")[0] is True:
                 return True, "one_part_match %s" % k
         return None, "parts_vs_single"
+    sa, sb = _strip_explanation(a), _strip_explanation(b)
+    if (sa, sb) != (a, b):
+        # the bracketed working may itself hold commas: compare the bare values before any list split
+        if _explanations_contradict(a, b):
+            return None, "explanation_contradicts"
+        ok, how = answers_equal(sa, sb, kind)
+        if ok is True:
+            return True, how
     ra, rb = ratio_of(a), ratio_of(b)
     if ra and rb:
         if len(ra) != len(rb):

@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_68e61865",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A string 0.5 m long has one end fixed at point A, and its other end tied to a small object weighing 8 N. A horizontal force F pulls the object sideways until it lies 0.3 m away from the vertical line through A. Determine the string's tension T and the magnitude of the pulling force F.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "string length AC = 0.5 m",
+   "horizontal displacement of the object from the vertical through A (distance BC) = 0.3 m",
+   "weight of object = 8 N",
+   "force F is horizontal"
+  ],
+  "figure": {
+   "description": "Point A is fixed at the top of a vertical support. A string runs from A down to point C, where the object hangs. B lies on the vertical line through A at the same height as C. The horizontal distance BC is 0.3 m. At C, three forces act: the string tension T pulling up and toward A, the weight of the object (8 N) acting straight down, and the horizontal force F acting away from the vertical line (to the right)."
+  }
+ },
+ "solution": {
+  "approach": "The string, its vertical drop, and the horizontal pull form a right triangle; use it to find the string's angle, then balance vertical and horizontal forces.",
+  "steps": [
+   {
+    "text": "The string AC = 0.5 m is the hypotenuse; the horizontal offset BC = 0.3 m is one side. Find the vertical side AB by Pythagoras.",
+    "equation": "AB = √(0.5² − 0.3²) = √0.16 = 0.4 m"
+   },
+   {
+    "text": "This gives the angle θ the string makes with the vertical: sin θ = 0.3/0.5 = 0.6 and cos θ = 0.4/0.5 = 0.8.",
+    "equation": "sinθ = 0.6, cosθ = 0.8"
+   },
+   {
+    "text": "Vertically, the string's tension balances the weight of the object.",
+    "equation": "T cosθ = 8 → T = 8/0.8 = 10 N"
+   },
+   {
+    "text": "Horizontally, the applied force balances the horizontal part of the tension.",
+    "equation": "F = T sinθ = 10 × 0.6 = 6 N",
+    "why_this_step": "The object is in equilibrium under three forces: weight, tension and F, so each direction balances separately."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T = 10 N, F = 6 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping sine and cosine, using T sinθ = 8 for the vertical balance, which gives T = 13.3 N instead of 10 N."
+   },
+   {
+    "option": null,
+    "text": "Finding the vertical drop AB as 0.5 − 0.3 = 0.2 m by simple subtraction instead of using Pythagoras."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of concurrent forces",
+   "resolution of forces",
+   "geometry of a right triangle"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "573af7212ca683e68339adba493a8a6f21d01ded24021764133247a7d854f8fe"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4b829b5f39d3ee3320faee2602ec3a3c813e5bcf38de2c004edc5fbef5f849f8",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:50:00+05:30"
+ }
+}

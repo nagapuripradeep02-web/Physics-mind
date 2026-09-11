@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_0a1222f8",
+ "item_sha": "1422fdebc198c34cd27e343ba458ac90ad71e1ea710373691e8ed11bd52efcca",
+ "auditor_option": 1,
+ "auditor_value": "g/2 (a1 = g cos30 along wire 1, a2 = g cos60 along wire 2, 30 degrees apart; the difference is vertical with magnitude g/2)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Checked the components: a1 = g(sqrt3/4, 3/4), a2 = g(sqrt3/4, 1/4) with vertical taken downward; difference (0, -g/2). Common-mistake entry correctly points at option 2 (sqrt3 g/2 = the first particle's own acceleration).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:03:36+05:30"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_88658934",
+ "approach": "Link M's motion up the slope to 2M's fall through the single string over the movable pulley, then apply Newton's second law to M and to the pulley-plus-2M system.",
+ "steps": [
+  {"text": "One string runs from M up the slope, over the fixed pulley at the top, straight down, under the movable pulley carrying 2M, and up to a fixed anchor above.", "equation": "single string, tension T throughout"},
+  {"text": "If 2M descends a distance x, both the segment above it going to the fixed pulley and the segment going to the fixed anchor shorten by x each, so 2x of string must come from M's side, meaning M moves 2x up the slope.", "equation": "aM = 2 a(2M)",
+   "why_this_step": "This is the constraint relation, fixed purely by the string geometry, and it holds before any force equation is written."},
+  {"text": "Write Newton's second law for M along the frictionless incline, taking up the slope as positive.", "equation": "T − Mg sin30° = M aM = M(2a2M)"},
+  {"text": "Write Newton's second law for the 2M-plus-movable-pulley system, taking downward as positive; two string segments pull it up with tension T each.", "equation": "2Mg − 2T = 2M a2M"},
+  {"text": "From the second equation, T = Mg − M a2M. Substitute into the first equation and solve for a2M.", "equation": "Mg − M a2M − Mg sin30° = 2M a2M → Mg(1 − sin30°) = 3M a2M → a2M = g(1 − sin30°)/3 = g/6"},
+  {"text": "Use aM = 2 a2M to get M's acceleration up the slope.", "equation": "aM = 2(g/6) = g/3, directed up the incline"}
+ ],
+ "final_answer": {"option": null, "value": "acceleration of block M = g/3, directed up the incline (≈ 3.3 m/s² taking g = 10 m/s²)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing the pulley-and-2M equation as 2T − 2Mg = 2M a2M instead of 2Mg − 2T = 2M a2M, which gives the wrong answer a = g instead of the correct g/3."}
+ ],
+ "concept_tags": ["constraint relation", "movable pulley", "inclined plane", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

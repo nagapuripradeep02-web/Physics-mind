@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_0b468ae5",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two pulleys are mounted side by side on the ceiling. Between and below them hangs a third, smaller pulley that is free to move, and block B hangs from this middle pulley. One continuous string starts at block A, goes up and passes over the left ceiling pulley, comes down and loops under the free middle pulley, goes back up and over the right ceiling pulley, and finally comes down to block C. Work out how the accelerations aA, aB and aC of the three blocks are related to each other.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "two pulleys fixed to the ceiling, side by side",
+   "third pulley hangs freely between them, movable",
+   "one string connects block A, over the left fixed pulley, under the movable pulley, over the right fixed pulley, to block C",
+   "block B hangs from the movable middle pulley"
+  ],
+  "figure": {
+   "description": "Two fixed pulleys hang from the ceiling next to each other. A smaller pulley hangs freely below and between them, and block B is attached to this middle pulley. A single string goes from block A up over the left fixed pulley, down under the free middle pulley, up over the right fixed pulley, and down to block C."
+  }
+ },
+ "solution": {
+  "approach": "Write the one string's total length as the sum of its four segments over the two fixed pulleys and the movable pulley, and use that this length never changes.",
+  "steps": [
+   {
+    "text": "The single string runs from A, up and over the left fixed pulley, down and under the movable middle pulley, up and over the right fixed pulley, and down to C. Block B hangs from the movable middle pulley.",
+    "equation": "length = yA + yB + yB + yC"
+   },
+   {
+    "text": "Here yA and yC are how far A and C hang below their fixed pulleys, and yB is how far the movable pulley (with B) hangs below the fixed pulleys, since both fixed pulleys sit at the same height.",
+    "equation": "yA + 2yB + yC = constant"
+   },
+   {
+    "text": "Differentiate this length equation twice with respect to time; the constant term vanishes.",
+    "equation": "d²yA/dt² + 2 d²yB/dt² + d²yC/dt² = 0"
+   },
+   {
+    "text": "This is the required relation between the three accelerations, all measured with the same downward-positive convention.",
+    "equation": "aA + 2aB + aC = 0"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "aA + 2aB + aC = 0 (all three accelerations measured positive in the same direction, say downward)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing aA + aB + aC = 0, missing the factor of 2 on B that comes from B hanging on the movable pulley with two string segments."
+   },
+   {
+    "option": null,
+    "text": "Writing aA = aC without the aB term, treating the two fixed pulleys as if they were connected by one straight string with no movable pulley in between."
+   }
+  ],
+  "concept_tags": [
+   "string constraint",
+   "movable pulley",
+   "length conservation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "02761e701e39e89507145347d0236a7836c781496eb13706eb10defa3dc819ff"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5141bc4a225f9ecfa6da4fb841eb63ddbddc03f86e347f505be58f078ffced4c",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:13:00+05:30"
+ }
+}

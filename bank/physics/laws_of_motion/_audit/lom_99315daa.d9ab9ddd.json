@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_99315daa",
+ "item_sha": "d9ab9dddb64cbcb1704534083704a78a14eb46f8d712aa39f42943b6143c3a43",
+ "auditor_option": null,
+ "auditor_value": "Ball: weight w₂ at the centre; wall's normal reaction (horizontal, through the centre); ground's normal reaction (vertical, through the centre); stick's normal reaction at C (perpendicular to the stick, through the centre); ground friction on the ball = 0 because every other force passes through the centre, so any friction would be the only force with a moment about it. Stick: weight w₁ at its midpoint; ball's normal reaction at C (perpendicular to the stick); ground's normal reaction and friction at B; nothing at A.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Force lists for both bodies, the radial-normal argument and the zero-friction torque argument all agree with mine. The solution does not state the direction of the ground friction on the stick at B (toward the wall); not filed, as the question asks for a sketch and the force list is complete.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:44:31+05:30"
+ }
+}

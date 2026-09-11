@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_cff4c285",
+ "item_sha": "e36ab6886622906607ee9a685ba1a07929b6afcc34a77abd3f46b1142a0e4c7f",
+ "auditor_option": null,
+ "auditor_value": "(rod taken horizontal) T = mg/(2 sin37°) = 50/3 ≈ 16.67 N; hinge H_x = T cos37° = 40/3 ≈ 13.33 N (away from the wall), H_y = mg − T sin37° = 10 N (up); resultant = 50/3 ≈ 16.67 N",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Using the full rod length 4 m as the moment arm for the weight instead of the midpoint distance 2 m, which halves the found tension.",
+   "note": "With the weight's arm taken as 4 m the moment equation becomes T sin37° × 4 = 20 × 4, so T = 33.33 N — the tension DOUBLES, it does not halve. The stated cause cannot produce the effect the text names.",
+   "fix": "Using the full rod length 4 m as the moment arm for the weight instead of the midpoint distance 2 m, which doubles the found tension to 33.33 N."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Swapping sin37° and cos37° when finding the hinge components, giving H_x = 10 N and H_y = 13.33 N.",
+   "note": "Swapping sine and cosine in the two hinge equations gives H_x = T sin37° = 10 N and H_y = 20 − T cos37° = 6.67 N; the value 13.33 N for H_y does not follow from the stated cause.",
+   "fix": "Swapping sin37° and cos37° when finding the hinge components, giving H_x = 10 N and H_y = 6.67 N."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "Neither the question text nor the figure description says the rod is horizontal; the tension depends on the rod's inclination (moment arm of the weight). The solution states its assumption ('The rod is horizontal') in steps[0], which is acceptable handling.",
+ "notes": "Independent solve (rod horizontal) matches T = 16.67 N, H_x = 13.33 N, H_y = 10 N, resultant 16.67 N. All five step equations follow. Only the two mistake entries are defective, each on the number it names.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:00:02+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_4293a29e",
+ "item_sha": "380e9ba66b7edf62fa2e574c4f563347fe223414ee6a256e698d201761fdde21",
+ "auditor_option": null,
+ "auditor_value": "two strands pull the block: 2F = 200*1 -> F = 100 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:58:54+05:30"
+ }
+}

@@ -1,0 +1,1142 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 6,
+ "round": 0,
+ "agent_label": "W01-U-lom-06",
+ "items": [
+  {
+   "question_id": "lom_9cee07f6",
+   "audit_file": "lom_9cee07f6.ad51ee8c.json",
+   "item_sha": "ad51ee8cf5b93fec10de0500727480f6b62cab225e778444880008f870d7a78f",
+   "question_text": "A rod of mass m is held between two frictionless walls that let it slide only along one fixed straight line; as it slides, it keeps touching the sloped face of a wedge of mass M at a constant right angle to that face, as the figure shows. Every contact surface here is smooth, with no friction anywhere. Compute the magnitude of the rod's acceleration, then compute the magnitude of the wedge's acceleration.",
+   "options": [],
+   "figure_description": "A wall fixed in space is mounted at an angle in the upper-left region. A rod is held in a channel between two smooth walls so it can only slide along this fixed line; it slides down-and-right or up-and-left along this direction. The rod's lower tip presses against the sloped face of a wedge sitting on the ground, whose base angle with the horizontal is α; the rod stays exactly perpendicular to this sloped face at all times. The wedge itself can slide horizontally.",
+   "solution": {
+    "approach": "Apply Newton's second law to the rod along its guide and to the wedge along the horizontal, then combine with the constraint aA = aB sinα.",
+    "steps": [
+     {
+      "text": "The contact between rod and wedge is frictionless, so the contact force N acts along the rod's own axis, the common normal."
+     },
+     {
+      "text": "Along its guide, the rod feels this force N pushing it back and the component of its own weight pulling it toward the wedge.",
+      "equation": "m·a1 = mg cosα − N"
+     },
+     {
+      "text": "The wedge feels the reaction to N, whose horizontal part is the only horizontal force on it.",
+      "equation": "M·a2 = N sinα"
+     },
+     {
+      "text": "From the previous part, the rod's motion along its guide and the wedge's horizontal motion are linked by a1 = a2 sinα.",
+      "equation": "a1 = a2 sinα"
+     },
+     {
+      "text": "Substitute N = M a2/sinα into the rod equation and use the constraint to write everything in terms of a2.",
+      "equation": "m a2 sinα = mg cosα − M a2/sinα"
+     },
+     {
+      "text": "Solve for the wedge's acceleration, then get the rod's acceleration from the constraint.",
+      "equation": "a2 = mg sinα cosα/(M + m sin²α); a1 = a2 sinα = mg sin²α cosα/(M + m sin²α)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "acceleration of the wedge a2 = mg sinα cosα/(M + m sin²α); acceleration of the rod along its guide a1 = mg sin²α cosα/(M + m sin²α)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using mg sinα instead of mg cosα for the weight component along the rod's guide gives a2 = mg sin²α/(M + m sin²α), a different formula."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "constraint relation",
+     "contact force between two bodies"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_a8d2834a",
+   "audit_file": "lom_a8d2834a.40df5c4a.json",
+   "item_sha": "40df5c4a342db390c4b86012debb0c6226dd0e9e3fa6481b3a3db81a96b0e6ac",
+   "question_text": "A smooth circular ring of radius a stands in a vertical plane with its centre at C. Two beads, each of mass m, sit on the ring: bead A at the topmost point (directly above C) and bead B at the point level with C on one side (so CB is horizontal), joined to each other by a string of length √2 a stretched along the chord AB. The beads are released from rest and can slide along the ring. Just after release, find the tension in the string and the acceleration of bead B.",
+   "options": [],
+   "figure_description": "Circle of radius a, centre C, vertical plane. Point A is the topmost point of the circle, directly above C. Point B is the leftmost point of the circle, at the same height as C, so CB is horizontal and CA is vertical. A straight string connects A and B (the chord), length √2 a.",
+   "solution": {
+    "approach": "Write each bead's tangential equation of motion on the ring, then use the fact that the string's length along AB cannot change at the first instant.",
+    "steps": [
+     {
+      "text": "At A, gravity points straight along the radius, so only the string's part along the ring's direction can start A moving.",
+      "equation": "m a_A = T/√2"
+     },
+     {
+      "text": "At B, gravity points straight along the ring's own direction, while the string pulls partly against it.",
+      "equation": "m a_B = mg − T/√2"
+     },
+     {
+      "text": "Since the string cannot stretch, the two beads must move toward or away from each other along the string at matching rates; at the first instant this makes their along-the-ring accelerations equal.",
+      "equation": "a_A = a_B"
+     },
+     {
+      "text": "Solve the two equations together for the tension and for the acceleration of B.",
+      "equation": "T/√2 = g − T/√2 → T = mg/√2, a_B = g/2"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T = mg/√2 ≈ 0.71mg, acceleration of B = g/2, directed along the ring, straight down"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the string and treating B as a free bead on the ring gives an acceleration of g, missing that the string's pull cuts it down to g/2."
+     }
+    ],
+    "concept_tags": [
+     "beads on a ring",
+     "tangential acceleration",
+     "string constraint"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_adb64b1d",
+   "audit_file": "lom_adb64b1d.1069a28e.json",
+   "item_sha": "1069a28e9cd2141454b8eeb791d2f0263f6da82d78607507059cf5bf0697484a",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else.",
+   "solution": {
+    "approach": "List every contact the plank and the cylinder each have, and draw one force per contact, remembering that a smooth contact on a circular body always points through its centre.",
+    "steps": [
+     {
+      "text": "The plank touches the rough ground at its lower end and touches the smooth cylinder along its length, so it feels four forces in total.",
+      "equation": "plank: weight, ground normal, ground friction, cylinder normal"
+     },
+     {
+      "text": "At the ground contact the surface is rough, so both a normal reaction and a friction force act there, along with the plank's weight at its centre of gravity.",
+      "equation": "N_ground (perpendicular to ground) + f_ground (along ground) + W_plank (down, at centre of gravity)"
+     },
+     {
+      "text": "At the cylinder contact there is no friction (given), so only a normal reaction acts there, perpendicular to the plank's own surface at that point.",
+      "equation": "N_cylinder (perpendicular to the plank, at the point of contact)",
+      "why_this_step": "A frictionless contact can only push perpendicular to the surfaces touching, never along them."
+     },
+     {
+      "text": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+      "equation": "cylinder: weight W_cylinder (down, at centre) + N_ground4 (from ground, vertical, through centre) + N_plank (reaction to N_cylinder, radial, through centre) + f_ground_cyl (from ground, horizontal, at the ground contact)"
+     },
+     {
+      "text": "The cylinder touches the rough ground, so at that contact a normal reaction (vertical, through the centre) and a friction force (horizontal, along the ground) act; the friction is needed because the plank's normal force on the cylinder has a horizontal component.",
+      "equation": "N_ground2 (vertical, through centre) + f_ground_cyl (horizontal, at the ground contact, balances the horizontal part of N_plank)",
+      "why_this_step": "A frictionless contact pushes only along the shared normal; since the plank meets the cylinder at an angle, that push has a sideways part, so the rough ground must supply a matching sideways friction force."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "On the plank: its weight (at its centre of gravity), the ground's normal reaction and friction (at its lower end), and the cylinder's normal reaction perpendicular to the plank (at the contact point). On the cylinder: its weight at the centre, the normal reaction from the plank (perpendicular to the plank, through the centre), the ground's normal reaction (vertical, through the centre) and the ground's friction (horizontal, at the ground contact)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a friction force between the plank and the cylinder, contradicting the statement that this contact is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Assuming the ground exerts no friction on the cylinder because weight and both normal reactions pass through its centre, while ignoring that the plank's normal force also needs a horizontal balance."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal reaction",
+     "friction",
+     "circular contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_9954af95",
+   "audit_file": "lom_9954af95.f7217956.json",
+   "item_sha": "f7217956da2ef2f75a71083a94c72a86a36bf1acbcb061d68cda48489c8a88eb",
+   "question_text": "A 2 kg block sits on a ramp inclined at 37° to the horizontal. A 4 N force pushes the block up along the ramp's surface. Between the block and the ramp, the coefficients of friction are μₛ = 0.4 (static) and μₖ = 0.3 (kinetic).\n(a) Work out the friction force acting on the block.\n(b) Decide whether the block starts moving, and if it does, work out its acceleration.",
+   "options": [],
+   "figure_description": "A 2 kg block rests on a ramp tilted at 37° to the horizontal, with friction coefficients μₛ = 0.4 and μₖ = 0.3 between the block and the ramp. A 4 N force pushes the block up the slope, along the ramp's surface.",
+   "solution": {
+    "approach": "Compare the weight component along the incline with the applied force and the maximum static friction to see if the block moves, then find kinetic friction and acceleration.",
+    "steps": [
+     {
+      "text": "The weight components along and perpendicular to the incline are already resolved: 12 N down the slope and 16 N into the slope.",
+      "equation": "W sin37° = 12 N, W cos37° = 16 N"
+     },
+     {
+      "text": "The normal reaction equals the perpendicular component, since nothing else acts perpendicular to the incline.",
+      "equation": "R = 16 N"
+     },
+     {
+      "text": "Find the maximum static friction and compare it with the unbalanced force before friction is included.",
+      "equation": "f(max static) = μₛR = 0.4×16 = 6.4 N; unbalanced force = 12 − 4 = 8 N"
+     },
+     {
+      "text": "Since 8 N exceeds 6.4 N, friction cannot keep the block still, so it slides down and kinetic friction acts up the incline.",
+      "equation": "f(kinetic) = μₖR = 0.3×16 = 4.8 N"
+     },
+     {
+      "text": "Find the acceleration from the net force along the incline.",
+      "equation": "a = (12 − 4 − 4.8)/2 = 1.6 m/s², directed down the incline"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) friction = 4.8 N, kinetic, acting up the incline; (b) the block moves down the incline with acceleration 1.6 m/s²"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Comparing only the weight component (12 N) with the maximum static friction, without subtracting the 4 N applied force, still concludes sliding but gives a = 3.6 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Adding the applied 4 N to the weight component instead of subtracting it gives an unbalanced force of 16 N and a = 5.6 m/s²."
+     }
+    ],
+    "concept_tags": [
+     "friction on an incline",
+     "resolving weight",
+     "kinetic friction"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "lom_af1bfccc",
+   "audit_file": "lom_af1bfccc.0e7f03cc.json",
+   "item_sha": "0e7f03cc679320c2f782c353a966e240d5c54e318aad517bf0e26c3197683cd5",
+   "question_text": "A block of mass m sits on a smooth (frictionless) horizontal surface, and a time-dependent horizontal force F = at is applied to it, where a is a constant and t is time. A second, identical block of mass m rests on top of the first block, and the coefficient of friction between the two blocks is μ. Find the time at which the upper block first starts sliding relative to the lower block.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2mg/a"
+    },
+    {
+     "label": "(b)",
+     "text": "2μmg/a"
+    },
+    {
+     "label": "(c)",
+     "text": "μmg/a"
+    },
+    {
+     "label": "(d)",
+     "text": "2μ mga"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the common acceleration of the two blocks from the total applied force, then find when the friction needed to carry the top block reaches its largest possible value.",
+    "steps": [
+     {
+      "text": "Since the lower surface is smooth, the applied force accelerates both blocks together.",
+      "equation": "a_common = F/(2m) = at/(2m)"
+     },
+     {
+      "text": "The upper block is carried along only by friction from the lower block, so the friction needed on it equals its mass times the common acceleration.",
+      "equation": "f_needed = m × a_common = at/2"
+     },
+     {
+      "text": "Sliding between the blocks begins when this needed friction reaches the largest friction the surface between them can supply.",
+      "equation": "at/2 = μmg"
+     },
+     {
+      "text": "Solve for the time.",
+      "equation": "t = 2μmg/a"
+     }
+    ],
+    "final_answer": {
+     "option": 2,
+     "value": "2μmg/a"
+    },
+    "common_mistakes": [
+     {
+      "option": 3,
+      "text": "Setting the full applied force F = at equal to the largest friction μmg, instead of the smaller friction actually needed to carry the top block, gives t = μmg/a."
+     }
+    ],
+    "concept_tags": [
+     "friction between stacked blocks",
+     "time-varying force",
+     "Newton's second law"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "calculation"
+   }
+  },
+  {
+   "question_id": "lom_ac6d8f03",
+   "audit_file": "lom_ac6d8f03.22d639c9.json",
+   "item_sha": "22d639c9c36e73453bf41fea4de07f1a62dc0a8030aa2024602774c9967e725e",
+   "question_text": "Block A has a mass of 1 kg and block B has a mass of 2 kg. Block A's acceleration is (2î) m/s² and block B's acceleration is (−4ĵ) m/s², measured in the ground frame.\n(a) Find the pseudo force on block A, as measured in a reference frame attached to block B.\n(b) Find the pseudo force on block B, as measured in a reference frame attached to block A.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The pseudo force on an object, as seen from an accelerating frame, is minus the object's mass times the frame's own acceleration.",
+    "steps": [
+     {
+      "text": "Write the pseudo-force formula for an object of mass m viewed from a frame accelerating at a(frame).",
+      "equation": "F(pseudo) = −m × a(frame)"
+     },
+     {
+      "text": "For part (a), the frame is block B, so a(frame) = a(B) = (−4ĵ) m/s², and the object is block A with mass 1 kg.",
+      "equation": "F(pseudo on A) = −(1)(−4ĵ) = 4ĵ N"
+     },
+     {
+      "text": "For part (b), the frame is block A, so a(frame) = a(A) = (2î) m/s², and the object is block B with mass 2 kg.",
+      "equation": "F(pseudo on B) = −(2)(2î) = −4î N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) 4ĵ N (4 N along +y); (b) −4î N (4 N along −x)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Dropping the negative sign in the pseudo-force formula gives −4ĵ N on A and 4î N on B, both pointing the wrong way."
+     }
+    ],
+    "concept_tags": [
+     "pseudo force",
+     "non-inertial frame",
+     "Newton's second law"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_a567393c",
+   "audit_file": "lom_a567393c.602a6944.json",
+   "item_sha": "602a69443c641a213b435a39580a86fddbe7438f800dc935f8060cc6661f7b97",
+   "question_text": "A frame that moves at constant velocity is inertial, so the pseudo force needed in it is always zero. State whether this claim is true or false.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "A frame moving with constant velocity has zero acceleration, and the pseudo force is proportional to the frame's acceleration.",
+    "steps": [
+     {
+      "text": "Recall the pseudo-force formula for a frame with acceleration a(frame).",
+      "equation": "F(pseudo) = −m × a(frame)"
+     },
+     {
+      "text": "A frame moving with constant velocity does not speed up, slow down, or change direction, so its acceleration is zero.",
+      "equation": "a(frame) = 0"
+     },
+     {
+      "text": "Substitute zero acceleration into the formula: the pseudo force is zero, so the statement is true.",
+      "equation": "F(pseudo) = −m × 0 = 0"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "True"
+    },
+    "common_mistakes": [],
+    "concept_tags": [
+     "pseudo force",
+     "inertial frame",
+     "constant velocity"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_a9fb6916",
+   "audit_file": "lom_a9fb6916.ed2f9fa7.json",
+   "item_sha": "ed2f9fa75f069278a8bcb839f6b39713adb30d5dbc09a1844fb77a817971fad9",
+   "question_text": "A wedge with an incline angle θ is fixed to the floor of an elevator that moves upward with acceleration a. A block of mass m rests on the frictionless inclined surface of the wedge. Find the acceleration of the block relative to the wedge.",
+   "options": [],
+   "figure_description": "An elevator box accelerates straight upward with acceleration a. Fixed to its floor is a wedge whose sloped surface rises from the floor at angle θ to the horizontal. A block of mass m sits on this sloped surface.",
+   "solution": {
+    "approach": "In the elevator's frame a downward pseudo force ma adds to gravity, giving an effective gravity (g + a) that pushes the block down the frictionless incline.",
+    "steps": [
+     {
+      "text": "In the elevator's own frame, a pseudo force ma acts downward on the block, opposite to the elevator's upward acceleration a.",
+      "equation": "pseudo force = ma, downward"
+     },
+     {
+      "text": "This pseudo force adds to the block's true weight mg, giving an effective downward weight of m(g + a).",
+      "equation": "effective weight = m(g + a)"
+     },
+     {
+      "text": "The incline is frictionless, so only the component of this effective weight along the incline accelerates the block relative to the wedge.",
+      "equation": "a_rel = (g + a) sinθ"
+     },
+     {
+      "text": "This acceleration is directed down the incline, relative to the wedge.",
+      "equation": "a_rel = (g + a) sinθ, down the incline"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a_rel = (g + a) sinθ, directed down the incline"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using g sinθ alone and ignoring the elevator's acceleration gives (g) sinθ, missing the added pseudo force from the upward-accelerating elevator."
+     },
+     {
+      "option": null,
+      "text": "Subtracting a from g instead of adding it gives (g − a) sinθ, treating the elevator's acceleration as reducing the effective weight instead of increasing it."
+     }
+    ],
+    "concept_tags": [
+     "non-inertial frame",
+     "pseudo force",
+     "block on incline"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_adb64b1d",
+   "audit_file": "lom_adb64b1d.fd86b1ff.json",
+   "item_sha": "fd86b1ff07b18809beda1a5e70a426c5120ca06da0780aca305960abde8a7f0c",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else.",
+   "solution": {
+    "approach": "List every contact the plank and the cylinder each have, and draw one force per contact, remembering that a smooth contact on a circular body always points through its centre.",
+    "steps": [
+     {
+      "text": "The plank touches the rough ground at its lower end and touches the smooth cylinder along its length, so it feels four forces in total.",
+      "equation": "plank: weight, ground normal, ground friction, cylinder normal"
+     },
+     {
+      "text": "At the ground contact the surface is rough, so both a normal reaction and a friction force act there, along with the plank's weight at its centre of gravity.",
+      "equation": "N_ground (perpendicular to ground) + f_ground (along ground) + W_plank (down, at centre of gravity)"
+     },
+     {
+      "text": "At the cylinder contact there is no friction (given), so only a normal reaction acts there, perpendicular to the plank's own surface at that point.",
+      "equation": "N_cylinder (perpendicular to the plank, at the point of contact)",
+      "why_this_step": "A frictionless contact can only push perpendicular to the surfaces touching, never along them."
+     },
+     {
+      "text": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+      "equation": "cylinder: weight W_cylinder (down, at centre) + N_ground2 (from ground, vertical, through centre) + N_plank (reaction to N_cylinder, radial, through centre) + f_ground_cyl (from ground, horizontal, at the ground contact)"
+     },
+     {
+      "text": "The cylinder touches the rough ground, so at that contact a normal reaction (vertical, through the centre) and a friction force (horizontal, along the ground) act; the friction is needed because the plank's normal force on the cylinder has a horizontal component.",
+      "equation": "N_ground2 (vertical, through centre) + f_ground_cyl (horizontal, at the ground contact, balances the horizontal part of N_plank)",
+      "why_this_step": "A frictionless contact pushes only along the shared normal; since the plank meets the cylinder at an angle, that push has a sideways part, so the rough ground must supply a matching sideways friction force."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "On the plank: its weight (at its centre of gravity), the ground's normal reaction and friction (at its lower end), and the cylinder's normal reaction perpendicular to the plank (at the contact point). On the cylinder: its weight at the centre, the normal reaction from the plank (perpendicular to the plank, through the centre), the ground's normal reaction (vertical, through the centre) and the ground's friction (horizontal, at the ground contact)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a friction force between the plank and the cylinder, contradicting the statement that this contact is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Assuming the ground exerts no friction on the cylinder because weight and both normal reactions pass through its centre, while ignoring that the plank's normal force also needs a horizontal balance."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal reaction",
+     "friction",
+     "circular contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_a7f3cdc4",
+   "audit_file": "lom_a7f3cdc4.2147b2a4.json",
+   "item_sha": "2147b2a47c8897724aad21fc8ceb56f59382748f309211c17a276af5dd0c1ebd",
+   "question_text": "Block A (4 kg) and block C (20 kg) are joined by a string that runs over a pulley fixed at the left edge of a tabletop; block B (8 kg) and the same block C are joined by a second string running over another pulley fixed at the right edge of the tabletop, with C hanging between the two pulleys. Block A slides on a tabletop where the coefficient of friction is 0.2, whereas block B slides on a tabletop with no friction at all. Using g = 10 m/s², work out the common acceleration of the three blocks and the tension in each of the two strings.",
+   "options": [],
+   "figure_description": "A horizontal tabletop has a rectangular opening cut through its middle. A small pulley is fixed at each of the two facing edges of this opening: a left pulley at the edge of the left part of the table and a right pulley at the edge of the right part. Block A (4 kg) rests on the left part of the tabletop, to the left of the opening. Block B (8 kg) rests on the right part of the tabletop, to the right of the opening. Block C (20 kg) hangs inside the opening, below table level, between the two pulleys. One string is tied to block A, runs horizontally to the right along the table to the left pulley, passes over the top of that pulley, and drops vertically down its inner (right) side to the top of block C. A second string is tied to block B, runs horizontally to the left along the table to the right pulley, passes over the top of that pulley, and drops vertically down its inner (left) side to the top of the same block C. So block C is held by two vertical string segments and, as it falls, block A slides right and block B slides left, both toward the opening. Call the tension in the string on A's side T₁ and in the string on B's side T₂. Block A's surface has coefficient of friction 0.2; block B's surface is frictionless.",
+   "solution": {
+    "approach": "Both strings end on the same falling block C, so A, B and C all share one acceleration magnitude; write Newton's second law for each block and solve together.",
+    "steps": [
+     {
+      "text": "Both strings drop onto block C from its two pulleys, so whatever distance A slides right and B slides left, C falls by exactly that much in the same time.",
+      "equation": "aA = aB = aC = a"
+     },
+     {
+      "text": "Block A rests on the rough surface, so friction opposes its motion toward the pulley.",
+      "equation": "f = μ mA g = 0.2 × 4 × 10 = 8 N"
+     },
+     {
+      "text": "Write Newton's second law for A along the table.",
+      "equation": "T1 − f = mA a → T1 − 8 = 4a"
+     },
+     {
+      "text": "Block B moves on the frictionless surface, so only tension acts on it horizontally.",
+      "equation": "T2 = mB a = 8a"
+     },
+     {
+      "text": "Write Newton's second law for the falling block C.",
+      "equation": "mC g − T1 − T2 = mC a → 200 − T1 − T2 = 20a"
+     },
+     {
+      "text": "Substitute T1 and T2 from the first two equations into C's equation and solve for a.",
+      "equation": "200 − (4a + 8) − 8a = 20a → 192 = 32a → a = 6 m/s²"
+     },
+     {
+      "text": "Use a = 6 m/s² to find the two tensions.",
+      "equation": "T1 = 4(6) + 8 = 32 N, T2 = 8(6) = 48 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a = 6 m/s²; T1 (string to A) = 32 N; T2 (string to B) = 48 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Ignoring the friction on A and solving it as a plain three-block system, giving a = 6.25 m/s² instead of the correct 6 m/s²."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "friction",
+     "pulley system",
+     "constraint relation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_9cef0abc",
+   "audit_file": "lom_9cef0abc.a3bb794a.json",
+   "item_sha": "a3bb794a4220ff3f5d5d33cc6b53b194aa6d5f140dcec0740a606e29c2ab74c3",
+   "question_text": "A box car starts from rest (v = 0) and accelerates horizontally at a = 5 m/s² along the î direction. Take g = 10 m/s². Inside the car, on its frictionless floor, a 2 kg object is slid with an initial velocity of 10 m/s along î, measured relative to the car. (a) Describe how the object moves relative to the car. (b) Find when the object returns to its original position relative to the box car.\n(a) Describe the motion of the object relative to the car.\n(b) Find when the object reaches its original position relative to the box car.",
+   "options": [],
+   "figure_description": "",
+   "solution": {
+    "approach": "The floor is frictionless, so the object feels no horizontal force in the ground frame and keeps its initial velocity; subtract the car's motion to get its relative motion.",
+    "steps": [
+     {
+      "text": "In the ground frame the floor exerts no horizontal force on the object, so it keeps moving at its initial 10 m/s forever.",
+      "equation": "x_object(t) = 10t"
+     },
+     {
+      "text": "The car starts from rest and accelerates at 5 m/s², so its own position grows as a half-a-t-squared curve.",
+      "equation": "x_car(t) = ½(5)t² = 2.5t²"
+     },
+     {
+      "text": "The object's position relative to the car is the difference of the two, giving its relative velocity by differentiating.",
+      "equation": "x_rel(t) = 10t − 2.5t²,  v_rel(t) = 10 − 5t"
+     },
+     {
+      "text": "This means relative to the car the object moves forward, decelerating uniformly at 5 m/s², exactly like a ball thrown upward against gravity, until it momentarily stops relative to the car.",
+      "equation": "v_rel = 0 at t = 2 s, having moved 10 m forward relative to the car"
+     },
+     {
+      "text": "After that it reverses and speeds up backward relative to the car at the same constant 5 m/s². It returns to its starting position relative to the car when x_rel = 0 again.",
+      "equation": "10t − 2.5t² = 0  ⟹  t = 4 s (moving at −10 m/s relative to the car at that instant)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) relative to the car, the object moves forward, decelerates uniformly at 5 m/s², stops momentarily at t = 2 s after moving 10 m forward, then accelerates backward at 5 m/s²; (b) it returns to its original position relative to the car at t = 4 s"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the object also accelerates at 5 m/s² because the car does gives the wrong relative motion; the object feels no horizontal force at all since the floor is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Taking the return time as when the object's own velocity returns to 10 m/s (never happens) instead of solving x_rel = 0 gives no finite answer."
+     }
+    ],
+    "concept_tags": [
+     "non-inertial frame",
+     "relative motion",
+     "frictionless surface"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_b34b6154",
+   "audit_file": "lom_b34b6154.81f36aa3.json",
+   "item_sha": "81f36aa36b32a2e1e730297baac67c0c5a0ed23bcf455b57a0e8a265e09c911f",
+   "question_text": "A block of mass m stays motionless on a rough, wedge-shaped inclined surface, as pictured. Find the single net force that the wedge exerts on this block.",
+   "options": [],
+   "figure_description": "A triangular wedge rests on flat ground, its slanted face going up from left to right, with the base angle θ marked at the bottom-left where the slope meets the ground. A block m sits on this slanted face, somewhere partway up the slope.",
+   "solution": {
+    "approach": "Since the block is at rest, only two forces act on it overall, gravity and the wedge's contact force, so the contact force must exactly cancel gravity.",
+    "steps": [
+     {
+      "text": "Only two forces act on the block: its weight mg straight down, and the total contact force from the wedge, which is the normal force and friction combined into one force.",
+      "equation": "Forces on block: mg (down), R (from wedge)"
+     },
+     {
+      "text": "The block is at rest, so the net force on it is zero, meaning R must be equal and opposite to mg.",
+      "equation": "R = mg",
+      "why_this_step": "With only two forces on the block, equilibrium forces them to be exactly equal and opposite, whatever the incline angle or the friction coefficient."
+     },
+     {
+      "text": "So the wedge pushes on the block with a force of size mg, directed straight up.",
+      "equation": "R = mg, vertically upward"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "R = mg, directed vertically upward (independent of the angle θ)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the force from the wedge as only the normal force, R = mg cosθ, and leaving out the friction force needed to keep the block at rest."
+     }
+    ],
+    "concept_tags": [
+     "normal force",
+     "friction",
+     "equilibrium"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_b6fd9b1c",
+   "audit_file": "lom_b6fd9b1c.de1c279a.json",
+   "item_sha": "de1c279a14f40040988879a2f42a64885df8e7de96140e0879b681d10875829d",
+   "question_text": "Assertion: Two blocks of the same size and mass sit on a rough inclined plane. One of them is set moving up the slope with some initial speed, while the other is set moving down the slope with some initial speed. Given μ = 1/3 and an incline angle θ = 45°, the magnitudes of their accelerations come out in the ratio 2 : 1. Reason: This ratio should equal (1 + μ) over (1 − μ).",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Find the deceleration of the block moving up and the acceleration of the block moving down on the same rough incline, then compare them with the given μ and θ.",
+    "steps": [
+     {
+      "text": "For the block moving up the incline, both gravity and kinetic friction act down the incline, opposing the upward motion, so its deceleration is their sum.",
+      "equation": "a(up) = g(sinθ + μcosθ)"
+     },
+     {
+      "text": "For the block moving down the incline, kinetic friction acts up the incline, opposing the downward motion, so its acceleration is gravity's component minus friction.",
+      "equation": "a(down) = g(sinθ − μcosθ)"
+     },
+     {
+      "text": "Divide the two expressions and cancel g cosθ, then use tanθ = 1 at θ = 45°.",
+      "equation": "a(up)/a(down) = (tanθ+μ)/(tanθ−μ) = (1+μ)/(1−μ)"
+     },
+     {
+      "text": "Substitute μ = 1/3 into the ratio.",
+      "equation": "a(up)/a(down) = (1+1/3)/(1−1/3) = (4/3)/(2/3) = 2"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "(a) Both the Assertion and the Reason are true, and the Reason correctly explains the Assertion — the ratio is 2:1."
+    },
+    "common_mistakes": [
+     {
+      "option": 2,
+      "text": "Not checking that tanθ = 1 is exactly what turns the general ratio (tanθ+μ)/(tanθ−μ) into (1+μ)/(1−μ), a student might doubt the reason explains it and pick option (b) instead of (a)."
+     }
+    ],
+    "concept_tags": [
+     "inclined plane friction",
+     "kinetic friction",
+     "assertion reason"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_a65a3261",
+   "audit_file": "lom_a65a3261.4d9e7bf5.json",
+   "item_sha": "4d9e7bf5fd27beef70ddbfa3aac6075b158f288b3228491ea1163d118a83e234",
+   "question_text": "A block of mass 6 kg lies on a rough inclined surface, as pictured. Work out the applied force F, directed up along the slope, that is needed in each situation below. Take g = 10 m/s².\n(a) the force so that the block remains at rest on the slope\n(b) the force so that the block travels down the slope at a steady, unchanging speed\n(c) the force so that the block travels up the slope while gaining speed at a rate of 4 m/s²",
+   "options": [],
+   "figure_description": "A slope rises from left to right at 60° above the horizontal ground. A 6 kg block sits on this slope. A force F acts on the block along the slope's surface, pointing up and away from it, up the incline. Between the block and the slope, the static friction coefficient is 0.6 and the kinetic friction coefficient is 0.4.",
+   "solution": {
+    "approach": "Balance F, the weight component, and friction along the incline for each situation, using static friction where the block stays still and kinetic friction where it moves.",
+    "steps": [
+     {
+      "text": "Find the weight components along and perpendicular to the 60° incline.",
+      "equation": "mg sinθ = 60×0.866 = 51.96 N, mg cosθ = 60×0.5 = 30 N"
+     },
+     {
+      "text": "For part (a), the block tends to slide down on its own since mg sinθ exceeds the maximum static friction, so F (up the slope) plus friction at its maximum keep it still; F can range between the case where friction helps most and where it opposes most.",
+      "equation": "F_min = mg sinθ − μₛ mg cosθ = 51.96 − 0.6×30 = 33.96 N"
+     },
+     {
+      "text": "The largest F before the block tends to slide up instead is found with friction now acting down the slope at its maximum.",
+      "equation": "F_max = mg sinθ + μₛ mg cosθ = 51.96 + 18 = 69.96 N"
+     },
+     {
+      "text": "For part (b), the block moves down at constant velocity, so kinetic friction acts up the slope and the net force is zero.",
+      "equation": "F = mg sinθ − μₖ mg cosθ = 51.96 − 0.4×30 = 39.96 N"
+     },
+     {
+      "text": "For part (c), the block moves up with acceleration 4 m/s², so kinetic friction now acts down the slope, opposing the upward motion.",
+      "equation": "F − mg sinθ − μₖ mg cosθ = ma"
+     },
+     {
+      "text": "Put in the numbers and solve for F.",
+      "equation": "F = 51.96 + 12 + 6×4 = 87.96 N",
+      "why_this_step": "Moving up needs F to overcome both the weight component and friction, plus supply the extra force for the given acceleration."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) F between 33.96 N and 69.96 N keeps the block stationary, (b) F = 39.96 N moves it down at constant velocity, (c) F = 87.96 N moves it up with acceleration 4 m/s²."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Forgetting that friction helps hold the block in part (a) and taking F = mg sinθ = 51.96 N alone, ignoring friction's contribution."
+     },
+     {
+      "option": null,
+      "text": "Using the static coefficient μₛ instead of the kinetic coefficient μₖ in part (b), giving F = 51.96 − 0.6×30 = 33.96 N."
+     },
+     {
+      "option": null,
+      "text": "Leaving out friction in part (c) and taking F = mg sinθ + ma = 51.96 + 24 = 75.96 N."
+     }
+    ],
+    "concept_tags": [
+     "friction on incline",
+     "static friction",
+     "kinetic friction"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_aeff097e",
+   "audit_file": "lom_aeff097e.53a7c4bf.json",
+   "item_sha": "53a7c4bf1cbe3a36fa02c622f0587f75aa8372619b7496e129d882962fe20c0e",
+   "question_text": "Three blocks of masses 6 kg, 4 kg and 10 kg touch each other in a line on a frictionless horizontal floor, arranged in that order from left to right. A horizontal force of 100 N pushes on the outer face of the 6 kg block, directed rightward toward the other blocks, and a horizontal force of 40 N pushes on the outer face of the 10 kg block, directed leftward toward the other blocks. All surfaces, including the floor, are smooth.\n(a) Find the acceleration of each of the three blocks.\n(b) Find the net force acting on the 6 kg block, on the 4 kg block, and on the 10 kg block.\n(c) Find the contact force between the 4 kg block and the 10 kg block.",
+   "options": [],
+   "figure_description": "Three blocks rest touching each other on a horizontal frictionless floor, arranged left to right as 6 kg, 4 kg, 10 kg, with no gaps between them. A 100 N horizontal force pushes on the left (outer) face of the 6 kg block, directed rightward into the row of blocks. A 40 N horizontal force pushes on the right (outer) face of the 10 kg block, directed leftward into the row of blocks. Every contact surface, block-to-block and block-to-floor, is frictionless.",
+   "solution": {
+    "approach": "Treat the three blocks as one system to find the common acceleration, then isolate the 10 kg block to find the contact force with the 4 kg block.",
+    "steps": [
+     {
+      "text": "Find the net force and total mass of the three-block system.",
+      "equation": "F_net = 100 − 40 = 60 N, M = 6+4+10 = 20 kg"
+     },
+     {
+      "text": "The common acceleration of all three blocks follows from the net force and total mass.",
+      "equation": "a = 60/20 = 3 m/s²"
+     },
+     {
+      "text": "The net force on each block equals its own mass times this common acceleration.",
+      "equation": "6 kg block: 18 N, 4 kg block: 12 N, 10 kg block: 30 N"
+     },
+     {
+      "text": "Isolate the 10 kg block: the contact push from the 4 kg block, N, minus the 40 N force gives its net force.",
+      "equation": "N − 40 = 10×3, so N = 70 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) a = 3 m/s²; (b) net force: 18 N on the 6 kg block, 12 N on the 4 kg block, 30 N on the 10 kg block; (c) force between the 4 kg and 10 kg blocks = 70 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Adding 100 N and 40 N instead of subtracting them, since both arrows point toward the middle of the row, giving a = 140/20 = 7 m/s²."
+     },
+     {
+      "option": null,
+      "text": "Taking the contact force between the 4 kg and 10 kg blocks as the 40 N applied force, ignoring the 10 kg block's own net force, giving N = 40 N."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "blocks in contact",
+     "contact force"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_9dbebb4d",
+   "audit_file": "lom_9dbebb4d.ada03831.json",
+   "item_sha": "ada038310c6da182a15a7839a7b34b564c2f3e6049e255306e199d2ea381c17d",
+   "question_text": "A 1 kg ball hangs motionlessly at point P, held there by two thin, weightless strings: one, OP, running up to a fixed point O, and another, RP, running horizontally to a wall anchor. At this position, string OP is inclined at θ = 45° to the vertical. String RP is then snipped, and the ball swings along a circular arc to a new point Q, where the remaining string (call it OQ) again makes a 45° angle with the vertical, on the far side. Taking g = 10 m/s², compute the tension in the string at position P (before RP was cut) and the tension in the string at position Q (once RP has been cut).",
+   "options": [],
+   "figure_description": "A fixed support point O sits at the top. A ball hangs from O by a string; at its first position P, this string is tilted 45° from the vertical line through O, and a separate horizontal string ties the ball to a wall anchor, holding it at that tilt. A dashed curved path shows the ball's swing once the horizontal string is released, arcing down and across to a second position Q, symmetric to P, where the string from O is again tilted 45° from vertical but on the opposite side.",
+   "solution": {
+    "approach": "At P, balance the string OP against gravity and the horizontal string RP. At Q, the ball is momentarily at rest, so only the weight component along OQ acts.",
+    "steps": [
+     {
+      "text": "At P, resolve the ball's weight against the tension in OP and the horizontal tension in RP.",
+      "equation": "T(OP)cosθ = mg, T(OP)sinθ = T(RP)"
+     },
+     {
+      "text": "Solve the vertical equation for the tension in OP, using θ = 45° and g = 10 m/s².",
+      "equation": "T(OP) = mg/cosθ = 10/cos45° = 10√2 N"
+     },
+     {
+      "text": "After RP is cut, the ball swings on OP and rises to Q, which sits at the same height as P, so its speed there is zero.",
+      "why_this_step": "The swing is smooth, and P and Q lie at equal height above the lowest point of the arc."
+     },
+     {
+      "text": "At Q the speed is zero, so the centripetal term is zero and only the weight component along OQ balances the tension.",
+      "equation": "T(OQ) − mg cosθ = 0"
+     },
+     {
+      "text": "The tensions are T(OP) = 10√2 N and T(OQ) = 5√2 N.",
+      "equation": "T(OP) ≈ 14.1 N, T(OQ) = mg cosθ = 10cos45° = 5√2 N ≈ 7.1 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T(OP) = 10√2 N ≈ 14.1 N; T(OQ) = 5√2 N ≈ 7.1 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using T(OP) = mg cosθ, the formula that belongs to OQ, gives 5√2 N ≈ 7.1 N instead of 10√2 N ≈ 14.1 N."
+     },
+     {
+      "option": null,
+      "text": "Assuming the string tension stays the same after RP is cut gives T(OQ) = 10√2 N ≈ 14.1 N instead of 5√2 N ≈ 7.1 N."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium of forces",
+     "tension in a string",
+     "vertical circular motion",
+     "energy conservation"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_aadb9898",
+   "audit_file": "lom_aadb9898.8871bb54.json",
+   "item_sha": "8871bb544d8ae2e5e71e8b13121226e844092a5bf1b46606160da11f77edf207",
+   "question_text": "Three blocks of masses m₁ = 10 kg, m₂ = 20 kg and m₃ = 30 kg rest on a smooth horizontal table and are joined in a line by light, horizontal strings: one string of tension T₁ between m₁ and m₂, and another string of tension T₂ between m₂ and m₃. A horizontal pull of F = 60 N acts on m₃, directed away from m₂.\n(a) Find the tensions T₁ and T₂ in the two strings.\n(b) Find the tension T₂ immediately after the string between m₁ and m₂ suddenly breaks.",
+   "options": [],
+   "figure_description": "Three blocks m₁, m₂, m₃ sit in a row on a horizontal frictionless table, ordered left to right as m₁, m₂, m₃. A light string of tension T₁ joins m₁ to m₂, and a light string of tension T₂ joins m₂ to m₃. A horizontal force F acts on the right (outer) face of m₃, pulling the whole line to the right, away from m₂.",
+   "solution": {
+    "approach": "Use the whole system to find the acceleration, then isolate one block to find each tension; repeat with the reduced system after the string snaps.",
+    "steps": [
+     {
+      "text": "Find the acceleration of the three connected blocks under F.",
+      "equation": "a = 60/(10+20+30) = 1 m/s²"
+     },
+     {
+      "text": "T₁ pulls only m₁, so it equals m₁ times the common acceleration.",
+      "equation": "T₁ = 10×1 = 10 N"
+     },
+     {
+      "text": "T₂ pulls the combined m₁ and m₂, so it equals their total mass times the acceleration.",
+      "equation": "T₂ = 30×1 = 30 N"
+     },
+     {
+      "text": "After the string between m₁ and m₂ snaps, only m₂ and m₃ remain connected; find their new common acceleration.",
+      "equation": "a′ = 60/(20+30) = 1.2 m/s²"
+     },
+     {
+      "text": "T₂ now pulls only m₂, so it equals m₂ times the new acceleration.",
+      "equation": "T₂ = 20×1.2 = 24 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "(a) T₁ = 10 N, T₂ = 30 N; (b) T₂ = 24 N after the string between m₁ and m₂ snaps"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Keeping the acceleration at 1 m/s² after the string snaps instead of recomputing it for the smaller connected mass, giving T₂ = 20×1 = 20 N instead of 24 N."
+     },
+     {
+      "option": null,
+      "text": "Computing T₁ as the force needed to accelerate m₂ and m₃ together instead of m₁ alone, giving T₁ = 50 N instead of 10 N."
+     }
+    ],
+    "concept_tags": [
+     "connected bodies",
+     "Newton's second law",
+     "string tension"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_a85f8814",
+   "audit_file": "lom_a85f8814.fc51ae97.json",
+   "item_sha": "fc51ae9710ea7d5344a766492bb66b64fe60ab307835a0c9d83eaaa36428a221",
+   "question_text": "Assertion: Suppose three forces F₁, F₂ and F₃ all act through one point, with F₁ making 30° with F₂ and 120° with F₃. Under these conditions the forces are unable to balance one another. Reason: For this to happen, at least one of the angles between the forces has to be greater than 180°.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Three concurrent forces balance only when their directions surround the common point, so every angle between consecutive forces must stay under 180°; check whether that holds here.",
+    "steps": [
+     {
+      "text": "Three concurrent forces stay in equilibrium only when their directions surround the common point, so the three angles between consecutive forces, added all the way around, equal 360° and each one stays below 180°.",
+      "equation": "θ₁₂ + θ₂₃ + θ₃₁ = 360°, every θ < 180°"
+     },
+     {
+      "text": "F2 is 30° from F1 and F3 is 120° from F1. The widest F2 and F3 can be apart, measured through F1, is the sum of these two angles.",
+      "equation": "widest possible spread = 30° + 120° = 150°"
+     },
+     {
+      "text": "Even in this widest case, all three forces lie inside a 150° arc, less than 180°. The angle needed to close the loop back to F1, on the other side, is 360° minus this arc.",
+      "equation": "360° − 150° = 210°",
+      "why_this_step": "A group of vectors confined to an arc under 180° always has a component along one fixed direction, so a positive-weighted sum of them can never reach zero."
+     },
+     {
+      "text": "Lami's theorem needs the sine of each of the three angles around the point to be positive, which requires every angle to stay under 180°. Here one angle is always at least 210°, so no set of positive force magnitudes can make F1, F2 and F3 balance.",
+      "equation": "sin(210°) = −0.5 (negative)"
+     },
+     {
+      "text": "So the three forces cannot be in equilibrium under the stated angles, making the Assertion true, and this happens exactly because one of the three angles around the point is always greater than 180°, so the Reason is true and correctly explains the Assertion.",
+      "equation": "Answer: option (a) — both true, Reason explains Assertion"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Taking F3 as 120−30 = 90° from F2 and checking Lami's theorem with 30°, 90°, 120° gives every sine positive, which looks like a valid equilibrium and wrongly marks the Assertion false."
+     },
+     {
+      "option": 3,
+      "text": "Correctly seeing the Assertion is true but checking the Reason only against 30°, 90° and 120°, none over 180°, and missing the real closing angle of 210°, wrongly marks the Reason false."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium of concurrent forces",
+     "Lami's theorem",
+     "vector addition"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_b7c1ba7e",
+   "audit_file": "lom_b7c1ba7e.944a5a68.json",
+   "item_sha": "944a5a68d88d8bada97e749462440f5fff7ccac486458569e3a58a437b12ed73",
+   "question_text": "In the pulley arrangement shown, find how the acceleration of block A is related to the acceleration of block B.",
+   "options": [],
+   "figure_description": "A pulley P₁ is fixed to the ceiling. One string runs over P₁: its left end goes straight down to block A, its right end goes down to the axle hanger of a second, movable pulley P₂ that hangs below P₁ and to the right of A. A second string runs over P₂: its left end also goes straight down to block A (so two strands rise from A, one to P₁ and one to P₂), and its right end hangs down to block B. Block B hangs higher than block A. All strings are vertical; pulleys and strings are light. Taking positions downward from the ceiling, string 1 gives y_A + y_P₂ = constant and string 2 gives (y_A − y_P₂) + (y_B − y_P₂) = constant.",
+   "solution": {
+    "approach": "Write both strings' fixed-length equations in terms of downward positions, then differentiate each twice to connect the accelerations of A and B.",
+    "steps": [
+     {
+      "text": "String 1 goes over the fixed pulley P1 from A to the movable pulley P2, so the sum of their depths below the ceiling stays fixed.",
+      "equation": "yA + yP2 = constant"
+     },
+     {
+      "text": "String 2 goes over the movable pulley P2, with both of its ends going down to A and to B, so the sum of their depths measured from P2 stays fixed.",
+      "equation": "(yA − yP2) + (yB − yP2) = constant, i.e. yA + yB − 2yP2 = constant"
+     },
+     {
+      "text": "Differentiate each length equation twice with respect to time to turn it into a relation between accelerations; this is the constraint relation, found before writing any force equation.",
+      "equation": "aA + aP2 = 0  and  aA + aB − 2aP2 = 0"
+     },
+     {
+      "text": "From the first relation, the movable pulley's acceleration is the negative of A's.",
+      "equation": "aP2 = −aA"
+     },
+     {
+      "text": "Substitute this into the second relation and solve for B's acceleration in terms of A's.",
+      "equation": "aA + aB − 2(−aA) = 0 → aB = −3aA"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "aB = −3aA, i.e. B's acceleration is three times A's in magnitude and opposite in direction: when A accelerates downward, B accelerates upward by three times as much, and vice versa."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Treating P2 as if it were fixed and using only the second string's length equation gives aB = −aA, missing the factor of 3 that comes from P2's own motion."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "movable pulley",
+     "string constraint"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_99315daa",
+   "audit_file": "lom_99315daa.d9ab9ddd.json",
+   "item_sha": "d9ab9dddb64cbcb1704534083704a78a14eb46f8d712aa39f42943b6143c3a43",
+   "question_text": "A stick, labelled AB and having weight w₁, leans across a ball of weight w₂ as pictured; the ball also touches a vertical wall and the ground. The ground beneath is rough, but no friction acts at either the stick-and-ball contact or the ball-and-wall contact. Produce separate free-body force diagrams for the ball and for the stick. Also work out why no friction can act at the ball-ground contact.",
+   "options": [],
+   "figure_description": "A vertical wall (brick) stands on the left, meeting a horizontal, rough ground at a right angle. A rod runs from point A (high on the wall) down to point B (on the ground, off to the right), like the hypotenuse of a right triangle. A sphere sits in the corner between the wall and the ground, touching both, and also touching the underside of the rod at a point C on the rod; C lies closer to A than to B (AC < CB).",
+   "solution": {
+    "approach": "Draw one force per contact for rod and sphere; A touches nothing, and since the sphere's other contacts are frictionless, ground friction on it must be zero.",
+    "steps": [
+     {
+      "text": "The rod touches only the ground (at B, rough) and the sphere (at C, smooth); its end A near the wall touches nothing.",
+      "equation": "rod: weight w₁ (down, at its centre of gravity) + N_ground and f_ground (at B) + N_sphere (at C, perpendicular to the rod, since rod–sphere is frictionless)"
+     },
+     {
+      "text": "The sphere touches the wall, the ground, and the rod; the rod–sphere and sphere–wall contacts are frictionless, so those two forces act along the radius, straight through the sphere's centre.",
+      "equation": "sphere: weight w₂ (down, at the centre) + N_wall (horizontal, radial) + N_rod (reaction to the rod's N_sphere, radial)"
+     },
+     {
+      "text": "Since the sphere's weight, the wall's normal reaction, and the rod's normal reaction all pass through the sphere's centre, none of them can turn the sphere about that centre.",
+      "equation": "sum of moments about the sphere's centre from weight, N_wall, N_rod = 0"
+     },
+     {
+      "text": "If the ground exerted friction on the sphere, it would act tangentially at the ground contact, with a moment arm equal to the sphere's radius, and nothing else could balance that turning effect.",
+      "equation": "f_ground_on_sphere ≠ 0 would leave a net moment about the centre",
+      "why_this_step": "A body in equilibrium cannot have a leftover, unbalanced moment, so this friction must be zero."
+     },
+     {
+      "text": "So the ground can only push the sphere perpendicular to itself; the sphere's forces are its weight, the wall's normal reaction, the rod's normal reaction, and the ground's normal reaction only.",
+      "equation": "sphere: weight w₂ + N_wall + N_rod + N_ground (no friction)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Rod AB: its weight w₁ at its centre of gravity, the ground's normal reaction and friction at B, and the sphere's normal reaction at C (perpendicular to the rod); nothing acts at A, since it touches nothing. Sphere: its weight w₂ at the centre, the normal reactions from the wall and from the rod (both radial, passing through the centre), and the ground's normal reaction (also radial); the ground exerts no friction on the sphere, because the other three forces already pass through the centre and leave no turning effect for friction to balance."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a force on the rod at end A even though A touches neither the wall nor anything else in the figure."
+     },
+     {
+      "option": null,
+      "text": "Drawing ground friction on the sphere by analogy with the rod's rough ground contact, without checking that the sphere's other forces already balance about its centre."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "torque balance",
+     "normal reaction",
+     "friction"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_b09b2021",
+   "audit_file": "lom_b09b2021.6b9adfba.json",
+   "item_sha": "6b9adfbac8ba8e4dc3d1dc375cbe8af5cdcfee1eee855cf2cb2aa25ebd119668",
+   "question_text": "A vertical assembly hangs together: a 2 kg block sits at the top and is pulled upward by a force F = 100 N. Below this block is a string of mass 2 kg, whose upper end is named A, whose lower end is named B, and whose exact midpoint is named C. A 4 kg block is tied to the string's lower end B. Work out the string tension at each of the points A, B and C.",
+   "options": [],
+   "figure_description": "A dashed outline encloses a vertical setup: at the top, a force of 100 N pulls upward, acting on a 2 kg block. Beneath that block hangs a string of mass 2 kg; its top end is A, its bottom end is B, and its midpoint is C. A 4 kg block hangs from end B. An upward arrow marks the acceleration a of the whole system.",
+   "solution": {
+    "approach": "Find the common upward acceleration of the whole system from the net force, then apply Newton's second law to whatever hangs below each labeled point.",
+    "steps": [
+     {
+      "text": "Find the acceleration of the whole system (top block, string, bottom block) from the net upward force.",
+      "equation": "a = (F − Mg)/M = (100 − 8×10)/8"
+     },
+     {
+      "text": "Compute the acceleration.",
+      "equation": "a = 20/8 = 2.5 m/s²"
+     },
+     {
+      "text": "The tension at A supports everything below A: the whole string and the bottom block.",
+      "equation": "T(A) = (2+4)(g+a) = 6×12.5"
+     },
+     {
+      "text": "The tension at C supports everything below C: half the string and the bottom block.",
+      "equation": "T(C) = (1+4)(g+a) = 5×12.5"
+     },
+     {
+      "text": "The tension at B supports only the bottom block below B, so T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N.",
+      "equation": "T(B) = 4×(g+a) = 4×12.5 = 50 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Using the total system mass (8 kg) at every point instead of only the mass below each labeled point gives the same wrong tension, 100 N, everywhere."
+     },
+     {
+      "option": null,
+      "text": "Treating the string as massless drops its weight from the mass below A and C, giving T(A) = 50 N and T(C) = 50 N instead of 75 N and 62.5 N."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "connected bodies",
+     "tension in a string with mass"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "application"
+   }
+  }
+ ]
+}

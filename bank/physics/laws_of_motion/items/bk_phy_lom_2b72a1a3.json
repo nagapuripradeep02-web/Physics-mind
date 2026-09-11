@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2b72a1a3",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Block A, of mass 4 kg, rests on the ground, where the coefficient of friction between the block and the ground equals 0.8. A horizontal external push of 30 N, directed parallel to the ground, is applied to the block. Taking g = 10 m/s², find the total force the ground exerts back on the block.",
+  "options": {
+   "1": "40 N",
+   "2": "30 N",
+   "3": "zero",
+   "4": "50 N"
+  },
+  "parts": null,
+  "conditions": [
+   "block A mass = 4 kg",
+   "coefficient of friction between block and ground = 0.8",
+   "external force = 30 N applied parallel to ground",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether the block moves; it does not, so friction equals the applied force, and the ground's push combines the normal force and friction at a right angle.",
+  "steps": [
+   {
+    "text": "Find the normal force and the largest friction the ground can supply.",
+    "equation": "N = mg = 4×10 = 40 N, f_max = μN = 0.8×40 = 32 N"
+   },
+   {
+    "text": "Compare the applied force with the largest friction.",
+    "equation": "30 N < 32 N, so the block stays still"
+   },
+   {
+    "text": "Since the block stays still, the friction force equals the applied force.",
+    "equation": "f = 30 N"
+   },
+   {
+    "text": "The ground pushes with the normal force and the friction force together, at a right angle to each other, so add them as a right triangle.",
+    "equation": "R = √(N² + f²) = √(40² + 30²) = 50 N"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "50 N"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Taking the ground's push as only the normal force and forgetting the friction force gives 40 N."
+   },
+   {
+    "option": 2,
+    "text": "Taking the ground's push as only the friction force and forgetting the normal force gives 30 N."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "normal force",
+   "resultant force"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5abb59f782a4dd3c2af9f98dcc609019182b329d108ec5f2a51c4ae2b0d5027f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e9641764b1e3f5842b98119cc53b5d523a33fe5451eab240bb53787788f063e7",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:03:00+05:30"
+ }
+}

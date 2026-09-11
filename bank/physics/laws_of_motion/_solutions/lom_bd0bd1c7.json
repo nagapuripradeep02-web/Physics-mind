@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_bd0bd1c7",
+ "approach": "Both blocks have equal mass M, one on a frictionless table and one hanging, joined by a light string over two fixed pulleys; apply Newton's second law to each.",
+ "steps": [
+  {"text": "Write Newton's second law for the hanging block M.", "equation": "Mg − T = Ma"},
+  {"text": "Write Newton's second law for the block M on the table.", "equation": "T = Ma"},
+  {"text": "Add the two equations; the mass M cancels out, leaving the acceleration in terms of g.", "equation": "Mg = 2Ma, so a = g/2"},
+  {"text": "Find the tension using T = Ma.", "equation": "T = Mg/2 (a = g/2 ≈ 5 m/s² and T = Mg/2, using g = 10 m/s²)"}
+ ],
+ "final_answer": {"option": null, "value": "a = g/2 (≈ 5 m/s² with g = 10 m/s²); T = Mg/2"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the hanging block as if it falls freely, ignoring the inertia of the block on the table, gives a = g instead of g/2."}
+ ],
+ "concept_tags": ["Newton's second law", "pulley", "equal masses"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:04:00+05:30"}
+}

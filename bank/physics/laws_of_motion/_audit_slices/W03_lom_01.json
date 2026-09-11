@@ -1,0 +1,452 @@
+{
+ "wave": 3,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "agent_label": "W03-U-lom-01",
+ "items": [
+  {
+   "question_id": "lom_adb64b1d",
+   "audit_file": "lom_adb64b1d.ea510537.json",
+   "item_sha": "ea510537e8b02812c8f42489d403d5be8d346296582e25b6cf899f80051b6141",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else.",
+   "solution": {
+    "approach": "List every contact the plank and the cylinder each have, and draw one force per contact, remembering that a smooth contact on a circular body always points through its centre.",
+    "steps": [
+     {
+      "text": "The plank touches the rough ground at its lower end and touches the smooth cylinder along its length, so it feels four forces in total.",
+      "equation": "plank: weight, ground normal, ground friction, cylinder normal"
+     },
+     {
+      "text": "At the ground contact the surface is rough, so both a normal reaction and a friction force act there, along with the plank's weight at its centre of gravity.",
+      "equation": "N_ground (perpendicular to ground) + f_ground (along ground) + W_plank (down, at centre of gravity)"
+     },
+     {
+      "text": "At the cylinder contact there is no friction (given), so only a normal reaction acts there, perpendicular to the plank's own surface at that point.",
+      "equation": "N_cylinder (perpendicular to the plank, at the point of contact)",
+      "why_this_step": "A frictionless contact can only push perpendicular to the surfaces touching, never along them."
+     },
+     {
+      "text": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+      "equation": "cylinder: weight W_cylinder (down, at centre) + N_ground2 (from ground, vertical, through centre) + N_plank (reaction to N_cylinder, radial, through centre) + f_ground_cyl (from ground, horizontal, at the ground contact)",
+      "why_this_step": "With no friction at the plank contact, the ground's friction on the cylinder is the only force with a moment about the cylinder's centre, so the cylinder's torques would not balance without it."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "On the plank: its weight (at its centre of gravity), the ground's normal reaction and friction (at its lower end), and the cylinder's normal reaction perpendicular to the plank (at the contact point). On the cylinder: its weight at the centre, the normal reaction from the plank (perpendicular to the plank, through the centre), the ground's normal reaction (vertical, through the centre) and the ground's friction (horizontal, at the ground contact)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a friction force between the plank and the cylinder, contradicting the statement that this contact is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Leaving out the ground's friction on the cylinder, although the ground is rough and the plank's push on the cylinder has a horizontal part that makes it tend to move along the ground."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal reaction",
+     "friction",
+     "circular contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_57d048b4",
+   "audit_file": "lom_57d048b4.f377debf.json",
+   "item_sha": "f377debf0e12c9483085100071a340aedf1597596549e8ae9261a7a2448013f1",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure.\n(a) Using string-constraint equations, determine how the acceleration of point 2 is related to the acceleration of point 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2.",
+   "solution": {
+    "approach": "Write the constant-length equation for each of the three strings in turn, then combine the three to connect point 1 and block 2 directly.",
+    "steps": [
+     {
+      "text": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant.",
+      "equation": "x₁ + x₃ = c₁ ⇒ a₁ + a₃ = 0"
+     },
+     {
+      "text": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position.",
+      "equation": "(x₁−x₃) + (x₄−x₃) = c₂ ⇒ a₁ + a₄ − 2a₃ = 0"
+     },
+     {
+      "text": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position.",
+      "equation": "(x₁−x₄) + (x₂−x₄) = c₃ ⇒ a₁ + a₂ − 2a₄ = 0"
+     },
+     {
+      "text": "From the first equation, a₃ = −a₁. Put this into the second equation.",
+      "equation": "a₁ + a₄ − 2(−a₁) = 0 ⇒ a₄ = −3a₁"
+     },
+     {
+      "text": "Put a₄ = −3a₁ into the third equation and solve for a₂.",
+      "equation": "a₁ + a₂ − 2(−3a₁) = 0 ⇒ a₂ = −7a₁",
+      "why_this_step": "Each extra movable pulley in the chain multiplies the effect on the far end, which is why block 2's acceleration comes out seven times point 1's."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a₂ = −7a₁ (block 2's acceleration is 7 times point 1's acceleration, in the opposite direction)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing only the top string's constraint (x₁ + x₃ = constant) and stopping there, which gives |a₂| = |a₁|; each movable pulley below adds its own constraint, and combining all three gives a₂ = −7a₁."
+     }
+    ],
+    "concept_tags": [
+     "string constraint",
+     "movable pulley",
+     "pulley kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_77397fdd",
+   "audit_file": "lom_77397fdd.fde11a7c.json",
+   "item_sha": "fde11a7cb6b514e158552eb747661628c95926e6860522b664c8b9579a70fb87",
+   "question_text": "In the setup shown, block m₁ rests on the sloped face of a frictionless wedge, while a second block, m₂, hangs in the air and is η times as heavy as m₁; the wedge's slope makes an angle θ with the ground. Every pulley and every string in the system is taken to be massless, and no surface exposes any friction. Work out the acceleration of block m₂.",
+   "options": [],
+   "figure_description": "A wedge rests on the ground. Its sloped face rises from the lower-left corner, where it makes angle θ with the ground, up to the top-right corner of the wedge; its right face is vertical. A small pulley is fixed at the top-right corner of the wedge. Block m₁ rests on the sloped face. A cord is tied to block m₁, runs up the slope parallel to the incline, passes over the top of the fixed corner pulley, and drops vertically down just outside the vertical face to the axle of a second, smaller pulley. This second pulley is not fixed to anything; it hangs in the air beside the vertical face, held up only by that cord. A second cord passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to a small bracket fixed to the wedge at the foot of the vertical face, at ground level; the right segment goes straight down to block m₂, which hangs freely in the air to the right of the wedge. Block m₂ has mass η times m₁. All pulleys and cords are massless, and every surface is frictionless.",
+   "solution": {
+    "approach": "Get the string-length constraint linking m1's motion up the incline to m2's fall, then combine it with Newton's second law for m1, the movable pulley, and m2.",
+    "steps": [
+     {
+      "text": "The cord from m1 goes over the fixed corner pulley down to the movable pulley; the second cord passes over the top of the hanging pulley; one segment runs down to the fixed bracket and the other runs down to m2.",
+      "equation": "cord 1: m1 to fixed pulley to movable pulley; cord 2: fixed bracket to movable pulley to m2"
+     },
+     {
+      "text": "If m1 moves a distance x up the incline, the movable pulley must move down by x (cord 1 is fixed length), and then both segments of cord 2 shorten or lengthen by that same x, so m2 must move down by 2x.",
+      "equation": "a2 = 2 a1",
+      "why_this_step": "This is the constraint relation: it links every acceleration in the system before any force equation is written."
+     },
+     {
+      "text": "The hanging pulley is massless, so the single upward pull T₁ from cord 1 at its axle must balance the two downward pulls T₂ from the segments of cord 2.",
+      "equation": "T1 = 2T2"
+     },
+     {
+      "text": "Write Newton's second law for m1 along the frictionless incline, taking up the slope as positive.",
+      "equation": "T1 − m1 g sinθ = m1 a1"
+     },
+     {
+      "text": "Write Newton's second law for m2, taking downward as positive.",
+      "equation": "m2 g − T2 = m2 a2 = m2(2a1)"
+     },
+     {
+      "text": "Substitute T1 = 2T2 and m2 = ηm1 into both equations and eliminate T2 to solve for a1.",
+      "equation": "T2 = ηm1(g − 2a1); T1 = m1(a1 + g sinθ) = 2T2 gives a1(1 + 4η) = g(2η − sinθ)"
+     },
+     {
+      "text": "So a1 = g(2η − sinθ)/(1 + 4η), and m2's acceleration is twice that.",
+      "equation": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; upward when 2η < sinθ"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; when 2η < sinθ the expression is negative and m₂ accelerates upward (the acceleration of the mass m2 = ηm1)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Missing the movable-pulley factor of 2 in the constraint and taking a2 = a1, which gives a1(1 + 2η) = g(2η − sinθ), the wrong denominator (1 + 2η) instead of (1 + 4η)."
+     }
+    ],
+    "concept_tags": [
+     "constraint relation",
+     "movable pulley",
+     "inclined plane",
+     "Newton's second law"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "application"
+   }
+  },
+  {
+   "question_id": "lom_030eca59",
+   "audit_file": "lom_030eca59.0071e5d3.json",
+   "item_sha": "0071e5d3f0759beae81a32f28a9ccaa5e9567345878db3bf1418950b2ecfcff3",
+   "question_text": "A straight rod AB is pivoted at end A. Three forces act on it, as described below. Determine the anticlockwise moment about the pivot produced by each of the three forces.",
+   "options": [],
+   "figure_description": "A straight horizontal rod AB is pivoted at its left end A. A force 2F acts vertically upward at a point a distance a from A. A force F acts vertically downward at a point a distance 2a from A. A force 3F acts at the right end B, a distance 4a from A, pointing up and to the left (above the rod, back toward the A side) at 30° to the rod.",
+   "solution": {
+    "approach": "For each force, multiply its magnitude by the perpendicular distance from A to its line of action, and use the sense of turning it produces to fix the sign.",
+    "steps": [
+     {
+      "text": "The force 2F acts straight up at distance a from A. Since it is already perpendicular to the rod, its moment arm is a itself.",
+      "equation": "moment = 2F × a = 2Fa"
+     },
+     {
+      "text": "An upward force to the right of the pivot turns the rod anticlockwise, so this moment is anticlockwise.",
+      "equation": "2Fa, anticlockwise"
+     },
+     {
+      "text": "The force F acts straight down at distance 2a from A, again already perpendicular to the rod.",
+      "equation": "moment = F × 2a = 2Fa"
+     },
+     {
+      "text": "A downward force to the right of the pivot turns the rod clockwise, which is the opposite sense to the first force.",
+      "equation": "2Fa, clockwise = −2Fa anticlockwise",
+      "why_this_step": "Taking anticlockwise as positive keeps every moment on one consistent scale."
+     },
+     {
+      "text": "The force 3F acts at B, distance 4a from A, at 30° to the rod. Only the component perpendicular to the rod produces a moment about A.",
+      "equation": "perpendicular component = 3F sin30° = 3F/2"
+     },
+     {
+      "text": "Multiply this perpendicular component by the full distance 4a to get the moment.",
+      "equation": "moment = (3F/2) × 4a = 6Fa"
+     },
+     {
+      "text": "The force points up and back toward A, which turns the rod anticlockwise about A, the same sense as the first force.",
+      "equation": "6Fa, anticlockwise",
+      "why_this_step": "Only the part of a force at right angles to the rod turns it; the part along the rod passes through no lever arm and contributes nothing."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Anticlockwise moments about A: 4F gives 2Fa anticlockwise; F gives 2Fa clockwise (i.e. −2Fa anticlockwise); 3F gives 6Fa anticlockwise."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Multiplying the full 3F by 4a without taking the 30° component first, giving 12Fa instead of the correct 6Fa."
+     },
+     {
+      "option": null,
+      "text": "Treating the downward force F as anticlockwise like the other two instead of clockwise, by fixing the sense of rotation from the position of the force alone and not from its direction."
+     }
+    ],
+    "concept_tags": [
+     "moment of a force",
+     "torque about a pivot",
+     "rigid body equilibrium"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_99315daa",
+   "audit_file": "lom_99315daa.d9ab9ddd.json",
+   "item_sha": "d9ab9dddb64cbcb1704534083704a78a14eb46f8d712aa39f42943b6143c3a43",
+   "question_text": "A stick, labelled AB and having weight w₁, leans across a ball of weight w₂ as pictured; the ball also touches a vertical wall and the ground. The ground beneath is rough, but no friction acts at either the stick-and-ball contact or the ball-and-wall contact. Produce separate free-body force diagrams for the ball and for the stick. Also work out why no friction can act at the ball-ground contact.",
+   "options": [],
+   "figure_description": "A vertical wall (brick) stands on the left, meeting a horizontal, rough ground at a right angle. A rod runs from its upper end A, which is in the air just above the top of the wall and touches nothing, down to its lower end B resting on the ground off to the right, like the hypotenuse of a right triangle. A sphere sits in the corner between the wall and the ground, touching both, and also touching the underside of the rod at a point C on the rod; C lies closer to A than to B (AC < CB).",
+   "solution": {
+    "approach": "Draw one force per contact for rod and sphere; A touches nothing, and since the sphere's other contacts are frictionless, ground friction on it must be zero.",
+    "steps": [
+     {
+      "text": "The rod touches only the ground (at B, rough) and the sphere (at C, smooth); its end A near the wall touches nothing.",
+      "equation": "rod: weight w₁ (down, at its centre of gravity) + N_ground and f_ground (at B) + N_sphere (at C, perpendicular to the rod, since rod–sphere is frictionless)"
+     },
+     {
+      "text": "The sphere touches the wall, the ground, and the rod; the rod–sphere and sphere–wall contacts are frictionless, so those two forces act along the radius, straight through the sphere's centre.",
+      "equation": "sphere: weight w₂ (down, at the centre) + N_wall (horizontal, radial) + N_rod (reaction to the rod's N_sphere, radial)"
+     },
+     {
+      "text": "Since the sphere's weight, the wall's normal reaction, and the rod's normal reaction all pass through the sphere's centre, none of them can turn the sphere about that centre.",
+      "equation": "sum of moments about the sphere's centre from weight, N_wall, N_rod = 0"
+     },
+     {
+      "text": "If the ground exerted friction on the sphere, it would act tangentially at the ground contact, with a moment arm equal to the sphere's radius, and nothing else could balance that turning effect.",
+      "equation": "f_ground_on_sphere ≠ 0 would leave a net moment about the centre",
+      "why_this_step": "A body in equilibrium cannot have a leftover, unbalanced moment, so this friction must be zero."
+     },
+     {
+      "text": "So the ground can only push the sphere perpendicular to itself; the sphere's forces are its weight, the wall's normal reaction, the rod's normal reaction, and the ground's normal reaction only.",
+      "equation": "sphere: weight w₂ + N_wall + N_rod + N_ground (no friction)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "Rod AB: its weight w₁ at its centre of gravity, the ground's normal reaction and friction at B, and the sphere's normal reaction at C (perpendicular to the rod); nothing acts at A, since it touches nothing. Sphere: its weight w₂ at the centre, the normal reactions from the wall and from the rod (both radial, passing through the centre), and the ground's normal reaction (also radial); the ground exerts no friction on the sphere, because the other three forces already pass through the centre and leave no turning effect for friction to balance."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a force on the rod at end A even though A touches neither the wall nor anything else in the figure."
+     },
+     {
+      "option": null,
+      "text": "Drawing ground friction on the sphere by analogy with the rod's rough ground contact, without checking that the sphere's other forces already balance about its centre."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "torque balance",
+     "normal reaction",
+     "friction"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_e797d355",
+   "audit_file": "lom_e797d355.76473784.json",
+   "item_sha": "76473784b7d00fc4424f6c1a602808343ceb638725c007a74a32bdb4f5e799eb",
+   "question_text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it.",
+   "solution": {
+    "approach": "With no applied force besides gravity and a frictionless incline, both blocks would accelerate at the same rate on their own, so they need no push from each other.",
+    "steps": [
+     {
+      "text": "On a smooth incline with no applied force, a block's acceleration along the slope depends only on gravity and the incline angle, not on its mass.",
+      "equation": "a = g sin30°, the same value for both blocks"
+     },
+     {
+      "text": "Since both blocks would accelerate at the same rate even if they were separate, no contact force is needed for them to move together."
+     },
+     {
+      "text": "The normal contact force between the two blocks is therefore zero.",
+      "equation": "N = 0 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "0 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Assuming the heavier 4 kg block pushes on the lighter 2 kg block because it sits lower on the slope, missing that acceleration on a smooth incline does not depend on mass."
+     },
+     {
+      "option": null,
+      "text": "Computing a contact force from the mass difference, such as (4−2)g sin30° = 10 N; no such formula exists — a contact force appears only when the two blocks would accelerate at different rates."
+     }
+    ],
+    "concept_tags": [
+     "motion on an incline",
+     "contact force",
+     "Newton's second law"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_3ce6bc1e",
+   "audit_file": "lom_3ce6bc1e.ba44b638.json",
+   "item_sha": "ba44b63871f9368458d440889797f387697433528ee956bebcfa4b23c9becef5",
+   "question_text": "In the pulley system pictured (block 1 hanging from the fixed pulley, blocks 2 and 3 from the two ends of the string over the movable pulley), at one instant blocks 1 and 2 are each moving upward at a speed of 1 m/s. Determine the velocity of block 3 at this same instant.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end.",
+   "solution": {
+    "approach": "Use the string-length constraint twice, once at the fixed pulley and once at the movable pulley, to relate the three velocities.",
+    "steps": [
+     {
+      "text": "Take downward as positive for every velocity. Block 1 moves upward at 1 m/s, so its downward velocity is −1 m/s.",
+      "equation": "v₁ = −1 m/s"
+     },
+     {
+      "text": "The fixed-pulley string constraint makes the movable pulley's downward velocity the negative of block 1's downward velocity.",
+      "equation": "v(pulley) = −v₁ = −(−1) = 1 m/s"
+     },
+     {
+      "text": "Block 2 moves upward at 1 m/s, so its downward velocity is −1 m/s. The movable-pulley constraint makes the sum of the downward velocities of blocks 2 and 3 equal to twice the pulley's downward velocity.",
+      "equation": "v₂ + v₃ = 2 v(pulley)"
+     },
+     {
+      "text": "Substitute the known values and solve for v₃.",
+      "equation": "−1 + v₃ = 2(1) = 2, so v₃ = 3 m/s (downward)"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "3 m/s downward"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Taking the movable pulley's downward velocity equal to block 1's downward velocity, instead of its negative, gives v₃ = 1 m/s upward instead of 3 m/s downward."
+     }
+    ],
+    "concept_tags": [
+     "pulley constraint",
+     "movable pulley",
+     "relative velocity"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_6f2ba92f",
+   "audit_file": "lom_6f2ba92f.fc375bef.json",
+   "item_sha": "fc375bef04eb0864dd651a2c4540bd6021532c19a00b930511cbabd871b62dd7",
+   "question_text": "A block of mass m rests on a horizontal, rough surface whose angle of friction is φ. Someone pulls the block using a force F directed at an angle θ above the horizontal. What is the smallest value F can take and still move the block?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg sinφ / cos(θ − φ)"
+    },
+    {
+     "label": "(b)",
+     "text": "mg cosφ / cos(θ − φ)"
+    },
+    {
+     "label": "(c)",
+     "text": "mg tanφ"
+    },
+    {
+     "label": "(d)",
+     "text": "mg sinφ"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Write the horizontal and vertical force balance for the block at the point motion begins, then rewrite the result using the angle of friction instead of the coefficient of friction.",
+    "steps": [
+     {
+      "text": "The pull F at angle θ has a horizontal part that drives the block forward and a vertical part that supports part of the block's weight, reducing the normal force from the surface.",
+      "equation": "N = mg − F sinθ"
+     },
+     {
+      "text": "At the point the block starts to move, the horizontal pull equals the maximum friction, which is the coefficient of friction times the normal force.",
+      "equation": "F cosθ = μN = μ(mg − F sinθ)"
+     },
+     {
+      "text": "Collect the F terms and solve for F.",
+      "equation": "F(cosθ + μ sinθ) = μmg ⇒ F = μmg/(cosθ + μ sinθ)"
+     },
+     {
+      "text": "Replace μ with tanφ, since the angle of friction φ is defined by tanφ = μ, and simplify using the cosine addition formula.",
+      "equation": "F = mg sinφ/(cosθ cosφ + sinθ sinφ) = mg sinφ / cos(θ − φ)"
+     }
+    ],
+    "final_answer": {
+     "option": 1,
+     "value": "mg sinφ / cos(θ − φ)"
+    },
+    "common_mistakes": [
+     {
+      "option": 4,
+      "text": "Minimising over the pull angle as well, which gives the overall least pull mg sinφ (reached only at θ = φ), when the question fixes θ and asks for the least F at that angle."
+     },
+     {
+      "option": 2,
+      "text": "Swapping sinφ and cosφ in the numerator gives mg cosφ / cos(θ − φ)."
+     }
+    ],
+    "concept_tags": [
+     "angle of friction",
+     "force at an angle",
+     "limiting friction"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

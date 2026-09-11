@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_cfeeea6a",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Suppose the vector sum of every force acting on a rigid body is zero. Then the body must be either at complete rest, or moving in a straight line with a velocity that never changes; there is no other possible motion. Reason: A velocity that does not change over time implies the linear acceleration equals zero.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "the body under discussion is rigid",
+   "net (resultant) force on the body is zero"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Check whether zero net force truly rules out every other motion for a rigid body, then check the reason's kinematic claim on its own.",
+  "steps": [
+   {
+    "text": "Zero net force fixes only the motion of the center of mass: it must move at constant velocity, which may or may not be zero.",
+    "equation": "F(net) = 0 → a(center of mass) = 0"
+   },
+   {
+    "text": "A rigid body can still rotate about its center of mass while the net force stays zero, if a net torque acts on it. Rotation is something else that can happen, so the assertion's claim that nothing else can happen is false."
+   },
+   {
+    "text": "Check the reason on its own: constant velocity means the velocity does not change with time, so its time derivative, the acceleration, is zero.",
+    "equation": "v = constant → dv/dt = a = 0"
+   },
+   {
+    "text": "The reason is a correct kinematic statement by itself, but the assertion is false, so the reason cannot be its explanation. This matches: Assertion false, Reason true."
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "(d) The Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming zero net force fully determines a rigid body's motion, missing that it can still rotate, leads to marking the Assertion true and picking option (a)."
+   }
+  ],
+  "concept_tags": [
+   "rigid body motion",
+   "Newton's second law",
+   "rotation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5b7fd94e9bdb23ec73aaa0f84e766a2422bab3115ca3f8fd7cbf5e9adb252299"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f1f1c61b32b14a4eaa56c3e285f22394b586e020f7880c5859b96bbdd00357d2",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:24:00+05:30"
+ }
+}

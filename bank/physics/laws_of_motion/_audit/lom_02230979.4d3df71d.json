@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_02230979",
+ "item_sha": "4d3df71d68e65742cd5058c7d9225da9d240a8a8f499228179fa54d012b5bf4f",
+ "auditor_option": null,
+ "auditor_value": "t = √(2l(4 + η) / (3g(2 − η))), for η < 2 (ball rises at a = g(2−η)/(η+4), rod top falls at 2a, gap l closes at relative acceleration 3a)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently derived the string constraint (pulley moves x ⇒ rod moves 2x), T₁ = 2T₂, and the ball's acceleration; the solution's gap(t) = l + (3/2)a_b t² with a_b negative for η < 2 is the same result written with downward positive. Validity condition η < 2 is stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:26:16+05:30"
+ }
+}

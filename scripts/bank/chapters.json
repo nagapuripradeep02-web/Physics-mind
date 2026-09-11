@@ -13,5 +13,12 @@
    "Motion in a Plane"
   ],
   "topic": "projectile motion"
+ },
+ "laws_of_motion": {
+  "prefix": "lom",
+  "syllabus": [
+   "Laws of Motion"
+  ],
+  "topic": "laws of motion"
  }
 }

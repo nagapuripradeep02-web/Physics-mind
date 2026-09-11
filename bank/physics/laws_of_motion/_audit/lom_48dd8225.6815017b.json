@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_48dd8225",
+ "item_sha": "6815017b25f92e11df82055151af065091f89ec231a1657adce6d289c1d87600",
+ "auditor_option": null,
+ "auditor_value": "F1 = F2 = T cos45 = 30*sqrt(2) = 42.43 N; W = T sin45 = 42.43 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:58:16+05:30"
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_471c9a74",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 6 kg block rests on a rough horizontal floor where the static friction coefficient is μₛ = 0.6 and the kinetic friction coefficient is μₖ = 0.4. A horizontal force that increases with time, F = 4t newton (with t in seconds), acts on the block, as pictured. Taking g = 10 m/s², draw how the block's acceleration varies with time.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "surface is rough",
+   "static friction coefficient μₛ = 0.6",
+   "kinetic friction coefficient μₖ = 0.4",
+   "applied force is horizontal and time-varying, F = 4t newton",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 6 kg block rests on a rough horizontal surface with static friction coefficient μₛ = 0.6 and kinetic friction coefficient μₖ = 0.4. A horizontal force F = 4t (in newton, t in seconds) pushes the block to the right, increasing with time."
+  }
+ },
+ "solution": {
+  "approach": "The block stays still until F = 4t exceeds the static limit; once moving, friction drops to the lower kinetic value, so the acceleration jumps upward.",
+  "steps": [
+   {
+    "text": "Find the maximum static friction, which the growing force must exceed before the block moves.",
+    "equation": "f(s,max) = μₛmg = 0.6 × 6 × 10 = 36 N"
+   },
+   {
+    "text": "Find the time at which F first reaches this value; before that time the block does not move, so a = 0.",
+    "equation": "4t = 36 → t = 9 s"
+   },
+   {
+    "text": "Once the block starts moving, kinetic friction takes over, and it is smaller than the static limit that was needed to start motion.",
+    "equation": "f(k) = μₖmg = 0.4 × 6 × 10 = 24 N"
+   },
+   {
+    "text": "For t ≥ 9 s, apply Newton's second law with this smaller kinetic friction opposing F.",
+    "equation": "a = (4t − 24)/6 m/s²"
+   },
+   {
+    "text": "At t = 9 s this gives a jump: a = (36 − 24)/6 = 2 m/s², so the acceleration jumps from 0 to 2 m/s² at t = 9 s, then keeps rising with slope 2/3.",
+    "equation": "a = 0 for 0 ≤ t < 9 s; a jumps to 2 m/s² at t = 9 s and then a = (4t − 24)/6 m/s² for t ≥ 9 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 0 for 0 ≤ t < 9 s; at t = 9 s the acceleration jumps discontinuously to 2 m/s² (because kinetic friction, 24 N, is less than the static limit, 36 N, that was needed to start motion); for t ≥ 9 s, a = (4t − 24)/6 m/s², a straight line of slope 2/3 m/s³ starting from 2 m/s² at t = 9 s."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the static friction value 36 N in the formula for t ≥ 9 s instead of the kinetic value 24 N, giving a = 0 at t = 9 s and missing the jump."
+   },
+   {
+    "option": null,
+    "text": "Missing the discontinuity and drawing the graph as one smooth straight line through a = 0 at t = 9 s, instead of a jump to a = 2 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "time-varying force",
+   "graph of motion"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "82fde00e27dcd79e8ad8d25143442f6e87ee22e782fbb534fb187eda2d7faa13"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8ce83fa65ec6d8fc169cb2cc8ea48ebaeb81fc5c56cd22833d98238512c0ccae",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:33:00+05:30"
+ }
+}

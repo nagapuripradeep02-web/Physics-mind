@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_b62a7715",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A straight rod AB is pivoted at end A. Three forces act on it, as described below. Determine the anticlockwise moment about the pivot produced by each of the three forces.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "force 2F acts vertically upward at a point a distance a from A",
+   "force F acts vertically downward at a point a distance 2a from A",
+   "force 3F acts at end B, a distance 4a from A, directed at 30° to the rod",
+   "rod AB is pivoted at end A"
+  ],
+  "figure": {
+   "description": "A straight horizontal rod AB is pivoted at its left end A. A force 2F acts vertically upward at a point a distance a from A. A force F acts vertically downward at a point a distance 2a from A. A force 3F acts at the right end B, a distance 4a from A, pointing up and to the left (above the rod, back toward the A side) at 30° to the rod."
+  }
+ },
+ "solution": {
+  "approach": "For each force, multiply its magnitude by the perpendicular distance from A to its line of action, and use the sense of turning it produces to fix the sign.",
+  "steps": [
+   {
+    "text": "The force 2F acts straight up at distance a from A. Since it is already perpendicular to the rod, its moment arm is a itself.",
+    "equation": "moment = 2F × a = 2Fa"
+   },
+   {
+    "text": "An upward force to the right of the pivot turns the rod anticlockwise, so this moment is anticlockwise.",
+    "equation": "2Fa, anticlockwise"
+   },
+   {
+    "text": "The force F acts straight down at distance 2a from A, again already perpendicular to the rod.",
+    "equation": "moment = F × 2a = 2Fa"
+   },
+   {
+    "text": "A downward force to the right of the pivot turns the rod clockwise, which is the opposite sense to the first force.",
+    "equation": "2Fa, clockwise = −2Fa anticlockwise",
+    "why_this_step": "Taking anticlockwise as positive keeps every moment on one consistent scale."
+   },
+   {
+    "text": "The force 3F acts at B, distance 4a from A, at 30° to the rod. Only the component perpendicular to the rod produces a moment about A.",
+    "equation": "perpendicular component = 3F sin30° = 3F/2"
+   },
+   {
+    "text": "Multiply this perpendicular component by the full distance 4a to get the moment.",
+    "equation": "moment = (3F/2) × 4a = 6Fa"
+   },
+   {
+    "text": "The force points up and back toward A, which turns the rod anticlockwise about A, the same sense as the first force.",
+    "equation": "6Fa, anticlockwise",
+    "why_this_step": "Only the part of a force at right angles to the rod turns it; the part along the rod passes through no lever arm and contributes nothing."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Anticlockwise moments about A: 2F gives 2Fa anticlockwise; F gives 2Fa clockwise (i.e. −2Fa anticlockwise); 3F gives 6Fa anticlockwise."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Multiplying the full 3F by 4a without taking the 30° component first, giving 12Fa instead of the correct 6Fa."
+   },
+   {
+    "option": null,
+    "text": "Treating the downward force F as anticlockwise like the other two instead of clockwise, by fixing the sense of rotation from the position of the force alone and not from its direction."
+   }
+  ],
+  "concept_tags": [
+   "moment of a force",
+   "torque about a pivot",
+   "rigid body equilibrium"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "030eca599c5d5a30db59d5640fef9fdf2df39026a2b29c149beb59c6c481504e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e9ce33c48dfac4ed7ae47376c3f9043f3e78b7a6bc3d6e21b9b23f6bf0dce05e",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

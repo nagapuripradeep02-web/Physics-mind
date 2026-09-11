@@ -1,0 +1,51 @@
+{
+ "question_id": "lom_57d048b4",
+ "audit_file": "lom_57d048b4.fb492ec4.json",
+ "item_sha": "fb492ec41967a8db613b0eb9315188b317f5d6b15919a8b57d249041733d32dd",
+ "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure. Using string-constraint equations, determine how the acceleration of block 2 is related to the acceleration of block 1.",
+ "options": [],
+ "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2.",
+ "solution": {
+  "approach": "Write the constant-length equation for each of the three strings in turn, then combine the three to connect block 1 and block 2 directly.",
+  "steps": [
+   {
+    "text": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant.",
+    "equation": "x₁ + x₃ = c₁ ⇒ a₁ + a₃ = 0"
+   },
+   {
+    "text": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position.",
+    "equation": "(x₁−x₃) + (x₄−x₃) = c₂ ⇒ a₁ + a₄ − 2a₃ = 0"
+   },
+   {
+    "text": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position.",
+    "equation": "(x₁−x₄) + (x₂−x₄) = c₃ ⇒ a₁ + a₂ − 2a₄ = 0"
+   },
+   {
+    "text": "From the first equation, a₃ = −a₁. Put this into the second equation.",
+    "equation": "a₁ + a₄ − 2(−a₁) = 0 ⇒ a₄ = −3a₁"
+   },
+   {
+    "text": "Put a₄ = −3a₁ into the third equation and solve for a₂.",
+    "equation": "a₁ + a₂ − 2(−3a₁) = 0 ⇒ a₂ = −7a₁",
+    "why_this_step": "Each movable pulley moves with the string above it, and the string over it doubles that motion for the next level while block 1 adds its own; the factors grow 1, 3, 7, so block 2 accelerates seven times as fast as block 1."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a₂ = −7a₁ (block 2's acceleration is 7 times block 1's acceleration, in the opposite direction)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing only the top string's constraint (x₁ + x₃ = constant) and treating everything below P₁ as one body moving with pulley P₂, which gives |a₂| = |a₁|; each movable pulley adds its own constraint."
+   }
+  ],
+  "concept_tags": [
+   "string constraint",
+   "movable pulley",
+   "pulley kinematics"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ }
+}

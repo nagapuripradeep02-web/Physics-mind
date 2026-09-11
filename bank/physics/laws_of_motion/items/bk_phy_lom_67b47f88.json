@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_67b47f88",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "To push a body up a rough incline right at the point where it just starts to move takes exactly twice the force that would just stop that same body from sliding down the incline. Given the friction coefficient μ between body and incline, and θ as the incline's angle with the horizontal, what is tan θ in terms of μ?",
+  "options": {
+   "1": "μ",
+   "2": "3μ",
+   "3": "2μ",
+   "4": "0.5 μ"
+  },
+  "parts": null,
+  "conditions": [
+   "force to just move the body up the incline = twice the force to just prevent it sliding down",
+   "coefficient of friction between body and incline = μ",
+   "θ is the incline's angle with the horizontal"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write the force needed to push the block up the incline and the force needed to barely hold it from sliding down, then use the given ratio between them.",
+  "steps": [
+   {
+    "text": "To push the block up, gravity's pull down the incline and friction (which now opposes the upward push) both work against the applied force.",
+    "equation": "F_up = mg sinθ + μmg cosθ"
+   },
+   {
+    "text": "To barely stop the block sliding down, friction acts up the incline at its full value and helps hold the block, so the needed applied force is smaller.",
+    "equation": "F_hold = mg sinθ − μmg cosθ"
+   },
+   {
+    "text": "Use the given condition that F_up is twice F_hold, then divide through by mg cosθ and solve for tanθ.",
+    "equation": "sinθ + μcosθ = 2(sinθ − μcosθ) ⇒ 3μcosθ = sinθ ⇒ tanθ = 3μ"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "3μ"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Leaving friction out of F_hold, treating it as mg sinθ alone, gives sinθ + μcosθ = 2sinθ, so tanθ = μ."
+   },
+   {
+    "option": 3,
+    "text": "Leaving friction out of F_up, treating it as mg sinθ alone, gives sinθ = 2(sinθ − μcosθ), so tanθ = 2μ."
+   }
+  ],
+  "concept_tags": [
+   "limiting static friction",
+   "inclined plane",
+   "force balance"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "79092bee51ddca4e60487b228cfac7928589adb27a137a31333e88b5cad50d01"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "21644abb75edf65c73696782aef9eb6842a567bc5c4c8bb4954f7bb178ee5235",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:10:00+05:30"
+ }
+}

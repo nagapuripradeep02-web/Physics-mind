@@ -1,0 +1,17 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a567393c",
+ "approach": "A frame moving with constant velocity has zero acceleration, and the pseudo force is proportional to the frame's acceleration.",
+ "steps": [
+  {"text": "Recall the pseudo-force formula for a frame with acceleration a(frame).", "equation": "F(pseudo) = −m × a(frame)"},
+  {"text": "A frame moving with constant velocity does not speed up, slow down, or change direction, so its acceleration is zero.", "equation": "a(frame) = 0"},
+  {"text": "Substitute zero acceleration into the formula: the pseudo force is zero, so the statement is true.", "equation": "F(pseudo) = −m × 0 = 0"}
+ ],
+ "final_answer": {"option": null, "value": "True"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["pseudo force", "inertial frame", "constant velocity"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:16:00+05:30"}
+}

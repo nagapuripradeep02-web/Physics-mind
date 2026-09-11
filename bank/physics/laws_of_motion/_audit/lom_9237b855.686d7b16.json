@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9237b855",
+ "item_sha": "686d7b16389d513a3f78ccfb5510bed24828fc6b3ec2d0bc914dd2fdd98ed0ca",
+ "auditor_option": null,
+ "auditor_value": "2 a1 + a2 + a3 = 0 with all accelerations measured downward positive (from x1 + x_p = const and (x2 - x_p) + (x3 - x_p) = const)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Identical to my constraint derivation, with the sign convention stated in the answer. Both common_mistakes entries are genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:52+05:30"
+ }
+}

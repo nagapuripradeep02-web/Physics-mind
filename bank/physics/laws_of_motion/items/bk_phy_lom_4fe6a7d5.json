@@ -1,0 +1,68 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4fe6a7d5",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A frame that moves at constant velocity is inertial, so the pseudo force needed in it is always zero. State whether this claim is true or false.",
+  "options": null,
+  "parts": null,
+  "conditions": [],
+  "figure": null
+ },
+ "solution": {
+  "approach": "A frame moving with constant velocity has zero acceleration, and the pseudo force is proportional to the frame's acceleration.",
+  "steps": [
+   {
+    "text": "Recall the pseudo-force formula for a frame with acceleration a(frame).",
+    "equation": "F(pseudo) = −m × a(frame)"
+   },
+   {
+    "text": "A frame moving with constant velocity does not speed up, slow down, or change direction, so its acceleration is zero.",
+    "equation": "a(frame) = 0"
+   },
+   {
+    "text": "Substitute zero acceleration into the formula: the pseudo force is zero, so the statement is true.",
+    "equation": "F(pseudo) = −m × 0 = 0"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "True"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "pseudo force",
+   "inertial frame",
+   "constant velocity"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a567393cc9ff0a21c19d4e0ffe514a36c3091e4143c4e1ad03eddbe84f69db1f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "602a69443c641a213b435a39580a86fddbe7438f800dc935f8060cc6661f7b97",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:16:00+05:30"
+ }
+}

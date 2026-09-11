@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_aeff097e",
+ "item_sha": "53a7c4bf1cbe3a36fa02c622f0587f75aa8372619b7496e129d882962fe20c0e",
+ "auditor_option": null,
+ "auditor_value": "(a) 3 m/s² rightward for all three; (b) 18 N, 12 N, 30 N (rightward); (c) 70 N between the 4 kg and 10 kg blocks",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Direction (rightward, the sense of the 100 N force) is implied but never stated; the 6–4 contact force, not asked, is 82 N and closes the check 82 − 70 = 12 N. Both mistake entries yield the numbers they name.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:47+05:30"
+ }
+}

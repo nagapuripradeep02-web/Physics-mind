@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_04c36fda",
+ "item_sha": "6dd1010d416d3542c66e3a23585bb9b4d0e6837da00f723ff8db29ee2110a49e",
+ "auditor_option": null,
+ "auditor_value": "(a) N → (−N/2, N√3/2); T → (T/2, T√3/2); w → (0, −w); f → (−f√3/2, −f/2). (b) N → (0, N); T → (T√3/2, T/2); w → (−w/2, −w√3/2); f → (−f, 0). Rightward and upward positive; up-slope and away-from-surface positive.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently derived with the outward normal (−sin30°, cos30°) and T at 60° above the horizontal; every printed component matches. Friction direction follows the served figure (down the slope). Both common_mistakes entries name a real error and the numbers each produces are right.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:24:44+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_1f2b9b71",
+ "item_sha": "b6a8a90c341da886debe02a945247b37162a1710827fae006e3bffe99099091b",
+ "auditor_option": null,
+ "auditor_value": "N = 20 N, f_max = 5 N; in-plane resultant of 10 N weight and 10 N parallel force = 10√2 ≈ 14.1 N > 5 N, so the block moves, at 45° below the horizontal on the side of the 10 N force (equivalently 45° from the vertical)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line follows: f_max = 0.25 × 20 = 5 N; the two in-plane forces are perpendicular so their resultant is 10√2 N; 45° from the vertical toward the applied force is the same direction as my 45° below the horizontal. Both mistake entries describe genuine errors with correctly computed consequences.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:03:58+05:30"
+ }
+}

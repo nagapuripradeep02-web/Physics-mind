@@ -1,0 +1,98 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_3a231f09",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two fixed pulleys, A and B, are mounted on a rigid horizontal support. A single string runs over both pulleys; its two free ends, marked P and Q, are each pulled straight downward at the same constant speed U, as the figure shows. This action makes a mass M, hanging from the string midway between the two pulleys, rise steadily upward. At what speed does M move upward?",
+  "options": {
+   "1": "2U cos θ",
+   "2": "U/cos θ",
+   "3": "2U/cos θ",
+   "4": "U cos θ"
+  },
+  "parts": null,
+  "conditions": [
+   "the string is unstretchable (inextensible)",
+   "both free ends P and Q move straight downward at the same constant speed U",
+   "pulleys A and B stay fixed in place",
+   "mass M hangs from the string, centered symmetrically between the two pulleys",
+   "each slanted string segment from a pulley down to M makes angle θ with the vertical, and θ changes as M rises"
+  ],
+  "figure": {
+   "description": "A fixed horizontal support at the top holds two pulleys, A on the left and B on the right, a constant distance apart. Over pulley A, a string has one part hanging straight down to a free end P, and another part running diagonally down and inward to mass M, which hangs centered below, between the pulleys. Over pulley B, symmetrically, a string has one part hanging straight down to a free end Q, and another part running diagonally down and inward to the same mass M. Each diagonal segment makes angle θ with the vertical line drawn through the midpoint between A and B. Ends P and Q both move straight down at speed U."
+  }
+ },
+ "solution": {
+  "approach": "Write the string's constant total length as the P-to-pulley part plus the pulley-to-M part, then differentiate to relate the speeds.",
+  "steps": [
+   {
+    "text": "The total length of each string (from P to pulley A, then A to mass M) stays constant, since the string is unstretchable.",
+    "equation": "length(P→A) + length(A→M) = constant"
+   },
+   {
+    "text": "As P moves down at speed U, the P-to-A part grows at rate U, so the A-to-M part must shrink at the same rate.",
+    "equation": "d[length(A→M)]/dt = −U"
+   },
+   {
+    "text": "The rate at which the A-to-M segment shortens equals the component of M's upward velocity along that segment.",
+    "equation": "d[length(A→M)]/dt = −v cosθ"
+   },
+   {
+    "text": "Equate the two expressions and solve for the speed of M.",
+    "equation": "U = v cosθ, so v = U/cosθ"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "U/cosθ"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Multiplying by cosθ instead of dividing, and doubling for the two strings, gives 2U cosθ."
+   },
+   {
+    "option": 3,
+    "text": "Doubling U/cosθ because two strings pull on M, instead of recognizing the same relation holds independently on each side, gives 2U/cosθ."
+   },
+   {
+    "option": 4,
+    "text": "Multiplying by cosθ instead of dividing by it gives U cosθ."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "pulley system",
+   "rate of change of string length"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "87408b28bd0558b5dc8a16c1411cb2fb2223cff815ff380841fff72ce9e30915"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "226ff72d7194b8561b8eec4a5c3e7204c88b6fdcb7beee1a89d4e1716750ec70",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

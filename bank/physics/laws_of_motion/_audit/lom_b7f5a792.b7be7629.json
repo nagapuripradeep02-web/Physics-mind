@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b7f5a792",
+ "item_sha": "b7be76292e8baeab6ee0420cad2a7d26497d4f7d36f32057e195885f3db09bea",
+ "auditor_option": null,
+ "auditor_value": "N_A = Mg/cos30° = 1000/√3 ≈ 577.4 N; N_B = Mg tan30° = 500/√3 ≈ 288.7 N (g = 10); with g = 9.8: 565.8 N and 282.9 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The question does not fix g; the solution states its choice g = 10 m/s² in steps[2] and in final_answer, which is acceptable. Independent solve agrees. common_mistakes[0] (500/sin30° = 1000 N) computes as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:59:21+05:30"
+ }
+}

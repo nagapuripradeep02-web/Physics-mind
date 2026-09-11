@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_33c59164",
+ "item_sha": "2cb653880f057b77e06eb2c1f467e5f2ad66f85cbd57386be332f86f8cda6eac",
+ "auditor_option": null,
+ "auditor_value": "a₁ = 130/99 ≈ 1.31 m/s² upward, a₂ = 7a₁ = 910/99 ≈ 9.19 m/s² downward; T = 160/99 ≈ 1.62 N, 2T ≈ 3.23 N, 4T ≈ 6.46 N",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "approach",
+   "quote": "Use the earlier constraint a₂ = 7a₁",
+   "note": "The constraint a₂ = 7a₁ is the key relation of this problem and is neither stated in the served question nor derived anywhere in the solution; a student reading this item alone cannot check where the factor 7 comes from.",
+   "fix": "Derive the constraint from the three strings first: S₁ over the fixed pulley gives a(P₂) = a₁ (opposite senses); S₂ over P₂ gives a(P₃) = 2a(P₂) + a₁ = 3a₁; S₃ over P₃ gives a₂ = 2a(P₃) + a₁ = 7a₁. Then apply Newton's second law to block 1 (pulled up by 7T) and block 2 (pulled up by T)."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "The served text says 'the same three-pulley chain as before' and the solution leans on a constraint 'found earlier'; the item is served standalone, so the reference points at nothing the student can see. The figure description does supply the tensions T, 2T, 4T but not the acceleration constraint.",
+ "notes": "Independently derived a₂ = 7a₁ from the three string lengths, then 7T − 10 = a and 20 − T = 14a give 99a = 130; every printed line follows and the numbers match to the last digit. The mistake entry's plain-Atwood value (2−1)·10/3 = 3.33 m/s² is computed correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:02:01+05:30"
+ }
+}

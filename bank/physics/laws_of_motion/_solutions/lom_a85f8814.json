@@ -1,0 +1,28 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a85f8814",
+ "approach": "Three concurrent forces balance only when their directions surround the common point, so every angle between consecutive forces must stay under 180°; check whether that holds here.",
+ "steps": [
+  {"text": "Three concurrent forces stay in equilibrium only when their directions surround the common point, so the three angles between consecutive forces, added all the way around, equal 360° and each one stays below 180°.",
+   "equation": "θ₁₂ + θ₂₃ + θ₃₁ = 360°, every θ < 180°"},
+  {"text": "F2 is 30° from F1 and F3 is 120° from F1. The widest F2 and F3 can be apart, measured through F1, is the sum of these two angles.",
+   "equation": "widest possible spread = 30° + 120° = 150°"},
+  {"text": "Even in this widest case, all three forces lie inside a 150° arc, less than 180°. The angle needed to close the loop back to F1, on the other side, is 360° minus this arc.",
+   "equation": "360° − 150° = 210°",
+   "why_this_step": "A group of vectors confined to an arc under 180° always has a component along one fixed direction, so a positive-weighted sum of them can never reach zero."},
+  {"text": "Lami's theorem needs the sine of each of the three angles around the point to be positive, which requires every angle to stay under 180°. Here one angle is always at least 210°, so no set of positive force magnitudes can make F1, F2 and F3 balance.",
+   "equation": "sin(210°) = −0.5 (negative)"},
+  {"text": "So the three forces cannot be in equilibrium under the stated angles, making the Assertion true, and this happens exactly because one of the three angles around the point is always greater than 180°, so the Reason is true and correctly explains the Assertion.",
+   "equation": "Answer: option (a) — both true, Reason explains Assertion"}
+ ],
+ "final_answer": {"option": 1, "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Taking F3 as 120−30 = 90° from F2 and checking Lami's theorem with 30°, 90°, 120° gives every sine positive, which looks like a valid equilibrium and wrongly marks the Assertion false."},
+  {"option": 3, "text": "Correctly seeing the Assertion is true but checking the Reason only against 30°, 90° and 120°, none over 180°, and missing the real closing angle of 210°, wrongly marks the Reason false."}
+ ],
+ "concept_tags": ["equilibrium of concurrent forces", "Lami's theorem", "vector addition"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 5, "agent": "W05-A-lom-01", "at": "2026-09-11T15:30:00+05:30"}
+}

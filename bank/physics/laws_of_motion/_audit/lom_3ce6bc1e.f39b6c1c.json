@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_3ce6bc1e",
+ "item_sha": "f39b6c1caa6a827830dfcd4d889d1c6a05b1180ad3e5d6661e44d9805d1cc355",
+ "auditor_option": null,
+ "auditor_value": "v₃ = 3 m/s downward (block 1 up 1 m/s ⇒ movable pulley down 1 m/s; v₂ + v₃ = 2v_pulley with downward positive: −1 + v₃ = 2)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[2].text",
+   "quote": "The movable-pulley constraint adds the downward velocities of blocks 2 and 3 to twice the pulley's downward velocity.",
+   "note": "As a sentence this describes v₂ + v₃ + 2v(pulley), which is not the constraint; the correct relation, printed in the equation, is that the SUM of the two block velocities EQUALS twice the pulley's velocity.",
+   "fix": "The movable-pulley constraint makes the sum of the downward velocities of blocks 2 and 3 equal to twice the pulley's downward velocity."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently from the two string lengths: v(pulley) = −v₁ = +1 m/s down; v₂ + v₃ = 2(1) with v₂ = −1 gives v₃ = +3 m/s down. The mistake entry's wrong value (1 m/s upward) follows from the error it names.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:05:09+05:30"
+ }
+}

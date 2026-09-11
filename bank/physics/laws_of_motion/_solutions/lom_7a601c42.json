@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_7a601c42",
+ "approach": "Treat all three blocks as one system to find the common acceleration, then isolate one block at a time using Newton's second law.",
+ "steps": [
+  {"text": "Find the net external force and total mass of the system.", "equation": "F_net = 120 − 50 = 70 N, M = 1+4+2 = 7 kg"},
+  {"text": "The system acceleration is the net force divided by the total mass.", "equation": "a = 70/7 = 10 m/s², rightward, in the direction of the 120 N force"},
+  {"text": "Isolate the 1 kg block: the 120 N force acts forward, and the 4 kg block pushes back on it with the contact normal force N.", "equation": "120 − N = 1×10, so N = 110 N",
+   "why_this_step": "The 1 kg block only touches the 120 N force and the 4 kg block, so its own equation isolates N directly."},
+  {"text": "The net force on the 2 kg block equals its mass times the common acceleration.", "equation": "F = 2×10 = 20 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) a = 10 m/s²; (b) N = 110 N; (c) net force on the 2 kg block = 20 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding 120 N and 50 N instead of subtracting, since both forces push toward the middle of the row, giving a = 170/7 ≈ 24.3 m/s²."},
+  {"option": null, "text": "Using the far side (4 kg + 2 kg) but forgetting the 50 N force acting there, giving N = 6×10 = 60 N instead of 110 N."}
+ ],
+ "concept_tags": ["Newton's second law", "system of blocks in contact", "contact force"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:25:00+05:30"}
+}

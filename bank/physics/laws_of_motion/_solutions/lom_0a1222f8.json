@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_0a1222f8",
+ "approach": "Write each particle's acceleration along its own wire as a vector using horizontal and vertical parts, then subtract the two vectors to get the relative acceleration.",
+ "steps": [
+  {"text": "Each particle's acceleration along its wire equals g times the cosine of the wire's angle from the vertical.", "equation": "a₁ = g cos30°, a₂ = g cos60°"},
+  {"text": "Write these as vectors, since the two wires point in different directions on the same side of the vertical.", "equation": "a₁ = g cos30°(sin30°, cos30°), a₂ = g cos60°(sin60°, cos60°)"},
+  {"text": "The horizontal parts of the two vectors come out equal, so they cancel when the vectors are subtracted.", "equation": "a₁ₓ = a₂ₓ = (√3/4)g"},
+  {"text": "Subtract the vertical parts to get the size of the relative acceleration.", "equation": "a_rel = g cos²60° − g cos²30° = g/4 − 3g/4 = −g/2, magnitude g/2"}
+ ],
+ "final_answer": {"option": 1, "value": "g/2"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Taking the first particle's own acceleration along its wire, g cos30° = √3g/2, as if it were the relative acceleration."}
+ ],
+ "concept_tags": ["relative acceleration", "motion on an incline", "vector subtraction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:28:00+05:30"}
+}

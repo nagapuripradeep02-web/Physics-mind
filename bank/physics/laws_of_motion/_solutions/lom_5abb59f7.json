@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5abb59f7",
+ "approach": "Check whether the block moves; it does not, so friction equals the applied force, and the ground's push combines the normal force and friction at a right angle.",
+ "steps": [
+  {
+   "text": "Find the normal force and the largest friction the ground can supply.",
+   "equation": "N = mg = 4×10 = 40 N, f_max = μN = 0.8×40 = 32 N"
+  },
+  {
+   "text": "Compare the applied force with the largest friction.",
+   "equation": "30 N < 32 N, so the block stays still"
+  },
+  {
+   "text": "Since the block stays still, the friction force equals the applied force.",
+   "equation": "f = 30 N"
+  },
+  {
+   "text": "The ground pushes with the normal force and the friction force together, at a right angle to each other, so add them as a right triangle.",
+   "equation": "R = √(N² + f²) = √(40² + 30²) = 50 N"
+  }
+ ],
+ "final_answer": {
+  "option": 4,
+  "value": "50 N"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Taking the ground's push as only the normal force and forgetting the friction force gives 40 N."
+  },
+  {
+   "option": 2,
+   "text": "Taking the ground's push as only the friction force and forgetting the normal force gives 30 N."
+  }
+ ],
+ "concept_tags": [
+  "static friction",
+  "normal force",
+  "resultant force"
+ ],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:03:00+05:30"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a7f3cdc4",
+ "approach": "Write Newton's second law for each of the three blocks along its direction of motion, using the same acceleration magnitude for all three since they are connected by inextensible strings.",
+ "steps": [
+  {"text": "Block A (4 kg) is pulled toward the pulley by tension T₁ and opposed by friction, since its surface has μ = 0.2.", "equation": "T₁ − μ m_A g = m_A a  →  T₁ − 0.2×4×10 = 4a  →  T₁ = 8 + 4a"},
+  {"text": "Block B (8 kg) is pulled toward the pulley by tension T₂ on a frictionless surface.", "equation": "T₂ = m_B a = 8a"},
+  {"text": "Block C (20 kg) hangs and is pulled down by gravity and held up by both string tensions.", "equation": "m_C g − T₁ − T₂ = m_C a  →  200 − T₁ − T₂ = 20a"},
+  {"text": "Substitute T₁ and T₂ from the first two equations into the third and solve for a.", "equation": "200 − (8+4a) − 8a = 20a  →  192 = 32a  →  a = 6 m/s²",
+   "why_this_step": "Combining all three equations removes the tensions and leaves one equation in the single unknown a."},
+  {"text": "Substitute a = 6 m/s² back to get the tensions.", "equation": "T₁ = 8 + 4×6 = 32 N, T₂ = 8×6 = 48 N"}
+ ],
+ "final_answer": {"option": null, "value": "a = 6 m/s², T₁ = 32 N, T₂ = 48 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the friction term for block A and writing T₁ = m_A a gives T₁ = 24 N instead of 32 N, changing every later step."},
+  {"option": null, "text": "Adding friction on block B even though its surface is frictionless gives a wrong, smaller acceleration."}
+ ],
+ "concept_tags": ["Newton's second law", "connected bodies", "friction", "pulley"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:08:00+05:30"}
+}

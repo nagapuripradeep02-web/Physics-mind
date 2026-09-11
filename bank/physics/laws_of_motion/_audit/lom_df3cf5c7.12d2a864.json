@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_df3cf5c7",
+ "item_sha": "12d2a8642e7b034014c257191a99f446e5899669440d89662cd2517a1a23052e",
+ "auditor_option": null,
+ "auditor_value": "a = 2 m/s² for all three; T₁ (2 kg–1 kg string) = 12 N; T₂ (4 kg–2 kg string) = 8 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "a = 14/7 = 2; 1 kg block: 14 − T₁ = 2 gives 12 N; 4 kg block: T₂ = 8 N. Cross-check on the 2 kg block: 12 − 8 = 2×2. Both mistake entries are genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:01:08+05:30"
+ }
+}

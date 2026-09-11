@@ -2,8 +2,9 @@
 
 Pre-solved, verified worked solutions to standard JEE-Main-level problems, keyed so that a student's
 photo of a problem can be answered from here (free, verified) instead of by a fresh model call. The
-first chapter is `physics/kinematics/` (pilot, 2026-09-11); the second, `physics/projectile/`, was
-built the same day on the Claude Code subscription alone (no metered API). Scripts live in
+first chapter is `physics/kinematics/` (pilot, 2026-09-11); the second, `physics/projectile/`, and
+the third, `physics/laws_of_motion/`, were built the same day on the Claude Code subscription alone
+(no metered API); laws of motion added a figure-checker role for pulley/force figures. Scripts live in
 `scripts/bank/` (`BANK_CHAPTER=<name>` selects the chapter; `chapters.json` names them); the reports
 that describe each build are in `docs/reports/bank/`.
 

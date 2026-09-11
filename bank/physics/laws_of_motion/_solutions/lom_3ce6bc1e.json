@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_3ce6bc1e",
+ "approach": "Use the string-length constraint twice, once at the fixed pulley and once at the movable pulley, to relate the three velocities.",
+ "steps": [
+  {"text": "Take downward as positive for every velocity. Block 1 moves upward at 1 m/s, so its downward velocity is −1 m/s.", "equation": "v₁ = −1 m/s"},
+  {"text": "The fixed-pulley string constraint makes the movable pulley's downward velocity the negative of block 1's downward velocity.", "equation": "v(pulley) = −v₁ = −(−1) = 1 m/s"},
+  {"text": "Block 2 moves upward at 1 m/s, so its downward velocity is −1 m/s. The movable-pulley constraint makes the sum of the downward velocities of blocks 2 and 3 equal to twice the pulley's downward velocity.", "equation": "v₂ + v₃ = 2 v(pulley)"},
+  {"text": "Substitute the known values and solve for v₃.", "equation": "−1 + v₃ = 2(1) = 2, so v₃ = 3 m/s (downward)"}
+ ],
+ "final_answer": {"option": null, "value": "3 m/s downward"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the movable pulley's downward velocity equal to block 1's downward velocity, instead of its negative, gives v₃ = 1 m/s upward instead of 3 m/s downward."}
+ ],
+ "concept_tags": ["pulley constraint", "movable pulley", "relative velocity"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:00:00+05:30"}
+}

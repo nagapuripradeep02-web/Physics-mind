@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_32c78474",
+ "item_sha": "3e62f372bf46d6029f4fd6de6d906e22ab54b61e136055d8150125ad4c28c485",
+ "auditor_option": null,
+ "auditor_value": "Three concurrent forces at the centre: weight W straight down; N₁ perpendicular to the left wall and N₂ perpendicular to the right wall, each directed toward the centre (no friction).",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The solution's force list matches mine and every stated reason is correct (a normal to a circular surface is radial, so all three lines pass through the centre; 'N₁ + N₂ balances W' is the vector sum). Both mistake entries are genuine errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:05:21+05:30"
+ }
+}

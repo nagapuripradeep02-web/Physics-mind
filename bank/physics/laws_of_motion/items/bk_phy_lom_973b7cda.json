@@ -1,0 +1,108 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_973b7cda",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Two blocks lie one on top of the other on a frictionless floor: a 1 kg block sits on a 2 kg block. The friction coefficient between the two blocks themselves is μ = 0.4. The 1 kg block starts out moving at 2 m/s and the 2 kg block starts out moving at 8 m/s, both toward the same side, as pictured. Take g = 10 m/s² and answer the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the time after which the two blocks stop sliding relative to each other."
+   },
+   {
+    "label": "b",
+    "asks": "Find the common speed the two blocks share at that instant."
+   },
+   {
+    "label": "c",
+    "asks": "Find how far each block, the 1 kg block and the 2 kg block, has travelled by that instant."
+   }
+  ],
+  "conditions": [
+   "1 kg block rests on top of a 2 kg block",
+   "the floor beneath the 2 kg block is frictionless (smooth)",
+   "coefficient of friction between the two blocks μ = 0.4",
+   "1 kg block starting speed 2 m/s",
+   "2 kg block starting speed 8 m/s",
+   "both blocks move in the same direction",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 1 kg block sits on top of a 2 kg block, which itself rests on a frictionless (smooth) floor. The 1 kg block moves to the right at 2 m/s and the 2 kg block moves to the right at 8 m/s. Friction, with coefficient μ = 0.4, acts only between the 1 kg block and the 2 kg block; there is no friction between the 2 kg block and the floor."
+  }
+ },
+ "solution": {
+  "approach": "The ground is smooth, so only friction between the two blocks acts; the faster bottom block drags the top one forward while it itself slows down.",
+  "steps": [
+   {
+    "text": "The bottom (2 kg) block moves faster (8 m/s) than the top (1 kg) block (2 m/s), so kinetic friction from the 1 kg block acts backward on the 2 kg block and forward on the 1 kg block.",
+    "equation": "f = μ × m(1kg) × g = 0.4 × 1 × 10 = 4 N"
+   },
+   {
+    "text": "Find each block's acceleration. The 1 kg block feels only this forward friction; the 2 kg block feels only the equal, opposite friction (the ground beneath it is smooth).",
+    "equation": "a(1kg) = 4/1 = 4 m/s², a(2kg) = −4/2 = −2 m/s²"
+   },
+   {
+    "text": "Set the two velocities equal to find when they reach a common speed.",
+    "equation": "2 + 4t = 8 − 2t → t = 1 s"
+   },
+   {
+    "text": "Find the common velocity at that time.",
+    "equation": "v = 2 + 4(1) = 6 m/s"
+   },
+   {
+    "text": "Find each block's displacement in that 1 s using s = v₀t + ½at².",
+    "equation": "s(1kg) = 2(1) + ½(4)(1)² = 4 m, s(2kg) = 8(1) + ½(−2)(1)² = 7 m"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) t = 1 s, (b) common velocity = 6 m/s, (c) displacement of 1 kg block = 4 m, displacement of 2 kg block = 7 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Applying friction to the 2 kg block from the ground as well, even though the ground is stated to be smooth, which changes its acceleration and the final time."
+   },
+   {
+    "option": null,
+    "text": "Swapping which block speeds up and which slows down, giving friction the wrong direction on each block."
+   }
+  ],
+  "concept_tags": [
+   "kinetic friction",
+   "relative motion",
+   "blocks in contact"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7f786374824d44b4bfa1c67270547b51bad98ef7cfdcd0f5f400c1b6313bf584"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d2d1f04cc770cf775818146bbb2347b8b4443b5bde1ec578a325f4925295521a",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:27:00+05:30"
+ }
+}

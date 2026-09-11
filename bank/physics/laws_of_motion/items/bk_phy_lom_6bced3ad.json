@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_6bced3ad",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the arrangement shown, a 2 kg block rests on a horizontal table and a 1 kg block hangs over the table's edge. Both pulleys and the string are massless, and every surface is frictionless. Use g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Calculate the acceleration of the 1 kg block."
+   },
+   {
+    "label": "b",
+    "asks": "Calculate the tension in the connecting string."
+   }
+  ],
+  "conditions": [
+   "pulleys and string are massless (light)",
+   "all surfaces are frictionless (smooth)"
+  ],
+  "figure": {
+   "description": "A 2 kg block rests on a smooth horizontal table. A short link from the block's right face holds the axle of a movable pulley, so the pulley moves with the block. A fixed pulley A is mounted at the table's right-hand edge. One end of a single string is anchored at the table edge just below pulley A; the string runs left along the table, wraps around the movable pulley, runs back right above the first strand, passes over the top of pulley A, and hangs straight down to the 1 kg block. The two horizontal strands between the movable pulley and the edge are parallel; when the 1 kg block descends a distance x, the 2 kg block moves right by x/2."
+  }
+ },
+ "solution": {
+  "approach": "The tension is the same throughout the string; two segments pull the table block through the movable pulley, and the given 2:1 displacement link fixes how the accelerations relate.",
+  "steps": [
+   {
+    "text": "Let T be the string's tension, a2 the table block's acceleration and a1 the hanging block's acceleration; the given displacement link fixes their ratio.",
+    "equation": "a1 = 2 a2 (1 kg block falls x while 2 kg block moves x/2)"
+   },
+   {
+    "text": "Two string segments run from the movable pulley to the fixed points, the anchor and pulley A, so both pull the movable pulley, and hence the 2 kg block, toward the table's edge with total force 2T.",
+    "equation": "2T = 2 × a2, so T = a2"
+   },
+   {
+    "text": "For the hanging 1 kg block, tension T acts upward and its weight acts downward.",
+    "equation": "10 − T = 1 × a1, so T = 10 − a1"
+   },
+   {
+    "text": "Substitute T = a2 = a1/2, from step 2 and the displacement link, into the hanging-block equation to leave a single equation in a1.",
+    "equation": "a1/2 = 10 − a1"
+   },
+   {
+    "text": "Solve for a1, then get a2 and T from it.",
+    "equation": "(3/2)a1 = 10, so a1 = 20/3 m/s² ≈ 6.67 m/s²; a2 = a1/2 = 10/3 m/s² ≈ 3.33 m/s²; T = a2 = 10/3 N ≈ 3.33 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) acceleration of the 1 kg block = 20/3 m/s² ≈ 6.67 m/s², directed downward. (b) tension in the string = 10/3 N ≈ 3.33 N."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only T, not 2T, for the pulling force on the table block, while keeping a1 = 2a2, gives the 1 kg block's acceleration as 5 m/s² and the tension as 5 N."
+   }
+  ],
+  "concept_tags": [
+   "movable pulley",
+   "constraint relation",
+   "Newton's second law",
+   "tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "06dfc8b6506ee93b7a029183b333ba9fbd4f1615e74a2711d125f3385a88e66e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8d7b52fe7fb5d2ef5408dd04d9e969d3ebd581e9072c2983f0bfa6c54b157be2",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 4,
+  "agent": "W04-A-lom-01",
+  "at": "2026-09-11T14:20:00+05:30"
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_c7d776b7",
+ "item_sha": "bedb892273c388d18f5486e788d7364bf84b8ab241bdcd0d583664a1cf5f53bc",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 20/6 = 3.33 m/s²; (b) contact force = 2 × 3.33 = 6.67 N",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[1].text",
+   "quote": "This is the acceleration of both the 4 kg block and the 2 kg block.",
+   "note": "The step adds nothing beyond steps[0], which already states that both blocks share the acceleration a = 3.33 m/s²; its equation line merely repeats that number.",
+   "fix": "Merge into steps[0]: 'Both blocks move together, so a = F/(m₁ + m₂) = 20/6 = 3.33 m/s² is the acceleration of each block.' and delete steps[1]."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent solve agrees on both parts. Physics in every line is correct; both common_mistakes are genuine errors (5 m/s² from 20/4; 20 N as the contact force).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:58:32+05:30"
+ }
+}

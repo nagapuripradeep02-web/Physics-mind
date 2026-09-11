@@ -1,0 +1,174 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 2,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_6c8b046b",
+   "question_text": "A rigid support S holds two blocks in a vertical line using two inextensible wires, each 1 m long: the upper wire (negligible mass) hangs from S to a 2.9 kg block, and the lower wire (uniformly distributed mass 0.2 kg) hangs from that 2.9 kg block down to a 1.9 kg block below it. The entire system — blocks, wires and support — accelerates upward at 0.2 m/s². Taking g = 9.8 m/s², answer the following.\n(a) Find the tension at the midpoint of the lower wire.\n(b) Find the tension at the midpoint of the upper wire.",
+   "options": [],
+   "figure_description": "A horizontal rigid support S at the top. From S, an upper (massless) wire hangs down to a 2.9 kg block. From that 2.9 kg block, a lower wire of mass 0.2 kg hangs down further to a 1.9 kg block at the bottom."
+  },
+  {
+   "question_id": "lom_39473919",
+   "question_text": "A 2 kg block rests on top of a 1 kg block, and the 1 kg block rests on a smooth (frictionless) horizontal surface. The friction coefficient between the two blocks is μ = 0.6. The 2 kg block is given an initial velocity of 3 m/s to the right, while the 1 kg block is given an initial velocity of 18 m/s to the left. Assume the lower block is long enough that the upper block never slides off it. Taking g = 10 m/s²,\n(a) Work out the time at which the relative sliding between the two blocks stops.\n(b) Work out the common velocity the two blocks share at that instant.\n(c) Work out how far the 1 kg block and the 2 kg block each travel up to that instant.",
+   "options": [],
+   "figure_description": "A 2 kg block sits on top of a 1 kg block; the 1 kg block rests on a smooth horizontal floor. The 2 kg (upper) block moves at 3 m/s to the right, and the 1 kg (lower) block moves at 18 m/s to the left."
+  },
+  {
+   "question_id": "lom_57d048b4",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure.\n(a) Using string-constraint equations, determine how the acceleration of point 2 is related to the acceleration of point 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2."
+  },
+  {
+   "question_id": "lom_778d98f2",
+   "question_text": "In the arrangement shown, block A has mass 4 kg and block B has mass 5 kg. Find the acceleration of each block.",
+   "options": [],
+   "figure_description": "A pulley P₁ is fixed to the ceiling. A single light string passes over P₁: its right end hangs straight down to block A (4 kg). Its left end goes down, passes UNDER a small movable pulley P₂ (wrapping round its lower half) and comes back up to be tied to the fixed support of P₁, so P₂ hangs in a loop of that string with two vertical strands above it. Block B (5 kg) hangs directly from the axle of P₂ by a short string. Pulleys and strings are light and frictionless. When B moves down by x, A moves up by 2x."
+  },
+  {
+   "question_id": "lom_77397fdd",
+   "question_text": "In the setup shown, block m₁ rests on the sloped face of a frictionless wedge, while a second block, m₂, hangs in the air and is η times as heavy as m₁; the wedge's slope makes an angle θ with the ground. Every pulley and every string in the system is taken to be massless, and no surface exposes any friction. Work out the acceleration of block m₂.",
+   "options": [],
+   "figure_description": "A wedge rests on the ground. Its sloped face rises from the lower-left corner, where it makes angle θ with the ground, up to the top-right corner of the wedge; its right face is vertical. A small pulley is fixed at the top-right corner of the wedge. Block m₁ rests on the sloped face. A cord is tied to block m₁, runs up the slope parallel to the incline, passes over the top of the fixed corner pulley, and drops vertically down just outside the vertical face to the axle of a second, smaller pulley. This second pulley is not fixed to anything; it hangs in the air beside the vertical face, held up only by that cord. A second cord passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to a small bracket fixed to the wedge at the foot of the vertical face, at ground level; the right segment goes straight down to block m₂, which hangs freely in the air to the right of the wedge. Block m₂ has mass η times m₁. All pulleys and cords are massless, and every surface is frictionless."
+  },
+  {
+   "question_id": "lom_448a4b3c",
+   "question_text": "A block of mass m rests on an inclined plane. For the surface of this incline, the angle of repose is 45°. Work out the friction force on the block, the net force acting on it, and its acceleration, when the incline's angle θ is set to (a) 30°, (b) 45°, and (c) 60°.\n(a) Find the friction force, the net force, and the acceleration of the block when θ = 30°.\n(b) Find the friction force, the net force, and the acceleration of the block when θ = 45°.\n(c) Find the friction force, the net force, and the acceleration of the block when θ = 60°.",
+   "options": [],
+   "figure_description": "A block of mass m sits on the sloped surface of an inclined plane that rises from a horizontal base; the incline makes an angle θ with the horizontal, measured at the base of the slope. The angle of repose of this surface is 45°, and θ is then set to 30°, 45°, and 60° in turn."
+  },
+  {
+   "question_id": "lom_6f2ba92f",
+   "question_text": "A block of mass m rests on a horizontal, rough surface whose angle of friction is φ. Someone pulls the block using a force F directed at an angle θ above the horizontal. What is the smallest value F can take and still move the block?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg sinφ / cos(θ − φ)"
+    },
+    {
+     "label": "(b)",
+     "text": "mg cosφ / cos(θ − φ)"
+    },
+    {
+     "label": "(c)",
+     "text": "mg tanφ"
+    },
+    {
+     "label": "(d)",
+     "text": "mg sinφ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_644a7542",
+   "question_text": "Four forces F₁, F₂, F₃ and F₄ act at a single point O, as drawn in a force diagram. Write the x-component and the y-component of each of the four forces, measured along the ox and oy axes shown in the figure.",
+   "options": [],
+   "figure_description": "Four force vectors are drawn from a common point O. A horizontal reference line runs through O; ox points to the right along it and oy points straight up. F₁ = 4 N points up and to the right, at 30° above the +x direction. F₂ = 4 N points up and to the left, at 60° above the −x direction (the 60° is measured from the leftward horizontal, so F₂ is 30° from the +y direction). F₄ = 4 N points horizontally to the right, along +x. F₃ = 6 N points straight down along −y."
+  },
+  {
+   "question_id": "lom_79092bee",
+   "question_text": "To push a body up a rough incline right at the point where it just starts to move takes exactly twice the force that would just stop that same body from sliding down the incline. Given the friction coefficient μ between body and incline, and θ as the incline's angle with the horizontal, what is tan θ in terms of μ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "μ"
+    },
+    {
+     "label": "(b)",
+     "text": "3μ"
+    },
+    {
+     "label": "(c)",
+     "text": "2μ"
+    },
+    {
+     "label": "(d)",
+     "text": "0.5 μ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_495795a3",
+   "question_text": "A man of mass m stands on a platform that also has mass m. He holds two ropes, each of which passes over a pulley fixed to the ceiling and then attaches to the platform he is standing on, as shown in the figure. He pulls down on each rope with a force equal to half of his own weight. What is the resulting upward acceleration of the man (and platform)?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "g/2"
+    },
+    {
+     "label": "(b)",
+     "text": "g/4"
+    },
+    {
+     "label": "(c)",
+     "text": "g"
+    },
+    {
+     "label": "(d)",
+     "text": "zero"
+    }
+   ],
+   "figure_description": "A rigid bar fixed to the ceiling holds four pulleys in a row. The man stands in the middle of a platform, both hands raised overhead to hold the two innermost ropes. On each side, one rope starts tied to an edge of the platform, runs upward and passes over the outer pulley on that side, runs horizontally along the ceiling to the neighboring inner pulley, then runs back down to the man's hand on that side. So each of the man's two hands pulls one continuous rope whose other end is fixed to the platform he stands on."
+  },
+  {
+   "question_id": "lom_61a99ab4",
+   "question_text": "A box car begins at rest (v = 0) and holds a steady acceleration of 5 m/s² along its own line of travel, î (take g = 10 m/s²). Across the car's rough floor, a 2 kg object is given an initial push of 10 m/s along this same î direction; the coefficient of sliding (kinetic) friction between the object and the floor is 0.3, while their coefficient of static friction is known to be above 0.5. Work out how the object moves relative to the car.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_744442e6",
+   "question_text": "Inside a box car that starts from rest (v = 0) and keeps a steady acceleration of 5 m/s² along î, its own forward direction (take g = 10 m/s²), a 2 kg object is released on the car's flat, frictionless floor. At that instant the object already carries a sideways speed of 10 m/s along k̂, the horizontal direction at right angles to î in the floor plane (ĵ stays vertical, pointing up).\n(a) Explain what path the object follows as seen by a passenger riding inside the car.\n(b) Explain what path the object follows as seen by an observer standing on the ground outside.",
+   "options": [],
+   "figure_description": "A rectangular car body sits on wheels on the ground. Inside it, three axes are drawn from a point: î points horizontally in the direction the car speeds up (forward), ĵ points straight up, and k̂ points horizontally out of that vertical plane, at right angles to î (sideways to the car's motion). Outside the car, an arrow marked a = 5 m/s² î shows its acceleration, and v = 0 marks its starting speed."
+  },
+  {
+   "question_id": "lom_743b71ad",
+   "question_text": "A 2 kg block rests on a rough horizontal floor, and a horizontal force F = 2t newtons (t in seconds) is applied to it, with g = 10 m/s². The floor gives two separate friction coefficients: static μₛ = 0.6 and kinetic μₖ = 0.4.\n(a) Sketch how the block's acceleration changes with time.\n(b) Work out the friction force on the block at t = 2 s and at t = 8 s.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_7a601c42",
+   "question_text": "Lined up in contact with each other on a smooth horizontal surface, from left to right, are three blocks: a 1 kg block, a 4 kg block, and a 2 kg block. A 120 N push acts on the 1 kg block from its left side, directed rightward into the row. A 50 N push acts on the 2 kg block from its right side, directed leftward into the row.\n(a) Find the acceleration of the three-block system.\n(b) Find the size of the normal contact force between the 1 kg block and the 4 kg block.\n(c) Find the net force acting on the 2 kg block.",
+   "options": [],
+   "figure_description": "On a smooth horizontal surface, three blocks touch each other in a row: 1 kg on the left, 4 kg in the middle, 2 kg on the right. A horizontal force of 120 N is applied to the outer (left) face of the 1 kg block, pointing right, into the row. A horizontal force of 50 N is applied to the outer (right) face of the 2 kg block, pointing left, into the row."
+  },
+  {
+   "question_id": "lom_5c1668bc",
+   "question_text": "A vertical chain, from top to bottom, consists of a 5 kg block, then a uniform rope of mass 4 kg, then a 7 kg block, with the rope connecting the two blocks. An upward force F of 200 N is applied at the very top of the 5 kg block. Taking g = 9.8 m/s², answer the following.\n(a) Find the acceleration of the system.\n(b) Find the tension at the top of the rope.\n(c) Find the tension at the mid-point of the rope.",
+   "options": [],
+   "figure_description": "From top to bottom in a vertical line: an upward force F = 200 N pulls a 5 kg block; a uniform rope of mass 4 kg hangs below the 5 kg block; a 7 kg block hangs at the bottom of the rope."
+  },
+  {
+   "question_id": "lom_3ce6bc1e",
+   "question_text": "In the same pulley system, at one instant blocks 1 and 2 are each moving upward at a speed of 1 m/s. Determine the velocity of block 3 at this same instant.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_5f7a4a18",
+   "question_text": "Inside a train carriage a 1 kg plumb bob hangs on a string from the ceiling. The train is climbing a slope of 30° at constant velocity. Take g = 10 m/s². Through what angle is the string tilted away from the normal to the ceiling, and what tension does it carry?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_7f407823",
+   "question_text": "A weight of 10 N is to be split into two components: one directed parallel to a slope, and one directed perpendicular to it. The slope makes an angle of 30° with the horizontal. Find both components.",
+   "options": [],
+   "figure_description": "An inclined slope rising to the right at 30° to the horizontal ground. A weight w = 10 N acts vertically downward at a point on the slope. It is split into w∥, directed along the slope surface toward its lower end, and w⊥, directed into the slope surface, perpendicular to it. The angle between the vertical weight and the perpendicular component is 30°, and the angle between the slope surface and the vertical is 60°."
+  },
+  {
+   "question_id": "lom_5d58df50",
+   "question_text": "A system of three blocks — 1 kg, 2 kg and 3 kg — is connected by pulleys as shown in the figure and let go from rest.\n(a) Work out how fast each block speeds up.\n(b) Work out the pulling force carried by each string.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted on the ceiling. A string over this fixed pulley carries tension 2T: one end holds a 1 kg block; the other end supports a second, massless, movable pulley. A separate string, carrying tension T, passes over this movable pulley: one end holds a 2 kg block and the other end holds a 3 kg block. The whole arrangement starts at rest and is then released."
+  }
+ ]
+}

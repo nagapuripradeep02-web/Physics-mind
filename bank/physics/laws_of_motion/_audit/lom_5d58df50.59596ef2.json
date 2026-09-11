@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_5d58df50",
+ "item_sha": "59596ef242e582d86a78c64855fffa1c022db485db40d7fad5a70bfebf9bebe5",
+ "auditor_option": null,
+ "auditor_value": "g = 10: T = 240/29 = 8.28 N, 2T = 16.55 N; 1 kg up 6.55 m/s^2; 2 kg down 5.86 m/s^2; 3 kg down 7.24 m/s^2 (g = 9.8: T = 8.11 N, 6.42 / 5.74 / 7.10 m/s^2)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[5].equation",
+   "quote": "40 − 5T/6 = −20 + 4T ⇒ T = 240/29 = 8.28 N",
+   "note": "The left side is the sum from the previous line, (10 − T/2) + (10 − T/3) = 20 − 5T/6, not 40 − 5T/6. The line as printed is false and does not give the stated result: 40 − 5T/6 = −20 + 4T solves to T = 360/29 = 12.4 N, not 240/29. Only the correct 20 − 5T/6 = −20 + 4T gives 40 = 29T/6 and T = 240/29.",
+   "fix": "20 − 5T/6 = −20 + 4T ⇒ 40 = 29T/6 ⇒ T = 240/29 = 8.28 N"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Question does not fix g; solution uses g = 10 without saying so, and every downstream number (T = 8.28 N, 6.55 / 5.86 / 7.24 m/s^2) matches my g = 10 solution. Sign convention (down positive), pulley constraint a2 + a3 = 2a_P = −2a1, and the three block equations are all correct; the defect is confined to the printed collection step.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:57:37+05:30"
+ }
+}

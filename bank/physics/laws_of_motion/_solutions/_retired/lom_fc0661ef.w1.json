@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_fc0661ef",
+ "approach": "The 1 kg block and the 2 kg block's movable pulley share one string, so the 1 kg block accelerates twice as fast; apply Newton's second law to each block.",
+ "steps": [
+  {"text": "The string from the 1 kg block runs over the table-edge pulley, over the fixed ceiling pulley, under the movable pulley (carrying the 2 kg block), and ties off near the fixed pulley, so tension T2 is the same throughout this string and the movable pulley is held by two strands of T2.", "equation": "same reasoning as the A-B movable-pulley constraint: a₁ = 2a, where a is the acceleration of the 2 kg and 3 kg blocks"},
+  {"text": "Write Newton's second law for the 1 kg block on the smooth table, pulled by T2 with acceleration a₁ = 2a.", "equation": "T2 = 1 × a1 = 2a"},
+  {"text": "Write Newton's second law for the 2 kg block (downward positive): weight down, T1 pulling it down toward the 3 kg block, two strands of T2 pulling it up.", "equation": "2(10) + T1 − 2T2 = 2a"},
+  {"text": "Write Newton's second law for the 3 kg block (downward positive): weight down, T1 pulling it up.", "equation": "3(10) − T1 = 3a"},
+  {"text": "Solve the three equations together.", "equation": "a = 50/9 m/s², T1 = 40/3 N, T2 = 100/9 N"},
+  {"text": "The 2 kg and 3 kg blocks accelerate at 50/9 m/s² downward, the 1 kg block accelerates at 2 × 50/9 = 100/9 m/s² horizontally toward the pulley, T1 = 40/3 N ≈ 13.3 N and T2 = 100/9 N ≈ 11.1 N.", "equation": "a(1kg) = 100/9 m/s² ≈ 11.1 m/s², a(2kg) = a(3kg) = 50/9 m/s² ≈ 5.6 m/s², T1 ≈ 13.3 N, T2 ≈ 11.1 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 1 kg block: 100/9 m/s² ≈ 11.1 m/s² (horizontal, toward the pulley); 2 kg and 3 kg blocks: 50/9 m/s² ≈ 5.6 m/s² (downward). (b) T1 = 40/3 N ≈ 13.3 N, T2 = 100/9 N ≈ 11.1 N."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Missing the movable-pulley factor of 2 and writing a(1kg) = a(2kg), which gives the wrong tensions and accelerations."},
+  {"option": null, "text": "Forgetting that the movable pulley is held up by two strands of T2 and writing the 2 kg equation with only one T2."}
+ ],
+ "concept_tags": ["movable pulley", "constraint relation", "Newton's second law", "tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:20:00+05:30"}
+}

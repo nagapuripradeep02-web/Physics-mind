@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_3a49adad",
+ "approach": "List each contact of the two spheres and draw one normal force per contact, since friction is absent everywhere; the sphere-sphere force acts along the line joining their centres.",
+ "steps": [
+  {"text": "Sphere A touches the ground, the left wall, and sphere B, and also has its own weight.", "equation": "sphere A: weight W_A (down, at centre) + N_ground (up) + N_wall_left (horizontal, away from the left wall) + N_B (from sphere B, along the line joining the two centres)"},
+  {"text": "Sphere B does not touch the ground, so it only touches the right wall and sphere A, besides its own weight.", "equation": "sphere B: weight W_B (down, at centre) + N_wall_right (horizontal, away from the right wall) + N_A (reaction to N_B, along the same centre-to-centre line, pushing B away from A)",
+   "why_this_step": "With no friction anywhere, every contact force must be perpendicular to the two touching surfaces, and for two spheres that direction is the line joining their centres."}
+ ],
+ "final_answer": {"option": null, "value": "Sphere A: its weight, the ground's normal reaction, the left wall's normal reaction, and sphere B's normal reaction along the centre-to-centre line. Sphere B: its weight, the right wall's normal reaction, and sphere A's normal reaction along the same centre-to-centre line (equal and opposite to the force A feels from B); sphere B has no ground contact."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing sphere B's normal reaction from A as purely vertical or horizontal instead of along the line joining the two centres."},
+  {"option": null, "text": "Giving sphere B a ground contact force, missing that only sphere A touches the ground in the figure."}
+ ],
+ "concept_tags": ["free body diagram", "normal reaction", "spheres in contact", "frictionless contact"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:22:00+05:30"}
+}

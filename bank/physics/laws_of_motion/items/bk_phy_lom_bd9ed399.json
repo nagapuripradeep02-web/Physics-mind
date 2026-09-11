@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_bd9ed399",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A box, open at the top, moves with a downward acceleration a, as shown in the figure. A block of mass m sits on the floor inside this box. What value must a have so that the block presses on the box's floor with a force of mg/4?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "box accelerates downward with acceleration a",
+   "block of mass m rests on the floor of the box"
+  ],
+  "figure": {
+   "description": "A square box, open at the top, accelerates downward; a downward arrow labelled a is drawn just to the left of the box, outside it. Inside the box, a block (of mass m) rests on the box's floor."
+  }
+ },
+ "solution": {
+  "approach": "In the ground frame, apply Newton's second law to the block along the vertical, using the given floor reaction to find the box's acceleration.",
+  "steps": [
+   {
+    "text": "The block accelerates downward with the box, so its weight minus the floor's normal push equals mass times acceleration.",
+    "equation": "mg − N = ma"
+   },
+   {
+    "text": "Substitute the given floor reaction, N = mg/4.",
+    "equation": "mg − mg/4 = ma"
+   },
+   {
+    "text": "Divide by m and solve for a.",
+    "equation": "g − g/4 = a, so a = 3g/4"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 3g/4, directed downward (≈ 7.5 m/s² for g = 10 m/s²)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Writing the equation as N − mg = ma, treating the floor force as larger than the weight, which gives the wrong sign a = −3g/4."
+   },
+   {
+    "option": null,
+    "text": "Setting the acceleration equal to N/m directly, a = g/4, instead of first subtracting N from the weight."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "normal force",
+   "accelerating frame"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "800ec4d34859b4bd5d4dadb79fe3fcad645b6035d6ea27981bc625dabe1e70f7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1c6cc4382c67545f2365316c2400b57aa23e4427b510791e3c6e2c6100daaff5",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:50:00+05:30"
+ }
+}

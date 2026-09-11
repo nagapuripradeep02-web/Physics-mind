@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_35193317",
+ "item_sha": "e5b69b77fdbd449d8878837b162ddcf2ef19831d484b4cf07916509c8442faff",
+ "auditor_option": null,
+ "auditor_value": "(a) T = 100(2−√3) ≈ 26.8 N; (b) f = T ≈ 26.8 N up the slope; (c) N = 100 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved as a 3×3 linear system (torque about the centre f = T, horizontal and vertical balance); N comes out exactly 100 N and T = f = w tan 15°. Every printed equation and both common-mistake numbers verified.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:27:56+05:30"
+ }
+}

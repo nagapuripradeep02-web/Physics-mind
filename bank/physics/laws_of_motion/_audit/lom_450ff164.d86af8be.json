@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_450ff164",
+ "item_sha": "d86af8bef800d145ba7c8a0263967cab972f4adae3156509b2561e947a4872e5",
+ "auditor_option": 4,
+ "auditor_value": "T = 2*5*10*g/15 = 66.7 N (g = 10) or 65.3 N (g = 9.8); matches no option -> (d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solution states its g = 10 choice; the conclusion is the same with g = 9.8.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:58:08+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_36ff01fc",
+ "item_sha": "ed3acaf5792260fd00b6138d6b68e31c07c32b838ac635cfc16bfdd1e15e4d9f",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true: static friction f = F₂ while the block is at rest; raising F₁ raises N = mg + F₁ and the limit μN but not f",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: with the block at rest, horizontal balance fixes f = F₂; F₁ enters only N = mg + F₁ and the ceiling μN. So raising F₂ raises f, raising F₁ does not; the Assertion ('either force') is false and the Reason is true, option (d) = 4. The single mistake entry correctly targets option 1.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:01:32+05:30"
+ }
+}

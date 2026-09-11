@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_7d765ebc",
+ "approach": "Write Newton's second law along the incline for each case, using static friction at its limit for the stationary range and kinetic friction, opposing motion, for the moving cases.",
+ "steps": [
+  {"text": "The normal force is unaffected by F since F acts along the incline, so N = mg cos60°.", "equation": "N = 6×10×0.5 = 30 N"},
+  {"text": "To keep the block stationary, F must lie between the value that barely stops it sliding down (friction at its maximum, acting up the slope) and the value that barely stops it sliding up (friction at its maximum, acting down the slope).", "equation": "F_min = mg sin60° − μₛmg cos60°,  F_max = mg sin60° + μₛmg cos60°"},
+  {"text": "Compute both limits.", "equation": "F_min = 60×0.866 − 0.6×30 = 51.96 − 18 ≈ 34.0 N,  F_max = 51.96 + 18 ≈ 70.0 N"},
+  {"text": "To move the block down at constant velocity, kinetic friction acts up the slope (opposing the downward slide) and the net force is zero.", "equation": "F = mg sin60° − μₖmg cos60° = 51.96 − 0.4×30 ≈ 40.0 N"},
+  {"text": "To move the block up with acceleration 4 m/s², kinetic friction acts down the slope (opposing the upward slide), and Newton's second law along the incline gives F.", "equation": "F = mg sin60° + μₖmg cos60° + ma = 51.96 + 12 + 24 ≈ 88.0 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 34.0 N ≤ F ≤ 70.0 N, (b) F ≈ 40.0 N, (c) F ≈ 88.0 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using kinetic friction instead of static friction for part (a) gives a narrower, incorrect range of 40.0 N to 64.0 N."},
+  {"option": null, "text": "Reversing the direction of kinetic friction in part (c) (treating it as helping instead of opposing the upward motion) gives F ≈ 64.0 N instead of 88.0 N."}
+ ],
+ "concept_tags": ["friction on an incline", "static and kinetic friction", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_70509298",
+ "approach": "For the block to stay still relative to the wedge, both must share one horizontal acceleration, and on a smooth incline that fixes the acceleration at g tanθ.",
+ "steps": [
+  {"text": "Since the block does not slide on the wedge, the wedge and block move together with one common horizontal acceleration a.", "equation": "a = F / (M+m)"},
+  {"text": "On the block, only its weight mg (down) and the normal force N (perpendicular to the smooth incline) act. Its vertical acceleration is zero, and its horizontal acceleration is a.", "equation": "N cosθ = mg, N sinθ = ma"},
+  {"text": "Divide the two equations to remove N.", "equation": "tanθ = a/g ⇒ a = g tanθ",
+   "why_this_step": "This is the one acceleration value at which the incline's normal force alone can hold the block in place without sliding, on a frictionless surface."},
+  {"text": "Put a = g tanθ into the system equation and solve for F.", "equation": "F = (M+m) a = (M+m) g tanθ"}
+ ],
+ "final_answer": {"option": null, "value": "F = (M+m) g tanθ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Leaving out the wedge's mass and writing F = m g tanθ, using only the block's mass."},
+  {"option": null, "text": "Inverting the trig ratio and writing F = (M+m) g / tanθ instead of (M+m) g tanθ."}
+ ],
+ "concept_tags": ["pseudo force", "wedge", "relative equilibrium"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:40:00+05:30"}
+}

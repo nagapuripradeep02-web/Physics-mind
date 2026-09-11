@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_644a7542",
+ "approach": "Resolve each force along ox and oy using the angle it makes with the axes shown in the figure.",
+ "steps": [
+  {"text": "F₁ = 4 N is at 30° above ox, so resolve it along ox and oy.", "equation": "F₁ₓ = 4cos30° = 2√3 N, F₁ᵧ = 4sin30° = 2 N"},
+  {"text": "F₂ = 4 N is at 60° above the −ox direction (30° from oy), so its ox-component is negative and its oy-component is positive.", "equation": "F₂ₓ = −4cos60° = −2 N, F₂ᵧ = 4sin60° = 2√3 N"},
+  {"text": "F₃ = 6 N points straight down along −oy, so it has no ox-component.", "equation": "F₃ₓ = 0, F₃ᵧ = −6 N"},
+  {"text": "F₄ = 4 N points along +ox, so it has no oy-component.", "equation": "F₄ₓ = 4 N, F₄ᵧ = 0"},
+  {"text": "Collect all four results as the final set of components.", "equation": "F₁ = (2√3, 2) N, F₂ = (−2, 2√3) N, F₃ = (0, −6) N, F₄ = (4, 0) N"}
+ ],
+ "final_answer": {"option": null, "value": "F₁ = (2√3, 2) N ≈ (3.46, 2) N; F₂ = (−2, 2√3) N ≈ (−2, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Measuring F₂'s 60° from oy instead of from the −ox direction, giving F₂ₓ = −4sin60° = −2√3 N and F₂ᵧ = 4cos60° = 2 N instead of the correct −2 N and 2√3 N."},
+  {"option": null, "text": "Giving F₃ a positive oy-component instead of negative, missing that the arrow points downward."}
+ ],
+ "concept_tags": ["resolution of vectors", "components of a force"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:10:00+05:30"}
+}

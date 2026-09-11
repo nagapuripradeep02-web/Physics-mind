@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_9cef0abc",
+ "item_sha": "a3bb794a4220ff3f5d5d33cc6b53b194aa6d5f140dcec0740a606e29c2ab74c3",
+ "auditor_option": null,
+ "auditor_value": "(a) relative to the car: uniform deceleration 5 m/s² in +î, momentary rest at t = 2 s and x_rel = 10 m, then acceleration 5 m/s² in −î; (b) back at the start at t = 4 s",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Taking the return time as when the object's own velocity returns to 10 m/s (never happens) instead of solving x_rel = 0 gives no finite answer.",
+   "note": "Not a recognisable student error and internally muddled: in the ground frame the object's velocity is 10 m/s throughout (so 'never happens' is false), and in the car frame the relative velocity goes from +10 to −10 m/s and does not return to +10. A student's real slip here is to take the moment of momentary rest (t = 2 s) as the return time.",
+   "fix": "Taking the instant when the object is momentarily at rest relative to the car (t = 2 s) as the return time; at that instant it is 10 m ahead of its starting point and only reaches the start again at t = 4 s."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": "The served question text prints parts (a) and (b) twice (once inline, once as separate lines).",
+ "notes": "Ground-frame object velocity stays 10 m/s because the car is at rest at t = 0; x_rel = 10t − 2.5t² = 0 at t = 4 s, matching the solution.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:00+05:30"
+ }
+}

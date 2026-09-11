@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b8fc61ff",
+ "item_sha": "0a5d842a9128f557b512522e5e19357c0e1b739279ad07cd6bad654bd75f80ca",
+ "auditor_option": 2,
+ "auditor_value": "a_man,ground = a (up, relative to rope) + a (rope/elevator up) = 2a up ⇒ T − mg = 2ma ⇒ T = m(g + 2a)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees with option (b). The direction bookkeeping (slowing while moving down ⇒ upward relative acceleration) is stated correctly; the mistake entry reaches option (c) as it says.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:03:49+05:30"
+ }
+}

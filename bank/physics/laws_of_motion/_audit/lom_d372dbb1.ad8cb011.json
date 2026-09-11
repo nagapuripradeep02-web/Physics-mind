@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_d372dbb1",
+ "item_sha": "ad8cb0114536c63c3668f1a841044166ba8c2c75563bd7a8f1ffec59c7c006ce",
+ "auditor_option": null,
+ "auditor_value": "(a) v_B = v_A cosθ; (b) a_B = a_A cosθ at release (v_A = 0); (c) a_A = 20/3 ≈ 6.67 m/s², a_B = 10/3 ≈ 3.33 m/s², T = 40/3 ≈ 13.3 N (g = 10)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g is not fixed by the question; the solution uses g = 10 m/s² without saying so (with 9.8: a_A = 6.53, a_B = 3.27, T = 13.1 N). Constraint derivation including the dropped v_A sinθ dθ/dt term is correct; mistake entry 2's 6.93 m/s² reproduces.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:30:35+05:30"
+ }
+}

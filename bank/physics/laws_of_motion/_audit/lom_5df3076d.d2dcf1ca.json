@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_5df3076d",
+ "item_sha": "d2dcf1ca506278733bf049b44b4f17b896b529a67edc8db4ac849b8ffe82291a",
+ "auditor_option": null,
+ "auditor_value": "a = (10 + 20 - 20)/3 = 10/3 = 3.33 m/s^2",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:00:44+05:30"
+ }
+}

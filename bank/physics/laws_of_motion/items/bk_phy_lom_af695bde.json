@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_af695bde",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "The diagonal string shown in the figure below carries a tension of 60 N.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out the size of the horizontal forces F₁ and F₂ needed to keep the whole system fixed in the position drawn."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the weight of the block that hangs from the system."
+   }
+  ],
+  "conditions": [
+   "tension in the diagonal string = 60 N",
+   "diagonal string makes a 45° angle with the horizontal",
+   "F₁ acts horizontally at the upper point A",
+   "F₂ acts horizontally at the lower point B",
+   "block hangs vertically below point B",
+   "system is held fixed (in equilibrium)"
+  ],
+  "figure": {
+   "description": "A horizontal ceiling runs along the top. A short vertical link hangs from the ceiling down to point A. At A, force F₁ points horizontally to the left. From A, a diagonal string runs down and to the right to point B, making a 45° angle with the horizontal (measured at A between a horizontal reference line and the diagonal string). At B, force F₂ points horizontally to the right, and directly below B a block of weight W hangs on a vertical string."
+  }
+ },
+ "solution": {
+  "approach": "At each end of the diagonal string, the horizontal force balances the string's horizontal part, and at B the string's vertical part supports the hanging weight.",
+  "steps": [
+   {
+    "text": "At point A, the diagonal string pulls toward B; F1 balances the horizontal part of this pull.",
+    "equation": "F1 = T cos45° = 60×(√2/2) ≈ 42.43 N"
+   },
+   {
+    "text": "At point B, the diagonal string pulls toward A; F2 balances the horizontal part of this pull.",
+    "equation": "F2 = T cos45° ≈ 42.43 N"
+   },
+   {
+    "text": "The weight hanging from B is supported by the vertical part of the string's tension.",
+    "equation": "W = T sin45° ≈ 42.43 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) F1 ≈ 42.43 N, F2 ≈ 42.43 N, (b) W ≈ 42.43 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking F1 and F2 equal to the full string tension of 60 N, without resolving the 45° angle, ignores that only part of the tension acts horizontally."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium at a point",
+   "tension",
+   "resolving forces at 45 degrees"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "48dd8225a585cf62976bdcca05275e67b29e9c2180653ced8e1da78cf38fd67d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6815017b25f92e11df82055151af065091f89ec231a1657adce6d289c1d87600",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:42:00+05:30"
+ }
+}

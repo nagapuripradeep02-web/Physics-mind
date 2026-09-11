@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_79092bee",
+ "item_sha": "4541c20af0f5350cf7c55aedc22ed457afa8b435ebe68420fedba2e5d11548c9",
+ "auditor_option": 2,
+ "auditor_value": "tan θ = 3μ",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "concept_tags[0]",
+   "quote": "kinetic friction",
+   "note": "Both conditions ('just starts to move up', 'just stops sliding down') are at the limiting static threshold; the friction used is limiting static friction, not kinetic.",
+   "fix": "limiting static friction"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Both mistake entries produce the options they name (dropping friction from F_hold gives tanθ = μ, option 1; dropping it from F_up gives tanθ = 2μ, option 3).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:39+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_cdf11451",
+ "item_sha": "edf0a36cfcdfbfe58981ba5409a0a071a2935d3c05b18c16e8fae98878989729",
+ "auditor_option": null,
+ "auditor_value": "angle with ceiling normal = arctan(2/√3) ≈ 49.1°; T = mg√7/2 = 5√7 N ≈ 13.2 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent route in incline axes: along-slope effective g = g sin30 + a = g, perpendicular = g cos30, so tan φ = 2/√3 and φ = 49.1°, T = 5√7 N; identical to the solution's horizontal/vertical route (19.1° from vertical + 30°). Both mistake entries produce the numbers they name (15 N; 10.9°).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:27:25+05:30"
+ }
+}

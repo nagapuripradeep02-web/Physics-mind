@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_26f7688f",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A wedge with an incline angle θ is fixed to the floor of an elevator that moves upward with acceleration a. A block of mass m rests on the frictionless inclined surface of the wedge. Find the acceleration of the block relative to the wedge.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "wedge is fixed to the elevator floor",
+   "elevator accelerates upward with acceleration a",
+   "wedge incline angle = θ",
+   "block mass = m",
+   "no friction between block and wedge surface"
+  ],
+  "figure": {
+   "description": "An elevator box accelerates straight upward with acceleration a. Fixed to its floor is a wedge whose sloped surface rises from the floor at angle θ to the horizontal. A block of mass m sits on this sloped surface."
+  }
+ },
+ "solution": {
+  "approach": "In the elevator's frame a downward pseudo force ma adds to gravity, giving an effective gravity (g + a) that pushes the block down the frictionless incline.",
+  "steps": [
+   {
+    "text": "In the elevator's own frame, a pseudo force ma acts downward on the block, opposite to the elevator's upward acceleration a.",
+    "equation": "pseudo force = ma, downward"
+   },
+   {
+    "text": "This pseudo force adds to the block's true weight mg, giving an effective downward weight of m(g + a).",
+    "equation": "effective weight = m(g + a)"
+   },
+   {
+    "text": "The incline is frictionless, so only the component of this effective weight along the incline accelerates the block relative to the wedge.",
+    "equation": "a_rel = (g + a) sinθ"
+   },
+   {
+    "text": "This acceleration is directed down the incline, relative to the wedge.",
+    "equation": "a_rel = (g + a) sinθ, down the incline"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a_rel = (g + a) sinθ, directed down the incline"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using g sinθ alone and ignoring the elevator's acceleration gives (g) sinθ, missing the added pseudo force from the upward-accelerating elevator."
+   },
+   {
+    "option": null,
+    "text": "Subtracting a from g instead of adding it gives (g − a) sinθ, treating the elevator's acceleration as reducing the effective weight instead of increasing it."
+   }
+  ],
+  "concept_tags": [
+   "non-inertial frame",
+   "pseudo force",
+   "block on incline"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a9fb69163fe7c77a23a2ff7bedb62d9df296b0332d709ddb4f853e44206311cd"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ed2f9fa75f069278a8bcb839f6b39713adb30d5dbc09a1844fb77a817971fad9",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

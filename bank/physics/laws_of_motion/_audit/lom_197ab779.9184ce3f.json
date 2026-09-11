@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_197ab779",
+ "item_sha": "9184ce3fcf31f8c53a68922cf4fff6a4d2d0e3b5d71c5df1381fbb72ddeb9e56",
+ "auditor_option": null,
+ "auditor_value": "Net force = ma = 65 N (supplied by static friction, along the belt's acceleration); a_max = μₛg = 0.2 × 9.8 = 1.96 m/s²",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g = 9.8 as the question fixes. Both common-mistake numbers (2.0 m/s² with g = 10; limiting friction 127.4 N) verified.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:28:29+05:30"
+ }
+}

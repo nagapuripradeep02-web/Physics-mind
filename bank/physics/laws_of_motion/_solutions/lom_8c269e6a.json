@@ -1,0 +1,46 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_8c269e6a",
+ "approach": "The rod moves only along a line that is the normal to the incline, so its speed equals the component of the wedge's horizontal speed along that normal.",
+ "steps": [
+  {
+   "text": "The rod can move only along its guide's fixed line, which is the normal to the incline at the point where rod and wedge touch."
+  },
+  {
+   "text": "The incline's face makes angle θ with the horizontal, so its normal makes angle θ with the vertical, or (90° − θ) with the horizontal.",
+   "equation": "normal direction makes angle θ with the vertical"
+  },
+  {
+   "text": "For the rod's end to stay on the moving incline face, the rod's speed along the normal must equal the component of the wedge's horizontal speed along that same normal.",
+   "equation": "vA = vB cos(90° − θ)"
+  },
+  {
+   "text": "Simplify the component, and the same relation holds for acceleration.",
+   "equation": "vA = vB sinθ, so aA = aB sinθ"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "aA = aB sinθ"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using cosθ instead of sinθ gives aA = aB cosθ, mixing up the angle the incline makes with the horizontal and the angle its normal makes with the horizontal."
+  }
+ ],
+ "concept_tags": [
+  "constraint relation",
+  "relative velocity along common normal",
+  "wedge and rod contact"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

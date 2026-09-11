@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_6215c184",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A vertical wall and a horizontal ceiling meet at a right-angle corner. From a junction point somewhere below and to the right of that corner, string T₂ runs horizontally and attaches to the wall, while string T₁ runs up and to the right, making an angle of 60° with the horizontal, and attaches to the ceiling. A block of weight W = 4 × 9.8 N hangs straight down from the same junction point on a vertical string. Find the tensions T₁ and T₂.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "string T₂ runs horizontally from the junction to the wall",
+   "string T₁ runs from the junction to the ceiling, making a 60° angle with the horizontal",
+   "a block of weight W = 4 × 9.8 N hangs vertically from the junction",
+   "the wall is vertical and the ceiling is horizontal, meeting at a right angle"
+  ],
+  "figure": {
+   "description": "A vertical wall and a horizontal ceiling meet at a right-angle corner in the upper left of the picture. A junction point lies below and to the right of that corner. String T₂ goes from the junction straight left to the wall. String T₁ goes from the junction up and to the right to the ceiling, making a 60° angle with the horizontal. A block hangs from the junction on a vertical string directly below it, its weight W = 4 × 9.8 N pulling straight down."
+  }
+ },
+ "solution": {
+  "approach": "The block's weight is held up by the vertical part of T1, and the horizontal part of T1 is balanced by T2 pulling toward the wall.",
+  "steps": [
+   {
+    "text": "The weight hangs from the junction, so the vertical part of T1 must support the full weight.",
+    "equation": "T1 sin60° = W = 4×9.8 = 39.2 N"
+   },
+   {
+    "text": "Solve for T1.",
+    "equation": "T1 = 39.2/sin60° ≈ 45.26 N"
+   },
+   {
+    "text": "The horizontal part of T1 is balanced by T2 pulling toward the wall.",
+    "equation": "T2 = T1 cos60° ≈ 22.63 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T1 ≈ 45.26 N, T2 ≈ 22.63 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using cos60° in place of sin60° to find the vertical part of T1 gives T1 = 78.4 N instead of the correct 45.26 N."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a hanging block",
+   "tension",
+   "resolving forces"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "22c836df5bda5bdc7365a00acd39072e87dfd2675c38e0c1af3c3f8e53131a2a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c52e961d8492af806eb244f3b2f659008da5091119e2cf9bc7b4de38d645c3ca",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:38:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_d571430d",
+ "item_sha": "74c083e10aadad2ef4f7a83acaeda61e6886203291649da89189f21e3c62f855",
+ "auditor_option": null,
+ "auditor_value": "A: W_A down, N_AB up (= W_A). B: W_B down, N_AB down, N_BC up (= W_A + W_B). C: W_C down, N_BC down, N_ground up (= W_A + W_B + W_C). No horizontal forces.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent FBD identical to the solution's; third-law pairs stated correctly; each normal equals the total weight above it.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:58:06+05:30"
+ }
+}

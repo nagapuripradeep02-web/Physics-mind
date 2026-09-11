@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_e17ca7fd",
+ "item_sha": "867e7e8fed63e4d4375d1bb77bbcb5f3169f927cf0cf04d777d23aec7039894e",
+ "auditor_option": null,
+ "auditor_value": "0.05 m (5 cm) below C",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: N = F = 40 N, f = mg = 20 N; torque about C with friction on the wall face 0.10 m from C gives N h = -f (0.10), h = -0.05 m, i.e. 5 cm below C. The torque line N h + f (0.10) = 0 is consistent under a counter-clockwise-positive convention with h measured upward; the convention is not written but the sign result is stated correctly. common_mistakes[1]'s number (0.10 m) reproduces: 20 x 0.20 / 40 = 0.10 m. g = 10 as the question fixes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:23:41+05:30"
+ }
+}

@@ -1,0 +1,160 @@
+{
+ "wave": 5,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "agent_label": "W05-U-lom-01",
+ "items": [
+  {
+   "question_id": "lom_57d048b4",
+   "audit_file": "lom_57d048b4.fb492ec4.json",
+   "item_sha": "fb492ec41967a8db613b0eb9315188b317f5d6b15919a8b57d249041733d32dd",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure. Using string-constraint equations, determine how the acceleration of block 2 is related to the acceleration of block 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2.",
+   "solution": {
+    "approach": "Write the constant-length equation for each of the three strings in turn, then combine the three to connect block 1 and block 2 directly.",
+    "steps": [
+     {
+      "text": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant.",
+      "equation": "x₁ + x₃ = c₁ ⇒ a₁ + a₃ = 0"
+     },
+     {
+      "text": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position.",
+      "equation": "(x₁−x₃) + (x₄−x₃) = c₂ ⇒ a₁ + a₄ − 2a₃ = 0"
+     },
+     {
+      "text": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position.",
+      "equation": "(x₁−x₄) + (x₂−x₄) = c₃ ⇒ a₁ + a₂ − 2a₄ = 0"
+     },
+     {
+      "text": "From the first equation, a₃ = −a₁. Put this into the second equation.",
+      "equation": "a₁ + a₄ − 2(−a₁) = 0 ⇒ a₄ = −3a₁"
+     },
+     {
+      "text": "Put a₄ = −3a₁ into the third equation and solve for a₂.",
+      "equation": "a₁ + a₂ − 2(−3a₁) = 0 ⇒ a₂ = −7a₁",
+      "why_this_step": "Each movable pulley moves with the string above it, and the string over it doubles that motion for the next level while block 1 adds its own; the factors grow 1, 3, 7, so block 2 accelerates seven times as fast as block 1."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a₂ = −7a₁ (block 2's acceleration is 7 times block 1's acceleration, in the opposite direction)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing only the top string's constraint (x₁ + x₃ = constant) and treating everything below P₁ as one body moving with pulley P₂, which gives |a₂| = |a₁|; each movable pulley adds its own constraint."
+     }
+    ],
+    "concept_tags": [
+     "string constraint",
+     "movable pulley",
+     "pulley kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_adb64b1d",
+   "audit_file": "lom_adb64b1d.abcc0884.json",
+   "item_sha": "abcc0884f0b201ef45efb46e640fa39a25e800c2b2dfc8d56989dd673aca0475",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else.",
+   "solution": {
+    "approach": "A normal reaction at every contact, friction where the contact is rough, each weight at its centre; on a circular body a smooth contact's normal reaction passes through the centre.",
+    "steps": [
+     {
+      "text": "The plank touches the rough ground at its lower end and touches the smooth cylinder at one point partway along its length, so four forces act on it in total.",
+      "equation": "plank: weight, ground normal, ground friction, cylinder normal"
+     },
+     {
+      "text": "At the ground contact the surface is rough, so both a normal reaction and a friction force act there, along with the plank's weight at its centre of gravity.",
+      "equation": "N_ground (perpendicular to ground) + f_ground (along ground) + W_plank (down, at centre of gravity)"
+     },
+     {
+      "text": "At the cylinder contact there is no friction (given), so only a normal reaction acts there, perpendicular to the plank's own surface at that point.",
+      "equation": "N_cylinder (perpendicular to the plank, at the point of contact)",
+      "why_this_step": "A frictionless contact can only push perpendicular to the surfaces touching, never along them."
+     },
+     {
+      "text": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+      "equation": "cylinder: weight W_cylinder (down, at centre) + N_ground2 (from ground, vertical, through centre) + N_plank (reaction to N_cylinder, radial, through centre) + f_ground_cyl (from ground, horizontal, at the ground contact)",
+      "why_this_step": "The plank's normal push on the cylinder has a horizontal part along the ground, and the ground contact is rough, so a horizontal friction force is drawn there; whether it is zero is a separate question, since it is the only force with a moment about the centre."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "On the plank: its weight (at its centre of gravity), the ground's normal reaction (perpendicular to the ground) and friction (along the ground, toward the cylinder) at its lower end, and the cylinder's normal reaction perpendicular to the plank (at the contact point). On the cylinder: its weight at the centre, the normal reaction from the plank (perpendicular to the plank, through the centre), the ground's normal reaction (vertical, through the centre) and the ground's friction (horizontal, at the ground contact, directed toward the plank's lower end if it acts)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a friction force between the plank and the cylinder, contradicting the statement that this contact is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Leaving out the ground's friction on the cylinder, although the ground is rough and the plank's push on the cylinder has a horizontal part that makes it tend to move along the ground."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal reaction",
+     "friction",
+     "circular contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_125342d7",
+   "audit_file": "lom_125342d7.6d0341a8.json",
+   "item_sha": "6d0341a8ef56f16d4e7faff6fdee26ee49a2d25a2116fc4398ddb3902c97187a",
+   "question_text": "A ramp rises from level ground at 60°, the angle being marked at the bottom vertex where the ramp starts. At one point on the ramp's surface four forces act together: an unknown force F directed up along the ramp (parallel to the slope), an unknown force R directed perpendicular to the ramp's surface, away from it, a known force of 6 N pulling horizontally to the left, and a known force of 10 N pulling straight downward. These four forces balance exactly. Work out the values of R and F.",
+   "options": [],
+   "figure_description": "A ramp rises from a vertex at the lower left toward the upper right, making the marked angle of 60° with the horizontal ground. At one point on the ramp's surface four forces act: F points up the ramp, along the surface toward the upper right; R points perpendicular to the ramp's surface, away from it (up and to the left); a 3 N force points horizontally to the left; a 10 N force points vertically downward.",
+   "solution": {
+    "approach": "Resolve F, along the incline, and R, perpendicular to it, into horizontal and vertical parts, and balance them against the 3 N and 10 N forces.",
+    "steps": [
+     {
+      "text": "Write the directions of F and R measured from the horizontal ground; F runs along the incline and R stands perpendicular to it.",
+      "equation": "F at 60° above horizontal, R at 150° above horizontal"
+     },
+     {
+      "text": "Balance the horizontal forces at the point: the 3 N force pulls left, while F and R each contribute a horizontal part.",
+      "equation": "F cos60° − R sin60° = 3"
+     },
+     {
+      "text": "Balance the vertical forces at the point: the 10 N force pulls down, while F and R each contribute a vertical part.",
+      "equation": "F sin60° + R cos60° = 10"
+     },
+     {
+      "text": "Solve the two equations together for F and R.",
+      "equation": "F = 3/2 + 5√3 ≈ 10.16 N, R = 5 − (3√3)/2 ≈ 2.40 N"
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "F ≈ 10.16 N, R ≈ 2.40 N"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Matching F directly to the 3 N force and R directly to the 10 N force, without resolving their actual 60° and 150° directions, gives F = 3 N and R = 10 N."
+     }
+    ],
+    "concept_tags": [
+     "equilibrium of concurrent forces",
+     "resolving forces",
+     "incline"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

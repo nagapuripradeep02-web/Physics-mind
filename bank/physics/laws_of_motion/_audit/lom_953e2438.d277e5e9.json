@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_953e2438",
+ "item_sha": "d277e5e9c72e211a64df86cbfb9e4de504571c6940f54e0cc723fd07ed104738",
+ "auditor_option": 1,
+ "auditor_value": "m = 10/(10 sin30) = 2.0 kg; check mu_s N = 0.8 x 20 x cos30 = 13.9 N > 10 N so the block can rest",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine. The balance f = mg sin(theta) (not the limiting value) is the right relation for a block at rest, and the solution checks the limiting value. Both common_mistakes entries produce the numbers they name (1.25 kg, 1.15 kg); neither is an option, and both carry option null.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:59:48+05:30"
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_152fbb68",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Picture two vertical walls facing each other with an open gap between them; inside that gap, ball A rests on the floor of the gap and leans against the left-hand wall, while a smaller ball B sits on top of ball A and leans against the right-hand wall. There is no friction anywhere in this arrangement. Sketch a separate free-body diagram for each ball.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball A rests on the floor and touches the left wall",
+   "ball B rests on top of ball A and touches the right wall",
+   "no friction anywhere (walls, floor, or between the balls)"
+  ],
+  "figure": {
+   "description": "Two vertical walls face each other with a gap between them. Inside the gap, the larger ball, A, sits on the floor of the gap and touches the left wall. A smaller ball, B, rests on top of ball A and touches the right wall."
+  }
+ },
+ "solution": {
+  "approach": "List each contact of the two spheres and draw one normal force per contact, since friction is absent everywhere; the sphere-sphere force acts along the line joining their centres.",
+  "steps": [
+   {
+    "text": "Sphere A touches the ground, the left wall, and sphere B, and also has its own weight.",
+    "equation": "sphere A: weight W_A (down, at centre) + N_ground (up) + N_wall_left (horizontal, away from the left wall) + N_B (from sphere B, along the line joining the two centres)"
+   },
+   {
+    "text": "Sphere B does not touch the ground, so it only touches the right wall and sphere A, besides its own weight.",
+    "equation": "sphere B: weight W_B (down, at centre) + N_wall_right (horizontal, away from the right wall) + N_A (reaction to N_B, along the same centre-to-centre line, pushing B away from A)",
+    "why_this_step": "With no friction anywhere, every contact force must be perpendicular to the two touching surfaces, and for two spheres that direction is the line joining their centres."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Sphere A: its weight, the ground's normal reaction, the left wall's normal reaction, and sphere B's normal reaction along the centre-to-centre line. Sphere B: its weight, the right wall's normal reaction, and sphere A's normal reaction along the same centre-to-centre line (equal and opposite to the force A feels from B); sphere B has no ground contact."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing sphere B's normal reaction from A as purely vertical or horizontal instead of along the line joining the two centres."
+   },
+   {
+    "option": null,
+    "text": "Giving sphere B a ground contact force, missing that only sphere A touches the ground in the figure."
+   }
+  ],
+  "concept_tags": [
+   "free body diagram",
+   "normal reaction",
+   "spheres in contact",
+   "frictionless contact"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3a49adadfba1c3d1d1c06bf13022e9676db0d01f129941f3319e8d40699a3b87"
+ },
+ "verification": {
+  "key_match": false,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "351d7788220d347eb9de000563e16366469fae9fa993d2f0ee66b97ab13c34ae",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:22:00+05:30"
+ }
+}

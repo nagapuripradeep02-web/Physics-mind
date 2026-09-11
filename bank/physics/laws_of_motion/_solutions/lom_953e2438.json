@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_953e2438",
+ "approach": "Since the block is not sliding, friction exactly balances the pull of gravity along the incline, so set that friction force equal to 10 N and solve for the mass.",
+ "steps": [
+  {"text": "The block rests without sliding, so along the incline the only two forces are gravity's component down the slope and friction up the slope; these must balance.", "equation": "f = mg sinθ"},
+  {"text": "Put in the given friction force, the angle, and g, then solve for the mass.", "equation": "10 = m(10)sin30° = 5m ⇒ m = 2.0 kg"},
+  {"text": "Check that this friction is within what the surface can supply, using the given coefficient of static friction.", "equation": "μₛN = 0.8 × 2.0 × 10 × cos30° ≈ 13.9 N, which is more than 10 N, so the block can indeed stay still"}
+ ],
+ "final_answer": {"option": 1, "value": "2.0"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the friction formula μmg instead of the balance mg sinθ, ignoring that the incline reduces the normal force, gives m = 10/(0.8 × 10) = 1.25 kg."},
+  {"option": null, "text": "Mixing up sinθ and cosθ in the balance equation gives m = 10/(10cos30°) ≈ 1.15 kg."}
+ ],
+ "concept_tags": ["static friction", "inclined plane", "force balance"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:06:00+05:30"}
+}

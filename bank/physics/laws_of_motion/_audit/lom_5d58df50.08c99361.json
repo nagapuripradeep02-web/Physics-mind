@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_5d58df50",
+ "item_sha": "08c993618a9d9874f48714b55e7b21058381ce8b86a0b56c86288ea890d624b1",
+ "auditor_option": null,
+ "auditor_value": "With g = 10: T = 240/29 ≈ 8.28 N, 2T ≈ 16.55 N; 1 kg block 19g/29 ≈ 6.55 m/s² upward; 2 kg block 17g/29 ≈ 5.86 m/s² downward; 3 kg block 21g/29 ≈ 7.24 m/s² downward (with g = 9.8: 8.11 N, 6.42, 5.74, 7.10 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently (sympy): a₁ = 19g/29 up, a₂ = 17g/29 down, a₃ = 21g/29 down, T = 24g/29 — identical to the solution's numbers at g = 10. Every printed equation follows from the one above (constraint a₂ + a₃ = −2a₁; 20 − 5T/6 = −20 + 4T; T = 240/29). The question does not fix g; the solution uses g = 10 (visible in '10 − 2T', '20 − T', '30 − T') without a separate statement — recorded, not filed. Empty common_mistakes is not a finding.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:25:00+05:30"}
+}

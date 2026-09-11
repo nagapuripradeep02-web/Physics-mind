@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_82fde00e",
+ "approach": "The block stays still until F = 4t exceeds the static limit; once moving, friction drops to the lower kinetic value, so the acceleration jumps upward.",
+ "steps": [
+  {"text": "Find the maximum static friction, which the growing force must exceed before the block moves.", "equation": "f(s,max) = μₛmg = 0.6 × 6 × 10 = 36 N"},
+  {"text": "Find the time at which F first reaches this value; before that time the block does not move, so a = 0.", "equation": "4t = 36 → t = 9 s"},
+  {"text": "Once the block starts moving, kinetic friction takes over, and it is smaller than the static limit that was needed to start motion.", "equation": "f(k) = μₖmg = 0.4 × 6 × 10 = 24 N"},
+  {"text": "For t ≥ 9 s, apply Newton's second law with this smaller kinetic friction opposing F.", "equation": "a = (4t − 24)/6 m/s²"},
+  {"text": "At t = 9 s this gives a jump: a = (36 − 24)/6 = 2 m/s², so the acceleration jumps from 0 to 2 m/s² at t = 9 s, then keeps rising with slope 2/3.", "equation": "a = 0 for 0 ≤ t < 9 s; a jumps to 2 m/s² at t = 9 s and then a = (4t − 24)/6 m/s² for t ≥ 9 s"}
+ ],
+ "final_answer": {"option": null, "value": "a = 0 for 0 ≤ t < 9 s; at t = 9 s the acceleration jumps discontinuously to 2 m/s² (because kinetic friction, 24 N, is less than the static limit, 36 N, that was needed to start motion); for t ≥ 9 s, a = (4t − 24)/6 m/s², a straight line of slope 2/3 m/s³ starting from 2 m/s² at t = 9 s."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the static friction value 36 N in the formula for t ≥ 9 s instead of the kinetic value 24 N, giving a = 0 at t = 9 s and missing the jump."},
+  {"option": null, "text": "Missing the discontinuity and drawing the graph as one smooth straight line through a = 0 at t = 9 s, instead of a jump to a = 2 m/s²."}
+ ],
+ "concept_tags": ["static friction", "kinetic friction", "time-varying force", "graph of motion"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:33:00+05:30"}
+}

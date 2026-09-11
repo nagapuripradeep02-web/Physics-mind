@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b7f5a792",
+ "approach": "The sphere is in equilibrium under its weight and two normal reactions; resolve both reactions along the vertical and horizontal directions.",
+ "steps": [
+  {"text": "The incline's normal reaction Nₐ makes angle 30° with the vertical, since the incline makes 30° with the horizontal, and the wall's normal reaction N_B is horizontal.", "equation": "Nₐ at 30° from vertical, N_B horizontal"},
+  {"text": "Balance the vertical direction: the vertical component of Nₐ supports the sphere's weight.", "equation": "Nₐcos30° = Mg"},
+  {"text": "Take g = 10 m/s², so Mg = 50 × 10 = 500 N, and solve for Nₐ.", "equation": "Nₐ = 500/cos30° = 1000/√3 ≈ 577.35 N"},
+  {"text": "Balance the horizontal direction: the horizontal component of Nₐ is balanced by the wall's reaction N_B.", "equation": "N_B = Nₐsin30° = 500tan30° = 500/√3 ≈ 288.68 N"}
+ ],
+ "final_answer": {"option": null, "value": "Nₐ ≈ 577.35 N (contact force at the incline), N_B ≈ 288.68 N (contact force at the wall), taking g = 10 m/s²"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the incline's normal reaction as making 30° with the horizontal instead of with the vertical, which swaps sine and cosine and gives Nₐ = 500/sin30° = 1000 N."},
+  {"option": null, "text": "Forgetting that the wall's reaction is horizontal and instead resolving it at 30° like the incline reaction."}
+ ],
+ "concept_tags": ["equilibrium of a rigid body", "normal reaction", "resolution of forces"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:20:00+05:30"}
+}

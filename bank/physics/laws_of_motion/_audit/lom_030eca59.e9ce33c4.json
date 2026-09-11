@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_030eca59",
+ "item_sha": "e9ce33c48dfac4ed7ae47376c3f9043f3e78b7a6bc3d6e21b9b23f6bf0dce05e",
+ "auditor_option": null,
+ "auditor_value": "2F at a: +2Fa (anticlockwise); F at 2a: −2Fa (2Fa clockwise); 3F at B: (3F sin 30°)(4a) = +6Fa (anticlockwise); total +6Fa",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Each moment and its sense checked against the served figure (3F points up and back toward A, so its perpendicular part 3F/2 is upward at B). Mistake numbers (12Fa) follow from their stated causes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:27:32+05:30"
+ }
+}

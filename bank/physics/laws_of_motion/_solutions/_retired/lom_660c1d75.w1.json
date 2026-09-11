@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_660c1d75",
+ "approach": "Moment of a force about a point equals the force times the perpendicular distance from that point to the line of the force.",
+ "steps": [
+  {"text": "Place A at the origin, B at (2,0), C at (2,2), D at (0,2), so O is at (1,1). Each force lies along one side of the square.", "equation": "A(0,0), B(2,0), C(2,2), D(0,2), O(1,1)"},
+  {"text": "About A: the 3 N force (along DA) and the 2 N force (along AB) both act along lines that pass through A itself, so their moment about A is zero.", "equation": "moment of 3 N about A = 0, moment of 2 N about A = 0"},
+  {"text": "About A: the 4 N force (along DC, height 2 m above A) gives moment = force × perpendicular distance.", "equation": "moment of 4 N about A = 4 × 2 = 8 N·m, clockwise"},
+  {"text": "About A: the 5 N force (along CB, 2 m to the side of A) gives its moment the same way.", "equation": "moment of 5 N about A = 5 × 2 = 10 N·m, clockwise"},
+  {"text": "About O: each force's line is now 1 m from O (since O is the centre of the 2 m square), so every moment has magnitude force × 1 m.", "equation": "perpendicular distance from O to every side = 1 m"},
+  {"text": "Work out the turning sense of each force about O from the diagram and multiply by 1 m.", "equation": "4 N: 4 N·m clockwise; 3 N: 3 N·m anticlockwise; 5 N: 5 N·m clockwise; 2 N: 2 N·m anticlockwise"}
+ ],
+ "final_answer": {"option": null, "value": "(a) about A: 4 N force = 8 N·m clockwise, 3 N force = 0, 5 N force = 10 N·m clockwise, 2 N force = 0. (b) about O: 4 N force = 4 N·m clockwise, 3 N force = 3 N·m anticlockwise, 5 N force = 5 N·m clockwise, 2 N force = 2 N·m anticlockwise"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking a nonzero moment for the 3 N and 2 N forces about A, missing that their lines of action pass through A itself."},
+  {"option": null, "text": "Using the side length 2 m as the moment arm about O instead of the correct 1 m distance from the centre to each side."}
+ ],
+ "concept_tags": ["moment of a force", "torque about a point", "statics"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:30:00+05:30"}
+}

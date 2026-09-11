@@ -1,0 +1,106 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_f15741cb",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A uniform rod AB has weight w. Its lower end A sits on rough, horizontal ground, while its upper end B leans on a smooth, vertical wall. In its equilibrium position, the rod is tilted at 30° to the ground. Find:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "The friction force at A."
+   },
+   {
+    "label": "b",
+    "asks": "The normal reaction at A."
+   },
+   {
+    "label": "c",
+    "asks": "The normal reaction at B."
+   }
+  ],
+  "conditions": [
+   "rod AB is uniform, of weight w",
+   "end A rests on rough horizontal ground",
+   "end B leans on a smooth vertical wall",
+   "rod is in equilibrium, tilted at 30° to the ground"
+  ],
+  "figure": {
+   "description": "A rod AB with end A resting on horizontal ground (along the X-axis) and end B leaning against a vertical wall (along the Y-axis), the ground and wall meeting at corner O. The rod makes an angle of 30° with the horizontal ground at A."
+  }
+ },
+ "solution": {
+  "approach": "Balance vertical forces for the normal reaction at A, then take moments about A to find the wall's push, then balance horizontal forces for friction.",
+  "steps": [
+   {
+    "text": "The wall is smooth, so it can only push the rod horizontally at B. The ground is rough, so at A it pushes up (normal reaction N_A) and can resist sliding (friction f_A).",
+    "equation": "forces: N_A ↑, f_A →, N_B ← or →, w ↓ at the midpoint"
+   },
+   {
+    "text": "The only vertical forces are N_A (up) and the weight w (down), so they balance directly.",
+    "equation": "N_A = w"
+   },
+   {
+    "text": "Take moments about A. Let the rod have length L. A is at (L cos30°, 0) and B is at (0, L sin30°); the weight acts at the midpoint. Setting the sum of moments to zero and solving for N_B.",
+    "equation": "N_B = w cos30° / (2 sin30°) = (w/2) × cot 30°"
+   },
+   {
+    "text": "Put in cot 30° = √3 = 1.732.",
+    "equation": "N_B = (w/2) × 1.732 = 0.87w"
+   },
+   {
+    "text": "The only horizontal forces are friction f_A and the wall's push N_B, so they balance.",
+    "equation": "f_A = N_B = 0.87w",
+    "why_this_step": "With only two horizontal forces on the rod, one must equal the other for equilibrium."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) friction at A = 0.87w, (b) normal reaction at A = w, (c) normal reaction at B = 0.87w"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the weight's moment arm as the full rod length L instead of the half-length to the midpoint, which doubles the answer for the wall's push."
+   },
+   {
+    "option": null,
+    "text": "Assuming friction is zero because the rod looks like it is only leaning, forgetting the ground must supply a horizontal force to balance the wall's push."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a rigid body",
+   "moment of a force",
+   "friction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "400dbba268443141ff276d8bbf56640dac2eace6f7fd4f1497329fec76c51118"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "dc8b85a0299f617783571f84400b6c36eeb95c15d0f48166aea827fc37361400",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:40:00+05:30"
+ }
+}

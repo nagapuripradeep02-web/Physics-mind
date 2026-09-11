@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_bf4536c6",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A small ball of mass m hangs by a light string tied to the roof of a railway carriage. The carriage speeds up horizontally with a steady acceleration a, and the ball comes to rest at a fixed tilt relative to the vertical, as the figure shows. Work out this equilibrium tilt angle θ.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball hangs from the roof of an accelerating railway carriage",
+   "carriage acceleration is horizontal with magnitude a",
+   "the ball is in equilibrium relative to the carriage, string tilted by angle θ from vertical"
+  ],
+  "figure": {
+   "description": "A carriage rolling on wheels accelerates horizontally, shown by an arrow marked a pointing in the direction of motion. A ball hangs on a string from the carriage roof; a vertical dashed reference line drops straight down from the roof attachment, and the actual string leans away from this line by angle θ, with the ball sitting toward the rear of the carriage (the side opposite to the direction the arrow a points)."
+  }
+ },
+ "solution": {
+  "approach": "Inside the accelerating train, a backward pseudo force acts on the bob along with gravity, and the string settles along their combined direction.",
+  "steps": [
+   {
+    "text": "In the train's frame, the bob feels its weight mg straight down and a pseudo force ma directed backward, opposite to the train's acceleration a.",
+    "equation": "Forces on bob: mg (down), ma (backward)"
+   },
+   {
+    "text": "At equilibrium the string lies along the direction of the combined force, so the string tension balances both parts.",
+    "equation": "T sinθ = ma, T cosθ = mg"
+   },
+   {
+    "text": "Divide the two equations to remove T.",
+    "equation": "tanθ = a/g",
+    "why_this_step": "The angle the string makes with the vertical depends only on the ratio of the pseudo force to gravity, not on the mass of the bob."
+   },
+   {
+    "text": "Write θ using the inverse tangent.",
+    "equation": "θ = tan⁻¹(a/g)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "θ = tan⁻¹(a/g)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Inverting the ratio and writing θ = tan⁻¹(g/a) instead of tan⁻¹(a/g)."
+   }
+  ],
+  "concept_tags": [
+   "pseudo force",
+   "pendulum in accelerating frame"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c97e9ba8726178022bb5afe29321e81b519f0482ab63a677bd0d40ed7baf973b"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8da19cca62a5df3bfb3f8674e2a2758e3a96abec8277f1c36e0de86c711c3f21",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:45:00+05:30"
+ }
+}

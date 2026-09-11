@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_5f32c1ca",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A single string runs over a pulley that is fixed to a ceiling. On one side, the string carries a 2 kg block, and a second string hangs a 1 kg block below that 2 kg block; call the tension in this lower string T₃. On the other side, the string carries a 3 kg block, and a second string hangs a 4 kg block below that 3 kg block; call the tension in this lower string T₁. Call the tension in the main string over the pulley T₂. Taking g = 10 m/s², work out the system's acceleration and the tension values T₁, T₂ and T₃.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "pulley is fixed to the ceiling",
+   "left side: 2 kg block above, 1 kg block below, joined by string T₃",
+   "right side: 3 kg block above, 4 kg block below, joined by string T₁",
+   "main string over the pulley has tension T₂",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A pulley is fixed to a ceiling. A single string passes over this pulley. On the left, this string is tied to a 2 kg block; a second string, T₃, hangs from the 2 kg block down to a 1 kg block below it. On the right, the string is tied to a 3 kg block; a second string, T₁, hangs from the 3 kg block down to a 4 kg block below it. The tension in the main string over the pulley, on either side, is called T₂."
+  }
+ },
+ "solution": {
+  "approach": "Find the common acceleration from the total mass on each side of the pulley, then isolate each block in turn to find its own tension.",
+  "steps": [
+   {
+    "text": "Add the mass on each side of the fixed pulley.",
+    "equation": "left = 2+1 = 3 kg, right = 3+4 = 7 kg"
+   },
+   {
+    "text": "The heavier right side descends; find the common acceleration from the whole system.",
+    "equation": "a = (7−3)×10/(7+3) = 4 m/s²"
+   },
+   {
+    "text": "Find T₂, the main string tension, from the left side (2 kg + 1 kg) moving upward.",
+    "equation": "T₂ − 3×10 = 3×4, so T₂ = 42 N"
+   },
+   {
+    "text": "Find T₃, the tension between the 2 kg and 1 kg blocks, from the 1 kg block alone.",
+    "equation": "T₃ − 1×10 = 1×4, so T₃ = 14 N"
+   },
+   {
+    "text": "Find T₁, the tension between the 3 kg and 4 kg blocks, from the 4 kg block alone.",
+    "equation": "4×10 − T₁ = 4×4, so T₁ = 24 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 4 m/s²; T₁ = 24 N; T₂ = 42 N; T₃ = 14 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using only the two blocks nearest the pulley (2 kg and 3 kg) for the acceleration instead of the full 3 kg and 7 kg sides, giving a = 2 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Finding T₃ as T₂ minus the 2 kg block's weight, forgetting its acceleration term, giving T₃ = 42−20 = 22 N instead of 14 N."
+   }
+  ],
+  "concept_tags": [
+   "Atwood machine",
+   "connected bodies",
+   "tension"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ca7f0b1fb4d1d33e53b83e3ca0cfd5292294a78665923a37a34cf35f69f6759e"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8f78d000987b93483767acf9fa4ab28001a74414f4f7e5a6ca0c61188cbf63b0",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:55:00+05:30"
+ }
+}

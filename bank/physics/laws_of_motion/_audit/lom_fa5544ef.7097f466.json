@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_fa5544ef",
+ "item_sha": "7097f46640d641d543907680f83103608789009959477ace752c6781820d06a9",
+ "auditor_option": null,
+ "auditor_value": "W = 30 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve: T sin45 = 30 N gives T = 30 sqrt2 N; W = T cos45 = 30 N. Every equation follows; both common_mistakes entries are genuine errors for this question. g is not needed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:23:05+05:30"
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_08e0c793",
+ "item_sha": "6ba6747e7dd5eb80e6351ff5702a00b339a1e2cfcd7f555bb41cb156675f531d",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true: moment of concurrent forces about O = (r_P - r_O) x R depends on O unless R = 0",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer",
+   "quote": "If the Assertion is false but the Reason is true.",
+   "note": "The value string is a conditional fragment (starts with If) rather than the answer; it does not match the served option (d) wording.",
+   "fix": "Assertion is false, but the Reason is true"
+  },
+  {
+   "grade": "weak",
+   "field": "steps[5].text",
+   "quote": "the moment about both the same two points comes out zero",
+   "note": "Garbled phrase (about both the same two points); the content is right, the sentence is not readable.",
+   "fix": "the moment about each of the same two points, (0,0) and (0,5), comes out zero"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Checked the example: P = (1,0), R = (3,0): moment about (0,0) = 0, about (0,5) = (1,-5) x (3,0) = 15 N m. The Reason is a true statement (zero resultant makes the moment the same about every point, and it is zero about the point of concurrency). Common-mistake entry (option 1) is the genuine trap.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:00:42+05:30"
+ }
+}

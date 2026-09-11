@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_cff4c285",
+ "item_sha": "c9cb6decdd447d705aaa4043dc60a9bc27865d3b0c5312e6b0f07b24be39adbe",
+ "auditor_option": null,
+ "auditor_value": "T = 50/3 ≈ 16.67 N; hinge: H_x = 40/3 ≈ 13.33 N (away from the wall), H_y = 10 N (up); resultant 50/3 ≈ 16.67 N at 37° above the horizontal",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Moments about the hinge: T(3/5)(4) = 20(2). Components and resultant all match. Both mistake entries reproduce the numbers they name (33.33 N; 10 N and 6.67 N).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:28:43+05:30"
+ }
+}

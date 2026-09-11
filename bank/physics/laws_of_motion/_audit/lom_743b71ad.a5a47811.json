@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_743b71ad",
+ "item_sha": "a5a478119bd1ac593fdcefc6613e20c4619b52ef6f6912f3a2218e31907619cd",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 0 for t < 6 s; at t = 6 s a jumps to 2 m/s², then a = t − 4 (slope 1); (b) friction = 4 N at t = 2 s (static, equal to F), 8 N at t = 8 s (kinetic)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The served text says 'Consider the same setup as before' and 'Redo that problem', referring to an item that is not served with it; the text does restate every quantity needed (2 kg, F = 2t, g = 10), so it is solvable on its own.",
+ "notes": "Answer agrees. Both mistake entries produce the numbers they name: (16 − 12)/2 = 2 m/s²; 2t − 8 = 8 at t = 8 s.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:02:08+05:30"
+ }
+}

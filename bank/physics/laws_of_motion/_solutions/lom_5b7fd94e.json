@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5b7fd94e",
+ "approach": "Check whether zero net force truly rules out every other motion for a rigid body, then check the reason's kinematic claim on its own.",
+ "steps": [
+  {"text": "Zero net force fixes only the motion of the center of mass: it must move at constant velocity, which may or may not be zero.", "equation": "F(net) = 0 → a(center of mass) = 0"},
+  {"text": "A rigid body can still rotate about its center of mass while the net force stays zero, if a net torque acts on it. Rotation is something else that can happen, so the assertion's claim that nothing else can happen is false."},
+  {"text": "Check the reason on its own: constant velocity means the velocity does not change with time, so its time derivative, the acceleration, is zero.", "equation": "v = constant → dv/dt = a = 0"},
+  {"text": "The reason is a correct kinematic statement by itself, but the assertion is false, so the reason cannot be its explanation. This matches: Assertion false, Reason true."}
+ ],
+ "final_answer": {"option": 4, "value": "(d) The Assertion is false but the Reason is true."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming zero net force fully determines a rigid body's motion, missing that it can still rotate, leads to marking the Assertion true and picking option (a)."}
+ ],
+ "concept_tags": ["rigid body motion", "Newton's second law", "rotation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:24:00+05:30"}
+}

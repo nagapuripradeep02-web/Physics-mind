@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_992ae579",
+ "approach": "In the wedge's accelerating frame the block is held by gravity, a leftward pseudo-force, the normal force and friction; resolve along the slope to isolate friction directly.",
+ "steps": [
+  {"text": "Since the block does not slide relative to the incline, it shares the wedge's acceleration exactly.",
+   "equation": "a(block) = a(wedge) = 3 m/s², horizontal, to the right"},
+  {"text": "Work in the wedge's own frame, where the block is at rest under an added pseudo-force equal to its mass times the wedge's acceleration, directed opposite to that acceleration.",
+   "equation": "pseudo-force = m × 3 = 3m N, directed left, opposite the rightward acceleration"},
+  {"text": "Resolve gravity and the pseudo-force along the slope, which rises to the left at 37° to the horizontal, taking up-slope as positive.",
+   "equation": "gravity along slope = −m g sin37° = −6m N (down-slope); pseudo-force along slope = +m × 3 × cos37° = +2.4m N (up-slope)"},
+  {"text": "For the block to stay at rest in this frame, friction must balance the sum of these two along-slope components.",
+   "equation": "f = m g sin37° − m × 3 × cos37° = 6m − 2.4m = 3.6m N, directed up the slope"}
+ ],
+ "final_answer": {"option": null, "value": "f = 3.6m N, directed up the incline, where m is the block's mass in kg (equivalently f = 0.36mg)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring that the incline itself is accelerating and treating it like a stationary incline gives friction as only the gravity component along the slope, m g sin37° = 6m N, instead of 3.6m N."},
+  {"option": null, "text": "Adding the pseudo-force's along-slope component to gravity's instead of subtracting it gives m g sin37° + m × 3 × cos37° = 8.4m N instead of the correct 3.6m N."}
+ ],
+ "concept_tags": ["pseudo force", "non-inertial frame", "friction", "inclined plane"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 4, "agent": "W04-A-lom-01", "at": "2026-09-11T14:30:00+05:30"}
+}

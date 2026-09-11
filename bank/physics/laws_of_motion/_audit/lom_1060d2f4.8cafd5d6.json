@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_1060d2f4",
+ "item_sha": "8cafd5d61d0f0409555577b31b5aae9b339f0dc8405a12eee21241be6e96a1a1",
+ "auditor_option": 1,
+ "auditor_value": "17 : 24 (a = 3.6 m/s^2, T1 = 68 N, T2 = 96 N with g = 10; the ratio is the same for any g)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].equation",
+   "quote": "a = 3.6 m/s²; T₂ = 96 N; T₁ = 68 N",
+   "note": "These numbers hold only for g = 10 m/s^2, which neither the question nor the solution states; the arithmetic (a = (150 - 50 - 10)/25) is also skipped. The ratio itself does not depend on g, so the final answer is unaffected.",
+   "fix": "with g = 10 m/s²: a = (150 − 50 − 10)/25 = 3.6 m/s²; T₂ = 150 − 15(3.6) = 96 N; T₁ = 50 + 5(3.6) = 68 N"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Direction (15 kg down, table block left, 5 kg up) is correct since 15g - 5g exceeds the 10 N friction. Both common-mistake numbers (1 : 3 at rest; 7 : 9 with no friction: a = 4, T1 = 70, T2 = 90) follow from their stated causes. g = 10 used; with 9.8 the tensions change but the ratio stays 17 : 24.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:00:21+05:30"
+ }
+}

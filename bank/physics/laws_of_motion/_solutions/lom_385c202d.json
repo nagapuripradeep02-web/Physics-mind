@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_385c202d",
+ "approach": "Since the total mass on each side of the pulley is equal, the system stays at rest, and each string tension equals the weight it directly supports.",
+ "steps": [
+  {"text": "Add the masses on each side of the fixed pulley.", "equation": "left side = 4 kg, right side = 3+1 = 4 kg"},
+  {"text": "Equal masses on each side mean the system has zero acceleration.", "equation": "a = 0",
+   "why_this_step": "With no acceleration, each string tension can be found from plain equilibrium instead of a full Atwood-machine equation."},
+  {"text": "The tension in the string over the pulley, attached to the 4 kg block, supports the whole 4 kg block in equilibrium.", "equation": "T(4 kg) = 4g"},
+  {"text": "The tension in the string attached to the 1 kg block supports only the 1 kg block, since it hangs below the 3 kg block.", "equation": "T(1 kg) = 1g"},
+  {"text": "Take the ratio of the two tensions.", "equation": "T(4 kg) : T(1 kg) = 4g : g = 4 : 1"}
+ ],
+ "final_answer": {"option": null, "value": "4 : 1"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the system accelerates because the two sides look different, missing that 3 kg + 1 kg on the right equals the 4 kg on the left."},
+  {"option": null, "text": "Taking the tension in the string attached to the 1 kg block as the same main tension over the pulley, instead of the smaller tension in the separate lower string."}
+ ],
+ "concept_tags": ["pulley system", "equilibrium", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:30:00+05:30"}
+}

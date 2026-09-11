@@ -1,0 +1,98 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_f032f685",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A three-pulley chain — one pulley fixed to the ceiling, with two lighter pulleys hanging one below the other in series, strung as the figure describes — carries block 1 (mass 1 kg) at the base and block 2 (mass 2 kg) hanging from the lowest pulley's string. The string lengths tie the two accelerations together as a₂ = −7a₁ (block 2 accelerates seven times as fast as block 1, in the opposite sense). Take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out how fast each block accelerates."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the pulling force (tension) carried by each string segment."
+   }
+  ],
+  "conditions": [
+   "the two lower (movable) pulleys are massless, so the net force on each of them is zero",
+   "the shortest string carries tension T; the other two strings carry 2T and 4T",
+   "block 1 accelerates upward with a, and block 2 accelerates downward with 7a (the constraint relation from the earlier example)",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Block 1 has mass 1 kg and block 2 has mass 2 kg. If the tension in S₃ is T, the tensions in S₂ and S₁ are 2T and 4T."
+  }
+ },
+ "solution": {
+  "approach": "Use the given string constraint a₂ = −7a₁ with Newton's second law on block 1 (pulled up by 4T+2T+T = 7T) and on block 2 (pulled up by T).",
+  "steps": [
+   {
+    "text": "Block 1 (1 kg) is pulled up by three string ends of tension 4T, 2T and T, and pulled down by its own weight, while it accelerates upward with a.",
+    "equation": "7T − 10 = 1×a"
+   },
+   {
+    "text": "Block 2 (2 kg) is pulled up by tension T and down by its own weight, while it accelerates downward with 7a, from the given string constraint a₂ = −7a₁.",
+    "equation": "20 − T = 2×7a"
+   },
+   {
+    "text": "From the first equation, T = (10+a)/7. Put this into the second equation.",
+    "equation": "(10+a)/7 = 20 − 14a"
+   },
+   {
+    "text": "Multiply out and collect terms in a.",
+    "equation": "10 + a = 140 − 98a ⇒ 99a = 130"
+   },
+   {
+    "text": "Solve for a, then find T, 2T and 4T.",
+    "equation": "a = 130/99 = 1.31 m/s², T = 160/99 = 1.62 N",
+    "why_this_step": "T follows from putting a back into either block's equation, and 2T, 4T are twice and four times that value."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Block 1: a₁ = 1.31 m/s² upward. Block 2: a₂ = 7a₁ = 9.19 m/s² downward. T = 1.62 N, 2T = 3.23 N, 4T = 6.46 N."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Ignoring the movable-pulley chain and solving it as a plain two-mass pulley, giving a = (m₂−m₁)g/(m₁+m₂) = 3.33 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "movable pulley",
+   "string constraint",
+   "tension"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "33c591640e10d3b433988f0ecc6c51ed44ef8de83b00cedae818eaea70a56c58"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "af7c24fb86e394d9a32dbfa92b3135c4b5ab2378e1fd9b14a3510bd1914d1e5a",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:30:00+05:30"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_afcc73c4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass M sits on a horizontal, frictionless table. A light string tied to it runs along the table to a small fixed pulley at the table's left end, comes back over the top of the block to a second fixed pulley at the table's right-hand corner, and hangs straight down to a second block of the same mass M. Both pulleys are light and frictionless. Work out how much each block accelerates and the tension the string carries.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "pulley and string are massless (light)",
+   "table surface is frictionless (smooth)"
+  ],
+  "figure": {
+   "description": "A block of mass M rests on a smooth horizontal table. A light string tied to the block runs LEFT along the table to a small fixed pulley mounted on a post at the table's left end, wraps around it, comes back to the right above the block, passes over a second fixed pulley at the table's right-hand corner, and hangs straight down to a second block of the same mass M. Both pulleys are fixed; when the hanging block descends a distance x, the table block moves left by the same distance x."
+  }
+ },
+ "solution": {
+  "approach": "Both blocks have equal mass M, one on a frictionless table and one hanging, joined by a light string over two fixed pulleys; apply Newton's second law to each.",
+  "steps": [
+   {
+    "text": "Write Newton's second law for the hanging block M.",
+    "equation": "Mg − T = Ma"
+   },
+   {
+    "text": "Write Newton's second law for the block M on the table.",
+    "equation": "T = Ma"
+   },
+   {
+    "text": "Add the two equations; the mass M cancels out, leaving the acceleration in terms of g.",
+    "equation": "Mg = 2Ma, so a = g/2"
+   },
+   {
+    "text": "Find the tension using T = Ma.",
+    "equation": "T = Mg/2 (a = g/2 ≈ 5 m/s² and T = Mg/2, using g = 10 m/s²)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = g/2 (≈ 5 m/s² with g = 10 m/s²); T = Mg/2"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the hanging block as if it falls freely, ignoring the inertia of the block on the table, gives a = g instead of g/2."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "pulley",
+   "equal masses"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "bd0bd1c7674de4478137ece7f6e8f5e0a774c22813a111e18f7ce3f22f38c00a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c5ffcf396176b752b286358ac7dcd5f1c6f2e5224d6c8b3856ffca89103300a5",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:04:00+05:30"
+ }
+}

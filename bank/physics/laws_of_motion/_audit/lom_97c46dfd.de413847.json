@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_97c46dfd",
+ "item_sha": "de413847c7f911b4497f462fb0d12503ff510725a71d767c64e89c1c4c56ffd6",
+ "auditor_option": 1,
+ "auditor_value": "t = sqrt(2L/((g + a) sin(theta))): lift moving down and slowing has acceleration a upward, so g_eff = g + a",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine. Both common_mistakes entries point at the option their stated cause produces (g - a -> option 2; stationary lift -> option 4).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:00:34+05:30"
+ }
+}

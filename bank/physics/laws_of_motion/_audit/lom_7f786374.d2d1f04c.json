@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_7f786374",
+ "item_sha": "d2d1f04cc770cf775818146bbb2347b8b4443b5bde1ec578a325f4925295521a",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 1 s; (b) 6 m/s (momentum check 18 = 3 x 6); (c) 1 kg block 4 m, 2 kg block 7 m",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every number agrees with mine: f = 4 N, a = +4 and -2 m/s^2, 2 + 4t = 8 - 2t at t = 1 s, v = 6 m/s, 4 m and 7 m. Both common_mistakes entries are genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:02:10+05:30"
+ }
+}

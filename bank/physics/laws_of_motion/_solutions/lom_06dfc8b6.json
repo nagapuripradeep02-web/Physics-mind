@@ -1,0 +1,26 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_06dfc8b6",
+ "approach": "The tension is the same throughout the string; two segments pull the table block through the movable pulley, and the given 2:1 displacement link fixes how the accelerations relate.",
+ "steps": [
+  {"text": "Let T be the string's tension, a2 the table block's acceleration and a1 the hanging block's acceleration; the given displacement link fixes their ratio.",
+   "equation": "a1 = 2 a2 (1 kg block falls x while 2 kg block moves x/2)"},
+  {"text": "Two string segments run from the movable pulley to the fixed points, the anchor and pulley A, so both pull the movable pulley, and hence the 2 kg block, toward the table's edge with total force 2T.",
+   "equation": "2T = 2 × a2, so T = a2"},
+  {"text": "For the hanging 1 kg block, tension T acts upward and its weight acts downward.",
+   "equation": "10 − T = 1 × a1, so T = 10 − a1"},
+  {"text": "Substitute T = a2 = a1/2, from step 2 and the displacement link, into the hanging-block equation to leave a single equation in a1.",
+   "equation": "a1/2 = 10 − a1"},
+  {"text": "Solve for a1, then get a2 and T from it.",
+   "equation": "(3/2)a1 = 10, so a1 = 20/3 m/s² ≈ 6.67 m/s²; a2 = a1/2 = 10/3 m/s² ≈ 3.33 m/s²; T = a2 = 10/3 N ≈ 3.33 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) acceleration of the 1 kg block = 20/3 m/s² ≈ 6.67 m/s², directed downward. (b) tension in the string = 10/3 N ≈ 3.33 N."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only T, not 2T, for the pulling force on the table block, while keeping a1 = 2a2, gives the 1 kg block's acceleration as 5 m/s² and the tension as 5 N."}
+ ],
+ "concept_tags": ["movable pulley", "constraint relation", "Newton's second law", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 4, "agent": "W04-A-lom-01", "at": "2026-09-11T14:20:00+05:30"}
+}

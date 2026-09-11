@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_040ad888",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A plumb bob of mass 1 kg hangs by a string from the ceiling inside a train compartment. The train now moves up an inclined plane of angle 30° with acceleration a = g/2 (directed up the incline), instead of at constant velocity. Taking g = 10 m/s², find the angle the string makes with the normal to the ceiling, and find the tension in the string.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "plumb bob mass = 1 kg",
+   "bob hung from the ceiling of a train compartment by a string",
+   "train moves on an inclined plane of angle 30°",
+   "train accelerates up the plane at a = g/2",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Add a pseudo force down the incline to gravity in the train's frame, then find the direction and size of the net force, which the tension must match.",
+  "steps": [
+   {
+    "text": "In the train's frame, a pseudo force of magnitude ma acts on the bob directed down the incline, opposite to the train's acceleration.",
+    "equation": "a = g/2, pseudo force = m(g/2) down the incline"
+   },
+   {
+    "text": "Resolve gravity and the pseudo force into horizontal and vertical components and add them to get the net non-tension force on the bob.",
+    "equation": "Fx = −(mg/2) cos30° = −√3mg/4, Fy = −mg − (mg/2) sin30° = −5mg/4"
+   },
+   {
+    "text": "The string tension balances this net force, so its magnitude equals the size of the net force.",
+    "equation": "T = mg√((√3/4)² + (5/4)²) = mg√7/2 = 5√7 N ≈ 13.2 N"
+   },
+   {
+    "text": "Find the angle of this net force from the true vertical, then compare it with the 30° tilt of the ceiling's normal from the vertical to get the angle between the string and the normal to the ceiling.",
+    "equation": "angle from vertical ≈ 19.1°, ceiling normal is 30° from vertical on the other side"
+   },
+   {
+    "text": "Since the two tilts are on opposite sides of the vertical, the angle between the string and the normal to the ceiling is their sum.",
+    "equation": "angle = 19.1° + 30° ≈ 49.1°, T ≈ 13.2 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "angle ≈ 49.1°, T = 5√7 N ≈ 13.2 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the magnitudes of gravity and the pseudo force as scalars, T = mg + ma = 15 N, instead of adding them as vectors (60° apart), which gives T = 5√7 ≈ 13.2 N."
+   },
+   {
+    "option": null,
+    "text": "Taking the angle with the ceiling normal as 30° minus the tilt from vertical instead of the sum gives about 10.9° instead of 49.1°, missing that the tilts point to opposite sides of the vertical."
+   }
+  ],
+  "concept_tags": [
+   "non-inertial frame",
+   "pseudo force",
+   "vector addition of forces"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "cdf11451b3336512709d25cfe6ca7703a8a19266f45f2cdc00cdbeb54b5f6608"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "edf0a36cfcdfbfe58981ba5409a0a071a2935d3c05b18c16e8fae98878989729",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

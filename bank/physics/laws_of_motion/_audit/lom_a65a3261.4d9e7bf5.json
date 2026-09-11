@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a65a3261",
+ "item_sha": "4d9e7bf5fd27beef70ddbfa3aac6075b158f288b3228491ea1163d118a83e234",
+ "auditor_option": null,
+ "auditor_value": "(a) 33.96 N ≤ F ≤ 69.96 N (minimum 33.96 N); (b) F = 39.96 N; (c) F = 87.96 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "mg sin60 = 51.96 N, N = 30 N, μₛN = 18 N, μₖN = 12 N; each part's number and friction direction check; all three mistake entries reproduce the values they name.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:35+05:30"
+ }
+}

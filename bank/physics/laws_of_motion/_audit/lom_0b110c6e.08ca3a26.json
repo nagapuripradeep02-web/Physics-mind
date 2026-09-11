@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_0b110c6e",
+ "item_sha": "08ca3a26ee6dcb9b371c9c39b3238aec3edf0fbf9f7c35fab28bc31df5f06919",
+ "auditor_option": 3,
+ "auditor_value": "F2 can be smaller than, larger than, or equal to F1 (nothing fixes the times or distances over which the two forces act)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[2].text",
+   "quote": "depending on how quickly each force does its job",
+   "note": "Personification and idiom (a force does not do a job); plain-language register.",
+   "fix": "depending on the time over which each force acts"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. F = m(change in speed)/t for each; with t1 and t2 unrelated any ordering is possible. Both common-mistake entries point at the options they describe (1 and 2). Step 0 writes the magnitude of F2 as m(0 - v)/t2 'in size', which is a negative number labelled a size; readable but loose, not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:02:28+05:30"
+ }
+}

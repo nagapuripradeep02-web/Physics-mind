@@ -1,0 +1,25 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a65a3261",
+ "approach": "Balance F, the weight component, and friction along the incline for each situation, using static friction where the block stays still and kinetic friction where it moves.",
+ "steps": [
+  {"text": "Find the weight components along and perpendicular to the 60° incline.", "equation": "mg sinθ = 60×0.866 = 51.96 N, mg cosθ = 60×0.5 = 30 N"},
+  {"text": "For part (a), the block tends to slide down on its own since mg sinθ exceeds the maximum static friction, so F (up the slope) plus friction at its maximum keep it still; F can range between the case where friction helps most and where it opposes most.", "equation": "F_min = mg sinθ − μₛ mg cosθ = 51.96 − 0.6×30 = 33.96 N"},
+  {"text": "The largest F before the block tends to slide up instead is found with friction now acting down the slope at its maximum.", "equation": "F_max = mg sinθ + μₛ mg cosθ = 51.96 + 18 = 69.96 N"},
+  {"text": "For part (b), the block moves down at constant velocity, so kinetic friction acts up the slope and the net force is zero.", "equation": "F = mg sinθ − μₖ mg cosθ = 51.96 − 0.4×30 = 39.96 N"},
+  {"text": "For part (c), the block moves up with acceleration 4 m/s², so kinetic friction now acts down the slope, opposing the upward motion.", "equation": "F − mg sinθ − μₖ mg cosθ = ma"},
+  {"text": "Put in the numbers and solve for F.", "equation": "F = 51.96 + 12 + 6×4 = 87.96 N",
+   "why_this_step": "Moving up needs F to overcome both the weight component and friction, plus supply the extra force for the given acceleration."}
+ ],
+ "final_answer": {"option": null, "value": "(a) F between 33.96 N and 69.96 N keeps the block stationary, (b) F = 39.96 N moves it down at constant velocity, (c) F = 87.96 N moves it up with acceleration 4 m/s²."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting that friction helps hold the block in part (a) and taking F = mg sinθ = 51.96 N alone, ignoring friction's contribution."},
+  {"option": null, "text": "Using the static coefficient μₛ instead of the kinetic coefficient μₖ in part (b), giving F = 51.96 − 0.6×30 = 33.96 N."},
+  {"option": null, "text": "Leaving out friction in part (c) and taking F = mg sinθ + ma = 51.96 + 24 = 75.96 N."}
+ ],
+ "concept_tags": ["friction on incline", "static friction", "kinetic friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T11:05:00+05:30"}
+}

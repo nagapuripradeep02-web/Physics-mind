@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_20700fa4",
+ "item_sha": "98eba3792982ee6392689fd99f6024d62d08dcbc01871ea2f98520409baeeaeb",
+ "auditor_option": null,
+ "auditor_value": "M = 4.8 kg (a of the 3 kg / 2 kg pair = 2 m/s², T₂ = 24 N, T₁ = 48 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Solved independently: with the movable pulley stationary the 3 kg / 2 kg pair is a plain Atwood machine, T₂ = 2·3·2·g/5 = 24 N, T₁ = 2T₂ = Mg. The mistake entry's number (2.4 kg) follows from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:25:42+05:30"
+ }
+}

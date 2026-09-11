@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_030eca59",
+ "item_sha": "0071e5d3f0759beae81a32f28a9ccaa5e9567345878db3bf1418950b2ecfcff3",
+ "auditor_option": null,
+ "auditor_value": "2F: +2Fa (anticlockwise); F: −2Fa (2Fa clockwise); 3F: +6Fa (anticlockwise, from 3F sin30° × 4a); net 6Fa anticlockwise",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "final_answer.value",
+   "quote": "4F gives 2Fa anticlockwise",
+   "note": "There is no force 4F in this question; the upward force at distance a is 2F (as steps[0] correctly uses: 2F × a = 2Fa). As printed the statement is false (a force 4F at arm a would give 4Fa). The moment values themselves are right, so this is a mislabel in the answer line rather than a wrong result.",
+   "fix": "2F gives 2Fa anticlockwise"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "All seven step lines check: arms a and 2a for the vertical forces, perpendicular component 3F sin30° = 3F/2 at arm 4a, senses anticlockwise / clockwise / anticlockwise. Both common-mistakes entries produce the numbers they name (12Fa from 3F × 4a). My values agree with the solution's.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:44:19+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_3fe0c367",
+ "item_sha": "7ee0dbf575a8d27888b1d4b9e2e506ba06b1ee24b2a72f8c677631c681414643",
+ "auditor_option": 3,
+ "auditor_value": "mu_min = 3/8 (torque about B: W*1.5 = N_w*4)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Question does not say the ladder is uniform; the solution takes the weight at the midpoint, which is the standard reading and the only one that reaches any option. The mistake entry's swap (W*2 = N_w*3) does give 2/3 as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:58:00+05:30"
+ }
+}

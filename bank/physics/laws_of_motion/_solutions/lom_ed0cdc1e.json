@@ -1,0 +1,17 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_ed0cdc1e",
+ "approach": "A problem set in a non-inertial frame can also be solved by working entirely in an inertial frame with only real forces, so pseudo force is not the only method.",
+ "steps": [
+  {"text": "Every non-inertial-frame problem can be solved by switching to an inertial, ground frame and using Newton's second law with only real forces, never needing a pseudo force at all."},
+  {"text": "Pseudo force is added only as a convenience, so that Newton's second law appears to hold when the calculation is done directly inside the accelerating frame."},
+  {"text": "Since the ground-frame method with real forces alone always works, the claim that pseudo force is the only way to solve such problems is false."}
+ ],
+ "final_answer": {"option": null, "value": "False"},
+ "confidence": "sure",
+ "common_mistakes": [],
+ "concept_tags": ["pseudo force", "non-inertial frame", "reference frame"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:18:00+05:30"}
+}

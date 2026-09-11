@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_208bc75b",
+ "item_sha": "e2c46aa20b933556fe6cda4d80cd9ab7cdbb73edaff0caa93085ab6871e2bd04",
+ "auditor_option": null,
+ "auditor_value": "Weight at the midpoint of OA (down); tension T at A along AB toward B (horizontal, away from the wall); hinge reaction at O with a horizontal component toward the wall and a vertical component upward (the three lines of action meet at one point)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The solution leaves the hinge reaction as two unknown components rather than stating their directions; that is a complete and correct answer to 'draw every force'. Both mistake entries are real errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:25:32+05:30"
+ }
+}

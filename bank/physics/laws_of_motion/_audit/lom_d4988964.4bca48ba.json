@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_d4988964",
+ "item_sha": "4bca48baf7362158a2bf96b2186fbd7290a69fd80df045a8b8e318549b6a7ab5",
+ "auditor_option": 4,
+ "auditor_value": "floor limiting friction 0.5 × 10 × 10 = 50 N > 25 N ⇒ system stays at rest ⇒ friction between A and B = 0",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees with option (d). g = 10 is consistent with the 4 N option (0.2 × 2 × 10). The single common_mistakes entry names a genuine error and reaches the option it points at.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:00:41+05:30"
+ }
+}

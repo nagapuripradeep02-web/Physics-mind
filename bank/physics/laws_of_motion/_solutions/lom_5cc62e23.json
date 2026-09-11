@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5cc62e23",
+ "approach": "The hanging 4 kg block pulls the whole system, while the 2 kg block on the smooth table only adds mass, not weight, to resist it.",
+ "steps": [
+  {"text": "Only the hanging block's weight drives the system; both blocks share the same acceleration through the taut string.", "equation": "a = m₄g / (m₂+m₄)"},
+  {"text": "Put in m₂ = 2 kg, m₄ = 4 kg, g = 10 m/s².", "equation": "a = 40/6 = 20/3 = 6.67 m/s²"},
+  {"text": "For the 2 kg block on the table, the tension is the only horizontal force.", "equation": "T = m₂a"},
+  {"text": "Put in m₂ = 2 kg and a = 20/3 m/s².", "equation": "T = 2 × 20/3 = 40/3 = 13.3 N",
+   "why_this_step": "The table is smooth, so no friction opposes the tension on the 2 kg block."}
+ ],
+ "final_answer": {"option": null, "value": "a = 6.67 m/s², T = 13.3 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the hanging block as if it falls freely and taking a = g = 10 m/s², ignoring the 2 kg block it must also move."},
+  {"option": null, "text": "Treating the hanging block as not accelerating and taking T = m₄g = 40 N."}
+ ],
+ "concept_tags": ["pulley at table edge", "connected bodies", "tension"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:10:00+05:30"}
+}

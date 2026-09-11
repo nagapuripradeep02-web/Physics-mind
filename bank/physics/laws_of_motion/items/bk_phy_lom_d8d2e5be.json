@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d8d2e5be",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Lined up in contact with each other on a smooth horizontal surface, from left to right, are three blocks: a 1 kg block, a 4 kg block, and a 2 kg block. A 120 N push acts on the 1 kg block from its left side, directed rightward into the row. A 50 N push acts on the 2 kg block from its right side, directed leftward into the row.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the acceleration of the three-block system."
+   },
+   {
+    "label": "b",
+    "asks": "Find the size of the normal contact force between the 1 kg block and the 4 kg block."
+   },
+   {
+    "label": "c",
+    "asks": "Find the net force acting on the 2 kg block."
+   }
+  ],
+  "conditions": [
+   "surface is smooth (frictionless)",
+   "blocks are in contact, in order 1 kg, 4 kg, 2 kg from left to right",
+   "120 N applied to the 1 kg block from the left, pushing rightward",
+   "50 N applied to the 2 kg block from the right, pushing leftward"
+  ],
+  "figure": {
+   "description": "On a smooth horizontal surface, three blocks touch each other in a row: 1 kg on the left, 4 kg in the middle, 2 kg on the right. A horizontal force of 120 N is applied to the outer (left) face of the 1 kg block, pointing right, into the row. A horizontal force of 50 N is applied to the outer (right) face of the 2 kg block, pointing left, into the row."
+  }
+ },
+ "solution": {
+  "approach": "Treat all three blocks as one system to find the common acceleration, then isolate one block at a time using Newton's second law.",
+  "steps": [
+   {
+    "text": "Find the net external force and total mass of the system.",
+    "equation": "F_net = 120 − 50 = 70 N, M = 1+4+2 = 7 kg"
+   },
+   {
+    "text": "The system acceleration is the net force divided by the total mass.",
+    "equation": "a = 70/7 = 10 m/s², rightward, in the direction of the 120 N force"
+   },
+   {
+    "text": "Isolate the 1 kg block: the 120 N force acts forward, and the 4 kg block pushes back on it with the contact normal force N.",
+    "equation": "120 − N = 1×10, so N = 110 N",
+    "why_this_step": "The 1 kg block only touches the 120 N force and the 4 kg block, so its own equation isolates N directly."
+   },
+   {
+    "text": "The net force on the 2 kg block equals its mass times the common acceleration.",
+    "equation": "F = 2×10 = 20 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 10 m/s²; (b) N = 110 N; (c) net force on the 2 kg block = 20 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding 120 N and 50 N instead of subtracting, since both forces push toward the middle of the row, giving a = 170/7 ≈ 24.3 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Using the far side (4 kg + 2 kg) but forgetting the 50 N force acting there, giving N = 6×10 = 60 N instead of 110 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "system of blocks in contact",
+   "contact force"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7a601c421602f6463c93f59976702d4eccff6f84a8968c7b4cbc187ca4d14596"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "03500f040a493fa85ae1b084e31151de59d42015cde8afa38766c9188a953d50",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:25:00+05:30"
+ }
+}

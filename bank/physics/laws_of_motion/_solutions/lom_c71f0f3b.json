@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_c71f0f3b",
+ "approach": "The string over the fixed pulley has a constant total length, so the two distances measured from the pulley must always add to that constant.",
+ "steps": [
+  {"text": "The string runs from block 1 up to the pulley and down to block 2, so its total length is the sum of the two measured distances.", "equation": "x₁ + x₂ = L (constant)"},
+  {"text": "A length that stays constant has a rate of change of zero, so the sum of the two velocities dx₁/dt + dx₂/dt is zero, and the sum of the accelerations is zero too.", "equation": "d²(x₁+x₂)/dt² = 0"},
+  {"text": "This gives the acceleration of block 1 equal in size to the acceleration of block 2, in the opposite sense.", "equation": "a₁ = −a₂",
+   "why_this_step": "If block 1 moves down by a certain amount, block 2 must move up by the same amount to keep the string length fixed."}
+ ],
+ "final_answer": {"option": null, "value": "a₁ = −a₂ (the two blocks have equal acceleration magnitude, and move in opposite directions — one down as much as the other goes up)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming both blocks move the same way and writing a₁ = a₂ instead of a₁ = −a₂."}
+ ],
+ "concept_tags": ["string constraint", "pulley kinematics"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:20:00+05:30"}
+}

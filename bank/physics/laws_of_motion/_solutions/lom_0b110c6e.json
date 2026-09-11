@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_0b110c6e",
+ "approach": "Each force equals mass times the speed change divided by the time it acts over, and the question gives no relation between the two times.",
+ "steps": [
+  {"text": "Write each force using Newton's second law, with the speed change divided by the time each force acts.", "equation": "F₁ = m(v − 0)/t₁, F₂ = m(0 − v)/t₂ in size"},
+  {"text": "The question states only that the particle speeds up from rest to v under F₁ and slows from v to rest under F₂. It gives no information about the times t₁ and t₂, or about the distances covered.", "equation": "no fixed relation between t₁ and t₂"},
+  {"text": "Since t₁ and t₂ can be anything, F₂ can come out smaller than, larger than, or equal to F₁, depending on the time over which each force acts.", "equation": "F₂ ⋛ F₁, all three are possible"}
+ ],
+ "final_answer": {"option": 3, "value": "F₂ may be smaller than, greater than or equal to F₁"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming that the same change in speed must come from the same force overlooks that the time or distance over which each force acts is not given as equal."},
+  {"option": 2, "text": "Assuming that slowing something down always takes a bigger push than speeding it up confuses direction of motion with the size of the force needed."}
+ ],
+ "concept_tags": ["Newton's second law", "impulse", "conceptual reasoning"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:12:00+05:30"}
+}

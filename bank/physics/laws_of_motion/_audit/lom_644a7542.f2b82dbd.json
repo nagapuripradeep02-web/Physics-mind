@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_644a7542",
+ "item_sha": "f2b82dbdc4fafdd6990a375f3ecb0aefb47e5edfdb7130549a698e668e53a777",
+ "auditor_option": null,
+ "auditor_value": "F₁ = (2√3, 2) N ≈ (3.46, 2) N; F₂ = (−2, 2√3) N ≈ (−2, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every component follows from the angles in the figure description: 4cos30° = 2√3, 4sin30° = 2, −4cos60° = −2, 4sin60° = 2√3. The first common_mistakes entry reproduces its swapped values (−2√3, 2); the second is a genuine sign slip.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:12:00+05:30"}
+}

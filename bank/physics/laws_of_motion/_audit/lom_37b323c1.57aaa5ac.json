@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_37b323c1",
+ "item_sha": "57aaa5ac26967ab594b692c9d387bbc5cd42bf31c694c988547df385eecc6c50",
+ "auditor_option": null,
+ "auditor_value": "(a) a = (120 − 60)/6 = 10 m/s² upward; (b) T = 2(10 + 10) = 40 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: whole system 120 − 60 = 6a gives a = 10 m/s²; 2 kg block T − 20 = 2 × 10 gives T = 40 N; check on the 4 kg block 120 − 40 − 40 = 40 = 4 × 10. Both mistake entries are genuine errors with correctly computed wrong numbers.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:00:37+05:30"
+ }
+}

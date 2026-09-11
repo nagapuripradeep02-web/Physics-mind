@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4600b9ce",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Starting at the same instant from a common point O, two particles slide down two straight, frictionless wires. The first wire makes an angle of 30° with the vertical, and the second wire makes an angle of 60° with the vertical, both wires lying on the same side of the vertical line through O. What is the magnitude of the acceleration of the second particle relative to the first?",
+  "options": {
+   "1": "g/2",
+   "2": "√3g/2",
+   "3": "g/√3",
+   "4": "g"
+  },
+  "parts": null,
+  "conditions": [
+   "both particles start together from the same point O",
+   "wires are straight and smooth (frictionless)",
+   "first wire inclined at 30° to the vertical plane",
+   "second wire inclined at 60° to the vertical plane",
+   "both wires lie on the same side of the vertical through O"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write each particle's acceleration along its own wire as a vector using horizontal and vertical parts, then subtract the two vectors to get the relative acceleration.",
+  "steps": [
+   {
+    "text": "Each particle's acceleration along its wire equals g times the cosine of the wire's angle from the vertical.",
+    "equation": "a₁ = g cos30°, a₂ = g cos60°"
+   },
+   {
+    "text": "Write these as vectors, since the two wires point in different directions on the same side of the vertical.",
+    "equation": "a₁ = g cos30°(sin30°, cos30°), a₂ = g cos60°(sin60°, cos60°)"
+   },
+   {
+    "text": "The horizontal parts of the two vectors come out equal, so they cancel when the vectors are subtracted.",
+    "equation": "a₁ₓ = a₂ₓ = (√3/4)g"
+   },
+   {
+    "text": "Subtract the vertical parts to get the size of the relative acceleration.",
+    "equation": "a_rel = g cos²60° − g cos²30° = g/4 − 3g/4 = −g/2, magnitude g/2"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "g/2"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Taking the first particle's own acceleration along its wire, g cos30° = √3g/2, as if it were the relative acceleration."
+   }
+  ],
+  "concept_tags": [
+   "relative acceleration",
+   "motion on an incline",
+   "vector subtraction"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "0a1222f8ebe11cc7deb7df55983626d6f822e459edae3ff2cbcf52581f2ee34d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1422fdebc198c34cd27e343ba458ac90ad71e1ea710373691e8ed11bd52efcca",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:28:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_892cab31",
+ "item_sha": "e9295d564cacd387c6de342e1b8b12b5227786149a332743b013fd1d13a09b67",
+ "auditor_option": null,
+ "auditor_value": "T = w/cos30° = 2w/√3 ≈ 1.155w (string at 30° to the wall, 60° to the horizontal); wall reaction N = w/√3",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Same geometry as mine (string line through the centre, OC = 2a, sin of the angle with the wall = 1/2). Both mistake entries are genuine and the 2w figure reproduces.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:30:18+05:30"
+ }
+}

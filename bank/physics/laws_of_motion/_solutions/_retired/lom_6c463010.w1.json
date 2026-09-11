@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6c463010",
+ "approach": "For the block to stay on the frictionless incline, the string tension along the slope must balance gravity's pull along the slope, and this tension also supports the hanging mass.",
+ "steps": [
+  {"text": "On the frictionless incline, the only forces on the small block along the slope are gravity's component down the slope and the string tension up the slope.", "equation": "along incline: T = m₁g sin30°"},
+  {"text": "Compute this tension using m₁ = 1 kg, g = 10 m/s², sin30° = 0.5.", "equation": "T = 1 × 10 × 0.5 = 5 N"},
+  {"text": "The same string, over the pulley, holds the hanging block M in place, so the tension also equals the hanging block's weight.", "equation": "T = Mg"},
+  {"text": "Solve for M.", "equation": "M = T/g = 5/10 = 0.5 kg"}
+ ],
+ "final_answer": {"option": null, "value": "M = 0.5 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using cos30° instead of sin30° for the component of gravity along the incline gives M = m₁cos30° ≈ 0.87 kg."},
+  {"option": null, "text": "Setting the tension equal to the full weight of the small block instead of its component along the incline gives M = m₁ = 1 kg."}
+ ],
+ "concept_tags": ["equilibrium on an incline", "tension", "pulley"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

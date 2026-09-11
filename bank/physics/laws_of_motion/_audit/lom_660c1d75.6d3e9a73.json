@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_660c1d75",
+ "item_sha": "6d3e9a734a33a70ded56c375ddef419905bbd9a84d36851f65761a961c17f353",
+ "auditor_option": null,
+ "auditor_value": "About A: 4 N → 8 N·m anticlockwise, 3 N → 0, 5 N → 10 N·m clockwise, 2 N → 0, net 2 N·m clockwise. About O: 4 N → 4 N·m anticlockwise, 3 N → 3 N·m clockwise, 5 N → 5 N·m clockwise, 2 N → 2 N·m anticlockwise, net 2 N·m clockwise",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees, checked by r × F with A(0,0), B(2,0), C(2,2), D(0,2), O(1,1). The why_this_step claim that the net force (−2, −2) N acts along AO is correct, which is why the two net moments coincide. Both mistake entries produce the numbers they name.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:01:03+05:30"
+ }
+}

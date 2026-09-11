@@ -1,5 +1,64 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔬 SESSION — Book-derived solutions bank, third chapter (laws of motion): 155 verified items, a figure-checker role, and one guard that was not a guard (2026-09-11)
+
+**Bottom line: the third chapter of the pre-solved bank exists and is verified — 155 `bank_item_v1`
+items under `bank/physics/laws_of_motion/` from 160 in scope (1.7 × projectile), every model role a
+Claude Code sub-agent (~107 of them: 14 readers, 5 key readers, 15 authors, 13 Opus second readers,
+15 re-solvers, 19 judge/syllabus batches, 15 Opus auditors with 15 planted controls — 15 caught, 0
+discredited, five audit waves, the last one clean — plus 2 figure checkers and 6 rework agents).**
+Report: `docs/reports/bank/2026-09-11-laws-of-motion-chapter.md` — **the founder reads it before
+any PR.** Kinematics (incl. its 12 held-back items) and projectile are byte-identical to their commits.
+
+### The chapter's real problem: figures
+
+122 of the 160 served questions describe a figure, and the Sonnet readers misdescribed pulley and
+force figures far more often than in the earlier chapters — movable pulleys as fixed, strings tied to
+the wrong body, two arrows reversed on a square (lom_660c1d75: the author, the Opus second reader and the
+re-solver all agreed on the wrong moments; only the printed key disagreed). Worked examples reach
+every blind reader as text only, so their agreement on a wrong description proves nothing. An ad hoc
+Opus figure-checker role re-read 23 figures against the crops; 47 served texts were hand-restated
+(vs 12 in projectile), 17 author outputs retired and re-authored. Next figure-heavy chapter: the
+figure checker runs BEFORE the authors (memory `feedback_bank_readers_misread_pulley_figures.md`).
+
+### The guard that was not a guard (report §5)
+
+`audit.py release` re-checks every WEAK audit through `gate_run.same()`, whose module default was the
+PAID judge — the `BANK_ALLOW_API` switch lived only inside `gate.py run`. The release step bought 48
+DeepSeek judge verdicts here and, on checking, 27 in projectile (that report's "0 API calls" is now
+corrected in place). Under a cent in total, but the rule was zero: the 48 verdicts were discarded and
+the pairs re-decided by a Sonnet batch (W08), `_lib._post` now refuses every paid URL without
+`BANK_ALLOW_API=1`, `OFFLINE_JUDGE` defaults to true everywhere, and `hygiene.py` counts an unsigned
+judge row as a metered row. The projectile's 27 stand (all agreed with the auditors; no item changed)
+unless the founder wants them re-decided.
+
+### Pipeline fixes (each with a fixture or a re-run)
+
+Comparator: `v_B` = `vB`; different symbol sets → judge, never "no"; bracketed explanations stripped
+— but opposite words in the two brackets ("directed to the left" / "to the right") → judge, and a
+bracket holding commas is stripped before any list split; two-word answers against a sentence →
+judge (fixture 87 → 99). Audit tooling: an audit older than the item's latest restatement is stale
+(file mtime, not the auditor's own timestamp — the item sha does not cover the figure description);
+the control generator no longer doubles label digits (`F2` → `F4` was a control that looked like a
+typo); `plan --role author --only` honoured; a crossed re-solve of an OLDER restatement is ignored by
+the gate; the spurious "hint disagrees with printed answer" warning (27 items, a printed letter vs
+the hint's value) silenced when both already agree with the author.
+
+### Held back for the founder (report §5)
+
+One genuine book error (lom_e5cfe9a4: the printed working drops a 10 N vertical component — printed
+14 N / no motion, ours 6.4 N kinetic and 3.8 m/s²), one interpretation (lom_5cc3250f, "minimum
+retardation" 0 vs g sinθ), one `figure_required` single-correct (lom_f069c38c, four drawn arrows), two
+dropped assertion–reason items where three readers say the printed letter is wrong (lom_8295f660:
+T_AB = 4m₁m₂g/(m₁+m₂) is not always between m₁g and m₂g; lom_b325738d).
+
+### Next session's first task
+
+The founder reads the report and decides on the five held-back items and the projectile's 27 paid
+verdicts. Then either the next chapter of the same book (work, energy and power; figure checker
+first) or phase 2 (embed the whole bank on a free route, wire into
+`ep-solve`). No PR, no push, until the founder has read the reports.
+
 ## 🔬 SESSION — Book-derived solutions bank, second chapter (projectile motion): 88 verified items on the Claude subscription alone, $0 API (2026-09-11)
 
 **Bottom line: the second chapter of the pre-solved bank exists and is verified — 88 `bank_item_v1`

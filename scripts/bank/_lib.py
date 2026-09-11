@@ -114,6 +114,10 @@ def jsonl_append(p, row):
 # ---------------------------------------------------------------- model callers (copied shapes)
 
 def _post(url, body, headers, timeout=600, retries=5):
+    if os.environ.get("BANK_ALLOW_API") != "1":
+        # the founder pays no metered API bill (2026-09-11): every model role is a Claude Code sub-agent, and no
+        # code path - gate, release, probe - may reach a paid endpoint without this variable set on purpose
+        raise RuntimeError("metered API call refused (%s): set BANK_ALLOW_API=1 only for a deliberate paid run" % url.split("/")[2])
     req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=headers)
     last = None
     for attempt in range(retries + 1):

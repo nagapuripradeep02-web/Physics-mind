@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_1b1da148",
+ "approach": "The block is in equilibrium with only two forces on it, so the incline's total push (normal plus friction combined) must be equal and opposite to gravity.",
+ "steps": [
+  {"text": "The block is at rest, so only two forces act on it: gravity mg straight down, and everything the incline exerts on it — its normal push and its friction — combined into one net contact force.", "equation": "F(incline) + mg(down) = 0"},
+  {"text": "Since these are the only two forces and the block is in equilibrium, the incline's net force must be equal and opposite to gravity.", "equation": "F(incline) = mg (upward)"},
+  {"text": "This holds for any θ and μ as long as the block truly stays at rest; the normal and friction parts individually depend on θ and μ, but their combined vector always equals mg.", "equation": "|F(incline)| = mg"}
+ ],
+ "final_answer": {"option": 1, "value": "mg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Reporting only the along-incline friction component, mg sinθ, as the total force from the incline, forgetting to combine it with the perpendicular normal component."}
+ ],
+ "concept_tags": ["equilibrium", "inclined plane", "friction"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

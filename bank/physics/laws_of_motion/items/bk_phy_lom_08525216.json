@@ -1,0 +1,114 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_08525216",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A rope with negligible weight runs over a frictionless pulley. On one end, a 20 kg monkey grips the rope tightly; tied to the other end is a hanging bundle of bananas that also weighs 20 kg. The monkey spots the bananas above and begins climbing up the rope toward them.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "While the monkey is climbing, do the bananas rise, fall, or stay where they are?"
+   },
+   {
+    "label": "b",
+    "asks": "While the monkey is climbing, does the space separating her from the bananas shrink, grow, or stay the same?"
+   },
+   {
+    "label": "c",
+    "asks": "If the monkey then lets go of the rope and falls freely, what then happens to the gap between her and the bananas as she falls?"
+   },
+   {
+    "label": "d",
+    "asks": "If, before hitting the ground, the monkey catches hold of the rope again to stop falling, what happens to the bananas at that moment?"
+   }
+  ],
+  "conditions": [
+   "rope is light (negligible mass)",
+   "pulley is frictionless",
+   "monkey's mass equals the bananas' mass: 20 kg each"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The rope is light and the pulley is frictionless, so the tension is the same on both sides at every instant, and the monkey and the bunch have equal mass.",
+  "steps": [
+   {
+    "text": "Write Newton's second law for the monkey and for the bananas, taking upward as positive.",
+    "equation": "T − mg = m aₘ (monkey), T − mg = m a_b (bananas)"
+   },
+   {
+    "text": "Both equations use the same tension T and the same mass m (20 kg each), so the two equations are identical at every instant.",
+    "why_this_step": "A single string over a frictionless, massless pulley carries the same tension throughout, and equal masses under equal tension get equal acceleration."
+   },
+   {
+    "text": "So aₘ = a_b always, whatever the monkey does. Starting from rest, this makes their velocity and displacement equal at every instant too.",
+    "equation": "aₘ = a_b for all t"
+   },
+   {
+    "text": "(a) The monkey climbs upward, so aₘ is upward; since a_b = aₘ, the bananas also move up, rising by the same amount at the same time as the monkey.",
+    "equation": "bananas move up"
+   },
+   {
+    "text": "(b) Since the monkey and the bananas share the same velocity at every instant (both start at rest with equal acceleration), the gap between them does not change.",
+    "equation": "distance stays constant"
+   },
+   {
+    "text": "(c) When the monkey lets go, her hand exerts no force on the rope, so T = 0 there; with T = 0 the bananas obey −mg = m a_b, i.e. a_b = −g, the same as the monkey's free-fall acceleration, so the constant-distance result of (b) continues unchanged while she falls.",
+    "equation": "T = 0, aₘ = a_b = −g, distance stays constant"
+   },
+   {
+    "text": "(d) When the monkey grips the rope again, the tension she generates to slow her fall is the same tension felt by the bananas, so the bananas decelerate exactly as she does; the bananas do the same thing the monkey does, and the gap between them stays the same throughout.",
+    "equation": "aₘ = a_b again, bananas slow down like the monkey does"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) Move up. (b) Distance remains constant. (c) Distance remains constant while she is falling. (d) The bananas do exactly what the monkey does (they also decelerate the same way), so the distance between them stays constant."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the bananas stay still because the monkey is doing the climbing, ignoring that the pulley makes the tension pull the bananas up too."
+   },
+   {
+    "option": null,
+    "text": "Thinking the gap closes because the monkey is climbing toward the bananas, forgetting the bananas rise by the same amount at the same time."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "pulley constraint",
+   "equal tension both sides"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9828b459981ac612a0926e0609b979d65868bde974720f1e196ad00576214c87"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "1c3f257c81969a46777f49349dbd7356b6de4847135cf41ddca98f760b9d3a11",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:10:00+05:30"
+ }
+}

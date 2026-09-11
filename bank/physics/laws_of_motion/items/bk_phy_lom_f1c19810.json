@@ -1,0 +1,67 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_f1c19810",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "A student claims that in a non-inertial (accelerating) reference frame, the only way to analyse a mechanics problem is by bringing in a pseudo force. Decide whether this claim is correct or incorrect.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "the reference frame under discussion is non-inertial (accelerating)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "A problem set in a non-inertial frame can also be solved by working entirely in an inertial frame with only real forces, so pseudo force is not the only method.",
+  "steps": [
+   {
+    "text": "Every non-inertial-frame problem can be solved by switching to an inertial, ground frame and using Newton's second law with only real forces, never needing a pseudo force at all."
+   },
+   {
+    "text": "Pseudo force is added only as a convenience, so that Newton's second law appears to hold when the calculation is done directly inside the accelerating frame."
+   },
+   {
+    "text": "Since the ground-frame method with real forces alone always works, the claim that pseudo force is the only way to solve such problems is false."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "False"
+  },
+  "common_mistakes": [],
+  "concept_tags": [
+   "pseudo force",
+   "non-inertial frame",
+   "reference frame"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ed0cdc1e2f9b9cb8095a089005b89df2098adcadd1b78a19894a929585ba0d35"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4eed65a405d4db876d82b781347c3689f38b1757d4870d63b1fa6dfcbbaa8d05",
+  "audited_by": "W01-U-lom-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-06",
+  "at": "2026-09-11T14:18:00+05:30"
+ }
+}

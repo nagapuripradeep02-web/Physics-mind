@@ -1,0 +1,8395 @@
+{
+ "lom_02230979": {
+  "content_sha": "ea3cc626046bd1f649cf96f8eddf7605fbed1d92d3591cfcea925359ceb7230c",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:d3400b3e"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "t = √[2l(η + 4) / (3g(2 − η))] (valid for η < 2: the ball accelerates upward at g(2 − η)/(η + 4), the rod downward at twice that; for η ≥ 2 the ball never reaches the rod's upper end)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): masses of pulleys and threads negligible",
+   "conditions added (fidelity ok): frictionless"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.607,
+   "conditions_dropped": [
+    "masses of pulleys and threads negligible"
+   ],
+   "conditions_added": [
+    "frictionless"
+   ],
+   "fidelity": [
+    null,
+    "t = √[2l(η+4) / (3g(2−η))] (valid for η < 2, so the ball rises)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "d1a8f9f223695e1933792c4a4f77807e113fe9ecd8e088bd1dda477bf7cdc188",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_02761e70": {
+  "content_sha": "6122836477262a7b02c32177f7d846f4627e1cb3e009c8d957095fa9938dd0d7",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number",
+    "sha:b2956d8e"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a_A + a_C + 2 a_B = 0 (all taken positive downward); equivalently, if A and C accelerate downward with a_A and a_C, block B accelerates upward with (a_A + a_C)/2"
+   ],
+   "hint": [
+    true,
+    "number",
+    "sha:b2956d8e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.848,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "aA + aC = −2aB (equivalently aA + 2aB + aC = 0), with aA, aB, aC all measured positive in the same direction (e.g. all downward)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "0b468ae50dfe7e1d8d837974f547af7548caaf8b2319af6f4d813c59a6d775c4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_030eca59": {
+  "content_sha": "930e270c5c40e9c705e20875c2cf78e262192447265c2203874291738812831d",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:dcfc1e60"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Anticlockwise moment about A: of 2F → +2Fa; of F → −2Fa (i.e. 2Fa clockwise); of 3F → 3F sin 30° × 4a = +6Fa (its component along the rod passes through A, moment 0). Net anticlockwise moment = 6Fa"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.575,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "2F force (at a, upward): 2Fa anticlockwise. F force (at 2a, downward): 2Fa clockwise (−2Fa). 3F force (at B = 4a, 30° to rod, up-left): 6Fa anticlockwise.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "b62a7715f128c6910c531a88744b0c97113b02e920cfb014037d514df3a86c27",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_04c36fda": {
+  "content_sha": "e3f2df5072ad2923e800aa99d5ca2db00701d52fa89fbe9b6b15c315a99fdf0a",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:7f394b6f"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) horizontal / vertical: N → N sin 30° = N/2 toward the incline's low side (left), N cos 30° = (√3/2)N up; T → T cos 60° = T/2 right, T sin 60° = (√3/2)T up; w → 0, w down; f → f cos 30° = (√3/2)f left, f sin 30° = f/2 down. (b) parallel / perpendicular to plane: N → 0, N away from plane; T → T cos 30° = (√3/2)T up the plane, T sin 30° = T/2 away from plane; w → w sin 30° = w/2 down the plane, w cos 30° = (√3/2)w into the plane; f → f down the plane, 0"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "fidelity: the first crossed re-solve disagreed (judge(cached)); the second (Gemini) agrees"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.414,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) Horizontal, Vertical: N → (N sin30°, N cos30°) = (0.5N, 0.866N); T → (T cos60°, T sin60°) = (0.5T, 0.866T); w → (0, −w); f → (−f cos30°, −f sin30°) = (−0.866f, −0.5f). (b) Parallel (up-incline), Perpendicular (away from surface): N → (0, N); T → (T cos30°, T sin30°) = (0.866T, 0.5T); w → (−w sin30°, −w cos30°) = (−0.5w, −0.866w); f → (−f, 0).",
+    "judge(cached)"
+   ],
+   "fidelity2": [
+    null,
+    "Forces on the block: N (normal reaction, at the surface contact, perpendicular to the incline, away from the surface); T (tension, at the string attachment, up the slope at 30° above the surface = 60° above the horizontal); w (weight, at the centre of mass, vertically down); f (friction, at the surface contact, down along the incline). No magnitudes are given, so the answer is symbolic. (a) Sign convention: +x horizontal to the right (the side the incline rises toward), +y vertically up. N: x = −N sin30° = −N/2, y = N cos30° = (√3/2)N; T: x = T cos60° = T/2, y = T sin60° = (√3/2)T; w: x = 0, y = −w; f: x = −f cos30° = −(√3/2)f, y = −f sin30° = −f/2. (b) Sign convention: parallel + = up the slope, perpendicular + = away from the surface (outward normal). N: parallel 0, perpendicular +N; T: parallel T cos30° = (√3/2)T, perpendicular T sin30° = T/2; w: parallel −w sin30° = −w/2, perpendicular −w cos30° = −(√3/2)w (into the surface); f: parallel −f, perpendicular 0.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "dbf614b41485274de1c855d35f8d8946aeaad5ce6cf46d5be7f15754e44f46e1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_06dfc8b6": {
+  "content_sha": "848a8e4d90bbad9d9fe807dfa98cc220f74c740fb2f8fad07a6909d8de4d2abd",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:e73e8347"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 20/3 m/s² ≈ 6.67 m/s² downward, (b) 10/3 N ≈ 3.33 N"
+   ],
+   "hint": [
+    true,
+    "one_part_match b",
+    "sha:14212e34"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.573,
+   "signature": [
+    [
+     "1",
+     "10"
+    ],
+    [
+     "1",
+     "1",
+     "10",
+     "2"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a = 20/3 m/s² ≈ 6.67 m/s², (b) T = 10/3 N ≈ 3.33 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "6bced3ad43440e2c1b5b6b1b8261676664f235afc6e3b6a6ed731148e451039a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_07a48733": {
+  "content_sha": "d64272ed0d026e5ce2657c50d04b58105cc1a13f927dd26a5b8ab02fe33f9a1d",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:55eb92b5"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "For 0 ≤ θ ≤ θₛ = tan⁻¹μₛ (block at rest): f = mg sinθ, a rising sine curve from 0 to the peak fₘₐₓ = mg sinθₛ = μₛmg cosθₛ = μₛmg/√(1+μₛ²); at θ = θₛ the block starts sliding and f drops abruptly to μₖmg cosθₛ; for θₛ < θ ≤ 90° (sliding): f = μₖmg cosθ, a falling cosine curve reaching 0 at θ = 90°"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.737,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "f = mg sinθ, rising with θ, for 0 ≤ θ ≤ tan⁻¹μₛ (static friction matching gravity's along-plane component, block still at rest); at θ = tan⁻¹μₛ, f drops discontinuously (down-jump) to the kinetic value μₖmg cos(tan⁻¹μₛ) as the block starts sliding; for θ > tan⁻¹μₛ, f = μₖmg cosθ, decreasing monotonically toward 0 as θ → 90°.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "3832293aef9c1fea49fe0815056f41a36b3ee189b4472e3b6f14956aa243e07e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_08231949": {
+  "content_sha": "19de105cec1884501cc035d3138e0e55d466c5b6d1e1801eb9ae40186c024e30",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "f_max = 75 N"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:0c7f0b04"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.568,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "75 N",
+    "option"
+   ]
+  },
+  "restatement_sha": "70d955626c67f6cf03d76f118f0ea0fee29ac06bda367dda1b63a29e535924cb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_08e0c793": {
+  "content_sha": "8864a7e36f5ce8190d81f40370c37cc97f776de2b92d769af5ad7603a9ba2d94",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true: for forces concurrent at P, moment about O is (r_P − r_O) × ΣF, which changes with O (zero at P, non-zero elsewhere) unless ΣF = 0; when ΣF = 0 this moment is zero about every point"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.615,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion is false, Reason is true",
+    "option"
+   ]
+  },
+  "restatement_sha": "3f2c6f8f05c2526e50a8460c555f71ccfd72e2a0f29076b7ca4552f68c0533f7",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_093dde73": {
+  "content_sha": "29ce1cc16b263073db809fa594faa5ef987ce12b400d8ed4bd7a809d1ffd6906",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:d153385f"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "F_H = F cos 45° = 8 × 1/√2 = 4√2 N ≈ 5.66 N (horizontal); F_V = F sin 45° = 8 × 1/√2 = 4√2 N ≈ 5.66 N (vertical)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.746,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "F_H = F_V = 4√2 N ≈ 5.66 N",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "3de0a49b4547e79418053b6f838d5b3bf45314e75dbb72a3f2c6f6e818ddc70a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_0a1222f8": {
+  "content_sha": "f0b450e1c58ab618376b9039e9bbde39ab0865b1f073949bc446e233da17cf14",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "g/2"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:2210b30f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.586,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "g/2",
+    "option"
+   ]
+  },
+  "restatement_sha": "4600b9ce2dbc49ba4cc0147ab17827bcee6798d72821a2e89699ffe4e7af2a85",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_0b110c6e": {
+  "content_sha": "b8d14c61069a10f30c9805d12b74c3c629fe9a2c046b18fbae2fc2bf2b1acb28",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "F₂ may be smaller than, greater than or equal to F₁ — both forces deliver the same impulse magnitude mv, but over unspecified times"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:4ff62085"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.667,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "F₂ could be smaller than, larger than, or equal to F₁",
+    "option"
+   ]
+  },
+  "restatement_sha": "731281a95a1902ee05a71ea0fc0595e67ccc18f0b8f73460413508d73cc25637",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_1060d2f4": {
+  "content_sha": "21d7f935fbc3bb425c9784c54cf20d4090aad17c7e8b6ff2dd91757afd508577",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "T₁ : T₂ = 17 : 24 (right : left); with g = 10, T₁ = 68 N, T₂ = 96 N, a = 3.6 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 15 5 5 5"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.788,
+   "signature": [
+    [
+     "0.2"
+    ],
+    [
+     "0.2",
+     "15",
+     "5",
+     "5",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "17 : 24",
+    "option"
+   ]
+  },
+  "restatement_sha": "e294d817b650de23b7e4b0f53bfd7049e3fed898626421bdbf3cf9d4c74e500f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_10908738": {
+  "content_sha": "ce03736c0e1fd924e7e0b229fca4281fd7f82bb849346c6dd27695001e7275fc",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:9a319a83"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) a = 0 for 0 ≤ t ≤ 6 s, then a = (t − 6) m/s² for t > 6 s (straight line of slope 1 m/s³ starting from the t-axis at t = 6 s), (b) f = 4 N at t = 2 s (static), f = 12 N at t = 8 s (kinetic)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.6 2 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.654,
+   "signature": [
+    [
+     "10",
+     "2",
+     "8"
+    ],
+    [
+     "0.6",
+     "10",
+     "2",
+     "2",
+     "2",
+     "8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a(t) = 0 for 0 ≤ t < 6 s (block static, F < max friction 12 N), then a(t) = (t − 6) m/s² for t ≥ 6 s, rising linearly from 0. (b) friction at t=2s: 4 N (static, equals applied F = 4 N since block is still at rest); friction at t=8s: 12 N (kinetic, μmg = 0.6×2×10, constant once sliding).",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "4881c8189383ec68854cbcb4a3db8b04d7b21063d01723529d628336cffdd10e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_111d2278": {
+  "content_sha": "e6a2d24f41dbd252b7aa3922cc4456244f196d2296ae786e60164485033702a3",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:4fcd8f78"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) t = 4√(l/(3g)) = √(16l/3g); (b) block: s_A = 4v√(l/3g) − 2l/3, plank: s_B = 4v√(l/3g) − 5l/3 (both to the right; s_A − s_B = l). Assumes the plank is still moving at that instant, i.e. v > (5/2)√(gl/3)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): A and B start with common rightward speed v"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.684,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "A and B start with common rightward speed v"
+   ],
+   "fidelity": [
+    null,
+    "(a) t = 4√(l/3g) (b) sA = 4v√(l/3g) − 2l/3, sB = 4v√(l/3g) − 5l/3, both measured from the release point along the road",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "4473ca9d2e0c7ab6b53a5cc67de73a4d94f0b4e0ae1e6f4df247dd6245b25fdb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_11432ce1": {
+  "content_sha": "d5c83e88711f447f566e421926dcfc00d1b60cb0648cf5093149c094c3e263d3",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "F = 250 N (with g = 10 m/s²; 245 N with g = 9.8)"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:15e8a874"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "conditions dropped (fidelity ok): platform moves upward at a steady rate",
+   "conditions added (fidelity ok): platform rises at a constant speed; rope runs through a 3-pulley system linking "
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.628,
+   "conditions_dropped": [
+    "platform moves upward at a steady rate"
+   ],
+   "conditions_added": [
+    "platform rises at a constant speed",
+    "rope runs through a 3-pulley system linking person, platform, and fixed support"
+   ],
+   "fidelity": [
+    2,
+    "250 N",
+    "option"
+   ]
+  },
+  "restatement_sha": "fea3d3f864911f49f561d4fe42ccf70bf36d436a8e1338bdad07b59286fd807a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_125342d7": {
+  "content_sha": "f1da8167562f949b86fb0a6623b7e1f4d188cef0291e23bf9f4325b82f579099",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:e3b0b58c"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "F = 5√3 + 1.5 ≈ 10.16 N (along the incline, up), R = 5 − 1.5√3 ≈ 2.40 N (perpendicular to the incline)"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:e3b0b58c"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 10 3 60",
+   "conditions added (fidelity ok): the four forces balance out exactly"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.834,
+   "signature": [
+    [],
+    [
+     "10",
+     "3",
+     "60"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [
+    "the four forces balance out exactly"
+   ],
+   "fidelity": [
+    null,
+    "F ≈ 10.16 N, R ≈ 2.40 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "2d62df3481dd72a52b3cdf8eee723b714aeb90b0bcb7b6e1e27f830fd21628e4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_1375254e": {
+  "content_sha": "1f946986cb2673a744632bc722bef3f70d909b4f6729280c6bfb2579ea821a1d",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:387d91e0"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 4 kg: a = 0, friction = 20 N (static, opposite to F; f_max = 24 N); (b) 2 kg: a = 6 m/s², friction = 8 N (kinetic, opposite to F; f_max = 12 N < 20 N). Third case not visible in the crop."
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:15498904"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.4 0.4 0.6 0.6 2 2 20 20 4 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.786,
+   "signature": [
+    [],
+    [
+     "0.4",
+     "0.4",
+     "0.6",
+     "0.6",
+     "2",
+     "2",
+     "20",
+     "20",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 4 kg block: a = 0, friction = 20 N (static, since F = 20 N < μs mg = 24 N); (b) 2 kg block: a = 6 m/s², friction = 8 N (kinetic, since F = 20 N > μs mg = 12 N)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "83dd9f60b3420c1284de5af7580ac4e12dd72222c310bba1c8c788e7b14e5f55",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_13fc307f": {
+  "content_sha": "582f34419de0b53c62725a81320403924b2b3f3e37ff92a722220d0cff962c10",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:0ceab1b3"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "Tension in the cord between m₂ and the pulley T = 12/35 N ≈ 0.34 N; acceleration of m₂ = 2/7 m/s² ≈ 0.29 m/s² (toward F)"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:9b04aa4f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "ascii maths m2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.563,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Tension in the m₂–pulley cord T ≈ 0.343 N (12/35 N); acceleration of m₂ ≈ 0.286 m/s² (2/7 m/s²)",
+    "list_subset"
+   ]
+  },
+  "restatement_sha": "2c6d7278bb8a978839b3cb5c3c1200d86defeeacf5968c5c6f18ec060b731609",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_197ab779": {
+  "content_sha": "b3affa693ffdffd88c9dce814bffeed49f326f06f8f61b7b94c0fff8588281e8",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:4d3d735a"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "Net force on the man = ma = 65 N (static friction, in the direction of the belt's acceleration); maximum belt acceleration = μₛg = 1.96 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.589,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Net force on the man = 65 N; maximum belt acceleration ≈ 1.96 m/s²",
+    "list"
+   ]
+  },
+  "restatement_sha": "e17234d46457214ee23a08d999bbf2c32701412ddee8f3e09f5c15a13ed6ed33",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_1b1da148": {
+  "content_sha": "c7fe2c05a968d1fcc00de24c44e92843889086fdfdeea63f03c092729e64dd15",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "mg — the resultant of normal force mg cosθ and static friction mg sinθ is √(N² + f²) = mg, directed vertically upward to balance the weight"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:c7bc41a9"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.477,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "mg",
+    "option"
+   ]
+  },
+  "restatement_sha": "cdc8bf379bce4217c32c541083b33c83ba375414075029c4f351497ed63304fb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_1f2b9b71": {
+  "content_sha": "6e3907611049de6acc29d1c48430e00359fb817f6a1fc1a7c8eacec0b44cbb2b",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:7de966a3"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Yes, the block moves: the in-plane resultant of the 10 N push and the 10 N weight is 10√2 ≈ 14.1 N, which exceeds the limiting friction μₛN = 5 N; it slides along that resultant, i.e. at 45° below the horizontal (diagonally down in the direction of the 10 N push)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.519,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "The block moves (slides), diagonally downward in the direction of the resultant of gravity (10 N, down) and the 10 N applied force (parallel to wall) — i.e. at 45° to the vertical, toward the side the 10 N force pushes.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "ff0dd7aca4c28d26a59123a4bcf102df27437bf807e461e915eea493b3dab929",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_20700fa4": {
+  "content_sha": "077ebd7e8c11efd7f5cbb94c0d76d7b7f517da0ddacc2111c865a226b32e84bd",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:325acd32"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "M = 4.8 kg"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:fab38c4f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.708,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "10",
+     "2",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "M = 4.8 kg",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "61ffd2811a3efe0297cb6626a7dbcdd87b4230a44952fb83eb7875dc26f4bc2a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_208bc75b": {
+  "content_sha": "172ad242bf1152cf6fe100f3c42d267b3df3b8b386dc1493114b304590729184",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Three forces on rod OA: weight W = mg at its midpoint, vertically down; tension T at A along the string AB, horizontal toward B; hinge reaction at O with two components, horizontal H (toward the wall side, opposite to T) and vertical V (upward). Equilibrium gives V = W, H = T."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.688,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Three forces act on the rod alone: (1) its weight mg, vertically downward at the rod's centre of mass; (2) the string tension T at end A, acting horizontally from A toward B; (3) the hinge reaction at O, with both a horizontal and a vertical component (its direction is generally NOT along the rod), fixed by requiring zero net force and zero net torque about O for the rod.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "574b896da490432e47de9653c86039f892c6d1661e134955e5e6846b92ac9820",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_21ed7e30": {
+  "content_sha": "1f67ca30888ed39ea54da1c7d2eeb2cb6c559e0be68c3d75e0018a331ceaa95b",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:36c836a8"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "For F ≤ 5 N (limiting friction μₛmg = 5 N): f = F (static), a = 0. For F > 5 N: f = μₖmg = 4 N (kinetic), a = (F − 4) m/s². E.g. F = 2 N → f = 2 N, a = 0; F = 4 N → f = 4 N, a = 0; F = 5 N → f = 5 N, a = 0; F = 6 N → f = 4 N, a = 2 m/s²; F = 8 N → f = 4 N, a = 4 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): horizontal pull F is raised steadily from zero"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.677,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "horizontal pull F is raised steadily from zero"
+   ],
+   "fidelity": [
+    null,
+    "For 0 ≤ F ≤ 5 N: block stays at rest, f = F (static), a = 0. At F = 5 N friction reaches its maximum static value μs mg = 5 N. For F > 5 N: block slides, kinetic friction f = μk mg = 4 N (constant, independent of F), and a = (F − 4) m/s², increasing linearly with F; there is a sudden drop in f (5 N → 4 N) and a jump in a (0 → 1 m/s²) at F = 5 N.",
+    "list_subset"
+   ]
+  },
+  "restatement_sha": "ca6af72df0bd49d8f25050fb522e4372e1e5d792b36db8a5ef85bf2a2f34504d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_22c836df": {
+  "content_sha": "410a7055701b63ab88fe1c8dca4e29262fc3358d71f366d014d5f07a998853b5",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:98cb1a60"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "T₁ = 2W/√3 ≈ 45.3 N, T₂ = W/√3 ≈ 22.6 N (W = 39.2 N)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 4 60 9.8"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.863,
+   "signature": [
+    [],
+    [
+     "4",
+     "60",
+     "9.8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T₁ ≈ 45.3 N, T₂ ≈ 22.6 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "6215c18409c438d1c85018b1705d223b06463fa5d08c8ccb08272f2f7b741ddf",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_2432e167": {
+  "content_sha": "7368a05ee2b19d65aef6a3a00a9be8f2faacdac8e8acd143079f9906a2f0d816",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:e42d56c0"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) F = 100 N: T = 25 N < mg and Mg, so a_m = 0 and a_M = 0 (both stay on the floor); (b) F = 300 N: T = 75 N, a_m = 5 m/s² upward, a_M = 0 (M stays on floor); (c) F = 500 N: T = 125 N, a_m = 15 m/s² upward, a_M = 2.5 m/s² upward"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.582,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) F=100 N: both blocks stay on the ground, a_m = 0, a_M = 0. (b) F=300 N: m lifts off with a_m = 5 m/s² (upward); M stays on the ground, a_M = 0. (c) F=500 N: both lift off, a_m = 15 m/s² (upward), a_M = 2.5 m/s² (upward).",
+    "parts"
+   ]
+  },
+  "restatement_sha": "c26d60c12f6568d701b1e6f5c09c56478b02023d747d520759224fae26ad575e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_25dc78be": {
+  "content_sha": "6b276d0385e594dd3571371b9dddf89d810d8a9d31c1e6f07e99596e9639af40",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:363d2849"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "T_A = 4 N, T_B = 6 N (a = 2 m/s²)"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:eee4ec9a"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.599,
+   "signature": [
+    [
+     "1",
+     "1",
+     "1",
+     "2",
+     "8"
+    ],
+    [
+     "1",
+     "1",
+     "1",
+     "1",
+     "2",
+     "2",
+     "2",
+     "8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Tension at A = 4 N, tension at B = 6 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "8bc2f0a8603199b428ebee881e7eac8528fa0ecc49228153f8d7f71de8664ced",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_2897c874": {
+  "content_sha": "bc54bf35345fc6f5dfad887479c0d1a77c36c079ab8529b557c6c4c2dcdb0623",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:a05a4238"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "t = 1/3 s ≈ 0.333 s (after the moment the 2 kg mass is stopped)"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:f19afba1"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "ascii maths m2",
+   "numbers added by the restatement: 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.598,
+   "signature": [
+    [
+     "1",
+     "1",
+     "2"
+    ],
+    [
+     "1",
+     "1",
+     "2",
+     "2"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "t = 1/3 s ≈ 0.33 s",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "b36e25b3991b5e74498370c09b90dd733de6100329e4f727c766241d3e1a3337",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_2dc239ae": {
+  "content_sha": "f429eea57d9e9f62f27143acfe2af85a4c37f2497d0cd56ed60d1c6d4b1431ba",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "expression",
+    "sha:6416f21a"
+   ],
+   "B": [
+    true,
+    "expression",
+    null,
+    "F_min = (M + m) g / μ (block needs a ≥ g/μ so that μN = μma ≥ mg)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.743,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "F_min = (M + m)g/μ",
+    "expression"
+   ]
+  },
+  "restatement_sha": "da7faac0b12e2781019ecd058b09bccb6fe339e67339bb3081aa461f2b4ef0e2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_2ed9ffe2": {
+  "content_sha": "6e91183e31cca5094106ad21e278a2b81e02c11ade4f7efa0b96e25f70ad2d8c",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "Fig. (i) — F = W in (i) versus F = W/2 in (ii)"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:26791c3d"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "conditions added (fidelity ok): setup (i) has one pulley fixed to an overhead bracket"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.647,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "setup (i) has one pulley fixed to an overhead bracket"
+   ],
+   "fidelity": [
+    1,
+    "Setup (i)",
+    "option"
+   ]
+  },
+  "restatement_sha": "c084f71717eb9fd0c747143425055f23244ea71ddbcc23d1598905bf449a2c5c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_32c78474": {
+  "content_sha": "e1807e0a277f22138fbfe89e0b10d21806cb013cda0e485cc35f2efb5c292d9e",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:4e67cae9"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Three forces on the cylinder: weight W vertically downward through the centre; normal reaction N₁ from the left wall and N₂ from the right wall, each perpendicular to its own wall (smooth contact) and directed through the cylinder's centre. The three forces are concurrent at the centre; in equilibrium N₁ sin α₁ = N₂ sin α₂ and N₁ cos α₁ + N₂ cos α₂ = W (α = angle each normal makes with the vertical)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.55,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Three forces on the cylinder: weight W acting vertically downward through the center; normal reaction N1 from the left slanted wall, directed perpendicular to that wall (through the center); normal reaction N2 from the right slanted wall, directed perpendicular to that wall (through the center). By symmetry of a V-groove N1 = N2 = W/(2 cos α), where α is the half-angle of the groove from the vertical (value not given in text).",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "77f7dae6771cc3165e4597878a797a74fdc74e7fd8d670df25eebfc2fdb450fa",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_33c59164": {
+  "content_sha": "ed214bf2a2a67d7f7974d710a4bdcc2442241f99786903fa9e1a35993d7014c5",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:00e42592"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "block 1 (1 kg): a = 130/99 ≈ 1.31 m/s² upward; block 2 (2 kg): 7a = 910/99 ≈ 9.19 m/s² downward; tensions T = 160/99 ≈ 1.62 N (smallest pulley), 2T = 320/99 ≈ 3.23 N (middle pulley), 4T = 640/99 ≈ 6.46 N (top pulley)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 10 2",
+   "conditions dropped (fidelity ok): constraint relation a₂ = −7a₁ from the previous example applies"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.755,
+   "signature": [
+    [
+     "1",
+     "2"
+    ],
+    [
+     "1",
+     "1",
+     "10",
+     "2",
+     "2"
+    ]
+   ],
+   "conditions_dropped": [
+    "constraint relation a₂ = −7a₁ from the previous example applies"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) block 1 (1 kg): a₁ ≈ 1.31 m/s² upward, block 2 (2 kg): a₂ ≈ 9.19 m/s² downward (g = 10 m/s²); (b) T (in S₃) ≈ 1.62 N, 2T (in S₂) ≈ 3.23 N, 4T (in S₁) ≈ 6.46 N",
+    "one_part_match b"
+   ]
+  },
+  "restatement_sha": "8935066a8697b690ec373b2343ea1a0011561af589b82f89fb64b363b13a349d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_35193317": {
+  "content_sha": "92a2d414382d5d2e7a8f43eb941092bbe7b896b6079835909f8415970ebd7bff",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:42e6ef29"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) T = 100 tan15° = 100(2 − √3) ≈ 26.8 N, (b) f = T ≈ 26.8 N, acting up the incline, (c) N = 100 N (equal to the weight)"
+   ],
+   "hint": [
+    true,
+    "one_part_match a",
+    "sha:761ec92e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 30"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.644,
+   "signature": [
+    [
+     "100"
+    ],
+    [
+     "100",
+     "30"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) T = 100 tan15° ≈ 26.8 N, (b) friction f = T ≈ 26.8 N (up the slope), (c) normal reaction N = 100 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "08f24e186cad367cfc22b8973c93fdffbb49e8295e4c7d58f4fc62d1eea45777",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_36ff01fc": {
+  "content_sha": "b643a8b05e2cc002f9dbb24f77dc149ad5e87721e7f555f8db750c664c4ed85c",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true: at rest static friction f = F₂ (self-adjusting), so raising F₁ only raises N = mg + F₁ and the limit μN, not the friction actually acting; raising F₂ does raise f, but 'either' makes the assertion false"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.571,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion is false, Reason is true — option (d)",
+    "option"
+   ]
+  },
+  "restatement_sha": "6aefa7b2efbf18c26d7baff9fd1c85a635c8963628ab8d0592ad4d6fd45a4f54",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_37b323c1": {
+  "content_sha": "53d7b6110689914935fe5b12a75f3619057dc19db0c91044d46918203639c99c",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:e95251f6"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) a = 10 m/s² upward, (b) T = 40 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.632,
+   "signature": [
+    [
+     "10",
+     "120",
+     "2",
+     "4"
+    ],
+    [
+     "10",
+     "120",
+     "2",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a = 10 m/s², (b) T = 40 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "b8db32218a018777e1248a116e3be999244c27c160a8b32198cb33f8ed3be2e6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_385c202d": {
+  "content_sha": "d598a288c39cd510da3c57fe7751b06470bd426821e8db72d834bb3a9c69cf81",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "words",
+    "sha:4b227777"
+   ],
+   "B": [
+    true,
+    "words",
+    null,
+    "T₄kg : T₁kg = 4g : g = 4 : 1"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:0d70d5ba"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 3 3 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.71,
+   "signature": [
+    [
+     "1",
+     "4"
+    ],
+    [
+     "1",
+     "1",
+     "3",
+     "3",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "4 : 1",
+    "ratio"
+   ]
+  },
+  "restatement_sha": "df8358008d460072c7a57a1c45644583afab0c9c3ce835a9197ab0f4dab4865c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_39473919": {
+  "content_sha": "ad1340da207b5dffd1639729850e2e43321baa70b0ae4c3ebb967aab8c6fc7ee",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:f8cd10a2"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) t = 7/6 s ≈ 1.17 s, (b) common velocity 4 m/s toward the left (the 18 m/s side), (c) 1 kg block: 77/6 m ≈ 12.83 m to the left; 2 kg block: 7/12 m ≈ 0.583 m to the left"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 1 1 18 2 2 3",
+   "conditions dropped (fidelity ok): velocities given in the directions shown in the figure"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.698,
+   "signature": [
+    [
+     "0.6",
+     "1",
+     "10",
+     "2"
+    ],
+    [
+     "0.6",
+     "1",
+     "1",
+     "1",
+     "1",
+     "10",
+     "18",
+     "2",
+     "2",
+     "2",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [
+    "velocities given in the directions shown in the figure"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 7/6 s ≈ 1.17 s, (b) common velocity = 4 m/s to the left (−4 m/s), (c) 1 kg block travels 77/6 m ≈ 12.83 m to the left; 2 kg block travels net 7/12 m ≈ 0.58 m to the left",
+    "parts"
+   ]
+  },
+  "restatement_sha": "d75da4cebb585326266f6d61c33e49ed9bbdd4ba94bd4db7cc9ed34627695b11",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_39a50e90": {
+  "content_sha": "76d1afbd572870e95d560a624fa38ace8ed1015bf11af4fdb755f1d75b2fc612",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number",
+    "sha:f58e6604"
+   ],
+   "B": [
+    true,
+    "number",
+    null,
+    "μ_min = 1/(2√3) = √3/6 ≈ 0.289"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:fa9335cb"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): ladder does not slip"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.637,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "ladder does not slip"
+   ],
+   "fidelity": [
+    null,
+    "μ_min = cot60°/2 = √3/6 ≈ 0.289",
+    "number"
+   ]
+  },
+  "restatement_sha": "415353fd8cee0b978eb56610013f672716d90c739ee63801da5d705a6be6be76",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_3a49adad": {
+  "content_sha": "288dab2d30a50192dee80ba1d8ccde7fa0d6f0f6173be122e3b4791644310dfa",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Sphere A (lower, on ground, touching the left wall): weight W_A down at its centre; normal N₁ from the ground vertically up; normal N₂ from the left wall horizontal, pointing right; normal N₃ from sphere B along the line joining the centres, directed from B's centre toward A's centre (down and to the left). Sphere B (upper, touching the right wall, not the ground): weight W_B down at its centre; normal N₄ from the right wall horizontal, pointing left; normal N₃ from sphere A along the line of centres, directed from A's centre toward B's centre (up and to the right). No friction anywhere, so all forces are normal reactions through the centres."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.741,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Ball A: weight W_A down (through center), normal reaction from the floor up (through center), horizontal normal reaction from the left wall (through center), and the contact normal from ball B along the line joining the two centers (pushing A away from B). Ball B: weight W_B down (through center), horizontal normal reaction from the right wall (through center), and the contact normal from ball A along the same center-to-center line (Newton's third-law reaction, pushing B away from A).",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "152fbb685a87253f13357da5bbd27e9355d6e9cc9da2468efa72d208929b54a0",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_3ce6bc1e": {
+  "content_sha": "e562afb8978508d169b556d0aa5ba5ff0402480d1dcad1e8c234e492e64a44da",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit +qualifier",
+    "sha:b26a77e9"
+   ],
+   "B": [
+    true,
+    "number+unit +qualifier",
+    null,
+    "3 m/s downward (v₃ = -3 m/s with upward positive)"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:0327d4c8"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.582,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Block 3 moves downward at 3 m/s",
+    "number unit_missing_one_side +qualifier"
+   ]
+  },
+  "restatement_sha": "56056e1d17e9ad946433e32eee84aaf29c603e7658e487c7e7f120284294fd28",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_3df038da": {
+  "content_sha": "334d966cc79cb22581ec91c033725383f243f783d236b9b829bf513494866d0f",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "T_BC = m(g − a) with a = g/3 → 2 × (2/3) × 9.8 ≈ 13.1 N ≈ 13 N (13.3 N with g = 10)"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:0816367d"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.641,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "≈13 N (13.07 N with g=9.8 m/s², 13.33 N with g=10 m/s²)",
+    "option"
+   ]
+  },
+  "restatement_sha": "026f232c61e565c43dee25df9632a4bacff91e8fe8182435868ad1eb1b67e402",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_3fe0c367": {
+  "content_sha": "96e45ac699d95f0c3c7407681814c5ad575af8d708210cdea1cb893073f80f46",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "μ_min = 3/8"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:1de05bce"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 3 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.677,
+   "signature": [
+    [
+     "5"
+    ],
+    [
+     "3",
+     "4",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "μ = 3/8",
+    "option"
+   ]
+  },
+  "restatement_sha": "a890d7c6f908a6fdb6e0b4e330918b6ee2c7e323cbc35d5285eec7318bf1febc",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_400dbba2": {
+  "content_sha": "d55e89da6a050db54fb0a168ddd7afe826143efe3f38a71299e8aaadf59bc1a3",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:0185d1b7"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) f_A = (√3/2) w ≈ 0.866 w (horizontal, toward the wall); (b) N_A = w (vertical, upward); (c) N_B = (√3/2) w ≈ 0.866 w (horizontal, away from the wall)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 30"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.47,
+   "signature": [
+    [],
+    [
+     "30"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) friction at A = (√3/2) w ≈ 0.866 w, (b) normal reaction at A = w, (c) normal reaction at B = (√3/2) w ≈ 0.866 w",
+    "parts"
+   ]
+  },
+  "restatement_sha": "f15741cb341be783f9575073fbc52031d3627c72ce767e62c9c13a675e69322f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_4293a29e": {
+  "content_sha": "6e253e72c8c78170741551297cb1235033faca98d12f0d18f7ef3a7a7338e7f3",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:186ec152"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "F = ma/2 = 100 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.522,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "F = 100 N",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "a9ccf0a2b28cfec22ada8e94ad4209856b4693b7457176ffe047613cb074695b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_448a4b3c": {
+  "content_sha": "a883820b80c82491c09ca99d579ff55a798b065a1e31635c3b08b1b56129df45",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:8db5cdfc"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) θ=30°: friction = mg/2 (static, up the incline), net force = 0, a = 0; (b) θ=45°: friction = mg/√2 (limiting, up the incline), net force = 0, a = 0; (c) θ=60°: friction = mg/2 (kinetic, up the incline), net force = mg(√3−1)/2 ≈ 0.366 mg down the incline, a = g(√3−1)/2 ≈ 0.366 g ≈ 3.66 m/s²"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:65ceb2a8"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 30 45 60"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.756,
+   "signature": [
+    [
+     "30",
+     "45",
+     "45",
+     "60"
+    ],
+    [
+     "30",
+     "30",
+     "45",
+     "45",
+     "45",
+     "60",
+     "60"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) θ=30°: friction = 0.5mg (static, up the slope), net force = 0, a = 0. (b) θ=45°: friction = (mg/√2) ≈ 0.707mg (static, up the slope, on the verge of sliding), net force = 0, a = 0. (c) θ=60°: kinetic friction = 0.5mg (up the slope), net force = mg(√3−1)/2 ≈ 0.366mg down the slope, a = g(√3−1)/2 ≈ 0.366g",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "f2a70ad3dbfcf7fa5abead53966b238285c9f38f0cb971e42f9f2817eeaf6d92",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_450ff164": {
+  "content_sha": "d4f06a7e0bdf4409de70abc53f181c655256782f4c9dc84632e5ba37487299a7",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "None of the above — the massless balance reads the string tension T = 2m₁m₂g/(m₁+m₂) = (100/15)g ≈ 65.3 N (g = 9.8) or 66.7 N (g = 10); the system accelerates at g/3, so the reading is neither 50, 100 nor 150 N"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:3e7b91a2"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "numbers added by the restatement: 10 5"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.838,
+   "signature": [
+    [],
+    [
+     "10",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "T ≈ 66.7 N = 2m₁m₂g/(m₁+m₂) (none of a/b/c)",
+    "option"
+   ]
+  },
+  "restatement_sha": "c1e42882ef5f48488a1f8bbf8bbcdd26be96f699c2cd25f5d2a6809c58725eaf",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_48dd8225": {
+  "content_sha": "a573b57cc3c0c87b6084d6f3b411fd1f41e74017142e7c8a74dffaeb576acc8b",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_part_match a",
+    "sha:ef195835"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) F₁ = F₂ = 60 cos45° = 30√2 ≈ 42.4 N, (b) W = 60 sin45° = 30√2 ≈ 42.4 N"
+   ],
+   "hint": [
+    true,
+    "one_part_match a",
+    "sha:79d65769"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.514,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) F₁ = F₂ = 60cos45° ≈ 42.4 N, (b) W = 60sin45° ≈ 42.4 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "af695bdea13c532299f473ac4035e0b98bc25afcf0968119dcb569064a33ae62",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_495795a3": {
+  "content_sha": "baa6624af6482f57e1d6473ac1c96bc226878f9ecfc973ebceb97d81a464be14",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "zero"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:c88efd45"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.507,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "zero",
+    "option"
+   ]
+  },
+  "restatement_sha": "043bebcb9e574c0f53974ddd0ebb7ef1570233e1f502329109e6b75f735cd50e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_4bce0935": {
+  "content_sha": "ae582a1f738149e3c54aa87dbdc0d89c51229b3e25b5faad8a70804d9cda3590",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "Ball A (heavier) reaches the ground earlier: a = g − R/m is larger for the larger mass"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:b4be540c"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.444,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "ball A (the heavier ball) reaches earlier",
+    "option"
+   ]
+  },
+  "restatement_sha": "e2e0028da1b3868f31c8bd54a233f8915f6352fcdd2ab2c17b258e69eca8bf11",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_51df50e9": {
+  "content_sha": "dcfdf3e0f86a56c2982f8e38db8c67c20d810a88d0ad4819bb9d18a68698fb19",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:80a69c83"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) t = 2 s, (b) displacement of the block = 6 m (in the direction of the belt's motion)"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:0774fea4"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.625,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) t = 2 s, (b) displacement = 6 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "d9576046554a930320c18bfd1a4b4c9e985007bd6093458e005e7ab160b97724",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_573af721": {
+  "content_sha": "6f95abb232cfda543598f39c324a0f662dedba0a42562a457a5f4d4bdaea9632",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:a98187a3"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "T = 10 N; F = 6 N."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.491,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T = 10 N, F = 6 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "68e61865b29df68ff12d8a707e26415f7215251435d0c4070f20c85ed111f971",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_57d048b4": {
+  "content_sha": "3d8b3dc6770628cf7d1b73979e5ea9ffe3669aa99c424aafdea53c6a424294fa",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:399e1227"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a₂ = −7a₁ (from a₃ = −a₁, a₄ = −3a₁): block 2's acceleration is 7 times block 1's and in the opposite direction"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2",
+   "conditions added (fidelity ok): block 2 hangs from the lowest pulley's string"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.815,
+   "signature": [
+    [],
+    [
+     "1",
+     "2"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [
+    "block 2 hangs from the lowest pulley's string"
+   ],
+   "fidelity": [
+    null,
+    "a₂ = −7a₁ (|a₂| = 7|a₁|, directed oppositely — block 2 accelerates seven times as fast as block 1, in the opposite sense)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "9408c9b58b482dd35c6646366fe7e2b7cc8c92ea9820daee87b141544dc70e2e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5abb59f7": {
+  "content_sha": "de187b14eabf71f27ba04f3d20c308db03a57c5604245925fdb9912fbdd62f8d",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "50 N"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:c0dec051"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.436,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "50 N",
+    "option"
+   ]
+  },
+  "restatement_sha": "2b72a1a3e49ce8ae1cb2b293e98d2ec05f185403662d3757197bb254559b9070",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5b7fd94e": {
+  "content_sha": "0b64ccd364e9ec87bc30278b3f20d4886b494c4d5af1101a6432b3808822d30e",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "Assertion false (with zero net force a rigid body can still rotate, e.g. under a couple — only its centre of mass is at rest or in uniform motion), Reason true"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.521,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion false, Reason true",
+    "option"
+   ]
+  },
+  "restatement_sha": "cfeeea6a3b6c8df6bfff27c16e19667d85d9a961b679823b9e44cb8479c7070f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5c1668bc": {
+  "content_sha": "26b5b67a547f080669ed0129a908c8750111845df457e8a23fbba605df983261",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:90d3fee7"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) a = 2.70 m/s² upward, (b) T_top = 137.5 N, (c) T_mid = 112.5 N"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:b8947538"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 5 5 7"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.545,
+   "signature": [
+    [
+     "200",
+     "4",
+     "9.8"
+    ],
+    [
+     "200",
+     "4",
+     "5",
+     "5",
+     "7",
+     "9.8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a = 2.7 m/s², (b) tension at top of rope = 137.5 N, (c) tension at mid-point of rope = 112.5 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "52a07cd21a498898a7bdbdb868c9e98191143a3710a4644fac5074c68770e28f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5c497bf4": {
+  "content_sha": "f7215c41dbac33c51631155b207630afff968f80195d1cfe3f4d02bd39febfdb",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:ab9c2e1d"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) a = (10√3 − 5)/3 ≈ 4.11 m/s² (A, B down the 60° face; C up the 30° face), (b) string A–B: T = (5√3 + 5)/3 ≈ 4.55 N; string B–C over pulley: T = (20 + 20√3)/3 ≈ 18.21 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 30 30 60 60"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.763,
+   "signature": [
+    [
+     "1",
+     "10",
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "10",
+     "2",
+     "3",
+     "30",
+     "30",
+     "60",
+     "60"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a ≈ 4.11 m/s², (b) tension between A and B ≈ 4.55 N, tension between B and C (over the pulley) ≈ 18.21 N",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "875703c064bc7524d098ee8517c320ec7e7426679dd1b6c721b13536c64eab7a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5cc3250f": {
+  "content_sha": "29d185457bcffa3514d17ca928e1ff3c1c0aa56dcfbdba48d9033cd239f8a84c",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    false,
+    "judge(cached)",
+    "sha:201ac782"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) μ > tan θ, (b) a_max = g(μ cos θ − sin θ), (c) minimum retardation = g sin θ (no friction, free rolling), (d) maximum retardation = g(sin θ + μ cos θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "escalate_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.596,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) μ > tanθ, (b) maximum acceleration = g(μcosθ − sinθ), (c) minimum retardation = g sinθ, (d) maximum retardation = g(sinθ + μcosθ)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "8bf698f1892b6ad467e90d7c7219960c3afcf97fd3670f8036d797f253e23606",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "escalate_key"
+ },
+ "lom_5cc62e23": {
+  "content_sha": "1cf326ab0e03049d5ff16898a233b20d3f8fad65584061d17a37d8bba5dbf944",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:db452230"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "a = 20/3 ≈ 6.67 m/s², T = 40/3 ≈ 13.33 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.683,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "10",
+     "2",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a ≈ 6.67 m/s², T ≈ 13.33 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "97a5dc75555fb90c804835661ff1190a3d4896ca9db312f54aba924f621a0b60",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5d58df50": {
+  "content_sha": "4c1609c815d0741e02894bd301f5bf48e910a46135be7ebd5c3cd452494fbfef",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:3ff1af39"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "1 kg block: 190/29 ≈ 6.55 m/s² upward; 2 kg block: 170/29 ≈ 5.86 m/s² downward; 3 kg block: 210/29 ≈ 7.24 m/s² downward (pulley P: 190/29 ≈ 6.55 m/s² downward); T = 240/29 ≈ 8.28 N (string over P), 2T = 480/29 ≈ 16.55 N (string over fixed pulley)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.701,
+   "signature": [
+    [],
+    [
+     "1",
+     "2",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 1 kg block: 190/29 ≈ 6.55 m/s² upward; 2 kg block: 170/29 ≈ 5.86 m/s² downward; 3 kg block: 210/29 ≈ 7.24 m/s² downward. (b) string over movable pulley (2kg↔3kg): T = 240/29 ≈ 8.28 N; string over fixed pulley (1kg↔pulley): 2T = 480/29 ≈ 16.55 N",
+    "one_part_match a"
+   ]
+  },
+  "restatement_sha": "d968857f3792875ec3d249597d2863bde8d3e6f6483a642d78fdabda18cf371b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5df3076d": {
+  "content_sha": "0dfb9e2177095447a62c8ed58be0024c2a9525ba3cbae52d3b8e9008694f8d0b",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:b8c90e95"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "a = 10/3 m/s² ≈ 3.33 m/s² (1 kg block moves down, 2 kg block moves up)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:13da46c8"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.602,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 10/3 ≈ 3.33 m/s²",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "90baa91e8fd1958696264a098a6112b1b204a38c1b936c33c5a4f2dd11f20108",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_5f7a4a18": {
+  "content_sha": "1a2839f381dc60b2359f7a22b340b22b2319cf32577601e88bd93070c898c570",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:fe094375"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "angle = 30° (string vertical, ceiling normal tilted 30°), T = 10 N"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:3569679b"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.585,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 30° from the normal to the ceiling, (b) T = 10 N",
+    "one_part_match a"
+   ]
+  },
+  "restatement_sha": "6b7812328317796c21d2a886148e9b3d294b1530edd5441b7cf7642e2d737723",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_61a99ab4": {
+  "content_sha": "72ed44e354c1eff12c69fe0a304daddf0f844af422c580280c19a75ca823516b",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:d82ffe6b"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Relative to the car: the object moves along +î with retardation 8 m/s² (pseudo force 10 N + kinetic friction 6 N, both along −î), stops relative to the car after 1.25 s having slid 6.25 m forward; then static friction (needed 10 N ≤ μₛ·20 N > 10 N) holds it, so it stays at rest relative to the car (moves with the car) from then on"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:7a083dca"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.702,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "The object slides forward relative to the car's floor for 1.25 s, sliding 6.25 m relative to the car (relative velocity 10 m/s decays to 0 at relative deceleration 8 m/s²); after that it moves together with the car with no further sliding, since holding it needs only μs = a_car/g = 0.5 and the actual μs is above 0.5.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "9fa36ea28cca5d654a2b219c2651acd38b4866a42d6365d94b1f939845f2033c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6204ca3c": {
+  "content_sha": "8d33cffe702f366f20e91d89886052792b473db5cb8a1998bcf40a18fc5f1198",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:f59d60fc"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) T = 40/√3 ≈ 23.1 N, (b) hinge force = 40/√3 ≈ 23.1 N (components: 20/√3 ≈ 11.5 N horizontal away from the wall, 20 N vertical up; at 60° above the horizontal)"
+   ],
+   "hint": [
+    true,
+    "one_part_match a",
+    "sha:d98f46b6"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 60"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.618,
+   "signature": [
+    [
+     "10",
+     "2",
+     "4"
+    ],
+    [
+     "10",
+     "2",
+     "4",
+     "60"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) T = 40/√3 N ≈ 23.1 N, (b) hinge force ≈ 23.1 N, directed 60° above the rod, pointing away from the wall (up and outward from O)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "1fa3bc5ecca6cb6f2a1a198f3db2d132355aa74afbd4ae7da48d4fe0c15bb581",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_644a7542": {
+  "content_sha": "c822665a8bb769965dbd4391b2d98711e264d8b91a1762b4415567b37504e9a4",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:ae1971b5"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "F₁: x = 4cos30° = 2√3 N ≈ 3.46 N, y = 4sin30° = 2 N; F₂: x = −4cos60° = −2 N, y = 4sin60° = 2√3 N ≈ 3.46 N; F₃: x = 0, y = −6 N; F₄: x = 4 N, y = 0"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:57fdddc0"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.702,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "F₁ = (2√3, 2) N ≈ (3.46, 2.00) N; F₂ = (−2, 2√3) N ≈ (−2.00, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N",
+    "words"
+   ]
+  },
+  "restatement_sha": "57c8de80af7829f0fffe2b5a533ae3ba07522b3f06c52dd15070e0c7a769295a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6512249a": {
+  "content_sha": "b275c2ced9c53febaeb66580f28aa906098347f591ff3c13aaaab6a7d73b4758",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:2d2ba778"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a = 4 m/s² downward; friction = 12 N (kinetic, acting upward)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:74b3b82f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.6 0.8"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.669,
+   "signature": [
+    [
+     "10",
+     "2",
+     "20"
+    ],
+    [
+     "0.6",
+     "0.8",
+     "10",
+     "2",
+     "20"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 4 m/s² downward (block slides down); friction = 12 N, kinetic, acting upward",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "deea8bc45290d93ae4d3739b347c074421af3e088e9e11c92058c4fdfba98b25",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6546a1b6": {
+  "content_sha": "e5d8364ff97c6b02f5448d27eb616e70821a58b3b713d7f6f6f62b665b1048e2",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Three forces on the sphere, all passing through its centre O: weight w vertically down at O; normal reaction N from the smooth wall at A, horizontal, directed away from the wall (through O); tension T along the string from B toward C (up and toward the wall), whose line of action extended passes through O. N + T cosθ-type balance: T cosθ = w, T sinθ = N where θ is the string's angle with the wall."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.654,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Three concurrent forces act on the ball: (1) weight w, vertically downward through the ball's centre; (2) normal reaction N from the wall at point A, horizontal, directed away from the wall into the ball; (3) cord tension T at point B, directed along the cord from B toward C (up and toward the wall). The three forces sum to zero.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "a577028cd8937ceea1492d8c182632d95babea7e966b622d94397da7ff0d9486",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_660c1d75": {
+  "content_sha": "e6f3d62fda96ee99408091010ecece9b50d6f2fc8fe328a41f66b2ca64173bf8",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:5a91270b"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) about A: 4 N force → 8 N·m anticlockwise, 3 N force → 0, 5 N force → 10 N·m clockwise, 2 N force → 0 (net 2 N·m clockwise), (b) about O: 4 N force → 4 N·m anticlockwise, 3 N force → 3 N·m clockwise, 5 N force → 5 N·m clockwise, 2 N force → 2 N·m anticlockwise (net 2 N·m clockwise)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.531,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) About A: 4N(CD)=8 N·m CCW, 3N(AD)=0 (passes through A), 5N(CB)=10 N·m CW, 2N(AB)=0 (passes through A); net = 2 N·m CW. (b) About O: 4N(CD)=4 N·m CCW, 3N(AD)=3 N·m CW, 5N(CB)=5 N·m CW, 2N(AB)=2 N·m CCW; net = 2 N·m CW.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "210adde3d2f9cfa6cfac8a14aa65448a3f661283e8dd1a740e72b8706fe5da49",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_67c45fd3": {
+  "content_sha": "bc9fd096e8e5db97c1a4f1f9f66d5b89c8db3714dc2f2fede33fa42475a2126f",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) both true and the Reason explains the Assertion: A tends to move (or moves) leftward relative to B under F₁ leftward / F₂ rightward, so friction on A from B is rightward in every case — no-slip gives f = (F₁m_B + F₂m_A)/(m_A+m_B) > 0 rightward, slipping gives kinetic friction rightward"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.525,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "887a4ae4f95abdf9e812ac695e2ef14f7efff74606915ef4f43068da7c0700ae",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6c463010": {
+  "content_sha": "5ca54ab197d7bd4b1fab3772e793c2dd2f677b0fee805d6ced0f897c8b15b988",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:707ab695"
+   ],
+   "B": [
+    true,
+    "number unit_missing_one_side",
+    null,
+    "M = (m₁+m₂) tan30°/(1 − tan30°) = 5/(√3 − 1) = 5(√3+1)/2 ≈ 6.83 kg"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:c0459831"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "ascii maths m2",
+   "numbers added by the restatement: 30"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.713,
+   "signature": [
+    [
+     "1",
+     "4"
+    ],
+    [
+     "1",
+     "30",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "M = 5(√3+1)/2 kg ≈ 6.83 kg",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "b2caaf2dd00f65c3f8e9b1a761769ff0ac2b54c08781dda28ef731ff12f4ddf4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6c8b046b": {
+  "content_sha": "66762a73242b4fdf1e27d9ad0ab0dc002bed4065d1eba621359e98641c3f7d22",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:b27d02a7"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 20 N, (b) 50 N"
+   ],
+   "hint": [
+    true,
+    "one_part_match a",
+    "sha:79a89dfc"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2.9"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.521,
+   "signature": [
+    [
+     "0.2",
+     "0.2",
+     "1",
+     "1.9",
+     "2.9",
+     "9.8"
+    ],
+    [
+     "0.2",
+     "0.2",
+     "1",
+     "1.9",
+     "2.9",
+     "2.9",
+     "9.8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) T at midpoint of lower wire = 20 N, (b) T at midpoint of upper wire = 50 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "273042adb854418bc4e2cbd2054411e343f0ae1b0755006d57428fa1eb3abd6a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6ce8778b": {
+  "content_sha": "682fced5fbc3d500ff2044c9dcbad42ad8ff5c9462e65b897773319d014d1765",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "μ = 3/4: t_rough = 2 t_smooth ⇒ a_smooth = 4 a_rough ⇒ g sin45° = 4g(sin45° − μ cos45°) ⇒ 1 = 4(1 − μ)"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:37768ff4"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.535,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "μk = 3/4",
+    "option"
+   ]
+  },
+  "restatement_sha": "ada5fed78455d73a91b7cd712b5de84e49ea6fc5db1bd6a4137174699c321a36",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_6f2ba92f": {
+  "content_sha": "e47c60a7cff1fd5f2ff1f4aba12319663bcd886bf9b1df532841b4c6f2fe6661",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "F = mg sin φ / cos(θ − φ) for the given pull angle θ (its least value over θ, at θ = φ, would be mg sin φ)"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:3a7cc044"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.4,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "F_min = mg sinφ / cos(θ−φ)",
+    "option"
+   ]
+  },
+  "restatement_sha": "b56c711adb65f1c60bd5770591b90e807ee18e5b548b3fb562829c505f8d678b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_70509298": {
+  "content_sha": "8533f991d4242e9d42e0247ef13fec906ad8cb211ae7d958a1335f8b3f700cef",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "expression",
+    "sha:ed95e3b3"
+   ],
+   "B": [
+    true,
+    "expression",
+    null,
+    "F = (M + m) g tan θ (the whole system accelerates at a = g tan θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): floor and incline are both frictionless"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.745,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "floor and incline are both frictionless"
+   ],
+   "fidelity": [
+    null,
+    "F = (M+m) g tanθ",
+    "expression"
+   ]
+  },
+  "restatement_sha": "a89be3cc1d75931b3737d4f3a8c1e06d117913374d6241e31f50deed0fa02e41",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_743b71ad": {
+  "content_sha": "7dfc46e5edef49c093f341c351b9a6c1fce3ea30ab6115213b86cc1f0ac265b1",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_part_match b",
+    "sha:793d80bb"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) a = 0 for 0 ≤ t < 6 s; at t = 6 s the acceleration jumps to 2 m/s², then a = (t − 4) m/s² for t ≥ 6 s (straight line of slope 1 m/s³ starting at (6 s, 2 m/s²)), (b) f = 4 N at t = 2 s (static), f = 8 N at t = 8 s (kinetic)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.657,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a=0 for 0≤t≤6 s (F=2t stays below the 12 N max-static-friction limit; block stationary, static friction=F); the block starts sliding at t=6 s; for t>6 s, a=(t−4) m/s² (linear, jumping from 0 to 2 m/s² at t=6 s then rising). (b) friction at t=2 s = 4 N (static, equals the 4 N applied force); friction at t=8 s = 8 N (kinetic, μk·N, block already sliding).",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "9d89c3a15d82b34b75f454955beb90716f2134d7572b2a5f1ea30b4b29dfd934",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_744442e6": {
+  "content_sha": "6d70b0693f5a87a4062254aeecc044ce36d525a8b72240f553fa5846b201fa9e",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:4a6ce881"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) Car frame: pseudo force 10 N along −î, so z = 10t (uniform) and x = −2.5t² (uniformly accelerated at 5 m/s² along −î); the path on the floor is the parabola x = −z²/40, curving toward the rear of the car. (b) Ground frame: no horizontal force, so it moves in a straight line with constant velocity 10 m/s k̂ (x = 0, z = 10t), while the car accelerates away along +î"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.738,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) The passenger (car frame) sees a parabolic path: constant 10 m/s sideways (k̂) combined with a backward (−î) pseudo-acceleration of 5 m/s² relative to the car (x_rel=−2.5t², z_rel=10t). (b) The ground observer sees the object travel in a straight line at constant 10 m/s along k̂ only, since no real horizontal force acts on it on the frictionless floor, while the car accelerates forward (î) out from under it.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "312633b84ccafef4e05820b25948afb91a063c1f239b67570b876d2bfd9cb2a6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_755d5654": {
+  "content_sha": "34f96e043525bc9330e030570ac8f97118ba36e3248fe540e08d5a7bcc7afe18",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:60a2a4e8"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) v_A = 5 m/s (B leaves the floor at t = 2 s; A leaves at t = 1 s), (b) height raised by the pulley = 5/6 m ≈ 0.833 m (A rises 5/3 m)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.708,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 5 m/s, (b) 5/6 m ≈ 0.83 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "4e0b4706f08287463c0c5b2683ee062f5937dc16d4b9294f6db3fdff51eb6590",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_77397fdd": {
+  "content_sha": "bce1291103a62f12e8574b4d6d4a86e75924a39af1e5aec6d6d429d784845ff4",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:609b81fa"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "a₂ = 2g(2η − sin θ)/(4η + 1), directed downward (m₁ moves up the incline with a₁ = a₂/2 = g(2η − sin θ)/(4η + 1))"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "ascii maths m2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.657,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a(m₂) = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ (upward otherwise), where η = m₂/m₁",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "ef5a083daab5b4cef5f92d5c75c704c8ab6863af8fd3dde38ca54c33cf641e22",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_778d98f2": {
+  "content_sha": "a16a14ee241193d490d6db7b2ab66b88a4d6d1b8a8475a14230f1254de35664e",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:61040cc1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a_A = 2g/7 downward and a_B = g/7 upward (with g = 10 m/s²: a_A = 20/7 ≈ 2.86 m/s² down, a_B = 10/7 ≈ 1.43 m/s² up; with g = 9.8 m/s²: 2.8 m/s² down and 1.4 m/s² up); string tension T = 20g/7 ≈ 28.6 N"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:8497c2a0"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 4 5"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.657,
+   "signature": [
+    [],
+    [
+     "4",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a(A) = 20/7 m/s² ≈ 2.86 m/s² downward, a(B) = 10/7 m/s² ≈ 1.43 m/s² upward",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "2c42c82581358bc8fc9e666d84e65092b6289720ef3bcb8015ee648bb004b90f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_79092bee": {
+  "content_sha": "5cc80414a990d96f794b15acc2edfce6262293ba21667abac63cf10906db1d2a",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "tan θ = 3μ"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:a2ce293f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.595,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "tanθ = 3μ",
+    "option"
+   ]
+  },
+  "restatement_sha": "67b47f884d184bdd0901097aaa149fb2e5337f1866b8618ef586e6710d5f2228",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_7a601c42": {
+  "content_sha": "6f6cea8d327909296b6c9f7eda22e17104d53770f575c79ec29f39b85798a0c7",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:d4cf1cd3"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) a = 10 m/s² (toward the 120 N side), (b) N = 110 N, (c) 20 N (in the direction of a)"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:3858feba"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 120 2 50"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.634,
+   "signature": [
+    [
+     "1",
+     "1",
+     "2",
+     "2",
+     "4",
+     "4"
+    ],
+    [
+     "1",
+     "1",
+     "1",
+     "120",
+     "2",
+     "2",
+     "2",
+     "4",
+     "4",
+     "50"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 10 m/s² (toward the 2 kg block), (b) 110 N, (c) 20 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "d8d2e5beb8f99f0c7f0e8ff8459a7d29af4300d26e66ddab63c3b07bbf56cde5",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_7ba21240": {
+  "content_sha": "f73aebfaa12d19cec06dccce463ed6925a04e10f5a1bb186401bad5bc21b45ca",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:6b3522ad"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "t_min = 20 s (with g = 10 m/s²; ≈ 20.2 s with g = 9.8 m/s²)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 400"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.639,
+   "signature": [
+    [
+     "0.4",
+     "400"
+    ],
+    [
+     "0.4",
+     "400",
+     "400"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "20 s",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "adf67f140d3e2bce46dcb3d0aae26faa8d25506212f718974e6946328389ac90",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_7d765ebc": {
+  "content_sha": "2de5a9995b7f2100ea8cf0cd850aab32b3467921c3b0e5ef932b96d8225a2405",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:d8ff3c00"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) F_min = mg sin60° − μₛmg cos60° = 30√3 − 18 ≈ 34.0 N up the slope (any F from ≈34.0 N to ≈70.0 N holds it), (b) F = 30√3 − 12 ≈ 40.0 N, (c) F = 30√3 + 12 + 24 ≈ 88.0 N"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:97597785"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.4 0.6 60"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.71,
+   "signature": [
+    [
+     "10",
+     "4",
+     "6"
+    ],
+    [
+     "0.4",
+     "0.6",
+     "10",
+     "4",
+     "6",
+     "60"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 33.96 N ≤ F ≤ 69.96 N (i.e. 30√3−18 N to 30√3+18 N), (b) F ≈ 39.96 N (30√3−12 N), (c) F ≈ 87.96 N (30√3+36 N)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "2cd56e3d9e54c54a6d2c0384f42ac197f4a9f62e21b32732b212b0fc39dc6b6e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_7f407823": {
+  "content_sha": "7f373b106030df755ddf2ba73fec955bb1c682ce020d862349c05cb5a611f1bb",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:41596c7d"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "Component parallel to the slope: w sin 30° = 10 × 1/2 = 5 N (directed down the slope); component perpendicular to the slope: w cos 30° = 10 × √3/2 = 5√3 N ≈ 8.66 N (directed into the slope)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.581,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "w∥ = 5 N (parallel to slope), w⊥ = 5√3 N ≈ 8.66 N (perpendicular to slope)",
+    "list"
+   ]
+  },
+  "restatement_sha": "139241e2403f5d067947502b617b3da2a5ee37944b5a2e2f8b76ce9680f709b1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_7f786374": {
+  "content_sha": "d0a5817f33307637e55c5c9f159adff7fe6c5dc9ae7840b9dfd2a57a1f37c6a4",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:562c3ad7"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) t = 1 s, (b) common velocity = 6 m/s (in the direction of the given velocities), (c) displacement of 1 kg block = 4 m, displacement of 2 kg block = 7 m"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:d73eb32a"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 1 2 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.654,
+   "signature": [
+    [
+     "0.4",
+     "1",
+     "10",
+     "2",
+     "2",
+     "8"
+    ],
+    [
+     "0.4",
+     "1",
+     "1",
+     "1",
+     "10",
+     "2",
+     "2",
+     "2",
+     "2",
+     "8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 1 s, (b) 6 m/s, (c) 1 kg block travels 4 m, 2 kg block travels 7 m",
+    "parts"
+   ]
+  },
+  "restatement_sha": "973b7cdaf5035d5a5044824d1646652bac7a5982f47f64f9dcc641d35f3520ff",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_800ec4d3": {
+  "content_sha": "84e28fe28f4410d75258469a67b94c6cff40dae3829de0627e7f7eb9e1fd36f7",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:0bc5602e"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "a = 3g/4, directed downward"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:42f577d3"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.649,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 3g/4 (= 7.5 m/s² if g=10 m/s², downward)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "bd9ed3996d5b48a13b3cca59ddc61de3b6c69b4425a020b2fb77e24cb3ee6258",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_8295f660": {
+  "content_sha": "4db1357298df1a94e7d4058d9a94c7a7ee964aebda13d52134bd2d0762fa2261",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true: T_AB = 2T = 4m₁m₂g/(m₁+m₂), which exceeds both m₁g and m₂g unless the heavier mass is more than 3× the lighter (e.g. m₁ = 1 kg, m₂ = 2 kg gives T_AB = 8g/3 > 2g), so it does not ALWAYS lie between m₁g and m₂g; only the over-pulley tension T = 2m₁m₂g/(m₁+m₂) always does. Tension in a massless string is uniform — true"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:67515aa8"
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "dropped_ar",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.714,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion is false, Reason is true",
+    "option"
+   ]
+  },
+  "restatement_sha": "f858e212e4772d8a0d7beabd6fe024199c86ad06642b43fdc45ebc271ee89104",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "dropped_ar"
+ },
+ "lom_82fde00e": {
+  "content_sha": "c993f6724dfc2b90458ab520e982935cbfa75c980ab56ad5146e775b83627f84",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:f30dd22c"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a = 0 for 0 ≤ t < 9 s (F = 4t below limiting friction μₛmg = 36 N); at t = 9 s the block starts sliding and a jumps to (36 − 24)/6 = 2 m/s²; for t > 9 s, a = (4t − 24)/6 = (2t/3 − 4) m/s², a straight line of slope 2/3 m/s³ (e.g. a = 4 m/s² at t = 12 s)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.604,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a=0 for 0≤t<9s; at t=9s a jumps discontinuously to 2 m/s²; for t≥9s, a=(2t−12)/3 m/s² (a straight line of slope 2/3 m/s³, e.g. a=4 m/s² at t=12s)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "471c9a749c72b4342f74bbb55a3a0c1f75a9be8fdc74bc7d8431bf0b1288f102",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_86ae4582": {
+  "content_sha": "4102bc0173206ac5fb81c1fdc367968967e0d58d850956724e3bb0f75fba2820",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:7dfd33b8"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "F₁ = 4/√3 N ≈ 2.31 N; F₂ = 20/√3 N ≈ 11.55 N."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 4 8",
+   "conditions added (fidelity ok): four forces act through a single point"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.668,
+   "signature": [
+    [],
+    [
+     "4",
+     "8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [
+    "four forces act through a single point"
+   ],
+   "fidelity": [
+    null,
+    "F₁ ≈ 2.31 N, F₂ ≈ 11.55 N (F₁=4√3/3 N, F₂=20√3/3 N)",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "798cfe619de4aeafcb742cb6fde9d9eacf515d7419146e0d4fe2d8bb4fd2cfda",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_87408b28": {
+  "content_sha": "7d1f2f7d57b8276b8edc31be56eb12e4361c9d96e6719fd5df2a9e74028978d2",
+  "format": "mcq_single",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:78b53b73"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "U / cos θ (upward)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers differ (figure item: values may have moved between text and figure)"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.712,
+   "signature": [
+    [
+     "1982"
+    ],
+    []
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "U/cos θ",
+    "option"
+   ]
+  },
+  "restatement_sha": "3a231f09f2e392860dd878b763f212b632df94c07225b722662d0de0f3eee2b4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_88658934": {
+  "content_sha": "a13bd21d9c39afa52e253546b3914b2df59617fd7d08fefc0f56ebfbe98f3775",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:595f8c7c"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a_M = g/3 up the incline (≈ 3.33 m/s² with g = 10); the 2M block descends at g/6"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:6cd60bb2"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.661,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a(M) = g/3 ≈ 3.33 m/s², directed up the slope (and correspondingly 2M accelerates down at g/6 ≈ 1.67 m/s²)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "1c2580b0d4b5219881eac9adecec4b7c9c67f9eb9d046a00e668ebd630d8fcbd",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_892cab31": {
+  "content_sha": "021100a33c165c45921a038812f512713173d742c11b2815cb071f5b9eda22c7",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:4acaaa92"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "T = 2w/√3 ≈ 1.155 w (string makes 30° with the wall; wall reaction N = w/√3)"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:157feb63"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): string joins point B on sphere to point C on wall (from question 3 setup)"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.66,
+   "conditions_dropped": [
+    "string joins point B on sphere to point C on wall (from question 3 setup)"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T = 2W/√3 ≈ 1.155W",
+    "words"
+   ]
+  },
+  "restatement_sha": "6065698b84fddc64885d7a1227d85fc1119936b5b1476c337e0a1899d508aa15",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_8bee1b8c": {
+  "content_sha": "d1967e8b661538b007cd334d8d32c87fdfde7fa073fb99d19f252a6f44c6abc6",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "(b) both true, Reason not the explanation: F = μmg/(cosθ + μ sinθ) is minimum when tanθ = μ, i.e. θ = angle of friction (F_min = mg sinλ); angle of friction and angle of repose are indeed equal (tanλ = tanα = μ) but that equality does not explain the minimum"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:e76b015d"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.643,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "Both Assertion and Reason are true, but Reason is not the correct explanation of Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "12db576f5314677c261d108e673c75d12aff5b5ae7936295baddfa04557c418e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_8c269e6a": {
+  "content_sha": "d2fee5d597056f95501b62610678db519d31a0c3f05af4528f5bd92f4fda9531",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "expression",
+    "sha:c7f8e569"
+   ],
+   "B": [
+    true,
+    "expression",
+    null,
+    "a_A = a_B sin θ (rod's acceleration along its axis equals the wedge's horizontal acceleration times sin θ)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.722,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "aA = aB sin θ",
+    "expression"
+   ]
+  },
+  "restatement_sha": "065553924bfa1c9bd1f98cd5720b72d5a64294ba2ab9e9458e8c159283f9ea09",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_8fc83d1a": {
+  "content_sha": "33afb89b90be70011b871be3d07c5252c4f1aa07fbbb663d362f222eca664385",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number",
+    "sha:04699c71"
+   ],
+   "B": [
+    true,
+    "number",
+    null,
+    "μ = tan 30° = 1/√3 ≈ 0.577"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): particle just about to slip (limiting equilibrium)"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.515,
+   "conditions_dropped": [
+    "particle just about to slip (limiting equilibrium)"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "μ = tan30° = 1/√3 ≈ 0.577",
+    "words"
+   ]
+  },
+  "restatement_sha": "000837d59e1e9d967a60f4e67813a3e35df4287f851c93c128e644c9ee8d0de2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_90108702": {
+  "content_sha": "6e9b6c71979f33613ad716fa2755dfc7ce3e253381123831914f29e7746f38a7",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "μ = (3/4) tan θ"
+   ],
+   "hint": [
+    true,
+    "words",
+    "sha:fe17855a"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.584,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "μ = (3/4) tanθ",
+    "option"
+   ]
+  },
+  "restatement_sha": "eef3bcf43381b391c662327bc66c14acb0bd3ac42acff759a19eb3ac40cf91aa",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9237b855": {
+  "content_sha": "b4e4db94b754d8c8698ef198799168bd67b25a29429a8d664f36a2be13b85cd9",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:7bb19c59"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "2a₁ + a₂ + a₃ = 0 with all accelerations taken downward (equivalently a₂ + a₃ = 2a₁ when a₁ is taken upward and a₂, a₃ downward)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:c0900dc9"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.801,
+   "signature": [
+    [],
+    [
+     "1",
+     "2",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "2a₁ + a₂ + a₃ = 0",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "565c848befcef38c31781bf560b1baa292911cd0cded2150b6b25d3abd983924",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_93a6ffa1": {
+  "content_sha": "46184337d7f5dad4027932c0ae53461d9a55df9c6ff46883d4cc5fceb28b4a6e",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "h = (1 − √3/2)R"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:f3947ff0"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.55,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "h = (1 − √3/2)R ≈ 0.134R",
+    "option"
+   ]
+  },
+  "restatement_sha": "e85827e92acfc281c352b1f91bd25eeb51ea3146888087104f4998c0503cc977",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_94190158": {
+  "content_sha": "8ba200e8380504eedcec7328e003f1e2a01f698554afc752a5752626ef8a6f35",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:026fdde3"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "4 N (net force on the 2 kg block, in the direction of the applied force; a = 2 m/s²)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.412,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "4 N",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "b05e155977f0e673bf1948b081ff871d0b02b69bc4479901ebe6d46bf0658282",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_953e2438": {
+  "content_sha": "152558a7ae44851c1ae66392c019e776da003cf5add4fa3f1d4c916484663edd",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "m = 2.0 kg"
+   ],
+   "hint": [
+    true,
+    "number unit_missing_one_side",
+    "sha:8daeb553"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "conditions dropped (fidelity ok): block rests on the inclined plane"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.582,
+   "conditions_dropped": [
+    "block rests on the inclined plane"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "2.0 kg",
+    "option"
+   ]
+  },
+  "restatement_sha": "3e1256c0fefa2b839a492acc71544e725b5e12dbeb570ecf40300de78ec45800",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_97c46dfd": {
+  "content_sha": "204c69d12527e32fa87362abd293764d8a8483d6bb869f26d5c01c420f1d582d",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "t = √(2L / ((g + a) sin θ))"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:dacb800d"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.527,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "t = √(2L / ((g + a) sin θ))",
+    "option"
+   ]
+  },
+  "restatement_sha": "bab417f5edec77ca92983ad7a56cb80ad23bae93a71ae30aa5f88d91a738c0cb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9828b459": {
+  "content_sha": "12d82244b52ee930f067c5600ea61a6c2c995fad3c6a0cfa350b62d03abc1087",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:2bd7dbcc"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) the bananas move up (same tension on equal masses gives the bananas the same upward acceleration as the monkey), (b) the distance remains constant (equal accelerations from rest, so equal velocities at every instant), (c) the distance remains constant (both fall freely with acceleration g, starting with equal velocities), (d) the bananas also stop — they decelerate at the same rate as the monkey and come to rest together"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:78d53b46"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.65,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) The bananas rise, moving exactly in step with the monkey. (b) The gap stays the same — it neither shrinks nor grows. (c) The gap still stays the same (both fall freely with acceleration g). (d) The bananas decelerate/stop at the very same instant as the monkey, so the gap remains unchanged throughout.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "08525216dc69efbdbaf31ff838ae4be50ddcdf1b5c618713a3e711210293d529",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_992ae579": {
+  "content_sha": "04209f68350460ad4477dae78bcc2ed8ee749e35347117ce1c16119643a8d23b",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:f03df252"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "f = m(g sin37° − a cos37°) = 3.6 m newtons (m in kg), directed up the incline"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:c6f3d375"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 37",
+   "conditions dropped (fidelity ok): block does not slide along incline",
+   "conditions added (fidelity ok): block stays fixed relative to the wedge"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.711,
+   "signature": [
+    [
+     "10",
+     "3",
+     "3",
+     "37",
+     "5"
+    ],
+    [
+     "10",
+     "3",
+     "3",
+     "37",
+     "37",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [
+    "block does not slide along incline"
+   ],
+   "conditions_added": [
+    "block stays fixed relative to the wedge"
+   ],
+   "fidelity": [
+    null,
+    "f = m(g sinθ − a cosθ) = 3.6m N, directed up the slope",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "476ce2a20a554871028b6d10ebdc2e2acf56df38a152596f0d957ec4acffa11b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_99315daa": {
+  "content_sha": "11943d0a3de5b778a7890f9adf6e7c427a29086b1f0ff8e43f0c29bc62117cbc",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Sphere: weight w₂ down at its centre; normal N_w from the wall horizontal, directed away from the wall (to the right); normal N_g from the ground vertically up; normal N_C from the rod at C, perpendicular to the rod, directed toward the sphere's centre (down and toward the wall). No friction at the ground because every other force on the sphere passes through its centre (smooth wall, smooth rod, weight, ground normal), so a ground friction force would give an unbalanced torque about the centre. Rod AB (end A is in the air, not touching the wall): weight w₁ down at its midpoint; normal N_C from the sphere at C, perpendicular to the rod, directed away from the sphere (up and away from the wall); at B on the rough ground: normal N_B vertically up and friction f_B horizontal, directed toward the wall (balancing the outward horizontal component of N_C)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.604,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Ball FBD: weight w₂ (down, at center), wall normal (horizontal, through center — wall contact frictionless), rod normal at C (perpendicular to rod, along the ball's radius, through center — rod contact frictionless), ground normal (vertical, up, through center), ground friction = 0 (proved below). Rod FBD: weight w₁ (down, at its midpoint), reaction −(rod normal) from the ball at C (perpendicular to rod), plus whatever support the wall/ground provide at its ends A and B. No friction at ball-ground: every other force on the ball (weight, wall normal, rod normal) is radial — it passes through the ball's center, since gravity acts at the center and both other contacts are frictionless (their reactions, for a sphere, are always directed along the radius). The ground's normal reaction is also radial (vertical, through the center, since the ground contact point is directly below center). Ground friction is the ONLY force whose line of action does not pass through the center (a horizontal force applied at the point directly below center has a moment arm equal to the radius R). For the ball's rotational equilibrium (zero net torque about its center, required since it is static), this friction's torque f·R must vanish, and since R≠0, f=0.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "4a8bb800722fafd71b897b20815f65e11dc626bf4f51cd5cf3f3fb685e0076bb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9954af95": {
+  "content_sha": "bb1152d2cb12e9894bb415a9ff9bb1c846d502d1bef031a985ba0d72f17e27ad",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:8f48f40a"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) kinetic friction f = 4.8 N acting up the incline, (b) yes, the block slides down the incline with a = 1.6 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.3 0.4 2 37 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.688,
+   "signature": [
+    [],
+    [
+     "0.3",
+     "0.4",
+     "2",
+     "37",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 4.8 N, kinetic, directed up the incline. (b) Yes, the block slides — down the incline — with acceleration 1.6 m/s².",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "98a6ab601450e6f6dd316617beb8c9384f4388a4499ab85addda225527c1e8df",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9cee07f6": {
+  "content_sha": "3972283d788ed999db1aec2a3d423c44a62d1b085dabca397041ef3b8e6a5d74",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:66eee48b"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a₁ (rod, along its axis) = mg sin²α cos α / (M + m sin²α); a₂ (wedge, horizontal) = mg sin α cos α / (M + m sin²α)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): no friction anywhere"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.665,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "no friction anywhere"
+   ],
+   "fidelity": [
+    null,
+    "Wedge: A = mg sinα cosα/(M + m sin²α); Rod (along its own axis): a = mg sin²α cosα/(M + m sin²α) = A sinα",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "e581ab11b9972bf4487f2d2b7a8018e17939eb6064cc0a78b1b4d29d53f1aedc",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9cef0abc": {
+  "content_sha": "3afeabb9fa49271d3f49b4205e5955db189d0c629c6d06bcb4ee98a0dbc28893",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:e3d641e4"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) Relative to the car the object moves along +î with initial speed 10 m/s and constant retardation 5 m/s² (pseudo force −10 N î): x_rel = 10t − 2.5t², it stops after 2 s at 10 m ahead, then returns along −î with acceleration 5 m/s²; (b) t = 4 s"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:b704e340"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.552,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) Object keeps constant velocity 10 m/s (ground frame, frictionless floor); relative to car it slides forward, decelerating at 5 m/s², reaches max forward displacement 10 m at t = 2 s, then slides backward relative to the car. (b) t = 4 s",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "652bea6a92c0f9a17a5cb6833c88455098afc16ac0421a175a33527e45089bcc",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_9dbebb4d": {
+  "content_sha": "f2e3fea70061bc6a7d92da9f266bb1890c7a78ec2109108cf23d5e316776f724",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:8da276f6"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "T_OP = 10√2 N ≈ 14.1 N (with RP uncut); T_OQ = 5√2 N ≈ 7.07 N (at Q, the extreme of the swing, v = 0)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 45"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.678,
+   "signature": [
+    [
+     "1",
+     "10",
+     "45"
+    ],
+    [
+     "1",
+     "10",
+     "45",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T at P (before cut) = 10√2 N ≈ 14.14 N; T at Q (after cut) = 5√2 N ≈ 7.07 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "036a84d766a5e471474e815c16e01a0decaa343c107d20dfd5c025911bb3a27a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a567393c": {
+  "content_sha": "b2d7079422bff261754d69787e71d84f4d0f69f63253fccc7102e2dcb126270f",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "yes_no",
+    "sha:3cbc87c7"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "True — a frame moving with constant velocity is inertial (a_frame = 0), so the pseudo force −m·a_frame is zero"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.652,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "True",
+    "yes_no"
+   ]
+  },
+  "restatement_sha": "4fe6a7d5c68da0b70c2941d31b26615f32ca4c9fd71bc69fa4dde36501b83cde",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a65a3261": {
+  "content_sha": "3c19a0a5b9d0f15b386d83f99d184fcfbc9a20b87c22572182bb81564393d8b9",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:e605f417"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) F between (30√3 − 18) ≈ 33.96 N and (30√3 + 18) ≈ 69.96 N — minimum F ≈ 34 N (friction up the slope at its limit 18 N), (b) F = 30√3 − 12 ≈ 39.96 N ≈ 40 N, (c) F = 30√3 + 12 + 24 ≈ 87.96 N ≈ 88 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions added (fidelity ok): first case: block stays at rest; second case: block moves down the slope at cons"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.664,
+   "conditions_dropped": [],
+   "conditions_added": [
+    "first case: block stays at rest",
+    "second case: block moves down the slope at constant speed"
+   ],
+   "fidelity": [
+    null,
+    "(a) 33.96 N ≤ F ≤ 69.96 N (exact: 30√3 − 18 N to 30√3 + 18 N); (b) F ≈ 39.96 N (30√3 − 12 N); (c) F ≈ 87.96 N (30√3 + 36 N)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "07643a6365b04f0fe0a249cd6b9ab71f241f2fa6552aae0da6aa4d3ac0d3eede",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a7f3cdc4": {
+  "content_sha": "a189cc211843aa0043d1cc46ca398b2d42acf43330f626f5bbf99992934d8f32",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:9e60787f"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a = 6 m/s² (C down, A right, B left); T₁ (string on A) = 32 N, T₂ (string on B) = 48 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 20 4 8"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.726,
+   "signature": [
+    [
+     "0.2",
+     "10"
+    ],
+    [
+     "0.2",
+     "10",
+     "20",
+     "4",
+     "8"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 6 m/s²; T₁ (A–C string) = 32 N; T₂ (B–C string) = 48 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "483274dab63adf62aaadcb6740cbb39aebc30224c2329e3f6bdfc56ab0b32c19",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a85f8814": {
+  "content_sha": "8a9f603966631b59e902c2c86fa30cfee475e0cc1ab6f0cdbdcf92bb19ca08f2",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "Both true and the Reason explains the Assertion: the sector angles are (30°, 120°, 210°) or (30°, 90°, 240°) — one exceeds 180°, so all three forces lie in a half-plane and cannot balance"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.506,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "Both Assertion and Reason are true, and the Reason is the correct explanation of the Assertion.",
+    "option"
+   ]
+  },
+  "restatement_sha": "69f559468a3983256bc897476c9ae08c4965c069e6fb8bb80ce10219fcb3ed7b",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a8d2834a": {
+  "content_sha": "53b03f5dab8e6f1765c608b22cbb73051db37cbac799ce6ddbebeb8176326e7b",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:261fe971"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "T = mg/√2, acceleration of B = g/2 (tangential, vertically downward at the instant of release)"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:2ed4a7c1"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.691,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T = mg/√2 (= √2 mg/2); acceleration of bead B = g/2, directed vertically downward (tangent to the ring at B)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "37df6b1488184bf2a8c6abd9df0ee0b5f8b1f4840be409a364e39642aef9d7d5",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_a9fb6916": {
+  "content_sha": "ae87ebc6b28bcf8786842df935a49af9ab09ab33843dd97277036089a8d2c3f5",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:4d00a568"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "a_rel = (g + a) sin θ, directed down the incline"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:4ca53ed5"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): friction neglected"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.489,
+   "conditions_dropped": [
+    "friction neglected"
+   ],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Acceleration of block relative to wedge = (g + a) sinθ, directed down the incline",
+    "list"
+   ]
+  },
+  "restatement_sha": "26f7688f303e661e43ea2943f18ac8243bd251fa1adc1133df9259ffbb7451db",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_aadb9898": {
+  "content_sha": "eb3a077b7b0c134cddc613c4d52b51828ed27f91c14dc1ca1fe66861fbb46ca8",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:44a6cff1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) T₁ = 10 N, T₂ = 30 N (a = 1 m/s²); (b) T₂ = 24 N (a = 1.2 m/s²)"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:cd91a734"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.474,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) T₁ = 10 N, T₂ = 30 N; (b) T₂ = 24 N immediately after the T₁ string breaks",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "022bdd705fce2c80c9a6fe94d5795800d1b1373d8b623b0dd28c7eb779c44b94",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ac6d8f03": {
+  "content_sha": "5f89330c50f933826565713322d931797949a37d96528d5778f95f1cf30eaea2",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:f3f19c71"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) 4ĵ N (magnitude 4 N along +y), (b) −4î N (magnitude 4 N along −x)"
+   ],
+   "hint": [
+    true,
+    "parts",
+    "sha:2c51bf27"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.527,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) Pseudo force on A in B's frame = 4 N along +ĵ (i.e. 4ĵ N); (b) Pseudo force on B in A's frame = 4 N along −î (i.e. −4î N)",
+    "parts"
+   ]
+  },
+  "restatement_sha": "90565141d5cfd602ebe3f4ffa6fcf4143ffc0c7c03ff1f38867c673692902b61",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_adb64b1d": {
+  "content_sha": "5950fcd7592efd6f0829227dc1114040bd13b7e286688eda61872012f9eb8ad7",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) Plank: weight W₁ vertically down at its centre; at the cylinder contact a normal reaction N (no friction) perpendicular to the plank, pushing the plank away from the cylinder (up and toward the plank's raised end side); at the ground end: normal reaction N₁ vertically up and friction f₁ horizontal along the ground directed toward the cylinder (it stops the foot from sliding away). (b) Cylinder: weight W₂ down at its centre; normal N from the plank, perpendicular to the plank, directed through the cylinder's centre (down and away from the plank's foot); normal reaction N₂ from the ground vertically up; friction f₂ from the ground horizontal, directed toward the plank's foot (opposite to the horizontal push of N). f₁ and f₂ are equal and opposite (whole system has no other horizontal external force)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.594,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Plank: (i) its weight mg at its centre of mass, (ii) normal reaction N₁ from the ground at its lower end (perpendicular to the ground), (iii) friction f₁ from the ground at that same end (along the ground), (iv) normal reaction N₂ from the cylinder at the point of contact (perpendicular to the plank's surface, since the plank–cylinder contact is frictionless). Cylinder: (i) its weight Mg at its centre, (ii) normal reaction N₃ from the ground at its contact point (vertically upward), (iii) friction f₂ from the ground at that contact (horizontal), (iv) reaction N₂ from the plank at the same contact point (equal and opposite to (iv) above, perpendicular to the plank's surface, no friction component)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "b9f841b769abab506ac059f0e399957f03e36c3c97ea041fd30bf5dabbe9c175",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_aeff097e": {
+  "content_sha": "465ef7ffc04fdcb6c7ca7c3c445aaee0c08ef66564f4154d2d666278b259d514",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:80940f7f"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) a = 3 m/s² for all three blocks, toward the 100 N side; (b) net force: 18 N on 6 kg, 12 N on 4 kg, 30 N on 10 kg (all in the direction of a); (c) 70 N between the 4 kg and 10 kg blocks"
+   ],
+   "hint": [
+    true,
+    "parts_partial",
+    "sha:2abad36f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 10 10 100 4 40 6 6",
+   "conditions added (fidelity ok): frictionless horizontal floor"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.754,
+   "signature": [
+    [
+     "10",
+     "10",
+     "4",
+     "4",
+     "6"
+    ],
+    [
+     "10",
+     "10",
+     "10",
+     "10",
+     "100",
+     "4",
+     "4",
+     "4",
+     "40",
+     "6",
+     "6",
+     "6"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [
+    "frictionless horizontal floor"
+   ],
+   "fidelity": [
+    null,
+    "(a) a = 3 m/s² for all three blocks (rightward); (b) net force: 6 kg block = 18 N, 4 kg block = 12 N, 10 kg block = 30 N (all rightward); (c) contact force between the 4 kg and 10 kg blocks = 70 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "892c0f0d39b6c863edf203fe659026bd0ebe304239e01d237a71ed34de47da7c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_af1bfccc": {
+  "content_sha": "90b47077d2b532dd5bf3360699cdbd61efdb07093d333f2fc5a647d1793b6c84",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "t = 2μmg/a"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:0c110dc4"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.533,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "t = 2μmg/a",
+    "option"
+   ]
+  },
+  "restatement_sha": "d912509fc8ce24780397752df238f639d665ae8e0a292826539d8574d7038b3d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b09b2021": {
+  "content_sha": "ded8daff8ff3a50b4dc1f0c3fde5905e3d87404d648562d16ff5254478b8edd7",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:079734a6"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a = 2.5 m/s² upward; T_A = 75 N, T_B = 50 N, T_C = 62.5 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 100 2 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.769,
+   "signature": [
+    [
+     "2"
+    ],
+    [
+     "100",
+     "2",
+     "2",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T_A = 75 N, T_B = 50 N, T_C = 62.5 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "e6083ae579f12e52f75c2ac320345acc145fcbf9881285bf5eede492eb43a71e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b325738d": {
+  "content_sha": "1895f7b43fd413e7ded33f31f890af54b1a939ed8f93315454fe726acd63dced",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "(a) Assertion true, Reason true and it explains the Assertion: block needs F = ma = m(3ĵ − 2î), the −2mî component needs a leftward force which a smooth box with the block at its left wall cannot supply (wall pushes only +x, floor only +y), so A cannot stay in place"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "dropped_ar",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.672,
+   "signature": [
+    [
+     "2",
+     "3"
+    ],
+    [
+     "2",
+     "2",
+     "3",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "(a) Both Assertion and Reason are true, and the Reason is the correct explanation of the Assertion",
+    "option"
+   ]
+  },
+  "restatement_sha": "af0f71a7529b79d4402bfbbab928274953397c43c4d4645f7dc0a18e28a47d1c",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "dropped_ar"
+ },
+ "lom_b34b6154": {
+  "content_sha": "adc03ea14ecddaed759a343dd91c815a29971226d5f035651f3fe698678b623c",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:980521c0"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "mg, directed vertically upward (resultant of N = mg cos θ and friction f = mg sin θ; the total contact force balances the weight)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.443,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "mg, directed vertically upward (opposite to the block's weight)",
+    "list"
+   ]
+  },
+  "restatement_sha": "fd32cb1a8a268f1e03e4f53a0d5d1333b0476652efe5b40ac280f1b6c27df328",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b6fd9b1c": {
+  "content_sha": "2d1345f064d4d7bbf275bace54b6c26cb5fe13ec0de9564207aa95f2495c7799",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "Both true and the Reason explains the Assertion: ratio = (sinθ + μcosθ)/(sinθ − μcosθ) = (tanθ + μ)/(tanθ − μ) = (1 + μ)/(1 − μ) at 45° = 2 : 1"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:3e33cdc0"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.539,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "(a) — both Assertion and Reason are true and Reason correctly explains Assertion: a_up/a_down = (sinθ+μcosθ)/(sinθ−μcosθ) = (1+μ)/(1−μ) = (1+1/3)/(1−1/3) = 2, matching the stated 2:1 ratio.",
+    "option"
+   ]
+  },
+  "restatement_sha": "5403710bf7a0cc728dc38a0ce634800f6f8481dca968b52ec9a8ea007ba8055e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b7c1ba7e": {
+  "content_sha": "9b1a2667ca52e6eeef76e690fa7f5967e217edcc51c31ee6c0ac17cc359f27d9",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:0224e182"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a_B = 3 a_A in magnitude, directed opposite to a_A (if A moves down with acceleration a, B moves up with 3a; with a common downward-positive sign convention a_B = −3 a_A)"
+   ],
+   "hint": [
+    true,
+    "judge(cached)",
+    "sha:c788cf76"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.482,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a_B = −3a_A, i.e. |a_B| = 3|a_A|, with A and B accelerating in opposite senses",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "4dbe59b5e0b83c3cc69d13f2348cfb4092fa103ae641c2cacc5caf0491e9b5ea",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b7f5a792": {
+  "content_sha": "cdbdc948489b68deffe985be1d4b558daf37b934beb07f649a152c92c4d9a7d6",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list_subset",
+    "sha:d4f7a27e"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "N_A = mg/cos30° = 2mg/√3 ≈ 565.8 N (with g = 9.8 m/s²; 577.4 N with g = 10) from the incline, perpendicular to it; N_B = mg tan30° = mg/√3 ≈ 282.9 N (288.7 N with g = 10) from the vertical wall, horizontal"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:d4f7a27e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.655,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "UNSOLVABLE: the numeric value of g is not stated in the problem text (assuming this corpus's usual g=10 m/s²: N_A ≈ 577.35 N, N_B ≈ 288.68 N); algebraically N_A = mg/cos30° ≈ 1.155 mg, N_B = mg tan30° ≈ 0.577 mg",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "55f08e103bcce2e7ff6835b96adf10b23824189effc59112aac278fb85a4a46c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_b8fc61ff": {
+  "content_sha": "ffd124754d04103b789aa0d1abc7e88f1aea0a3c8210f67e66be3f96d14e0085",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "T = m(g + 2a)"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:6fad9a05"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.492,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "(b) m(g+2a)",
+    "option"
+   ]
+  },
+  "restatement_sha": "7c143c73f88c958c94b0efcc941b0590c52aff819206bab0f91016ccf5f7044e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ba3f63f3": {
+  "content_sha": "02a92da504eba9c06109baeb2876249d275e23fd28f9a62574bb962e8ad24e50",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:2a377693"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "For 0 ≤ t ≤ 7.5 s both move together: a_A = a_B = t/3 m/s² (straight line from origin, reaching 2.5 m/s² at t = 7.5 s); for t > 7.5 s A slips on B: a_B = 2.5 m/s² (constant, horizontal line) and a_A = (t − 5) m/s² (straight line of slope 1 from (7.5 s, 2.5 m/s²))"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.647,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "For 0≤t≤7.5 s: a_A=a_B=t/3 (common acceleration, a straight line through the origin, reaching 2.5 m/s² at t=7.5 s). For t>7.5 s: a_B stays constant at 2.5 m/s² (a horizontal line) while a_A=(t−5) m/s² keeps rising linearly with slope 1; the two lines meet only at t=7.5 s, a=2.5 m/s².",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "0752e53c9adfc2e01f0bc1ecb40ce074e2068364430ec59b845898193e92f0da",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_bc127eb0": {
+  "content_sha": "70dd0b7087bc9545be81fabac3929c6a498581517595d5a7fb4eb21b1270fc03",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:8c332129"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "m_A = 3 kg"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:58686a52"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 2 2 30"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.796,
+   "signature": [
+    [],
+    [
+     "2",
+     "2",
+     "2",
+     "30"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Block A must have mass 3 kg",
+    "number+unit +qualifier"
+   ]
+  },
+  "restatement_sha": "86d535a8c5f580b7d6d32e7583932759455f96c141819840e62085e15aa50664",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_bd0bd1c7": {
+  "content_sha": "408734760f62b470585eddcd8d64c02dab5d162d00d0aae93f82033d69449356",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:0a498ec7"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a = g/2 for either block (hanging M down, table M toward the pulley), T = Mg/2"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:d28ebb8e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.74,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Each block accelerates at a = g/2, and the string tension is T = Mg/2",
+    "list"
+   ]
+  },
+  "restatement_sha": "80b22e9eefd4a5b3c722f1a9c736e617963793d28f36891e6acb8b32abb2f39c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_be0cf9bd": {
+  "content_sha": "b449cfa02a8814423c8273fd422bbeaa61d12199b75de596b6c24f160461b2e9",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:945bb835"
+   ],
+   "B": [
+    true,
+    "list",
+    null,
+    "T₁ (OA) = 5 N, T₂ (OB) = 5√3 ≈ 8.66 N"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:5054080c"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.605,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "a7e87b08825d5b4bdf8ebfdef2d15a8e3f7d718c02e30d92fa4577487e60251a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_bf5e9fde": {
+  "content_sha": "05e75128fdbb90e93250b4ecd658092ccdd550bd9fda7c6c68c6a91a43219794",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:8cca9bdc"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "a = F/(2√3 m) = (1/(2√3))(F/m) toward each other (tension T = F/√3)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:5f15754c"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "conditions dropped (fidelity ok): system lies on a smooth horizontal plane",
+   "conditions added (fidelity ok): surface is frictionless"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.432,
+   "conditions_dropped": [
+    "system lies on a smooth horizontal plane"
+   ],
+   "conditions_added": [
+    "surface is frictionless"
+   ],
+   "fidelity": [
+    2,
+    "(b) (1/(2√3))(F/m)",
+    "option"
+   ]
+  },
+  "restatement_sha": "3f0ba3c57df2f7ff43802a62b398cf4fb80315feab2fc4182dcfdce618a89f9e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_c71f0f3b": {
+  "content_sha": "8f0efb63ada151ab747f0cc62601b9f99f7a603bb0f24a12839e7285d47d712e",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:af32575f"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a₁ = −a₂ (x₁ + x₂ = constant ⇒ a₁ + a₂ = 0): equal magnitudes, opposite directions"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.746,
+   "signature": [
+    [
+     "1",
+     "2"
+    ],
+    [
+     "1",
+     "1",
+     "2",
+     "2"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) a₁ = −a₂, i.e. the two blocks have equal-magnitude accelerations in opposite directions (one descends as fast as the other rises)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "d92b01027f97ccbfdd430aa55acf198cdbcb9eafcbdc9236b898194003a1fa8e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_c7d776b7": {
+  "content_sha": "86ca55e39661ce95af4c3377652b5dc890472d4a759cc65804ad794bd34c91ba",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:96f33f64"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) a = 20/6 = 10/3 m/s² ≈ 3.33 m/s² for both blocks; (b) N = 2 × 10/3 = 20/3 N ≈ 6.67 N."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.672,
+   "signature": [
+    [
+     "2",
+     "20",
+     "4",
+     "4"
+    ],
+    [
+     "2",
+     "2",
+     "20",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 10/3 ≈ 3.33 m/s², (b) 20/3 ≈ 6.67 N",
+    "parts"
+   ]
+  },
+  "restatement_sha": "a1678388a2810234396adf7ddf05fe614f8023fc1be9bac98f7b9c59b8b06662",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_c97e9ba8": {
+  "content_sha": "9ba9e8a58eb7bf5f654abf3c1265bc7d1b60fb2f8a39e6233f6d6ae4db4f85dc",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "expression",
+    "sha:44cbe3b6"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "θ = tan⁻¹(a/g), string tilted backward (opposite to the acceleration); tension T = m√(g² + a²)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "conditions dropped (fidelity ok): bob suspended from the ceiling of a train",
+   "conditions added (fidelity ok): ball hangs from the roof of an accelerating carriage; carriage acceleration is h"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.655,
+   "conditions_dropped": [
+    "bob suspended from the ceiling of a train"
+   ],
+   "conditions_added": [
+    "ball hangs from the roof of an accelerating carriage",
+    "carriage acceleration is horizontal with magnitude a"
+   ],
+   "fidelity": [
+    null,
+    "θ = arctan(a/g)",
+    "expression"
+   ]
+  },
+  "restatement_sha": "bf4536c6ddc16b937498277e62b07dabd47f15c4728ef0019d157c0a7d9e4c29",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ca7f0b1f": {
+  "content_sha": "08d1758aa64813496166a06ebf64059b656ee00db9bfe51b4444ac2a2fbe8e21",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:72cb2926"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a = 4 m/s² (3 kg + 4 kg side moves down, 2 kg + 1 kg side moves up); T₁ = 24 N, T₂ = 42 N, T₃ = 14 N"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:5ff2c612"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2 2 3 3 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.85,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "1",
+     "10",
+     "2",
+     "2",
+     "3",
+     "3",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 4 m/s², T₁ = 24 N, T₂ = 42 N, T₃ = 14 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "5f32c1cad8504344867491bde27d1e7b05df42877661bb23673179d3490b73f4",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_cdf11451": {
+  "content_sha": "0b62c96ab450fc95a1e47d17b232dd5c1e066925c5b64db068c819ed89610d13",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:1e8f9316"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "angle with ceiling normal = tan⁻¹(2/√3) ≈ 49.1° (string tilted toward the rear, down-slope side), T = 5√7 N ≈ 13.2 N"
+   ],
+   "hint": [
+    true,
+    "list",
+    "sha:95703092"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.573,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "θ ≈ 49.1° from the normal to the ceiling, T ≈ 13.23 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "040ad8880c53fbb6f9da4c2dfd2d422c281bdf2c68236ab1a63c2246ec87f83a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ce0e0662": {
+  "content_sha": "918c446346043ad2caf74a43aaef1e631b272e8b5c3f6f7315d3a232ae4b245f",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:19a74c94"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Three forces on the block: weight mg vertically downward; tension T₁ in the horizontal string, directed horizontally toward the wall; tension T₂ in the second string, directed along it up and away at angle θ above the horizontal. (Equilibrium then gives T₂ sin θ = mg, T₂ cos θ = T₁, i.e. T₂ = mg/sin θ, T₁ = mg cot θ.)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.602,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Three forces act on the block, in equilibrium: weight mg vertically down at the block's centre; tension T_h horizontal, pulling toward the wall; tension T_d along the diagonal string, directed at angle θ above the horizontal, pulling toward the ceiling support. Balancing vertically and horizontally: T_d sinθ = mg and T_d cosθ = T_h, so T_d = mg/sinθ and T_h = mg·cotθ.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "44270d45cefc14a8d8654c7c564a9a1347ee6f1c876fdd5a0f82c5bfd3e303da",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_cff4c285": {
+  "content_sha": "eb59bd40fcc818974ff316a2f95981de65603032ef4134102b829f167a43b342",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:88e56f01"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Tension T = 50/3 N ≈ 16.7 N. Hinge force components: horizontal H = 40/3 N ≈ 13.3 N (directed away from the wall, along the rod), vertical V = 10 N (upward); resultant hinge force = 50/3 N ≈ 16.7 N at 37° above the horizontal (tan φ = 3/4). (Rod taken horizontal, weight 20 N at its midpoint.)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 37"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.653,
+   "signature": [
+    [
+     "10",
+     "2",
+     "3",
+     "37",
+     "37",
+     "4",
+     "4",
+     "5",
+     "5"
+    ],
+    [
+     "10",
+     "2",
+     "3",
+     "37",
+     "37",
+     "37",
+     "4",
+     "4",
+     "5",
+     "5"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Tension in string T = 50/3 N ≈ 16.67 N. Hinge force ≈ 16.67 N (= 50/3 N), directed at ≈37° above the horizontal — horizontal component ≈ 13.33 N (40/3 N), vertical component = 10 N upward.",
+    "list_subset"
+   ]
+  },
+  "restatement_sha": "de0a7fedaf0d4fdbc36111bad35efcbee6d37e04f817583bae950e255f3d9a1d",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_d372dbb1": {
+  "content_sha": "7ad504f500a73b1f5e87bc31d9369ad93f0b5d2091a3081650dbb8f9afc786cb",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:048003ca"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) v_B = v_A cos θ, (b) a_B = a_A cos θ = a_A/2 at θ = 60° (just after release, v = 0), (c) T = 40/3 N ≈ 13.3 N, a_A = 20/3 m/s² ≈ 6.67 m/s², a_B = 10/3 m/s² ≈ 3.33 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.662,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) v_B = v_A cosθ. (b) a_B = a_A cosθ at the instant of release (v_A=0 there, so the extra dθ/dt term vanishes); at θ=60° this gives a_A = 2a_B. (c) T = 40/3 N ≈ 13.33 N, a_A = 20/3 m/s² ≈ 6.67 m/s², a_B = 10/3 m/s² ≈ 3.33 m/s². (g = 10 m/s² assumed — not stated in the restated text.)",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "2d1e9abffefa6490b5071777584618ff7753c580d3d647f0ff958638cb312abc",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_d45c2f65": {
+  "content_sha": "bea6fe565cd88f73b7535d285a1c3880d859a7274b071e443eae369ae9fe3fff",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "12.5 kgf"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:42f4e6d1"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.744,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "12.5 kgf",
+    "option"
+   ]
+  },
+  "restatement_sha": "47e812322ccbc33184e0884f119c2055b484f79d3ef65e7a5f88d79bc07b30d6",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_d4988964": {
+  "content_sha": "1fc6ce6b23f2dd7742b1b9e6889d3d8d329265c74fe561a8f84a58cfb1ccfcc6",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "zero"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:9fe10075"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.42,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "0 N (zero)",
+    "option"
+   ]
+  },
+  "restatement_sha": "570a796bdc6d5f0478e327e9c0949876c7c4fd0c10a7621dff192886c858be43",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_d571430d": {
+  "content_sha": "580391225b966f30a66a41aee824c3b20a50889c8d51f9c2f4ffc2dff9ab4f88",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:e05be554"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Block A: weight w_A down, normal N₁ from B upward (N₁ = w_A). Block B: weight w_B down, N₁ from A pressing down (Newton's third law), normal N₂ from C upward (N₂ = w_A + w_B). Block C: weight w_C down, N₂ from B pressing down, normal N₃ from the ground upward (N₃ = w_A + w_B + w_C). No horizontal forces."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.632,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Block A: weight m_A g down, normal N_AB up from B. Block B: weight m_B g down, N_AB down (reaction from A, Newton's third law), normal N_BC up from C. Block C: weight m_C g down, N_BC down (reaction from B), normal N_ground up from the ground.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "b2ffaf3161452cd2a9951fcf0b0e5abd5847494f2479ef807451aa669a409756",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_d7876306": {
+  "content_sha": "aef47eed9ccf803ef310771fc14d8860050503f72cdf999b8f71865960a79ddf",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:be0b40ec"
+   ],
+   "B": [
+    true,
+    "option",
+    3,
+    "a_min = g/3 (downward): mg − T = ma with T ≤ 2mg/3 gives a ≥ g/3"
+   ],
+   "hint": [
+    true,
+    "expression",
+    "sha:45f074f8"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.743,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    3,
+    "g/3",
+    "option"
+   ]
+  },
+  "restatement_sha": "addb68b073db130757f5e190511449df319c5fb41137fdf286b5487e9d7ccc5f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_dc06911f": {
+  "content_sha": "2ec8e137f425039935ead3a3a2c88d624e0b3b609914b2736636458142f8f28c",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true: the foot pushes the ground backward, so by Newton's third law the ground's friction on the person is FORWARD (along the motion) and is the force that drives the walk"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.563,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Assertion is false, Reason is true",
+    "option"
+   ]
+  },
+  "restatement_sha": "38add736d1fc15b0bb9a980a860059d8e69ca82c6814c1514edcc9d8c1ac7d78",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_def442f0": {
+  "content_sha": "8b9ecc4dd5250bbbb3dcc8d02c2395c5c2f67e8f82a2b7e462f1a61469d88fe8",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    1,
+    "f = 4 N (static; applied force 4 N < μmg = 8 N)"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:c341ae8f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.573,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    1,
+    "4 N",
+    "option"
+   ]
+  },
+  "restatement_sha": "5e6dc1f1f47a3657b3ac08486038fcfb6b0fb3fe1a63766fc634dacb9c987db9",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_df3cf5c7": {
+  "content_sha": "789cb3b656d857153e1d8a4812de86d222786565ce99c95c115d19c22a5e9694",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "parts",
+    "sha:c6131ae1"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "(a) a = 14/7 = 2 m/s² for every block (toward the pull); (b) T₁ (string between the 2 kg and 1 kg blocks) = 12 N, T₂ (string between the 4 kg and 2 kg blocks) = 8 N."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 1 1 14 2 2 2 4 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.716,
+   "signature": [
+    [],
+    [
+     "1",
+     "1",
+     "1",
+     "14",
+     "2",
+     "2",
+     "2",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 2 m/s² for every block, (b) T₁ (string between the 2 kg and 1 kg blocks) = 12 N, T₂ (string between the 4 kg and 2 kg blocks) = 8 N",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "0c7eeaa968e8e3b799fc5b8418c63afb864fffaca4635904badca772280f965c",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_e10f7638": {
+  "content_sha": "cf0809a01795f66d553d4b302dc563dbea5ac4f13968783c882d9b29b1f71a80",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "T_mid = Mg/2 (rope acceleration a = g/2)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:d28ebb8e"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.529,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "Mg/2",
+    "option"
+   ]
+  },
+  "restatement_sha": "20aa07927059f30c07be5c3234e9bb6bc8aba48acc959446f65fdb28342ea574",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_e15fdd5b": {
+  "content_sha": "50592b80eb3e3b32787fc8e430abe075821a7dd7fdf0d349f3d18b2a826c6605",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    null,
+    "no_key",
+    null
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "Five forces on rod AB: weight W = mg at its midpoint, vertically down; at A a normal reaction N_A along the radius (from A toward the centre of the shell) and a friction f_A tangential to the shell at A; at B a normal reaction N_B along the radius (from B toward the centre) and a friction f_B tangential to the shell at B (up along the tangent, opposing the slip of B down the shell)."
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": null,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "printed answer is a sketch (See the hints): only the second reader confirms",
+   "no usable printed answer: author and second reader agree; the auditor is the third reader"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass_no_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.713,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "At end A: normal reaction N_A directed along the shell's radius at A (toward the shell's centre) and friction f_A tangential to the inner surface at A. At end B: normal reaction N_B along the radius at B and friction f_B tangential to the inner surface at B. If the rod has weight, it also acts vertically down at the rod's centre of mass; no other forces act on the rod, since it touches the shell only at the two points A and B.",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "5124932405a1014c601fc0bc4fa93d860f8b9e88f79cde49c22c4eb468c1f19f",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_e17ca7fd": {
+  "content_sha": "2de7c86938c99d04bf3a4dfdeaca03de8771515f735c9965ead308de015dde05",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:d7a21fbc"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "5 cm (normal reaction acts 5 cm below C)"
+   ],
+   "hint": [
+    true,
+    "one_item_match",
+    "sha:ca851557"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.621,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "0.05 m (5 cm) from C, on the side below the centre",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "869aa66f3170952af5121dec3281065c4c8b0c0ac4d7e2d9e88762a9557c7b40",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_e5cfe9a4": {
+  "content_sha": "8df1d48dcf034dfe83853f01ebe98812a44bb03a02495ac5b2e46962dc7f34f7",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    false,
+    "part a: number+unit +qualifier",
+    "sha:18e153d0"
+   ],
+   "B": [
+    true,
+    "parts",
+    null,
+    "(a) kinetic friction f = 6.4 N (opposite to motion), (b) yes, the block moves; a = 3.8 m/s²"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 0.4 0.6 10 2 2 4 45 6"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "escalate_key",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.78,
+   "signature": [
+    [],
+    [
+     "0.4",
+     "0.6",
+     "10",
+     "2",
+     "2",
+     "4",
+     "45",
+     "6"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 6.4 N (kinetic, since the block slides). (b) Yes, it slides; a = 3.8 m/s².",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "8f330181e226cdff1817f7f221778e368085f10af5994f9914bef93f6d1365b9",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "escalate_key"
+ },
+ "lom_e797d355": {
+  "content_sha": "75e5c22437ff9933de1509b4915432837b4c0b310b096638b469572408e2b049",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number unit_missing_one_side",
+    "sha:f9194e73"
+   ],
+   "B": [
+    true,
+    "number unit_missing_one_side",
+    null,
+    "N = 0 (zero normal force between the blocks)"
+   ],
+   "hint": [
+    true,
+    "number unit_missing_one_side",
+    "sha:b39789fc"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 4",
+   "conditions added (fidelity ok): blocks let go from rest at the same instant"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.658,
+   "signature": [
+    [
+     "2",
+     "30",
+     "4"
+    ],
+    [
+     "2",
+     "2",
+     "30",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [
+    "blocks let go from rest at the same instant"
+   ],
+   "fidelity": [
+    null,
+    "0 N",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "465c3777526b0f2db26dfdc7421dbb4a2a14312a577f7c29f791f26188d07cb3",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ec6cec62": {
+  "content_sha": "d61bef79cb922796fb8a090cc62d4afb9ed5a01afaa1d003e0048bcc861afabd",
+  "format": "assertion_reason",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "(d) Assertion false, Reason true: S₂ seen from S₁ has relative acceleration a₂ − a₁, which vanishes only if the two frames have the same acceleration, so S₂ is not inertial from S₁ in general; a frame moving with constant velocity is inertial, so motion alone does not make a frame non-inertial"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.448,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "(d) Assertion is false, but the Reason is true",
+    "option"
+   ]
+  },
+  "restatement_sha": "abe50bea4d2b2dc776f78907f2601f3d1a135ec87d37acf0074e130df6a30779",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_ed0cdc1e": {
+  "content_sha": "8c36658e73d2c0fb948cf919afe7b27bb6568355fbec3eef25de0d92a34da3be",
+  "format": "conceptual",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "yes_no",
+    "sha:60a33e6c"
+   ],
+   "B": [
+    true,
+    "one_item_match",
+    null,
+    "False — a problem involving a non-inertial frame can always be solved from an inertial (ground) frame using Newton's laws directly; the pseudo force is only a convenient alternative"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.646,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "Incorrect",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "f1c19810062b302f073d7d70f0b3844719858343d5d85998a7bb6a048e2752c1",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_eef1b653": {
+  "content_sha": "d3499b1c19035f149f999d2177e1a7d7713cd63f2a46982d28c178c38dcb727b",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit +qualifier",
+    "sha:8b9e3c8f"
+   ],
+   "B": [
+    true,
+    "number+unit +qualifier",
+    null,
+    "1 m/s² upward"
+   ],
+   "hint": [
+    true,
+    "number+unit +qualifier",
+    "sha:448df0a7"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 1 2 2 3 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.734,
+   "signature": [
+    [
+     "1",
+     "4",
+     "6"
+    ],
+    [
+     "1",
+     "1",
+     "2",
+     "2",
+     "3",
+     "3",
+     "4",
+     "6"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "1 m/s² upward",
+    "number+unit +qualifier"
+   ]
+  },
+  "restatement_sha": "d6cd9c261680318e7e903441e8c12f18e2f6dcef26dbb145177441a55e0ceadb",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_f069c38c": {
+  "content_sha": "ea8e231cfabc0baec590b2aaf3653aee1f2db9e56731241af673f783f599973a",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    false,
+    "option~letter",
+    "sha:f89bf797"
+   ],
+   "B": [
+    true,
+    "option",
+    2,
+    "OB — contact force ≈ 85 N (N = 80 N normal + 30 N friction up the slope), tilted ≈ 21° from the normal toward the vertical, i.e. ≈ 16° right of vertical, between the vertical and the normal; nearest drawn arrow is OB"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:e2aff469"
+   ],
+   "B_vs_key": false,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "escalate_key",
+  "figure_required": true,
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.51,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    2,
+    "(b) OB",
+    "option"
+   ]
+  },
+  "restatement_sha": "437a6633d8115abea43228ab2e87ddd4c65ea08cae450e1ba5b3afd030d68d8f",
+  "restatement_ok": true,
+  "verdict": "reject",
+  "reason": "escalate_key"
+ },
+ "lom_f6f75d80": {
+  "content_sha": "c458e0e123ab8d6c92578fe3468df4b44814d96036d7e1881f79b6b461be1a45",
+  "format": "subjective",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "list",
+    "sha:790d57a4"
+   ],
+   "B": [
+    true,
+    "list_subset",
+    null,
+    "a = 20/3 ≈ 6.67 m/s² (2 kg up, 4 kg and 6 kg down), T₁ = 100/3 ≈ 33.33 N, T₂ = 20 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 4 4 6"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.727,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "10",
+     "2",
+     "4",
+     "4",
+     "6"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 20/3 m/s≈ 6.67 m/s², T₁ = 100/3 N ≈ 33.3 N, T₂ = 20 N",
+    "list"
+   ]
+  },
+  "restatement_sha": "c7e196564363304738ea824b777a67e2fb6def63451d41926df45cd7a16bc876",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_f9420a41": {
+  "content_sha": "eebe30b0d790acc8c145a017844230f010c12fed7666861257aa06ac8546ac18",
+  "format": "mcq_single",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "option~letter",
+    "sha:77cabbc3"
+   ],
+   "B": [
+    true,
+    "option",
+    4,
+    "None of the above — all three tensions are non-zero: T_A = 10g = 98 N, T_B = 10g/cos30° ≈ 113 N, T_C = 10g tan30° ≈ 56.6 N (the crop shows B at 30° to the VERTICAL, not the ceiling as the slice says; with 30° to the ceiling T_C = 10g/tan30° ≈ 170 N, still non-zero)"
+   ],
+   "hint": [
+    false,
+    "judge(cached)",
+    "sha:9548fe2a"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "hint disagrees with printed answer",
+   "numbers added by the restatement: 30"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.778,
+   "signature": [
+    [
+     "10"
+    ],
+    [
+     "10",
+     "30"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    4,
+    "(d) None of the above",
+    "option"
+   ]
+  },
+  "restatement_sha": "2044bfe054fcd19077a87ea4bfca04c4900553f2b702c8b3155f3ac15f0935f2",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_fa5544ef": {
+  "content_sha": "f502285923338eabcd6865ba1c11ff6917e2e577cd429bb16188d1b4b69a221a",
+  "format": "numerical",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "number+unit",
+    "sha:5b816790"
+   ],
+   "B": [
+    true,
+    "number+unit",
+    null,
+    "W = 30 N"
+   ],
+   "hint": [
+    true,
+    "number+unit",
+    "sha:5738bda9"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 45"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.783,
+   "signature": [
+    [
+     "30"
+    ],
+    [
+     "30",
+     "45"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "W = 30 N",
+    "number+unit"
+   ]
+  },
+  "restatement_sha": "4a723ef75d7381dc81c4ab05b0ff980414db0066119fac68e02aad610ada4233",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_fc0661ef": {
+  "content_sha": "2cdbc8e601780f91a2f8a4a2c20966ac5d088033d893f8c3e48775d47f39fcf3",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "one_part_match a",
+    "sha:3d30f858"
+   ],
+   "B": [
+    true,
+    "one_part_match a",
+    null,
+    "(a) a(1 kg) = 120/11 ≈ 10.9 m/s² horizontally toward the table-edge pulley, a(2 kg) = 50/11 ≈ 4.55 m/s² downward, a(3 kg) = 70/11 ≈ 6.36 m/s² downward; (b) T₁ = T₂ = 120/11 ≈ 10.9 N"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "ascii maths m2",
+   "numbers added by the restatement: 1 2 3"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.545,
+   "signature": [
+    [
+     "1",
+     "10",
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "1",
+     "10",
+     "2",
+     "2",
+     "3",
+     "3"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "(a) 1 kg block: 120/11 ≈ 10.91 m/s² (horizontal); 2 kg block: 50/11 ≈ 4.55 m/s² (down); 3 kg block: 70/11 ≈ 6.36 m/s² (down). (b) T₁ = T₂ = 120/11 ≈ 10.91 N",
+    "one_part_match a"
+   ]
+  },
+  "restatement_sha": "9f700f486ab769f4aeef2651f9c8f3fa7fdec3e2f33dabe54f3f7a0acc480c8a",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_fd3acebd": {
+  "content_sha": "ebd43496e487ba5c7cd52b720793a4b952c6f757eec639fea147437cc28e5a19",
+  "format": "numerical",
+  "kind": "worked_example",
+  "checks": {
+   "key": [
+    true,
+    "one_item_match",
+    "sha:bf540e13"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a ≈ 2.69 m/s² down the incline (both blocks move together; contact force ≈ 1.15 N)"
+   ],
+   "hint": [
+    null,
+    "no_hint",
+    null
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [
+   "numbers added by the restatement: 2 4"
+  ],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.578,
+   "signature": [
+    [
+     "0.2",
+     "0.3",
+     "10",
+     "2",
+     "2",
+     "30",
+     "4"
+    ],
+    [
+     "0.2",
+     "0.3",
+     "10",
+     "2",
+     "2",
+     "2",
+     "30",
+     "4",
+     "4"
+    ]
+   ],
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a ≈ 2.69 m/s² (down the incline)",
+    "one_item_match"
+   ]
+  },
+  "restatement_sha": "721995716b16b068860b267b9f5fabf2fd92670c3a14b4c26edb9169c5ace329",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ },
+ "lom_fe82272a": {
+  "content_sha": "804539eaa9b939c436310e636e83277f213a9c05ba6a51820b9bfb5d00078bbf",
+  "format": "subjective",
+  "kind": "exercise",
+  "checks": {
+   "key": [
+    true,
+    "judge(cached)",
+    "sha:b30c16af"
+   ],
+   "B": [
+    true,
+    "judge(cached)",
+    null,
+    "a = 0 for 0 ≤ t ≤ 8 s (F = 2t < f_max = μmg = 16 N, block at rest); for t > 8 s, a = (2t − 16)/2 = (t − 8) m/s², a straight line of slope 1 m/s³ starting from zero at t = 8 s (e.g. a = 2 m/s² at t = 10 s)"
+   ],
+   "hint": [
+    true,
+    "list_subset",
+    "sha:4056e95f"
+   ],
+   "B_vs_key": true,
+   "syllabus": [
+    "within",
+    []
+   ]
+  },
+  "warnings": [],
+  "chapter": "Laws of Motion",
+  "bucket": "pass",
+  "restatement": {
+   "shingle_hits": 0,
+   "edit_ratio": 0.64,
+   "conditions_dropped": [],
+   "conditions_added": [],
+   "fidelity": [
+    null,
+    "a = 0 for 0 ≤ t ≤ 8 s; a = (t − 8) m/s² for t ≥ 8 s — a-t graph is flat at zero until t=8 s then rises as a straight line of slope 1 m/s³",
+    "judge(cached)"
+   ]
+  },
+  "restatement_sha": "8ec5cf60fa568cc5e2989c884de2500fcee1925c1ec21639d88339496ec6ef6e",
+  "restatement_ok": true,
+  "verdict": "pass",
+  "reason": null
+ }
+}

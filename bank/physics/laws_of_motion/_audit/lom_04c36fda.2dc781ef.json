@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_04c36fda",
+ "item_sha": "2dc781ef6e2b77860d7a65bc6fb2d73961f93e8eb920ef9f26944aa9c44150d6",
+ "auditor_option": null,
+ "auditor_value": "(a) N: (-N/2, N sqrt3/2); T: (T/2, T sqrt3/2); w: (0, -w); f: (-f sqrt3/2, -f/2). (b) N: (0, N); T: (T sqrt3/2, T/2); w: (-w/2, -w sqrt3/2); f: (-f, 0)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[4].why_this_step",
+   "quote": "Friction opposes the tendency of the body to slide down, so here it is drawn pointing down the slope.",
+   "note": "Self-contradictory reason: friction that opposed a tendency to slide down would point up the slope. Friction points down the slope here because the string pulls the block up the slope, so the tendency (or motion) it opposes is up-slope. The components in the equation are right; the reason is false.",
+   "fix": "Friction opposes the tendency of the block to move up the slope under the pull of the string, so here it is drawn pointing down the slope, as the figure shows."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer agrees on all sixteen components. Angle bookkeeping checked: N makes 30 degrees with the vertical; T is 60 degrees above the horizontal and 30 degrees above the plane; friction down-slope is 30 degrees below the horizontal. Common-mistake entries are genuine (using 30 instead of 60 for T; drawing friction up-slope against the figure).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:01:56+05:30"
+ }
+}

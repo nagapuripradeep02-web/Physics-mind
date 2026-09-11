@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_5f7a4a18",
+ "item_sha": "80e4e55f82741c0016f7724746ba48f449cf3d39d63860f22fc210758b3499b6",
+ "auditor_option": null,
+ "auditor_value": "The string hangs vertically (a = 0, no pseudo-force); the ceiling's normal is tilted 30° from vertical, so the string is 30° from the normal to the ceiling; T = mg = 10 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every step follows: constant velocity gives a = 0, so the bob hangs vertical with T = mg = 10 N, and the normal to a ceiling parallel to a 30° slope is 30° from vertical. Both common_mistakes entries are genuine errors for this question. g = 10 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:22:00+05:30"}
+}

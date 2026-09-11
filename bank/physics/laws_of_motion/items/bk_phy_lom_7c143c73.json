@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_7c143c73",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A man of mass m climbs down a rope hanging from an elevator's ceiling, and relative to the rope his downward motion is slowing at rate a. Meanwhile the elevator itself accelerates upward at rate a, measured relative to the ground. What is the tension in the rope?",
+  "options": {
+   "1": "mg",
+   "2": "m(g + 2a)",
+   "3": "m(g + a)",
+   "4": "zero"
+  },
+  "parts": null,
+  "conditions": [
+   "rope hangs from the ceiling of the elevator",
+   "man's downward slide decelerates at rate a relative to the rope",
+   "elevator accelerates upward at rate a relative to the ground"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Add the man's deceleration relative to the rope to the elevator's own acceleration to get his true acceleration relative to the ground, then apply Newton's second law to him.",
+  "steps": [
+   {
+    "text": "The man is sliding down but slowing down relative to the rope, so his acceleration relative to the rope points upward, with size a.",
+    "equation": "acceleration of man relative to rope = a, upward"
+   },
+   {
+    "text": "The elevator itself accelerates upward with size a relative to the ground.",
+    "equation": "acceleration of rope relative to ground = a, upward"
+   },
+   {
+    "text": "The man's acceleration relative to the ground is the sum of his acceleration relative to the rope and the rope's acceleration relative to the ground, since both point the same way.",
+    "equation": "acceleration of man relative to ground = a + a = 2a, upward"
+   },
+   {
+    "text": "Apply Newton's second law to the man: the rope tension acts upward on him, his weight acts downward, and their difference gives his mass times his upward acceleration.",
+    "equation": "T − mg = m(2a) ⇒ T = m(g + 2a)"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "m(g + 2a)"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Adding only one of the two accelerations, either the man's motion relative to the rope or the elevator's own motion, but not both, gives T = m(g + a)."
+   }
+  ],
+  "concept_tags": [
+   "relative acceleration",
+   "Newton's second law",
+   "accelerating frame"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b8fc61ffeb937219b3071aa949203a2727f92b491ef8b76e04f9b7f3154504c9"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0a5d842a9128f557b512522e5e19357c0e1b739279ad07cd6bad654bd75f80ca",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:20:00+05:30"
+ }
+}

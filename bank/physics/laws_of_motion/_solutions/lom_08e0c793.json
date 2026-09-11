@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_08e0c793",
+ "approach": "Test whether the moment of concurrent forces about two different points is actually the same, using a concrete numeric example, then check the zero-resultant case separately.",
+ "steps": [
+  {"text": "For concurrent forces acting through one point P, the moment about any point O equals the vector from O to P crossed with the resultant force R.", "equation": "moment about O = (r_P − r_O) × R"},
+  {"text": "Take two concurrent forces through P = (1,0) that do not cancel: F₁ = (1,1) N and F₂ = (2,−1) N.", "equation": "R = F₁+F₂ = (3, 0) N"},
+  {"text": "Compute the moment about the origin (0,0) and about the point (0,5).", "equation": "moment about (0,0) = 0 N·m, moment about (0,5) = 15 N·m"},
+  {"text": "These two moments are different, so the moment of concurrent forces about different points is not constant in general — the Assertion is false.", "equation": "0 ≠ 15 ⇒ Assertion false"},
+  {"text": "Repeat with forces that cancel instead: F₁ = (1,1) N and F₂ = (−1,−1) N, so R = 0.", "equation": "R = 0"},
+  {"text": "With R = 0, the moment about each of the same two points, (0,0) and (0,5), comes out zero, confirming the Reason's specific claim that a zero resultant gives zero moment everywhere.", "equation": "Assertion false, Reason true"}
+ ],
+ "final_answer": {"option": 4, "value": "Assertion is false, but the Reason is true"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming that forces meeting at one point is by itself enough to make the moment the same about every point, without testing a case where the resultant is not zero."}
+ ],
+ "concept_tags": ["moment of a force", "concurrent forces", "torque about a point"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

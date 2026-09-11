@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_47e81232",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A block that weighs 25 kg sits on a flat horizontal surface, and the coefficient of friction between the block and the surface is μ = 1/√3. Given 1 kgf = 9.8 N, what is the smallest possible force that can pull the block along the surface?",
+  "options": {
+   "1": "25 kgf",
+   "2": "2.5 kgf",
+   "3": "12.5 kgf",
+   "4": "6.25 kgf"
+  },
+  "parts": null,
+  "conditions": [
+   "mass = 25 kg",
+   "coefficient of friction μ = 1/√3",
+   "1 kgf = 9.8 N",
+   "block dragged along a horizontal surface"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The least force to drag a body is applied at an angle where tanθ = μ, giving F = μmg divided by √(1+μ²).",
+  "steps": [
+   {
+    "text": "Write the force needed to drag the body when it is pulled at an angle θ above the horizontal.",
+    "equation": "F = μmg / (cosθ + μ sinθ)"
+   },
+   {
+    "text": "This force is smallest when the angle satisfies tanθ = μ.",
+    "equation": "tanθ = μ = 1/√3, so θ = 30°"
+   },
+   {
+    "text": "Substitute this angle to get the simplified formula for the least force.",
+    "equation": "F_min = μmg / √(1+μ²)",
+    "why_this_step": "At the angle where tanθ = μ, the denominator cosθ + μ sinθ simplifies to √(1+μ²)."
+   },
+   {
+    "text": "Put in the numbers, taking the weight directly in kgf since 1 kgf is the weight of 1 kg.",
+    "equation": "F_min = (1/√3)(25) / √(1+1/3) = 12.5 kgf"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "12.5 kgf"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Using the body's full weight as the force needed, as if pulling at an angle could not reduce it, gives 25 kgf."
+   },
+   {
+    "option": 4,
+    "text": "Using the alternative form F_min = mg sinθ (tanθ = μ) but squaring the sine, mg sin²θ = 25 × 1/4 = 6.25 kgf, instead of mg sinθ = 12.5 kgf."
+   },
+   {
+    "option": null,
+    "text": "Pulling horizontally instead of at the angle that minimizes the force gives μmg = 14.4 kgf, which matches no listed option."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "least force to drag",
+   "optimization"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d45c2f65fa3084a484220aebcf77e731cdce656554158aa29554a706054a770f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "58d7877f4c93f40e39acfc4ba54a137f423050432ff65c8b6d3e3b017ca6ec05",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:00:00+05:30"
+ }
+}

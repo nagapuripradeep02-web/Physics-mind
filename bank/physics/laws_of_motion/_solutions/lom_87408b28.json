@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_87408b28",
+ "approach": "Write the string's constant total length as the P-to-pulley part plus the pulley-to-M part, then differentiate to relate the speeds.",
+ "steps": [
+  {
+   "text": "The total length of each string (from P to pulley A, then A to mass M) stays constant, since the string is unstretchable.",
+   "equation": "length(P→A) + length(A→M) = constant"
+  },
+  {
+   "text": "As P moves down at speed U, the P-to-A part grows at rate U, so the A-to-M part must shrink at the same rate.",
+   "equation": "d[length(A→M)]/dt = −U"
+  },
+  {
+   "text": "The rate at which the A-to-M segment shortens equals the component of M's upward velocity along that segment.",
+   "equation": "d[length(A→M)]/dt = −v cosθ"
+  },
+  {
+   "text": "Equate the two expressions and solve for the speed of M.",
+   "equation": "U = v cosθ, so v = U/cosθ"
+  }
+ ],
+ "final_answer": {
+  "option": 2,
+  "value": "U/cosθ"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": 1,
+   "text": "Multiplying by cosθ instead of dividing, and doubling for the two strings, gives 2U cosθ."
+  },
+  {
+   "option": 3,
+   "text": "Doubling U/cosθ because two strings pull on M, instead of recognizing the same relation holds independently on each side, gives 2U/cosθ."
+  },
+  {
+   "option": 4,
+   "text": "Multiplying by cosθ instead of dividing by it gives U cosθ."
+  }
+ ],
+ "concept_tags": [
+  "constraint relation",
+  "pulley system",
+  "rate of change of string length"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

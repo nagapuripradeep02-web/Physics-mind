@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_a1678388",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 4 kg block and a 2 kg block rest next to each other on a frictionless horizontal table, touching along one face. A push of 20 N acts sideways on the 4 kg block, directed toward the 2 kg block.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out how quickly the two blocks speed up together."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the size of the push each block exerts on the other."
+   }
+  ],
+  "conditions": [
+   "frictionless (smooth) horizontal surface",
+   "4 kg block and 2 kg block touch side by side",
+   "20 N horizontal force applied on the 4 kg block, directed toward the 2 kg block"
+  ],
+  "figure": {
+   "description": "Two blocks touch each other on a flat, frictionless surface. Block A (4 kg) is on the left, block B (2 kg) is on the right, sharing a vertical contact face. A horizontal force of 20 N pushes block A to the right, toward block B."
+  }
+ },
+ "solution": {
+  "approach": "Treat both blocks together to find the common acceleration, then apply Newton's second law to one block alone to find the push between them.",
+  "steps": [
+   {
+    "text": "Since the blocks stay in contact and the surface is smooth, both move together with the same acceleration. Treating them as one combined mass gives this acceleration, which is the acceleration of each block.",
+    "equation": "a = F / (m₁ + m₂) = 20 / (4 + 2) = 3.33 m/s²"
+   },
+   {
+    "text": "Look at the 2 kg block alone. The only horizontal force on it is the push N from the 4 kg block, so apply Newton's second law to it.",
+    "equation": "N = m₂ × a = 2 × 3.33 = 6.67 N",
+    "why_this_step": "The 2 kg block is not directly pushed by the 20 N force; it is pushed only by the block touching it."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) acceleration of each block = 3.33 m/s², (b) normal reaction between the blocks = 6.67 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Dividing the 20 N force by the mass of the 4 kg block alone, giving 5 m/s² instead of treating both blocks together."
+   },
+   {
+    "option": null,
+    "text": "Taking the contact force as the full 20 N applied force instead of only the part needed to accelerate the 2 kg block."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "blocks in contact",
+   "system of bodies"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c7d776b7aae0918efe5e24a71918c89c961b3f0de1b580320308bec08493051c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e8c09f06be57ccd348067de9ad48e9fdce7905ab75080e626c550a32d883e080",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T01:00:00+05:30"
+ }
+}

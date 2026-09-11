@@ -1,0 +1,45 @@
+{
+ "question_id": "lom_125342d7",
+ "item_sha": "6d0341a8ef56f16d4e7faff6fdee26ee49a2d25a2116fc4398ddb3902c97187a",
+ "auditor_option": null,
+ "auditor_value": "With the served text's 6 N: F = 3 + 5√3 ≈ 11.66 N, R = 5 − 3√3 ≈ −0.20 N (negative, so R would point INTO the ramp; the problem as worded has no solution with R directed away from the surface). With the figure's 3 N: F = 3/2 + 5√3 ≈ 10.16 N, R = 5 − (3√3)/2 ≈ 2.40 N.",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "F ≈ 10.16 N, R ≈ 2.40 N",
+   "note": "These are the answers for a horizontal force of 3 N. The question as served states the horizontal force is 6 N; the solution never uses 6 N and never mentions it, so it solves a different problem from the one printed. With 6 N the same balance gives F ≈ 11.66 N and R ≈ −0.20 N, which is not what a student following the served text would reach from this answer.",
+   "fix": null
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[1].equation",
+   "quote": "F cos60° − R sin60° = 3",
+   "note": "This is the line that picks the figure's 3 N over the served text's 6 N without saying so. The served text and the figure description conflict, and the step follows one silently.",
+   "fix": "Name the conflict before this line, e.g. 'The text gives the horizontal force as 6 N and the figure as 3 N; with 6 N the perpendicular force R comes out negative (pointing into the ramp), so the figure's 3 N is used here.' Then keep: F cos60° − R sin60° = 3"
+  },
+  {
+   "grade": "wrong",
+   "field": "approach",
+   "quote": "balance them against the 3 N and 10 N forces",
+   "note": "Names 3 N as a given; the served question text gives 6 N.",
+   "fix": null
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "gives F = 3 N and R = 10 N",
+   "note": "The mistake described (matching F to the horizontal force directly) would give F = 6 N under the served text, not 3 N.",
+   "fix": null
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The served question_text gives the horizontal force as 6 N while the figure_description gives it as 3 N. Only 3 N is self-consistent: with 6 N the perpendicular force R = 5 − 3√3 ≈ −0.20 N would have to point into the ramp, contradicting the stated direction 'away from it'. The text value looks altered; the figure value is the one the problem needs.",
+ "notes": "On its own terms (3 N) every printed line is correct: F at 60° and R at 150° from the horizontal, F cos60° − R sin60° = 3, F sin60° + R cos60° = 10, F = 3/2 + 5√3 ≈ 10.16 N, R = 5 − (3√3)/2 ≈ 2.40 N; I re-derived these and the residuals are zero. My answer differs from the solution's only because I solved the question as served (6 N). The harmful grade is for solving a problem other than the one printed, not for an arithmetic error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 5,
+  "agent": "W05-U-lom-01",
+  "at": "2026-09-12T00:01:56+05:30"
+ }
+}

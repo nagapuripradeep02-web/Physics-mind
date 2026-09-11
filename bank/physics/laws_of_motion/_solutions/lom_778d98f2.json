@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_778d98f2",
+ "approach": "A hangs from one strand; the movable pulley (holding B) has two strands, so aA = 2aB, opposite in direction; apply Newton's second law to each block.",
+ "steps": [
+  {"text": "Take downward as positive for each block separately. The movable-pulley string constraint gives aA = −2aB.", "equation": "aA = −2aB"},
+  {"text": "Write Newton's second law for A (4 kg), held by a single strand of tension T.", "equation": "4(10) − T = 4aA"},
+  {"text": "Write Newton's second law for B (5 kg), held by two strands of tension T at the movable pulley.", "equation": "5(10) − 2T = 5aB"},
+  {"text": "Solve the three equations together.", "equation": "aB = −10/7 m/s², aA = 20/7 m/s², T = 200/7 N"},
+  {"text": "aA is positive, so A accelerates downward at 20/7 m/s²; aB is negative, so B accelerates upward at 10/7 m/s², half the magnitude of aA, as the constraint requires.", "equation": "A: 20/7 m/s² ≈ 2.9 m/s² down, B: 10/7 m/s² ≈ 1.4 m/s² up"}
+ ],
+ "final_answer": {"option": null, "value": "A (4 kg) accelerates at 20/7 m/s² ≈ 2.9 m/s² downward, and B (5 kg) accelerates at 10/7 m/s² ≈ 1.4 m/s² upward."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating both blocks as hanging from a single strand of the same tension and using the plain Atwood formula (g(mA−mB)/(mA+mB)), which ignores the movable pulley."},
+  {"option": null, "text": "Using only one strand of tension in the 5 kg block's equation instead of two, giving the wrong magnitude for both accelerations."}
+ ],
+ "concept_tags": ["movable pulley", "constraint relation", "Newton's second law", "Atwood-type system"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:22:00+05:30"}
+}

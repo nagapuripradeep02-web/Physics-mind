@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_af1bfccc",
+ "approach": "Find the common acceleration of the two blocks from the total applied force, then find when the friction needed to carry the top block reaches its largest possible value.",
+ "steps": [
+  {"text": "Since the lower surface is smooth, the applied force accelerates both blocks together.", "equation": "a_common = F/(2m) = at/(2m)"},
+  {"text": "The upper block is carried along only by friction from the lower block, so the friction needed on it equals its mass times the common acceleration.", "equation": "f_needed = m × a_common = at/2"},
+  {"text": "Sliding between the blocks begins when this needed friction reaches the largest friction the surface between them can supply.", "equation": "at/2 = μmg"},
+  {"text": "Solve for the time.", "equation": "t = 2μmg/a"}
+ ],
+ "final_answer": {"option": 2, "value": "2μmg/a"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Setting the full applied force F = at equal to the largest friction μmg, instead of the smaller friction actually needed to carry the top block, gives t = μmg/a."}
+ ],
+ "concept_tags": ["friction between stacked blocks", "time-varying force", "Newton's second law"],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:24:00+05:30"}
+}

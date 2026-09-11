@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_93a6ffa1",
+ "approach": "The particle slips once the weight's component along the bowl's curved surface exceeds the maximum friction; that condition fixes the angle and hence the height.",
+ "steps": [
+  {"text": "At the point where the particle rests, the surface makes angle θ with the horizontal, measured from the bottom of the bowl. Split the weight into a part along the surface and a part perpendicular to it.", "equation": "along surface: mg sinθ, perpendicular: mg cosθ"},
+  {"text": "Balance forces perpendicular to the surface and along it: the normal force matches the perpendicular part of the weight, and friction matches the part along the surface.", "equation": "N = mg cosθ, f = mg sinθ"},
+  {"text": "The particle stays still as long as the needed friction does not exceed the maximum friction available. The greatest height is reached exactly when friction reaches this maximum.", "equation": "f = μN ⇒ mg sinθ = μ·mg cosθ ⇒ tanθ = μ"},
+  {"text": "Use μ = 1/√3 to get the angle, then find the height above the bottom of the bowl from the bowl's radius.", "equation": "tanθ = 1/√3 ⇒ θ = 30°; h = R(1 − cosθ) = (1 − √3/2)R"}
+ ],
+ "final_answer": {"option": 2, "value": "(1 − √3/2)R"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Taking the height as R cosθ, the vertical drop from the sphere's centre to the particle, instead of R(1 − cosθ), the height measured from the bottom of the bowl, gives (√3/2)R."},
+  {"option": 1, "text": "Mixing up sinθ and cosθ while finding the height gives R sinθ = R/2 instead of R(1 − cosθ)."}
+ ],
+ "concept_tags": ["static friction", "circular surface", "angle of friction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:00:00+05:30"}
+}

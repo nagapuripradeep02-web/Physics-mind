@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_2432e167",
+ "approach": "Both pulleys are massless, so each has zero net force; this fixes the m–M string's tension at F/4, and a block moves only if that exceeds its weight.",
+ "steps": [
+  {"text": "The string over pulley A has one end tied to the floor and the other to pulley B's axle, so its tension T₁ is the same throughout. Pulley A is massless, so the upward force F balances the two downward pulls of this string.", "equation": "F = T₁ + T₁ = 2T₁  →  T₁ = F/2"},
+  {"text": "Pulley B is massless too, held up by T₁ and pulled down by the two strands of the string that carries m and M, so the same balance applies to it.", "equation": "T₁ = T₂ + T₂ = 2T₂  →  T₂ = T₁/2 = F/4",
+   "why_this_step": "Because both pulleys are massless, this tension T₂ holds at every instant no matter how the pulleys themselves move, so it can be found without tracking their motion."},
+  {"text": "A block leaves the floor only once T₂ exceeds its own weight; compare T₂ to m g = 50 N and M g = 100 N for each value of F.", "equation": "T₂ = F/4:  F=100 → T₂=25 N;  F=300 → T₂=75 N;  F=500 → T₂=125 N"},
+  {"text": "For F = 100 N, T₂ = 25 N is less than both 50 N and 100 N, so neither block lifts off and both accelerations are zero.", "equation": "a_m = 0, a_M = 0"},
+  {"text": "For F = 300 N, T₂ = 75 N exceeds m's weight (50 N) but not M's weight (100 N), so only m lifts off; apply Newton's second law to m alone.", "equation": "T₂ − mg = m a_m  →  75 − 50 = 5 a_m  →  a_m = 5 m/s² (up), a_M = 0"},
+  {"text": "For F = 500 N, T₂ = 125 N exceeds both weights, so both blocks lift off; apply Newton's second law to each.", "equation": "a_m = (125−50)/5 = 15 m/s² (up);  a_M = (125−100)/10 = 2.5 m/s² (up)"}
+ ],
+ "final_answer": {"option": null, "value": "(a) F=100 N: a_m = 0, a_M = 0 (both remain on the floor). (b) F=300 N: a_m = 5 m/s² upward, a_M = 0 (M remains on the floor). (c) F=500 N: a_m = 15 m/s² upward, a_M = 2.5 m/s² upward"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the string tension on m and M as equal to F itself instead of F/4, by forgetting that each massless pulley halves the tension passed to the next string."},
+  {"option": null, "text": "For F = 100 N, wrongly assuming a block must accelerate only because F is large, without checking that the actual tension T₂ = 25 N is below both weights."}
+ ],
+ "concept_tags": ["massless pulley", "Newton's second law", "string tension", "normal reaction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:06:00+05:30"}
+}

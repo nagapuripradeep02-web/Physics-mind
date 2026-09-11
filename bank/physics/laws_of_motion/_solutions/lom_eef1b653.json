@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_eef1b653",
+ "approach": "Use the movable-pulley constraint to find the pulley's acceleration from blocks 2 and 3, then use the fixed-pulley constraint to find block 1's acceleration.",
+ "steps": [
+  {"text": "Take downward as positive. Block 3's acceleration is 6 m/s² downward and block 2's is 4 m/s² upward, so its downward value is −4 m/s².", "equation": "a₂ = −4 m/s², a₃ = 6 m/s²"},
+  {"text": "The movable-pulley constraint makes the pulley's downward acceleration the average of the two.", "equation": "a(pulley) = (a₂+a₃)/2 = (−4+6)/2 = 1 m/s² (downward)"},
+  {"text": "The fixed-pulley constraint makes block 1's downward acceleration the negative of the movable pulley's.", "equation": "a₁ = −a(pulley) = −1 m/s²"},
+  {"text": "A negative downward acceleration means block 1 actually accelerates upward.", "equation": "a₁ = 1 m/s² (upward)"}
+ ],
+ "final_answer": {"option": null, "value": "1 m/s² upward"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking block 1's acceleration in the same direction as the movable pulley instead of the opposite direction gives 1 m/s² downward, the wrong direction."}
+ ],
+ "concept_tags": ["pulley constraint", "movable pulley", "relative acceleration"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:10:00+05:30"}
+}

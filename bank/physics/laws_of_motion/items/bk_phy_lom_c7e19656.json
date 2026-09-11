@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_c7e19656",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A frictionless pulley is fixed to a ceiling. A light string that does not stretch passes over it: a 2 kg block hangs from one end. From the other end the string leads down to a 4 kg block; a second light string then connects the 4 kg block to a 6 kg block hanging below it. Taking g = 10 m/s², find the acceleration of the system and the tension in each of the two strings.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "pulley is frictionless (smooth)",
+   "string is massless and does not stretch",
+   "the 4 kg and 6 kg blocks move down together while the 2 kg block moves up",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A single fixed pulley hangs from the ceiling. A string over the pulley holds a 2 kg block on one side, moving upward with acceleration a. On the other side, the string (tension T₁) runs down to a 4 kg block; a second string (tension T₂) hangs below the 4 kg block and connects it to a 6 kg block. The 4 kg and 6 kg blocks move downward together with acceleration a."
+  }
+ },
+ "solution": {
+  "approach": "The 4 kg and 6 kg blocks move together as one 10 kg mass on the heavier side of the pulley, giving a plain two-mass pulley problem.",
+  "steps": [
+   {
+    "text": "The 2 kg block goes up and the combined 4 kg + 6 kg = 10 kg goes down with the same acceleration a.",
+    "equation": "a = (10−2)g / (10+2)"
+   },
+   {
+    "text": "Put in g = 10 m/s² and solve.",
+    "equation": "a = 80/12 = 20/3 = 6.67 m/s²"
+   },
+   {
+    "text": "T₁ is the tension pulling the 2 kg block up, so apply Newton's second law to it.",
+    "equation": "T₁ − 2g = 2a"
+   },
+   {
+    "text": "Put in a = 20/3 m/s² and solve for T₁.",
+    "equation": "T₁ = 2×(10+20/3) = 100/3 = 33.3 N"
+   },
+   {
+    "text": "T₂ is the tension pulling the 6 kg block up from below the 4 kg block, so apply Newton's second law to the 6 kg block.",
+    "equation": "6g − T₂ = 6a"
+   },
+   {
+    "text": "Put in a = 20/3 m/s² and solve for T₂.",
+    "equation": "T₂ = 6×(10−20/3) = 20 N",
+    "why_this_step": "The 6 kg block feels only its own weight down and T₂ up, since nothing hangs below it."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 6.67 m/s², T₁ = 33.3 N, T₂ = 20 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the 4 kg block and taking the heavier side as only 6 kg, giving a = (6−2)×10/8 = 5 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Treating the 6 kg block as not accelerating and taking T₂ = 6g = 60 N."
+   }
+  ],
+  "concept_tags": [
+   "Atwood machine",
+   "connected bodies",
+   "tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "f6f75d804636183064d405a3611800552f7067f0c668c6b257f7bf7a3c0fcb62"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "80b1945bb6989dcada453594f37405677b33e5ec90d8a4e3b854b6af1125ec6d",
+  "audited_by": "W01-U-lom-08"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:05:00+05:30"
+ }
+}

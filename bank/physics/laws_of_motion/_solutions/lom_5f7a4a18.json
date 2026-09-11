@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5f7a4a18",
+ "approach": "Constant velocity means zero acceleration, so no pseudo force acts on the bob and it hangs exactly vertical under gravity and tension alone.",
+ "steps": [
+  {"text": "The train moves at constant velocity, so its acceleration is zero and no pseudo force acts on the bob in the train's frame.", "equation": "a = 0"},
+  {"text": "With no horizontal force, the string hangs vertically downward, and the tension balances the bob's weight.", "equation": "T = mg = 1 × 10 = 10 N"},
+  {"text": "The ceiling is parallel to the 30° incline, so the normal to the ceiling is tilted 30° away from the true vertical.", "equation": "normal to ceiling is 30° from vertical"},
+  {"text": "Since the string is exactly vertical, the angle between the string and the normal to the ceiling equals the incline angle.", "equation": "angle = 30°, T = 10 N"}
+ ],
+ "final_answer": {"option": null, "value": "angle = 30°, T = 10 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the string must hang perpendicular to the tilted floor (aligned with the incline's normal) gives an angle of 0°, ignoring that constant velocity means no pseudo force at all."},
+  {"option": null, "text": "Adding a pseudo force along the slope even though velocity is constant tilts the string from vertical and changes the tension; with zero acceleration there is none, so T = 10 N."}
+ ],
+ "concept_tags": ["non-inertial frame", "pseudo force", "equilibrium of a plumb bob"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

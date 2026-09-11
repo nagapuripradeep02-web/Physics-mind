@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b7c1ba7e",
+ "item_sha": "944a5a68d88d8bada97e749462440f5fff7ccac486458569e3a58a437b12ed73",
+ "auditor_option": null,
+ "auditor_value": "a_B = −3 a_A (|a_B| = 3|a_A|, opposite senses)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "From y_A + y_P2 = const and y_A + y_B − 2y_P2 = const: a_P2 = −a_A, a_B = −3a_A; the fixed-P2 mistake gives a_B = −a_A as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:04:35+05:30"
+ }
+}

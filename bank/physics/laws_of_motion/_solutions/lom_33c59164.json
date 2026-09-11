@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_33c59164",
+ "approach": "Use the given string constraint a₂ = −7a₁ with Newton's second law on block 1 (pulled up by 4T+2T+T = 7T) and on block 2 (pulled up by T).",
+ "steps": [
+  {"text": "Block 1 (1 kg) is pulled up by three string ends of tension 4T, 2T and T, and pulled down by its own weight, while it accelerates upward with a.", "equation": "7T − 10 = 1×a"},
+  {"text": "Block 2 (2 kg) is pulled up by tension T and down by its own weight, while it accelerates downward with 7a, from the given string constraint a₂ = −7a₁.", "equation": "20 − T = 2×7a"},
+  {"text": "From the first equation, T = (10+a)/7. Put this into the second equation.", "equation": "(10+a)/7 = 20 − 14a"},
+  {"text": "Multiply out and collect terms in a.", "equation": "10 + a = 140 − 98a ⇒ 99a = 130"},
+  {"text": "Solve for a, then find T, 2T and 4T.", "equation": "a = 130/99 = 1.31 m/s², T = 160/99 = 1.62 N",
+   "why_this_step": "T follows from putting a back into either block's equation, and 2T, 4T are twice and four times that value."}
+ ],
+ "final_answer": {"option": null, "value": "Block 1: a₁ = 1.31 m/s² upward. Block 2: a₂ = 7a₁ = 9.19 m/s² downward. T = 1.62 N, 2T = 3.23 N, 4T = 6.46 N."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring the movable-pulley chain and solving it as a plain two-mass pulley, giving a = (m₂−m₁)g/(m₁+m₂) = 3.33 m/s²."}
+ ],
+ "concept_tags": ["movable pulley", "string constraint", "tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-02", "at": "2026-09-11T10:30:00+05:30"}
+}

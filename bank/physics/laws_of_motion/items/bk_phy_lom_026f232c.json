@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_026f232c",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Three blocks A, B and C, each of mass 2 kg, are connected by strings over a fixed frictionless pulley. Block A hangs alone from one side of the pulley. On the other side, block B hangs directly from the string over the pulley, and block C hangs below B, joined to B by a separate string. What is the tension in the string that connects B and C?",
+  "options": {
+   "1": "zero",
+   "2": "13 N",
+   "3": "3.3 N",
+   "4": "19.6 N"
+  },
+  "parts": null,
+  "conditions": [
+   "pulley is fixed and frictionless",
+   "A hangs alone on one side",
+   "B and C hang in series (B above C) on the other side, joined by a separate string",
+   "each block has mass 2 kg"
+  ],
+  "figure": {
+   "description": "A fixed frictionless pulley is mounted on a ceiling. A string passes over the pulley. On the left side, block A (2 kg) hangs alone from the string. On the right side, block B (2 kg) hangs from the string over the pulley, and block C (2 kg) hangs below B, connected to B by its own separate string."
+  }
+ },
+ "solution": {
+  "approach": "Find the system's acceleration from the unequal masses on each side, then apply Newton's second law to block C alone to get the tension between B and C.",
+  "steps": [
+   {
+    "text": "One side of the pulley carries A alone (2 kg); the other carries B and C together (2+2 = 4 kg).",
+    "equation": "m_A = 2 kg, m_B+m_C = 4 kg"
+   },
+   {
+    "text": "Find the common acceleration from the excess weight on the heavier side, divided by the total mass.",
+    "equation": "a = [(m_B+m_C) − m_A] g / (m_A+m_B+m_C) = 2(9.8)/6 ≈ 3.27 m/s²"
+   },
+   {
+    "text": "Isolate block C alone: its own weight acts down, and the tension in the string above it (to B) acts up, while it accelerates downward with the system.",
+    "equation": "m_C g − T = m_C a"
+   },
+   {
+    "text": "Solve for T using m_C = 2 kg.",
+    "equation": "T = m_C(g − a) = 2(9.8 − 3.27) ≈ 13.07 N"
+   },
+   {
+    "text": "This rounds to the printed option.",
+    "equation": "T ≈ 13 N"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "13 N"
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Assuming the system stays in equilibrium since 'three equal weights' sounds balanced, ignoring that four kilograms pull against two, giving T = m_C g = 2(9.8) = 19.6 N."
+   },
+   {
+    "option": 3,
+    "text": "Correctly finding the system's acceleration a ≈ 3.27 m/s² but stopping there and reporting this number itself as the tension, skipping Newton's second law for block C alone."
+   }
+  ],
+  "concept_tags": [
+   "Atwood machine",
+   "connected masses",
+   "pulley"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3df038da83204dd810f30a19627bd11ee57a669fe16abeefaeb950f92bf48a06"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2d7af6c402332f0e47a093e0c377f0ebabcdabc0c32041f2bd3d366027af466c",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

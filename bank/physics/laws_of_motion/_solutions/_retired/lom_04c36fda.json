@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_04c36fda",
+ "approach": "List the four forces, then split each one first into horizontal and vertical parts, then into parts along and across the incline.",
+ "steps": [
+  {"text": "Four forces act on the body: normal reaction N perpendicular to the incline, weight w straight down, string tension T at 30° to the incline surface, and friction f along the incline.", "equation": "N, w, T, f"},
+  {"text": "N is perpendicular to a 30° incline, so it is tilted 30° from the vertical. Resolve it horizontally and vertically.", "equation": "N_horizontal = N sin 30° = 0.5N, N_vertical = N cos 30° = 0.87N"},
+  {"text": "Weight acts straight down, so it has no horizontal part.", "equation": "w_horizontal = 0, w_vertical = w"},
+  {"text": "The string is at 30° to the incline, and the incline is at 30° to the horizontal, so the string is at 60° to the horizontal.", "equation": "T_horizontal = T cos 60° = 0.5T, T_vertical = T sin 60° = 0.87T"},
+  {"text": "Friction acts along the incline surface, tilted 30° from the horizontal, same as the incline itself.", "equation": "f_horizontal = f cos 30° = 0.87f, f_vertical = f sin 30° = 0.5f"},
+  {"text": "Now resolve parallel and perpendicular to the plane. N is entirely perpendicular, and f is entirely parallel, by definition.", "equation": "N_parallel = 0, N_perp = N; f_parallel = f, f_perp = 0"},
+  {"text": "Weight makes 30° with the perpendicular to the plane; tension makes 30° with the plane itself.", "equation": "w_parallel = w sin 30° = 0.5w, w_perp = w cos 30° = 0.87w; T_parallel = T cos 30° = 0.87T, T_perp = T sin 30° = 0.5T"}
+ ],
+ "final_answer": {"option": null, "value": "(a) horizontal, vertical: N (0.5N, 0.87N); w (0, w); T (0.5T, 0.87T); f (0.87f, 0.5f). (b) parallel, perpendicular to plane: N (0, N); w (0.5w, 0.87w); T (0.87T, 0.5T); f (f, 0)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Resolving the string tension at 30° to the horizontal instead of 30° to the incline, which actually puts it at 60° to the horizontal."},
+  {"option": null, "text": "Swapping sine and cosine when resolving the normal reaction, giving N_horizontal = 0.87N and N_vertical = 0.5N."}
+ ],
+ "concept_tags": ["resolution of forces", "inclined plane", "free body diagram"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:25:00+05:30"}
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_39a50e90",
+ "item_sha": "d2f218b75425121521a93e244bf5c32bf51457c7c4a3d151347f9aef62f91487",
+ "auditor_option": null,
+ "auditor_value": "μ_min = 1/(2 tan60°) = 1/(2√3) ≈ 0.29 (N_wall = 250/(2√3) ≈ 72.2 N, N_ground = 250 N)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Taking torques about the top of the ladder instead and mishandling the weight's moment arm gives μ = 1/tanθ = 0.58, double the correct value.",
+   "note": "Vague and misleading as worded: torque about the top is a valid pivot that gives the same 0.29, so the pivot choice is not the error; the entry never says what the mishandling is (using L instead of L/2 for the weight's arm is what actually produces 1/tanθ).",
+   "fix": "Using the full length L instead of L/2 as the moment arm of the weight gives μ = 1/tanθ = 0.58, double the correct value."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently: N_wall · L sin60° = mg (L/2) cos60° gives N_wall = mg/(2 tan60°); f = N_wall and N_ground = mg so μ_min = 1/(2√3) = 0.2887. Length and mass cancel, so the solution's not using 4 m and 25 kg numerically is correct. Mistake entry [1]'s number 1/(2 sin60°) = 0.577 is computed correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:03:18+05:30"
+ }
+}

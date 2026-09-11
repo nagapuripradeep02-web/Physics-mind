@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_e797d355",
+ "approach": "With no applied force besides gravity and a frictionless incline, both blocks would accelerate at the same rate on their own, so they need no push from each other.",
+ "steps": [
+  {"text": "On a smooth incline with no applied force, a block's acceleration along the slope depends only on gravity and the incline angle, not on its mass.", "equation": "a = g sin30°, the same value for both blocks"},
+  {"text": "Since both blocks would accelerate at the same rate even if they were separate, no contact force is needed for them to move together."},
+  {"text": "The normal contact force between the two blocks is therefore zero.", "equation": "N = 0 N"}
+ ],
+ "final_answer": {"option": null, "value": "0 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the heavier 4 kg block pushes on the lighter 2 kg block because it sits lower on the slope, missing that acceleration on a smooth incline does not depend on mass."},
+  {"option": null, "text": "Computing a contact force from the mass difference, such as (4−2)g sin30° = 10 N; no such formula exists — a contact force appears only when the two blocks would accelerate at different rates."}
+ ],
+ "concept_tags": ["motion on an incline", "contact force", "Newton's second law"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:45:00+05:30"}
+}

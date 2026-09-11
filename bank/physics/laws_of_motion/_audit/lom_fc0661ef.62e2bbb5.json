@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_fc0661ef",
+ "item_sha": "62e2bbb524ef52ce0bc2b2f899dbd64194d3e6a663b682dc8cebb531e416fa85",
+ "auditor_option": null,
+ "auditor_value": "a(1 kg) = 120/11 = 10.9 m/s^2 toward the pulley; a(2 kg) = 50/11 = 4.5 m/s^2 downward; a(3 kg) = 70/11 = 6.4 m/s^2 downward; T1 = T2 = 120/11 = 10.9 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve with the served constraint (P1, P2 descend x/2): a1 = 2aP; a2 + a3 = 2aP (down positive); massless pulleys give 2T2 = T_link = 2T1 so T1 = T2 = a1; 1 kg: T = a1; 3 kg: 30 - T = 3a3; 2 kg: 20 - T = 2a2. This gives aP = 60/11 and the same four numbers the solution prints. Each equation line re-derives; a2 = 10 - aP and a3 = 10 - (2/3)aP are correct substitutions. The common_mistakes number (2 m/s^2 for a fixed-P2 Atwood pair) reproduces. Minor: step 1 calls the P1-P2 link 'rigid' though the figure says a short string; since the string stays taut the constraint is the same, so not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:24:41+05:30"
+ }
+}

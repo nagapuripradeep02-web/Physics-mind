@@ -1,0 +1,98 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_ef5a083d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the setup shown, block m₁ rests on the sloped face of a frictionless wedge, while a second block, m₂, hangs in the air and is η times as heavy as m₁; the wedge's slope makes an angle θ with the ground. Every pulley and every string in the system is taken to be massless, and no surface exposes any friction. Work out the acceleration of block m₂.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "m₂ has η times the mass of m₁",
+   "incline (wedge) makes angle θ with the horizontal",
+   "all pulleys and strings are massless",
+   "no friction anywhere in the system"
+  ],
+  "figure": {
+   "description": "A wedge rests on the ground. Its sloped face rises from the lower-left corner, where it makes angle θ with the ground, up to the top-right corner of the wedge; its right face is vertical. A small pulley is fixed at the top-right corner of the wedge. Block m₁ rests on the sloped face. A cord is tied to block m₁, runs up the slope parallel to the incline, passes over the top of the fixed corner pulley, and drops vertically down just outside the vertical face to the axle of a second, smaller pulley. This second pulley is not fixed to anything; it hangs in the air beside the vertical face, held up only by that cord. A second cord passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to a small bracket fixed to the wedge at the foot of the vertical face, at ground level; the right segment goes straight down to block m₂, which hangs freely in the air to the right of the wedge. Block m₂ has mass η times m₁. All pulleys and cords are massless, and every surface is frictionless."
+  }
+ },
+ "solution": {
+  "approach": "Get the string-length constraint linking m1's motion up the incline to m2's fall, then combine it with Newton's second law for m1, the movable pulley, and m2.",
+  "steps": [
+   {
+    "text": "The cord from m1 goes over the fixed corner pulley down to the movable pulley; the second cord passes over the top of the hanging pulley; one segment runs down to the fixed bracket and the other runs down to m2.",
+    "equation": "cord 1: m1 to fixed pulley to movable pulley; cord 2: fixed bracket to movable pulley to m2"
+   },
+   {
+    "text": "If m1 moves a distance x up the incline, the movable pulley must move down by x (cord 1 is fixed length), and then both segments of cord 2 shorten or lengthen by that same x, so m2 must move down by 2x.",
+    "equation": "a2 = 2 a1",
+    "why_this_step": "This is the constraint relation: it links every acceleration in the system before any force equation is written."
+   },
+   {
+    "text": "The hanging pulley is massless, so the single upward pull T₁ from cord 1 at its axle must balance the two downward pulls T₂ from the segments of cord 2.",
+    "equation": "T1 = 2T2"
+   },
+   {
+    "text": "Write Newton's second law for m1 along the frictionless incline, taking up the slope as positive.",
+    "equation": "T1 − m1 g sinθ = m1 a1"
+   },
+   {
+    "text": "Write Newton's second law for m2, taking downward as positive.",
+    "equation": "m2 g − T2 = m2 a2 = m2(2a1)"
+   },
+   {
+    "text": "Substitute T1 = 2T2 and m2 = ηm1 into both equations and eliminate T2 to solve for a1.",
+    "equation": "T2 = ηm1(g − 2a1); T1 = m1(a1 + g sinθ) = 2T2 gives a1(1 + 4η) = g(2η − sinθ)"
+   },
+   {
+    "text": "So a1 = g(2η − sinθ)/(1 + 4η), and m2's acceleration is twice that.",
+    "equation": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; upward when 2η < sinθ"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; when 2η < sinθ the expression is negative and m₂ accelerates upward (the acceleration of the mass m2 = ηm1)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Missing the movable-pulley factor of 2 in the constraint and taking a2 = a1, which gives a1(1 + 2η) = g(2η − sinθ), the wrong denominator (1 + 2η) instead of (1 + 4η)."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "movable pulley",
+   "inclined plane",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "77397fdd1db8c97eca46ce0431489eac0a8877f06039ddb7a5ebfef276b1bd7c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fde11a7cb6b514e158552eb747661628c95926e6860522b664c8b9579a70fb87",
+  "audited_by": "W03-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

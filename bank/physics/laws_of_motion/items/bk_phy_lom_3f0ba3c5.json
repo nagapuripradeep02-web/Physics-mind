@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_3f0ba3c5",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two identical particles, each of mass m, are joined by an inextensible string. The string is pulled at its midpoint by a steady force F. The entire arrangement rests on a frictionless horizontal surface. Find the acceleration with which each particle approaches the other.",
+  "options": {
+   "1": "(√3/2)(F/m)",
+   "2": "(1/(2√3))(F/m)",
+   "3": "(2/√3)(F/m)",
+   "4": "√3(F/m)"
+  },
+  "parts": null,
+  "conditions": [
+   "string is inextensible",
+   "surface is smooth (frictionless)",
+   "force F is applied at the string's midpoint",
+   "particles are identical, each of mass m"
+  ],
+  "figure": {
+   "description": "Two particles sit at the ends of a V formed by a single string that runs from one particle to a central point and then to the other particle. At that central point a constant, steady force F pulls horizontally, exactly along the line that bisects the V. Each half of the string makes a 30° angle with this bisecting line, so the two string halves together enclose a 60° angle."
+  }
+ },
+ "solution": {
+  "approach": "Find the string tension from the force balance where F is applied, then use its component across the centreline to get each particle's acceleration toward the other.",
+  "steps": [
+   {
+    "text": "At the point where F is applied, the same tension T pulls back along each string segment, each at 30° to the centreline. Since this point carries no mass, these forces plus F must balance.",
+    "equation": "F = 2T cos30° ⇒ T = F/(2cos30°) = F/√3"
+   },
+   {
+    "text": "For one particle, only the string tension T acts on it, directed 30° from the centreline. The component of this tension across the centreline pulls the particle toward the other one.",
+    "equation": "component across centreline = T sin30°"
+   },
+   {
+    "text": "Divide by the mass to get the acceleration of that particle toward the other one.",
+    "equation": "a = T sin30°/m = (F/√3)(1/2)/m = F/(2√3 m)"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "(1/(2√3))(F/m)"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Using the full 60° angle between the two string segments in place of the 30° angle each segment makes with the centreline gives (√3/2)(F/m)."
+   },
+   {
+    "option": null,
+    "text": "Reporting the acceleration along the centreline (toward F) instead of across it toward the other particle gives T cos30°/m = F/(2m)."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "resolving forces",
+   "string tension"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "bf5e9fde68d98ff070800a410df427faee77e0f30b37a2c66c8c7c262dc5e07a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4814d44bcda71742b9f1f8a1f73a5aa1c33ff9eae5413ca99aba077e17a865e0",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:08:00+05:30"
+ }
+}

@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_731281a9",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Starting from rest, a particle is sped up to a velocity v by a force F₁. Afterwards, the same particle is slowed from that same velocity v back down to rest by a different force F₂. Which of these statements about F₁ and F₂ must be true?",
+  "options": {
+   "1": "F₁ and F₂ are always equal in magnitude",
+   "2": "F₂ must be larger than F₁",
+   "3": "F₂ could be smaller than, larger than, or equal to F₁",
+   "4": "F₂ can never equal F₁"
+  },
+  "parts": null,
+  "conditions": [
+   "particle starts from rest",
+   "force F₁ speeds the particle up from rest to velocity v",
+   "force F₂ then slows the same particle from velocity v back to rest"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Each force equals mass times the speed change divided by the time it acts over, and the question gives no relation between the two times.",
+  "steps": [
+   {
+    "text": "Write each force using Newton's second law, with the speed change divided by the time each force acts.",
+    "equation": "F₁ = m(v − 0)/t₁, F₂ = m(0 − v)/t₂ in size"
+   },
+   {
+    "text": "The question states only that the particle speeds up from rest to v under F₁ and slows from v to rest under F₂. It gives no information about the times t₁ and t₂, or about the distances covered.",
+    "equation": "no fixed relation between t₁ and t₂"
+   },
+   {
+    "text": "Since t₁ and t₂ can be anything, F₂ can come out smaller than, larger than, or equal to F₁, depending on the time over which each force acts.",
+    "equation": "F₂ ⋛ F₁, all three are possible"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "F₂ may be smaller than, greater than or equal to F₁"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming that the same change in speed must come from the same force overlooks that the time or distance over which each force acts is not given as equal."
+   },
+   {
+    "option": 2,
+    "text": "Assuming that slowing something down always takes a bigger push than speeding it up confuses direction of motion with the size of the force needed."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "impulse",
+   "conceptual reasoning"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "0b110c6e0a127df66dc4cee6a1d664374368cf19f080696f38cd78e4722afc3f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6c057188ab15680768a6965f9ff0d628daa40e275899c1d4a588bcad6d6e748d",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:12:00+05:30"
+ }
+}

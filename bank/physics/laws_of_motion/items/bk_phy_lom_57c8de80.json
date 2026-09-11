@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_57c8de80",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Four forces F₁, F₂, F₃ and F₄ act at a single point O, as drawn in a force diagram. Write the x-component and the y-component of each of the four forces, measured along the ox and oy axes shown in the figure.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "F₁ = 4 N, 30° above the horizontal ox line",
+   "F₂ = 4 N, 60° from the vertical dashed line, on the left side",
+   "F₃ = 6 N, directed straight down (negative oy)",
+   "F₄ = 4 N, directed along positive ox",
+   "all four forces act at the same point O"
+  ],
+  "figure": {
+   "description": "Four force vectors are drawn from a common point O. A horizontal reference line runs through O; ox points to the right along it and oy points straight up. F₁ = 4 N points up and to the right, at 30° above the +x direction. F₂ = 4 N points up and to the left, at 60° above the −x direction (the 60° is measured from the leftward horizontal, so F₂ is 30° from the +y direction). F₄ = 4 N points horizontally to the right, along +x. F₃ = 6 N points straight down along −y."
+  }
+ },
+ "solution": {
+  "approach": "Resolve each force along ox and oy using the angle it makes with the axes shown in the figure.",
+  "steps": [
+   {
+    "text": "F₁ = 4 N is at 30° above ox, so resolve it along ox and oy.",
+    "equation": "F₁ₓ = 4cos30° = 2√3 N, F₁ᵧ = 4sin30° = 2 N"
+   },
+   {
+    "text": "F₂ = 4 N is at 60° above the −ox direction (30° from oy), so its ox-component is negative and its oy-component is positive.",
+    "equation": "F₂ₓ = −4cos60° = −2 N, F₂ᵧ = 4sin60° = 2√3 N"
+   },
+   {
+    "text": "F₃ = 6 N points straight down along −oy, so it has no ox-component.",
+    "equation": "F₃ₓ = 0, F₃ᵧ = −6 N"
+   },
+   {
+    "text": "F₄ = 4 N points along +ox, so it has no oy-component.",
+    "equation": "F₄ₓ = 4 N, F₄ᵧ = 0"
+   },
+   {
+    "text": "Collect all four results as the final set of components.",
+    "equation": "F₁ = (2√3, 2) N, F₂ = (−2, 2√3) N, F₃ = (0, −6) N, F₄ = (4, 0) N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "F₁ = (2√3, 2) N ≈ (3.46, 2) N; F₂ = (−2, 2√3) N ≈ (−2, 3.46) N; F₃ = (0, −6) N; F₄ = (4, 0) N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Measuring F₂'s 60° from oy instead of from the −ox direction, giving F₂ₓ = −4sin60° = −2√3 N and F₂ᵧ = 4cos60° = 2 N instead of the correct −2 N and 2√3 N."
+   },
+   {
+    "option": null,
+    "text": "Giving F₃ a positive oy-component instead of negative, missing that the arrow points downward."
+   }
+  ],
+  "concept_tags": [
+   "resolution of vectors",
+   "components of a force"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "644a75420bf58ee1a5a85a42e6e88b12f57f7b65403e26b5fa77dade025d5be3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f2b82dbdc4fafdd6990a375f3ecb0aefb47e5edfdb7130549a698e668e53a777",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:10:00+05:30"
+ }
+}

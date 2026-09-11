@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_e17ca7fd",
+ "approach": "Find the wall's normal force and the friction from equilibrium, then balance torques about C to find how far below C the wall's contact force must act.",
+ "steps": [
+  {"text": "Since F passes through C and is horizontal, horizontal equilibrium gives the wall's normal reaction equal to F.", "equation": "N = F = 40 N"},
+  {"text": "Vertical equilibrium requires friction from the wall to support the cube's weight.", "equation": "f = mg = 2 × 10 = 20 N"},
+  {"text": "Both F and the weight act through C, so they create no torque about C. The wall's normal force and friction act together at the contact point, a horizontal distance of half a side from C.", "equation": "horizontal distance from C to wall face = 0.20/2 = 0.10 m"},
+  {"text": "Let the contact point be a distance h above C. Balance the torques of N and f about C.", "equation": "N·h + f·(0.10) = 0"},
+  {"text": "Solve for h and take its magnitude as the perpendicular distance.", "equation": "h = −(20×0.10)/40 = −0.05 m, so the distance is 0.05 m (below C)"}
+ ],
+ "final_answer": {"option": null, "value": "0.05 m (5 cm), below the centre C"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting that F and the weight both pass through C, and so produce zero torque about C, leads to a wrong torque equation with extra terms in it."},
+  {"option": null, "text": "Using the full side length instead of half the side for the horizontal distance from C to the wall face gives 0.10 m instead of 0.05 m."}
+ ],
+ "concept_tags": ["torque balance", "friction", "equilibrium of a rigid body"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

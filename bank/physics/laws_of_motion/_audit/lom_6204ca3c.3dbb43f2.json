@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6204ca3c",
+ "item_sha": "3dbb43f2905dcd0ee150e12839321a0083cd75a9d1799add97bfbe1f75b18df2",
+ "auditor_option": null,
+ "auditor_value": "(a) T = 40/√3 ≈ 23.09 N; (b) hinge force: H_x = 20/√3 ≈ 11.55 N (away from the wall), H_y = 20 N (up), magnitude 40/√3 ≈ 23.09 N at 60° above the horizontal",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The mistake entry's number checks: 2 m for the weight's arm gives 80/√3 = 46.19 N. The final answer gives only the magnitude of the hinge force; its direction (60° above horizontal, away from the wall) is not stated but not strictly asked.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:02:08+05:30"
+ }
+}

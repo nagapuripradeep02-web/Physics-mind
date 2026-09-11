@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_aadb9898",
+ "approach": "Use the whole system to find the acceleration, then isolate one block to find each tension; repeat with the reduced system after the string snaps.",
+ "steps": [
+  {"text": "Find the acceleration of the three connected blocks under F.", "equation": "a = 60/(10+20+30) = 1 m/s²"},
+  {"text": "T₁ pulls only m₁, so it equals m₁ times the common acceleration.", "equation": "T₁ = 10×1 = 10 N"},
+  {"text": "T₂ pulls the combined m₁ and m₂, so it equals their total mass times the acceleration.", "equation": "T₂ = 30×1 = 30 N"},
+  {"text": "After the string between m₁ and m₂ snaps, only m₂ and m₃ remain connected; find their new common acceleration.", "equation": "a′ = 60/(20+30) = 1.2 m/s²"},
+  {"text": "T₂ now pulls only m₂, so it equals m₂ times the new acceleration.", "equation": "T₂ = 20×1.2 = 24 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) T₁ = 10 N, T₂ = 30 N; (b) T₂ = 24 N after the string between m₁ and m₂ snaps"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Keeping the acceleration at 1 m/s² after the string snaps instead of recomputing it for the smaller connected mass, giving T₂ = 20×1 = 20 N instead of 24 N."},
+  {"option": null, "text": "Computing T₁ as the force needed to accelerate m₂ and m₃ together instead of m₁ alone, giving T₁ = 50 N instead of 10 N."}
+ ],
+ "concept_tags": ["connected bodies", "Newton's second law", "string tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T12:05:00+05:30"}
+}

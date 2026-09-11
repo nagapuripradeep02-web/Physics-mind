@@ -1,0 +1,21 @@
+{
+ "question_id": "lom_77397fdd",
+ "item_sha": "a2aa1d68a7eb6b7e1ad97e51c2844c1cf2f397ac614e61abd62c5c09124efba6",
+ "auditor_option": null,
+ "auditor_value": "a₂ = 2g(2η − sinθ)/(4η + 1); positive means m₂ accelerates downward (m₂ goes up when 2η < sinθ)",
+ "findings": [
+  {"grade": "wrong", "field": "steps[2].text", "quote": "the two upward pulls from cord 2 must together balance the one downward pull from cord 1",
+   "note": "Directions reversed for the served figure. Cord 1 comes down from the corner pulley to the axle and holds the hanging pulley UP (T₁ upward); cord 2 passes over the top of the hanging pulley with both segments running downward, so its two tensions pull the pulley DOWN (2T₂ downward). The printed equation T₁ = 2T₂ is right; the reason given for it is false.",
+   "fix": "The hanging pulley is massless, so the single upward pull T₁ from cord 1 at its axle must balance the two downward pulls T₂ from the segments of cord 2."},
+  {"grade": "wrong", "field": "steps[0].text", "quote": "the second cord loops under the movable pulley with one end fixed and one end on m2",
+   "note": "The served figure says the second cord passes over the TOP of the hanging pulley and both of its segments run downward to the bracket and to m₂. 'Loops under' describes a different arrangement (a pulley hanging in a loop), which is not the one drawn.",
+   "fix": "the second cord passes over the top of the hanging pulley; one segment runs down to the fixed bracket and the other runs down to m2"},
+  {"grade": "weak", "field": "final_answer.value", "quote": "directed downward",
+   "note": "Unconditional. The expression 2g(2η − sinθ)/(1 + 4η) is negative when 2η < sinθ, in which case m₂ accelerates upward and m₁ slides down the incline; the sign of the result carries the direction.",
+   "fix": "directed downward when 2η > sinθ; when 2η < sinθ the expression is negative and m₂ accelerates upward"}
+ ],
+ "verdict": "wrong",
+ "question_defect": "The question never states that the wedge is fixed, and says every surface is frictionless; with no wedge mass given, the only workable reading is a fixed wedge, which the solution assumes without saying so.",
+ "notes": "Independently: constraint a₂ = 2a₁ (m₁ up the incline by x lowers the hanging pulley by x and lengthens the m₂ segment by x); T₁ = 2T₂; T₁ − m₁g sinθ = m₁a₁; ηm₁g − T₂ = ηm₁(2a₁); gives a₁ = g(2η − sinθ)/(1 + 4η) and a₂ = 2a₁. Every printed equation follows. The single common_mistakes entry reproduces its stated denominator (1 + 2η) when a₂ = a₁ is used with T₁ = 2T₂.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:07:00+05:30"}
+}

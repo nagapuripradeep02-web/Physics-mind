@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_adb64b1d",
+ "item_sha": "abcc0884f0b201ef45efb46e640fa39a25e800c2b2dfc8d56989dd673aca0475",
+ "auditor_option": null,
+ "auditor_value": "Plank: weight at its centre of gravity; normal reaction from the ground (perpendicular to ground) and friction from the ground (along the ground, toward the cylinder) at the lower end; normal reaction from the cylinder perpendicular to the plank at the contact point, no friction there. Cylinder: weight at its centre; normal reaction from the plank perpendicular to the plank and through the centre; normal reaction from the ground (vertical, through the centre); friction from the ground (horizontal, at the ground contact, toward the plank's lower end). Four forces on each body.",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].text",
+   "quote": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+   "note": "Register: 'feels four forces' personifies the cylinder and 'carries its own weight' is idiomatic; the physics of the line is correct.",
+   "fix": "The cylinder touches the rough ground and the smooth plank, and has its own weight, so four forces act on it: its weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "My FBDs match the solution's force lists and directions: the cylinder's normal on the plank is perpendicular to the plank and its horizontal part points away from the cylinder, so ground friction on the plank points toward the cylinder; the reaction on the cylinder has a horizontal part away from the plank's foot, so ground friction on the cylinder points toward the plank's lower end. The solution correctly notes (steps[3].why_this_step, final_answer 'if it acts') that this friction is the only force with a moment about the cylinder's centre, so in strict static equilibrium it would have to be zero; since the question states that friction exists at the ground contacts and asks only for the diagrams, drawing it is what the question wants, and common_mistakes[1] is therefore a genuine omission for THIS question, not a condemned correct method. No numerical content to check.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 5,
+  "agent": "W05-U-lom-01",
+  "at": "2026-09-12T00:01:29+05:30"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_e10f7638",
+ "approach": "Find the rope's overall acceleration from the pull and the friction, then apply Newton's second law to the trailing half of the rope to find the tension at its midpoint.",
+ "steps": [
+  {"text": "The whole rope has the pulling force F on one end and friction, spread evenly along its length, resisting the motion. Find the acceleration from the net force on the whole rope.", "equation": "F − μMg = Ma, with F = Mg and μ = 1/2 ⇒ a = g(1 − μ) = g/2"},
+  {"text": "Look at the trailing half of the rope, the half farther from where F is pulled. The only forces on it are the tension T pulling it forward from the midpoint and friction on its own weight holding it back.", "equation": "trailing half has mass M/2 and friction μ(M/2)g"},
+  {"text": "Apply Newton's second law to this half and solve for T.", "equation": "T − μ(M/2)g = (M/2)a ⇒ T = (M/2)(a + μg) = (M/2)(g/2 + g/2) = Mg/2"}
+ ],
+ "final_answer": {"option": 4, "value": "Mg/2"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Wrongly assuming all the friction acts only under the half being pulled, leaving none on the trailing half, gives T = (M/2)a = Mg/4."}
+ ],
+ "concept_tags": ["kinetic friction", "non-rigid body dynamics", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:28:00+05:30"}
+}

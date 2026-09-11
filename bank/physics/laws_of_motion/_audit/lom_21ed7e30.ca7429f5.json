@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_21ed7e30",
+ "item_sha": "ca7429f5eea85be83cee691608a9033a027a7fc7c5bba0059952452a61d28756",
+ "auditor_option": null,
+ "auditor_value": "0 ≤ F ≤ 5 N: f = F, a = 0. F > 5 N: f = μₖmg = 4 N constant, a = (F − 4) m/s² (jumps to 1 m/s² just past F = 5 N)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[3].why_this_step",
+   "quote": "so any extra force beyond 4 N goes straight into accelerating the block",
+   "note": "Figurative phrasing ('goes straight into'); the plain statement is that the net force F − 4 N produces the acceleration.",
+   "fix": "so the net force F − 4 N produces the acceleration of the block."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently: f_max = 0.5 × 10 = 5 N, kinetic f = 0.4 × 10 = 4 N, a = F − 4 for F > 5 N. Every printed equation is correct and both mistake entries are genuine errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:02:50+05:30"
+ }
+}

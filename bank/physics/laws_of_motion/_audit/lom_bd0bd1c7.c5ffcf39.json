@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_bd0bd1c7",
+ "item_sha": "c5ffcf396176b752b286358ac7dcd5f1c6f2e5224d6c8b3856ffca89103300a5",
+ "auditor_option": null,
+ "auditor_value": "a = g/2 (5 m/s² with g = 10); T = Mg/2",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Both pulleys fixed and only one strand tied to the table block (the return strand passes over it without attachment), so it is an ordinary two-equal-mass system; the figure's x-to-x displacement statement confirms this. Solution states g = 10 for the numeric value.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:30:46+05:30"
+ }
+}

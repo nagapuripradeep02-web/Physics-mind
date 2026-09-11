@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_ec6cec62",
+ "approach": "Check whether the relative acceleration of S₂ with respect to S₁ must vanish merely because both are non-inertial, then judge the general truth of the Reason on its own.",
+ "steps": [
+  {"text": "A frame is non-inertial only if it has some acceleration relative to an inertial (ground) frame; being non-inertial is about acceleration, not about motion in general."},
+  {"text": "Viewed from S₁, the relative acceleration of S₂ is the difference of their accelerations relative to the ground.", "equation": "a(S₂ relative to S₁) = a(S₂) − a(S₁)"},
+  {"text": "This difference is zero only in the special case that S₁ and S₂ happen to share the same acceleration, which is not stated here, so in general S₂ stays non-inertial even when viewed from S₁ — the Assertion is false as a general claim.", "equation": "a(S₂) − a(S₁) ≠ 0 in general ⇒ Assertion false"},
+  {"text": "The Reason is a true, separate statement: a frame moving at constant velocity is still inertial, so mere motion does not make a frame non-inertial — only acceleration does.", "equation": "Assertion false, Reason true"}
+ ],
+ "final_answer": {"option": 4, "value": "If the Assertion is false but the Reason is true."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Assuming that viewing one non-inertial frame from another non-inertial frame always cancels out the acceleration completely, making S₂ look inertial from S₁ in every case, and picking both statements true."}
+ ],
+ "concept_tags": ["inertial frame", "relative acceleration", "frames of reference"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_deea8bc4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass 2 kg is held against a vertical wall by a horizontal force F = 20 N pushing it into the wall, as pictured. The static friction coefficient between the block and the wall is μₛ = 0.8, and the kinetic friction coefficient is μₖ = 0.6. Taking g = 10 m/s², work out the block's acceleration and the friction force that acts on it.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "the 20 N force is horizontal, directed into the wall",
+   "static friction coefficient between block and wall μₛ = 0.8",
+   "kinetic friction coefficient between block and wall μₖ = 0.6",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 2 kg block is pressed against a vertical wall by a horizontal force F = 20 N pointing toward the wall. The wall provides friction on the block with μₛ = 0.8 (static) and μₖ = 0.6 (kinetic)."
+  }
+ },
+ "solution": {
+  "approach": "The push force sets the normal force against the wall; compare the block's weight to the maximum static friction that normal force can supply to see whether the block slides.",
+  "steps": [
+   {
+    "text": "The block does not accelerate into the wall, so the wall's normal reaction equals the push.",
+    "equation": "N = F = 20 N"
+   },
+   {
+    "text": "Find the maximum static friction available and compare it with the block's weight.",
+    "equation": "f(s,max) = μₛN = 0.8 × 20 = 16 N, weight = mg = 2 × 10 = 20 N"
+   },
+   {
+    "text": "Since the weight (20 N) exceeds the maximum static friction (16 N), the block slides down, so kinetic friction applies instead, directed upward.",
+    "equation": "f(k) = μₖN = 0.6 × 20 = 12 N"
+   },
+   {
+    "text": "Apply Newton's second law along the vertical, weight down and kinetic friction up.",
+    "equation": "20 − 12 = 2a → a = 4 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The block slides down with acceleration 4 m/s²; the friction acting on it is kinetic friction, 12 N, directed upward."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the static friction limit (16 N) as the actual friction force even after checking that the block slides, giving a = 2 m/s² instead of 4 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Not checking whether the block slides at all and assuming it stays at rest because the wall is rough."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "normal force"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6512249ae5f082400a6bb6ab03562833dde40287259e1035e7afa3949a2e4978"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "107389e440498a43f1310601d2f897bf8d2df3429477550af842351de5c4a18b",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:29:00+05:30"
+ }
+}

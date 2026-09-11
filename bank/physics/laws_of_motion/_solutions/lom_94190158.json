@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_94190158",
+ "approach": "Find the common acceleration of all three blocks together, then apply Newton's second law to the 2 kg block alone.",
+ "steps": [
+  {"text": "All three blocks touch and move together on the smooth surface, so treat them as one combined mass to find the acceleration.", "equation": "a = F / (m₁ + m₂ + m₃) = 12 / (3 + 2 + 1) = 2 m/s²"},
+  {"text": "This acceleration is the same for every block, including the 2 kg block in the middle.", "equation": "a = 2 m/s²"},
+  {"text": "The net force on the 2 kg block is its mass times this acceleration.", "equation": "net force = m × a = 2 × 2 = 4 N", "why_this_step": "Newton's second law gives the net force on a block directly from its own mass and the common acceleration, without needing to know the individual contact forces on it."}
+ ],
+ "final_answer": {"option": null, "value": "4 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only the 2 kg and 1 kg blocks' combined mass to find the acceleration, forgetting the 3 kg block is also part of the system being pushed."},
+  {"option": null, "text": "Taking the net force on the 2 kg block as the full applied 12 N instead of scaling it down by mass."}
+ ],
+ "concept_tags": ["Newton's second law", "blocks in contact", "system of bodies"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T01:05:00+05:30"}
+}

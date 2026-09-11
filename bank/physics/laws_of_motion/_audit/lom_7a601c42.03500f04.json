@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_7a601c42",
+ "item_sha": "03500f040a493fa85ae1b084e31151de59d42015cde8afa38766c9188a953d50",
+ "auditor_option": null,
+ "auditor_value": "(a) a = (120 − 50)/7 = 10 m/s² rightward; (b) N(1 kg–4 kg) = 120 − 1×10 = 110 N (check: 110 − 50 = 6×10); (c) net force on the 2 kg block = 2×10 = 20 N rightward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation follows; the contact force checks from both sides (120 − N = 1×10 and N − 50 = 6×10 both give 110 N). Both common_mistakes entries reproduce their numbers (170/7 ≈ 24.3 m/s²; 6×10 = 60 N without the 50 N push).",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:19:00+05:30"}
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_df3cf5c7",
+ "approach": "Find the common acceleration of the three-block system, then apply Newton's second law to each block in turn, starting from the pulled end, to find each string's tension.",
+ "steps": [
+  {"text": "The pulling force F acts on the whole chain of three blocks through the strings, and the surface is smooth, so all three move with one common acceleration.", "equation": "a = F / (m₁ + m₂ + m₃) = 14 / (4 + 2 + 1) = 2 m/s²"},
+  {"text": "Look at the 1 kg block alone, the one being pulled. F acts forward on it, and T₁ (the string to the 2 kg block) pulls it back.", "equation": "F − T₁ = m₃a → T₁ = 14 − 1×2 = 12 N"},
+  {"text": "Look at the 4 kg block alone, the one farthest from the pull. Only T₂ (the string to the 2 kg block) acts on it, pulling it forward.", "equation": "T₂ = m₁a = 4×2 = 8 N", "why_this_step": "The 4 kg block has no other horizontal force on it, so its whole forward force is the string tension pulling it along."}
+ ],
+ "final_answer": {"option": null, "value": "(a) acceleration of each block = 2 m/s², (b) tension T₂ (between the 4 kg and 2 kg blocks) = 8 N, tension T₁ (between the 2 kg and 1 kg blocks) = 12 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Finding T₁ and T₂ as equal, missing that the string closer to the pulled block always carries more tension because it also has to move the blocks behind it."},
+  {"option": null, "text": "Computing the acceleration using only the 1 kg block's mass, giving 14 m/s² instead of dividing by the total mass of the chain."}
+ ],
+ "concept_tags": ["Newton's second law", "connected bodies", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T01:10:00+05:30"}
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_778d98f2",
+ "item_sha": "6db216719c125f6e643754c38f4d1141c7ea7d1d17ef17a271664f1f2312cd47",
+ "auditor_option": null,
+ "auditor_value": "A (4 kg): 2g/7 downward = 20/7 ≈ 2.86 m/s² (g = 10) or 2.8 m/s² (g = 9.8); B (5 kg): g/7 upward = 10/7 ≈ 1.43 m/s² (g = 10) or 1.4 m/s² (g = 9.8); T = 20g/7",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: T − 4g = 4(2a_B) for A upward, 5g − 2T = 5a_B for B downward, gives a_B = −g/7 (B goes up), a_A = 2g/7 down, T = 20g/7. The solution's sign convention (downward positive for each block, a_A = −2a_B) and its solve (a_B = −10/7, a_A = 20/7, T = 200/7 N) all check. The question does not fix g; the solution uses g = 10 (visible in '4(10)' and '5(10)') without a separate statement — recorded here, not filed. Both common_mistakes entries are genuine errors for this arrangement.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:03:00+05:30"}
+}

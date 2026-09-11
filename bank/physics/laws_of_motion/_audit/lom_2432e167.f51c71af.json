@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_2432e167",
+ "item_sha": "f51c71afa2ec8ebbf0ead55ac0c634cbd92a34cbf15d17c96a64563b15074602",
+ "auditor_option": null,
+ "auditor_value": "T₂ = F/4. (a) F = 100 N: a_m = a_M = 0. (b) F = 300 N: a_m = 5 m/s² up, a_M = 0. (c) F = 500 N: a_m = 15 m/s² up, a_M = 2.5 m/s² up",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: 2T₁ = F, T₁ = 2T₂ so T₂ = F/4 = 25, 75, 125 N against weights 50 N and 100 N; a_m = (T₂ − 50)/5, a_M = (T₂ − 100)/10 when positive, else 0. Every step and both mistake entries check out; g = 10 as the question states.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:00:12+05:30"
+ }
+}

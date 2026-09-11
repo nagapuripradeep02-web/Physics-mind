@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_5f7a4a18",
+ "item_sha": "ffa05b288ae226ab7da1a44e6aacf33ba515f2a4421cc95d8d26e32fd61042f9",
+ "auditor_option": null,
+ "auditor_value": "constant velocity -> string vertical; ceiling normal is 30 deg from vertical -> angle 30 deg; T = mg = 10 N",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Adding a pseudo force even though the velocity is constant gives a tension and angle different from the true equilibrium values.",
+   "note": "The entry names the error but not what it produces; \"different from the true equilibrium values\" tells the student nothing to recognise. A mistake entry should name the wrong result.",
+   "fix": "Adding a pseudo force along the slope even though the velocity is constant: a student who does this tilts the string away from the vertical and changes the tension from mg, but with zero acceleration there is no pseudo force, so the string is vertical and T = 10 N."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:00:03+05:30"
+ }
+}

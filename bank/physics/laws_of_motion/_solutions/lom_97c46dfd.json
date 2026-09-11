@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_97c46dfd",
+ "approach": "Work in the lift's frame: its upward retardation adds a downward pseudo force, so the body slides down with effective gravity g + a instead of g.",
+ "steps": [
+  {"text": "The lift moves down but is slowing down, so its acceleration points upward, with size a. In the lift's frame, this adds a pseudo force on the body, directed downward.", "equation": "pseudo force = ma, downward"},
+  {"text": "The effective downward pull on the body is now gravity plus the pseudo force, so the effective gravity is g + a.", "equation": "g_eff = g + a"},
+  {"text": "The incline is smooth, so the only force along the incline is the component of the effective weight along it. Find the acceleration down the incline.", "equation": "a_incline = (g + a) sinθ"},
+  {"text": "Use the equation for distance from rest to find the time to slide the full length L.", "equation": "L = ½(g + a)sinθ · t² ⇒ t = √(2L / ((g + a) sinθ))"}
+ ],
+ "final_answer": {"option": 1, "value": "√(2L / ((g + a) sin θ))"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Treating the lift's retardation as making the effective gravity smaller instead of larger gives g − a in place of g + a."},
+  {"option": 4, "text": "Ignoring the lift's motion entirely and using plain gravity gives the answer for a stationary lift, √(2L / (g sinθ))."}
+ ],
+ "concept_tags": ["pseudo force", "non-inertial frame", "inclined plane"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:04:00+05:30"}
+}

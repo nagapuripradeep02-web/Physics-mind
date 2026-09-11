@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6c463010",
+ "approach": "Find the one horizontal acceleration of the wedge that keeps m1 from sliding on its frictionless slope, then use that acceleration to find the hanging mass M that produces it.",
+ "steps": [
+  {"text": "Since the string ties M to the wedge itself (not to m1), the wedge and m1 move together as one horizontal unit with a common acceleration; the string over the pulley makes M's downward acceleration equal to this same value.", "equation": "a(wedge) = a(m1, horizontal) = a(M, downward) = A",
+   "why_this_step": "This is the constraint relation linking every acceleration in the problem, fixed before any force equation is written."},
+  {"text": "For m1 not to slide on the frictionless slope, the normal force alone must supply its horizontal acceleration A while also balancing its weight vertically.", "equation": "N cosθ = m1 g,  N sinθ = m1 A"},
+  {"text": "Divide the two equations to eliminate N and solve for A.", "equation": "A = g tanθ = g tan30° = 10/√3 ≈ 5.77 m/s²"},
+  {"text": "Write Newton's second law for the wedge-plus-m1 system moving horizontally under the string tension T.", "equation": "T = (m1 + m2)A = (1 + 4)(10/√3) = 50/√3 N"},
+  {"text": "Write Newton's second law for the hanging mass M, taking downward as positive.", "equation": "Mg − T = MA"},
+  {"text": "Substitute T = (m1+m2)A and solve for M.", "equation": "M = (m1 + m2)A/(g − A) = 5(10/√3)/(10 − 10/√3) = 5(√3+1)/2 ≈ 6.83 kg"}
+ ],
+ "final_answer": {"option": null, "value": "M = 5(√3 + 1)/2 kg ≈ 6.83 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using A = g sinθ (the acceleration formula for a block sliding down a fixed frictionless incline) instead of A = g tanθ, giving M = 5 kg instead of the correct ≈ 6.83 kg."}
+ ],
+ "concept_tags": ["pseudo force", "non-inertial frame", "accelerating wedge", "constraint relation"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

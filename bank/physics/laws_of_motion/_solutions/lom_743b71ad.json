@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_743b71ad",
+ "approach": "Find the time when the applied force reaches the maximum static friction, then use kinetic friction for the sliding phase after that time.",
+ "steps": [
+  {
+   "text": "Find the maximum static friction and the time at which the applied force reaches it.",
+   "equation": "f(max static) = μₛmg = 0.6×2×10 = 12 N; F = 2t = 12 N at t = 6 s"
+  },
+  {
+   "text": "For t < 6 s the block stays still, so friction equals the applied force.",
+   "equation": "friction = F = 2t, a = 0"
+  },
+  {
+   "text": "For t > 6 s the block slides, so kinetic friction takes its constant value and the net force gives the acceleration.",
+   "equation": "friction = μₖmg = 0.4×2×10 = 8 N, a = (2t − 8)/2 = t − 4"
+  },
+  {
+   "text": "At t = 2 s the block is still in the static phase.",
+   "equation": "friction = 2×2 = 4 N, a = 0"
+  },
+  {
+   "text": "At t = 8 s the block is in the sliding phase.",
+   "equation": "friction = 8 N, a = 8 − 4 = 4 m/s²"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) a = 0 for 0 ≤ t ≤ 6 s, then a = t − 4 for t > 6 s, a straight line starting at (6 s, 2 m/s²) with slope 1; (b) friction = 4 N at t = 2 s, friction = 8 N at t = 8 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the static coefficient 0.6 instead of the kinetic coefficient 0.4 for the sliding phase gives friction = 12 N at t = 8 s and a = 2 m/s² instead of 4 m/s²."
+  },
+  {
+   "option": null,
+   "text": "Forgetting to divide the net force by the mass gives a = 2t − 8 directly, so a = 8 m/s² at t = 8 s instead of the correct 4 m/s²."
+  }
+ ],
+ "concept_tags": [
+  "static and kinetic friction",
+  "time-varying force",
+  "acceleration graph"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

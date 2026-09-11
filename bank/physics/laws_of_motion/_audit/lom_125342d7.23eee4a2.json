@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_125342d7",
+ "item_sha": "23eee4a21a0ed5cd8b1c9519193130ec047bf66eb65d45dbb1e93fe4eda9ee3a",
+ "auditor_option": null,
+ "auditor_value": "F = 3 cos60 + 10 sin60 = 3/2 + 5 sqrt3 = 10.16 N; R = 10 cos60 - 3 sin60 = 5 - 3 sqrt3/2 = 2.40 N",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "difficulty",
+   "quote": "hard",
+   "note": "Two simultaneous resolution equations with no constraint or friction reasoning; this is a standard medium item. Resolving along and perpendicular to the ramp gives F and R in one line each.",
+   "fix": "medium"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Horizontal: F cos60 - R sin60 = 3; vertical: F sin60 + R cos60 = 10; solved numerically, residual zero. The common-mistake entry (F = 3 N, R = 10 N by not resolving) is a genuine error whose numbers follow from its cause. Step 3 jumps from the two equations to the answer without showing the elimination; readable, not filed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:03:21+05:30"
+ }
+}

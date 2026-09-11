@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_8bee1b8c",
+ "item_sha": "a2e30b2b6c41b5d0304a50eb1ee34f88e31725c11378a10c4b79543f4cd648b8",
+ "auditor_option": 2,
+ "auditor_value": "Both true, Reason not the explanation: F = mu m g/(cos th + mu sin th) is minimum at tan th = mu (angle of friction); angle of repose = angle of friction is a separate fact",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Verified F(th) minimum numerically at arctan(mu). Steps, final option and the single common_mistakes entry all check out. 'the coefficient ratio mu' in steps[2].text is an awkward phrase (mu is the coefficient of friction) but not false.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:57:46+05:30"
+ }
+}

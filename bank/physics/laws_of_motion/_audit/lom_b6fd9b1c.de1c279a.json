@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_b6fd9b1c",
+ "item_sha": "de1c279a14f40040988879a2f42a64885df8e7de96140e0879b681d10875829d",
+ "auditor_option": 1,
+ "auditor_value": "a(up)/a(down) = (tanθ+μ)/(tanθ−μ) = (1+μ)/(1−μ) at 45° = 2; ratio 2:1 — option (a)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "a_up = g(sin45 + cos45/3) ≈ 9.43, a_down = g(sin45 − cos45/3) ≈ 4.71, ratio 2.0; the Reason's form holds because tan45 = 1, which the solution states.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:20+05:30"
+ }
+}

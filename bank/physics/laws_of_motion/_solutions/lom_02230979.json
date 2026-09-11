@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_02230979",
+ "approach": "Link the rod's motion to the ball's motion through the two cords, apply Newton's second law to both, then time the closing of gap l from the relative acceleration.",
+ "steps": [
+  {"text": "The ball hangs from one end of the cord over the fixed pulley; the other end goes down to the movable pulley, which is held up only by that cord.", "equation": "cord 1: ball to fixed pulley to movable pulley"},
+  {"text": "If the ball falls a distance x, the movable pulley must rise by x (cord 1 is fixed length); then, since the rod hangs from one side of cord 2, which passes over the top of that pulley, and a fixed bracket holds the other side, the rod's top must rise or fall by twice the pulley's own motion.", "equation": "a(rod, downward) = −2 a(ball, downward)",
+   "why_this_step": "This constraint relation ties every acceleration in the system together before any force equation is written."},
+  {"text": "The movable pulley is massless, so cord 1's single pull must balance cord 2's two pulls.", "equation": "T1 = 2T2"},
+  {"text": "Write Newton's second law for the ball, taking downward as positive.", "equation": "mb g − T1 = mb ab"},
+  {"text": "Write Newton's second law for the rod, taking downward as positive, using the constraint a(rod) = −2ab.", "equation": "mr g − T2 = mr(−2ab)"},
+  {"text": "Substitute T1 = 2T2 and mb = ηmr into both equations and eliminate the tensions to solve for the ball's acceleration.", "equation": "ab = g(η − 2)/(η + 4), downward; this is negative for η < 2, so the ball actually rises"},
+  {"text": "The ball starts a distance l below the rod's top. With both released from rest, the gap closes with constant relative acceleration, equal to the acceleration of the ball toward the rod's top.", "equation": "gap(t) = l + ½(ab − a_rod)t² = l + (3/2)ab t²; setting gap = 0 gives t = √(2l(η + 4)/(3g(2 − η))), valid for η < 2"}
+ ],
+ "final_answer": {"option": null, "value": "t = √(2l(η + 4) / (3g(2 − η))), valid when η < 2 so the ball rises to meet the rod's descending top"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Missing the movable-pulley factor of 2 in the constraint and taking the rod's speed equal to the ball's instead of twice it, which changes both the acceleration formula and the resulting time."}
+ ],
+ "concept_tags": ["constraint relation", "movable pulley", "equations of motion", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

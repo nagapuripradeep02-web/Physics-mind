@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_fd3acebd",
+ "item_sha": "1eaffef2f67797c1f2c8761bdd79586a6f6b123a4aa6be797dbff69512cb77b3",
+ "auditor_option": null,
+ "auditor_value": "a = (30 − 8√3)/6 ≈ 2.69 m/s² down the incline (blocks move together since the 2 kg block alone would accelerate at 3.27 m/s², faster than the 4 kg block's 2.40 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g = 10 fixed by the question. 6×5 − 1.6×8.66 = 16.14 = 6a. The why_this_step justifies contact (μ₂ > μ₁ so the front block resists more). Mistake entries produce 3.27 and 2.40 m/s² as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:01:57+05:30"
+ }
+}

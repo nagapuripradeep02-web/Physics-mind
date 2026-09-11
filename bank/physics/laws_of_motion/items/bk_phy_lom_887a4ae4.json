@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_887a4ae4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Looking at the arrangement shown, the friction force that block B exerts on block A will always point toward the right, in every case. Reason: A friction force always acts against the relative sliding (or tendency to slide) between the two touching surfaces.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "block A rests on top of block B",
+   "ground beneath B is smooth (frictionless)",
+   "F₁ acts on A, directed to the left",
+   "F₂ acts on B, directed to the right"
+  ],
+  "figure": {
+   "description": "Block A sits on top of block B, and block B rests on the ground below it. The ground under B is smooth (frictionless), so there is no friction between B and the ground. A force F₁ is applied directly to block A, pointing horizontally to the left. A force F₂ is applied directly to block B, pointing horizontally to the right. Friction can act between A and B at their contact surface."
+  }
+ },
+ "solution": {
+  "approach": "Solve for the friction on A from B in terms of arbitrary masses and forces, and show it always comes out positive (rightward) no matter the values.",
+  "steps": [
+   {
+    "text": "Let m₁ be the mass of A and m₂ the mass of B. Without friction, F₁ alone would push A left and F₂ alone would push B right, so A tends to slip left relative to B.",
+    "equation": "F₁ on A (left), F₂ on B (right)"
+   },
+   {
+    "text": "The ground under B is smooth, so the only horizontal forces on the whole system are F₁ and F₂; find their common acceleration.",
+    "equation": "a = (F₂ − F₁) / (m₁+m₂)"
+   },
+   {
+    "text": "Write Newton's second law for A alone, with F₁ acting left and the unknown friction f from B acting right (positive direction).",
+    "equation": "−F₁ + f = m₁a"
+   },
+   {
+    "text": "Substitute the common acceleration and solve for f.",
+    "equation": "f = (m₁F₂ + m₂F₁) / (m₁+m₂)"
+   },
+   {
+    "text": "Every term here is a positive mass or force, so f is always positive — friction on A from B is always rightward, for any values of F₁, F₂, m₁, m₂.",
+    "equation": "f > 0 always"
+   },
+   {
+    "text": "This rightward friction is exactly the force opposing A's tendency to slip left relative to B, so the Reason correctly explains the Assertion.",
+    "equation": "Assertion true, Reason true and explains it"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "If both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Assuming the friction direction depends on whether F₁ or F₂ is larger and so could point either way, which makes the Assertion look false while still taking the Reason as a true general law."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "connected bodies",
+   "relative sliding"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "67c45fd32013acbd1af75ccdc555697177739143d2ecd670f5ff6b34dea87e36"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "5158bacb2289f42accc8df1897ab22c67e89841c89b95d35770a668b24604521",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

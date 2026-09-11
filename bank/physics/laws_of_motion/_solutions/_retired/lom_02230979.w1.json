@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_02230979",
+ "approach": "Relate the ball's and rod's accelerations via the string constraints, apply Newton's law, then use their relative acceleration to find when the ball has risen l relative to the rod.",
+ "steps": [
+  {"text": "The first string runs from the ball over the fixed ceiling pulley to the movable pulley's axle, so if the ball rises by x, the movable pulley descends by the same x.", "equation": "a_pulley (down) = a (ball, up)"},
+  {"text": "The second string runs over the movable pulley, one end fixed to a bracket and the other tied to the rod's top, so the rod descends twice as fast as the pulley.", "equation": "a_rod (down) = 2a"},
+  {"text": "Both pulleys are massless, so the first string's tension is twice the second's; apply Newton's second law to the ball (mass ηm, taking up as positive) and to the rod (mass m, taking down as positive).", "equation": "T₁ − ηmg = ηma;  mg − T₂ = m(2a);  T₁ = 2T₂"},
+  {"text": "Eliminate the tensions to solve for the ball's acceleration.", "equation": "a = g(2 − η)/(η + 4)"},
+  {"text": "The ball rises while the rod falls (or the reverse if η > 2), so their relative acceleration is the sum of the two magnitudes taken in the same sense.", "equation": "a_rel = a − (−2a) = 3a = 3g(2−η)/(η+4)",
+   "why_this_step": "In a common upward-positive frame the ball's acceleration is +a and the rod's is −2a, so the ball's acceleration relative to the rod is a − (−2a) = 3a."},
+  {"text": "The ball starts level with the rod's lower end and must rise by l relative to the rod to reach the upper end, starting from rest.", "equation": "l = ½ |a_rel| t²  →  t = √[2l(η+4) / (3g|2−η|)]"}
+ ],
+ "final_answer": {"option": null, "value": "t = √[2l(η + 4) / (3g|2 − η|)]"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the ball's own acceleration a instead of 3a, forgetting the rod also moves toward the ball, gives the wrong t = √[2l(η+4)/(g|2−η|)], too large by √3."},
+  {"option": null, "text": "Taking the rod's acceleration equal to the ball's acceleration a instead of 2a, by missing the movable pulley's 2:1 relation."}
+ ],
+ "concept_tags": ["movable pulley", "constraint relations", "relative acceleration", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:15:00+05:30"}
+}

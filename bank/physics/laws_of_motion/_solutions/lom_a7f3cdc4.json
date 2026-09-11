@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_a7f3cdc4",
+ "approach": "Both strings end on the same falling block C, so A, B and C all share one acceleration magnitude; write Newton's second law for each block and solve together.",
+ "steps": [
+  {"text": "Both strings drop onto block C from its two pulleys, so whatever distance A slides right and B slides left, C falls by exactly that much in the same time.", "equation": "aA = aB = aC = a"},
+  {"text": "Block A rests on the rough surface, so friction opposes its motion toward the pulley.", "equation": "f = μ mA g = 0.2 × 4 × 10 = 8 N"},
+  {"text": "Write Newton's second law for A along the table.", "equation": "T1 − f = mA a → T1 − 8 = 4a"},
+  {"text": "Block B moves on the frictionless surface, so only tension acts on it horizontally.", "equation": "T2 = mB a = 8a"},
+  {"text": "Write Newton's second law for the falling block C.", "equation": "mC g − T1 − T2 = mC a → 200 − T1 − T2 = 20a"},
+  {"text": "Substitute T1 and T2 from the first two equations into C's equation and solve for a.", "equation": "200 − (4a + 8) − 8a = 20a → 192 = 32a → a = 6 m/s²"},
+  {"text": "Use a = 6 m/s² to find the two tensions.", "equation": "T1 = 4(6) + 8 = 32 N, T2 = 8(6) = 48 N"}
+ ],
+ "final_answer": {"option": null, "value": "a = 6 m/s²; T1 (string to A) = 32 N; T2 (string to B) = 48 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring the friction on A and solving it as a plain three-block system, giving a = 6.25 m/s² instead of the correct 6 m/s²."}
+ ],
+ "concept_tags": ["Newton's second law", "friction", "pulley system", "constraint relation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

@@ -1,0 +1,21 @@
+{
+ "question_id": "lom_39473919",
+ "item_sha": "fee949f786390d8531cb66271716308da49b8f92df198189b4e9f569f82c7288",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 7/6 s ≈ 1.17 s; (b) 4 m/s to the left (−4 m/s); (c) 1 kg block: 77/6 m ≈ 12.83 m to the left; 2 kg block: displacement 7/12 m ≈ 0.58 m to the left (path length 25/12 m ≈ 2.08 m, since it reverses at t = 0.5 s)",
+ "findings": [
+  {"grade": "harmful", "field": "final_answer.value", "quote": "(a) t = 14/6 s ≈ 1.17 s",
+   "note": "14/6 s = 2.33 s, not 1.17 s. Step 4 correctly finds t = 21/18 = 7/6 s; the fraction in the final answer is doubled and contradicts its own decimal. A student copying 14/6 s loses the mark.",
+   "fix": "(a) t = 7/6 s ≈ 1.17 s"},
+  {"grade": "harmful", "field": "steps[4].equation", "quote": "s(top) = 3(14/6) − 3(7/6)² = −7/12 m ≈ −0.58 m",
+   "note": "The line as printed is false: 3(14/6) − 3(7/6)² = 7 − 49/12 = 35/12, not −7/12. The time inside the first term is doubled; with t = 7/6 s the result −7/12 m is right.",
+   "fix": "s(top) = 3(7/6) − 3(7/6)² = 7/2 − 49/12 = −7/12 m ≈ −0.58 m; s(bottom) = −18(7/6) + 6(7/6)² = −77/6 m ≈ −12.83 m"},
+  {"grade": "wrong", "field": "final_answer.value", "quote": "the 2 kg block displaces 7/12 m ≈ 0.58 m",
+   "note": "The served question asks how far each block travels. The 2 kg block reverses direction at t = 0.5 s (v = 3 − 6t = 0), so its path length is 0.75 m + 4/3 m = 25/12 m ≈ 2.08 m, while its displacement is 7/12 m. The solution silently answers displacement without naming the difference; for the 1 kg block the two coincide (77/6 m) because it never reverses.",
+   "fix": "the 2 kg block's displacement is 7/12 m ≈ 0.58 m to the left; because it stops and reverses at t = 0.5 s, the distance it travels is 0.75 m + 4/3 m = 25/12 m ≈ 2.08 m"}
+ ],
+ "verdict": "harmful",
+ "question_defect": "Part (c) says 'how far ... each travel', which reads as distance; the 2 kg block reverses direction before sliding stops, so distance (25/12 m) and displacement (7/12 m) differ for it. The wording should say either 'displacement' or 'distance travelled'.",
+ "notes": "Independently: f = 12 N, a_top = −6, a_bottom = +12 m/s²; 3 − 6t = −18 + 12t gives t = 7/6 s; v = −4 m/s (momentum check: (6 − 18)/3 = −4). Both common_mistakes entries reproduce the numbers they name (18 N friction gives t = 7/9 s; keeping the friction signs but writing +18 gives t = −5/6 s). g = 10 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T19:58:00+05:30"}
+}

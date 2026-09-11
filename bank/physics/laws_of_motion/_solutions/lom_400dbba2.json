@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_400dbba2",
+ "approach": "Balance vertical forces for the normal reaction at A, then take moments about A to find the wall's push, then balance horizontal forces for friction.",
+ "steps": [
+  {"text": "The wall is smooth, so it can only push the rod horizontally at B. The ground is rough, so at A it pushes up (normal reaction N_A) and can resist sliding (friction f_A).", "equation": "forces: N_A ↑, f_A →, N_B ← or →, w ↓ at the midpoint"},
+  {"text": "The only vertical forces are N_A (up) and the weight w (down), so they balance directly.", "equation": "N_A = w"},
+  {"text": "Take moments about A. Let the rod have length L. A is at (L cos30°, 0) and B is at (0, L sin30°); the weight acts at the midpoint. Setting the sum of moments to zero and solving for N_B.", "equation": "N_B = w cos30° / (2 sin30°) = (w/2) × cot 30°"},
+  {"text": "Put in cot 30° = √3 = 1.732.", "equation": "N_B = (w/2) × 1.732 = 0.87w"},
+  {"text": "The only horizontal forces are friction f_A and the wall's push N_B, so they balance.", "equation": "f_A = N_B = 0.87w", "why_this_step": "With only two horizontal forces on the rod, one must equal the other for equilibrium."}
+ ],
+ "final_answer": {"option": null, "value": "(a) friction at A = 0.87w, (b) normal reaction at A = w, (c) normal reaction at B = 0.87w"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the weight's moment arm as the full rod length L instead of the half-length to the midpoint, which doubles the answer for the wall's push."},
+  {"option": null, "text": "Assuming friction is zero because the rod looks like it is only leaning, forgetting the ground must supply a horizontal force to balance the wall's push."}
+ ],
+ "concept_tags": ["equilibrium of a rigid body", "moment of a force", "friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:40:00+05:30"}
+}

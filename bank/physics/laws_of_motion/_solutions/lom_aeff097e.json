@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_aeff097e",
+ "approach": "Treat the three blocks as one system to find the common acceleration, then isolate the 10 kg block to find the contact force with the 4 kg block.",
+ "steps": [
+  {"text": "Find the net force and total mass of the three-block system.", "equation": "F_net = 100 − 40 = 60 N, M = 6+4+10 = 20 kg"},
+  {"text": "The common acceleration of all three blocks follows from the net force and total mass.", "equation": "a = 60/20 = 3 m/s²"},
+  {"text": "The net force on each block equals its own mass times this common acceleration.", "equation": "6 kg block: 18 N, 4 kg block: 12 N, 10 kg block: 30 N"},
+  {"text": "Isolate the 10 kg block: the contact push from the 4 kg block, N, minus the 40 N force gives its net force.", "equation": "N − 40 = 10×3, so N = 70 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) a = 3 m/s²; (b) net force: 18 N on the 6 kg block, 12 N on the 4 kg block, 30 N on the 10 kg block; (c) force between the 4 kg and 10 kg blocks = 70 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding 100 N and 40 N instead of subtracting them, since both arrows point toward the middle of the row, giving a = 140/20 = 7 m/s²."},
+  {"option": null, "text": "Taking the contact force between the 4 kg and 10 kg blocks as the 40 N applied force, ignoring the 10 kg block's own net force, giving N = 40 N."}
+ ],
+ "concept_tags": ["Newton's second law", "blocks in contact", "contact force"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T12:00:00+05:30"}
+}

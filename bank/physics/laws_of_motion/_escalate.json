@@ -1,0 +1,44 @@
+[
+ {
+  "id": "lom_5cc3250f",
+  "author": [
+   null,
+   "(a) μ > tanθ; (b) a(max) = g(μcosθ − sinθ); (c) a(min retardation) = g sinθ; (d) a(max retardation) = g(sinθ + μcosθ)"
+  ],
+  "second_reader": [
+   null,
+   "(a) μ > tan θ, (b) a_max = g(μ cos θ − sin θ), (c) minimum retardation = g sin θ (no friction, free rolling), (d) maximum retardation = g(sin θ + μ cos θ)"
+  ],
+  "printed": "(a) condition: μ > tanθ. (b) maximum acceleration = g(μ cosθ − sinθ). (c) minimum retardation = 0. (d) maximum retardation = g(sinθ + μ cosθ).",
+  "hint": null,
+  "format": "subjective"
+ },
+ {
+  "id": "lom_e5cfe9a4",
+  "author": [
+   null,
+   "(a) friction = 6.4 N, kinetic; (b) the block moves, with acceleration 3.8 m/s²"
+  ],
+  "second_reader": [
+   null,
+   "(a) kinetic friction f = 6.4 N (opposite to motion), (b) yes, the block moves; a = 3.8 m/s²"
+  ],
+  "printed": "(a) f = 14 N, (b) the block will not move.",
+  "hint": null,
+  "format": "subjective"
+ },
+ {
+  "id": "lom_f069c38c",
+  "author": [
+   2,
+   "OB"
+  ],
+  "second_reader": [
+   2,
+   "OB — contact force ≈ 85 N (N = 80 N normal + 30 N friction up the slope), tilted ≈ 21° from the normal toward the vertical, i.e. ≈ 16° right of vertical, between the vertical and the normal; nearest drawn arrow is OB"
+  ],
+  "printed": "(a)",
+  "hint": "f acts upward; F = √(N²+f²) = net force by plane on block",
+  "format": "mcq_single"
+ }
+]

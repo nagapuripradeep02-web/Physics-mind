@@ -1,0 +1,4 @@
+{"question_id": "lom_030eca59",
+ "reason": "figure_needed",
+ "options_reached": ["the moments of the 2F force and the F force about the pivot are fixed by the description: +2Fa (anticlockwise) and -2Fa (clockwise); the 3F force at B has a component 3F sin 30° perpendicular to the rod, giving a moment of magnitude 6Fa about the pivot, but the description does not say whether the 3F force points above or below the rod at 30° to its direction, so the turning sense (clockwise or anticlockwise) of this third moment cannot be fixed from the given text"],
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:35:00+05:30"}}

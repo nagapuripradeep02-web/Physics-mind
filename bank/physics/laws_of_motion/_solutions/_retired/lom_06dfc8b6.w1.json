@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_06dfc8b6",
+ "approach": "Apply Newton's second law separately to the block on the table and the hanging block, connected by the same tension and the same acceleration size.",
+ "steps": [
+  {"text": "Write Newton's second law for the hanging 1 kg block, taking its direction of motion as positive.", "equation": "1(10) − T = 1(a)"},
+  {"text": "Write Newton's second law for the 2 kg block on the frictionless table, pulled by the same string tension.", "equation": "T = 2(a)"},
+  {"text": "Add the two equations to remove T and solve for a.", "equation": "10 = 3a, so a = 10/3 m/s² ≈ 3.33 m/s²"},
+  {"text": "Substitute a back into T = 2a to find the tension.", "equation": "T = 2(10/3) = 20/3 N ≈ 6.67 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 10/3 m/s² ≈ 3.33 m/s², (b) 20/3 N ≈ 6.67 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using the 2 kg block's weight instead of the 1 kg block's weight as the driving force gives a = 20/3 m/s², more than double the correct value."}
+ ],
+ "concept_tags": ["Newton's second law", "pulley", "connected blocks"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:02:00+05:30"}
+}

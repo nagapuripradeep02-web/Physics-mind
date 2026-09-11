@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_79092bee",
+ "approach": "Write the force needed to push the block up the incline and the force needed to barely hold it from sliding down, then use the given ratio between them.",
+ "steps": [
+  {"text": "To push the block up, gravity's pull down the incline and friction (which now opposes the upward push) both work against the applied force.", "equation": "F_up = mg sinθ + μmg cosθ"},
+  {"text": "To barely stop the block sliding down, friction acts up the incline at its full value and helps hold the block, so the needed applied force is smaller.", "equation": "F_hold = mg sinθ − μmg cosθ"},
+  {"text": "Use the given condition that F_up is twice F_hold, then divide through by mg cosθ and solve for tanθ.", "equation": "sinθ + μcosθ = 2(sinθ − μcosθ) ⇒ 3μcosθ = sinθ ⇒ tanθ = 3μ"}
+ ],
+ "final_answer": {"option": 2, "value": "3μ"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Leaving friction out of F_hold, treating it as mg sinθ alone, gives sinθ + μcosθ = 2sinθ, so tanθ = μ."},
+  {"option": 3, "text": "Leaving friction out of F_up, treating it as mg sinθ alone, gives sinθ = 2(sinθ − μcosθ), so tanθ = 2μ."}
+ ],
+ "concept_tags": ["limiting static friction", "inclined plane", "force balance"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:10:00+05:30"}
+}

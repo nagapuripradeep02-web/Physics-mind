@@ -1,0 +1,96 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_b2caaf2d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A triangular wedge of mass m₂ = 4 kg rests on a frictionless horizontal floor; its sloping face makes 30° with the floor. A small block of mass m₁ = 1 kg sits on that frictionless slope. A light string tied to the wedge passes over a light pulley fixed at the edge of the floor and hangs down to a block of mass M. Find the mass M for which the small block m₁ does not slide relative to the wedge.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "m₁ = 1 kg, the small block resting on the incline",
+   "m₂ = 4 kg, the triangular wedge resting on the floor",
+   "incline angle = 30°",
+   "all surfaces frictionless",
+   "string and pulley are light (massless)",
+   "M is the mass of the block hanging from the string over the pulley"
+  ],
+  "figure": {
+   "description": "A triangular wedge of mass m2 = 4 kg rests on a horizontal floor. The wedge's vertical face is on the left. Its sloping face runs from the top of that vertical face down to the right, meeting the floor at the wedge's bottom-right tip; the angle between the sloping face and the floor, marked at this bottom-right tip, is 30 degrees. A small block of mass m1 = 1 kg rests on the sloping face, about halfway along it. No string is attached to m1. A small pulley is fixed at the right-hand end of the floor surface, just beyond the bottom-right tip of the wedge, at floor level. A light string is tied to the wedge at its bottom-right tip, runs the very short horizontal distance to the pulley, passes over the pulley, and then hangs straight down past the edge of the floor to a block of mass M, which hangs freely in the air below the level of the floor. Nothing else touches M. All surfaces are frictionless; the string and pulley are light."
+  }
+ },
+ "solution": {
+  "approach": "Find the one horizontal acceleration of the wedge that keeps m1 from sliding on its frictionless slope, then use that acceleration to find the hanging mass M that produces it.",
+  "steps": [
+   {
+    "text": "Since the string ties M to the wedge itself (not to m1), the wedge and m1 move together as one horizontal unit with a common acceleration; the string over the pulley makes M's downward acceleration equal to this same value.",
+    "equation": "a(wedge) = a(m1, horizontal) = a(M, downward) = A",
+    "why_this_step": "This is the constraint relation linking every acceleration in the problem, fixed before any force equation is written."
+   },
+   {
+    "text": "For m1 not to slide on the frictionless slope, the normal force alone must supply its horizontal acceleration A while also balancing its weight vertically.",
+    "equation": "N cosθ = m1 g,  N sinθ = m1 A"
+   },
+   {
+    "text": "Divide the two equations to eliminate N and solve for A.",
+    "equation": "A = g tanθ = g tan30° = 10/√3 ≈ 5.77 m/s²"
+   },
+   {
+    "text": "Write Newton's second law for the wedge-plus-m1 system moving horizontally under the string tension T.",
+    "equation": "T = (m1 + m2)A = (1 + 4)(10/√3) = 50/√3 N"
+   },
+   {
+    "text": "Write Newton's second law for the hanging mass M, taking downward as positive.",
+    "equation": "Mg − T = MA"
+   },
+   {
+    "text": "Substitute T = (m1+m2)A and solve for M.",
+    "equation": "M = (m1 + m2)A/(g − A) = 5(10/√3)/(10 − 10/√3) = 5(√3+1)/2 ≈ 6.83 kg"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "M = 5(√3 + 1)/2 kg ≈ 6.83 kg"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using A = g sinθ (the acceleration formula for a block sliding down a fixed frictionless incline) instead of A = g tanθ, giving M = 5 kg instead of the correct ≈ 6.83 kg."
+   }
+  ],
+  "concept_tags": [
+   "pseudo force",
+   "non-inertial frame",
+   "accelerating wedge",
+   "constraint relation"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6c4630100c331df0c4f1570a0dd9425b82b336e16ee1294a2d336c4bdc93c95d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8a53107997d738309475b7a0c9a20e31b616085cecf615fdcf58aa5fe3d14da1",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

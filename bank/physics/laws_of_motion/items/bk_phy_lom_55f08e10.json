@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_55f08e10",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A uniform, smooth solid sphere of mass 50 kg is held in place by two smooth contact surfaces: an incline, named A, tilted at 30° to the horizontal, and a vertical wall, named B. Work out the contact force the sphere receives at A and the contact force it receives at B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "sphere is homogeneous (uniform) and smooth, mass 50 kg",
+   "incline A is smooth, at 30° to the horizontal",
+   "wall B is smooth and vertical",
+   "sphere touches both A and B at the same time"
+  ],
+  "figure": {
+   "description": "A circular sphere is wedged between two surfaces. On its lower-left, a smooth incline named A rises at 30° to the horizontal (the incline meets a horizontal reference line at 30°, shown near the bottom-left). On its right, a smooth vertical wall named B touches the sphere; the wall has a horizontal ledge at the sphere's base."
+  }
+ },
+ "solution": {
+  "approach": "The sphere is in equilibrium under its weight and two normal reactions; resolve both reactions along the vertical and horizontal directions.",
+  "steps": [
+   {
+    "text": "The incline's normal reaction Nₐ makes angle 30° with the vertical, since the incline makes 30° with the horizontal, and the wall's normal reaction N_B is horizontal.",
+    "equation": "Nₐ at 30° from vertical, N_B horizontal"
+   },
+   {
+    "text": "Balance the vertical direction: the vertical component of Nₐ supports the sphere's weight.",
+    "equation": "Nₐcos30° = Mg"
+   },
+   {
+    "text": "Take g = 10 m/s², so Mg = 50 × 10 = 500 N, and solve for Nₐ.",
+    "equation": "Nₐ = 500/cos30° = 1000/√3 ≈ 577.35 N"
+   },
+   {
+    "text": "Balance the horizontal direction: the horizontal component of Nₐ is balanced by the wall's reaction N_B.",
+    "equation": "N_B = Nₐsin30° = 500tan30° = 500/√3 ≈ 288.68 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "Nₐ ≈ 577.35 N (contact force at the incline), N_B ≈ 288.68 N (contact force at the wall), taking g = 10 m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking the incline's normal reaction as making 30° with the horizontal instead of with the vertical, which swaps sine and cosine and gives Nₐ = 500/sin30° = 1000 N."
+   },
+   {
+    "option": null,
+    "text": "Forgetting that the wall's reaction is horizontal and instead resolving it at 30° like the incline reaction."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a rigid body",
+   "normal reaction",
+   "resolution of forces"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b7f5a792e4d5a811eab1a746a3c78333678a0cf3237a74767f4a6387df2ac168"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b7be76292e8baeab6ee0420cad2a7d26497d4f7d36f32057e195885f3db09bea",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:20:00+05:30"
+ }
+}

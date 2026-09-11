@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ce0e0662",
+ "item_sha": "2b5dac4342acf4bf24318b45fd5ccf094d29dcf66699b22f911bd7633fa88a65",
+ "auditor_option": null,
+ "auditor_value": "Three forces: mg down; T₁ horizontal toward the wall; T₂ along the diagonal string at θ above the horizontal, away from the wall (equilibrium gives T₂ = mg/sinθ, T₁ = mg cotθ)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent FBD identical. Directions of both tensions are stated correctly (each along its own string). The question asks only for the diagram, so no numeric result is expected.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:00:50+05:30"
+ }
+}

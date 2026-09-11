@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_22c836df",
+ "item_sha": "c52e961d8492af806eb244f3b2f659008da5091119e2cf9bc7b4de38d645c3ca",
+ "auditor_option": null,
+ "auditor_value": "T₁ = W/sin60° = 2W/√3 ≈ 45.3 N; T₂ = T₁ cos60° = W/√3 ≈ 22.6 N (W = 39.2 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: vertical balance T₁ sin60° = 39.2 N gives 45.26 N; horizontal balance T₂ = T₁ cos60° = 22.63 N. Every line follows and the mistake entry's wrong value 39.2/cos60° = 78.4 N is computed correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:06:03+05:30"
+ }
+}

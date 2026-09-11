@@ -37,6 +37,7 @@ HINTS = os.path.join(L.EVIDENCE, "hints.json")
 RX_EXAMPLE = re.compile(r"^\s*V?\s*Example\s+(\d+(?:\.\d+)?)\b")
 RX_IE = re.compile(r"^\s*INTRODUCTORY\s+EXERCISE\s+(\d+\.\d+)", re.I)
 RX_SECTION = re.compile(r"^\s*(\d\.\d{1,2})\s+[A-Z][A-Za-z]")          # "6.4 Uniformly Accelerated Motion"
+RX_ENDBLOCK = re.compile(r"^\s*Final Touch Points\s*$", re.I)    # a chapter-end summary list numbered like questions
 RX_LEVEL = re.compile(r"^\s*LEVEL\s*([12])\s*$", re.I)
 RX_SUB = re.compile(r"^\s*(Assertion and Reason|Objective Questions|Single Correct Option|Subjective Questions|"
                     r"More than One Correct Options?|Comprehension Based Questions|Match the Columns)\s*$", re.I)
@@ -138,6 +139,10 @@ def cmd_locate(a):
             m = RX_SECTION.match(t)
             if m and not state["level"] and x0 < LEFT_MARGIN_PT:
                 markers.append(dict(label="SECTION " + m.group(1), kind="boundary", page=p, y=y0, text=t))
+                state.update(ie=None, expect=None, block=None)
+                continue
+            if RX_ENDBLOCK.match(t) and not state["level"]:
+                markers.append(dict(label="END " + t.strip().upper(), kind="boundary", page=p, y=y0, text=t))
                 state.update(ie=None, expect=None, block=None)
                 continue
             m = RX_ITEM.match(t)

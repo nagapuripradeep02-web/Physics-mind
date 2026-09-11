@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_7f407823",
+ "approach": "Split the weight into a component along the slope and a component into the slope using the incline angle.",
+ "steps": [
+  {"text": "The weight acts vertically downward. The angle between the weight and the perpendicular to the slope equals the slope angle, 30°.", "equation": "θ = 30°"},
+  {"text": "The component along the slope (parallel to the surface) is the weight times the sine of the slope angle.", "equation": "w∥ = w sin θ = 10 × sin 30° = 5 N"},
+  {"text": "The component into the slope (perpendicular to the surface) is the weight times the cosine of the slope angle.", "equation": "w⊥ = w cos θ = 10 × cos 30° = 8.66 N", "why_this_step": "The 30 deg angle lies between the weight and its perpendicular component, so the perpendicular component is the adjacent side, w cos30, and the along-slope component is the opposite side, w sin30."}
+ ],
+ "final_answer": {"option": null, "value": "component parallel to the slope = 5 N (down the slope); component perpendicular to the slope = 8.66 N (into the slope)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Swapping sine and cosine gives 8.66 N along the slope and 5 N perpendicular to it."}
+ ],
+ "concept_tags": ["resolution of forces", "inclined plane"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:00:00+05:30"}
+}

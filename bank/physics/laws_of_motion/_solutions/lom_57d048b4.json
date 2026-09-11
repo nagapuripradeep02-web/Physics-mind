@@ -1,0 +1,52 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_57d048b4",
+ "approach": "Write the constant-length equation for each of the three strings in turn, then combine the three to connect block 1 and block 2 directly.",
+ "steps": [
+  {
+   "text": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant.",
+   "equation": "x₁ + x₃ = c₁ ⇒ a₁ + a₃ = 0"
+  },
+  {
+   "text": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position.",
+   "equation": "(x₁−x₃) + (x₄−x₃) = c₂ ⇒ a₁ + a₄ − 2a₃ = 0"
+  },
+  {
+   "text": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position.",
+   "equation": "(x₁−x₄) + (x₂−x₄) = c₃ ⇒ a₁ + a₂ − 2a₄ = 0"
+  },
+  {
+   "text": "From the first equation, a₃ = −a₁. Put this into the second equation.",
+   "equation": "a₁ + a₄ − 2(−a₁) = 0 ⇒ a₄ = −3a₁"
+  },
+  {
+   "text": "Put a₄ = −3a₁ into the third equation and solve for a₂.",
+   "equation": "a₁ + a₂ − 2(−3a₁) = 0 ⇒ a₂ = −7a₁",
+   "why_this_step": "Each movable pulley moves with the string above it, and the string over it doubles that motion for the next level while block 1 adds its own; the factors grow 1, 3, 7, so block 2 accelerates seven times as fast as block 1."
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "a₂ = −7a₁ (block 2's acceleration is 7 times block 1's acceleration, in the opposite direction)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Writing only the top string's constraint (x₁ + x₃ = constant) and treating everything below P₁ as one body moving with pulley P₂, which gives |a₂| = |a₁|; each movable pulley adds its own constraint."
+  }
+ ],
+ "concept_tags": [
+  "string constraint",
+  "movable pulley",
+  "pulley kinematics"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:25:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a85f8814",
+ "item_sha": "fc51ae9710ea7d5344a766492bb66b64fe60ab307835a0c9d83eaaa36428a221",
+ "auditor_option": 1,
+ "auditor_value": "Assertion true (the three directions lie within a 120° or 150° arc, so the closing angle around the point is 240° or 210° and no positive magnitudes can balance); Reason true in the sense of the angles measured around the point, and it is the explanation — option (a)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The Reason is true only when 'angle between the forces' means the angles measured around the common point (which sum to 360°); read as the conventional 0–180° angle it would be vacuous. The solution states the around-the-point reading explicitly in step 1, so it is internally consistent. Both mistake entries describe plausible slips and point at the options they would produce.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:04:27+05:30"
+ }
+}

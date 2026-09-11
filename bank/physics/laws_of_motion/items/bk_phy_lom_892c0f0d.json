@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_892c0f0d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Three blocks of masses 6 kg, 4 kg and 10 kg touch each other in a line on a frictionless horizontal floor, arranged in that order from left to right. A horizontal force of 100 N pushes on the outer face of the 6 kg block, directed rightward toward the other blocks, and a horizontal force of 40 N pushes on the outer face of the 10 kg block, directed leftward toward the other blocks. All surfaces, including the floor, are smooth.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the acceleration of each of the three blocks."
+   },
+   {
+    "label": "b",
+    "asks": "Find the net force acting on the 6 kg block, on the 4 kg block, and on the 10 kg block."
+   },
+   {
+    "label": "c",
+    "asks": "Find the contact force between the 4 kg block and the 10 kg block."
+   }
+  ],
+  "conditions": [
+   "frictionless horizontal floor",
+   "all surfaces smooth",
+   "blocks arranged touching each other, 6 kg then 4 kg then 10 kg left to right",
+   "100 N applied on 6 kg block, directed rightward",
+   "40 N applied on 10 kg block, directed leftward"
+  ],
+  "figure": {
+   "description": "Three blocks rest touching each other on a horizontal frictionless floor, arranged left to right as 6 kg, 4 kg, 10 kg, with no gaps between them. A 100 N horizontal force pushes on the left (outer) face of the 6 kg block, directed rightward into the row of blocks. A 40 N horizontal force pushes on the right (outer) face of the 10 kg block, directed leftward into the row of blocks. Every contact surface, block-to-block and block-to-floor, is frictionless."
+  }
+ },
+ "solution": {
+  "approach": "Treat the three blocks as one system to find the common acceleration, then isolate the 10 kg block to find the contact force with the 4 kg block.",
+  "steps": [
+   {
+    "text": "Find the net force and total mass of the three-block system.",
+    "equation": "F_net = 100 − 40 = 60 N, M = 6+4+10 = 20 kg"
+   },
+   {
+    "text": "The common acceleration of all three blocks follows from the net force and total mass.",
+    "equation": "a = 60/20 = 3 m/s²"
+   },
+   {
+    "text": "The net force on each block equals its own mass times this common acceleration.",
+    "equation": "6 kg block: 18 N, 4 kg block: 12 N, 10 kg block: 30 N"
+   },
+   {
+    "text": "Isolate the 10 kg block: the contact push from the 4 kg block, N, minus the 40 N force gives its net force.",
+    "equation": "N − 40 = 10×3, so N = 70 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 3 m/s²; (b) net force: 18 N on the 6 kg block, 12 N on the 4 kg block, 30 N on the 10 kg block; (c) force between the 4 kg and 10 kg blocks = 70 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding 100 N and 40 N instead of subtracting them, since both arrows point toward the middle of the row, giving a = 140/20 = 7 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Taking the contact force between the 4 kg and 10 kg blocks as the 40 N applied force, ignoring the 10 kg block's own net force, giving N = 40 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "blocks in contact",
+   "contact force"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "aeff097e96156e5c05a7471091e1664c4c51883904eb1830799d49495cadd347"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "53a7c4bf1cbe3a36fa02c622f0587f75aa8372619b7496e129d882962fe20c0e",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T12:00:00+05:30"
+ }
+}

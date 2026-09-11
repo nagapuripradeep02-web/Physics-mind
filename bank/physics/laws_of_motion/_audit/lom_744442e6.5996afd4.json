@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_744442e6",
+ "item_sha": "5996afd48e6448a5292b4c45daf62d5b26f70b15f7e1d173d5cbcc464da67e41",
+ "auditor_option": null,
+ "auditor_value": "(a) car frame: parabola in the horizontal floor plane, x_rel = -2.5 t^2 (backward along i), z_rel = 10 t, so x_rel = -z_rel^2/40; (b) ground frame: straight line at constant 10 m/s along k",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "in the ground frame the object moves in a straight line at constant 20 m/s along k̂",
+   "note": "The question gives the sideways speed as 10 m/s, and the solution itself uses 10 m/s in steps[0] and steps[2] (z_rel = 10t). The ground-frame speed is the unchanged initial speed, 10 m/s; 20 m/s appears nowhere in the question.",
+   "fix": "in the ground frame the object moves in a straight line at constant 10 m/s along k̂"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "x_rel = −½(5)(z_rel/20)², a parabolic path",
+   "note": "From steps[2], z_rel = 10t, so t = z_rel/10, not z_rel/20. The printed equation is false for this question (it would need a 20 m/s speed).",
+   "fix": "x_rel = −½(5)(z_rel/10)² = −z_rel²/40, a parabolic path"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "The mass (2 kg) and g = 10 given in the question are not needed for the path: on a frictionless floor the normal force balances the weight and the mass cancels, so not using them is not a defect. The car-frame parabola and the ground-frame straight line (the shape answers) agree with mine; only the speed value is wrong.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:58:47+05:30"
+ }
+}

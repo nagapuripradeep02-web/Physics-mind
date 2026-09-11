@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9828b459",
+ "item_sha": "1c3f257c81969a46777f49349dbd7356b6de4847135cf41ddca98f760b9d3a11",
+ "auditor_option": null,
+ "auditor_value": "(a) bananas rise; (b) gap stays the same; (c) gap stays the same, both in free fall with T = 0; (d) the bananas stop (decelerate) exactly as the monkey does, gap unchanged",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Qualitative item. Same T on both sides and equal masses give equal accelerations in every phase, including the impulsive re-grip in (d) where both had equal velocities before the impulse. Solution's four answers match mine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:27:44+05:30"
+ }
+}

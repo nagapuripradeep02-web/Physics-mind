@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a567393c",
+ "item_sha": "602a69443c641a213b435a39580a86fddbe7438f800dc935f8060cc6661f7b97",
+ "auditor_option": null,
+ "auditor_value": "True",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Constant velocity (relative to an inertial frame) means zero frame acceleration, so −m·a_frame = 0; the solution's reasoning is complete.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:01:33+05:30"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_450ff164",
+ "approach": "Recognize the spring balance sits inline with one continuous string over two pulleys joining unequal masses, so it reads the standard Atwood tension, not either weight alone.",
+ "steps": [
+  {"text": "One continuous string runs from the 5 kg mass, over the left pulley, through the spring balance, over the right pulley, to the 10 kg mass, so the balance reads the tension that string carries throughout."},
+  {"text": "The pulleys only redirect the string; since 10 kg ≠ 5 kg the masses are free to accelerate, so this is an Atwood pair and the reading is the standard Atwood tension.", "equation": "T = 2 m₁m₂g / (m₁+m₂)"},
+  {"text": "Substitute m₁ = 5 kg, m₂ = 10 kg, g = 10 m/s² (the value that makes the given options come out as round numbers).", "equation": "T = 2(5)(10)(10) / 15 = 1000/15 ≈ 66.7 N"},
+  {"text": "Compare this with the printed options 50 N, 100 N and 150 N — it matches none of them.", "equation": "66.7 N ≠ 50 N, 100 N, 150 N"}
+ ],
+ "final_answer": {"option": 4, "value": "None of the above"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming the balance directly reads the heavier hanging weight, 10 kg × 10 m/s² = 100 N, without accounting for the system's acceleration."},
+  {"option": 3, "text": "Assuming the balance reads the combined weight of both masses as if the system were static, (5+10) kg × 10 m/s² = 150 N."}
+ ],
+ "concept_tags": ["Atwood machine", "spring balance", "pulley system"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

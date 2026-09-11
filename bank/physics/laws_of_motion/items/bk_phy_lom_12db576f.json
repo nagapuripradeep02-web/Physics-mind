@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_12db576f",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: To start sliding a block along a rough surface, the smallest possible applied force is required precisely when the force is applied at an angle θ equal to the angle of friction of that surface. Reason: The angle of friction has the same numerical value as the angle of repose.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "surface is rough",
+   "force F is applied at angle θ to the horizontal, as marked in the figure"
+  ],
+  "figure": {
+   "description": "A block sits on a rough horizontal surface. A force F is applied to the block, directed up and away from the surface at angle θ measured from a horizontal reference line drawn at the top of the block (the dashed line runs horizontally from the block's top corner, and F points up and to the right, making angle θ with it)."
+  }
+ },
+ "solution": {
+  "approach": "Derive the force F(θ) needed to move the block and minimize it over θ, then separately check whether the angle-of-repose fact actually explains that minimum.",
+  "steps": [
+   {
+    "text": "Write the force balance for the block on the verge of sliding under a pull F at angle θ above the horizontal, with friction at its limiting value.",
+    "equation": "F cosθ = μN, N = mg − F sinθ"
+   },
+   {
+    "text": "Combine these into F as a function of θ alone.",
+    "equation": "F(θ) = μmg / (cosθ + μ sinθ)"
+   },
+   {
+    "text": "F(θ) is smallest when cosθ + μ sinθ is largest, which calculus shows happens exactly when tanθ equals the coefficient ratio μ.",
+    "equation": "tanθ = μ"
+   },
+   {
+    "text": "tanθ = μ is exactly the definition of the angle of friction λ, so the minimum force does occur at θ = λ, confirming the Assertion.",
+    "equation": "θ_min = arctan μ = λ"
+   },
+   {
+    "text": "The angle of repose is the incline angle at which a block on that incline starts to slide under gravity alone, and this also works out to arctan μ — the Reason is true on its own.",
+    "equation": "angle of repose = arctan μ"
+   },
+   {
+    "text": "This equality between angle of repose and angle of friction is a separate fact about a different setup (an incline) and is not what makes F(θ) minimum in this horizontal-pull problem, so the Reason is true but does not explain the Assertion.",
+    "equation": "Assertion true, Reason true, not the explanation"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "If both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming the Reason must be the explanation whenever both statements happen to be true, without checking that the repose-friction equality is not what produces the minimum in F(θ)."
+   }
+  ],
+  "concept_tags": [
+   "friction",
+   "angle of friction",
+   "minimum applied force"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8bee1b8c55bf9cb7e83c47e8251750bf487cda1693198425d696c36a02e69905"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "a2e30b2b6c41b5d0304a50eb1ee34f88e31725c11378a10c4b79543f4cd648b8",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

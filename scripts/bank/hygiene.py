@@ -86,7 +86,11 @@ def main():
     if not a.allow_api_models:
         mh = []
         for f in glob.glob(os.path.join(L.WORK, "*.jsonl")):
-            n = sum(1 for r in L.jsonl_read(f) if re.match(r"gemini|deepseek", str(r.get("model") or ""), re.I))
+            rows = list(L.jsonl_read(f))
+            n = sum(1 for r in rows if re.match(r"gemini|deepseek", str(r.get("model") or ""), re.I))
+            if os.path.basename(f) == "equiv.jsonl":
+                # a sub-agent verdict carries its agent label; the paid judge signs nothing
+                n += sum(1 for r in rows if not (r.get("agent") or r.get("judge")))
             if n:
                 mh.append((os.path.basename(f), n))
         print("metered-model rows in work JSONLs: %s" % (mh or 0))

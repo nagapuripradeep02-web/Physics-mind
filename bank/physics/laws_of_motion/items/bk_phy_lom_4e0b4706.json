@@ -1,0 +1,104 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4e0b4706",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Block A (1 kg) and block B (2 kg) start out side by side on a level floor, each tied to one end of a single cord that loops over a smooth, weightless pulley mounted above them; at the outset the cord has no slack and no tension. From time t = 0 onward, a force F = 20t newtons (with t measured in seconds) pulls the pulley straight upward. Taking g = 10 m/s², answer the following, noting that A lifts off the floor before B does.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the speed of block A at the moment block B leaves the floor."
+   },
+   {
+    "label": "b",
+    "asks": "Find how high the pulley has moved upward by that same moment."
+   }
+  ],
+  "conditions": [
+   "A has mass 1 kg, B has mass 2 kg",
+   "both blocks start on the floor side by side with the cord just taut and untensioned",
+   "the pulley is smooth and weightless",
+   "F = 20t newtons pulls the pulley upward starting at t = 0",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A pulley hangs freely above the floor; force F = 20t pulls straight up on its axle. A single cord passes over the pulley, one end running straight down to block A and the other straight down to block B. Blocks A and B begin resting side by side on the floor, each directly under its own side of the pulley."
+  }
+ },
+ "solution": {
+  "approach": "The massless pulley fixes the string tension as F/2 always; find when each block leaves the floor, then apply Newton's second law and integrate for velocity and the pulley's rise.",
+  "steps": [
+   {
+    "text": "Since the pulley is massless, the upward force F is balanced by the two downward string tensions at every instant.",
+    "equation": "F = 2T  →  T = 10t"
+   },
+   {
+    "text": "Each block leaves the floor once the tension reaches its own weight. Block A (1 kg, lighter) needs less tension than block B (2 kg), so A leaves first.",
+    "equation": "T = m_A g: 10t = 10 → t = 1 s (A leaves);  T = m_B g: 10t = 20 → t = 2 s (B on the verge of leaving)"
+   },
+   {
+    "text": "Between t = 1 s and t = 2 s, B still rests on the floor, so apply Newton's second law to A alone with the growing tension.",
+    "equation": "T − m_A g = m_A a_A  →  a_A(t) = 10t − 10, for 1 s ≤ t ≤ 2 s"
+   },
+   {
+    "text": "A starts this phase from rest, so integrate the acceleration to get A's velocity.",
+    "equation": "v_A(t) = 5t² − 10t + 5 = 5(t−1)²  →  v_A(2) = 5(1)² = 5 m/s"
+   },
+   {
+    "text": "Integrate the velocity to get A's rise over this interval, then halve it: with B fixed on the floor, the string's fixed length means the pulley rises by only half of A's rise.",
+    "equation": "y_A = ∫₁² 5(t−1)² dt = 5/3 m; pulley's rise = y_A/2 = 5/6 m ≈ 0.83 m",
+    "why_this_step": "The total string length is constant; with B's end fixed at the floor, the pulley-to-A segment and the pulley's own height are linked so the pulley moves half as far as A."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) velocity of A when B loses contact = 5 m/s. (b) height raised by the pulley up to that instant = 5/6 m ≈ 0.83 m"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Integrating a_A from t = 0 instead of t = 1 gives v_A(2) = 0 m/s, ignoring that A rests on the floor until the tension reaches its weight at t = 1 s."
+   },
+   {
+    "option": null,
+    "text": "Taking the pulley's rise equal to A's full rise of 5/3 m instead of half of it, by missing that B staying on the floor fixes one end of the string."
+   }
+  ],
+  "concept_tags": [
+   "massless pulley",
+   "variable force",
+   "calculus in kinematics",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "755d56545c6b0321a3203c6823b277772c98c0cd6f6cc6dba075eedbee0ffe70"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "cd225a75956849f016925b84ec3f321cce406affc72c3a9ce584a76ec043fa0e",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:10:00+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_448a4b3c",
+ "item_sha": "afa5f285ac92c4523466a428e360f7f5ebd719eedc8a69c31cfdaf0db9ccaaf5",
+ "auditor_option": null,
+ "auditor_value": "μ = tan45° = 1. (a) 30°: f = mg sin30° = 0.5mg up the slope, net = 0, a = 0. (b) 45°: f = mg sin45° = 0.707mg up the slope (limiting), net = 0, a = 0. (c) 60°: f = μmg cos60° = 0.5mg up the slope, net = mg(sin60° − cos60°) = 0.366mg down the slope, a = 0.366g = 3.66 m/s² (g = 10) or 3.59 m/s² (g = 9.8)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation follows: friction stays static (equal to mg sinθ) for θ ≤ 45° and is kinetic μmg cosθ with μ = 1 for 60°. The question fixes no g; the solution states 'using g = 10 m/s²' in the step that needs it. The solution takes μ_k = μ_s = 1, the only coefficient the question gives — standard. The common_mistakes entry reproduces its number: mg sin30° − mg cos30° = −0.366mg.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:09:00+05:30"}
+}

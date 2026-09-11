@@ -1,0 +1,45 @@
+{
+ "question_id": "lom_8fc83d1a",
+ "item_sha": "7218482282ebbe44867ba1323b446399db49de918df012bc728fb57a58834081",
+ "auditor_option": null,
+ "auditor_value": "For the incline angle the served text gives, 60 deg: mu = tan60 = sqrt(3) = 1.73 (the figure description's 30 deg would give tan30 = 0.58)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "μ = tan30° ≈ 0.58",
+   "note": "The question as served says the plane makes 60 deg with the horizontal; the solution solves for 30 deg, a value the question text does not give. For 60 deg, mu = tan60 = sqrt(3) = 1.73. My answer differs from the solution's.",
+   "fix": "μ = tan60° = √3 ≈ 1.73"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[2].text",
+   "quote": "Put in θ = 30°.",
+   "note": "The served text says 60 deg while the figure description says 30 deg; the solution picks the figure's value without naming the conflict or its choice.",
+   "fix": "The question text gives 60 deg (the figure description says 30 deg; the text is followed here). Put in θ = 60°: μ = tan60° = √3 ≈ 1.73."
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[2].why_this_step",
+   "quote": "At 30 degrees, tan gives the exact ratio of the sliding force to the holding force, independent of the particle's mass.",
+   "note": "At the point of slipping the holding force (friction) equals the sliding force, so their ratio is 1, not tan(theta). tan(theta) is the ratio of the weight's along-slope component to the normal force, and equals mu only at limiting friction. Also cites 30 deg where the question gives 60 deg.",
+   "fix": "tan(theta) is the ratio of the weight's component along the slope, mg sin(theta), to the normal force, mg cos(theta); at the point of slipping the limiting friction mu N equals mg sin(theta), so this ratio is mu, whatever the particle's mass."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[1].text",
+   "quote": "The mass mg cancels from both sides, leaving a relation that depends only on the angle.",
+   "note": "mg is the weight, not the mass.",
+   "fix": "The common factor mg cancels from both sides, leaving a relation that depends only on the angle."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The served text says the incline is at 60 deg to the horizontal but the figure description says 30 deg. The same question_id lom_8fc83d1a also appears in this slice under item_sha 0a43502c with 30 deg in both text and figure, so this item's text appears to have been altered.",
+ "notes": "Method (mu = tan(theta) at the point of slipping) is right and the 1 kg mass correctly drops out; only the angle used does not match the served question, which changes the number from 0.58 to 1.73. The common_mistakes entries (sin30 = 0.5, cos30 = 0.87) also cite the 30 deg angle and would need to become sin60 = 0.87, cos60 = 0.5 for the served text.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:11+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_61a99ab4",
+ "item_sha": "62e126f932fd88f7b40d63d33b005029247a7bf8bcabd1a5c5553aa6229b0db3",
+ "auditor_option": null,
+ "auditor_value": "Relative to the car the object decelerates at 8 m/s² (5 from the car's acceleration + 3 from kinetic friction), stops sliding after t = 1.25 s having moved 6.25 m forward relative to the car, and then stays at rest relative to the car (static friction needed 10 N ≤ μₛmg since μₛ > 0.5)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The solution works in the ground frame (object: 10 − 3t; car: 5t; equal at 1.25 s at 6.25 m/s; relative displacement 10t − 4t² = 6.25 m), which agrees with my car-frame solution (a_rel = −8 m/s², t = 10/8 s, s_rel = 100/16 m). The static check (2×5 = 10 N needs μₛ ≥ 0.5) is right for THIS question. Both common_mistakes entries are genuine errors here. g = 10 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:16:00+05:30"}
+}

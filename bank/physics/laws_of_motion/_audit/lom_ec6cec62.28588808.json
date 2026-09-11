@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_ec6cec62",
+ "item_sha": "2858880849ce95cc749fbe521dd5c2ce46255552f422e15c2cfcf67f05294072",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true (option d)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "\"option\": 1, \"value\": \"both Assertion and Reason are true and the Reason is the correct explanation of the Assertion\"",
+   "note": "The solution's own reasoning ends at 'Assertion false, Reason true', which is option (d) = 4. Two non-inertial frames do not in general see each other as inertial, and uniform motion alone does not make a frame non-inertial, so (d) is the correct choice; option 1 is wrong.",
+   "fix": "option 4: Assertion is false, but the Reason is true"
+  },
+  {
+   "grade": "harmful",
+   "field": "steps[3].equation",
+   "quote": "Assertion false, Reason true = both Assertion and Reason are true and the Reason is the correct explanation of the Assertion",
+   "note": "The line equates 'Assertion false, Reason true' with the text of option (a), which asserts both are true. That is self-contradictory; 'Assertion false, Reason true' is option (d).",
+   "fix": "Assertion false, Reason true ⇒ option (d)"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Steps 0-2 reason correctly to 'Assertion false, Reason true'; only the last line and final_answer are wrong. Auditor agrees with the reasoning, not the printed option.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:57:58+05:30"
+ }
+}

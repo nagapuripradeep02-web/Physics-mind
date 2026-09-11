@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_3e1256c0",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A block sits motionless on a rough incline tilted at 30° from the horizontal. Between the block and the incline, the static friction coefficient equals 0.8, and the friction force acting on the block measures 10 N. Using g = 10 m/s², determine the block's mass, in kilograms.",
+  "options": {
+   "1": "2.0",
+   "2": "4.0",
+   "3": "1.6",
+   "4": "2.5"
+  },
+  "parts": null,
+  "conditions": [
+   "block rests on the incline (static equilibrium)",
+   "incline angle = 30° from horizontal",
+   "coefficient of static friction = 0.8",
+   "friction force on the block = 10 N",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Since the block is not sliding, friction exactly balances the pull of gravity along the incline, so set that friction force equal to 10 N and solve for the mass.",
+  "steps": [
+   {
+    "text": "The block rests without sliding, so along the incline the only two forces are gravity's component down the slope and friction up the slope; these must balance.",
+    "equation": "f = mg sinθ"
+   },
+   {
+    "text": "Put in the given friction force, the angle, and g, then solve for the mass.",
+    "equation": "10 = m(10)sin30° = 5m ⇒ m = 2.0 kg"
+   },
+   {
+    "text": "Check that this friction is within what the surface can supply, using the given coefficient of static friction.",
+    "equation": "μₛN = 0.8 × 2.0 × 10 × cos30° ≈ 13.9 N, which is more than 10 N, so the block can indeed stay still"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "2.0"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the friction formula μmg instead of the balance mg sinθ, ignoring that the incline reduces the normal force, gives m = 10/(0.8 × 10) = 1.25 kg."
+   },
+   {
+    "option": null,
+    "text": "Mixing up sinθ and cosθ in the balance equation gives m = 10/(10cos30°) ≈ 1.15 kg."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "inclined plane",
+   "force balance"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "953e243898f3b41532a4ccf96f504d2729b3252535e0a0fe0c36d027b813d73f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d277e5e9c72e211a64df86cbfb9e4de504571c6940f54e0cc723fd07ed104738",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:06:00+05:30"
+ }
+}

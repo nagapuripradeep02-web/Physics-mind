@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_f069c38c",
+ "approach": "Add the normal reaction and the friction force as vectors; friction points up the incline since gravity's pull down the incline is larger than the applied force.",
+ "steps": [
+  {"text": "Find the normal reaction and the weight's parts along and across the incline.", "equation": "N = mg cosθ = 10×10×(4/5) = 80 N, mg sinθ = 10×10×(3/5) = 60 N"},
+  {"text": "The weight's pull down the incline is larger than the 30 N applied force, so friction acts up the incline to make up the difference and hold the block in place.", "equation": "f = mg sinθ − 30 = 60 − 30 = 30 N"},
+  {"text": "Add the normal reaction, straight out from the incline, and the friction force, up the incline, as vectors using horizontal and vertical parts.", "equation": "R = N(0.6, 0.8) + f(−0.8, 0.6) = (24, 82) N"},
+  {"text": "This resultant points mostly upward but leans toward the down-slope side of vertical by about 16°, which is the direction of OB.", "equation": "R ≈ 85 N, about 74° above the horizontal ground"}
+ ],
+ "final_answer": {"option": 2, "value": "OB"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking the plane's push as only the normal reaction, ignoring friction entirely, points along the perpendicular to the incline instead of along OB."}
+ ],
+ "concept_tags": ["friction on an incline", "vector addition", "normal reaction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:12:00+05:30"}
+}

@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_77f7dae6",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A round cylinder of weight W rests inside a V-shaped groove, touching both of the groove's slanted walls. Sketch the free-body diagram for the cylinder.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "cylinder rests inside a V-shaped groove",
+   "cylinder touches both slanted walls of the groove"
+  ],
+  "figure": {
+   "description": "A V-shaped groove made of two walls slanting inward like a wedge, with a circular cylinder resting inside it and touching both slanted walls."
+  }
+ },
+ "solution": {
+  "approach": "List every force that touches the cylinder: its weight, and one normal reaction from each wall of the groove.",
+  "steps": [
+   {
+    "text": "The cylinder has weight W. This acts at its centre, pointing straight down."
+   },
+   {
+    "text": "The cylinder touches two slanted walls. Each wall pushes on the cylinder with a normal reaction, perpendicular to that wall's surface at the point of contact.",
+    "equation": "N₁ ⊥ wall 1, N₂ ⊥ wall 2"
+   },
+   {
+    "text": "Because the cylinder is circular, the line of each normal reaction passes through the cylinder's centre, so N₁, N₂ and W all act through the same point.",
+    "why_this_step": "A normal force on a circular surface always points along the radius, so it passes through the centre."
+   },
+   {
+    "text": "The free body diagram of the cylinder shows three forces meeting at its centre: W straight down, N₁ perpendicular to the first wall pointing toward the centre, and N₂ perpendicular to the second wall pointing toward the centre. For the cylinder to be in equilibrium, N₁ + N₂ balances W."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "three concurrent forces act on the cylinder: weight W downward at its centre, normal reaction N₁ from wall 1 (perpendicular to wall 1, directed toward the centre), and normal reaction N₂ from wall 2 (perpendicular to wall 2, directed toward the centre)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing only one normal reaction, missing that the cylinder touches both walls of the groove."
+   },
+   {
+    "option": null,
+    "text": "Drawing a normal reaction that is not perpendicular to the wall it comes from."
+   }
+  ],
+  "concept_tags": [
+   "free body diagram",
+   "normal reaction",
+   "equilibrium of a body"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "32c78474c6b9955c598b5fe24d485b6a5317e22c7bbdde3c7d2ba04961b1d21f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3e62f372bf46d6029f4fd6de6d906e22ab54b61e136055d8150125ad4c28c485",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:10:00+05:30"
+ }
+}

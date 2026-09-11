@@ -1,0 +1,38 @@
+{
+ "question_id": "lom_adb64b1d",
+ "item_sha": "54de12172cb3b8c799e01fc431c311410b2e912828666c474037b92e8a98788a",
+ "auditor_option": null,
+ "auditor_value": "Plank: weight at its centre of gravity; normal reaction and friction from the ground at the lower end (friction along the ground, toward the cylinder); normal reaction from the cylinder, perpendicular to the plank at the contact point; no friction at the cylinder contact. Cylinder: weight at the centre; normal reaction from the plank, perpendicular to the plank and along the radius through the centre; vertical normal reaction from the ground through the centre; friction from the ground along the ground at the bottom contact (toward the plank's lower end if it acts). Four forces on each body.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "approach",
+   "quote": "draw one force per contact, remembering that a smooth contact on a circular body always points through its centre",
+   "note": "Misexplains: a rough contact gives TWO forces (normal reaction and friction), and the weight is not a contact force at all, so 'one force per contact' would lose the ground friction the steps themselves draw. Also a contact does not point anywhere; it is the normal reaction at a smooth contact on a circular body that passes through the centre.",
+   "fix": "List every contact each body has. At each contact draw a normal reaction, and where the contact is rough add a friction force along the surface; then add each body's weight at its centre of gravity. At a smooth contact on a circular body the normal reaction passes through the centre."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "touches the smooth cylinder along its length, so it feels four forces in total",
+   "note": "The plank touches the cylinder at one point partway along the plank, not along its length; 'along its length' reads as an extended contact. 'Feels' personifies the plank.",
+   "fix": "touches the smooth cylinder at one point partway along its length, so four forces act on it in total"
+  },
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "the ground's normal reaction and friction (at its lower end)",
+   "note": "A free-body diagram must show the direction of each force, and neither friction force is given a direction. On the plank the direction is fixed: the cylinder's normal push has a horizontal part toward the plank's lower end, so the ground friction on the plank points along the ground toward the cylinder. On the cylinder the plank's push has a horizontal part away from the plank's lower end, so any ground friction on the cylinder points toward the plank's lower end.",
+   "fix": "the ground's normal reaction (perpendicular to the ground) and friction (along the ground, toward the cylinder) at its lower end ... and the ground's friction on the cylinder (horizontal, at the ground contact, directed toward the plank's lower end if it acts)"
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Force lists agree with mine (four on each body). The solution correctly notes in steps[3].why_this_step that ground friction on the cylinder is the only force with a moment about its centre; with the plank contact frictionless, static equilibrium would need that friction to be zero while the plank's push still has a horizontal part, so the cylinder cannot actually stay at rest. The question asks only for the diagrams, so this is not graded.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 4,
+  "agent": "W04-U-lom-01",
+  "at": "2026-09-11T23:49:04+05:30"
+ }
+}

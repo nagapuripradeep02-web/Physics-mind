@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_adf67f14",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "On a horizontal road with friction present, the coefficient of friction between a car's tyres and the road is μ = 0.4. The car starts at rest, speeds up, then slows back down to rest, and in doing so covers a total distance of 400 m. Work out the shortest possible time in which this 400 m distance can be covered.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "horizontal rough road",
+   "μ = 0.4",
+   "car starts from rest",
+   "car ends at rest",
+   "total distance covered = 400 m"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Use the maximum friction-limited acceleration to speed up for half the distance, then the same maximum deceleration to stop over the other half, and add the two times.",
+  "steps": [
+   {
+    "text": "The road's friction limits both the car's acceleration and its braking deceleration to the same maximum value.",
+    "equation": "a(max) = μg = 0.4×10 = 4 m/s²"
+   },
+   {
+    "text": "To cover the distance in the least time while starting and ending at rest, the car speeds up at this maximum rate for the first half of the distance, then brakes at the same maximum rate for the second half."
+   },
+   {
+    "text": "Find the time for the first half using distance equals half of acceleration times time squared.",
+    "equation": "200 = ½×4×t², so t = √100 = 10 s"
+   },
+   {
+    "text": "By symmetry the braking half takes the same time, so add the two.",
+    "equation": "total time = 2×10 = 20 s"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "20 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the full 400 m in a single accelerating phase, instead of splitting it into two halves, gives 400 = ½×4×t², so t = √200 ≈ 14.1 s, which ignores that the car must stop."
+   },
+   {
+    "option": null,
+    "text": "Finding the correct time for one half, 10 s, and forgetting to double it for the braking half reports 10 s as the final answer, missing half the trip."
+   }
+  ],
+  "concept_tags": [
+   "friction-limited acceleration",
+   "equations of motion",
+   "minimum time"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7ba21240ae9293da6adbe29aba58ee84262fd13a3c234e437359419cc8d56042"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "9c8bfabecd3323f23089f960269194631a8e365e0b87aa6b1a5b7747a7e0aa0f",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_875703c0",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A wedge has two sloped faces meeting at a top vertex fitted with a frictionless pulley. The left face rises at 60° and the right face rises at 30°. Block A (1 kg) and block B (3 kg) lie one above the other on the 60° face, joined to each other by a string; block B is also joined by a string running over the pulley to block C (2 kg), which lies on the 30° face. Ignore friction everywhere, and take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the common acceleration of blocks A, B and C."
+   },
+   {
+    "label": "b",
+    "asks": "Find the tension carried by each connecting string."
+   }
+  ],
+  "conditions": [
+   "friction neglected on both inclined faces",
+   "pulley is frictionless",
+   "the string over the pulley connects block B to block C",
+   "blocks A and B are on the 60° face, block C is on the 30° face",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A double-sloped wedge has a frictionless pulley fixed at its top vertex. Its left face makes 60° with the horizontal and its right face makes 30° with the horizontal. On the 60° face, block A (lower down the slope) is tied to block B (higher up the slope) by a string. Block B is further connected, by a string running over the pulley, to block C, which rests on the 30° face. Blocks A and B slide down the 60° face while block C is drawn up the 30° face."
+  }
+ },
+ "solution": {
+  "approach": "Blocks A and B move together down the 60° face while C is pulled up the 30° face at the same speed, so treat A+B as one mass against C.",
+  "steps": [
+   {
+    "text": "A and B (1 kg + 3 kg = 4 kg) slide down the 60° incline; C (2 kg) is pulled up the 30° incline; all three share one acceleration a.",
+    "equation": "(mA+mB)g sin60° − mC g sin30° = (mA+mB+mC) a"
+   },
+   {
+    "text": "Put in the masses and angles with g = 10 m/s².",
+    "equation": "4×10×0.8660 − 2×10×0.5 = 6a"
+   },
+   {
+    "text": "Solve for a.",
+    "equation": "34.64 − 10 = 6a, a = 24.64/6 = 4.11 m/s²"
+   },
+   {
+    "text": "For block C alone, the string tension T_BC pulls it up the 30° incline against its weight component.",
+    "equation": "T_BC − mC g sin30° = mC a"
+   },
+   {
+    "text": "Put in mC = 2 kg, a = 4.11 m/s² and solve.",
+    "equation": "T_BC = 2×(5+4.11) = 18.2 N"
+   },
+   {
+    "text": "For block A alone, its weight component pulls it down the 60° incline while the string to B (tension T_AB) holds it back.",
+    "equation": "mA g sin60° − T_AB = mA a"
+   },
+   {
+    "text": "Put in mA = 1 kg, a = 4.11 m/s² and solve.",
+    "equation": "T_AB = 1×(8.66−4.11) = 4.55 N",
+    "why_this_step": "Block A is at the bottom of the A–B pair, so only its own weight component and the string to B act on it along the incline."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 4.11 m/s², (b) T_AB = 4.55 N (string between A and B), T_BC = 18.2 N (string over the pulley to C)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Leaving out block C's weight component on the 30° side and taking a = (mA+mB)g sin60°/(mA+mB+mC) = 5.77 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "double incline",
+   "connected bodies",
+   "tension"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5c497bf402936d5bf82ad2a5d0d1bef3184eb138508389c1d87881adf4112ec5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b3ff7a61debb98a8a95061a03ebe967c5b88081a5dfb5717e5d8d3de5827fb4e",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:15:00+05:30"
+ }
+}

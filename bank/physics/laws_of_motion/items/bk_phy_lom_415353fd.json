@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_415353fd",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ladder of length 4 m and mass 25 kg leans with its top end touching a smooth (frictionless) wall and its bottom end resting on rough ground, making an angle of 60° with the horizontal ground. Taking g = 10 m/s², find the smallest value the coefficient of friction between the ladder and the ground must have so the ladder does not slip.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ladder length = 4 m",
+   "ladder mass = 25 kg",
+   "upper end rests against a smooth (frictionless) wall",
+   "lower end rests on rough ground",
+   "ladder inclined at 60° to the horizontal",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Take torque about the foot of the ladder to find the wall's push, then use horizontal equilibrium to find the friction needed to balance it.",
+  "steps": [
+   {
+    "text": "The wall is smooth, so it pushes the ladder horizontally with a normal force N. The ground gives a vertical normal force equal to the ladder's weight and a horizontal friction force f.",
+    "equation": "N_ground = W = mg"
+   },
+   {
+    "text": "Take torques about the foot of the ladder. The weight acts at the midpoint and the wall's push acts at the top.",
+    "equation": "N × L sinθ = W × (L/2) cosθ"
+   },
+   {
+    "text": "Solve for the wall's push N.",
+    "equation": "N = W / (2 tanθ)"
+   },
+   {
+    "text": "Horizontal equilibrium requires the ground friction to equal the wall's push, so the minimum coefficient of friction is this ratio to the weight.",
+    "equation": "μ_min = N/W = 1/(2 tanθ)"
+   },
+   {
+    "text": "Substitute θ = 60° and compute.",
+    "equation": "μ_min = 1/(2 × 1.732) = 0.29"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "0.29"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the full length L instead of L/2 as the moment arm of the weight gives μ = 1/tanθ = 0.58, double the correct value."
+   },
+   {
+    "option": null,
+    "text": "Using sinθ in place of tanθ in the final ratio gives μ = 1/(2 sin60°) = 0.58."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a rigid body",
+   "torque balance",
+   "friction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "39a50e90a832b3e2ddd8cf362c0885d4a094f9df4b173f2d51d1e918a4bb9e51"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "56ea25ef1120f34f178e7b36c758c5b85fc247bbb9f409647d480c543bf33413",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

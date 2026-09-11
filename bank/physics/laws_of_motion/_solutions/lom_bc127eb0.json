@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_bc127eb0",
+ "approach": "Write the along-incline equilibrium of the 2 kg block on the incline, using the tension found from each hanging block's own equilibrium.",
+ "steps": [
+  {"text": "The 2 kg block hanging below the bottom pulley is in equilibrium, so the tension pulling the incline block down the slope equals its weight.", "equation": "T₁ = 2g"},
+  {"text": "Block A hangs from the top pulley and is in equilibrium, so the tension pulling the incline block up the slope equals A's weight.", "equation": "T₂ = mₐg"},
+  {"text": "For the 2 kg block on the incline, balance the forces along the slope: the upward-pulling tension equals the downward-pulling tension plus the weight component along the slope.", "equation": "mₐg = 2g + 2g sin30°"},
+  {"text": "Solve for mₐ.", "equation": "mₐ = 2 + 2×0.5 = 3 kg"}
+ ],
+ "final_answer": {"option": null, "value": "mₐ = 3 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting the weight component of the 2 kg block along the slope, giving mₐ = 2 kg instead of 3 kg."},
+  {"option": null, "text": "Using the full weight of the 2 kg incline block instead of only its component along the slope, giving mₐ = 2 + 2 = 4 kg."}
+ ],
+ "concept_tags": ["equilibrium on an incline", "pulley system", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:40:00+05:30"}
+}

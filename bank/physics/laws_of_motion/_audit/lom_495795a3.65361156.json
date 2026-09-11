@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_495795a3",
+ "item_sha": "65361156ad07ebc4c509c86886cfca3ee249e2bc2366586a44263736a7ca6376",
+ "auditor_option": 4,
+ "auditor_value": "four rope strands each at mg/2 = 2mg up; weight of man + platform = 2mg; a = 0 -> option 4 (d)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Counting only the two pulls on the man's hands and comparing them to the man's own weight alone, forgetting the platform, gives an acceleration of g.",
+   "note": "The stated error gives 2 × (mg/2) = mg upward against the man's weight mg, a net force of zero, not an acceleration of g. The cause named cannot produce the number (and option) the entry points at.",
+   "fix": "Counting all four upward pulls, 2mg, but comparing them to the man's own weight mg alone, forgetting the platform's mass, gives a net force mg on mass m and an acceleration of g."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:59:25+05:30"
+ }
+}

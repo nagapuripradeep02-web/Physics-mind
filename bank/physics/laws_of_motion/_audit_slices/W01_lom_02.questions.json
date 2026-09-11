@@ -1,0 +1,186 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 2,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_35193317",
+   "question_text": "A ball weighing 100 N sits at rest on a rough slope tilted 30° from the horizontal; a horizontal cord, running from a point A on the ball to a fixed point B on the slope, keeps the ball from sliding down. Work out the following three quantities.\n(a) Find the tension in the cord.\n(b) Find the friction force acting on the ball.\n(c) Find the normal reaction the slope exerts on the ball.",
+   "options": [],
+   "figure_description": "An inclined surface rises from the ground at an angle of 30°. A ball rests on this sloped surface, its center marked C. A horizontal cord runs from point A, on the ball's surface (upper side, facing up the slope), to point B, a fixed point on the incline surface farther up the slope, at the same height as A, so the cord itself is horizontal."
+  },
+  {
+   "question_id": "lom_2432e167",
+   "question_text": "Blocks m (5 kg) and M (10 kg) rest on the ground and are joined to each other by a cord that runs over a light pulley labelled B. A second cord runs from the axle of pulley B down to the ground, looping over a separate light pulley labelled A on its way. An upward pull F acts on the axle of pulley A, and both pulleys are taken to have zero mass. Taking g = 10 m/s², determine the accelerations of blocks m and M for each of the following pulls.\n(a) Find the acceleration of m and M when F = 100 N.\n(b) Find the acceleration of m and M when F = 300 N.\n(c) Find the acceleration of m and M when F = 500 N.",
+   "options": [],
+   "figure_description": "Pulley A is held up only by the upward applied force F on its own axle (nothing above it holds it up). A cord passes over pulley A: one end is tied to the ground, the other end is tied to the axle of pulley B, which hangs below A. A separate cord passes over pulley B; its two ends go straight down to block m on the left and block M on the right, both resting on the ground. Both pulleys are frictionless and massless."
+  },
+  {
+   "question_id": "lom_385c202d",
+   "question_text": "A string passes over a pulley fixed to a ceiling support. One end of this string holds a 4 kg block. The other end holds a 3 kg block, and a second string ties a 1 kg block below that 3 kg block. Work out the ratio of the tension in the string holding the 4 kg block to the tension in the string holding the 1 kg block.",
+   "options": [],
+   "figure_description": "A pulley hangs fixed from a ceiling support. A string runs over this pulley: its left end carries a 4 kg block, hanging straight down. Its right end carries a 3 kg block, also hanging straight down. A separate string then connects downward from the 3 kg block to a 1 kg block beneath it."
+  },
+  {
+   "question_id": "lom_37b323c1",
+   "question_text": "A 4 kg block sits above a 2 kg block, the two joined by a vertical light string that cannot stretch. An upward pull of F = 120 N is applied at the top of the 4 kg block, lifting both blocks straight up together. Take g = 10 m/s².\n(a) Work out the acceleration produced in the blocks.\n(b) Work out the pulling force (tension) carried by the string.",
+   "options": [],
+   "figure_description": "The 4 kg block is on top; a 2 kg block hangs directly beneath it, joined by a vertical light inextensible string. A force F = 120 N pulls straight upward on the top (4 kg) block, lifting the whole two-block system vertically."
+  },
+  {
+   "question_id": "lom_20700fa4",
+   "question_text": "In the pulley arrangement shown, block M hangs from a fixed pulley, while a movable pulley, suspended from the same string, carries a 3 kg block on one side and a 2 kg block on the other. Both the pulley and string are massless, and there is no friction anywhere. Taking g = 10 m/s², find the value of M for which the whole system stays in equilibrium.",
+   "options": [],
+   "figure_description": "A fixed pulley is attached to a rigid support at the top. A string runs over this fixed pulley: block M hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley hanging below it. A second string runs over this movable pulley, with a 3 kg block hanging from its left end and a 2 kg block hanging from its right end."
+  },
+  {
+   "question_id": "lom_2ed9ffe2",
+   "question_text": "Two setups are shown below. In each, someone must lift a block that is currently sitting on the ground up to a height h using a string that passes over one or more pulleys fixed to an overhead support. Both the pulleys and the strings are light (massless) and frictionless. In which setup must the person pull with a greater force, if any?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "Setup (i)"
+    },
+    {
+     "label": "(b)",
+     "text": "Setup (ii)"
+    },
+    {
+     "label": "(c)",
+     "text": "Same in both"
+    },
+    {
+     "label": "(d)",
+     "text": "Cannot be determined"
+    }
+   ],
+   "figure_description": "Setup (i): a block rests on the ground; a string tied to the block goes straight up, passes over a single pulley fixed to an overhead bracket, and comes down to a person standing beside the block, who pulls the free end. Setup (ii): the same overhead bracket carries one fixed pulley. A second pulley is mounted on a short post fixed to the top of the block, so it moves with the block. The string is tied to the bracket, runs down and passes under the block's pulley, goes back up over the fixed pulley, and comes down to the person, who pulls the free end. In both setups the person pulls the string to raise the block through the same height h."
+  },
+  {
+   "question_id": "lom_36ff01fc",
+   "question_text": "Assertion: A block sits motionless on a rough horizontal floor. Two forces, F₁ (pressing straight down on top of the block) and F₂ (pushing horizontally against the block), act on it at the same time. Raising the value of either force — F₁ or F₂ — will make the friction force on the block larger. Reason: Increasing F₁ makes the ground's normal reaction on the block larger.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "The block sits on a horizontal rough floor, drawn as a straight ground line. F₁ is drawn as an arrow pointing straight down onto the top of the block. F₂ is drawn as an arrow pointing horizontally to the right, pushing into the block from its left side."
+  },
+  {
+   "question_id": "lom_33c59164",
+   "question_text": "The same three-pulley chain as before — one pulley fixed to the ceiling, with two lighter pulleys hanging one below the other in series — now carries block 1 (mass 1 kg) at the base and block 2 (mass 2 kg) hanging from the lowest pulley's string, as shown in the figure. Take g = 10 m/s².\n(a) Work out how fast each block accelerates.\n(b) Work out the pulling force (tension) carried by each string segment.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Block 1 has mass 1 kg and block 2 has mass 2 kg. If the tension in S₃ is T, the tensions in S₂ and S₁ are 2T and 4T."
+  },
+  {
+   "question_id": "lom_2ed9ffe2",
+   "question_text": "Two setups are shown below. In each, someone must lift a block that is currently sitting on the ground up to a height h using a string that passes over one or more pulleys fixed to an overhead support. Both the pulleys and the strings are light (massless) and frictionless. In which setup must the person pull with a greater force, if any?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "Setup (i)"
+    },
+    {
+     "label": "(b)",
+     "text": "Setup (ii)"
+    },
+    {
+     "label": "(c)",
+     "text": "Same in both"
+    },
+    {
+     "label": "(d)",
+     "text": "Cannot be determined"
+    }
+   ],
+   "figure_description": "Setup (i): a block rests on the ground; a string tied to the block goes straight up, passes over a single pulley fixed to an overhead bracket, and comes down to a person standing beside the block, who pulls the free end. Setup (ii): the same overhead bracket carries one fixed pulley. A second pulley is mounted on a short post fixed to the top of the block, so it moves with the block. The string is tied to the bracket, runs down and passes under the block's pulley, goes back up over the fixed pulley, and comes down to the person, who pulls the free end. In both setups the person pulls the string to raise the block through the same height h."
+  },
+  {
+   "question_id": "lom_2dc239ae",
+   "question_text": "A block of mass m is pressed flat against the vertical side face of a much larger block of mass M (the wedge), as the figure shows; block m has no surface beneath it and stays in place purely because of friction against the wedge's face, with a friction coefficient μ between the two surfaces. A horizontal push F drives the wedge (and the smaller block moves along with it). What is the least value F can take so that the smaller block does not slide down relative to the wedge?",
+   "options": [],
+   "figure_description": "A large block of mass M (the wedge) stands on the ground. A horizontal force F pushes it from the left, shown by an arrow. A smaller block of mass m touches the wedge's right-hand vertical face; this smaller block has nothing beneath it and is kept from falling only by friction against the wedge's surface. As F acts, the wedge and the smaller block accelerate together horizontally."
+  },
+  {
+   "question_id": "lom_21ed7e30",
+   "question_text": "A 1 kg block sits on a surface that is not smooth. A horizontal pull F acts on the block, as pictured. Taking the static-friction coefficient μₛ = 0.5, the kinetic-friction coefficient μₖ = 0.4, and g = 10 m/s², describe how the friction force f and the block's acceleration a behave as the pull F is raised steadily from zero.",
+   "options": [],
+   "figure_description": "A block rests on a rough horizontal surface, drawn with hatching to show roughness. A horizontal arrow labeled F, pointing rightward, is applied to the block, pushing it along the surface."
+  },
+  {
+   "question_id": "lom_39a50e90",
+   "question_text": "A ladder of length 4 m and mass 25 kg leans with its top end touching a smooth (frictionless) wall and its bottom end resting on rough ground, making an angle of 60° with the horizontal ground. Taking g = 10 m/s², find the smallest value the coefficient of friction between the ladder and the ground must have so the ladder does not slip.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_3a49adad",
+   "question_text": "Picture two vertical walls facing each other with an open gap between them; inside that gap, ball A rests on the floor of the gap and leans against the left-hand wall, while a smaller ball B sits on top of ball A and leans against the right-hand wall. There is no friction anywhere in this arrangement. Sketch a separate free-body diagram for each ball.",
+   "options": [],
+   "figure_description": "Two vertical walls face each other with a gap between them. Inside the gap, the larger ball, A, sits on the floor of the gap and touches the left wall. A smaller ball, B, rests on top of ball A and touches the right wall."
+  },
+  {
+   "question_id": "lom_1f2b9b71",
+   "question_text": "A 1 kg block is pressed against a rough vertical wall by a horizontal force of 20 N. The coefficient of static friction between the block and the wall is ¼. At the same time a second horizontal force of 10 N, directed parallel to the wall's surface, acts on the block. Using g = 10 m/s², determine whether the block moves; if it does, state the direction of its motion; if it does not, work out the friction force the wall exerts on the block.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_25dc78be",
+   "question_text": "A 2 kg block and a 1 kg block rest on a smooth horizontal surface, joined by a string AB of mass 1 kg, with end A attached to the 2 kg block and end B attached to the 1 kg block. A horizontal force F of 8 N pulls the 1 kg block away from the 2 kg block. Find the string tension at end A and the string tension at end B.",
+   "options": [],
+   "figure_description": "On a horizontal frictionless surface: a 2 kg block on the left connected by string end A to string end B on a 1 kg block to its right; the force F = 8 N acts horizontally on the 1 kg block, pointing further right (away from the 2 kg block)."
+  },
+  {
+   "question_id": "lom_39473919",
+   "question_text": "A 2 kg block rests on top of a 1 kg block, and the 1 kg block rests on a smooth (frictionless) horizontal surface. The friction coefficient between the two blocks is μ = 0.6. The 2 kg block is given an initial velocity of 3 m/s to the right, while the 1 kg block is given an initial velocity of 18 m/s to the left. Assume the lower block is long enough that the upper block never slides off it. Taking g = 10 m/s²,\n(a) Work out the time at which the relative sliding between the two blocks stops.\n(b) Work out the common velocity the two blocks share at that instant.\n(c) Work out how far the 1 kg block and the 2 kg block each travel up to that instant.",
+   "options": [],
+   "figure_description": "A 2 kg block sits on top of a 1 kg block; the 1 kg block rests on a smooth horizontal floor. The 2 kg (upper) block moves at 3 m/s to the right, and the 1 kg (lower) block moves at 18 m/s to the left."
+  },
+  {
+   "question_id": "lom_208bc75b",
+   "question_text": "A rod OA hangs from a hinge fixed at point O on a vertical wall. Its lower end, point A, is tied by a weightless string to a fixed point B on a support to the right, at the same height as A. Draw a diagram of the rod alone showing every force acting on it.",
+   "options": [],
+   "figure_description": "On the left is a vertical wall. Point O is a hinge fixed on this wall, near the top. A rigid rod runs from O down and to the right to its other end, point A. From A, a horizontal massless string runs further right to point B, which is fixed to a second vertical support at the same height as A. The rod slopes downward from the upper-left hinge O to the lower-right end A, and the string AB is horizontal."
+  },
+  {
+   "question_id": "lom_3ce6bc1e",
+   "question_text": "In the same pulley system, at one instant blocks 1 and 2 are each moving upward at a speed of 1 m/s. Determine the velocity of block 3 at this same instant.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_32c78474",
+   "question_text": "A round cylinder of weight W rests inside a V-shaped groove, touching both of the groove's slanted walls. Sketch the free-body diagram for the cylinder.",
+   "options": [],
+   "figure_description": "A V-shaped groove made of two walls slanting inward like a wedge, with a circular cylinder resting inside it and touching both slanted walls."
+  },
+  {
+   "question_id": "lom_2897c874",
+   "question_text": "A 1 kg block and a 2 kg block hang from the two ends of a light, smooth string that passes over a pulley clamped to a fixed support. The system starts from rest and is released. Exactly 1.0 s after release, the 2 kg block (the larger mass) is caught and stopped for an instant, then let go again at once. Find how much time passes after that instant before the string becomes taut again.",
+   "options": [],
+   "figure_description": "A fixed pulley is clamped at the top. A string over the pulley carries a 1 kg block hanging on one side and a 2 kg block hanging on the other side; the 2 kg block, being heavier, moves down while the 1 kg block moves up."
+  },
+  {
+   "question_id": "lom_22c836df",
+   "question_text": "A vertical wall and a horizontal ceiling meet at a right-angle corner. From a junction point somewhere below and to the right of that corner, string T₂ runs horizontally and attaches to the wall, while string T₁ runs up and to the right, making an angle of 60° with the horizontal, and attaches to the ceiling. A block of weight W = 4 × 9.8 N hangs straight down from the same junction point on a vertical string. Find the tensions T₁ and T₂.",
+   "options": [],
+   "figure_description": "A vertical wall and a horizontal ceiling meet at a right-angle corner in the upper left of the picture. A junction point lies below and to the right of that corner. String T₂ goes from the junction straight left to the wall. String T₁ goes from the junction up and to the right to the ceiling, making a 60° angle with the horizontal. A block hangs from the junction on a vertical string directly below it, its weight W = 4 × 9.8 N pulling straight down."
+  }
+ ]
+}

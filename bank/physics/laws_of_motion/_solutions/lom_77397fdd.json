@@ -1,0 +1,24 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_77397fdd",
+ "approach": "Get the string-length constraint linking m1's motion up the incline to m2's fall, then combine it with Newton's second law for m1, the movable pulley, and m2.",
+ "steps": [
+  {"text": "The cord from m1 goes over the fixed corner pulley down to the movable pulley; the second cord passes over the top of the hanging pulley; one segment runs down to the fixed bracket and the other runs down to m2.", "equation": "cord 1: m1 to fixed pulley to movable pulley; cord 2: fixed bracket to movable pulley to m2"},
+  {"text": "If m1 moves a distance x up the incline, the movable pulley must move down by x (cord 1 is fixed length), and then both segments of cord 2 shorten or lengthen by that same x, so m2 must move down by 2x.", "equation": "a2 = 2 a1",
+   "why_this_step": "This is the constraint relation: it links every acceleration in the system before any force equation is written."},
+  {"text": "The hanging pulley is massless, so the single upward pull T₁ from cord 1 at its axle must balance the two downward pulls T₂ from the segments of cord 2.", "equation": "T1 = 2T2"},
+  {"text": "Write Newton's second law for m1 along the frictionless incline, taking up the slope as positive.", "equation": "T1 − m1 g sinθ = m1 a1"},
+  {"text": "Write Newton's second law for m2, taking downward as positive.", "equation": "m2 g − T2 = m2 a2 = m2(2a1)"},
+  {"text": "Substitute T1 = 2T2 and m2 = ηm1 into both equations and eliminate T2 to solve for a1.", "equation": "T2 = ηm1(g − 2a1); T1 = m1(a1 + g sinθ) = 2T2 gives a1(1 + 4η) = g(2η − sinθ)"},
+  {"text": "So a1 = g(2η − sinθ)/(1 + 4η), and m2's acceleration is twice that.", "equation": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; upward when 2η < sinθ"}
+ ],
+ "final_answer": {"option": null, "value": "a2 = 2g(2η − sinθ)/(1 + 4η), directed downward when 2η > sinθ; when 2η < sinθ the expression is negative and m₂ accelerates upward (the acceleration of the mass m2 = ηm1)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Missing the movable-pulley factor of 2 in the constraint and taking a2 = a1, which gives a1(1 + 2η) = g(2η − sinθ), the wrong denominator (1 + 2η) instead of (1 + 4η)."}
+ ],
+ "concept_tags": ["constraint relation", "movable pulley", "inclined plane", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

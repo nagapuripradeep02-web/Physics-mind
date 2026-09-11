@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_3832293a",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m sits on an inclined plane whose angle θ with the horizontal is slowly increased from 0° up to 90°. The coefficients of static and kinetic friction between the block and the plane are μₛ and μₖ. Sketch how the friction force f acting on the block varies as θ increases.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "block of mass m on an incline",
+   "angle θ increased from 0° to 90°",
+   "static friction coefficient = μₛ",
+   "kinetic friction coefficient = μₖ"
+  ],
+  "figure": {
+   "description": "A block of mass m rests on an inclined plane whose angle θ with the horizontal can be increased. The friction coefficients between the block and the plane are μₛ (static) and μₖ (kinetic)."
+  }
+ },
+ "solution": {
+  "approach": "Friction equals mg sinθ while the block rests; once θ passes tanθ = μₛ, it drops to the kinetic value and falls further as θ increases.",
+  "steps": [
+   {
+    "text": "For small θ the block does not slide, so friction balances the component of weight along the incline.",
+    "equation": "f = mg sinθ, for 0 ≤ θ ≤ θₛ"
+   },
+   {
+    "text": "Friction can rise only up to its maximum static value. The block is on the verge of sliding when the incline angle reaches θₛ.",
+    "equation": "tanθₛ = μₛ, f_max = μₛ mg cosθₛ"
+   },
+   {
+    "text": "Past θₛ the block slides, so friction switches to the kinetic value, which is smaller than the static maximum because μₖ < μₛ.",
+    "equation": "f = μₖ mg cosθ, for θ > θₛ",
+    "why_this_step": "Kinetic friction is always less than the limiting static friction, so f drops suddenly at θₛ."
+   },
+   {
+    "text": "As θ increases further toward 90°, cosθ keeps falling, so the kinetic friction keeps falling with it, reaching zero at θ = 90°.",
+    "equation": "f(90°) = μₖ mg cos90° = 0",
+    "why_this_step": "At θ = 90° the incline is vertical, the normal force is zero, and friction is proportional to the normal force."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "f rises as mg sinθ from 0 at θ = 0° up to the limiting value μₛ mg cosθₛ at θₛ = tan⁻¹μₛ, drops there to the smaller kinetic value μₖ mg cosθₛ, then falls further as μₖ mg cosθ down to 0 at θ = 90°."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing friction as always increasing with θ, never dropping at θₛ, by forgetting that friction switches from static to a smaller kinetic value once sliding begins."
+   },
+   {
+    "option": null,
+    "text": "Drawing friction as a straight line in θ instead of following sinθ then cosθ, by treating the angle dependence as linear."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "limiting friction",
+   "inclined plane"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "07a487338f74f4a7ff5dcd6a677948313a9211fdff97677cc3cccb0f20a1519f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f413e15558ad059a8b65f34f93d3e8b5588a024b022687d0293a637a16b94a7e",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:00:00+05:30"
+ }
+}

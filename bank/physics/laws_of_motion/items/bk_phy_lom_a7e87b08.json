@@ -1,0 +1,82 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_a7e87b08",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball weighing 1 kg is held motionless, suspended by two strings OA and OB, with the geometry described below. Taking g = 10 m/s², work out the tension carried by each of the strings OA and OB.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "mass of ball = 1 kg",
+   "g = 10 m/s²",
+   "ball hangs in equilibrium from strings OA and OB",
+   "string OA makes a 30° angle with the horizontal at its upper fixed point A",
+   "string OB makes a 60° angle with the horizontal at its upper fixed point B",
+   "at O, string OA makes a 120° angle with the downward vertical, string OB makes a 150° angle with the downward vertical, and OA and OB make a 90° angle with each other"
+  ],
+  "figure": {
+   "description": "Two fixed points A and B lie on a common horizontal line, A to the left and B to the right. Point O lies below and between them. String OA connects O to A, sloping up and to the left, and makes a 30° angle with the horizontal line at A. String OB connects O to B, sloping up and to the right, and makes a 60° angle with the horizontal line at B. The ball hangs directly below O on a vertical string, its weight w = 10 N pulling straight down. At O, going around: the angle from string OA to the downward vertical is 120°, the angle from the downward vertical to string OB is 150°, and the angle between OA and OB (measured the other way, over the top) is 90°."
+  }
+ },
+ "solution": {
+  "approach": "Use the three marked angles at O between the two strings and the weight to apply Lami's theorem for three forces meeting at a point.",
+  "steps": [
+   {
+    "text": "Let T1 be the tension in OA and T2 the tension in OB. Write Lami's theorem using, for each force, the angle between the other two forces: T1 is opposite the 150° angle between OB and the weight, T2 opposite the 120° angle between OA and the weight.",
+    "equation": "T1/sin150° = T2/sin120° = w/sin90°"
+   },
+   {
+    "text": "Solve for T1 using w = 10 N.",
+    "equation": "T1 = w sin150° = 10×0.5 = 5 N"
+   },
+   {
+    "text": "Solve for T2.",
+    "equation": "T2 = w sin120° = 10×(√3/2) ≈ 8.66 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating string OA alone as if it supported the full weight vertically gives T1 = w/sin30° = 20 N, ignoring the pull from string OB."
+   }
+  ],
+  "concept_tags": [
+   "Lami's theorem",
+   "equilibrium of a hanging ball",
+   "tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "be0cf9bd6a8d116deb627c81e71fa72272e90d55eac60fd4a7f1a1d048413396"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "63e98616d835259e4c39a32a075fd42c0cbc655c94ff0fc9c1a83129203a8b04",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:46:00+05:30"
+ }
+}

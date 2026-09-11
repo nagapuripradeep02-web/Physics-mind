@@ -1,0 +1,99 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d1a8f9f2",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In a pulley arrangement, a ball hangs on one side and a thin rod of length l hangs on the other, with the ball's mass equal to η times the rod's mass. Every pulley and string in the system is weightless, and there is no friction anywhere. At the start the ball sits level with the rod's bottom end, and the system is then let go from rest. Work out how long it takes for the ball to rise level with the rod's top end.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball's mass is η times the rod's mass",
+   "rod has length l",
+   "pulleys and threads are massless",
+   "no friction anywhere",
+   "ball begins level with the rod's lower end, released from rest"
+  ],
+  "figure": {
+   "description": "A pulley is fixed to a bracket on the ceiling. A string passes over the top of this fixed pulley. Its left end hangs straight down to a small ball. Its right end hangs straight down to the axle of a second, smaller pulley, which is not fixed to anything and hangs in the air below and to the right of the fixed pulley, held up only by this string. A second string passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to the top end of a thin vertical rod of length l, which hangs freely; the right segment goes straight down to a short fixed ledge (bracket) mounted beside the rod, at about the level of the rod's top end. The ball and the rod hang side by side, the ball on the left and the rod on the right. At the moment of release the ball is level with the rod's lower end. The ball's mass is η times the rod's mass; all pulleys and strings are massless and there is no friction."
+  }
+ },
+ "solution": {
+  "approach": "Link the rod's motion to the ball's motion through the two cords, apply Newton's second law to both, then time the closing of gap l from the relative acceleration.",
+  "steps": [
+   {
+    "text": "The ball hangs from one end of the cord over the fixed pulley; the other end goes down to the movable pulley, which is held up only by that cord.",
+    "equation": "cord 1: ball to fixed pulley to movable pulley"
+   },
+   {
+    "text": "If the ball falls a distance x, the movable pulley must rise by x (cord 1 is fixed length); then, since the rod hangs from one side of cord 2, which passes over the top of that pulley, and a fixed bracket holds the other side, the rod's top must rise or fall by twice the pulley's own motion.",
+    "equation": "a(rod, downward) = −2 a(ball, downward)",
+    "why_this_step": "This constraint relation ties every acceleration in the system together before any force equation is written."
+   },
+   {
+    "text": "The movable pulley is massless, so cord 1's single pull must balance cord 2's two pulls.",
+    "equation": "T1 = 2T2"
+   },
+   {
+    "text": "Write Newton's second law for the ball, taking downward as positive.",
+    "equation": "mb g − T1 = mb ab"
+   },
+   {
+    "text": "Write Newton's second law for the rod, taking downward as positive, using the constraint a(rod) = −2ab.",
+    "equation": "mr g − T2 = mr(−2ab)"
+   },
+   {
+    "text": "Substitute T1 = 2T2 and mb = ηmr into both equations and eliminate the tensions to solve for the ball's acceleration.",
+    "equation": "ab = g(η − 2)/(η + 4), downward; this is negative for η < 2, so the ball actually rises"
+   },
+   {
+    "text": "The ball starts a distance l below the rod's top. With both released from rest, the gap closes with constant relative acceleration, equal to the acceleration of the ball toward the rod's top.",
+    "equation": "gap(t) = l + ½(ab − a_rod)t² = l + (3/2)ab t²; setting gap = 0 gives t = √(2l(η + 4)/(3g(2 − η))), valid for η < 2"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "t = √(2l(η + 4) / (3g(2 − η))), valid when η < 2 so the ball rises to meet the rod's descending top"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Missing the movable-pulley factor of 2 in the constraint and taking the rod's speed equal to the ball's instead of twice it, which changes both the acceleration formula and the resulting time."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "movable pulley",
+   "equations of motion",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "02230979a47cb168fbba3aca97d8fe7b2d454aaf9b32f2ae25067613ac608171"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "4d3df71d68e65742cd5058c7d9225da9d240a8a8f499228179fa54d012b5bf4f",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

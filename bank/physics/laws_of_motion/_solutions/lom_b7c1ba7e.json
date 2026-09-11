@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b7c1ba7e",
+ "approach": "Write both strings' fixed-length equations in terms of downward positions, then differentiate each twice to connect the accelerations of A and B.",
+ "steps": [
+  {"text": "String 1 goes over the fixed pulley P1 from A to the movable pulley P2, so the sum of their depths below the ceiling stays fixed.", "equation": "yA + yP2 = constant"},
+  {"text": "String 2 goes over the movable pulley P2, with both of its ends going down to A and to B, so the sum of their depths measured from P2 stays fixed.", "equation": "(yA − yP2) + (yB − yP2) = constant, i.e. yA + yB − 2yP2 = constant"},
+  {"text": "Differentiate each length equation twice with respect to time to turn it into a relation between accelerations; this is the constraint relation, found before writing any force equation.", "equation": "aA + aP2 = 0  and  aA + aB − 2aP2 = 0"},
+  {"text": "From the first relation, the movable pulley's acceleration is the negative of A's.", "equation": "aP2 = −aA"},
+  {"text": "Substitute this into the second relation and solve for B's acceleration in terms of A's.", "equation": "aA + aB − 2(−aA) = 0 → aB = −3aA"}
+ ],
+ "final_answer": {"option": null, "value": "aB = −3aA, i.e. B's acceleration is three times A's in magnitude and opposite in direction: when A accelerates downward, B accelerates upward by three times as much, and vice versa."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating P2 as if it were fixed and using only the second string's length equation gives aB = −aA, missing the factor of 3 that comes from P2's own motion."}
+ ],
+ "concept_tags": ["constraint relation", "movable pulley", "string constraint"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

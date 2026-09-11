@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_800ec4d3",
+ "approach": "In the ground frame, apply Newton's second law to the block along the vertical, using the given floor reaction to find the box's acceleration.",
+ "steps": [
+  {"text": "The block accelerates downward with the box, so its weight minus the floor's normal push equals mass times acceleration.", "equation": "mg − N = ma"},
+  {"text": "Substitute the given floor reaction, N = mg/4.", "equation": "mg − mg/4 = ma"},
+  {"text": "Divide by m and solve for a.", "equation": "g − g/4 = a, so a = 3g/4"}
+ ],
+ "final_answer": {"option": null, "value": "a = 3g/4, directed downward (≈ 7.5 m/s² for g = 10 m/s²)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Writing the equation as N − mg = ma, treating the floor force as larger than the weight, which gives the wrong sign a = −3g/4."},
+  {"option": null, "text": "Setting the acceleration equal to N/m directly, a = g/4, instead of first subtracting N from the weight."}
+ ],
+ "concept_tags": ["Newton's second law", "normal force", "accelerating frame"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:50:00+05:30"}
+}

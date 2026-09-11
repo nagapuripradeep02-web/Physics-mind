@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_744442e6",
+ "item_sha": "0fd6055b5df96a4f098e7973dbe2acec1f1ab431283159c89e2eb440c07e6e1e",
+ "auditor_option": null,
+ "auditor_value": "(a) car frame: parabola in the floor plane, x_rel = −2.5t², z_rel = 10t, curving backward; (b) ground frame: straight line at a constant 10 m/s along k̂",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Assuming the object also accelerates along k̂ in the ground frame gives a curved path in the ground frame, but the frictionless floor exerts no force there at all.",
+   "note": "An acceleration along k̂, the same line as the object's velocity, gives straight-line motion, not a curved path; the stated cause cannot produce the effect named. The real error is giving the object the car's acceleration along î in the ground frame.",
+   "fix": "Assuming the object shares the car's acceleration along î in the ground frame gives a curved (parabolic) path in the ground frame, but the frictionless floor exerts no horizontal force on the object at all."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer agrees. Ground velocity at release is 10 k̂ because the car is at rest at that instant; all four equations check.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:58:25+05:30"
+ }
+}

@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_4a723ef7",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the figure, three massless strings meet at a common knot. A horizontal string connects the knot to a fixed wall; the tension in this string is 30 N. A second string runs from the knot up to a fixed support, making a 45° angle with the vertical. A third string hangs straight down from the knot and supports a block of weight W. Find W.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "all three strings are massless",
+   "tension in the horizontal string is 30 N",
+   "the inclined string makes a 45° angle with the vertical",
+   "the vertical string holds the block directly below the knot"
+  ],
+  "figure": {
+   "description": "Three massless strings are tied together at one knot. A horizontal string runs from the knot to a fixed vertical wall. An inclined string runs from the same knot up to a fixed support, making a 45° angle with the vertical direction. A third string hangs straight down from the knot, with a block of weight W tied to its lower end."
+  }
+ },
+ "solution": {
+  "approach": "At the knot, resolve the diagonal string's tension along the horizontal and vertical directions and balance each against the known tension and the hanging weight.",
+  "steps": [
+   {
+    "text": "At the knot, three strings pull: the diagonal string at 45° from the vertical, the horizontal string with tension 30 N, and the vertical string carrying weight W."
+   },
+   {
+    "text": "Balance the horizontal direction: the diagonal string's horizontal component equals the horizontal string's tension.",
+    "equation": "T sin45° = 30 N"
+   },
+   {
+    "text": "Solve for the diagonal string's tension T.",
+    "equation": "T = 30/sin45° = 30√2 N"
+   },
+   {
+    "text": "Balance the vertical direction: the diagonal string's vertical component supports the weight W.",
+    "equation": "W = T cos45° = 30√2 × cos45° = 30 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "W = 30 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Resolving the 45° string's components the wrong way round (using cos45° for the horizontal part) still gives 30 N here only because sin45° = cos45°; at any other angle this swap gives a wrong W."
+   },
+   {
+    "option": null,
+    "text": "Setting W equal to the full diagonal tension T = 30√2 N ≈ 42.4 N, instead of only its vertical component."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of a particle",
+   "resolution of tension"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "fa5544ef2aec0620354d727e37ed4b8f9b985dead263531af2501b19597a12c0"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7097f46640d641d543907680f83103608789009959477ace752c6781820d06a9",
+  "audited_by": "W02-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:15:00+05:30"
+ }
+}

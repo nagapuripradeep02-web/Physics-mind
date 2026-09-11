@@ -1,0 +1,237 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 5,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_9828b459",
+   "question_text": "A rope with negligible weight runs over a frictionless pulley. On one end, a 20 kg monkey grips the rope tightly; tied to the other end is a hanging bundle of bananas that also weighs 20 kg. The monkey spots the bananas above and begins climbing up the rope toward them.\n(a) While the monkey is climbing, do the bananas rise, fall, or stay where they are?\n(b) While the monkey is climbing, does the space separating her from the bananas shrink, grow, or stay the same?\n(c) If the monkey then lets go of the rope and falls freely, what then happens to the gap between her and the bananas as she falls?\n(d) If, before hitting the ground, the monkey catches hold of the rope again to stop falling, what happens to the bananas at that moment?",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_8bee1b8c",
+   "question_text": "Assertion: To start sliding a block along a rough surface, the smallest possible applied force is required precisely when the force is applied at an angle θ equal to the angle of friction of that surface. Reason: The angle of friction has the same numerical value as the angle of repose.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "A block sits on a rough horizontal surface. A force F is applied to the block, directed up and away from the surface at angle θ measured from a horizontal reference line drawn at the top of the block (the dashed line runs horizontally from the block's top corner, and F points up and to the right, making angle θ with it)."
+  },
+  {
+   "question_id": "lom_94190158",
+   "question_text": "Three separate blocks — masses 3 kg, 2 kg and 1 kg — are lined up touching each other on a smooth flat surface, in that order. A horizontal push of 12 N is exerted on the 3 kg block.\n(a) Calculate the overall force acting on the 2 kg block.",
+   "options": [],
+   "figure_description": "Three blocks touch each other in a row on a horizontal frictionless surface: a 3 kg block, then a 2 kg block, then a 1 kg block, arranged left to right. A horizontal force of 12 N pushes on the outer (left) face of the 3 kg block, directed toward the other two blocks."
+  },
+  {
+   "question_id": "lom_8c269e6a",
+   "question_text": "For the setup pictured, work out how the size of aA is related to the size of aB.",
+   "options": [],
+   "figure_description": "A wedge (a right-triangular ramp) sits on the ground, its slanted face climbing from the ground at a fixed angle θ to the horizontal, up to a vertical right-hand edge. A straight rod, marked A, runs through a fixed guide bracket mounted above and to the left, so it can move only along its own straight axis. The rod's lower tip touches the wedge's slanted face, and right where they meet, the rod's axis is perpendicular to that slanted face (a 90° angle is marked there). B labels the slanted face itself, measured from that contact point up toward the top of the wedge."
+  },
+  {
+   "question_id": "lom_82fde00e",
+   "question_text": "A 6 kg block rests on a rough horizontal floor where the static friction coefficient is μₛ = 0.6 and the kinetic friction coefficient is μₖ = 0.4. A horizontal force that increases with time, F = 4t newton (with t in seconds), acts on the block, as pictured. Taking g = 10 m/s², draw how the block's acceleration varies with time.",
+   "options": [],
+   "figure_description": "A 6 kg block rests on a rough horizontal surface with static friction coefficient μₛ = 0.6 and kinetic friction coefficient μₖ = 0.4. A horizontal force F = 4t (in newton, t in seconds) pushes the block to the right, increasing with time."
+  },
+  {
+   "question_id": "lom_90108702",
+   "question_text": "Sliding down a smooth incline set at angle θ to the horizontal, a body reaches the bottom in time t. When that same incline is instead made rough, the body now needs 2t to get to the bottom. Find the coefficient of friction of that rough surface.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "(3/4) tanθ"
+    },
+    {
+     "label": "(b)",
+     "text": "(2/3) tanθ"
+    },
+    {
+     "label": "(c)",
+     "text": "(1/4) tanθ"
+    },
+    {
+     "label": "(d)",
+     "text": "(1/2) tanθ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_88658934",
+   "question_text": "For the arrangement pictured, work out how fast block M accelerates. Every surface in the picture is frictionless.",
+   "options": [],
+   "figure_description": "A fixed wedge has a sloped face rising from left (low) to right (high) at 30° to the horizontal. A block of mass M rests on the slope. A string tied to M runs up along the slope to a pulley fixed at the wedge's top corner, passes over it, then goes straight down, passes UNDER a second, movable pulley (wrapping round its lower half) and rises vertically to a fixed anchor on a horizontal support above. The block of mass 2M hangs directly from the axle of that movable pulley. So the movable pulley hangs in a loop of the single string, and 2M descends half as far as M moves along the slope. All surfaces, pulleys and the string are frictionless and light."
+  },
+  {
+   "question_id": "lom_892cab31",
+   "question_text": "A ball of weight w and radius a rests against a smooth, vertical wall, touching it at one point on its surface. A string of length a, equal to the ball's radius, runs from a second point on the ball's surface to a point on the wall, holding the ball in place. Find the tension in this string.",
+   "options": [],
+   "figure_description": "A ball of radius a touches a smooth vertical wall at one point on its surface. A string of length a runs from a different point on the ball's surface up to a point on the wall, and this string holds the ball against gravity."
+  },
+  {
+   "question_id": "lom_953e2438",
+   "question_text": "A block sits motionless on a rough incline tilted at 30° from the horizontal. Between the block and the incline, the static friction coefficient equals 0.8, and the friction force acting on the block measures 10 N. Using g = 10 m/s², determine the block's mass, in kilograms.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2.0"
+    },
+    {
+     "label": "(b)",
+     "text": "4.0"
+    },
+    {
+     "label": "(c)",
+     "text": "1.6"
+    },
+    {
+     "label": "(d)",
+     "text": "2.5"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_8fc83d1a",
+   "question_text": "A 1 kg particle sits on a rough inclined plane that makes an angle of 30° with the horizontal ground. The particle is right at the point of sliding down. Determine the coefficient of friction acting between the particle and the incline.",
+   "options": [],
+   "figure_description": "A ramp rises from left to right, making an angle of 30° with the horizontal ground at its base. A small block sits on the slope. The block feels a normal push N perpendicular to the slope surface, a friction force f pointing up along the slope, and its own weight split into two parts: one part pulling it down along the slope surface and the other pressing it into the slope surface."
+  },
+  {
+   "question_id": "lom_97c46dfd",
+   "question_text": "A frictionless inclined plane of length L, set at angle θ to the horizontal, stands inside a lift. The lift is moving downward but slowing down, with retardation a. A body starts from rest at the top of the incline and slides down its length. How much time does it take to slide down?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "√(2L / ((g + a) sin θ))"
+    },
+    {
+     "label": "(b)",
+     "text": "√(2L / ((g − a) sin θ))"
+    },
+    {
+     "label": "(c)",
+     "text": "√(2L / (a sin θ))"
+    },
+    {
+     "label": "(d)",
+     "text": "√(2L / (g sin θ))"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_7f407823",
+   "question_text": "A weight of 10 N is to be split into two components: one directed parallel to a slope, and one directed perpendicular to it. The slope makes an angle of 30° with the horizontal. Find both components.",
+   "options": [],
+   "figure_description": "An inclined slope rising to the right at 30° to the horizontal ground. A weight w = 10 N acts vertically downward at a point on the slope. It is split into w∥, directed up along the slope surface, and w⊥, directed into the slope surface, perpendicular to it. The angle between the vertical weight and the perpendicular component is 30°, and the angle between the slope surface and the vertical is 60°."
+  },
+  {
+   "question_id": "lom_8fc83d1a",
+   "question_text": "A 1 kg particle sits on a rough inclined plane that makes an angle of 60° with the horizontal ground. The particle is right at the point of sliding down. Determine the coefficient of friction acting between the particle and the incline.",
+   "options": [],
+   "figure_description": "A ramp rises from left to right, making an angle of 30° with the horizontal ground at its base. A small block sits on the slope. The block feels a normal push N perpendicular to the slope surface, a friction force f pointing up along the slope, and its own weight split into two parts: one part pulling it down along the slope surface and the other pressing it into the slope surface."
+  },
+  {
+   "question_id": "lom_992ae579",
+   "question_text": "A wedge with a slope angled 37° above the horizontal (use sin 37° = 3/5) carries a small block of mass m resting on its slanted face. The wedge itself is driven so that it gains speed toward the right at a steady 3 m/s² (take g = 10 m/s²). What frictional force, acting between the block and the wedge's surface, is needed to keep the block from sliding down or up the slope while this happens?",
+   "options": [],
+   "figure_description": "A triangular wedge stands on level ground with its vertical face on the LEFT. Its sloped face runs from the top of that vertical face down to the right, meeting the ground at the wedge's bottom-right tip, where the 37° angle between slope and ground is marked; so the slope is high on the left and low on the right. A block of mass m rests on the sloped face. The whole wedge accelerates horizontally to the RIGHT (toward the low end of the slope) at 3 m/s², shown by an arrow beside the wedge."
+  },
+  {
+   "question_id": "lom_87408b28",
+   "question_text": "Two fixed pulleys, A and B, are mounted on a rigid horizontal support. A single string runs over both pulleys; its two free ends, marked P and Q, are each pulled straight downward at the same constant speed U, as the figure shows. This action makes a mass M, hanging from the string midway between the two pulleys, rise steadily upward. At what speed does M move upward?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "2U cos θ"
+    },
+    {
+     "label": "(b)",
+     "text": "U/cos θ"
+    },
+    {
+     "label": "(c)",
+     "text": "2U/cos θ"
+    },
+    {
+     "label": "(d)",
+     "text": "U cos θ"
+    }
+   ],
+   "figure_description": "A fixed horizontal support at the top holds two pulleys, A on the left and B on the right, a constant distance apart. Over pulley A, a string has one part hanging straight down to a free end P, and another part running diagonally down and inward to mass M, which hangs centered below, between the pulleys. Over pulley B, symmetrically, a string has one part hanging straight down to a free end Q, and another part running diagonally down and inward to the same mass M. Each diagonal segment makes angle θ with the vertical line drawn through the midpoint between A and B. Ends P and Q both move straight down at speed U."
+  },
+  {
+   "question_id": "lom_86ae4582",
+   "question_text": "Four forces meet at one point of a body and the body does not move, so it is in equilibrium. Two of the forces are known, 8 N and 4 N; the other two, F₁ and F₂, are not. Using the directions drawn in the figure, work out how large F₁ and F₂ are.",
+   "options": [],
+   "figure_description": "Four forces act on an object at a single point O. One force of 8 N points horizontally to the right. A second force of 4 N points up and to the right, making a 60° angle with the 8 N force. A third force, F₁, points nearly straight up, making a further 30° angle with the 4 N force (so F₁ is 90° from the 8 N force). A fourth force, F₂, points down and to the left, making a 30° angle with the horizontal line extending to the left (opposite to the 8 N force)."
+  },
+  {
+   "question_id": "lom_800ec4d3",
+   "question_text": "A box, open at the top, moves with a downward acceleration a, as shown in the figure. A block of mass m sits on the floor inside this box. What value must a have so that the block presses on the box's floor with a force of mg/4?",
+   "options": [],
+   "figure_description": "A square box, open at the top, accelerates downward; a downward arrow labelled a is drawn just to the left of the box, outside it. Inside the box, a block (of mass m) rests on the box's floor."
+  },
+  {
+   "question_id": "lom_9237b855",
+   "question_text": "For the pulley arrangement shown in the figure, write the equation connecting the accelerations a₁, a₂ and a₃ of blocks 1, 2 and 3, using the string-length (constraint) method.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_7f786374",
+   "question_text": "Two blocks lie one on top of the other on a frictionless floor: a 1 kg block sits on a 2 kg block. The friction coefficient between the two blocks themselves is μ = 0.4. The 1 kg block starts out moving at 2 m/s and the 2 kg block starts out moving at 8 m/s, both toward the same side, as pictured. Take g = 10 m/s² and answer the following.\n(a) Find the time after which the two blocks stop sliding relative to each other.\n(b) Find the common speed the two blocks share at that instant.\n(c) Find how far each block, the 1 kg block and the 2 kg block, has travelled by that instant.",
+   "options": [],
+   "figure_description": "A 1 kg block sits on top of a 2 kg block, which itself rests on a frictionless (smooth) floor. The 1 kg block moves to the right at 2 m/s and the 2 kg block moves to the right at 8 m/s. Friction, with coefficient μ = 0.4, acts only between the 1 kg block and the 2 kg block; there is no friction between the 2 kg block and the floor."
+  },
+  {
+   "question_id": "lom_7d765ebc",
+   "question_text": "A rough wedge has its sloped face tilted at 60° to the horizontal. A block of mass 6 kg sits on this slope, with the static friction coefficient between block and slope μs = 0.6 and the kinetic friction coefficient μk = 0.4. A force F is applied to the block, directed up along the slope's surface. Taking g = 10 m/s², work out the size of F needed in each of these situations:\n(a) F keeps the block completely still on the slope.\n(b) F makes the block slide down the slope at a steady (constant) speed.\n(c) F makes the block move up the slope while speeding up at 4 m/s².",
+   "options": [],
+   "figure_description": "A wedge stands with its slope rising from a 60° angle at the base. A 6 kg block rests on this slanted surface. A force F is applied to the block along the slope, pointing up and away from the base. The friction coefficients printed beside the incline are μs = 0.6 and μk = 0.4."
+  },
+  {
+   "question_id": "lom_93a6ffa1",
+   "question_text": "A small particle is put at rest on the inner surface of a hollow hemispherical bowl whose radius is R. Friction between particle and bowl has coefficient μ = 1/√3. Measured from the lowest point of the bowl, what is the greatest height at which the particle can stay at rest without sliding?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "R/2"
+    },
+    {
+     "label": "(b)",
+     "text": "(1 − √3/2)R"
+    },
+    {
+     "label": "(c)",
+     "text": "(√3/2)R"
+    },
+    {
+     "label": "(d)",
+     "text": "3R/8"
+    }
+   ],
+   "figure_description": ""
+  }
+ ]
+}

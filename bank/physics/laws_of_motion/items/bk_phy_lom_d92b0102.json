@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d92b0102",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A string runs over a single fixed pulley; block 1 hangs from one end and block 2 hangs from the other end.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Using the constraint (string-length) method, work out how the acceleration of block 1 relates to the acceleration of block 2."
+   }
+  ],
+  "conditions": [
+   "string passes over a single fixed pulley",
+   "block 1 and block 2 each hang from one end of the string",
+   "the total length of the string is constant"
+  ],
+  "figure": {
+   "description": "A single fixed pulley is mounted at a fixed point. A string passes over it, with block 1 hanging from one end and block 2 hanging from the other end. Taking a fixed horizontal reference line at the level of the pulley, x₁ is the distance block 1 hangs below this line and x₂ is the distance block 2 hangs below this line; because the total string length is fixed, as one block moves down the other moves up by the same amount."
+  }
+ },
+ "solution": {
+  "approach": "The string over the fixed pulley has a constant total length, so the two distances measured from the pulley must always add to that constant.",
+  "steps": [
+   {
+    "text": "The string runs from block 1 up to the pulley and down to block 2, so its total length is the sum of the two measured distances.",
+    "equation": "x₁ + x₂ = L (constant)"
+   },
+   {
+    "text": "A length that stays constant has a rate of change of zero, so the sum of the two velocities dx₁/dt + dx₂/dt is zero, and the sum of the accelerations is zero too.",
+    "equation": "d²(x₁+x₂)/dt² = 0"
+   },
+   {
+    "text": "This gives the acceleration of block 1 equal in size to the acceleration of block 2, in the opposite sense.",
+    "equation": "a₁ = −a₂",
+    "why_this_step": "If block 1 moves down by a certain amount, block 2 must move up by the same amount to keep the string length fixed."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a₁ = −a₂ (the two blocks have equal acceleration magnitude, and move in opposite directions — one down as much as the other goes up)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming both blocks move the same way and writing a₁ = a₂ instead of a₁ = −a₂."
+   }
+  ],
+  "concept_tags": [
+   "string constraint",
+   "pulley kinematics"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "c71f0f3ba5fc194901cd27506de7ddcb81a958420f3696ccbb207a92750ff693"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f1853400fec0646fea7ea0f0622b922b38bda6472a29b950324e819ff9101553",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:20:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_25dc78be",
+ "item_sha": "163adb14bceb1c7222c171eb9c92badff7b85e1082fddb0c9870e744949b6dc9",
+ "auditor_option": null,
+ "auditor_value": "a = 8/4 = 2 m/s²; T_A = 2 × 2 = 4 N; T_B = 8 − 1 × 2 = 6 N (string check: 6 − 4 = 1 × 2)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently the same numbers; the string's own equation T_B − T_A = m_string · a = 2 N confirms them. The mistake entry's massless-string values (a = 8/3, T = 16/3 ≈ 5.33 N) are computed correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:04:11+05:30"
+ }
+}

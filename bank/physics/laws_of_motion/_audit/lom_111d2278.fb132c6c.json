@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_111d2278",
+ "item_sha": "fb132c6c9f96ad95d70f48f9cc361141722b724e94801e652741f882c00caf81",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 4 sqrt(l/(3g)); (b) s_A = v t - 2l/3, s_B = v t - 5l/3 (A decelerates at g/4, B at 5g/8, relative 3g/8)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "the maximum available friction between A and B is only μ₁mg = 0.25mg",
+   "note": "The symbols μ₁, μ₂ (steps[2]) and M (steps[2]) are never defined; the question gives the coefficients as 1/4 and 1/2 and the plank mass as 2m with no symbols. A reader must infer μ₁ = 1/4 (block-plank), μ₂ = 1/2 (road-plank), M = 2m from the numbers.",
+   "fix": "the maximum available friction between A and B is only μ₁mg = (1/4)mg, where μ₁ = 1/4 is the block-plank coefficient (below, μ₂ = 1/2 is the road-plank coefficient and M = 2m is the plank mass)"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees on all parts. Required common-deceleration friction on A is m(g/2) = 0.5mg > 0.25mg available, so they slip; a_A = g/4, a_B = (3mg/2 - mg/4)/(2m) = 5g/8; relative 3g/8 from zero relative speed gives t^2 = 16l/(3g); the displacements follow and differ by exactly l. The result assumes the plank is still moving at that time (t < 8v/(5g)), which the question implies; the second common-mistake entry's number (4 sqrt(l/5g)) follows from its stated cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T22:59:37+05:30"
+ }
+}

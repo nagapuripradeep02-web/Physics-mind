@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6f2ba92f",
+ "approach": "Write the horizontal and vertical force balance for the block at the point motion begins, then rewrite the result using the angle of friction instead of the coefficient of friction.",
+ "steps": [
+  {"text": "The pull F at angle θ has a horizontal part that drives the block forward and a vertical part that supports part of the block's weight, reducing the normal force from the surface.", "equation": "N = mg − F sinθ"},
+  {"text": "At the point the block starts to move, the horizontal pull equals the maximum friction, which is the coefficient of friction times the normal force.", "equation": "F cosθ = μN = μ(mg − F sinθ)"},
+  {"text": "Collect the F terms and solve for F.", "equation": "F(cosθ + μ sinθ) = μmg ⇒ F = μmg/(cosθ + μ sinθ)"},
+  {"text": "Replace μ with tanφ, since the angle of friction φ is defined by tanφ = μ, and simplify using the cosine addition formula.", "equation": "F = mg sinφ/(cosθ cosφ + sinθ sinφ) = mg sinφ / cos(θ − φ)"}
+ ],
+ "final_answer": {"option": 1, "value": "mg sinφ / cos(θ − φ)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Minimising over the pull angle as well, which gives the overall least pull mg sinφ (reached only at θ = φ), when the question fixes θ and asks for the least F at that angle."},
+  {"option": 2, "text": "Swapping sinφ and cosφ in the numerator gives mg cosφ / cos(θ − φ)."}
+ ],
+ "concept_tags": ["angle of friction", "force at an angle", "limiting friction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:14:00+05:30"}
+}

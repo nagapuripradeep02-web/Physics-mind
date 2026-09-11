@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_86ae4582",
+ "approach": "Write each force by its angle from the 8 N force, then set the horizontal sum and the vertical sum each to zero.",
+ "steps": [
+  {"text": "Measure every angle from the 8 N force. The 4 N force is at 60°. F₁ is a further 30° from the 4 N force, so F₁ is at 90°. F₂ is 30° below the line opposite the 8 N force, so F₂ is at 210°.", "equation": "8 N at 0°, 4 N at 60°, F₁ at 90°, F₂ at 210°"},
+  {"text": "For equilibrium the horizontal parts of all four forces add to zero.", "equation": "8 cos0° + 4 cos60° + F₁ cos90° + F₂ cos210° = 0"},
+  {"text": "cos90° = 0, so F₁ drops out of this equation. Solve for F₂.", "equation": "8 + 2 + 0 − F₂(0.866) = 0 → F₂ = 10 / 0.866 = 11.55 N"},
+  {"text": "For equilibrium the vertical parts of all four forces also add to zero.", "equation": "8 sin0° + 4 sin60° + F₁ sin90° + F₂ sin210° = 0"},
+  {"text": "Put in the values found so far and solve for F₁.", "equation": "0 + 3.46 + F₁ − 11.55(0.5) = 0 → F₁ = 5.77 − 3.46 = 2.31 N", "why_this_step": "sin210° = −0.5, so the F₂ term is −5.77, leaving F₁ = 5.77 − 3.46."}
+ ],
+ "final_answer": {"option": null, "value": "F₁ = 2.31 N, F₂ = 11.55 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Taking F₂'s angle from the horizontal as 30° instead of 210°, which flips the sign of its components and gives the wrong values."},
+  {"option": null, "text": "Placing F₁ at 30° from the 8 N force instead of 90°, missing that the 30° is measured from the 4 N force, which is itself already at 60°."}
+ ],
+ "concept_tags": ["equilibrium of concurrent forces", "resolution of forces"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:45:00+05:30"}
+}

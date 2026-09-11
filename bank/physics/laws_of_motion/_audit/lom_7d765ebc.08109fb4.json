@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_7d765ebc",
+ "item_sha": "08109fb40f559b20682ac426432a65e56c3caac7fe5cf371bea3ae88d50ce626",
+ "auditor_option": null,
+ "auditor_value": "(a) 33.96 N <= F <= 69.96 N (about 34 N to 70 N); (b) F = 51.96 - 12 = 39.96 N (about 40 N); (c) F = 51.96 + 12 + 24 = 87.96 N (about 88 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine on all three parts, including giving the full range in (a) and the friction directions in (b) and (c). Both common_mistakes entries produce the numbers they name (40 to 64 N; 64 N). g = 10 fixed by the question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:02:10+05:30"
+ }
+}

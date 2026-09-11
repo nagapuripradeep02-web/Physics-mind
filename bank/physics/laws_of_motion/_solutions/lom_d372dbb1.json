@@ -1,0 +1,54 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_d372dbb1",
+ "approach": "Differentiate the fixed length of string AQ in terms of the ring's horizontal distance to get vB = vA cosθ, then apply Newton's second law to both bodies.",
+ "steps": [
+  {
+   "text": "Let x be the ring's horizontal distance from the point on the wire above the pulley; the string length is AQ = √(x² + c²), with cosθ = x/AQ."
+  },
+  {
+   "text": "Differentiate AQ with respect to time; the rate AQ shortens equals the speed at which B descends, since the total string length is fixed.",
+   "equation": "d(AQ)/dt = (x/AQ)(dx/dt) = (cosθ)(−vA) = −vA cosθ, so vB = vA cosθ"
+  },
+  {
+   "text": "Differentiating again brings in a term from the changing angle, but that term is multiplied by vA, which is zero right after release from rest.",
+   "equation": "aB = aA cosθ − vA sinθ(dθ/dt), so aB = aA cosθ at release"
+  },
+  {
+   "text": "Apply Newton's second law: the string pulls the ring horizontally toward the point above the pulley, while gravity and tension act vertically on the block.",
+   "equation": "T cosθ = mA aA; mB g − T = mB aB"
+  },
+  {
+   "text": "Substitute aB = aA cosθ and θ = 60°, then solve for aA, aB and T.",
+   "equation": "aA = mB g cosθ/(mA + mB cos²θ) = 20/3 m/s² ≈ 6.67 m/s², aB = 10/3 m/s² ≈ 3.33 m/s², T = 40/3 N ≈ 13.3 N"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) vB = vA cosθ; (b) aB = aA cosθ at θ = 60°; (c) aA = 20/3 m/s² ≈ 6.67 m/s², aB = 10/3 m/s² ≈ 3.33 m/s², T = 40/3 N ≈ 13.3 N"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using aB = aA cosθ at a later instant, when vA is no longer zero, forgets the −vA sinθ(dθ/dt) term; the simple relation holds only at the moment of release from rest."
+  },
+  {
+   "option": null,
+   "text": "Using sinθ instead of cosθ both in the ring's horizontal equation and in the constraint gives aA ≈ 6.93 m/s² instead of the correct 6.67 m/s²."
+  }
+ ],
+ "concept_tags": [
+  "constraint relation",
+  "Newton's second law",
+  "smooth wire and pulley"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

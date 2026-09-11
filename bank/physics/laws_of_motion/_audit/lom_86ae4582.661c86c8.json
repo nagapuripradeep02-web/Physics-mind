@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_86ae4582",
+ "item_sha": "661c86c8345d144e2e5a895f0038cc2c42e2f10a99a641f72bb6ee02e6fb34a7",
+ "auditor_option": null,
+ "auditor_value": "F1 = 4/sqrt(3) = 2.31 N (straight up), F2 = 20/sqrt(3) = 11.55 N (at 210 deg, i.e. 30 deg below the leftward horizontal)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Angles (0, 60, 90, 210 deg), both balance equations and both values agree with my sympy solution (exact 4 sqrt(3)/3 and 20 sqrt(3)/3). Both common_mistakes entries are genuine reading errors of the figure.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:34+05:30"
+ }
+}

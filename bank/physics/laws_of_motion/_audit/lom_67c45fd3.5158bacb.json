@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_67c45fd3",
+ "item_sha": "5158bacb2289f42accc8df1897ab22c67e89841c89b95d35770a668b24604521",
+ "auditor_option": 1,
+ "auditor_value": "Option 1: Assertion true (f on A from B = (m₁F₂ + m₂F₁)/(m₁+m₂) > 0 when moving together; kinetic friction on A is rightward when A slips left relative to B), Reason true and explains it",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The algebra in steps 2–4 covers the no-slip case; step 1 covers the slipping case qualitatively, so the 'for any values' claim in step 5 holds.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

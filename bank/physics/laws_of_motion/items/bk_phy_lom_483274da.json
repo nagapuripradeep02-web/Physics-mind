@@ -1,0 +1,97 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_483274da",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Block A (4 kg) and block C (20 kg) are joined by a string that runs over a pulley fixed at the left edge of a tabletop; block B (8 kg) and the same block C are joined by a second string running over another pulley fixed at the right edge of the tabletop, with C hanging between the two pulleys. Block A slides on a tabletop where the coefficient of friction is 0.2, whereas block B slides on a tabletop with no friction at all. Using g = 10 m/s², work out the common acceleration of the three blocks and the tension in each of the two strings.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "A (4 kg) rests on a table with friction coefficient 0.2 against that table",
+   "B (8 kg) rests on a frictionless table",
+   "C (20 kg) hangs between two pulleys, one string to A and one string to B",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A horizontal tabletop has a rectangular opening cut through its middle. A small pulley is fixed at each of the two facing edges of this opening: a left pulley at the edge of the left part of the table and a right pulley at the edge of the right part. Block A (4 kg) rests on the left part of the tabletop, to the left of the opening. Block B (8 kg) rests on the right part of the tabletop, to the right of the opening. Block C (20 kg) hangs inside the opening, below table level, between the two pulleys. One string is tied to block A, runs horizontally to the right along the table to the left pulley, passes over the top of that pulley, and drops vertically down its inner (right) side to the top of block C. A second string is tied to block B, runs horizontally to the left along the table to the right pulley, passes over the top of that pulley, and drops vertically down its inner (left) side to the top of the same block C. So block C is held by two vertical string segments and, as it falls, block A slides right and block B slides left, both toward the opening. Call the tension in the string on A's side T₁ and in the string on B's side T₂. Block A's surface has coefficient of friction 0.2; block B's surface is frictionless."
+  }
+ },
+ "solution": {
+  "approach": "Both strings end on the same falling block C, so A, B and C all share one acceleration magnitude; write Newton's second law for each block and solve together.",
+  "steps": [
+   {
+    "text": "Both strings drop onto block C from its two pulleys, so whatever distance A slides right and B slides left, C falls by exactly that much in the same time.",
+    "equation": "aA = aB = aC = a"
+   },
+   {
+    "text": "Block A rests on the rough surface, so friction opposes its motion toward the pulley.",
+    "equation": "f = μ mA g = 0.2 × 4 × 10 = 8 N"
+   },
+   {
+    "text": "Write Newton's second law for A along the table.",
+    "equation": "T1 − f = mA a → T1 − 8 = 4a"
+   },
+   {
+    "text": "Block B moves on the frictionless surface, so only tension acts on it horizontally.",
+    "equation": "T2 = mB a = 8a"
+   },
+   {
+    "text": "Write Newton's second law for the falling block C.",
+    "equation": "mC g − T1 − T2 = mC a → 200 − T1 − T2 = 20a"
+   },
+   {
+    "text": "Substitute T1 and T2 from the first two equations into C's equation and solve for a.",
+    "equation": "200 − (4a + 8) − 8a = 20a → 192 = 32a → a = 6 m/s²"
+   },
+   {
+    "text": "Use a = 6 m/s² to find the two tensions.",
+    "equation": "T1 = 4(6) + 8 = 32 N, T2 = 8(6) = 48 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 6 m/s²; T1 (string to A) = 32 N; T2 (string to B) = 48 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Ignoring the friction on A and solving it as a plain three-block system, giving a = 6.25 m/s² instead of the correct 6 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "friction",
+   "pulley system",
+   "constraint relation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a7f3cdc416989a131f00b50d3c9e33d8d2276e3ba5c5205fc5735469505e684c"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2147b2a47c8897724aad21fc8ceb56f59382748f309211c17a276af5dd0c1ebd",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

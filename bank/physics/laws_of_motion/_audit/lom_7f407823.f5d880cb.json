@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_7f407823",
+ "item_sha": "f5d880cbae0d7ab85f41bfce23a7487ded4d22c184ef0b6596fd96b51e04b3a4",
+ "auditor_option": null,
+ "auditor_value": "w_parallel = 10 sin30 = 5 N (directed down the slope); w_perpendicular = 10 cos30 = 5 sqrt(3) = 8.66 N (into the slope)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "final_answer.value",
+   "quote": "component parallel to the slope = 5 N (up the slope)",
+   "note": "The along-slope component of a weight always points down the slope (the weight is vertical, so its component along the surface is toward the lower end). The magnitude 5 N is right; the direction annotation is false physics.",
+   "fix": "component parallel to the slope = 5 N (down the slope); component perpendicular to the slope = 8.66 N (into the slope)"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[2].why_this_step",
+   "quote": "The two components are at right angles to each other, so sine gives the along-slope part and cosine gives the into-slope part.",
+   "note": "That the components are perpendicular does not decide which one takes the sine. Sine goes with the along-slope part because the 30 deg angle is measured between the weight and the perpendicular component (step 1), so the perpendicular part is the adjacent side (cosine) and the along-slope part is the opposite side (sine).",
+   "fix": "The 30 deg angle lies between the weight and its perpendicular component, so the perpendicular component is the adjacent side, w cos30, and the along-slope component is the opposite side, w sin30."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "The figure description says w_parallel is 'directed up along the slope surface', which is impossible for a component of the weight; it is likely a misreading of the drawn vector triangle. The question text itself asks only for the two components.",
+ "notes": "Both magnitudes (5 N and 8.66 N) agree with mine. The solution copied the figure description's 'up the slope' without comment; the brief treats following a defective figure description silently as a finding on the field that does so.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:00:34+05:30"
+ }
+}

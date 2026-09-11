@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_2897c874",
+ "approach": "Find the common speed at 1 s, then track each block's free motion after the string goes slack until their positions again satisfy the fixed string length.",
+ "steps": [
+  {"text": "Released from rest, the system accelerates at a = (m2 − m1)g/(m1 + m2), so at t = 1 s both blocks have the same speed v = a × 1.", "equation": "a = (2−1)g/(2+1) = g/3, v = g/3"},
+  {"text": "When the 2 kg block is suddenly stopped, its speed drops to zero while the 1 kg block still moves upward at speed v, so the string cannot stay taut and goes slack.", "equation": "string slack: both blocks now move under gravity alone"},
+  {"text": "After the stop, the 1 kg block rises then falls freely from initial upward speed v, and the 2 kg block falls freely from rest.", "equation": "x1(t') = −v t' + ½g t'², x2(t') = ½g t'²  (downward positive)"},
+  {"text": "The string becomes tight again when the sum of the two downward displacements returns to zero, restoring the original taut length.", "equation": "x1(t') + x2(t') = 0  ⟹  −v t' + g t'² = 0"},
+  {"text": "Solve for the nonzero root, using v = g/3.", "equation": "t' = v/g = 1/3 s ≈ 0.33 s"}
+ ],
+ "final_answer": {"option": null, "value": "1/3 s ≈ 0.33 s"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the string stays taut so the 1 kg block also stops instantly gives 0 s; this misses that a string cannot push, so the block keeps moving and the string goes slack."},
+  {"option": null, "text": "Treating only the 1 kg block's motion and ignoring that the 2 kg block also falls freely during the slack period gives t' = 2v/g = 2/3 s."}
+ ],
+ "concept_tags": ["Atwood machine", "string constraint", "free fall"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

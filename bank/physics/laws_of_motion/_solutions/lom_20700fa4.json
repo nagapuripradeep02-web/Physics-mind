@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_20700fa4",
+ "approach": "Require the movable pulley to stay at rest so M stays at rest, then find the tensions consistent with the motion of the 3 kg and 2 kg blocks.",
+ "steps": [
+  {"text": "For M to stay at rest, the movable pulley below it must also stay at rest.", "equation": "a(pulley) = 0"},
+  {"text": "With the movable pulley at rest, the 3 kg and 2 kg blocks move oppositely with the same acceleration size a, both pulled by the same string tension T₂. Write Newton's second law for each.", "equation": "3(10) − T₂ = 3a and 2(10) − T₂ = −2a"},
+  {"text": "Solve the two equations together for a and T₂.", "equation": "a = 2 m/s², T₂ = 24 N"},
+  {"text": "The massless movable pulley is pulled down by T₂ from each side, so the string above it, holding M, carries twice T₂.", "equation": "T₁ = 2T₂ = 48 N"},
+  {"text": "For M to stay at rest, its weight must equal T₁.", "equation": "M = T₁/g = 48/10 = 4.8 kg"}
+ ],
+ "final_answer": {"option": null, "value": "4.8 kg"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting that the string above a movable pulley carries twice the tension of the string below it gives M = 2.4 kg, half the correct mass."}
+ ],
+ "concept_tags": ["movable pulley", "equilibrium", "Newton's second law"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:06:00+05:30"}
+}

@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_6aefa7b2",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: A block sits motionless on a rough horizontal floor. Two forces, F₁ (pressing straight down on top of the block) and F₂ (pushing horizontally against the block), act on it at the same time. Raising the value of either force — F₁ or F₂ — will make the friction force on the block larger. Reason: Increasing F₁ makes the ground's normal reaction on the block larger.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "block is at rest",
+   "ground is rough",
+   "F₁ acts vertically downward on top of the block",
+   "F₂ acts horizontally, pushing the block"
+  ],
+  "figure": {
+   "description": "The block sits on a horizontal rough floor, drawn as a straight ground line. F₁ is drawn as an arrow pointing straight down onto the top of the block. F₂ is drawn as an arrow pointing horizontally to the right, pushing into the block from its left side."
+  }
+ },
+ "solution": {
+  "approach": "The block stays at rest, so friction must equal the horizontal push F₂ alone; check separately whether raising F₁ or raising F₂ changes that value.",
+  "steps": [
+   {
+    "text": "The block stays at rest, so along the ground the friction force must exactly balance the horizontal push F₂.",
+    "equation": "f = F₂"
+   },
+   {
+    "text": "If F₂ increases while F₁ stays fixed, the friction needed for equilibrium increases too, since it must still equal F₂.",
+    "equation": "F₂ larger ⇒ f larger"
+   },
+   {
+    "text": "If F₁ increases while F₂ stays fixed, the horizontal force to balance is still F₂, so the actual friction in use does not change.",
+    "equation": "f = F₂ (unchanged)"
+   },
+   {
+    "text": "Increasing F₁ only raises the normal reaction and the maximum friction available, μN, not the friction actually being used — so the Assertion's claim that either force increases friction fails for F₁ alone, making the Assertion false.",
+    "equation": "N = mg + F₁"
+   },
+   {
+    "text": "Taken by itself, the Reason is a true statement: pressing down harder with F₁ does raise the normal reaction from the ground.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "If the Assertion is false but the Reason is true."
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming a larger normal reaction by itself always means larger actual friction, missing that it only raises the friction limit, and picking both statements true with the Reason explaining it."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "normal reaction",
+   "equilibrium"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "36ff01fc30c876161360a001076d96d270eef491249f3e215db6ccabc182a48d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ed3acaf5792260fd00b6138d6b68e31c07c32b838ac635cfc16bfdd1e15e4d9f",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

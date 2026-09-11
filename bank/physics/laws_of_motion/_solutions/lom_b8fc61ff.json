@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b8fc61ff",
+ "approach": "Add the man's deceleration relative to the rope to the elevator's own acceleration to get his true acceleration relative to the ground, then apply Newton's second law to him.",
+ "steps": [
+  {"text": "The man is sliding down but slowing down relative to the rope, so his acceleration relative to the rope points upward, with size a.", "equation": "acceleration of man relative to rope = a, upward"},
+  {"text": "The elevator itself accelerates upward with size a relative to the ground.", "equation": "acceleration of rope relative to ground = a, upward"},
+  {"text": "The man's acceleration relative to the ground is the sum of his acceleration relative to the rope and the rope's acceleration relative to the ground, since both point the same way.", "equation": "acceleration of man relative to ground = a + a = 2a, upward"},
+  {"text": "Apply Newton's second law to the man: the rope tension acts upward on him, his weight acts downward, and their difference gives his mass times his upward acceleration.", "equation": "T − mg = m(2a) ⇒ T = m(g + 2a)"}
+ ],
+ "final_answer": {"option": 2, "value": "m(g + 2a)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 3, "text": "Adding only one of the two accelerations, either the man's motion relative to the rope or the elevator's own motion, but not both, gives T = m(g + a)."}
+ ],
+ "concept_tags": ["relative acceleration", "Newton's second law", "accelerating frame"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:20:00+05:30"}
+}

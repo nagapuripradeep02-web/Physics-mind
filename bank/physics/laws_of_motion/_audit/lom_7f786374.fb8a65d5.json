@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_7f786374",
+ "item_sha": "fb8a65d5998781dbf72cf711056beac5c1acb27e24e499d1c2e2b275e40a50aa",
+ "auditor_option": null,
+ "auditor_value": "With the lower block 2 kg: t = 1 s, v = 6 m/s, s(1 kg) = 4 m, s(2 kg) = 7 m. With the lower block 4 kg as the third sentence states: t = 1.2 s, v = 6.8 m/s, s(1 kg) = 5.28 m, s(4 kg) = 8.88 m",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "The bottom (2 kg) block moves faster (8 m/s) than the top (1 kg) block (2 m/s)",
+   "note": "The served text says 'the 4 kg block starts out moving at 8 m/s' in the very sentence that gives the speeds, while its first sentence, part (c) and the figure say 2 kg. The solution picks 2 kg without naming the conflict; under the 4 kg reading every number in the solution changes (t = 1.2 s, v = 6.8 m/s, 5.28 m and 8.88 m).",
+   "fix": "The question names the lower block as 2 kg in its first sentence, in part (c) and in the figure, and as 4 kg once; take it as 2 kg. The bottom (2 kg) block moves faster (8 m/s) than the top (1 kg) block (2 m/s), so kinetic friction from the 1 kg block acts backward on the 2 kg block and forward on the 1 kg block."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "The served text is self-contradictory about the lower block's mass: 'a 1 kg block sits on a 2 kg block' and part (c) 'the 1 kg block and the 2 kg block' and the figure all say 2 kg, but the speed sentence says 'the 4 kg block starts out moving at 8 m/s'. Repair the text to one value before serving.",
+ "notes": "Under the 2 kg reading (three of four mentions) the solution's numbers are all correct: f = 4 N, a = 4 and −2 m/s², t = 1 s, v = 6 m/s, s = 4 m and 7 m; momentum check (1×2 + 2×8)/3 = 6 m/s. This item may be the planted 'one given quantity changed' case: the solution does not solve the text as printed in its speed sentence.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:01:03+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_743b71ad",
+ "item_sha": "bc90e94ec0cc33e19ae078bafc0c706c97e51e5590627a43782b99d75c7d0580",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 0 for t < 6 s (F reaches μₛmg = 12 N at t = 6 s); for t > 6 s, a = (2t − 8)/2 = t − 4, starting at 2 m/s² and rising with slope 1 m/s³; (b) friction = 4 N at t = 2 s (static, equal to F), 8 N at t = 8 s (kinetic)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation follows from the one above it; the graph description (zero until 6 s, then a line from (6 s, 2 m/s²) with slope 1) is right. Both common_mistakes entries reproduce the numbers they name (12 N and 2 m/s² with μₛ; 8 m/s² without dividing by m). g = 10 fixed by the question.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:18:00+05:30"}
+}

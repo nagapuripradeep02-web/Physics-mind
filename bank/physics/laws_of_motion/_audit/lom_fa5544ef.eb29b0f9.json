@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_fa5544ef",
+ "item_sha": "eb29b0f911ba1afe74529a4fc81744b7ab52f9900e03970076885f81eadec6bc",
+ "auditor_option": null,
+ "auditor_value": "W = 30 N (T in the 45° string = 30√2 ≈ 42.4 N)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Assuming the diagonal string's two components must differ since the string is drawn at an angle, missing that 45° makes sin45° equal cos45°, so W also equals 30 N.",
+   "note": "This is not a concrete student error: it names no wrong equation and no wrong number a student would reach, only a vague 'assumption'. A mistake entry should describe an error path with its wrong result.",
+   "fix": "Resolving the 45° string's components the wrong way round (using cos45° for the horizontal part) still gives 30 N here only because sin45° = cos45°; at any other angle this swap gives a wrong W."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Horizontal: T sin45° = 30 N gives T = 30√2 N; vertical: W = T cos45° = 30 N. All equation lines correct; mistake entry [1] (W = 42.4 N) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:59:57+05:30"
+ }
+}

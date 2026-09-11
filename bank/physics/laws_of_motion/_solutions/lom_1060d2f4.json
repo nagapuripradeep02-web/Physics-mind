@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_1060d2f4",
+ "approach": "Write Newton's second law for all three blocks with one common acceleration, include friction on the table block, and solve the three equations together.",
+ "steps": [
+  {"text": "The 15 kg block is heavier than the 5 kg block, so the system accelerates with the 15 kg block going down, the table block sliding toward the left pulley, and the 5 kg block on the right going up. Call this common acceleration a.", "equation": "a is the same size for all three blocks"},
+  {"text": "Write Newton's second law for the 15 kg block (falling) and the 5 kg block (rising).", "equation": "15g − T₂ = 15a; T₁ − 5g = 5a"},
+  {"text": "Write Newton's second law for the table block. Friction opposes its leftward slide, so it acts to the right; its size is the coefficient of friction times the block's own weight.", "equation": "T₂ − T₁ − μ(5)g = 5a, with μ = 0.2"},
+  {"text": "Substitute the first two equations into the third and solve for a, then get T₁ and T₂.", "equation": "with g = 10 m/s²: a = (150 − 50 − 10)/25 = 3.6 m/s²; T₂ = 150 − 15(3.6) = 96 N; T₁ = 50 + 5(3.6) = 68 N"},
+  {"text": "The ratio of the right tension to the left tension is T₁ to T₂.", "equation": "68 : 96 = 17 : 24"}
+ ],
+ "final_answer": {"option": 1, "value": "17 : 24"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the system as staying at rest and setting each tension equal to the weight it holds gives T₁ = 50 N and T₂ = 150 N, a ratio of 1 : 3."},
+  {"option": null, "text": "Leaving out friction on the table block and solving the same three equations with μ = 0 gives T₁ = 70 N and T₂ = 90 N, a ratio of 7 : 9."}
+ ],
+ "concept_tags": ["Newton's second law", "connected blocks", "kinetic friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:02:00+05:30"}
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b7c1ba7e",
+ "approach": "Write the total length of the one string as the sum of its three segments and use that this length never changes.",
+ "steps": [
+  {"text": "The string runs from block A, up and over the fixed pulley, down and under the movable pulley, then back up to a fixed point tied off near the fixed pulley. Block B hangs from the movable pulley.", "equation": "length = yA + yP + (yP − y₀)"},
+  {"text": "Here yA is how far A hangs below the fixed pulley, yP is how far the movable pulley hangs below the fixed pulley, and y₀ is the fixed tie-off point, so the total length is yA + 2yP minus a constant.", "equation": "yA + 2yP − y₀ = constant"},
+  {"text": "The movable pulley moves with B, so yP is B's position. Differentiate the length equation twice with respect to time; the constant term drops out.", "equation": "d²yA/dt² + 2 d²yP/dt² = 0"},
+  {"text": "This gives the acceleration relation between A and B, with a minus sign showing they move in opposite vertical directions: when B goes down, A goes up twice as fast, and vice versa.", "equation": "aA = −2aB, so aA = 2aB in magnitude"}
+ ],
+ "final_answer": {"option": null, "value": "aA = 2aB in magnitude, with A and B accelerating in opposite directions (as B moves down, A moves up at twice the rate, and vice versa)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating the movable pulley as adding no factor and writing aA = aB, as if it were a simple fixed pulley."},
+  {"option": null, "text": "Getting the factor of 2 but putting it on the wrong block, writing aB = 2aA instead of aA = 2aB."}
+ ],
+ "concept_tags": ["string constraint", "movable pulley", "length conservation"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-11", "at": "2026-09-11T18:12:00+05:30"}
+}

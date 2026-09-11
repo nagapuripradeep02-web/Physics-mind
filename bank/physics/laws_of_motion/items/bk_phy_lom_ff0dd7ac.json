@@ -1,0 +1,85 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_ff0dd7ac",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 1 kg block is pressed against a rough vertical wall by a horizontal force of 20 N. The coefficient of static friction between the block and the wall is ¼. At the same time a second horizontal force of 10 N, directed parallel to the wall's surface, acts on the block. Using g = 10 m/s², determine whether the block moves; if it does, state the direction of its motion; if it does not, work out the friction force the wall exerts on the block.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "block pressed against a rough vertical wall",
+   "coefficient of static friction μₛ = ¼",
+   "second force acts parallel to the wall's surface",
+   "g = 10 m/s²"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the maximum static friction from the push force, then compare it with the resultant of gravity and the parallel force to see if the block can stay still.",
+  "steps": [
+   {
+    "text": "The wall's normal reaction equals the push force, so find the maximum static friction it can provide.",
+    "equation": "R = 20 N, f(max static) = μₛR = 0.25×20 = 5 N"
+   },
+   {
+    "text": "Gravity (10 N, downward) and the second 10 N force (horizontal, along the wall) both lie in the plane of the wall and are perpendicular to each other."
+   },
+   {
+    "text": "Find the resultant of these two forces, which is what friction would need to balance for the block to stay still.",
+    "equation": "resultant = √(10² + 10²) = 10√2 N ≈ 14.1 N"
+   },
+   {
+    "text": "Since 14.1 N is greater than the maximum available friction of 5 N, the block slides, moving along the direction of this resultant.",
+    "equation": "resultant direction is 45° from the vertical, toward the 10 N force"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "The block moves, sliding along the resultant of gravity and the 10 N force, at 45° from the vertical."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Adding the two 10 N forces (gravity and the applied force) directly instead of combining them as perpendicular vectors gives 20 N instead of 10√2 N ≈ 14.1 N."
+   },
+   {
+    "option": null,
+    "text": "Comparing only the applied 10 N force with the maximum friction of 5 N, ignoring gravity, still concludes the block moves but with the wrong direction, along the applied force alone rather than at 45°."
+   }
+  ],
+  "concept_tags": [
+   "friction on a vertical wall",
+   "resultant of perpendicular forces",
+   "static friction limit"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "1f2b9b715f5652d8c309042c66d99b56240e701cb5623383bba12cb16005f217"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "b6a8a90c341da886debe02a945247b37162a1710827fae006e3bffe99099091b",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

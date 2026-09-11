@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_036a84d7",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 1 kg ball hangs motionlessly at point P, held there by two thin, weightless strings: one, OP, running up to a fixed point O, and another, RP, running horizontally to a wall anchor. At this position, string OP is inclined at θ = 45° to the vertical. String RP is then snipped, and the ball swings along a circular arc to a new point Q, where the remaining string (call it OQ) again makes a 45° angle with the vertical, on the far side. Taking g = 10 m/s², compute the tension in the string at position P (before RP was cut) and the tension in the string at position Q (once RP has been cut).",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "ball mass is 1 kg",
+   "the strings OP and RP are light (weightless)",
+   "ball is initially held at P by string OP (to fixed point O) and string RP (horizontal, to a wall anchor)",
+   "at P, string OP makes an angle of 45° with the vertical",
+   "string RP is cut, and the ball swings to point Q where string OQ also makes 45° with the vertical, on the opposite side",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A fixed support point O sits at the top. A ball hangs from O by a string; at its first position P, this string is tilted 45° from the vertical line through O, and a separate horizontal string ties the ball to a wall anchor, holding it at that tilt. A dashed curved path shows the ball's swing once the horizontal string is released, arcing down and across to a second position Q, symmetric to P, where the string from O is again tilted 45° from vertical but on the opposite side."
+  }
+ },
+ "solution": {
+  "approach": "At P, balance the string OP against gravity and the horizontal string RP. At Q, the ball is momentarily at rest, so only the weight component along OQ acts.",
+  "steps": [
+   {
+    "text": "At P, resolve the ball's weight against the tension in OP and the horizontal tension in RP.",
+    "equation": "T(OP)cosθ = mg, T(OP)sinθ = T(RP)"
+   },
+   {
+    "text": "Solve the vertical equation for the tension in OP, using θ = 45° and g = 10 m/s².",
+    "equation": "T(OP) = mg/cosθ = 10/cos45° = 10√2 N"
+   },
+   {
+    "text": "After RP is cut, the ball swings on OP and rises to Q, which sits at the same height as P, so its speed there is zero.",
+    "why_this_step": "The swing is smooth, and P and Q lie at equal height above the lowest point of the arc."
+   },
+   {
+    "text": "At Q the speed is zero, so the centripetal term is zero and only the weight component along OQ balances the tension.",
+    "equation": "T(OQ) − mg cosθ = 0"
+   },
+   {
+    "text": "The tensions are T(OP) = 10√2 N and T(OQ) = 5√2 N.",
+    "equation": "T(OP) ≈ 14.1 N, T(OQ) = mg cosθ = 10cos45° = 5√2 N ≈ 7.1 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T(OP) = 10√2 N ≈ 14.1 N; T(OQ) = 5√2 N ≈ 7.1 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using T(OP) = mg cosθ, the formula that belongs to OQ, gives 5√2 N ≈ 7.1 N instead of 10√2 N ≈ 14.1 N."
+   },
+   {
+    "option": null,
+    "text": "Assuming the string tension stays the same after RP is cut gives T(OQ) = 10√2 N ≈ 14.1 N instead of 5√2 N ≈ 7.1 N."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of forces",
+   "tension in a string",
+   "vertical circular motion",
+   "energy conservation"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9dbebb4d689d3a84e0577bfde288abd946cf3fc8de5c9ced89a26078e8ea53f4"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ada038310c6da182a15a7839a7b34b564c2f3e6049e255306e199d2ea381c17d",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_5abb59f7",
+ "item_sha": "e9641764b1e3f5842b98119cc53b5d523a33fe5451eab240bb53787788f063e7",
+ "auditor_option": 4,
+ "auditor_value": "f_max = 0.8*40 = 32 N > 30 N so static, f = 30 N; R = sqrt(40^2 + 30^2) = 50 N -> option 4 (d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:00:59+05:30"
+ }
+}

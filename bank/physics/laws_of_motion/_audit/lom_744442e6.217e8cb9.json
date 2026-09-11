@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_744442e6",
+ "item_sha": "217e8cb969778f7878e43b982b8c7b01ad3ca0c27df51ad7e0fcecec11b617be",
+ "auditor_option": null,
+ "auditor_value": "(a) car frame: pseudo-force −10 N along î gives a_rel = −5 î with v_rel(0) = 10 k̂, so x_rel = −2.5t², z_rel = 10t, a parabola x_rel = −z_rel²/40 curving toward the back of the car; (b) ground frame: no horizontal force, straight line at constant 10 m/s along k̂",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every equation follows: x_rel = −½(5)t², z_rel = 10t, x_rel = −½(5)(z_rel/10)² = −z_rel²/40. Because the car starts from rest, the object's 10 m/s sideways speed is the same in both frames at t = 0, which the solution uses correctly. Both common_mistakes entries are genuine. The 2 kg mass and g = 10 are not needed (frictionless floor); the solution does not misuse them.",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:17:00+05:30"}
+}

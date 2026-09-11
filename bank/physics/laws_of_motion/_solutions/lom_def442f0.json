@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_def442f0",
+ "approach": "Find the applied force at t = 2 s and the maximum friction the surface can supply, then check that the applied force has not yet reached that maximum.",
+ "steps": [
+  {"text": "Find the size of the applied force at t = 2 s.", "equation": "F = kt = 2 × 2 = 4 N"},
+  {"text": "Find the maximum friction force the surface can supply, using the normal force, which equals the block's weight on this horizontal plane.", "equation": "f_max = μmg = 0.2 × 4 × 10 = 8 N"},
+  {"text": "Since the applied force, 4 N, is smaller than the maximum friction, 8 N, the block is still at rest, and friction matches the applied force to keep it still.", "equation": "f = F = 4 N"}
+ ],
+ "final_answer": {"option": 1, "value": "4 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Assuming friction is always at its maximum value once any force is applied, without checking whether the block has actually started moving, gives f = μmg = 8 N."}
+ ],
+ "concept_tags": ["static friction", "time-dependent force", "friction limit"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:16:00+05:30"}
+}

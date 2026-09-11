@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_86d535a8",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A wedge in the shape of a right triangle stands with its incline surface tilted 30° above the horizontal. A pulley is fixed at the top of the incline, and another pulley is fixed at the bottom of the incline, at the edge of the surface the wedge sits on. A 2 kg block rests on the incline. A string ties this block, runs up the slope, passes over the top pulley, and goes straight down the vertical face of the wedge to block A, which hangs freely. A second string ties the same 2 kg block, runs down the slope, passes over the bottom pulley, and hangs straight down over the edge to a second 2 kg block. Friction and the mass of the strings are both negligible. What mass must block A have for the whole system to stay at rest?",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "incline (wedge) makes 30° with the horizontal",
+   "pulley fixed at the top of the incline",
+   "pulley fixed at the bottom of the incline, at the table edge",
+   "2 kg block rests on the incline, tied to two strings",
+   "2 kg block hangs below the bottom pulley, off the edge",
+   "friction is negligible",
+   "mass of the strings is negligible",
+   "system is at rest (equilibrium)"
+  ],
+  "figure": {
+   "description": "A wedge shaped like a right triangle sits on a horizontal surface. Its incline (hypotenuse) rises at 30° from the bottom-left to a pulley fixed at the top-right apex; its vertical right face runs straight down from that apex to the base. A 2 kg block rests on the incline. One string from this block runs up the slope, over the top pulley, then straight down the vertical face to block A, which hangs in the air on the right. A second pulley is fixed at the bottom-left, at the foot of the incline, right at the edge of the base surface. A second string from the same 2 kg block runs down the slope, around this bottom pulley, and then straight down past the edge to a second 2 kg block hanging below."
+  }
+ },
+ "solution": {
+  "approach": "Write the along-incline equilibrium of the 2 kg block on the incline, using the tension found from each hanging block's own equilibrium.",
+  "steps": [
+   {
+    "text": "The 2 kg block hanging below the bottom pulley is in equilibrium, so the tension pulling the incline block down the slope equals its weight.",
+    "equation": "T₁ = 2g"
+   },
+   {
+    "text": "Block A hangs from the top pulley and is in equilibrium, so the tension pulling the incline block up the slope equals A's weight.",
+    "equation": "T₂ = mₐg"
+   },
+   {
+    "text": "For the 2 kg block on the incline, balance the forces along the slope: the upward-pulling tension equals the downward-pulling tension plus the weight component along the slope.",
+    "equation": "mₐg = 2g + 2g sin30°"
+   },
+   {
+    "text": "Solve for mₐ.",
+    "equation": "mₐ = 2 + 2×0.5 = 3 kg"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "mₐ = 3 kg"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the weight component of the 2 kg block along the slope, giving mₐ = 2 kg instead of 3 kg."
+   },
+   {
+    "option": null,
+    "text": "Using the full weight of the 2 kg incline block instead of only its component along the slope, giving mₐ = 2 + 2 = 4 kg."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium on an incline",
+   "pulley system",
+   "tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "bc127eb02df62d641048a8f646d02b54759b45fcb83e261ef9f0895e57b25dde"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6e666f27bf810be23904e41fbd11a2f7a90a1e9dde9a2ef05abd391b9a8ad376",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:40:00+05:30"
+ }
+}

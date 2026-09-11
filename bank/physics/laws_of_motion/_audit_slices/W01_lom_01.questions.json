@@ -1,0 +1,271 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_1b1da148",
+   "question_text": "A block of mass m lies at rest on a slope inclined at angle θ to the horizontal; the coefficient of friction between block and slope is μ. Find the magnitude of the resultant contact force (normal reaction and friction combined) that the slope applies to the block.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg"
+    },
+    {
+     "label": "(b)",
+     "text": "μ mg cos θ"
+    },
+    {
+     "label": "(c)",
+     "text": "mg sin θ"
+    },
+    {
+     "label": "(d)",
+     "text": "μ mg tan θ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_11432ce1",
+   "question_text": "A person of mass 50 kg stands on a platform of mass 25 kg. Holding one end of a rope that runs through a set of frictionless pulleys attached to the platform and to a fixed support, he pulls the rope. With what pulling force must he pull for the platform to rise at a constant speed?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "500 N"
+    },
+    {
+     "label": "(b)",
+     "text": "250 N"
+    },
+    {
+     "label": "(c)",
+     "text": "25 N"
+    },
+    {
+     "label": "(d)",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": "Three pulleys are used. Two pulleys, ceiling pulley 1 (left) and ceiling pulley 2 (right), are fixed to an overhead support. A third pulley, the platform pulley, is fixed to the platform on a short post at its left edge, at a height below the two ceiling pulleys. One end of the rope is tied off at the overhead support next to ceiling pulley 1. From that fixed end the rope runs straight down and passes under the platform pulley, goes back up and over ceiling pulley 1, runs across and over ceiling pulley 2, and then comes straight down to the person's hand; the person stands on the platform and pulls this final end."
+  },
+  {
+   "question_id": "lom_111d2278",
+   "question_text": "A plank called B, with mass 2m and length l, lies on a horizontal road. A block called A, with mass m, rests on top of plank B at its left-hand edge. The block and the plank are both given the same initial rightward speed v and then move together as a system. Friction acts at two surfaces: road against plank, with coefficient 1/2, and plank against block, with coefficient 1/4. Determine the following.\n(a) Find the time that passes before block A slides completely off plank B.\n(b) Find how far block A and plank B each travel relative to the ground up to that moment.",
+   "options": [],
+   "figure_description": "Block A rests on top of plank B, positioned at B's left-hand end; plank B in turn rests on the horizontal road below it. The plank's length, l, runs the full length of B, shown by a measurement arrow beneath it. Both A and B move together to the right with the same initial speed v; the road exerts friction against the plank (coefficient 1/2), and the plank exerts friction against the block (coefficient 1/4)."
+  },
+  {
+   "question_id": "lom_07a48733",
+   "question_text": "A block of mass m sits on an inclined plane whose angle θ with the horizontal is slowly increased from 0° up to 90°. The coefficients of static and kinetic friction between the block and the plane are μₛ and μₖ. Sketch how the friction force f acting on the block varies as θ increases.",
+   "options": [],
+   "figure_description": "A block of mass m rests on an inclined plane whose angle θ with the horizontal can be increased. The friction coefficients between the block and the plane are μₛ (static) and μₖ (kinetic)."
+  },
+  {
+   "question_id": "lom_02761e70",
+   "question_text": "Two pulleys are mounted side by side on the ceiling. Between and below them hangs a third, smaller pulley that is free to move, and block B hangs from this middle pulley. One continuous string starts at block A, goes up and passes over the left ceiling pulley, comes down and loops under the free middle pulley, goes back up and over the right ceiling pulley, and finally comes down to block C. Work out how the accelerations aA, aB and aC of the three blocks are related to each other.",
+   "options": [],
+   "figure_description": "Two fixed pulleys hang from the ceiling next to each other. A smaller pulley hangs freely below and between them, and block B is attached to this middle pulley. A single string goes from block A up over the left fixed pulley, down under the free middle pulley, up over the right fixed pulley, and down to block C."
+  },
+  {
+   "question_id": "lom_1060d2f4",
+   "question_text": "A block of mass 5 kg sits on a horizontal table. A pulley is fixed at each edge of the table, one on the left and one on the right. A string from the block goes left over the left pulley and down to a hanging block of mass 15 kg; call its tension T₂. Another string from the block goes right over the right pulley and down to a hanging block of mass 5 kg; call its tension T₁. The coefficient of friction between the table and the 5 kg block on it is 0.2. What is the ratio T₁ : T₂ (tension in the right string to tension in the left string)?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "17 : 24"
+    },
+    {
+     "label": "(b)",
+     "text": "34 : 12"
+    },
+    {
+     "label": "(c)",
+     "text": "2 : 3"
+    },
+    {
+     "label": "(d)",
+     "text": "3 : 2"
+    }
+   ],
+   "figure_description": "A block of mass 5 kg rests on a horizontal table. A pulley sits fixed at the left edge of the table and another at the right edge. The string on the left, labeled T₂, runs from the block over the left pulley and down to a hanging 15 kg block. The string on the right, labeled T₁, runs from the block over the right pulley and down to a hanging 5 kg block."
+  },
+  {
+   "question_id": "lom_08e0c793",
+   "question_text": "Assertion: For a set of forces that all pass through one common point, the total turning effect (moment) taken about any chosen point has the same value whichever point is chosen. Reason: If such concurrent forces add up to zero as vectors, their total moment about every point is zero as well.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "both Assertion and Reason are true and the Reason is the correct explanation of the Assertion"
+    },
+    {
+     "label": "(b)",
+     "text": "both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion"
+    },
+    {
+     "label": "(c)",
+     "text": "Assertion is true, but the Reason is false"
+    },
+    {
+     "label": "(d)",
+     "text": "Assertion is false, but the Reason is true"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_10908738",
+   "question_text": "A 2 kg block lies on a rough horizontal floor with coefficient of friction μ = 0.6. A horizontal force, whose value in newtons is F = 2t with t measured in seconds, is applied on the block. Take g = 10 m/s².\n(a) Sketch how the block's acceleration changes with time.\n(b) Work out the friction force on the block at t = 2 s and at t = 8 s.",
+   "options": [],
+   "figure_description": "A 2 kg block rests on a rough horizontal floor with coefficient of friction μ = 0.6. A horizontal force F = 2t (in newtons, t in seconds) pulls the block along the floor."
+  },
+  {
+   "question_id": "lom_02230979",
+   "question_text": "In a pulley arrangement, a ball hangs on one side and a thin rod of length l hangs on the other, with the ball's mass equal to η times the rod's mass. Every pulley and string in the system is weightless, and there is no friction anywhere. At the start the ball sits level with the rod's bottom end, and the system is then let go from rest. Work out how long it takes for the ball to rise level with the rod's top end.",
+   "options": [],
+   "figure_description": "A pulley is fixed to a bracket on the ceiling. A string passes over the top of this fixed pulley. Its left end hangs straight down to a small ball. Its right end hangs straight down to the axle of a second, smaller pulley, which is not fixed to anything and hangs in the air below and to the right of the fixed pulley, held up only by this string. A second string passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to the top end of a thin vertical rod of length l, which hangs freely; the right segment goes straight down to a short fixed ledge (bracket) mounted beside the rod, at about the level of the rod's top end. The ball and the rod hang side by side, the ball on the left and the rod on the right. At the moment of release the ball is level with the rod's lower end. The ball's mass is η times the rod's mass; all pulleys and strings are massless and there is no friction."
+  },
+  {
+   "question_id": "lom_04c36fda",
+   "question_text": "A block sits on a rough incline that rises at 30° to the horizontal. A string tied to the block is pulled at 30° above the incline surface. Draw a diagram showing every force acting on the block, and resolve each of these forces:\n(a) Find the horizontal and vertical components of each force.\n(b) Find the components of each force parallel and perpendicular to the incline surface.",
+   "options": [],
+   "figure_description": "An incline rises to the right at 30° to the horizontal ground, with a block resting on its surface. Four forces act on the block: N, the normal reaction, perpendicular to the incline surface and pointing away from it; T, the tension in the string, pointing up the slope and away from the surface at 30° above the incline surface (so T makes 60° with N and 60° with the horizontal); w, the weight, acting straight down; and f, friction, acting down along the incline surface (toward the lower end of the slope)."
+  },
+  {
+   "question_id": "lom_13fc307f",
+   "question_text": "In the arrangement shown, assume the table exerts negligible friction on both blocks. If m₁ = 300 g, m₂ = 200 g and the applied force F = 0.40 N, work out the pull (tension) that the cord connecting m₂ to the pulley carries, and the acceleration of m₂.",
+   "options": [],
+   "figure_description": "A vertical wall stands at the left; both blocks rest on a smooth horizontal table to its right, m₁ nearer the wall and m₂ further right. One cord is anchored to the wall: it runs right, wraps around a movable pulley that sits between m₁ and m₂, and its other end comes back left to m₁. So the cord's two strands (wall to pulley, and pulley to m₁) are parallel and horizontal. A second cord joins the axle of that movable pulley to m₂. The force F pulls m₂ horizontally to the right, away from the wall. When m₂ moves right by x, the pulley moves right by x and m₁ moves right by 2x."
+  },
+  {
+   "question_id": "lom_0b110c6e",
+   "question_text": "Starting from rest, a particle is sped up to a velocity v by a force F₁. Afterwards, the same particle is slowed from that same velocity v back down to rest by a different force F₂. Which of these statements about F₁ and F₂ must be true?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "F₁ and F₂ are always equal in magnitude"
+    },
+    {
+     "label": "(b)",
+     "text": "F₂ must be larger than F₁"
+    },
+    {
+     "label": "(c)",
+     "text": "F₂ could be smaller than, larger than, or equal to F₁"
+    },
+    {
+     "label": "(d)",
+     "text": "F₂ can never equal F₁"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_08231949",
+   "question_text": "A ladder that weighs 250 N rests against a vertical wall that is smooth (frictionless). Between the ladder and the floor, the coefficient of friction is 0.3. What is the greatest friction force that can act where the ladder touches the floor?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "75 N"
+    },
+    {
+     "label": "(b)",
+     "text": "50 N"
+    },
+    {
+     "label": "(c)",
+     "text": "35 N"
+    },
+    {
+     "label": "(d)",
+     "text": "25 N"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_06dfc8b6",
+   "question_text": "In the arrangement shown, a 2 kg block rests on a horizontal table and a 1 kg block hangs over the table's edge. Both pulleys and the string are massless, and every surface is frictionless. Use g = 10 m/s².\n(a) Calculate the acceleration of the 1 kg block.\n(b) Calculate the tension in the connecting string.",
+   "options": [],
+   "figure_description": "A 2 kg block rests on a smooth horizontal table. A short link from the block's right face holds the axle of a movable pulley, so the pulley moves with the block. A fixed pulley A is mounted at the table's right-hand edge. One end of a single string is anchored at the table edge just below pulley A; the string runs left along the table, wraps around the movable pulley, runs back right above the first strand, passes over the top of pulley A, and hangs straight down to the 1 kg block. The two horizontal strands between the movable pulley and the edge are parallel; when the 1 kg block descends a distance x, the 2 kg block moves right by x/2."
+  },
+  {
+   "question_id": "lom_093dde73",
+   "question_text": "A force F of magnitude 8 N acts at 45° above the horizontal. Split this force into its horizontal and vertical components.",
+   "options": [],
+   "figure_description": "A force F drawn as a diagonal arrow at 45° above the horizontal from the origin. Dashed lines complete a right-angled box, with the horizontal side labelled F_H, the vertical side labelled F_V, and the 45° angle marked between F and the horizontal side."
+  },
+  {
+   "question_id": "lom_125342d7",
+   "question_text": "A ramp rises from level ground at 60°, the angle being marked at the bottom vertex where the ramp starts. At one point on the ramp's surface four forces act together: an unknown force F directed up along the ramp (parallel to the slope), an unknown force R directed perpendicular to the ramp's surface, away from it, a known force of 3 N pulling horizontally to the left, and a known force of 10 N pulling straight downward. These four forces balance exactly. Work out the values of R and F.",
+   "options": [],
+   "figure_description": "A ramp rises from a vertex at the lower left toward the upper right, making the marked angle of 60° with the horizontal ground. At one point on the ramp's surface four forces act: F points up the ramp, along the surface toward the upper right; R points perpendicular to the ramp's surface, away from it (up and to the left); a 3 N force points horizontally to the left; a 10 N force points vertically downward."
+  },
+  {
+   "question_id": "lom_0a1222f8",
+   "question_text": "Starting at the same instant from a common point O, two particles slide down two straight, frictionless wires. The first wire makes an angle of 30° with the vertical, and the second wire makes an angle of 60° with the vertical, both wires lying on the same side of the vertical line through O. What is the magnitude of the acceleration of the second particle relative to the first?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "g/2"
+    },
+    {
+     "label": "(b)",
+     "text": "√3g/2"
+    },
+    {
+     "label": "(c)",
+     "text": "g/√3"
+    },
+    {
+     "label": "(d)",
+     "text": "g"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_197ab779",
+   "question_text": "A man stands still relative to a horizontal conveyor belt, while the belt itself speeds up at 1 m/s². The man's mass is 65 kg, and the coefficient of static friction between his shoes and the belt surface is 0.2. Using g = 9.8 m/s², work out the net force acting on the man. Also work out the largest acceleration the belt can have while the man still stays in place relative to it, without slipping.",
+   "options": [],
+   "figure_description": "A man stands on the horizontal top surface of a conveyor belt loop; the top surface (where the man stands) moves in one direction while the belt's underside returns in the opposite direction, driven around two end rollers."
+  },
+  {
+   "question_id": "lom_030eca59",
+   "question_text": "A straight rod AB is pivoted at end A. Three forces act on it, as described below. Determine the anticlockwise moment about the pivot produced by each of the three forces.",
+   "options": [],
+   "figure_description": "A straight horizontal rod AB is pivoted at its left end A. A force 2F acts vertically upward at a point a distance a from A. A force F acts vertically downward at a point a distance 2a from A. A force 3F acts at the right end B, a distance 4a from A, pointing up and to the left (above the rod, back toward the A side) at 30° to the rod."
+  },
+  {
+   "question_id": "lom_11432ce1",
+   "question_text": "A person of mass 50 kg stands on a platform of mass 25 kg. Holding one end of a rope that runs through a set of frictionless pulleys attached to the platform and to a fixed support, he pulls the rope. With what pulling force must he pull for the platform to rise at a constant speed?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "500 N"
+    },
+    {
+     "label": "(b)",
+     "text": "250 N"
+    },
+    {
+     "label": "(c)",
+     "text": "25 N"
+    },
+    {
+     "label": "(d)",
+     "text": "None of these"
+    }
+   ],
+   "figure_description": "Three pulleys are used. Two pulleys, ceiling pulley 1 (left) and ceiling pulley 2 (right), are fixed to an overhead support. A third pulley, the platform pulley, is fixed to the platform on a short post at its left edge, at a height below the two ceiling pulleys. One end of the rope is tied off at the overhead support next to ceiling pulley 1. From that fixed end the rope runs straight down and passes under the platform pulley, goes back up and over ceiling pulley 1, runs across and over ceiling pulley 2, and then comes straight down to the person's hand; the person stands on the platform and pulls this final end."
+  },
+  {
+   "question_id": "lom_1375254e",
+   "question_text": "Two blocks rest on a rough horizontal floor, each pulled by a horizontal force F applied to it. Case A: a 4 kg block is pulled by a horizontal force of 20 N; the coefficient of static friction between the block and the floor is 0.6 and the coefficient of kinetic friction is 0.4. Case B: a 2 kg block is pulled by a horizontal force of 20 N; the coefficient of static friction is 0.6 and the coefficient of kinetic friction is 0.4. For each case, determine the block's acceleration and the friction force acting on it.\n(a) Find the acceleration and friction force for the 4 kg block (Case A).\n(b) Find the acceleration and friction force for the 2 kg block (Case B).",
+   "options": [],
+   "figure_description": "Two separate cases, each a single block sitting on a horizontal rough floor. A horizontal force F pulls the block to the right (arrow drawn pointing right from the block). Case A: block mass 4 kg, F = 20 N, μs = 0.6, μk = 0.4. Case B: block mass 2 kg, F = 20 N, μs = 0.6, μk = 0.4."
+  }
+ ]
+}

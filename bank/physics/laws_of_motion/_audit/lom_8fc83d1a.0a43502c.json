@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_8fc83d1a",
+ "item_sha": "0a43502cd2e1c52066255814e12f7b7cde6bd8bc7b4a475a2e4235e4b1dc54a4",
+ "auditor_option": null,
+ "auditor_value": "mu = tan30 = 1/sqrt(3) = 0.577",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[2].why_this_step",
+   "quote": "At 30 degrees, tan gives the exact ratio of the sliding force to the holding force, independent of the particle's mass.",
+   "note": "At the point of slipping the holding force (friction) equals the sliding force (mg sin30), so their ratio is 1, not tan30. tan30 is the ratio of the weight's component along the slope to the normal force, and that ratio equals mu only at limiting friction.",
+   "fix": "tan30 is the ratio of the weight's component along the slope, mg sin30, to the normal force, mg cos30; at the point of slipping the limiting friction mu N equals mg sin30, so this ratio is mu, whatever the particle's mass."
+  },
+  {
+   "grade": "weak",
+   "field": "steps[1].text",
+   "quote": "The mass mg cancels from both sides, leaving a relation that depends only on the angle.",
+   "note": "mg is the weight, not the mass; the common factor that cancels is mg (or the mass m inside it).",
+   "fix": "The common factor mg cancels from both sides, leaving a relation that depends only on the angle."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Final value and the equation lines agree with mine (mg sin30 = mu mg cos30, mu = tan30 = 0.58). Both common_mistakes entries are genuine. The 1 kg mass is not needed and the solution says so correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:59:48+05:30"
+ }
+}

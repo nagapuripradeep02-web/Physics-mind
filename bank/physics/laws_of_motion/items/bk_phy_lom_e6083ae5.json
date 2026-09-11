@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e6083ae5",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A vertical assembly hangs together: a 2 kg block sits at the top and is pulled upward by a force F = 100 N. Below this block is a string of mass 2 kg, whose upper end is named A, whose lower end is named B, and whose exact midpoint is named C. A 4 kg block is tied to the string's lower end B. Work out the string tension at each of the points A, B and C.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "string AB has its own mass, spread evenly along its length",
+   "an upward force F = 100 N acts on the 2 kg block at the top",
+   "a 4 kg block hangs from the string's lower end B",
+   "C is the exact midpoint of string AB"
+  ],
+  "figure": {
+   "description": "A dashed outline encloses a vertical setup: at the top, a force of 100 N pulls upward, acting on a 2 kg block. Beneath that block hangs a string of mass 2 kg; its top end is A, its bottom end is B, and its midpoint is C. A 4 kg block hangs from end B. An upward arrow marks the acceleration a of the whole system."
+  }
+ },
+ "solution": {
+  "approach": "Find the common upward acceleration of the whole system from the net force, then apply Newton's second law to whatever hangs below each labeled point.",
+  "steps": [
+   {
+    "text": "Find the acceleration of the whole system (top block, string, bottom block) from the net upward force.",
+    "equation": "a = (F − Mg)/M = (100 − 8×10)/8"
+   },
+   {
+    "text": "Compute the acceleration.",
+    "equation": "a = 20/8 = 2.5 m/s²"
+   },
+   {
+    "text": "The tension at A supports everything below A: the whole string and the bottom block.",
+    "equation": "T(A) = (2+4)(g+a) = 6×12.5"
+   },
+   {
+    "text": "The tension at C supports everything below C: half the string and the bottom block.",
+    "equation": "T(C) = (1+4)(g+a) = 5×12.5"
+   },
+   {
+    "text": "The tension at B supports only the bottom block below B, so T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N.",
+    "equation": "T(B) = 4×(g+a) = 4×12.5 = 50 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the total system mass (8 kg) at every point instead of only the mass below each labeled point gives the same wrong tension, 100 N, everywhere."
+   },
+   {
+    "option": null,
+    "text": "Treating the string as massless drops its weight from the mass below A and C, giving T(A) = 50 N and T(C) = 50 N instead of 75 N and 62.5 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "connected bodies",
+   "tension in a string with mass"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "b09b202102013c3de7aadc54bb9f449a9ccf5efeb1c1b605675f7769a1b59cdf"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6b9adfbac8ba8e4dc3d1dc375cbe8af5cdcfee1eee855cf2cb2aa25ebd119668",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

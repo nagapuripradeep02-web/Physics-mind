@@ -1,0 +1,113 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_dbf614b4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block sits on a rough incline that rises at 30° to the horizontal. A string tied to the block is pulled at 30° above the incline surface. Draw a diagram showing every force acting on the block, and resolve each of these forces:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the horizontal and vertical components of each force."
+   },
+   {
+    "label": "b",
+    "asks": "Find the components of each force parallel and perpendicular to the incline surface."
+   }
+  ],
+  "conditions": [
+   "incline surface rises at 30° to the horizontal",
+   "incline surface is rough",
+   "string is held at 30° to the incline surface"
+  ],
+  "figure": {
+   "description": "An incline rises to the right at 30° to the horizontal ground, with a block resting on its surface. Four forces act on the block: N, the normal reaction, perpendicular to the incline surface and pointing away from it; T, the tension in the string, pointing up the slope and away from the surface at 30° above the incline surface (so T makes 60° with N and 60° with the horizontal); w, the weight, acting straight down; and f, friction, acting down along the incline surface (toward the lower end of the slope)."
+  }
+ },
+ "solution": {
+  "approach": "Draw the four forces on the block, then project each one onto horizontal/vertical axes and onto axes along/perpendicular to the incline.",
+  "steps": [
+   {
+    "text": "List the four forces: N perpendicular to the incline, T at 30° to the incline surface pointing up the slope, weight w straight down, and friction f down the slope.",
+    "equation": "N, T, w, f"
+   },
+   {
+    "text": "N is perpendicular to a surface tilted 30° to the horizontal, so N itself makes 30° with the vertical.",
+    "equation": "N_horizontal = −N sin30° = −N/2, N_vertical = N cos30° = N√3/2"
+   },
+   {
+    "text": "T is 30° above the incline surface, and the incline is 30° above the horizontal, so T makes 60° with the horizontal.",
+    "equation": "T_horizontal = T cos60° = T/2, T_vertical = T sin60° = T√3/2"
+   },
+   {
+    "text": "Weight acts straight down, so it has no horizontal part.",
+    "equation": "w_horizontal = 0, w_vertical = −w"
+   },
+   {
+    "text": "Friction acts down the slope, 30° below the horizontal on the lower side.",
+    "equation": "f_horizontal = −f cos30° = −f√3/2, f_vertical = −f sin30° = −f/2",
+    "why_this_step": "Friction opposes the tendency of the block to move up the slope under the pull of the string, so here it is drawn pointing down the slope, as the figure shows."
+   },
+   {
+    "text": "Now take axes along the incline (up-slope positive) and perpendicular to it (away from the surface positive). N has no component along the slope.",
+    "equation": "N_parallel = 0, N_perpendicular = N"
+   },
+   {
+    "text": "T is already given at 30° to the incline surface, so its own components along and perpendicular to the plane use that 30° directly.",
+    "equation": "T_parallel = T cos30° = T√3/2, T_perpendicular = T sin30° = T/2"
+   },
+   {
+    "text": "Weight splits into a down-slope part and an into-the-surface part using the 30° incline angle; friction lies entirely along the slope.",
+    "equation": "w_parallel = −w sin30° = −w/2, w_perpendicular = −w cos30° = −w√3/2, f_parallel = −f, f_perpendicular = 0"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) horizontal/vertical: N → (−N/2, N√3/2); T → (T/2, T√3/2); w → (0, −w); f → (−f√3/2, −f/2). (b) parallel/perpendicular to the plane: N → (0, N); T → (T√3/2, T/2); w → (−w/2, −w√3/2); f → (−f, 0)."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the incline's 30° for T's horizontal and vertical split instead of the correct 60°, which swaps the pair to T cos30° and T sin30° (T√3/2 horizontal, T/2 vertical)."
+   },
+   {
+    "option": null,
+    "text": "Drawing friction up the slope instead of down it, which flips the sign of both its horizontal and vertical parts."
+   }
+  ],
+  "concept_tags": [
+   "resolving forces",
+   "inclined plane",
+   "free body diagram"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "04c36fda0c5e3b0d4e48498b7d0b091714c1328875488670043b72a3e556b315"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6dd1010d416d3542c66e3a23585bb9b4d0e6837da00f723ff8db29ee2110a49e",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

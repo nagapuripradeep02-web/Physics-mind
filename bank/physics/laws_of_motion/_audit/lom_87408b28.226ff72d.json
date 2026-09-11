@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_87408b28",
+ "item_sha": "226ff72d7194b8561b8eec4a5c3e7204c88b6fdcb7beee1a89d4e1716750ec70",
+ "auditor_option": 2,
+ "auditor_value": "v_M = U/cos(theta): the diagonal segment shortens at rate U and that rate equals the component of M's upward velocity along the segment, v cos(theta)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine. The solution treats the P-A-M half on its own ('each string'); the question calls it a single string, but with M hanging at the midpoint and both ends pulled at the same U the symmetric halves give the same relation, so no line is false. Each common_mistakes entry points at the option its stated error produces.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:34+05:30"
+ }
+}

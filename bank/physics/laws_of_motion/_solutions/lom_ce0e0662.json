@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_ce0e0662",
+ "approach": "List every force on the block: its weight, and the tension in each of the two strings, each pulling along its own string.",
+ "steps": [
+  {"text": "The block has weight mg, acting at its centre, pointing straight down.", "equation": "mg, downward"},
+  {"text": "One string runs horizontally to a fixed wall. It pulls the block horizontally, toward the wall, with tension T₁.", "equation": "T₁, horizontal"},
+  {"text": "The other string runs up to a ceiling support at angle θ to the horizontal. It pulls the block along its own length, up and toward the ceiling support, with tension T₂.", "equation": "T₂, at angle θ above horizontal", "why_this_step": "A string can only pull along its own length, never sideways to it."},
+  {"text": "The free body diagram of the block shows three forces: mg downward, T₁ horizontal toward the wall, and T₂ directed along the second string at angle θ above the horizontal."}
+ ],
+ "final_answer": {"option": null, "value": "three forces act on the block: weight mg downward, tension T₁ horizontal (along the string to the wall), and tension T₂ directed along the string to the ceiling support, at angle θ above the horizontal"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing T₂ as purely vertical, ignoring that it must point along the actual direction of that string, at angle θ."},
+  {"option": null, "text": "Leaving out the weight mg from the diagram."}
+ ],
+ "concept_tags": ["free body diagram", "tension", "equilibrium of a body"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:20:00+05:30"}
+}

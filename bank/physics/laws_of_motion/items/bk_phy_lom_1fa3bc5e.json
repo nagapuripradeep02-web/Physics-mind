@@ -1,0 +1,95 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_1fa3bc5e",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A uniform horizontal rod OA, of mass 4 kg and length 2 m, is hinged to a wall at end O. A massless string AB supports end A, where B is a point on the wall above O; the string meets the rod at A making an angle of 60° with the rod. Taking g = 10 m/s², work out the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Determine the tension in the string AB."
+   },
+   {
+    "label": "b",
+    "asks": "Determine the net force the hinge exerts on the rod at O."
+   }
+  ],
+  "conditions": [
+   "rod OA is horizontal and uniform, mass 4 kg, length 2 m",
+   "hinged to a vertical wall at O",
+   "string AB attached at A, wall point B above O",
+   "string AB makes 60° with the rod at A",
+   "string is massless",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A vertical wall on the left with a rod OA hinged at O, extending horizontally to the right to end A, length 2 m. A string runs from A up to a point B on the wall, above O, making a 60° angle with the rod at A."
+  }
+ },
+ "solution": {
+  "approach": "Take torques about the hinge to find the string tension, then balance forces on the rod to find the hinge force.",
+  "steps": [
+   {
+    "text": "The rod's weight acts at its center, 1 m from the hinge; the string's vertical part acts at the far end, 2 m from the hinge.",
+    "equation": "T sin60° × 2 = mg × 1"
+   },
+   {
+    "text": "Solve for the tension.",
+    "equation": "T = 40/√3 ≈ 23.09 N"
+   },
+   {
+    "text": "Balance the horizontal and vertical forces on the rod to find the two parts of the hinge force.",
+    "equation": "H_x = T cos60° ≈ 11.55 N, H_y = mg − T sin60° = 20 N"
+   },
+   {
+    "text": "Combine the two parts to get the size of the net hinge force.",
+    "equation": "H = √(H_x² + H_y²) ≈ 23.09 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) T ≈ 23.09 N, (b) net hinge force ≈ 23.09 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the rod's full length, 2 m, as the weight's distance from the hinge instead of 1 m gives T ≈ 46.19 N, twice the correct value."
+   }
+  ],
+  "concept_tags": [
+   "torque about a hinge",
+   "equilibrium of a rigid rod",
+   "tension"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6204ca3cc090a2311bcdd0d07c3cf524cf89e758a7a872f417a659ca603c383d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "3dbb43f2905dcd0ee150e12839321a0083cd75a9d1799add97bfbe1f75b18df2",
+  "audited_by": "W01-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:50:00+05:30"
+ }
+}

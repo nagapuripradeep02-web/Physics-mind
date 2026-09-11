@@ -1,0 +1,105 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2d1e9abf",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A smooth (frictionless) horizontal wire carries a sliding ring A of mass 1 kg. A string runs from this ring, over a fixed pulley positioned below the wire, down to a hanging block B of mass 2 kg. The whole system starts from rest at the moment the string makes an angle θ = 60° with the wire. Work out the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "an equation relating the ring's speed to the block's speed, expressed in terms of θ"
+   },
+   {
+    "label": "b",
+    "asks": "an equation relating the ring's acceleration to the block's acceleration, evaluated right after release, when θ = 60°"
+   },
+   {
+    "label": "c",
+    "asks": "the string tension at that instant, together with the numerical value of each acceleration"
+   }
+  ],
+  "conditions": [
+   "the wire is smooth (frictionless)",
+   "ring A has mass 1 kg and slides along the wire",
+   "block B has mass 2 kg and hangs from the string",
+   "the system is released from rest",
+   "at the moment of release, the string makes an angle of 60° with the wire"
+  ],
+  "figure": {
+   "description": "A fixed horizontal wire, smooth and frictionless, runs between two fixed points; a ring of mass 1 kg slides along it. A fixed pulley hangs a constant vertical distance below a point on the wire. A string of fixed length connects the ring, runs diagonally down to this fixed pulley, and then straight down to a block of mass 2 kg. The angle between the wire and the diagonal part of the string, measured at the ring, is θ. As the block falls, the ring slides along the wire toward the point directly above the pulley."
+  }
+ },
+ "solution": {
+  "approach": "Differentiate the fixed length of string AQ in terms of the ring's horizontal distance to get vB = vA cosθ, then apply Newton's second law to both bodies.",
+  "steps": [
+   {
+    "text": "Let x be the ring's horizontal distance from the point on the wire above the pulley; the string length is AQ = √(x² + c²), with cosθ = x/AQ."
+   },
+   {
+    "text": "Differentiate AQ with respect to time; the rate AQ shortens equals the speed at which B descends, since the total string length is fixed.",
+    "equation": "d(AQ)/dt = (x/AQ)(dx/dt) = (cosθ)(−vA) = −vA cosθ, so vB = vA cosθ"
+   },
+   {
+    "text": "Differentiating again brings in a term from the changing angle, but that term is multiplied by vA, which is zero right after release from rest.",
+    "equation": "aB = aA cosθ − vA sinθ(dθ/dt), so aB = aA cosθ at release"
+   },
+   {
+    "text": "Apply Newton's second law: the string pulls the ring horizontally toward the point above the pulley, while gravity and tension act vertically on the block.",
+    "equation": "T cosθ = mA aA; mB g − T = mB aB"
+   },
+   {
+    "text": "Substitute aB = aA cosθ and θ = 60°, then solve for aA, aB and T.",
+    "equation": "aA = mB g cosθ/(mA + mB cos²θ) = 20/3 m/s² ≈ 6.67 m/s², aB = 10/3 m/s² ≈ 3.33 m/s², T = 40/3 N ≈ 13.3 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) vB = vA cosθ; (b) aB = aA cosθ at θ = 60°; (c) aA = 20/3 m/s² ≈ 6.67 m/s², aB = 10/3 m/s² ≈ 3.33 m/s², T = 40/3 N ≈ 13.3 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using aB = aA cosθ at a later instant, when vA is no longer zero, forgets the −vA sinθ(dθ/dt) term; the simple relation holds only at the moment of release from rest."
+   },
+   {
+    "option": null,
+    "text": "Using sinθ instead of cosθ both in the ring's horizontal equation and in the constraint gives aA ≈ 6.93 m/s² instead of the correct 6.67 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "Newton's second law",
+   "smooth wire and pulley"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d372dbb11e5bf64d80dfa2a3f1c058b75beae02e271332dc283f9286f96b0861"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ad8cb0114536c63c3668f1a841044166ba8c2c75563bd7a8f1ffec59c7c006ce",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

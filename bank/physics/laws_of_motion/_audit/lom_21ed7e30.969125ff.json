@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_21ed7e30",
+ "item_sha": "969125ff0101f0e03b8175955b8d124e0110a0386fdfb8442633617517452381",
+ "auditor_option": null,
+ "auditor_value": "0 ≤ F ≤ 5 N: f = F, a = 0; F > 5 N: f = μₖmg = 4 N constant, a = (F − 4) m/s² (jumps to 1 m/s² just past 5 N)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "f_max = 0.5·1·10 = 5 N, kinetic 0.4·1·10 = 4 N; every line follows and both mistake entries describe real errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:25:55+05:30"
+ }
+}

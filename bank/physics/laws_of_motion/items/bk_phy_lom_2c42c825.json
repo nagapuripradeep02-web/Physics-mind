@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2c42c825",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the arrangement shown, block A has mass 4 kg and block B has mass 5 kg. Find the acceleration of each block.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "upper pulley fixed to the ceiling",
+   "lower pulley is movable",
+   "block A (4 kg) hangs from the right side of the string over the fixed pulley",
+   "block B (5 kg) hangs from the string over the movable pulley",
+   "one end of the movable-pulley's string is anchored near the fixed pulley's support"
+  ],
+  "figure": {
+   "description": "A pulley P₁ is fixed to the ceiling. A single light string passes over P₁: its right end hangs straight down to block A (4 kg). Its left end goes down, passes UNDER a small movable pulley P₂ (wrapping round its lower half) and comes back up to be tied to the fixed support of P₁, so P₂ hangs in a loop of that string with two vertical strands above it. Block B (5 kg) hangs directly from the axle of P₂ by a short string. Pulleys and strings are light and frictionless. When B moves down by x, A moves up by 2x."
+  }
+ },
+ "solution": {
+  "approach": "A hangs from one strand; the movable pulley (holding B) has two strands, so aA = 2aB, opposite in direction; apply Newton's second law to each block.",
+  "steps": [
+   {
+    "text": "Take downward as positive for each block separately. The movable-pulley string constraint gives aA = −2aB.",
+    "equation": "aA = −2aB"
+   },
+   {
+    "text": "Write Newton's second law for A (4 kg), held by a single strand of tension T.",
+    "equation": "4(10) − T = 4aA"
+   },
+   {
+    "text": "Write Newton's second law for B (5 kg), held by two strands of tension T at the movable pulley.",
+    "equation": "5(10) − 2T = 5aB"
+   },
+   {
+    "text": "Solve the three equations together.",
+    "equation": "aB = −10/7 m/s², aA = 20/7 m/s², T = 200/7 N"
+   },
+   {
+    "text": "aA is positive, so A accelerates downward at 20/7 m/s²; aB is negative, so B accelerates upward at 10/7 m/s², half the magnitude of aA, as the constraint requires.",
+    "equation": "A: 20/7 m/s² ≈ 2.9 m/s² down, B: 10/7 m/s² ≈ 1.4 m/s² up"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "A (4 kg) accelerates at 20/7 m/s² ≈ 2.9 m/s² downward, and B (5 kg) accelerates at 10/7 m/s² ≈ 1.4 m/s² upward."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating both blocks as hanging from a single strand of the same tension and using the plain Atwood formula (g(mA−mB)/(mA+mB)), which ignores the movable pulley."
+   },
+   {
+    "option": null,
+    "text": "Using only one strand of tension in the 5 kg block's equation instead of two, giving the wrong magnitude for both accelerations."
+   }
+  ],
+  "concept_tags": [
+   "movable pulley",
+   "constraint relation",
+   "Newton's second law",
+   "Atwood-type system"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "778d98f2e84e576fc718cd9f82cf1dc0ec8a973ed4aa864ef96b0a5d9ce7eda2"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "6db216719c125f6e643754c38f4d1141c7ea7d1d17ef17a271664f1f2312cd47",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-11",
+  "at": "2026-09-11T18:22:00+05:30"
+ }
+}

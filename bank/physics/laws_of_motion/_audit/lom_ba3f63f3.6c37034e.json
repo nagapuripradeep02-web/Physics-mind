@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_ba3f63f3",
+ "item_sha": "6c37034e522c0036b4e982d1d27570e5f784ddb177d758443dd332f7b61255d1",
+ "auditor_option": null,
+ "auditor_value": "f_max = μ m_A g = 10 N; together a = t/3 until 4t/3 = 10 ⇒ t = 7.5 s (a = 2.5 m/s²); after that a_B = 10/4 = 2.5 m/s² constant, a_A = (2t − 10)/2 = t − 5 (continuous at t = 7.5 s)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "rising from 2.5 m/s² and pulling ahead of a_B",
+   "note": "'Pulling ahead' is an idiom; the served answer should state the relation literally.",
+   "fix": "For t > 7.5 s, a_B stays constant at 2.5 m/s², while a_A = t − 5 rises from 2.5 m/s² with slope 1 m/s² per second and is greater than a_B."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independent solve agrees on the slip time, both branches and the continuity at t = 7.5 s. common_mistakes[1] computes as stated (f_max = 30 N ⇒ 4t/3 = 30 ⇒ t = 22.5 s).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:00:17+05:30"
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2cd56e3d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rough wedge has its sloped face tilted at 60° to the horizontal. A block of mass 6 kg sits on this slope, with the static friction coefficient between block and slope μs = 0.6 and the kinetic friction coefficient μk = 0.4. A force F is applied to the block, directed up along the slope's surface. Taking g = 10 m/s², work out the size of F needed in each of these situations:",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "F keeps the block completely still on the slope."
+   },
+   {
+    "label": "b",
+    "asks": "F makes the block slide down the slope at a steady (constant) speed."
+   },
+   {
+    "label": "c",
+    "asks": "F makes the block move up the slope while speeding up at 4 m/s²."
+   }
+  ],
+  "conditions": [
+   "incline angle is 60°",
+   "static friction coefficient μs = 0.6",
+   "kinetic friction coefficient μk = 0.4",
+   "force F acts along the incline surface, directed up the slope",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A wedge stands with its slope rising from a 60° angle at the base. A 6 kg block rests on this slanted surface. A force F is applied to the block along the slope, pointing up and away from the base. The friction coefficients printed beside the incline are μs = 0.6 and μk = 0.4."
+  }
+ },
+ "solution": {
+  "approach": "Write Newton's second law along the incline for each case, using static friction at its limit for the stationary range and kinetic friction, opposing motion, for the moving cases.",
+  "steps": [
+   {
+    "text": "The normal force is unaffected by F since F acts along the incline, so N = mg cos60°.",
+    "equation": "N = 6×10×0.5 = 30 N"
+   },
+   {
+    "text": "To keep the block stationary, F must lie between the value that barely stops it sliding down (friction at its maximum, acting up the slope) and the value that barely stops it sliding up (friction at its maximum, acting down the slope).",
+    "equation": "F_min = mg sin60° − μₛmg cos60°,  F_max = mg sin60° + μₛmg cos60°"
+   },
+   {
+    "text": "Compute both limits.",
+    "equation": "F_min = 60×0.866 − 0.6×30 = 51.96 − 18 ≈ 34.0 N,  F_max = 51.96 + 18 ≈ 70.0 N"
+   },
+   {
+    "text": "To move the block down at constant velocity, kinetic friction acts up the slope (opposing the downward slide) and the net force is zero.",
+    "equation": "F = mg sin60° − μₖmg cos60° = 51.96 − 0.4×30 ≈ 40.0 N"
+   },
+   {
+    "text": "To move the block up with acceleration 4 m/s², kinetic friction acts down the slope (opposing the upward slide), and Newton's second law along the incline gives F.",
+    "equation": "F = mg sin60° + μₖmg cos60° + ma = 51.96 + 12 + 24 ≈ 88.0 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 34.0 N ≤ F ≤ 70.0 N, (b) F ≈ 40.0 N, (c) F ≈ 88.0 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using kinetic friction instead of static friction for part (a) gives a narrower, incorrect range of 40.0 N to 64.0 N."
+   },
+   {
+    "option": null,
+    "text": "Reversing the direction of kinetic friction in part (c) (treating it as helping instead of opposing the upward motion) gives F ≈ 64.0 N instead of 88.0 N."
+   }
+  ],
+  "concept_tags": [
+   "friction on an incline",
+   "static and kinetic friction",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7d765ebc37b0fe961739c2e81a1d4c952e11bd4fa08570b8023a529a7be9ba01"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "08109fb40f559b20682ac426432a65e56c3caac7fe5cf371bea3ae88d50ce626",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

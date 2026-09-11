@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_20700fa4",
+ "item_sha": "2985f03a4b0325b152a06391403e8fd18806af9cfa8dbb2952b035776a600088",
+ "auditor_option": null,
+ "auditor_value": "M = 4.8 kg (T₂ = 2·3·2·10/5 = 24 N, T₁ = 2T₂ = 48 N, M = 48/10)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The text asks for 'the whole system' to stay in equilibrium, which is impossible: the 3 kg and 2 kg blocks on the movable pulley must accelerate (a = 2 m/s²). The intended condition is that M (and the movable pulley) stay at rest; the solution states this reading in its approach and first step, so it is not graded as a finding.",
+ "notes": "Independently: 30 − T₂ = 3a and 20 − T₂ = −2a give a = 2 m/s², T₂ = 24 N; massless movable pulley gives T₁ = 48 N; M = 4.8 kg. The single mistake entry (M = 2.4 kg from forgetting the doubling) produces the number it names.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:00:54+05:30"
+ }
+}

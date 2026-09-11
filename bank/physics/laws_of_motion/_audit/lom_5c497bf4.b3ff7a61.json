@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_5c497bf4",
+ "item_sha": "b3ff7a61debb98a8a95061a03ebe967c5b88081a5dfb5717e5d8d3de5827fb4e",
+ "auditor_option": null,
+ "auditor_value": "a = (4*10*sin60 - 2*10*sin30)/6 = 4.11 m/s^2; T_BC = 2*(5 + 4.11) = 18.2 N; T_AB = 1*(8.66 - 4.11) = 4.55 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:59:47+05:30"
+ }
+}

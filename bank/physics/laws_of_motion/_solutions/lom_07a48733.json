@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_07a48733",
+ "approach": "Friction equals mg sinθ while the block rests; once θ passes tanθ = μₛ, it drops to the kinetic value and falls further as θ increases.",
+ "steps": [
+  {"text": "For small θ the block does not slide, so friction balances the component of weight along the incline.", "equation": "f = mg sinθ, for 0 ≤ θ ≤ θₛ"},
+  {"text": "Friction can rise only up to its maximum static value. The block is on the verge of sliding when the incline angle reaches θₛ.", "equation": "tanθₛ = μₛ, f_max = μₛ mg cosθₛ"},
+  {"text": "Past θₛ the block slides, so friction switches to the kinetic value, which is smaller than the static maximum because μₖ < μₛ.", "equation": "f = μₖ mg cosθ, for θ > θₛ",
+   "why_this_step": "Kinetic friction is always less than the limiting static friction, so f drops suddenly at θₛ."},
+  {"text": "As θ increases further toward 90°, cosθ keeps falling, so the kinetic friction keeps falling with it, reaching zero at θ = 90°.", "equation": "f(90°) = μₖ mg cos90° = 0",
+   "why_this_step": "At θ = 90° the incline is vertical, the normal force is zero, and friction is proportional to the normal force."}
+ ],
+ "final_answer": {"option": null, "value": "f rises as mg sinθ from 0 at θ = 0° up to the limiting value μₛ mg cosθₛ at θₛ = tan⁻¹μₛ, drops there to the smaller kinetic value μₖ mg cosθₛ, then falls further as μₖ mg cosθ down to 0 at θ = 90°."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing friction as always increasing with θ, never dropping at θₛ, by forgetting that friction switches from static to a smaller kinetic value once sliding begins."},
+  {"option": null, "text": "Drawing friction as a straight line in θ instead of following sinθ then cosθ, by treating the angle dependence as linear."}
+ ],
+ "concept_tags": ["static friction", "kinetic friction", "limiting friction", "inclined plane"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:00:00+05:30"}
+}

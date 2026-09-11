@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_6f2ba92f",
+ "item_sha": "ff4ddd65b6db95ec34474977a907a841647d0070205afbac40a40c93f37088dd",
+ "auditor_option": 1,
+ "auditor_value": "F_min = μmg/(cosθ + μ sinθ) = mg sinφ / cos(θ − φ)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[0].text",
+   "quote": "Forgetting the cos(θ − φ) factor in the denominator and stopping at the numerator alone gives mg sinφ.",
+   "note": "Vague, invented cause: no working step 'stops at the numerator'. The genuine route to option 4 is minimising over θ as well (the overall least pull is mg sinφ at θ = φ) when the question fixes θ.",
+   "fix": "Minimising over the pull angle as well, which gives the overall least pull mg sinφ (reached only at θ = φ), when the question fixes θ and asks for the least F at that angle."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. All four equations check, including the identity sinφ/(cosθ cosφ + sinθ sinφ) = sinφ/cos(θ − φ).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:02:08+05:30"
+ }
+}

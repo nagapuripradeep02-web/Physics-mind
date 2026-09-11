@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_adb64b1d",
+ "item_sha": "ea510537e8b02812c8f42489d403d5be8d346296582e25b6cf899f80051b6141",
+ "auditor_option": null,
+ "auditor_value": "Plank: weight at its centre of gravity; at the ground end a normal reaction (vertical) and a friction force (horizontal, toward the cylinder side); at the cylinder contact a normal reaction perpendicular to the plank, no friction. Cylinder: weight at the centre; the plank's normal reaction (perpendicular to the plank, along the radius through the contact point); the ground's normal reaction (vertical, through the centre); the ground's friction (horizontal, at the ground contact point), as the question states friction acts at the ground contacts.",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[3].why_this_step",
+   "quote": "With no friction at the plank contact, the ground's friction on the cylinder is the only force with a moment about the cylinder's centre, so the cylinder's torques would not balance without it.",
+   "note": "The conclusion is reversed. The weight, the ground's normal reaction and the plank's normal reaction all pass through the cylinder's centre, so if the ground friction is the only force with a moment about the centre, the torques balance only when that friction is ZERO; a non-zero friction would leave an unbalanced moment. The reason a friction force is drawn is translational: the plank's normal push has a horizontal component along the ground and the question states friction acts at the ground contacts.",
+   "fix": "The plank's normal push on the cylinder has a horizontal component along the ground, and the question states that friction acts at the ground contacts, so a horizontal friction force is drawn at the cylinder's ground contact point."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": "As a static problem the set-up is over-constrained: with a frictionless plank-cylinder contact every force on the cylinder except the ground friction passes through its centre, so rotational balance needs zero ground friction while horizontal balance needs non-zero ground friction. The question only asks for the free-body diagrams and itself states friction acts at the ground contacts, so the solution's force lists are acceptable; only the torque reasoning in steps[3].why_this_step is false.",
+ "notes": "Force lists for both bodies agree with mine (4 forces each). Directions of the two ground frictions are not stated in the solution; not filed since the question asks for a sketch and the lists are complete.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 3,
+  "agent": "W03-U-lom-01",
+  "at": "2026-09-11T23:43:43+05:30"
+ }
+}

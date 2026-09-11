@@ -1,0 +1,74 @@
+{
+ "wave": 3,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_adb64b1d",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else."
+  },
+  {
+   "question_id": "lom_57d048b4",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure.\n(a) Using string-constraint equations, determine how the acceleration of point 2 is related to the acceleration of point 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2."
+  },
+  {
+   "question_id": "lom_77397fdd",
+   "question_text": "In the setup shown, block m₁ rests on the sloped face of a frictionless wedge, while a second block, m₂, hangs in the air and is η times as heavy as m₁; the wedge's slope makes an angle θ with the ground. Every pulley and every string in the system is taken to be massless, and no surface exposes any friction. Work out the acceleration of block m₂.",
+   "options": [],
+   "figure_description": "A wedge rests on the ground. Its sloped face rises from the lower-left corner, where it makes angle θ with the ground, up to the top-right corner of the wedge; its right face is vertical. A small pulley is fixed at the top-right corner of the wedge. Block m₁ rests on the sloped face. A cord is tied to block m₁, runs up the slope parallel to the incline, passes over the top of the fixed corner pulley, and drops vertically down just outside the vertical face to the axle of a second, smaller pulley. This second pulley is not fixed to anything; it hangs in the air beside the vertical face, held up only by that cord. A second cord passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to a small bracket fixed to the wedge at the foot of the vertical face, at ground level; the right segment goes straight down to block m₂, which hangs freely in the air to the right of the wedge. Block m₂ has mass η times m₁. All pulleys and cords are massless, and every surface is frictionless."
+  },
+  {
+   "question_id": "lom_030eca59",
+   "question_text": "A straight rod AB is pivoted at end A. Three forces act on it, as described below. Determine the anticlockwise moment about the pivot produced by each of the three forces.",
+   "options": [],
+   "figure_description": "A straight horizontal rod AB is pivoted at its left end A. A force 2F acts vertically upward at a point a distance a from A. A force F acts vertically downward at a point a distance 2a from A. A force 3F acts at the right end B, a distance 4a from A, pointing up and to the left (above the rod, back toward the A side) at 30° to the rod."
+  },
+  {
+   "question_id": "lom_99315daa",
+   "question_text": "A stick, labelled AB and having weight w₁, leans across a ball of weight w₂ as pictured; the ball also touches a vertical wall and the ground. The ground beneath is rough, but no friction acts at either the stick-and-ball contact or the ball-and-wall contact. Produce separate free-body force diagrams for the ball and for the stick. Also work out why no friction can act at the ball-ground contact.",
+   "options": [],
+   "figure_description": "A vertical wall (brick) stands on the left, meeting a horizontal, rough ground at a right angle. A rod runs from its upper end A, which is in the air just above the top of the wall and touches nothing, down to its lower end B resting on the ground off to the right, like the hypotenuse of a right triangle. A sphere sits in the corner between the wall and the ground, touching both, and also touching the underside of the rod at a point C on the rod; C lies closer to A than to B (AC < CB)."
+  },
+  {
+   "question_id": "lom_e797d355",
+   "question_text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it."
+  },
+  {
+   "question_id": "lom_3ce6bc1e",
+   "question_text": "In the pulley system pictured (block 1 hanging from the fixed pulley, blocks 2 and 3 from the two ends of the string over the movable pulley), at one instant blocks 1 and 2 are each moving upward at a speed of 1 m/s. Determine the velocity of block 3 at this same instant.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_6f2ba92f",
+   "question_text": "A block of mass m rests on a horizontal, rough surface whose angle of friction is φ. Someone pulls the block using a force F directed at an angle θ above the horizontal. What is the smallest value F can take and still move the block?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg sinφ / cos(θ − φ)"
+    },
+    {
+     "label": "(b)",
+     "text": "mg cosφ / cos(θ − φ)"
+    },
+    {
+     "label": "(c)",
+     "text": "mg tanφ"
+    },
+    {
+     "label": "(d)",
+     "text": "mg sinφ"
+    }
+   ],
+   "figure_description": ""
+  }
+ ]
+}

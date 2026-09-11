@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_eef1b653",
+ "item_sha": "440a11f63f0219b2f9b2c554f3cb91c28203b776db44631a8d3409ac440a033b",
+ "auditor_option": null,
+ "auditor_value": "1 m/s^2 upward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve with downward positive: a_pulley = (a2 + a3)/2 = (-4 + 6)/2 = 1 m/s^2 down; block 1 on the other side of the fixed pulley gets -1 m/s^2, i.e. 1 m/s^2 upward. Every line follows; the sign convention is stated. The single common_mistakes entry is a genuine error and its stated result (1 m/s^2 downward) follows from its cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-04",
+  "at": "2026-09-11T23:23:50+05:30"
+ }
+}

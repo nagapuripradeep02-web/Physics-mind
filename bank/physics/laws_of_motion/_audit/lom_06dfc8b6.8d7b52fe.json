@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_06dfc8b6",
+ "item_sha": "8d7b52fe7fb5d2ef5408dd04d9e969d3ebd581e9072c2983f0bfa6c54b157be2",
+ "auditor_option": null,
+ "auditor_value": "(a) a(1 kg) = 20/3 m/s^2 = 6.67 m/s^2 downward (2 kg block: 10/3 m/s^2); (b) T = 10/3 N = 3.33 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Constraint a1 = 2 a2 from the figure; 2T = 2 a2; 10 - T = a1; gives a1 = 20/3, T = 10/3. Common-mistake numbers (5 m/s^2, 5 N from using T instead of 2T) follow from the stated cause. g = 10 as the question fixes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:02:50+05:30"
+ }
+}

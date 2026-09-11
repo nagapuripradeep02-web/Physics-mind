@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_10908738",
+ "approach": "Find the time when the applied force equals the maximum static friction; before that the block stays still, after that kinetic friction acts and gives the acceleration.",
+ "steps": [
+  {
+   "text": "Find the maximum static friction and the time at which the applied force reaches it.",
+   "equation": "f(max static) = μmg = 0.6×2×10 = 12 N; F = 2t = 12 N at t = 6 s"
+  },
+  {
+   "text": "For t < 6 s the applied force is less than the maximum static friction, so the block stays still and friction equals the applied force.",
+   "equation": "friction = F = 2t, a = 0"
+  },
+  {
+   "text": "For t > 6 s the block slides, so kinetic friction takes its constant maximum value and the net force gives the acceleration.",
+   "equation": "friction = μmg = 12 N, a = (2t − 12)/2 = t − 6"
+  },
+  {
+   "text": "At t = 2 s the block is still in the static phase.",
+   "equation": "friction = 2×2 = 4 N, a = 0"
+  },
+  {
+   "text": "At t = 8 s the block is in the sliding phase.",
+   "equation": "friction = 12 N, a = 8 − 6 = 2 m/s²"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) a = 0 for 0 ≤ t ≤ 6 s, then a = t − 6 for t > 6 s, a straight line through (6 s, 0) with slope 1; (b) friction = 4 N at t = 2 s, friction = 12 N at t = 8 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using a = t − 6 at t = 2 s, before the block actually slides, gives friction = 12 N and a = −4 m/s², impossible for a block still at rest."
+  },
+  {
+   "option": null,
+   "text": "Forgetting to divide the net force by the mass gives a = 2t − 12 directly, so a = 4 m/s² at t = 8 s instead of the correct 2 m/s²."
+  }
+ ],
+ "concept_tags": [
+  "static and kinetic friction",
+  "time-varying force",
+  "acceleration graph"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

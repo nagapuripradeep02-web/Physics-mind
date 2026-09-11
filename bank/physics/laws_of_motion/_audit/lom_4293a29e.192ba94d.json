@@ -1,0 +1,45 @@
+{
+ "question_id": "lom_4293a29e",
+ "item_sha": "192ba94d6109d4984a37b6ae870c57943875b1e5c53b9ec30a9d441804639c1d",
+ "auditor_option": null,
+ "auditor_value": "F = 200 N for the 2 m/s² stated in the question text (F = Ma/2); 100 N only if the figure description's 1 m/s² is used",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "final_answer.value",
+   "quote": "F = 100 N",
+   "note": "The question as served asks for the force that gives 2 m/s²; with 2F = Ma that is F = (200)(2)/2 = 200 N. The solution answers 100 N, which solves a 1 m/s² problem, not the one printed.",
+   "fix": "F = 200 N"
+  },
+  {
+   "grade": "wrong",
+   "field": "steps[5].equation",
+   "quote": "F = (200 kg)(1 m/s²)/2 = 100 N",
+   "note": "The line substitutes 1 m/s², which appears only in the figure description, while the question text states 2 m/s². The step picks the figure's value without naming the conflict.",
+   "fix": "F = (200 kg)(2 m/s²)/2 = 200 N"
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Treating the pulley as if only one strand pulls the block and writing F = Ma directly, missing the second strand's contribution, gives 200 N.",
+   "note": "With the served value a = 2 m/s², F = Ma gives 400 N, not 200 N; and 200 N is the correct answer for this question, so the entry condemns the right number.",
+   "fix": "Treating the pulley as if only one strand pulls the block and writing F = Ma directly, missing the second strand's contribution, gives 400 N."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Doubling instead of halving, writing F = 2Ma from the two strands instead of 2F = Ma, gives 400 N.",
+   "note": "With a = 2 m/s², F = 2Ma = 800 N, not 400 N. The number is computed for the figure's 1 m/s², not the served 2 m/s².",
+   "fix": "Doubling instead of halving, writing F = 2Ma from the two strands instead of 2F = Ma, gives 800 N."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "The question text gives the acceleration as 2 m/s² while the figure description says the block accelerates at 1 m/s². The two cannot both hold; the text is the primary statement.",
+ "notes": "Method (constraint a_free = 2a_block, T = F, 2T = Ma) is correct. Only the substituted acceleration is at issue. g not needed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:26:37+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_fe82272a",
+ "item_sha": "1e906ae27988b3d91c797f32cd7afff9e20cb76b159e197cfd2297bd725d0228",
+ "auditor_option": null,
+ "auditor_value": "a = 0 for t < 8 s; a = (2t − 16)/2 = t − 8 m/s² for t ≥ 8 s (straight line of slope 1 m/s³ from the origin point (8 s, 0)), taking μ_k = μ_s = 0.8",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "f_max = 0.8×2×10 = 16 N, reached at t = 8 s. The solution states its single-μ assumption explicitly. Both mistake entries describe real errors with the numbers they produce.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T23:00:59+05:30"
+ }
+}

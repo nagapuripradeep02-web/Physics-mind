@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_800ec4d3",
+ "item_sha": "1c6cc4382c67545f2365316c2400b57aa23e4427b510791e3c6e2c6100daaff5",
+ "auditor_option": null,
+ "auditor_value": "a = 3g/4 downward (mg - mg/4 = ma)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with mine. Both common_mistakes entries are genuine and produce the numbers named. g is not fixed by the question; the solution gives the symbolic answer and states g = 10 for the numeric aside.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T23:01:52+05:30"
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_1f2b9b71",
+ "approach": "Find the maximum static friction from the push force, then compare it with the resultant of gravity and the parallel force to see if the block can stay still.",
+ "steps": [
+  {
+   "text": "The wall's normal reaction equals the push force, so find the maximum static friction it can provide.",
+   "equation": "R = 20 N, f(max static) = μₛR = 0.25×20 = 5 N"
+  },
+  {
+   "text": "Gravity (10 N, downward) and the second 10 N force (horizontal, along the wall) both lie in the plane of the wall and are perpendicular to each other."
+  },
+  {
+   "text": "Find the resultant of these two forces, which is what friction would need to balance for the block to stay still.",
+   "equation": "resultant = √(10² + 10²) = 10√2 N ≈ 14.1 N"
+  },
+  {
+   "text": "Since 14.1 N is greater than the maximum available friction of 5 N, the block slides, moving along the direction of this resultant.",
+   "equation": "resultant direction is 45° from the vertical, toward the 10 N force"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "The block moves, sliding along the resultant of gravity and the 10 N force, at 45° from the vertical."
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Adding the two 10 N forces (gravity and the applied force) directly instead of combining them as perpendicular vectors gives 20 N instead of 10√2 N ≈ 14.1 N."
+  },
+  {
+   "option": null,
+   "text": "Comparing only the applied 10 N force with the maximum friction of 5 N, ignoring gravity, still concludes the block moves but with the wrong direction, along the applied force alone rather than at 45°."
+  }
+ ],
+ "concept_tags": [
+  "friction on a vertical wall",
+  "resultant of perpendicular forces",
+  "static friction limit"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

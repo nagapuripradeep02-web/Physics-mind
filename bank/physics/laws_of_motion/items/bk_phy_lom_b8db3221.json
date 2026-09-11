@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_b8db3221",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 4 kg block sits above a 2 kg block, the two joined by a vertical light string that cannot stretch. An upward pull of F = 120 N is applied at the top of the 4 kg block, lifting both blocks straight up together. Take g = 10 m/s².",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out the acceleration produced in the blocks."
+   },
+   {
+    "label": "b",
+    "asks": "Work out the pulling force (tension) carried by the string."
+   }
+  ],
+  "conditions": [
+   "blocks connected by a light, inextensible string",
+   "the string and blocks move vertically upward together",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "The 4 kg block is on top; a 2 kg block hangs directly beneath it, joined by a vertical light inextensible string. A force F = 120 N pulls straight upward on the top (4 kg) block, lifting the whole two-block system vertically."
+  }
+ },
+ "solution": {
+  "approach": "Treat both blocks as one system to find the acceleration, then apply Newton's second law to the 2 kg block alone to find the tension.",
+  "steps": [
+   {
+    "text": "For the whole system, the pulling force acts up and the total weight acts down.",
+    "equation": "F − (m₁+m₂)g = (m₁+m₂)a"
+   },
+   {
+    "text": "Put in the numbers: total mass 6 kg, weight 60 N, force 120 N.",
+    "equation": "120 − 60 = 6a"
+   },
+   {
+    "text": "Solve for the acceleration.",
+    "equation": "a = 60/6 = 10 m/s²"
+   },
+   {
+    "text": "For the 2 kg block alone, the string tension acts up and its own weight acts down.",
+    "equation": "T − m₂g = m₂a"
+   },
+   {
+    "text": "Put in m₂ = 2 kg, g = 10 m/s², a = 10 m/s² and solve.",
+    "equation": "T = 2 × (10+10) = 40 N",
+    "why_this_step": "The 2 kg block is pulled only by the string above it, so its own equation gives the tension directly."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) a = 10 m/s², (b) T = 40 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting the weight of the blocks and taking a = F/(m₁+m₂) = 120/6 = 20 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Splitting the 120 N force equally between the two blocks and taking T = F/2 = 60 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "connected bodies",
+   "tension"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "37b323c189eb0575e3e6edc6b10480f27758275924e2c071cbbded5fe9a05e42"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "57aaa5ac26967ab594b692c9d387bbc5cd42bf31c694c988547df385eecc6c50",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

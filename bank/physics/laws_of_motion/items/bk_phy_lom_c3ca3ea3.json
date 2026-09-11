@@ -1,0 +1,111 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_c3ca3ea3",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ball weighing 100 N sits at rest on a rough slope tilted 30° from the horizontal; a horizontal cord, running from a point A on the ball to a fixed point B on the slope, keeps the ball from sliding down. Work out the following three quantities.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the tension in the cord."
+   },
+   {
+    "label": "b",
+    "asks": "Find the friction force acting on the ball."
+   },
+   {
+    "label": "c",
+    "asks": "Find the normal reaction the slope exerts on the ball."
+   }
+  ],
+  "conditions": [
+   "ball's weight is 100 N",
+   "incline angle is 30° from horizontal",
+   "incline surface is rough",
+   "a horizontal cord AB (A on the ball, B fixed on the incline) holds the ball stationary"
+  ],
+  "figure": {
+   "description": "An inclined surface rises from the ground at an angle of 30°. A ball rests on this sloped surface, its centre marked C. A horizontal cord runs from point A, the topmost point of the ball (directly above its centre C), to point B, a fixed point on the incline surface farther up the slope at the same height as A, so the cord itself is horizontal and tangent to the ball at A."
+  }
+ },
+ "solution": {
+  "approach": "Weight and normal reaction pass through the sphere's centre, so balancing moments there for the tension and friction gives one relation, and force balance gives the rest.",
+  "steps": [
+   {
+    "text": "The string AB is horizontal and tied where it touches the sphere without cutting into it, so A is the topmost point of the sphere; there the radius to A is vertical, at height r above the centre C.",
+    "equation": "moment arm of T about C = r"
+   },
+   {
+    "text": "Friction f acts at the contact point with the incline, tangent to the sphere there, which is also always at a perpendicular distance r from the centre.",
+    "equation": "moment arm of f about C = r"
+   },
+   {
+    "text": "The weight acts at the centre and the normal reaction acts along the radius through the contact point, so both pass through C and add no moment; balancing the moments of T and f about C then requires them to be equal.",
+    "equation": "T·r = f·r  →  f = T",
+    "why_this_step": "With only T and f having a nonzero moment arm about the centre, and the sphere in equilibrium, their moments must cancel, which — since both arms equal r — makes the two forces equal."
+   },
+   {
+    "text": "Resolve all forces horizontally and vertically: weight w down, normal reaction N perpendicular to the 30° incline, friction f up the incline, tension T horizontal.",
+    "equation": "horizontal: T − N sin30° + f cos30° = 0;  vertical: N cos30° + f sin30° = w"
+   },
+   {
+    "text": "Substitute f = T into both equations and solve.",
+    "equation": "T(1+cos30°) = N sin30°;  N cos30° + T sin30° = w"
+   },
+   {
+    "text": "Solve the two equations for T and N.",
+    "equation": "T = f = w tan15° = 100×(2−√3) ≈ 26.8 N;  N = w = 100 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) tension T = 100(2−√3) N ≈ 26.8 N. (b) friction f = 100(2−√3) N ≈ 26.8 N, acting up the incline. (c) normal reaction N = 100 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the sphere as frictionless and solving only T − N sin30° = 0 and N cos30° = w gives the wrong N ≈ 115.5 N and T ≈ 57.7 N, missing the incline's friction."
+   },
+   {
+    "option": null,
+    "text": "Writing only the two force-balance equations and stopping, because T, f and N are three unknowns; the third equation is the moment balance about the centre, which gives f = T."
+   }
+  ],
+  "concept_tags": [
+   "torque balance",
+   "friction",
+   "normal reaction",
+   "sphere on an incline"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "351933175a10849df92bbe124e7c9caa3a35615507dbd84d1a92b2ad8efb2336"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e5b69b77fdbd449d8878837b162ddcf2ef19831d484b4cf07916509c8442faff",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-04",
+  "at": "2026-09-11T18:30:00+05:30"
+ }
+}

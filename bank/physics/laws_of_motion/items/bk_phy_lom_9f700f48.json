@@ -1,0 +1,109 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_9f700f48",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the arrangement shown, take g = 10 m/s² and find (a) the accelerations of the 1 kg, 2 kg and 3 kg blocks, and (b) the tensions T₁ and T₂.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "the acceleration of each of the 1 kg, 2 kg and 3 kg blocks"
+   },
+   {
+    "label": "b",
+    "asks": "the tensions T₁ and T₂"
+   }
+  ],
+  "conditions": [
+   "1 kg block rests on a horizontal table",
+   "string from the 1 kg block passes over a pulley fixed at the table's edge",
+   "that string continues to a fixed ceiling pulley and then a movable pulley below it",
+   "2 kg block hangs from the movable pulley",
+   "3 kg block hangs below the 2 kg block, joined by tension T1",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 1 kg block rests on a smooth horizontal table. A string of tension T₂ runs from the block to the right, over a small pulley fixed at the table's edge, then straight down, passes UNDER a movable pulley P₁ (wrapping around its lower half) and rises vertically to a fixed anchor on the ceiling; P₁ therefore hangs in the loop of the T₂ string. From the axle of P₁ a short vertical string hangs down to the axle of a second movable pulley P₂ directly below it. A string of tension T₁ passes over P₂: a 2 kg block hangs from its left end and a 3 kg block from its right end. All pulleys and strings are light and frictionless. When the 1 kg block moves right by x, P₁ and P₂ descend by x/2."
+  }
+ },
+ "solution": {
+  "approach": "Use the two given string constraints to relate all four accelerations, note the two movable pulleys make T1 equal T2, then solve the three block equations together.",
+  "steps": [
+   {
+    "text": "The 1 kg block's string loops under the movable pulley P1, so P1 (and P2, joined rigidly below it) descend at half the 1 kg block's speed; this is given directly: when the 1 kg block moves x, P1 and P2 descend x/2.",
+    "equation": "a1 = 2 aP",
+    "why_this_step": "This is the first constraint relation, fixed by the string geometry, written before any force equation."
+   },
+   {
+    "text": "The 2 kg and 3 kg blocks hang from a string over the movable pulley P2, so their accelerations add up to twice P2's own acceleration.",
+    "equation": "a2 + a3 = 2 aP",
+    "why_this_step": "This is the second constraint relation, from treating P2 as an ordinary pulley that itself accelerates at aP."
+   },
+   {
+    "text": "P1 is massless: the two upward pulls of the T2 cord (looped under it) must balance the one downward pull of the short link to P2, and P2 is massless too: that link's pull upward must balance the two downward pulls of the T1 cord.",
+    "equation": "2T2 = Tlink = 2T1, so T1 = T2"
+   },
+   {
+    "text": "Write Newton's second law for the 1 kg block on the frictionless table.",
+    "equation": "T2 = m1 a1 = m1(2aP)"
+   },
+   {
+    "text": "Write Newton's second law for the 2 kg and the 3 kg blocks, taking downward as positive.",
+    "equation": "m2 g − T1 = m2 a2,   m3 g − T1 = m3 a3"
+   },
+   {
+    "text": "Using T1 = T2 = 2m1 aP, express a2 and a3 in terms of aP, substitute into a2 + a3 = 2aP, and solve.",
+    "equation": "a2 = 10 − aP, a3 = 10 − (2/3)aP → (10 − aP) + (10 − (2/3)aP) = 2aP → 20 = (11/3)aP → aP = 60/11 m/s²"
+   },
+   {
+    "text": "Use aP to find the remaining accelerations and the common tension.",
+    "equation": "a1 = 2aP = 120/11 ≈ 10.9 m/s², a2 = 50/11 ≈ 4.5 m/s², a3 = 70/11 ≈ 6.4 m/s², T1 = T2 = 120/11 ≈ 10.9 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "acceleration of 1 kg block = 120/11 ≈ 10.9 m/s²; of 2 kg block = 50/11 ≈ 4.5 m/s² downward; of 3 kg block = 70/11 ≈ 6.4 m/s² downward; T1 = T2 = 120/11 ≈ 10.9 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating P2 as fixed and solving the 2 kg-3 kg pair as an ordinary Atwood machine, giving accelerations of 2 m/s² each way instead of the correct 4.5 and 6.4 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "movable pulley",
+   "Newton's second law"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "fc0661efec79b9e1879b52a527d1107affed91a16e221a95a7a6f4bdba462b36"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "62e2bbb524ef52ce0bc2b2f899dbd64194d3e6a663b682dc8cebb531e416fa85",
+  "audited_by": "W02-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

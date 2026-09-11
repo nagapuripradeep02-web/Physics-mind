@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_82fde00e",
+ "item_sha": "8ce83fa65ec6d8fc169cb2cc8ea48ebaeb81fc5c56cd22833d98238512c0ccae",
+ "auditor_option": null,
+ "auditor_value": "a = 0 for t < 9 s (fs,max = 36 N, F = 4t reaches it at t = 9 s); at t = 9 s a jumps to (36 - 24)/6 = 2 m/s^2; for t >= 9 s a = (4t - 24)/6 = 2t/3 - 4, a straight line of slope 2/3 m/s^3",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every number matches mine (36 N, 9 s, 24 N, 2 m/s^2, slope 2/3). The jump at t = 9 s and its cause (kinetic < static limit) are correctly stated. Both common_mistakes entries are genuine and their stated causes produce the numbers named. g = 10 fixed by the question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:58:31+05:30"
+ }
+}

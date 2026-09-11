@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_208bc75b",
+ "item_sha": "39e92e4647785a95362f82097bee5156133e95b803057cb60fee1c5e90e54ef4",
+ "auditor_option": null,
+ "auditor_value": "Three forces on the rod: weight Mg down at the midpoint of OA; tension T at A horizontal toward B; hinge reaction at O of unknown direction (horizontal and vertical components). The three lines of action are concurrent.",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Leaving out the weight of the rod because the string is drawn only near end A, missing that gravity acts through the whole rod.",
+   "note": "The stated cause does not produce the error: where the string is drawn has no bearing on whether a student forgets the rod's weight. The genuine error is treating the rod as massless; the sentence should name that.",
+   "fix": "Leaving out the weight of the rod, treating it as massless like the string; the rod has mass and its weight acts at its midpoint."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "The solution's three forces match mine; the hinge reaction is correctly left with two unknown components (its line of action passes through the intersection of the weight's vertical line and the horizontal string line, a fact not required by the question).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:04:51+05:30"
+ }
+}

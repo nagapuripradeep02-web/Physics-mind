@@ -1,0 +1,88 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_d912509f",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m sits on a smooth (frictionless) horizontal surface, and a time-dependent horizontal force F = at is applied to it, where a is a constant and t is time. A second, identical block of mass m rests on top of the first block, and the coefficient of friction between the two blocks is μ. Find the time at which the upper block first starts sliding relative to the lower block.",
+  "options": {
+   "1": "2mg/a",
+   "2": "2μmg/a",
+   "3": "μmg/a",
+   "4": "2μ mga"
+  },
+  "parts": null,
+  "conditions": [
+   "mass of each block = m",
+   "lower block rests on a smooth horizontal surface",
+   "upper block is identical, resting on the lower block",
+   "applied horizontal force F = at, on the lower block",
+   "coefficient of friction between the two blocks = μ"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Find the common acceleration of the two blocks from the total applied force, then find when the friction needed to carry the top block reaches its largest possible value.",
+  "steps": [
+   {
+    "text": "Since the lower surface is smooth, the applied force accelerates both blocks together.",
+    "equation": "a_common = F/(2m) = at/(2m)"
+   },
+   {
+    "text": "The upper block is carried along only by friction from the lower block, so the friction needed on it equals its mass times the common acceleration.",
+    "equation": "f_needed = m × a_common = at/2"
+   },
+   {
+    "text": "Sliding between the blocks begins when this needed friction reaches the largest friction the surface between them can supply.",
+    "equation": "at/2 = μmg"
+   },
+   {
+    "text": "Solve for the time.",
+    "equation": "t = 2μmg/a"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "2μmg/a"
+  },
+  "common_mistakes": [
+   {
+    "option": 3,
+    "text": "Setting the full applied force F = at equal to the largest friction μmg, instead of the smaller friction actually needed to carry the top block, gives t = μmg/a."
+   }
+  ],
+  "concept_tags": [
+   "friction between stacked blocks",
+   "time-varying force",
+   "Newton's second law"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "af1bfccccfd3f1610e95b716e9eaf90b5f1d7519710af7f7de4704c54b434104"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "0e7f03cc679320c2f782c353a966e240d5c54e318aad517bf0e26c3197683cd5",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:24:00+05:30"
+ }
+}

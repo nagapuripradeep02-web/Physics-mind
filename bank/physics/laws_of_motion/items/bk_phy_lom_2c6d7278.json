@@ -1,0 +1,94 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2c6d7278",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "In the arrangement shown, assume the table exerts negligible friction on both blocks. If m₁ = 300 g, m₂ = 200 g and the applied force F = 0.40 N, work out the pull (tension) that the cord connecting m₂ to the pulley carries, and the acceleration of m₂.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "negligible friction between the blocks and the table"
+  ],
+  "figure": {
+   "description": "A vertical wall stands at the left; both blocks rest on a smooth horizontal table to its right, m₁ nearer the wall and m₂ further right. One cord is anchored to the wall: it runs right, wraps around a movable pulley that sits between m₁ and m₂, and its other end comes back left to m₁. So the cord's two strands (wall to pulley, and pulley to m₁) are parallel and horizontal. A second cord joins the axle of that movable pulley to m₂. The force F pulls m₂ horizontally to the right, away from the wall. When m₂ moves right by x, the pulley moves right by x and m₁ moves right by 2x."
+  }
+ },
+ "solution": {
+  "approach": "Use the string constraint from the movable pulley to relate m1's and m2's accelerations, then apply Newton's second law to m1, the pulley, and m2.",
+  "steps": [
+   {
+    "text": "The cord runs from the wall to the movable pulley and back to m1; a second cord runs from the pulley's axle to m2, which F pulls away from the wall.",
+    "equation": "cord 1: wall to pulley to m1 (tension T1); cord 2: pulley to m2 (tension T2)"
+   },
+   {
+    "text": "If m2 moves a distance x away from the wall, the pulley (tied to it by cord 2) also moves x; then, since cord 1 has two strands on the wall side, m1 must move 2x toward the pulley in the same time.",
+    "equation": "a1 = 2 a2",
+    "why_this_step": "This is the constraint relation, fixed by the string lengths, and it holds before any force equation is written."
+   },
+   {
+    "text": "The movable pulley is massless, so cord 2's single pull must balance the two pulls of cord 1.",
+    "equation": "T2 = 2T1"
+   },
+   {
+    "text": "Write Newton's second law for m1 on the frictionless table.",
+    "equation": "T1 = m1 a1 = m1(2a2)"
+   },
+   {
+    "text": "Write Newton's second law for m2.",
+    "equation": "F − T2 = m2 a2"
+   },
+   {
+    "text": "Substitute T2 = 2T1 = 4m1 a2 into m2's equation and solve for a2.",
+    "equation": "F − 4m1 a2 = m2 a2 → a2 = F/(m2 + 4m1) = 0.40/(0.20 + 1.20) = 2/7 m/s²"
+   },
+   {
+    "text": "Use a2 to find the tension in the cord between m2 and the pulley.",
+    "equation": "T2 = F − m2 a2 = 0.40 − 0.20(2/7) = 12/35 N ≈ 0.34 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "acceleration of m2 = 2/7 m/s² ≈ 0.29 m/s²; tension in the cord between m2 and the pulley = 12/35 N ≈ 0.34 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Missing the movable-pulley factor of 2 in the constraint and taking a1 = a2, which gives a2 = F/(m2 + 2m1) = 0.5 m/s², off the correct 2/7 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "movable pulley",
+   "Newton's second law"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "13fc307f7e08f048c826c8a2562a3b81819d78bfa9602c822d79fdf67856906a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "31da2e3d5dbc6f47049b99c14c1b52190d9ab59249fc690230f7234a3707c591",
+  "audited_by": "W01-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 2,
+  "agent": "W02-A-lom-01",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

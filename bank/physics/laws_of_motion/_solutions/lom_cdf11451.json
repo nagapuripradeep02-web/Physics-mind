@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_cdf11451",
+ "approach": "Add a pseudo force down the incline to gravity in the train's frame, then find the direction and size of the net force, which the tension must match.",
+ "steps": [
+  {"text": "In the train's frame, a pseudo force of magnitude ma acts on the bob directed down the incline, opposite to the train's acceleration.", "equation": "a = g/2, pseudo force = m(g/2) down the incline"},
+  {"text": "Resolve gravity and the pseudo force into horizontal and vertical components and add them to get the net non-tension force on the bob.", "equation": "Fx = −(mg/2) cos30° = −√3mg/4, Fy = −mg − (mg/2) sin30° = −5mg/4"},
+  {"text": "The string tension balances this net force, so its magnitude equals the size of the net force.", "equation": "T = mg√((√3/4)² + (5/4)²) = mg√7/2 = 5√7 N ≈ 13.2 N"},
+  {"text": "Find the angle of this net force from the true vertical, then compare it with the 30° tilt of the ceiling's normal from the vertical to get the angle between the string and the normal to the ceiling.", "equation": "angle from vertical ≈ 19.1°, ceiling normal is 30° from vertical on the other side"},
+  {"text": "Since the two tilts are on opposite sides of the vertical, the angle between the string and the normal to the ceiling is their sum.", "equation": "angle = 19.1° + 30° ≈ 49.1°, T ≈ 13.2 N"}
+ ],
+ "final_answer": {"option": null, "value": "angle ≈ 49.1°, T = 5√7 N ≈ 13.2 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Adding the magnitudes of gravity and the pseudo force as scalars, T = mg + ma = 15 N, instead of adding them as vectors (60° apart), which gives T = 5√7 ≈ 13.2 N."},
+  {"option": null, "text": "Taking the angle with the ceiling normal as 30° minus the tilt from vertical instead of the sum gives about 10.9° instead of 49.1°, missing that the tilts point to opposite sides of the vertical."}
+ ],
+ "concept_tags": ["non-inertial frame", "pseudo force", "vector addition of forces"],
+ "difficulty": "hard",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

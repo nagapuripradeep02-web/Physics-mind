@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_90baa91e",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 1 kg block and a 2 kg block are joined by a light, inextensible string that runs over a smooth, frictionless pulley. Besides its own weight, the 1 kg block has an extra downward pull of F = 20 N applied to it. Taking g = 10 m/s², find the magnitude of the acceleration common to both blocks.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "masses are unequal: 1 kg and 2 kg",
+   "string is inextensible and light",
+   "pulley is smooth (frictionless)",
+   "extra force F = 20 N applied downward on the 1 kg block",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A pulley is fixed to a rigid ceiling support. A string runs over the pulley, connecting two blocks. On the left, the string holds a 1 kg block; an additional downward-pointing force, labelled F, acts on this 1 kg block. On the right, the string holds a 2 kg block, with no other applied force."
+  }
+ },
+ "solution": {
+  "approach": "Write Newton's second law for each block along the string, then add the two equations to eliminate the tension.",
+  "steps": [
+   {
+    "text": "For the 1 kg block, its own weight and the applied force F both act downward, opposed by the string tension T.",
+    "equation": "1×g + F − T = 1×a"
+   },
+   {
+    "text": "For the 2 kg block, its weight acts downward and the tension pulls it upward, and it moves the same distance as the 1 kg block since the string is inextensible.",
+    "equation": "T − 2×g = 2×a"
+   },
+   {
+    "text": "Add the two equations to eliminate T, using g = 10 m/s² and F = 20 N.",
+    "equation": "(10+20) − 2×10 = 3a, so 10 = 3a"
+   },
+   {
+    "text": "Solve for a.",
+    "equation": "a = 10/3 ≈ 3.33 m/s²"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 10/3 m/s² ≈ 3.33 m/s² (the 1 kg block accelerates down, the 2 kg block accelerates up)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the 1 kg block as free under F alone, ignoring the string and the 2 kg block, giving a = F/1 = 20 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Leaving out the 1 kg block's own weight and keeping only F, then adding the two equations to get 0 = 3a, a wrong zero acceleration."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "Atwood machine",
+   "connected bodies"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5df3076dbec2493f7c871eb17884fde0fb9395ad195f9249a4f1ca4031b64fe6"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": false,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d2dcf1ca506278733bf049b44b4f17b896b529a67edc8db4ac849b8ffe82291a",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T11:35:00+05:30"
+ }
+}

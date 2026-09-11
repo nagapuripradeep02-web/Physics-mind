@@ -1,0 +1,50 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_7ba21240",
+ "approach": "Use the maximum friction-limited acceleration to speed up for half the distance, then the same maximum deceleration to stop over the other half, and add the two times.",
+ "steps": [
+  {
+   "text": "The road's friction limits both the car's acceleration and its braking deceleration to the same maximum value.",
+   "equation": "a(max) = μg = 0.4×10 = 4 m/s²"
+  },
+  {
+   "text": "To cover the distance in the least time while starting and ending at rest, the car speeds up at this maximum rate for the first half of the distance, then brakes at the same maximum rate for the second half."
+  },
+  {
+   "text": "Find the time for the first half using distance equals half of acceleration times time squared.",
+   "equation": "200 = ½×4×t², so t = √100 = 10 s"
+  },
+  {
+   "text": "By symmetry the braking half takes the same time, so add the two.",
+   "equation": "total time = 2×10 = 20 s"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "20 s"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the full 400 m in a single accelerating phase, instead of splitting it into two halves, gives 400 = ½×4×t², so t = √200 ≈ 14.1 s, which ignores that the car must stop."
+  },
+  {
+   "option": null,
+   "text": "Finding the correct time for one half, 10 s, and forgetting to double it for the braking half reports 10 s as the final answer, missing half the trip."
+  }
+ ],
+ "concept_tags": [
+  "friction-limited acceleration",
+  "equations of motion",
+  "minimum time"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

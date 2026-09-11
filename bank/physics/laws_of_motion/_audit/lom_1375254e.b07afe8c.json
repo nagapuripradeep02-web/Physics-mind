@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_1375254e",
+ "item_sha": "b07afe8c895aeceac4d46f9d92dc9a41d64bf8c43a3d644a1a2d9cf83ac667c9",
+ "auditor_option": null,
+ "auditor_value": "(a) 4 kg: fs,max = 24 N > 20 N, so a = 0 and f = 20 N (static); (b) 2 kg: fs,max = 12 N < 20 N, so it slides, f = 0.4 x 2 x 10 = 8 N, a = (20 - 8)/2 = 6 m/s^2",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. The question does not fix g; the solution uses g = 10 visibly in each equation (with 9.8 the conclusions are the same: 23.5 N > 20 N at rest; 7.84 N and 6.08 m/s^2 sliding). Both common-mistake numbers (16 N and 1 m/s^2; 4 m/s^2) follow from their stated causes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:04:45+05:30"
+ }
+}

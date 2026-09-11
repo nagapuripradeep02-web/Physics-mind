@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_6c8b046b",
+ "item_sha": "42bffa52d86ef80e861aa16ff73a4820dcd75eb23fe7208e3030146b3321f196",
+ "auditor_option": null,
+ "auditor_value": "(a) 2.0 kg × 10 = 20 N; (b) 5.0 kg × 10 = 50 N",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Using g alone instead of g + a gives 19 N and 47.5 N",
+   "note": "Using g alone gives 2.0 × 9.8 = 19.6 N and 5.0 × 9.8 = 49 N. The stated cause cannot produce 19 N or 47.5 N.",
+   "fix": "Using g alone instead of g + a gives 19.6 N and 49 N, ignoring that the whole system accelerates upward."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Forgetting to include half the lower wire's mass below the lower midpoint gives 18.62 N there instead of 20 N.",
+   "note": "Dropping the 0.1 kg of wire gives 1.9 × (9.8 + 0.2) = 19 N; 18.62 N is 1.9 × 9.8, which needs the g-alone error as well.",
+   "fix": "Forgetting to include half the lower wire's mass below the lower midpoint gives 1.9 × 10 = 19 N there instead of 20 N."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer agrees; every step equation checks.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:02:08+05:30"
+ }
+}

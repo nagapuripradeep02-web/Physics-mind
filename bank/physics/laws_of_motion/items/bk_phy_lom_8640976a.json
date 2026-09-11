@@ -1,0 +1,101 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_8640976a",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A box car starts from rest (v = 0) and accelerates horizontally at a = 5 m/s² along the î direction. Take g = 10 m/s². Inside the car, on its frictionless floor, a 2 kg object is slid with an initial velocity of 10 m/s along î, measured relative to the car.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Describe the motion of the object relative to the car."
+   },
+   {
+    "label": "b",
+    "asks": "Find when the object reaches its original position relative to the box car."
+   }
+  ],
+  "conditions": [
+   "box car has initial velocity v = 0",
+   "box car acceleration a = 5 m/s², direction î",
+   "g = 10 m/s²",
+   "object mass = 2 kg",
+   "floor of the box car is frictionless",
+   "object's initial velocity relative to the car = 10 m/s, direction î"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "The floor is frictionless, so the object feels no horizontal force in the ground frame and keeps its initial velocity; subtract the car's motion to get its relative motion.",
+  "steps": [
+   {
+    "text": "In the ground frame the floor exerts no horizontal force on the object, so it keeps moving at its initial 10 m/s forever.",
+    "equation": "x_object(t) = 10t"
+   },
+   {
+    "text": "The car starts from rest and accelerates at 5 m/s², so its own position grows as a half-a-t-squared curve.",
+    "equation": "x_car(t) = ½(5)t² = 2.5t²"
+   },
+   {
+    "text": "The object's position relative to the car is the difference of the two, giving its relative velocity by differentiating.",
+    "equation": "x_rel(t) = 10t − 2.5t²,  v_rel(t) = 10 − 5t"
+   },
+   {
+    "text": "This means relative to the car the object moves forward, decelerating uniformly at 5 m/s², exactly like a ball thrown upward against gravity, until it momentarily stops relative to the car.",
+    "equation": "v_rel = 0 at t = 2 s, having moved 10 m forward relative to the car"
+   },
+   {
+    "text": "After that it reverses and speeds up backward relative to the car at the same constant 5 m/s². It returns to its starting position relative to the car when x_rel = 0 again.",
+    "equation": "10t − 2.5t² = 0  ⟹  t = 4 s (moving at −10 m/s relative to the car at that instant)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) relative to the car, the object moves forward, decelerates uniformly at 5 m/s², stops momentarily at t = 2 s after moving 10 m forward, then accelerates backward at 5 m/s²; (b) it returns to its original position relative to the car at t = 4 s"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the object also accelerates at 5 m/s² because the car does gives the wrong relative motion; the object feels no horizontal force at all since the floor is frictionless."
+   },
+   {
+    "option": null,
+    "text": "Taking the instant the object is momentarily at rest relative to the car (t = 2 s, 10 m ahead) as the return time, instead of x_rel = 0 at t = 4 s."
+   }
+  ],
+  "concept_tags": [
+   "non-inertial frame",
+   "relative motion",
+   "frictionless surface"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9cef0abc6c950068adeb8d46087849e8fec8293baca9a7cb637eeaa002d58031"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "c18033733dd218c02a73e32ac3c8f6b438a3ccca5ab7317a2a4583d4c965df54",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

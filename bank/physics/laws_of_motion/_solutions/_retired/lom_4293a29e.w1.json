@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_4293a29e",
+ "approach": "A single rope over a frictionless fixed pulley carries the same tension throughout, so the pulling force equals the tension that must accelerate the block.",
+ "steps": [
+  {"text": "The pulley is fixed and frictionless, so it only changes the rope's direction; the tension is the same on both sides of the pulley.", "equation": "T = F"},
+  {"text": "This same tension is the only horizontal force on the block, since the floor is frictionless.", "equation": "T = ma"},
+  {"text": "Combine the two to solve for F.", "equation": "F = ma = 200 × 1 = 200 N"}
+ ],
+ "final_answer": {"option": null, "value": "F = 200 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming the pulley doubles the force like a movable pulley gives F = 100 N, but this pulley only redirects the rope; it does not add mechanical advantage."},
+  {"option": null, "text": "Adding an extra factor for the pulley being frictionless (as if that changed the tension relation) gives an answer other than 200 N; frictionless only means the tension is equal on both sides."}
+ ],
+ "concept_tags": ["fixed pulley", "tension", "Newton's second law"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

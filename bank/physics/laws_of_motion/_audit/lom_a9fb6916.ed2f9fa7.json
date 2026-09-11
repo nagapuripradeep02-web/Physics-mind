@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a9fb6916",
+ "item_sha": "ed2f9fa75f069278a8bcb839f6b39713adb30d5dbc09a1844fb77a817971fad9",
+ "auditor_option": null,
+ "auditor_value": "(g + a) sinθ, down the incline, relative to the wedge",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Effective gravity g + a in the elevator frame; both mistake entries name the wrong results their causes produce.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:01:42+05:30"
+ }
+}

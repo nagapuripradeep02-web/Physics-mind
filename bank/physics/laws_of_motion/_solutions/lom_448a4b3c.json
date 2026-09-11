@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_448a4b3c",
+ "approach": "Compare each angle to the 45° angle of repose, where μ = tan45° = 1, to decide if the block stays still or slides, then apply the matching friction law.",
+ "steps": [
+  {"text": "The angle of repose is 45°, so the coefficient of friction equals tan45°.", "equation": "μ = tan45° = 1"},
+  {"text": "For θ = 30°, which is less than the angle of repose, the block stays at rest: static friction exactly balances the weight component along the incline.", "equation": "friction = mg sin30° = 0.5mg up the incline; net force = 0; a = 0"},
+  {"text": "For θ = 45°, equal to the angle of repose, the block is on the verge of sliding but still stays at rest.", "equation": "friction = mg sin45° = mg/√2 ≈ 0.707mg up the incline; net force = 0; a = 0"},
+  {"text": "For θ = 60°, greater than the angle of repose, the block slides down, so kinetic friction now acts up the incline.", "equation": "friction = μmg cos60° = 0.5mg up the incline"},
+  {"text": "Find the net force and acceleration for θ = 60° from the weight component along the incline minus the kinetic friction.", "equation": "net force = mg sin60° − 0.5mg = mg(√3−1)/2 ≈ 0.366mg down the incline; a = g(√3−1)/2 ≈ 3.66 m/s² down the incline (using g = 10 m/s²)"}
+ ],
+ "final_answer": {"option": null, "value": "(a) θ=30°: friction = 0.5mg up the incline, net force = 0, a = 0. (b) θ=45°: friction ≈ 0.707mg up the incline, net force = 0, a = 0. (c) θ=60°: friction = 0.5mg up the incline, net force ≈ 0.366mg down the incline, a ≈ 3.66 m/s² down the incline"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Applying kinetic friction at θ = 30°, below the angle of repose, gives a negative net force of size 0.366mg (3.66 m/s² with g = 10), showing the block cannot actually be sliding there."}
+ ],
+ "concept_tags": ["angle of repose", "static friction", "kinetic friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:22:00+05:30"}
+}

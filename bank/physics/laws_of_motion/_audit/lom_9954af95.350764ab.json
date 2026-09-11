@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9954af95",
+ "item_sha": "350764ab3b40b369077d88f12c086448c0c64e8e852ba17f874fa804e6592472",
+ "auditor_option": null,
+ "auditor_value": "(a) f = μₖR = 4.8 N, kinetic, up the slope; (b) block slides down the slope, a = (12 − 4 − 4.8)/2 = 1.6 m/s² (g = 10)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "g not fixed by the question; solution states g = 10 m/s² (with g = 9.8: f = 4.70 N, a = 1.53 m/s², same conclusion). Both mistake numbers reproduce from their stated causes (3.6 and 5.6 m/s²).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:27:57+05:30"
+ }
+}

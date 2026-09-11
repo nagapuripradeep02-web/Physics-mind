@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_bd0bd1c7",
+ "item_sha": "afead73ca46e9e8331cf81039628ea53a8c55f56c46a81b71f61c07ab39b42f4",
+ "auditor_option": null,
+ "auditor_value": "Mg − T = Ma and T = Ma ⇒ Mg = 2Ma ⇒ a = g/2 (5 m/s² at g = 10); T = Mg/2",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "Mg = 4Ma, so a = g/2",
+   "note": "Adding Mg − T = Ma to T = Ma gives Mg = 2Ma, not 4Ma; the printed line is false, and taken at face value it gives a = g/4, which contradicts the a = g/2 written beside it. A student copying this line loses the step.",
+   "fix": "Mg = 2Ma, so a = g/2"
+  },
+  {
+   "grade": "wrong",
+   "field": "approach",
+   "quote": "joined by a light string over a single pulley",
+   "note": "The served text says one pulley at the table's corner, but the figure description says two fixed pulleys (one on a post at the left end, one at the right corner) with the table block moving LEFT; the solution follows the text's layout without naming the conflict. The equations and the numbers are the same under either layout (same string tension, 1:1 constraint), so the answer is unaffected.",
+   "fix": "The text describes one pulley at the corner while the figure shows two fixed pulleys; in both layouts the string has one tension T and the blocks share one acceleration a, so apply Newton's second law to each block."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": "Question text (one pulley at the corner, block pulled toward the edge) and figure description (two fixed pulleys, table block moves left, away from the hanging side) describe different apparatus. Both give the same constraint |a_table| = |a_hang| and a single string tension, so the result a = g/2, T = Mg/2 holds for either.",
+ "notes": "Independent solve agrees with the final answer a = g/2, T = Mg/2. The only physics defect is the false coefficient 4 in steps[2]. Note: this question_id appears twice in the slice with different item_sha values.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:01:30+05:30"
+ }
+}

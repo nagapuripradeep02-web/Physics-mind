@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_9dbebb4d",
+ "item_sha": "ada038310c6da182a15a7839a7b34b564c2f3e6049e255306e199d2ea381c17d",
+ "auditor_option": null,
+ "auditor_value": "T_P = mg/cos45° = 10√2 N ≈ 14.14 N; T_Q = mg cos45° = 5√2 N ≈ 7.07 N (speed zero at Q by symmetry)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Q is at the same height as P so v = 0 there and the radial equation is T = mg cosθ; both mistake entries name the values their errors produce.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:03:56+05:30"
+ }
+}

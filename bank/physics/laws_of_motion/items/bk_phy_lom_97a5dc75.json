@@ -1,0 +1,89 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_97a5dc75",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block lies on a smooth horizontal tabletop. A light, inextensible string runs from this block horizontally to a smooth pulley fixed at the edge of the table, then turns downward to a 4 kg block hanging freely. Taking g = 10 m/s², find the acceleration of the system and the tension in the string.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "all surfaces (table and pulley) are smooth",
+   "string is massless and does not stretch",
+   "the 2 kg block moves horizontally while the 4 kg block moves vertically with the same acceleration",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A 2 kg block rests on a smooth horizontal tabletop. A string connects it horizontally to a smooth pulley fixed at the corner of the table; the string then runs vertically down from the pulley to a 4 kg block hanging in the air. The 2 kg block accelerates horizontally toward the pulley, and the 4 kg block accelerates downward, both with the same magnitude a."
+  }
+ },
+ "solution": {
+  "approach": "The hanging 4 kg block pulls the whole system, while the 2 kg block on the smooth table only adds mass, not weight, to resist it.",
+  "steps": [
+   {
+    "text": "Only the hanging block's weight drives the system; both blocks share the same acceleration through the taut string.",
+    "equation": "a = m₄g / (m₂+m₄)"
+   },
+   {
+    "text": "Put in m₂ = 2 kg, m₄ = 4 kg, g = 10 m/s².",
+    "equation": "a = 40/6 = 20/3 = 6.67 m/s²"
+   },
+   {
+    "text": "For the 2 kg block on the table, the tension is the only horizontal force.",
+    "equation": "T = m₂a"
+   },
+   {
+    "text": "Put in m₂ = 2 kg and a = 20/3 m/s².",
+    "equation": "T = 2 × 20/3 = 40/3 = 13.3 N",
+    "why_this_step": "The table is smooth, so no friction opposes the tension on the 2 kg block."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "a = 6.67 m/s², T = 13.3 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the hanging block as if it falls freely and taking a = g = 10 m/s², ignoring the 2 kg block it must also move."
+   },
+   {
+    "option": null,
+    "text": "Treating the hanging block as not accelerating and taking T = m₄g = 40 N."
+   }
+  ],
+  "concept_tags": [
+   "pulley at table edge",
+   "connected bodies",
+   "tension"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "5cc62e23cf6654ed95d48aaf87c8953bf6986c6c5e083e19f049c8aa7e7bad74"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "45efbe2d1e5a4022a9cdcb0f0c98c2a1717b95f03661090576c12aabd86c1087",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:10:00+05:30"
+ }
+}

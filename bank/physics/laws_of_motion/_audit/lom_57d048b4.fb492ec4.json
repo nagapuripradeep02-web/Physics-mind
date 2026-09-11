@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_57d048b4",
+ "item_sha": "fb492ec41967a8db613b0eb9315188b317f5d6b15919a8b57d249041733d32dd",
+ "auditor_option": null,
+ "auditor_value": "a₂ = −7a₁ (block 2 accelerates with 7 times the magnitude of block 1, in the opposite direction); intermediate a₃ = −a₁, a₄ = −3a₁",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently derived the three constraint equations from the figure description (S₁: x₁+x₃, S₂: (x₁−x₃)+(x₄−x₃), S₃: (x₁−x₄)+(x₂−x₄)) and got a₃ = −a₁, a₄ = −3a₁, a₂ = −7a₁, identical to the solution's lines. The common-mistake entry (treating everything below P₁ as one body moving with P₂) does produce |a₂| = |a₁| as stated. No given quantity is used that the question does not supply; sign convention (downward positive from the line through P₁) is the one the question states.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 5,
+  "agent": "W05-U-lom-01",
+  "at": "2026-09-12T00:01:09+05:30"
+ }
+}

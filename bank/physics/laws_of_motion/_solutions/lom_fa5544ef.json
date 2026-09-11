@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_fa5544ef",
+ "approach": "At the knot, resolve the diagonal string's tension along the horizontal and vertical directions and balance each against the known tension and the hanging weight.",
+ "steps": [
+  {"text": "At the knot, three strings pull: the diagonal string at 45° from the vertical, the horizontal string with tension 30 N, and the vertical string carrying weight W."},
+  {"text": "Balance the horizontal direction: the diagonal string's horizontal component equals the horizontal string's tension.", "equation": "T sin45° = 30 N"},
+  {"text": "Solve for the diagonal string's tension T.", "equation": "T = 30/sin45° = 30√2 N"},
+  {"text": "Balance the vertical direction: the diagonal string's vertical component supports the weight W.", "equation": "W = T cos45° = 30√2 × cos45° = 30 N"}
+ ],
+ "final_answer": {"option": null, "value": "W = 30 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Resolving the 45° string's components the wrong way round (using cos45° for the horizontal part) still gives 30 N here only because sin45° = cos45°; at any other angle this swap gives a wrong W."},
+  {"option": null, "text": "Setting W equal to the full diagonal tension T = 30√2 N ≈ 42.4 N, instead of only its vertical component."}
+ ],
+ "concept_tags": ["equilibrium of a particle", "resolution of tension"],
+ "difficulty": "easy",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:15:00+05:30"}
+}

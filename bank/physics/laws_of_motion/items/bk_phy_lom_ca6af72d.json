@@ -1,0 +1,91 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_ca6af72d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 1 kg block sits on a surface that is not smooth. A horizontal pull F acts on the block, as pictured. Taking the static-friction coefficient μₛ = 0.5, the kinetic-friction coefficient μₖ = 0.4, and g = 10 m/s², describe how the friction force f and the block's acceleration a behave as the pull F is raised steadily from zero.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "block mass is 1 kg",
+   "the surface is rough, not smooth",
+   "coefficient of static friction μₛ = 0.5",
+   "coefficient of kinetic friction μₖ = 0.4",
+   "g = 10 m/s²",
+   "the horizontal force F is increased gradually from zero"
+  ],
+  "figure": {
+   "description": "A block rests on a rough horizontal surface, drawn with hatching to show roughness. A horizontal arrow labeled F, pointing rightward, is applied to the block, pushing it along the surface."
+  }
+ },
+ "solution": {
+  "approach": "Friction matches F exactly while F stays below its maximum static value, then drops to a fixed kinetic value once the block starts sliding.",
+  "steps": [
+   {
+    "text": "Find the maximum force of static friction, the largest value friction can reach before the block starts to move.",
+    "equation": "f_max = μₛ mg = 0.5 × 1 × 10 = 5 N"
+   },
+   {
+    "text": "While F is less than or equal to this maximum, the block stays at rest, so friction exactly matches the applied force and there is no net force.",
+    "equation": "For 0 ≤ F ≤ 5 N: f = F, a = 0"
+   },
+   {
+    "text": "Once F goes past 5 N, the block starts to slide, and friction switches to the smaller kinetic value, which stays fixed however large F gets.",
+    "equation": "f = μₖ mg = 0.4 × 1 × 10 = 4 N"
+   },
+   {
+    "text": "With friction now fixed at 4 N, the net force on the 1 kg block grows with F, giving its acceleration.",
+    "equation": "a = (F − 4)/1 = (F − 4) m/s²",
+    "why_this_step": "Once sliding starts, friction no longer rises to match F — it stays at the constant kinetic value, so the net force F − 4 N produces the acceleration of the block."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "For 0 N ≤ F ≤ 5 N: f = F, a = 0. At F = 5 N the block is on the verge of sliding. For F > 5 N: f = 4 N (constant), a = (F − 4) m/s²."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using the kinetic value f = μₖ mg = 4 N even before the block starts to slide, instead of f = F."
+   },
+   {
+    "option": null,
+    "text": "Assuming friction stays at its maximum static value f = μₛ mg = 5 N even after the block starts to slide, instead of dropping to 4 N."
+   }
+  ],
+  "concept_tags": [
+   "static friction",
+   "kinetic friction",
+   "friction force"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "21ed7e3038602c2764d3e2e39add3fe588f2d50bdd27b16656931f49a2ca99e3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "969125ff0101f0e03b8175955b8d124e0110a0386fdfb8442633617517452381",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-02",
+  "at": "2026-09-11T10:50:00+05:30"
+ }
+}

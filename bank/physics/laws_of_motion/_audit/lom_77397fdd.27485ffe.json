@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_77397fdd",
+ "item_sha": "27485ffe434fd17b829b96484f8a751fa3782ce31916594e376214e5827339cb",
+ "auditor_option": null,
+ "auditor_value": "a₂ = 2g(2η − sinθ)/(4η + 1), downward (a₁ = g(2η − sinθ)/(4η + 1) up the incline)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "which drops the 4η term and gives the wrong denominator (1 + η)",
+   "note": "Taking a2 = a1 gives T2 = ηm1(g − a1) and a1 + g sinθ = 2η(g − a1), i.e. a1(1 + 2η) = g(2η − sinθ). The stated cause produces the denominator (1 + 2η), not (1 + η).",
+   "fix": "Missing the movable-pulley factor of 2 in the constraint and taking a2 = a1, which gives a1(1 + 2η) = g(2η − sinθ), the wrong denominator (1 + 2η) instead of (1 + 4η)."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Answer agrees. The wedge is treated as fixed (standard for this problem; only η and θ are given, so no wedge mass enters). All six force/constraint lines check.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:01:03+05:30"
+ }
+}

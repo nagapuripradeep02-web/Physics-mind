@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_32c78474",
+ "approach": "List every force that touches the cylinder: its weight, and one normal reaction from each wall of the groove.",
+ "steps": [
+  {"text": "The cylinder has weight W. This acts at its centre, pointing straight down."},
+  {"text": "The cylinder touches two slanted walls. Each wall pushes on the cylinder with a normal reaction, perpendicular to that wall's surface at the point of contact.", "equation": "N₁ ⊥ wall 1, N₂ ⊥ wall 2"},
+  {"text": "Because the cylinder is circular, the line of each normal reaction passes through the cylinder's centre, so N₁, N₂ and W all act through the same point.", "why_this_step": "A normal force on a circular surface always points along the radius, so it passes through the centre."},
+  {"text": "The free body diagram of the cylinder shows three forces meeting at its centre: W straight down, N₁ perpendicular to the first wall pointing toward the centre, and N₂ perpendicular to the second wall pointing toward the centre. For the cylinder to be in equilibrium, N₁ + N₂ balances W."}
+ ],
+ "final_answer": {"option": null, "value": "three concurrent forces act on the cylinder: weight W downward at its centre, normal reaction N₁ from wall 1 (perpendicular to wall 1, directed toward the centre), and normal reaction N₂ from wall 2 (perpendicular to wall 2, directed toward the centre)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing only one normal reaction, missing that the cylinder touches both walls of the groove."},
+  {"option": null, "text": "Drawing a normal reaction that is not perpendicular to the wall it comes from."}
+ ],
+ "concept_tags": ["free body diagram", "normal reaction", "equilibrium of a body"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:10:00+05:30"}
+}

@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_022bdd70",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Three blocks of masses m₁ = 10 kg, m₂ = 20 kg and m₃ = 30 kg rest on a smooth horizontal table and are joined in a line by light, horizontal strings: one string of tension T₁ between m₁ and m₂, and another string of tension T₂ between m₂ and m₃. A horizontal pull of F = 60 N acts on m₃, directed away from m₂.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the tensions T₁ and T₂ in the two strings."
+   },
+   {
+    "label": "b",
+    "asks": "Find the tension T₂ immediately after the string between m₁ and m₂ suddenly breaks."
+   }
+  ],
+  "conditions": [
+   "smooth horizontal table",
+   "blocks joined in a line by light strings",
+   "F = 60 N applied on m₃, directed away from m₂"
+  ],
+  "figure": {
+   "description": "Three blocks m₁, m₂, m₃ sit in a row on a horizontal frictionless table, ordered left to right as m₁, m₂, m₃. A light string of tension T₁ joins m₁ to m₂, and a light string of tension T₂ joins m₂ to m₃. A horizontal force F acts on the right (outer) face of m₃, pulling the whole line to the right, away from m₂."
+  }
+ },
+ "solution": {
+  "approach": "Use the whole system to find the acceleration, then isolate one block to find each tension; repeat with the reduced system after the string snaps.",
+  "steps": [
+   {
+    "text": "Find the acceleration of the three connected blocks under F.",
+    "equation": "a = 60/(10+20+30) = 1 m/s²"
+   },
+   {
+    "text": "T₁ pulls only m₁, so it equals m₁ times the common acceleration.",
+    "equation": "T₁ = 10×1 = 10 N"
+   },
+   {
+    "text": "T₂ pulls the combined m₁ and m₂, so it equals their total mass times the acceleration.",
+    "equation": "T₂ = 30×1 = 30 N"
+   },
+   {
+    "text": "After the string between m₁ and m₂ snaps, only m₂ and m₃ remain connected; find their new common acceleration.",
+    "equation": "a′ = 60/(20+30) = 1.2 m/s²"
+   },
+   {
+    "text": "T₂ now pulls only m₂, so it equals m₂ times the new acceleration.",
+    "equation": "T₂ = 20×1.2 = 24 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) T₁ = 10 N, T₂ = 30 N; (b) T₂ = 24 N after the string between m₁ and m₂ snaps"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Keeping the acceleration at 1 m/s² after the string snaps instead of recomputing it for the smaller connected mass, giving T₂ = 20×1 = 20 N instead of 24 N."
+   },
+   {
+    "option": null,
+    "text": "Computing T₁ as the force needed to accelerate m₂ and m₃ together instead of m₁ alone, giving T₁ = 50 N instead of 10 N."
+   }
+  ],
+  "concept_tags": [
+   "connected bodies",
+   "Newton's second law",
+   "string tension"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "aadb98988357b04d453ed5780a6300294c8013cb8f31e06082869a2f0c899802"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8871bb544d8ae2e5e71e8b13121226e844092a5bf1b46606160da11f77edf207",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T12:05:00+05:30"
+ }
+}

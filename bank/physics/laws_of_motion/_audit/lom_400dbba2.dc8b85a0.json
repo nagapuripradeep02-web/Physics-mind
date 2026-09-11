@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_400dbba2",
+ "item_sha": "dc8b85a0299f617783571f84400b6c36eeb95c15d0f48166aea827fc37361400",
+ "auditor_option": null,
+ "auditor_value": "f_A = N_B = (w/2) cot30 = (sqrt(3)/2) w = 0.866 w; N_A = w",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:59:34+05:30"
+ }
+}

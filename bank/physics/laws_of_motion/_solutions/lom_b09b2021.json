@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_b09b2021",
+ "approach": "Find the common upward acceleration of the whole system from the net force, then apply Newton's second law to whatever hangs below each labeled point.",
+ "steps": [
+  {
+   "text": "Find the acceleration of the whole system (top block, string, bottom block) from the net upward force.",
+   "equation": "a = (F − Mg)/M = (100 − 8×10)/8"
+  },
+  {
+   "text": "Compute the acceleration.",
+   "equation": "a = 20/8 = 2.5 m/s²"
+  },
+  {
+   "text": "The tension at A supports everything below A: the whole string and the bottom block.",
+   "equation": "T(A) = (2+4)(g+a) = 6×12.5"
+  },
+  {
+   "text": "The tension at C supports everything below C: half the string and the bottom block.",
+   "equation": "T(C) = (1+4)(g+a) = 5×12.5"
+  },
+  {
+   "text": "The tension at B supports only the bottom block below B, so T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N.",
+   "equation": "T(B) = 4×(g+a) = 4×12.5 = 50 N"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "T(A) = 75 N, T(C) = 62.5 N, T(B) = 50 N"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Using the total system mass (8 kg) at every point instead of only the mass below each labeled point gives the same wrong tension, 100 N, everywhere."
+  },
+  {
+   "option": null,
+   "text": "Treating the string as massless drops its weight from the mass below A and C, giving T(A) = 50 N and T(C) = 50 N instead of 75 N and 62.5 N."
+  }
+ ],
+ "concept_tags": [
+  "Newton's second law",
+  "connected bodies",
+  "tension in a string with mass"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

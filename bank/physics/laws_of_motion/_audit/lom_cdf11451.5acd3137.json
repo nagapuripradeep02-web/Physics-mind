@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_cdf11451",
+ "item_sha": "5acd3137715006fcd2e4640444d42824728c9f09cc187902f62da3a2d86a0c56",
+ "auditor_option": null,
+ "auditor_value": "In the train frame, along the incline (down-slope) m(g sin30° + a) = 10 N, normal to it mg cos30° = 8.66 N ⇒ tanφ = 2/√3 ⇒ φ ≈ 49.1° from the normal to the ceiling; T = √175 = 5√7 ≈ 13.2 N",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[1].equation",
+   "quote": "Fx = −mg sin30°·(1/2) = −√3mg/4",
+   "note": "The printed expression mg sin30°·(1/2) equals mg/4 = 2.5 N, not √3mg/4 = 4.33 N. The horizontal component of the pseudo force m(g/2) directed down a 30° incline is (mg/2) cos30° = √3mg/4. The number carried forward is right but the written equation is false; a student who copies and evaluates it gets Fx = mg/4 and T = √26·mg/4 ≈ 12.7 N.",
+   "fix": "Fx = −(mg/2) cos30° = −√3mg/4, Fy = −mg − (mg/2) sin30° = −5mg/4"
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Adding only gravity and the pseudo force's along-incline component without resolving into ground-frame horizontal and vertical parts gives the wrong tension.",
+   "note": "The pseudo force lies entirely along the incline, and resolving gravity and the pseudo force along and normal to the incline (no ground-frame resolution at all) gives T = m√((g sin30° + a)² + (g cos30°)²) = 5√7 N and the angle 49.1° directly. The entry condemns a correct alternative method and names no wrong number.",
+   "fix": "Adding the magnitudes of gravity and the pseudo force as scalars, T = mg + ma = 15 N, instead of adding them as vectors (they are 60° apart), which gives T = 5√7 ≈ 13.2 N."
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "Independent solve in incline axes agrees with the solution's final answer (49.1°, 5√7 N). The ground-frame route is valid; the angle bookkeeping (19.1° backward from vertical + 30° forward tilt of the ceiling normal) is correct. common_mistakes[1] (30° − 19.1° = 10.9°) computes as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:02:22+05:30"
+ }
+}

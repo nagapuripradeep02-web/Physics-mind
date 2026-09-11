@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_79092bee",
+ "item_sha": "21644abb75edf65c73696782aef9eb6842a567bc5c4c8bb4954f7bb178ee5235",
+ "auditor_option": 2,
+ "auditor_value": "tanθ = 3μ, option (b)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently: F_up = mg(sinθ + μcosθ), F_hold = mg(sinθ − μcosθ); F_up = 2F_hold gives 3μcosθ = sinθ, tanθ = 3μ. Both common_mistakes entries reproduce the options they point at (dropping friction from F_hold gives tanθ = μ; dropping it from F_up gives tanθ = 2μ).",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:13:00+05:30"}
+}

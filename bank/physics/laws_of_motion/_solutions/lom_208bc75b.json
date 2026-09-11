@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_208bc75b",
+ "approach": "The rod is a rigid body in equilibrium under three forces: its own weight, the string tension, and the hinge reaction.",
+ "steps": [
+  {"text": "Mark the weight of the rod, Mg, acting vertically downward at its centre of mass, the midpoint of OA.", "equation": "Mg ↓ at the midpoint of OA"},
+  {"text": "Mark the string tension T at end A, directed along AB, pulling from A toward B, horizontally away from the wall.", "equation": "T → along AB at A"},
+  {"text": "Mark the hinge reaction at O. A hinge can push or pull in any direction, so it has two unknown components at O.", "equation": "Hₒ (horizontal) and Vₒ (vertical) at O",
+   "why_this_step": "A hinge is not a string, so its reaction is not restricted to one direction."},
+  {"text": "The free body diagram of the rod carries three forces in total.", "equation": "Mg at the midpoint, T at A along AB, and (Hₒ, Vₒ) at O"}
+ ],
+ "final_answer": {"option": null, "value": "Three forces act on the rod: weight Mg downward at its midpoint, string tension T at A along AB, and a hinge reaction at O with two unknown components Hₒ (horizontal) and Vₒ (vertical)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing the hinge reaction only along the rod's own length, as if it were a string; a hinge can push in any direction, not only along OA."},
+  {"option": null, "text": "Leaving out the weight of the rod, treating it as massless like the string; the rod has mass and its weight acts at its midpoint."}
+ ],
+ "concept_tags": ["free body diagram", "hinge reaction", "rigid body equilibrium"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-05", "at": "2026-09-11T11:00:00+05:30"}
+}

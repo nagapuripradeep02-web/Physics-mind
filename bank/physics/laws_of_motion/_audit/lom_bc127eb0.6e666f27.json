@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_bc127eb0",
+ "item_sha": "6e666f27bf810be23904e41fbd11a2f7a90a1e9dde9a2ef05abd391b9a8ad376",
+ "auditor_option": null,
+ "auditor_value": "m_A g = 2g sin30° + 2g ⇒ m_A = 3 kg",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees. Both hanging blocks are at rest so each string tension equals the hanging weight; the along-slope balance closes. Both common_mistakes reach the numbers they name (2 kg and 4 kg).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:59:28+05:30"
+ }
+}

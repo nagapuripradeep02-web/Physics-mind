@@ -1,0 +1,84 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_b2ffaf31",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Block A rests on top of block B, which itself rests on top of block C, and block C sits on the ground below. Sketch separate free-body diagrams showing the forces acting on each of the three blocks, A, B and C.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "block A rests on top of block B",
+   "block B rests on top of block C",
+   "block C rests on the ground"
+  ],
+  "figure": {
+   "description": "Three rectangular blocks stacked vertically: block A on top, block B in the middle, block C at the bottom, with block C resting on a horizontal hatched ground surface."
+  }
+ },
+ "solution": {
+  "approach": "Take each block on its own, and list its weight plus the contact push from whatever touches it above and below.",
+  "steps": [
+   {
+    "text": "Block A sits only on block B. Two forces act on A: its own weight W_A downward, and the normal reaction from B, N₁, upward.",
+    "equation": "N₁ = W_A"
+   },
+   {
+    "text": "Block B sits on block C and carries block A on top. Three forces act on B: its own weight W_B downward, the push from A on B (reaction to N₁, so it is N₁ downward), and the normal reaction from C, N₂, upward.",
+    "equation": "N₂ = W_A + W_B",
+    "why_this_step": "By Newton's third law, if B pushes A up with N₁, A pushes B down with the same N₁."
+   },
+   {
+    "text": "Block C sits on the ground and carries B (and, through B, A) on top. Three forces act on C: its own weight W_C downward, the push from B on C (reaction to N₂, so it is N₂ downward), and the normal reaction from the ground, N₃, upward.",
+    "equation": "N₃ = W_A + W_B + W_C"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "A: weight W_A down, reaction N₁ = W_A up from B. B: weight W_B down, reaction N₁ down (from A), reaction N₂ = W_A + W_B up from C. C: weight W_C down, reaction N₂ down (from B), ground reaction N₃ = W_A + W_B + W_C up."
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Giving block C's ground reaction as only W_C, forgetting it also carries the weight of A and B resting on top of it."
+   },
+   {
+    "option": null,
+    "text": "Leaving out the downward push that each upper block exerts on the block beneath it."
+   }
+  ],
+  "concept_tags": [
+   "free body diagram",
+   "Newton's third law",
+   "normal reaction"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "d571430d544d494f0529b29a74e6ae0f6762688dc2ccc3ceb55275514ccb9d39"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "74c083e10aadad2ef4f7a83acaeda61e6886203291649da89189f21e3c62f855",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:15:00+05:30"
+ }
+}

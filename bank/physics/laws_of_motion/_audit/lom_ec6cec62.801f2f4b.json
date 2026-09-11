@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ec6cec62",
+ "item_sha": "801f2f4b46754626fd75b1abde1c156709fbc408ead0414d18744eec52a09bc5",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false, Reason true (option d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Same question as lom_ec6cec62.28588808 but this copy reaches option 4 correctly. Two non-inertial frames generally have different accelerations, so S2 is not inertial as seen from S1; uniform motion alone does not make a frame non-inertial. Mistake entry points at option 1 and describes a real error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:58:42+05:30"
+ }
+}

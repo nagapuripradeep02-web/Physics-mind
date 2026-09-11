@@ -1,0 +1,203 @@
+{
+ "wave": 1,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 4,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_7a601c42",
+   "question_text": "Lined up in contact with each other on a smooth horizontal surface, from left to right, are three blocks: a 1 kg block, a 4 kg block, and a 2 kg block. A 120 N push acts on the 1 kg block from its left side, directed rightward into the row. A 50 N push acts on the 2 kg block from its right side, directed leftward into the row.\n(a) Find the acceleration of the three-block system.\n(b) Find the size of the normal contact force between the 1 kg block and the 4 kg block.\n(c) Find the net force acting on the 2 kg block.",
+   "options": [],
+   "figure_description": "On a smooth horizontal surface, three blocks touch each other in a row: 1 kg on the left, 4 kg in the middle, 2 kg on the right. A horizontal force of 120 N is applied to the outer (left) face of the 1 kg block, pointing right, into the row. A horizontal force of 50 N is applied to the outer (right) face of the 2 kg block, pointing left, into the row."
+  },
+  {
+   "question_id": "lom_644a7542",
+   "question_text": "Four forces F₁, F₂, F₃ and F₄ act at a single point O, as drawn in a force diagram. Write the x-component and the y-component of each of the four forces, measured along the ox and oy axes shown in the figure.",
+   "options": [],
+   "figure_description": "Four force vectors are drawn from a common point O. A horizontal reference line runs through O; ox points to the right along it and oy points straight up. F₁ = 4 N points up and to the right, at 30° above the +x direction. F₂ = 4 N points up and to the left, at 60° above the −x direction (the 60° is measured from the leftward horizontal, so F₂ is 30° from the +y direction). F₄ = 4 N points horizontally to the right, along +x. F₃ = 6 N points straight down along −y."
+  },
+  {
+   "question_id": "lom_744442e6",
+   "question_text": "Inside a box car that starts from rest (v = 0) and keeps a steady acceleration of 5 m/s² along î, its own forward direction (take g = 10 m/s²), a 2 kg object is released on the car's flat, frictionless floor. At that instant the object already carries a sideways speed of 10 m/s along k̂, the horizontal direction at right angles to î in the floor plane (ĵ stays vertical, pointing up).\n(a) Explain what path the object follows as seen by a passenger riding inside the car.\n(b) Explain what path the object follows as seen by an observer standing on the ground outside.",
+   "options": [],
+   "figure_description": "A rectangular car body sits on wheels on the ground. Inside it, three axes are drawn from a point: î points horizontally in the direction the car speeds up (forward), ĵ points straight up, and k̂ points horizontally out of that vertical plane, at right angles to î (sideways to the car's motion). Outside the car, an arrow marked a = 5 m/s² î shows its acceleration, and v = 0 marks its starting speed."
+  },
+  {
+   "question_id": "lom_6ce8778b",
+   "question_text": "A body sliding down a rough inclined plane set at 45° takes twice as long to reach the bottom as the same body sliding down a smooth (frictionless) 45° inclined plane of the same length. What is the coefficient of kinetic friction between the body and the rough plane?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "1/3"
+    },
+    {
+     "label": "(b)",
+     "text": "3/4"
+    },
+    {
+     "label": "(c)",
+     "text": "√(3/4)"
+    },
+    {
+     "label": "(d)",
+     "text": "√(2/3)"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_778d98f2",
+   "question_text": "In the arrangement shown, block A has mass 4 kg and block B has mass 5 kg. Find the acceleration of each block.",
+   "options": [],
+   "figure_description": "A pulley P₁ is fixed to the ceiling. A single light string passes over P₁: its right end hangs straight down to block A (4 kg). Its left end goes down, passes UNDER a small movable pulley P₂ (wrapping round its lower half) and comes back up to be tied to the fixed support of P₁, so P₂ hangs in a loop of that string with two vertical strands above it. Block B (5 kg) hangs directly from the axle of P₂ by a short string. Pulleys and strings are light and frictionless. When B moves down by x, A moves up by 2x."
+  },
+  {
+   "question_id": "lom_7ba21240",
+   "question_text": "On a horizontal road with friction present, the coefficient of friction between a car's tyres and the road is μ = 0.4. The car starts at rest, speeds up, then slows back down to rest, and in doing so covers a total distance of 400 m. Work out the shortest possible time in which this 400 m distance can be covered.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_755d5654",
+   "question_text": "Block A (1 kg) and block B (2 kg) start out side by side on a level floor, each tied to one end of a single cord that loops over a smooth, weightless pulley mounted above them; at the outset the cord has no slack and no tension. From time t = 0 onward, a force F = 20t newtons (with t measured in seconds) pulls the pulley straight upward. Taking g = 10 m/s², answer the following, noting that A lifts off the floor before B does.\n(a) Find the speed of block A at the moment block B leaves the floor.\n(b) Find how high the pulley has moved upward by that same moment.",
+   "options": [],
+   "figure_description": "A pulley hangs freely above the floor; force F = 20t pulls straight up on its axle. A single cord passes over the pulley, one end running straight down to block A and the other straight down to block B. Blocks A and B begin resting side by side on the floor, each directly under its own side of the pulley."
+  },
+  {
+   "question_id": "lom_67c45fd3",
+   "question_text": "Assertion: Looking at the arrangement shown, the friction force that block B exerts on block A will always point toward the right, in every case. Reason: A friction force always acts against the relative sliding (or tendency to slide) between the two touching surfaces.",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion."
+    },
+    {
+     "label": "(b)",
+     "text": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion."
+    },
+    {
+     "label": "(c)",
+     "text": "If Assertion is true, but the Reason is false."
+    },
+    {
+     "label": "(d)",
+     "text": "If Assertion is false but the Reason is true."
+    }
+   ],
+   "figure_description": "Block A sits on top of block B, and block B rests on the ground below it. The ground under B is smooth (frictionless), so there is no friction between B and the ground. A force F₁ is applied directly to block A, pointing horizontally to the left. A force F₂ is applied directly to block B, pointing horizontally to the right. Friction can act between A and B at their contact surface."
+  },
+  {
+   "question_id": "lom_6546a1b6",
+   "question_text": "A round ball of weight w touches a smooth, vertical wall at a single point on its surface, labelled A. A cord runs from a second point on the ball, labelled B, up to a point on the wall, labelled C, and this cord holds the ball in place. Produce a free-body force diagram for the ball, showing every force acting on it.",
+   "options": [],
+   "figure_description": "A vertical wall stands on the left, smooth (frictionless). A ball touches this wall at one point, A, on its surface. A cord runs from a second point on the ball's surface, B (near the top of the ball, on the side away from A), up to the wall, attaching at point C, which is above and to the side of A. The cord holds the ball against gravity."
+  },
+  {
+   "question_id": "lom_79092bee",
+   "question_text": "To push a body up a rough incline right at the point where it just starts to move takes exactly twice the force that would just stop that same body from sliding down the incline. Given the friction coefficient μ between body and incline, and θ as the incline's angle with the horizontal, what is tan θ in terms of μ?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "μ"
+    },
+    {
+     "label": "(b)",
+     "text": "3μ"
+    },
+    {
+     "label": "(c)",
+     "text": "2μ"
+    },
+    {
+     "label": "(d)",
+     "text": "0.5 μ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_6512249a",
+   "question_text": "A block of mass 2 kg is held against a vertical wall by a horizontal force F = 20 N pushing it into the wall, as pictured. The static friction coefficient between the block and the wall is μₛ = 0.8, and the kinetic friction coefficient is μₖ = 0.6. Taking g = 10 m/s², work out the block's acceleration and the friction force that acts on it.",
+   "options": [],
+   "figure_description": "A 2 kg block is pressed against a vertical wall by a horizontal force F = 20 N pointing toward the wall. The wall provides friction on the block with μₛ = 0.8 (static) and μₖ = 0.6 (kinetic)."
+  },
+  {
+   "question_id": "lom_70509298",
+   "question_text": "A block of mass m rests on the smooth inclined face (angle θ) of a wedge of mass M, which itself sits on a smooth horizontal floor. A horizontal force F is applied to the wedge, pushing the wedge and block together.\n(a) Find the value of F for which the block does not slide relative to the wedge.",
+   "options": [],
+   "figure_description": "A wedge of mass M rests on a smooth horizontal floor; its inclined face rises at angle θ to the horizontal on the right side. A block of mass m sits on this incline. A horizontal force F is applied to the wedge at its vertical face, pushing the wedge (and, through the incline, the block) sideways."
+  },
+  {
+   "question_id": "lom_77397fdd",
+   "question_text": "In the setup shown, block m₁ rests on the sloped face of a frictionless wedge, while a second block, m₂, hangs in the air and is η times as heavy as m₁; the wedge's slope makes an angle θ with the ground. Every pulley and every string in the system is taken to be massless, and no surface exposes any friction. Work out the acceleration of block m₂.",
+   "options": [],
+   "figure_description": "A wedge rests on the ground. Its sloped face rises from the lower-left corner, where it makes angle θ with the ground, up to the top-right corner of the wedge; its right face is vertical. A small pulley is fixed at the top-right corner of the wedge. Block m₁ rests on the sloped face. A cord is tied to block m₁, runs up the slope parallel to the incline, passes over the top of the fixed corner pulley, and drops vertically down just outside the vertical face to the axle of a second, smaller pulley. This second pulley is not fixed to anything; it hangs in the air beside the vertical face, held up only by that cord. A second cord passes over the top of this hanging pulley, and both of its segments run downward: the left segment goes straight down to a small bracket fixed to the wedge at the foot of the vertical face, at ground level; the right segment goes straight down to block m₂, which hangs freely in the air to the right of the wedge. Block m₂ has mass η times m₁. All pulleys and cords are massless, and every surface is frictionless."
+  },
+  {
+   "question_id": "lom_660c1d75",
+   "question_text": "A square ABCD has side length 2 m, with O at its centre. Four forces act along the sides of the square, as described below. Determine the moment each force produces about each of the following axes, both perpendicular to the square's plane:\n(a) A line through corner A.\n(b) A line through the centre O.",
+   "options": [],
+   "figure_description": "A square ABCD of side 2 m: D at the top-left corner, C at the top-right corner, A at the bottom-left corner, B at the bottom-right corner, and O at the centre. A 4 N force acts along the top side, directed from C toward D (leftward). A 3 N force acts along the left side, directed from A toward D (upward). A 5 N force acts along the right side, directed from C toward B (downward). A 2 N force acts along the bottom side, directed from A toward B (rightward)."
+  },
+  {
+   "question_id": "lom_6c463010",
+   "question_text": "A triangular wedge of mass m₂ = 4 kg rests on a frictionless horizontal floor; its sloping face makes 30° with the floor. A small block of mass m₁ = 1 kg sits on that frictionless slope. A light string tied to the wedge passes over a light pulley fixed at the edge of the floor and hangs down to a block of mass M. Find the mass M for which the small block m₁ does not slide relative to the wedge.",
+   "options": [],
+   "figure_description": "A triangular wedge of mass m2 = 4 kg rests on a horizontal floor. The wedge's vertical face is on the left. Its sloping face runs from the top of that vertical face down to the right, meeting the floor at the wedge's bottom-right tip; the angle between the sloping face and the floor, marked at this bottom-right tip, is 30 degrees. A small block of mass m1 = 1 kg rests on the sloping face, about halfway along it. No string is attached to m1. A small pulley is fixed at the right-hand end of the floor surface, just beyond the bottom-right tip of the wedge, at floor level. A light string is tied to the wedge at its bottom-right tip, runs the very short horizontal distance to the pulley, passes over the pulley, and then hangs straight down past the edge of the floor to a block of mass M, which hangs freely in the air below the level of the floor. Nothing else touches M. All surfaces are frictionless; the string and pulley are light."
+  },
+  {
+   "question_id": "lom_7f786374",
+   "question_text": "Two blocks lie one on top of the other on a frictionless floor: a 1 kg block sits on a 2 kg block. The friction coefficient between the two blocks themselves is μ = 0.4. The 1 kg block starts out moving at 2 m/s and the 4 kg block starts out moving at 8 m/s, both toward the same side, as pictured. Take g = 10 m/s² and answer the following.\n(a) Find the time after which the two blocks stop sliding relative to each other.\n(b) Find the common speed the two blocks share at that instant.\n(c) Find how far each block, the 1 kg block and the 2 kg block, has travelled by that instant.",
+   "options": [],
+   "figure_description": "A 1 kg block sits on top of a 2 kg block, which itself rests on a frictionless (smooth) floor. The 1 kg block moves to the right at 2 m/s and the 2 kg block moves to the right at 8 m/s. Friction, with coefficient μ = 0.4, acts only between the 1 kg block and the 2 kg block; there is no friction between the 2 kg block and the floor."
+  },
+  {
+   "question_id": "lom_6f2ba92f",
+   "question_text": "A block of mass m rests on a horizontal, rough surface whose angle of friction is φ. Someone pulls the block using a force F directed at an angle θ above the horizontal. What is the smallest value F can take and still move the block?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "mg sinφ / cos(θ − φ)"
+    },
+    {
+     "label": "(b)",
+     "text": "mg cosφ / cos(θ − φ)"
+    },
+    {
+     "label": "(c)",
+     "text": "mg tanφ"
+    },
+    {
+     "label": "(d)",
+     "text": "mg sinφ"
+    }
+   ],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_61a99ab4",
+   "question_text": "A box car begins at rest (v = 0) and holds a steady acceleration of 5 m/s² along its own line of travel, î (take g = 10 m/s²). Across the car's rough floor, a 2 kg object is given an initial push of 10 m/s along this same î direction; the coefficient of sliding (kinetic) friction between the object and the floor is 0.3, while their coefficient of static friction is known to be above 0.5. Work out how the object moves relative to the car.",
+   "options": [],
+   "figure_description": ""
+  },
+  {
+   "question_id": "lom_6204ca3c",
+   "question_text": "A uniform horizontal rod OA, of mass 4 kg and length 2 m, is hinged to a wall at end O. A massless string AB supports end A, where B is a point on the wall above O; the string meets the rod at A making an angle of 60° with the rod. Taking g = 10 m/s², work out the following.\n(a) Determine the tension in the string AB.\n(b) Determine the net force the hinge exerts on the rod at O.",
+   "options": [],
+   "figure_description": "A vertical wall on the left with a rod OA hinged at O, extending horizontally to the right to end A, length 2 m. A string runs from A up to a point B on the wall, above O, making a 60° angle with the rod at A."
+  },
+  {
+   "question_id": "lom_6c8b046b",
+   "question_text": "A rigid support S holds two blocks in a vertical line using two inextensible wires, each 1 m long: the upper wire (negligible mass) hangs from S to a 2.9 kg block, and the lower wire (uniformly distributed mass 0.2 kg) hangs from that 2.9 kg block down to a 1.9 kg block below it. The entire system — blocks, wires and support — accelerates upward at 0.2 m/s². Taking g = 9.8 m/s², answer the following.\n(a) Find the tension at the midpoint of the lower wire.\n(b) Find the tension at the midpoint of the upper wire.",
+   "options": [],
+   "figure_description": "A horizontal rigid support S at the top. From S, an upper (massless) wire hangs down to a 2.9 kg block. From that 2.9 kg block, a lower wire of mass 0.2 kg hangs down further to a 1.9 kg block at the bottom."
+  },
+  {
+   "question_id": "lom_743b71ad",
+   "question_text": "Consider the same setup as before: a 2 kg block rests on a rough horizontal floor, and a horizontal force F = 2t newtons (t in seconds) is applied to it, with g = 10 m/s². Redo that problem, but now replace the single friction coefficient with two separate values: static friction coefficient μₛ = 0.6 and kinetic friction coefficient μₖ = 0.4.\n(a) Sketch how the block's acceleration changes with time.\n(b) Work out the friction force on the block at t = 2 s and at t = 8 s.",
+   "options": [],
+   "figure_description": ""
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_8bc2f0a8",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block and a 1 kg block rest on a smooth horizontal surface, joined by a string AB of mass 1 kg, with end A attached to the 2 kg block and end B attached to the 1 kg block. A horizontal force F of 8 N pulls the 1 kg block away from the 2 kg block. Find the string tension at end A and the string tension at end B.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "horizontal surface is smooth (frictionless)",
+   "string AB has mass 1 kg (not massless)",
+   "end A of string attached to the 2 kg block, end B attached to the 1 kg block",
+   "F = 8 N applied horizontally on the 1 kg block, pulling it away from the 2 kg block"
+  ],
+  "figure": {
+   "description": "On a horizontal frictionless surface: a 2 kg block on the left connected by string end A to string end B on a 1 kg block to its right; the force F = 8 N acts horizontally on the 1 kg block, pointing further right (away from the 2 kg block)."
+  }
+ },
+ "solution": {
+  "approach": "Find the common acceleration of the whole three-part system, then apply Newton's second law to each end block to get the tension at each end of the string.",
+  "steps": [
+   {
+    "text": "Find the acceleration of the whole system: the two blocks plus the string.",
+    "equation": "a = F/(m_A+m_B+m_string) = 8/(2+1+1) = 2 m/s²"
+   },
+   {
+    "text": "Apply Newton's second law to the 2 kg block alone; only the tension at A pulls it.",
+    "equation": "T_A = m_A×a = 2×2 = 4 N"
+   },
+   {
+    "text": "Apply Newton's second law to the 1 kg block alone; F pulls it forward and the tension at B pulls it back.",
+    "equation": "F − T_B = m_1×a → T_B = 8 − 1×2 = 6 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "T_A = 4 N, T_B = 6 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the string as massless makes the tension equal at both ends, giving a = 8/3 m/s² and one tension of 5.33 N instead of the two different values 4 N and 6 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "connected blocks",
+   "string with mass"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "25dc78be42f3402203e7708c412398fac5e4e7a2953abb927d3cdf1b8c9dfc5f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "163adb14bceb1c7222c171eb9c92badff7b85e1082fddb0c9870e744949b6dc9",
+  "audited_by": "W01-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:59:00+05:30"
+ }
+}

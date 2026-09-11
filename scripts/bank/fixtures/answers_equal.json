@@ -545,6 +545,90 @@
    "kind": "auto",
    "expect": false,
    "why": "two values on each side, neither matches"
+  },
+  {
+   "a": "(a) vB = vA cosθ, (b) T = 40/3 N",
+   "b": "(a) v_B = v_A cosθ. (b) T = 40/3 N ≈ 13.33 N",
+   "kind": "auto",
+   "expect": true,
+   "why": "a letter subscript written with or without the underscore is the same symbol"
+  },
+  {
+   "a": "vB = vA cosθ",
+   "b": "v_B = v_A sinθ",
+   "kind": "auto",
+   "expect": false,
+   "why": "same symbols, different function"
+  },
+  {
+   "a": "vB = vA cosθ",
+   "b": "v₂ = v₁ cos θ",
+   "kind": "auto",
+   "expect": null,
+   "why": "different symbol names for the same quantities cannot be called different by the comparator: undecided, the judge reads it"
+  },
+  {
+   "a": "v = u + at",
+   "b": "v = u + 2at",
+   "kind": "auto",
+   "expect": false,
+   "why": "same symbols, different expression"
+  },
+  {
+   "a": "F = (M+m) g / μ",
+   "b": "F_min = (M + m) g / μ (block needs a ≥ g/μ so that μN = μma ≥ mg)",
+   "kind": "auto",
+   "expect": true,
+   "why": "a bracketed explanation after the value is working, not a second reading"
+  },
+  {
+   "a": "F = (M+m) g / μ",
+   "b": "F_min = (M − m) g / μ (block needs a ≥ g/μ so that μN = μma ≥ mg)",
+   "kind": "auto",
+   "expect": false,
+   "why": "the explanation dropped, the values still differ"
+  },
+  {
+   "a": "(a) Move up. (b) Distance remains constant.",
+   "b": "(a) The bananas rise, moving exactly in step with the monkey. (b) The distance remains constant",
+   "kind": "auto",
+   "expect": null,
+   "why": "a two-word reading shares no vocabulary with a sentence: undecided, not different"
+  },
+  {
+   "a": "Both downwards",
+   "b": "The tension acts along the string toward the pulley and the weight acts vertically",
+   "kind": "auto",
+   "expect": null,
+   "why": "same rule, single reading"
+  },
+  {
+   "a": "10 N (directed to the left)",
+   "b": "10 N (directed to the right)",
+   "kind": "auto",
+   "expect": null,
+   "why": "same value, opposite words in the two brackets: the judge reads it, never True"
+  },
+  {
+   "a": "2 m/s² (the block moves up the incline)",
+   "b": "2 m/s² (the block slides down the incline)",
+   "kind": "auto",
+   "expect": null,
+   "why": "same rule"
+  },
+  {
+   "a": "10 N (directed to the left)",
+   "b": "10 N (directed towards the left wall)",
+   "kind": "auto",
+   "expect": true,
+   "why": "brackets agree: the values compare"
+  },
+  {
+   "a": "a₂ = −7a₁ (|a₂| = 7|a₁|, directed oppositely — block 2 accelerates seven times as fast as block 1, in the opposite sense)",
+   "b": "a₂ = −7a₁ (block 2's acceleration is 7 times block 1's acceleration, in the opposite direction)",
+   "kind": "auto",
+   "expect": true,
+   "why": "the bracketed working holds commas; the bare values are compared before any list split"
   }
  ]
 }

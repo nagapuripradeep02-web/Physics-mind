@@ -1,0 +1,55 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_9954af95",
+ "approach": "Compare the weight component along the incline with the applied force and the maximum static friction to see if the block moves, then find kinetic friction and acceleration.",
+ "steps": [
+  {
+   "text": "Take g = 10 m/s², so W = 20 N. Resolve the weight along and perpendicular to the incline: W sin37° = 20×0.6 = 12 N down the slope and W cos37° = 20×0.8 = 16 N into the slope.",
+   "equation": "W sin37° = 12 N, W cos37° = 16 N"
+  },
+  {
+   "text": "The normal reaction equals the perpendicular component, since nothing else acts perpendicular to the incline.",
+   "equation": "R = 16 N"
+  },
+  {
+   "text": "Find the maximum static friction and compare it with the unbalanced force before friction is included.",
+   "equation": "f(max static) = μₛR = 0.4×16 = 6.4 N; unbalanced force = 12 − 4 = 8 N"
+  },
+  {
+   "text": "Since 8 N exceeds 6.4 N, friction cannot keep the block still, so it slides down and kinetic friction acts up the incline.",
+   "equation": "f(kinetic) = μₖR = 0.3×16 = 4.8 N"
+  },
+  {
+   "text": "Find the acceleration from the net force along the incline.",
+   "equation": "a = (12 − 4 − 4.8)/2 = 1.6 m/s², directed down the incline"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) friction = 4.8 N, kinetic, acting up the incline; (b) the block moves down the incline with acceleration 1.6 m/s²"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Comparing only the weight component (12 N) with the maximum static friction, without subtracting the 4 N applied force, still concludes sliding but gives a = 3.6 m/s²."
+  },
+  {
+   "option": null,
+   "text": "Adding the applied 4 N to the weight component instead of subtracting it gives an unbalanced force of 16 N and a = 5.6 m/s²."
+  }
+ ],
+ "concept_tags": [
+  "friction on an incline",
+  "resolving weight",
+  "kinetic friction"
+ ],
+ "difficulty": "medium",
+ "mistake_type_hint": "calculation",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_030eca59",
+ "item_sha": "0788005a14d3aa7a7e05f0f7bdad14e16b8225f047b552ee70ee554ae1251576",
+ "auditor_option": null,
+ "auditor_value": "2F at a: +2Fa anticlockwise; F at 2a: 2Fa clockwise (anticlockwise moment -2Fa); 3F at B: 3F sin30 x 4a = +6Fa anticlockwise",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "since all three look similar at first glance",
+   "note": "Vague cause stated with an idiom (at first glance); it does not name the actual error, which is assigning the sense of rotation without checking the direction of the force.",
+   "fix": "Treating the downward force F as anticlockwise like the other two instead of clockwise, by fixing the sense of rotation from the position of the force alone and not from its direction."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. Each moment checked as r x F with A at the origin and the rod along +x: (a,0) x (0,2F) = +2Fa; (2a,0) x (0,-F) = -2Fa; (4a,0) x (-3F cos30, 3F sin30) = +6Fa. The first common-mistake entry (12Fa) follows from its cause.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:04:15+05:30"
+ }
+}

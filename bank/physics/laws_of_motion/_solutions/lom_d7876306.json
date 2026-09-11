@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_d7876306",
+ "approach": "Write the rope tension while the monkey slides down with acceleration a, then find the smallest a that keeps this tension at or below the rope's breaking strength.",
+ "steps": [
+  {"text": "If the monkey grips the rope and stays still, the tension equals its full weight, which is more than the rope's breaking strength, so the monkey must slide down to lower the tension.", "equation": "breaking strength = (2/3) mg"},
+  {"text": "Write Newton's second law for the monkey sliding down with acceleration a: weight acts down, tension acts up.", "equation": "mg − T = ma ⇒ T = m(g − a)"},
+  {"text": "The rope survives only while its tension stays at or below the breaking strength.", "equation": "m(g − a) ≤ (2/3) mg"},
+  {"text": "Solve this inequality for the smallest acceleration that keeps the rope from breaking.", "equation": "g − a ≤ (2/3)g ⇒ a ≥ g/3"}
+ ],
+ "final_answer": {"option": 3, "value": "g/3"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Setting the tension to zero instead of to the breaking strength, giving a = g."},
+  {"option": 1, "text": "Using the fraction 2/3 directly as the coefficient of g without solving the inequality, giving a = 2g/3."}
+ ],
+ "concept_tags": ["Newton's second law", "tension", "breaking strength"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_02761e70",
+ "item_sha": "5141bc4a225f9ecfa6da4fb841eb63ddbddc03f86e347f505be58f078ffced4c",
+ "auditor_option": null,
+ "auditor_value": "aA + 2aB + aC = 0 with all three measured downward (equivalently aB = -(aA + aC)/2)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. String length = yA + 2yB + yC + constant (the span between the fixed pulleys and the pulley wraps are constant), differentiated twice. Both common-mistake entries are genuine constraint errors.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:00:02+05:30"
+ }
+}

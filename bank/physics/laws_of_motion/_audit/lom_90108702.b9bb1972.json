@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_90108702",
+ "item_sha": "b9bb1972a83c905c8dd4376a9bd3ba213b5b311290b8a0db91ffc9b59ba0d7ca",
+ "auditor_option": 1,
+ "auditor_value": "mu = (3/4) tan(theta): sin(theta) = 4(sin(theta) - mu cos(theta))",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Agrees with my derivation. The common_mistakes entry's cause (a_rough = g sin(theta)/2) does give mu = (1/2) tan(theta), which is option (d) = option 4 as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:58:31+05:30"
+ }
+}

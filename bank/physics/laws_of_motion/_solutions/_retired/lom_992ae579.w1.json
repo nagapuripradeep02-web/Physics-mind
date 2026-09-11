@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_992ae579",
+ "approach": "In the incline's accelerating frame, add the pseudo force to gravity and take the component of both along the slope; that total is the needed friction force.",
+ "steps": [
+  {"text": "In the incline's frame, a pseudo force of magnitude ma acts on the block, directed opposite to the incline's acceleration, that is backward and down toward the low end of the slope.", "equation": "pseudo force = ma, horizontal, opposite to the incline's acceleration"},
+  {"text": "Resolve gravity's component along the incline, down the slope.", "equation": "mg sin37° = mg(3/5)"},
+  {"text": "Resolve the pseudo force's component along the incline; since it points toward the low end, it also adds down the slope.", "equation": "ma cos37° = ma(4/5)"},
+  {"text": "For the block to stay still relative to the incline, friction must balance the sum of these two down-slope components, acting up the slope.", "equation": "f = mg sin37° + ma cos37° = m(g·3/5 + a·4/5)"},
+  {"text": "Substitute g = 10 m/s² and a = 3 m/s².", "equation": "f = m(6 + 2.4) = 8.4m N, directed up the incline"}
+ ],
+ "final_answer": {"option": null, "value": "f = 8.4m N, directed up the incline"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Ignoring the pseudo force from the incline's own acceleration and using only gravity gives f = 0.6mg = 6m N."},
+  {"option": null, "text": "Swapping sin37° and cos37° between the gravity and pseudo-force terms gives f = m(g×4/5 + a×3/5) = 9.8m N, the wrong combination."}
+ ],
+ "concept_tags": ["non-inertial frame", "pseudo force", "friction on an incline"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

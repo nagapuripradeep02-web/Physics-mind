@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_39a50e90",
+ "item_sha": "56ea25ef1120f34f178e7b36c758c5b85fc247bbb9f409647d480c543bf33413",
+ "auditor_option": null,
+ "auditor_value": "μ_min = 1/(2 tan 60°) = 1/(2√3) = √3/6 ≈ 0.29 (independent of the ladder's mass, length and g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Torque about the foot gives N_wall = W/(2 tan θ); friction must equal N_wall and the ground normal equals W, so μ ≥ 1/(2 tan θ). Both common-mistake values (1/tan 60° and 1/(2 sin 60°), each 0.58) follow from their stated causes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:27:08+05:30"
+ }
+}

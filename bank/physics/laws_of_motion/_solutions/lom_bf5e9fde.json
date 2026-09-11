@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_bf5e9fde",
+ "approach": "Find the string tension from the force balance where F is applied, then use its component across the centreline to get each particle's acceleration toward the other.",
+ "steps": [
+  {"text": "At the point where F is applied, the same tension T pulls back along each string segment, each at 30° to the centreline. Since this point carries no mass, these forces plus F must balance.", "equation": "F = 2T cos30° ⇒ T = F/(2cos30°) = F/√3"},
+  {"text": "For one particle, only the string tension T acts on it, directed 30° from the centreline. The component of this tension across the centreline pulls the particle toward the other one.", "equation": "component across centreline = T sin30°"},
+  {"text": "Divide by the mass to get the acceleration of that particle toward the other one.", "equation": "a = T sin30°/m = (F/√3)(1/2)/m = F/(2√3 m)"}
+ ],
+ "final_answer": {"option": 2, "value": "(1/(2√3))(F/m)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 1, "text": "Using the full 60° angle between the two string segments in place of the 30° angle each segment makes with the centreline gives (√3/2)(F/m)."},
+  {"option": null, "text": "Reporting the acceleration along the centreline (toward F) instead of across it toward the other particle gives T cos30°/m = F/(2m)."}
+ ],
+ "concept_tags": ["Newton's second law", "resolving forces", "string tension"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:08:00+05:30"}
+}

@@ -1,0 +1,86 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_2d62df34",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A ramp rises from level ground at 60°, the angle being marked at the bottom vertex where the ramp starts. At one point on the ramp's surface four forces act together: an unknown force F directed up along the ramp (parallel to the slope), an unknown force R directed perpendicular to the ramp's surface, away from it, a known force of 3 N pulling horizontally to the left, and a known force of 10 N pulling straight downward. These four forces balance exactly. Work out the values of R and F.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "incline makes a 60° angle with the horizontal ground",
+   "horizontal force of 3 N, directed to the left",
+   "vertical force of 10 N, directed downward",
+   "force F acts along the incline's upward slope direction",
+   "force R acts up and to the left, steeper than F",
+   "the four forces are in equilibrium"
+  ],
+  "figure": {
+   "description": "A ramp rises from a vertex at the lower left toward the upper right, making the marked angle of 60° with the horizontal ground. At one point on the ramp's surface four forces act: F points up the ramp, along the surface toward the upper right; R points perpendicular to the ramp's surface, away from it (up and to the left); a 3 N force points horizontally to the left; a 10 N force points vertically downward."
+  }
+ },
+ "solution": {
+  "approach": "Resolve F, along the incline, and R, perpendicular to it, into horizontal and vertical parts, and balance them against the 3 N and 10 N forces.",
+  "steps": [
+   {
+    "text": "Write the directions of F and R measured from the horizontal ground; F runs along the incline and R stands perpendicular to it.",
+    "equation": "F at 60° above horizontal, R at 150° above horizontal"
+   },
+   {
+    "text": "Balance the horizontal forces at the point: the 3 N force pulls left, while F and R each contribute a horizontal part.",
+    "equation": "F cos60° − R sin60° = 3"
+   },
+   {
+    "text": "Balance the vertical forces at the point: the 10 N force pulls down, while F and R each contribute a vertical part.",
+    "equation": "F sin60° + R cos60° = 10"
+   },
+   {
+    "text": "Solve the two equations together for F and R.",
+    "equation": "F = 3/2 + 5√3 ≈ 10.16 N, R = 5 − (3√3)/2 ≈ 2.40 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "F ≈ 10.16 N, R ≈ 2.40 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Matching F directly to the 3 N force and R directly to the 10 N force, without resolving their actual 60° and 150° directions, gives F = 3 N and R = 10 N."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of concurrent forces",
+   "resolving forces",
+   "incline"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "125342d76b7a0147c15fae30fbd0674228d44400aa58d43b84e8260e3ad7c333"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "418582c421858bbcde8078ba5635c8c824f643a65921d8d607220f37aa95724c",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-09",
+  "at": "2026-09-11T14:34:00+05:30"
+ }
+}

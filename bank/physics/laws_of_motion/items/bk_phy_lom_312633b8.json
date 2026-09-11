@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_312633b8",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "conceptual",
+ "key_kind": "words",
+ "figure_required": false,
+ "question": {
+  "text": "Inside a box car that starts from rest (v = 0) and keeps a steady acceleration of 5 m/s² along î, its own forward direction (take g = 10 m/s²), a 2 kg object is released on the car's flat, frictionless floor. At that instant the object already carries a sideways speed of 10 m/s along k̂, the horizontal direction at right angles to î in the floor plane (ĵ stays vertical, pointing up).",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Explain what path the object follows as seen by a passenger riding inside the car."
+   },
+   {
+    "label": "b",
+    "asks": "Explain what path the object follows as seen by an observer standing on the ground outside."
+   }
+  ],
+  "conditions": [
+   "car floor has no friction",
+   "car starts from rest, v = 0",
+   "car keeps a constant acceleration of 5 m/s² along î",
+   "object's initial speed is 10 m/s along k̂, sideways to the car's direction of travel",
+   "g = 10 m/s²",
+   "î, ĵ, k̂ form a right-handed set: î along the car's acceleration, ĵ vertical, k̂ horizontal and transverse"
+  ],
+  "figure": {
+   "description": "A rectangular car body sits on wheels on the ground. Inside it, three axes are drawn from a point: î points horizontally in the direction the car speeds up (forward), ĵ points straight up, and k̂ points horizontally out of that vertical plane, at right angles to î (sideways to the car's motion). Outside the car, an arrow marked a = 5 m/s² î shows its acceleration, and v = 0 marks its starting speed."
+  }
+ },
+ "solution": {
+  "approach": "In the ground frame the frictionless floor exerts no force, so the object travels straight; the car's own acceleration bends this into a curved path relative to the car.",
+  "steps": [
+   {
+    "text": "In the ground frame, the frictionless floor gives the object no horizontal force in any direction, so it keeps its initial transverse velocity forever, moving in a straight line at constant speed.",
+    "equation": "ground frame: straight line at constant 10 m/s along k̂, no motion along î"
+   },
+   {
+    "text": "In the car's frame, the object starts with zero velocity along î (the car's direction of travel) but still feels the backward pseudo force from the car's forward acceleration, so its position along î grows backward starting from rest.",
+    "equation": "x_rel(t) = −½(5)t² = −2.5t²"
+   },
+   {
+    "text": "Along k̂, the car's acceleration does not affect the object's transverse motion, so it still moves at constant velocity in that direction relative to the car.",
+    "equation": "z_rel(t) = 10t"
+   },
+   {
+    "text": "Combining these, the car's frame sees the object trace a parabola, curving backward relative to the car's forward direction as it moves along k̂.",
+    "equation": "x_rel = −½(5)(z_rel/10)², a parabolic path"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) in the car's frame the object traces a parabola, curving backward along î while moving at constant speed along k̂; (b) in the ground frame the object moves in a straight line at constant 10 m/s along k̂"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Assuming the object shares the car's acceleration along î in the ground frame gives a curved (parabolic) path in the ground frame, but the frictionless floor exerts no horizontal force on the object at all."
+   },
+   {
+    "option": null,
+    "text": "Describing the car frame motion as a straight line instead of a parabola misses that the pseudo force acts along î while the object's initial velocity is along k̂, a genuine two-dimensional combination."
+   }
+  ],
+  "concept_tags": [
+   "non-inertial frame",
+   "relative motion",
+   "frictionless surface",
+   "projectile-like motion"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "744442e6e5502afdc626bf70128db4199fd2961ceb711a62cfa602aa1257434a"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "217e8cb969778f7878e43b982b8c7b01ad3ca0c27df51ad7e0fcecec11b617be",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

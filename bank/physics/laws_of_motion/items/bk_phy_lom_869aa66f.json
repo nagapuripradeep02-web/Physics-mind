@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_869aa66f",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "numerical",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg cube, 20 cm on each edge, is pressed flat against a rough vertical wall by a horizontal force F of 40 N that passes through the cube's centre, point C. Taking g = 10 m/s², find how far the wall's normal reaction acts from point C, measured perpendicular to F.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "cube held stationary against a rough vertical wall",
+   "applied force F is horizontal, 40 N, and passes through the centre C",
+   "cube's side length is 20 cm",
+   "g = 10 m/s²"
+  ],
+  "figure": {
+   "description": "A cube (drawn as a square in side view) is pressed against a vertical wall on its right-hand side by a horizontal force F applied at its left face, acting through the cube's centre C. The wall's surface is rough (frictional) and vertical."
+  }
+ },
+ "solution": {
+  "approach": "Find the wall's normal force and the friction from equilibrium, then balance torques about C to find how far below C the wall's contact force must act.",
+  "steps": [
+   {
+    "text": "Since F passes through C and is horizontal, horizontal equilibrium gives the wall's normal reaction equal to F.",
+    "equation": "N = F = 40 N"
+   },
+   {
+    "text": "Vertical equilibrium requires friction from the wall to support the cube's weight.",
+    "equation": "f = mg = 2 × 10 = 20 N"
+   },
+   {
+    "text": "Both F and the weight act through C, so they create no torque about C. The wall's normal force and friction act together at the contact point, a horizontal distance of half a side from C.",
+    "equation": "horizontal distance from C to wall face = 0.20/2 = 0.10 m"
+   },
+   {
+    "text": "Let the contact point be a distance h above C. Balance the torques of N and f about C.",
+    "equation": "N·h + f·(0.10) = 0"
+   },
+   {
+    "text": "Solve for h and take its magnitude as the perpendicular distance.",
+    "equation": "h = −(20×0.10)/40 = −0.05 m, so the distance is 0.05 m (below C)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "0.05 m (5 cm), below the centre C"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Forgetting that F and the weight both pass through C, and so produce zero torque about C, leads to a wrong torque equation with extra terms in it."
+   },
+   {
+    "option": null,
+    "text": "Using the full side length instead of half the side for the horizontal distance from C to the wall face gives 0.10 m instead of 0.05 m."
+   }
+  ],
+  "concept_tags": [
+   "torque balance",
+   "friction",
+   "equilibrium of a rigid body"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "e17ca7fd567bc0948e3a3ac1f5cc1a5b9d3909a6feffe07e4fa3e483afe70993"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "867e7e8fed63e4d4375d1bb77bbcb5f3169f927cf0cf04d777d23aec7039894e",
+  "audited_by": "W02-U-lom-04"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

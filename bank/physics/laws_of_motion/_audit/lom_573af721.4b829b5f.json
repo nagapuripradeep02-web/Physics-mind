@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_573af721",
+ "item_sha": "4b829b5f39d3ee3320faee2602ec3a3c813e5bcf38de2c004edc5fbef5f849f8",
+ "auditor_option": null,
+ "auditor_value": "cos = 0.4/0.5 = 0.8: T = 8/0.8 = 10 N; F = T sin = 10*0.6 = 6 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": null,
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T23:00:53+05:30"
+ }
+}

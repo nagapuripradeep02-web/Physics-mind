@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_be0cf9bd",
+ "item_sha": "454b9cd0694a825fa91d2207789362a086e94b304fefc7377c3a8f2deeba56f1",
+ "auditor_option": null,
+ "auditor_value": "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N (components: T_OA cos30 = T_OB cos60, T_OA sin30 + T_OB sin60 = 10; Lami agrees)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "final_answer.value",
+   "quote": "T1 = 5 N, T2 ≈ 8.66 N",
+   "note": "The question asks for the tension in each of the strings OA and OB by name, but nowhere in the solution is T1 or T2 tied to a string; a reader cannot tell which string carries 5 N. (From the Lami angles used, T1 is OA and T2 is OB.)",
+   "fix": "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N"
+  },
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "Write Lami's theorem using, for each force, the angle between the other two forces.",
+   "note": "T1 and T2 are used in the equation without being defined; the step should name them before using them.",
+   "fix": "Let T1 be the tension in OA and T2 the tension in OB. Write Lami's theorem using, for each force, the angle between the other two forces: T1 is opposite the 150° angle between OB and the weight, T2 opposite the 120° angle between OA and the weight."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Independent solve by force components gives T_OA = 5 N, T_OB = 8.66 N, matching the solution's numbers; the Lami mapping (T1 ↔ sin150°, T2 ↔ sin120°) is internally consistent with T1 = OA, T2 = OB. The common_mistakes entry (w/sin30° = 20 N) is a genuine error and computes correctly.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:59:01+05:30"
+ }
+}

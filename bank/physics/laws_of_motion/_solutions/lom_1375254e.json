@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_1375254e",
+ "approach": "In each case compare F to the maximum static friction; if F is smaller the block stays still and friction matches F, otherwise the block slides and kinetic friction applies.",
+ "steps": [
+  {"text": "Case (a): find the maximum static friction the 4 kg block can have.", "equation": "fs,max = μs mg = 0.6 × 4 × 10 = 24 N"},
+  {"text": "Compare this to the applied force. Since F = 20 N is less than 24 N, the block does not move, and friction equals F.", "equation": "F = 20 N < 24 N, so a = 0, f = F = 20 N"},
+  {"text": "Case (b): find the maximum static friction the 2 kg block can have.", "equation": "fs,max = μs mg = 0.6 × 2 × 10 = 12 N"},
+  {"text": "Compare this to the applied force. Since F = 20 N exceeds 12 N, the block slides, so kinetic friction acts instead.", "equation": "fk = μk mg = 0.4 × 2 × 10 = 8 N"},
+  {"text": "Apply Newton's second law to the sliding block using kinetic friction.", "equation": "a = (F − fk)/m = (20 − 8)/2 = 6 m/s²"}
+ ],
+ "final_answer": {"option": null, "value": "(a) block stays still: acceleration = 0, friction = 20 N. (b) block slides: acceleration = 6 m/s², friction = 8 N (kinetic)."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Assuming case (a) also slides and using kinetic friction anyway, giving f = 16 N and a = 1 m/s² instead of the correct rest state."},
+  {"option": null, "text": "Using the static maximum 12 N as the friction force in case (b) instead of the kinetic value 8 N, giving a = 4 m/s² instead of 6 m/s²."}
+ ],
+ "concept_tags": ["static friction", "kinetic friction", "Newton's second law"],
+ "difficulty": "easy",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 2, "agent": "W02-A-lom-01", "at": "2026-09-11T15:00:00+05:30"}
+}

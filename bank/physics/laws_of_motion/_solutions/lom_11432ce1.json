@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_11432ce1",
+ "approach": "Trace the rope through the pulleys to count how many rope segments pull upward on the person-and-platform system, then balance that total pull against the total weight.",
+ "steps": [
+  {"text": "Follow the rope: it is tied to the fixed ceiling support, runs down to the pulley mounted on the platform, wraps under it, runs back up to a ceiling pulley, across to a second ceiling pulley, and down to the person's hand.", "equation": "one continuous rope, tension T throughout, since the pulleys are frictionless"},
+  {"text": "Two of the rope segments pull straight up on the pulley fixed to the platform, and the segment coming down to the person's hand pulls straight up on the person. All three segments carry the same tension T.", "equation": "total upward pull on the person-and-platform system = T + T + T = 3T"},
+  {"text": "The platform moves up at a steady rate, so the system is in equilibrium: the total upward pull equals the total weight of the person and platform.", "equation": "3T = (50 + 25) × 10 = 750 N ⇒ T = 250 N"}
+ ],
+ "final_answer": {"option": 2, "value": "250 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Counting only the two rope segments on the platform's own pulley and missing the segment pulling up on the person's hand gives 2T = 750 N, so T = 375 N."}
+ ],
+ "concept_tags": ["frictionless pulleys", "tension", "equilibrium"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:22:00+05:30"}
+}

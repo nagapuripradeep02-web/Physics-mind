@@ -1,0 +1,77 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_6f4dd2c4",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A weight of 10 N is to be split into two components: one directed parallel to a slope, and one directed perpendicular to it. The slope makes an angle of 30° with the horizontal. Find both components.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "slope makes an angle of 30° with the horizontal"
+  ],
+  "figure": {
+   "description": "An inclined slope rising to the right at 30° to the horizontal ground. A weight w = 10 N acts vertically downward at a point on the slope. It is split into w∥, directed along the slope surface toward its lower end, and w⊥, directed into the slope surface, perpendicular to it. The angle between the vertical weight and the perpendicular component is 30°, and the angle between the slope surface and the vertical is 60°."
+  }
+ },
+ "solution": {
+  "approach": "Split the weight into a component along the slope and a component into the slope using the incline angle.",
+  "steps": [
+   {
+    "text": "The weight acts vertically downward. The angle between the weight and the perpendicular to the slope equals the slope angle, 30°.",
+    "equation": "θ = 30°"
+   },
+   {
+    "text": "The component along the slope (parallel to the surface) is the weight times the sine of the slope angle.",
+    "equation": "w∥ = w sin θ = 10 × sin 30° = 5 N"
+   },
+   {
+    "text": "The component into the slope (perpendicular to the surface) is the weight times the cosine of the slope angle.",
+    "equation": "w⊥ = w cos θ = 10 × cos 30° = 8.66 N",
+    "why_this_step": "The 30 deg angle lies between the weight and its perpendicular component, so the perpendicular component is the adjacent side, w cos30, and the along-slope component is the opposite side, w sin30."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "component parallel to the slope = 5 N (down the slope); component perpendicular to the slope = 8.66 N (into the slope)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping sine and cosine gives 8.66 N along the slope and 5 N perpendicular to it."
+   }
+  ],
+  "concept_tags": [
+   "resolution of forces",
+   "inclined plane"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "7f407823d26bf5a1ea1f390952de05d508fca518b632fefb751af6ab51f87214"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "04a688af3ebb7166398e566efce3d774f80ced11f1f2ef32550a41cb5aea9964",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:00:00+05:30"
+ }
+}

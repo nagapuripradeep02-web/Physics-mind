@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_fd3acebd",
+ "approach": "The two blocks touch and slide down together with a common acceleration, so treat them as one system of total mass 6 kg with each block contributing its own friction.",
+ "steps": [
+  {"text": "Write the weight component along the incline and the friction force for the combined system, using each block's own friction coefficient.", "equation": "(m₁+m₂)g sinθ − (μ₁m₁+μ₂m₂)g cosθ = (m₁+m₂)a"},
+  {"text": "Substitute the given values: m₁ = 2.0 kg, μ₁ = 0.20, m₂ = 4.0 kg, μ₂ = 0.30, θ = 30°, g = 10 m/s².", "equation": "6×10×0.5 − (0.2×2+0.3×4)×10×0.866 = 6a"},
+  {"text": "Solve for the common acceleration.", "equation": "30 − 13.86 = 6a  →  a = 2.69 m/s²",
+   "why_this_step": "Since μ₂ > μ₁, the 4.0 kg block in front resists more, so the 2.0 kg block behind pushes into it; this contact force does not change the combined system's acceleration because it is internal to the system."}
+ ],
+ "final_answer": {"option": null, "value": "a ≈ 2.69 m/s², directed down the incline"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using only the 2.0 kg block's own friction coefficient (0.20) for the whole system gives a ≈ 3.27 m/s², ignoring that the two blocks are pressed together and share the load."},
+  {"option": null, "text": "Using only the 4.0 kg block's friction coefficient (0.30) for the whole system gives a ≈ 2.40 m/s², again ignoring that each block contributes its own friction."}
+ ],
+ "concept_tags": ["Newton's second law", "friction", "blocks in contact", "inclined plane"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:02:00+05:30"}
+}

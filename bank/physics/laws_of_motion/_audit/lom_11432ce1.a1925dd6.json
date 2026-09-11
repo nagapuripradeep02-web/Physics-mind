@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_11432ce1",
+ "item_sha": "a1925dd607bb3cdc2be3adbbf8b6b926be531bf5fa3ae19f458eb8de5525e83c",
+ "auditor_option": 2,
+ "auditor_value": "250 N (3T = (50 + 25) kg x 10 m/s^2 = 750 N)",
+ "findings": [
+  {
+   "grade": "harmful",
+   "field": "steps[2].equation",
+   "quote": "3T = 25 N",
+   "note": "The total weight of person plus platform is (50 + 25) kg x 10 m/s^2 = 750 N, not 25 N; 25 kg is the platform mass, not a force. The line does not follow from steps[1] and steps[2].text (which correctly say total pull equals total weight).",
+   "fix": "3T = (50 + 25) x 10 = 750 N, so T = 250 N"
+  },
+  {
+   "grade": "harmful",
+   "field": "final_answer",
+   "quote": "{\"option\": 3, \"value\": \"25 N\"}",
+   "note": "With three rope segments each carrying T supporting a 750 N system, T = 750/3 = 250 N, option (b). The solution's own common-mistakes entry uses 750 N for the weight, contradicting this answer.",
+   "fix": "{\"option\": 2, \"value\": \"250 N\"}"
+  }
+ ],
+ "verdict": "harmful",
+ "question_defect": null,
+ "notes": "g = 10 m/s^2 is the only value that lands on an option (g = 9.8 gives 245 N). The three-segment count (two strands at the platform pulley plus the strand at the hand) is correct; only the last line and the final answer are wrong.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T22:59:09+05:30"
+ }
+}

@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e581ab11",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rod of mass m is held between two frictionless walls that let it slide only along one fixed straight line; as it slides, it keeps touching the sloped face of a wedge of mass M at a constant right angle to that face, as the figure shows. Every contact surface here is smooth, with no friction anywhere. Compute the magnitude of the rod's acceleration, then compute the magnitude of the wedge's acceleration.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "rod mass is m",
+   "wedge mass is M",
+   "rod is held between two smooth (frictionless) walls, sliding along one fixed straight line",
+   "rod stays perpendicular to the wedge's sloped surface at all times",
+   "every surface involved is frictionless",
+   "the wedge's sloped face makes angle α with the horizontal"
+  ],
+  "figure": {
+   "description": "A wall fixed in space is mounted at an angle in the upper-left region. A rod is held in a channel between two smooth walls so it can only slide along this fixed line; it slides down-and-right or up-and-left along this direction. The rod's lower tip presses against the sloped face of a wedge sitting on the ground, whose base angle with the horizontal is α; the rod stays exactly perpendicular to this sloped face at all times. The wedge itself can slide horizontally."
+  }
+ },
+ "solution": {
+  "approach": "Apply Newton's second law to the rod along its guide and to the wedge along the horizontal, then combine using a1 = a2 sinα, the rod-wedge acceleration constraint.",
+  "steps": [
+   {
+    "text": "The contact between rod and wedge is frictionless, so the contact force N acts along the rod's own axis, the common normal."
+   },
+   {
+    "text": "Along its guide, the rod feels this force N pushing it back and the component of its own weight pulling it toward the wedge.",
+    "equation": "m·a1 = mg cosα − N"
+   },
+   {
+    "text": "The wedge feels the reaction to N, whose horizontal part is the only horizontal force on it.",
+    "equation": "M·a2 = N sinα"
+   },
+   {
+    "text": "The rod's tip must stay on the wedge face, so the rod's velocity relative to the wedge has no component perpendicular to the face. The rod moves along the face normal at speed v1 and the wedge moves horizontally at v2, whose component along that normal is v2 sinα; hence v1 = v2 sinα and a1 = a2 sinα.",
+    "equation": "a1 = a2 sinα"
+   },
+   {
+    "text": "Substitute N = M a2/sinα into the rod equation and use the constraint to write everything in terms of a2.",
+    "equation": "m a2 sinα = mg cosα − M a2/sinα"
+   },
+   {
+    "text": "Solve for the wedge's acceleration, then get the rod's acceleration from the constraint.",
+    "equation": "a2 = mg sinα cosα/(M + m sin²α); a1 = a2 sinα = mg sin²α cosα/(M + m sin²α)"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "acceleration of the wedge a2 = mg sinα cosα/(M + m sin²α); acceleration of the rod along its guide a1 = mg sin²α cosα/(M + m sin²α)"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using mg sinα instead of mg cosα for the weight component along the rod's guide gives a2 = mg sin²α/(M + m sin²α), a different formula."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "constraint relation",
+   "contact force between two bodies"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9cee07f6ce9de57ecc434d8acd33995c478e0b22f83bcb5c19fe72c95b32952d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "ebd30f543365aacbdcd1283c05190d1661cc5e42fc3135ef5c26cdce181fe3a3",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

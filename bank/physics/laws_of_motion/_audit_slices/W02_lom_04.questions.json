@@ -1,0 +1,74 @@
+{
+ "wave": 2,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 4,
+ "round": 0,
+ "items": [
+  {
+   "question_id": "lom_fa5544ef",
+   "question_text": "In the figure, three massless strings meet at a common knot. A horizontal string connects the knot to a fixed wall; the tension in this string is 30 N. A second string runs from the knot up to a fixed support, making a 45° angle with the vertical. A third string hangs straight down from the knot and supports a block of weight W. Find W.",
+   "options": [],
+   "figure_description": "Three massless strings are tied together at one knot. A horizontal string runs from the knot to a fixed vertical wall. An inclined string runs from the same knot up to a fixed support, making a 45° angle with the vertical direction. A third string hangs straight down from the knot, with a block of weight W tied to its lower end."
+  },
+  {
+   "question_id": "lom_e15fdd5b",
+   "question_text": "A straight rod AB lies inside a spherical shell whose inner surface is rough. The shell rests on the ground below it. The rod's two ends, A and B, touch this rough inner surface at two different points. Draw a diagram of the rod on its own, showing all the forces that act on it.",
+   "options": [],
+   "figure_description": "A circle represents the cross-section of a spherical shell resting on a horizontal ground below it. A straight rod lies inside the circle as a chord, touching the shell's rough inner surface at two points: end A near the bottom-left of the circle, close to where the shell meets the ground, and end B on the right side of the circle, above the mid-height."
+  },
+  {
+   "question_id": "lom_e17ca7fd",
+   "question_text": "A 2 kg cube, 20 cm on each edge, is pressed flat against a rough vertical wall by a horizontal force F of 40 N that passes through the cube's centre, point C. Taking g = 10 m/s², find how far the wall's normal reaction acts from point C, measured perpendicular to F.",
+   "options": [],
+   "figure_description": "A cube (drawn as a square in side view) is pressed against a vertical wall on its right-hand side by a horizontal force F applied at its left face, acting through the cube's centre C. The wall's surface is rough (frictional) and vertical."
+  },
+  {
+   "question_id": "lom_eef1b653",
+   "question_text": "In the pulley system pictured, block 1 hangs from the fixed pulley and blocks 2 and 3 hang from the two ends of the string over the movable pulley. Block 3 accelerates downward at 6 m/s² and block 2 accelerates upward at 4 m/s². Determine the acceleration of block 1.",
+   "options": [],
+   "figure_description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  },
+  {
+   "question_id": "lom_f9420a41",
+   "question_text": "A knot is held in place by three strings. String C runs horizontally from the knot to a wall. String B runs from the knot up to the ceiling, making a 30° angle with the vertical. String A hangs vertically down from the knot and supports a block of mass 10 kg. The whole system is in equilibrium. Which string has zero tension?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "B"
+    },
+    {
+     "label": "(b)",
+     "text": "C"
+    },
+    {
+     "label": "(c)",
+     "text": "A"
+    },
+    {
+     "label": "(d)",
+     "text": "None of the above"
+    }
+   ],
+   "figure_description": "A vertical wall on the left and a horizontal ceiling meet at a corner. From a common knot below and to the right of the corner, string C runs horizontally to the left to the wall, string B runs up and to the right to the ceiling making a 30° angle with the vertical dashed line through the knot (so 60° with the ceiling), and string A hangs straight down from the knot, holding a 10 kg block at its bottom end."
+  },
+  {
+   "question_id": "lom_e797d355",
+   "question_text": "A 2 kg block and a 4 kg block sit touching each other on a smooth incline that makes an angle of 30° with the horizontal; the 4 kg block is lower down the slope and the 2 kg block is higher up, in contact with it. Both blocks are let go from rest at the same instant. Find the normal force that acts between the two blocks.",
+   "options": [],
+   "figure_description": "A wedge shaped like a right triangle has its sloped face rising at 30° from the horizontal, the angle marked where the slope meets the base. Two blocks touch each other on this sloped face, tilted to match the slope: a 4 kg block positioned lower down the slope, and a 2 kg block positioned higher up the slope, right above it."
+  },
+  {
+   "question_id": "lom_fc0661ef",
+   "question_text": "In the arrangement shown, take g = 10 m/s² and find (a) the accelerations of the 1 kg, 2 kg and 3 kg blocks, and (b) the tensions T₁ and T₂.\n(a) the acceleration of each of the 1 kg, 2 kg and 3 kg blocks\n(b) the tensions T₁ and T₂",
+   "options": [],
+   "figure_description": "A 1 kg block rests on a smooth horizontal table. A string of tension T₂ runs from the block to the right, over a small pulley fixed at the table's edge, then straight down, passes UNDER a movable pulley P₁ (wrapping around its lower half) and rises vertically to a fixed anchor on the ceiling; P₁ therefore hangs in the loop of the T₂ string. From the axle of P₁ a short vertical string hangs down to the axle of a second movable pulley P₂ directly below it. A string of tension T₁ passes over P₂: a 2 kg block hangs from its left end and a 3 kg block from its right end. All pulleys and strings are light and frictionless. When the 1 kg block moves right by x, P₁ and P₂ descend by x/2."
+  },
+  {
+   "question_id": "lom_48dd8225",
+   "question_text": "The diagonal string shown in the figure below carries a tension of 60 N.\n(a) Work out the size of the horizontal forces F₁ and F₂ needed to keep the whole system fixed in the position drawn.\n(b) Work out the weight of the block that hangs from the system.",
+   "options": [],
+   "figure_description": "A horizontal ceiling runs along the top. A short vertical link hangs from the ceiling down to point A. At A, force F₁ points horizontally to the left. From A, a diagonal string runs down and to the right to point B, making a 45° angle with the horizontal (measured at A between a horizontal reference line and the diagonal string). At B, force F₂ points horizontally to the right, and directly below B a block of weight W hangs on a vertical string."
+  }
+ ]
+}

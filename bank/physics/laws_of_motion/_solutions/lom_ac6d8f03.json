@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_ac6d8f03",
+ "approach": "The pseudo force on an object, as seen from an accelerating frame, is minus the object's mass times the frame's own acceleration.",
+ "steps": [
+  {"text": "Write the pseudo-force formula for an object of mass m viewed from a frame accelerating at a(frame).", "equation": "F(pseudo) = −m × a(frame)"},
+  {"text": "For part (a), the frame is block B, so a(frame) = a(B) = (−4ĵ) m/s², and the object is block A with mass 1 kg.", "equation": "F(pseudo on A) = −(1)(−4ĵ) = 4ĵ N"},
+  {"text": "For part (b), the frame is block A, so a(frame) = a(A) = (2î) m/s², and the object is block B with mass 2 kg.", "equation": "F(pseudo on B) = −(2)(2î) = −4î N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 4ĵ N (4 N along +y); (b) −4î N (4 N along −x)"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Dropping the negative sign in the pseudo-force formula gives −4ĵ N on A and 4î N on B, both pointing the wrong way."}
+ ],
+ "concept_tags": ["pseudo force", "non-inertial frame", "Newton's second law"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:14:00+05:30"}
+}

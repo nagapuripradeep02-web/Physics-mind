@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_af1bfccc",
+ "item_sha": "0e7f03cc679320c2f782c353a966e240d5c54e318aad517bf0e26c3197683cd5",
+ "auditor_option": 2,
+ "auditor_value": "t = 2μmg/a",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Common acceleration at/(2m); the top block needs friction at/2, which reaches μmg at t = 2μmg/a. The common-mistakes entry correctly yields μmg/a and points at option 3.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:01:18+05:30"
+ }
+}

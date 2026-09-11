@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_2897c874",
+ "item_sha": "d91cfd8223dcf23ed436f72b90ae776629e7ef39fa020d89182e7b51d79f2a7d",
+ "auditor_option": null,
+ "auditor_value": "1/3 s ≈ 0.33 s (v = g/3 at 1 s; after the stop both blocks fall freely, slack = −vt + gt² returns to zero at t = v/g)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independently obtained 1/3 s for both g = 10 and g = 9.8 (g cancels). A commonly printed answer for this problem is 2/3 s, which treats the 2 kg block as held at rest while the 1 kg block rises and returns; that ignores the 2 kg block's free fall and would need the string to lengthen, so 1/3 s is correct. The solution's second common_mistakes entry names exactly that error.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-01",
+  "at": "2026-09-11T23:26:28+05:30"
+ }
+}

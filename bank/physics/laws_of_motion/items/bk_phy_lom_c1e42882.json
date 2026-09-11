@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_c1e42882",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two pulleys are fixed to the ceiling, one on the left and one on the right. A spring balance is connected horizontally between two strings. The left string goes from one end of the spring balance, over the left pulley, and down to a hanging block of mass 5 kg. The right string goes from the other end of the spring balance, over the right pulley, and down to a hanging block of mass 10 kg. What does the spring balance read?",
+  "options": {
+   "1": "50 N",
+   "2": "100 N",
+   "3": "150 N",
+   "4": "None of the above"
+  },
+  "parts": null,
+  "conditions": [
+   "both pulleys are fixed to the ceiling",
+   "spring balance is connected horizontally between the two strings",
+   "left string carries a 5 kg block",
+   "right string carries a 10 kg block"
+  ],
+  "figure": {
+   "description": "Two pulleys are fixed to the ceiling, one on the left and one on the right, spaced apart. A spring balance connects the two strings horizontally between the pulleys. The left string passes over the left pulley and hangs down to a 5 kg block. The right string passes over the right pulley and hangs down to a 10 kg block."
+  }
+ },
+ "solution": {
+  "approach": "Recognize the spring balance sits inline with one continuous string over two pulleys joining unequal masses, so it reads the standard Atwood tension, not either weight alone.",
+  "steps": [
+   {
+    "text": "One continuous string runs from the 5 kg mass, over the left pulley, through the spring balance, over the right pulley, to the 10 kg mass, so the balance reads the tension that string carries throughout."
+   },
+   {
+    "text": "The pulleys only redirect the string; since 10 kg ≠ 5 kg the masses are free to accelerate, so this is an Atwood pair and the reading is the standard Atwood tension.",
+    "equation": "T = 2 m₁m₂g / (m₁+m₂)"
+   },
+   {
+    "text": "Substitute m₁ = 5 kg, m₂ = 10 kg, g = 10 m/s² (the value that makes the given options come out as round numbers).",
+    "equation": "T = 2(5)(10)(10) / 15 = 1000/15 ≈ 66.7 N"
+   },
+   {
+    "text": "Compare this with the printed options 50 N, 100 N and 150 N — it matches none of them.",
+    "equation": "66.7 N ≠ 50 N, 100 N, 150 N"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "None of the above"
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Assuming the balance directly reads the heavier hanging weight, 10 kg × 10 m/s² = 100 N, without accounting for the system's acceleration."
+   },
+   {
+    "option": 3,
+    "text": "Assuming the balance reads the combined weight of both masses as if the system were static, (5+10) kg × 10 m/s² = 150 N."
+   }
+  ],
+  "concept_tags": [
+   "Atwood machine",
+   "spring balance",
+   "pulley system"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "450ff16423739afec4de787550b35cee51c16b6b92e9ef5ab6238f1c9ef5d22d"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "d86af8bef800d145ba7c8a0263967cab972f4adae3156509b2561e947a4872e5",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

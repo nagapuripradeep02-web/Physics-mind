@@ -1,0 +1,51 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_5cc3250f",
+ "approach": "Compare the maximum forward friction with the gravity component along the incline to get the condition, then find each acceleration by adding or removing friction.",
+ "steps": [
+  {
+   "text": "For the car to speed up while going up, the maximum forward friction the wheels can provide must exceed the gravity component pulling it back down the incline.",
+   "equation": "condition: μmg cosθ > mg sinθ, so μ > tanθ"
+  },
+  {
+   "text": "With this condition met, the maximum acceleration uses the maximum forward friction together with gravity opposing it.",
+   "equation": "a(max) = g(μcosθ − sinθ)"
+  },
+  {
+   "text": "The minimum retardation happens when no friction acts at all, so gravity alone slows the car.",
+   "equation": "a(min retardation) = g sinθ"
+  },
+  {
+   "text": "The maximum retardation happens when friction is used fully to brake, adding to gravity instead of opposing it.",
+   "equation": "a(max retardation) = g(sinθ + μcosθ)"
+  }
+ ],
+ "final_answer": {
+  "option": null,
+  "value": "(a) μ > tanθ; (b) a(max) = g(μcosθ − sinθ); (c) a(min retardation) = g sinθ; (d) a(max retardation) = g(sinθ + μcosθ)"
+ },
+ "confidence": "sure",
+ "common_mistakes": [
+  {
+   "option": null,
+   "text": "Swapping sinθ and cosθ in the maximum acceleration formula gives a(max) = g(μsinθ − cosθ), negative for realistic angles and coefficients, a sign the components were mixed up."
+  },
+  {
+   "option": null,
+   "text": "Treating the minimum retardation as zero instead of g sinθ ignores that gravity still acts on the car even when no friction is present."
+  }
+ ],
+ "concept_tags": [
+  "friction on an incline",
+  "condition for acceleration",
+  "minimum and maximum retardation"
+ ],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

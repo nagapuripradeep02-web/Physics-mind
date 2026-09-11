@@ -1,0 +1,38 @@
+{
+ "question_id": "lom_d372dbb1",
+ "item_sha": "296aef9ce6eada41a91b187420db96db0077bfb64891dc00669b59f21cfab58e",
+ "auditor_option": null,
+ "auditor_value": "(a) v_B = v_A cosθ; (b) a_B = a_A cosθ = a_A/2 at release (θ = 60°, v = 0); (c) T = 40/3 ≈ 13.3 N, a_A = 20/3 ≈ 6.67 m/s², a_B = 10/3 ≈ 3.33 m/s²",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[1].equation",
+   "quote": "d(AQ)/dt = −(x/AQ)(dx/dt) = −vA cosθ, so vB = vA cosθ",
+   "note": "The chain rule gives d(AQ)/dt = +(x/AQ)(dx/dt); the minus sign belongs to dx/dt = −vA (x decreases as the ring slides toward the point above the pulley), not to the derivative factor. As printed, one of the two equalities is false; the conclusion vB = vA cosθ is right.",
+   "fix": "d(AQ)/dt = (x/AQ)(dx/dt) = (cosθ)(−vA) = −vA cosθ, so vB = vA cosθ"
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[0].text",
+   "quote": "Keeping the extra −vA sinθ(dθ/dt) term instead of dropping it at release gives a more complicated relation than aB = aA cosθ.",
+   "note": "Keeping the general term is not an error: it is zero at release because vA = 0, so a student who keeps it and substitutes vA = 0 reaches the same aB = aA cosθ. The entry labels a correct step as a mistake and names no wrong result.",
+   "fix": "Using aB = aA cosθ at a later instant, when vA is no longer zero, forgets the −vA sinθ(dθ/dt) term; the simple relation holds only at the moment of release from rest."
+  },
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Using sinθ instead of cosθ in the ring's horizontal equation gives aA ≈ 6.93 m/s², a different value from the correct 6.67 m/s².",
+   "note": "With T sin60° = mA aA but the constraint aB = aA cos60° kept, the result is aA = 20/(1/sin60° + 2 cos60°) ≈ 9.28 m/s². The value 6.93 m/s² arises only if sinθ replaces cosθ in BOTH the ring equation and the constraint; the stated cause alone does not produce the number named.",
+   "fix": "Using sinθ instead of cosθ both in the ring's horizontal equation and in the constraint gives aA ≈ 6.93 m/s² instead of the correct 6.67 m/s²."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Independent solve agrees with all of (a), (b), (c). The closed form aA = mB g cosθ/(mA + mB cos²θ) in steps[4] is correct and evaluates to 20/3. steps[0] has no equation field but carries the geometric content (AQ = √(x² + c²), cosθ = x/AQ) in its text.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T23:03:20+05:30"
+ }
+}

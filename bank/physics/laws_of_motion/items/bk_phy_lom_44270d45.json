@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_44270d45",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A block of mass m hangs from two strings: one runs horizontally to a fixed wall, and the other runs diagonally upward to a ceiling support, making angle θ with the horizontal. Sketch the free-body diagram of the block.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "block is held by two strings",
+   "one string is horizontal, fixed to a wall",
+   "the other string runs diagonally up to a ceiling support at angle θ to the horizontal"
+  ],
+  "figure": {
+   "description": "A block is connected by two strings: one horizontal string running to a fixed wall on one side, and another string running diagonally up to a ceiling support on the other side, making angle θ with the horizontal."
+  }
+ },
+ "solution": {
+  "approach": "List every force on the block: its weight, and the tension in each of the two strings, each pulling along its own string.",
+  "steps": [
+   {
+    "text": "The block has weight mg, acting at its centre, pointing straight down.",
+    "equation": "mg, downward"
+   },
+   {
+    "text": "One string runs horizontally to a fixed wall. It pulls the block horizontally, toward the wall, with tension T₁.",
+    "equation": "T₁, horizontal"
+   },
+   {
+    "text": "The other string runs up to a ceiling support at angle θ to the horizontal. It pulls the block along its own length, up and toward the ceiling support, with tension T₂.",
+    "equation": "T₂, at angle θ above horizontal",
+    "why_this_step": "A string can only pull along its own length, never sideways to it."
+   },
+   {
+    "text": "The free body diagram of the block shows three forces: mg downward, T₁ horizontal toward the wall, and T₂ directed along the second string at angle θ above the horizontal."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "three forces act on the block: weight mg downward, tension T₁ horizontal (along the string to the wall), and tension T₂ directed along the string to the ceiling support, at angle θ above the horizontal"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Drawing T₂ as purely vertical, ignoring that it must point along the actual direction of that string, at angle θ."
+   },
+   {
+    "option": null,
+    "text": "Leaving out the weight mg from the diagram."
+   }
+  ],
+  "concept_tags": [
+   "free body diagram",
+   "tension",
+   "equilibrium of a body"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "ce0e0662166883d25e788806e39b9d39a27eb254f54dbd5871f0b4200c6e3e87"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "2b5dac4342acf4bf24318b45fd5ccf094d29dcf66699b22f911bd7633fa88a65",
+  "audited_by": "W01-U-lom-07"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:20:00+05:30"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ca7f0b1f",
+ "item_sha": "8f78d000987b93483767acf9fa4ab28001a74414f4f7e5a6ca0c61188cbf63b0",
+ "auditor_option": null,
+ "auditor_value": "a = 4 m/s² (7 kg side down); T₁ = 24 N; T₂ = 42 N; T₃ = 14 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Independent solve agrees on all four values; the right-side check 7×10 − 42 = 7×4 closes. Both common_mistakes reach the numbers they name (a = 2 with 2 kg vs 3 kg only; T₃ = 22 when the 2 kg block's ma is dropped).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-07",
+  "at": "2026-09-11T22:58:17+05:30"
+ }
+}

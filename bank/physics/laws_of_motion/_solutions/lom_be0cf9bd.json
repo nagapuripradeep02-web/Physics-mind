@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_be0cf9bd",
+ "approach": "Use the three marked angles at O between the two strings and the weight to apply Lami's theorem for three forces meeting at a point.",
+ "steps": [
+  {"text": "Let T1 be the tension in OA and T2 the tension in OB. Write Lami's theorem using, for each force, the angle between the other two forces: T1 is opposite the 150° angle between OB and the weight, T2 opposite the 120° angle between OA and the weight.", "equation": "T1/sin150° = T2/sin120° = w/sin90°"},
+  {"text": "Solve for T1 using w = 10 N.", "equation": "T1 = w sin150° = 10×0.5 = 5 N"},
+  {"text": "Solve for T2.", "equation": "T2 = w sin120° = 10×(√3/2) ≈ 8.66 N"}
+ ],
+ "final_answer": {"option": null, "value": "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating string OA alone as if it supported the full weight vertically gives T1 = w/sin30° = 20 N, ignoring the pull from string OB."}
+ ],
+ "concept_tags": ["Lami's theorem", "equilibrium of a hanging ball", "tension"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:46:00+05:30"}
+}

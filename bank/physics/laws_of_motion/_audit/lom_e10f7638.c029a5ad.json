@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_e10f7638",
+ "item_sha": "c029a5ad078df708b09c5479ea7d0fc6148a073cd768fafe242ebc102a1bd995",
+ "auditor_option": 4,
+ "auditor_value": "T_mid = Mg/2 (a = g/2; trailing half: T = (M/2)(a + μg))",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Checked: a = g(1 − μ) = g/2; T = (M/2)(g/2 + g/2) = Mg/2, option (d). The mistake entry's stated cause (no friction on the trailing half) does give Mg/4, option (a). Leading-half check gives the same T.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:26:58+05:30"
+ }
+}

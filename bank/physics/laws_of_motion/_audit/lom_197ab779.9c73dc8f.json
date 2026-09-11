@@ -1,0 +1,31 @@
+{
+ "question_id": "lom_197ab779",
+ "item_sha": "9c73dc8f12b48f2468336e7f86bb959439e8a3dc414e7f463c0277aec010ceb5",
+ "auditor_option": null,
+ "auditor_value": "net force = m a = 65 N along the belt's acceleration (supplied by static friction); a_max = mu_s g = 0.2 x 9.8 = 1.96 m/s^2",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "common_mistakes[1].text",
+   "quote": "Multiplying the mass by the maximum acceleration formula's coefficient alone (μₛ × mass) instead of μₛ × g gives 13 N as a wrong 'maximum force', confusing the force limit with the acceleration limit.",
+   "note": "Vague and hard to read: it describes multiplying a coefficient by a mass and calling the product a force, which is not a recognisable student error on this question, and the sentence uses quotation marks and a formula-of-a-formula phrasing. The arithmetic (0.2 x 65 = 13) does follow, but the entry does not name a genuine mistake clearly.",
+   "fix": "Forgetting that the maximum friction force is μₛ m g = 0.2 × 65 × 9.8 = 127.4 N, and instead reporting the net force 65 N as the maximum friction the belt can supply."
+  },
+  {
+   "grade": "weak",
+   "field": "concept_tags",
+   "quote": "pseudo motion",
+   "note": "Not a physics concept; the solution uses no pseudo force or non-inertial frame (it works in the ground frame).",
+   "fix": "remove the tag, or replace with 'limiting friction'"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees. In the ground frame the man's only horizontal force is static friction, so f = m a = 65 N; slipping starts when m a exceeds mu_s m g. g = 9.8 as the question fixes; the first common-mistake entry (2.0 m/s^2 with g = 10) is genuine.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:03:57+05:30"
+ }
+}

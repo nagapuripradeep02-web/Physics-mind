@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_2ed9ffe2",
+ "item_sha": "1c3fab9334de253018a4a9f205a94e45bda6d49343fc58d277598b70d1372a93",
+ "auditor_option": 1,
+ "auditor_value": "Setup (i): the person pulls with W in (i) and W/2 in (ii) (two strands hold the block's pulley)",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "final_answer.value",
+   "quote": "(a) Fig. (i) — it needs Mg, twice the Mg/2 needed in Fig. (ii).",
+   "note": "The served question and its options call the arrangements 'Setup (i)' and 'Setup (ii)'; the solution uses 'Fig (i)/(ii)' throughout, a label the student never sees.",
+   "fix": "(a) Setup (i) — it needs Mg, twice the Mg/2 needed in Setup (ii)."
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Independently: setup (i) single strand F = Mg; setup (ii) string tied to the bracket, under the block's pulley, over the fixed pulley: 2T = Mg so F = Mg/2. Every equation in this copy follows (2T(ii) = Mg, T(ii) = Mg/2); option (a) = 1 is correct and both mistake entries point at the right options (2 and 3).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:02:17+05:30"
+ }
+}

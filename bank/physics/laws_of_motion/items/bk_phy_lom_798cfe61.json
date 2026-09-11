@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_798cfe61",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "Four forces meet at one point of a body and the body does not move, so it is in equilibrium. Two of the forces are known, 8 N and 4 N; the other two, F₁ and F₂, are not. Using the directions drawn in the figure, work out how large F₁ and F₂ are.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "four forces are concurrent, acting through one point",
+   "object is in equilibrium"
+  ],
+  "figure": {
+   "description": "Four forces act on an object at a single point O. One force of 8 N points horizontally to the right. A second force of 4 N points up and to the right, making a 60° angle with the 8 N force. A third force, F₁, points nearly straight up, making a further 30° angle with the 4 N force (so F₁ is 90° from the 8 N force). A fourth force, F₂, points down and to the left, making a 30° angle with the horizontal line extending to the left (opposite to the 8 N force)."
+  }
+ },
+ "solution": {
+  "approach": "Write each force by its angle from the 8 N force, then set the horizontal sum and the vertical sum each to zero.",
+  "steps": [
+   {
+    "text": "Measure every angle from the 8 N force. The 4 N force is at 60°. F₁ is a further 30° from the 4 N force, so F₁ is at 90°. F₂ is 30° below the line opposite the 8 N force, so F₂ is at 210°.",
+    "equation": "8 N at 0°, 4 N at 60°, F₁ at 90°, F₂ at 210°"
+   },
+   {
+    "text": "For equilibrium the horizontal parts of all four forces add to zero.",
+    "equation": "8 cos0° + 4 cos60° + F₁ cos90° + F₂ cos210° = 0"
+   },
+   {
+    "text": "cos90° = 0, so F₁ drops out of this equation. Solve for F₂.",
+    "equation": "8 + 2 + 0 − F₂(0.866) = 0 → F₂ = 10 / 0.866 = 11.55 N"
+   },
+   {
+    "text": "For equilibrium the vertical parts of all four forces also add to zero.",
+    "equation": "8 sin0° + 4 sin60° + F₁ sin90° + F₂ sin210° = 0"
+   },
+   {
+    "text": "Put in the values found so far and solve for F₁.",
+    "equation": "0 + 3.46 + F₁ − 11.55(0.5) = 0 → F₁ = 5.77 − 3.46 = 2.31 N",
+    "why_this_step": "sin210° = −0.5, so the F₂ term is −5.77, leaving F₁ = 5.77 − 3.46."
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "F₁ = 2.31 N, F₂ = 11.55 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Taking F₂'s angle from the horizontal as 30° instead of 210°, which flips the sign of its components and gives the wrong values."
+   },
+   {
+    "option": null,
+    "text": "Placing F₁ at 30° from the 8 N force instead of 90°, missing that the 30° is measured from the 4 N force, which is itself already at 60°."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of concurrent forces",
+   "resolution of forces"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "86ae4582f757bcc64b9318ce48228fac2da8b48046c5d34d1ec743e7a1dc8b4f"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "661c86c8345d144e2e5a895f0038cc2c42e2f10a99a641f72bb6ee02e6fb34a7",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-01",
+  "at": "2026-09-11T00:45:00+05:30"
+ }
+}

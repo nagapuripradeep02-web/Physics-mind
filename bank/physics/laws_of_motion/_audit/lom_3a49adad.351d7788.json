@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_3a49adad",
+ "item_sha": "351d7788220d347eb9de000563e16366469fae9fa993d2f0ee66b97ab13c34ae",
+ "auditor_option": null,
+ "auditor_value": "Ball A: weight down, floor normal up, left-wall normal to the right, normal from B along the line of centres pointing from B's centre toward A (down-left). Ball B: weight down, right-wall normal to the left, normal from A along the line of centres pointing from A's centre toward B (up-right). No friction, no floor force on B.",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "The solution's force lists agree with mine: four forces on A, three on B, the A–B contact force along the line joining the centres with the sense stated for B and implied for A by Newton's third law. Both mistake entries are genuine errors here.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:03:36+05:30"
+ }
+}

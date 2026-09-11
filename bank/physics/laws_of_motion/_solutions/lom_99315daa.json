@@ -1,0 +1,23 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_99315daa",
+ "approach": "Draw one force per contact for rod and sphere; A touches nothing, and since the sphere's other contacts are frictionless, ground friction on it must be zero.",
+ "steps": [
+  {"text": "The rod touches only the ground (at B, rough) and the sphere (at C, smooth); its end A near the wall touches nothing.", "equation": "rod: weight w₁ (down, at its centre of gravity) + N_ground and f_ground (at B) + N_sphere (at C, perpendicular to the rod, since rod–sphere is frictionless)"},
+  {"text": "The sphere touches the wall, the ground, and the rod; the rod–sphere and sphere–wall contacts are frictionless, so those two forces act along the radius, straight through the sphere's centre.", "equation": "sphere: weight w₂ (down, at the centre) + N_wall (horizontal, radial) + N_rod (reaction to the rod's N_sphere, radial)"},
+  {"text": "Since the sphere's weight, the wall's normal reaction, and the rod's normal reaction all pass through the sphere's centre, none of them can turn the sphere about that centre.", "equation": "sum of moments about the sphere's centre from weight, N_wall, N_rod = 0"},
+  {"text": "If the ground exerted friction on the sphere, it would act tangentially at the ground contact, with a moment arm equal to the sphere's radius, and nothing else could balance that turning effect.", "equation": "f_ground_on_sphere ≠ 0 would leave a net moment about the centre",
+   "why_this_step": "A body in equilibrium cannot have a leftover, unbalanced moment, so this friction must be zero."},
+  {"text": "So the ground can only push the sphere perpendicular to itself; the sphere's forces are its weight, the wall's normal reaction, the rod's normal reaction, and the ground's normal reaction only.", "equation": "sphere: weight w₂ + N_wall + N_rod + N_ground (no friction)"}
+ ],
+ "final_answer": {"option": null, "value": "Rod AB: its weight w₁ at its centre of gravity, the ground's normal reaction and friction at B, and the sphere's normal reaction at C (perpendicular to the rod); nothing acts at A, since it touches nothing. Sphere: its weight w₂ at the centre, the normal reactions from the wall and from the rod (both radial, passing through the centre), and the ground's normal reaction (also radial); the ground exerts no friction on the sphere, because the other three forces already pass through the centre and leave no turning effect for friction to balance."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Drawing a force on the rod at end A even though A touches neither the wall nor anything else in the figure."},
+  {"option": null, "text": "Drawing ground friction on the sphere by analogy with the rod's rough ground contact, without checking that the sphere's other forces already balance about its centre."}
+ ],
+ "concept_tags": ["free body diagram", "torque balance", "normal reaction", "friction"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-04", "at": "2026-09-11T18:26:00+05:30"}
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_6c8b046b",
+ "approach": "Cut the wire at each midpoint and apply Newton's second law to everything hanging below that cut, using the system's own upward acceleration.",
+ "steps": [
+  {"text": "For the lower wire midpoint, the hanging mass below the cut is the 1.9 kg block plus half the lower wire's mass.", "equation": "mass below = 1.9 + 0.2/2 = 2.0 kg"},
+  {"text": "Apply Newton's second law to this hanging mass, which accelerates upward at 0.2 m/s² along with the whole system.", "equation": "T = m(g + a) = 2.0 × (9.8 + 0.2)"},
+  {"text": "This gives the tension at the lower wire's midpoint.", "equation": "T = 2.0 × 10 = 20 N"},
+  {"text": "For the upper wire midpoint, the upper wire is massless, so the mass below the cut is the 2.9 kg block plus the entire lower wire plus the 1.9 kg block.", "equation": "mass below = 2.9 + 0.2 + 1.9 = 5.0 kg"},
+  {"text": "Apply Newton's second law to this total hanging mass with the same upward acceleration.", "equation": "T = 5.0 × (9.8 + 0.2) = 5.0 × 10 = 50 N"}
+ ],
+ "final_answer": {"option": null, "value": "(a) 20 N, (b) 50 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Using g alone instead of g + a gives 19.6 N and 49 N, ignoring that the whole system accelerates upward."},
+  {"option": null, "text": "Forgetting to include half the lower wire's mass below the lower midpoint gives 1.9 × 10 = 19 N there instead of 20 N."}
+ ],
+ "concept_tags": ["Newton's second law", "tension in a wire with distributed mass", "accelerating system"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-10", "at": "2026-09-11T10:00:00+05:30"}
+}

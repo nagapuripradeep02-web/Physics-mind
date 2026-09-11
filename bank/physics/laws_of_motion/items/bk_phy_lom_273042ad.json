@@ -1,0 +1,103 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_273042ad",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A rigid support S holds two blocks in a vertical line using two inextensible wires, each 1 m long: the upper wire (negligible mass) hangs from S to a 2.9 kg block, and the lower wire (uniformly distributed mass 0.2 kg) hangs from that 2.9 kg block down to a 1.9 kg block below it. The entire system — blocks, wires and support — accelerates upward at 0.2 m/s². Taking g = 9.8 m/s², answer the following.",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Find the tension at the midpoint of the lower wire."
+   },
+   {
+    "label": "b",
+    "asks": "Find the tension at the midpoint of the upper wire."
+   }
+  ],
+  "conditions": [
+   "support S is rigid",
+   "two inextensible wires, each of length 1 m",
+   "upper wire has negligible mass, connects S to the 2.9 kg block",
+   "lower wire has uniformly distributed mass 0.2 kg, connects the 2.9 kg block to the 1.9 kg block",
+   "the whole system accelerates upward at 0.2 m/s²",
+   "g = 9.8 m/s²"
+  ],
+  "figure": {
+   "description": "A horizontal rigid support S at the top. From S, an upper (massless) wire hangs down to a 2.9 kg block. From that 2.9 kg block, a lower wire of mass 0.2 kg hangs down further to a 1.9 kg block at the bottom."
+  }
+ },
+ "solution": {
+  "approach": "Cut the wire at each midpoint and apply Newton's second law to everything hanging below that cut, using the system's own upward acceleration.",
+  "steps": [
+   {
+    "text": "For the lower wire midpoint, the hanging mass below the cut is the 1.9 kg block plus half the lower wire's mass.",
+    "equation": "mass below = 1.9 + 0.2/2 = 2.0 kg"
+   },
+   {
+    "text": "Apply Newton's second law to this hanging mass, which accelerates upward at 0.2 m/s² along with the whole system.",
+    "equation": "T = m(g + a) = 2.0 × (9.8 + 0.2)"
+   },
+   {
+    "text": "This gives the tension at the lower wire's midpoint.",
+    "equation": "T = 2.0 × 10 = 20 N"
+   },
+   {
+    "text": "For the upper wire midpoint, the upper wire is massless, so the mass below the cut is the 2.9 kg block plus the entire lower wire plus the 1.9 kg block.",
+    "equation": "mass below = 2.9 + 0.2 + 1.9 = 5.0 kg"
+   },
+   {
+    "text": "Apply Newton's second law to this total hanging mass with the same upward acceleration.",
+    "equation": "T = 5.0 × (9.8 + 0.2) = 5.0 × 10 = 50 N"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) 20 N, (b) 50 N"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using g alone instead of g + a gives 19.6 N and 49 N, ignoring that the whole system accelerates upward."
+   },
+   {
+    "option": null,
+    "text": "Forgetting to include half the lower wire's mass below the lower midpoint gives 1.9 × 10 = 19 N there instead of 20 N."
+   }
+  ],
+  "concept_tags": [
+   "Newton's second law",
+   "tension in a wire with distributed mass",
+   "accelerating system"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "6c8b046be154d08ea6501a1486b705f04562ae7f86ded801bfa4581e137893e3"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e652519fca6befea464b3dbd6918068e32be59b8b025fa3026121645e3137ce1",
+  "audited_by": "W02-U-lom-02"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-10",
+  "at": "2026-09-11T10:00:00+05:30"
+ }
+}

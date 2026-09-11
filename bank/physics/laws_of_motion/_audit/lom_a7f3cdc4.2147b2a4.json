@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_a7f3cdc4",
+ "item_sha": "2147b2a47c8897724aad21fc8ceb56f59382748f309211c17a276af5dd0c1ebd",
+ "auditor_option": null,
+ "auditor_value": "a = 6 m/s²; T₁ (A side) = 32 N; T₂ (B side) = 48 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "(20·10 − 8)/32 = 6; T₁ = 4·6 + 8 = 32; T₂ = 8·6 = 48; C check 200 − 32 − 48 = 120 = 20·6. The friction-ignored mistake gives 200/32 = 6.25 as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:02:39+05:30"
+ }
+}

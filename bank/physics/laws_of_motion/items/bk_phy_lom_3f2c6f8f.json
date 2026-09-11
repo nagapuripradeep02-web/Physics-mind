@@ -1,0 +1,92 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_3f2c6f8f",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: For a set of forces that all pass through one common point, the total turning effect (moment) taken about any chosen point has the same value whichever point is chosen. Reason: If such concurrent forces add up to zero as vectors, their total moment about every point is zero as well.",
+  "options": {
+   "1": "both Assertion and Reason are true and the Reason is the correct explanation of the Assertion",
+   "2": "both Assertion and Reason are true but the Reason is not the correct explanation of the Assertion",
+   "3": "Assertion is true, but the Reason is false",
+   "4": "Assertion is false, but the Reason is true"
+  },
+  "parts": null,
+  "conditions": [
+   "forces are concurrent (all act through one common point)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Test whether the moment of concurrent forces about two different points is actually the same, using a concrete numeric example, then check the zero-resultant case separately.",
+  "steps": [
+   {
+    "text": "For concurrent forces acting through one point P, the moment about any point O equals the vector from O to P crossed with the resultant force R.",
+    "equation": "moment about O = (r_P − r_O) × R"
+   },
+   {
+    "text": "Take two concurrent forces through P = (1,0) that do not cancel: F₁ = (1,1) N and F₂ = (2,−1) N.",
+    "equation": "R = F₁+F₂ = (3, 0) N"
+   },
+   {
+    "text": "Compute the moment about the origin (0,0) and about the point (0,5).",
+    "equation": "moment about (0,0) = 0 N·m, moment about (0,5) = 15 N·m"
+   },
+   {
+    "text": "These two moments are different, so the moment of concurrent forces about different points is not constant in general — the Assertion is false.",
+    "equation": "0 ≠ 15 ⇒ Assertion false"
+   },
+   {
+    "text": "Repeat with forces that cancel instead: F₁ = (1,1) N and F₂ = (−1,−1) N, so R = 0.",
+    "equation": "R = 0"
+   },
+   {
+    "text": "With R = 0, the moment about each of the same two points, (0,0) and (0,5), comes out zero, confirming the Reason's specific claim that a zero resultant gives zero moment everywhere.",
+    "equation": "Assertion false, Reason true"
+   }
+  ],
+  "final_answer": {
+   "option": 4,
+   "value": "Assertion is false, but the Reason is true"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Assuming that forces meeting at one point is by itself enough to make the moment the same about every point, without testing a case where the resultant is not zero."
+   }
+  ],
+  "concept_tags": [
+   "moment of a force",
+   "concurrent forces",
+   "torque about a point"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "08e0c79393de6d07dca201373b63b3ebe554252c9a95ca87abd2e234ae3bebde"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "e17db0c1be6c4b535f9387548c05d3bea4e7e1219f39b3e09fcbbe3629f38c2f",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "question_id": "lom_3ce6bc1e",
+ "item_sha": "d177e4c640ad3de3e558057cd4e8be2c1c41111ff0df33da6e3c9cbefc54403a",
+ "auditor_option": null,
+ "auditor_value": "v₃ = 3 m/s downward",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "The served text begins 'In the same pulley system', a reference to a question that is not served with it; the figure description does describe the system fully, so the item is still answerable.",
+ "notes": "Independently, downward positive: v₁ = −1, so the movable pulley moves down at +1; v₂ + v₃ = 2v_pulley gives −1 + v₃ = 2, v₃ = +3 m/s (down). Every step follows. The common_mistakes entry reproduces its number (v_pulley = −1 gives v₃ = −1, i.e. 1 m/s up).",
+ "audited_by": {"model": "opus", "wave": 2, "agent": "W02-U-lom-02", "at": "2026-09-11T20:21:00+05:30"}
+}

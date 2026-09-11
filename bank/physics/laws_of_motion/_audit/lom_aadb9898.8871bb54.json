@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_aadb9898",
+ "item_sha": "8871bb544d8ae2e5e71e8b13121226e844092a5bf1b46606160da11f77edf207",
+ "auditor_option": null,
+ "auditor_value": "(a) T₁ = 10 N, T₂ = 30 N (a = 1 m/s²); (b) T₂ = 24 N (a′ = 1.2 m/s²)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Every line follows; both mistake entries produce the numbers they name (20 N, 50 N).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-06",
+  "at": "2026-09-11T23:04:04+05:30"
+ }
+}

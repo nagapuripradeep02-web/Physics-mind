@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_5c1668bc",
+ "item_sha": "f8db2d8bca34d9b47f97c4a9707ed611f18f5334c8172c7d6d07d44336426722",
+ "auditor_option": null,
+ "auditor_value": "a = (200 - 16*9.8)/16 = 2.7 m/s^2; T_top = 11*12.5 = 137.5 N; T_mid = 9*12.5 = 112.5 N",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "common_mistakes[1].text",
+   "quote": "Forgetting to include half the rope's mass below the mid-point gives 98 N there instead of 112.5 N.",
+   "note": "The stated cause (using only the 7 kg block below the mid-point) gives 7 × (9.8 + 2.7) = 87.5 N, not 98 N. No error described here produces 98 N.",
+   "fix": "Forgetting to include half the rope's mass below the mid-point gives 7 × 12.5 = 87.5 N there instead of 112.5 N."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "common_mistakes[0] checks: 11 × 9.8 = 107.8 N and 9 × 9.8 = 88.2 N as stated.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:59:09+05:30"
+ }
+}

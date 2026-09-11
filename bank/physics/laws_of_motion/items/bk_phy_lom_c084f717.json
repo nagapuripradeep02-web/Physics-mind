@@ -1,0 +1,100 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_c084f717",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two setups are shown below. In each, someone must lift a block that is currently sitting on the ground up to a height h using a string that passes over one or more pulleys fixed to an overhead support. Both the pulleys and the strings are light (massless) and frictionless. In which setup must the person pull with a greater force, if any?",
+  "options": {
+   "1": "Setup (i)",
+   "2": "Setup (ii)",
+   "3": "Same in both",
+   "4": "Cannot be determined"
+  },
+  "parts": null,
+  "conditions": [
+   "pulleys and strings are light (massless)",
+   "block starts resting on the ground and is raised to height h",
+   "setup (i) has one pulley fixed to an overhead bracket",
+   "setup (ii) has two pulleys, a larger one and a smaller one, both fixed to the same overhead bracket and neither attached to the block"
+  ],
+  "figure": {
+   "description": "Setup (i): a block rests on the ground; a string tied to the block goes straight up, passes over a single pulley fixed to an overhead bracket, and comes down to a person standing beside the block, who pulls the free end. Setup (ii): the same overhead bracket carries one fixed pulley. A second pulley is mounted on a short post fixed to the top of the block, so it moves with the block. The string is tied to the bracket, runs down and passes under the block's pulley, goes back up over the fixed pulley, and comes down to the person, who pulls the free end. In both setups the person pulls the string to raise the block through the same height h."
+  }
+ },
+ "solution": {
+  "approach": "Compare the two setups by the tension each strand of string must carry, since the person's pulling force always equals that tension.",
+  "steps": [
+   {
+    "text": "In Setup (i), the string runs from the block, over one fixed pulley, straight to the person. The block hangs from a single strand, so that one strand alone must support the block's full weight.",
+    "equation": "F(i) = Mg"
+   },
+   {
+    "text": "In Setup (ii), the string is tied to the bracket, goes down and under the block's own pulley, then back up over the fixed pulley and down to the person. The block's pulley is now held up by two strands of the same string."
+   },
+   {
+    "text": "The string and both pulleys are light and frictionless, so the tension is the same all along the string. The two strands under the block's pulley share its weight equally.",
+    "equation": "2T(ii) = Mg"
+   },
+   {
+    "text": "Solve for the tension in each strand of Setup (ii).",
+    "equation": "T(ii) = Mg/2"
+   },
+   {
+    "text": "The person's pulling force equals the tension in the strand they hold, so Setup (i) needs Mg while Setup (ii) needs only Mg/2, half as much.",
+    "equation": "F(i) = Mg,  F(ii) = Mg/2"
+   },
+   {
+    "text": "The person exerts more force in Setup (i), so the correct choice is (a): Setup (i)."
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "(a) Setup (i) — it needs Mg, twice the Mg/2 needed in Setup (ii)."
+  },
+  "common_mistakes": [
+   {
+    "option": 2,
+    "text": "Thinking the extra pulley in Setup (ii) adds effort and picking Setup (ii) as needing more force reverses the mechanical advantage: two supporting strands there mean less force, not more."
+   },
+   {
+    "option": 3,
+    "text": "Assuming the same weight always needs the same pulling force, no matter how many strands hold it, misses that Setup (ii) splits the load across two strands, so same in both is wrong."
+   }
+  ],
+  "concept_tags": [
+   "movable pulley",
+   "fixed pulley",
+   "tension",
+   "mechanical advantage"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "2ed9ffe278eefcbc90e4c124b2eb62d0d731b797b482631f0f62a9d000579096"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "8c552a3ff84bfe6c6986667e5450f97749cae28659b633269ef55561da23e201",
+  "audited_by": "W02-U-lom-01"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 3,
+  "agent": "W03-A-lom-01",
+  "at": "2026-09-11T21:20:00+05:30"
+ }
+}

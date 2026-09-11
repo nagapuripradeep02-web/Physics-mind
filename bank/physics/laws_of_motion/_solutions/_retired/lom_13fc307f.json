@@ -1,0 +1,20 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_13fc307f",
+ "approach": "Recognize that the inextensible cord anchored to the wall prevents any block in the chain from moving away from the wall, no matter what F pulls on m₂.",
+ "steps": [
+  {"text": "The cord from the wall to m₁ is inextensible and already taut, so m₁ cannot move further away from the wall.", "equation": "a₁ = 0"},
+  {"text": "m₂ is linked in series to m₁ through the same taut cord system, so it also cannot move away from the wall.", "equation": "a₂ = 0"},
+  {"text": "Apply Newton's second law to m₂ with zero acceleration: the cord tension must exactly balance the applied force F.", "equation": "F − T = m₂(0), so T = F = 0.40 N"}
+ ],
+ "final_answer": {"option": null, "value": "acceleration of m₂ = 0; tension in the cord = 0.40 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Treating m₂ as free to accelerate under F alone, ignoring that it is linked by a taut cord back to the fixed wall, gives a₂ = 2 m/s² instead of zero."},
+  {"option": null, "text": "Treating m₁ and m₂ as one combined system accelerating together under F gives a₂ = 0.8 m/s² instead of zero."}
+ ],
+ "concept_tags": ["string constraint", "equilibrium", "pulley"],
+ "difficulty": "hard",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-06", "at": "2026-09-11T14:08:00+05:30"}
+}

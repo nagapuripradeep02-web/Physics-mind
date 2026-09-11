@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_c7d776b7",
+ "item_sha": "e8c09f06be57ccd348067de9ad48e9fdce7905ab75080e626c550a32d883e080",
+ "auditor_option": null,
+ "auditor_value": "(a) a = 20/6 = 3.33 m/s²; (b) contact force = 2 × 10/3 = 6.67 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Both numbers match; cross-check on the 4 kg block: 20 − N = 4 × 3.33 gives N = 6.67 N. Both mistake entries are genuine student errors (5 m/s² and 20 N).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:27:08+05:30"
+ }
+}

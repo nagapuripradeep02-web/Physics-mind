@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_39473919",
+ "item_sha": "3c7331dba0523936c6141565ae1362350c849f54a75c8ca17263667144737d57",
+ "auditor_option": null,
+ "auditor_value": "(a) t = 7/6 s ≈ 1.17 s; (b) common velocity 4 m/s to the left (the 1 kg block's original direction); (c) displacements: 2 kg block 7/12 m ≈ 0.58 m left, 1 kg block 77/6 m ≈ 12.83 m left (the 2 kg block's path length is 2.08 m because it reverses at t = 0.5 s)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": "Part (c) asks 'how far ... each travel', which for the 2 kg block (it reverses direction at t = 0.5 s) differs between path length (25/12 ≈ 2.08 m) and displacement (7/12 m). The solution reports displacements and labels them as such, so it is not graded as a finding.",
+ "notes": "Independently: f = 0.6 × 2 × 10 = 12 N, a_top = −6, a_bottom = +12 m/s²; 3 − 6t = −18 + 12t gives t = 7/6 s, v = −4 m/s; momentum check (6 − 18)/3 = −4. Both mistake entries produce the numbers they name (7/9 s and −5/6 s).",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-02",
+  "at": "2026-09-11T23:04:33+05:30"
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_06555392",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "For the setup pictured, work out how the size of aA is related to the size of aB.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "a rod A can only slide along its own fixed straight-line axis, guided through a fixed bracket",
+   "the rod stays in contact with a wedge's slanted surface, meeting it at a right angle (90°) at the contact point",
+   "the wedge's slanted surface makes a constant angle θ with the horizontal ground",
+   "B refers to the direction along the wedge's slanted surface"
+  ],
+  "figure": {
+   "description": "A wedge (a right-triangular ramp) sits on the ground, its slanted face climbing from the ground at a fixed angle θ to the horizontal, up to a vertical right-hand edge. A straight rod, marked A, runs through a fixed guide bracket mounted above and to the left, so it can move only along its own straight axis. The rod's lower tip touches the wedge's slanted face, and right where they meet, the rod's axis is perpendicular to that slanted face (a 90° angle is marked there). B labels the slanted face itself, measured from that contact point up toward the top of the wedge."
+  }
+ },
+ "solution": {
+  "approach": "The rod moves only along a line that is the normal to the incline, so its speed equals the component of the wedge's horizontal speed along that normal.",
+  "steps": [
+   {
+    "text": "The rod can move only along its guide's fixed line, which is the normal to the incline at the point where rod and wedge touch."
+   },
+   {
+    "text": "The incline's face makes angle θ with the horizontal, so its normal makes angle θ with the vertical, or (90° − θ) with the horizontal.",
+    "equation": "normal direction makes angle θ with the vertical"
+   },
+   {
+    "text": "For the rod's end to stay on the moving incline face, the rod's speed along the normal must equal the component of the wedge's horizontal speed along that same normal.",
+    "equation": "vA = vB cos(90° − θ)"
+   },
+   {
+    "text": "Simplify the component, and the same relation holds for acceleration.",
+    "equation": "vA = vB sinθ, so aA = aB sinθ"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "aA = aB sinθ"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Using cosθ instead of sinθ gives aA = aB cosθ, mixing up the angle the incline makes with the horizontal and the angle its normal makes with the horizontal."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "relative velocity along common normal",
+   "wedge and rod contact"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "8c269e6a094936a75b85ae0105a037718c4fe1b700cbe0cc5863b89874d9cf14"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "dcc541f3df57306abea94df0e8646f030ee8bb9915e61451462fbd282b4f9ec8",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

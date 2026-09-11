@@ -1,0 +1,18 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_08231949",
+ "approach": "Since the wall is smooth, the floor alone carries the ladder's full weight, so the maximum friction at the floor is the coefficient of friction times that weight.",
+ "steps": [
+  {"text": "The wall is smooth, so it pushes only sideways on the ladder and supplies no vertical support. The floor must therefore carry the ladder's entire weight vertically.", "equation": "N (floor, vertical) = weight of ladder = 250 N"},
+  {"text": "The maximum friction force the floor can supply is the coefficient of friction times this normal force.", "equation": "f_max = μN = 0.3 × 250 N = 75 N"}
+ ],
+ "final_answer": {"option": 1, "value": "75 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Misreading the ladder's weight of 250 N as a mass of 250 kg and multiplying by g again gives f_max = 0.3 × 250 × 10 = 750 N."}
+ ],
+ "concept_tags": ["static friction", "ladder equilibrium", "normal force"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-08", "at": "2026-09-11T12:26:00+05:30"}
+}

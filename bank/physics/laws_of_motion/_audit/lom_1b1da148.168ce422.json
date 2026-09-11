@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_1b1da148",
+ "item_sha": "168ce422126e66bdc5b36a749858aa974049b6831f6417ff42c0b5aeba1195de",
+ "auditor_option": 1,
+ "auditor_value": "mg",
+ "findings": [
+  {
+   "grade": "weak",
+   "field": "steps[0].text",
+   "quote": "The block rests at rest, so only two forces act on it",
+   "note": "Redundant wording (rests at rest) in reader-facing prose; the physics of the line is correct.",
+   "fix": "The block is at rest, so only two forces act on it"
+  }
+ ],
+ "verdict": "weak",
+ "question_defect": null,
+ "notes": "Answer agrees: the block is in equilibrium under its weight and the single contact force, so the contact force has magnitude mg for any theta and mu that keep it at rest. Common-mistake entry (option 3, mg sin theta = the friction part alone) is a genuine error. No g needed.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T22:58:51+05:30"
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_660c1d75",
+ "approach": "Set up coordinates for the square, then find each force's moment as force times perpendicular distance to the axis, signed by rotation sense, and add for the net moment.",
+ "steps": [
+  {"text": "Place the square's corners at A(0,0), B(2,0), C(2,2), D(0,2) and the centre at O(1,1), with distances in metres.",
+   "equation": "A(0,0), B(2,0), C(2,2), D(0,2), O(1,1)"},
+  {"text": "A force whose line of action passes through the axis point has zero moment about that point, since its perpendicular distance to the axis is zero.",
+   "equation": "about A: the 3 N force runs along DA and the 2 N force runs along AB, and both these sides pass through A",
+   "why_this_step": "Both DA and AB have A as one endpoint, so a force acting along either side acts directly through A."},
+  {"text": "The 4 N force (line DC) and 5 N force (line CB) each lie a perpendicular distance of 2 m from A, so their moments about A have magnitude force times 2 m, with sign set by the turning sense they produce.",
+   "equation": "moment(4N) about A = 4 N × 2 m = 8 N·m, anticlockwise; moment(5N) about A = 5 N × 2 m = 10 N·m, clockwise"},
+  {"text": "Adding the four signed moments about A gives the net moment there.",
+   "equation": "About A: 4 N force = 8 N·m (anticlockwise), 3 N force = 0, 5 N force = 10 N·m (clockwise), 2 N force = 0; net = 8 − 10 = −2 N·m, i.e. 2 N·m clockwise"},
+  {"text": "Every side of the square lies a perpendicular distance of 1 m from the centre O, half the side length, so each force's moment about O is its magnitude times 1 m, signed by rotation sense.",
+   "equation": "About O: 4 N force = 4 N·m (anticlockwise), 3 N force = 3 N·m (clockwise), 5 N force = 5 N·m (clockwise), 2 N force = 2 N·m (anticlockwise)"},
+  {"text": "Adding the four signed moments about O gives the net moment there, which comes out equal to the net moment about A.",
+   "equation": "About O: net = 4 − 3 − 5 + 2 = −2 N·m, i.e. 2 N·m clockwise",
+   "why_this_step": "The two net values agree here because the square's net force happens to act along the line joining A and O."}
+ ],
+ "final_answer": {"option": null, "value": "(a) About A: 4 N force (along DC) = 8 N·m anticlockwise; 3 N force (along DA) = 0; 5 N force (along CB) = 10 N·m clockwise; 2 N force (along AB) = 0; net moment about A = 2 N·m clockwise. (b) About O: 4 N force = 4 N·m anticlockwise; 3 N force = 3 N·m clockwise; 5 N force = 5 N·m clockwise; 2 N force = 2 N·m anticlockwise; net moment about O = 2 N·m clockwise."},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Forgetting a force through the axis has zero moment: treating the 3 N force along DA as 2 m from A gives 6 N·m instead of 0."},
+  {"option": null, "text": "Using the distance from O to a corner (√2 m) instead of to the side (1 m) gives moments of about 5.7, 4.2, 7.1 and 2.8 N·m instead of 4, 3, 5 and 2 N·m."}
+ ],
+ "concept_tags": ["moment of a force", "torque about a point", "coplanar forces", "statics"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 4, "agent": "W04-A-lom-01", "at": "2026-09-11T14:10:00+05:30"}
+}

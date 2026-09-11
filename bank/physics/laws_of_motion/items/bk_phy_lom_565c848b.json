@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_565c848b",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "For the pulley arrangement shown in the figure, write the equation connecting the accelerations a₁, a₂ and a₃ of blocks 1, 2 and 3, using the string-length (constraint) method.",
+  "options": null,
+  "parts": null,
+  "conditions": [
+   "upper pulley is fixed to a rigid support",
+   "lower pulley is movable, suspended from the string that passes over the fixed pulley",
+   "block 1 hangs from the fixed-pulley string",
+   "blocks 2 and 3 hang from the two ends of the movable-pulley string"
+  ],
+  "figure": {
+   "description": "A fixed pulley is mounted at the top, attached to a rigid support. A string runs over this fixed pulley: block 1 hangs from one end (the left side), and the other end connects to the axle of a second, movable pulley that hangs below it. A second string runs over this movable pulley, with block 2 hanging from its left end and block 3 hanging from its right end."
+  }
+ },
+ "solution": {
+  "approach": "Write the total length of each string as constant, then differentiate twice to relate the accelerations of the three blocks.",
+  "steps": [
+   {
+    "text": "Let the fixed pulley be the reference. If block 1 moves down by x₁, the string over the fixed pulley shortens on the movable-pulley side by the same amount, so the movable pulley moves up by x₁.",
+    "equation": "x₁ + x_p = constant"
+   },
+   {
+    "text": "Differentiate this length relation twice to relate the accelerations, taking downward as positive for all bodies.",
+    "equation": "a₁ + a_p = 0"
+   },
+   {
+    "text": "For the movable pulley's own string, the sum of the two segments to blocks 2 and 3 stays constant as the pulley moves.",
+    "equation": "(x₂ − x_p) + (x₃ − x_p) = constant"
+   },
+   {
+    "text": "Differentiate this relation twice.",
+    "equation": "a₂ + a₃ − 2a_p = 0",
+    "why_this_step": "The movable pulley's own displacement enters this length twice, once for each side of its string."
+   },
+   {
+    "text": "Combine the two results by substituting a_p from the first relation.",
+    "equation": "a_p = −a₁, so 2a₁ + a₂ + a₃ = 0"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "2a₁ + a₂ + a₃ = 0, with all three accelerations measured downward as positive"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Treating the movable pulley as fixed and writing a₂ + a₃ = 0 directly, missing that the movable pulley itself accelerates when block 1 moves."
+   },
+   {
+    "option": null,
+    "text": "Writing a₁ + a₂ + a₃ = 0 instead of 2a₁ + a₂ + a₃ = 0, missing that the movable pulley's own motion enters its string's length twice, once for each side."
+   }
+  ],
+  "concept_tags": [
+   "constraint relation",
+   "pulley system",
+   "kinematics of connected bodies"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9237b855eb575fb386706bec09979fd70616b3e121a91f7834af50cf313103cc"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "686d7b16389d513a3f78ccfb5510bed24828fc6b3ec2d0bc914dd2fdd98ed0ca",
+  "audited_by": "W01-U-lom-05"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-05",
+  "at": "2026-09-11T12:10:00+05:30"
+ }
+}

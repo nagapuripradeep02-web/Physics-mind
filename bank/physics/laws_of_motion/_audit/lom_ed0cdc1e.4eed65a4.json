@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_ed0cdc1e",
+ "item_sha": "4eed65a405d4db876d82b781347c3689f38b1757d4870d63b1fa6dfcbbaa8d05",
+ "auditor_option": null,
+ "auditor_value": "Incorrect (false): the problem can always be analysed from an inertial frame with real forces only",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "final_answer 'False' answers the served 'correct or incorrect' question; no finding. All three prose steps are true statements.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-08",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

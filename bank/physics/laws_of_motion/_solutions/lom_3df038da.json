@@ -1,0 +1,22 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_3df038da",
+ "approach": "Find the system's acceleration from the unequal masses on each side, then apply Newton's second law to block C alone to get the tension between B and C.",
+ "steps": [
+  {"text": "One side of the pulley carries A alone (2 kg); the other carries B and C together (2+2 = 4 kg).", "equation": "m_A = 2 kg, m_B+m_C = 4 kg"},
+  {"text": "Find the common acceleration from the excess weight on the heavier side, divided by the total mass.", "equation": "a = [(m_B+m_C) − m_A] g / (m_A+m_B+m_C) = 2(9.8)/6 ≈ 3.27 m/s²"},
+  {"text": "Isolate block C alone: its own weight acts down, and the tension in the string above it (to B) acts up, while it accelerates downward with the system.", "equation": "m_C g − T = m_C a"},
+  {"text": "Solve for T using m_C = 2 kg.", "equation": "T = m_C(g − a) = 2(9.8 − 3.27) ≈ 13.07 N"},
+  {"text": "This rounds to the printed option.", "equation": "T ≈ 13 N"}
+ ],
+ "final_answer": {"option": 2, "value": "13 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 4, "text": "Assuming the system stays in equilibrium since 'three equal weights' sounds balanced, ignoring that four kilograms pull against two, giving T = m_C g = 2(9.8) = 19.6 N."},
+  {"option": 3, "text": "Correctly finding the system's acceleration a ≈ 3.27 m/s² but stopping there and reporting this number itself as the tension, skipping Newton's second law for block C alone."}
+ ],
+ "concept_tags": ["Atwood machine", "connected masses", "pulley"],
+ "difficulty": "medium",
+ "mistake_type_hint": "application",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-07", "at": "2026-09-11T16:00:00+05:30"}
+}

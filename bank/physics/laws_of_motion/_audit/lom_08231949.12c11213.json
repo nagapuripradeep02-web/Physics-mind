@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_08231949",
+ "item_sha": "12c11213dfa3bdddc9d3f040ce115bebd4ebcb5152527c9dedb8eb0d1427dfdf",
+ "auditor_option": 1,
+ "auditor_value": "75 N (floor normal force = 250 N because the smooth wall gives no vertical force; f_max = 0.3 x 250)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Two correct lines; the common-mistake entry (treating 250 N as 250 kg, giving 750 N) is a genuine slip and its number follows from its cause. No g needed since the weight is given as a force.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-01",
+  "at": "2026-09-11T23:02:38+05:30"
+ }
+}

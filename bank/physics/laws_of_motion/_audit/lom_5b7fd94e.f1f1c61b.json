@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_5b7fd94e",
+ "item_sha": "f1f1c61b32b14a4eaa56c3e285f22394b586e020f7880c5859b96bbdd00357d2",
+ "auditor_option": 4,
+ "auditor_value": "Assertion false (a couple gives zero net force with rotation), Reason true -> option 4 (d)",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "steps[1] says the body can rotate \"if a net torque acts on it\"; a body can also keep rotating with no torque at all, but the sentence is stated as a sufficient case, not a necessary one, so it is not false for this question.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-03",
+  "at": "2026-09-11T22:57:50+05:30"
+ }
+}

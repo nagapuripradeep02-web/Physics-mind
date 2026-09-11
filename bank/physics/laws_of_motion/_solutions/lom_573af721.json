@@ -1,0 +1,21 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_573af721",
+ "approach": "The string, its vertical drop, and the horizontal pull form a right triangle; use it to find the string's angle, then balance vertical and horizontal forces.",
+ "steps": [
+  {"text": "The string AC = 0.5 m is the hypotenuse; the horizontal offset BC = 0.3 m is one side. Find the vertical side AB by Pythagoras.", "equation": "AB = √(0.5² − 0.3²) = √0.16 = 0.4 m"},
+  {"text": "This gives the angle θ the string makes with the vertical: sin θ = 0.3/0.5 = 0.6 and cos θ = 0.4/0.5 = 0.8.", "equation": "sinθ = 0.6, cosθ = 0.8"},
+  {"text": "Vertically, the string's tension balances the weight of the object.", "equation": "T cosθ = 8 → T = 8/0.8 = 10 N"},
+  {"text": "Horizontally, the applied force balances the horizontal part of the tension.", "equation": "F = T sinθ = 10 × 0.6 = 6 N", "why_this_step": "The object is in equilibrium under three forces: weight, tension and F, so each direction balances separately."}
+ ],
+ "final_answer": {"option": null, "value": "T = 10 N, F = 6 N"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": null, "text": "Swapping sine and cosine, using T sinθ = 8 for the vertical balance, which gives T = 13.3 N instead of 10 N."},
+  {"option": null, "text": "Finding the vertical drop AB as 0.5 − 0.3 = 0.2 m by simple subtraction instead of using Pythagoras."}
+ ],
+ "concept_tags": ["equilibrium of concurrent forces", "resolution of forces", "geometry of a right triangle"],
+ "difficulty": "easy",
+ "mistake_type_hint": "calculation",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-01", "at": "2026-09-11T00:50:00+05:30"}
+}

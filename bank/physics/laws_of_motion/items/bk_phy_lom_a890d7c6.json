@@ -1,0 +1,90 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_a890d7c6",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "A 5 m ladder leans against a frictionless (smooth) vertical wall. Call the corner where wall meets ground O, the ladder's top end touching the wall A, and its bottom end resting on the ground B, with AO = 4 m (the vertical rise) and OB = 3 m (the horizontal base). The ground has friction coefficient μ with the ladder. What is the least value μ can have so the ladder does not slip?",
+  "options": {
+   "1": "μ = 1/2",
+   "2": "μ = 1/4",
+   "3": "μ = 3/8",
+   "4": "μ = 5/8"
+  },
+  "parts": null,
+  "conditions": [
+   "wall is smooth (frictionless)",
+   "ground has friction coefficient μ with the ladder",
+   "ladder length AB = 5 m",
+   "vertical rise AO = 4 m",
+   "horizontal base OB = 3 m"
+  ],
+  "figure": {
+   "description": "A right-angle triangle formed by a vertical wall and the horizontal ground meeting at point O. The ladder AB is the sloping side, running from point A (up on the wall) down to point B (on the ground). AB = 5 m, AO (the vertical rise from O up to A) = 4 m, OB (the horizontal run from O out to B) = 3 m."
+  }
+ },
+ "solution": {
+  "approach": "Balance forces on the ladder and take torques about its foot to find the wall's push, which must equal the floor's friction, then compare that to the ladder's weight.",
+  "steps": [
+   {
+    "text": "The wall is smooth, so it can only push the ladder sideways, away from the wall, at the top point A. The floor pushes up on the ladder at its foot B and also supplies friction, sideways, to stop the foot from sliding out.",
+    "equation": "wall force: horizontal N_w at A; floor forces: vertical N_g and horizontal friction f at B"
+   },
+   {
+    "text": "Balance forces vertically and horizontally. Vertically, the floor alone carries the ladder's weight. Horizontally, the wall's push must be matched by friction at the floor.",
+    "equation": "N_g = W (weight of ladder), f = N_w"
+   },
+   {
+    "text": "Take torques about the foot B, using the ladder's weight acting at its midpoint and the wall's push acting at the top A, using the given distances AO = 4 m and OB = 3 m.",
+    "equation": "W × 1.5 m = N_w × 4 m ⇒ N_w = (3/8)W"
+   },
+   {
+    "text": "Since friction must supply this same push, and the maximum friction available is μ times the floor's normal force, the smallest coefficient of friction that keeps the ladder from slipping is this ratio.",
+    "equation": "f = N_w = (3/8)W ≤ μN_g = μW ⇒ μ_min = 3/8"
+   }
+  ],
+  "final_answer": {
+   "option": 3,
+   "value": "μ = 3/8"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Swapping the vertical height and horizontal base of the ladder's foot in the torque equation, using 3 m as the height and 4 m as the base, gives μ_min = 2/3."
+   }
+  ],
+  "concept_tags": [
+   "ladder equilibrium",
+   "torque",
+   "static friction"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "application"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "3fe0c36755f79ee3a0b70f6204b9fffa8a9f79a9840d8f6f7b9428f06b8976ec"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "7ee0dbf575a8d27888b1d4b9e2e506ba06b1ee24b2a72f8c677631c681414643",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-08",
+  "at": "2026-09-11T12:24:00+05:30"
+ }
+}

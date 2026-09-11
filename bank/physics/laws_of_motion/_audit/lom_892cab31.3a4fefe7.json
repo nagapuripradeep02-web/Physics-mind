@@ -1,0 +1,24 @@
+{
+ "question_id": "lom_892cab31",
+ "item_sha": "3a4fefe7a8bb87fd53c30f2e7f8c588054e47cd489d3c740b5f7e62d7e25bc41",
+ "auditor_option": null,
+ "auditor_value": "T = w/cos30 = 2w/sqrt(3) (about 1.155 w); string makes 30 deg with the wall, 60 deg with the horizontal; N = w/sqrt(3)",
+ "findings": [
+  {
+   "grade": "wrong",
+   "field": "steps[0].text",
+   "quote": "As in the earlier part, the string's line, extended, must pass through the centre O for the sphere to be in rotational equilibrium, so O, B and C lie on one straight line.",
+   "note": "The question as served has no earlier part; this refers to unserved source material. The labels O, A, B, C are also used before they are defined anywhere in the served question or figure description.",
+   "fix": "Let O be the ball's centre, A the point where the ball touches the wall, B the point where the string is tied to the ball and C the point where the string is tied to the wall. The weight and the normal reaction both pass through O, so for the ball to be in rotational equilibrium the string's line, extended, must also pass through O; hence O, B and C lie on one straight line."
+  }
+ ],
+ "verdict": "wrong",
+ "question_defect": null,
+ "notes": "Physics and the final value agree with mine: OC = 2a, OA = a, so the string makes 60 deg with the horizontal and T sin60 = w gives T = 2w/sqrt(3). Both common_mistakes entries are genuine and their numbers follow from the stated causes.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-05",
+  "at": "2026-09-11T22:59:10+05:30"
+ }
+}

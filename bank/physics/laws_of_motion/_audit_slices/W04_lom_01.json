@@ -1,0 +1,177 @@
+{
+ "wave": 4,
+ "role": "audit",
+ "chapter": "laws_of_motion",
+ "slice": 1,
+ "round": 0,
+ "agent_label": "W04-U-lom-01",
+ "items": [
+  {
+   "question_id": "lom_adb64b1d",
+   "audit_file": "lom_adb64b1d.54de1217.json",
+   "item_sha": "54de12172cb3b8c799e01fc431c311410b2e912828666c474037b92e8a98788a",
+   "question_text": "A worn plank leans against a round cylinder that lies on rough ground; the lower end of the plank also touches the rough ground directly, while the plank's other end rises up, resting on top of the cylinder. There is no friction between the plank and the cylinder, though friction exists at the ground contacts. Sketch separate free-body diagrams to display the following.\n(a) Show every force acting on the plank.\n(b) Show every force acting on the cylinder.",
+   "options": [],
+   "figure_description": "A cylinder (circular cross-section) rests on the ground. A long plank leans up at an angle from the ground, passing over the top of the cylinder partway along its length, so the plank is supported at two points: one end resting directly on the ground, and the middle/upper part resting on top of the cylinder. Neither the plank nor the cylinder is fixed or attached to anything else.",
+   "solution": {
+    "approach": "List every contact the plank and the cylinder each have, and draw one force per contact, remembering that a smooth contact on a circular body always points through its centre.",
+    "steps": [
+     {
+      "text": "The plank touches the rough ground at its lower end and touches the smooth cylinder along its length, so it feels four forces in total.",
+      "equation": "plank: weight, ground normal, ground friction, cylinder normal"
+     },
+     {
+      "text": "At the ground contact the surface is rough, so both a normal reaction and a friction force act there, along with the plank's weight at its centre of gravity.",
+      "equation": "N_ground (perpendicular to ground) + f_ground (along ground) + W_plank (down, at centre of gravity)"
+     },
+     {
+      "text": "At the cylinder contact there is no friction (given), so only a normal reaction acts there, perpendicular to the plank's own surface at that point.",
+      "equation": "N_cylinder (perpendicular to the plank, at the point of contact)",
+      "why_this_step": "A frictionless contact can only push perpendicular to the surfaces touching, never along them."
+     },
+     {
+      "text": "The cylinder touches the rough ground and the smooth plank, and carries its own weight, so it feels four forces: weight, the plank's normal reaction, the ground's normal reaction, and the ground's friction.",
+      "equation": "cylinder: weight W_cylinder (down, at centre) + N_ground2 (from ground, vertical, through centre) + N_plank (reaction to N_cylinder, radial, through centre) + f_ground_cyl (from ground, horizontal, at the ground contact)",
+      "why_this_step": "The plank's normal push on the cylinder has a horizontal part along the ground, and the ground contact is rough, so a horizontal friction force is drawn there; whether it is zero is a separate question, since it is the only force with a moment about the centre."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "On the plank: its weight (at its centre of gravity), the ground's normal reaction and friction (at its lower end), and the cylinder's normal reaction perpendicular to the plank (at the contact point). On the cylinder: its weight at the centre, the normal reaction from the plank (perpendicular to the plank, through the centre), the ground's normal reaction (vertical, through the centre) and the ground's friction (horizontal, at the ground contact)."
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Drawing a friction force between the plank and the cylinder, contradicting the statement that this contact is frictionless."
+     },
+     {
+      "option": null,
+      "text": "Leaving out the ground's friction on the cylinder, although the ground is rough and the plank's push on the cylinder has a horizontal part that makes it tend to move along the ground."
+     }
+    ],
+    "concept_tags": [
+     "free body diagram",
+     "normal reaction",
+     "friction",
+     "circular contact"
+    ],
+    "difficulty": "medium",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_57d048b4",
+   "audit_file": "lom_57d048b4.4d3f2857.json",
+   "item_sha": "4d3f285726c8ab0e54c8b54327ab251028e9e8a0bc327075753745a6c134e6a5",
+   "question_text": "Three pulleys are connected one below another in a chain: the topmost is fixed to a ceiling, and two lighter pulleys hang below it in series, as shown in the figure.\n(a) Using string-constraint equations, determine how the acceleration of point 2 is related to the acceleration of point 1.",
+   "options": [],
+   "figure_description": "A large pulley P₁ is fixed to the ceiling. Below it hang two smaller movable pulleys, P₂ (medium) and P₃ (small), one below the other, and at the bottom sits block 1 (a wide base block); block 2 hangs beside the chain. Three light strings are used. String S₁ passes over P₁: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₂. String S₂ passes over P₂: its left end goes straight down to block 1 and its right end goes straight down to the axle of P₃. String S₃ passes over P₃: its left end goes straight down to block 1 and its right end hangs straight down to block 2. So three string ends are tied to block 1 (one from each pulley) and block 2 hangs from S₃ only. All strings are vertical; pulleys and strings are massless and frictionless. Measure the downward positions of block 1 (x₁), the axle of P₂ (x₃), the axle of P₃ (x₄) and block 2 (x₂) from a fixed horizontal line through P₁; a₁ and a₂ are the accelerations of blocks 1 and 2.",
+   "solution": {
+    "approach": "Write the constant-length equation for each of the three strings in turn, then combine the three to connect point 1 and block 2 directly.",
+    "steps": [
+     {
+      "text": "The string over the top fixed pulley P₁ runs from block 1 to the axle of pulley P₂ (position x₃), so their distances from the reference line add to a constant.",
+      "equation": "x₁ + x₃ = c₁ ⇒ a₁ + a₃ = 0"
+     },
+     {
+      "text": "The string S₂ over pulley P₂ (axle at x₃) runs from block 1 to the axle of pulley P₃ (at x₄), both measured relative to P₂'s own position.",
+      "equation": "(x₁−x₃) + (x₄−x₃) = c₂ ⇒ a₁ + a₄ − 2a₃ = 0"
+     },
+     {
+      "text": "The string S₃ over pulley P₃ (axle at x₄) runs from block 1 to block 2, both measured relative to P₃'s own position.",
+      "equation": "(x₁−x₄) + (x₂−x₄) = c₃ ⇒ a₁ + a₂ − 2a₄ = 0"
+     },
+     {
+      "text": "From the first equation, a₃ = −a₁. Put this into the second equation.",
+      "equation": "a₁ + a₄ − 2(−a₁) = 0 ⇒ a₄ = −3a₁"
+     },
+     {
+      "text": "Put a₄ = −3a₁ into the third equation and solve for a₂.",
+      "equation": "a₁ + a₂ − 2(−3a₁) = 0 ⇒ a₂ = −7a₁",
+      "why_this_step": "Each extra movable pulley in the chain multiplies the effect on the far end, which is why block 2's acceleration comes out seven times point 1's."
+     }
+    ],
+    "final_answer": {
+     "option": null,
+     "value": "a₂ = −7a₁ (block 2's acceleration is 7 times point 1's acceleration, in the opposite direction)"
+    },
+    "common_mistakes": [
+     {
+      "option": null,
+      "text": "Writing only the top string's constraint (x₁ + x₃ = constant) and treating everything below P₁ as one body moving with pulley P₂, which gives |a₂| = |a₁|; each movable pulley adds its own constraint."
+     }
+    ],
+    "concept_tags": [
+     "string constraint",
+     "movable pulley",
+     "pulley kinematics"
+    ],
+    "difficulty": "hard",
+    "mistake_type_hint": "concept"
+   }
+  },
+  {
+   "question_id": "lom_0b110c6e",
+   "audit_file": "lom_0b110c6e.72b9a36b.json",
+   "item_sha": "72b9a36b2a6f1114c41579e1a697129650cf33dfe56e514d3fab3c69de950fee",
+   "question_text": "Starting from rest, a particle is sped up to a velocity v by a force F₁. Afterwards, the same particle is slowed from that same velocity v back down to rest by a different force F₂. Which of these statements about F₁ and F₂ must be true?",
+   "options": [
+    {
+     "label": "(a)",
+     "text": "F₁ and F₂ are always equal in magnitude"
+    },
+    {
+     "label": "(b)",
+     "text": "F₂ must be larger than F₁"
+    },
+    {
+     "label": "(c)",
+     "text": "F₂ could be smaller than, larger than, or equal to F₁"
+    },
+    {
+     "label": "(d)",
+     "text": "F₂ can never equal F₁"
+    }
+   ],
+   "figure_description": "",
+   "solution": {
+    "approach": "Each force equals mass times the speed change divided by the time it acts over, and the question gives no relation between the two times.",
+    "steps": [
+     {
+      "text": "Write each force using Newton's second law, with the speed change divided by the time each force acts.",
+      "equation": "F₁ = m(v − 0)/t₁, F₂ = m(0 − v)/t₂ in size"
+     },
+     {
+      "text": "The question states only that the particle speeds up from rest to v under F₁ and slows from v to rest under F₂. It gives no information about the times t₁ and t₂, or about the distances covered.",
+      "equation": "no fixed relation between t₁ and t₂"
+     },
+     {
+      "text": "Since t₁ and t₂ can be anything, F₂ can come out smaller than, larger than, or equal to F₁, depending on the time over which each force acts.",
+      "equation": "F₂ ⋛ F₁, all three are possible = F₂ can never equal F₁"
+     }
+    ],
+    "final_answer": {
+     "option": 4,
+     "value": "F₂ can never equal F₁"
+    },
+    "common_mistakes": [
+     {
+      "option": 1,
+      "text": "Assuming that the same change in speed must come from the same force overlooks that the time or distance over which each force acts is not given as equal."
+     },
+     {
+      "option": 2,
+      "text": "Assuming that slowing something down always takes a bigger push than speeding it up confuses direction of motion with the size of the force needed."
+     }
+    ],
+    "concept_tags": [
+     "Newton's second law",
+     "impulse",
+     "conceptual reasoning"
+    ],
+    "difficulty": "easy",
+    "mistake_type_hint": "concept"
+   }
+  }
+ ]
+}

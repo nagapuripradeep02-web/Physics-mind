@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_be0cf9bd",
+ "item_sha": "63e98616d835259e4c39a32a075fd42c0cbc655c94ff0fc9c1a83129203a8b04",
+ "auditor_option": null,
+ "auditor_value": "T_OA = 5 N, T_OB = 5√3 ≈ 8.66 N",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Lami's angles (150°, 120°, 90°) match the figure description; horizontal/vertical component balance gives the same T_OA = 5 N, T_OB = 5√3 N. Mistake entry's cause reproduces 20 N.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 2,
+  "agent": "W02-U-lom-03",
+  "at": "2026-09-11T23:29:13+05:30"
+ }
+}

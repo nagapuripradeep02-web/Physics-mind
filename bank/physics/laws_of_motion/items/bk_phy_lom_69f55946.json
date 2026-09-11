@@ -1,0 +1,93 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_69f55946",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "assertion_reason",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Assertion: Suppose three forces F₁, F₂ and F₃ all act through one point, with F₁ making 30° with F₂ and 120° with F₃. Under these conditions the forces are unable to balance one another. Reason: For this to happen, at least one of the angles between the forces has to be greater than 180°.",
+  "options": {
+   "1": "If both Assertion and Reason are true and the Reason is correct explanation of the Assertion.",
+   "2": "If both Assertion and Reason are true but Reason is not the correct explanation of Assertion.",
+   "3": "If Assertion is true, but the Reason is false.",
+   "4": "If Assertion is false but the Reason is true."
+  },
+  "parts": null,
+  "conditions": [
+   "three forces act at a single common point (concurrent forces)"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Three concurrent forces balance only when their directions surround the common point, so every angle between consecutive forces must stay under 180°; check whether that holds here.",
+  "steps": [
+   {
+    "text": "Three concurrent forces stay in equilibrium only when their directions surround the common point, so the three angles between consecutive forces, added all the way around, equal 360° and each one stays below 180°.",
+    "equation": "θ₁₂ + θ₂₃ + θ₃₁ = 360°, every θ < 180°"
+   },
+   {
+    "text": "F2 is 30° from F1 and F3 is 120° from F1. The widest F2 and F3 can be apart, measured through F1, is the sum of these two angles.",
+    "equation": "widest possible spread = 30° + 120° = 150°"
+   },
+   {
+    "text": "Even in this widest case, all three forces lie inside a 150° arc, less than 180°. The angle needed to close the loop back to F1, on the other side, is 360° minus this arc.",
+    "equation": "360° − 150° = 210°",
+    "why_this_step": "A group of vectors confined to an arc under 180° always has a component along one fixed direction, so a positive-weighted sum of them can never reach zero."
+   },
+   {
+    "text": "Lami's theorem needs the sine of each of the three angles around the point to be positive, which requires every angle to stay under 180°. Here one angle is always at least 210°, so no set of positive force magnitudes can make F1, F2 and F3 balance.",
+    "equation": "sin(210°) = −0.5 (negative)"
+   },
+   {
+    "text": "So the three forces cannot be in equilibrium under the stated angles, making the Assertion true, and this happens exactly because one of the three angles around the point is always greater than 180°, so the Reason is true and correctly explains the Assertion.",
+    "equation": "Answer: option (a) — both true, Reason explains Assertion"
+   }
+  ],
+  "final_answer": {
+   "option": 1,
+   "value": "Both Assertion and Reason are true and the Reason is the correct explanation of the Assertion."
+  },
+  "common_mistakes": [
+   {
+    "option": 4,
+    "text": "Taking F3 as 120−30 = 90° from F2 and checking Lami's theorem with 30°, 90°, 120° gives every sine positive, which looks like a valid equilibrium and wrongly marks the Assertion false."
+   },
+   {
+    "option": 3,
+    "text": "Correctly seeing the Assertion is true but checking the Reason only against 30°, 90° and 120°, none over 180°, and missing the real closing angle of 210°, wrongly marks the Reason false."
+   }
+  ],
+  "concept_tags": [
+   "equilibrium of concurrent forces",
+   "Lami's theorem",
+   "vector addition"
+  ],
+  "difficulty": "hard",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "a85f8814fd03e1ed898c2d9e7ffc4732d1ef22aac90466c83f195a7e2daf67ac"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "fc51ae9710ea7d5344a766492bb66b64fe60ab307835a0c9d83eaaa36428a221",
+  "audited_by": "W01-U-lom-06"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 5,
+  "agent": "W05-A-lom-01",
+  "at": "2026-09-11T15:30:00+05:30"
+ }
+}

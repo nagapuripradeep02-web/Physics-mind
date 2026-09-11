@@ -1,0 +1,16 @@
+{
+ "question_id": "lom_6c463010",
+ "item_sha": "8a53107997d738309475b7a0c9a20e31b616085cecf615fdcf58aa5fe3d14da1",
+ "auditor_option": null,
+ "auditor_value": "A = g tan30° = 10/√3 m/s²; M = (m₁ + m₂) tan30°/(1 − tan30°) = 5(√3 + 1)/2 ≈ 6.83 kg",
+ "findings": [],
+ "verdict": "ok",
+ "question_defect": null,
+ "notes": "Answer agrees. Direction check: the slope descends to the right, so the normal on m₁ has a rightward component and the wedge must accelerate rightward, which the string toward the pulley provides. The mistake entry's number checks: A = 5 gives M = 25/5 = 5 kg.",
+ "audited_by": {
+  "model": "opus",
+  "wave": 1,
+  "agent": "W01-U-lom-04",
+  "at": "2026-09-11T23:01:03+05:30"
+ }
+}

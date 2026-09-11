@@ -1,0 +1,19 @@
+{
+ "schema": "eapcet_solution_v1",
+ "question_id": "lom_d4988964",
+ "approach": "Check whether the applied force can move block B against the floor's friction; if the whole system stays still, block A needs no friction force to move with it.",
+ "steps": [
+  {"text": "Find the largest friction the floor can supply on the two blocks together.", "equation": "f_max,floor = μ(m_A+m_B)g = 0.5×10×10 = 50 N"},
+  {"text": "Compare this with the applied force.", "equation": "F = 25 N < 50 N, so the blocks do not move"},
+  {"text": "Since block B does not accelerate, block A does not accelerate either, so block A needs no force from friction to move with it.", "equation": "a = 0, friction on A from B = m_A × a = 0"}
+ ],
+ "final_answer": {"option": 4, "value": "zero"},
+ "confidence": "sure",
+ "common_mistakes": [
+  {"option": 2, "text": "Taking the largest possible friction between A and B, μ_AB × m_A × g, as the actual friction gives 4 N, but A never needs that much force since the blocks stay still."}
+ ],
+ "concept_tags": ["static friction", "friction on a stacked block", "limiting friction"],
+ "difficulty": "medium",
+ "mistake_type_hint": "concept",
+ "authored_by": {"model": "sonnet", "wave": 1, "agent": "W01-A-lom-09", "at": "2026-09-11T14:06:00+05:30"}
+}

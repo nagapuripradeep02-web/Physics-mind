@@ -1,0 +1,102 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_98a6ab60",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "worked_example",
+ "level": "jee_main",
+ "format": "subjective",
+ "key_kind": "number",
+ "figure_required": false,
+ "question": {
+  "text": "A 2 kg block sits on a ramp inclined at 37° to the horizontal. A 4 N force pushes the block up along the ramp's surface. Between the block and the ramp, the coefficients of friction are μₛ = 0.4 (static) and μₖ = 0.3 (kinetic).",
+  "options": null,
+  "parts": [
+   {
+    "label": "a",
+    "asks": "Work out the friction force acting on the block."
+   },
+   {
+    "label": "b",
+    "asks": "Decide whether the block starts moving, and if it does, work out its acceleration."
+   }
+  ],
+  "conditions": [
+   "block rests on an incline of 37° to the horizontal",
+   "μₛ = 0.4",
+   "μₖ = 0.3",
+   "mass of block = 2 kg",
+   "4 N force applied along the incline surface, directed up the slope"
+  ],
+  "figure": {
+   "description": "A 2 kg block rests on a ramp tilted at 37° to the horizontal, with friction coefficients μₛ = 0.4 and μₖ = 0.3 between the block and the ramp. A 4 N force pushes the block up the slope, along the ramp's surface."
+  }
+ },
+ "solution": {
+  "approach": "Compare the weight component along the incline with the applied force and the maximum static friction to see if the block moves, then find kinetic friction and acceleration.",
+  "steps": [
+   {
+    "text": "Take g = 10 m/s², so W = 20 N. Resolve the weight along and perpendicular to the incline: W sin37° = 20×0.6 = 12 N down the slope and W cos37° = 20×0.8 = 16 N into the slope.",
+    "equation": "W sin37° = 12 N, W cos37° = 16 N"
+   },
+   {
+    "text": "The normal reaction equals the perpendicular component, since nothing else acts perpendicular to the incline.",
+    "equation": "R = 16 N"
+   },
+   {
+    "text": "Find the maximum static friction and compare it with the unbalanced force before friction is included.",
+    "equation": "f(max static) = μₛR = 0.4×16 = 6.4 N; unbalanced force = 12 − 4 = 8 N"
+   },
+   {
+    "text": "Since 8 N exceeds 6.4 N, friction cannot keep the block still, so it slides down and kinetic friction acts up the incline.",
+    "equation": "f(kinetic) = μₖR = 0.3×16 = 4.8 N"
+   },
+   {
+    "text": "Find the acceleration from the net force along the incline.",
+    "equation": "a = (12 − 4 − 4.8)/2 = 1.6 m/s², directed down the incline"
+   }
+  ],
+  "final_answer": {
+   "option": null,
+   "value": "(a) friction = 4.8 N, kinetic, acting up the incline; (b) the block moves down the incline with acceleration 1.6 m/s²"
+  },
+  "common_mistakes": [
+   {
+    "option": null,
+    "text": "Comparing only the weight component (12 N) with the maximum static friction, without subtracting the 4 N applied force, still concludes sliding but gives a = 3.6 m/s²."
+   },
+   {
+    "option": null,
+    "text": "Adding the applied 4 N to the weight component instead of subtracting it gives an unbalanced force of 16 N and a = 5.6 m/s²."
+   }
+  ],
+  "concept_tags": [
+   "friction on an incline",
+   "resolving weight",
+   "kinetic friction"
+  ],
+  "difficulty": "medium",
+  "mistake_type_hint": "calculation"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "9954af95e325843801376630ade117ed7ee42efa379374e015cf764f1b20fbe5"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": false,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "350764ab3b40b369077d88f12c086448c0c64e8e852ba17f874fa804e6592472",
+  "audited_by": "W02-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-03",
+  "at": "2026-09-11T15:00:00+05:30"
+ }
+}

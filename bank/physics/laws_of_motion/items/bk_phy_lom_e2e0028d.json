@@ -1,0 +1,87 @@
+{
+ "schema_version": "bank_item_v1",
+ "id": "bk_phy_lom_e2e0028d",
+ "subject": "physics",
+ "chapter": "Laws of Motion",
+ "shape": null,
+ "kind": "exercise",
+ "level": "jee_main",
+ "format": "mcq_single",
+ "key_kind": "letter",
+ "figure_required": false,
+ "question": {
+  "text": "Two balls, A and B, are the same size and are released from the same point at the same time, falling under gravity. Ball A has a greater mass than ball B. The air resistance on each ball is equal. Which ball lands first, if either?",
+  "options": {
+   "1": "both the balls reach the ground simultaneously",
+   "2": "the ball A reaches earlier",
+   "3": "the ball B reaches earlier",
+   "4": "nothing can be said"
+  },
+  "parts": null,
+  "conditions": [
+   "A and B are the same size",
+   "mass of A is greater than mass of B",
+   "air resistance on A equals air resistance on B",
+   "both dropped from the same point"
+  ],
+  "figure": null
+ },
+ "solution": {
+  "approach": "Write Newton's second law for each ball with the same air-resistance force but different mass, and compare their net downward accelerations.",
+  "steps": [
+   {
+    "text": "Both balls feel the same downward gravity and the same upward air-resistance force, since they are the same size.",
+    "equation": "m_A a_A = m_A g − F_air, m_B a_B = m_B g − F_air"
+   },
+   {
+    "text": "Solve each equation for the net downward acceleration.",
+    "equation": "a_A = g − F_air/m_A, a_B = g − F_air/m_B"
+   },
+   {
+    "text": "Since the mass of A is greater, the same F_air divided by the larger mass subtracts less from g.",
+    "equation": "F_air/m_A < F_air/m_B ⇒ a_A > a_B"
+   },
+   {
+    "text": "The heavier ball A has the larger net downward acceleration, so starting together from the same point it falls faster and reaches the ground first.",
+    "equation": "a_A > a_B ⇒ A lands first"
+   }
+  ],
+  "final_answer": {
+   "option": 2,
+   "value": "the ball A reaches earlier"
+  },
+  "common_mistakes": [
+   {
+    "option": 1,
+    "text": "Applying the no-air rule that all falling bodies land together regardless of mass, missing that the given equal air-resistance force actually slows the lighter ball more."
+   }
+  ],
+  "concept_tags": [
+   "free fall",
+   "air resistance",
+   "Newton's second law"
+  ],
+  "difficulty": "easy",
+  "mistake_type_hint": "concept"
+ },
+ "origin": {
+  "kind": "book",
+  "sha": "4bce09351dba57aa904720b2ecc06d562646f9ea6a19fe3d241ae368812d8dd7"
+ },
+ "verification": {
+  "key_match": true,
+  "solvers_agreed": true,
+  "hint_match": true,
+  "syllabus_ok": true,
+  "restatement_faithful": true,
+  "audit": "verified",
+  "verified_sha": "f33037c09db551415ef65ca340faa75f4bec296a24cfaa65cf77b291040bafa8",
+  "audited_by": "W01-U-lom-03"
+ },
+ "authored_by": {
+  "model": "sonnet",
+  "wave": 1,
+  "agent": "W01-A-lom-07",
+  "at": "2026-09-11T16:00:00+05:30"
+ }
+}
