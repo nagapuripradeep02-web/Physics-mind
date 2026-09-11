@@ -58,6 +58,14 @@ const ALLOWED_ORIGINS = (Deno.env.get('EP_ALLOWED_ORIGINS') ??
     'http://localhost:8120,http://127.0.0.1:8120')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
+// THE OPEN DOOR (founder, 2026-09-11): on these origins every device counts as
+// entitled and the per-device and per-IP caps are off — only the daily spend
+// cap stays. EP_OPEN_ORIGINS names the PREVIEW origin while only the founder
+// tests; unset it the day a student arrives (no redeploy needed). Never the
+// student site's origin.
+const OPEN_ORIGINS = (Deno.env.get('EP_OPEN_ORIGINS') ?? '')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+
 const TASK_TYPE = 'eapcet_photo_read';
 
 const PROBE_TOKEN = Deno.env.get('EP_PROBE_TOKEN') ?? '';
@@ -440,7 +448,8 @@ Deno.serve(async (req: Request) => {
     // THE LOCK. Before the key check and before the ledger: a locked device
     // never costs a model call.
     const token = typeof body.access_token === 'string' ? body.access_token : '';
-    const ent = await entitled(deviceId, token);
+    const open = OPEN_ORIGINS.includes(origin);
+    const ent = open ? true : await entitled(deviceId, token);
     if (ent === null) {
         console.error('[ep-photo-read] entitlement read failed — refusing (fail closed)');
         return reply(origin, 200, { locked: true });
@@ -473,12 +482,13 @@ Deno.serve(async (req: Request) => {
         if (r.metadata?.device_id === deviceId) deviceDay++;
         if (r.metadata?.ip_hash === ipHash && nowMs - new Date(r.created_at).getTime() < 60_000) ipMinute++;
     }
+    const left = (used: number) => open ? undefined : Math.max(0, PER_DAY - deviceDay - used);
     if (spentToday >= DAILY_USD_CAP) {
         console.warn('[ep-photo-read] daily spend cap hit: $' + spentToday.toFixed(4));
         return reply(origin, 200, { ok: false, reason: 'quiet' });
     }
-    if (deviceDay >= PER_DAY) return reply(origin, 200, { ok: false, reason: 'cap', reads_left: 0 });
-    if (ipMinute >= IP_PER_MIN) return reply(origin, 200, { ok: false, reason: 'busy', reads_left: PER_DAY - deviceDay });
+    if (!open && deviceDay >= PER_DAY) return reply(origin, 200, { ok: false, reason: 'cap', reads_left: 0 });
+    if (!open && ipMinute >= IP_PER_MIN) return reply(origin, 200, { ok: false, reason: 'busy', reads_left: left(0) });
 
     // The grounding, from the row the release file wrote. Never from the page.
     const row = await solutionOf(qid);
@@ -522,7 +532,7 @@ Deno.serve(async (req: Request) => {
     } catch (e) {
         console.error('[ep-photo-read] ' + (e instanceof Error ? e.message : String(e)));
         clearTimeout(timer);
-        return reply(origin, 200, { ok: false, reason: 'down', reads_left: PER_DAY - deviceDay });
+        return reply(origin, 200, { ok: false, reason: 'down', reads_left: left(0) });
     }
     clearTimeout(timer);
     const latency = Date.now() - t0;
@@ -615,6 +625,6 @@ Deno.serve(async (req: Request) => {
         steps: outSteps,
         diverges_at: divergesAt,
         note,
-        reads_left: Math.max(0, PER_DAY - deviceDay - 1),
+        reads_left: left(1),
     });
 });

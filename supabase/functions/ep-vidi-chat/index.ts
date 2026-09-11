@@ -59,6 +59,14 @@ const ALLOWED_ORIGINS = (Deno.env.get('EP_ALLOWED_ORIGINS') ??
     'http://localhost:8120,http://127.0.0.1:8120')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
+// THE OPEN DOOR (founder, 2026-09-11): on these origins every device counts as
+// entitled and the per-device and per-IP caps are off — only the daily spend
+// cap stays. EP_OPEN_ORIGINS names the PREVIEW origin while only the founder
+// tests; unset it the day a student arrives (no redeploy needed). Never the
+// student site's origin.
+const OPEN_ORIGINS = (Deno.env.get('EP_OPEN_ORIGINS') ?? '')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+
 const TASK_TYPE = 'eapcet_vidi_chat';
 
 // WHO ASKED — a label, never a guard. The limits below read the WHOLE ledger,
@@ -376,7 +384,8 @@ Deno.serve(async (req: Request) => {
     // THE LOCK. Before the key check and before the ledger: a locked device
     // never costs a model call and never sees a solution byte in a reply.
     const token = typeof body.access_token === 'string' ? body.access_token : '';
-    const ent = await entitled(deviceId, token);
+    const open = OPEN_ORIGINS.includes(origin);
+    const ent = open ? true : await entitled(deviceId, token);
     if (ent === null) {
         console.error('[ep-vidi-chat] entitlement read failed — refusing (fail closed)');
         return reply(origin, 200, { locked: true, reply: FRIENDLY_DOWN, questions_left: 0 });
@@ -416,20 +425,21 @@ Deno.serve(async (req: Request) => {
         if (r.metadata?.device_id === deviceId) deviceDay++;
         if (r.metadata?.ip_hash === ipHash && nowMs - new Date(r.created_at).getTime() < 60_000) ipMinute++;
     }
+    const left = (used: number) => open ? undefined : Math.max(0, DEVICE_PER_DAY - deviceDay - used);
     if (spentToday >= DAILY_USD_CAP) {
         console.warn('[ep-vidi-chat] daily spend cap hit: $' + spentToday.toFixed(4));
         return reply(origin, 200, { reply: FRIENDLY_QUIET, questions_left: 0 });
     }
-    if (deviceDay >= DEVICE_PER_DAY) return reply(origin, 200, { reply: FRIENDLY_CAP, questions_left: 0 });
-    if (ipMinute >= IP_PER_MIN) return reply(origin, 200, { reply: FRIENDLY_BUSY, questions_left: DEVICE_PER_DAY - deviceDay });
+    if (!open && deviceDay >= DEVICE_PER_DAY) return reply(origin, 200, { reply: FRIENDLY_CAP, questions_left: 0 });
+    if (!open && ipMinute >= IP_PER_MIN) return reply(origin, 200, { reply: FRIENDLY_BUSY, questions_left: left(0) });
 
     // The grounding, from the row the release file wrote. Never from the page.
     const row = await solutionOf(qid);
     if (row === undefined) {
         console.error('[ep-vidi-chat] solution read failed — refusing (fail closed)');
-        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: DEVICE_PER_DAY - deviceDay });
+        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: left(0) });
     }
-    if (row === null) return reply(origin, 200, { reply: 'This question has no worked solution yet, so I cannot help with it. Pick another from your result screen.', questions_left: DEVICE_PER_DAY - deviceDay });
+    if (row === null) return reply(origin, 200, { reply: 'This question has no worked solution yet, so I cannot help with it. Pick another from your result screen.', questions_left: left(0) });
 
     const facts = factsOf(row);
     const system = PERSONA + '\n\nQUESTION FACTS (the truth for this question):\n' + facts.slice(0, 14_000);
@@ -528,7 +538,7 @@ Deno.serve(async (req: Request) => {
         usage = json.usage ?? {};
     } catch (e) {
         console.error('[ep-vidi-chat] ' + (e instanceof Error ? e.message : String(e)));
-        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: DEVICE_PER_DAY - deviceDay });
+        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: left(0) });
     }
 
     const latency = Date.now() - t0;
@@ -596,6 +606,6 @@ Deno.serve(async (req: Request) => {
 
     return reply(origin, 200, {
         reply: text || FRIENDLY_DOWN,
-        questions_left: Math.max(0, DEVICE_PER_DAY - deviceDay - 1),
+        questions_left: left(1),
     });
 });

@@ -86,6 +86,14 @@ const ALLOWED_ORIGINS = (Deno.env.get('EP_ALLOWED_ORIGINS') ??
     'http://localhost:8120,http://127.0.0.1:8120')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
+// THE OPEN DOOR (founder, 2026-09-11): on these origins every device counts as
+// entitled and the per-device and per-IP caps are off — only the daily spend
+// cap stays. EP_OPEN_ORIGINS names the PREVIEW origin while only the founder
+// tests; unset it the day a student arrives (no redeploy needed). Never the
+// student site's origin.
+const OPEN_ORIGINS = (Deno.env.get('EP_OPEN_ORIGINS') ?? '')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+
 const TASK_TYPE = 'eapcet_solve';
 
 const PROBE_TOKEN = Deno.env.get('EP_PROBE_TOKEN') ?? '';
@@ -674,7 +682,8 @@ Deno.serve(async (req: Request) => {
     // THE LOCK. Before the key check and before the ledger: a locked device
     // never costs a model call.
     const token = typeof body.access_token === 'string' ? body.access_token : '';
-    const ent = await entitled(deviceId, token);
+    const open = OPEN_ORIGINS.includes(origin);
+    const ent = open ? true : await entitled(deviceId, token);
     if (ent === null) {
         console.error('[ep-solve] entitlement read failed — refusing (fail closed)');
         return reply(origin, 200, { locked: true });
@@ -708,12 +717,13 @@ Deno.serve(async (req: Request) => {
         if (r.metadata?.device_id === deviceId && r.metadata?.consumed !== false) deviceDay++;
         if (r.metadata?.ip_hash === ipHash && nowMs - new Date(r.created_at).getTime() < 60_000) ipMinute++;
     }
+    const left = (used: number) => open ? undefined : Math.max(0, PER_DAY - deviceDay - used);
     if (spentToday >= DAILY_USD_CAP) {
         console.warn('[ep-solve] daily spend cap hit: $' + spentToday.toFixed(4));
         return reply(origin, 200, { ok: false, reason: 'quiet' });
     }
-    if (deviceDay >= PER_DAY) return reply(origin, 200, { ok: false, reason: 'cap', reads_left: 0 });
-    if (ipMinute >= IP_PER_MIN) return reply(origin, 200, { ok: false, reason: 'busy', reads_left: PER_DAY - deviceDay });
+    if (!open && deviceDay >= PER_DAY) return reply(origin, 200, { ok: false, reason: 'cap', reads_left: 0 });
+    if (!open && ipMinute >= IP_PER_MIN) return reply(origin, 200, { ok: false, reason: 'busy', reads_left: left(0) });
 
     const t0 = Date.now();
     const calls: Call[] = [];
@@ -770,7 +780,7 @@ Deno.serve(async (req: Request) => {
     }
     if (intakeOut.error || !intakeOut.text) {
         console.error('[ep-solve] intake failed: ' + intakeOut.error);
-        return reply(origin, 200, { ok: false, reason: 'down', reads_left: PER_DAY - deviceDay });
+        return reply(origin, 200, { ok: false, reason: 'down', reads_left: left(0) });
     }
     const questionText = String(intake.question_text ?? '').trim().slice(0, 4000);
     const options = (Array.isArray(intake.options) ? intake.options : []).map((o) => String(o ?? '').trim().slice(0, 300)).filter(Boolean).slice(0, 6);
@@ -784,12 +794,12 @@ Deno.serve(async (req: Request) => {
     if (!questionText || legible < 0.5) {
         const internal = await ledgerRow(false, { ...intakeMeta, outcome: 'unreadable' }, null, false);
         await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'unreadable', ms: Date.now() - t0, bytes: imageBytes });
-        return reply(origin, 200, { ok: false, reason: 'unreadable', reads_left: PER_DAY - deviceDay });
+        return reply(origin, 200, { ok: false, reason: 'unreadable', reads_left: left(0) });
     }
     if (inFrame > 1) {
         const internal = await ledgerRow(false, { ...intakeMeta, outcome: 'many_questions' }, null, false);
         await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'many_questions', ms: Date.now() - t0, bytes: imageBytes });
-        return reply(origin, 200, { ok: false, reason: 'many_questions', reads_left: PER_DAY - deviceDay });
+        return reply(origin, 200, { ok: false, reason: 'many_questions', reads_left: left(0) });
     }
     const fingerprint = await sha256Hex(normalise(questionText, options));
     const route = hasFigure ? 'figure' : 'text';
@@ -811,12 +821,12 @@ Deno.serve(async (req: Request) => {
     if (cached && !cached.disputed) {
         await cachePatch(cacheFp, { hit_count: (cached.hit_count ?? 0) + 1, updated_at: new Date().toISOString() });
         const internal = await ledgerRow(true, { ...intakeMeta, outcome: 'cache', source: 'cache', route: cached.route, label: cached.label, option: cached.option, fingerprint: cacheFp, cache_sim: Number(cacheSim.toFixed(3)) }, cacheFp, true);
-        await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'ok', source: 'cache', label: cached.label, route: cached.route, subject, ms: Date.now() - t0, reads_left: Math.max(0, PER_DAY - deviceDay - 1), bytes: imageBytes });
+        await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'ok', source: 'cache', label: cached.label, route: cached.route, subject, ms: Date.now() - t0, reads_left: left(1), bytes: imageBytes });
         return reply(origin, 200, {
             ok: true, source: 'cache', label: cached.label, option: cached.option, answer: cached.answer,
             working: cached.working, working_alt: cached.working_alt, winner: cached.winner, models: cached.models, conventions: cached.conventions, similar: cached.similar_qs,
             syllabus: cached.syllabus, question_text: cached.question_text, options: cached.options, subject: cached.subject, has_figure: cached.has_figure,
-            route: cached.route, fingerprint: cacheFp, reads_left: Math.max(0, PER_DAY - deviceDay - 1),
+            route: cached.route, fingerprint: cacheFp, reads_left: left(1),
             cost_usd: Number(calls.reduce((a, c) => a + c.cost_usd, 0).toFixed(6)), ms: Date.now() - t0,
         });
     }
@@ -876,11 +886,11 @@ Deno.serve(async (req: Request) => {
     if (working.length) await cachePut(row);
     const outcome = working.length ? 'ok' : 'no_working';
     const internal = await ledgerRow(true, {
-        ...intakeMeta, outcome, source: 'model', route, label: labelForCache, option: v.option, fingerprint, second_reason: secondReason,
+        ...intakeMeta, outcome, source: 'model', route, label: labelForCache, option: v.option, fingerprint, second_reason: secondReason, open_door: open,
         late_pair: !!late, syllabus, models: models.map((m) => ({ model: m.model, effort: m.effort, option: m.option, ms: m.ms, cap_hit: m.cap_hit, error: m.error })),
     }, fingerprint, false);
     await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', {
-        outcome, source: 'model', label: labelForCache, route, subject, ms: Date.now() - t0, reads_left: Math.max(0, PER_DAY - deviceDay - 1), bytes: imageBytes, second_reason: secondReason, late_pair: !!late,
+        outcome, source: 'model', label: labelForCache, route, subject, ms: Date.now() - t0, reads_left: left(1), bytes: imageBytes, second_reason: secondReason, late_pair: !!late,
     });
 
     // The wait rule: DeepSeek finishes after the reply and upgrades the row.
@@ -903,12 +913,12 @@ Deno.serve(async (req: Request) => {
         if (rt?.waitUntil) rt.waitUntil(done);
     }
 
-    if (!working.length) return reply(origin, 200, { ok: false, reason: 'down', reads_left: Math.max(0, PER_DAY - deviceDay - 1) });
+    if (!working.length) return reply(origin, 200, { ok: false, reason: 'down', reads_left: left(1) });
     return reply(origin, 200, {
         ok: true, source: 'model', label: labelForCache, option: v.option, answer,
         working, working_alt: workingAlt, winner: v.winner ? v.winner.model : null, models, conventions: [], similar: [], syllabus,
         question_text: questionText, options, subject, has_figure: hasFigure, route, fingerprint,
-        reads_left: Math.max(0, PER_DAY - deviceDay - 1),
+        reads_left: left(1),
         cost_usd: Number(calls.reduce((a, c) => a + c.cost_usd, 0).toFixed(6)), ms: Date.now() - t0,
     });
 });

@@ -49,6 +49,14 @@ const ALLOWED_ORIGINS = (Deno.env.get('EP_ALLOWED_ORIGINS') ??
     'http://localhost:8120,http://127.0.0.1:8120')
     .split(',').map((s) => s.trim()).filter(Boolean);
 
+// THE OPEN DOOR (founder, 2026-09-11): on these origins every device counts as
+// entitled and the per-device and per-IP caps are off — only the daily spend
+// cap stays. EP_OPEN_ORIGINS names the PREVIEW origin while only the founder
+// tests; unset it the day a student arrives (no redeploy needed). Never the
+// student site's origin.
+const OPEN_ORIGINS = (Deno.env.get('EP_OPEN_ORIGINS') ?? '')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+
 // Kept LITERAL so that widening the allowlist can never reclassify a real
 // domain as "local".
 const LOCAL_ORIGINS = new Set(['http://localhost:8120', 'http://127.0.0.1:8120']);
@@ -190,6 +198,7 @@ Deno.serve(async (req: Request) => {
     if (!ALLOWED_ORIGINS.includes(origin)) {
         return reply(origin, 403, { ok: false, error: 'origin' });
     }
+    const open = OPEN_ORIGINS.includes(origin);   // the open door: every device unlocked on this origin
 
     const raw = await req.text();
     if (raw.length > MAX_BYTES) return reply(origin, 413, { ok: false, error: 'too_large' });
@@ -209,6 +218,7 @@ Deno.serve(async (req: Request) => {
     // ── standing ──
     if (action === 'standing') {
         const standing = await standingOf(deviceId, token);
+        if (standing && open) standing.unlocked = true;
         if (!standing) {
             console.error('[ep-state] entitlement read failed — refusing (fail closed)');
             return reply(origin, 502, { ok: false, error: 'store' });
@@ -221,6 +231,7 @@ Deno.serve(async (req: Request) => {
         const chapterKey = typeof body.chapter_key === 'string' ? body.chapter_key : '';
         if (!CHAPTER_RE.test(chapterKey)) return reply(origin, 400, { ok: false, error: 'bad_chapter' });
         const standing = await standingOf(deviceId, token);
+        if (standing && open) standing.unlocked = true;
         if (!standing) {
             console.error('[ep-state] entitlement read failed — refusing (fail closed)');
             return reply(origin, 502, { ok: false, error: 'store' });
@@ -282,6 +293,7 @@ Deno.serve(async (req: Request) => {
         // open without a second round trip. A failed read here is reported as
         // absent, not as locked — the page keeps the standing it last saw.
         const standing = await standingOf(deviceId, token);
+        if (standing && open) standing.unlocked = true;
         return reply(origin, 200, { ...out, standing });
     } catch (e) {
         console.error('[ep-state] unreachable', (e as Error).message);
