@@ -84,7 +84,7 @@ Nothing here is trusted until it is measured on real handwriting, with the same 
 2. **Metrics:** false-error rate on correct pages (**target ≤ 2%** — this is the trust number), first-error localisation within ±1 line (≥ 85%), error-class accuracy (≥ 80%), UNSURE rate (≤ 15%), and cost/latency per review.
 3. **Controls:** the correct-by-different-method pages are the negative control for rule 1; a reviewer that flags any of them fails. An always-says-error dummy must be caught by the harness.
 4. **Ablations:** judge A alone, judge B alone, both with and without S2 — so the "twice as strong" claim is a measured delta, not a design belief.
-5. Results append to `docs/MODEL_PROBES.md` as Run 12; the harness is `scripts/model_probes/` extended with a `review_probe.py`.
+5. Results append to `docs/MODEL_PROBES.md` as their own run (Runs 12–13 were retrieval and the syllabus sweep); the harness is `scripts/model_probes/` extended with a `review_probe.py`.
 
 ## 7. The data flywheel
 

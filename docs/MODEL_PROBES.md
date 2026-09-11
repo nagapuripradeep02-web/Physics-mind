@@ -379,3 +379,37 @@ So agreement delivered a verdict on 88% of the hardest questions with zero measu
 The topper is cheap, the struggler is expensive, and the struggler is the customer. A blended base of 5% obsessed / 15% heavy / 40% moderate / 40% low costs ≈ ₹120–130 per user per month against ₹199 — viable, carried by the light users, and the margin shrinks as the product succeeds. JEE aspirants are nearly all non-bank (the bank is EAPCET past papers).
 
 **Levers, in order:** similar question from the bank (free, verified); review on a cheaper model *after measuring it on real handwriting*; a monthly allowance (e.g. 400 photos + 100 solution reviews) instead of a daily cap that blocks mock-review days; one solve per question ever (cache by transcribed-question fingerprint — students in one batch send the same material); price the coaching loop as its own tier. The reviewer itself is designed in `docs/SOLUTION_REVIEWER_ARCHITECTURE.md`.
+
+## 23. Run 12 — retrieval-augmented solving: three similar bank questions in the prompt (2026-09-11)
+
+The "pattern similarity" half of the one-lakh-bank question (`docs/PRODUCT_GAPS_AND_BANK_STRATEGY.md` §3): if the model sees similar solved past questions, does it solve new ones better? Measured with what we have — the EAPCET PYQ bank (4,159 questions: text, options, official key, chapter; **no worked solutions**), BM25 similarity within subject, the three nearest questions with their keys placed in the prompt as "similar past EAPCET questions … for the style, level and conventions this exam expects", then the same photo and ask. Gemini 3.7 Flash direct, the 148 hard figure/organic questions, against Run 9 (photo only). Query text: the sample's own text for EAPCET, the Run 9 transcript for JEE (its crops carry no text). The query's own bank row is excluded; near-verbatim neighbours are flagged. 148 calls, $0.75. Script `scripts/model_probes/retrieval_probe.py`; data `data/retrieval/` (`hand.json`: 14 hand grades — with examples in front of it the model names options by text or ID far more often, so the regex missed 12 right answers; 2 disputed keys).
+
+| Set | photo only (Run 9) | **with 3 bank examples** | $/q |
+|---|---|---|---|
+| JEE Main chemistry text/organic /29 | 28 (+1 disputed) | 28 (+1 disputed) | $0.0049 → $0.0046 |
+| JEE Main physics figures /30 | 30 | 30 | $0.0054 → $0.0052 |
+| JEE Main chemistry figures /29 | 29 | 28 | $0.0054 → $0.0047 |
+| EAPCET physics figures /30 | 27 (+1 disputed) | **29 (+1 disputed)** | $0.0071 → $0.0063 |
+| EAPCET chemistry figures /30 | 30 | 29 | $0.0050 → $0.0047 |
+| **Total /148** | **144** | **144** | −8% |
+
+Fixed by examples: the clipper waveform and the three-battery circuit — the two EAPCET physics figure reads that were the only misses in Run 9. Broken: the He PV–P curve and the organic product — the two items already shown to be unstable run-to-run (Runs 10–11). Net zero, at slightly lower cost (the model thinks less with examples in front of it).
+
+**Two facts about the bank itself, found on the way.** (1) **EAPCET 2025 repeated earlier years' questions verbatim**: four 2025 questions had a near-identical neighbour (Jaccard 0.96 and 1.0 on two of them) from 2021–2024 — an exact-hit rate of 4 of 60 on the EAPCET sample, which is the first measured number for "how often does a new question already sit in the bank". (2) BM25 on question text puts only 51% of neighbours in the same chapter; retrieval by chapter tag first, text second, would be tighter.
+
+**Reading.** With keys-only examples, retrieval does not move accuracy on this model — the misses that remain are not about style or convention the bank could show. The convention case (the capacitor error) did not appear here because it is not in the 148; on the six toughest it would need a *worked* neighbour, which the bank does not have. So the honest conclusion for the bank plan: the value of a large bank is **exact and near-exact hits** (free, verified — and the 2025 paper shows they exist), the reviewer's expected-method context, and the similar-question supply — not a lift in the solver's raw accuracy. The retrieval mechanism is worth revisiting only once the bank holds worked solutions (the answer-book and p1-02 waves), and then specifically on convention-type questions.
+
+## 24. Run 13 — syllabus sweep: do the stored solutions use methods beyond Class 11–12? (2026-09-11)
+
+Founder rule: every AI solution must stay at Class 10–12 level, nothing from a bachelor's course. Measured on the solutions we already hold: **506 worked solutions** — Gemini 3.7 Flash direct on the 148 hard questions and the 59 maths (Runs 9, 11), DeepSeek V4.1 Flash `high` on the four base runs (EAPCET text 90, JEE Main 90, EAPCET figures 60, JEE figures 60). Judge: DeepSeek V4.1 Flash with thinking off, JSON output, a prompt naming the ALLOWED set (NCERT 11–12 plus the coaching techniques JEE expects — L'Hôpital, Leibniz rule, King's rule, parameter differentiation, 3×3 determinants…) and the BEYOND set (Lagrangian/Hamiltonian, tensors, Laplace/Fourier, residues, matrix exponentials, Jacobians, higher ODEs, group theory, non-NCERT named reactions, university theorems by name), "used to reach the answer, not mentioned in passing". Script `scripts/model_probes/syllabus_sweep.py`; data `data/syllabus_sweep/`. 506 calls, **$0.04**.
+
+| model | physics | chemistry | maths | flagged |
+|---|---|---|---|---|
+| DeepSeek V4.1 Flash `high` | 119 | 117 | 60 | **0** |
+| Gemini 3.7 Flash | 59 | 88 | 60 | **0** |
+
+**Positive control (run before believing a zero):** six planted solutions through the same judge — a Lagrangian bead-on-wire, a Laplace-transform RC circuit, a residue-theorem integral, a Jacobian change of variables, and two within-syllabus controls (v² = u² + 2as; L'Hôpital). The judge flagged **4 of 4** beyond-syllabus plants with the right reason and passed **2 of 2** within-syllabus ones. The zero is real, not blindness.
+
+Most-used techniques across the 506 (the judge's own list): Ohm's law, electrophilic aromatic substitution, unit conversion, IUPAC rules, Boolean algebra, energy conservation, vector dot product, Markovnikov, carbocation stability, u-substitution, Vieta — the syllabus, as expected.
+
+**Reading.** On exam questions with the product's one-line ask, both models already answer at syllabus level; beyond-syllabus methods did not occur once in 506 solutions. The founder's constraint is therefore cheap to enforce: a short syllabus clause in the system prompt plus this same $0.0001 judge as a post-check that regenerates the rare flagged solution. Caveat: the sweep is over *exam* questions solved from photos; a student's free-text ask ("solve using Lagrangian") or a textbook-style problem may pull a model off-syllabus more often, so the post-check stays on in the product, and the two-plant control should be re-run whenever the judge prompt changes.
