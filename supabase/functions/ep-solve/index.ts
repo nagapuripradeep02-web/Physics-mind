@@ -11,8 +11,9 @@
  *               options transcribed, subject, whether it needs a drawn figure,
  *               legibility, how many questions are in the frame. Its text is
  *               the FINGERPRINT (sha256 of the normalised text + options).
- *   S2 cache    ep_solve_cache by fingerprint: the second student who sends
- *               the same page is served for the cost of the intake call.
+ *   S2 cache    ep_solve_cache by fingerprint (the question AND the ask —
+ *               "solve" and "explain" are two rows): the second student who
+ *               sends the same page is served for the cost of the intake call.
  *   S3 route    text  → DeepSeek V4.1 Flash, thinking high (max for maths),
  *                       one call (measured ~99% on EAPCET text, ~$0.001);
  *               figure → Gemini 3.7 Flash AND DeepSeek high in parallel
@@ -43,9 +44,17 @@
  *           image:<base64>, media_type, session_id?, internal?}
  *          {action:'report', device_id, fingerprint, option?, label?, note?}
  * Reply    {locked:true} | {ok:false, reason} | {ok:true, source, label,
- *           option, answer, working:[{step,text}], working_alt?, models:[…],
+ *           option, answer, answer_tex, format:'tex'|'plain',
+ *           working:[{step,text,tex,kind}], working_alt?, models:[…],
  *           conventions:[], similar:[], syllabus, question_text, options,
  *           subject, has_figure, route, fingerprint, reads_left, cost_usd, ms}
+ *
+ * THE FORMAT (founder, 2026-09-11): the working is written the way a top
+ * student writes on the answer sheet — one line of mathematics per line in
+ * LaTeX between $…$, words only where a student would write them, never an
+ * instruction to the reader. Each line carries `tex` (typeset on the phone)
+ * and `text` (the plain-text rendering: the cache, the syllabus judge and the
+ * page's fallback). EP_SOLVE_FORMAT=plain restores the old plain-text rule.
  *
  * DEPLOY WITH JWT VERIFICATION OFF — students have no Supabase account:
  *   npx supabase functions deploy ep-solve --no-verify-jwt --use-api --project-ref <ref>
@@ -57,6 +66,7 @@
  *             EP_SOLVE_TEXT_EFFORT, EP_SOLVE_FIGURE_MODEL, EP_SOLVE_THINK_CAP,
  *             EP_SOLVE_MODEL_TIMEOUT_MS, EP_SOLVE_PAIR_WAIT_MS, EP_SOLVE_PER_DAY,
  *             EP_SOLVE_DAILY_USD_CAP, EP_SOLVE_SYLLABUS_CHECK (0 = off),
+ *             EP_SOLVE_FORMAT (tex | plain),
  *             EP_IP_PER_MIN, EP_PHOTO_MAX_BYTES, EP_IP_SALT, EP_USD_INR,
  *             EP_PROBE_TOKEN (labels automated probes; never exempts them)
  */
@@ -80,6 +90,7 @@ const MAX_BYTES = Number(Deno.env.get('EP_PHOTO_MAX_BYTES') ?? String(Math.round
 const USD_TO_INR = Number(Deno.env.get('EP_USD_INR') ?? '95.69');
 const IP_SALT = Deno.env.get('EP_IP_SALT') ?? SERVICE_KEY.slice(0, 24);
 const SYLLABUS_CHECK = (Deno.env.get('EP_SOLVE_SYLLABUS_CHECK') ?? '1') !== '0';
+const FORMAT: 'tex' | 'plain' = Deno.env.get('EP_SOLVE_FORMAT') === 'plain' ? 'plain' : 'tex';
 const ANSWER_ROOM = 4000;            // output tokens left for the working after the thinking cap
 
 const ALLOWED_ORIGINS = (Deno.env.get('EP_ALLOWED_ORIGINS') ??
@@ -120,10 +131,26 @@ const ASKS: Record<string, string> = {
     solve: 'Please solve this question',
     explain: 'Please explain and solve this question',
 };
-const RULES = `Rules:
-- Use only methods in the NCERT Class 11-12 syllabus and the standard techniques EAPCET and JEE Main coaching teaches. Do not use university-level methods (Lagrangian mechanics, Laplace or Fourier transforms, residues, Jacobians, matrix exponentials, group theory, reagents outside NCERT).
+const SYLLABUS_RULE = '- Use only methods in the NCERT Class 11-12 syllabus and the standard techniques EAPCET and JEE Main coaching teaches. Do not use university-level methods (Lagrangian mechanics, Laplace or Fourier transforms, residues, Jacobians, matrix exponentials, group theory, reagents outside NCERT).';
+// The answer-sheet rule (founder, 2026-09-11): lines of mathematics, not
+// sentences about mathematics. The models were measured on the bare ask and
+// write LaTeX by themselves; this rule only shapes the lines.
+const RULES_TEX = `Rules:
+${SYLLABUS_RULE}
+- Write the working exactly as a top student writes it on the answer sheet: one line of mathematics per line — the given values, the formula or principle, the substitution with the numbers, the result. A line that continues the previous one starts with = or \\Rightarrow. Use words only where a student would write them on paper ("Given:", "By energy conservation,", "Let t = sin x"). Never write instructions or commentary to the reader ("Write", "Use", "Cancel", "Now", "We", "You", "Note that"). Keep each line short; split long algebra across = lines.
+- Put every expression, symbol and value with its unit in LaTeX between $ and $, one pair per expression, on one line. No $$, no \\[ \\], no \\begin{aligned}, no \\ce{} (write chemical formulae as H_2SO_4, \\rightarrow, \\rightleftharpoons). No headings, bullets, bold, numbering or tables.
+- Finish with one line on its own: "Answer: option N" if the question has options, otherwise "Answer: $<value with unit>$".`;
+// For "explain": a student's margin note before each block of lines is allowed.
+const EXPLAIN_CLAUSE = `
+- Before each block of lines you may add one short line of words saying what the block does, the way a student writes a margin note ("Substituting t = sin x", "Applying Kirchhoff's loop rule"). Never an instruction.`;
+const RULES_PLAIN = `Rules:
+${SYLLABUS_RULE}
 - Write the working as numbered steps, one step per line, in plain English a Class 12 student can follow. Write math in plain text, not LaTeX: x², √x, 10⁻³, a/b, ×, π, θ.
 - Finish with one line on its own: "Answer: option N" if the question has options, otherwise "Answer: <value with unit>".`;
+function rulesFor(askKey: string): string {
+    if (FORMAT === 'plain') return RULES_PLAIN;
+    return askKey === 'explain' ? RULES_TEX + EXPLAIN_CLAUSE : RULES_TEX;
+}
 
 const INTAKE_PROMPT = `Read this photo of one exam question. Return JSON:
 - question_text: the full question exactly as printed, math in plain text. Empty if the photo shows no question.
@@ -175,7 +202,8 @@ interface Call { stage: string; model: string; effort: string | null; ms: number
 interface Solve extends Call {
     text: string; option: number | null; value: string | null; hedge: boolean;
 }
-interface Step { step: number; text: string }
+/** One line of the working: `text` plain (the cache, the judge, the fallback), `tex` as written, `kind` line | cont | note. */
+interface Step { step: number; text: string; tex: string; kind: 'line' | 'cont' | 'note' }
 
 // ── transport helpers (ep-photo-read's) ──────────────────────────────────────
 async function sha256Hex(s: string): Promise<string> {
@@ -360,7 +388,7 @@ function extractValue(text: string): string | null {
     const lines = text.trim().split('\n').map((l) => l.trim()).filter(Boolean);
     for (let i = lines.length - 1; i >= Math.max(0, lines.length - 6); i--) {
         const m = lines[i].match(/^\**\s*(?:final\s+)?answer\s*[:=]\s*\**\s*(.+?)\s*\**\s*$/i);
-        if (m) return m[1].slice(0, 80);
+        if (m) return m[1].replace(/\$/g, '').replace(/\\boxed\{([^{}]*)\}/g, '$1').trim().slice(0, 80);
     }
     const boxed = [...text.matchAll(/\\boxed\{([^{}]{1,80})\}/g)];
     return boxed.length ? boxed[boxed.length - 1][1].trim() : null;
@@ -374,6 +402,7 @@ const GREEK: Record<string, string> = {
     times: '×', cdot: '·', pm: '±', mp: '∓', le: '≤', leq: '≤', ge: '≥', geq: '≥', ne: '≠', neq: '≠', approx: '≈', sim: '~',
     to: '→', rightarrow: '→', Rightarrow: '⇒', leftrightarrow: '↔', infty: '∞', propto: '∝', degree: '°', circ: '°', angle: '∠',
     ldots: '…', cdots: '…', dots: '…', quad: ' ', qquad: ' ', hbar: 'ħ', partial: '∂', nabla: '∇', int: '∫', sum: 'Σ', therefore: '∴',
+    implies: '⇒', rightleftharpoons: '⇌', longrightarrow: '→', xrightarrow: '→', because: '∵', equiv: '≡', div: '÷', neg: '¬',
 };
 const SUP: Record<string, string> = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻', '+': '⁺' };
 const SUB: Record<string, string> = { '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉' };
@@ -381,36 +410,114 @@ const SUB: Record<string, string> = { '0': '₀', '1': '₁', '2': '₂', '3': '
 /** LaTeX and markdown a model still emits despite the plain-text rule → Unicode text. */
 function deLatex(s: string): string {
     let t = String(s ?? '');
-    for (let i = 0; i < 6; i++) t = t.replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, (_m, a, b) => `(${a})/(${b})`);
+    const frac = (_m: string, a: string, b: string) => {
+        const simple = (x: string) => /^[^\s+\-=±×·]+$/.test(x);      // one token: T_2/T_1, 200/400 — no brackets needed
+        return (simple(a) ? a : '(' + a + ')') + '/' + (simple(b) ? b : '(' + b + ')');
+    };
+    const fracs = (x: string) => {
+        for (let i = 0; i < 6; i++) x = x.replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, frac);
+        x = x.replace(/\\(?:d|t)?frac\{([^{}]*)\}\s*([0-9A-Za-z])/g, frac);     // \frac{a}b
+        x = x.replace(/\\(?:d|t)?frac\s*([0-9A-Za-z])\s*\{([^{}]*)\}/g, frac);   // \frac a{b}
+        return x.replace(/\\(?:d|t)?frac\s*([0-9A-Za-z])\s*([0-9A-Za-z])/g, frac); // \frac12
+    };
+    t = fracs(t);
     for (let i = 0; i < 3; i++) t = t.replace(/\\sqrt\{([^{}]*)\}/g, '√($1)');
     t = t.replace(/\\sqrt\s*([A-Za-z0-9]+)/g, '√$1');
+    t = t.replace(/\\sqrt\[([^\]]*)\]\{([^{}]*)\}/g, '($2)^(1/$1)');
     for (let i = 0; i < 3; i++) t = t.replace(/\\(?:text|mathrm|mathbf|mathit|textbf|boxed|vec|hat|bar|overline|underline|mbox)\{([^{}]*)\}/g, '$1');
-    t = t.replace(/\\left|\\right|\\displaystyle|\\,|\\;|\\!|\\ /g, (m) => (m === '\\,' || m === '\\;' || m === '\\ ') ? ' ' : '');
-    t = t.replace(/\\([A-Za-z]+)/g, (m, name) => GREEK[name] ?? m);
+    t = t.replace(/\\,|\\;|\\!|\\ /g, (m) => m === '\\!' ? '' : ' ');
+    t = t.replace(/\\([A-Za-z]+)/g, (m, name) => GREEK[name] ?? m);      // before \left|\right, or \rightarrow loses its head
+    t = t.replace(/\\(?:left|right|displaystyle|limits|nolimits|big|Big|bigg|Bigg)\b/g, '');
     t = t.replace(/\^\{([0-9+\-]{1,3})\}/g, (_m, d: string) => d.split('').map((c) => SUP[c] ?? c).join(''));
     t = t.replace(/\^([0-9])(?![0-9.])/g, (_m, d) => SUP[d]);
     t = t.replace(/\^\{([^{}]*)\}/g, '^($1)');
     t = t.replace(/_\{([0-9]{1,2})\}/g, (_m, d: string) => d.split('').map((c) => SUB[c] ?? c).join(''));
     t = t.replace(/_([0-9])(?![0-9])/g, (_m, d) => SUB[d]);
     t = t.replace(/_\{([^{}]*)\}/g, '_$1');
+    t = fracs(t);                                                          // \frac{0.05}{10^{-4}}: the inner braces are gone now
     t = t.replace(/\\\[|\\\]|\\\(|\\\)|\$\$?/g, '');
+    t = t.replace(/\\(?:text|mathrm|mathbf|mathit|textbf|boxed|vec|hat|bar|overline|underline|mbox|operatorname|mathcal|mathbb|mathsf|textit)\{/g, '{');   // nested wrappers the pass above skipped
     t = t.replace(/\*\*|__|^#+\s*/gm, '').replace(/\\\\/g, ' ').replace(/[{}]/g, '');
+    t = t.replace(/(?<=[A-Za-z0-9)])\\([A-Za-z]+)/g, ' $1');            // 2\cos x → 2 cos x
+    t = t.replace(/\\([A-Za-z]+)/g, '$1');                             // \sin → sin, \ln → ln, anything else → its name
     return t.replace(/[ \t]+/g, ' ').trim();
 }
 
-/** Numbered steps, one per line, from a working; the Answer line is dropped (it is `answer`). */
-function toSteps(text: string): Step[] {
-    const cleaned = deLatex(text.replace(/\r/g, ''));
-    const lines = cleaned.split('\n').map((l) => l.trim()).filter(Boolean)
-        .filter((l) => !/^\**\s*(?:final\s+)?answer\s*[:=]/i.test(l) && !/^(therefore|hence|so),?\s*the\s+(correct\s+)?(answer|option)\s+is\s+\(?[1-4]\)?\.?$/i.test(l));
-    const steps: string[] = [];
-    for (const l of lines) {
-        const m = l.match(/^(?:step\s*)?(\d{1,2})\s*[.):]\s*(.*)$/i);
-        if (m && m[2]) steps.push(m[2].trim());
-        else if (steps.length) steps[steps.length - 1] += ' ' + l;
-        else steps.push(l);
+const MAX_LINES = 40;
+const MAX_LINE_CHARS = 400;
+const ANSWER_LINE = /^\**\s*(?:final\s+)?answer\s*[:=]/i;
+const OPTION_SENTENCE = /^(therefore|hence|so|thus),?\s*(the\s+)?(correct\s+)?(answer|option)\s+is\s+\(?[1-4]\)?\.?$/i;
+const CONT_START = /^(?:\$\s*)?(?:=|\\Rightarrow|\\implies|\\therefore|⇒|∴|\\to\b|→)/;
+// A line that talks to the reader — the number the measurement gate reads.
+const INSTRUCTION = /^(write|use|cancel|now|we|you|note that|let us|let's|first|next|then|finally|so we|substitute|apply|simplify|solve|differentiate|integrate|multiply|divide|add|subtract|rearrange|compare|consider|recall|observe|notice)\b/i;
+
+/** A stray \\ce{…} (the rule forbids it; a model may still write one) → plain LaTeX. */
+function deCe(s: string): string {
+    return s.replace(/\\ce\{([^{}]*)\}/g, (_m, body: string) => {
+        let t = body.trim();
+        t = t.replace(/<=>/g, ' \\rightleftharpoons ').replace(/->/g, ' \\rightarrow ');
+        t = t.replace(/([A-Za-z)\]])(\d+)/g, '$1_{$2}');
+        t = t.replace(/\^(\d*[+-])/g, '^{$1}');
+        return '\\mathrm{' + t.replace(/\s+/g, ' ') + '}';
+    });
+}
+
+/** Display maths, aligned blocks and \( \) → one $…$ line per row. */
+function normaliseMath(s: string): string {
+    let t = s.replace(/\r/g, '');
+    t = deCe(t);
+    const block = (body: string) => {
+        const inner = body.replace(/\\begin\{(?:aligned|align\*?|gather\*?|array)\}(?:\{[^}]*\})?/g, '').replace(/\\end\{(?:aligned|align\*?|gather\*?|array)\}/g, '')
+            .replace(/&/g, '').replace(/\\\\/g, '\n');
+        return '\n' + inner.split('\n').map((r) => r.trim()).filter(Boolean).map((r) => '$' + r + '$').join('\n') + '\n';
+    };
+    t = t.replace(/\$\$([\s\S]*?)\$\$/g, (_m, b) => block(b));
+    t = t.replace(/\\\[([\s\S]*?)\\\]/g, (_m, b) => block(b));
+    t = t.replace(/\\begin\{(?:aligned|align\*?|gather\*?)\}([\s\S]*?)\\end\{(?:aligned|align\*?|gather\*?)\}/g, (_m, b) => block(b));
+    t = t.replace(/\\\(([\s\S]*?)\\\)/g, (_m, b) => '$' + String(b).trim() + '$');
+    return t;
+}
+
+/** The plain-text twin of a LaTeX line (deLatex, the $ delimiters dropped). */
+function plainOf(tex: string): string {
+    return deLatex(tex.replace(/\$/g, '')).replace(/\s+/g, ' ').trim();
+}
+
+/** The working as lines of an answer sheet: {step, text, tex, kind}. The Answer line is dropped (it is `answer`). */
+function toLines(text: string): Step[] {
+    const raw = normaliseMath(String(text ?? '')).split('\n').map((l) => l.trim()).filter(Boolean);
+    const out: Step[] = [];
+    for (let l of raw) {
+        if (ANSWER_LINE.test(l) || OPTION_SENTENCE.test(l)) continue;
+        if (/^(-{3,}|\*{3,}|_{3,})$/.test(l)) continue;                     // a rule
+        if (/^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?$/.test(l)) continue;  // a table separator row
+        l = l.replace(/\*\*|__/g, '').replace(/^#{1,6}\s*/, '').replace(/^[-*•]\s+/, '').trim();
+        l = l.replace(/^(?:step\s*)?\(?\d{1,2}\)?\s*[.):]\s+/i, '').trim();
+        if (/^\|.*\|$/.test(l)) l = l.slice(1, -1).replace(/\s*\|\s*/g, '  ').trim();   // a table row (an absolute value never spans the whole line)
+        if (!l) continue;
+        if (/^\$?\s*\\boxed\{.*\}\s*\$?$/.test(l)) continue;                   // a lone boxed answer
+        const dollars = (l.match(/\$/g) ?? []).length;
+        let tex = l;
+        if (dollars % 2 === 1) { tex = ''; l = l.replace(/\$/g, ''); }
+        else if (dollars === 0) tex = /\\[A-Za-z]+|[\^_{}]/.test(l) ? '$' + l + '$' : '';
+        const plain = tex ? plainOf(tex) : deLatex(l);
+        if (!plain) continue;
+        const kind: Step['kind'] = CONT_START.test(l) ? 'cont' : (!tex && !/[=+\-×÷^√∫]|\d/.test(plain)) ? 'note' : 'line';
+        out.push({ step: out.length + 1, text: plain.slice(0, MAX_LINE_CHARS), tex: tex.slice(0, MAX_LINE_CHARS), kind });
+        if (out.length >= MAX_LINES) break;
     }
-    return steps.slice(0, 14).map((s, i) => ({ step: i + 1, text: s.slice(0, 700) }));
+    return out;
+}
+
+/** What the ledger records about the shape of a working. */
+function formatStats(lines: Step[]) {
+    return {
+        lines: lines.length,
+        tex_lines: lines.filter((l) => !!l.tex).length,
+        instr_lines: lines.filter((l) => INSTRUCTION.test(l.text)).length,
+        note_lines: lines.filter((l) => l.kind === 'note').length,
+        unbalanced: lines.filter((l) => !l.tex && l.kind === 'line').length,   // a maths line the page cannot typeset
+    };
 }
 
 /** Lower-case letters and digits only, superscripts folded, the question number ("153.", "153)", "Q.153:") dropped. */
@@ -546,7 +653,8 @@ function agree(a: Solve, b: Solve, hasOptions: boolean): boolean {
     if (hasOptions) return a.option === b.option;
     const x = numberOf(a.value ?? ''), y = numberOf(b.value ?? '');
     if (x !== null && y !== null) return sameNumber(x, y);
-    return normOpt(a.value ?? '') === normOpt(b.value ?? '') && normOpt(a.value ?? '').length > 0;
+    const p = normOpt(deLatex(a.value ?? '')), q = normOpt(deLatex(b.value ?? ''));
+    return p === q && p.length > 0;
 }
 
 function arbiter(results: Solve[], hasOptions: boolean, primary: string): Verdict {
@@ -573,8 +681,8 @@ function callSummary(c: Call) {
 }
 
 interface CacheRow {
-    fingerprint: string; subject: string; has_figure: boolean; route: string; question_text: string; options: string[];
-    option: number | null; answer: string | null; working: Step[]; working_alt: { model: string; steps: Step[] } | null;
+    fingerprint: string; subject: string; has_figure: boolean; route: string; question_text: string; options: string[]; ask: string;
+    option: number | null; answer: string | null; answer_tex: string | null; working: Step[]; working_alt: { model: string; steps: Step[] } | null;
     label: string; source: string; models: unknown[]; conventions: unknown[]; similar_qs: unknown[]; syllabus: string | null; winner: string | null;
     hit_count: number; disputed: boolean;
 }
@@ -589,9 +697,9 @@ async function cacheGet(fp: string): Promise<CacheRow | null | undefined> {
 }
 
 /** The nearest cached transcript of the same subject (ep_solve_lookup: trigram similarity ≥ 0.85), or null. */
-async function cacheLookup(subject: string, text: string): Promise<{ fingerprint: string; sim: number } | null> {
+async function cacheLookup(subject: string, text: string, ask: string): Promise<{ fingerprint: string; sim: number } | null> {
     try {
-        const res = await rest('rpc/ep_solve_lookup', { method: 'POST', body: JSON.stringify({ p_subject: subject, p_text: text.slice(0, 4000) }) });
+        const res = await rest('rpc/ep_solve_lookup', { method: 'POST', body: JSON.stringify({ p_subject: subject, p_text: text.slice(0, 4000), p_ask: ask }) });
         if (!res.ok) return null;
         const rows = await res.json() as { fingerprint: string; sim: number }[];
         return rows[0] ?? null;
@@ -618,6 +726,17 @@ function answerText(v: Verdict, options: string[]): string | null {
     if (v.label === 'unsure') return null;
     if (v.option && options[v.option - 1]) return options[v.option - 1].slice(0, 120);
     return v.value ? deLatex(v.value).slice(0, 120) : null;
+}
+/** The final value as written (LaTeX, $-wrapped) for a question without options; null otherwise. */
+function answerTex(v: Verdict, options: string[]): string | null {
+    if (v.label === 'unsure' || v.option || !v.value) return null;
+    const t = deCe(v.value).replace(/\$/g, '').replace(/\\boxed\{([^{}]*)\}/g, '$1').trim();
+    return t ? ('$' + t + '$').slice(0, 160) : null;
+}
+/** A row written under the old plain-text rule has no `tex` on its lines: serve it as a miss. */
+function currentFormat(row: CacheRow): boolean {
+    if (FORMAT === 'plain') return true;
+    return Array.isArray(row.working) && row.working.length > 0 && row.working.every((l) => typeof l.tex === 'string');
 }
 
 Deno.serve(async (req: Request) => {
@@ -801,7 +920,7 @@ Deno.serve(async (req: Request) => {
         await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'many_questions', ms: Date.now() - t0, bytes: imageBytes });
         return reply(origin, 200, { ok: false, reason: 'many_questions', reads_left: left(0) });
     }
-    const fingerprint = await sha256Hex(normalise(questionText, options));
+    const fingerprint = await sha256Hex(normalise(questionText, options) + '|' + askKey);   // one row per ask
     const route = hasFigure ? 'figure' : 'text';
 
     // ── S2 cache: the exact fingerprint, else the nearest transcript of the
@@ -812,18 +931,19 @@ Deno.serve(async (req: Request) => {
     let cacheFp = fingerprint;
     let cacheSim = cached ? 1 : 0;
     if (!cached) {
-        const near = await cacheLookup(subject, questionText);
+        const near = await cacheLookup(subject, questionText, askKey);
         if (near && near.fingerprint !== fingerprint) {
             const row = await cacheGet(near.fingerprint);
             if (row && numbersOf(row.question_text, row.options) === numbersOf(questionText, options)) { cached = row; cacheFp = row.fingerprint; cacheSim = near.sim; }
         }
     }
+    if (cached && !currentFormat(cached)) { cached = null; cacheFp = fingerprint; cacheSim = 0; }
     if (cached && !cached.disputed) {
         await cachePatch(cacheFp, { hit_count: (cached.hit_count ?? 0) + 1, updated_at: new Date().toISOString() });
         const internal = await ledgerRow(true, { ...intakeMeta, outcome: 'cache', source: 'cache', route: cached.route, label: cached.label, option: cached.option, fingerprint: cacheFp, cache_sim: Number(cacheSim.toFixed(3)) }, cacheFp, true);
         await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', { outcome: 'ok', source: 'cache', label: cached.label, route: cached.route, subject, ms: Date.now() - t0, reads_left: left(1), bytes: imageBytes });
         return reply(origin, 200, {
-            ok: true, source: 'cache', label: cached.label, option: cached.option, answer: cached.answer,
+            ok: true, source: 'cache', label: cached.label, option: cached.option, answer: cached.answer, answer_tex: cached.answer_tex ?? null, format: FORMAT,
             working: cached.working, working_alt: cached.working_alt, winner: cached.winner, models: cached.models, conventions: cached.conventions, similar: cached.similar_qs,
             syllabus: cached.syllabus, question_text: cached.question_text, options: cached.options, subject: cached.subject, has_figure: cached.has_figure,
             route: cached.route, fingerprint: cacheFp, reads_left: left(1),
@@ -832,7 +952,7 @@ Deno.serve(async (req: Request) => {
     }
 
     // ── S3 route and solve, S4 triggers ──────────────────────────────────────
-    const prompt = ASKS[askKey] + (options.length ? '.' : ' and give the final value with its unit.') + '\n\n' + RULES;
+    const prompt = ASKS[askKey] + (options.length ? '.' : ' and give the final value with its unit.') + '\n\n' + rulesFor(askKey);
     const img = { mime: mediaType, data: image };
     const results: Solve[] = [];
     let late: Promise<Solve> | null = null;
@@ -865,8 +985,8 @@ Deno.serve(async (req: Request) => {
 
     // ── S5 arbiter, S7 syllabus ──────────────────────────────────────────────
     const v = arbiter(results, options.length > 0, primary);
-    const working = v.winner ? toSteps(v.winner.text) : [];
-    const workingAlt = v.label === 'unsure' && v.alt ? { model: v.alt.model, steps: toSteps(v.alt.text) } : null;
+    const working = v.winner ? toLines(v.winner.text) : [];
+    const workingAlt = v.label === 'unsure' && v.alt ? { model: v.alt.model, steps: toLines(v.alt.text) } : null;
     let syllabus = 'unchecked';
     if (SYLLABUS_CHECK && working.length) {
         const j = await judgeSyllabus(working);
@@ -874,19 +994,21 @@ Deno.serve(async (req: Request) => {
         syllabus = j.verdict;
     }
     const answer = answerText(v, options);
+    const answerTexOut = answerTex(v, options);
     const models = results.map(modelSummary);
     const labelForCache = late ? 'once' : v.label;
 
     // ── S9 persist ───────────────────────────────────────────────────────────
     const row = {
-        fingerprint, subject, has_figure: hasFigure, route, question_text: questionText, options,
-        option: v.option, answer, working, working_alt: workingAlt, label: labelForCache, source: 'model',
+        fingerprint, subject, has_figure: hasFigure, route, question_text: questionText, options, ask: askKey,
+        option: v.option, answer, answer_tex: answerTexOut, working, working_alt: workingAlt, label: labelForCache, source: 'model',
         winner: v.winner ? v.winner.model : null, models, conventions: [], similar_qs: [], syllabus, hit_count: 0, disputed: false, updated_at: new Date().toISOString(),
     };
     if (working.length) await cachePut(row);
     const outcome = working.length ? 'ok' : 'no_working';
     const internal = await ledgerRow(true, {
         ...intakeMeta, outcome, source: 'model', route, label: labelForCache, option: v.option, fingerprint, second_reason: secondReason, open_door: open,
+        format: { rule: FORMAT, ...formatStats(working) },
         late_pair: !!late, syllabus, models: models.map((m) => ({ model: m.model, effort: m.effort, option: m.option, ms: m.ms, cap_hit: m.cap_hit, error: m.error })),
     }, fingerprint, false);
     await writeEvent(deviceId, session, internal || claimsTeam || isLocal, 'solve', {
@@ -898,10 +1020,10 @@ Deno.serve(async (req: Request) => {
         const done = late.then(async (ds) => {
             const all = [...results, ds];
             const v2 = arbiter(all, options.length > 0, primary);
-            const alt2 = v2.label === 'unsure' && v2.alt ? { model: v2.alt.model, steps: toSteps(v2.alt.text) } : null;
+            const alt2 = v2.label === 'unsure' && v2.alt ? { model: v2.alt.model, steps: toLines(v2.alt.text) } : null;
             if (v2.winner) {
                 await cachePatch(fingerprint, {
-                    label: v2.label, option: v2.option, answer: answerText(v2, options), working: toSteps(v2.winner.text), working_alt: alt2,
+                    label: v2.label, option: v2.option, answer: answerText(v2, options), answer_tex: answerTex(v2, options), working: toLines(v2.winner.text), working_alt: alt2,
                     winner: v2.winner.model, models: all.map(modelSummary), updated_at: new Date().toISOString(),
                 });
             }
@@ -915,7 +1037,7 @@ Deno.serve(async (req: Request) => {
 
     if (!working.length) return reply(origin, 200, { ok: false, reason: 'down', reads_left: left(1) });
     return reply(origin, 200, {
-        ok: true, source: 'model', label: labelForCache, option: v.option, answer,
+        ok: true, source: 'model', label: labelForCache, option: v.option, answer, answer_tex: answerTexOut, format: FORMAT,
         working, working_alt: workingAlt, winner: v.winner ? v.winner.model : null, models, conventions: [], similar: [], syllabus,
         question_text: questionText, options, subject, has_figure: hasFigure, route, fingerprint,
         reads_left: left(1),

@@ -1,28 +1,29 @@
 /* Solutions — the doubt desk: a chat panel where a student brings a problem
  * of their own, as a photo (camera or gallery) or typed.
  *
- * With EP_SOLVE_BASE set (the hosted and preview builds), "show me the
- * solution" and "I am stuck" send the photo ONCE to ep-solve, which reads the
+ * With EP_SOLVE_BASE set (the hosted and preview builds), "Solve it" and
+ * "Explain each step" send the photo ONCE to ep-solve, which reads the
  * question, solves it (one model for a text question, two in parallel for a
- * drawn one) and returns an answer with a label decided by code: checked two
- * ways / checked once / not sure. The page prints the label, the working,
- * both workings when not sure, which models answered, and a "this answer
- * looks wrong" tap. The image is never stored anywhere. "I tried, here is my
- * work" (the reviewer) is not built yet and still ends in the honest
- * not-available card.
+ * drawn one) and returns the working as an answer sheet: lines of
+ * mathematics, each with its LaTeX and a plain-text twin. The card shows the
+ * answer, the lines typeset (83_tex.js; plain text until KaTeX arrives or if
+ * it never does), a quiet footer saying how the answer was checked, and a
+ * small "wrong answer? tell us" link. Nothing about which model answered is
+ * shown (founder, 2026-09-11). When the two workings disagree the card says
+ * "Not sure", gives no answer and shows both workings. The image is never
+ * stored anywhere. "I tried, here is my work" (the reviewer) is not built yet
+ * and is not offered while the solver is on.
  *
  * Without EP_SOLVE_BASE nothing is sent: the photo is shown back from an
- * object URL and the flow ends in the not-available card, exactly as before.
- * A typed question is matched on the phone (58_match.js) against the public
- * pool and opens the existing fix page, which is gated exactly as it is from
- * a result; the same match runs on the solver's transcript, so a past-paper
- * question is also pointed at its verified fix page.
+ * object URL, the three original chips show and the flow ends in the
+ * not-available card, exactly as before. A typed question is matched on the
+ * phone (58_match.js) against the public pool and opens the existing fix
+ * page, which is gated exactly as it is from a result.
  *
- * Every bubble here is deterministic and carries no AI tag except the answer
- * card, which names the models that produced it. The bubbles use their own
- * classes (.ep-sol-*), never the run's or the chat's, because the e2e suite
- * reads those unscoped. Leaving the view clears the thread, the timers and
- * every object URL. */
+ * Every bubble here is deterministic and carries no AI tag. The bubbles use
+ * their own classes (.ep-sol-*), never the run's or the chat's, because the
+ * e2e suite reads those unscoped. Leaving the view clears the thread, the
+ * timers and every object URL. */
 var Solutions = (function () {
   var ui = Screens.ui;
   var BASE = (window.EP_SOLVE_BASE || '').trim();
@@ -98,6 +99,12 @@ var Solutions = (function () {
     if (ctx.stage === 'work') { notAvailable(); return; }
     ctx.stage = 'want';
     say(STR.sol_what);
+    if (BASE) {
+      var explain = chip(STR.sol_chip_explain, 'stuck', function () { say(STR.sol_chip_explain, 'student'); solve('explain'); });
+      explain.cls = 'ep-chip-quiet';
+      setChips([chip(STR.sol_chip_solve, 'solution', function () { say(STR.sol_chip_solve, 'student'); solve('solve'); }), explain]);
+      return;
+    }
     setChips([
       chip(STR.sol_chip_tried, 'tried', function () { say(STR.sol_chip_tried, 'student'); ctx.stage = 'work'; say(STR.sol_work_photo); photoChips(); }),
       chip(STR.sol_chip_stuck, 'stuck', function () { say(STR.sol_chip_stuck, 'student'); solve('explain'); }),
@@ -167,79 +174,68 @@ var Solutions = (function () {
     });
   }
 
-  function modelName(id) { return (STR.sol_model_names && STR.sol_model_names[id]) || id || ''; }
-  function stepList(list) {
-    var ol = el('ol', 'ep-solve-steps');
+  /* One line of the answer sheet: plain text now, `data-tex` for KaTeX. */
+  function line(l) {
+    var d = el('div', 'ep-line' + (l.kind === 'cont' ? ' ep-line-cont' : l.kind === 'note' ? ' ep-line-note' : ''), String(l.text || ''));
+    if (l.tex) d.setAttribute('data-tex', String(l.tex));
+    return d;
+  }
+  /* The working as a notebook block. */
+  function paper(list) {
+    var p = el('div', 'ep-paper');
     list = list || [];
-    for (var i = 0; i < list.length; i++) ol.appendChild(el('li', 'ep-solve-step', String(list[i].text || '')));
-    return ol;
+    for (var i = 0; i < list.length; i++) p.appendChild(line(list[i]));
+    return p;
   }
-  function modelsLine(models) {
-    var lines = [];
-    for (var i = 0; i < (models || []).length; i++) {
-      var m = models[i];
-      var result = m.error ? STR.sol_model_none : m.option ? STR.sol_model_option(m.option) : m.value ? String(m.value) : STR.sol_model_none;
-      lines.push(STR.sol_model_line(modelName(m.model) + (m.effort ? STR.sol_model_effort(m.effort) : ''), result, Math.max(1, Math.round((m.ms || 0) / 1000))));
-    }
-    return lines;
-  }
-  /* The answer card: the label first, the answer (none when not sure), the
-   * working (both when not sure, each named), which models answered, and the
-   * "this answer looks wrong" tap that files a report for a human. */
+  /* The answer card: the answer line, the working as an answer sheet (both
+   * workings under "Working A" / "Working B" when not sure, no answer), a
+   * note only when the method is beyond Class 12, and a quiet footer: how it
+   * was checked, and the "wrong answer? tell us" link that files a report. */
   function render(b) {
     ctx.stage = 'solved';
     var label = STR.sol_label[b.label] ? b.label : 'once';
     var card = el('div', 'ep-solve ep-solve-' + label);
     card.setAttribute('data-label', label);
     card.setAttribute('data-source', b.source || '');
-    card.appendChild(el('div', 'ep-eyebrow', STR.sol_label[label]));
     if (label === 'unsure') {
+      card.appendChild(el('div', 'ep-eyebrow', STR.sol_label.unsure));
       card.appendChild(el('p', 'ep-solve-unsure-body', STR.sol_unsure_body));
-    } else if (b.option) {
-      card.appendChild(el('div', 'ep-solve-answer', STR.sol_answer_option(b.option, b.answer || '')));
-    } else if (b.answer) {
-      card.appendChild(el('div', 'ep-solve-answer', STR.sol_answer_value(b.answer)));
-    }
-    if (STR.sol_label_note[label]) card.appendChild(el('p', 'ep-solve-note', STR.sol_label_note[label]));
-    if (label === 'unsure') {
-      card.appendChild(el('div', 'ep-solve-who', STR.sol_working_of(modelName(b.winner))));
-      card.appendChild(stepList(b.working));
+      card.appendChild(el('div', 'ep-h3', STR.sol_working_a));
+      card.appendChild(paper(b.working));
       if (b.working_alt && b.working_alt.steps) {
-        card.appendChild(el('div', 'ep-solve-who', STR.sol_working_of(modelName(b.working_alt.model))));
-        card.appendChild(stepList(b.working_alt.steps));
+        card.appendChild(el('div', 'ep-h3', STR.sol_working_b));
+        card.appendChild(paper(b.working_alt.steps));
       }
     } else {
-      card.appendChild(stepList(b.working));
+      if (b.option || b.answer) {
+        var ans = el('div', 'ep-solve-answer');
+        ans.appendChild(el('span', 'ep-solve-answer-word', STR.sol_answer_word));
+        if (b.option) ans.appendChild(el('span', 'ep-solve-key', STR.option_label(b.option)));
+        if (b.answer) {
+          var val = el('span', 'ep-solve-val', String(b.answer));
+          if (!b.option && b.answer_tex) val.setAttribute('data-tex', String(b.answer_tex));
+          ans.appendChild(val);
+        }
+        card.appendChild(ans);
+      }
+      card.appendChild(paper(b.working));
     }
     if (b.syllabus === 'beyond') card.appendChild(el('p', 'ep-solve-note', STR.sol_syllabus_note));
-    if (b.source === 'cache') card.appendChild(el('p', 'ep-solve-note', STR.sol_from_cache));
-    var lines = modelsLine(b.models);
-    if (lines.length) card.appendChild(el('p', 'ep-solve-models', STR.sol_models(lines)));
-    var row = el('div', 'ep-photo-row');
-    var rep = ui.button('btn ep-solve-report', STR.sol_report, function () {
+    var foot = el('div', 'ep-solve-foot');
+    if (STR.sol_mark[label]) foot.appendChild(el('span', 'ep-solve-mark', STR.sol_mark[label]));
+    var rep = ui.button('ep-solve-report', STR.sol_report, function () {
       rep.disabled = true;
       Track.log('sol_report', { fingerprint: String(b.fingerprint || '').slice(0, 12), label: label, option: b.option === undefined ? null : b.option });
       post({ action: 'report', fingerprint: b.fingerprint, option: b.option || null, label: label })
         .then(function () { rep.textContent = STR.sol_reported; })
         .catch(function () { rep.disabled = false; });
     });
-    row.appendChild(rep);
-    card.appendChild(row);
+    foot.appendChild(rep);
+    card.appendChild(foot);
     thread.appendChild(card);
     card.scrollIntoView({ block: 'end' });
-    if (typeof b.reads_left === 'number') say(STR.sol_left(b.reads_left));
-    pastPaper(b.question_text);
+    if (typeof Tex !== 'undefined') Tex.render(card, function (r) { Track.log('sol_tex', r); });
     photoChips([weaknessChip()]);
-  }
-  /* The transcript against the public pool: a past-paper question also gets
-   * its verified fix page, exactly as a typed question does. */
-  function pastPaper(text) {
-    if (!text || typeof Match === 'undefined') return;
-    var r = Match.find(String(text).slice(0, 500), candidates(), ctx.ck);
-    if (r.few || !r.hits.length) return;
-    Track.log('sol_past', { hits: r.hits.length, top: Math.round(r.hits[0].score * 100) / 100 });
-    say(STR.sol_past);
-    matchCards(r.hits.slice(0, 2));
   }
 
   // ── typed: matched on the phone against the public pool ────────────────

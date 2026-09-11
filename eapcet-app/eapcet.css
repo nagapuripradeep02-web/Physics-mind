@@ -386,19 +386,33 @@
 .ep-photo-final, .ep-photo-diverges { font-size: 14.5px; margin: 4px 0; line-height: 1.5; }
 .ep-photo-diverges { font-weight: 600; }
 
-/* Solutions tab — the solver's answer card (ep-solve). Three labels, three
-   colours: checked two ways (strong), checked once (chrome), unsure (gold). */
-.ep-solve { border: 1px solid var(--chrome-line); border-radius: var(--r-card); background: var(--paper); padding: 14px 16px; max-width: 92%; align-self: flex-start; }
-.ep-solve .ep-eyebrow { margin: 0 0 6px; }
-.ep-solve-two_ways { border-color: var(--m-strong-ink); }
-.ep-solve-two_ways .ep-eyebrow { color: var(--m-strong-ink); }
+/* Solutions tab — the solver's answer card (ep-solve): the answer line, the
+   working as an answer sheet (.ep-paper, one .ep-line per line of maths,
+   typeset by KaTeX when it arrives), and a quiet footer. Nothing about which
+   model answered is shown. "Not sure" is the one loud state (gold). */
+.ep-solve { border: 1px solid var(--chrome-line); border-radius: var(--r-card); background: var(--paper); padding: 16px 18px; max-width: 100%; align-self: stretch; }
 .ep-solve-unsure { border-color: var(--gold); background: var(--gold-wash); }
-.ep-solve-unsure .ep-eyebrow { color: var(--gold-ink); }
-.ep-solve-answer { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.35; margin: 0 0 8px; white-space: pre-wrap; }
+.ep-solve-unsure .ep-eyebrow { color: var(--gold-ink); margin: 0 0 6px; }
+.ep-solve .ep-h3 { margin: 14px 0 6px; }
+.ep-solve-answer { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.3; margin: 0 0 12px; }
+.ep-solve-answer-word { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--chrome-dim); font-family: inherit; }
+.ep-solve-key { padding: 2px 12px; border-radius: var(--r-pill); background: var(--sage-wash); color: var(--sage-deep); }
+.ep-solve-val { font-family: 'Cambria Math', 'STIX Two Math', var(--serif); font-weight: 500; word-break: break-word; }
 .ep-solve-unsure-body { font-size: 14.5px; line-height: 1.5; margin: 0 0 8px; }
-.ep-solve-who { font-size: 12.5px; font-weight: 600; letter-spacing: .04em; color: var(--chrome-dim); margin: 10px 0 4px; }
-.ep-solve-steps { margin: 0; padding: 0 0 0 20px; }
-.ep-solve-step { font-size: 15px; line-height: 1.5; margin: 0 0 6px; white-space: pre-wrap; word-break: break-word; }
-.ep-solve-models, .ep-solve-note { color: var(--chrome-dim); font-size: 13px; line-height: 1.45; margin: 8px 0 0; }
-.ep-solve .ep-photo-row { margin-top: 10px; }
-.ep-solve-past { font-size: 14px; color: var(--chrome-dim); margin: 6px 0 0; }
+.ep-paper { background: var(--chrome-card); border: 1px solid var(--chrome-line); border-radius: 10px; padding: 12px 14px; font-family: 'Cambria Math', 'STIX Two Math', var(--serif); font-size: 17px; line-height: 1.75; color: var(--ink); overflow-x: auto; }
+.ep-line { white-space: pre-wrap; word-break: break-word; }
+.ep-line + .ep-line { margin-top: 6px; }
+.ep-line-cont { padding-left: 1.6em; }
+.ep-line-note { font-family: var(--serif); font-size: 15.5px; color: var(--chrome-dim); }
+.ep-line-note + .ep-line { margin-top: 4px; }
+.ep-line + .ep-line-note { margin-top: 12px; }
+.ep-paper .katex { font-size: 1.04em; }
+.ep-paper .katex-display { margin: 0; }
+.ep-solve-note { color: var(--chrome-dim); font-size: 13px; line-height: 1.45; margin: 10px 0 0; }
+.ep-solve-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 14px; margin-top: 12px; font-size: 12.5px; color: var(--chrome-dim); }
+.ep-solve-mark { font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+.ep-solve-two_ways .ep-solve-mark { color: var(--sage-deep); }
+.ep-solve-report { font: inherit; font-size: 12.5px; color: var(--chrome-dim); background: none; border: 0; padding: 0; min-height: var(--tap); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; margin-left: auto; }
+.ep-solve-report:disabled { text-decoration: none; cursor: default; }
+.ep-chip-quiet { border-color: var(--chrome-line); color: var(--chrome-dim); }
+@media (max-width: 360px) { .ep-paper { font-size: 16px; padding: 10px 12px; } .ep-solve { padding: 14px 14px; } }

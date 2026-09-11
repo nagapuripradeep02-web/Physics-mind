@@ -366,26 +366,15 @@ var STR = {
     many_questions: 'That photo has more than one question. Crop it to one question and send it again.',
     too_large: 'That photo is too large. Take it again.'
   },
+  sol_chip_solve: 'Solve it',
+  sol_chip_explain: 'Explain each step',
   sol_label: { two_ways: 'Checked two ways', once: 'Checked once', unsure: 'Not sure' },
-  sol_label_note: {
-    two_ways: 'Two solvers reached the same answer.',
-    once: 'One solver answered. Read the working before you trust it.',
-    unsure: ''
-  },
-  sol_answer_option: function (n, text) { return 'Answer: option (' + n + ')' + (text ? '  ' + text : ''); },
-  sol_answer_value: function (v) { return 'Answer: ' + v; },
-  sol_unsure_body: 'Two solvers reached different answers, so no answer is given. Both workings are below. Check this one with your teacher or the key.',
-  sol_working_of: function (name) { return 'Working by ' + name; },
-  sol_model_names: { 'deepseek-flash': 'DeepSeek V4.1 Flash', 'gemini-3.7-flash': 'Gemini 3.7 Flash', 'gemini-3.5-flash-lite': 'Gemini 3.5 Flash-Lite' },
-  sol_model_effort: function (e) { return ' (thinking ' + e + ')'; },
-  sol_model_option: function (n) { return 'option (' + n + ')'; },
-  sol_model_none: 'no answer',
-  sol_model_line: function (name, result, sec) { return name + ': ' + result + ' in ' + sec + ' s'; },
-  sol_models: function (lines) { return 'Solved by ' + lines.join(' · ') + '.'; },
-  sol_from_cache: 'This question was solved before. This is the saved answer.',
+  sol_mark: { two_ways: 'Checked two ways', once: 'Checked once' },
+  sol_answer_word: 'Answer',
+  sol_unsure_body: 'Two workings reached different answers, so no answer is given. Both are below. Check with your teacher or the key.',
+  sol_working_a: 'Working A',
+  sol_working_b: 'Working B',
   sol_syllabus_note: 'This working may use a method beyond Class 12. Ask your teacher for the exam method.',
-  sol_report: 'This answer looks wrong',
-  sol_reported: 'Noted. A teacher will check it.',
-  sol_left: function (n) { return n === 1 ? 'One photo left today.' : n + ' photos left today.'; },
-  sol_past: 'This looks like a past EAPCET question. Its verified solution is on the fix page:'
+  sol_report: 'Wrong answer? Tell us',
+  sol_reported: 'Noted. A teacher will check it.'
 };

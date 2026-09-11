@@ -167,7 +167,7 @@ var Screens = (function () {
     var host = target || chips;
     clear(host);
     for (var i = 0; i < list.length; i++) (function (c) {
-      var b = el('button', 'ep-chip', c.label);
+      var b = el('button', 'ep-chip' + (c.cls ? ' ' + c.cls : ''), c.label);
       b.type = 'button';
       b.setAttribute('data-route', c.value);
       b.onclick = function () { c.onTap(); };
